@@ -41,23 +41,23 @@ open HeadComplexity
 #print axioms signReprDegLe_of_computableWithHeadsN
 #print axioms exists_univariate_of_symmetric
 #print axioms signChanges_le_of_computableWithHeadsN
-#print axioms HStarN_symmetricFn_eq_signChanges
+#print axioms HStar_symmetricFn_eq_signChanges
 #print axioms exists_sign_poly
 #print axioms real_partial_fraction
 #print axioms atomHead_readout
 #print axioms symmetricFn_computable
-#print axioms HStarN_symmetricFn
-#print axioms HStarN_parity
+#print axioms HStar_symmetricFn
+#print axioms HStar_parity
 #print axioms thresholdDeg_parity
-#print axioms HStarN_le_weighted_sum
-#print axioms HStarN_le_universal_boolean
-#print axioms HStarN_eq_zero_iff
-#print axioms HStarN_eq_one_iff
-#print axioms HStarN_eq_Lfrac
+#print axioms HStar_le_weighted_sum
+#print axioms HStar_le_universal_boolean
+#print axioms HStar_eq_zero_iff
+#print axioms HStar_eq_one_iff
+#print axioms HStar_eq_Lfrac
 #print axioms Head.restricted_numerator_antipode
-#print axioms checkerboard_restriction_HStarN_ge_two
-#print axioms HStarN_threshold
-#print axioms HStarN_exact
+#print axioms checkerboard_restriction_HStar_ge_two
+#print axioms HStar_threshold
+#print axioms HStar_exact
 EOF
 # Capture the report and FAIL if any non-standard axiom (e.g. sorryAx) appears.
 AX_OUT=$(lake env lean /tmp/AxiomCheck_$$.lean 2>&1); AX_RC=$?

@@ -23,12 +23,12 @@ theorem computableWithHeadsN_iff_fracComputable (H : ℕ) (f : (Fin n → Bool) 
   ⟨fracComputable_of_computable, computable_of_fracComputable⟩
 
 /-- **Theorem 10.** The head complexity equals the linear-fractional complexity. -/
-theorem HStarN_eq_Lfrac (f : (Fin n → Bool) → Bool) : HStarN n f = Lfrac n f := by
+theorem HStar_eq_Lfrac (f : (Fin n → Bool) → Bool) : HStar n f = Lfrac n f := by
   classical
   have hiff := computableWithHeadsN_iff_fracComputable (n := n) (f := f)
   have hexC : ∃ k, computableWithHeadsN n k f := exists_computable f
   have hexF : ∃ H, fracComputable n H f := hexC.imp fun k => (hiff k).mp
-  unfold HStarN Lfrac
+  unfold HStar Lfrac
   rw [dif_pos hexC, dif_pos hexF]
   refine le_antisymm ?_ ?_
   · exact Nat.find_min' hexC ((hiff _).mpr (Nat.find_spec hexF))

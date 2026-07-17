@@ -15,7 +15,7 @@ Assembling the pieces:
 
 This yields `computableWithHeadsN n (signChanges n F) (symmetricFn F)` (the upper
 bound), which with the verified lower bound gives the full, unconditional Theorem 12:
-`HStarN n (symmetricFn F) = signChanges n F`.
+`HStar n (symmetricFn F) = signChanges n F`.
 -/
 
 namespace HeadComplexity
@@ -100,12 +100,12 @@ theorem symmetricFn_computable (F : ℕ → Bool) (n : ℕ) :
 /-- **Theorem 12 (conditional form).** If the sign-change upper-bound
 construction computes `symmetricFn F`, then the head complexity is exactly the
 number of sign changes of `F`. -/
-theorem HStarN_symmetricFn_eq_signChanges {n : ℕ} {F : ℕ → Bool}
+theorem HStar_symmetricFn_eq_signChanges {n : ℕ} {F : ℕ → Bool}
     (hub : computableWithHeadsN n (signChanges n F) (symmetricFn F)) :
-    HStarN n (symmetricFn F) = signChanges n F := by
+    HStar n (symmetricFn F) = signChanges n F := by
   classical
   have hExists : ∃ k, computableWithHeadsN n k (symmetricFn F) := ⟨_, hub⟩
-  unfold HStarN
+  unfold HStar
   rw [dif_pos hExists]
   apply le_antisymm
   · exact Nat.find_min' hExists hub
@@ -113,8 +113,8 @@ theorem HStarN_symmetricFn_eq_signChanges {n : ℕ} {F : ℕ → Bool}
 
 /-- **Theorem 12 (unconditional).** For a symmetric Boolean function, the head
 complexity equals the number of sign changes of its weight profile. -/
-theorem HStarN_symmetricFn (F : ℕ → Bool) (n : ℕ) :
-    HStarN n (symmetricFn F) = signChanges n F :=
-  HStarN_symmetricFn_eq_signChanges (symmetricFn_computable F n)
+theorem HStar_symmetricFn (F : ℕ → Bool) (n : ℕ) :
+    HStar n (symmetricFn F) = signChanges n F :=
+  HStar_symmetricFn_eq_signChanges (symmetricFn_computable F n)
 
 end HeadComplexity

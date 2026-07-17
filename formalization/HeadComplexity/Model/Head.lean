@@ -294,9 +294,8 @@ def computableWithHeadsN (n H : ℕ) (f : (Fin n → Bool) → Bool) : Prop :=
 def exactHeadComplexityN (n : ℕ) (f : (Fin n → Bool) → Bool) (k : ℕ) : Prop :=
   computableWithHeadsN n k f ∧ ∀ h < k, ¬ computableWithHeadsN n h f
 
-/-- Head complexity on `n`-bit Boolean functions in the generalized
-    model. -/
-noncomputable def HStarN (n : ℕ) (f : (Fin n → Bool) → Bool) : ℕ :=
+/-- Head complexity on `n`-bit Boolean functions. -/
+noncomputable def HStar (n : ℕ) (f : (Fin n → Bool) → Bool) : ℕ :=
   by
     classical
     exact if h : ∃ k, computableWithHeadsN n k f then Nat.find h else 0
@@ -309,10 +308,10 @@ noncomputable def HStarN (n : ℕ) (f : (Fin n → Bool) → Bool) : ℕ :=
     (bits : Fin n → Bool) : headFamilyAttnUpdate Hs bits = (Hs 0).attnUpdate bits := by
   simp [headFamilyAttnUpdate]
 
-theorem HStarN_eq_of_exact {n k : ℕ} {f : (Fin n → Bool) → Bool}
-    (hk : exactHeadComplexityN n f k) : HStarN n f = k := by
+theorem HStar_eq_of_exact {n k : ℕ} {f : (Fin n → Bool) → Bool}
+    (hk : exactHeadComplexityN n f k) : HStar n f = k := by
   classical
-  unfold HStarN
+  unfold HStar
   split_ifs with hExists
   · apply le_antisymm
     · exact Nat.find_min' hExists hk.1

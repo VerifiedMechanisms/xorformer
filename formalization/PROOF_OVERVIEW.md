@@ -18,7 +18,7 @@ maps `WQ, WK, WV`. On input `bits`, position `p` has embedding
 `σ p = exp ⟪WK (x p), WQ (x none)⟫`; the head's update is the normalized value
 average `attnUpdate = (∑ p σ p)⁻¹ • ∑ p σ p • WV (x p)`. A function is
 `computableWithHeadsN n H f` when some `H`-head family's summed update, read by a
-linear `⟪w, ·⟫ > τ`, equals `f`. `HStarN n f` (= `H*`) is the least such `H`
+linear `⟪w, ·⟫ > τ`, equals `f`. `HStar n f` (= `H*`) is the least such `H`
 (`Nat.find`, `0` if none — but every `f` is computable, so this default never
 bites; see Theorem 9 universal bound).
 
@@ -66,7 +66,7 @@ atom is realized by a head (`Atoms/FracAtomHead.lean`), so `H* = L_frac`.
 
 ## Capstones
 
-* **L12** (`Results/SymmetricComplexity.lean`): `HStarN_symmetricFn` — `≥` from the lower-bound spine,
+* **L12** (`Results/SymmetricComplexity.lean`): `HStar_symmetricFn` — `≥` from the lower-bound spine,
   `≤` from the upper-bound spine, joined by `le_antisymm` over `Nat.find`.
 * **L4, L5, L8** (`Results/ExactFamilies.lean`): corollaries of L12 — the head complexity
   of a standard family is the number of sign changes of its profile.

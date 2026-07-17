@@ -61,11 +61,11 @@ theorem computableWithHeadsN_zero_iff (f : (Fin n → Bool) → Bool) :
     cases f default <;> norm_num
 
 /-- **Theorem 11 (level 0).** `H*(f) = 0` iff `f` is constant. -/
-theorem HStarN_eq_zero_iff (f : (Fin n → Bool) → Bool) :
-    HStarN n f = 0 ↔ ∀ x y, f x = f y := by
+theorem HStar_eq_zero_iff (f : (Fin n → Bool) → Bool) :
+    HStar n f = 0 ↔ ∀ x y, f x = f y := by
   classical
   have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
-  unfold HStarN
+  unfold HStar
   rw [dif_pos hex, Nat.find_eq_zero hex]
   exact computableWithHeadsN_zero_iff f
 
@@ -143,21 +143,21 @@ theorem computable_one_of_isLTF (f : (Fin n → Bool) → Bool) (h : isLTF f) :
 
 /-- **Theorem 11 (level 1).** `H*(f) = 1` iff `f` is a nonconstant linear threshold
 function. -/
-theorem HStarN_eq_one_iff (f : (Fin n → Bool) → Bool) :
-    HStarN n f = 1 ↔ (¬ (∀ x y, f x = f y) ∧ isLTF f) := by
+theorem HStar_eq_one_iff (f : (Fin n → Bool) → Bool) :
+    HStar n f = 1 ↔ (¬ (∀ x y, f x = f y) ∧ isLTF f) := by
   classical
   have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
-  have hfind : HStarN n f = Nat.find hex := by unfold HStarN; rw [dif_pos hex]
+  have hfind : HStar n f = Nat.find hex := by unfold HStar; rw [dif_pos hex]
   constructor
   · intro h1
-    have hne : HStarN n f ≠ 0 := by omega
-    refine ⟨fun hc => hne ((HStarN_eq_zero_iff f).mpr hc), ?_⟩
+    have hne : HStar n f ≠ 0 := by omega
+    refine ⟨fun hc => hne ((HStar_eq_zero_iff f).mpr hc), ?_⟩
     have hfind1 : Nat.find hex = 1 := by rw [← hfind]; exact h1
     exact isLTF_of_computable_one f (hfind1 ▸ Nat.find_spec hex)
   · rintro ⟨hnc, hLTF⟩
-    have hle : HStarN n f ≤ 1 := by
+    have hle : HStar n f ≤ 1 := by
       rw [hfind]; exact Nat.find_min' hex (computable_one_of_isLTF f hLTF)
-    have hne : HStarN n f ≠ 0 := fun h0 => hnc ((HStarN_eq_zero_iff f).mp h0)
+    have hne : HStar n f ≠ 0 := fun h0 => hnc ((HStar_eq_zero_iff f).mp h0)
     omega
 
 end HeadComplexity

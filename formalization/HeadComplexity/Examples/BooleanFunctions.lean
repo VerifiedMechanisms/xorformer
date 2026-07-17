@@ -56,8 +56,8 @@ abbrev exactHeadComplexity (f : (Fin 2 → Bool) → Bool) (k : ℕ) : Prop :=
   exactHeadComplexityN 2 f k
 
 /-- Explicit two-bit head complexity value. -/
-noncomputable def HStar (f : (Fin 2 → Bool) → Bool) : ℕ :=
-  HStarN 2 f
+noncomputable def HStar2 (f : (Fin 2 → Bool) → Bool) : ℕ :=
+  HStar 2 f
 
 @[simp] theorem twoBitHeadFamilyAttnUpdate_zero {Hs : TwoBitHeadFamily d 0} (bits : Fin 2 → Bool) :
     twoBitHeadFamilyAttnUpdate Hs bits = 0 := by
@@ -77,9 +77,9 @@ noncomputable def HStar (f : (Fin 2 → Bool) → Bool) : ℕ :=
 @[simp] theorem nandFn_apply (bits : Fin 2 → Bool) : nandFn bits = !(andFn bits) := rfl
 @[simp] theorem xnorFn_apply (bits : Fin 2 → Bool) : xnorFn bits = !(xorFn bits) := rfl
 
-theorem HStar_eq_of_exact {f : (Fin 2 → Bool) → Bool} {k : ℕ}
-    (hk : exactHeadComplexity f k) : HStar f = k := by
-  exact HStarN_eq_of_exact hk
+theorem HStar2_eq_of_exact {f : (Fin 2 → Bool) → Bool} {k : ℕ}
+    (hk : exactHeadComplexity f k) : HStar2 f = k := by
+  exact HStar_eq_of_exact hk
 
 /-- Adding a constant vector only shifts the probe threshold. -/
 theorem computesBool_iff_of_add_const
@@ -570,14 +570,14 @@ theorem exactHeadComplexity_xnor :
     · subst h1
       exact xnor_not_computable_with_one_head_count
 
-theorem HStar_false : HStar falseFn = 0 := HStar_eq_of_exact exactHeadComplexity_false
-theorem HStar_true : HStar trueFn = 0 := HStar_eq_of_exact exactHeadComplexity_true
-theorem HStar_or : HStar orFn = 1 := HStar_eq_of_exact exactHeadComplexity_or
-theorem HStar_and : HStar andFn = 1 := HStar_eq_of_exact exactHeadComplexity_and
-theorem HStar_nor : HStar norFn = 1 := HStar_eq_of_exact exactHeadComplexity_nor
-theorem HStar_nand : HStar nandFn = 1 := HStar_eq_of_exact exactHeadComplexity_nand
-theorem HStar_xor : HStar xorFn = 2 := HStar_eq_of_exact exactHeadComplexity_xor
-theorem HStar_xnor : HStar xnorFn = 2 := HStar_eq_of_exact exactHeadComplexity_xnor
+theorem HStar_false : HStar2 falseFn = 0 := HStar_eq_of_exact exactHeadComplexity_false
+theorem HStar_true : HStar2 trueFn = 0 := HStar_eq_of_exact exactHeadComplexity_true
+theorem HStar_or : HStar2 orFn = 1 := HStar_eq_of_exact exactHeadComplexity_or
+theorem HStar_and : HStar2 andFn = 1 := HStar_eq_of_exact exactHeadComplexity_and
+theorem HStar_nor : HStar2 norFn = 1 := HStar_eq_of_exact exactHeadComplexity_nor
+theorem HStar_nand : HStar2 nandFn = 1 := HStar_eq_of_exact exactHeadComplexity_nand
+theorem HStar_xor : HStar2 xorFn = 2 := HStar_eq_of_exact exactHeadComplexity_xor
+theorem HStar_xnor : HStar2 xnorFn = 2 := HStar_eq_of_exact exactHeadComplexity_xnor
 
 private theorem funext_two_bit
     {f g : (Fin 2 → Bool) → Bool}
@@ -641,7 +641,7 @@ theorem exactHeadComplexity_symmFn (c0 c1 c2 : Bool) :
 
 /-- Equivalent explicit `HStar` classification for the symmetric 2-bit family. -/
 theorem HStar_symmFn (c0 c1 c2 : Bool) :
-    HStar (symmFn c0 c1 c2)
+    HStar2 (symmFn c0 c1 c2)
       = (if c0 = c1 then if c1 = c2 then 0 else 1 else if c0 = c2 then 2 else 1) := by
   have := exactHeadComplexity_symmFn c0 c1 c2
   exact HStar_eq_of_exact this

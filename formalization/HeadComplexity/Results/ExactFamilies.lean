@@ -6,14 +6,14 @@ set_option linter.style.header false
 # Exact head complexity of the standard symmetric families (L4, L5, L8).
 
 Corollaries of the symmetric sign-change characterization
-`HStarN_symmetricFn : HStarN n (symmetricFn F) = signChanges n F` (Theorem 12):
+`HStar_symmetricFn : HStar n (symmetricFn F) = signChanges n F` (Theorem 12):
 once the head complexity of a symmetric function is its profile's sign-change
 count, the standard families reduce to a sign-change computation.
 
-* **Theorem 8** `HStarN n (PARITY n) = n` — parity's profile alternates, so `C = n`.
-* **Theorem 4** `HStarN n (THRESHOLD n t) = 1` for `1 ≤ t ≤ n` — a monotone threshold
+* **Theorem 8** `HStar n (PARITY n) = n` — parity's profile alternates, so `C = n`.
+* **Theorem 4** `HStar n (THRESHOLD n t) = 1` for `1 ≤ t ≤ n` — a monotone threshold
   profile has a single sign change at `t-1`.
-* **Theorem 5 (exact)** `HStarN n (EXACT n k) = 2` for `1 ≤ k ≤ n-1` — an internal
+* **Theorem 5 (exact)** `HStar n (EXACT n k) = 2` for `1 ≤ k ≤ n-1` — an internal
   spike profile changes sign twice, at `k-1` and `k`.
 -/
 
@@ -53,17 +53,17 @@ theorem signChanges_exact (k : ℕ) (hk1 : 1 ≤ k) (hkn : k ≤ n - 1) :
 /-! ## Exact head complexities -/
 
 /-- **Theorem 8.** Parity needs exactly one head per bit: `H*(XOR_n) = n`. -/
-theorem HStarN_parity (n : ℕ) : HStarN n (PARITY n) = n := by
-  rw [PARITY_eq_symmetricFn, HStarN_symmetricFn, signChanges_parity]
+theorem HStar_parity (n : ℕ) : HStar n (PARITY n) = n := by
+  rw [PARITY_eq_symmetricFn, HStar_symmetricFn, signChanges_parity]
 
 /-- **Theorem 4.** Every monotone symmetric threshold has head complexity one. -/
-theorem HStarN_threshold (t : ℕ) (ht1 : 1 ≤ t) (htn : t ≤ n) :
-    HStarN n (THRESHOLD n t) = 1 := by
-  rw [THRESHOLD, HStarN_symmetricFn, signChanges_threshold t ht1 htn]
+theorem HStar_threshold (t : ℕ) (ht1 : 1 ≤ t) (htn : t ≤ n) :
+    HStar n (THRESHOLD n t) = 1 := by
+  rw [THRESHOLD, HStar_symmetricFn, signChanges_threshold t ht1 htn]
 
 /-- **Theorem 5 (exact).** Every internal exact-count predicate needs exactly two heads. -/
-theorem HStarN_exact (k : ℕ) (hk1 : 1 ≤ k) (hkn : k ≤ n - 1) :
-    HStarN n (EXACT n k) = 2 := by
-  rw [EXACT_eq_symmetricFn, HStarN_symmetricFn, signChanges_exact k hk1 hkn]
+theorem HStar_exact (k : ℕ) (hk1 : 1 ≤ k) (hkn : k ≤ n - 1) :
+    HStar n (EXACT n k) = 2 := by
+  rw [EXACT_eq_symmetricFn, HStar_symmetricFn, signChanges_exact k hk1 hkn]
 
 end HeadComplexity

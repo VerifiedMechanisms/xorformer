@@ -6,7 +6,7 @@ set_option linter.style.header false
 /-!
 # L12 lower bound chain.
 
-Assembling `HStarN n (symmetricFn F) ≥ signChanges n F` from:
+Assembling `HStar n (symmetricFn F) ≥ signChanges n F` from:
 * `signReprDegLe_of_computableWithHeadsN` (L6): `H` heads → degree-≤H sign rep;
 * strictification (here): turn `0 < eval ↔ f` into a strict sign representation;
 * symmetrization (here): average over `Equiv.Perm` to a symmetric polynomial;
@@ -17,7 +17,7 @@ Assembling `HStarN n (symmetricFn F) ≥ signChanges n F` from:
 
 The chain is complete: `signChanges_le_of_computableWithHeadsN`
 (`Polynomial/UnivariateReduction.lean`) discharges the lower bound, and together with the
-upper bound it yields the unconditional `HStarN_symmetricFn` in `Results/SymmetricComplexity.lean`.
+upper bound it yields the unconditional `HStar_symmetricFn` in `Results/SymmetricComplexity.lean`.
 -/
 
 namespace HeadComplexity

@@ -193,8 +193,8 @@ sbatch build.slurm && tail -f build.slurm.out      # watch for DONE_SENTINEL
 The top-level theorem proved by a clean build is
 
 ```lean
-theorem HStarN_symmetricFn (F : ℕ → Bool) (n : ℕ) :
-    HStarN n (symmetricFn F) = signChanges n F
+theorem HStar_symmetricFn (F : ℕ → Bool) (n : ℕ) :
+    HStar n (symmetricFn F) = signChanges n F
 ```
 
 (Theorem 12: the head complexity of a symmetric Boolean function equals the number

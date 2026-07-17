@@ -6,7 +6,7 @@ set_option linter.style.header false
 # Symmetric sign changes.
 
 For a symmetric Boolean function `f(x) = F(|x|)`, the final theorem
-`HStarN_symmetricFn` in `Results/SymmetricComplexity.lean` states that the head complexity equals
+`HStar_symmetricFn` in `Results/SymmetricComplexity.lean` states that the head complexity equals
 the number of sign changes of the profile `F` along the Hamming-weight axis:
 
 $$ H^{*}(f) = C(F) := \#\{ t \in \{1,\dots,n\} : F(t-1) \neq F(t) \}. $$
@@ -138,9 +138,9 @@ theorem signChanges_parity : signChanges n (fun k => decide (Odd k)) = n := by
 
 The full Theorem 12 is the equality
 
-  `HStarN n (symmetricFn F) = signChanges n F`,
+  `HStar n (symmetricFn F) = signChanges n F`,
 
-proved unconditionally in `Results/SymmetricComplexity.lean` (`HStarN_symmetricFn`): its lower bound
+proved unconditionally in `Results/SymmetricComplexity.lean` (`HStar_symmetricFn`): its lower bound
 is built in `Polynomial/SymmetricLowerBound.lean` + `Polynomial/UnivariateReduction.lean` (model →
 threshold degree → symmetrize → univariate root count) and its upper bound is the
 explicit `signChanges`-many-head softmax construction in `Atoms/SignPolynomial.lean` +
