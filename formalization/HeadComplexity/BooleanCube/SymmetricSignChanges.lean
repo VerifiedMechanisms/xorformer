@@ -6,7 +6,7 @@ set_option linter.style.header false
 # Symmetric sign changes.
 
 For a symmetric Boolean function `f(x) = F(|x|)`, the final theorem
-`HStarN_symmetricFn` in `Results/SymmetricComplexity.lean` states that the head complexity equals
+`HStar_symmetricFn` in `Results/SymmetricComplexity.lean` states that the head complexity equals
 the number of sign changes of the profile `F` along the Hamming-weight axis:
 
 $$ H^{*}(f) = C(F) := \#\{ t \in \{1,\dots,n\} : F(t-1) \neq F(t) \}. $$
@@ -33,14 +33,14 @@ through a profile `F : ℕ → Bool`. -/
 def symmetricFn (F : ℕ → Bool) (bits : Fin n → Bool) : Bool :=
   F (hammingWeight bits)
 
-@[simp] lemma symmetricFn_apply (F : ℕ → Bool) (bits : Fin n → Bool) :
+@[simp] theorem symmetricFn_apply (F : ℕ → Bool) (bits : Fin n → Bool) :
     symmetricFn F bits = F (hammingWeight bits) := rfl
 
 /-- `PARITY n` is the symmetric function with profile `Odd`. -/
-lemma PARITY_eq_symmetricFn : PARITY n = symmetricFn (fun k => decide (Odd k)) := rfl
+theorem PARITY_eq_symmetricFn : PARITY n = symmetricFn (fun k => decide (Odd k)) := rfl
 
 /-- `EXACT n k` is the symmetric function with profile `· = k`. -/
-lemma EXACT_eq_symmetricFn (k : ℕ) : EXACT n k = symmetricFn (fun m => decide (m = k)) := rfl
+theorem EXACT_eq_symmetricFn (k : ℕ) : EXACT n k = symmetricFn (fun m => decide (m = k)) := rfl
 
 /-- The number of sign changes of the weight profile `F` along `0, 1, …, n`. -/
 def signChanges (n : ℕ) (F : ℕ → Bool) : ℕ :=
@@ -51,7 +51,7 @@ def signChanges (n : ℕ) (F : ℕ → Bool) : ℕ :=
 /-- For `m ≤ n - 2` there is a base assignment whose two-coordinate restriction
 on `{firstIndex, secondIndex}` realizes Hamming weights `m, m+1, m+2` at the
 checkerboard corners. -/
-lemma exists_checkerboard_base (hn : 2 ≤ n) (m : ℕ) (hm : m ≤ n - 2) :
+theorem exists_checkerboard_base (hn : 2 ≤ n) (m : ℕ) (hm : m ≤ n - 2) :
     ∃ base : Fin n → Bool, ∀ a b : Bool,
       hammingWeight (restrictBits base (firstIndex hn) (secondIndex hn) (a, b))
         = (if a then 1 else 0) + (if b then 1 else 0) + m := by
@@ -74,7 +74,7 @@ lemma exists_checkerboard_base (hn : 2 ≤ n) (m : ℕ) (hm : m ≤ n - 2) :
 
 /-! ## General-`n` lower bound from a width-1 spike -/
 
-/-- **Lemma 12 lower bound (spike).** If the profile `F` has a width-1 spike at
+/-- **Theorem 12 lower bound (spike).** If the profile `F` has a width-1 spike at
 weight `w` (`F (w+1) ≠ F w` and `F (w+2) = F w`), then the symmetric function
 `symmetricFn F` cannot be computed with a single head. This is the checkerboard
 obstruction phrased on the Hamming-weight axis. -/
@@ -107,7 +107,7 @@ theorem symmetricFn_spike_not_computable_with_one_head (F : ℕ → Bool) (hn : 
 /-! ## Sign-change counts -/
 
 /-- A width-1 spike contributes (at least) two sign changes to `C(F)`. -/
-lemma signChanges_ge_two_of_spike (F : ℕ → Bool) (w : ℕ) (hw : w + 2 ≤ n)
+theorem signChanges_ge_two_of_spike (F : ℕ → Bool) (w : ℕ) (hw : w + 2 ≤ n)
     (h1 : F (w + 1) ≠ F w) (h2 : F (w + 2) = F w) : 2 ≤ signChanges n F := by
   rw [signChanges]
   have hsub : ({w, w + 1} : Finset ℕ)
@@ -125,7 +125,7 @@ lemma signChanges_ge_two_of_spike (F : ℕ → Bool) (w : ℕ) (hw : w + 2 ≤ n
 
 /-- **Parity has the maximal sign-change count `n`.** Every adjacent pair of
 weights flips parity. -/
-lemma signChanges_parity : signChanges n (fun k => decide (Odd k)) = n := by
+theorem signChanges_parity : signChanges n (fun k => decide (Odd k)) = n := by
   rw [signChanges, Finset.filter_true_of_mem, Finset.card_range]
   intro t _
   by_cases h : Odd t
@@ -134,13 +134,13 @@ lemma signChanges_parity : signChanges n (fun k => decide (Odd k)) = n := by
   · have h1 : Odd (t + 1) := by rw [Nat.odd_add_one]; exact h
     simp [h, h1]
 
-/-! ## Lemma 12
+/-! ## Theorem 12
 
-The full Lemma 12 is the equality
+The full Theorem 12 is the equality
 
-  `HStarN n (symmetricFn F) = signChanges n F`,
+  `HStar n (symmetricFn F) = signChanges n F`,
 
-proved unconditionally in `Results/SymmetricComplexity.lean` (`HStarN_symmetricFn`): its lower bound
+proved unconditionally in `Results/SymmetricComplexity.lean` (`HStar_symmetricFn`): its lower bound
 is built in `Polynomial/SymmetricLowerBound.lean` + `Polynomial/UnivariateReduction.lean` (model →
 threshold degree → symmetrize → univariate root count) and its upper bound is the
 explicit `signChanges`-many-head softmax construction in `Atoms/SignPolynomial.lean` +

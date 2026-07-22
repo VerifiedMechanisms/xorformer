@@ -6,7 +6,7 @@ set_option linter.style.header false
 /-!
 # L12 lower bound chain.
 
-Assembling `HStarN n (symmetricFn F) ≥ signChanges n F` from:
+Assembling `HStar n (symmetricFn F) ≥ signChanges n F` from:
 * `signReprDegLe_of_computableWithHeadsN` (L6): `H` heads → degree-≤H sign rep;
 * strictification (here): turn `0 < eval ↔ f` into a strict sign representation;
 * symmetrization (here): average over `Equiv.Perm` to a symmetric polynomial;
@@ -17,7 +17,7 @@ Assembling `HStarN n (symmetricFn F) ≥ signChanges n F` from:
 
 The chain is complete: `signChanges_le_of_computableWithHeadsN`
 (`Polynomial/UnivariateReduction.lean`) discharges the lower bound, and together with the
-upper bound it yields the unconditional `HStarN_symmetricFn` in `Results/SymmetricComplexity.lean`.
+upper bound it yields the unconditional `HStar_symmetricFn` in `Results/SymmetricComplexity.lean`.
 -/
 
 namespace HeadComplexity
@@ -31,7 +31,7 @@ def StrictSignRep (P : MvPolynomial (Fin n) ℝ) (f : (Fin n → Bool) → Bool)
   ∀ x, (f x = true → 0 < eval (cubePoint x) P) ∧ (f x = false → eval (cubePoint x) P < 0)
 
 /-- At a false point a sign-representing polynomial is `≤ 0`. -/
-private lemma eval_nonpos_of_false {P : MvPolynomial (Fin n) ℝ} {f : (Fin n → Bool) → Bool}
+private theorem eval_nonpos_of_false {P : MvPolynomial (Fin n) ℝ} {f : (Fin n → Bool) → Bool}
     (hP : ∀ x, (0 < eval (cubePoint x) P ↔ f x = true)) {x : Fin n → Bool}
     (hx : f x = false) : eval (cubePoint x) P ≤ 0 := by
   by_contra h
@@ -42,7 +42,7 @@ private lemma eval_nonpos_of_false {P : MvPolynomial (Fin n) ℝ} {f : (Fin n �
 
 /-- **Strictification.** A threshold-degree-`≤ H` representation can be turned into a
 strict one of the same degree by a small downward shift. -/
-lemma exists_strictSignRep_of_ThresholdDegLE {f : (Fin n → Bool) → Bool} {H : ℕ}
+theorem exists_strictSignRep_of_ThresholdDegLE {f : (Fin n → Bool) → Bool} {H : ℕ}
     (h : ThresholdDegLE f H) :
     ∃ P : MvPolynomial (Fin n) ℝ, P.totalDegree ≤ H ∧ StrictSignRep P f := by
   classical
@@ -84,7 +84,7 @@ lemma exists_strictSignRep_of_ThresholdDegLE {f : (Fin n → Bool) → Bool} {H 
 open scoped BigOperators
 
 /-- Hamming weight is invariant under permuting coordinates. -/
-lemma hammingWeight_comp_perm (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)) :
+theorem hammingWeight_comp_perm (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)) :
     hammingWeight (fun i => x (σ i)) = hammingWeight x := by
   unfold hammingWeight
   rw [Finset.card_filter, Finset.card_filter]
@@ -94,11 +94,11 @@ lemma hammingWeight_comp_perm (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)) :
 noncomputable def symmetrize (P : MvPolynomial (Fin n) ℝ) : MvPolynomial (Fin n) ℝ :=
   ∑ σ : Equiv.Perm (Fin n), rename σ P
 
-lemma symmetrize_totalDegree_le {P : MvPolynomial (Fin n) ℝ} {H : ℕ}
+theorem symmetrize_totalDegree_le {P : MvPolynomial (Fin n) ℝ} {H : ℕ}
     (hP : P.totalDegree ≤ H) : (symmetrize P).totalDegree ≤ H :=
   totalDegree_finsetSum_le (fun _ _ => (totalDegree_rename_le _ _).trans hP)
 
-lemma symmetrize_isSymmetric (P : MvPolynomial (Fin n) ℝ) :
+theorem symmetrize_isSymmetric (P : MvPolynomial (Fin n) ℝ) :
     (symmetrize P).IsSymmetric := by
   intro τ
   unfold symmetrize
@@ -108,7 +108,7 @@ lemma symmetrize_isSymmetric (P : MvPolynomial (Fin n) ℝ) :
   congr 1
 
 /-- Symmetrization preserves a strict sign representation of a symmetric function. -/
-lemma symmetrize_strictSignRep {F : ℕ → Bool} {P : MvPolynomial (Fin n) ℝ}
+theorem symmetrize_strictSignRep {F : ℕ → Bool} {P : MvPolynomial (Fin n) ℝ}
     (hP : StrictSignRep P (symmetricFn F)) :
     StrictSignRep (symmetrize P) (symmetricFn F) := by
   have key : ∀ (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)),

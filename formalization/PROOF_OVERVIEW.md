@@ -1,7 +1,7 @@
 # Proof architecture
 
-How the twelve formalized lemmas fit together. See `README.md` for the
-lemma→theorem→file map, `HeadComplexity/Results/All.lean` for a verified
+How the twelve formalized theorems fit together. See `README.md` for the
+theorem→theorem→file map, `HeadComplexity/Results/All.lean` for a verified
 table of contents, and `BUILDING.md` to reproduce the build.
 
 The public theorem surface lives under `HeadComplexity.Results`; lower-level
@@ -18,9 +18,9 @@ maps `WQ, WK, WV`. On input `bits`, position `p` has embedding
 `σ p = exp ⟪WK (x p), WQ (x none)⟫`; the head's update is the normalized value
 average `attnUpdate = (∑ p σ p)⁻¹ • ∑ p σ p • WV (x p)`. A function is
 `computableWithHeadsN n H f` when some `H`-head family's summed update, read by a
-linear `⟪w, ·⟫ > τ`, equals `f`. `HStarN n f` (= `H*`) is the least such `H`
+linear `⟪w, ·⟫ > τ`, equals `f`. `HStar n f` (= `H*`) is the least such `H`
 (`Nat.find`, `0` if none — but every `f` is computable, so this default never
-bites; see Lemma 9 universal bound).
+bites; see Theorem 9 universal bound).
 
 ## Two spines
 
@@ -39,9 +39,9 @@ computableWithHeadsN n H f
         polynomial in the Hamming weight → count real roots (IVT)
 ```
 
-This gives the `≥` halves: Lemma 3 (checkerboard, via antipode identities L1/L2 +
-segment non-separability), Lemma 5 lower bounds, Lemma 7 (`deg±(parity) = n`,
-reusing the symmetric chain), and the `≥` half of Lemma 12.
+This gives the `≥` halves: Theorem 3 (checkerboard, via antipode identities L1/L2 +
+segment non-separability), Theorem 5 lower bounds, Theorem 7 (`deg±(parity) = n`,
+reusing the symmetric chain), and the `≥` half of Theorem 12.
 
 ### Upper bounds — explicit softmax heads
 
@@ -66,7 +66,7 @@ atom is realized by a head (`Atoms/FracAtomHead.lean`), so `H* = L_frac`.
 
 ## Capstones
 
-* **L12** (`Results/SymmetricComplexity.lean`): `HStarN_symmetricFn` — `≥` from the lower-bound spine,
+* **L12** (`Results/SymmetricComplexity.lean`): `HStar_symmetricFn` — `≥` from the lower-bound spine,
   `≤` from the upper-bound spine, joined by `le_antisymm` over `Nat.find`.
 * **L4, L5, L8** (`Results/ExactFamilies.lean`): corollaries of L12 — the head complexity
   of a standard family is the number of sign changes of its profile.

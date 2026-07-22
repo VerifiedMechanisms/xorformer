@@ -20,10 +20,10 @@ variable {d : ℕ} (H : Head 2 d)
 private def pairBits (ab : Bool × Bool) : Fin 2 → Bool :=
   bits2 ab.1 ab.2
 
-@[simp] private lemma pairBits_mk (a b : Bool) :
+@[simp] private theorem pairBits_mk (a b : Bool) :
     pairBits (a, b) = bits2 a b := rfl
 
-private lemma restrictBits_pairBits (ab : Bool × Bool) :
+private theorem restrictBits_pairBits (ab : Bool × Bool) :
     Head.restrictBits (fun _ : Fin 2 => false) 0 1 ab = pairBits ab := by
   rcases ab with ⟨a, b⟩
   exact restrictBits_zero_one a b
@@ -41,10 +41,10 @@ private noncomputable def boolUpdate (H : Head 2 d) (ab : Bool × Bool) : Vec d 
   H.attnUpdate (pairBits ab)
 
 /-- The attention denominator is strictly positive on the Bool-product view. -/
-lemma denominator_pos (ab : Bool × Bool) : 0 < boolDenominator H ab := by
+theorem denominator_pos (ab : Bool × Bool) : 0 < boolDenominator H ab := by
   simpa [boolDenominator] using Head.denominator_pos H (pairBits ab)
 
-lemma denominator_ne_zero (ab : Bool × Bool) : boolDenominator H ab ≠ 0 :=
+theorem denominator_ne_zero (ab : Bool × Bool) : boolDenominator H ab ≠ 0 :=
   (denominator_pos H ab).ne'
 
 /-- The two-bit numerator split, obtained by specializing the generalized model. -/
@@ -74,33 +74,21 @@ over the diagonal equals summing over the off-diagonal. -/
 theorem numerator_antipode :
     boolNumerator H (false, false) + boolNumerator H (true, true)
     = boolNumerator H (false, true) + boolNumerator H (true, false) := by
-  rcases numerator_additive_split H with ⟨A, B, C, h⟩
-  rw [h false false, h true true, h false true, h true false]
-  abel
+  exact boolSquare_antipode_of_additive_split
+    (fun a b => boolNumerator H (a, b)) (numerator_additive_split H)
 
 /-- The antipode identity for the attention denominator: summing `D(a,b)`
 across the diagonal equals summing across the off-diagonal. -/
 theorem denominator_antipode :
     boolDenominator H (false, false) + boolDenominator H (true, true)
     = boolDenominator H (false, true) + boolDenominator H (true, false) := by
-  rcases denominator_additive_split H with ⟨α, β, γ, h⟩
-  rw [h false false, h true true, h false true, h true false]
-  abel
+  exact boolSquare_antipode_of_additive_split
+    (fun a b => boolDenominator H (a, b)) (denominator_additive_split H)
 
 /-- Multiplying the attention update by the denominator recovers the numerator. -/
-lemma denom_smul_attn (ab : Bool × Bool) :
+theorem denom_smul_attn (ab : Bool × Bool) :
     boolDenominator H ab • boolUpdate H ab = boolNumerator H ab := by
   simpa [boolDenominator, boolUpdate, boolNumerator] using Head.denom_smul_attn H (pairBits ab)
-
-/-- A two-term convex combination written with explicit divisions equals
-the inverse-scaled sum of its weighted summands. -/
-private lemma combo_eq_scaled_sum {V : Type*} [AddCommGroup V] [Module ℝ V]
-    (a b : ℝ) (u v : V) :
-    (a / (a + b)) • u + (b / (a + b)) • v = (a + b)⁻¹ • (a • u + b • v) := by
-  rw [smul_add, smul_smul, smul_smul]
-  congr 1
-  · rw [div_eq_mul_inv, mul_comm]
-  · rw [div_eq_mul_inv, mul_comm]
 
 /-- The **midpoint** `P` of the four attention outputs: `𝒟⁻¹ • 𝒩`. -/
 noncomputable def midpoint : Vec d :=
@@ -108,7 +96,7 @@ noncomputable def midpoint : Vec d :=
   • (boolNumerator H (false, false) + boolNumerator H (true, true))
 
 /-- The midpoint lies on the diagonal segment `[z(ff,ff), z(tt,tt)]`. -/
-lemma midpoint_in_diag_segment :
+theorem midpoint_in_diag_segment :
     midpoint H ∈ segment ℝ (boolUpdate H (false, false)) (boolUpdate H (true, true)) := by
   set D0 := boolDenominator H (false, false)
   set D1 := boolDenominator H (true, true)
@@ -120,12 +108,12 @@ lemma midpoint_in_diag_segment :
   · rw [← add_div, div_self hpos.ne']
   · unfold midpoint
     rw [← denom_smul_attn H (false, false), ← denom_smul_attn H (true, true)]
-    exact combo_eq_scaled_sum _ _ _ _
+    exact twoTermWeightedAverage_eq_inv_smul_sum _ _ _ _
 
 /-- The midpoint also lies on the off-diagonal segment `[z(ff,tt), z(tt,ff)]`,
 because the denominator and numerator antipode identities make both
 representations of the midpoint equal. -/
-lemma midpoint_in_offdiag_segment :
+theorem midpoint_in_offdiag_segment :
     midpoint H ∈ segment ℝ (boolUpdate H (false, true)) (boolUpdate H (true, false)) := by
   set D0 := boolDenominator H (false, true)
   set D1 := boolDenominator H (true, false)
@@ -138,7 +126,7 @@ lemma midpoint_in_offdiag_segment :
   · unfold midpoint
     rw [numerator_antipode H, denominator_antipode H,
         ← denom_smul_attn H (false, true), ← denom_smul_attn H (true, false)]
-    exact combo_eq_scaled_sum _ _ _ _
+    exact twoTermWeightedAverage_eq_inv_smul_sum _ _ _ _
 
 /-- A separate proof that no single attention head can compute XOR:
 for every `H`, the bare attention update is not linearly separable into
@@ -191,7 +179,7 @@ theorem one_head_cannot_xor_attnUpdate {d : ℕ} (H : Head 2 d) :
     xorFn (fun _ => false) 0 1 (by decide) h00 h11 h01 h10) hcomp
 
 /-- The skip connection does not change two-bit XOR computability. -/
-lemma computesXor_residual_iff_attnUpdate {d : ℕ} (H : Head 2 d) :
+theorem computesXor_residual_iff_attnUpdate {d : ℕ} (H : Head 2 d) :
     computesXor H.residual ↔ computesXor H.attnUpdate := by
   simpa [computesXor] using Head.computesPred_residual_iff_attnUpdate H xorFn
 

@@ -1,6 +1,7 @@
 import HeadComplexity.Atoms.HammingAtom
 import HeadComplexity.Atoms.PartialFraction
 import HeadComplexity.Atoms.SignPolynomial
+import HeadComplexity.Polynomial.UnivariateReduction
 
 set_option linter.style.header false
 
@@ -13,8 +14,8 @@ Assembling the pieces:
 * `atomHead_readout` / `atomFamily_readout` — one head per `b_h/(k+a_h)` atom.
 
 This yields `computableWithHeadsN n (signChanges n F) (symmetricFn F)` (the upper
-bound), which with the verified lower bound gives the full, unconditional Lemma 12:
-`HStarN n (symmetricFn F) = signChanges n F`.
+bound), which with the verified lower bound gives the full, unconditional Theorem 12:
+`HStar n (symmetricFn F) = signChanges n F`.
 -/
 
 namespace HeadComplexity
@@ -23,7 +24,7 @@ open Finset
 open scoped BigOperators InnerProductSpace
 
 /-- Hamming weight never exceeds `n`. -/
-lemma hammingWeight_le (n : ℕ) (bits : Fin n → Bool) : hammingWeight bits ≤ n := by
+theorem hammingWeight_le (n : ℕ) (bits : Fin n → Bool) : hammingWeight bits ≤ n := by
   unfold hammingWeight
   calc (Finset.univ.filter fun i => bits i = true).card ≤ (Finset.univ : Finset (Fin n)).card :=
         Finset.card_filter_le _ _
@@ -96,10 +97,24 @@ theorem symmetricFn_computable (F : ℕ → Bool) (n : ℕ) :
     simp only [symmetricFn]
     exact hatom (hammingWeight bits) (hammingWeight_le n bits)
 
-/-- **Lemma 12 (unconditional).** For a symmetric Boolean function, the head
+/-- **Theorem 12 (conditional form).** If the sign-change upper-bound
+construction computes `symmetricFn F`, then the head complexity is exactly the
+number of sign changes of `F`. -/
+theorem HStar_symmetricFn_eq_signChanges {n : ℕ} {F : ℕ → Bool}
+    (hub : computableWithHeadsN n (signChanges n F) (symmetricFn F)) :
+    HStar n (symmetricFn F) = signChanges n F := by
+  classical
+  have hExists : ∃ k, computableWithHeadsN n k (symmetricFn F) := ⟨_, hub⟩
+  unfold HStar
+  rw [dif_pos hExists]
+  apply le_antisymm
+  · exact Nat.find_min' hExists hub
+  · exact signChanges_le_of_computableWithHeadsN (Nat.find_spec hExists)
+
+/-- **Theorem 12 (unconditional).** For a symmetric Boolean function, the head
 complexity equals the number of sign changes of its weight profile. -/
-theorem HStarN_symmetricFn (F : ℕ → Bool) (n : ℕ) :
-    HStarN n (symmetricFn F) = signChanges n F :=
-  HStarN_symmetricFn_eq_signChanges (symmetricFn_computable F n)
+theorem HStar_symmetricFn (F : ℕ → Bool) (n : ℕ) :
+    HStar n (symmetricFn F) = signChanges n F :=
+  HStar_symmetricFn_eq_signChanges (symmetricFn_computable F n)
 
 end HeadComplexity

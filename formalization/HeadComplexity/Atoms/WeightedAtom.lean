@@ -1,15 +1,17 @@
 import HeadComplexity.Atoms.HammingAtom
 import HeadComplexity.Atoms.PartialFraction
+import HeadComplexity.Foundation.Softmax
 import Mathlib.LinearAlgebra.Lagrange
 import Mathlib.Algebra.BigOperators.Fin
 
 set_option linter.style.header false
 
 /-!
-# Lemma 9 — weighted-sum interpolation upper bound.
+# Weighted-sum interpolation construction.
 
 If `f(x) = F(t(x))` for a positive weighted sum `t(x) = ∑ λ_i x_i` with image of
-size `M`, then `H*(f) ≤ M - 1`.
+size `M`, then `f` is computable with `M - 1` heads. The `H*` corollaries live
+in `Results/WeightedUpperBound.lean`.
 
 The head construction generalizes `atomHead`: with `d = 2`, `W_Q = W_K = W_V = id`,
 score channel `0`, value channel `1`, and `s = √(log (a - Λ))` (`Λ = ∑ λ_i`):
@@ -62,24 +64,24 @@ noncomputable def weightedAtomHead (lam : Fin n → ℝ) (a b : ℝ) : Head n 2 
 section
 variable (lam : Fin n → ℝ) (a b : ℝ)
 
-@[simp] lemma wTok_zero_coord0 : wTok lam a b 0 0 = 0 := by simp [wTok]
-@[simp] lemma wTok_one_coord0 : wTok lam a b 1 0 = Real.log 2 / wScore lam a := by simp [wTok]
-@[simp] lemma wTok_two_coord0 : wTok lam a b 2 0 = wScore lam a := by simp [wTok]
-@[simp] lemma wTok_zero_coord1 : wTok lam a b 0 1 = b / wLam lam := by simp [wTok]
-@[simp] lemma wTok_one_coord1 : wTok lam a b 1 1 = b / (2 * wLam lam) := by simp [wTok]
-@[simp] lemma wTok_two_coord1 : wTok lam a b 2 1 = 0 := by simp [wTok]
+@[simp] theorem wTok_zero_coord0 : wTok lam a b 0 0 = 0 := by simp [wTok]
+@[simp] theorem wTok_one_coord0 : wTok lam a b 1 0 = Real.log 2 / wScore lam a := by simp [wTok]
+@[simp] theorem wTok_two_coord0 : wTok lam a b 2 0 = wScore lam a := by simp [wTok]
+@[simp] theorem wTok_zero_coord1 : wTok lam a b 0 1 = b / wLam lam := by simp [wTok]
+@[simp] theorem wTok_one_coord1 : wTok lam a b 1 1 = b / (2 * wLam lam) := by simp [wTok]
+@[simp] theorem wTok_two_coord1 : wTok lam a b 2 1 = 0 := by simp [wTok]
 
-@[simp] lemma weightedAtomHead_WK : (weightedAtomHead lam a b).WK = LinearMap.id := rfl
-@[simp] lemma weightedAtomHead_WQ : (weightedAtomHead lam a b).WQ = LinearMap.id := rfl
-@[simp] lemma weightedAtomHead_WV : (weightedAtomHead lam a b).WV = LinearMap.id := rfl
+@[simp] theorem weightedAtomHead_WK : (weightedAtomHead lam a b).WK = LinearMap.id := rfl
+@[simp] theorem weightedAtomHead_WQ : (weightedAtomHead lam a b).WQ = LinearMap.id := rfl
+@[simp] theorem weightedAtomHead_WV : (weightedAtomHead lam a b).WV = LinearMap.id := rfl
 
 /-- The query embedding equals `tokenEmbed 2` (positional part is zero). -/
-lemma wHead_x_none (bits : Fin n → Bool) :
+theorem wHead_x_none (bits : Fin n → Bool) :
     (weightedAtomHead lam a b).x bits none = wTok lam a b 2 := by
   simp [Head.x, Head.seqTok, weightedAtomHead, wPos]
 
 /-- Score-channel coordinate of position `i`. -/
-lemma wHead_x_some_coord0 (bits : Fin n → Bool) (i : Fin n) :
+theorem wHead_x_some_coord0 (bits : Fin n → Bool) (i : Fin n) :
     ((weightedAtomHead lam a b).x bits (some i)) 0
       = wTok lam a b (cond (bits i) 1 0) 0 + Real.log (lam i) / wScore lam a := by
   simp only [Head.x, Head.seqTok, weightedAtomHead, wPos]
@@ -87,7 +89,7 @@ lemma wHead_x_some_coord0 (bits : Fin n → Bool) (i : Fin n) :
   simp
 
 /-- Value-channel coordinate of position `i` (unaffected by `posEmbed`). -/
-lemma wHead_x_some_coord1 (bits : Fin n → Bool) (i : Fin n) :
+theorem wHead_x_some_coord1 (bits : Fin n → Bool) (i : Fin n) :
     ((weightedAtomHead lam a b).x bits (some i)) 1
       = wTok lam a b (cond (bits i) 1 0) 1 := by
   simp only [Head.x, Head.seqTok, weightedAtomHead, wPos]
@@ -95,7 +97,7 @@ lemma wHead_x_some_coord1 (bits : Fin n → Bool) (i : Fin n) :
   simp
 
 /-- Readout `⟪e₁, ·⟫` reads the value channel (coordinate `1`). -/
-lemma wReadout_inner (v : Vec 2) : ⟪atomReadout, v⟫_ℝ = v 1 := by
+theorem wReadout_inner (v : Vec 2) : ⟪atomReadout, v⟫_ℝ = v 1 := by
   rw [atomReadout, vec2_inner]; simp
 
 end
@@ -105,31 +107,31 @@ variable (lam : Fin n → ℝ) (a b : ℝ) (hn : 1 ≤ n) (hlam : ∀ i, 0 < lam
   (ha : wLam lam + 1 < a)
 
 include hn hlam in
-private lemma wLam_pos : 0 < wLam lam := by
+private theorem wLam_pos : 0 < wLam lam := by
+  letI : Nonempty (Fin n) := Fin.pos_iff_nonempty.mp hn
   unfold wLam
-  obtain ⟨i⟩ := Fin.pos_iff_nonempty.mp hn
-  exact Finset.sum_pos (fun i _ => hlam i) ⟨i, Finset.mem_univ i⟩
+  exact positiveNormalizer_pos lam hlam
 
 include ha in
-private lemma wa_sub_pos : 0 < a - wLam lam := by linarith
+private theorem wa_sub_pos : 0 < a - wLam lam := by linarith
 
 include ha in
-private lemma wlog_pos : 0 < Real.log (a - wLam lam) := by
+private theorem wlog_pos : 0 < Real.log (a - wLam lam) := by
   apply Real.log_pos; linarith
 
 include ha in
-private lemma wScore_ne : wScore lam a ≠ 0 := by
+private theorem wScore_ne : wScore lam a ≠ 0 := by
   have := wlog_pos lam a ha
   unfold wScore; positivity
 
 include ha in
-private lemma wScore_sq : wScore lam a * wScore lam a = Real.log (a - wLam lam) := by
+private theorem wScore_sq : wScore lam a * wScore lam a = Real.log (a - wLam lam) := by
   unfold wScore
   exact Real.mul_self_sqrt (le_of_lt (wlog_pos lam a ha))
 
 include ha in
 /-- Softmax weight at the query token is `a - Λ`. -/
-lemma wHead_sigma_none (bits : Fin n → Bool) :
+theorem wHead_sigma_none (bits : Fin n → Bool) :
     (weightedAtomHead lam a b).sigma bits none = a - wLam lam := by
   unfold Head.sigma
   rw [wHead_x_none]
@@ -140,7 +142,7 @@ lemma wHead_sigma_none (bits : Fin n → Bool) :
 
 include hlam ha in
 /-- Softmax weight at position `i`: `2 λ_i` if the bit is set, else `λ_i`. -/
-lemma wHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
+theorem wHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
     (weightedAtomHead lam a b).sigma bits (some i) = if bits i then 2 * lam i else lam i := by
   have hs := wScore_ne lam a ha
   unfold Head.sigma
@@ -163,13 +165,13 @@ lemma wHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
       simp
 
 /-- The value vector equals the embedding (since `W_V = id`). -/
-lemma wHead_value (bits : Fin n → Bool) (p : SeqPos n) :
+theorem wHead_value (bits : Fin n → Bool) (p : SeqPos n) :
     (weightedAtomHead lam a b).value bits p = (weightedAtomHead lam a b).x bits p := by
   simp [Head.value, weightedAtomHead]
 
 include hlam ha in
 /-- Denominator is `t(x) + a`. -/
-lemma wHead_denom (bits : Fin n → Bool) :
+theorem wHead_denom (bits : Fin n → Bool) :
     (weightedAtomHead lam a b).denominator bits = wT lam bits + a := by
   unfold Head.denominator
   rw [Fintype.sum_option, wHead_sigma_none lam a b ha]
@@ -183,7 +185,7 @@ lemma wHead_denom (bits : Fin n → Bool) :
 
 include hn hlam ha in
 /-- Readout `⟪e₁, ·⟫` of the numerator is the constant `b`. -/
-lemma wHead_numread (bits : Fin n → Bool) :
+theorem wHead_numread (bits : Fin n → Bool) :
     ⟪atomReadout, (weightedAtomHead lam a b).numerator bits⟫_ℝ = b := by
   have hL := (wLam_pos lam hn hlam).ne'
   unfold Head.numerator
@@ -221,7 +223,7 @@ theorem weightedAtomFamily_readout {C : ℕ} (hn : 1 ≤ n) (hlam : ∀ i, 0 < l
 end
 
 /-- The weighted statistic is nonnegative. -/
-lemma wT_nonneg {lam : Fin n → ℝ} (hlam : ∀ i, 0 < lam i) (bits : Fin n → Bool) :
+theorem wT_nonneg {lam : Fin n → ℝ} (hlam : ∀ i, 0 < lam i) (bits : Fin n → Bool) :
     0 ≤ wT lam bits :=
   Finset.sum_nonneg (fun i _ => by by_cases h : bits i <;> simp [h, (hlam i).le])
 
@@ -288,7 +290,7 @@ theorem exists_weighted_atoms (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
   rw [gt_iff_lt, hkey, lt_sub_iff_add_lt, neg_add_cancel, lt_div_iff₀ hQpos, zero_mul]
   exact (hPsign bits)
 
-/-- **Lemma 9 (computability form).** A function of a positive weighted sum with
+/-- **Theorem 9 (computability form).** A function of a positive weighted sum with
 image size `M` is computable with `M - 1` heads. -/
 theorem weighted_computable (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
     (f : (Fin n → Bool) → Bool) (G : ℝ → Bool) (hf : ∀ bits, f bits = G (wT lam bits)) :
@@ -312,22 +314,10 @@ theorem weighted_computable (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
     rw [weightedAtomFamily_readout lam hn hlam av bv hav bits]
     exact hatom bits
 
-/-- **Lemma 9.** `H*(f) ≤ M - 1`, where `M = |Im(t)|` for a positive weighted sum
-`t(x) = ∑ λ_i x_i` with `f(x) = F(t(x))`. -/
-theorem HStarN_le_weighted (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
-    (f : (Fin n → Bool) → Bool) (G : ℝ → Bool) (hf : ∀ bits, f bits = G (wT lam bits)) :
-    HStarN n f ≤ (Finset.univ.image (wT lam)).card - 1 := by
-  classical
-  have hc := weighted_computable lam hlam f G hf
-  have hex : ∃ k, computableWithHeadsN n k f := ⟨_, hc⟩
-  unfold HStarN
-  rw [dif_pos hex]
-  exact Nat.find_min' hex hc
-
-/-! ## Universal upper bound (Corollary 6): every function is computable -/
+/-! ## Universal computability: every function is computable -/
 
 /-- The binary weighting `λ_i = 2^i` separates all inputs. -/
-lemma wT_two_pow_injective :
+theorem wT_two_pow_injective :
     Function.Injective (wT (n := n) (fun i => (2 : ℝ) ^ (i : ℕ))) := by
   have key : ∀ bits : Fin n → Bool,
       wT (fun i => (2 : ℝ) ^ (i : ℕ)) bits
@@ -348,9 +338,9 @@ lemma wT_two_pow_injective :
   have hi := congrFun h3 i
   by_cases hb : b i <;> by_cases hb' : b' i <;> simp_all
 
-/-- **Corollary 6.** Every Boolean function is computable, with at most `2^n - 1`
-heads. -/
-theorem HStarN_le_universal (f : (Fin n → Bool) → Bool) : HStarN n f ≤ 2 ^ n - 1 := by
+/-- Every Boolean function is computable with at most `2^n - 1` heads. -/
+theorem universal_computable (f : (Fin n → Bool) → Bool) :
+    computableWithHeadsN n (2 ^ n - 1) f := by
   classical
   set lam : Fin n → ℝ := fun i => (2 : ℝ) ^ (i : ℕ) with hlamdef
   have hlam : ∀ i, 0 < lam i := fun i => by rw [hlamdef]; positivity
@@ -364,9 +354,6 @@ theorem HStarN_le_universal (f : (Fin n → Bool) → Bool) : HStarN n f ≤ 2 ^
     rw [Finset.card_image_of_injective _ hinj, Finset.card_univ]
     simp
   rw [hcard] at hcomp
-  have hex : ∃ k, computableWithHeadsN n k f := ⟨_, hcomp⟩
-  unfold HStarN
-  rw [dif_pos hex]
-  exact Nat.find_min' hex hcomp
+  exact hcomp
 
 end HeadComplexity
