@@ -1,0 +1,12 @@
+#!/bin/sh
+# Lint Markdown math in staged .md files before committing.
+# Enable once per clone:  git config core.hooksPath artifacts/hooks
+# Bypass for a single commit:  git commit --no-verify
+files=$(git diff --cached --name-only --diff-filter=ACM -- '*.md' | grep -v '^\.claude/')
+[ -z "$files" ] && exit 0
+root=$(git rev-parse --show-toplevel)
+echo "$files" | xargs python3 "$root/artifacts/scripts/check_md_math.py" || {
+    echo >&2 "markdown math check failed (rules: .claude/skills/gh-markdown-math/SKILL.md)"
+    echo >&2 "note: the check reads working-tree contents, not the staged snapshot"
+    exit 1
+}

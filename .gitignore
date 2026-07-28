@@ -16,3 +16,4 @@ artifacts/intro-presentation/qa/
 project-management/
 .gitignore
 .env
+node_modules/

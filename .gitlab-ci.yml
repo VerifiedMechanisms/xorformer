@@ -1,0 +1,15 @@
+# Markdown math check (work item #2): every merge request and every push to
+# the default branch must pass the static lint + KaTeX validation of all
+# tracked Markdown files. The rules live in artifacts/scripts/check_md_math.py
+# (derived from .claude/skills/gh-markdown-math/SKILL.md). To make this a hard
+# merge gate, enable "Merge checks: Pipelines must succeed" in
+# Settings > Merge requests (maintainer only).
+
+markdown-math-check:
+  image: node:22  # Debian-based: ships both node and python3
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  script:
+    - npm install --no-save katex
+    - git ls-files '*.md' | grep -v '^\.claude/' | xargs python3 artifacts/scripts/check_md_math.py --katex
