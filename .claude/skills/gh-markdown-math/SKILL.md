@@ -116,7 +116,7 @@ fix in this skill is KaTeX-safe.
 
 1. Collapse every `$$…$$` to one line.
 2. In all math: `\{`→`\lbrace`, `\}`→`\rbrace`, `*`→`\ast`, `<`→`\lt`, `>`→`\gt`, `\\` (row separator)→`\cr`, `\operatorname`→`\mathrm`; delete `\,` `\;` `\!`; add a space where a letter-command abuts a letter.
-3. In each paragraph where an opener-shaped `_` (`}_n`) precedes a closer-shaped `_` (`T_{`), insert a space before each closer-shaped `_`: `$T _{n,1}$`, `$\deg _{\pm}$`. (Do NOT use `&#95;` — it breaks KaTeX previews.)
+3. In each paragraph where a `_` that can open (opener-shaped `}_n`, or both-shaped `}_{`) precedes a `_` that can close (closer-shaped `T_{`, or both-shaped `}_{`), insert a space before EVERY closable `_` in the paragraph: `$T _{n,1}$`, `$\underbrace{…} _{a}$`. Remember prose underscores count too (an unbackticked `_foo` can open emphasis that a later math `_` closes). (Do NOT use `&#95;` — it breaks KaTeX previews.)
 4. Fix delimiter placement: `word-$x$`→`word $x$`; `$x$y`→`$x$-y`; reword `)$)`; join wrapped inline spans.
 5. Move math out of headings, list-item display blocks, and `*italic*`/`_italic_` (bold `**…**` is fine).
 6. Re-run the residual-`$` audit until it reports 0, then run the KaTeX check.

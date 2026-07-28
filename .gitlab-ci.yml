@@ -11,5 +11,6 @@ markdown-math-check:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
+    - python3 artifacts/scripts/test_check_md_math.py
     - npm install --no-save katex
-    - git ls-files '*.md' | grep -v '^\.claude/' | xargs python3 artifacts/scripts/check_md_math.py --katex
+    - git ls-files -z -- '*.md' ':!:.claude/**' | xargs -0 python3 artifacts/scripts/check_md_math.py --katex
