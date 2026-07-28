@@ -143,22 +143,33 @@ expect("real-wrapped-span", "A span $x +\ny$ here.\n", ["wrapped-span"])
 expect("digit-after-close", "Dimension $x$2 test.\n", ["close-delim"])
 
 # ---- finding 15: render_audit structure leak + eaten row break ----
-probs, n = chk.render_audit(
+probs, notes, n = chk.render_audit(
     "t.md", "<h1>\\sum x</h1><p>ok</p>", chk.MATH_PAYLOAD_GH)
 assert any("leaked into <h1>" in p for p in probs), probs
-probs, n = chk.render_audit(
+# <em> corrupting math inside a list item is a finding...
+probs, notes, n = chk.render_audit(
+    "t.md", "<li>x <em>\\frac{a}{b}</em> y</li>", chk.MATH_PAYLOAD_GH)
+assert any("leaked into <li>" in p for p in probs), probs
+# ...but plain prose italics inside a list item are not.
+probs, notes, n = chk.render_audit(
+    "t.md", "<li>the predicate <em>all bits are zero</em> here</li>",
+    chk.MATH_PAYLOAD_GH)
+assert not probs, probs
+# A lone '\ ' is an advisory note (could be a TeX control space), never a
+# failing finding.
+probs, notes, n = chk.render_audit(
     "t.md",
     '<math-renderer>$$a \\ = b$$</math-renderer>', chk.MATH_PAYLOAD_GH)
-assert any("eaten" in p for p in probs), probs
-probs, n = chk.render_audit(
+assert not probs and any("lone" in x for x in notes), (probs, notes)
+probs, notes, n = chk.render_audit(
     "t.md",
     '<math-renderer>$a &amp;lt; b$</math-renderer>', chk.MATH_PAYLOAD_GH)
 assert any("double-escaped" in p for p in probs), probs
-probs, n = chk.render_audit(
+probs, notes, n = chk.render_audit(
     "t.md",
     '<math-renderer>$\\begin{aligned} a &amp;= b \\cr c &amp;= d '
     '\\end{aligned}$</math-renderer>', chk.MATH_PAYLOAD_GH)
-assert not probs, probs
+assert not probs and not notes, (probs, notes)
 
 # ---- finding 13: exit-code contract ----
 r = subprocess.run([sys.executable, str(HERE / "check_md_math.py"),

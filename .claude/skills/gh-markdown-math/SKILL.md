@@ -97,7 +97,10 @@ the exact LaTeX fed to the engine. Two checks:
    cannot see. A plain `&amp;` in the *raw* payload is NOT an error: a healthy
    alignment `&` is normally HTML-escaped there (verified July 2026 on both GitHub
    and GitLab; the marker of the real bug is `&amp;lt;`-style double escapes). Also
-   scan payloads for a lone `\` where a row break was intended (an eaten `\\`).
+   scan payloads for a lone `\` where a row break was intended (an eaten `\\`) —
+   but treat that as a pointer to compare against the source, not an automatic
+   failure: `\ ` is also the legitimate TeX control space, widely used for
+   spacing (`,\ K_{+}`, `\ell\ \mathrm{even}`), and KaTeX renders it fine.
 3. **Leak into structure** — a `<h1-6>` or `<li>` whose text contains raw `\sum`/`\frac`/
    `\begin`/`<em>` where math should be = the block was mis-parsed.
 

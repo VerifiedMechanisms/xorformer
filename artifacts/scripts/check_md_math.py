@@ -596,15 +596,20 @@ STRUCTURE = re.compile(r"<(h[1-6]|li)\b[^>]*>(?P<seg>.*?)</\1>", re.S)
 
 
 def render_audit(path, html, payload_rx):
-    """Skill audit: residual $, double-escaped payloads, eaten row breaks,
-    structure leaks.
+    """Skill audit: residual $, double-escaped payloads, structure leaks,
+    plus advisory notes for possible eaten row breaks.
 
     A healthy alignment & appears as &amp; in the raw HTML (normal escaping,
     decoded by the browser before the math engine sees it) on both GitHub
     and GitLab. Genuine double-escaping is an entity that SURVIVES one
     decode, e.g. raw &amp;lt; -> decoded &lt; -> KaTeX parse error.
+
+    A lone '\\ ' in a payload is only a NOTE, not a finding: '\\ ' is also
+    the legitimate TeX control space, so it needs a source comparison to
+    tell an eaten \\\\ from intentional spacing. Likewise <em> inside <li>
+    is normal prose italics; it is a finding only with TeX inside it.
     """
-    findings = []
+    findings, notes = [], []
     payloads = [m.group("tex") for m in payload_rx.finditer(html)]
     stripped = payload_rx.sub(" ", html)
     stripped = CODEBLOCK.sub(" ", stripped)
@@ -620,13 +625,19 @@ def render_audit(path, html, payload_rx):
             findings.append(f"{path}: render: double-escaped entity "
                             f"{m.group(0)!r} inside math payload: {p[:80]!r}")
         if re.search(r"(?<!\\)\\ ", decoded):
-            findings.append(f"{path}: render: lone '\\ ' inside math payload "
-                            f"(suspected eaten \\\\ row break): {p[:80]!r}")
+            notes.append(f"{path}: note: lone '\\ ' inside math payload "
+                         "(eaten \\\\ row break, or intentional control "
+                         f"space - compare with the source): {p[:80]!r}")
     for m in STRUCTURE.finditer(stripped):
-        if re.search(r"\\sum|\\frac|\\begin|<em>", m.group("seg")):
+        seg = m.group("seg")
+        leaked = bool(re.search(r"\\(?:sum|frac|begin)\b", seg))
+        if not leaked:
+            leaked = any(re.search(r"\\[A-Za-z]+|\$", em.group(1))
+                         for em in re.finditer(r"<em>(.*?)</em>", seg, re.S))
+        if leaked:
             findings.append(f"{path}: render: raw TeX/emphasis leaked into "
-                            f"<{m.group(1)}>: {m.group('seg').strip()[:80]!r}")
-    return findings, len(payloads)
+                            f"<{m.group(1)}>: {seg.strip()[:80]!r}")
+    return findings, notes, len(payloads)
 
 
 def render_github(path, context):
@@ -706,12 +717,14 @@ def main():
         total_math = 0
         for f, _ in all_spans:
             try:
-                probs, n_math = renderer(f, args.context)
+                probs, notes, n_math = renderer(f, args.context)
             except (RuntimeError, OSError) as e:
                 print(e, file=sys.stderr)
                 status = max(status, 2)
                 continue
             total_math += n_math
+            for note in notes:
+                print(note, file=sys.stderr)
             for p in probs:
                 print(p)
             if probs:
