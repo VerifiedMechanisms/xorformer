@@ -16,7 +16,7 @@ $$ \deg_{\pm}(f_{\mathrm{Ham}})=2 \qquad\text{and}\qquad H^{\ast}(f_{\mathrm{Ham
 
 In particular,
 
-$$ \deg_{\pm}(f_{\mathrm{Ham}})<H^{\ast}(f_{\mathrm{Ham}}). $$
+$$ \deg_{\pm}(f_{\mathrm{Ham}})\lt H^{\ast}(f_{\mathrm{Ham}}). $$
 
 > **Interpretation.** Thresholding the Hamming distance between two six-bit strings gives an explicit twelve-bit strict separation. A deterministic finite certificate proves the sign-rank obstruction.
 
@@ -34,7 +34,7 @@ $$ \bigl(\mathrm{code}(y^{(1)}),\ldots,\mathrm{code}(y^{(8)})\bigr)=(43,29,37,19
 
 Define the $64\times8$ sign matrix $S$ by
 
-$$ S_{x,j}:=\begin{cases}+1,&\Delta(x,y^{(j)})\geq3,\\-1,&\Delta(x,y^{(j)})<3.\end{cases} $$
+$$ S_{x,j}:=\begin{cases}+1,&\Delta(x,y^{(j)})\geq3,\cr-1,&\Delta(x,y^{(j)})\lt3.\end{cases} $$
 
 Encode each row sign by the eight-bit integer
 
@@ -82,7 +82,7 @@ Suppose a real matrix $B$ has strict sign pattern $S$ and rank at most $6$. Choo
 
 Perturb $L$ slightly to a generic two-dimensional subspace and orthogonally project the finitely many rows of $B$ onto the new orthogonal complement. All row signs persist under a sufficiently small perturbation. By Lemma 1, some persisted row sign is, up to negation, the full sign vector of a vector $z\in L$. Replace $z$ by $-z$ if necessary. If $b'$ is the corresponding projected row, then $z$ and $b'$ have the same strict coordinate signs. Hence
 
-$$ \langle z,b'\rangle=\sum_{j=1}^{8}\lvert z_jb'_j\rvert>0, $$
+$$ \langle z,b'\rangle=\sum_{j=1}^{8}\lvert z_jb'_j\rvert\gt0, $$
 
 contradicting $z\in L$ and $b'\in L^{\perp}$. Therefore
 
@@ -92,7 +92,7 @@ $$ \mathrm{srank}(S)\geq7. $$
 
 Let $g$ be a Boolean function whose variables are split into blocks $a\in\lbrace0,1\rbrace^m$ and $b\in\lbrace0,1\rbrace^n$. Define its partition sign matrix by
 
-$$ \Sigma_g(a,b):=\begin{cases}+1,&g(a,b)=1,\\-1,&g(a,b)=0.\end{cases} $$
+$$ \Sigma_g(a,b):=\begin{cases}+1,&g(a,b)=1,\cr-1,&g(a,b)=0.\end{cases} $$
 
 If $g$ is computable with at most two heads, then
 
@@ -150,7 +150,7 @@ $$ H^{\ast}(f_{\mathrm{Ham}})\geq3. $$
 
 Together with Lemma 4,
 
-$$ \deg_{\pm}(f_{\mathrm{Ham}})=2<3\leq H^{\ast}(f_{\mathrm{Ham}}). \qquad\blacksquare $$
+$$ \deg_{\pm}(f_{\mathrm{Ham}})=2\lt3\leq H^{\ast}(f_{\mathrm{Ham}}). \qquad\blacksquare $$
 
 ## Consequence
 

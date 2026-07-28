@@ -24,7 +24,7 @@ Let
 
 $$ \phi(x)=\frac{A(x)}{B(x)} $$
 
-be a one-head atom, where $A$ and $B$ are affine and $B(x)>0$ on the cube. By denominator orientation, either $B$ is constant, or all variable coefficients of $B$ have the same sign.
+be a one-head atom, where $A$ and $B$ are affine and $B(x)\gt0$ on the cube. By denominator orientation, either $B$ is constant, or all variable coefficients of $B$ have the same sign.
 
 Suppose
 
@@ -52,9 +52,9 @@ $$ A_{01}\leq\epsilon B_{01}, \qquad A_{10}\leq\epsilon B_{10}. $$
 
 Therefore
 
-$$ \begin{aligned} (1-\epsilon)B_{11}-\epsilon B_{00} &\leq A_{11}+A_{00} \\ &= A_{01}+A_{10} \\ &\leq \epsilon(B_{01}+B_{10}). \end{aligned} $$
+$$ \begin{aligned} (1-\epsilon)B_{11}-\epsilon B_{00} &\leq A_{11}+A_{00} \cr &= A_{01}+A_{10} \cr &\leq \epsilon(B_{01}+B_{10}). \end{aligned} $$
 
-Using $B&#95;{01}+B&#95;{10}=B&#95;{00}+B&#95;{11}$, we get
+Using $B_{01}+B_{10}=B_{00}+B_{11}$, we get
 
 $$ B_{11} \leq 2\epsilon(B_{00}+B_{11}). $$
 
@@ -82,9 +82,9 @@ $$ \widetilde A_{01}\geq(1-\epsilon)\widetilde B_{01}, \qquad \widetilde A_{10}\
 
 Therefore
 
-$$ \begin{aligned} \epsilon\widetilde B_{00}+(1+\epsilon)\widetilde B_{11} &\geq \widetilde A_{00}+\widetilde A_{11} \\ &= \widetilde A_{01}+\widetilde A_{10} \\ &\geq (1-\epsilon)(\widetilde B_{01}+\widetilde B_{10}). \end{aligned} $$
+$$ \begin{aligned} \epsilon\widetilde B_{00}+(1+\epsilon)\widetilde B_{11} &\geq \widetilde A_{00}+\widetilde A_{11} \cr &= \widetilde A_{01}+\widetilde A_{10} \cr &\geq (1-\epsilon)(\widetilde B_{01}+\widetilde B_{10}). \end{aligned} $$
 
-Using $\widetilde B&#95;{01}+\widetilde B&#95;{10}=\widetilde B&#95;{00}+\widetilde B&#95;{11}$, we get
+Using $\widetilde B_{01}+\widetilde B_{10}=\widetilde B_{00}+\widetilde B_{11}$, we get
 
 $$ \widetilde B_{00} \leq 2\epsilon(\widetilde B_{00}+\widetilde B_{11}). $$
 

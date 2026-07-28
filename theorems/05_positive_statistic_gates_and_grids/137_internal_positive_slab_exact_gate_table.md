@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let
 
@@ -20,7 +20,7 @@ $$ F_G(z,y):=G(z,S(y)). $$
 
 Then
 
-$$ H^{\ast}(F_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{if }G\text{ is a raw-bit literal},\\ 3 & \text{if }G\text{ is XOR or XNOR},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\cr 1 & \text{if }G\text{ is a raw-bit literal},\cr 3 & \text{if }G\text{ is XOR or XNOR},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Internal positive slabs now have a complete exact one-bit gate table.
 
@@ -48,11 +48,11 @@ $$ H^{\ast}(r(z)\wedge(1-S(y)))=2. $$
 
 Choose a strict quadratic sign polynomial $Q(t)$ for $1-S$:
 
-$$ 1-S(y)=1 \qquad\Longleftrightarrow\qquad Q(t(y))>0. $$
+$$ 1-S(y)=1 \qquad\Longleftrightarrow\qquad Q(t(y))\gt0. $$
 
 Since the cube is finite, choose
 
-$$ M>\max_y \lvert Q(t(y))\rvert. $$
+$$ M\gt\max_y \lvert Q(t(y))\rvert. $$
 
 If $r(z)=z$, define
 
@@ -78,7 +78,7 @@ Thus $H^{\ast}(r\wedge(1-S))=2$. Complement invariance gives exact value $2$ for
 
 Choose a strict quadratic sign polynomial $R(t)$ for $S$:
 
-$$ S(y)=1 \qquad\Longleftrightarrow\qquad R(t(y))>0. $$
+$$ S(y)=1 \qquad\Longleftrightarrow\qquad R(t(y))\gt0. $$
 
 Then
 

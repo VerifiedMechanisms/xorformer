@@ -16,7 +16,7 @@ $$ F(0),F(1),\ldots,F(m). $$
 
 Define
 
-$$ U_m(C) := \begin{cases} 0 & \text{if } C=0,\\ 1+m+\sum_{r=2}^{C}3^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
+$$ U_m(C) := \begin{cases} 0 & \text{if } C=0,\cr 1+m+\sum_{r=2}^{C}3^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
 
 Then
 
@@ -52,7 +52,7 @@ $$ H^{\ast}(g_F)\geq C(F). $$
 
 As in [050_intersection_profile_bounds.md](050_intersection_profile_bounds.md), define
 
-$$ q_k:= \begin{cases} +1 & \text{if } F(k)=1,\\ -1 & \text{if } F(k)=0, \end{cases} $$
+$$ q_k:= \begin{cases} +1 & \text{if } F(k)=1,\cr -1 & \text{if } F(k)=0, \end{cases} $$
 
 and
 
@@ -64,7 +64,7 @@ $$ R(t):= q_0\prod_{j\in\mathcal{J}}\left(j+\frac{1}{2}-t\right). $$
 
 Then $R$ has degree $C(F)$ and satisfies
 
-$$ q_kR(k)>0 $$
+$$ q_kR(k)\gt0 $$
 
 for every $k\in\lbrace0,\ldots,m\rbrace$.
 

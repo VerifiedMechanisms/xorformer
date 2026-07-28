@@ -16,7 +16,7 @@ $$ H^{\ast}(f_{a,b,c})\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f_{a,b,c}) = \begin{cases} 0 & \text{if } f_{a,b,c} \text{ is constant},\\ 1 & \text{if } f_{a,b,c} \text{ is a nonconstant LTF},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f_{a,b,c}) = \begin{cases} 0 & \text{if } f_{a,b,c} \text{ is constant},\cr 1 & \text{if } f_{a,b,c} \text{ is a nonconstant LTF},\cr 2 & \text{otherwise}. \end{cases} $$
 
 Let $G_{a,b,c}$ be the associated grid function
 
@@ -50,7 +50,7 @@ Assume $G_{a,b,c}$ is nonconstant. Then the grid contains at least one point on 
 
 $$ \Delta:=\min\lbrace\lvert a u+b v+c\rvert : (u,v) \text{ is a grid point and } a u+b v+c\neq0\rbrace. $$
 
-The grid is finite, so $\Delta>0$. The polynomial
+The grid is finite, so $\Delta\gt0$. The polynomial
 
 $$ R(u,v):=\frac{1}{2}-\left(\frac{a u+b v+c}{\Delta}\right)^2 $$
 

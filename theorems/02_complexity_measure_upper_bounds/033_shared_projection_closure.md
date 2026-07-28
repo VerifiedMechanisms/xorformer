@@ -4,11 +4,11 @@
 
 Let
 
-$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i>0, $$
+$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i\gt0, $$
 
 and write its image in increasing order as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Suppose Boolean functions $f_1,\ldots,f_m$ all factor through this same statistic:
 
@@ -50,11 +50,11 @@ By the positive-projection sign-change theorem [013_positive_projection_sign_cha
 
 $$ H^{\ast}(g)\leq C_t(g). $$
 
-It remains to compare sign-change counts. If $G_t$ changes between adjacent levels $\tau&#95;{\ell-1}$ and $\tau&#95;{\ell}$, then the vector
+It remains to compare sign-change counts. If $G_t$ changes between adjacent levels $\tau_{\ell-1}$ and $\tau_{\ell}$, then the vector
 
 $$ \bigl(F_1(\tau),\ldots,F_m(\tau)\bigr) $$
 
-must change between those two levels. Therefore at least one of the component functions $F_j$ changes between $\tau&#95;{\ell-1}$ and $\tau&#95;{\ell}$.
+must change between those two levels. Therefore at least one of the component functions $F_j$ changes between $\tau_{\ell-1}$ and $\tau_{\ell}$.
 
 Thus the set of adjacent cuts where $G_t$ changes is contained in the union of the adjacent cuts where some $F_j$ changes. Hence
 

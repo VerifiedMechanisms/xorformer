@@ -12,7 +12,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The first adaptive decision-tree case is fully controlled. A depth-two tree can be nonsymmetric and can mix different variables on different branches, but it still never needs more than two heads.
 
@@ -34,11 +34,11 @@ $$ g(x) = \sum_{\ell\in\mathcal{L}_1} \left(\prod_{i\in P_\ell}x_i\right) \left(
 
 where each root-to-leaf path fixes at most two variables. Thus this exact polynomial has degree at most $2$. Therefore
 
-$$ g(x)=1 \qquad\Longleftrightarrow\qquad g(x)-\frac{1}{2}>0 $$
+$$ g(x)=1 \qquad\Longleftrightarrow\qquad g(x)-\frac{1}{2}\gt0 $$
 
 is a quadratic sign representation.
 
-If $k<3$, add dummy variables. Dummy-variable invariance from [039_junta_upper_bounds.md](../02_complexity_measure_upper_bounds/039_junta_upper_bounds.md) preserves $H^{\ast}$, and the quadratic sign representation remains quadratic. The three-bit quadratic upper-bound theorem [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md) gives
+If $k\lt3$, add dummy variables. Dummy-variable invariance from [039_junta_upper_bounds.md](../02_complexity_measure_upper_bounds/039_junta_upper_bounds.md) preserves $H^{\ast}$, and the quadratic sign representation remains quadratic. The three-bit quadratic upper-bound theorem [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md) gives
 
 $$ H^{\ast}(g)\leq2. $$
 

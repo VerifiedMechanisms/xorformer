@@ -30,7 +30,7 @@ $$ \prod_{i\in S}x_i, \qquad S\subseteq\lbrace1,2,3,4\rbrace. $$
 
 Define
 
-$$ \begin{aligned} B_1(x) &:= 1+x_1+x_2+x_3+x_4, \\ B_2(x) &:= 1+x_1+2x_2+4x_3+8x_4, \\ B_3(x) &:= 1+x_1+3x_2+9x_3+27x_4, \\ B_4(x) &:= 1+x_1+4x_2+16x_3+64x_4. \end{aligned} $$
+$$ \begin{aligned} B_1(x) &:= 1+x_1+x_2+x_3+x_4, \cr B_2(x) &:= 1+x_1+2x_2+4x_3+8x_4, \cr B_3(x) &:= 1+x_1+3x_2+9x_3+27x_4, \cr B_4(x) &:= 1+x_1+4x_2+16x_3+64x_4. \end{aligned} $$
 
 Consider the following $16$ products:
 
@@ -62,7 +62,7 @@ Since this determinant is nonzero, these products form a basis for all real-valu
 
 Let $f : \lbrace0,1\rbrace^4 \to \lbrace0,1\rbrace$. Interpolate the sign labels
 
-$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \\ -1 & \text{if } f(x)=0. \end{cases} $$
+$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \cr -1 & \text{if } f(x)=0. \end{cases} $$
 
 by a multilinear polynomial $P$ on $\lbrace0,1\rbrace^4$.
 

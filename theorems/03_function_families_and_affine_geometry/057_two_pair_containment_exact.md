@@ -32,7 +32,7 @@ Let
 
 $$ S:=\frac{A_1}{B_1}+\frac{A_2}{B_2}. $$
 
-Since $B_1,B_2>0$ on the Boolean cube, the sign of $S$ is the sign of
+Since $B_1,B_2\gt0$ on the Boolean cube, the sign of $S$ is the sign of
 
 $$ P:=A_1B_2+A_2B_1. $$
 
@@ -46,7 +46,7 @@ $$ -10,\ -2,\ -2,\ -2,\ -24,\ -12,\ -16. $$
 
 Thus
 
-$$ S>0 \qquad\Longleftrightarrow\qquad \mathrm{SUB}_2(x,y)=1. $$
+$$ S\gt0 \qquad\Longleftrightarrow\qquad \mathrm{SUB}_2(x,y)=1. $$
 
 Both denominators have positive constant term and positive variable coefficients. By the affine-over-positive-affine atom lemma [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md), each ratio $A_i/B_i$ is a single one-head atom. Therefore
 

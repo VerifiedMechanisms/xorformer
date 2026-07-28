@@ -23,7 +23,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A label class is two-head easy whenever it is exactly the cube slice cut out by its own proper affine hull. The proof turns that affine hull into one affine level set, then invokes the affine level-set theorem.
 
@@ -51,7 +51,7 @@ the set
 
 $$ \mathcal{H}_r := \lbrace L\in\mathcal{L}_W:L(r)=0\rbrace $$
 
-is a proper hyperplane in $\mathcal{L}&#95;W$. Indeed, $A$ is affine hull clean, so $r\notin W$. Since $r\notin W$, there exists an affine function vanishing on $W$ but not on $r$, which means the evaluation map $L\mapsto L(r)$ is not identically zero on $\mathcal{L}&#95;W$.
+is a proper hyperplane in $\mathcal{L}_W$. Indeed, $A$ is affine hull clean, so $r\notin W$. Since $r\notin W$, there exists an affine function vanishing on $W$ but not on $r$, which means the evaluation map $L\mapsto L(r)$ is not identically zero on $\mathcal{L}_W$.
 
 A finite union of proper hyperplanes cannot cover the real vector space $\mathcal{L}_W$. Choose
 

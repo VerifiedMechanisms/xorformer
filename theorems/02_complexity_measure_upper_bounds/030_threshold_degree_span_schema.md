@@ -14,7 +14,7 @@ $$ B_1,\ldots,B_H $$
 
 on $\lbrace0,1\rbrace^n$, namely
 
-$$ B_h(x)=b_{h,0}+\sum_{i=1}^{n}b_{h,i}x_i, \qquad b_{h,0}>0, \qquad b_{h,i}>0, $$
+$$ B_h(x)=b_{h,0}+\sum_{i=1}^{n}b_{h,i}x_i, \qquad b_{h,0}\gt0, \qquad b_{h,i}\gt0, $$
 
 such that $D(n,d)$ functions chosen from
 
@@ -52,7 +52,7 @@ $$ P\in V_{n,d} $$
 
 such that
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad P(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad P(x)\gt0 $$
 
 on the cube.
 

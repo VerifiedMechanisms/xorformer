@@ -42,7 +42,7 @@ $$ \prod_{h=1}^{H}\left(B_h+tA_h\right)=\sum_{\tau:\lbrace1,\ldots,H\rbrace\to\l
 
 Fix an assignment $\tau$. Differentiating its summand at zero gives one rank-one tensor for every nonempty fiber of $\tau$:
 
-$$ \sum_{j\in\mathrm{im}(\tau)}\left(\sum_{h:\tau(h)=j}a_{h,j}\prod_{\substack{g:\tau(g)=j\\g\neq h}}b_{g,j}\right)\prod_{\ell\neq j}\prod_{g:\tau(g)=\ell}b_{g,\ell}. $$
+$$ \sum_{j\in\mathrm{im}(\tau)}\left(\sum_{h:\tau(h)=j}a_{h,j}\prod_{\substack{g:\tau(g)=j\cr g\neq h}}b_{g,j}\right)\prod_{\ell\neq j}\prod_{g:\tau(g)=\ell}b_{g,\ell}. $$
 
 Therefore the evaluation tensor of $P$ has CP rank at most
 

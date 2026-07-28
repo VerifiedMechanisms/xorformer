@@ -16,7 +16,7 @@ $$ H^{\ast}(S_{L,\alpha,\beta})\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(S_{L,\alpha,\beta}) = \begin{cases} 0 & \text{if } S_{L,\alpha,\beta} \text{ is constant},\\ 1 & \text{if } S_{L,\alpha,\beta} \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(S_{L,\alpha,\beta}) = \begin{cases} 0 & \text{if } S_{L,\alpha,\beta} \text{ is constant},\cr 1 & \text{if } S_{L,\alpha,\beta} \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A two-head score can carve out any finite Boolean-cube slice between two parallel affine hyperplanes. Exact affine level sets are the zero-width special case.
 
@@ -40,13 +40,13 @@ and
 
 $$ r_{\mathrm{out}} := \min\lbrace\lvert L(x)-c_\ast\rvert:S_{L,\alpha,\beta}(x)=0\rbrace. $$
 
-Every true input has distance at most $R&#95;\ast$ from $c&#95;\ast$, and every false input has distance strictly larger than $R&#95;\ast$. Therefore
+Every true input has distance at most $R_\ast$ from $c_\ast$, and every false input has distance strictly larger than $R_\ast$. Therefore
 
-$$ r_{\mathrm{in}}\leq R_\ast<r_{\mathrm{out}}. $$
+$$ r_{\mathrm{in}}\leq R_\ast\lt r_{\mathrm{out}}. $$
 
 Choose $r$ with
 
-$$ r_{\mathrm{in}}<r<r_{\mathrm{out}}, $$
+$$ r_{\mathrm{in}}\lt r\lt r_{\mathrm{out}}, $$
 
 and define
 
@@ -54,11 +54,11 @@ $$ M(x):=\frac{L(x)-c_\ast}{r} = c_0+\sum_{i=1}^{n}m_i x_i. $$
 
 Then
 
-$$ S_{L,\alpha,\beta}(x)=1 \qquad\Longleftrightarrow\qquad 1-M(x)^2>0. $$
+$$ S_{L,\alpha,\beta}(x)=1 \qquad\Longleftrightarrow\qquad 1-M(x)^2\gt0. $$
 
 Choose positive numbers $q_0,q_1,\ldots,q_n$ so large that
 
-$$ q_0+c_0>0, \qquad q_i+m_i>0 \quad \text{for every }i. $$
+$$ q_0+c_0\gt0, \qquad q_i+m_i\gt0 \quad \text{for every }i. $$
 
 Define
 
@@ -82,11 +82,11 @@ $$ T(x):=\frac{A_1(x)}{B_1(x)}+\frac{A_2(x)}{B_2(x)}. $$
 
 After clearing denominators, the numerator is
 
-$$ \begin{aligned} A_1B_2+A_2B_1 &= 4P(1+P+2Q)+(1-5P-Q)(1+P+Q) \\ &= 1-(P-Q)^2 \\ &= 1-M^2. \end{aligned} $$
+$$ \begin{aligned} A_1B_2+A_2B_1 &= 4P(1+P+2Q)+(1-5P-Q)(1+P+Q) \cr &= 1-(P-Q)^2 \cr &= 1-M^2. \end{aligned} $$
 
 Since $B_1$ and $B_2$ are positive on the cube,
 
-$$ T(x)>0 \qquad\Longleftrightarrow\qquad 1-M(x)^2>0 \qquad\Longleftrightarrow\qquad S_{L,\alpha,\beta}(x)=1. $$
+$$ T(x)\gt0 \qquad\Longleftrightarrow\qquad 1-M(x)^2\gt0 \qquad\Longleftrightarrow\qquad S_{L,\alpha,\beta}(x)=1. $$
 
 By the affine-over-positive-affine atom lemma [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md), each ratio $A_j/B_j$ is a one-head atom. Therefore
 

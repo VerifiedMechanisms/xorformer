@@ -8,11 +8,11 @@ $$ x^{(1)},\ldots,x^{(b)}. $$
 
 For each block, let
 
-$$ t_j(x^{(j)})=\sum_i\lambda_{j,i}x^{(j)}_i, \qquad \lambda_{j,i}>0, $$
+$$ t_j(x^{(j)})=\sum_i\lambda_{j,i}x^{(j)}_i, \qquad \lambda_{j,i}\gt0, $$
 
 and write the image of $t_j$ as
 
-$$ V_j=\lbrace\nu^{(j)}_0<\nu^{(j)}_1<\cdots<\nu^{(j)}_{R_j-1}\rbrace. $$
+$$ V_j=\lbrace\nu^{(j)}_0\lt\nu^{(j)}_1\lt\cdots\lt\nu^{(j)}_{R_j-1}\rbrace. $$
 
 Assume
 
@@ -48,15 +48,15 @@ First discard any block whose statistic has a one-point image, since it is const
 
 For each $j$, let
 
-$$ \Delta_j:=\min_{0\leq r<R_j-1}\left(\nu^{(j)}_{r+1}-\nu^{(j)}_r\right)>0 $$
+$$ \Delta_j:=\min_{0\leq r\lt R_j-1}\left(\nu^{(j)}_{r+1}-\nu^{(j)}_r\right)\gt0 $$
 
 and
 
 $$ \Lambda_j:=\nu^{(j)}_{R_j-1}-\nu^{(j)}_0. $$
 
-Choose positive scales $K_b,K&#95;{b-1},\ldots,K_1$ recursively. Start with $K_b=1$. Having chosen $K&#95;{j+1},\ldots,K_b$, choose $K_j$ so large that
+Choose positive scales $K_b,K_{b-1},\ldots,K_1$ recursively. Start with $K_b=1$. Having chosen $K_{j+1},\ldots,K_b$, choose $K_j$ so large that
 
-$$ K_j\Delta_j>\sum_{\ell=j+1}^{b}K_{\ell}\Lambda_{\ell}. $$
+$$ K_j\Delta_j\gt\sum_{\ell=j+1}^{b}K_{\ell}\Lambda_{\ell}. $$
 
 Define the combined positive statistic
 
@@ -70,11 +70,11 @@ $$ H^{\ast}(f)\leq L_{\mathrm{lex}}(F). $$
 
 For the lower bound, fix all blocks except $j$ to assignments attaining the specified levels. Restriction monotonicity gives the displayed inequality.
 
-If $\deg&#95;{\pm}(f)=L&#95;{\mathrm{lex}}(F)$, combine the upper bound with the threshold-degree lower bound
+If $\deg_{\pm}(f)=L_{\mathrm{lex}}(F)$, combine the upper bound with the threshold-degree lower bound
 
 $$ \deg_{\pm}(f)\leq H^{\ast}(f). $$
 
-The two sides match, so $H^{\ast}(f)=\deg&#95;{\pm}(f)=L&#95;{\mathrm{lex}}(F)$. $\blacksquare$
+The two sides match, so $H^{\ast}(f)=\deg_{\pm}(f)=L_{\mathrm{lex}}(F)$. $\blacksquare$
 
 ## Consequence
 

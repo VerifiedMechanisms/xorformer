@@ -4,7 +4,7 @@
 
 Let
 
-$$ L(y)=\sum_{i\in S}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ L(y)=\sum_{i\in S}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 with $S\neq\varnothing$. Set
 
@@ -12,7 +12,7 @@ $$ \Lambda:=\sum_{i\in S}\lambda_i, \qquad \mu:=\min_{i\in S}\lambda_i. $$
 
 Define the positive endpoint features
 
-$$ O_L(y):=\mathbf{1}[L(y)>0], \qquad A_L(y):=\mathbf{1}[L(y)=\Lambda]. $$
+$$ O_L(y):=\mathbf{1}[L(y)\gt0], \qquad A_L(y):=\mathbf{1}[L(y)=\Lambda]. $$
 
 Then
 
@@ -50,7 +50,7 @@ We claim that
 
 $$ z\oplus O_L(y)=1 \qquad\Longleftrightarrow\qquad \frac{\mu}{2}\leq M(z,y)\leq \Lambda+\mu. $$
 
-If $z=0$, then $z\oplus O_L=1$ exactly when $L(y)>0$. On the Boolean cube this means
+If $z=0$, then $z\oplus O_L=1$ exactly when $L(y)\gt0$. On the Boolean cube this means
 
 $$ \mu\leq L(y)\leq \Lambda, $$
 
@@ -60,7 +60,7 @@ If $z=1$, then $z\oplus O_L=1$ exactly when $L(y)=0$. In that case
 
 $$ M(z,y)=B=\Lambda+\frac{\mu}{2}, $$
 
-which lies in the slab. If $z=1$ and $L(y)>0$, then
+which lies in the slab. If $z=1$ and $L(y)\gt0$, then
 
 $$ M(z,y)\geq B+\mu=\Lambda+\frac{3\mu}{2}, $$
 
@@ -82,13 +82,13 @@ We claim that
 
 $$ z\oplus A_L(y)=1 \qquad\Longleftrightarrow\qquad \Lambda-\frac{\mu}{2}\leq M(z,y)\leq 2\Lambda-\frac{\mu}{2}. $$
 
-If $z=0$, then $z\oplus A_L=1$ exactly when $L(y)=\Lambda$, giving $M(z,y)=\Lambda$, which lies in the slab. If $z=0$ and $L(y)<\Lambda$, then some coordinate in $S$ with weight at least $\mu$ is missing, so
+If $z=0$, then $z\oplus A_L=1$ exactly when $L(y)=\Lambda$, giving $M(z,y)=\Lambda$, which lies in the slab. If $z=0$ and $L(y)\lt\Lambda$, then some coordinate in $S$ with weight at least $\mu$ is missing, so
 
 $$ L(y)\leq\Lambda-\mu, $$
 
 which is below the slab.
 
-If $z=1$, then $z\oplus A_L=1$ exactly when $L(y)<\Lambda$. In that case
+If $z=1$, then $z\oplus A_L=1$ exactly when $L(y)\lt\Lambda$. In that case
 
 $$ \Lambda\leq M(z,y)\leq2\Lambda-\mu, $$
 

@@ -4,11 +4,11 @@
 
 Let $k\geq1$, let $z\in\lbrace0,1\rbrace^{k}$ be raw bits, and let
 
-$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Write the image of $t$ as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}, $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}, $$
 
 and let $C$ be the sign-change count of $F$ along this ordered image. Let
 

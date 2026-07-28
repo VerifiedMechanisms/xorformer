@@ -26,7 +26,7 @@ Let $V$ be the vector space of real-valued functions on $\lbrace0,1\rbrace^n$. I
 
 Let $f : \lbrace0,1\rbrace^n \to \lbrace0,1\rbrace$ and define the sign labels
 
-$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x) = 1, \\ -1 & \text{if } f(x) = 0. \end{cases} $$
+$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x) = 1, \cr -1 & \text{if } f(x) = 0. \end{cases} $$
 
 Since the selected products form a basis, $Q_f$ is a linear combination of them. By allowing zero coefficients on the unselected products, this gives affine functions
 

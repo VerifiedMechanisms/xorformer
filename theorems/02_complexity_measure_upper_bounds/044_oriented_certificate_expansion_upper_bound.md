@@ -42,11 +42,11 @@ strictly sign-represents $f$. Indeed, if $f(x)=0$, then no certificate cylinder 
 
 For each certificate term, choose the cheaper of two expansions. Expanding the negative literals gives
 
-$$ \begin{aligned} T_{P,N}(x) &= \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\right) \\ &= \sum_{U\subseteq N} (-1)^{\lvert U\rvert} \prod_{i\in P\cup U}x_i. \end{aligned} $$
+$$ \begin{aligned} T_{P,N}(x) &= \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\right) \cr &= \sum_{U\subseteq N} (-1)^{\lvert U\rvert} \prod_{i\in P\cup U}x_i. \end{aligned} $$
 
 This costs $2^{\lvert N\rvert}$ positive monomials. Expanding the positive literals instead gives
 
-$$ \begin{aligned} T_{P,N}(x) &= \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\right) \\ &= \sum_{U\subseteq P} (-1)^{\lvert U\rvert} \prod_{j\in N\cup U}(1-x_j). \end{aligned} $$
+$$ \begin{aligned} T_{P,N}(x) &= \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\right) \cr &= \sum_{U\subseteq P} (-1)^{\lvert U\rvert} \prod_{j\in N\cup U}(1-x_j). \end{aligned} $$
 
 This costs $2^{\lvert P\rvert}$ negative monomials.
 

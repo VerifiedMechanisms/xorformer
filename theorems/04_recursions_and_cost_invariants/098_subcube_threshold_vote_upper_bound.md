@@ -8,11 +8,11 @@ $$ C_{P,N}(x) := \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\righ
 
 Define its local expansion cost
 
-$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \\ \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
+$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \cr \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
 
 Suppose
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_a C_{P_a,N_a}(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_a C_{P_a,N_a}(x)\gt0 $$
 
 with positive margin on the Boolean cube. Then
 

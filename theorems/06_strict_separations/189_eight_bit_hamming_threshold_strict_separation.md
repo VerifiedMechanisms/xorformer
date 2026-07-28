@@ -16,7 +16,7 @@ $$ \deg_{\pm}(f_8)=2 \qquad\text{and}\qquad H^{\ast}(f_8)=3. $$
 
 Consequently,
 
-$$ \deg_{\pm}(f_8)<H^{\ast}(f_8). $$
+$$ \deg_{\pm}(f_8)\lt H^{\ast}(f_8). $$
 
 > **Interpretation.** The radius-one Hamming ball threshold on two four-bit strings is an explicit eight-bit strict separation. Its shell transitions force a column-max spectral inequality that is incompatible with an admissible factor of a cleared two-head score, while an exact integer certificate gives a matching three-head construction.
 
@@ -44,21 +44,21 @@ Then $S\prec0$. In particular, $K$ is nonsingular.
 
 **Proof.** Consider a rectangle with row endpoints $x_0,x_1$ and column endpoints $y_0,y_1$ whose diagonal vertices have Hamming distance at most one and whose off-diagonal vertices have Hamming distance at least two. The mixed second difference gives
 
-$$ (x_0-x_1)^{\top}K(y_0-y_1)<0. $$
+$$ (x_0-x_1)^{\top}K(y_0-y_1)\lt0. $$
 
 Transposing the rectangle gives the same inequality with $K^{\top}$. Thus, if $a=x_0-x_1$ and $b=y_0-y_1$, then
 
-$$ a^{\top}Sb<0. $$
+$$ a^{\top}Sb\lt0. $$
 
 Let $e_1,\ldots,e_4$ be the standard basis and put $p_i=e_1+\cdots+e_i$. The following direction pairs have such checkerboard rectangles:
 
-$$ \begin{aligned} &(p_i,p_i) &&(1\leq i\leq4), \\ &(p_1,p_3),(p_2,p_3),(p_2,p_4),(p_3,p_4), \\ &(p_1,p_2-e_3),(p_1,p_4-e_2),(p_1,p_4-e_3), \\ &(p_4,e_1+e_2),(p_4,e_1+e_3),(p_4,e_1+e_4). \end{aligned} $$
+$$ \begin{aligned} &(p_i,p_i) &&(1\leq i\leq4), \cr &(p_1,p_3),(p_2,p_3),(p_2,p_4),(p_3,p_4), \cr &(p_1,p_2-e_3),(p_1,p_4-e_2),(p_1,p_4-e_3), \cr &(p_4,e_1+e_2),(p_4,e_1+e_3),(p_4,e_1+e_4). \end{aligned} $$
 
 Explicit bitstring endpoints for all fourteen rectangles are checked by the exact verifier. Since
 
 $$ (p_2-e_3)+p_3=2p_2, $$
 
-the certificate also gives $p_1^{\top}Sp_2<0$.
+the certificate also gives $p_1^{\top}Sp_2\lt0$.
 
 The same certified inequalities therefore hold after applying any signed coordinate permutation simultaneously to both direction vectors. Given nonzero $z\in\mathbb{R}^4$, choose such a transformation $T$ so that $T^{\top}z$ has nonnegative coordinates in decreasing order. Replace $S$ by $T^{\top}ST$ and rename the transformed coordinates. Thus we may assume
 
@@ -78,7 +78,7 @@ If $\alpha_1\geq\alpha_4$, set
 
 $$ q_2=p_4-e_2, \qquad q_3=p_4-e_3, \qquad q_4=p_4-e_4. $$
 
-The certified pairs give $p_1^{\top}Sq_j<0$, and $q_2+q_3+q_4=p_1+2p_4$. Hence
+The certified pairs give $p_1^{\top}Sq_j\lt0$, and $q_2+q_3+q_4=p_1+2p_4$. Hence
 
 $$ \alpha_1^2p_1^{\top}Sp_1+2\alpha_1\alpha_4p_1^{\top}Sp_4=\alpha_1(\alpha_1-\alpha_4)p_1^{\top}Sp_1+\alpha_1\alpha_4\sum_{j=2}^4p_1^{\top}Sq_j\leq0. $$
 
@@ -86,11 +86,11 @@ If $\alpha_4\geq\alpha_1$, set
 
 $$ r_2=e_1+e_2, \qquad r_3=e_1+e_3, \qquad r_4=e_1+e_4. $$
 
-Now $p_4^{\top}Sr_j<0$ and $r_2+r_3+r_4=2p_1+p_4$, so
+Now $p_4^{\top}Sr_j\lt0$ and $r_2+r_3+r_4=2p_1+p_4$, so
 
 $$ \alpha_4^2p_4^{\top}Sp_4+2\alpha_1\alpha_4p_1^{\top}Sp_4=\alpha_4(\alpha_4-\alpha_1)p_4^{\top}Sp_4+\alpha_1\alpha_4\sum_{j=2}^4p_4^{\top}Sr_j\leq0. $$
 
-The controlled expression is strictly negative when $\alpha_1+\alpha_4>0$. If $\alpha_1=\alpha_4=0$, one of $\alpha_2,\alpha_3$ is positive and supplies a strictly negative diagonal term. Therefore $z^{\top}Sz<0$ for every nonzero $z$, proving $S\prec0$.
+The controlled expression is strictly negative when $\alpha_1+\alpha_4\gt0$. If $\alpha_1=\alpha_4=0$, one of $\alpha_2,\alpha_3$ is positive and supplies a strictly negative diagonal term. Therefore $z^{\top}Sz\lt0$ for every nonzero $z$, proving $S\prec0$.
 
 Finally, $Kz=0$ would give $z^{\top}Sz=z^{\top}Kz=0$. Hence $K$ is nonsingular. $\blacksquare$
 
@@ -130,7 +130,7 @@ $$ \ell(F(u,v))=c_0+a^{\top}u+b^{\top}v $$
 
 with
 
-$$ a>0, \qquad b>0, \qquad c_0>\mathbf{1}^{\top}a+\mathbf{1}^{\top}b. $$
+$$ a\gt0, \qquad b\gt0, \qquad c_0\gt\mathbf{1}^{\top}a+\mathbf{1}^{\top}b. $$
 
 Thus every putative two-head representation supplies an admissible dual-null covector. $\blacksquare$
 
@@ -142,15 +142,15 @@ $$ U+U^{\top}\succ0, \qquad V=V^{\top}, \qquad \mathrm{inertia}(V)=(2,2), $$
 
 and, for every $i\neq j$,
 
-$$ |w_j|+|U_{ji}-V_{ji}|+\sum_{k\notin\lbrace i,j\rbrace}|U_{jk}+V_{jk}|<U_{jj}. $$
+$$ |w_j|+|U_{ji}-V_{ji}|+\sum_{k\notin\lbrace i,j\rbrace}|U_{jk}+V_{jk}|\lt U_{jj}. $$
 
 They also satisfy
 
-$$ a=U^{\top}\mu>0, \qquad b=V\mu>0, \qquad \mu^{\top}V\mu=0, $$
+$$ a=U^{\top}\mu\gt0, \qquad b=V\mu\gt0, \qquad \mu^{\top}V\mu=0, $$
 
 and
 
-$$ \mu^{\top}w>\mathbf{1}^{\top}a+\mathbf{1}^{\top}b. $$
+$$ \mu^{\top}w\gt\mathbf{1}^{\top}a+\mathbf{1}^{\top}b. $$
 
 **Proof.** Put
 
@@ -166,11 +166,11 @@ $$ \delta_j=q(B_j)-q(A_j)=-4P_j^{\top}JQ_j. $$
 
 Fix distinct $i,j$. Every point with defect set $\lbrace i\rbrace$ is negative, while the corresponding point with defect set $\lbrace i,j\rbrace$ is positive. Their score difference is
 
-$$ \delta_j+2d_j^{\top}Jr\epsilon_j+2d_j^{\top}JB_i\epsilon_i\epsilon_j+2\sum_{k\notin\lbrace i,j\rbrace}d_j^{\top}JA_k\epsilon_j\epsilon_k>0. $$
+$$ \delta_j+2d_j^{\top}Jr\epsilon_j+2d_j^{\top}JB_i\epsilon_i\epsilon_j+2\sum_{k\notin\lbrace i,j\rbrace}d_j^{\top}JA_k\epsilon_j\epsilon_k\gt0. $$
 
 The four displayed signs vary independently. Taking the minimum gives
 
-$$ \delta_j>2\left(|d_j^{\top}Jr|+|d_j^{\top}JB_i|+\sum_{k\notin\lbrace i,j\rbrace}|d_j^{\top}JA_k|\right). $$
+$$ \delta_j\gt2\left(|d_j^{\top}Jr|+|d_j^{\top}JB_i|+\sum_{k\notin\lbrace i,j\rbrace}|d_j^{\top}JA_k|\right). $$
 
 In particular, every $\delta_j$ is positive. Let $\Delta=\mathrm{diag}(\delta_1,\ldots,\delta_4)$ and define the matrix $\Phi$ by its rows
 
@@ -190,7 +190,7 @@ $$ \Delta C_0+C_0^{\top}\Delta=-4(Q^{\top}JP+P^{\top}JQ). $$
 
 The pointwise transition inequality becomes
 
-$$ |t_j|+|(C_0)_{ji}-E_{ji}|+\sum_{k\notin\lbrace i,j\rbrace}|(C_0)_{jk}+E_{jk}|<1. $$
+$$ |t_j|+|(C_0)_{ji}-E_{ji}|+\sum_{k\notin\lbrace i,j\rbrace}|(C_0)_{jk}+E_{jk}|\lt1. $$
 
 Write $\ell=\Phi^{\top}\lambda$. The identity
 
@@ -214,17 +214,17 @@ The admissibility inequalities from Lemma 3 complete the normalized system. $\bl
 
 Let $M$ be a real $4\times4$ matrix for which some positive diagonal matrix $D$ makes $DM$ symmetric. Suppose
 
-$$ M\mathbf{1}>0. $$
+$$ M\mathbf{1}\gt0. $$
 
 If $M$ has at least two positive eigenvalues, then
 
-$$ \mathrm{tr}(M)+2\sum_{j=1}^4\max_{i\neq j}M_{ij}>0. $$
+$$ \mathrm{tr}(M)+2\sum_{j=1}^4\max_{i\neq j}M_{ij}\gt0. $$
 
 The maxima are column maxima.
 
 **Proof.** Put $C=DM$, $Q=D^{-1}$, and $q_i=Q_{ii}$. Then $C$ is symmetric,
 
-$$ g=C\mathbf{1}>0, $$
+$$ g=C\mathbf{1}\gt0, $$
 
 and $M$ is similar to the symmetric matrix $Q^{1/2}CQ^{1/2}$. Hence $M$ and $C$ have the same inertia. Define
 
@@ -238,9 +238,9 @@ $$ \sigma=\mathbf{1}^{\top}g, \qquad B=C-\frac{gg^{\top}}{\sigma}. $$
 
 Then $B$ is symmetric and $B\mathbf{1}=0$. Since $C$ is a positive semidefinite rank-one update of $B$, two positive eigenvalues of $C$ force at least one positive eigenvalue of $B$. Moreover, $gg^{\top}/\sigma$ is entrywise positive and $\mathcal{F}_q$ is increasing in every matrix entry. Therefore
 
-$$ \mathcal{F}_q(C)>\mathcal{F}_q(B). $$
+$$ \mathcal{F}_q(C)\gt\mathcal{F}_q(B). $$
 
-It remains to show that a symmetric zero-row-sum matrix $B$ with a positive eigenvalue has $\mathcal{F}_q(B)>0$. Suppose instead that $\mathcal{F}_q(B)\leq0$.
+It remains to show that a symmetric zero-row-sum matrix $B$ with a positive eigenvalue has $\mathcal{F}_q(B)\gt0$. Suppose instead that $\mathcal{F}_q(B)\leq0$.
 
 Let $f$ range over maps on $\lbrace1,2,3,4\rbrace$ with $f(j)\neq j$, and define
 
@@ -252,11 +252,11 @@ $$ \mathcal{F}_q(B)=\max_f\ell_f(B). $$
 
 Thus $\ell_f(B)\leq0$ for every $f$. Since $B\mathbf{1}=0$, put
 
-$$ a^f_{ij}=q_i+q_j-2q_i\mathbf{1}[f(j)=i]-2q_j\mathbf{1}[f(i)=j] \qquad (i<j). $$
+$$ a^f_{ij}=q_i+q_j-2q_i\mathbf{1}[f(j)=i]-2q_j\mathbf{1}[f(i)=j] \qquad (i\lt j). $$
 
 Then
 
-$$ -\ell_f(B)=\sum_{i<j}B_{ij}a^f_{ij}\geq0. $$
+$$ -\ell_f(B)=\sum_{i\lt j}B_{ij}a^f_{ij}\geq0. $$
 
 We claim that every squared-distance vector on four real points is a nonnegative combination of the vectors $a^f$. Fix $x\in\mathbb{R}^4$. The claim is immediate if all $x_i$ are equal. Otherwise, define
 
@@ -274,11 +274,11 @@ $$ c_{ij}=\frac{v_iv_j}{2}\left(q_i+q_j-(y_i-y_j)^2\right). $$
 
 Weighted Cauchy-Schwarz gives $(y_i-y_j)^2\leq q_i+q_j$, so $c_{ij}\geq0$. The weighted variance identity gives
 
-$$ \sum_{i<j}v_iv_j(y_i-y_j)^2=S_0. $$
+$$ \sum_{i\lt j}v_iv_j(y_i-y_j)^2=S_0. $$
 
 Since there are four vertices,
 
-$$ \sum_{i<j}c_{ij}=S_0=\sum_iv_i. $$
+$$ \sum_{i\lt j}c_{ij}=S_0=\sum_iv_i. $$
 
 We now split each edge capacity $c_{ij}$ between its endpoints so that vertex $i$ receives exactly $v_i$. The fractional edge-allocation criterion says that such a split exists exactly when
 
@@ -316,15 +316,15 @@ $$ \mathbb{E}[a^f_{ij}]=q_i+q_j-2q_ip_{ji}-2q_jp_{ij}=(y_i-y_j)^2. $$
 
 Since $(x_i-x_j)^2=V_0(y_i-y_j)^2$, the squared-distance vector is the nonnegative combination
 
-$$ \left((x_i-x_j)^2\right)_{i<j}=\sum_fV_0\mathbb{P}(f)\left(a^f_{ij}\right)_{i<j}. $$
+$$ \left((x_i-x_j)^2\right)_{i\lt j}=\sum_fV_0\mathbb{P}(f)\left(a^f_{ij}\right)_{i\lt j}. $$
 
 Taking the same combination of the inequalities $-\ell_f(B)\geq0$ gives
 
-$$ \sum_{i<j}B_{ij}(x_i-x_j)^2\geq0. $$
+$$ \sum_{i\lt j}B_{ij}(x_i-x_j)^2\geq0. $$
 
 Because $B\mathbf{1}=0$,
 
-$$ x^{\top}Bx=-\sum_{i<j}B_{ij}(x_i-x_j)^2\leq0. $$
+$$ x^{\top}Bx=-\sum_{i\lt j}B_{ij}(x_i-x_j)^2\leq0. $$
 
 Thus $B$ is negative semidefinite, contradicting its positive eigenvalue. This proves the column-max inequality. $\blacksquare$
 
@@ -334,7 +334,7 @@ Thus $B$ is negative semidefinite, contradicting its positive eigenvalue. This p
 
 $$ s_i=\mathrm{sgn}(\mu_i), \qquad r_i=|\mu_i|, \qquad S=\mathrm{diag}(s_i), \qquad R=\mathrm{diag}(r_i). $$
 
-Since $a>0$, one has $\mathbf{1}^{\top}a\geq s^{\top}a$. For each row $j$, choose an exceptional index $i\neq j$. Multiply its pointwise contraction by $r_j$. The diagonal $U_{jj}$ term cancels in
+Since $a\gt0$, one has $\mathbf{1}^{\top}a\geq s^{\top}a$. For each row $j$, choose an exceptional index $i\neq j$. Multiply its pointwise contraction by $r_j$. The diagonal $U_{jj}$ term cancels in
 
 $$ \mu^{\top}w-s^{\top}a=\sum_j\mu_j\left(w_j-\sum_ks_kU_{jk}\right) $$
 
@@ -344,7 +344,7 @@ $$ -|X-Y|-tX\leq-tY, \qquad -|X+Y|-tX\leq tY $$
 
 then give
 
-$$ \mu^{\top}w-\mathbf{1}^{\top}a<\sum_j\left(\mu_j\sum_{k\neq j}s_kV_{jk}-2\mu_js_iV_{ji}\right). $$
+$$ \mu^{\top}w-\mathbf{1}^{\top}a\lt\sum_j\left(\mu_j\sum_{k\neq j}s_kV_{jk}-2\mu_js_iV_{ji}\right). $$
 
 Choose $i$ row by row to maximize $\mu_js_iV_{ji}$. Denote the resulting upper bound by
 
@@ -354,7 +354,7 @@ Define
 
 $$ W=SVS, \qquad H=RWR, \qquad q_i=\frac{1}{r_i}, \qquad g=H\mathbf{1}. $$
 
-The matrix $H$ has inertia $(2,2)$. Since $b=V\mu>0$,
+The matrix $H$ has inertia $(2,2)$. Since $b=V\mu\gt0$,
 
 $$ g_j=r_js_jb_j, \qquad \mathrm{sgn}(g_j)=s_j, \qquad \sum_jg_j=\mu^{\top}V\mu=0. $$
 
@@ -368,11 +368,11 @@ $$ R_{\min}=\sum_j\left(\sum_{k\neq j}q_kH_{jk}-2\max_{i\neq j}(q_iH_{ij})\right
 
 The strict intercept inequality gives
 
-$$ \mathbf{1}^{\top}b<\mu^{\top}w-\mathbf{1}^{\top}a<R_{\min}. $$
+$$ \mathbf{1}^{\top}b\lt\mu^{\top}w-\mathbf{1}^{\top}a\lt R_{\min}. $$
 
 Consequently,
 
-$$ L:=\mathbf{1}^{\top}b-R_{\min}<0. $$
+$$ L:=\mathbf{1}^{\top}b-R_{\min}\lt0. $$
 
 Reindexing the double sum and using $g=H\mathbf{1}$ gives
 
@@ -384,13 +384,13 @@ $$ C=H+\mathrm{diag}(|g|-g). $$
 
 Then
 
-$$ C\mathbf{1}=|g|>0, \qquad C-H\succeq0. $$
+$$ C\mathbf{1}=|g|\gt0, \qquad C-H\succeq0. $$
 
 Thus $C$ has at least two positive eigenvalues. Put $Q_0=\mathrm{diag}(q_i)$ and $M=Q_0C$. The matrix $M$ has positive row sums and is similar to the symmetric matrix $Q_0^{1/2}CQ_0^{1/2}$. It therefore has at least two positive eigenvalues. Finally,
 
 $$ L=\mathrm{tr}(M)+2\sum_j\max_{i\neq j}M_{ij}. $$
 
-Lemma 5 says $L>0$, contradicting $L<0$.
+Lemma 5 says $L\gt0$, contradicting $L\lt0$.
 
 It remains to remove the assumption that all coordinates of $\mu$ are nonzero. Choose $k$ with $\mu_k\neq0$, and let $h_i=1$ when $\mu_i=0$ and $h_i=0$ otherwise. In particular, $h_k=0$. Consider
 
@@ -398,7 +398,7 @@ $$ \psi(t,\alpha)=(\mu+th+\alpha e_k)^{\top}V(\mu+th+\alpha e_k). $$
 
 At $(t,\alpha)=(0,0)$,
 
-$$ \psi(0,0)=0, \qquad \frac{\partial\psi}{\partial\alpha}(0,0)=2(V\mu)_k=2b_k>0. $$
+$$ \psi(0,0)=0, \qquad \frac{\partial\psi}{\partial\alpha}(0,0)=2(V\mu)_k=2b_k\gt0. $$
 
 The implicit function theorem gives a continuous function $\alpha(t)$ near zero for which $\alpha(0)=0$ and $\psi(t,\alpha(t))=0$. For every sufficiently small nonzero $t$, the vector $\mu+th+\alpha(t)e_k$ has no zero coordinate. All positivity and intercept conditions are strict, so they persist for a sufficiently small choice of $t$. Applying the preceding argument to this perturbed null vector gives the same contradiction. $\blacksquare$
 
@@ -410,11 +410,11 @@ $$ z=(x_1,x_2,x_3,x_4,y_1,y_2,y_3,y_4). $$
 
 Define three affine denominators by
 
-$$ \begin{aligned} D_1(z)&=34-z_1-6z_2-z_3-8z_4-z_5-z_6-z_7-z_8, \\ D_2(z)&=31-4z_1-z_2-3z_3-7z_4-5z_5-6z_6-3z_7-z_8, \\ D_3(z)&=32-z_1-z_2-6z_3-z_4-z_5-6z_6-6z_7-4z_8. \end{aligned} $$
+$$ \begin{aligned} D_1(z)&=34-z_1-6z_2-z_3-8z_4-z_5-z_6-z_7-z_8, \cr D_2(z)&=31-4z_1-z_2-3z_3-7z_4-5z_5-6z_6-3z_7-z_8, \cr D_3(z)&=32-z_1-z_2-6z_3-z_4-z_5-6z_6-6z_7-4z_8. \end{aligned} $$
 
 Their respective ranges on the Boolean cube are $[14,34]$, $[1,31]$, and $[6,32]$. In particular, they are positive and all their slopes have one common sign. Define the affine numerators
 
-$$ \begin{aligned} A_1(z)={}&-476+1794z_1+2403z_2+2934z_3+132z_4+1890z_5-4130z_6+2868z_7-661z_8, \\ A_2(z)={}&622-2333z_1-1471z_2+188z_3+3074z_4-2633z_5+2202z_6+208z_7-1392z_8, \\ A_3(z)={}&-1006+1501z_1-577z_2-1950z_3-4044z_4+1799z_5+1406z_6-1914z_7+2472z_8. \end{aligned} $$
+$$ \begin{aligned} A_1(z)={}&-476+1794z_1+2403z_2+2934z_3+132z_4+1890z_5-4130z_6+2868z_7-661z_8, \cr A_2(z)={}&622-2333z_1-1471z_2+188z_3+3074z_4-2633z_5+2202z_6+208z_7-1392z_8, \cr A_3(z)={}&-1006+1501z_1-577z_2-1950z_3-4044z_4+1799z_5+1406z_6-1914z_7+2472z_8. \end{aligned} $$
 
 Consider the three-atom score
 
@@ -426,7 +426,7 @@ $$ P(z)=D_1D_2D_3+A_1D_2D_3+A_2D_1D_3+A_3D_1D_2. $$
 
 Exact evaluation at all $256$ vertices gives
 
-$$ \min_z (2f_8(z)-1)P(z)=58>0. $$
+$$ \min_z (2f_8(z)-1)P(z)=58\gt0. $$
 
 Thus $s$ strictly sign-represents $f_8$. By the denominator-orientation theorem, every ratio $A_i/D_i$ is a one-head atom. Hence
 
@@ -440,7 +440,7 @@ $$ H^{\ast}(f_8)\geq3. $$
 
 Lemma 7 gives the matching upper bound. Together with Lemma 1,
 
-$$ \deg_{\pm}(f_8)=2<3=H^{\ast}(f_8). \qquad\blacksquare $$
+$$ \deg_{\pm}(f_8)=2\lt3=H^{\ast}(f_8). \qquad\blacksquare $$
 
 ## Exact verification
 

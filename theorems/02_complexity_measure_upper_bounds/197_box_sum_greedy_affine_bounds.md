@@ -30,13 +30,13 @@ $$ 0\leq R\leq\sum_iw_i. $$
 
 The greedy construction therefore allocates all of $R$ without exceeding any capacity. Hence $x^-\in K$.
 
-Consider any feasible allocation $\eta_i=x_i-\ell_i$, so $0\leq\eta_i\leq w_i$ and $\sum_i\eta_i=R$. Suppose there are indices $i,j$ with $c_i<c_j$, $\eta_i<w_i$, and $\eta_j>0$. For
+Consider any feasible allocation $\eta_i=x_i-\ell_i$, so $0\leq\eta_i\leq w_i$ and $\sum_i\eta_i=R$. Suppose there are indices $i,j$ with $c_i\lt c_j$, $\eta_i\lt w_i$, and $\eta_j\gt0$. For
 
-$$ 0<\varepsilon\leq\min\lbrace w_i-\eta_i,\eta_j\rbrace, $$
+$$ 0\lt\varepsilon\leq\min\lbrace w_i-\eta_i,\eta_j\rbrace, $$
 
 replace $\eta_i$ by $\eta_i+\varepsilon$ and $\eta_j$ by $\eta_j-\varepsilon$. Feasibility is preserved, while the objective changes by
 
-$$ \varepsilon(c_i-c_j)<0. $$
+$$ \varepsilon(c_i-c_j)\lt0. $$
 
 Thus a minimizer can put positive allocation on a larger coefficient only after every strictly smaller coefficient is saturated. Ties may be resolved arbitrarily. This is exactly the ascending greedy allocation. Reversing the exchange proves the descending rule for the maximum. Sorting dominates the running time. $\blacksquare$
 

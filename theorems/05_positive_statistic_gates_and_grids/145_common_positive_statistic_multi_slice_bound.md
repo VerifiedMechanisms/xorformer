@@ -4,7 +4,7 @@
 
 Let $k\geq0$, let $z\in\lbrace0,1\rbrace^{k}$ be raw bits, and let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Suppose $f(z,y)$ factors through $t$ on every raw-bit slice: for each $a\in\lbrace0,1\rbrace^{k}$, there is a function $F_a$ on the image of $t$ such that
 
@@ -24,7 +24,7 @@ $$ \Lambda:=\sum_{i=1}^{m}\lambda_i, $$
 
 and choose a number
 
-$$ B>\Lambda. $$
+$$ B\gt\Lambda. $$
 
 For a raw assignment $a=(a_1,\ldots,a_k)$, define its binary code
 
@@ -38,7 +38,7 @@ All coefficients of $s$ are positive. For a fixed raw assignment $a$, the values
 
 $$ \left[B\mathrm{code}(a),  B\mathrm{code}(a)+\Lambda\right]. $$
 
-Since $B>\Lambda$, these intervals are disjoint and ordered by $\mathrm{code}(a)$. Therefore the ordered label sequence of $f$ along the statistic $s$ is obtained by concatenating the ordered label sequences of the slices $F_a(t(y))$ in increasing binary-code order.
+Since $B\gt\Lambda$, these intervals are disjoint and ordered by $\mathrm{code}(a)$. Therefore the ordered label sequence of $f$ along the statistic $s$ is obtained by concatenating the ordered label sequences of the slices $F_a(t(y))$ in increasing binary-code order.
 
 Inside the slice $a$, the number of sign changes is $C_a$. Between two consecutive nonempty slices, there is at most one additional sign change. There are $2^k-1$ such boundaries. Hence the total sign-change count along $s$ is at most
 

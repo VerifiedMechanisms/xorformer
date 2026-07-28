@@ -8,7 +8,7 @@ $$ T_1,\ldots,T_s:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace $$
 
 be Boolean features, and suppose
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 with positive margin on the Boolean cube. Then
 
@@ -44,7 +44,7 @@ $$ \deg_{\pm}(f) \leq \sum_{j:c_j\neq0}\rho(T_j). $$
 
 For conjunction, use the strict vote
 
-$$ T_1(x)\wedge T_2(x)=1 \qquad\Longleftrightarrow\qquad T_1(x)+T_2(x)-\frac{3}{2}>0. $$
+$$ T_1(x)\wedge T_2(x)=1 \qquad\Longleftrightarrow\qquad T_1(x)+T_2(x)-\frac{3}{2}\gt0. $$
 
 This vote has margin $1/2$. Applying the first part gives
 

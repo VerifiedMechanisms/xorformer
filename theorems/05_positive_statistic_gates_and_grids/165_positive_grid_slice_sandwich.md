@@ -4,19 +4,19 @@
 
 Let $z\in\lbrace0,1\rbrace^{k}$ and $y\in\lbrace0,1\rbrace^{m}$. Let
 
-$$ u(z)=\sum_{j=1}^{k}\rho_j z_j, \qquad \rho_j>0, $$
+$$ u(z)=\sum_{j=1}^{k}\rho_j z_j, \qquad \rho_j\gt0, $$
 
 and
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Write the image of $u$ as
 
-$$ \nu_0<\nu_1<\cdots<\nu_{R-1}, $$
+$$ \nu_0\lt\nu_1\lt\cdots\lt\nu_{R-1}, $$
 
 and the image of $t$ as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Suppose $f(z,y)$ factors through the positive grid:
 
@@ -32,7 +32,7 @@ $$ J_{\mathrm{grid}} := \left\lvert \left\lbrace r\in\lbrace0,\ldots,R-2\rbrace:
 
 Then
 
-$$ \max_{0\leq r<R}H^{\ast}\bigl(F(\nu_r,t(y))\bigr) \leq H^{\ast}(f) \leq \sum_{r=0}^{R-1}C_r+J_{\mathrm{grid}}. $$
+$$ \max_{0\leq r\lt R}H^{\ast}\bigl(F(\nu_r,t(y))\bigr) \leq H^{\ast}(f) \leq \sum_{r=0}^{R-1}C_r+J_{\mathrm{grid}}. $$
 
 > **Interpretation.** If the raw block itself factors through one positive statistic, the construction pays per raw level, not per raw assignment.
 
@@ -54,11 +54,11 @@ $$ \Lambda:=\sum_{i=1}^{m}\lambda_i, $$
 
 and let
 
-$$ \Delta:=\min_{0\leq r<R-1}(\nu_{r+1}-\nu_r)>0. $$
+$$ \Delta:=\min_{0\leq r\lt R-1}(\nu_{r+1}-\nu_r)\gt0. $$
 
 Choose
 
-$$ K>\frac{\Lambda}{\Delta}, $$
+$$ K\gt\frac{\Lambda}{\Delta}, $$
 
 and define one positive statistic on the combined variables:
 

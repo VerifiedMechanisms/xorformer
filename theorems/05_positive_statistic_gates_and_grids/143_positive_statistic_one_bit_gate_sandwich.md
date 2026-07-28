@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $T(y)=F(t(y))$ be nonconstant. Let $C$ be the sign-change count of $F$ along the ordered image of $t$, and set
 
@@ -54,4 +54,4 @@ Again using $\deg_{\pm}\leq H^{\ast}$ gives the displayed sandwich. $\blacksquar
 
 ## Consequence
 
-If $C=d$, the sandwich collapses to the exact table of Lemma 141. If $C>d$, improving the one-bit gate bounds for $T$ is equivalent to improving the original positive-statistic sign-change upper bound for $T$.
+If $C=d$, the sandwich collapses to the exact table of Lemma 141. If $C\gt d$, improving the one-bit gate bounds for $T$ is equivalent to improving the original positive-statistic sign-change upper bound for $T$.

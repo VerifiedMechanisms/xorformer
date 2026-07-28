@@ -26,11 +26,11 @@ $$ P(x,y) := \frac{1}{2} - \sum_{i=1}^{m}(x_i-y_i)^2. $$
 
 If $x=y$, then every squared difference is $0$, so
 
-$$ P(x,y)=\frac{1}{2}>0. $$
+$$ P(x,y)=\frac{1}{2}\gt0. $$
 
 If $x\neq y$, then at least one squared difference is $1$, so
 
-$$ P(x,y)\leq-\frac{1}{2}<0. $$
+$$ P(x,y)\leq-\frac{1}{2}\lt0. $$
 
 Thus $P$ sign-represents $\mathrm{EQ}_m$. On the Boolean cube,
 
@@ -54,7 +54,7 @@ On the remaining two variables,
 
 $$ \mathrm{EQ}_m(x,y) = \mathrm{EQ}_1(x_1,y_1). $$
 
-The function $\mathrm{EQ}&#95;1$ is the complement of $\mathrm{XOR}&#95;2$. If a polynomial sign-represents $\mathrm{EQ}&#95;1$, multiplying it by $-1$ sign-represents $\mathrm{XOR}&#95;2$. Since parity on two bits has threshold degree $2$ by [007_parity_threshold_degree.md](../01_foundations_and_normal_form/007_parity_threshold_degree.md), we get
+The function $\mathrm{EQ}_1$ is the complement of $\mathrm{XOR}_2$. If a polynomial sign-represents $\mathrm{EQ}_1$, multiplying it by $-1$ sign-represents $\mathrm{XOR}_2$. Since parity on two bits has threshold degree $2$ by [007_parity_threshold_degree.md](../01_foundations_and_normal_form/007_parity_threshold_degree.md), we get
 
 $$ \deg_{\pm}(\mathrm{EQ}_1)=2. $$
 

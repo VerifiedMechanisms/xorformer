@@ -38,7 +38,7 @@ strictly sign-represents $f$: if no term is satisfied then $Q(x)=-1/2$, while if
 
 Each term expands in the monotone monomial basis as
 
-$$ \begin{aligned} T_{P,N}(x) &= \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\right) \\ &= \sum_{U\subseteq N} (-1)^{\lvert U\rvert} \prod_{i\in P\cup U}x_i. \end{aligned} $$
+$$ \begin{aligned} T_{P,N}(x) &= \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\right) \cr &= \sum_{U\subseteq N} (-1)^{\lvert U\rvert} \prod_{i\in P\cup U}x_i. \end{aligned} $$
 
 Thus the number of nonconstant monomials contributed before cancellations is at most $2^{\lvert N\rvert}$. Therefore
 

@@ -40,7 +40,7 @@ Since every Walsh character has absolute value one,
 
 $$ \lvert Vq(x)-R(x)\rvert\leq\sum_{S\notin\mathcal A}\lvert c_S\rvert. $$
 
-If the omitted mass is below $V$, then $\lvert q(x)-R(x)/V\rvert<1$ at every vertex. Hence $q(x)R(x)>0$ everywhere. The Fourier support-cost compiler in Theorem 45 proves the displayed head bound. $\blacksquare$
+If the omitted mass is below $V$, then $\lvert q(x)-R(x)/V\rvert\lt1$ at every vertex. Hence $q(x)R(x)\gt0$ everywhere. The Fourier support-cost compiler in Theorem 45 proves the displayed head bound. $\blacksquare$
 
 ### Lemma 2. Singleton coefficients form one indivisible cost class
 

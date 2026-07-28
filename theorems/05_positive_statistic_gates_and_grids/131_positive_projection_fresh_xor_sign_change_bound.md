@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $G:\mathrm{Im}(t)\to\lbrace0,1\rbrace$. Define
 
@@ -12,7 +12,7 @@ $$ T(y):=G(t(y)). $$
 
 Write the image of $t$ as
 
-$$ 0=\tau_0<\tau_1<\cdots<\tau_{M-1}, $$
+$$ 0=\tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}, $$
 
 and let $C$ be the number of sign changes in
 
@@ -20,7 +20,7 @@ $$ G(\tau_0),G(\tau_1),\ldots,G(\tau_{M-1}). $$
 
 Set
 
-$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\\ 2C & \text{if } C \text{ is odd}. \end{cases} $$
+$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\cr 2C & \text{if } C \text{ is odd}. \end{cases} $$
 
 Then:
 
@@ -48,15 +48,15 @@ then fresh XOR and XNOR over $T$ have exact head complexity $D_{\oplus}(C)$.
 
 Choose
 
-$$ B>\tau_{M-1}. $$
+$$ B\gt\tau_{M-1}. $$
 
 Define a positive weighted sum on the variables $(z,y)$ by
 
 $$ s(z,y):=Bz+t(y). $$
 
-Since $B>\tau_{M-1}$, the image of $s$ is ordered in two separated blocks:
+Since $B\gt\tau_{M-1}$, the image of $s$ is ordered in two separated blocks:
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}<B+\tau_0<B+\tau_1<\cdots<B+\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}\lt B+\tau_0\lt B+\tau_1\lt\cdots\lt B+\tau_{M-1}. $$
 
 Define $H:\mathrm{Im}(s)\to\lbrace0,1\rbrace$ by
 
@@ -94,7 +94,7 @@ For the exactness clause, the fresh-bit XOR threshold-degree theorem [081_fresh_
 
 $$ H^{\ast}(z\oplus T)\geq\deg_{\pm}(T)+1. $$
 
-If $\deg&#95;{\pm}(T)+1=D&#95;{\oplus}(C)$, this lower bound matches the positive-projection upper bound. The same complement argument handles XNOR. $\blacksquare$
+If $\deg_{\pm}(T)+1=D_{\oplus}(C)$, this lower bound matches the positive-projection upper bound. The same complement argument handles XNOR. $\blacksquare$
 
 ## Consequences
 

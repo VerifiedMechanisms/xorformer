@@ -40,11 +40,11 @@ $$ \eta_G(A) := \mathbf{1} \left[ \delta_1+\mu_1 a\neq \delta_0+\mu_0 a \text{ o
 
 Then
 
-$$ \begin{aligned} H^{\ast}(F) &\leq \mathrm{actc}(F) \leq \mathrm{sactc}(F) \\ &\leq \eta_G(A) + \mathbf{1}[\mu_0\neq0]K(\Gamma) + \mathbf{1}[\mu_1\neq\mu_0] \bigl(\lvert L(A)\rvert+K_z(\Gamma)\bigr). \end{aligned} $$
+$$ \begin{aligned} H^{\ast}(F) &\leq \mathrm{actc}(F) \leq \mathrm{sactc}(F) \cr &\leq \eta_G(A) + \mathbf{1}[\mu_0\neq0]K(\Gamma) + \mathbf{1}[\mu_1\neq\mu_0] \bigl(\lvert L(A)\rvert+K_z(\Gamma)\bigr). \end{aligned} $$
 
 If the right-hand side is at most $2$, then
 
-$$ H^{\ast}(F) = \begin{cases} 0, & \text{if } F \text{ is constant},\\ 1, & \text{if } F \text{ is a nonconstant LTF},\\ 2, & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F) = \begin{cases} 0, & \text{if } F \text{ is constant},\cr 1, & \text{if } F \text{ is a nonconstant LTF},\cr 2, & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** One-bit branching over an affine-cylinder feature pays for the base cylinder correction only if the $z=0$ slice uses the feature, and pays changed affine slopes and changed cylinder coefficients only if the two slices use different signed copies of the feature.
 
@@ -66,7 +66,7 @@ $$ A_b(y)=\delta_b+\mu_b A(y), $$
 
 and
 
-$$ \Gamma_b= \begin{cases} \Gamma, & \text{if } \mu_b\neq0,\\ \varnothing, & \text{if } \mu_b=0. \end{cases} $$
+$$ \Gamma_b= \begin{cases} \Gamma, & \text{if } \mu_b\neq0,\cr \varnothing, & \text{if } \mu_b=0. \end{cases} $$
 
 For $\gamma\in\Gamma$, the coefficient in the $b$-th cofactor is
 

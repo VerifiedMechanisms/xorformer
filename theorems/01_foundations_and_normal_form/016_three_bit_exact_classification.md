@@ -26,7 +26,7 @@ by Lemma 6 of [../theorems.md](../../theorems.md). It remains to match this lowe
 
 Let $f : \lbrace0,1\rbrace^3 \to \lbrace0,1\rbrace$. Suppose there is a multilinear polynomial $P$ of degree at most $3$ such that
 
-$$ f(x)=1 \qquad \Longleftrightarrow \qquad P(x)>0 $$
+$$ f(x)=1 \qquad \Longleftrightarrow \qquad P(x)\gt0 $$
 
 for every $x\in\lbrace0,1\rbrace^3$. Then
 
@@ -38,7 +38,7 @@ $$ 1,\quad x_1,\quad x_2,\quad x_3,\quad x_1x_2,\quad x_1x_3,\quad x_2x_3,\quad 
 
 Define three positive affine denominators
 
-$$ \begin{aligned} B_1(x) &:= 1+x_1+x_2+x_3, \\ B_2(x) &:= 1+x_1+2x_2+4x_3, \\ B_3(x) &:= 1+2x_1+3x_2+5x_3. \end{aligned} $$
+$$ \begin{aligned} B_1(x) &:= 1+x_1+x_2+x_3, \cr B_2(x) &:= 1+x_1+2x_2+4x_3, \cr B_3(x) &:= 1+2x_1+3x_2+5x_3. \end{aligned} $$
 
 The following coefficient table records products of two denominators with affine monomials, reduced using $x_i^2=x_i$ on the Boolean cube:
 
@@ -63,7 +63,7 @@ Therefore, for every degree-at-most $3$ polynomial $P$, there are affine functio
 
 $$ P(x) = A_1(x)B_2(x)B_3(x) +A_2(x)B_1(x)B_3(x) +A_3(x)B_1(x)B_2(x) $$
 
-on the Boolean cube. Since $B_1(x),B_2(x),B_3(x)>0$, the rational score
+on the Boolean cube. Since $B_1(x),B_2(x),B_3(x)\gt0$, the rational score
 
 $$ S(x) := \frac{A_1(x)}{B_1(x)} + \frac{A_2(x)}{B_2(x)} + \frac{A_3(x)}{B_3(x)} $$
 
@@ -81,7 +81,7 @@ $\blacksquare$
 
 Every real-valued function on $\lbrace0,1\rbrace^3$ has a unique multilinear interpolation polynomial of degree at most $3$. In particular, for a Boolean function $f$, interpolate the values
 
-$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \\ -1 & \text{if } f(x)=0. \end{cases} $$
+$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \cr -1 & \text{if } f(x)=0. \end{cases} $$
 
 Then $Q_f$ sign-represents $f$, so
 

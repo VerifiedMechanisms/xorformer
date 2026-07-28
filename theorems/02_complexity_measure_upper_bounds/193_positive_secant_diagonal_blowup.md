@@ -28,9 +28,9 @@ $$ G_{p,q}\left(\theta,\theta+tv\right)=t\widetilde G_{p,q}(\theta,v,t). $$
 
 Then the following are equivalent:
 
-1. There exist $\theta^{(0)},\theta^{(1)}\in\Theta$ such that $G_{p,q}(\theta^{(0)},\theta^{(1)})>0$ for every $p\in P$ and $q\in N$.
+1. There exist $\theta^{(0)},\theta^{(1)}\in\Theta$ such that $G_{p,q}(\theta^{(0)},\theta^{(1)})\gt0$ for every $p\in P$ and $q\in N$.
 
-2. There exist $\theta\in\Theta$, a normalized feasible direction $v$, and $t\geq0$ such that $\theta+tv\in\Theta$ and $\widetilde G_{p,q}(\theta,v,t)>0$ for every $p\in P$ and $q\in N$.
+2. There exist $\theta\in\Theta$, a normalized feasible direction $v$, and $t\geq0$ such that $\theta+tv\in\Theta$ and $\widetilde G_{p,q}(\theta,v,t)\gt0$ for every $p\in P$ and $q\in N$.
 
 The same equivalence holds with all denominator parameters in the interiors of their simplices. The normalization $\lVert v\rVert_{\infty}=1$ is the finite union of the $2H(n+1)$ charts
 
@@ -50,11 +50,11 @@ $$ sQ_{\theta^{(1)}}(x)-(1-s)Q_{\theta^{(0)}}(x) $$
 
 if and only if
 
-$$ \max_{p\in P}\frac{Q_{\theta^{(0)}}(p)}{Q_{\theta^{(1)}}(p)}<\min_{q\in N}\frac{Q_{\theta^{(0)}}(q)}{Q_{\theta^{(1)}}(q)}. $$
+$$ \max_{p\in P}\frac{Q_{\theta^{(0)}}(p)}{Q_{\theta^{(1)}}(p)}\lt\min_{q\in N}\frac{Q_{\theta^{(0)}}(q)}{Q_{\theta^{(1)}}(q)}. $$
 
 Cross multiplication by positive products gives exactly
 
-$$ G_{p,q}\left(\theta^{(0)},\theta^{(1)}\right)>0\qquad\text{for every }p\in P,\quad q\in N. $$
+$$ G_{p,q}\left(\theta^{(0)},\theta^{(1)}\right)\gt0\qquad\text{for every }p\in P,\quad q\in N. $$
 
 $\blacksquare$
 
@@ -74,31 +74,31 @@ Therefore the pair gap is divisible by $t$, and its quotient has degree at most 
 
 Suppose the first condition holds. Strict pair gaps force $\theta^{(0)}\neq\theta^{(1)}$. Put
 
-$$ t=\left\lVert\theta^{(1)}-\theta^{(0)}\right\rVert_{\infty}>0,\qquad \theta=\theta^{(0)},\qquad v=\frac{\theta^{(1)}-\theta^{(0)}}{t}. $$
+$$ t=\left\lVert\theta^{(1)}-\theta^{(0)}\right\rVert_{\infty}\gt0,\qquad \theta=\theta^{(0)},\qquad v=\frac{\theta^{(1)}-\theta^{(0)}}{t}. $$
 
 The simplex equalities give $\sum_i v_{hi}=0$. If $\theta_{hi}=0$, then $\theta^{(1)}_{hi}\geq0$ gives $v _{hi}\geq0$. Also $\lVert v\rVert _{\infty}=1$, so some coordinate lies in one of the stated charts. Finally,
 
-$$ \widetilde G_{p,q}(\theta,v,t)=\frac{G_{p,q}\left(\theta^{(0)},\theta^{(1)}\right)}{t}>0. $$
+$$ \widetilde G_{p,q}(\theta,v,t)=\frac{G_{p,q}\left(\theta^{(0)},\theta^{(1)}\right)}{t}\gt0. $$
 
 This proves the forward implication. $\blacksquare$
 
 ### Lemma 4. The tangent boundary opens into a secant
 
-Suppose the second condition holds. If $t>0$, then
+Suppose the second condition holds. If $t\gt0$, then
 
-$$ G_{p,q}\left(\theta,\theta+tv\right)=t\widetilde G_{p,q}(\theta,v,t)>0, $$
+$$ G_{p,q}\left(\theta,\theta+tv\right)=t\widetilde G_{p,q}(\theta,v,t)\gt0, $$
 
 which proves the first condition.
 
-It remains to consider $t=0$. Because $\sum_i v_{hi}=0$ and $v_{hi}\geq0$ whenever $\theta_{hi}=0$, there is an $\varepsilon_0>0$ such that
+It remains to consider $t=0$. Because $\sum_i v_{hi}=0$ and $v_{hi}\geq0$ whenever $\theta_{hi}=0$, there is an $\varepsilon_0\gt0$ such that
 
 $$ \theta+\varepsilon v\in\Theta\qquad\text{for every }0\leq\varepsilon\leq\varepsilon_0. $$
 
 There are finitely many pairs $(p,q)$. Continuity and strict positivity at zero give an $\varepsilon\in(0,\varepsilon_0]$ such that
 
-$$ \widetilde G_{p,q}(\theta,v,\varepsilon)>0\qquad\text{for every }p\in P,\quad q\in N. $$
+$$ \widetilde G_{p,q}(\theta,v,\varepsilon)\gt0\qquad\text{for every }p\in P,\quad q\in N. $$
 
-Multiplying by $\varepsilon>0$ gives strict pair gaps for $\theta$ and $\theta+\varepsilon v$. Thus the first condition also follows from a strict point on the blown-up boundary. $\blacksquare$
+Multiplying by $\varepsilon\gt0$ gives strict pair gaps for $\theta$ and $\theta+\varepsilon v$. Thus the first condition also follows from a strict point on the blown-up boundary. $\blacksquare$
 
 ### Lemma 5. Strictification
 
@@ -106,7 +106,7 @@ Let $\bar\theta$ be the product of simplex barycenters. If two closed-simplex en
 
 $$ (1-\delta)\theta^{(a)}+\delta\bar\theta,\qquad a\in\lbrace0,1\rbrace. $$
 
-For every $\delta>0$, all barycentric coefficients are positive. Since there are finitely many strict pair inequalities, continuity preserves them for all sufficiently small $\delta>0$. Hence closed-simplex and interior positive-secant feasibility are equivalent.
+For every $\delta\gt0$, all barycentric coefficients are positive. Since there are finitely many strict pair inequalities, continuity preserves them for all sufficiently small $\delta\gt0$. Hence closed-simplex and interior positive-secant feasibility are equivalent.
 
 Combining Lemmas 3, 4, and 5 proves the theorem. $\blacksquare$
 
@@ -116,6 +116,6 @@ Every strict $H$-head tangent sign pattern has a positive secant with paired ori
 
 Therefore, if the blown-up pair-gap system is infeasible in every one of the $H+1$ orientation-count branches, then
 
-$$ H^{\ast}(f)>H. $$
+$$ H^{\ast}(f)\gt H. $$
 
 The blow-up does not make this global infeasibility easy. It removes the universal zero diagonal and replaces it with finitely charted tangent directions, which is the correct starting point for rational McCormick subdivision, pair generation, and exact residual certificates.

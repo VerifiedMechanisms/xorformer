@@ -6,7 +6,7 @@ This note gives a two-head upper bound for every three-bit Boolean function with
 
 Let $f : \lbrace0,1\rbrace^3 \to \lbrace0,1\rbrace$. Suppose there is a multilinear polynomial $P$ of degree at most $2$ such that
 
-$$ f(x)=1 \qquad \Longleftrightarrow \qquad P(x)>0 $$
+$$ f(x)=1 \qquad \Longleftrightarrow \qquad P(x)\gt0 $$
 
 for every $x \in \lbrace0,1\rbrace^3$. Then
 
@@ -34,21 +34,21 @@ $$ B(x) = b_0 + \sum_{i=1}^{n} b_i x_i $$
 
 where
 
-$$ b_0>0, \qquad b_i>0 \quad \text{for all } i. $$
+$$ b_0\gt0, \qquad b_i\gt0 \quad \text{for all } i. $$
 
 Then $A(x)/B(x)$ is a one-head atom in the sense of [010_linear_fractional_normal_form.md](010_linear_fractional_normal_form.md).
 
 **Proof.** Choose
 
-$$ \alpha > 1 + \frac{\sum_i b_i}{b_0}. $$
+$$ \alpha \gt 1 + \frac{\sum_i b_i}{b_0}. $$
 
 Set
 
 $$ \rho_i := \frac{b_i}{\alpha-1}, \qquad \gamma := b_0 - \sum_i \rho_i. $$
 
-Then $\rho_i>0$ and $\gamma>0$. Also,
+Then $\rho_i\gt0$ and $\gamma\gt0$. Also,
 
-$$ \begin{aligned} \gamma+\sum_i \rho_i\alpha^{x_i} &= \gamma+\sum_i \rho_i\bigl(1+(\alpha-1)x_i\bigr) \\ &= b_0+\sum_i b_i x_i \\ &= B(x). \end{aligned} $$
+$$ \begin{aligned} \gamma+\sum_i \rho_i\alpha^{x_i} &= \gamma+\sum_i \rho_i\bigl(1+(\alpha-1)x_i\bigr) \cr &= b_0+\sum_i b_i x_i \cr &= B(x). \end{aligned} $$
 
 Set $\delta := 0$ and
 
@@ -56,7 +56,7 @@ $$ m_i := \frac{a_i}{b_i}, \qquad \eta := a_0-\sum_i \rho_i m_i. $$
 
 Then
 
-$$ \begin{aligned} \eta+\sum_i \rho_i\alpha^{x_i}m_i &= \eta+\sum_i \rho_i m_i+\sum_i b_i m_i x_i \\ &= a_0+\sum_i a_i x_i \\ &= A(x). \end{aligned} $$
+$$ \begin{aligned} \eta+\sum_i \rho_i\alpha^{x_i}m_i &= \eta+\sum_i \rho_i m_i+\sum_i b_i m_i x_i \cr &= a_0+\sum_i a_i x_i \cr &= A(x). \end{aligned} $$
 
 Thus $A(x)/B(x)$ has exactly the atom form from Lemma 10. $\blacksquare$
 
@@ -88,7 +88,7 @@ Therefore, for every such polynomial $P$, there are affine functions $A_1,A_2$ w
 
 $$ P(x) = A_1(x)B_2(x)+A_2(x)B_1(x) $$
 
-on the Boolean cube. Since $B_1(x)>0$ and $B_2(x)>0$, the rational score
+on the Boolean cube. Since $B_1(x)\gt0$ and $B_2(x)\gt0$, the rational score
 
 $$ S(x) := \frac{A_1(x)}{B_1(x)} + \frac{A_2(x)}{B_2(x)} $$
 

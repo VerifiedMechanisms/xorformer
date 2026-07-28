@@ -4,11 +4,11 @@
 
 Let $A\subseteq\lbrace0,1\rbrace^{k}$ be a set of raw addresses. Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 with ordered image
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 For each $a\in A$, let
 
@@ -26,7 +26,7 @@ Then
 
 $$ \max_{a\in A}H^{\ast}(T_a) \leq H^{\ast}(f_A) \leq \sum_{a\in A}C_a. $$
 
-Consequently, if $A=\lbrace a_0\rbrace$ and $H^{\ast}(T&#95;{a_0})=C&#95;{a_0}$, then
+Consequently, if $A=\lbrace a_0\rbrace$ and $H^{\ast}(T_{a_0})=C_{a_0}$, then
 
 $$ H^{\ast}(f_A)=C_{a_0}. $$
 
@@ -52,7 +52,7 @@ The maximum and sum ignore the constant background slices, so this is exactly
 
 $$ \max_{a\in A}H^{\ast}(T_a) \leq H^{\ast}(f_A) \leq \sum_{a\in A}C_a. $$
 
-If $A=\lbrace a_0\rbrace$ and $H^{\ast}(T&#95;{a_0})=C&#95;{a_0}$, the two sides match.
+If $A=\lbrace a_0\rbrace$ and $H^{\ast}(T_{a_0})=C_{a_0}$, the two sides match.
 
 For the degree version, apply the shared-statistic degree sandwich [159_shared_statistic_degree_sandwich.md](159_shared_statistic_degree_sandwich.md). The constant background slices have degree $0$, so only the addresses in $A$ contribute to the upper bound, and the lower bound is the maximum threshold degree among the addressed slices. $\blacksquare$
 

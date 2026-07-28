@@ -8,7 +8,7 @@ $$ T_1,\ldots,T_s:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace $$
 
 and real coefficients $c_0,c_1,\ldots,c_s$ with
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 for every $x\in\lbrace0,1\rbrace^n$. For $s=0$, this means that $f$ is constant.
 
@@ -22,7 +22,7 @@ $$ s_{\mathrm{LTF}}(f)=H^{\ast}(f)=\deg_{\pm}(f). $$
 
 More explicitly:
 
-$$ s_{\mathrm{LTF}}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 3 & \text{if } f \text{ is parity or anti-parity},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ s_{\mathrm{LTF}}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 3 & \text{if } f \text{ is parity or anti-parity},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Threshold-vote size agrees exactly with $H^{\ast}$ throughout the first nontrivial classified cube. This is a finite match, not a global characterization.
 
@@ -83,7 +83,7 @@ takes the values
 
 $$ -\frac{1}{2},\quad \frac{1}{2},\quad -\frac{3}{2},\quad \frac{1}{2}. $$
 
-Therefore $S(x)>0$ exactly on odd Hamming weight inputs, so
+Therefore $S(x)\gt0$ exactly on odd Hamming weight inputs, so
 
 $$ s_{\mathrm{LTF}}(\mathrm{XOR}_3)\leq3. $$
 
@@ -95,7 +95,7 @@ $$ s_{\mathrm{LTF}}(\mathrm{XOR}_3) = s_{\mathrm{LTF}}(1-\mathrm{XOR}_3) =3. $$
 
 ### Conclusion
 
-Constants have $s&#95;{\mathrm{LTF}}=0$. Nonconstant linear threshold functions have $s&#95;{\mathrm{LTF}}=1$, and no non-LTF can have threshold-vote size $1$.
+Constants have $s_{\mathrm{LTF}}=0$. Nonconstant linear threshold functions have $s_{\mathrm{LTF}}=1$, and no non-LTF can have threshold-vote size $1$.
 
 By Lemma 1 and Lemma 2, every remaining non-parity three-bit function has threshold-vote size exactly $2$, while parity and anti-parity have threshold-vote size exactly $3$.
 

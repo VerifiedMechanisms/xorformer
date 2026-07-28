@@ -32,13 +32,13 @@ Let
 
 $$ L(x)=a_0+\sum_{i=1}^{n}a_i x_i $$
 
-be affine, and let $\varepsilon>0$. There is a one-head atom $\psi$ such that
+be affine, and let $\varepsilon\gt0$. There is a one-head atom $\psi$ such that
 
-$$ \lvert\psi(x)-L(x)\rvert<\varepsilon $$
+$$ \lvert\psi(x)-L(x)\rvert\lt\varepsilon $$
 
 for every $x\in\lbrace0,1\rbrace^n$.
 
-**Proof.** Choose $\delta>0$ and define the positive affine denominator
+**Proof.** Choose $\delta\gt0$ and define the positive affine denominator
 
 $$ B_{\delta}(x):=1+\delta\sum_{i=1}^{n}x_i. $$
 
@@ -48,7 +48,7 @@ $$ \psi_{\delta}(x):=\frac{L(x)}{B_{\delta}(x)} $$
 
 is a one-head atom, because $B_{\delta}$ has positive constant term and positive variable coefficients.
 
-As $\delta\to0$, $B&#95;{\delta}(x)\to1$ uniformly on the finite cube. Hence $\psi&#95;{\delta}(x)\to L(x)$ uniformly on the cube. Taking $\delta$ sufficiently small proves the claim. $\blacksquare$
+As $\delta\to0$, $B_{\delta}(x)\to1$ uniformly on the finite cube. Hence $\psi_{\delta}(x)\to L(x)$ uniformly on the cube. Taking $\delta$ sufficiently small proves the claim. $\blacksquare$
 
 ### Lemma 2. Approximate an affine-free sparse sign polynomial
 
@@ -66,7 +66,7 @@ $$ \mathcal{M} := \lbrace S:\lvert S\rvert\geq2,\ a_S\neq0\rbrace. $$
 
 Since $P$ has strict sign on the finite cube, define the margin
 
-$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^n}\lvert P(x)\rvert>0. $$
+$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^n}\lvert P(x)\rvert\gt0. $$
 
 Let
 
@@ -78,7 +78,7 @@ $$ \frac{\Delta}{4} $$
 
 to choose a one-head atom $\psi$ satisfying
 
-$$ \lvert\psi(x)-L(x)\rvert<\frac{\Delta}{4} $$
+$$ \lvert\psi(x)-L(x)\rvert\lt\frac{\Delta}{4} $$
 
 for every $x$. If $\ell=0$, set $\psi:=0$ and use no affine head.
 
@@ -94,7 +94,7 @@ $$ \widetilde{P}(x) := a_{\varnothing} + \psi(x) + \sum_{S\in\mathcal{M}}\phi_S(
 
 where the term $\psi$ is omitted when $\ell=0$. For every cube point,
 
-$$ \lvert\widetilde{P}(x)-P(x)\rvert < \frac{\Delta}{2}. $$
+$$ \lvert\widetilde{P}(x)-P(x)\rvert \lt \frac{\Delta}{2}. $$
 
 Indeed, the affine approximation contributes less than $\Delta/4$ when present and nothing when absent, while the total nonlinear error is less than $\Delta/4$ when $\mathcal{M}$ is nonempty and nothing otherwise.
 

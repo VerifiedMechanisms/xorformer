@@ -16,13 +16,13 @@ $$ S_b(y) = A_b(y) + \sum_{\gamma\in\Gamma_b}c_{b,\gamma}C_{\gamma}(y), $$
 
 meaning
 
-$$ f_b(y)=1 \qquad\Longleftrightarrow\qquad S_b(y)>0, $$
+$$ f_b(y)=1 \qquad\Longleftrightarrow\qquad S_b(y)\gt0, $$
 
 where
 
 $$ A_b(y)=a_b+\sum_{i=1}^{m}\alpha_{b,i}y_i, $$
 
-each $\gamma=(P,N)$ is a nonvacuous cylinder support on the $y$ variables, the supports in $\Gamma_b$ are distinct, and all coefficients $c&#95;{b,\gamma}$ are nonzero. For $\gamma\notin\Gamma_b$, set $c&#95;{b,\gamma}:=0$.
+each $\gamma=(P,N)$ is a nonvacuous cylinder support on the $y$ variables, the supports in $\Gamma_b$ are distinct, and all coefficients $c_{b,\gamma}$ are nonzero. For $\gamma\notin\Gamma_b$, set $c_{b,\gamma}:=0$.
 
 Let
 
@@ -52,7 +52,7 @@ $$ S(z,y):=(1-z)S_0(y)+zS_1(y) = S_0(y)+z(S_1(y)-S_0(y)). $$
 
 If $z=0$, then $S(z,y)=S_0(y)$, and if $z=1$, then $S(z,y)=S_1(y)$. Since both cofactor scores are strict on the cube,
 
-$$ f(z,y)=1 \qquad\Longleftrightarrow\qquad S(z,y)>0. $$
+$$ f(z,y)=1 \qquad\Longleftrightarrow\qquad S(z,y)\gt0. $$
 
 We now rewrite $S$ as an affine-cylinder score. The affine part contributes
 

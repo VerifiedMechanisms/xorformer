@@ -16,7 +16,7 @@ $$ H^{\ast}(f_{a,b,c,\alpha,\beta})\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f_{a,b,c,\alpha,\beta}) = \begin{cases} 0 & \text{if } f_{a,b,c,\alpha,\beta} \text{ is constant},\\ 1 & \text{if } f_{a,b,c,\alpha,\beta} \text{ is a nonconstant LTF},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f_{a,b,c,\alpha,\beta}) = \begin{cases} 0 & \text{if } f_{a,b,c,\alpha,\beta} \text{ is constant},\cr 1 & \text{if } f_{a,b,c,\alpha,\beta} \text{ is a nonconstant LTF},\cr 2 & \text{otherwise}. \end{cases} $$
 
 Let $G_{a,b,c,\alpha,\beta}$ be the associated grid function
 
@@ -64,11 +64,11 @@ $$ r_{\mathrm{out}}:=\min\lbrace\lvert W(u,v)\rvert:G_{a,b,c,\alpha,\beta}(u,v)=
 
 Then
 
-$$ r_{\mathrm{in}}\leq r_0<r_{\mathrm{out}}. $$
+$$ r_{\mathrm{in}}\leq r_0\lt r_{\mathrm{out}}. $$
 
 Choose $r$ with
 
-$$ r_{\mathrm{in}}<r<r_{\mathrm{out}}. $$
+$$ r_{\mathrm{in}}\lt r\lt r_{\mathrm{out}}. $$
 
 The polynomial
 

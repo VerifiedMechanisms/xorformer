@@ -28,7 +28,7 @@ Consider the rational score
 
 $$ S:=\frac{A_1}{B_1}+\frac{A_2}{B_2}. $$
 
-Since $B_1,B_2>0$ on the Boolean cube, the sign of $S$ is the sign of
+Since $B_1,B_2\gt0$ on the Boolean cube, the sign of $S$ is the sign of
 
 $$ P:=A_1B_2+A_2B_1. $$
 
@@ -42,7 +42,7 @@ $$ -20,\ -2,\ -42,\ -16,\ -2,\ -2,\ -2,\ -11,\ -25,\ -33,\ -2,\ -11. $$
 
 Thus
 
-$$ S>0 \qquad\Longleftrightarrow\qquad (x_1,x_2)=(y_1,y_2). $$
+$$ S\gt0 \qquad\Longleftrightarrow\qquad (x_1,x_2)=(y_1,y_2). $$
 
 Both denominators have positive constant term and positive variable coefficients. Therefore each ratio $A_i/B_i$ is a single one-head atom by the affine-over-positive-affine atom lemma [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md). Hence
 

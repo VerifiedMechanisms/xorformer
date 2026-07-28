@@ -8,7 +8,7 @@ $$ f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace. $$
 
 Let
 
-$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i>0, $$
+$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i\gt0, $$
 
 be injective on the Boolean cube. List the cube points in increasing order of $t$:
 

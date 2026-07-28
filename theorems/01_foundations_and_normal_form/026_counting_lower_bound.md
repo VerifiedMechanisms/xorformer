@@ -36,7 +36,7 @@ where
 
 $$ A_h(x)=a_{h,0}+\sum_{i=1}^{n}a_{h,i}x_i, \qquad B_h(x)=b_{h,0}+\sum_{i=1}^{n}b_{h,i}x_i, $$
 
-and $B_h(x)>0$ on the cube. This is a slight relaxation of the exact atom form from [010_linear_fractional_normal_form.md](010_linear_fractional_normal_form.md), so counting this larger family can only increase the number of possible Boolean functions.
+and $B_h(x)\gt0$ on the cube. This is a slight relaxation of the exact atom form from [010_linear_fractional_normal_form.md](010_linear_fractional_normal_form.md), so counting this larger family can only increase the number of possible Boolean functions.
 
 The relaxed family has
 
@@ -72,9 +72,9 @@ When $N\geq p$, Lemma 1 gives
 
 $$ \lvert\lbrace f : H^{\ast}(f)\leq H\rbrace\rvert \leq \left( \frac{4e(H+1)2^n}{1+2H(n+1)} \right)^{1+2H(n+1)}. $$
 
-When $N<p$, the trivial bound $2^N$ is enough for the asymptotic conclusion below, because $p>N$ already implies
+When $N\lt p$, the trivial bound $2^N$ is enough for the asymptotic conclusion below, because $p\gt N$ already implies
 
-$$ H > \frac{2^n-1}{2(n+1)}. $$
+$$ H \gt \frac{2^n-1}{2(n+1)}. $$
 
 ### Lemma 3. The number of H-head functions is small for small H
 
@@ -86,7 +86,7 @@ Equivalently,
 
 $$ \lvert\lbrace f : H^{\ast}(f)\leq H\rbrace\rvert \leq 2^{O(n^2H)}. $$
 
-If $N<p$, then $H=\Omega(2^n/n)$, so the trivial bound $2^{2^n}$ is also at most $2^{O(n^2H)}$. Hence the same estimate holds for every $1\leq H\leq 2^n$.
+If $N\lt p$, then $H=\Omega(2^n/n)$, so the trivial bound $2^{2^n}$ is also at most $2^{O(n^2H)}$. Hence the same estimate holds for every $1\leq H\leq 2^n$.
 
 There are
 
@@ -100,7 +100,7 @@ then
 
 $$ 2^{O(n^2H)} = 2^{o(2^n)} $$
 
-is a vanishing fraction of all Boolean functions. More explicitly, for some absolute constant $c>0$, the fraction of $n$-bit Boolean functions with
+is a vanishing fraction of all Boolean functions. More explicitly, for some absolute constant $c\gt0$, the fraction of $n$-bit Boolean functions with
 
 $$ H^{\ast}(f) \leq c\frac{2^n}{n^2} $$
 

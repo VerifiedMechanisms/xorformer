@@ -10,7 +10,7 @@ with block sizes $n_1,\ldots,n_b$. Suppose
 
 $$ f(x)=F(\lvert x_{B_1}\rvert,\ldots,\lvert x_{B_b}\rvert). $$
 
-Let $a_1,\ldots,a_b>0$. Assume there is a Boolean function $G$ on the image of
+Let $a_1,\ldots,a_b\gt0$. Assume there is a Boolean function $G$ on the image of
 
 $$ s(r_1,\ldots,r_b):=\sum_{j=1}^{b}a_jr_j $$
 
@@ -20,7 +20,7 @@ $$ F(r_1,\ldots,r_b)=G(s(r_1,\ldots,r_b)). $$
 
 List the image of $s$ on the grid in increasing order:
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Define
 

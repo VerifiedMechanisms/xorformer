@@ -8,9 +8,9 @@ $$ b_1,\ldots,b_L\in\lbrace0,1\rbrace, $$
 
 and default label $b_{L+1}\in\lbrace0,1\rbrace$.
 
-There are coefficients $c_0,c_1,\ldots,c_L$ and a margin $\mu>0$ such that
+There are coefficients $c_0,c_1,\ldots,c_L$ and a margin $\mu\gt0$ such that
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{L}c_jT_j(x)>0, $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{L}c_jT_j(x)\gt0, $$
 
 and
 
@@ -22,7 +22,7 @@ $$ \lvert\phi_j(x)-T_j(x)\rvert\leq\epsilon_j \qquad \text{for every }x, $$
 
 and
 
-$$ \sum_{j=1}^{L}\lvert c_j\rvert\epsilon_j<\mu, $$
+$$ \sum_{j=1}^{L}\lvert c_j\rvert\epsilon_j\lt\mu, $$
 
 then
 
@@ -36,15 +36,15 @@ $$ H^{\ast}(f)\leq L. $$
 
 ## Proof
 
-For $j\in\lbrace1,\ldots,L+1\rbrace$, let $F_j$ be the suffix decision-list function beginning at test $j$, with $F&#95;{L+1}\equiv b&#95;{L+1}$.
+For $j\in\lbrace1,\ldots,L+1\rbrace$, let $F_j$ be the suffix decision-list function beginning at test $j$, with $F_{L+1}\equiv b_{L+1}$.
 
 We first build a strict weighted vote for each suffix. Start with
 
-$$ V_{L+1} := \begin{cases} 1 & \text{if } b_{L+1}=1,\\ -1 & \text{if } b_{L+1}=0. \end{cases} $$
+$$ V_{L+1} := \begin{cases} 1 & \text{if } b_{L+1}=1,\cr -1 & \text{if } b_{L+1}=0. \end{cases} $$
 
-Thus $V&#95;{L+1}$ sign-represents $F&#95;{L+1}$ with margin $1$.
+Thus $V_{L+1}$ sign-represents $F_{L+1}$ with margin $1$.
 
-Suppose $V&#95;{j+1}$ sign-represents $F&#95;{j+1}$ with positive margin and has the form
+Suppose $V_{j+1}$ sign-represents $F_{j+1}$ with positive margin and has the form
 
 $$ V_{j+1} = c_{j+1,0} +\sum_{k=j+1}^{L}c_{j+1,k}T_k. $$
 
@@ -52,13 +52,13 @@ Let
 
 $$ M_j:=\max_x\lvert V_{j+1}(x)\rvert, $$
 
-and choose $A_j>M_j$. If $b_j=1$, set
+and choose $A_j\gt M_j$. If $b_j=1$, set
 
 $$ V_j:=A_jT_j+V_{j+1}. $$
 
 When $T_j(x)=1$, we have
 
-$$ V_j(x)\geq A_j-M_j>0, $$
+$$ V_j(x)\geq A_j-M_j\gt0, $$
 
 so the decision list returns $1$. When $T_j(x)=0$, the sign of $V_j(x)$ is the sign of $V_{j+1}(x)$, matching the suffix.
 
@@ -68,7 +68,7 @@ $$ V_j:=-A_jT_j+V_{j+1}. $$
 
 When $T_j(x)=1$, we have
 
-$$ V_j(x)\leq -A_j+M_j<0, $$
+$$ V_j(x)\leq -A_j+M_j\lt0, $$
 
 so the decision list returns $0$. When $T_j(x)=0$, the sign again matches the suffix.
 
@@ -84,7 +84,7 @@ is positive.
 
 Now assume test approximations $\phi_j$ with errors $\epsilon_j$ satisfy
 
-$$ \sum_{j=1}^{L}\lvert c_j\rvert\epsilon_j<\mu. $$
+$$ \sum_{j=1}^{L}\lvert c_j\rvert\epsilon_j\lt\mu. $$
 
 The calibrated threshold-vote theorem [085_calibrated_threshold_vote_upper_bound.md](085_calibrated_threshold_vote_upper_bound.md) applies to the strict vote $V_1$, and yields
 

@@ -4,7 +4,7 @@
 
 Let $k\geq0$, let $z\in\lbrace0,1\rbrace^{k}$ be raw bits, and let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Suppose $P(z,y)$ is a strict sign polynomial for a Boolean function $f(z,y)$, and suppose that for each raw assignment $a\in\lbrace0,1\rbrace^{k}$, the slice
 

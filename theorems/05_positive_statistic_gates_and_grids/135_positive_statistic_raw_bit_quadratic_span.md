@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $P(z,y)$ be a strict sign polynomial for a Boolean function $f(z,y)$ that can be written as a quadratic polynomial in the two quantities $t(y)$ and $z$, reduced using $z^2=z$:
 
@@ -54,7 +54,7 @@ one-head atoms. Their sum has sign
 
 $$ \mathrm{sgn}\left( \frac{P}{B_1B_2} \right), $$
 
-which is the sign of $P$ because $B_1B_2>0$ on the cube. Thus two heads compute $f$. $\blacksquare$
+which is the sign of $P$ because $B_1B_2\gt0$ on the cube. Thus two heads compute $f$. $\blacksquare$
 
 ## Consequence
 

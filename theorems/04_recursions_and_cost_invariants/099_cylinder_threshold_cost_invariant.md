@@ -8,7 +8,7 @@ $$ C_{P,N}(x) := \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\righ
 
 and
 
-$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \\ \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
+$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \cr \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
 
 Define the cylinder-threshold cost $\mathrm{ctc}(f)$ to be the minimum of
 
@@ -16,7 +16,7 @@ $$ \sum_{a:c_a\neq0}\kappa(P_a,N_a) $$
 
 over all strict representations
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)\gt0 $$
 
 by subcube indicators. Then
 
@@ -30,7 +30,7 @@ Moreover, $\mathrm{ctc}(f)$ is finite for every Boolean function.
 
 Fix a strict cylinder-threshold representation of $f$:
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)\gt0. $$
 
 The subcube-threshold vote theorem [098_subcube_threshold_vote_upper_bound.md](098_subcube_threshold_vote_upper_bound.md) gives
 
@@ -46,13 +46,13 @@ If $f$ is constant, choose $s=0$ and an appropriate constant $c_0$, giving cost 
 
 If $f$ is nonconstant, use the singleton-cylinder representation of its true set:
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad \sum_{a\in f^{-1}(1)}C_{P(a),N(a)}(x)-\frac{1}{2}>0, $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad \sum_{a\in f^{-1}(1)}C_{P(a),N(a)}(x)-\frac{1}{2}\gt0, $$
 
 where
 
 $$ P(a):=\lbrace i:a_i=1\rbrace, \qquad N(a):=\lbrace i:a_i=0\rbrace. $$
 
-This is strict on the Boolean cube and has finite cost. Hence $\mathrm{ctc}(f)<\infty$ for every $f$. $\blacksquare$
+This is strict on the Boolean cube and has finite cost. Hence $\mathrm{ctc}(f)\lt\infty$ for every $f$. $\blacksquare$
 
 ## Consequences
 

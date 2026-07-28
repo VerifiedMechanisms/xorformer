@@ -12,7 +12,7 @@ $$ F(z,y):=G(z,T(y)). $$
 
 Then
 
-$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\\ 2 & \text{if } G \text{ is XOR or XNOR},\\ 1 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\cr 2 & \text{if } G \text{ is XOR or XNOR},\cr 1 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A raw bit and one arbitrary LTF feature generate no hidden head complexity. XOR and XNOR are exactly the two-head cases; every other nonconstant gate is itself an LTF.
 
@@ -24,11 +24,11 @@ $$ A(y)=a+\sum_{i=1}^{m}\alpha_i y_i $$
 
 such that
 
-$$ T(y)=1 \qquad\Longleftrightarrow\qquad A(y)>0. $$
+$$ T(y)=1 \qquad\Longleftrightarrow\qquad A(y)\gt0. $$
 
 Since $T$ is nonconstant, both label classes are nonempty. Set
 
-$$ a_-:=\max\lbrace A(y):T(y)=0\rbrace<0, \qquad a_+:=\min\lbrace A(y):T(y)=1\rbrace>0, $$
+$$ a_-:=\max\lbrace A(y):T(y)=0\rbrace\lt0, \qquad a_+:=\min\lbrace A(y):T(y)=1\rbrace\gt0, $$
 
 and also
 
@@ -36,9 +36,9 @@ $$ A_{\min}:=\min_y A(y), \qquad A_{\max}:=\max_y A(y). $$
 
 ### Lemma 1. Fresh XOR is an affine slab
 
-Choose $B>0$ so large that
+Choose $B\gt0$ so large that
 
-$$ B>a_+-a_-, \qquad B>A_{\max}-A_{\min}. $$
+$$ B\gt a_+-a_-, \qquad B\gt A_{\max}-A_{\min}. $$
 
 Define
 
@@ -54,9 +54,9 @@ $$ a_+\leq A(y)\leq B+a_-. $$
 
 The lower inequality is exactly $T(y)=1$, and the upper inequality is automatic on $z=0$ true inputs because
 
-$$ A(y)\leq A_{\max}<B+A_{\min}\leq B+a_-. $$
+$$ A(y)\leq A_{\max}\lt B+A_{\min}\leq B+a_-. $$
 
-If $z=0$ and $T(y)=0$, then $A(y)\leq a&#95;-<a&#95;+$, so the slab condition fails below.
+If $z=0$ and $T(y)=0$, then $A(y)\leq a_-\lt a_+$, so the slab condition fails below.
 
 If $z=1$, then the slab condition becomes
 
@@ -68,9 +68,9 @@ $$ a_+-B\leq A(y)\leq a_-. $$
 
 The upper inequality is exactly $T(y)=0$, and the lower inequality is automatic on $z=1$ true inputs because
 
-$$ a_+-B<A_{\min}\leq A(y). $$
+$$ a_+-B\lt A_{\min}\leq A(y). $$
 
-If $z=1$ and $T(y)=1$, then $A(y)\geq a&#95;+$, so $M(z,y)\geq B+a&#95;+>B+a&#95;-$, and the slab condition fails above.
+If $z=1$ and $T(y)=1$, then $A(y)\geq a_+$, so $M(z,y)\geq B+a_+\gt B+a_-$, and the slab condition fails above.
 
 Thus $z\oplus T$ is an affine slab in the variables $(z,y)$. By the affine-slab theorem [062_affine_slab_upper_bound.md](../03_function_families_and_affine_geometry/062_affine_slab_upper_bound.md),
 
@@ -90,11 +90,11 @@ Output complement preserves head complexity by [028_restrictions_and_sign_rank.m
 
 Let $U$ be either $T$ or $1-T$. Then there is an affine separator $W(y)$ such that
 
-$$ U(y)=1 \qquad\Longleftrightarrow\qquad W(y)>0, $$
+$$ U(y)=1 \qquad\Longleftrightarrow\qquad W(y)\gt0, $$
 
 with both signs attained. Let
 
-$$ w_-:=\max\lbrace W(y):U(y)=0\rbrace<0, \qquad w_+:=\min\lbrace W(y):U(y)=1\rbrace>0, $$
+$$ w_-:=\max\lbrace W(y):U(y)=0\rbrace\lt0, \qquad w_+:=\min\lbrace W(y):U(y)=1\rbrace\gt0, $$
 
 and set
 
@@ -102,15 +102,15 @@ $$ W_{\max}:=\max_y W(y), \qquad \theta:=\frac{w_-+w_+}{2}. $$
 
 Let $r(z)$ be either $z$ or $1-z$. Choose
 
-$$ C>W_{\max}-\theta. $$
+$$ C\gt W_{\max}-\theta. $$
 
 Then
 
-$$ r(z)\wedge U(y)=1 \qquad\Longleftrightarrow\qquad W(y)+C  r(z)>C+\theta. $$
+$$ r(z)\wedge U(y)=1 \qquad\Longleftrightarrow\qquad W(y)+C  r(z)\gt C+\theta. $$
 
-If $r(z)=1$ and $U(y)=1$, then $W(y)\geq w&#95;+>\theta$, so the displayed inequality holds. If $r(z)=1$ and $U(y)=0$, then $W(y)\leq w&#95;-<\theta$, so the displayed inequality fails. If $r(z)=0$, then
+If $r(z)=1$ and $U(y)=1$, then $W(y)\geq w_+\gt\theta$, so the displayed inequality holds. If $r(z)=1$ and $U(y)=0$, then $W(y)\leq w_-\lt\theta$, so the displayed inequality fails. If $r(z)=0$, then
 
-$$ W(y)+C  r(z)\leq W_{\max}<C+\theta, $$
+$$ W(y)+C  r(z)\leq W_{\max}\lt C+\theta, $$
 
 so the displayed inequality also fails. Hence every literal conjunction $r\wedge U$ is an LTF. Its complement is also an LTF.
 

@@ -20,7 +20,7 @@ $$ F(z,y):=G(z,E(y)). $$
 
 Then
 
-$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\\ 2 & \text{if } G \text{ is XOR or XNOR},\\ 1 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\cr 2 & \text{if } G \text{ is XOR or XNOR},\cr 1 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** For affine endpoint features, the one-bit gate split is exact. The only genuinely two-head interactions are fresh-bit XOR and XNOR.
 
@@ -28,11 +28,11 @@ $$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\\ 2 & \text{
 
 First record the structure of affine endpoint predicates. If $E=E_{\min}$, set
 
-$$ P:=\lbrace i:\alpha_i<0\rbrace, \qquad N:=\lbrace i:\alpha_i>0\rbrace. $$
+$$ P:=\lbrace i:\alpha_i\lt0\rbrace, \qquad N:=\lbrace i:\alpha_i\gt0\rbrace. $$
 
 If $E=E_{\max}$, set
 
-$$ P:=\lbrace i:\alpha_i>0\rbrace, \qquad N:=\lbrace i:\alpha_i<0\rbrace. $$
+$$ P:=\lbrace i:\alpha_i\gt0\rbrace, \qquad N:=\lbrace i:\alpha_i\lt0\rbrace. $$
 
 Let
 
@@ -48,21 +48,21 @@ $$ E(y)=1 \qquad\Longleftrightarrow\qquad S(y)=d. $$
 
 Thus $E$ and $1-E$ are LTFs:
 
-$$ E(y)=1 \qquad\Longleftrightarrow\qquad S(y)-d+\frac12>0, $$
+$$ E(y)=1 \qquad\Longleftrightarrow\qquad S(y)-d+\frac12\gt0, $$
 
 and
 
-$$ 1-E(y)=1 \qquad\Longleftrightarrow\qquad d-\frac12-S(y)>0. $$
+$$ 1-E(y)=1 \qquad\Longleftrightarrow\qquad d-\frac12-S(y)\gt0. $$
 
 We next check the two feature-literal conjunctions that can occur in non-XOR gates. Let $r(z)$ be either $z$ or $1-z$. Then
 
-$$ r(z)\wedge E(y)=1 \qquad\Longleftrightarrow\qquad S(y)+d  r(z)>2d-\frac12. $$
+$$ r(z)\wedge E(y)=1 \qquad\Longleftrightarrow\qquad S(y)+d  r(z)\gt2d-\frac12. $$
 
 Indeed, on true inputs the left side is $2d$, while on false inputs it is at most $2d-1$.
 
 Similarly,
 
-$$ r(z)\wedge(1-E(y))=1 \qquad\Longleftrightarrow\qquad (d+1)r(z)-S(y)>\frac32. $$
+$$ r(z)\wedge(1-E(y))=1 \qquad\Longleftrightarrow\qquad (d+1)r(z)-S(y)\gt\frac32. $$
 
 On true inputs, $r=1$ and $S\leq d-1$, so the score is at least $2$. If $r=1$ and $E=1$, the score is $1$; if $r=0$, the score is at most $0$. Thus this predicate is also an LTF. Complements of LTFs are LTFs, by negating the separator and shifting the threshold.
 

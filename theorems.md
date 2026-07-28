@@ -284,7 +284,7 @@ $$ H^{\ast}(\mathrm{XOR}_n) = n. $$
 
 Suppose there exist positive real numbers
 
-$$ \lambda_1, \ldots, \lambda_n > 0 $$
+$$ \lambda_1, \ldots, \lambda_n \gt 0 $$
 
 and a function
 
@@ -325,7 +325,7 @@ $$ \phi(x) = \frac{ \eta + \sum_{i=1}^{n} \rho_i \alpha^{x_i}(m_i + \delta x_i) 
 
 where
 
-$$ \gamma > 0, \qquad \rho_1, \ldots, \rho_n > 0, \qquad \alpha > 0. $$
+$$ \gamma \gt 0, \qquad \rho_1, \ldots, \rho_n \gt 0, \qquad \alpha \gt 0. $$
 
 Let $L_{\mathrm{frac}}(f)$ be the least $H$ such that $f$ is computed by thresholding a constant plus a sum of $H$ such atoms. Then
 
@@ -365,7 +365,7 @@ $$ F : \lbrace0,\ldots,n\rbrace \to \lbrace0,1\rbrace. $$
 
 Define
 
-$$ \sigma_k := \begin{cases} +1 & \text{if } F(k) = 1, \\ -1 & \text{if } F(k) = 0, \end{cases} $$
+$$ \sigma_k := \begin{cases} +1 & \text{if } F(k) = 1, \cr -1 & \text{if } F(k) = 0, \end{cases} $$
 
 and let $C(F)$ be the number of indices $t \in \lbrace1,\ldots,n\rbrace$ with
 
@@ -389,7 +389,7 @@ In particular:
 
 Suppose $f$ factors through a positive weighted sum
 
-$$ t(x) = \sum_{i=1}^{n} \lambda_i x_i, \qquad \lambda_i > 0, $$
+$$ t(x) = \sum_{i=1}^{n} \lambda_i x_i, \qquad \lambda_i \gt 0, $$
 
 so
 
@@ -397,7 +397,7 @@ $$ f(x) = F(t(x)). $$
 
 Write the image of $t$ in increasing order as
 
-$$ 0 = \tau_0 < \tau_1 < \cdots < \tau_{M-1}, $$
+$$ 0 = \tau_0 \lt \tau_1 \lt \cdots \lt \tau_{M-1}, $$
 
 and count the number $C_t(F)$ of sign changes in the sequence
 
@@ -445,7 +445,7 @@ which rules out one head via the linear-threshold characterization. The upper bo
 
 Let $f : \lbrace0,1\rbrace^3 \to \lbrace0,1\rbrace$. Suppose there is a multilinear polynomial $P$ of degree at most $2$ such that
 
-$$ f(x)=1 \qquad \Longleftrightarrow \qquad P(x)>0 $$
+$$ f(x)=1 \qquad \Longleftrightarrow \qquad P(x)\gt0 $$
 
 for every $x\in\lbrace0,1\rbrace^3$. Then
 
@@ -621,7 +621,7 @@ $$ H^{\ast}(f) \leq \left\lceil \frac{2^n - 1}{n} \right\rceil. $$
 
 In particular:
 
-$$ \begin{array}{c|rrrrrrrrrr} n & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline \left\lceil (2^n - 1)/n \right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
+$$ \begin{array}{c|rrrrrrrrrr} n & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \cr \hline \left\lceil (2^n - 1)/n \right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
 
 > **Interpretation.** A single compact denominator formula gives modular determinant certificates meeting the determinant-span dimension lower bound through twelve input bits.
 
@@ -641,7 +641,7 @@ More quantitatively, for fixed $n$ and $H$, the number of $n$-bit Boolean functi
 
 $$ 2^{O(n^2H)} $$
 
-whenever $1 \leq H \leq 2^n$. Hence, for some absolute constant $c>0$, the fraction of $n$-bit Boolean functions with
+whenever $1 \leq H \leq 2^n$. Hence, for some absolute constant $c\gt0$, the fraction of $n$-bit Boolean functions with
 
 $$ H^{\ast}(f) \leq c\frac{2^n}{n^2} $$
 
@@ -755,11 +755,11 @@ $$ q(z) = \sum_{S\subseteq[n]}\widehat q(S)\chi_S(z). $$
 
 For $d\in\lbrace0,\ldots,n\rbrace$, define
 
-$$ T_{>d}(z) := \sum_{\substack{S\subseteq[n]\\ \lvert S\rvert>d}} \widehat q(S)\chi_S(z). $$
+$$ T_{\gt d}(z) := \sum_{\substack{S\subseteq[n]\cr \lvert S\rvert\gt d}} \widehat q(S)\chi_S(z). $$
 
 If
 
-$$ \lVert T_{>d}\rVert_{\infty}<1, $$
+$$ \lVert T_{\gt d}\rVert_{\infty}\lt1, $$
 
 then
 
@@ -767,7 +767,7 @@ $$ \deg_{\pm}(f)\leq d. $$
 
 In particular, it is enough that
 
-$$ \sum_{\substack{S\subseteq[n]\\ \lvert S\rvert>d}} \lvert \widehat q(S)\rvert <1. $$
+$$ \sum_{\substack{S\subseteq[n]\cr \lvert S\rvert\gt d}} \lvert \widehat q(S)\rvert \lt1. $$
 
 > **Interpretation.** Low Fourier tail gives a low-degree sign representation by truncating the sign function. This is an upper-bound pipeline when combined with the threshold-degree span schema.
 
@@ -785,7 +785,7 @@ Every nonconstant one-head atom denominator has all variable coefficients with t
 
 Suppose $f_1,\ldots,f_m$ all factor through the same positive weighted sum
 
-$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i>0. $$
+$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i\gt0. $$
 
 For any Boolean operation $G:\lbrace0,1\rbrace^m\to\lbrace0,1\rbrace$, define
 
@@ -907,7 +907,7 @@ $$ H^{\ast}(f)\leq2^k-1 $$
 
 for $k\geq1$. For $k\leq12$, the current best universal small-junta bounds are:
 
-$$ \begin{array}{c|rrrrrrrrrrrrr} k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline H^{\ast}(f)\leq & 0 & 1 & 2 & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
+$$ \begin{array}{c|rrrrrrrrrrrrr} k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \cr \hline H^{\ast}(f)\leq & 0 & 1 & 2 & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
 
 > **Interpretation.** Small-junta head bounds depend on the number of essential variables, not on the ambient input dimension.
 
@@ -1001,15 +1001,15 @@ Let $q:\lbrace0,1\rbrace^n\to\lbrace-1,1\rbrace$ be the sign-valued version of $
 
 $$ R(x)=\sum_{S\in\mathcal{A}}c_S\chi_S(x), \qquad \chi_S(x)=(-1)^{\sum_{i\in S}x_i}, $$
 
-sign-represents $f$, meaning $q(x)R(x)>0$ on the cube.
+sign-represents $f$, meaning $q(x)R(x)\gt0$ on the cube.
 
 Define $a_1(R)=1$ if an active singleton set has nonzero coefficient, and define $a_1(R)=0$ otherwise. Then
 
-$$ H^{\ast}(f) \leq a_1(R)+\sum_{\substack{S\in\mathcal{A}\\ \lvert S\rvert\geq2,\ c_S\neq0}}\lvert S\rvert. $$
+$$ H^{\ast}(f) \leq a_1(R)+\sum_{\substack{S\in\mathcal{A}\cr \lvert S\rvert\geq2,\ c_S\neq0}}\lvert S\rvert. $$
 
 In particular, if the active sets have size at most $d$, with $m_1$ singleton sets and $m_{\geq2}$ nonsingleton sets, then
 
-$$ H^{\ast}(f)\leq\mathbf{1}[m_1>0]+dm_{\geq2}. $$
+$$ H^{\ast}(f)\leq\mathbf{1}[m_1\gt0]+dm_{\geq2}. $$
 
 If a Fourier truncation over $\mathcal{A}$ approximates $q$ uniformly within $1$, then the same bound applies.
 
@@ -1127,7 +1127,7 @@ $$ F(0),F(1),\ldots,F(m). $$
 
 Define
 
-$$ U_m(C) := \begin{cases} 0 & \text{if } C=0,\\ 1+m+\sum_{r=2}^{C}3^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
+$$ U_m(C) := \begin{cases} 0 & \text{if } C=0,\cr 1+m+\sum_{r=2}^{C}3^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
 
 Then
 
@@ -1161,7 +1161,7 @@ $$ F(0),F(1),\ldots,F(m). $$
 
 Define
 
-$$ V_m(C) := \begin{cases} 0 & \text{if } C=0,\\ 1+m+\sum_{r=2}^{C}2^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
+$$ V_m(C) := \begin{cases} 0 & \text{if } C=0,\cr 1+m+\sum_{r=2}^{C}2^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
 
 Then
 
@@ -1207,7 +1207,7 @@ $$ C(F) \leq H^{\ast}(f_{p,F}) \leq \Lambda_{p,m}(C(F)). $$
 
 Let $s_{\mathrm{LTF}}(f)$ be the minimum number of linear threshold functions whose weighted vote computes $f$. That is, $s_{\mathrm{LTF}}(f)$ is the least $s$ such that
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0, $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0, $$
 
 where each $T_j$ is a linear threshold function.
 
@@ -1221,7 +1221,7 @@ $$ s_{\mathrm{LTF}}(f)=H^{\ast}(f)=\deg_{\pm}(f). $$
 
 Equivalently:
 
-$$ s_{\mathrm{LTF}}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 3 & \text{if } f \text{ is parity or anti-parity},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ s_{\mathrm{LTF}}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 3 & \text{if } f \text{ is parity or anti-parity},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Threshold-vote size agrees exactly with $H^{\ast}$ on all three-bit functions, even though it is not a global invariant. The proof uses a finite enumeration showing that two threshold votes cover $254$ of the $256$ truth tables, missing only parity and anti-parity.
 
@@ -1283,7 +1283,7 @@ $$ H^{\ast}(f_{p,F})\leq2. $$
 
 More precisely:
 
-$$ H^{\ast}(f_{p,F}) = \begin{cases} 0 & \text{if } f_{p,F} \text{ is constant},\\ 1 & \text{if } f_{p,F} \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f_{p,F}) = \begin{cases} 0 & \text{if } f_{p,F} \text{ is constant},\cr 1 & \text{if } f_{p,F} \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Every threshold-like count of two identical local two-bit patterns is exactly classified. The finite certificate enumeration covers $64$ presentations, $30$ unique truth tables, and $12$ non-LTF two-atom certificates.
 
@@ -1329,7 +1329,7 @@ $$ H^{\ast}(E_L)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(E_L) = \begin{cases} 0 & \text{if } E_L \text{ is constant},\\ 1 & \text{if } E_L \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(E_L) = \begin{cases} 0 & \text{if } E_L \text{ is constant},\cr 1 & \text{if } E_L \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Equality to any affine statistic is cheap. This includes internal exact-count predicates and equality of two binary-encoded strings.
 
@@ -1351,7 +1351,7 @@ $$ H^{\ast}(S_{L,\alpha,\beta})\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(S_{L,\alpha,\beta}) = \begin{cases} 0 & \text{if } S_{L,\alpha,\beta} \text{ is constant},\\ 1 & \text{if } S_{L,\alpha,\beta} \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(S_{L,\alpha,\beta}) = \begin{cases} 0 & \text{if } S_{L,\alpha,\beta} \text{ is constant},\cr 1 & \text{if } S_{L,\alpha,\beta} \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Any finite Boolean-cube slice between two parallel affine hyperplanes is a two-head predicate unless it collapses to a constant or one-head LTF. Affine level sets are the zero-width case.
 
@@ -1397,7 +1397,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The general sparse-support theorem gives $H^{\ast}(f)\leq2s(f)$. This lemma sharpens the first nontrivial sparse case: a one-point or two-point exceptional label class always costs at most two heads.
 
@@ -1419,7 +1419,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A label class is two-head easy whenever it is exactly the cube slice cut out by its own proper affine hull. This strictly generalizes the two-point support theorem.
 
@@ -1451,7 +1451,7 @@ $$ H^{\ast}(f)\geq h+1 $$
 
 only if some partition $I\sqcup J=\lbrace1,\ldots,n\rbrace$ satisfies
 
-$$ 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace} > \sum_{r=0}^{h}\binom{n}{r}. $$
+$$ 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace} \gt \sum_{r=0}^{h}\binom{n}{r}. $$
 
 Consequently, this sign-rank route cannot certify
 
@@ -1471,7 +1471,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 In particular, if $R_{+}(f)=1$, then the same exact split holds.
 
@@ -1519,7 +1519,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 In particular, this applies to every function sign-represented by an affine polynomial plus one nonlinear monomial.
 
@@ -1535,7 +1535,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The first adaptive decision-tree case is exact. A depth-two tree can mix different variables on different branches, but it still stays in the two-head regime.
 
@@ -1768,7 +1768,7 @@ for an arbitrary gate $G:\lbrace0,1\rbrace^{2}\to\lbrace0,1\rbrace$. For $b\in\l
 
 If $G_0$ and $G_1$ are both constant, then
 
-$$ \deg_{\pm}(F) = \begin{cases} 0 & \text{if } G_0=G_1,\\ 1 & \text{if } G_0\neq G_1. \end{cases} $$
+$$ \deg_{\pm}(F) = \begin{cases} 0 & \text{if } G_0=G_1,\cr 1 & \text{if } G_0\neq G_1. \end{cases} $$
 
 If at least one slice is nonconstant and the nonconstant slices, when there are two, are not opposite, then
 
@@ -1828,11 +1828,11 @@ The same conclusion holds for the complement of the displayed parity-block form.
 
 Let $T_1,\ldots,T_s:\lbrace0,1\rbrace^{n}\to\lbrace0,1\rbrace$ be Boolean features, and define
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0. $$
 
 Let
 
-$$ \mu := \min_{x\in\lbrace0,1\rbrace^{n}} \left\lvert c_0+\sum_{j=1}^{s}c_jT_j(x) \right\rvert > 0. $$
+$$ \mu := \min_{x\in\lbrace0,1\rbrace^{n}} \left\lvert c_0+\sum_{j=1}^{s}c_jT_j(x) \right\rvert \gt 0. $$
 
 Suppose that each $T_j$ has a one-head atom approximation $\phi_j$ with
 
@@ -1840,7 +1840,7 @@ $$ \lvert\phi_j(x)-T_j(x)\rvert\leq\epsilon_j \qquad \text{for all }x, $$
 
 and
 
-$$ \sum_{j=1}^{s}\lvert c_j\rvert\epsilon_j<\mu. $$
+$$ \sum_{j=1}^{s}\lvert c_j\rvert\epsilon_j\lt\mu. $$
 
 Then
 
@@ -1852,13 +1852,13 @@ $$ H^{\ast}(f)\leq s. $$
 
 ### Lemma 86. Endpoint affine-threshold vote upper bound
 
-For a nonempty set $S\subseteq\lbrace1,\ldots,n\rbrace$ and positive weights $\lambda_i>0$, define
+For a nonempty set $S\subseteq\lbrace1,\ldots,n\rbrace$ and positive weights $\lambda_i\gt0$, define
 
 $$ L_S(x):=\sum_{i\in S}\lambda_i x_i, \qquad \Lambda_S:=\sum_{i\in S}\lambda_i. $$
 
 An endpoint affine-threshold feature is either
 
-$$ U_S(x):=\mathbf{1}[L_S(x)>0] $$
+$$ U_S(x):=\mathbf{1}[L_S(x)\gt0] $$
 
 or
 
@@ -1866,7 +1866,7 @@ $$ A_S(x):=\mathbf{1}[L_S(x)=\Lambda_S]. $$
 
 If $T_1,\ldots,T_s$ are endpoint affine-threshold features and
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 with positive vote margin, then
 
@@ -1918,7 +1918,7 @@ $$ H^{\ast}(f)\leq L. $$
 
 Let $f$ be computed by a decision list with $L$ tests, where each test is either an endpoint affine-threshold feature
 
-$$ \mathbf{1}[L_S(x)>0] \qquad \text{or} \qquad \mathbf{1}[L_S(x)=\Lambda_S], $$
+$$ \mathbf{1}[L_S(x)\gt0] \qquad \text{or} \qquad \mathbf{1}[L_S(x)=\Lambda_S], $$
 
 or the complement of one. Then
 
@@ -1930,13 +1930,13 @@ $$ H^{\ast}(f)\leq L. $$
 
 ### Lemma 90. Calibrated decision-list upper bound
 
-Let $T_1,\ldots,T_L$ be Boolean tests in a decision list for $f$. There are coefficients $c_0,\ldots,c_L$ and a margin $\mu>0$ such that
+Let $T_1,\ldots,T_L$ be Boolean tests in a decision list for $f$. There are coefficients $c_0,\ldots,c_L$ and a margin $\mu\gt0$ such that
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{L}c_jT_j(x)>0, $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{L}c_jT_j(x)\gt0, $$
 
 and the absolute value of this vote is always at least $\mu$ on the cube. If the tests have one-head atom approximations $\phi_j$ with errors $\epsilon_j$ satisfying
 
-$$ \sum_{j=1}^{L}\lvert c_j\rvert\epsilon_j<\mu, $$
+$$ \sum_{j=1}^{L}\lvert c_j\rvert\epsilon_j\lt\mu, $$
 
 then
 
@@ -1984,7 +1984,7 @@ $$ \inf_{\phi} \max_{x\in\lbrace0,1\rbrace^3}\lvert \phi(x)-T(x)\rvert = \frac{1
 
 Let $\rho(T)$ be the least nonnegative number of one-head atoms needed to approximate a Boolean feature $T$ uniformly to arbitrary accuracy, allowing an added constant. If
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 has positive margin, then
 
@@ -2020,7 +2020,7 @@ $$ H^{\ast}(f) \leq \sum_{j=1}^{L}\mathrm{eafs}(T_j). $$
 
 Suppose
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 with positive margin. Then
 
@@ -2068,11 +2068,11 @@ $$ C_{P,N}(x) := \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\righ
 
 and
 
-$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \\ \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
+$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \cr \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
 
 If
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)\gt0 $$
 
 has positive margin, then
 
@@ -2096,7 +2096,7 @@ Then
 
 $$ H^{\ast}(f)\leq\mathrm{ctc}(f). $$
 
-Moreover, $\mathrm{ctc}(f)<\infty$ for every Boolean function.
+Moreover, $\mathrm{ctc}(f)\lt\infty$ for every Boolean function.
 
 > **Interpretation.** The best strict threshold vote over cylinders is itself a head upper-bound invariant. This optimizes the local cylinder cost directly rather than first choosing a normal form such as DNF, CNF, or a certificate cover.
 
@@ -2152,7 +2152,7 @@ $$ H^{\ast}(f) \leq \mathrm{ctc}(f) \leq \mathrm{ptfsp}(f). $$
 
 Let $\mathrm{actc}(f)$ be the minimum, over all strict representations
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad A(x)+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)>0, $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad A(x)+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)\gt0, $$
 
 of
 
@@ -2190,7 +2190,7 @@ $$ H^{\ast}(f) \leq \mathrm{actc}(f) \leq 1+\sum_{r=2}^{d}\binom{n}{r}. $$
 
 ### Lemma 105. Halfspace intersections force many heads
 
-There are an absolute constant $c>0$ and an infinite family of pairs of linear threshold functions
+There are an absolute constant $c\gt0$ and an infinite family of pairs of linear threshold functions
 
 $$ T_n,U_n:\lbrace0,1\rbrace^{n}\to\lbrace0,1\rbrace $$
 
@@ -2212,7 +2212,7 @@ Let $s_{\mathrm{LTF}}(f)$ be the minimum number of LTF indicators in a strict we
 
 $$ s_{\mathrm{LTF}}(F_n)\leq2 \qquad \text{but} \qquad H^{\ast}(F_n)\geq c n $$
 
-for an absolute constant $c>0$. The same family has LTF decision-list length at most $2$.
+for an absolute constant $c\gt0$. The same family has LTF decision-list length at most $2$.
 
 Thus neither threshold-vote size nor LTF decision-list length is a constant-factor upper bound for $H^{\ast}$.
 
@@ -2226,7 +2226,7 @@ For each $n$, define
 
 $$ R_{\mathrm{LTF}}(n) := \max\lbrace\rho(T):T:\lbrace0,1\rbrace^{n}\to\lbrace0,1\rbrace\text{ is a nonconstant LTF}\rbrace. $$
 
-There is an absolute constant $c>0$ and infinitely many $n$ such that
+There is an absolute constant $c\gt0$ and infinitely many $n$ such that
 
 $$ R_{\mathrm{LTF}}(n)\geq c n. $$
 
@@ -2256,7 +2256,7 @@ $$ \mathrm{actc}(f)\leq2, $$
 
 then
 
-$$ H^{\ast}(f) = \begin{cases} 0, & \text{if } f \text{ is constant},\\ 1, & \text{if } f \text{ is a nonconstant LTF},\\ 2, & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0, & \text{if } f \text{ is constant},\cr 1, & \text{if } f \text{ is a nonconstant LTF},\cr 2, & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A two-head affine-cylinder certificate is automatically exact unless the function collapses to the universal zero-head or one-head classes.
 
@@ -2386,7 +2386,7 @@ Equivalently, $\mathrm{sactc}(f)\geq2$ exactly when $f$ is neither constant nor 
 
 Let $P,N\subseteq\lbrace1,\ldots,n\rbrace$ be disjoint with either $P=\varnothing$ or $N=\varnothing$. Suppose
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad A(x)+cC_{P,N}(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad A(x)+cC_{P,N}(x)\gt0 $$
 
 strictly on the cube, where $A$ is affine. Then
 
@@ -2414,7 +2414,7 @@ $$ K(\Gamma):=\sum_{\gamma=(P,N)\in\Gamma}\kappa(P,N), \qquad K_z(\Gamma):=\sum_
 
 Then
 
-$$ \begin{aligned} H^{\ast}(F) &\leq \mathrm{actc}(F) \leq \mathrm{sactc}(F) \\ &\leq \eta_G(A) + \mathbf{1}[\mu_0\neq0]K(\Gamma) + \mathbf{1}[\mu_1\neq\mu_0] \bigl(\lvert L(A)\rvert+K_z(\Gamma)\bigr), \end{aligned} $$
+$$ \begin{aligned} H^{\ast}(F) &\leq \mathrm{actc}(F) \leq \mathrm{sactc}(F) \cr &\leq \eta_G(A) + \mathbf{1}[\mu_0\neq0]K(\Gamma) + \mathbf{1}[\mu_1\neq\mu_0] \bigl(\lvert L(A)\rvert+K_z(\Gamma)\bigr), \end{aligned} $$
 
 where
 
@@ -2620,7 +2620,7 @@ whenever $R$ is a restriction of $T$.
 
 Let
 
-$$ L(y)=\sum_{i\in S}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ L(y)=\sum_{i\in S}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 with $S\neq\varnothing$, and set
 
@@ -2628,7 +2628,7 @@ $$ \Lambda:=\sum_{i\in S}\lambda_i. $$
 
 Define
 
-$$ O_L(y):=\mathbf{1}[L(y)>0], \qquad A_L(y):=\mathbf{1}[L(y)=\Lambda]. $$
+$$ O_L(y):=\mathbf{1}[L(y)\gt0], \qquad A_L(y):=\mathbf{1}[L(y)=\Lambda]. $$
 
 Then
 
@@ -2680,7 +2680,7 @@ $$ F(z,y):=G(z,E(y)). $$
 
 Then
 
-$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\\ 2 & \text{if } G \text{ is XOR or XNOR},\\ 1 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\cr 2 & \text{if } G \text{ is XOR or XNOR},\cr 1 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Affine endpoint features have no hidden one-bit gate complexity: all non-XOR gates are LTFs, and XOR or XNOR are exactly two-head.
 
@@ -2698,7 +2698,7 @@ $$ F(z,y):=G(z,T(y)). $$
 
 Then
 
-$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\\ 2 & \text{if } G \text{ is XOR or XNOR},\\ 1 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F)= \begin{cases} 0 & \text{if } G \text{ is constant},\cr 2 & \text{if } G \text{ is XOR or XNOR},\cr 1 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A raw bit and one LTF feature have a complete exact gate table. Fresh XOR and XNOR are exactly two-head; every other nonconstant gate is one-head.
 
@@ -2712,7 +2712,7 @@ $$ L(y)=a+\sum_{i=1}^{m}\alpha_i y_i $$
 
 be an affine statistic on $\lbrace0,1\rbrace^{m}$, let $G:\mathrm{Im}(L)\to\lbrace0,1\rbrace$, and define $T(y):=G(L(y))$. Let $C$ be the number of sign changes of $G$ along the ordered image of $L$, and set
 
-$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\\ 2C & \text{if } C \text{ is odd}. \end{cases} $$
+$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\cr 2C & \text{if } C \text{ is odd}. \end{cases} $$
 
 If $C=0$, then fresh XOR and XNOR over $T$ have exact value $1$. If $C=1$, they have exact value $2$. If $C\geq2$, then
 
@@ -2728,11 +2728,11 @@ where $k$ is the number of nonzero variable coefficients of $L$, and the same up
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 let $G:\mathrm{Im}(t)\to\lbrace0,1\rbrace$, and define $T(y):=G(t(y))$. Let $C$ be the number of sign changes of $G$ along the ordered image of $t$, and set
 
-$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\\ 2C & \text{if } C \text{ is odd}. \end{cases} $$
+$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\cr 2C & \text{if } C \text{ is odd}. \end{cases} $$
 
 If $C=0$, then fresh XOR and XNOR over $T$ have exact value $1$. If $C=1$, they have exact value $2$. If $C\geq2$, then
 
@@ -2748,11 +2748,11 @@ and the same upper bound holds for XNOR. If $\deg_{\pm}(T)+1=D_{\oplus}(C)$, the
 
 Let $T(y)=F(t(y))$ for a positive weighted sum
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 For a two-input Boolean gate $G$, define $H_G(z,y):=G(z,T(y))$. Write the image of $t$ as
 
-$$ 0=\tau_0<\tau_1<\cdots<\tau_{M-1}, $$
+$$ 0=\tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}, $$
 
 and let $C_{G,t}$ be the sign-change count of the concatenated sequence
 
@@ -2772,7 +2772,7 @@ The cases $C_{G,t}=0,1,2$ have the exact constant, nonconstant LTF, or two-head 
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $S(y):=\mathbf{1}[\alpha\leq t(y)\leq\beta]$ be an internal non-LTF slab whose ordered label sequence has the form
 
@@ -2807,7 +2807,7 @@ These cases exhaust all two-input gates.
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 If $P(z,y)$ is a strict sign polynomial for $f(z,y)$ of the form
 
@@ -2825,7 +2825,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 If $P(z,y)$ is a strict sign polynomial for $f(z,y)$ of the form
 
@@ -2843,7 +2843,7 @@ $$ H^{\ast}(f)\leq3. $$
 
 Under the same internal positive slab hypotheses as Lemma 133, let $F_G(z,y):=G(z,S(y))$ for any two-input Boolean gate $G$. Then
 
-$$ H^{\ast}(F_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{if }G\text{ is a raw-bit literal},\\ 3 & \text{if }G\text{ is XOR or XNOR},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(F_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\cr 1 & \text{if }G\text{ is a raw-bit literal},\cr 3 & \text{if }G\text{ is XOR or XNOR},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The remaining internal positive-slab brackets from Lemma 134 collapse to exact values.
 
@@ -2853,7 +2853,7 @@ $$ H^{\ast}(F_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{
 
 Let $d\geq1$, let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and suppose $P(z,y)$ is a strict sign polynomial for $f(z,y)$ of the form
 
@@ -2871,7 +2871,7 @@ $$ H^{\ast}(f)\leq d. $$
 
 Let $T(y)=F(t(y))$ be nonconstant for a positive statistic
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Let $C$ be the number of sign changes in the ordered label sequence of $F$ on the image of $t$. Then
 
@@ -2907,7 +2907,7 @@ $$ \deg_{\pm}(T)=C. $$
 
 For any two-input Boolean gate $G$, define $H_G(z,y):=G(z,T(y))$. Then
 
-$$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{if }G\text{ is a raw-bit literal},\\ C+1 & \text{if }G\text{ is XOR or XNOR},\\ C & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\cr 1 & \text{if }G\text{ is a raw-bit literal},\cr C+1 & \text{if }G\text{ is XOR or XNOR},\cr C & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Whenever the positive-statistic sign-change upper bound is threshold-degree tight for the feature, the complete one-bit gate table is exact.
 
@@ -2917,7 +2917,7 @@ $$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{
 
 Let $T:\lbrace0,1\rbrace^{m}\to\lbrace0,1\rbrace$ be a nonconstant symmetric Boolean function, and let $C$ be the number of sign changes in its Hamming-weight sequence. For any two-input Boolean gate $G$, define $H_G(z,y):=G(z,T(y))$. Then
 
-$$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{if }G\text{ is a raw-bit literal},\\ C+1 & \text{if }G\text{ is XOR or XNOR},\\ C & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\cr 1 & \text{if }G\text{ is a raw-bit literal},\cr C+1 & \text{if }G\text{ is XOR or XNOR},\cr C & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The exact symmetric classification is stable under adjoining one raw bit and applying any two-input gate.
 
@@ -3091,15 +3091,15 @@ $$ r_1=\lvert R^{-1}(1)\rvert, \qquad r_0=\lvert R^{-1}(0)\rvert, \qquad C_R=C_{
 
 For $A=R\wedge T$,
 
-$$ H^{\ast}(A)\leq \begin{cases} r_1C, & e_0=e_1=0,\\ r_1C+C_R, & e_0=e_1=1,\\ r_1(C+1), & e_0\neq e_1. \end{cases} $$
+$$ H^{\ast}(A)\leq \begin{cases} r_1C, & e_0=e_1=0,\cr r_1C+C_R, & e_0=e_1=1,\cr r_1(C+1), & e_0\neq e_1. \end{cases} $$
 
 For $O=R\vee T$,
 
-$$ H^{\ast}(O)\leq \begin{cases} r_0C, & e_0=e_1=1,\\ r_0C+C_R, & e_0=e_1=0,\\ r_0(C+1), & e_0\neq e_1. \end{cases} $$
+$$ H^{\ast}(O)\leq \begin{cases} r_0C, & e_0=e_1=1,\cr r_0C+C_R, & e_0=e_1=0,\cr r_0(C+1), & e_0\neq e_1. \end{cases} $$
 
 For $X=R\oplus T$,
 
-$$ H^{\ast}(X)\leq \begin{cases} 2^kC+C_R, & e_0=e_1,\\ 2^k(C+1)+C_R, & e_0\neq e_1. \end{cases} $$
+$$ H^{\ast}(X)\leq \begin{cases} 2^kC+C_R, & e_0=e_1,\cr 2^k(C+1)+C_R, & e_0\neq e_1. \end{cases} $$
 
 > **Interpretation.** For common raw-mask gates, the ordered-slice boundary cost collapses to raw support size or raw positive-order variation.
 
@@ -3109,7 +3109,7 @@ $$ H^{\ast}(X)\leq \begin{cases} 2^kC+C_R, & e_0=e_1,\\ 2^k(C+1)+C_R, & e_0\neq 
 
 Let $T(y)=F(t(y))$ be a nonconstant positive-statistic feature with sign-change count $C$, and let $G:\lbrace0,1\rbrace^{k}\times\lbrace0,1\rbrace\to\lbrace0,1\rbrace$. Put $H_G(z,y)=G(z,T(y))$, $g_e(a)=G(a,e)$, and $N_G=\lvert\lbrace a:g_0(a)\neq g_1(a)\rbrace\rvert$. Then
 
-$$ \max\left\lbrace \mathbf{1}_{N_G>0}H^{\ast}(T), H^{\ast}(g_0), H^{\ast}(g_1) \right\rbrace \leq H^{\ast}(H_G) \leq N_GC+B _{+}(g _{e _{\max}},g _{e _{\min}}). $$
+$$ \max\left\lbrace \mathbf{1}_{N_G\gt0}H^{\ast}(T), H^{\ast}(g_0), H^{\ast}(g_1) \right\rbrace \leq H^{\ast}(H_G) \leq N_GC+B _{+}(g _{e _{\max}},g _{e _{\min}}). $$
 
 In particular, if $H^{\ast}(T)=C$, $N_G=1$, and $B_{+}(g_{e_{\max}},g_{e_{\min}})=0$, then
 
@@ -3129,11 +3129,11 @@ If $e_0=e_1=1$, then
 
 $$ d \leq H^{\ast}\bigl((1-M_a(z))\vee T(y)\bigr) \leq C. $$
 
-Thus these localized gates are exact whenever $\deg_{\pm}(T)=C$. More generally, for any raw mask $R$ with $r_1=\lvert R^{-1}(1)\rvert>0$ and $e_0=e_1=0$,
+Thus these localized gates are exact whenever $\deg_{\pm}(T)=C$. More generally, for any raw mask $R$ with $r_1=\lvert R^{-1}(1)\rvert\gt0$ and $e_0=e_1=0$,
 
 $$ d \leq H^{\ast}\bigl(R(z)\wedge T(y)\bigr) \leq r_1C, $$
 
-and for any raw mask with $r_0=\lvert R^{-1}(0)\rvert>0$ and $e_0=e_1=1$,
+and for any raw mask with $r_0=\lvert R^{-1}(0)\rvert\gt0$ and $e_0=e_1=1$,
 
 $$ d \leq H^{\ast}\bigl(R(z)\vee T(y)\bigr) \leq r_0C. $$
 
@@ -3145,7 +3145,7 @@ $$ d \leq H^{\ast}\bigl(R(z)\vee T(y)\bigr) \leq r_0C. $$
 
 Suppose a raw mask $R$ has $q$ true intervals along some positive raw statistic with distinct subset sums. Let $\epsilon_0$ and $\epsilon_1$ be its first and last labels in that order, and define
 
-$$ K_R= \begin{cases} 0, & q=0,\\ 2q-\epsilon_0-\epsilon_1, & q\geq1. \end{cases} $$
+$$ K_R= \begin{cases} 0, & q=0,\cr 2q-\epsilon_0-\epsilon_1, & q\geq1. \end{cases} $$
 
 Then
 
@@ -3153,7 +3153,7 @@ $$ C_{+}(R)\leq K_R\leq2q. $$
 
 Consequently, all raw-mask endpoint bounds from Lemma 154 remain valid with $C_R$ replaced by $K_R$. Explicitly, if $T$ has sign-change count $C$ and endpoint labels $e_0,e_1$, then for $X=R\oplus T$,
 
-$$ H^{\ast}(X)\leq \begin{cases} 2^kC+K_R, & e_0=e_1,\\ 2^k(C+1)+K_R, & e_0\neq e_1, \end{cases} $$
+$$ H^{\ast}(X)\leq \begin{cases} 2^kC+K_R, & e_0=e_1,\cr 2^k(C+1)+K_R, & e_0\neq e_1, \end{cases} $$
 
 with analogous conjunction and disjunction bounds from the theorem file.
 
@@ -3301,15 +3301,15 @@ If all slices share one endpoint background label, the $B_{+}$ term vanishes. Th
 
 Let
 
-$$ u(z)=\sum_j\rho_jz_j, \qquad t(y)=\sum_i\lambda_iy_i, \qquad \rho_j,\lambda_i>0, $$
+$$ u(z)=\sum_j\rho_jz_j, \qquad t(y)=\sum_i\lambda_iy_i, \qquad \rho_j,\lambda_i\gt0, $$
 
 and suppose
 
 $$ f(z,y)=F(u(z),t(y)). $$
 
-Write the image of $u$ as $\nu_0<\cdots<\nu_{R-1}$. Let $C_r$ be the sign-change count of the slice $\tau\mapsto F(\nu_r,\tau)$, and let $J_{\mathrm{grid}}$ count endpoint jumps between consecutive raw levels. Then
+Write the image of $u$ as $\nu_0\lt\cdots\lt\nu_{R-1}$. Let $C_r$ be the sign-change count of the slice $\tau\mapsto F(\nu_r,\tau)$, and let $J_{\mathrm{grid}}$ count endpoint jumps between consecutive raw levels. Then
 
-$$ \max_{0\leq r<R}H^{\ast}\bigl(F(\nu_r,t(y))\bigr) \leq H^{\ast}(f) \leq \sum_{r=0}^{R-1}C_r+J_{\mathrm{grid}}. $$
+$$ \max_{0\leq r\lt R}H^{\ast}\bigl(F(\nu_r,t(y))\bigr) \leq H^{\ast}(f) \leq \sum_{r=0}^{R-1}C_r+J_{\mathrm{grid}}. $$
 
 > **Interpretation.** If the raw block factors through a positive statistic, the construction pays per raw level rather than per raw assignment.
 
@@ -3339,7 +3339,7 @@ If $\deg_{\pm}(f)=\sum_r C_r+J_{\mathrm{grid}}$, then $H^{\ast}(f)=\deg_{\pm}(f)
 
 Suppose
 
-$$ f(z,y)=F(\lvert z\rvert,t(y)), \qquad t(y)=\sum_i\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ f(z,y)=F(\lvert z\rvert,t(y)), \qquad t(y)=\sum_i\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Let $C_r$ be the sign-change count of the Hamming-layer slice $\tau\mapsto F(r,\tau)$, and let $J_{\mathrm{Ham}}$ count endpoint jumps between consecutive Hamming layers. Then
 
@@ -3503,7 +3503,7 @@ $$ \mathrm{mgc}_{+}^{\mathcal{P} _{\mathrm{sing}}}(\mathrm{XOR}_n) = \mathrm{mhc
 
 where
 
-$$ L_n= \begin{cases} \dfrac{2^{n+1}-1}{3} & \text{if } n \text{ is odd},\\[6pt] \dfrac{2^{n+1}-2}{3} & \text{if } n \text{ is even}. \end{cases} $$
+$$ L_n= \begin{cases} \dfrac{2^{n+1}-1}{3} & \text{if } n \text{ is odd},\cr[6pt] \dfrac{2^{n+1}-2}{3} & \text{if } n \text{ is even}. \end{cases} $$
 
 But
 
@@ -3585,13 +3585,13 @@ Let $\mathcal{R}$ contain the $48$ even-parity strings $r\in\lbrace0,1\rbrace^8$
 
 $$ P(x,y):=\frac{1}{2}+\sum_{r\in\mathcal{R}}\sum_{j=1}^{8}S_{r,j}x_r y_j. $$
 
-Let $f_{\mathrm{HC}}(x,y)=1$ exactly when $P(x,y)>0$. Then
+Let $f_{\mathrm{HC}}(x,y)=1$ exactly when $P(x,y)\gt0$. Then
 
 $$ \deg_{\pm}(f_{\mathrm{HC}})=2 \qquad\text{and}\qquad H^{\ast}(f_{\mathrm{HC}})\geq3. $$
 
 Consequently,
 
-$$ \deg_{\pm}(f_{\mathrm{HC}})<H^{\ast}(f_{\mathrm{HC}}). $$
+$$ \deg_{\pm}(f_{\mathrm{HC}})\lt H^{\ast}(f_{\mathrm{HC}}). $$
 
 > **Interpretation.** The threshold-degree lower bound is not universally exact. The strict gap is certified by a two-block singleton slice whose hypercube-path sign matrix has sign-rank at least seven, while every two-head score has singleton-slice sign-rank at most six.
 
@@ -3608,13 +3608,13 @@ Define $S^{(35)}_{r,j}=(-1)^{r_j}$. For Boolean variables $x_r$, where $r\in\mat
 
 $$ P_{35}(x,y):=\frac{1}{2}+\sum_{r\in\mathcal{R}_{35}}\sum _{j=1}^{8}S^{(35)} _{r,j}x_r y_j. $$
 
-Let $f_{35}(x,y)=1$ exactly when $P_{35}(x,y)>0$. Then
+Let $f_{35}(x,y)=1$ exactly when $P_{35}(x,y)\gt0$. Then
 
 $$ \deg_{\pm}(f_{35})=2 \qquad\text{and}\qquad H^{\ast}(f_{35})\geq3. $$
 
 Consequently,
 
-$$ \deg_{\pm}(f_{35})<H^{\ast}(f_{35}). $$
+$$ \deg_{\pm}(f_{35})\lt H^{\ast}(f_{35}). $$
 
 > **Interpretation.** A deterministic exhaustive certificate compresses the structured construction from $56$ bits to $43$ bits while preserving the sign-rank-seven singleton-slice obstruction.
 
@@ -3632,7 +3632,7 @@ $$ \deg_{\pm}(f_{\mathrm{Ham}})=2 \qquad\text{and}\qquad H^{\ast}(f_{\mathrm{Ham
 
 Consequently,
 
-$$ \deg_{\pm}(f_{\mathrm{Ham}})<H^{\ast}(f_{\mathrm{Ham}}). $$
+$$ \deg_{\pm}(f_{\mathrm{Ham}})\lt H^{\ast}(f_{\mathrm{Ham}}). $$
 
 > **Interpretation.** A natural Hamming-distance threshold gives a strict separation on twelve bits. An explicit eight-column restriction has sign-rank at least seven, while every two-head partition sign matrix has sign-rank at most six.
 
@@ -3652,11 +3652,11 @@ $$ H^{\ast}(f)=\deg_{\pm}(f). $$
 
 Let $x\in\lbrace0,1\rbrace^6$ and $y\in\lbrace0,1\rbrace^5$. Define
 
-$$ \begin{aligned} Q(x,y):={}&1-2x_3+8y_5-16x_1y_2+14x_1y_4-14x_1y_5-22x_2y_4+16x_2y_5 \\ &+2x_3y_1+12x_3y_2+6x_3y_5-18x_4y_3-2x_5y_1-14x_5y_3-16x_6y_5 \\ &+16y_1y_3+22y_2y_5-12y_3y_5. \end{aligned} $$
+$$ \begin{aligned} Q(x,y):={}&1-2x_3+8y_5-16x_1y_2+14x_1y_4-14x_1y_5-22x_2y_4+16x_2y_5 \cr &+2x_3y_1+12x_3y_2+6x_3y_5-18x_4y_3-2x_5y_1-14x_5y_3-16x_6y_5 \cr &+16y_1y_3+22y_2y_5-12y_3y_5. \end{aligned} $$
 
-Let $f_{11}(x,y)=1$ exactly when $Q(x,y)>0$. Then
+Let $f_{11}(x,y)=1$ exactly when $Q(x,y)\gt0$. Then
 
-$$ \deg_{\pm}(f_{11})=2<3\leq H^{\ast}(f_{11}). $$
+$$ \deg_{\pm}(f_{11})=2\lt3\leq H^{\ast}(f_{11}). $$
 
 > **Interpretation.** This six-bit by five-bit quadratic embeds the compact hypercube-path obstruction as an exact $35\times8$ submatrix. Its certificate is deterministic and uses only integer arithmetic.
 
@@ -3668,9 +3668,9 @@ Let $x\in\lbrace-1,1\rbrace^4$ and $y\in\lbrace-1,1\rbrace^5$. Define
 
 $$ Q(x,y):=\left(\sum_{j=0}^{4}y_j\right)\left(1+\sum_{i=1}^{4}x_i\right)-3\left(y_0+\sum_{i=1}^{4}x_i y_i\right), $$
 
-and let $f_9(x,y)=1$ exactly when $Q(x,y)>0$. Then
+and let $f_9(x,y)=1$ exactly when $Q(x,y)\gt0$. Then
 
-$$ \deg_{\pm}(f_9)=2<3\leq H^{\ast}(f_9). $$
+$$ \deg_{\pm}(f_9)=2\lt3\leq H^{\ast}(f_9). $$
 
 > **Interpretation.** Five antipodal pairs force a nonsingular $5\times5$ cross-coefficient block in every quadratic sign representation. Clearing two heads gives a sum of two affine products, whose corresponding block has rank at most four.
 
@@ -3704,7 +3704,7 @@ $$ \Delta(x,y):=\sum_{i=1}^4(x_i+y_i-2x_i y_i), $$
 
 and let $f_8(x,y)=1$ exactly when $\Delta(x,y)\geq2$. Then
 
-$$ \deg_{\pm}(f_8)=2<3=H^{\ast}(f_8). $$
+$$ \deg_{\pm}(f_8)=2\lt3=H^{\ast}(f_8). $$
 
 > **Interpretation.** The radius-one Hamming-ball threshold is an explicit eight-bit strict separation. Checkerboard curvature and shell transitions rule out two heads, while an exact integer linear-fractional certificate gives three heads.
 
@@ -3764,7 +3764,7 @@ Write $\theta^{(1)}=\theta+tv$, normalize $\lVert v\rVert_{\infty}=1$, and impos
 
 $$ G_{p,q}(\theta,\theta+tv)=t\widetilde G_{p,q}(\theta,v,t). $$
 
-Allowing $t=0$ in the divided system introduces no spurious strict solution. A strict point at $t=0$ opens into a genuine strict secant for sufficiently small $t>0$. The normalization is covered by $2H(n+1)$ bounded maximal-coordinate charts, and the divided gap has scalar degree at most $H-1$.
+Allowing $t=0$ in the divided system introduces no spurious strict solution. A strict point at $t=0$ opens into a genuine strict secant for sufficiently small $t\gt0$. The normalization is covered by $2H(n+1)$ bounded maximal-coordinate charts, and the divided gap has scalar degree at most $H-1$.
 
 > **Interpretation.** The positive-secant relaxation no longer has an identically zero endpoint diagonal. Its exact compactification records normalized tangent directions, including one-sided directions on denominator-simplex faces.
 
@@ -3792,7 +3792,7 @@ The signed system has $2^n$ inequalities, rather than one inequality per opposit
 
 Let $\mathcal A_n$ be the symmetric set of valid one-head score vectors normalized by $\lVert a\rVert_{\infty}\leq1$. If
 
-$$ y_x(c+\Lambda u_x)\geq\gamma>0\qquad\text{for every }x,\qquad u\in\mathrm{conv}(\mathcal A_n), $$
+$$ y_x(c+\Lambda u_x)\geq\gamma\gt0\qquad\text{for every }x,\qquad u\in\mathrm{conv}(\mathcal A_n), $$
 
 then approximate Carathéodory in $\ell_p$, with $p=\Theta(n)$, sparsifies $u$ without losing its signs. For an absolute constant $C$,
 
@@ -3888,7 +3888,7 @@ Write $\theta^{(1)}=\theta+tv$, normalize $\lVert v\rVert_{\infty}=1$, and impos
 
 $$ G_{p,q}(\theta,\theta+tv)=t\widetilde G_{p,q}(\theta,v,t). $$
 
-Allowing $t=0$ in the divided system introduces no spurious strict solution. A strict point at $t=0$ opens into a genuine strict secant for sufficiently small $t>0$. The normalization is covered by $2H(n+1)$ bounded maximal-coordinate charts, and the divided gap has scalar degree at most $H-1$.
+Allowing $t=0$ in the divided system introduces no spurious strict solution. A strict point at $t=0$ opens into a genuine strict secant for sufficiently small $t\gt0$. The normalization is covered by $2H(n+1)$ bounded maximal-coordinate charts, and the divided gap has scalar degree at most $H-1$.
 
 > **Interpretation.** The positive-secant relaxation no longer has an identically zero endpoint diagonal. Its exact compactification records normalized tangent directions, including one-sided directions on denominator-simplex faces.
 
@@ -3916,7 +3916,7 @@ The signed system has $2^n$ inequalities, rather than one inequality per opposit
 
 Let $\mathcal A_n$ be the symmetric set of valid one-head score vectors normalized by $\lVert a\rVert_{\infty}\leq1$. If
 
-$$ y_x(c+\Lambda u_x)\geq\gamma>0\qquad\text{for every }x,\qquad u\in\mathrm{conv}(\mathcal A_n), $$
+$$ y_x(c+\Lambda u_x)\geq\gamma\gt0\qquad\text{for every }x,\qquad u\in\mathrm{conv}(\mathcal A_n), $$
 
 then approximate Carathéodory in $\ell_p$, with $p=\Theta(n)$, sparsifies $u$ without losing its signs. For an absolute constant $C$,
 
@@ -4163,7 +4163,7 @@ The current dependency structure is:
 
 The current evidence gives a precise first-level characterization: one head is exactly linear threshold power. It also gives an explicit strict separation at the next level. The Hamming threshold from Theorem 189 satisfies
 
-$$ \deg_{\pm}(f_8)=2<3=H^{\ast}(f_8). $$
+$$ \deg_{\pm}(f_8)=2\lt3=H^{\ast}(f_8). $$
 
 Thus the full problem cannot be reduced to threshold degree. It can instead be reframed as understanding the minimum number of linear-fractional attention atoms needed before the final threshold:
 
@@ -4233,7 +4233,7 @@ $$ H^{\ast}(f)\leq L_{\mathrm{litDL}}(f). $$
 
 This proves the literal-test case of the decision-list upper-bound program. Linear-threshold decision lists remain harder because their tests are not raw literals exposed to Lemma 87.
 
-The calibrated-vote route extends the decision-list theorem from raw literals to endpoint affine-threshold tests. If a length $L$ decision list tests positive OR-type features $\mathbf{1}[L_S>0]$, positive AND-type features $\mathbf{1}[L_S=\Lambda_S]$, or their complements, then
+The calibrated-vote route extends the decision-list theorem from raw literals to endpoint affine-threshold tests. If a length $L$ decision list tests positive OR-type features $\mathbf{1}[L_S\gt0]$, positive AND-type features $\mathbf{1}[L_S=\Lambda_S]$, or their complements, then
 
 $$ H^{\ast}(f)\leq L. $$
 
@@ -4471,9 +4471,9 @@ On the lower-bound side, the counting lemma gives a worst-case exponential lower
 
 $$ \max_{f : \lbrace0,1\rbrace^n \to \lbrace0,1\rbrace} H^{\ast}(f) = \Omega \left(\frac{2^n}{n^2}\right). $$
 
-Moreover, this is a typical-function statement: for some absolute constant $c>0$, all but a $2^{-\Omega(2^n)}$ fraction of $n$-bit Boolean functions have
+Moreover, this is a typical-function statement: for some absolute constant $c\gt0$, all but a $2^{-\Omega(2^n)}$ fraction of $n$-bit Boolean functions have
 
-$$ H^{\ast}(f) > c\frac{2^n}{n^2}. $$
+$$ H^{\ast}(f) \gt c\frac{2^n}{n^2}. $$
 
 The threshold-degree method itself has a sharp ceiling: parity and anti-parity are the only functions with $\deg_{\pm}(f)=n$. Thus threshold degree cannot explain the exponential typical lower bound.
 

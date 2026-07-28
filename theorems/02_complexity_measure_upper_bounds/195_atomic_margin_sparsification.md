@@ -6,7 +6,7 @@ Let $f : \lbrace0,1\rbrace^n \to \lbrace0,1\rbrace$ and put $y_x=2f(x)-1$. Let $
 
 $$ \lVert a\rVert_{\infty}\leq1. $$
 
-Suppose there exist $c\in\mathbb R$, $\Lambda>0$, $\gamma>0$, and $u\in\mathrm{conv}(\mathcal A_n)$ such that
+Suppose there exist $c\in\mathbb R$, $\Lambda\gt0$, $\gamma\gt0$, and $u\in\mathrm{conv}(\mathcal A_n)$ such that
 
 $$ y_x(c+\Lambda u_x)\geq\gamma\qquad\text{for every }x\in\lbrace0,1\rbrace^n. $$
 
@@ -16,7 +16,7 @@ $$ H^{\ast}(f)\leq C(n+1)\left(\frac{\Lambda}{\gamma}\right)^2. $$
 
 Define the output-normalized atomic condition number
 
-$$ \kappa_{\mathrm{atom}}(f)=\inf\left\lbrace\frac{\Lambda}{\gamma}:y_x(c+\Lambda u_x)\geq\gamma,\quad u\in\mathrm{conv}(\mathcal A_n),\quad \Lambda>0,\quad \gamma>0\right\rbrace. $$
+$$ \kappa_{\mathrm{atom}}(f)=\inf\left\lbrace\frac{\Lambda}{\gamma}:y_x(c+\Lambda u_x)\geq\gamma,\quad u\in\mathrm{conv}(\mathcal A_n),\quad \Lambda\gt0,\quad \gamma\gt0\right\rbrace. $$
 
 For every nonconstant $f$,
 
@@ -52,7 +52,7 @@ $$ m\leq C(n+1)\left(\frac{\Lambda}{\gamma}\right)^2 $$
 
 for an absolute constant $C$. Since $\lVert z\rVert_{\infty}\leq\lVert z\rVert_p$,
 
-$$ y_x(c+\Lambda\widetilde u_x)\geq\frac\gamma2>0 $$
+$$ y_x(c+\Lambda\widetilde u_x)\geq\frac\gamma2\gt0 $$
 
 at every cube vertex.
 

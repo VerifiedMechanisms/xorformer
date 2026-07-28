@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $T(y)=F(t(y))$ be nonconstant. Let $C$ be the sign-change count of $F$ along the ordered image of $t$. Assume
 
@@ -16,7 +16,7 @@ $$ H_G(z,y):=G(z,T(y)). $$
 
 Then
 
-$$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\\ 1 & \text{if }G\text{ is a raw-bit literal},\\ C+1 & \text{if }G\text{ is XOR or XNOR},\\ C & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(H_G)= \begin{cases} 0 & \text{if }G\text{ is constant},\cr 1 & \text{if }G\text{ is a raw-bit literal},\cr C+1 & \text{if }G\text{ is XOR or XNOR},\cr C & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Whenever the positive-statistic sign-change upper bound is threshold-degree tight for the feature, the complete one-bit gate table is exact.
 

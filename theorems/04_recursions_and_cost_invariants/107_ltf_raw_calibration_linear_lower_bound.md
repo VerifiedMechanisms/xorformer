@@ -6,7 +6,7 @@ For each $n$, define
 
 $$ R_{\mathrm{LTF}}(n) := \max\lbrace\rho(T):T:\lbrace0,1\rbrace^{n}\to\lbrace0,1\rbrace\text{ is a nonconstant LTF}\rbrace. $$
 
-There is an absolute constant $c>0$ and infinitely many $n$ such that
+There is an absolute constant $c\gt0$ and infinitely many $n$ such that
 
 $$ R_{\mathrm{LTF}}(n)\geq c n. $$
 
@@ -34,11 +34,11 @@ satisfies
 
 $$ H^{\ast}(F_n)\geq c_0 n $$
 
-for an absolute constant $c_0>0$.
+for an absolute constant $c_0\gt0$.
 
 On the other hand, $F_n$ is a strict weighted vote of the two Boolean features $T_n$ and $U_n$:
 
-$$ F_n(x)=1 \qquad\Longleftrightarrow\qquad T_n(x)+U_n(x)-\frac{3}{2}>0. $$
+$$ F_n(x)=1 \qquad\Longleftrightarrow\qquad T_n(x)+U_n(x)-\frac{3}{2}\gt0. $$
 
 Applying the raw-calibrated vote support bound [093_raw_calibrated_vote_support_bound.md](093_raw_calibrated_vote_support_bound.md) gives
 

@@ -14,7 +14,7 @@ be a Boolean feature. The raw calibration cost $\rho(T)$ has the following struc
 
 2. Coordinate permutations do not change raw cost. If $\pi$ is a permutation of $\lbrace1,\ldots,n\rbrace$ and
 
-   $T^{\pi}(x_1,\ldots,x_n) := T(x&#95;{\pi(1)},\ldots,x&#95;{\pi(n)}),$
+   $T^{\pi}(x_1,\ldots,x_n) := T(x_{\pi(1)},\ldots,x_{\pi(n)}),$
 
    then
 
@@ -52,7 +52,7 @@ $$ \phi(x) := \frac{ \eta + \sum_{i=1}^{n} \rho_i \alpha^{x_i}(m_i + \delta x_i)
 
 where
 
-$$ \gamma>0,\qquad \rho_i>0,\qquad \alpha>0. $$
+$$ \gamma\gt0,\qquad \rho_i\gt0,\qquad \alpha\gt0. $$
 
 ### Lemma 1. Elementary atom closures
 
@@ -74,7 +74,7 @@ Finally, restricting coordinates gives atoms in the remaining variables. Fixed-c
 
 ### Lemma 2. Complement, permutations, bit-flips, and restrictions
 
-Assume first that $\rho(T)=r<\infty$. Given $\epsilon>0$, choose atoms $\phi_1,\ldots,\phi_r$ and a constant $a_0$ such that
+Assume first that $\rho(T)=r\lt\infty$. Given $\epsilon\gt0$, choose atoms $\phi_1,\ldots,\phi_r$ and a constant $a_0$ such that
 
 $$ \left\lvert a_0+\sum_{h=1}^{r}\phi_h(x)-T(x) \right\rvert \leq \epsilon $$
 
@@ -102,7 +102,7 @@ $$ \rho(T)\leq\rho(F) $$
 
 follows from the restriction inequality by fixing the dummy block $y$ to any value.
 
-For the upper bound, assume $\rho(T)=r<\infty$ and fix $\epsilon>0$. Choose an $r$-atom approximation to $T$ with error at most $\epsilon/2$. It remains to extend each atom from the $x$ variables to the larger $(x,y)$ cube while changing its value by at most $\epsilon/(2\max\lbrace1,r\rbrace)$.
+For the upper bound, assume $\rho(T)=r\lt\infty$ and fix $\epsilon\gt0$. Choose an $r$-atom approximation to $T$ with error at most $\epsilon/2$. It remains to extend each atom from the $x$ variables to the larger $(x,y)$ cube while changing its value by at most $\epsilon/(2\max\lbrace1,r\rbrace)$.
 
 For a fixed atom $\phi(x)$, keep all original parameters on the $x$ coordinates. Add each dummy coordinate with a positive weight $\lambda$, arbitrary offset $m=0$, and the same atom parameter $\alpha$ and slope $\delta$. As $\lambda\to0^{+}$, the extended denominator and numerator converge uniformly on the finite $(x,y)$ cube to the original denominator and numerator. Since the original denominator is strictly positive on the finite $x$ cube, the extended atom converges uniformly to $\phi(x)$.
 

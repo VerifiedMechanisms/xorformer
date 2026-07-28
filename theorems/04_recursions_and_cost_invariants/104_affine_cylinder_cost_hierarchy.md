@@ -44,7 +44,7 @@ $$ \kappa(S,\varnothing)=1. $$
 
 Therefore the same strict sign polynomial is an affine-cylinder threshold representation:
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad A(x)+\sum_{S\in\mathcal{M}}a_SC_{S,\varnothing}(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad A(x)+\sum_{S\in\mathcal{M}}a_SC_{S,\varnothing}(x)\gt0. $$
 
 Its affine-cylinder cost is
 

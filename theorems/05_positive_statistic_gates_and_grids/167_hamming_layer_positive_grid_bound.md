@@ -4,7 +4,7 @@
 
 Let $z\in\lbrace0,1\rbrace^{k}$ and $y\in\lbrace0,1\rbrace^{m}$. Suppose
 
-$$ f(z,y)=F(\lvert z\rvert,t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ f(z,y)=F(\lvert z\rvert,t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 For each Hamming layer $r\in\lbrace0,\ldots,k\rbrace$, let $C_r$ be the sign-change count of
 

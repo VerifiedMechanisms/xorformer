@@ -2,13 +2,13 @@
 
 ## Statement
 
-For a nonempty set $S\subseteq\lbrace1,\ldots,n\rbrace$ and positive weights $\lambda_i>0$, define
+For a nonempty set $S\subseteq\lbrace1,\ldots,n\rbrace$ and positive weights $\lambda_i\gt0$, define
 
 $$ L_S(x):=\sum_{i\in S}\lambda_i x_i, \qquad \Lambda_S:=\sum_{i\in S}\lambda_i. $$
 
 An endpoint affine-threshold feature is either
 
-$$ U_S(x):=\mathbf{1}[L_S(x)>0] $$
+$$ U_S(x):=\mathbf{1}[L_S(x)\gt0] $$
 
 or
 
@@ -16,11 +16,11 @@ $$ A_S(x):=\mathbf{1}[L_S(x)=\Lambda_S]. $$
 
 Let $T_1,\ldots,T_s$ be endpoint affine-threshold features, and suppose
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 with positive vote margin
 
-$$ \mu := \min_{x\in\lbrace0,1\rbrace^{n}} \left\lvert c_0+\sum_{j=1}^{s}c_jT_j(x) \right\rvert > 0. $$
+$$ \mu := \min_{x\in\lbrace0,1\rbrace^{n}} \left\lvert c_0+\sum_{j=1}^{s}c_jT_j(x) \right\rvert \gt 0. $$
 
 Then
 
@@ -34,15 +34,15 @@ By the calibrated threshold-vote theorem [085_calibrated_threshold_vote_upper_bo
 
 Fix $S$ and write
 
-$$ \lambda_{\min}:=\min_{i\in S}\lambda_i>0. $$
+$$ \lambda_{\min}:=\min_{i\in S}\lambda_i\gt0. $$
 
 ### Lower endpoint
 
 First consider
 
-$$ U_S(x)=\mathbf{1}[L_S(x)>0]. $$
+$$ U_S(x)=\mathbf{1}[L_S(x)\gt0]. $$
 
-Choose small parameters $\delta>0$ and $\kappa>0$, and define
+Choose small parameters $\delta\gt0$ and $\kappa\gt0$, and define
 
 $$ B_U(x) := \delta+L_S(x)+\kappa\sum_{i\notin S}x_i. $$
 
@@ -74,7 +74,7 @@ $$ D_S(x):=\Lambda_S-L_S(x). $$
 
 Thus $D_S(x)=0$ exactly on the upper endpoint, and $D_S(x)\geq\lambda_{\min}$ otherwise.
 
-Choose small parameters $\delta>0$ and $\kappa>0$, and define
+Choose small parameters $\delta\gt0$ and $\kappa\gt0$, and define
 
 $$ B_A(x) := \delta+D_S(x)+\kappa\sum_{i\notin S}(1-x_i). $$
 
@@ -104,7 +104,7 @@ Therefore both endpoint feature types admit arbitrarily accurate one-head atom a
 
 Finally, choose for each feature $T_j$ an approximation error $\epsilon_j$ so small that
 
-$$ \sum_{j=1}^{s}\lvert c_j\rvert\epsilon_j<\mu. $$
+$$ \sum_{j=1}^{s}\lvert c_j\rvert\epsilon_j\lt\mu. $$
 
 The calibrated threshold-vote theorem then gives
 

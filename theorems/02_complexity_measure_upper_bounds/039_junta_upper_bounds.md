@@ -18,7 +18,7 @@ for $k\geq1$, and constants have $H^{\ast}(f)=0$.
 
 For $k\leq12$, the current best universal small-junta bounds are:
 
-$$ \begin{array}{c|rrrrrrrrrrrrr} k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline H^{\ast}(f)\leq & 0 & 1 & 2 & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
+$$ \begin{array}{c|rrrrrrrrrrrrr} k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \cr \hline H^{\ast}(f)\leq & 0 & 1 & 2 & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
 
 > **Interpretation.** Head complexity depends on essential variables, not ambient variables. A function of twelve essential variables embedded in a million dummy coordinates still has the twelve-bit universal bound.
 
@@ -60,7 +60,7 @@ $$ H^{\ast}(f_{\mathrm{ess}}) \leq \left\lceil\frac{2^k-1}{k}\right\rceil. $$
 
 The displayed table is exactly:
 
-$$ \begin{array}{c|rrrrrrrrrr} k & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline \left\lceil(2^k-1)/k\right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
+$$ \begin{array}{c|rrrrrrrrrr} k & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \cr \hline \left\lceil(2^k-1)/k\right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
 
 Combining Lemmas 1 through 4 proves the statement. $\blacksquare$
 

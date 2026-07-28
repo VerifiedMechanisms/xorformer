@@ -20,7 +20,7 @@ $$ P_{35}(x,y):=\frac{1}{2}+\sum_{r\in\mathcal{R}_{35}}\sum_{j=1}^{8}S^{(35)}_{r
 
 and define $f_{35}:\lbrace0,1\rbrace^{43}\to\lbrace0,1\rbrace$ by
 
-$$ f_{35}(x,y)=1 \qquad\Longleftrightarrow\qquad P_{35}(x,y)>0. $$
+$$ f_{35}(x,y)=1 \qquad\Longleftrightarrow\qquad P_{35}(x,y)\gt0. $$
 
 Then
 
@@ -28,7 +28,7 @@ $$ \deg_{\pm}(f_{35})=2 \qquad\text{and}\qquad H^{\ast}(f_{35})\geq3. $$
 
 In particular,
 
-$$ \deg_{\pm}(f_{35})<H^{\ast}(f_{35}). $$
+$$ \deg_{\pm}(f_{35})\lt H^{\ast}(f_{35}). $$
 
 > **Interpretation.** This is a computer-certified compression of the structured $56$-bit construction in Theorem 180. Its complete description is the displayed list of $35$ row codes.
 
@@ -69,7 +69,7 @@ Suppose a real matrix $B$ has strict sign pattern $S^{(35)}$ and rank at most $6
 
 By Lemma 1, some persisted row sign is, up to negation, the full sign vector of a vector $z\in L$. Replace $z$ by $-z$ if necessary. If $b'$ is the corresponding projected row, then $z$ and $b'$ have the same strict coordinate signs. Therefore
 
-$$ \langle z,b'\rangle=\sum_{j=1}^{8}\lvert z_jb'_j\rvert>0, $$
+$$ \langle z,b'\rangle=\sum_{j=1}^{8}\lvert z_jb'_j\rvert\gt0, $$
 
 contradicting $z\in L$ and $b'\in L^{\perp}$. Hence
 
@@ -77,7 +77,7 @@ $$ \mathrm{srank}(S^{(35)})\geq7. $$
 
 ### Lemma 3. The compact function has threshold degree two
 
-The bilinear sum in $P&#95;{35}$ is integer-valued on the Boolean cube. Hence $P&#95;{35}$ is always a nonzero half-integer and strictly sign-represents $f&#95;{35}$. This proves
+The bilinear sum in $P_{35}$ is integer-valued on the Boolean cube. Hence $P_{35}$ is always a nonzero half-integer and strictly sign-represents $f_{35}$. This proves
 
 $$ \deg_{\pm}(f_{35})\leq2. $$
 
@@ -93,7 +93,7 @@ $$ H^{\ast}(f_{35})\geq3. $$
 
 Together with Lemma 3,
 
-$$ \deg_{\pm}(f_{35})=2<3\leq H^{\ast}(f_{35}). \qquad\blacksquare $$
+$$ \deg_{\pm}(f_{35})=2\lt3\leq H^{\ast}(f_{35}). \qquad\blacksquare $$
 
 ## Consequence
 

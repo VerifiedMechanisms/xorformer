@@ -16,7 +16,7 @@ $$ L_b(y) = \beta_b+\sum_{i=1}^{n-1}\alpha_{b,i}y_i \qquad (b\in\lbrace0,1\rbrac
 
 meaning
 
-$$ f_b(y)=1 \qquad\Longleftrightarrow\qquad L_b(y)>0 $$
+$$ f_b(y)=1 \qquad\Longleftrightarrow\qquad L_b(y)\gt0 $$
 
 on the $(n-1)$-cube. Let
 
@@ -40,7 +40,7 @@ $$ H^{\ast}(f)\in\lbrace0,1\rbrace. $$
 
 If they can be chosen with $t\leq1$, then
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** When the two slices across one bit are LTFs, the cost is controlled by how many affine slopes change across the split. The constant term and all unchanged slopes are free inside one affine head; each changed slope creates one mixed monomial $zy_i$.
 
@@ -52,13 +52,13 @@ $$ P(z,y):=(1-z)L_0(y)+zL_1(y). $$
 
 Then $P(0,y)=L_0(y)$ and $P(1,y)=L_1(y)$, so
 
-$$ f(z,y)=1 \qquad\Longleftrightarrow\qquad P(z,y)>0. $$
+$$ f(z,y)=1 \qquad\Longleftrightarrow\qquad P(z,y)\gt0. $$
 
 Thus $P$ sign-represents $f$.
 
 Expanding,
 
-$$ \begin{aligned} P(z,y) &=L_0(y)+z\bigl(L_1(y)-L_0(y)\bigr)\\ &= \beta_0+\sum_{i=1}^{n-1}\alpha_{0,i}y_i +z(\beta_1-\beta_0) +\sum_{i\in\Delta(L_0,L_1)}(\alpha_{1,i}-\alpha_{0,i})zy_i. \end{aligned} $$
+$$ \begin{aligned} P(z,y) &=L_0(y)+z\bigl(L_1(y)-L_0(y)\bigr)\cr &= \beta_0+\sum_{i=1}^{n-1}\alpha_{0,i}y_i +z(\beta_1-\beta_0) +\sum_{i\in\Delta(L_0,L_1)}(\alpha_{1,i}-\alpha_{0,i})zy_i. \end{aligned} $$
 
 The first three terms are affine in $(z,y)$. The only nonlinear monomials are the $t$ mixed monomials
 

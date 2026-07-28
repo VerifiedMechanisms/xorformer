@@ -42,7 +42,7 @@ $$ B_h(x)=b_{h,0}+\sum_{i=1}^{6}b_{h,i}x_i, $$
 
 with coefficient rows
 
-$$ \begin{array}{c|rrrrrrr} h & b_{h,0} & b_{h,1} & b_{h,2} & b_{h,3} & b_{h,4} & b_{h,5} & b_{h,6} \\ \hline 1 & 1 & 85 & 64 & 51 & 27 & 31 & 5 \\ 2 & 1 & 8 & 2 & 18 & 81 & 65 & 91 \\ 3 & 1 & 50 & 61 & 97 & 73 & 63 & 54 \\ 4 & 1 & 56 & 93 & 28 & 81 & 67 & 1 \\ 5 & 1 & 40 & 85 & 55 & 4 & 76 & 73 \\ 6 & 1 & 84 & 18 & 9 & 86 & 3 & 54 \\ 7 & 1 & 8 & 30 & 48 & 42 & 40 & 3 \\ 8 & 1 & 1 & 13 & 1 & 67 & 53 & 65 \\ 9 & 1 & 26 & 61 & 76 & 38 & 46 & 99 \\ 10 & 1 & 80 & 98 & 38 & 68 & 95 & 65 \\ 11 & 1 & 84 & 69 & 70 & 39 & 87 & 14. \end{array} $$
+$$ \begin{array}{c|rrrrrrr} h & b_{h,0} & b_{h,1} & b_{h,2} & b_{h,3} & b_{h,4} & b_{h,5} & b_{h,6} \cr \hline 1 & 1 & 85 & 64 & 51 & 27 & 31 & 5 \cr 2 & 1 & 8 & 2 & 18 & 81 & 65 & 91 \cr 3 & 1 & 50 & 61 & 97 & 73 & 63 & 54 \cr 4 & 1 & 56 & 93 & 28 & 81 & 67 & 1 \cr 5 & 1 & 40 & 85 & 55 & 4 & 76 & 73 \cr 6 & 1 & 84 & 18 & 9 & 86 & 3 & 54 \cr 7 & 1 & 8 & 30 & 48 & 42 & 40 & 3 \cr 8 & 1 & 1 & 13 & 1 & 67 & 53 & 65 \cr 9 & 1 & 26 & 61 & 76 & 38 & 46 & 99 \cr 10 & 1 & 80 & 98 & 38 & 68 & 95 & 65 \cr 11 & 1 & 84 & 69 & 70 & 39 & 87 & 14. \end{array} $$
 
 All coefficients are positive, so every $B_h$ is positive on the cube.
 
@@ -76,7 +76,7 @@ Therefore every multilinear $P$ has the displayed form. $\blacksquare$
 
 Let $f : \lbrace0,1\rbrace^6 \to \lbrace0,1\rbrace$. Interpolate the sign labels
 
-$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \\ -1 & \text{if } f(x)=0 \end{cases} $$
+$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \cr -1 & \text{if } f(x)=0 \end{cases} $$
 
 by a multilinear polynomial $P$ on $\lbrace0,1\rbrace^6$.
 

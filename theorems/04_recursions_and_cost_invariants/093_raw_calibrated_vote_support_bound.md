@@ -6,7 +6,7 @@ For a Boolean feature
 
 $$ T:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace, $$
 
-define $\rho(T)$ to be the least nonnegative integer $r$ such that for every $\epsilon>0$ there are one-head atoms
+define $\rho(T)$ to be the least nonnegative integer $r$ such that for every $\epsilon\gt0$ there are one-head atoms
 
 $$ \phi_1,\ldots,\phi_r $$
 
@@ -18,11 +18,11 @@ If no such $r$ exists, set $\rho(T)=\infty$.
 
 Suppose
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{s}c_jT_j(x)\gt0 $$
 
 with positive vote margin
 
-$$ \mu := \min_x \left\lvert c_0+\sum_{j=1}^{s}c_jT_j(x) \right\rvert > 0. $$
+$$ \mu := \min_x \left\lvert c_0+\sum_{j=1}^{s}c_jT_j(x) \right\rvert \gt 0. $$
 
 Then
 
@@ -54,11 +54,11 @@ Let
 
 $$ R:=\sum_{j:c_j\neq0}\rho(T_j). $$
 
-If $R=\infty$, there is nothing to prove. Assume $R<\infty$.
+If $R=\infty$, there is nothing to prove. Assume $R\lt\infty$.
 
 Choose positive tolerances $\epsilon_j$ for the features with $c_j\neq0$ so small that
 
-$$ \sum_{j:c_j\neq0}\lvert c_j\rvert\epsilon_j<\mu. $$
+$$ \sum_{j:c_j\neq0}\lvert c_j\rvert\epsilon_j\lt\mu. $$
 
 By the definition of $\rho(T_j)$, choose an approximation
 
@@ -78,7 +78,7 @@ $$ V(x):=c_0+\sum_{j=1}^{s}c_jT_j(x). $$
 
 Then
 
-$$ \begin{aligned} \lvert\widetilde V(x)-V(x)\rvert &\leq \sum_{j:c_j\neq0} \lvert c_j\rvert\lvert\Phi_j(x)-T_j(x)\rvert \\ &\leq \sum_{j:c_j\neq0}\lvert c_j\rvert\epsilon_j \\ &< \mu. \end{aligned} $$
+$$ \begin{aligned} \lvert\widetilde V(x)-V(x)\rvert &\leq \sum_{j:c_j\neq0} \lvert c_j\rvert\lvert\Phi_j(x)-T_j(x)\rvert \cr &\leq \sum_{j:c_j\neq0}\lvert c_j\rvert\epsilon_j \cr &\lt \mu. \end{aligned} $$
 
 Thus $\widetilde V$ has the same sign as $V$ at every cube point. After absorbing the constants $c_ja_{j,0}$ into the final readout constant, $\widetilde V$ is a constant plus $R$ scalar multiples of one-head atoms. Scalar multiples are still one-head atoms, by scaling the numerator parameters. Therefore the linear-fractional normal form gives
 

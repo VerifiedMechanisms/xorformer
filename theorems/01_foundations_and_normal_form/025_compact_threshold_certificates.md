@@ -58,7 +58,7 @@ $$ p := 1000003 $$
 
 gives the following determinant residues:
 
-$$ \begin{array}{c|r|r|r} n & H_n & R_n & \det \pmod p \\ \hline 3 & 3 & 1 & 517804 \\ 4 & 4 & 3 & 364478 \\ 5 & 7 & 1 & 833072 \\ 6 & 11 & 3 & 319656 \\ 7 & 19 & 1 & 831708 \\ 8 & 32 & 7 & 685472 \\ 9 & 57 & 7 & 46734 \\ 10 & 103 & 3 & 954493 \\ 11 & 187 & 1 & 163187 \\ 12 & 342 & 3 & 205507. \end{array} $$
+$$ \begin{array}{c|r|r|r} n & H_n & R_n & \det \pmod p \cr \hline 3 & 3 & 1 & 517804 \cr 4 & 4 & 3 & 364478 \cr 5 & 7 & 1 & 833072 \cr 6 & 11 & 3 & 319656 \cr 7 & 19 & 1 & 831708 \cr 8 & 32 & 7 & 685472 \cr 9 & 57 & 7 & 46734 \cr 10 & 103 & 3 & 954493 \cr 11 & 187 & 1 & 163187 \cr 12 & 342 & 3 & 205507. \end{array} $$
 
 Each residue is nonzero modulo $p$. Hence each displayed determinant is nonzero over the integers, so the selected denominator-cleared products form a basis for all real-valued functions on $\lbrace0,1\rbrace^n$.
 
@@ -72,6 +72,6 @@ for every Boolean $f : \lbrace0,1\rbrace^n \to \lbrace0,1\rbrace$ and every $n \
 
 The current determinant-threshold universal upper bounds are:
 
-$$ \begin{array}{c|rrrrrrrrrr} n & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \\ \hline \left\lceil (2^n - 1)/n \right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
+$$ \begin{array}{c|rrrrrrrrrr} n & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \cr \hline \left\lceil (2^n - 1)/n \right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
 
 This does not prove that the threshold formula holds for all $n$. It does give a compact reproducible certificate through $n=12$, and it replaces the need for separate large coefficient tables at $n=11$ and $n=12$.

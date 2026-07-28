@@ -16,7 +16,7 @@ $$ P(x,y):=\frac{1}{2}+\sum_{r\in\mathcal{R}}\sum_{j=1}^{8}S_{r,j}x_r y_j, $$
 
 and define $f_{\mathrm{HC}}:\lbrace0,1\rbrace^{56}\to\lbrace0,1\rbrace$ by
 
-$$ f_{\mathrm{HC}}(x,y)=1 \qquad\Longleftrightarrow\qquad P(x,y)>0. $$
+$$ f_{\mathrm{HC}}(x,y)=1 \qquad\Longleftrightarrow\qquad P(x,y)\gt0. $$
 
 Then
 
@@ -24,7 +24,7 @@ $$ \deg_{\pm}(f_{\mathrm{HC}})=2 \qquad\text{and}\qquad H^{\ast}(f_{\mathrm{HC}}
 
 In particular,
 
-$$ \deg_{\pm}(f_{\mathrm{HC}})<H^{\ast}(f_{\mathrm{HC}}). $$
+$$ \deg_{\pm}(f_{\mathrm{HC}})\lt H^{\ast}(f_{\mathrm{HC}}). $$
 
 > **Interpretation.** Threshold degree is not always equal to head complexity. This explicit function on $56$ bits has a quadratic sign representation, but no sum of two one-head linear-fractional atoms can realize its sign pattern.
 
@@ -90,7 +90,7 @@ $$ \mathrm{sign}(z)=\mathrm{sign}(b'_r). $$
 
 Both vectors have nonzero coordinates, so
 
-$$ \langle z,b'_r\rangle=\sum_{j=1}^{8}\lvert z_jb'_{r,j}\rvert>0. $$
+$$ \langle z,b'_r\rangle=\sum_{j=1}^{8}\lvert z_jb'_{r,j}\rvert\gt0. $$
 
 This contradicts $z\in L$ and $b'_r\in L^{\perp}$. Hence
 
@@ -104,7 +104,7 @@ $$ a=(a_1,\ldots,a_m), \qquad b=(b_1,\ldots,b_n). $$
 
 For each $i,j$, let $z^{i,j}$ be the input with $a_i=b_j=1$ and every other coordinate equal to $0$. Define its two-block singleton-slice sign matrix by
 
-$$ \Sigma_g(i,j):=\begin{cases}+1,&g(z^{i,j})=1,\\-1,&g(z^{i,j})=0.\end{cases} $$
+$$ \Sigma_g(i,j):=\begin{cases}+1,&g(z^{i,j})=1,\cr-1,&g(z^{i,j})=0.\end{cases} $$
 
 If $g$ is computable with at most two heads, then
 
@@ -116,7 +116,7 @@ $$ A(z)=c+\frac{N_1(z)}{D_1(z)}+\frac{N_2(z)}{D_2(z)}, $$
 
 where every $N_h$ and $D_h$ is affine on the Boolean cube and
 
-$$ D_1(z)>0, \qquad D_2(z)>0. $$
+$$ D_1(z)\gt0, \qquad D_2(z)\gt0. $$
 
 Clearing the positive denominators preserves the sign. The resulting quadratic polynomial is
 
@@ -182,7 +182,7 @@ $$ H^{\ast}(f_{\mathrm{HC}})\geq3. $$
 
 Together with Lemma 4,
 
-$$ \deg_{\pm}(f_{\mathrm{HC}})=2<3\leq H^{\ast}(f_{\mathrm{HC}}). \qquad\blacksquare $$
+$$ \deg_{\pm}(f_{\mathrm{HC}})=2\lt3\leq H^{\ast}(f_{\mathrm{HC}}). \qquad\blacksquare $$
 
 ## Consequence
 
