@@ -239,6 +239,8 @@ $$ H^{\ast}(f) \leq M_{+}(f) - 1. $$
 
 This gives a candidate upper-bound invariant for the first core question in [../problem_statement.md](../../problem_statement.md).
 
+**Update.** The later note [013_positive_projection_sign_changes.md](013_positive_projection_sign_changes.md) sharpens this bound. For a fixed positive weighted sum $t$, the head count can be bounded by the number of label changes along the ordered image of $t$, not by the total number of nonzero image levels.
+
 ### Corollary 5. Every symmetric Boolean function has head complexity at most n
 
 If $f$ is symmetric, take
