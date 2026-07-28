@@ -16,7 +16,7 @@ $$ f(x):=G(L(x)). $$
 
 Write the distinct image values as
 
-$$ z_1<z_2<\cdots<z_M, $$
+$$ z_1\lt z_2\lt\cdots\lt z_M, $$
 
 and let $C_L(G)$ be the number of sign changes in the sequence
 
@@ -52,7 +52,7 @@ $$ G(z_j)\neq G(z_{j+1}), $$
 
 choose a cutpoint $\tau_j$ satisfying
 
-$$ z_j<\tau_j<z_{j+1}. $$
+$$ z_j\lt\tau_j\lt z_{j+1}. $$
 
 Let $J$ be the set of these change indices. Define
 
@@ -60,15 +60,15 @@ $$ Q(t):=\sigma\prod_{j\in J}(t-\tau_j), $$
 
 where $\sigma\in\lbrace-1,1\rbrace$ is chosen so that
 
-$$ Q(z_1)>0 \qquad\Longleftrightarrow\qquad G(z_1)=1. $$
+$$ Q(z_1)\gt0 \qquad\Longleftrightarrow\qquad G(z_1)=1. $$
 
 As $t$ passes through the ordered image values, the sign of $Q(t)$ flips exactly at the selected cutpoints. Therefore
 
-$$ G(z_m)=1 \qquad\Longleftrightarrow\qquad Q(z_m)>0 $$
+$$ G(z_m)=1 \qquad\Longleftrightarrow\qquad Q(z_m)\gt0 $$
 
 for every $m$. Consequently,
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad Q(L(x))>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad Q(L(x))\gt0. $$
 
 Thus $Q(L(x))$ is a sign-representing polynomial for $f$ of degree at most $C$ in the affine statistic $L$.
 
@@ -96,11 +96,11 @@ $$ H^{\ast}(f)=0. $$
 
 If $C=1$, then $G$ changes once along the ordered image. Hence there is a cutpoint $\tau$ such that either
 
-$$ f(x)=\mathbf{1}[L(x)>\tau] $$
+$$ f(x)=\mathbf{1}[L(x)\gt\tau] $$
 
 or
 
-$$ f(x)=\mathbf{1}[L(x)<\tau]. $$
+$$ f(x)=\mathbf{1}[L(x)\lt\tau]. $$
 
 This is a nonconstant LTF, so the one-head characterization [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md) gives
 

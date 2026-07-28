@@ -24,9 +24,9 @@ It remains to prove the matching upper bound.
 
 Work on the sign cube. Let $s:\lbrace-1,1\rbrace^5\to\lbrace-1,1\rbrace$ be the target sign table, let $\Phi(z)$ contain the $16$ Fourier monomials of degree at most two, and define the open sign cone
 
-$$ \mathcal{C}_s=\left\lbrace\theta:s(z)\langle\Phi(z),\theta\rangle>0\text{ for every }z\in\lbrace-1,1\rbrace^5\right\rbrace. $$
+$$ \mathcal{C}_s=\left\lbrace\theta:s(z)\langle\Phi(z),\theta\rangle\gt0\text{ for every }z\in\lbrace-1,1\rbrace^5\right\rbrace. $$
 
-Perturb a point of $\mathcal{C}_s$ so that its ten quadratic coefficients are nonzero, and color the edges of $K_5$ by their signs. The rank-four matrix-completion argument in [the universal two-head reduction](../../artifacts/calculations/n5_universal_h2_theorem_lead.md) proves that a monochromatic triangle gives a factorization
+Perturb a point of $\mathcal{C}_s$ so that its ten quadratic coefficients are nonzero, and color the edges of $K_5$ by their signs. The rank-four matrix-completion argument in [the universal two-head reduction](https://github.com/karthikviswanathn/how-many-attention-heads-xor/blob/autoresearch/artifacts/calculations/n5_universal_h2_theorem_lead.md) proves that a monochromatic triangle gives a factorization
 
 $$ q=AD+CB $$
 

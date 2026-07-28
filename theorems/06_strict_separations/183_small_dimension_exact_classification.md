@@ -46,7 +46,7 @@ $$ M(f):=\sum_{x=0}^{15}f(x)2^x. $$
 
 Output complementation sends $M(f)$ to $65535-M(f)$. Hence every complement pair has exactly one representative with
 
-$$ 0\leq M(f)<32768. $$
+$$ 0\leq M(f)\lt32768. $$
 
 The certificate archive [small_n4_exact_classification_certificate.npz](../../artifacts/calculations/small_n4_exact_classification_certificate.npz) contains the following integral data for these $32768$ representatives.
 
@@ -74,7 +74,7 @@ $$ P(x)=\langle a,V^{(2)}(x)\rangle. $$
 
 Then every number $\lambda(x)\sigma(x)P(x)$ is nonnegative, and at least one is positive. Therefore
 
-$$ 0<\sum_{x=0}^{15}\lambda(x)\sigma(x)P(x)=\left\langle a,\sum_{x=0}^{15}\lambda(x)\sigma(x)V^{(2)}(x)\right\rangle=0, $$
+$$ 0\lt\sum_{x=0}^{15}\lambda(x)\sigma(x)P(x)=\left\langle a,\sum_{x=0}^{15}\lambda(x)\sigma(x)V^{(2)}(x)\right\rangle=0, $$
 
 a contradiction. Thus every one of these $3981$ representatives has threshold degree at least $3$.
 
@@ -92,7 +92,7 @@ $$ H^{\ast}(f)=\deg_{\pm}(f)=3. $$
 
 The only obstructed representative not covered by three heads is the parity mask
 
-$$ \sum_{\substack{0\leq x<16\\ \lvert x\rvert\text{ odd}}}2^x=27030. $$
+$$ \sum_{\substack{0\leq x\lt16\cr \lvert x\rvert\text{ odd}}}2^x=27030. $$
 
 The exact parity theorem [008_exact_parity_complexity.md](../01_foundations_and_normal_form/008_exact_parity_complexity.md) gives
 
@@ -112,7 +112,7 @@ $$ H^{\ast}(f)=\deg_{\pm}(f). \qquad\blacksquare $$
 
 The exact cumulative and level counts on four bits are
 
-$$ \begin{array}{c|rrrrr} d & 0 & 1 & 2 & 3 & 4 \\ \hline \lvert\lbrace f:\deg_{\pm}(f)=d\rbrace\rvert & 2 & 1880 & 55692 & 7960 & 2. \end{array} $$
+$$ \begin{array}{c|rrrrr} d & 0 & 1 & 2 & 3 & 4 \cr \hline \lvert\lbrace f:\deg_{\pm}(f)=d\rbrace\rvert & 2 & 1880 & 55692 & 7960 & 2. \end{array} $$
 
 The certificate directly verifies the cumulative degree-at-most-two count
 

@@ -4,7 +4,7 @@
 
 Let $k\geq1$, let $z\in\lbrace0,1\rbrace^{k}$ be raw bits, and let $y\in\lbrace0,1\rbrace^{m}$ be the remaining variables. A common positive-statistic certificate for $f(z,y)$ is a positive statistic
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 such that every raw slice factors through $t$:
 
@@ -12,7 +12,7 @@ $$ f(a,y)=F_a(t(y)) \qquad \text{for every }a\in\lbrace0,1\rbrace^{k}. $$
 
 Write the image of $t$ as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 For such a certificate and for positive raw weights $\rho_1,\ldots,\rho_k$ with distinct subset sums, order the raw assignments as
 

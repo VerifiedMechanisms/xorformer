@@ -14,7 +14,7 @@ Consequently,
 
 $$ H^{\ast}(\mathrm{NEQ}_m)=2 $$
 
-for $\mathrm{NEQ}&#95;m:=1-\mathrm{EQ}&#95;m$.
+for $\mathrm{NEQ}_m:=1-\mathrm{EQ}_m$.
 
 > **Interpretation.** Equality is not a gap example. Although the affine-free sparsity route only gives $H^{\ast}(\mathrm{EQ}_m)\leq m+1$, a two-head rational score compares the binary encodings of the two strings directly.
 
@@ -38,13 +38,13 @@ Consider
 
 $$ S(x,y):=\frac{A_1}{B_1}+\frac{A_2}{B_2}. $$
 
-Since $B_1,B_2>0$, the sign and ordering of $S$ are controlled by the cleared numerator
+Since $B_1,B_2\gt0$, the sign and ordering of $S$ are controlled by the cleared numerator
 
 $$ P:=A_1B_2+A_2B_1. $$
 
 Expanding gives
 
-$$ \begin{aligned} P &= 4X(1+X+2Y)+(1-5X-Y)(1+X+Y) \\ &= 1-(X-Y)^2. \end{aligned} $$
+$$ \begin{aligned} P &= 4X(1+X+2Y)+(1-5X-Y)(1+X+Y) \cr &= 1-(X-Y)^2. \end{aligned} $$
 
 Let
 
@@ -64,7 +64,7 @@ $$ \theta:=\frac{1}{2(1+2N)(1+3N)} $$
 
 computes $\mathrm{EQ}_m$. Equivalently,
 
-$$ S(x,y)-\theta>0 \qquad\Longleftrightarrow\qquad x=y. $$
+$$ S(x,y)-\theta\gt0 \qquad\Longleftrightarrow\qquad x=y. $$
 
 Both $B_1$ and $B_2$ are positive affine functions with positive variable coefficients, so $A_1/B_1$ and $A_2/B_2$ are one-head atoms by the affine-over-positive-affine atom lemma [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md). Hence
 

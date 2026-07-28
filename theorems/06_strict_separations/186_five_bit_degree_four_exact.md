@@ -34,7 +34,7 @@ Every nonzero pointed weak-separator cone has an extreme ray vanishing on five a
 
 Coordinate permutations, simultaneous complementation of all five inputs, and output complementation reduce these normals to $65$ orbits. Their zero-set sizes are distributed as follows.
 
-$$ \begin{array}{c|rrrrrr} \text{zero-set size} & 5 & 7 & 8 & 10 & 12 & 16 \\ \hline \text{number of orbits} & 31 & 11 & 12 & 3 & 5 & 3. \end{array} $$
+$$ \begin{array}{c|rrrrrr} \text{zero-set size} & 5 & 7 & 8 & 10 & 12 & 16 \cr \hline \text{number of orbits} & 31 & 11 & 12 & 3 & 5 & 3. \end{array} $$
 
 The exact enumeration contains $4475540$ weak affine extensions. Two twist back to parity and its complement, which have threshold degree five. The remaining
 

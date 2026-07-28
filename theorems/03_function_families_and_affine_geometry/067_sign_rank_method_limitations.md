@@ -12,7 +12,7 @@ $$ H^{\ast}(f)\geq h+1 $$
 
 only if there is a partition $I\sqcup J=\lbrace1,\ldots,n\rbrace$ such that
 
-$$ 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace} > \sum_{r=0}^{h}\binom{n}{r}. $$
+$$ 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace} \gt \sum_{r=0}^{h}\binom{n}{r}. $$
 
 Consequently, this sign-rank route cannot certify
 
@@ -38,11 +38,11 @@ $$ \mathrm{srank}_{I,J}(f) \leq 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbra
 
 The sign-rank lower-bound lemma can rule out $H$ heads only if
 
-$$ \mathrm{srank}_{I,J}(f) > \sum_{r=0}^{H}\binom{n}{r}. $$
+$$ \mathrm{srank}_{I,J}(f) \gt \sum_{r=0}^{H}\binom{n}{r}. $$
 
 Combining the two displays, any successful sign-rank proof ruling out $h$ heads must have
 
-$$ 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace} > \sum_{r=0}^{h}\binom{n}{r}. $$
+$$ 2^{\min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace} \gt \sum_{r=0}^{h}\binom{n}{r}. $$
 
 This proves the first claim.
 
@@ -52,7 +52,7 @@ $$ \min\lbrace\lvert I\rvert,\lvert J\rvert\rbrace\leq\left\lfloor\frac{n}{2}\ri
 
 so a necessary condition for proving $H^{\ast}(f)\geq3$ by this route is
 
-$$ 2^{\lfloor n/2\rfloor} > 1+n+\binom{n}{2}. $$
+$$ 2^{\lfloor n/2\rfloor} \gt 1+n+\binom{n}{2}. $$
 
 For every $n\leq13$,
 
@@ -62,6 +62,6 @@ Thus no partition sign-rank argument of the form in [028_restrictions_and_sign_r
 
 ## Consequence
 
-The four-pair endpoint families $\mathrm{INT}&#95;4$, $\mathrm{DISJ}&#95;4$, $\mathrm{SUB}&#95;4$, $\mathrm{NCON}&#95;4$, $\mathrm{EQ}&#95;4$, and $\mathrm{NEQ}&#95;4$ live on eight input bits. The degree-based rank bound cannot distinguish two heads from three heads for any eight-bit function, regardless of the partition.
+The four-pair endpoint families $\mathrm{INT}_4$, $\mathrm{DISJ}_4$, $\mathrm{SUB}_4$, $\mathrm{NCON}_4$, $\mathrm{EQ}_4$, and $\mathrm{NEQ}_4$ live on eight input bits. The degree-based rank bound cannot distinguish two heads from three heads for any eight-bit function, regardless of the partition.
 
 This is not a limitation of partition sign-rank itself. [182_hamming_threshold_strict_separation.md](../06_strict_separations/182_hamming_threshold_strict_separation.md) uses the exact two-head cleared-score factorization to prove partition sign-rank at most $6$, then gives a twelve-bit partition matrix with sign-rank at least $7$.

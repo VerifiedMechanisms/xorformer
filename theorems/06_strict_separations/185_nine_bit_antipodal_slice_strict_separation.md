@@ -12,7 +12,7 @@ $$ Q(x,y):=S(y)T(x)-3D(x,y). $$
 
 Define $f_9:\lbrace-1,1\rbrace^9\to\lbrace0,1\rbrace$ by
 
-$$ f_9(x,y)=1 \qquad\Longleftrightarrow\qquad Q(x,y)>0. $$
+$$ f_9(x,y)=1 \qquad\Longleftrightarrow\qquad Q(x,y)\gt0. $$
 
 Then
 
@@ -20,7 +20,7 @@ $$ \deg_{\pm}(f_9)=2 \qquad\text{and}\qquad H^{\ast}(f_9)\geq3. $$
 
 Consequently,
 
-$$ \deg_{\pm}(f_9)<H^{\ast}(f_9). $$
+$$ \deg_{\pm}(f_9)\lt H^{\ast}(f_9). $$
 
 > **Interpretation.** Five antipodal pairs of five-bit inputs force a nonsingular $5\times5$ block in every quadratic sign representation. A cleared two-head score can have block rank at most four.
 
@@ -42,7 +42,7 @@ $$ S=5-2B, \qquad T=5-2A, \qquad D=5-2(A+B)+4C. $$
 
 Therefore
 
-$$ \begin{aligned} Q &= (5-2B)(5-2A)-3\bigl(5-2(A+B)+4C\bigr) \\ &=2+4\bigl(2-A-B+AB-3C\bigr). \end{aligned} $$
+$$ \begin{aligned} Q &= (5-2B)(5-2A)-3\bigl(5-2(A+B)+4C\bigr) \cr &=2+4\bigl(2-A-B+AB-3C\bigr). \end{aligned} $$
 
 Thus every value of $Q$ is congruent to $2$ modulo $4$. In particular, $Q$ never vanishes and is a strict quadratic sign representation of $f_9$.
 
@@ -106,15 +106,15 @@ $$ \Delta_j(x)=2\ell(x)^{\top}C_Pv^{(j)}. $$
 
 Write $a^{(j)}:=2C_Pv^{(j)}$. Lemma 2 and strict sign agreement imply
 
-$$ \Delta_0(x)>0 \quad\text{for every }x, \qquad \mathrm{sgn}(\Delta_j(x))=x_j \quad\text{for }1\leq j\leq4. $$
+$$ \Delta_0(x)\gt0 \quad\text{for every }x, \qquad \mathrm{sgn}(\Delta_j(x))=x_j \quad\text{for }1\leq j\leq4. $$
 
 The first condition gives
 
-$$ a^{(0)}_0>\sum_{i=1}^{4}\left|a^{(0)}_i\right|. $$
+$$ a^{(0)}_0\gt\sum_{i=1}^{4}\left|a^{(0)}_i\right|. $$
 
 For $1\leq j\leq4$, multiply $\Delta_j(x)$ by $x_j$. The four signs $x_j$ and $x_ix_j$ for $i\neq j$ vary independently as $x$ ranges over the cube. Hence
 
-$$ a^{(j)}_j>\left|a^{(j)}_0\right|+\sum_{\substack{1\leq i\leq4\\i\neq j}}\left|a^{(j)}_i\right|. $$
+$$ a^{(j)}_j\gt\left|a^{(j)}_0\right|+\sum_{\substack{1\leq i\leq4\cr i\neq j}}\left|a^{(j)}_i\right|. $$
 
 Thus the matrix
 
@@ -130,9 +130,9 @@ If two heads computed $f_9$, Lemma 3 would give a strict quadratic sign represen
 
 $$ H^{\ast}(f_9)\geq3. $$
 
-Lemma 1 gives $\deg&#95;{\pm}(f&#95;9)\leq2$. An affine sign representation would have cross-block rank at most one, contradicting Lemma 4. Hence $\deg&#95;{\pm}(f&#95;9)\geq2$, and therefore
+Lemma 1 gives $\deg_{\pm}(f_9)\leq2$. An affine sign representation would have cross-block rank at most one, contradicting Lemma 4. Hence $\deg_{\pm}(f_9)\geq2$, and therefore
 
-$$ \deg_{\pm}(f_9)=2<3\leq H^{\ast}(f_9). \qquad\blacksquare $$
+$$ \deg_{\pm}(f_9)=2\lt3\leq H^{\ast}(f_9). \qquad\blacksquare $$
 
 ## Exact verification
 

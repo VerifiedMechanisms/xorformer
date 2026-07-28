@@ -14,21 +14,21 @@ $$ R(x)=\sum_{S\in\mathcal{A}}c_S\chi_S(x) $$
 
 sign-represents $f$, meaning
 
-$$ q(x)R(x)>0 $$
+$$ q(x)R(x)\gt0 $$
 
 for every $x\in\lbrace0,1\rbrace^n$.
 
 Define $a_1(R)=1$ if some active set of size one has a nonzero coefficient, and define $a_1(R)=0$ otherwise. Then
 
-$$ H^{\ast}(f) \leq a_1(R)+\sum_{\substack{S\in\mathcal{A}\\ \lvert S\rvert\geq2,\ c_S\neq0}}\lvert S\rvert. $$
+$$ H^{\ast}(f) \leq a_1(R)+\sum_{\substack{S\in\mathcal{A}\cr \lvert S\rvert\geq2,\ c_S\neq0}}\lvert S\rvert. $$
 
 In particular, if every active nonconstant set has size at most $d$, there are $m_1$ active singleton sets, and there are $m_{\geq2}$ other active nonconstant sets, then
 
-$$ H^{\ast}(f)\leq\mathbf{1}[m_1>0]+dm_{\geq2}. $$
+$$ H^{\ast}(f)\leq\mathbf{1}[m_1\gt0]+dm_{\geq2}. $$
 
 As a Fourier-tail corollary, if
 
-$$ \left\lVert q-\sum_{S\in\mathcal{A}}\widehat q(S)\chi_S \right\rVert_{\infty} <1, $$
+$$ \left\lVert q-\sum_{S\in\mathcal{A}}\widehat q(S)\chi_S \right\rVert_{\infty} \lt1, $$
 
 then the same upper bound holds.
 
@@ -38,11 +38,11 @@ then the same upper bound holds.
 
 Let
 
-$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^n}q(x)R(x)>0. $$
+$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^n}q(x)R(x)\gt0. $$
 
 First collect the degree-zero and degree-one part:
 
-$$ R_{\mathrm{aff}}(x):=c_{\varnothing}+\sum_{\substack{S\in\mathcal A\\\lvert S\rvert=1}}c_S\chi_S(x), $$
+$$ R_{\mathrm{aff}}(x):=c_{\varnothing}+\sum_{\substack{S\in\mathcal A\cr\lvert S\rvert=1}}c_S\chi_S(x), $$
 
 where absent coefficients are interpreted as zero. This is affine in $x$. If it is nonconstant, choose the strictly positive affine denominator
 
@@ -58,21 +58,21 @@ Extend every atom in this score to the remaining dummy variables by giving each 
 
 There are only finitely many components. Choose $\varepsilon$ and all dummy weights small enough that the sum of their uniform errors is less than $\Delta/2$. Add all the extended scores. The linear-fractional normal form [010_linear_fractional_normal_form.md](../01_foundations_and_normal_form/010_linear_fractional_normal_form.md) realizes this finite sum by concatenating its one-head atoms. The resulting score $\widetilde R$ uses
 
-$$ a_1(R)+\sum_{\substack{S\in\mathcal{A}\\ \lvert S\rvert\geq2,\ c_S\neq0}}\lvert S\rvert $$
+$$ a_1(R)+\sum_{\substack{S\in\mathcal{A}\cr \lvert S\rvert\geq2,\ c_S\neq0}}\lvert S\rvert $$
 
 heads and satisfies
 
-$$ \lvert\widetilde R(x)-R(x)\rvert<\frac{\Delta}{2} $$
+$$ \lvert\widetilde R(x)-R(x)\rvert\lt\frac{\Delta}{2} $$
 
 for every cube point. Hence
 
-$$ q(x)\widetilde R(x)>0 $$
+$$ q(x)\widetilde R(x)\gt0 $$
 
 everywhere, which proves the first bound. If the $m_{\geq2}$ active nonsingleton sets have size at most $d$, their total parity cost is at most $dm_{\geq2}$, while all singleton terms cost at most one additional head.
 
 Finally, suppose
 
-$$ \left\lVert q-\sum_{S\in\mathcal{A}}\widehat q(S)\chi_S \right\rVert_{\infty} <1. $$
+$$ \left\lVert q-\sum_{S\in\mathcal{A}}\widehat q(S)\chi_S \right\rVert_{\infty} \lt1. $$
 
 Let
 
@@ -80,9 +80,9 @@ $$ R_{\mathcal{A}}(x):=\sum_{S\in\mathcal{A}}\widehat q(S)\chi_S(x). $$
 
 Then for every $x$,
 
-$$ \lvert q(x)-R_{\mathcal{A}}(x)\rvert<1. $$
+$$ \lvert q(x)-R_{\mathcal{A}}(x)\rvert\lt1. $$
 
-Since $q(x)\in\lbrace-1,1\rbrace$, this implies $q(x)R_{\mathcal{A}}(x)>0$. Hence $R_{\mathcal{A}}$ sign-represents $f$, and the first part applies. $\blacksquare$
+Since $q(x)\in\lbrace-1,1\rbrace$, this implies $q(x)R_{\mathcal{A}}(x)\gt0$. Hence $R_{\mathcal{A}}$ sign-represents $f$, and the first part applies. $\blacksquare$
 
 ## Consequence
 
@@ -90,7 +90,7 @@ The Fourier-tail threshold-degree certificate [031_fourier_tail_threshold_degree
 
 For a degree $d$ Fourier truncation supported on $\mathcal{A}$,
 
-$$ H^{\ast}(f) \leq a_1(R_{\mathcal A})+\sum_{\substack{S\in\mathcal{A}\\ \lvert S\rvert\geq2,\ \widehat q(S)\neq0}}\lvert S\rvert, $$
+$$ H^{\ast}(f) \leq a_1(R_{\mathcal A})+\sum_{\substack{S\in\mathcal{A}\cr \lvert S\rvert\geq2,\ \widehat q(S)\neq0}}\lvert S\rvert, $$
 
 which can be much smaller than both the monomial-expansion cost and the uniform degree-only upper bound
 

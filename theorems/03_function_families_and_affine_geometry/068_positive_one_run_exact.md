@@ -8,7 +8,7 @@ $$ f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace. $$
 
 Suppose there is an injective positive weighted sum
 
-$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i>0, $$
+$$ t(x)=\sum_{i=1}^{n}\lambda_i x_i, \qquad \lambda_i\gt0, $$
 
 such that one label class of $f$ is a single contiguous block in the ordering of the cube by $t$.
 
@@ -18,7 +18,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The first nontrivial positive-run case is exactly solved. If the cheaper label class clusters into one interval along a positive ordering, the function is an affine slab.
 
@@ -36,13 +36,13 @@ $$ f(x^{(j)})=1 \qquad\Longleftrightarrow\qquad a\leq j\leq b. $$
 
 Because $t$ is injective, choose real numbers $\alpha,\beta$ with
 
-$$ t(x^{(a-1)})<\alpha<t(x^{(a)}) $$
+$$ t(x^{(a-1)})\lt\alpha\lt t(x^{(a)}) $$
 
-if $a>0$, and choose $\alpha<t(x^{(0)})$ if $a=0$. Similarly, choose
+if $a\gt0$, and choose $\alpha\lt t(x^{(0)})$ if $a=0$. Similarly, choose
 
-$$ t(x^{(b)})<\beta<t(x^{(b+1)}) $$
+$$ t(x^{(b)})\lt\beta\lt t(x^{(b+1)}) $$
 
-if $b<2^n-1$, and choose $\beta>t(x^{(2^n-1)})$ otherwise.
+if $b\lt2^n-1$, and choose $\beta\gt t(x^{(2^n-1)})$ otherwise.
 
 Then
 

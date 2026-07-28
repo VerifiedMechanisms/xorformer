@@ -8,7 +8,7 @@ There is an infinite family of Boolean functions $F_n:\lbrace0,1\rbrace^{n}\to\l
 
 $$ s_{\mathrm{LTF}}(F_n)\leq2 \qquad \text{but} \qquad H^{\ast}(F_n)\geq c n $$
 
-for an absolute constant $c>0$.
+for an absolute constant $c\gt0$.
 
 The same family has LTF decision-list length at most $2$. Thus neither threshold-vote size nor LTF decision-list length is a constant-factor upper bound for $H^{\ast}$.
 
@@ -26,7 +26,7 @@ $$ H^{\ast}(F_n)\geq c n. $$
 
 The same function has a strict weighted vote over two LTF indicators:
 
-$$ F_n(x)=1 \qquad\Longleftrightarrow\qquad T_n(x)+U_n(x)-\frac{3}{2}>0. $$
+$$ F_n(x)=1 \qquad\Longleftrightarrow\qquad T_n(x)+U_n(x)-\frac{3}{2}\gt0. $$
 
 Hence
 

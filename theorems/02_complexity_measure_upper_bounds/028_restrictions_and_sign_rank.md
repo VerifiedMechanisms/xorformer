@@ -28,7 +28,7 @@ Consequently, if $f$ is a $k$-junta, then $H^{\ast}(f)$ is exactly the head comp
 
 Third, $H^{\ast}$ controls sign-rank under every input partition. Let $I\sqcup J=\lbrace1,\ldots,n\rbrace$, and write inputs as $(u,v)\in\lbrace0,1\rbrace^{I}\times\lbrace0,1\rbrace^{J}$. Let $\Sigma_f^{I,J}$ be the sign matrix
 
-$$ \Sigma_f^{I,J}(u,v) := \begin{cases} +1 & \text{if } f(u,v)=1, \\ -1 & \text{if } f(u,v)=0. \end{cases} $$
+$$ \Sigma_f^{I,J}(u,v) := \begin{cases} +1 & \text{if } f(u,v)=1, \cr -1 & \text{if } f(u,v)=0. \end{cases} $$
 
 Let $\mathrm{srank}_{I,J}(f)$ be its sign-rank, namely the minimum rank of a real matrix with the same strict sign pattern as $\Sigma_f^{I,J}$. If $f$ is nonconstant and $H=H^{\ast}(f)$, then
 
@@ -58,7 +58,7 @@ After fixing $x_i=\xi_i$ for $i\notin K$, the denominator becomes
 
 $$ \gamma_h' +\sum_{i\in K}\rho_{h,i}\alpha_h^{x_i}, \qquad \gamma_h' := \gamma_h+\sum_{i\notin K}\rho_{h,i}\alpha_h^{\xi_i}. $$
 
-Since $\gamma_h'>0$, this is again a valid atom denominator in the remaining variables. The numerator is transformed in the same way by absorbing the fixed-coordinate contributions into a new constant $\eta_h'$. Thus each restricted atom is still a one-head atom.
+Since $\gamma_h'\gt0$, this is again a valid atom denominator in the remaining variables. The numerator is transformed in the same way by absorbing the fixed-coordinate contributions into a new constant $\eta_h'$. Thus each restricted atom is still a one-head atom.
 
 Therefore the restricted score computes $g$ using at most $H^{\ast}(f)$ heads, and
 
@@ -86,17 +86,17 @@ $$ S(x) = c+\sum_{h=1}^{H}\phi_h(x), $$
 
 with
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)\gt0. $$
 
 Because the domain is finite and the inequalities are strict, there is a margin
 
-$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^k}\lvert S(x)\rvert>0. $$
+$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^k}\lvert S(x)\rvert\gt0. $$
 
 For each atom
 
 $$ \phi_h(x) = \frac{ \eta_h+\sum_{i=1}^{k}\rho_{h,i}\alpha_h^{x_i}(m_{h,i}+\delta_h x_i) }{ \gamma_h+\sum_{i=1}^{k}\rho_{h,i}\alpha_h^{x_i} }, $$
 
-extend it to the dummy variables by giving every dummy coordinate a tiny positive weight $\varepsilon>0$ and any fixed real value parameters, for instance $m_{h,j}=0$ for dummy $j$. Keep $\gamma_h,\eta_h,\alpha_h,\delta_h$ and the original active-coordinate parameters unchanged.
+extend it to the dummy variables by giving every dummy coordinate a tiny positive weight $\varepsilon\gt0$ and any fixed real value parameters, for instance $m_{h,j}=0$ for dummy $j$. Keep $\gamma_h,\eta_h,\alpha_h,\delta_h$ and the original active-coordinate parameters unchanged.
 
 For each fixed $h$, the extended atom $\phi_{h,\varepsilon}(x,y)$ converges uniformly to $\phi_h(x)$ on the finite cube as $\varepsilon\to0$. Hence
 
@@ -106,7 +106,7 @@ converges uniformly to $S(x)$.
 
 Choose $\varepsilon$ small enough that
 
-$$ \lvert S_{\varepsilon}(x,y)-S(x)\rvert<\frac{\Delta}{2} $$
+$$ \lvert S_{\varepsilon}(x,y)-S(x)\rvert\lt\frac{\Delta}{2} $$
 
 for every $(x,y)$. Then $S_{\varepsilon}(x,y)$ has the same sign as $S(x)$ for every $(x,y)$, so it computes $F$. Therefore
 
@@ -118,7 +118,7 @@ Together with the lower bound, this proves equality. $\blacksquare$
 
 Complements preserve $H^{\ast}$. If a score $S(x)$ computes $f$ by
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)>0, $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)\gt0, $$
 
 then $-S(x)$ computes $1-f$ with the same heads. Hence
 
@@ -150,7 +150,7 @@ Suppose the nonconstant function $f$ is computed with $H$ heads. Write its linea
 
 $$ S(x)=c+\sum_{h=1}^{H}\frac{N_h(x)}{D_h(x)}, $$
 
-where every $N_h,D_h$ is affine and every $D_h$ is positive on the cube. The finite set of positive inputs has a positive minimum score. Choose $\varepsilon>0$ smaller than that minimum and replace $c$ by $c-\varepsilon$. The shifted score is strictly positive on $f^{-1}(1)$ and strictly negative on $f^{-1}(0)$.
+where every $N_h,D_h$ is affine and every $D_h$ is positive on the cube. The finite set of positive inputs has a positive minimum score. Choose $\varepsilon\gt0$ smaller than that minimum and replace $c$ by $c-\varepsilon$. The shifted score is strictly positive on $f^{-1}(1)$ and strictly negative on $f^{-1}(0)$.
 
 Clearing the positive denominators gives
 
@@ -160,7 +160,7 @@ Thus the evaluation matrix of $P$ has exactly the strict sign pattern $\Sigma_f^
 
 First use only the degree bound. The polynomial $P$ has degree at most $H$. Split the variables as $(u,v)$ across $I\sqcup J$ and write
 
-$$ P(u,v)=\sum_{\substack{A\subseteq I,\ B\subseteq J\\ \lvert A\rvert+\lvert B\rvert\leq H}}c_{A,B}u_Av_B. $$
+$$ P(u,v)=\sum_{\substack{A\subseteq I,\ B\subseteq J\cr \lvert A\rvert+\lvert B\rvert\leq H}}c_{A,B}u_Av_B. $$
 
 This is a matrix factorization through the coefficient matrix $(c_{A,B})$. Therefore
 
@@ -218,7 +218,7 @@ $$ H^{\ast}(f) \geq \left\lceil\log_2\left(\mathrm{srank}_{I,J}(f)+2\right)\righ
 
 The rank cap specializes to $6$ for two heads, recovering the structural bound used in the strict-separation lemmas. This route is weaker than the counting lower bound for a random function, but it is constructive: a single explicit high-sign-rank partition matrix certifies a concrete lower bound for that function.
 
-There is a sharp size screen before attempting this route. To prove $H^{\ast}(f)>h$, the displayed inversion needs a partition sign-rank of at least
+There is a sharp size screen before attempting this route. To prove $H^{\ast}(f)\gt h$, the displayed inversion needs a partition sign-rank of at least
 
 $$ 2^{h+1}-1. $$
 
@@ -230,4 +230,4 @@ and some usable partition can exist only if
 
 $$ n\geq2h+2. $$
 
-Thus partition sign-rank is inherently a low-head lower-bound method. When $n<2h+2$, it cannot rule out $h$ heads, regardless of how accurately sign-rank is estimated.
+Thus partition sign-rank is inherently a low-head lower-bound method. When $n\lt2h+2$, it cannot rule out $h$ heads, regardless of how accurately sign-rank is estimated.

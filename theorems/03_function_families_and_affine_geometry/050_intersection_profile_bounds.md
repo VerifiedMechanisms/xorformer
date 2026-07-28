@@ -42,7 +42,7 @@ $$ H^{\ast}(f_F)\geq C(F). $$
 
 Let
 
-$$ q_k:= \begin{cases} +1 & \text{if } F(k)=1,\\ -1 & \text{if } F(k)=0. \end{cases} $$
+$$ q_k:= \begin{cases} +1 & \text{if } F(k)=1,\cr -1 & \text{if } F(k)=0. \end{cases} $$
 
 Let
 
@@ -54,7 +54,7 @@ $$ R(t):= q_0\prod_{j\in\mathcal{J}}\left(j+\frac{1}{2}-t\right). $$
 
 For an integer $k\in\lbrace0,\ldots,m\rbrace$, the factor indexed by $j$ is positive when $k\leq j$ and negative when $k\geq j+1$. Hence the sign of $R(k)$ flips exactly once for every label change crossed before $k$. Therefore
 
-$$ q_k R(k)>0 $$
+$$ q_k R(k)\gt0 $$
 
 for every $k\in\lbrace0,\ldots,m\rbrace$, so $R$ sign-represents $F$ on the intersection-size levels and has degree $C(F)$.
 
@@ -126,21 +126,21 @@ It remains to prove the lower bound for $m\geq2$. Suppose $\mathrm{INT}_m$ were 
 
 The inputs $(x,y)=(e_1,e_1)$ and $(e_2,e_2)$ are intersecting, so
 
-$$ a_1+b_1+c>0, \qquad a_2+b_2+c>0. $$
+$$ a_1+b_1+c\gt0, \qquad a_2+b_2+c\gt0. $$
 
 The inputs $(e_1,e_2)$ and $(e_2,e_1)$ are disjoint, so
 
-$$ a_1+b_2+c<0, \qquad a_2+b_1+c<0. $$
+$$ a_1+b_2+c\lt0, \qquad a_2+b_1+c\lt0. $$
 
 Adding the first two inequalities gives
 
-$$ a_1+a_2+b_1+b_2+2c>0, $$
+$$ a_1+a_2+b_1+b_2+2c\gt0, $$
 
 while adding the last two gives
 
-$$ a_1+a_2+b_1+b_2+2c<0, $$
+$$ a_1+a_2+b_1+b_2+2c\lt0, $$
 
-a contradiction. Thus $\mathrm{INT}&#95;m$ is not a linear threshold function. By the one-head characterization [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md), $H^{\ast}(\mathrm{INT}&#95;m)\geq2$.
+a contradiction. Thus $\mathrm{INT}_m$ is not a linear threshold function. By the one-head characterization [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md), $H^{\ast}(\mathrm{INT}_m)\geq2$.
 
 Complement invariance from [028_restrictions_and_sign_rank.md](../02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md) gives the same lower and upper bounds for $\mathrm{DISJ}_m$. When $m=2$, the lower and upper bounds coincide. $\blacksquare$
 

@@ -36,7 +36,7 @@ $$ S(y) = c+\sum_{h=1}^{H}\phi_h(y) $$
 
 such that
 
-$$ T(y)=1 \qquad\Longleftrightarrow\qquad S(y)>0. $$
+$$ T(y)=1 \qquad\Longleftrightarrow\qquad S(y)\gt0. $$
 
 By complement invariance [028_restrictions_and_sign_rank.md](../02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md), the same head count also sign-represents $1-T$, using the score $-S$.
 
@@ -48,11 +48,11 @@ where $r(z)$ is either $z$ or $1-z$, and $U$ is either $T$ or $1-T$.
 
 Choose a score $S_U(y)$ with $H$ atoms such that
 
-$$ U(y)=1 \qquad\Longleftrightarrow\qquad S_U(y)>0. $$
+$$ U(y)=1 \qquad\Longleftrightarrow\qquad S_U(y)\gt0. $$
 
-The dummy-variable construction from [028_restrictions_and_sign_rank.md](../02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md) gives the following stronger fact: for every $\eta>0$, the same $H$ atoms can be realized on the enlarged input $(z,y)$ with a score $S_{U,\eta}(z,y)$ satisfying
+The dummy-variable construction from [028_restrictions_and_sign_rank.md](../02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md) gives the following stronger fact: for every $\eta\gt0$, the same $H$ atoms can be realized on the enlarged input $(z,y)$ with a score $S_{U,\eta}(z,y)$ satisfying
 
-$$ \lvert S_{U,\eta}(z,y)-S_U(y)\rvert<\eta \qquad \text{for all }(z,y). $$
+$$ \lvert S_{U,\eta}(z,y)-S_U(y)\rvert\lt\eta \qquad \text{for all }(z,y). $$
 
 The raw literal $r(z)$ also admits arbitrarily accurate one-head atom approximations on the enlarged cube. For $r(z)=z$, use
 
@@ -70,7 +70,7 @@ Let
 
 $$ M:=\max_{y}S_U(y). $$
 
-Since $U$ is nonconstant, $M>0$. Pick $A>0$ and $B>A M$. Consider the ideal score
+Since $U$ is nonconstant, $M\gt0$. Pick $A\gt0$ and $B\gt A M$. Consider the ideal score
 
 $$ R_{\wedge}(z,y):=A S_U(y)+B r(z)-B. $$
 
@@ -80,11 +80,11 @@ $$ R_{\wedge}(z,y)=A S_U(y), $$
 
 so its sign is the sign of $U(y)$. If $r(z)=0$, then
 
-$$ R_{\wedge}(z,y)=A S_U(y)-B\leq A M-B<0. $$
+$$ R_{\wedge}(z,y)=A S_U(y)-B\leq A M-B\lt0. $$
 
-Thus $R&#95;{\wedge}$ sign-represents $r\wedge U$ with a positive finite margin $\Delta&#95;{\wedge}$. Choose approximation errors for $S_U$ and $r$ so that
+Thus $R_{\wedge}$ sign-represents $r\wedge U$ with a positive finite margin $\Delta_{\wedge}$. Choose approximation errors for $S_U$ and $r$ so that
 
-$$ A\lvert S_{U,\eta}(z,y)-S_U(y)\rvert +B\lvert \psi_{r,\eta}(z,y)-r(z)\rvert < \frac{\Delta_{\wedge}}{2} $$
+$$ A\lvert S_{U,\eta}(z,y)-S_U(y)\rvert +B\lvert \psi_{r,\eta}(z,y)-r(z)\rvert \lt \frac{\Delta_{\wedge}}{2} $$
 
 for every $(z,y)$. Then
 
@@ -102,17 +102,17 @@ Let
 
 $$ m:=\min_{y}S_U(y). $$
 
-Since $U$ is nonconstant, $m<0$. Pick $A>0$ and $B>A(-m)$. Consider
+Since $U$ is nonconstant, $m\lt0$. Pick $A\gt0$ and $B\gt A(-m)$. Consider
 
 $$ R_{\vee}(z,y):=A S_U(y)+B r(z). $$
 
 If $r(z)=0$, then $R_{\vee}(z,y)=A S_U(y)$, so its sign is the sign of $U(y)$. If $r(z)=1$, then
 
-$$ R_{\vee}(z,y)\geq A m+B>0. $$
+$$ R_{\vee}(z,y)\geq A m+B\gt0. $$
 
-Thus $R&#95;{\vee}$ sign-represents $r\vee U$ with positive finite margin $\Delta&#95;{\vee}$. Again choose the approximation errors for $S_U$ and $r$ small enough that
+Thus $R_{\vee}$ sign-represents $r\vee U$ with positive finite margin $\Delta_{\vee}$. Again choose the approximation errors for $S_U$ and $r$ small enough that
 
-$$ A\lvert S_{U,\eta}(z,y)-S_U(y)\rvert +B\lvert \psi_{r,\eta}(z,y)-r(z)\rvert < \frac{\Delta_{\vee}}{2} $$
+$$ A\lvert S_{U,\eta}(z,y)-S_U(y)\rvert +B\lvert \psi_{r,\eta}(z,y)-r(z)\rvert \lt \frac{\Delta_{\vee}}{2} $$
 
 everywhere. Then
 

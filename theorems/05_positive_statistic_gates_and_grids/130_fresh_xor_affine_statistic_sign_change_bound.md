@@ -16,7 +16,7 @@ $$ T(y):=G(L(y)). $$
 
 Write the distinct image values as
 
-$$ \lambda_1<\lambda_2<\cdots<\lambda_M, $$
+$$ \lambda_1\lt\lambda_2\lt\cdots\lt\lambda_M, $$
 
 and let $C$ be the number of sign changes in the sequence
 
@@ -24,7 +24,7 @@ $$ G(\lambda_1),G(\lambda_2),\ldots,G(\lambda_M). $$
 
 Define
 
-$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\\ 2C & \text{if } C \text{ is odd}. \end{cases} $$
+$$ D_{\oplus}(C):= \begin{cases} 2C+1 & \text{if } C \text{ is even},\cr 2C & \text{if } C \text{ is odd}. \end{cases} $$
 
 Then:
 
@@ -46,9 +46,9 @@ and the same upper bound holds for XNOR.
 
 ## Proof
 
-Choose $B>0$ so large that
+Choose $B\gt0$ so large that
 
-$$ B>\lambda_M-\lambda_1, $$
+$$ B\gt\lambda_M-\lambda_1, $$
 
 and define the affine statistic on $(z,y)$
 
@@ -56,7 +56,7 @@ $$ M_B(z,y):=L(y)+Bz. $$
 
 The image values of $M_B$ are ordered as
 
-$$ \lambda_1<\cdots<\lambda_M<B+\lambda_1<\cdots<B+\lambda_M. $$
+$$ \lambda_1\lt\cdots\lt\lambda_M\lt B+\lambda_1\lt\cdots\lt B+\lambda_M. $$
 
 Define $H:\mathrm{Im}(M_B)\to\lbrace0,1\rbrace$ by
 

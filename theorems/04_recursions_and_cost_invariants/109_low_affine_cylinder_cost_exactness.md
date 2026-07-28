@@ -8,7 +8,7 @@ $$ \mathrm{actc}(f)\leq2, $$
 
 then
 
-$$ H^{\ast}(f) = \begin{cases} 0, & \text{if } f \text{ is constant},\\ 1, & \text{if } f \text{ is a nonconstant LTF},\\ 2, & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0, & \text{if } f \text{ is constant},\cr 1, & \text{if } f \text{ is a nonconstant LTF},\cr 2, & \text{otherwise}. \end{cases} $$
 
 In particular, every nonconstant non-LTF with $\mathrm{actc}(f)\leq2$ is exactly two-head.
 

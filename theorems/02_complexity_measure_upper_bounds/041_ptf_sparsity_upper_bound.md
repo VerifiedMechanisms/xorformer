@@ -12,7 +12,7 @@ $$ P(x)=a_{\varnothing}+\sum_{\varnothing\neq S\subseteq\lbrace1,\ldots,n\rbrace
 
 that sign-represents $f$, meaning
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad P(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad P(x)\gt0 $$
 
 for every $x\in\lbrace0,1\rbrace^n$.
 
@@ -32,9 +32,9 @@ We first show that one head can approximate any nonconstant monomial with arbitr
 
 ### Lemma 1. One head approximates a signed monotone monomial
 
-Fix a nonempty set $S\subseteq\lbrace1,\ldots,n\rbrace$, a coefficient $a\in\mathbb{R}$, and a tolerance $\varepsilon>0$. There is a one-head atom $\phi_{S,a,\varepsilon}$ such that
+Fix a nonempty set $S\subseteq\lbrace1,\ldots,n\rbrace$, a coefficient $a\in\mathbb{R}$, and a tolerance $\varepsilon\gt0$. There is a one-head atom $\phi_{S,a,\varepsilon}$ such that
 
-$$ \left\lvert \phi_{S,a,\varepsilon}(x)-a q_S(x) \right\rvert < \varepsilon $$
+$$ \left\lvert \phi_{S,a,\varepsilon}(x)-a q_S(x) \right\rvert \lt \varepsilon $$
 
 for every $x\in\lbrace0,1\rbrace^n$.
 
@@ -46,7 +46,7 @@ $$ k:=\lvert S\rvert, \qquad d_S(x):=k-\sum_{i\in S}x_i. $$
 
 Then $d_S(x)=0$ exactly when $q_S(x)=1$, and $d_S(x)\geq1$ when $q_S(x)=0$.
 
-Choose parameters $R>0$ and $\delta>0$, and define
+Choose parameters $R\gt0$ and $\delta\gt0$, and define
 
 $$ A(x):=2a\left(\frac{1}{2}-d_S(x)\right) $$
 
@@ -80,7 +80,7 @@ $$ P(x)=a_{\varnothing}+\sum_{S\in\mathcal{M}}a_S q_S(x) $$
 
 sign-represent $f$, where $\mathcal{M}$ is a family of nonempty sets and every $a_S\neq0$. Since the cube is finite and the signs are strict,
 
-$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^n}\lvert P(x)\rvert>0. $$
+$$ \Delta:=\min_{x\in\lbrace0,1\rbrace^n}\lvert P(x)\rvert\gt0. $$
 
 If $\mathcal{M}=\varnothing$, then $P$ is constant-sign and $f$ is constant, so $H^{\ast}(f)=0$.
 
@@ -90,7 +90,7 @@ $$ \varepsilon:=\frac{\Delta}{2\lvert\mathcal{M}\rvert} $$
 
 to choose a one-head atom $\phi_S$ satisfying
 
-$$ \lvert \phi_S(x)-a_S q_S(x)\rvert<\varepsilon $$
+$$ \lvert \phi_S(x)-a_S q_S(x)\rvert\lt\varepsilon $$
 
 for every cube point. Define
 
@@ -98,7 +98,7 @@ $$ \widetilde{P}(x):= a_{\varnothing}+\sum_{S\in\mathcal{M}}\phi_S(x). $$
 
 Then
 
-$$ \lvert \widetilde{P}(x)-P(x)\rvert \leq \sum_{S\in\mathcal{M}} \lvert \phi_S(x)-a_S q_S(x)\rvert < \frac{\Delta}{2} $$
+$$ \lvert \widetilde{P}(x)-P(x)\rvert \leq \sum_{S\in\mathcal{M}} \lvert \phi_S(x)-a_S q_S(x)\rvert \lt \frac{\Delta}{2} $$
 
 for every $x$. Therefore $\widetilde{P}$ has the same sign as $P$ on the whole cube.
 

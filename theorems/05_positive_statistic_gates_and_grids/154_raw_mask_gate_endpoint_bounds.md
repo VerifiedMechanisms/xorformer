@@ -4,11 +4,11 @@
 
 Let
 
-$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $C$ be the sign-change count of $F$ along the image
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Put
 
@@ -24,7 +24,7 @@ $$ A(z,y):=R(z)\wedge T(y), $$
 
 we have
 
-$$ H^{\ast}(A)\leq \begin{cases} r_1C, & e_0=e_1=0,\\ r_1C+C_R, & e_0=e_1=1,\\ r_1(C+1), & e_0\neq e_1. \end{cases} $$
+$$ H^{\ast}(A)\leq \begin{cases} r_1C, & e_0=e_1=0,\cr r_1C+C_R, & e_0=e_1=1,\cr r_1(C+1), & e_0\neq e_1. \end{cases} $$
 
 For the disjunction
 
@@ -32,7 +32,7 @@ $$ O(z,y):=R(z)\vee T(y), $$
 
 we have
 
-$$ H^{\ast}(O)\leq \begin{cases} r_0C, & e_0=e_1=1,\\ r_0C+C_R, & e_0=e_1=0,\\ r_0(C+1), & e_0\neq e_1. \end{cases} $$
+$$ H^{\ast}(O)\leq \begin{cases} r_0C, & e_0=e_1=1,\cr r_0C+C_R, & e_0=e_1=0,\cr r_0(C+1), & e_0\neq e_1. \end{cases} $$
 
 For the raw-mask XOR
 
@@ -40,7 +40,7 @@ $$ X(z,y):=R(z)\oplus T(y), $$
 
 we have
 
-$$ H^{\ast}(X)\leq \begin{cases} 2^k C+C_R, & e_0=e_1,\\ 2^k(C+1)+C_R, & e_0\neq e_1. \end{cases} $$
+$$ H^{\ast}(X)\leq \begin{cases} 2^k C+C_R, & e_0=e_1,\cr 2^k(C+1)+C_R, & e_0\neq e_1. \end{cases} $$
 
 > **Interpretation.** Common raw-mask gates pay for the number of raw slices where the feature is active, and their boundary terms collapse to raw support size or raw positive-order variation.
 

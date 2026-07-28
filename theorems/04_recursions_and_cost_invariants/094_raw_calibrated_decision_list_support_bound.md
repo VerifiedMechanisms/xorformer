@@ -24,7 +24,7 @@ where $\mathrm{eafs}(T_j)$ is the exact affine-free support cost of the unique m
 
 By the calibrated decision-list theorem [090_calibrated_decision_list_upper_bound.md](090_calibrated_decision_list_upper_bound.md), every decision list with tests $T_1,\ldots,T_L$ has a strict weighted-vote representation
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{L}c_jT_j(x)>0 $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad c_0+\sum_{j=1}^{L}c_jT_j(x)\gt0 $$
 
 with positive margin on the Boolean cube.
 

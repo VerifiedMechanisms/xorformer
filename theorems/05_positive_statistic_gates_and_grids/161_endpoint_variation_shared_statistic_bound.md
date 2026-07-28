@@ -4,7 +4,7 @@
 
 Use the setup of Theorem 158. Thus every raw slice factors through one positive statistic:
 
-$$ f(a,y)=F_a(t(y)), \qquad t(y)=\sum_i\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ f(a,y)=F_a(t(y)), \qquad t(y)=\sum_i\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Let $C_a$ be the sign-change count of $F_a$ along the ordered image of $t$, and define endpoint raw functions
 
@@ -20,7 +20,7 @@ $$ D(p,q):=\left\lvert\lbrace a:p(a)\neq q(a)\rbrace\right\rvert. $$
 
 Moreover, suppose $p$ has a positive raw order in which its true set has $q_p$ intervals and endpoint labels $\epsilon^p_0,\epsilon^p_1$. Define
 
-$$ K_p:= \begin{cases} 0, & q_p=0,\\ 2q_p-\epsilon^p_0-\epsilon^p_1, & q_p\geq1. \end{cases} $$
+$$ K_p:= \begin{cases} 0, & q_p=0,\cr 2q_p-\epsilon^p_0-\epsilon^p_1, & q_p\geq1. \end{cases} $$
 
 Define $K_q$ analogously if $q$ has such a run certificate. If both certificates are available, then
 

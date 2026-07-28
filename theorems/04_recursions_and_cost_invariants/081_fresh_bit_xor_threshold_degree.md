@@ -34,15 +34,15 @@ $$ d:=\deg_{\pm}(f). $$
 
 Choose a strict sign polynomial $P(y)$ for $f$ with degree $d$:
 
-$$ f(y)=1 \qquad\Longleftrightarrow\qquad P(y)>0. $$
+$$ f(y)=1 \qquad\Longleftrightarrow\qquad P(y)\gt0. $$
 
 Define
 
 $$ Q(z,y):=(1-2z)P(y). $$
 
-If $z=0$, then $Q(z,y)=P(y)$, so $Q>0$ exactly when $f(y)=1$. If $z=1$, then $Q(z,y)=-P(y)$, so $Q>0$ exactly when $f(y)=0$. Hence
+If $z=0$, then $Q(z,y)=P(y)$, so $Q\gt0$ exactly when $f(y)=1$. If $z=1$, then $Q(z,y)=-P(y)$, so $Q\gt0$ exactly when $f(y)=0$. Hence
 
-$$ Q(z,y)>0 \qquad\Longleftrightarrow\qquad z\oplus f(y)=1. $$
+$$ Q(z,y)\gt0 \qquad\Longleftrightarrow\qquad z\oplus f(y)=1. $$
 
 Thus $Q$ sign-represents $g$ and has degree at most $d+1$. Therefore
 
@@ -60,15 +60,15 @@ $$ R(z,y)=A(y)+zB(y). $$
 
 The $z=0$ slice computes $f$, so
 
-$$ f(y)=1 \qquad\Longleftrightarrow\qquad A(y)>0. $$
+$$ f(y)=1 \qquad\Longleftrightarrow\qquad A(y)\gt0. $$
 
 The $z=1$ slice computes $1-f$, so
 
-$$ f(y)=1 \qquad\Longleftrightarrow\qquad A(y)+B(y)<0. $$
+$$ f(y)=1 \qquad\Longleftrightarrow\qquad A(y)+B(y)\lt0. $$
 
-If $f(y)=1$, then $A(y)>0$ and $A(y)+B(y)<0$, hence $B(y)<0$. If $f(y)=0$, then $A(y)<0$ and $A(y)+B(y)>0$, hence $B(y)>0$. Therefore
+If $f(y)=1$, then $A(y)\gt0$ and $A(y)+B(y)\lt0$, hence $B(y)\lt0$. If $f(y)=0$, then $A(y)\lt0$ and $A(y)+B(y)\gt0$, hence $B(y)\gt0$. Therefore
 
-$$ f(y)=1 \qquad\Longleftrightarrow\qquad -B(y)>0. $$
+$$ f(y)=1 \qquad\Longleftrightarrow\qquad -B(y)\gt0. $$
 
 So $-B$ strictly sign-represents $f$.
 

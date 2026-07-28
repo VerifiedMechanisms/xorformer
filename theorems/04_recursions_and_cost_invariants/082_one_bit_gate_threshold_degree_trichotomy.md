@@ -26,7 +26,7 @@ Each slice $G_b$ is one of $0$, $1$, $u$, or $1-u$. Then:
 
 1. If $G_0$ and $G_1$ are both constant, then
 
-$$ \deg_{\pm}(F) = \begin{cases} 0 & \text{if } G_0=G_1,\\ 1 & \text{if } G_0\neq G_1. \end{cases} $$
+$$ \deg_{\pm}(F) = \begin{cases} 0 & \text{if } G_0=G_1,\cr 1 & \text{if } G_0\neq G_1. \end{cases} $$
 
 2. If at least one slice is nonconstant and the nonconstant slices, when there are two, are not opposite, then
 
@@ -60,23 +60,23 @@ $$ \deg_{\pm}(F)=d. $$
 
 Suppose first that $G_0$ is constant and $G_1$ is nonconstant. Let $U$ be the $z=1$ slice, so $U$ is either $T$ or $1-T$. Choose a strict sign polynomial $P(y)$ for $U$ with degree $d$:
 
-$$ U(y)=1 \qquad\Longleftrightarrow\qquad P(y)>0. $$
+$$ U(y)=1 \qquad\Longleftrightarrow\qquad P(y)\gt0. $$
 
 Choose
 
-$$ M>\max_{y\in\lbrace0,1\rbrace^{m}}\lvert P(y)\rvert. $$
+$$ M\gt\max_{y\in\lbrace0,1\rbrace^{m}}\lvert P(y)\rvert. $$
 
 If $G_0$ is the constant $1$ function, define
 
 $$ R(z,y):=P(y)+M(1-z). $$
 
-Then $R(1,y)=P(y)$ and $R(0,y)>0$ for every $y$.
+Then $R(1,y)=P(y)$ and $R(0,y)\gt0$ for every $y$.
 
 If $G_0$ is the constant $0$ function, define
 
 $$ R(z,y):=P(y)-M(1-z). $$
 
-Then $R(1,y)=P(y)$ and $R(0,y)<0$ for every $y$.
+Then $R(1,y)=P(y)$ and $R(0,y)\lt0$ for every $y$.
 
 In either case, $R$ strictly sign-represents $F$ and has degree at most $d$, because $d\geq1$.
 

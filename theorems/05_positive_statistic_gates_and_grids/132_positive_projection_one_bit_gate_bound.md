@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $F:\mathrm{Im}(t)\to\lbrace0,1\rbrace$. Define
 
@@ -12,7 +12,7 @@ $$ T(y):=F(t(y)). $$
 
 Write the image of $t$ as
 
-$$ 0=\tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ 0=\tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Let $G:\lbrace0,1\rbrace^{2}\to\lbrace0,1\rbrace$ be any two-input Boolean gate, and define
 
@@ -34,7 +34,7 @@ More precisely:
 
 3. If $C_{G,t}=2$, then
 
-$$ H^{\ast}(H_G)= \begin{cases} 1 & \text{if } H_G \text{ is a nonconstant LTF},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(H_G)= \begin{cases} 1 & \text{if } H_G \text{ is a nonconstant LTF},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** A raw bit appended to a positive-projection feature remains a positive projection after separating the two slices. The cost is the sign-change count of the two gate slices written end to end.
 
@@ -42,7 +42,7 @@ $$ H^{\ast}(H_G)= \begin{cases} 1 & \text{if } H_G \text{ is a nonconstant LTF},
 
 Choose
 
-$$ B>\tau_{M-1}. $$
+$$ B\gt\tau_{M-1}. $$
 
 Define the positive weighted sum
 
@@ -50,7 +50,7 @@ $$ s(z,y):=Bz+t(y). $$
 
 Its image is ordered as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}<B+\tau_0<B+\tau_1<\cdots<B+\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}\lt B+\tau_0\lt B+\tau_1\lt\cdots\lt B+\tau_{M-1}. $$
 
 Define $R:\mathrm{Im}(s)\to\lbrace0,1\rbrace$ by
 

@@ -16,7 +16,7 @@ $$ H^{\ast}(f_{p,F})\leq2. $$
 
 More precisely:
 
-$$ H^{\ast}(f_{p,F}) = \begin{cases} 0 & \text{if } f_{p,F} \text{ is constant},\\ 1 & \text{if } f_{p,F} \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f_{p,F}) = \begin{cases} 0 & \text{if } f_{p,F} \text{ is constant},\cr 1 & \text{if } f_{p,F} \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Every threshold-like count of two identical local patterns is settled exactly. This packages the two-pair endpoint cases for intersection, disjointness, equality, nonequality, containment, and noncontainment.
 
@@ -38,7 +38,7 @@ $$ S(x)=\frac{A_1(x)}{B_1(x)}+\frac{A_2(x)}{B_2(x)}, $$
 
 where $A_1,A_2$ are affine and $B_1,B_2$ are positive affine functions on the Boolean cube. It verifies directly on all $16$ inputs that
 
-$$ S(x)>0 \qquad\Longleftrightarrow\qquad f_{p,F}(x)=1. $$
+$$ S(x)\gt0 \qquad\Longleftrightarrow\qquad f_{p,F}(x)=1. $$
 
 Running
 
@@ -69,7 +69,7 @@ $$ H^{\ast}(f_{p,F})\leq2. $$
 
 ### Lemma 2. Exactness of the cases
 
-If $f&#95;{p,F}$ is constant, then $H^{\ast}(f&#95;{p,F})=0$.
+If $f_{p,F}$ is constant, then $H^{\ast}(f_{p,F})=0$.
 
 If $f_{p,F}$ is a nonconstant LTF, then the one-head characterization [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md) gives
 

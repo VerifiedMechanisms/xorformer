@@ -8,11 +8,11 @@ $$ \mathcal{P}_{\mathrm{sing}}=\lbrace\lbrace1\rbrace,\ldots,\lbrace n\rbrace\rb
 
 be the singleton partition, and let $f=\mathrm{XOR}_n$. Define
 
-$$ L_n := \sum_{\substack{1\leq \ell\leq n\\ n-\ell\ \mathrm{even}}}2^{\ell-1}. $$
+$$ L_n := \sum_{\substack{1\leq \ell\leq n\cr n-\ell\ \mathrm{even}}}2^{\ell-1}. $$
 
 Equivalently,
 
-$$ L_n= \begin{cases} \dfrac{2^{n+1}-1}{3} & \text{if } n \text{ is odd},\\[6pt] \dfrac{2^{n+1}-2}{3} & \text{if } n \text{ is even}. \end{cases} $$
+$$ L_n= \begin{cases} \dfrac{2^{n+1}-1}{3} & \text{if } n \text{ is odd},\cr[6pt] \dfrac{2^{n+1}-2}{3} & \text{if } n \text{ is even}. \end{cases} $$
 
 Then, with $\mathrm{mhc}$ computed for the singleton Hamming profile of parity,
 
@@ -32,7 +32,7 @@ $$ \frac{L_n}{n}. $$
 
 For the singleton partition, every positive block statistic has the form
 
-$$ t_i(x_i)=\lambda_i x_i, \qquad \lambda_i>0. $$
+$$ t_i(x_i)=\lambda_i x_i, \qquad \lambda_i\gt0. $$
 
 Its image is $\lbrace0,\lambda_i\rbrace$. Therefore every lexicographic product-grid traversal is just the usual binary odometer traversal for some coordinate order. The labels for $\mathrm{XOR}_n$ are the parity of the number of coordinates at their nonzero level. The positive weights $\lambda_i$ do not affect these labels.
 
@@ -50,13 +50,13 @@ $$ 1-(n-\ell). $$
 
 Parity flips exactly when this number is odd, equivalently when $n-\ell$ is even. Hence every coordinate order has exactly
 
-$$ \sum_{\substack{1\leq \ell\leq n\\ n-\ell\ \mathrm{even}}}2^{\ell-1} = L_n $$
+$$ \sum_{\substack{1\leq \ell\leq n\cr n-\ell\ \mathrm{even}}}2^{\ell-1} = L_n $$
 
-lexicographic sign changes. This proves both the $\mathrm{mgc}&#95;{+}^{\mathcal{P}&#95;{\mathrm{sing}}}$ value and the singleton Hamming-profile value $\mathrm{mhc}$.
+lexicographic sign changes. This proves both the $\mathrm{mgc}_{+}^{\mathcal{P} _{\mathrm{sing}}}$ value and the singleton Hamming-profile value $\mathrm{mhc}$.
 
 The closed form follows by summing the corresponding geometric progression:
 
-$$ L_n= \begin{cases} 1+4+\cdots+2^{n-1}=\dfrac{2^{n+1}-1}{3} & \text{if } n \text{ is odd},\\[6pt] 2+8+\cdots+2^{n-1}=\dfrac{2^{n+1}-2}{3} & \text{if } n \text{ is even}. \end{cases} $$
+$$ L_n= \begin{cases} 1+4+\cdots+2^{n-1}=\dfrac{2^{n+1}-1}{3} & \text{if } n \text{ is odd},\cr[6pt] 2+8+\cdots+2^{n-1}=\dfrac{2^{n+1}-2}{3} & \text{if } n \text{ is even}. \end{cases} $$
 
 Finally, $\mathrm{XOR}_n$ is symmetric and its Hamming-weight truth table changes at every adjacent pair of weights. The exact symmetric sign-change theorem [012_symmetric_sign_changes.md](../01_foundations_and_normal_form/012_symmetric_sign_changes.md) gives
 

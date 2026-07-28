@@ -4,11 +4,11 @@
 
 Let
 
-$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 be a nonconstant positive-statistic feature. Write the image of $t$ as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}, $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}, $$
 
 and let $C$ be the sign-change count of $F$ along this image. Put
 
@@ -32,9 +32,9 @@ $$ N_G:=\left\lvert\lbrace a\in\lbrace0,1\rbrace^{k}:g_0(a)\neq g_1(a)\rbrace\ri
 
 Then the following sandwich holds:
 
-$$ \max\left\lbrace \mathbf{1}_{N_G>0}H^{\ast}(T), H^{\ast}(g_0), H^{\ast}(g_1) \right\rbrace \leq H^{\ast}(H_G) \leq N_GC+B_{+}(g_{e_{\max}},g_{e_{\min}}). $$
+$$ \max\left\lbrace \mathbf{1}_{N_G\gt0}H^{\ast}(T), H^{\ast}(g_0), H^{\ast}(g_1) \right\rbrace \leq H^{\ast}(H_G) \leq N_GC+B_{+}(g_{e_{\max}},g_{e_{\min}}). $$
 
-Here $\mathbf{1}_{N_G>0}H^{\ast}(T)$ means $0$ if $N_G=0$ and $H^{\ast}(T)$ otherwise.
+Here $\mathbf{1}_{N_G\gt0}H^{\ast}(T)$ means $0$ if $N_G=0$ and $H^{\ast}(T)$ otherwise.
 
 In particular, if
 
@@ -66,7 +66,7 @@ $$ H^{\ast}(g_e)\leq H^{\ast}(H_G) $$
 
 for $e=0,1$.
 
-If $N_G>0$, choose a raw assignment $a$ with
+If $N_G\gt0$, choose a raw assignment $a$ with
 
 $$ g_0(a)\neq g_1(a). $$
 

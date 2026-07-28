@@ -4,11 +4,11 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $T(y)=F(t(y))$ be nonconstant. Write the ordered image of $t$ as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}, $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}, $$
 
 and let $C$ be the number of sign changes in the label sequence
 
@@ -38,9 +38,9 @@ Define
 
 $$ Q(u):=\sigma\prod_j(u-\gamma_j), $$
 
-where the product ranges over the sign-change indices and the sign $\sigma\in\lbrace1,-1\rbrace$ is chosen so that $Q(\tau_0)>0$ exactly when $F(\tau_0)=1$. As $u$ moves through the ordered image of $t$, the sign of $Q$ flips exactly at the chosen sign-change gaps and nowhere else. Thus
+where the product ranges over the sign-change indices and the sign $\sigma\in\lbrace1,-1\rbrace$ is chosen so that $Q(\tau_0)\gt0$ exactly when $F(\tau_0)=1$. As $u$ moves through the ordered image of $t$, the sign of $Q$ flips exactly at the chosen sign-change gaps and nowhere else. Thus
 
-$$ T(y)=1 \qquad\Longleftrightarrow\qquad Q(t(y))>0, $$
+$$ T(y)=1 \qquad\Longleftrightarrow\qquad Q(t(y))\gt0, $$
 
 and $\deg Q=C$.
 

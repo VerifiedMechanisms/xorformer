@@ -20,11 +20,11 @@ $$ B_{+}(p,q):=\min_{\rho}B_{\rho}(p,q). $$
 
 Now let
 
-$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 with image
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Let $C$ be the sign-change count of $F$ along this image, and put
 
