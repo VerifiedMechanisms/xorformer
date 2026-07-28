@@ -20,7 +20,7 @@ $$ H^{\ast}(f_{r,q})\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f_{r,q}) = \begin{cases} 1, & \text{if } f_{r,q} \text{ is a nonconstant LTF},\\ 2, & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f_{r,q}) = \begin{cases} 1, & \text{if } f_{r,q} \text{ is a nonconstant LTF},\cr 2, & \text{otherwise}. \end{cases} $$
 
 For the associated singleton grid function $G_{r,q}$, this is exactly
 
@@ -60,7 +60,7 @@ Let
 
 $$ \Delta:=\min\lbrace \lvert u-r+\eta(v-q)\rvert : (u,v)\neq(r,q) \text{ is a grid point} \rbrace. $$
 
-Then $\Delta>0$, and the bivariate polynomial
+Then $\Delta\gt0$, and the bivariate polynomial
 
 $$ R(u,v):=\frac{1}{2}-\left(\frac{u-r+\eta(v-q)}{\Delta}\right)^2 $$
 
@@ -82,6 +82,6 @@ Finally, the zero-head case cannot occur because both blocks are nonempty and th
 
 Let $a=b=m$ and let
 
-$$ G(s,t)=\mathbf{1}[(s-s_0)^2+(t-t_0)^2<\rho^2]. $$
+$$ G(s,t)=\mathbf{1}[(s-s_0)^2+(t-t_0)^2\lt\rho^2]. $$
 
 If the strict disk contains exactly one grid point, then the lifted two-block function has head complexity at most $2$, and has exact value $2$ unless that singleton grid layer is linearly threshold.

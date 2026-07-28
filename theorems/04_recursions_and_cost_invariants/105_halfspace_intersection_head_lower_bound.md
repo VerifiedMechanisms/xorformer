@@ -2,7 +2,7 @@
 
 ## Statement
 
-There are an absolute constant $c>0$ and an infinite family of pairs of linear threshold functions
+There are an absolute constant $c\gt0$ and an infinite family of pairs of linear threshold functions
 
 $$ T_n,U_n:\lbrace0,1\rbrace^{n}\to\lbrace0,1\rbrace $$
 
@@ -18,7 +18,7 @@ $$ H^{\ast}(F_n)\geq c n. $$
 
 ## Proof
 
-Sherstov's optimal halfspace-intersection theorem [Optimal bounds for sign-representing the intersection of two halfspaces by polynomials](https://arxiv.org/abs/0910.4224) gives an absolute constant $c>0$ and an infinite family of pairs of halfspaces
+Sherstov's optimal halfspace-intersection theorem [Optimal bounds for sign-representing the intersection of two halfspaces by polynomials](https://arxiv.org/abs/0910.4224) gives an absolute constant $c\gt0$ and an infinite family of pairs of halfspaces
 
 $$ T_n,U_n:\lbrace0,1\rbrace^{n}\to\lbrace0,1\rbrace $$
 

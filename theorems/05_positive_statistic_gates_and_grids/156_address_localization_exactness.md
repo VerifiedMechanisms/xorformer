@@ -4,7 +4,7 @@
 
 Let
 
-$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ T(y)=F(t(y)), \qquad t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 have sign-change count $C$ along the ordered image of $t$. Let
 
@@ -36,11 +36,11 @@ $$ d \leq H^{\ast}\bigl((1-M_a(z))\vee T(y)\bigr) \leq C. $$
 
 Consequently, in either case, if $\deg_{\pm}(T)=C$, then the corresponding localized gate has exact head complexity $C$.
 
-More generally, if $R:\lbrace0,1\rbrace^{k}\to\lbrace0,1\rbrace$ is any raw mask with $r_1=\lvert R^{-1}(1)\rvert>0$ and $e_0=e_1=0$, then
+More generally, if $R:\lbrace0,1\rbrace^{k}\to\lbrace0,1\rbrace$ is any raw mask with $r_1=\lvert R^{-1}(1)\rvert\gt0$ and $e_0=e_1=0$, then
 
 $$ d \leq H^{\ast}\bigl(R(z)\wedge T(y)\bigr) \leq r_1C. $$
 
-If $r_0=\lvert R^{-1}(0)\rvert>0$ and $e_0=e_1=1$, then
+If $r_0=\lvert R^{-1}(0)\rvert\gt0$ and $e_0=e_1=1$, then
 
 $$ d \leq H^{\ast}\bigl(R(z)\vee T(y)\bigr) \leq r_0C. $$
 
@@ -80,7 +80,7 @@ $$ d\leq H^{\ast}\bigl((1-M_a)\vee T\bigr). $$
 
 If $\deg_{\pm}(T)=C$, then the two inequalities match in the relevant case, proving exactness.
 
-For a general raw mask $R$ with $r_1>0$ and $e_0=e_1=0$, Lemma 154 gives
+For a general raw mask $R$ with $r_1\gt0$ and $e_0=e_1=0$, Lemma 154 gives
 
 $$ H^{\ast}(R\wedge T)\leq r_1C. $$
 
@@ -88,7 +88,7 @@ Choose any raw assignment $a$ with $R(a)=1$. The restriction $z=a$ is $T$, so th
 
 $$ d\leq H^{\ast}(R\wedge T). $$
 
-The disjunction case is identical: if $r_0>0$ and $e_0=e_1=1$, Lemma 154 gives the upper bound $r_0C$, and any raw assignment with $R(a)=0$ restricts $R\vee T$ to $T$. $\blacksquare$
+The disjunction case is identical: if $r_0\gt0$ and $e_0=e_1=1$, Lemma 154 gives the upper bound $r_0C$, and any raw assignment with $R(a)=0$ restricts $R\vee T$ to $T$. $\blacksquare$
 
 ## Consequence
 

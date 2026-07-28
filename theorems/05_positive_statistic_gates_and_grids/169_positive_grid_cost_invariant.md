@@ -8,7 +8,7 @@ $$ \sum_{r=0}^{R-1}C_r+J_{\mathrm{grid}} $$
 
 over all positive-grid certificates
 
-$$ u(z)=\sum_j\rho_jz_j, \qquad t(y)=\sum_i\lambda_i y_i, \qquad \rho_j,\lambda_i>0, $$
+$$ u(z)=\sum_j\rho_jz_j, \qquad t(y)=\sum_i\lambda_i y_i, \qquad \rho_j,\lambda_i\gt0, $$
 
 and all functions $F$ such that
 
@@ -64,7 +64,7 @@ For output complement, the same grid certificates remain feasible, and replacing
 
 Raw-coordinate and feature-coordinate permutations transport positive statistics by permuting their positive coefficients. The grid images, slice sign-change counts, and endpoint jumps are unchanged after relabeling. Thus the optimized cost is invariant under those permutations.
 
-If $\deg&#95;{\pm}(f)=\mathrm{pgc}&#95;{+}^{z\mid y}(f)$, then the threshold-degree lower bound gives
+If $\deg_{\pm}(f)=\mathrm{pgc}_{+}^{z\mid y}(f)$, then the threshold-degree lower bound gives
 
 $$ \mathrm{pgc}_{+}^{z\mid y}(f) = \deg_{\pm}(f) \leq H^{\ast}(f) \leq \mathrm{pgc}_{+}^{z\mid y}(f), $$
 

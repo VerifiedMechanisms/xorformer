@@ -8,7 +8,7 @@ $$ B_1,\ldots,B_b. $$
 
 A positive multigrid certificate for $f$ over $\mathcal{P}$ consists of positive statistics
 
-$$ t_j(x_{B_j})=\sum_{i\in B_j}\lambda_{j,i}x_i, \qquad \lambda_{j,i}>0, $$
+$$ t_j(x_{B_j})=\sum_{i\in B_j}\lambda_{j,i}x_i, \qquad \lambda_{j,i}\gt0, $$
 
 a Boolean function $F$ on the product of their images, and a block order $\pi$ such that
 

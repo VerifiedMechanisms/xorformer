@@ -4,11 +4,11 @@
 
 Let $x\in\lbrace0,1\rbrace^6$ and $y\in\lbrace0,1\rbrace^5$. Define the integer-valued quadratic polynomial
 
-$$ \begin{aligned} Q(x,y):={}&1-2x_3+8y_5-16x_1y_2+14x_1y_4-14x_1y_5-22x_2y_4+16x_2y_5 \\ &+2x_3y_1+12x_3y_2+6x_3y_5-18x_4y_3-2x_5y_1-14x_5y_3-16x_6y_5 \\ &+16y_1y_3+22y_2y_5-12y_3y_5. \end{aligned} $$
+$$ \begin{aligned} Q(x,y):={}&1-2x_3+8y_5-16x_1y_2+14x_1y_4-14x_1y_5-22x_2y_4+16x_2y_5 \cr &+2x_3y_1+12x_3y_2+6x_3y_5-18x_4y_3-2x_5y_1-14x_5y_3-16x_6y_5 \cr &+16y_1y_3+22y_2y_5-12y_3y_5. \end{aligned} $$
 
 Define $f_{11}:\lbrace0,1\rbrace^{11}\to\lbrace0,1\rbrace$ by
 
-$$ f_{11}(x,y)=1 \qquad\Longleftrightarrow\qquad Q(x,y)>0. $$
+$$ f_{11}(x,y)=1 \qquad\Longleftrightarrow\qquad Q(x,y)\gt0. $$
 
 Then
 
@@ -16,7 +16,7 @@ $$ \deg_{\pm}(f_{11})=2 \qquad\text{and}\qquad H^{\ast}(f_{11})\geq3. $$
 
 Consequently,
 
-$$ \deg_{\pm}(f_{11})<H^{\ast}(f_{11}). $$
+$$ \deg_{\pm}(f_{11})\lt H^{\ast}(f_{11}). $$
 
 > **Interpretation.** An explicit quadratic threshold on a six-bit by five-bit partition contains the compact hypercube-path sign matrix. This gives a strict separation on eleven input bits.
 
@@ -68,7 +68,7 @@ $$ \mathrm{srank}(S^{(35)})\geq7. $$
 
 Indeed, suppose a real matrix with this sign pattern had rank at most $6$. A generic two-dimensional subspace $L$ of its kernel has, modulo antipodes, a coordinate-flip tope path in eight dimensions. Lemma 1 supplies a row sign of $S^{(35)}$ that equals the strict sign of some $z\in L$, up to negation. The corresponding matrix row $b\in L^{\perp}$ can be chosen with the same sign as $z$. Therefore
 
-$$ \langle z,b\rangle=\sum_{j=1}^{8}\lvert z_jb_j\rvert>0, $$
+$$ \langle z,b\rangle=\sum_{j=1}^{8}\lvert z_jb_j\rvert\gt0, $$
 
 contradicting orthogonality. The standard small perturbation argument from [180_hypercube_path_strict_separation.md](180_hypercube_path_strict_separation.md) handles a nongeneric kernel subspace while preserving all strict row signs.
 
@@ -90,7 +90,7 @@ $$ H^{\ast}(f_{11})\geq3. $$
 
 Together with Lemma 3,
 
-$$ \deg_{\pm}(f_{11})=2<3\leq H^{\ast}(f_{11}). \qquad\blacksquare $$
+$$ \deg_{\pm}(f_{11})=2\lt3\leq H^{\ast}(f_{11}). \qquad\blacksquare $$
 
 ## Consequence
 

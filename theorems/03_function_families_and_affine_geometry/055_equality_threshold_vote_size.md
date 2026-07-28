@@ -10,7 +10,7 @@ we have, for every $m\geq1$,
 
 $$ s_{\mathrm{LTF}}(\mathrm{EQ}_m)=2. $$
 
-> **Interpretation.** Equality is a family where threshold-vote size and head complexity agree: both $s&#95;{\mathrm{LTF}}(\mathrm{EQ}&#95;m)$ and $H^{\ast}(\mathrm{EQ}&#95;m)$ equal $2$.
+> **Interpretation.** Equality is a family where threshold-vote size and head complexity agree: both $s_{\mathrm{LTF}}(\mathrm{EQ}_m)$ and $H^{\ast}(\mathrm{EQ}_m)$ equal $2$.
 
 ## Proof
 
@@ -30,7 +30,7 @@ $$ x=y \qquad\Longleftrightarrow\qquad G_{\mathrm{gt}}(x,y)=0 \text{ and } G_{\m
 
 Thus
 
-$$ \mathrm{EQ}_m(x,y)=1 \qquad\Longleftrightarrow\qquad \frac{1}{2}-G_{\mathrm{gt}}(x,y)-G_{\mathrm{lt}}(x,y)>0. $$
+$$ \mathrm{EQ}_m(x,y)=1 \qquad\Longleftrightarrow\qquad \frac{1}{2}-G_{\mathrm{gt}}(x,y)-G_{\mathrm{lt}}(x,y)\gt0. $$
 
 This is a weighted vote of two linear threshold functions, so
 
@@ -38,7 +38,7 @@ $$ s_{\mathrm{LTF}}(\mathrm{EQ}_m)\leq2. $$
 
 ### Lemma 2. Equality is not one threshold gate
 
-It remains to rule out $s&#95;{\mathrm{LTF}}(\mathrm{EQ}&#95;m)\leq1$. The function is nonconstant, so $s&#95;{\mathrm{LTF}}(\mathrm{EQ}&#95;m)\neq0$.
+It remains to rule out $s_{\mathrm{LTF}}(\mathrm{EQ}_m)\leq1$. The function is nonconstant, so $s _{\mathrm{LTF}}(\mathrm{EQ}_m)\neq0$.
 
 If $\mathrm{EQ}_m$ were a single linear threshold function, then every restriction would also be a linear threshold function. Restrict
 
@@ -50,21 +50,21 @@ $$ \mathrm{EQ}_1(a,b)=\mathbf{1}[a=b]. $$
 
 This is true on $(0,0)$ and $(1,1)$ and false on $(0,1)$ and $(1,0)$. If an affine score $A(a,b)=\alpha a+\beta b+\gamma$ were positive exactly on the true inputs, then
 
-$$ \gamma>0, \qquad \alpha+\beta+\gamma>0, $$
+$$ \gamma\gt0, \qquad \alpha+\beta+\gamma\gt0, $$
 
 while
 
-$$ \alpha+\gamma<0, \qquad \beta+\gamma<0. $$
+$$ \alpha+\gamma\lt0, \qquad \beta+\gamma\lt0. $$
 
 Adding the last two inequalities gives
 
-$$ \alpha+\beta+2\gamma<0. $$
+$$ \alpha+\beta+2\gamma\lt0. $$
 
-Since $\gamma>0$, this implies
+Since $\gamma\gt0$, this implies
 
-$$ \alpha+\beta+\gamma<-\gamma<0, $$
+$$ \alpha+\beta+\gamma\lt-\gamma\lt0, $$
 
-contradicting $\alpha+\beta+\gamma>0$. Hence $\mathrm{EQ}&#95;1$ is not an LTF, and neither is $\mathrm{EQ}&#95;m$.
+contradicting $\alpha+\beta+\gamma\gt0$. Hence $\mathrm{EQ}_1$ is not an LTF, and neither is $\mathrm{EQ}_m$.
 
 Therefore
 

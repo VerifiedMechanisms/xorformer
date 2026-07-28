@@ -30,7 +30,7 @@ $$ \binom{n}{H}-\binom{n}{H-1}. $$
 
 The projective union over all two-planes has dimension at most $r_H-1+2(n-1)$. It is therefore a proper algebraic subset of $\mathbb P(\mathcal B_{\leq H})$ whenever
 
-$$ \binom{n}{H}-\binom{n}{H-1}>2(n-1). $$
+$$ \binom{n}{H}-\binom{n}{H-1}\gt2(n-1). $$
 
 ## Proof
 
@@ -62,7 +62,7 @@ For completeness, let $D_k:A_k\to A_{k-1}$ delete one variable from a squarefree
 
 $$ D_{k+1}U_k-U_{k-1}D_k=(n-2k)I_{A_k}. $$
 
-If $k<n/2$ and $U_kv=0$, taking the inner product with $v$ gives
+If $k\lt n/2$ and $U_kv=0$, taking the inner product with $v$ gives
 
 $$ -\lVert D_kv\rVert_2^{2}=(n-2k)\lVert v\rVert_2^{2}, $$
 
@@ -70,11 +70,11 @@ so $v=0$. Thus $U_k$ is injective below the middle level. Complementing subsets 
 
 Therefore
 
-$$ \begin{aligned} \dim\mathcal I_H(U_0) &=D_{H-1}+\min\left\lbrace\binom{n}{H-1},\binom{n}{H}\right\rbrace \\ &=\min\left\lbrace D_H,2D_{H-1}-D_{H-2}\right\rbrace. \end{aligned} $$
+$$ \begin{aligned} \dim\mathcal I_H(U_0) &=D_{H-1}+\min\left\lbrace\binom{n}{H-1},\binom{n}{H}\right\rbrace \cr &=\min\left\lbrace D_H,2D_{H-1}-D_{H-2}\right\rbrace. \end{aligned} $$
 
 This proves the maximum-rank formula.
 
-When $H\geq\lceil(n+1)/2\rceil$, one has $\binom{n}{H}\leq\binom{n}{H-1}$, so the maximum equals $D_H$. Every degree at most $H$ polynomial threshold representation therefore has an evaluated slice-rank-two homogeneous lift. Conversely, every such slice lift has degree at most $H$ on the cube. The plane $U_0$ contains $1+\varepsilon\ell$ for every $\varepsilon>0$, which is an admissible strictly positive denominator. Thus the positivity-aware slice-plane condition does not change the equivalence.
+When $H\geq\lceil(n+1)/2\rceil$, one has $\binom{n}{H}\leq\binom{n}{H-1}$, so the maximum equals $D_H$. Every degree at most $H$ polynomial threshold representation therefore has an evaluated slice-rank-two homogeneous lift. Conversely, every such slice lift has degree at most $H$ on the cube. The plane $U_0$ contains $1+\varepsilon\ell$ for every $\varepsilon\gt0$, which is an admissible strictly positive denominator. Thus the positivity-aware slice-plane condition does not change the equivalence.
 
 Below the middle level, subtracting the displayed maximum from $D_H$ gives the fixed-plane codimension. Finally, $\mathrm{Gr}(2,n+1)$ has dimension $2(n-1)$, so the incidence dimension bound and the properness criterion follow. $\blacksquare$
 

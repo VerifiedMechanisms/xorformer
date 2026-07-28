@@ -42,7 +42,7 @@ $$ B_h(x)=b_{h,0}+\sum_{i=1}^{5}b_{h,i}x_i, $$
 
 with coefficient rows
 
-$$ \begin{array}{c|rrrrrr} h & b_{h,0} & b_{h,1} & b_{h,2} & b_{h,3} & b_{h,4} & b_{h,5} \\ \hline 1 & 1 & 85 & 64 & 51 & 27 & 31 \\ 2 & 1 & 5 & 8 & 2 & 18 & 81 \\ 3 & 1 & 65 & 91 & 50 & 61 & 97 \\ 4 & 1 & 73 & 63 & 54 & 56 & 93 \\ 5 & 1 & 28 & 81 & 67 & 1 & 40 \\ 6 & 1 & 85 & 55 & 4 & 76 & 73 \\ 7 & 1 & 84 & 18 & 9 & 86 & 3. \end{array} $$
+$$ \begin{array}{c|rrrrrr} h & b_{h,0} & b_{h,1} & b_{h,2} & b_{h,3} & b_{h,4} & b_{h,5} \cr \hline 1 & 1 & 85 & 64 & 51 & 27 & 31 \cr 2 & 1 & 5 & 8 & 2 & 18 & 81 \cr 3 & 1 & 65 & 91 & 50 & 61 & 97 \cr 4 & 1 & 73 & 63 & 54 & 56 & 93 \cr 5 & 1 & 28 & 81 & 67 & 1 & 40 \cr 6 & 1 & 85 & 55 & 4 & 76 & 73 \cr 7 & 1 & 84 & 18 & 9 & 86 & 3. \end{array} $$
 
 All coefficients are positive, so every $B_h$ is positive on the cube.
 
@@ -76,7 +76,7 @@ Therefore every multilinear $P$ has the displayed form. $\blacksquare$
 
 Let $f : \lbrace0,1\rbrace^5 \to \lbrace0,1\rbrace$. Interpolate the sign labels
 
-$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \\ -1 & \text{if } f(x)=0 \end{cases} $$
+$$ Q_f(x) = \begin{cases} +1 & \text{if } f(x)=1, \cr -1 & \text{if } f(x)=0 \end{cases} $$
 
 by a multilinear polynomial $P$ on $\lbrace0,1\rbrace^5$.
 

@@ -56,7 +56,7 @@ $$ H^{\ast}(f)\leq C_t(f)\leq2m=2s(f). $$
 
 If $s(f)=1$, then either $f^{-1}(1)=\lbrace a\rbrace$ or $f^{-1}(0)=\lbrace a\rbrace$ for some point $a\in\lbrace0,1\rbrace^n$. The singleton indicator is a linear threshold function:
 
-$$ \mathbf{1}[x=a]=1 \qquad\Longleftrightarrow\qquad \sum_{i:a_i=1}x_i+\sum_{i:a_i=0}(1-x_i)>n-\frac{1}{2}. $$
+$$ \mathbf{1}[x=a]=1 \qquad\Longleftrightarrow\qquad \sum_{i:a_i=1}x_i+\sum_{i:a_i=0}(1-x_i)\gt n-\frac{1}{2}. $$
 
 Its complement is also a linear threshold function. By the exact one-head characterization from [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md), every nonconstant linear threshold function has $H^{\ast}=1$. Hence $H^{\ast}(f)\leq1$ when $s(f)=1$. $\blacksquare$
 

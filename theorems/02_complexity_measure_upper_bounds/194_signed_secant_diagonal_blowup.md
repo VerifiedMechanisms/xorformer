@@ -24,9 +24,9 @@ $$ \mathcal S_x(\theta,v,a,t)=t\widetilde{\mathcal S}_x(\theta,v,a,t). $$
 
 Then the following are equivalent:
 
-1. There exist $\theta^{(0)},\theta^{(1)}\in\Theta$ and $s\in[0,1]$ such that $y_xS_x(\theta^{(0)},\theta^{(1)},s)>0$ for every cube vertex $x$.
+1. There exist $\theta^{(0)},\theta^{(1)}\in\Theta$ and $s\in[0,1]$ such that $y_xS_x(\theta^{(0)},\theta^{(1)},s)\gt0$ for every cube vertex $x$.
 
-2. There exist $\theta\in\Theta$, a normalized signed direction $(v,a)$, and $t\in[0,1]$ such that $\theta+tv\in\Theta$ and $y_x\widetilde{\mathcal S}_x(\theta,v,a,t)>0$ for every cube vertex $x$.
+2. There exist $\theta\in\Theta$, a normalized signed direction $(v,a)$, and $t\in[0,1]$ such that $\theta+tv\in\Theta$ and $y_x\widetilde{\mathcal S}_x(\theta,v,a,t)\gt0$ for every cube vertex $x$.
 
 The same equivalence holds with the two endpoint denominator tuples in the interiors of their simplices. The normalization is the finite union of the $2H(n+1)+2$ charts
 
@@ -46,7 +46,7 @@ $$ Q_{\theta+tv}(x)-Q_\theta(x)=t\widetilde Q_x(\theta,v,t). $$
 
 Each factor in $Q_{\theta+tv}$ is affine in $t$, so $\widetilde Q_x$ has degree at most $H-1$ in $t$. Direct expansion gives
 
-$$ \begin{aligned} \mathcal S_x(\theta,v,a,t) &= \frac12\left(Q_{\theta+tv}(x)-Q_\theta(x)\right)+\frac{ta}{2}\left(Q_{\theta+tv}(x)+Q_\theta(x)\right) \\ &= \frac t2\left(\widetilde Q_x(\theta,v,t)+a\left(Q_{\theta+tv}(x)+Q_\theta(x)\right)\right). \end{aligned} $$
+$$ \begin{aligned} \mathcal S_x(\theta,v,a,t) &= \frac12\left(Q_{\theta+tv}(x)-Q_\theta(x)\right)+\frac{ta}{2}\left(Q_{\theta+tv}(x)+Q_\theta(x)\right) \cr &= \frac t2\left(\widetilde Q_x(\theta,v,t)+a\left(Q_{\theta+tv}(x)+Q_\theta(x)\right)\right). \end{aligned} $$
 
 Therefore
 
@@ -60,7 +60,7 @@ Suppose the first condition holds. Put
 
 $$ t=\max\left\lbrace\left\lVert\theta^{(1)}-\theta^{(0)}\right\rVert_{\infty},\lvert2s-1\rvert\right\rbrace. $$
 
-Strict representation of a nonconstant function forces $t>0$. Indeed, $t=0$ would give equal endpoints and $s=1/2$, hence the zero score. Differences of simplex coordinates have absolute value at most one, and $\lvert2s-1\rvert\leq1$, so $t\leq1$.
+Strict representation of a nonconstant function forces $t\gt0$. Indeed, $t=0$ would give equal endpoints and $s=1/2$, hence the zero score. Differences of simplex coordinates have absolute value at most one, and $\lvert2s-1\rvert\leq1$, so $t\leq1$.
 
 Set
 
@@ -78,17 +78,17 @@ which proves the forward implication. $\blacksquare$
 
 ### Lemma 3. The new boundary opens into a signed secant
 
-Suppose the second condition holds. If $t>0$, multiply every strict quotient inequality by $t$ to obtain the first condition.
+Suppose the second condition holds. If $t\gt0$, multiply every strict quotient inequality by $t$ to obtain the first condition.
 
 Now suppose $t=0$. Let $\bar\theta$ be the product of simplex barycenters and set
 
 $$ \theta_\delta=(1-\delta)\theta+\delta\bar\theta. $$
 
-The quotient is polynomial in $\theta$. Since there are finitely many strict signed inequalities, they remain positive at $(\theta_\delta,v,a,0)$ for every sufficiently small $\delta>0$. Every coordinate of $\theta_\delta$ is then positive. The zero block sums of $v$ give an $\varepsilon_0>0$ such that $\theta_\delta+\varepsilon v\in\Theta$ for every $0\leq\varepsilon\leq\varepsilon_0$. Also $\lvert a\rvert\leq1$, so $(1+\varepsilon a)/2\in[0,1]$ whenever $0\leq\varepsilon\leq1$.
+The quotient is polynomial in $\theta$. Since there are finitely many strict signed inequalities, they remain positive at $(\theta_\delta,v,a,0)$ for every sufficiently small $\delta\gt0$. Every coordinate of $\theta_\delta$ is then positive. The zero block sums of $v$ give an $\varepsilon_0\gt0$ such that $\theta_\delta+\varepsilon v\in\Theta$ for every $0\leq\varepsilon\leq\varepsilon_0$. Also $\lvert a\rvert\leq1$, so $(1+\varepsilon a)/2\in[0,1]$ whenever $0\leq\varepsilon\leq1$.
 
 There are finitely many cube vertices. Continuity and strict positivity at zero give an $\varepsilon\in(0,\min\lbrace1,\varepsilon_0\rbrace]$ such that
 
-$$ y_x\widetilde{\mathcal S}_x(\theta _\delta,v,a,\varepsilon)>0\qquad\text{for every }x\in\lbrace0,1\rbrace^n. $$
+$$ y_x\widetilde{\mathcal S}_x(\theta _\delta,v,a,\varepsilon)\gt0\qquad\text{for every }x\in\lbrace0,1\rbrace^n. $$
 
 Since $\mathcal S_x=\varepsilon\widetilde{\mathcal S}_x$, these are the strict signed inequalities for the endpoints $\theta _\delta$ and $\theta _\delta+\varepsilon v$ with mixture scalar $(1+\varepsilon a)/2$. This proves the reverse implication. Notice that a direction which points out of a boundary face causes no spurious strict solution. Moving the base point into the interior first makes a sufficiently short ray feasible. $\blacksquare$
 
@@ -108,6 +108,6 @@ Interior signed-secant feasibility is equivalent to the positive pair-gap feasib
 
 Consequently, if the signed blown-up system is infeasible in every chart of every one of the $H+1$ orientation-count branches, then
 
-$$ H^{\ast}(f)>H. $$
+$$ H^{\ast}(f)\gt H. $$
 
 This formulation is the preferred exact branch-and-bound target. Candidate separation and exact verification require one signed inequality per truth-table vertex, rather than one inequality per oppositely labeled pair.

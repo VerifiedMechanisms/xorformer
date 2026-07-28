@@ -14,7 +14,7 @@ The cylinder-threshold cost $\mathrm{ctc}(f)$ has the following structural prope
 
 2. Coordinate permutations do not change the cost. If $\pi$ is a permutation of $\lbrace1,\ldots,n\rbrace$ and
 
-   $f^{\pi}(x_1,\ldots,x_n) := f(x&#95;{\pi(1)},\ldots,x&#95;{\pi(n)}),$
+   $f^{\pi}(x_1,\ldots,x_n) := f(x_{\pi(1)},\ldots,x_{\pi(n)}),$
 
    then
 
@@ -50,17 +50,17 @@ $$ C_{P,N}(x) := \left(\prod_{i\in P}x_i\right) \left(\prod_{j\in N}(1-x_j)\righ
 
 write
 
-$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \\ \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
+$$ \kappa(P,N) := \begin{cases} 0, & P=N=\varnothing, \cr \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace, & \text{otherwise}. \end{cases} $$
 
 ### Lemma 1. Output complement
 
 Fix a strict cylinder-threshold representation
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x):=c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x):=c_0+\sum_{a=1}^{s}c_aC_{P_a,N_a}(x)\gt0. $$
 
-Because the representation is strict on the Boolean cube, $f(x)=0$ is equivalent to $S(x)<0$, hence
+Because the representation is strict on the Boolean cube, $f(x)=0$ is equivalent to $S(x)\lt0$, hence
 
-$$ 1-f(x)=1 \qquad\Longleftrightarrow\qquad -S(x)>0. $$
+$$ 1-f(x)=1 \qquad\Longleftrightarrow\qquad -S(x)\gt0. $$
 
 This uses the same cylinders and the same cost. Therefore
 
@@ -108,7 +108,7 @@ $$ C_{P\cap K,N\cap K} $$
 
 on the free variables. Its cost does not exceed the original cost. If $P\cap K=N\cap K=\varnothing$, the restricted cost is $0$. Otherwise,
 
-$$ \begin{aligned} \kappa(P\cap K,N\cap K) &= \min\lbrace2^{\lvert P\cap K\rvert},2^{\lvert N\cap K\rvert}\rbrace \\ &\leq \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace = \kappa(P,N), \end{aligned} $$
+$$ \begin{aligned} \kappa(P\cap K,N\cap K) &= \min\lbrace2^{\lvert P\cap K\rvert},2^{\lvert N\cap K\rvert}\rbrace \cr &\leq \min\lbrace2^{\lvert P\rvert},2^{\lvert N\rvert}\rbrace = \kappa(P,N), \end{aligned} $$
 
 with the last equality interpreted in the nonvacuous case. If the original cylinder is vacuous, both costs are $0$.
 

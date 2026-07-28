@@ -24,7 +24,7 @@ $$ (z,y)\in\lbrace0,1\rbrace\times\lbrace0,1\rbrace^{n-1}. $$
 
 Let $P_0,P_1$ be strict sign polynomials for the two cofactors, written as in [078_split_affine_free_support_invariant.md](078_split_affine_free_support_invariant.md):
 
-$$ P_b(y) = c_b+\sum_{i=1}^{n-1}\alpha_{b,i}y_i + \sum_{\substack{S\subseteq\lbrace1,\ldots,n-1\rbrace\\ \lvert S\rvert\geq2}} a_{b,S}\prod_{i\in S}y_i. $$
+$$ P_b(y) = c_b+\sum_{i=1}^{n-1}\alpha_{b,i}y_i + \sum_{\substack{S\subseteq\lbrace1,\ldots,n-1\rbrace\cr \lvert S\rvert\geq2}} a_{b,S}\prod_{i\in S}y_i. $$
 
 View each $P_b$ as an affine-cylinder score by taking
 

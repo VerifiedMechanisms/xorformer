@@ -16,7 +16,7 @@ $$ f_b(y):=f(b,y). $$
 
 Given strict affine-cylinder scores $S_0,S_1$ for the two cofactors, written as in [111_affine_cylinder_cofactor_interpolation.md](111_affine_cylinder_cofactor_interpolation.md), define their split interpolation cost by
 
-$$ \begin{aligned} I(S_0,S_1) :={}& \eta(A_0,A_1) + \lvert\Delta_{\mathrm{lin}}\rvert \\ &+ \sum_{\gamma=(P,N)\in\Gamma_0}\kappa(P,N) + \sum_{\gamma=(P,N)\in\Delta_{\mathrm{cyl}}}\kappa(P\cup\lbrace z\rbrace,N). \end{aligned} $$
+$$ \begin{aligned} I(S_0,S_1) :={}& \eta(A_0,A_1) + \lvert\Delta_{\mathrm{lin}}\rvert \cr &+ \sum_{\gamma=(P,N)\in\Gamma_0}\kappa(P,N) + \sum_{\gamma=(P,N)\in\Delta_{\mathrm{cyl}}}\kappa(P\cup\lbrace z\rbrace,N). \end{aligned} $$
 
 Let
 
@@ -36,7 +36,7 @@ $$ \mathrm{sactc}(f)\leq2, $$
 
 then
 
-$$ H^{\ast}(f) = \begin{cases} 0, & \text{if } f \text{ is constant},\\ 1, & \text{if } f \text{ is a nonconstant LTF},\\ 2, & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0, & \text{if } f \text{ is constant},\cr 1, & \text{if } f \text{ is a nonconstant LTF},\cr 2, & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The split affine-cylinder cost is an optimized recursive certificate. It is not a new lower bound on $\mathrm{actc}$; it is a structured way to produce affine-cylinder certificates by interpolating two cofactors.
 

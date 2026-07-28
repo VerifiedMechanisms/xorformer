@@ -16,7 +16,7 @@ $$ H^{\ast}(E_L)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(E_L) = \begin{cases} 0 & \text{if } E_L \text{ is constant},\\ 1 & \text{if } E_L \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(E_L) = \begin{cases} 0 & \text{if } E_L \text{ is constant},\cr 1 & \text{if } E_L \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Exact equality to any affine statistic is cheap. This subsumes internal exact-count predicates and equality of two binary-encoded strings.
 
@@ -26,13 +26,13 @@ If $E_L$ is constant, there is nothing to prove. Assume $E_L$ is nonconstant. Si
 
 $$ \delta := \min\lbrace|L(x)|:L(x)\neq0\rbrace. $$
 
-Then $\delta>0$. Set
+Then $\delta\gt0$. Set
 
 $$ M(x):=\frac{L(x)}{\delta} = c_0+\sum_{i=1}^{n}m_i x_i. $$
 
 Choose positive numbers $q_0,q_1,\ldots,q_n$ so large that
 
-$$ q_0+c_0>0, \qquad q_i+m_i>0 \quad \text{for every }i. $$
+$$ q_0+c_0\gt0, \qquad q_i+m_i\gt0 \quad \text{for every }i. $$
 
 Define two affine functions
 
@@ -56,7 +56,7 @@ $$ S(x):=\frac{A_1(x)}{B_1(x)}+\frac{A_2(x)}{B_2(x)}. $$
 
 After clearing denominators, the numerator is
 
-$$ \begin{aligned} A_1B_2+A_2B_1 &= 4P(1+P+2Q)+(1-5P-Q)(1+P+Q) \\ &= 1-(P-Q)^2 \\ &= 1-M^2. \end{aligned} $$
+$$ \begin{aligned} A_1B_2+A_2B_1 &= 4P(1+P+2Q)+(1-5P-Q)(1+P+Q) \cr &= 1-(P-Q)^2 \cr &= 1-M^2. \end{aligned} $$
 
 If $L(x)=0$, then $M(x)=0$, so the cleared numerator is $1$. If $L(x)\neq0$, then by the definition of $\delta$,
 
@@ -66,9 +66,9 @@ so
 
 $$ 1-M(x)^2\leq0. $$
 
-Since $E_L$ is nonconstant, there is at least one input with $L(x)=0$. The positive values of $S$ on the zero set of $L$ have a positive minimum, because the cube is finite. Choose a threshold $\theta>0$ below that minimum. Then
+Since $E_L$ is nonconstant, there is at least one input with $L(x)=0$. The positive values of $S$ on the zero set of $L$ have a positive minimum, because the cube is finite. Choose a threshold $\theta\gt0$ below that minimum. Then
 
-$$ S(x)-\theta>0 \qquad\Longleftrightarrow\qquad L(x)=0. $$
+$$ S(x)-\theta\gt0 \qquad\Longleftrightarrow\qquad L(x)=0. $$
 
 By the affine-over-positive-affine atom lemma [015_three_bit_quadratic_upper_bound.md](../01_foundations_and_normal_form/015_three_bit_quadratic_upper_bound.md), each ratio $A_j/B_j$ is a one-head atom. Therefore
 

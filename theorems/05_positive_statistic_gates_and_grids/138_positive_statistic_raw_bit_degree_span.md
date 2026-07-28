@@ -4,7 +4,7 @@
 
 Let $d\geq1$, let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $P(z,y)$ be a strict sign polynomial for a Boolean function $f(z,y)$. Suppose $P$ has total degree at most $d$ in the two quantities $t(y)$ and $z$, reduced using $z^2=z$:
 

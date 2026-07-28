@@ -14,7 +14,7 @@ The affine-cylinder threshold cost $\mathrm{actc}(f)$ has the following structur
 
 2. Coordinate permutations do not change the cost. If $\pi$ is a permutation of $\lbrace1,\ldots,n\rbrace$ and
 
-   $f^{\pi}(x_1,\ldots,x_n) := f(x&#95;{\pi(1)},\ldots,x&#95;{\pi(n)}),$
+   $f^{\pi}(x_1,\ldots,x_n) := f(x_{\pi(1)},\ldots,x_{\pi(n)}),$
 
    then
 
@@ -56,11 +56,11 @@ $$ \lambda(A)+\sum_{a:c_a\neq0}\kappa(P_a,N_a). $$
 
 Fix a strict affine-cylinder representation
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)\gt0. $$
 
-Because the representation is strict, $f(x)=0$ is equivalent to $S(x)<0$. Thus
+Because the representation is strict, $f(x)=0$ is equivalent to $S(x)\lt0$. Thus
 
-$$ 1-f(x)=1 \qquad\Longleftrightarrow\qquad -S(x)>0. $$
+$$ 1-f(x)=1 \qquad\Longleftrightarrow\qquad -S(x)\gt0. $$
 
 This changes the affine part from $A$ to $-A$, which has the same value of $\lambda$, and changes each cylinder coefficient from $c_a$ to $-c_a$ without changing its support or cost. Hence
 

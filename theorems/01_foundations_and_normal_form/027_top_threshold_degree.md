@@ -26,7 +26,7 @@ Changing variables between $x_i\in\lbrace0,1\rbrace$ and $z_i\in\lbrace-1,1\rbra
 
 Let $q : \lbrace-1,1\rbrace^n \to \lbrace-1,1\rbrace$ be the sign-valued version of $f$. Thus a polynomial $P$ sign-represents $f$ exactly when
 
-$$ q(z)P(z)>0 \qquad \text{for every } z\in\lbrace-1,1\rbrace^n. $$
+$$ q(z)P(z)\gt0 \qquad \text{for every } z\in\lbrace-1,1\rbrace^n. $$
 
 Let
 
@@ -44,7 +44,7 @@ $$ \rho := \mathbb{E}_{z\in\lbrace-1,1\rbrace^n}\bigl[q(z)\chi(z)\bigr]. $$
 
 Since $q(z)\chi(z)$ is sign-valued and is not constant, we have
 
-$$ \lvert \rho\rvert < 1. $$
+$$ \lvert \rho\rvert \lt 1. $$
 
 Now expand $q$ in the Fourier basis on the sign cube:
 
@@ -58,7 +58,7 @@ Then $P$ has degree at most $n-1$, because we have removed the only degree $n$ F
 
 For every $z$,
 
-$$ \begin{aligned} q(z)P(z) &= q(z)^2-\rho q(z)\chi(z) \\ &= 1-\rho q(z)\chi(z) \\ &\geq 1-\lvert \rho\rvert \\ &> 0. \end{aligned} $$
+$$ \begin{aligned} q(z)P(z) &= q(z)^2-\rho q(z)\chi(z) \cr &= 1-\rho q(z)\chi(z) \cr &\geq 1-\lvert \rho\rvert \cr &\gt 0. \end{aligned} $$
 
 Thus $P$ sign-represents $f$ and has degree at most $n-1$. Therefore $\deg_{\pm}(f)\leq n-1$ whenever $f$ is not parity or the complement of parity.
 

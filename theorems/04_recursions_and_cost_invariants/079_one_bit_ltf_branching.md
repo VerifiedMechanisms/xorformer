@@ -8,9 +8,9 @@ $$ L(y)=\beta+\sum_{i\in S}\alpha_i y_i $$
 
 be a strict affine sign representation of a Boolean function
 
-$$ T:\lbrace0,1\rbrace^{m}\to\lbrace0,1\rbrace, \qquad T(y)=1 \Longleftrightarrow L(y)>0, $$
+$$ T:\lbrace0,1\rbrace^{m}\to\lbrace0,1\rbrace, \qquad T(y)=1 \Longleftrightarrow L(y)\gt0, $$
 
-and assume $L(y)\neq0$ on the cube. Thus $T(y)=0$ if and only if $L(y)<0$. Assume $\alpha_i\neq0$ for $i\in S$. Let
+and assume $L(y)\neq0$ on the cube. Thus $T(y)=0$ if and only if $L(y)\lt0$. Assume $\alpha_i\neq0$ for $i\in S$. Let
 
 $$ G:\lbrace0,1\rbrace^2\to\lbrace0,1\rbrace $$
 
@@ -24,7 +24,7 @@ $$ H^{\ast}(f)\leq1+\lvert S\rvert. $$
 
 In particular, if $\lvert S\rvert\leq1$, then
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** Branching on one raw bit between two labels determined by the same LTF costs at most one head plus the number of variables used by that LTF. This includes $z\wedge T(y)$, $z\vee T(y)$, $z\oplus T(y)$, and their complements.
 

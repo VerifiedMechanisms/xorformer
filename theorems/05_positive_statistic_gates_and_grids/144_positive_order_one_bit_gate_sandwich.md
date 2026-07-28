@@ -28,7 +28,7 @@ The constant and raw-bit literal cases are immediate. If $f$ is constant, then e
 
 Assume now that $f$ is nonconstant. By the definition of $C_{+}(f)$, choose a positive weighted sum
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and a function $F$ on the image of $t$ such that
 
@@ -36,7 +36,7 @@ $$ f(y)=F(t(y)) $$
 
 and the ordered label sequence of $F$ has exactly $C_{+}(f)$ sign changes.
 
-Apply the positive-statistic one-bit gate sandwich [143_positive_statistic_one_bit_gate_sandwich.md](143_positive_statistic_one_bit_gate_sandwich.md) to $T=f$ and $C=C&#95;{+}(f)$. The lower bounds are the one-bit gate threshold-degree trichotomy and the general inequality $\deg&#95;{\pm}\leq H^{\ast}$; the upper bounds are Lemmas 139 and 140 optimized over the positive projection. $\blacksquare$
+Apply the positive-statistic one-bit gate sandwich [143_positive_statistic_one_bit_gate_sandwich.md](143_positive_statistic_one_bit_gate_sandwich.md) to $T=f$ and $C=C_{+}(f)$. The lower bounds are the one-bit gate threshold-degree trichotomy and the general inequality $\deg_{\pm}\leq H^{\ast}$; the upper bounds are Lemmas 139 and 140 optimized over the positive projection. $\blacksquare$
 
 ## Consequence
 

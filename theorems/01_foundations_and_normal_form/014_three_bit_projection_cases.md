@@ -46,7 +46,7 @@ $$ a_i + b_i = m_i + j_i. $$
 
 Therefore
 
-$$ \begin{aligned} L(a) + L(b) &= 2\beta_0 + \sum_{i=1}^{n} \beta_i(a_i+b_i) \\ &= 2\beta_0 + \sum_{i=1}^{n} \beta_i(m_i+j_i) \\ &= L(m) + L(j). \end{aligned} $$
+$$ \begin{aligned} L(a) + L(b) &= 2\beta_0 + \sum_{i=1}^{n} \beta_i(a_i+b_i) \cr &= 2\beta_0 + \sum_{i=1}^{n} \beta_i(m_i+j_i) \cr &= L(m) + L(j). \end{aligned} $$
 
 $\blacksquare$
 

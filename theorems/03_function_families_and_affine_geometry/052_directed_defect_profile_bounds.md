@@ -16,7 +16,7 @@ $$ F(0),F(1),\ldots,F(m). $$
 
 Define
 
-$$ V_m(C) := \begin{cases} 0 & \text{if } C=0,\\ 1+m+\sum_{r=2}^{C}2^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
+$$ V_m(C) := \begin{cases} 0 & \text{if } C=0,\cr 1+m+\sum_{r=2}^{C}2^r\binom{m}{r} & \text{if } C\geq1. \end{cases} $$
 
 Then
 
@@ -52,7 +52,7 @@ $$ H^{\ast}(h_F)\geq C(F). $$
 
 Define
 
-$$ q_k:= \begin{cases} +1 & \text{if } F(k)=1,\\ -1 & \text{if } F(k)=0, \end{cases} $$
+$$ q_k:= \begin{cases} +1 & \text{if } F(k)=1,\cr -1 & \text{if } F(k)=0, \end{cases} $$
 
 and
 
@@ -64,7 +64,7 @@ $$ R(t):= q_0\prod_{j\in\mathcal{J}}\left(j+\frac{1}{2}-t\right). $$
 
 As in [050_intersection_profile_bounds.md](050_intersection_profile_bounds.md), $R$ has degree $C(F)$ and satisfies
 
-$$ q_kR(k)>0 $$
+$$ q_kR(k)\gt0 $$
 
 for every $k\in\lbrace0,\ldots,m\rbrace$. Thus
 
@@ -148,30 +148,30 @@ $$ H^{\ast}(\mathrm{SUB}_3)=H^{\ast}(\mathrm{NCON}_3)=2. $$
 
 **Proof.** The upper bound is the theorem with one sign change, so $V_m(1)=m+1$.
 
-For $m=1$, $\mathrm{NCON}&#95;1(x,y)=x(1-y)$ and $\mathrm{SUB}&#95;1=1-\mathrm{NCON}&#95;1$ are nonconstant linear threshold functions, so both have head complexity $1$ by the one-head characterization [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md).
+For $m=1$, $\mathrm{NCON}_1(x,y)=x(1-y)$ and $\mathrm{SUB}_1=1-\mathrm{NCON}_1$ are nonconstant linear threshold functions, so both have head complexity $1$ by the one-head characterization [011_one_head_characterization.md](../01_foundations_and_normal_form/011_one_head_characterization.md).
 
 Assume $m\geq2$. We prove $\mathrm{NCON}_m$ is not a linear threshold function. It is enough to restrict to the first two coordinate pairs. Suppose an affine score with coefficients $a_1,a_2$ on $x_1,x_2$, coefficients $b_1,b_2$ on $y_1,y_2$, and constant $c$ is positive on noncontainment inputs and negative on containment inputs.
 
 The inputs $(x,y)=(e_1,0)$ and $(e_2,0)$ violate containment, so
 
-$$ a_1+c>0, \qquad a_2+c>0. $$
+$$ a_1+c\gt0, \qquad a_2+c\gt0. $$
 
 The inputs $(e_1,e_1)$ and $(e_2,e_2)$ satisfy containment, so
 
-$$ a_1+b_1+c<0, \qquad a_2+b_2+c<0. $$
+$$ a_1+b_1+c\lt0, \qquad a_2+b_2+c\lt0. $$
 
 The cross inputs $(e_1,e_2)$ and $(e_2,e_1)$ violate containment, so
 
-$$ a_1+b_2+c>0, \qquad a_2+b_1+c>0. $$
+$$ a_1+b_2+c\gt0, \qquad a_2+b_1+c\gt0. $$
 
 Adding the two containment inequalities gives
 
-$$ a_1+a_2+b_1+b_2+2c<0. $$
+$$ a_1+a_2+b_1+b_2+2c\lt0. $$
 
 Adding the two cross noncontainment inequalities gives
 
-$$ a_1+a_2+b_1+b_2+2c>0, $$
+$$ a_1+a_2+b_1+b_2+2c\gt0, $$
 
-a contradiction. Thus $\mathrm{NCON}&#95;m$ is not a linear threshold function, so $H^{\ast}(\mathrm{NCON}&#95;m)\geq2$.
+a contradiction. Thus $\mathrm{NCON}_m$ is not a linear threshold function, so $H^{\ast}(\mathrm{NCON}_m)\geq2$.
 
 Complement invariance from [028_restrictions_and_sign_rank.md](../02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md) gives the same lower bound for $\mathrm{SUB}_m$. $\blacksquare$

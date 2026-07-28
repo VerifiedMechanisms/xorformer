@@ -6,7 +6,7 @@ Let $f : \lbrace0,1\rbrace^n \to \lbrace0,1\rbrace$.
 
 Suppose there are positive weights
 
-$$ \lambda_1,\ldots,\lambda_n > 0 $$
+$$ \lambda_1,\ldots,\lambda_n \gt 0 $$
 
 and a function
 
@@ -24,11 +24,11 @@ for every $x \in \lbrace0,1\rbrace^n$.
 
 Write the image of $t$ in increasing order as
 
-$$ 0 = \tau_0 < \tau_1 < \cdots < \tau_{M-1}. $$
+$$ 0 = \tau_0 \lt \tau_1 \lt \cdots \lt \tau_{M-1}. $$
 
 Define signs
 
-$$ \sigma_m := \begin{cases} +1 & \text{if } F(\tau_m) = 1, \\ -1 & \text{if } F(\tau_m) = 0, \end{cases} \qquad 0 \leq m \leq M-1. $$
+$$ \sigma_m := \begin{cases} +1 & \text{if } F(\tau_m) = 1, \cr -1 & \text{if } F(\tau_m) = 0, \end{cases} \qquad 0 \leq m \leq M-1. $$
 
 Let
 
@@ -64,7 +64,7 @@ $$ C := C_t(F) \geq 1. $$
 
 ### Lemma 1. A shifted reciprocal of t costs one head
 
-Fix $r > 0$ and $d \in \mathbb{R}$. The scalar function
+Fix $r \gt 0$ and $d \in \mathbb{R}$. The scalar function
 
 $$ \psi_{r,d}(x) := \frac{d}{t(x)+r} $$
 
@@ -76,7 +76,7 @@ $$ \Lambda := \sum_{i=1}^{n} \lambda_i. $$
 
 Choose
 
-$$ \alpha > 1 + \frac{\Lambda}{r}. $$
+$$ \alpha \gt 1 + \frac{\Lambda}{r}. $$
 
 Set
 
@@ -86,7 +86,7 @@ and
 
 $$ \gamma := r - \frac{\Lambda}{\alpha - 1}. $$
 
-Then every $\rho_i$ is positive and $\gamma > 0$.
+Then every $\rho_i$ is positive and $\gamma \gt 0$.
 
 In the one-head atom definition, take
 
@@ -98,7 +98,7 @@ $$ \alpha^{x_i} = 1 + (\alpha - 1)x_i. $$
 
 Therefore
 
-$$ \begin{aligned} \gamma + \sum_{i=1}^{n} \rho_i \alpha^{x_i} &= r - \frac{\Lambda}{\alpha - 1} + \sum_{i=1}^{n} \frac{\lambda_i}{\alpha - 1}\left(1 + (\alpha - 1)x_i\right) \\ &= r + \sum_{i=1}^{n} \lambda_i x_i \\ &= r+t(x). \end{aligned} $$
+$$ \begin{aligned} \gamma + \sum_{i=1}^{n} \rho_i \alpha^{x_i} &= r - \frac{\Lambda}{\alpha - 1} + \sum_{i=1}^{n} \frac{\lambda_i}{\alpha - 1}\left(1 + (\alpha - 1)x_i\right) \cr &= r + \sum_{i=1}^{n} \lambda_i x_i \cr &= r+t(x). \end{aligned} $$
 
 The numerator is the constant $d$. Hence the atom is exactly
 
@@ -126,13 +126,13 @@ $$ \mathrm{sgn}(P(\tau_m)) = \sigma_m \qquad \text{for every } m \in \lbrace0,\l
 
 Now choose distinct positive numbers
 
-$$ r_1,\ldots,r_C > 0 $$
+$$ r_1,\ldots,r_C \gt 0 $$
 
 and set
 
 $$ B(z) := \prod_{j=1}^{C}(z+r_j). $$
 
-Because every $\tau_m$ is nonnegative, $B(\tau_m) > 0$. Therefore
+Because every $\tau_m$ is nonnegative, $B(\tau_m) \gt 0$. Therefore
 
 $$ S(z) := \frac{P(z)}{B(z)} $$
 

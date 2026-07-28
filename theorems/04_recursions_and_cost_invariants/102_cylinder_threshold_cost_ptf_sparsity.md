@@ -34,7 +34,7 @@ $$ \kappa(S,\varnothing) = \min\lbrace2^{\lvert S\rvert},1\rbrace = 1. $$
 
 Therefore the same polynomial is a strict cylinder-threshold representation:
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad a_{\varnothing} + \sum_{S\in\mathcal{M}}a_SC_{S,\varnothing}(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad a_{\varnothing} + \sum_{S\in\mathcal{M}}a_SC_{S,\varnothing}(x)\gt0. $$
 
 By the definition of $\mathrm{ctc}$,
 

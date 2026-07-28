@@ -4,7 +4,7 @@
 
 Let $k\geq1$, let $z\in\lbrace0,1\rbrace^{k}$ be raw bits, and let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0. $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0. $$
 
 Suppose each raw-bit slice of $f(z,y)$ factors through $t$:
 
@@ -12,7 +12,7 @@ $$ f(a,y)=F_a(t(y)) \qquad \text{for every }a\in\lbrace0,1\rbrace^{k}. $$
 
 Write the image of $t$ as
 
-$$ \tau_0<\tau_1<\cdots<\tau_{M-1}. $$
+$$ \tau_0\lt\tau_1\lt\cdots\lt\tau_{M-1}. $$
 
 Choose positive raw weights $\rho_1,\ldots,\rho_k$ with distinct subset sums, and order the raw assignments as
 
@@ -20,9 +20,9 @@ $$ a^{(0)},a^{(1)},\ldots,a^{(2^k-1)} $$
 
 so that
 
-$$ \sum_{j=1}^{k}\rho_j a^{(q)}_j < \sum_{j=1}^{k}\rho_j a^{(q+1)}_j. $$
+$$ \sum_{j=1}^{k}\rho_j a^{(q)}_j \lt \sum_{j=1}^{k}\rho_j a^{(q+1)}_j. $$
 
-Let $C_a$ be the sign-change count of $F_a$ along $\tau_0,\ldots,\tau&#95;{M-1}$, and let $J&#95;{\rho}$ be the number of boundary jumps:
+Let $C_a$ be the sign-change count of $F_a$ along $\tau_0,\ldots,\tau_{M-1}$, and let $J_{\rho}$ be the number of boundary jumps:
 
 $$ J_{\rho} := \left\lvert \left\lbrace q\in\lbrace0,\ldots,2^k-2\rbrace: F_{a^{(q)}}(\tau_{M-1})\neq F_{a^{(q+1)}}(\tau_0) \right\rbrace \right\rvert. $$
 
@@ -44,11 +44,11 @@ $$ r(a):=\sum_{j=1}^{k}\rho_j a_j, $$
 
 and let
 
-$$ \Delta:=\min_{0\leq q<2^k-1}\bigl(r(a^{(q+1)})-r(a^{(q)})\bigr)>0. $$
+$$ \Delta:=\min_{0\leq q\lt2^k-1}\bigl(r(a^{(q+1)})-r(a^{(q)})\bigr)\gt0. $$
 
 Choose
 
-$$ K>\frac{\Lambda}{\Delta}. $$
+$$ K\gt\frac{\Lambda}{\Delta}. $$
 
 Define a positive statistic on the combined variables by
 

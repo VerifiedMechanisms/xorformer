@@ -38,7 +38,7 @@ Thus $d_S(x)=0$ exactly when the conjunction $\bigwedge_{i\in S}x_i$ is true, an
 
 Fix constants
 
-$$ C>0,\qquad R>0,\qquad 0<\varepsilon<R. $$
+$$ C\gt0,\qquad R\gt0,\qquad 0\lt\varepsilon\lt R. $$
 
 Define
 
@@ -64,11 +64,11 @@ $$ \phi_S(x) \geq \frac{1}{2(C+\varepsilon n)}. $$
 
 If the conjunction on $S$ is false, then $d_S(x)\geq1$ and
 
-$$ -\frac{1}{R} < \phi_S(x) < 0. $$
+$$ -\frac{1}{R} \lt \phi_S(x) \lt 0. $$
 
 Indeed, in the false case
 
-$$ A_S(x)=\frac{1}{2}-d_S(x)<0 $$
+$$ A_S(x)=\frac{1}{2}-d_S(x)\lt0 $$
 
 and
 
@@ -76,7 +76,7 @@ $$ B_S(x)\geq C+R  d_S(x), $$
 
 so
 
-$$ \phi_S(x) \geq \frac{\frac{1}{2}-d_S(x)}{C+R  d_S(x)} > -\frac{1}{R}. $$
+$$ \phi_S(x) \geq \frac{\frac{1}{2}-d_S(x)}{C+R  d_S(x)} \gt -\frac{1}{R}. $$
 
 $\blacksquare$
 
@@ -88,7 +88,7 @@ $$ \mu:=\frac{1}{2(C+\varepsilon n)}. $$
 
 Choose $R$ so large that
 
-$$ \frac{s}{R}<\frac{\mu}{2}. $$
+$$ \frac{s}{R}\lt\frac{\mu}{2}. $$
 
 Consider the $s$-head score
 
@@ -96,15 +96,15 @@ $$ S(x):=\sum_{a=1}^{s}\phi_{S_a}(x). $$
 
 If no DNF term is satisfied, then every summand is negative, so
 
-$$ S(x)<0. $$
+$$ S(x)\lt0. $$
 
 If at least one DNF term is satisfied, then one summand is at least $\mu$, and all other summands are greater than $-1/R$. Hence
 
-$$ S(x) > \mu-\frac{s-1}{R} > \frac{\mu}{2} > 0. $$
+$$ S(x) \gt \mu-\frac{s-1}{R} \gt \frac{\mu}{2} \gt 0. $$
 
 Therefore
 
-$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)>0. $$
+$$ f(x)=1 \qquad\Longleftrightarrow\qquad S(x)\gt0. $$
 
 Since each $\phi_{S_a}$ is a one-head atom, the linear-fractional normal form from [010_linear_fractional_normal_form.md](../01_foundations_and_normal_form/010_linear_fractional_normal_form.md) gives
 

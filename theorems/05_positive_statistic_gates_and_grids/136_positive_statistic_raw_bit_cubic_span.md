@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $P(z,y)$ be a strict sign polynomial for a Boolean function $f(z,y)$ that can be written as a cubic polynomial in $t(y)$ and $z$, reduced using $z^2=z$:
 

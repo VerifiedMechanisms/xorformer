@@ -18,7 +18,7 @@ Consequently:
 
 2. The real hypersurface $V(P)$ contains the real linear space $V(L_1,L_2)$ of codimension at most two. The same containment holds after base change to $\mathbb C$.
 
-3. If no homogeneous degree $H$ form of real slice rank at most two strictly sign-represents $f$ on the homogenized Boolean cube, then $H^{\ast}(f)>H$.
+3. If no homogeneous degree $H$ form of real slice rank at most two strictly sign-represents $f$ on the homogenized Boolean cube, then $H^{\ast}(f)\gt H$.
 
 4. The lower relaxation can be strengthened by requiring the slice plane to contain an admissible oriented denominator.
 
@@ -26,11 +26,11 @@ Consequently:
 
 Absorb the global constant into the first numerator by replacing $A_1$ with $A_1+cB_1$. Isolate the first head:
 
-$$ P=(A_1+cB_1)\prod_{h=2}^{H}B_h+B_1\sum_{h=2}^{H}A_h\prod_{\substack{g=2\\g\neq h}}^{H}B_g. $$
+$$ P=(A_1+cB_1)\prod_{h=2}^{H}B_h+B_1\sum_{h=2}^{H}A_h\prod_{\substack{g=2\cr g\neq h}}^{H}B_g. $$
 
 Define
 
-$$ L_1=A_1+cB_1,\qquad Q_1=\prod_{h=2}^{H}B_h,\qquad L_2=B_1,\qquad Q_2=\sum_{h=2}^{H}A_h\prod_{\substack{g=2\\g\neq h}}^{H}B_g. $$
+$$ L_1=A_1+cB_1,\qquad Q_1=\prod_{h=2}^{H}B_h,\qquad L_2=B_1,\qquad Q_2=\sum_{h=2}^{H}A_h\prod_{\substack{g=2\cr g\neq h}}^{H}B_g. $$
 
 Then $L_1,L_2$ are real linear forms, $Q_1,Q_2$ have degree $H-1$, and $P=L_1Q_1+L_2Q_2$. The second slice generator is the actual denominator $B_1$.
 
@@ -90,4 +90,4 @@ If $H\geq\lceil(n+1)/2\rceil$, one fixed plane spans every degree at most $H$ cu
 
 The slice-rank-two relaxation lies in the second secant of the reducible-form variety of type $(1,H-1)$. Relevant geometric references include [Bik and Oneto](https://arxiv.org/abs/2005.08617) and [Catalisano, Geramita, Gimigliano, Harbourne, Migliore, Nagel, and Shin](https://arxiv.org/abs/1502.00167). [Flavi, Gesmundo, Oneto, and Ventura](https://arxiv.org/abs/2509.12322) give determinantal equations for small strength and a generic-section reduction theorem for cubic slice rank two.
 
-The broader numerical hierarchy is developed in [general_hstar_scalable_research_program.md](../../artifacts/calculations/general_hstar_scalable_research_program.md).
+The broader numerical hierarchy is developed in [general_hstar_scalable_research_program.md](https://github.com/karthikviswanathn/how-many-attention-heads-xor/blob/autoresearch/artifacts/calculations/general_hstar_scalable_research_program.md).

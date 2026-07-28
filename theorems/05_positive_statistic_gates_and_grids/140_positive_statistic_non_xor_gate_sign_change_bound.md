@@ -4,7 +4,7 @@
 
 Let
 
-$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i>0, $$
+$$ t(y)=\sum_{i=1}^{m}\lambda_i y_i, \qquad \lambda_i\gt0, $$
 
 and let $T(y)=F(t(y))$ be nonconstant. Let $C$ be the number of sign changes in the ordered label sequence of $F$ on the image of $t$.
 
@@ -28,7 +28,7 @@ In particular, if $\deg_{\pm}(T)=C$, then every nonconstant feature-dependent no
 
 As in [139_positive_statistic_fresh_xor_sign_change_bound.md](139_positive_statistic_fresh_xor_sign_change_bound.md), choose a strict degree $C$ polynomial $Q$ such that
 
-$$ T(y)=1 \qquad\Longleftrightarrow\qquad Q(t(y))>0. $$
+$$ T(y)=1 \qquad\Longleftrightarrow\qquad Q(t(y))\gt0. $$
 
 For $b\in\lbrace0,1\rbrace$, write
 
@@ -44,19 +44,19 @@ $$ H^{\ast}(H_G)\leq C. $$
 
 It remains to handle the case where exactly one slice is nonconstant. Let $U(y)$ be that nonconstant slice, so $U$ is either $T$ or $1-T$. Define
 
-$$ Q_U(t):= \begin{cases} Q(t) & \text{if }U=T,\\ -Q(t) & \text{if }U=1-T. \end{cases} $$
+$$ Q_U(t):= \begin{cases} Q(t) & \text{if }U=T,\cr -Q(t) & \text{if }U=1-T. \end{cases} $$
 
 Choose
 
-$$ M>\max_y\lvert Q_U(t(y))\rvert. $$
+$$ M\gt\max_y\lvert Q_U(t(y))\rvert. $$
 
 If the nonconstant slice occurs at $z=1$, set
 
-$$ P(z,y):= \begin{cases} Q_U(t(y))+M(1-z) & \text{if }G_0\text{ is the constant }1,\\ Q_U(t(y))-M(1-z) & \text{if }G_0\text{ is the constant }0. \end{cases} $$
+$$ P(z,y):= \begin{cases} Q_U(t(y))+M(1-z) & \text{if }G_0\text{ is the constant }1,\cr Q_U(t(y))-M(1-z) & \text{if }G_0\text{ is the constant }0. \end{cases} $$
 
 If the nonconstant slice occurs at $z=0$, set
 
-$$ P(z,y):= \begin{cases} Q_U(t(y))+Mz & \text{if }G_1\text{ is the constant }1,\\ Q_U(t(y))-Mz & \text{if }G_1\text{ is the constant }0. \end{cases} $$
+$$ P(z,y):= \begin{cases} Q_U(t(y))+Mz & \text{if }G_1\text{ is the constant }1,\cr Q_U(t(y))-Mz & \text{if }G_1\text{ is the constant }0. \end{cases} $$
 
 In each case, $P$ strictly sign-represents $H_G$ and has degree at most $C$ in $t(y)$ and $z$. Lemma 138 gives
 

@@ -20,7 +20,7 @@ $$ H^{\ast}(f)\leq2. $$
 
 More precisely,
 
-$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\\ 1 & \text{if } f \text{ is a nonconstant linear threshold function},\\ 2 & \text{otherwise}. \end{cases} $$
+$$ H^{\ast}(f) = \begin{cases} 0 & \text{if } f \text{ is constant},\cr 1 & \text{if } f \text{ is a nonconstant linear threshold function},\cr 2 & \text{otherwise}. \end{cases} $$
 
 > **Interpretation.** The sparse-support upper bound gives $H^{\ast}(f)\leq2s(f)$. The first nontrivial sparse case is sharper: one or two exceptional points always cost at most two heads.
 
@@ -32,7 +32,7 @@ $$ \lvert f^{-1}(1)\rvert\leq2. $$
 
 If $f^{-1}(1)$ is empty, then $f$ is constant. If $f^{-1}(1)=\lbrace p\rbrace$, then the singleton indicator is a linear threshold function:
 
-$$ \mathbf{1}[x=p]=1 \qquad\Longleftrightarrow\qquad \sum_{i:p_i=1}x_i+\sum_{i:p_i=0}(1-x_i)>n-\frac{1}{2}. $$
+$$ \mathbf{1}[x=p]=1 \qquad\Longleftrightarrow\qquad \sum_{i:p_i=1}x_i+\sum_{i:p_i=0}(1-x_i)\gt n-\frac{1}{2}. $$
 
 Thus $H^{\ast}(f)\leq1$ in the singleton case.
 
