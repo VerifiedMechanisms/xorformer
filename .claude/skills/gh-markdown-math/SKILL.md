@@ -40,11 +40,12 @@ error in VS Code. Prefer the dual-safe fixes.
 - After substituting a **letter-command** (`\lbrace`, `\rbrace`, …) that is immediately followed by a letter, insert a space: `\{f` → `\lbrace f`, never `\lbracef` (one undefined token).
 
 ### Underscores (subscripts)
-- Intraword `_` (`a_i`, `x_i` — alnum on both sides) is always inert; any number of them is fine. The hazard comes from two shapes (classified by the characters adjacent to the `_`):
-  - **opener-shaped**: punctuation before, letter/digit after — `}_n`, `)_n` (e.g. `$\mathrm{OR}_n$`);
-  - **closer-shaped**: letter/digit before, punctuation after — `T_{`, `g_{` (e.g. `$T_{n,1}$`, `$\deg_{\pm}$`).
-- Math breaks **iff an opener-shaped `_` is followed later by a closer-shaped `_` in the same paragraph** — they emphasis-pair into `<em>` across everything in between. This crosses source lines (a wrapped list item is one paragraph), crosses `$…$` span boundaries, and even happens inside `**bold**`. Verified: `$\mathrm{OR}_n$ … $T_{n,1}$` breaks (opener→closer, even on different lines); `$T_{n,1}$ … $\mathrm{OR}_n$` is fine (closer first); `$\deg_{\pm}(\mathrm{XOR}_n)$` alone is fine (closer before opener); any number of opener-shaped `_` alone is fine.
-- **Fix (dual-safe, use this): put a space before each closer-shaped `_`** — `$T _{n,1}$`, `$\deg _{\pm}$`. A `_` preceded by whitespace cannot close emphasis, and TeX ignores the space, so GitHub, KaTeX, and MathJax all render a normal subscript. (The spaced `_` can at worst act as an opener, which is harmless.) Alternatively move the subscript inside the argument (`\mathrm{XOR_n}` — intraword, inert) if the upright subscript style is acceptable.
+- Intraword `_` (`a_i`, `x_i` — alnum on both sides) is always inert; any number of them is fine. The hazard comes from three shapes (classified by the characters adjacent to the `_`):
+  - **opener-shaped**: punctuation before, letter/digit after — `}_n`, `)_n` (e.g. `$\mathrm{OR}_n$`); can only open.
+  - **closer-shaped**: letter/digit before, punctuation after — `T_{`, `g_{` (e.g. `$T_{n,1}$`, `$\deg_{\pm}$`); can only close.
+  - **both-shaped**: punctuation on BOTH sides — `}_{`, `}_=` (e.g. `$\underbrace{…}_{a\text{-only}}$`, `$\text{pos}_=$`); can open AND close. Verified July 2026: two `}_{` in one paragraph pair with each other and corrupt the math.
+- Math breaks **iff a `_` that can open is followed later by a `_` that can close in the same paragraph** — they emphasis-pair into `<em>` across everything in between. This crosses source lines (a wrapped list item is one paragraph), crosses `$…$` span boundaries, and even happens inside `**bold**`. Verified: `$\mathrm{OR}_n$ … $T_{n,1}$` breaks (opener→closer, even on different lines); `$T_{n,1}$ … $\mathrm{OR}_n$` is fine (closer first); `$\deg_{\pm}(\mathrm{XOR}_n)$` alone is fine (closer before opener); any number of opener-shaped `_` alone is fine.
+- **Fix (dual-safe, use this): put a space before every `_` that can close** (closer-shaped AND both-shaped) in any paragraph that also contains an earlier openable `_` — `$T _{n,1}$`, `$\underbrace{…} _{a\text{-only}}$`. A `_` preceded by whitespace can never close emphasis, and TeX ignores the space, so GitHub, KaTeX, and MathJax all render a normal subscript. Caution: the spaced `_` can still OPEN emphasis, so the fix only holds if every closable `_` later in the paragraph is spaced too — space them all, not just the first offender. Alternatively move the subscript inside the argument (`\mathrm{XOR_n}` — intraword, inert) if the upright subscript style is acceptable.
 - GitHub-only fallback: the HTML entity `&#95;` (e.g. `\mathrm{OR}&#95;n`) also works because GitHub decodes it after Markdown — but it **breaks VS Code / any KaTeX preview**, which passes the entity raw into KaTeX (parse error on `&`). Avoid unless the file is GitHub-only.
 
 ### Delimiter placement
@@ -58,7 +59,9 @@ error in VS Code. Prefer the dual-safe fixes.
 - **Display `$$` does not render inside list items.** Use inline `$…$` instead (inline renders on a list-continuation line). ` ```math ` fenced blocks also fail inside lists.
 - **No math in headings.** `# … $n$` is unreliable; use plain text / Unicode (`ₙ`, `…`, `≤`).
 - **Math inside `*italic*` / `_italic_` does NOT render** — the `$…$` is left raw (`*foo $H$ bar*` renders a literal `$H$`). Move the math outside the italic: `*foo* $H$ *bar*`. **Math inside `**bold**` DOES render** (`**foo $H$ bar**` is fine) — with one exception: an opener→closer underscore pair (e.g. `**…$\mathrm{OR}_n$…$T_{n,1}$…**`) still emphasis-pairs inside bold and breaks it; apply the space-before-closer fix from *Underscores* (`$T _{n,1}$`), which is verified to work inside bold. (Verified on GitHub: `**$H$**`→math, `*$H$*`→raw.)
-- **`\begin{cases}` does not render inline.** Use a display `$$` block (not inside a list) or rewrite as prose: `$f(x)=1$ if …, and $2$ otherwise.`
+- **No `\begin{…}` environment renders inline.** `cases`, `aligned`, `array`, … inside `$…$` all leave the span unrecognized (raw `$`), verified July 2026. Use a standalone display `$$` line (not inside a list) or rewrite as prose: `$f(x)=1$ if …, and $2$ otherwise.`
+- **Math inside footnote definitions (`[^label]: …`) never renders on GitHub** — the span is left raw even when the same span renders in the body (verified July 2026 via the render API; GitLab renders footnote math fine). Use plain text/Unicode in footnotes (`z₌`, `⊕`, `≤`) or move the math into the body.
+- **`\(...\)` / `\[...\]` delimiters are not math on GitHub** (or in VS Code's preview); only `$`, `$$`, and ` ```math ` are. Convert them to `$…$` / `$$…$$`.
 
 ### Generally safe (do not "fix" these)
 `\lbrace \rbrace \lvert \rvert \lVert \rVert`, `\mathrm \mathbf \mathbb \mathcal \mathfrak`,
@@ -88,10 +91,13 @@ the exact LaTeX fed to the engine. Two checks:
 1. **Residual `$`** — strip `<math-renderer>…</math-renderer>`, `<code>`, `<pre>`, then
    look for a literal `$`. Any leftover `$` = a delimiter GitHub did **not** recognize =
    broken math. This single check catches almost every failure above.
-2. **Double-escape inside math** — scan each `<math-renderer>` payload for `&amp;`:
-   any hit means KaTeX will receive a literal entity (e.g. `&gt;`) instead of the
-   character — broken math the residual-`$` check cannot see. Also scan payloads for a
-   lone `\` where a row break was intended (an eaten `\\`).
+2. **Double-escape inside math** — decode each `<math-renderer>` payload **once**
+   (`html.unescape`), then flag any entity that survives (`&lt;` `&gt;` `&amp;` `&#…;`):
+   a surviving entity is what KaTeX receives — broken math the residual-`$` check
+   cannot see. A plain `&amp;` in the *raw* payload is NOT an error: a healthy
+   alignment `&` is normally HTML-escaped there (verified July 2026 on both GitHub
+   and GitLab; the marker of the real bug is `&amp;lt;`-style double escapes). Also
+   scan payloads for a lone `\` where a row break was intended (an eaten `\\`).
 3. **Leak into structure** — a `<h1-6>` or `<li>` whose text contains raw `\sum`/`\frac`/
    `\begin`/`<em>` where math should be = the block was mis-parsed.
 
