@@ -139,10 +139,38 @@ def mask_fenced_blocks(lines):
     return out, fences
 
 
-def mask_inline_code(line):
-    """Blank out `code` spans (any backtick run length), keeping length."""
-    return re.sub(r"(`+)(?!`).*?(?<!`)\1(?!`)",
-                  lambda m: " " * len(m.group(0)), line)
+def is_escaped(line, i):
+    """True when line[i] is escaped: preceded by an ODD run of backslashes
+    (in '\\\\$' the first backslash escapes the second, so $ is live)."""
+    n, j = 0, i - 1
+    while j >= 0 and line[j] == "\\":
+        n += 1
+        j -= 1
+    return n % 2 == 1
+
+
+CODE_SPAN = re.compile(r"(`+)(?!`)[\s\S]*?(?<!`)\1(?!`)")
+
+
+def mask_inline_code_lines(lines):
+    """Blank out `code` spans, keeping line structure.
+
+    CommonMark code spans may cross line breaks within a paragraph, so the
+    masking runs on blank-line-separated chunks, not single lines.
+    """
+    out, start, n = list(lines), 0, len(lines)
+    for i in range(n + 1):
+        if i < n and lines[i].strip() != "":
+            continue
+        if i > start:
+            chunk = "\n".join(lines[start:i])
+            masked = CODE_SPAN.sub(
+                lambda m: re.sub(r"[^\n]", " ", m.group(0)), chunk)
+            if masked != chunk:
+                for k, l in enumerate(masked.split("\n")):
+                    out[start + k] = l
+        start = i + 1
+    return out
 
 
 def mask_link_destinations(line):
@@ -172,7 +200,7 @@ def extract_spans(masked, path, findings):
     for i, line in enumerate(masked):
         pos, n = 0, len(line)
         while pos < n:
-            if line[pos] != "$" or (pos > 0 and line[pos - 1] == "\\"):
+            if line[pos] != "$" or is_escaped(line, pos):
                 pos += 1
                 continue
             run = 1
@@ -216,7 +244,7 @@ def extract_spans(masked, path, findings):
             if nxt and not nxt.isspace():
                 close = -1
                 for j in range(pos + 1, n):
-                    if (line[j] == "$" and line[j - 1] != "\\"
+                    if (line[j] == "$" and not is_escaped(line, j)
                             and not line[j - 1].isspace()):
                         close = j
                         break
@@ -250,12 +278,17 @@ class Block:
         self.line_idxs, self.kind = line_idxs, kind
 
 
+BLOCKQUOTE = re.compile(r"^(?:\s{0,3}>\s?)+")
+
+
 def build_blocks(masked):
     """Group line indices into blocks with kinds.
 
     Kinds: heading, table (one row each), list (item incl. continuation
     lines, and indented blocks continuing a list item across blank lines),
-    footnote ([^label]: definition incl. continuation), para.
+    footnote ([^label]: definition incl. continuation), para. Blockquote
+    markers are stripped before classifying, so '> # H' is a heading and a
+    list or display block inside a blockquote is still recognized.
     """
     blocks, cur, cur_kind = [], [], "para"
     last_kind = None
@@ -267,7 +300,8 @@ def build_blocks(masked):
             last_kind = cur_kind
         cur, cur_kind = [], "para"
 
-    for i, line in enumerate(masked):
+    for i, raw in enumerate(masked):
+        line = BLOCKQUOTE.sub("", raw)
         stripped = line.strip()
         indent = len(line) - len(line.lstrip())
         if stripped == "":
@@ -417,6 +451,8 @@ def check_emphasis(masked, blocks, by_line, path, findings):
                     c = lo + m.start()
                     if any(a <= c < z for a, z in own_ranges):
                         continue  # inside block-level math: not inline text
+                    if is_escaped(line, c):
+                        continue
                     prev = line[c - 1] if c > lo else ""
                     nxt = line[c + 1] if c + 1 < hi else ""
                     can_open, can_close = underscore_flanks(prev, nxt)
@@ -523,7 +559,7 @@ def lint_file(path):
     text = Path(path).read_text(encoding="utf-8")
     lines = text.split("\n")
     masked, fence_spans = mask_fenced_blocks(lines)
-    masked = [mask_inline_code(l) for l in masked]
+    masked = mask_inline_code_lines(masked)
     spans, prose = extract_spans(masked, path, findings)
     spans += fence_spans
     spans.sort(key=lambda s: (s.line, s.start0))
@@ -613,11 +649,14 @@ def render_audit(path, html, payload_rx):
     payloads = [m.group("tex") for m in payload_rx.finditer(html)]
     stripped = payload_rx.sub(" ", html)
     stripped = CODEBLOCK.sub(" ", stripped)
-    if "$" in stripped:
-        ctx = re.search(r".{0,60}\$.{0,60}", stripped, re.S)
-        findings.append(f"{path}: render: {stripped.count('$')} residual $ "
-                        "outside math (unrecognized delimiter) e.g. "
-                        f"...{ctx.group(0).strip()!r}...")
+    # A residual $ counts only when a tight $...$ pair survived outside the
+    # recognized math, mirroring the static delimiter rule: literal currency
+    # in prose ("The fee is $5.") is fine, an unrecognized span is not.
+    residual = re.findall(r"\$(?!\s)[^$\n]*?(?<!\s)\$", stripped)
+    if residual:
+        findings.append(f"{path}: render: {len(residual)} unrecognized "
+                        "math-shaped $...$ pair(s) outside math, e.g. "
+                        f"{residual[0][:80]!r}")
     for p in payloads:
         decoded = html_lib.unescape(p)
         m = re.search(r"&(?:[A-Za-z]+|#\w+);", decoded)

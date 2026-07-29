@@ -92,7 +92,7 @@ So we can equivalently write the attention update directly in terms of the $\sig
 
 $\qquad z_=(a,b) = \dfrac{\sigma_a  v_a + \sigma_b  v_b + \sigma_=  v_=}{\sigma_a + \sigma_b + \sigma_=}.$
 
-We now ask: can a hyperplane separate the four attention outputs $\lbrace z_=(a,b)\rbrace_{a,b \in \lbrace0,1\rbrace}$ into the XOR classes?  
+We now ask: can a hyperplane separate the four attention outputs $\lbrace z_=(a,b)\rbrace_{a,b \in \lbrace0,1\rbrace}$ into the XOR classes?
   
 $\qquad w^\top z_=(a,b) \gt \tau \quad\Longleftrightarrow\quad a \oplus b = 1.$
 
@@ -134,7 +134,7 @@ The key structural fact is that $N(a,b)$ and $D(a,b)$ each split into an $a$-onl
 
 $\qquad N(a,b) = \underbrace{\sigma_a v_a}_{a\text{-only}}+\underbrace{\sigma_b v_b} _{b\text{-only}}+\underbrace{\sigma _= v _=} _{\text{const}}, \qquad D(a,b)=\underbrace{\sigma_a} _{a\text{-only}}+\underbrace{\sigma_b} _{b\text{-only}}+\underbrace{\sigma _=} _{\text{const}}.$
 
-Because of this, summing over the main diagonal $\lbrace(0,0),(1,1)\rbrace$ versus the off-diagonal $\lbrace(0,1),(1,0)\rbrace$ yields identical totals — in both cases you collect exactly one copy each of the $a{=}0$ and $a{=}1$ contributions, and one copy each of the $b{=}0$ and $b{=}1$ contributions. This gives the **key identities**:  
+Because of this, summing over the main diagonal $\lbrace(0,0),(1,1)\rbrace$ versus the off-diagonal $\lbrace(0,1),(1,0)\rbrace$ yields identical totals — in both cases you collect exactly one copy each of the $a{=}0$ and $a{=}1$ contributions, and one copy each of the $b{=}0$ and $b{=}1$ contributions. This gives the **key identities**:
   
 $\qquad N(0,0)+N(1,1) = N(0,1)+N(1,0) = \mathcal{N},$
 
@@ -149,7 +149,7 @@ Line segments connecting the same class intersect
 
 We now show that the positive-class segment always intersects the negative-class segment, ruling out linear separability.
 
-Recall from the definition $z_=(a,b)$, we get $N(a,b) = D(a,b)  z_=(a,b)$. Substituting this into the diagonal identity $\mathcal{N} = N(0,0) + N(1,1) = N(0,1) + N(1,0)$ gives  
+Recall from the definition $z_=(a,b)$, we get $N(a,b) = D(a,b)  z_=(a,b)$. Substituting this into the diagonal identity $\mathcal{N} = N(0,0) + N(1,1) = N(0,1) + N(1,0)$ gives
   
 $$\begin{aligned} \mathcal{N} &= D(0,0)  z_=(0,0) + D(1,1)  z_=(1,1) \cr &= D(0,1)  z_=(0,1) + D(1,0)  z_=(1,0). \end{aligned}$$
   
@@ -242,7 +242,7 @@ Together, these establish that two attention heads are necessary and sufficient 
 
 [^s2t3zpf12v]: OR(a,b) = max(a,b), AND(a,b) = min(a,b), XOR(a,b) = (a + b) mod 2. XOR is denoted by ⊕ in equations.
 
-[^tzw5rnf80qc]: We call z₌(0,0) and z₌(1,1) the XOR-negative outputs (where a ⊕ b = 0) and z₌(0,1) and z₌(1,0) the XOR-positive outputs (where a ⊕ b = 1). 
+[^tzw5rnf80qc]: We call z₌(0,0) and z₌(1,1) the XOR-negative outputs (where a ⊕ b = 0) and z₌(0,1) and z₌(1,0) the XOR-positive outputs (where a ⊕ b = 1).
 
 [^tk3jlhien1e]: To clarify, it performs these operations independently (either OR or AND), not simultaneously 
 

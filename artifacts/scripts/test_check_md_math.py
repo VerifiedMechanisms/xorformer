@@ -142,6 +142,32 @@ expect("real-wrapped-span", "A span $x +\ny$ here.\n", ["wrapped-span"])
 # ---- finding 11: digit after closing $ ----
 expect("digit-after-close", "Dimension $x$2 test.\n", ["close-delim"])
 
+# ---- reviewer P2: nested containers (blockquotes) ----
+expect("blockquote-heading-math", "> # Heading with $n$ math\n",
+       ["heading-math"])
+expect("blockquote-list-display", "> - item $$E = mc^2$$ inline\n",
+       ["list-display"])
+expect("blockquote-prose-ok", "> A quote with $T_{n,1}$ math.\n",
+       must_not_have=["heading-math", "list-display"])
+
+# ---- reviewer P2: backslash parity for escaped $ ----
+expect("double-backslash-dollar", r"Text \\$\{0,1\}$ here.", ["brace"])
+expect("escaped-dollar-inert", r"Escaped \$ dollar and \$5 fine.",
+       must_not_have=["brace", "wrapped-span"])
+
+# ---- reviewer P2: multiline code spans ----
+expect("multiline-code-span",
+       "Use `foo $\\{0,1\\}$\nbar` here.\n",
+       must_not_have=["brace", "wrapped-span"])
+
+# ---- reviewer P3: render audit accepts literal currency ----
+probs, notes, n = chk.render_audit(
+    "t.md", "<p>The fee is $5. And $6 later.</p>", chk.MATH_PAYLOAD_GH)
+assert not probs, probs
+probs, notes, n = chk.render_audit(
+    "t.md", "<p>raw $T_{n,1}$ unrecognized</p>", chk.MATH_PAYLOAD_GH)
+assert any("unrecognized math-shaped" in p for p in probs), probs
+
 # ---- finding 15: render_audit structure leak + eaten row break ----
 probs, notes, n = chk.render_audit(
     "t.md", "<h1>\\sum x</h1><p>ok</p>", chk.MATH_PAYLOAD_GH)
