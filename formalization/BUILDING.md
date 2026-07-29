@@ -61,6 +61,8 @@ open HeadComplexity
 #print axioms symmetricFn_computable             -- L12 upper bound
 #print axioms signChanges_le_of_computableWithHeadsN  -- L12 lower bound
 #print axioms theorem6_degree_le                   -- L6 (model → threshold degree)
+#print axioms f10Q_ne_zero                         -- exact nonvanishing certificate
+#print axioms theorem13_strict_separation          -- explicit strict separation
 EOF
 lake env lean /tmp/AxiomCheck.lean
 ```
@@ -190,13 +192,16 @@ lake build && lake env lean /tmp/AxiomCheck.lean   # (AxiomCheck.lean from §3)
 sbatch build.slurm && tail -f build.slurm.out      # watch for DONE_SENTINEL
 ```
 
-The top-level theorem proved by a clean build is
+The latest top-level separation theorem proved by a clean build is
 
 ```lean
-theorem HStar_symmetricFn (F : ℕ → Bool) (n : ℕ) :
-    HStar n (symmetricFn F) = signChanges n F
+theorem theorem13_strict_separation : thresholdDeg f10 < HStar 10 f10
 ```
 
-(Theorem 12: the head complexity of a symmetric Boolean function equals the number
-of sign changes of its weight profile), depending only on the three standard
-Lean axioms.
+It depends only on the three standard Lean axioms. Theorem 12 remains the
+headline general-family result:
+
+```lean
+theorem theorem12_symmetric (F : ℕ → Bool) (n : ℕ) :
+    HStar n (symmetricFn F) = signChanges n F
+```
