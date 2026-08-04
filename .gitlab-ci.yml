@@ -14,3 +14,58 @@ markdown-math-check:
     - python3 artifacts/scripts/test_check_md_math.py
     - npm install --no-save katex
     - git ls-files -z -- '*.md' ':!:.claude/**' | xargs -0 python3 artifacts/scripts/check_md_math.py --katex
+
+# Build the complete Lean library and run the proof-integrity checks documented
+# in formalization/BUILDING.md.
+formalization-check:
+  image: debian:bookworm-slim
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  variables:
+    ELAN_HOME: "$CI_PROJECT_DIR/.elan"
+  cache:
+    key:
+      files:
+        - formalization/lean-toolchain
+    paths:
+      - .elan/
+  before_script:
+    - apt-get update
+    - apt-get install --yes --no-install-recommends build-essential ca-certificates curl git ripgrep zstd
+    - curl --proto '=https' --tlsv1.2 -sSf -o /tmp/elan-init.sh https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh
+    - sh /tmp/elan-init.sh -y --default-toolchain none
+    - export PATH="$ELAN_HOME/bin:$PATH"
+  script:
+    - cd formalization
+    - lake exe cache get
+    - lake build
+    - |
+      set +e
+      rg -n 'sorry|admit\b' HeadComplexity.lean HeadComplexity
+      placeholder_status=$?
+      set -e
+      if [ "$placeholder_status" -eq 0 ]; then
+        echo "Lean proof placeholders are not allowed."
+        exit 1
+      elif [ "$placeholder_status" -ne 1 ]; then
+        echo "Failed to scan the Lean sources for proof placeholders."
+        exit "$placeholder_status"
+      fi
+    - |
+      axiom_output="$(printf '%s\n' \
+          'import HeadComplexity' \
+          'open HeadComplexity' \
+          '#print axioms theorem12_symmetric' \
+          '#print axioms symmetricFn_computable' \
+          '#print axioms signChanges_le_of_computableWithHeadsN' \
+          '#print axioms theorem6_degree_le' \
+          '#print axioms f10Q_ne_zero' \
+          '#print axioms theorem13_strict_separation' \
+        | lake env lean --stdin)"
+      printf '%s\n' "$axiom_output"
+      standard_axiom_count="$(printf '%s\n' "$axiom_output" | grep -c 'depends on axioms: \[propext, Classical.choice, Quot.sound\]$')"
+      if [ "$standard_axiom_count" -ne 6 ]; then
+        echo "Each headline theorem must depend on exactly the three standard Lean axioms."
+        exit 1
+      fi
