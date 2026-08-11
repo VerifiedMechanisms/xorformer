@@ -4,7 +4,7 @@ set -euo pipefail
 
 script_dir="$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 repository_dir="$(dirname -- "$(dirname -- "$script_dir")")"
-package_dir="${FORMALIZATION_DIR:-$repository_dir/formalization}"
+package_dir="$repository_dir/formalization"
 axiom_check="$script_dir/AxiomCheck.lean"
 fetch_cache=false
 

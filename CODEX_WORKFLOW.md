@@ -61,7 +61,7 @@ design/sketch with Codex (background, </dev/null, focused)
 ```
 
 The build is the source of truth and runs on a compute node (see
-[`BUILDING.md`](head-complexity/BUILDING.md)); a single new ~300-line module checks
+[`BUILDING.md`](formalization/BUILDING.md)); a single new ~300-line module checks
 in well under a minute once its deps are cached. Iterating against the build is far
 faster and safer than iterating against Codex's prose.
 

@@ -7,16 +7,33 @@
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=32G
 #SBATCH --time=00:20:00
-#SBATCH --output=/gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity/check2.slurm.out
+#SBATCH --output=formalization/check2.slurm.out
 set -uo pipefail
-export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
-export PATH="$ELAN_HOME/bin:$PATH"
 export LEAN_NUM_THREADS="${SLURM_CPUS_PER_TASK:-12}"
-cd /gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity || exit 1
+repository_dir="${SLURM_SUBMIT_DIR:?Submit this job from the repository root}"
+if [ ! -f "$repository_dir/formalization/lakefile.toml" ]; then
+  echo "Repository root not found at $repository_dir" >&2
+  exit 2
+fi
+cd "$repository_dir/formalization" || exit 1
 echo "host=$(hostname)"; date
 echo "=== build target oleans (Results.ThresholdDegree, Polynomial.ModelToPolynomial) ==="
-lake build HeadComplexity.Results.ThresholdDegree HeadComplexity.Polynomial.ModelToPolynomial
-echo "DEP_RC=$?"
-echo "=== check Polynomial/ModelToPolynomial ==="
-lake env lean HeadComplexity/Polynomial/ModelToPolynomial.lean
-echo "CHECK_RC=$?"; date; echo "DONE_SENTINEL"
+if lake build HeadComplexity.Results.ThresholdDegree HeadComplexity.Polynomial.ModelToPolynomial; then
+  dep_rc=0
+else
+  dep_rc=$?
+fi
+echo "DEP_RC=$dep_rc"
+if [ "$dep_rc" -eq 0 ]; then
+  echo "=== check Polynomial/ModelToPolynomial ==="
+  if lake env lean HeadComplexity/Polynomial/ModelToPolynomial.lean; then
+    check_rc=0
+  else
+    check_rc=$?
+  fi
+else
+  echo "Skipping Lean check because the dependency build failed."
+  check_rc=$dep_rc
+fi
+echo "CHECK_RC=$check_rc"; date; echo "DONE_SENTINEL"
+exit "$check_rc"

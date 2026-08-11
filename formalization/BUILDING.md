@@ -12,12 +12,12 @@ proof architecture see [`PROOF_OVERVIEW.md`](PROOF_OVERVIEW.md).
 
 ## 1. Toolchain and dependencies
 
-| Component | Pinned version | Where pinned |
+| Component | Version | Where selected |
 |-----------|----------------|--------------|
 | Lean      | `leanprover/lean4:v4.31.0` | `lean-toolchain` |
 | Lake      | `5.0.0-src` (ships with the toolchain) | — |
 | mathlib   | `v4.31.0` (`leanprover-community/mathlib4`) | `lakefile.toml` → `[[require]]`, locked in `lake-manifest.json` |
-| elan      | `4.2.3` (any recent elan works) | — |
+| elan      | Current stable (any recent version works) | official `elan.lean-lang.org` installer |
 
 `elan` installs the exact Lean/Lake the toolchain file requests, so you do **not**
 need to install Lean by hand — just have `elan` on `PATH` and let it resolve the
@@ -146,13 +146,16 @@ node via SLURM. **All toolchain + cache state lives on shared GPFS**
 (`/gpfs/work5/0/gusr0688/...` and `/projects/gusr0688/...`), visible from every
 node, so compute nodes build fully **offline** — no re-fetch needed.
 
-Environment every job must set (already baked into the scripts below):
+Make Lean available in the submission environment before starting a job. SLURM
+exports that environment by default. On Snellius, the shared installation can be
+selected with:
 
 ```bash
 export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
 export PATH="$ELAN_HOME/bin:$PATH"
-export LEAN_NUM_THREADS="${SLURM_CPUS_PER_TASK:-16}"   # see CRITICAL note
 ```
+
+Each job script sets `LEAN_NUM_THREADS` from its requested CPU count.
 
 > **CRITICAL:** set `LEAN_NUM_THREADS=$SLURM_CPUS_PER_TASK`. Otherwise Lean spawns
 > one worker per *host* core (32) inside a smaller cgroup and thrashes — a 4-core
@@ -171,11 +174,17 @@ A 16-thread ~3-min build costs ≈ 1.6 SBU.
 
 ### Job scripts (in `artifacts/scripts`)
 
+Submit these jobs from the repository root. They use `SLURM_SUBMIT_DIR` to find
+the checkout, rather than embedding its GPFS path.
+
 | Script | What it does | Submit with |
 |--------|--------------|-------------|
 | `build.slurm`   | shared full build + placeholder + all-theorem axiom audit (16 cpu / 32 G / 25 min) | `sbatch artifacts/scripts/build.slurm` |
 | `check.slurm`   | typecheck one **already-imported** file via `lake env lean` (8 cpu / 24 G) | `sbatch --export=ALL,CHECK_FILE=HeadComplexity/Results/ThresholdDegree.lean artifacts/scripts/check.slurm` |
+| `check2.slurm`  | build and check the two fixed polynomial targets (12 cpu / 32 G) | `sbatch artifacts/scripts/check2.slurm` |
 | `checkmod.slurm`| build one module **and its deps** via `lake build <Module>` (16 cpu / 48 G) | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod.slurm` |
+| `checkmod2.slurm` | second module-check worker with separate job and output names | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod2.slurm` |
+| `checkmod3.slurm` | third module-check worker with separate job and output names | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod3.slurm` |
 
 Each script writes `formalization/<name>.slurm.out` (gitignored via `*.out`)
 ending in a `DONE_SENTINEL` line. The full build reports `BUILD_RC`,

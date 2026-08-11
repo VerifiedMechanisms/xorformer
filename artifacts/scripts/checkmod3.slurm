@@ -7,12 +7,24 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=48G
 #SBATCH --time=00:30:00
-#SBATCH --output=/gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity/checkmod3.slurm.out
+#SBATCH --output=formalization/checkmod3.slurm.out
 set -uo pipefail
-export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
-export PATH="$ELAN_HOME/bin:$PATH"
 export LEAN_NUM_THREADS="${SLURM_CPUS_PER_TASK:-16}"
-cd /gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity || exit 1
+repository_dir="${SLURM_SUBMIT_DIR:?Submit this job from the repository root}"
+if [ ! -f "$repository_dir/formalization/lakefile.toml" ]; then
+  echo "Repository root not found at $repository_dir" >&2
+  exit 2
+fi
+if [ -z "${CHECK_MOD:-}" ]; then
+  echo "Set CHECK_MOD with sbatch --export=ALL,CHECK_MOD=..." >&2
+  exit 2
+fi
+cd "$repository_dir/formalization" || exit 1
 echo "host=$(hostname) mod=$CHECK_MOD"; date
-lake build "$CHECK_MOD"
-echo "CHECK_RC=$?"; date; echo "DONE_SENTINEL"
+if lake build "$CHECK_MOD"; then
+  check_rc=0
+else
+  check_rc=$?
+fi
+echo "CHECK_RC=$check_rc"; date; echo "DONE_SENTINEL"
+exit "$check_rc"
