@@ -12,7 +12,7 @@ set -uo pipefail
 export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
 export PATH="$ELAN_HOME/bin:$PATH"
 export LEAN_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
-cd /gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity
+cd /gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity || exit 1
 echo "host=$(hostname) file=$CHECK_FILE"; date
 lake env lean "$CHECK_FILE"
 echo "CHECK_RC=$?"; date; echo "DONE_SENTINEL"

@@ -94,9 +94,7 @@ New here? Read [`problem_statement.md`](problem_statement.md), then skim
 **Lean proofs.** Needs [Lean 4 / elan](https://leanprover-community.github.io/get_started.html).
 
 ```bash
-cd head-complexity
-lake exe cache get   # fetch prebuilt mathlib, first time only
-lake build
+bash artifacts/scripts/validate.sh --fetch-cache
 ```
 
 **Python search.** Needs Python with [PyTorch](https://pytorch.org/). The package

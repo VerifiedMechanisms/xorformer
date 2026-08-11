@@ -12,7 +12,7 @@ set -uo pipefail
 export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
 export PATH="$ELAN_HOME/bin:$PATH"
 export LEAN_NUM_THREADS="${SLURM_CPUS_PER_TASK:-12}"
-cd /gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity
+cd /gpfs/work5/0/gusr0688/fair_stuff/how-many-attention-heads-xor/head-complexity || exit 1
 echo "host=$(hostname)"; date
 echo "=== build target oleans (Results.ThresholdDegree, Polynomial.ModelToPolynomial) ==="
 lake build HeadComplexity.Results.ThresholdDegree HeadComplexity.Polynomial.ModelToPolynomial

@@ -76,9 +76,11 @@ background for orthogonal sub-theorems. Three things make this safe:
 
 - **Non-overlapping files.** Give the subagent its own file; never edit the same
   file concurrently. Add the root `import` only when assembling.
-- **Separate SLURM output files.** Concurrent `sbatch checkmod.slurm` runs clobber
-  the shared `checkmod.slurm.out`. Use a per-worker copy (`checkmod2.slurm` with a
-  distinct `--output=…`), and filter the queue by job name
+- **Separate SLURM output files.** Concurrent
+  `sbatch artifacts/scripts/checkmod.slurm` runs clobber the shared
+  `checkmod.slurm.out`. Use a per-worker script
+  (`artifacts/scripts/checkmod2.slurm` with a distinct `--output=…`), and filter
+  the queue by job name
   (`squeue -u $USER -n lean-mod2`) so each waiter only blocks on its own job.
 - **A crisp contract.** The subagent's deliverable is one named theorem,
   `CHECK_RC=0`, no `sorry`, no warnings — easy to verify on return.
@@ -90,7 +92,7 @@ background for orthogonal sub-theorems. Three things make this safe:
 codex exec "$(cat prompt.txt)" </dev/null 2>&1   # prompt ends: "be concise; don't run lake"
 
 # my build lane (so it doesn't collide with a subagent's checkmod.slurm)
-sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree checkmod2.slurm
+sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod2.slurm
 while squeue -u $USER -h -n lean-mod2 -o "%i" | grep -q .; do sleep 15; done
-grep -nE "CHECK_RC|error:|warning:" checkmod2.slurm.out
+grep -nE "CHECK_RC|error:|warning:" formalization/checkmod2.slurm.out
 ```
