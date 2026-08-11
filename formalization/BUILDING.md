@@ -12,76 +12,94 @@ proof architecture see [`PROOF_OVERVIEW.md`](PROOF_OVERVIEW.md).
 
 ## 1. Toolchain and dependencies
 
-| Component | Pinned version | Where pinned |
+| Component | Version | Where selected |
 |-----------|----------------|--------------|
 | Lean      | `leanprover/lean4:v4.31.0` | `lean-toolchain` |
 | Lake      | `5.0.0-src` (ships with the toolchain) | — |
 | mathlib   | `v4.31.0` (`leanprover-community/mathlib4`) | `lakefile.toml` → `[[require]]`, locked in `lake-manifest.json` |
-| elan      | `4.2.3` (any recent elan works) | — |
+| elan      | Current stable (any recent version works) | official `elan.lean-lang.org` installer |
 
 `elan` installs the exact Lean/Lake the toolchain file requests, so you do **not**
 need to install Lean by hand — just have `elan` on `PATH` and let it resolve the
 pin on first `lake` invocation.
 
 The project builds against a stock mathlib with **no patches**; the only thing
-that must match is the rev. Everything below assumes you are in the
-`head-complexity/` directory (the Lake package root, where `lakefile.toml` lives).
+that must match is the rev. The Lake package root is `formalization/`, where
+`lakefile.toml` lives. Validation commands below run from the repository root.
 
 ---
 
 ## 2. Generic build (any machine with internet)
 
 ```bash
-cd head-complexity
-lake exe cache get   # download prebuilt mathlib oleans (first time only; ~minutes)
-lake build           # compile the HeadComplexity library (~minutes once cache is in)
+bash artifacts/scripts/validate.sh --fetch-cache
 ```
 
-`lake exe cache get` fetches mathlib's prebuilt `.olean` files so you don't
-recompile mathlib (which would take hours). `lake build` then compiles the public
-`HeadComplexity` umbrella, including all `Results` and `Examples`. A clean full
-build of `HeadComplexity` is a few minutes on a modern multi-core machine once the
-mathlib cache is present.
+The `--fetch-cache` option runs `lake exe cache get`, which fetches mathlib's
+prebuilt `.olean` files so you don't recompile mathlib (which would take hours).
+The validator then passes every tracked Lean library source to `lake build`
+explicitly. This covers the public `HeadComplexity` umbrella, all `Results` and
+`Examples`, and any future tracked module that has not yet been imported by an
+umbrella. A clean full build is a few minutes on a modern multi-core machine once
+the mathlib cache is present.
 
 If `lake exe cache get` fails with a TLS/`curl`/JSON error, see §4.
 
 ---
 
-## 3. Verifying the headline result is axiom-clean
+## 3. Verifying proof integrity
 
 The point of the formalization is a *trusted* proof, so always confirm the final
 theorems depend only on Lean's three standard axioms
 (`propext`, `Classical.choice`, `Quot.sound`) — i.e. no `sorry`, no extra axioms:
 
 ```bash
-cat > /tmp/AxiomCheck.lean <<'EOF'
-import HeadComplexity
-open HeadComplexity
-#print axioms theorem12_symmetric                  -- L12, unconditional equality
-#print axioms symmetricFn_computable             -- L12 upper bound
-#print axioms signChanges_le_of_computableWithHeadsN  -- L12 lower bound
-#print axioms theorem6_degree_le                   -- L6 (model → threshold degree)
-#print axioms f10Q_ne_zero                         -- exact nonvanishing certificate
-#print axioms theorem13_strict_separation          -- explicit strict separation
-EOF
-lake env lean /tmp/AxiomCheck.lean
+bash artifacts/scripts/validate.sh
 ```
 
-Expected output — every line ends in exactly `[propext, Classical.choice, Quot.sound]`:
+The shared validator runs three gates:
+
+1. `lake build` on every tracked Lean library source.
+
+2. `rg -n "sorry|admit\b"` on every tracked Lean source, plus the checked-in
+   axiom checker.
+
+3. The axiom audit in `artifacts/scripts/AxiomCheck.lean`, which dynamically
+   imports every tracked module and discovers all theorem declarations from
+   Lean's module metadata. It uses `Lean.collectAxioms` to check each theorem,
+   including generated and private theorem declarations.
+
+Every discovered theorem may depend on any subset of
+`[propext, Classical.choice, Quot.sound]`, but no other axiom. Project-defined
+axioms, proof placeholders, `native_decide`, and any other extra axiom make the
+command exit nonzero. No theorem names are maintained manually. Typical output
+includes:
 
 ```
-'HeadComplexity.theorem12_symmetric' depends on axioms: [propext, Classical.choice, Quot.sound]
-...
+BUILD_RC=0
+PLACEHOLDER_RC=0
+Audited NNN theorem declarations across MM modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].
+AXIOM_RC=0
 ```
 
-A grep for `sorry`/`admit` should also come back empty:
+To run the individual diagnostics from the repository root:
 
 ```bash
-rg -n "sorry|admit\b" HeadComplexity.lean HeadComplexity   # → no matches
+rg -n "sorry|admit\b" formalization/HeadComplexity.lean formalization/HeadComplexity
+(cd formalization && \
+  lake build ./HeadComplexity/Results/ThresholdDegree.lean && \
+  lake env lean --run ../artifacts/scripts/AxiomCheck.lean \
+    HeadComplexity/Results/ThresholdDegree.lean)
 ```
 
-`build.slurm` (§5) runs an expanded version of this axiom check automatically and
-prints `AXIOM_RC=0` on success.
+The standalone command accepts one or more source paths or module names and
+automatically checks every theorem declared in each one. It reads compiled module
+metadata, so build a changed source first as shown above. The shared validator
+already builds and then passes all tracked Lean source paths to it.
+
+`artifacts/scripts/build.slurm` (§5) calls the same validator, so local,
+GitLab, and Snellius verification cannot drift apart.
 
 ---
 
@@ -128,13 +146,16 @@ node via SLURM. **All toolchain + cache state lives on shared GPFS**
 (`/gpfs/work5/0/gusr0688/...` and `/projects/gusr0688/...`), visible from every
 node, so compute nodes build fully **offline** — no re-fetch needed.
 
-Environment every job must set (already baked into the scripts below):
+Make Lean available in the submission environment before starting a job. SLURM
+exports that environment by default. On Snellius, the shared installation can be
+selected with:
 
 ```bash
 export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
 export PATH="$ELAN_HOME/bin:$PATH"
-export LEAN_NUM_THREADS="${SLURM_CPUS_PER_TASK:-16}"   # see CRITICAL note
 ```
+
+Each job script sets `LEAN_NUM_THREADS` from its requested CPU count.
 
 > **CRITICAL:** set `LEAN_NUM_THREADS=$SLURM_CPUS_PER_TASK`. Otherwise Lean spawns
 > one worker per *host* core (32) inside a smaller cgroup and thrashes — a 4-core
@@ -151,24 +172,34 @@ a fallback. Set `--mem` explicitly so the job fits the shared node's free RAM (a
 too-large `--mem`, e.g. 16 cpu × 7 G = 112 G, makes the job pend on `Resources`).
 A 16-thread ~3-min build costs ≈ 1.6 SBU.
 
-### Job scripts (in this directory)
+### Job scripts (in `artifacts/scripts`)
+
+Submit these jobs from the repository root. They use `SLURM_SUBMIT_DIR` to find
+the checkout, rather than embedding its GPFS path.
 
 | Script | What it does | Submit with |
 |--------|--------------|-------------|
-| `build.slurm`   | full `lake build` + `#print axioms` check (16 cpu / 32 G / 25 min) | `sbatch build.slurm` |
-| `check.slurm`   | typecheck one **already-imported** file via `lake env lean` (8 cpu / 24 G) | `sbatch --export=ALL,CHECK_FILE=HeadComplexity/Results/ThresholdDegree.lean check.slurm` |
-| `checkmod.slurm`| build one module **and its deps** via `lake build <Module>` (16 cpu / 48 G) | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree checkmod.slurm` |
+| `build.slurm`   | shared full build + placeholder + all-theorem axiom audit (16 cpu / 32 G / 25 min) | `sbatch artifacts/scripts/build.slurm` |
+| `check.slurm`   | typecheck one **already-imported** file via `lake env lean` (8 cpu / 24 G) | `sbatch --export=ALL,CHECK_FILE=HeadComplexity/Results/ThresholdDegree.lean artifacts/scripts/check.slurm` |
+| `check2.slurm`  | build and check the two fixed polynomial targets (12 cpu / 32 G) | `sbatch artifacts/scripts/check2.slurm` |
+| `checkmod.slurm`| build one module **and its deps** via `lake build <Module>` (16 cpu / 48 G) | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod.slurm` |
+| `checkmod2.slurm` | second module-check worker with separate job and output names | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod2.slurm` |
+| `checkmod3.slurm` | third module-check worker with separate job and output names | `sbatch --export=ALL,CHECK_MOD=HeadComplexity.Results.ThresholdDegree artifacts/scripts/checkmod3.slurm` |
 
-Each script writes `<name>.slurm.out` (gitignored via `*.out`) ending in a
-`DONE_SENTINEL` line, with `BUILD_RC` / `CHECK_RC` / `AXIOM_RC` = `0` on success.
+Each script writes `formalization/<name>.slurm.out` (gitignored via `*.out`)
+ending in a `DONE_SENTINEL` line. The full build reports `BUILD_RC`,
+`PLACEHOLDER_RC`, `AXIOM_RC`, and `VALIDATION_RC` as `0` on success; the focused
+scripts report `CHECK_RC=0`.
 
 ```bash
-sbatch build.slurm
+sbatch artifacts/scripts/build.slurm
 # wait, then:
-grep -E "BUILD_RC|AXIOM_RC|Build completed" build.slurm.out
+grep -E "BUILD_RC|PLACEHOLDER_RC|AXIOM_RC|VALIDATION_RC|Build completed" formalization/build.slurm.out
 # → Build completed successfully (NNNN jobs).
 #   BUILD_RC=0
+#   PLACEHOLDER_RC=0
 #   AXIOM_RC=0
+#   VALIDATION_RC=0
 ```
 
 > **check vs checkmod:** `lake env lean HeadComplexity/Results/ThresholdDegree.lean`
@@ -182,14 +213,14 @@ grep -E "BUILD_RC|AXIOM_RC|Build completed" build.slurm.out
 ## 6. Quick reference
 
 ```bash
-# one-time, on a node with internet (login or cbuild):
-cd head-complexity && lake exe cache get        # + the §4 curl fix if it errors
+# full generic validation on a machine with internet:
+bash artifacts/scripts/validate.sh --fetch-cache
 
-# full local build + axiom-cleanliness:
-lake build && lake env lean /tmp/AxiomCheck.lean   # (AxiomCheck.lean from §3)
+# repeat validation after the mathlib cache is present:
+bash artifacts/scripts/validate.sh
 
-# on Snellius, offloaded:
-sbatch build.slurm && tail -f build.slurm.out      # watch for DONE_SENTINEL
+# watch for DONE_SENTINEL on Snellius, offloaded
+sbatch artifacts/scripts/build.slurm && tail -f formalization/build.slurm.out
 ```
 
 The latest top-level separation theorem proved by a clean build is

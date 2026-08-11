@@ -67,7 +67,7 @@ $I(f)$ with $H^{\ast}(f) \asymp I(f)$. Closing that gap is the main open problem
   growing gap between threshold degree and head complexity.
 - Tighten the gap between the threshold-degree lower bound and the weighted-sum upper
   bound.
-- Push the formalization in [`head-complexity/`](head-complexity/) to cover more of the
+- Push the formalization in [`formalization/`](formalization/) to cover more of the
   theorem stack.
 - Extend the empirical search to larger $n$ and reconcile it with the proofs.
 
@@ -81,7 +81,7 @@ $I(f)$ with $H^{\ast}(f) \asymp I(f)$. Closing that gap is the main open problem
 | [`theorems/`](theorems/) | Full writeups: initial results, normal forms, and explicit separations. |
 | [`artifacts/intro-materials/writeup.md`](artifacts/intro-materials/writeup.md) | Original blog-post writeup of the two-bit XOR result. |
 | [`literature_survey.md`](literature_survey.md) | Related work across transformers and Boolean complexity. |
-| [`head-complexity/`](head-complexity/) | Lean 4 formalization of the results (depends on mathlib). |
+| [`formalization/`](formalization/) | Lean 4 formalization of the results (depends on mathlib). |
 | [`src/hstar/`](src/hstar/) | Python package that empirically estimates $H^{\ast}(f)$ by training small attention models. |
 | [`artifacts/intro-materials/proposal.pdf`](artifacts/intro-materials/proposal.pdf) / [`proposal.tex`](artifacts/intro-materials/proposal.tex) | Project proposal (build with `./artifacts/scripts/compile_pdf.sh`). |
 | [`AGENTS.md`](AGENTS.md) | Markdown conventions used across the writeups. |
@@ -94,9 +94,7 @@ New here? Read [`problem_statement.md`](problem_statement.md), then skim
 **Lean proofs.** Needs [Lean 4 / elan](https://leanprover-community.github.io/get_started.html).
 
 ```bash
-cd head-complexity
-lake exe cache get   # fetch prebuilt mathlib, first time only
-lake build
+bash artifacts/scripts/validate.sh --fetch-cache
 ```
 
 **Python search.** Needs Python with [PyTorch](https://pytorch.org/). The package
