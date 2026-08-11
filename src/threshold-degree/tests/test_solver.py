@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from fractions import Fraction
 from pathlib import Path
 from unittest.mock import patch
 
@@ -9,6 +10,8 @@ import numpy as np
 from cli import load_domain
 from solver import (
     BooleanDomain,
+    _reconstruct_integer_dual,
+    _reconstruct_integer_primal,
     find_threshold_degree,
     monomials_up_to_degree,
     signed_monomial_matrix,
@@ -175,6 +178,46 @@ class ThresholdDegreeTests(unittest.TestCase):
             "proves_threshold_degree_greater_than",
             certificate_payload,
         )
+
+    def test_exact_primal_verification_uses_integer_arithmetic(self):
+        primes = [999983, 999979, 999961, 999959, 999953, 999931]
+        fractions = [Fraction(1, prime) for prime in primes]
+        fractions += [-value for value in fractions]
+        coefficients = np.array([float(value) for value in fractions])
+        signed_features = np.ones((1, len(coefficients)), dtype=np.float64)
+
+        integers, exact_min_margin = _reconstruct_integer_primal(
+            signed_features,
+            coefficients,
+            coefficient_tolerance=1e-9,
+            max_denominator=1_000_000,
+        )
+
+        self.assertIsNone(integers)
+        self.assertIsNone(exact_min_margin)
+
+    def test_exact_dual_verification_uses_integer_arithmetic(self):
+        primes = [999983, 999979, 999961, 999959, 999953, 999931]
+        fractions = [Fraction(1, prime) for prime in primes]
+        weights = np.array([float(value) for value in fractions * 2])
+        signed_features = np.array(
+            [[1.0]] * len(fractions) + [[-1.0]] * len(fractions),
+            dtype=np.float64,
+        )
+
+        integers = _reconstruct_integer_dual(
+            signed_features,
+            weights,
+            coefficient_tolerance=1e-9,
+            max_denominator=1_000_000,
+        )
+
+        self.assertIsNotNone(integers)
+        exact_products = (
+            signed_features.astype(np.int64).astype(object).T
+            @ integers.astype(object)
+        )
+        self.assertTrue(all(int(value) == 0 for value in exact_products))
 
     def test_uncertified_cutoff_reports_numerical_lower_bound(self):
         domain = BooleanDomain.from_truth_table("0110")

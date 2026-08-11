@@ -597,7 +597,8 @@ def _reconstruct_integer_primal(
         for value in coefficients
     ]
     integers = _fractions_to_primitive_integers(fractions)
-    exact_margins = signed_features.astype(object) @ integers.astype(object)
+    integer_signed_features = signed_features.astype(np.int64).astype(object)
+    exact_margins = integer_signed_features @ integers.astype(object)
     if any(int(margin) <= 0 for margin in exact_margins):
         return None, None
     return integers, min(int(margin) for margin in exact_margins)
@@ -619,7 +620,8 @@ def _reconstruct_integer_dual(
     integers = _fractions_to_primitive_integers(fractions)
     if np.any(integers < 0) or not np.any(integers > 0):
         return None
-    exact_products = signed_features.T.astype(object) @ integers.astype(object)
+    integer_signed_features = signed_features.astype(np.int64).astype(object)
+    exact_products = integer_signed_features.T @ integers.astype(object)
     if any(int(value) != 0 for value in exact_products):
         return None
     return integers
