@@ -1,5 +1,6 @@
 import Mathlib.Algebra.Polynomial.Roots
 import Mathlib.Algebra.Polynomial.BigOperators
+import Mathlib.Algebra.BigOperators.Field
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 set_option linter.style.header false
@@ -110,5 +111,59 @@ theorem real_partial_fraction {K : ℕ} (P : ℝ[X]) (av : Fin K → ℝ)
   rw [hR, eval_add, eval_mul, eval_C, hevalQ, eval_finsetSum] at hev
   simp only [eval_mul, eval_C, hevalL] at hev
   exact hev
+
+/-- **Sign-preserving real partial fractions on a half-line.** If `P` has degree
+at most `K`, then on the half-line `[-B, ∞)` its sign is represented by a
+thresholded sum of `K` reciprocal affine atoms.  The shifts can all be chosen
+strictly above `B`, so every denominator is positive on the stated domain.
+
+This packages the order-theoretic consequence of `real_partial_fraction` and
+is independent of any particular Boolean-cube statistic. -/
+theorem exists_partialFraction_sign_atoms {K : ℕ} (P : ℝ[X]) (B : ℝ)
+    (hdeg : P.natDegree ≤ K) :
+    ∃ (av bv : Fin K → ℝ) (τ : ℝ),
+      (∀ h, B < av h) ∧
+      ∀ x, -B ≤ x → ((∑ h, bv h / (x + av h)) > τ ↔ 0 < P.eval x) := by
+  classical
+  set av : Fin K → ℝ := fun h => B + 1 + (h : ℕ) with hav
+  have havinj : Function.Injective av := by
+    intro a b hab
+    rw [hav] at hab
+    simp only [add_right_inj, Nat.cast_inj] at hab
+    exact Fin.ext hab
+  have havbound : ∀ h, B < av h := by
+    intro h
+    rw [hav]
+    have : (0 : ℝ) ≤ (h : ℕ) := Nat.cast_nonneg _
+    linarith
+  obtain ⟨A, bv, hpf⟩ := real_partial_fraction P av havinj hdeg
+  refine ⟨av, bv, -A, havbound, ?_⟩
+  intro x hx
+  have hfacpos : ∀ h : Fin K, (0 : ℝ) < x + av h := by
+    intro h
+    rw [hav]
+    have : (0 : ℝ) ≤ (h : ℕ) := Nat.cast_nonneg _
+    linarith
+  have hQpos : 0 < ∏ h : Fin K, (x + av h) :=
+    Finset.prod_pos (fun h _ => hfacpos h)
+  have herase_ne : ∀ h : Fin K,
+      (∏ j ∈ Finset.univ.erase h, (x + av j)) ≠ 0 :=
+    fun h => Finset.prod_ne_zero_iff.mpr (fun j _ => ne_of_gt (hfacpos j))
+  have hQfac : ∀ h : Fin K,
+      (∏ j, (x + av j)) = (x + av h) * ∏ j ∈ Finset.univ.erase h, (x + av j) :=
+    fun h =>
+      (Finset.mul_prod_erase Finset.univ (fun j => x + av j) (Finset.mem_univ h)).symm
+  have hkey : (∑ h, bv h / (x + av h))
+      = P.eval x / (∏ h, (x + av h)) - A := by
+    have h1 : (∑ h, bv h / (x + av h))
+        = (∑ h, bv h * ∏ j ∈ Finset.univ.erase h, (x + av j))
+          / (∏ h, (x + av h)) := by
+      rw [Finset.sum_div]
+      refine Finset.sum_congr rfl (fun h _ => ?_)
+      rw [hQfac h, mul_div_mul_right _ _ (herase_ne h)]
+    rw [h1, hpf x]
+    field_simp
+    ring
+  rw [gt_iff_lt, hkey, lt_sub_iff_add_lt, neg_add_cancel, lt_div_iff₀ hQpos, zero_mul]
 
 end HeadComplexity

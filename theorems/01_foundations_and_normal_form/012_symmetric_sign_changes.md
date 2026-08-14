@@ -203,3 +203,24 @@ $\blacksquare$
 3. Internal exact-count predicates have two sign changes. For $1 \leq k \leq n-1$, $H^{\ast}(\mathrm{EXACT}_{n,k}) = 2$.
 
 The last item upgrades the earlier checkerboard lower bound for exact-count predicates from merely $H^{\ast} \geq 2$ to an exact value.
+
+## Lean Correspondence
+
+The equality is machine-checked as `HStar_symmetricFn` in
+`HeadComplexity/Results/SymmetricComplexity.lean`. Its lower-bound spine is
+`signChanges_le_of_computableWithHeadsN`; its constructive upper bound is
+`symmetricFn_computable`. The public result alias is `theorem12_symmetric` in
+`HeadComplexity.Results.All`.
+
+The formalization also records the coordinate-restriction corollary of this
+theorem. `CoordFace` defines a coordinate face, `FracAtom.restrict_eval` proves
+exact closure of fractional atoms under restriction, and
+`computableWithHeadsN.restrict` yields `HStar_restrict_le`. Combining that
+monotonicity with the equality above gives
+`signChanges_le_HStar_of_symmetric_face`; `HasSymmetricFaceBound` and
+`HStar_lower_bound_of_symmetric_face` package the same corollary as a reusable
+certificate. These results live in `BooleanCube/CoordinateFace.lean`,
+`Atoms/Restriction.lean`, and `Results/SymmetricFaceLowerBound.lean`. They
+formalize a consequence of the present theorem and the restriction
+monotonicity from [028_restrictions_and_sign_rank.md](../02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md),
+not a separately numbered theorem.

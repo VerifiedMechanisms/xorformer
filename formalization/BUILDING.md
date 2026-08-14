@@ -229,10 +229,26 @@ The latest top-level separation theorem proved by a clean build is
 theorem theorem13_strict_separation : thresholdDeg f10 < HStar 10 f10
 ```
 
-It depends only on the three standard Lean axioms. Theorem 12 remains the
-headline general-family result:
+It depends only on the three standard Lean axioms. Theorem 12 remains the exact
+symmetric-family result:
 
 ```lean
 theorem theorem12_symmetric (F : ℕ → Bool) (n : ℕ) :
     HStar n (symmetricFn F) = signChanges n F
 ```
+
+The polynomial-certificate presentation of the existing positive-projection
+theorem 69 is exposed as:
+
+```lean
+theorem theorem69_positive_projection_sandwich
+    (f : (Fin n → Bool) → Bool) :
+    thresholdDeg f ≤ HStar n f ∧
+      HStar n f ≤ positiveWeightedSignDeg f
+```
+
+Here `positiveWeightedSignDeg` is Lean's polynomial-certificate presentation of
+the positive-projection sign-change invariant $C_{+}$. When the two endpoints
+coincide, `theorem69_positive_projection_exactness` determines `HStar` exactly.
+The result surface also contains `theorem69_low_alternation_two` and checked
+instances such as `theorem69_isolated_xor_instance`.

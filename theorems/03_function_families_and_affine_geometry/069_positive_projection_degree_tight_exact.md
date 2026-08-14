@@ -91,3 +91,36 @@ This lemma gives a reusable proof template:
 The symmetric exact theorem is one instance: the Hamming-weight projection has $C$ sign changes, and symmetric threshold degree is exactly the same $C$.
 
 The one-run positive-order theorem is the first low-alternation instance. One run gives $C_{+}(f)\leq2$, so every nonconstant non-LTF one-run class has exact value $2$.
+
+## Lean Correspondence
+
+Lean presents a positive-projection certificate as
+`PositiveWeightedSignDegLE f K`: some positive weighted statistic admits a
+univariate sign polynomial of degree at most `K`. Its minimum is
+`positiveWeightedSignDeg f`. On a finite ordered projection image, the least
+possible univariate sign degree is the sign-change count used in $C_{+}(f)$,
+so this is a polynomial-certificate presentation of the invariant in the
+statement. The current development does not introduce a second Lean definition
+of $C_{+}$ or prove a named equality between the two presentations.
+
+The construction is machine-checked by `weightedPolynomial_computable` and
+`weighted_computable_of_UnivariateThresholdDegLE`. The sandwich and tightness
+implication above appear as
+`thresholdDeg_le_HStar_le_positiveWeightedSignDeg` and
+`HStar_eq_thresholdDeg_of_eq_positiveWeightedSignDeg` in
+`Results/PositiveWeightedSignDegree.lean`. The fixed-certificate forms are
+`HStar_eq_of_thresholdDeg_le_and_weightedPolynomial` and
+`HStar_eq_thresholdDeg_of_weightedPolynomial`.
+
+Together with the existing zero-head and one-head characterizations,
+`HStar_eq_two_of_positiveWeightedSignDeg_le_two` machine-checks the final
+low-alternation case in the statement: a nonconstant non-LTF whose certificate
+degree is at most two has head complexity exactly two.
+
+The formalization also checks supporting instances. The face-certificate form
+`HStar_eq_of_symmetricFace_and_weightedPolynomial` combines the restriction
+corollary of theorem 12 with a matching global projection certificate.
+`weightedOpenBand_upperBound`, `HStar_weightedOpenBand_eq_two`, and
+`HStar_isolatedXor3` verify the low-alternation two-head case and one concrete
+nonsymmetric instance. These are instances of the present sandwich, not new
+numbered headline theorems.

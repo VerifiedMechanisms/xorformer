@@ -6,6 +6,10 @@ import HeadComplexity.Results.FractionalNormalForm
 import HeadComplexity.Results.LowComplexity
 import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.StrictSeparation
+import HeadComplexity.Results.ClearedNormalForm
+import HeadComplexity.Results.SymmetricFaceLowerBound
+import HeadComplexity.Results.PositiveWeightedSignDegree
+import HeadComplexity.Results.WeightedFaceExact
 
 set_option linter.style.header false
 
@@ -84,5 +88,51 @@ alias theorem12_symmetric := HStar_symmetricFn
 /-- **Theorem 13.** Threshold degree can be strictly smaller than head
 complexity. -/
 alias theorem13_strict_separation := f10_strict_separation
+
+/-! ## Lean interfaces for existing structural results -/
+
+/-- Cleared-polynomial refinement of the linear-fractional normal form used by
+the existing restriction and sign-rank arguments. -/
+alias theorem28_cleared_polynomial_interface := cleared_polynomial_normal_form
+
+/-- Restriction corollary of the symmetric sign-change theorem: every symmetric
+coordinate face gives an ambient lower bound. -/
+alias theorem12_symmetric_face_corollary := HStar_lower_bound_of_symmetric_face
+
+/-- Polynomial-certificate presentation of the positive-projection sandwich
+from the existing theorem 69 writeup. -/
+alias theorem69_positive_projection_sandwich :=
+  thresholdDeg_le_HStar_le_positiveWeightedSignDeg
+
+/-- Matching endpoints in the theorem 69 sandwich determine head complexity. -/
+alias theorem69_positive_projection_exactness :=
+  HStar_eq_thresholdDeg_of_eq_positiveWeightedSignDeg
+
+/-- On symmetric functions, the positive-projection polynomial presentation
+specializes to the theorem 12 sign-change count. -/
+alias theorem12_positive_projection_degree :=
+  positiveWeightedSignDeg_symmetricFn
+
+/-- Threshold-degree specialization used in theorem 12. -/
+alias theorem12_threshold_degree := thresholdDeg_symmetricFn
+
+/-- Fixed-certificate form of theorem 69 exactness. -/
+alias theorem69_fixed_projection_exactness :=
+  HStar_eq_thresholdDeg_of_weightedPolynomial
+
+/-- The theorem 12 restriction corollary combined with the theorem 69 upper
+certificate. -/
+alias theorem69_face_certificate_exactness :=
+  HStar_eq_of_symmetricFace_and_weightedPolynomial
+
+/-- Polynomial presentation of theorem 69's low-alternation exact-two case. -/
+alias theorem69_low_alternation_two :=
+  HStar_eq_two_of_positiveWeightedSignDeg_le_two
+
+/-- Checked positive weighted-band instance of theorem 69. -/
+alias theorem69_weighted_band_instance := HStar_weightedOpenBand_eq_two
+
+/-- Checked nonsymmetric three-bit instance of theorem 69. -/
+alias theorem69_isolated_xor_instance := HStar_isolatedXor3
 
 end HeadComplexity

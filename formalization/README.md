@@ -3,14 +3,19 @@
 Lean 4 formalization of the head-complexity results for one-layer attention. The
 definitions and theorems mirror the informal proofs in the top-level `theorems/` writeups.
 
-## Status: twelve formalized theorems and one separation counterexample
+## Status: core results through theorem 13, plus later theorem-stack coverage
 
-Every theorem in `theorems/01_foundations_and_normal_form/` (L1–L12) is machine-checked
-for **general `n`**, with no `sorry`/`admit`, depending only on the three standard
-Lean axioms `[propext, Classical.choice, Quot.sound]` (the full build runs a
-`#print axioms` gate). `H*` is `HStar` (the least number of heads realizing `f`).
-The explicit counterexample in `theorems/02_separations_and_counterexamples/` is
-machine-checked as Theorem 13.
+The core results through theorem 13 are machine-checked, with no `sorry` or
+`admit`, depending only on the three standard Lean axioms
+`[propext, Classical.choice, Quot.sound]`. The full build runs a
+`#print axioms` gate. `H*` is `HStar`, the least number of heads realizing
+`f`.
+
+The formalization also covers previously stated results from the wider theorem
+stack. In particular, it provides the coordinate-restriction API used with
+theorem 12 and a polynomial-certificate presentation of the positive-projection
+sandwich and exactness result in theorem 69. These are Lean formalizations of
+existing mathematical statements, not newly numbered theorems.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -28,6 +33,19 @@ machine-checked as Theorem 13.
 | 12 | symmetric `H*=C(F)` (sign changes) | `HStar_symmetricFn` | `Results/SymmetricComplexity.lean` |
 | 13 | explicit strict separation `deg±<H*` | `f10_strict_separation` | `Results/StrictSeparation.lean` |
 
+### Additional theorem-stack coverage
+
+| Existing note | Lean coverage | File |
+|---|---|---|
+| theorem 12 with restriction monotonicity from theorem 28 | `HStar_restrict_le`, `HStar_lower_bound_of_symmetric_face` | `Results/SymmetricFaceLowerBound.lean` |
+| theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveWeightedSignDeg`, `HStar_eq_thresholdDeg_of_eq_positiveWeightedSignDeg` | `Results/PositiveWeightedSignDegree.lean` |
+| theorem 69 fixed-certificate and checked instances | `HStar_eq_thresholdDeg_of_weightedPolynomial`, `HStar_eq_two_of_positiveWeightedSignDeg_le_two`, `HStar_isolatedXor3` | `Results/PositiveWeightedSignDegree.lean`, `Results/WeightedFaceExact.lean` |
+
+Lean uses `positiveWeightedSignDeg` as the polynomial-certificate presentation
+of the positive-projection sign-change invariant $C_{+}$ from theorem 69. The
+current development does not define a second ordered-image invariant named
+`C₊`; the correspondence is documented in the theorem writeup.
+
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
 
@@ -38,8 +56,8 @@ lake build HeadComplexity.Examples.All   # optional build for just examples
 lake build HeadComplexity.Results.All   # optional build for just results
 ```
 
-For **exact, reproducible** build/verify instructions — including the
+For **exact, reproducible** build/verify instructions, including the
 mathlib-cache `curl` fix, the Snellius SLURM job scripts, and how to confirm the
-results are axiom-clean — see [`BUILDING.md`](BUILDING.md).
+results are axiom-clean, see [`BUILDING.md`](BUILDING.md).
 
 See the [repository README](../README.md) for the wider project context.
