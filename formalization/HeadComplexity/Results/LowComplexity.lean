@@ -51,6 +51,17 @@ theorem HStar_computable (f : (Fin n → Bool) → Bool) :
   rw [dif_pos hex]
   exact Nat.find_spec hex
 
+/-- Any explicit `H`-head realization upper-bounds the minimum head
+complexity. -/
+theorem HStar_le_of_computableWithHeadsN {H : ℕ}
+    {f : (Fin n → Bool) → Bool} (h : computableWithHeadsN n H f) :
+    HStar n f ≤ H := by
+  classical
+  have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
+  unfold HStar
+  rw [dif_pos hex]
+  exact Nat.find_min' hex h
+
 /-! ## Zero heads ⟺ constant -/
 
 /-- A zero-head model computes exactly the constant functions. -/

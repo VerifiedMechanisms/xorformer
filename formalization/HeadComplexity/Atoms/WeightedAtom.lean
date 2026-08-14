@@ -1,6 +1,7 @@
 import HeadComplexity.Atoms.HammingAtom
 import HeadComplexity.Atoms.PartialFraction
 import HeadComplexity.Foundation.Softmax
+import HeadComplexity.Polynomial.UnivariateThresholdDegree
 import Mathlib.LinearAlgebra.Lagrange
 import Mathlib.Algebra.BigOperators.Fin
 
@@ -228,6 +229,33 @@ theorem wT_nonneg {lam : Fin n → ℝ} (hlam : ∀ i, 0 < lam i) (bits : Fin n 
   Finset.sum_nonneg (fun i _ => by by_cases h : bits i <;> simp [h, (hlam i).le])
 
 open Polynomial in
+/-- Lagrange interpolation on the finite image of a weighted statistic gives a
+univariate threshold-degree certificate with degree at most the image size
+minus one.  No positivity assumption on the weights is needed for this purely
+polynomial statement. -/
+theorem weighted_univariateThresholdDegLE (lam : Fin n → ℝ)
+    (f : (Fin n → Bool) → Bool) (G : ℝ → Bool)
+    (hf : ∀ bits, f bits = G (wT lam bits)) :
+    UnivariateThresholdDegLE (wT lam) f
+      ((Finset.univ.image (wT lam)).card - 1) := by
+  classical
+  set S := Finset.univ.image (wT lam) with hS
+  set M := S.card with hMdef
+  set P := Lagrange.interpolate S id (fun x => if G x then (1 : ℝ) else -1) with hP
+  refine ⟨P, ?_, ?_⟩
+  · exact Polynomial.natDegree_le_iff_degree_le.mpr
+      (Lagrange.degree_interpolate_le
+        (r := fun x => if G x then (1 : ℝ) else -1) (Set.injOn_id _))
+  · intro bits
+    have hmem : wT lam bits ∈ S := Finset.mem_image_of_mem _ (Finset.mem_univ bits)
+    have heval : P.eval (wT lam bits) = if G (wT lam bits) then (1 : ℝ) else -1 := by
+      have := Lagrange.eval_interpolate_at_node (s := S) (v := id)
+        (r := fun x => if G x then (1 : ℝ) else -1) (Set.injOn_id _) hmem
+      simpa [hP] using this
+    rw [heval, hf bits]
+    cases G (wT lam bits) <;> norm_num
+
+open Polynomial in
 /-- **Rational atoms for a weighted-sum function.** There are `M-1` shift/coefficient
 pairs and a threshold realizing `f` through `∑ b_h/(t(x)+a_h)`. -/
 theorem exists_weighted_atoms (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
@@ -236,59 +264,14 @@ theorem exists_weighted_atoms (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
       (∀ h, wLam lam + 1 < av h) ∧
       ∀ bits, ((∑ h, bv h / (wT lam bits + av h)) > τ ↔ f bits = true) := by
   classical
-  set S := Finset.univ.image (wT lam) with hS
-  set M := S.card with hMdef
-  set P := Lagrange.interpolate S id (fun x => if G x then (1 : ℝ) else -1) with hP
-  have hPdeg : P.natDegree ≤ M - 1 :=
-    Polynomial.natDegree_le_iff_degree_le.mpr
-      (Lagrange.degree_interpolate_le (r := fun x => if G x then (1 : ℝ) else -1) (Set.injOn_id _))
-  have hPsign : ∀ bits, 0 < P.eval (wT lam bits) ↔ f bits = true := by
-    intro bits
-    have hmem : wT lam bits ∈ S := Finset.mem_image_of_mem _ (Finset.mem_univ bits)
-    have heval : P.eval (wT lam bits) = if G (wT lam bits) then (1 : ℝ) else -1 := by
-      have := Lagrange.eval_interpolate_at_node (s := S) (v := id)
-        (r := fun x => if G x then (1 : ℝ) else -1) (Set.injOn_id _) hmem
-      simpa [hP] using this
-    rw [heval, hf bits]
-    cases G (wT lam bits) <;> norm_num
-  set av : Fin (M - 1) → ℝ := fun h => wLam lam + 2 + (h : ℕ) with hav
-  have havinj : Function.Injective av := by
-    intro x y hxy
-    rw [hav] at hxy
-    simp only [add_right_inj, Nat.cast_inj] at hxy
-    exact Fin.ext hxy
+  obtain ⟨P, hPdeg, hPsign⟩ := weighted_univariateThresholdDegLE lam f G hf
+  obtain ⟨av, bv, τ, hav, hatoms⟩ :=
+    exists_partialFraction_sign_atoms P (wLam lam + 1) hPdeg
   have hLnn : 0 ≤ wLam lam := Finset.sum_nonneg (fun i _ => (hlam i).le)
-  have havpos : ∀ h, wLam lam + 1 < av h := by
-    intro h; rw [hav]; have : (0 : ℝ) ≤ (h : ℕ) := Nat.cast_nonneg _; linarith
-  obtain ⟨A, bv, hpf⟩ := real_partial_fraction P av havinj hPdeg
-  refine ⟨av, bv, -A, havpos, ?_⟩
+  refine ⟨av, bv, τ, hav, ?_⟩
   intro bits
-  have hTnn := wT_nonneg hlam bits
-  have hfacpos : ∀ h : Fin (M - 1), (0 : ℝ) < wT lam bits + av h := by
-    intro h; rw [hav]; have : (0 : ℝ) ≤ (h : ℕ) := Nat.cast_nonneg _; linarith
-  have hQpos : 0 < ∏ h : Fin (M - 1), (wT lam bits + av h) :=
-    Finset.prod_pos (fun h _ => hfacpos h)
-  have herase_ne : ∀ h : Fin (M - 1),
-      (∏ j ∈ Finset.univ.erase h, (wT lam bits + av j)) ≠ 0 :=
-    fun h => Finset.prod_ne_zero_iff.mpr (fun j _ => ne_of_gt (hfacpos j))
-  have hQfac : ∀ h : Fin (M - 1),
-      (∏ j, (wT lam bits + av j))
-        = (wT lam bits + av h) * ∏ j ∈ Finset.univ.erase h, (wT lam bits + av j) :=
-    fun h =>
-      (Finset.mul_prod_erase Finset.univ (fun j => wT lam bits + av j) (Finset.mem_univ h)).symm
-  have hkey : (∑ h, bv h / (wT lam bits + av h))
-      = P.eval (wT lam bits) / (∏ h, (wT lam bits + av h)) - A := by
-    have h1 : (∑ h, bv h / (wT lam bits + av h))
-        = (∑ h, bv h * ∏ j ∈ Finset.univ.erase h, (wT lam bits + av j))
-          / (∏ h, (wT lam bits + av h)) := by
-      rw [Finset.sum_div]
-      refine Finset.sum_congr rfl (fun h _ => ?_)
-      rw [hQfac h, mul_div_mul_right _ _ (herase_ne h)]
-    rw [h1, hpf (wT lam bits)]
-    field_simp
-    ring
-  rw [gt_iff_lt, hkey, lt_sub_iff_add_lt, neg_add_cancel, lt_div_iff₀ hQpos, zero_mul]
-  exact (hPsign bits)
+  have hTnn : 0 ≤ wT lam bits := wT_nonneg hlam bits
+  exact (hatoms (wT lam bits) (by linarith)).trans (hPsign bits)
 
 /-- **Theorem 9 (computability form).** A function of a positive weighted sum with
 image size `M` is computable with `M - 1` heads. -/
