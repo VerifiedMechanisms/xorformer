@@ -2,7 +2,7 @@
 
 This directory contains a self-contained solver for the threshold degree of total
 and partial Boolean functions. It is separate from the PyTorch-based experimental
-$H^{\ast}$ solver in [`src/hstar/search.py`](../hstar/search.py).
+$H^{\ast}$ solver in [`experiments/hstar/search.py`](../hstar/search.py).
 
 ## What threshold degree means
 
@@ -128,14 +128,14 @@ The solver requires Python 3.10 or newer, NumPy, and SciPy. Install its
 dependencies into any Python environment:
 
 ```bash
-python -m pip install -r src/threshold-degree/requirements.txt
+python -m pip install -r experiments/threshold-degree/requirements.txt
 ```
 
 For a full truth table, list outputs in lexicographic input order. The bitstring
 `0110` is two-bit XOR:
 
 ```bash
-python src/threshold-degree/cli.py \
+python experiments/threshold-degree/cli.py \
   --truth-table 0110
 ```
 
@@ -145,8 +145,8 @@ explicitly with `--n`.
 JSON input is also supported:
 
 ```bash
-python src/threshold-degree/cli.py \
-  --input src/threshold-degree/examples/xor.json
+python experiments/threshold-degree/cli.py \
+  --input experiments/threshold-degree/examples/xor.json
 ```
 
 A partial function uses a list of points:

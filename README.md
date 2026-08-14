@@ -82,7 +82,7 @@ $I(f)$ with $H^{\ast}(f) \asymp I(f)$. Closing that gap is the main open problem
 | [`artifacts/intro-materials/writeup.md`](artifacts/intro-materials/writeup.md) | Original blog-post writeup of the two-bit XOR result. |
 | [`literature_survey.md`](literature_survey.md) | Related work across transformers and Boolean complexity. |
 | [`formalization/`](formalization/) | Lean 4 formalization of the results (depends on mathlib). |
-| [`src/hstar/`](src/hstar/) | Python package that empirically estimates $H^{\ast}(f)$ by training small attention models. |
+| [`experiments/hstar/`](experiments/hstar/) | Python package that empirically estimates $H^{\ast}(f)$ by training small attention models. |
 | [`artifacts/intro-materials/proposal.pdf`](artifacts/intro-materials/proposal.pdf) / [`proposal.tex`](artifacts/intro-materials/proposal.tex) | Project proposal (build with `./artifacts/scripts/compile_pdf.sh`). |
 | [`AGENTS.md`](AGENTS.md) | Markdown conventions used across the writeups. |
 
@@ -103,7 +103,7 @@ attention models with increasing head counts to estimate $H^{\ast}(f)$.
 
 ```bash
 # Estimate H*(f) over all 3-bit representatives, trying up to 3 heads.
-PYTHONPATH=src python -m hstar.cli --n 3 --max-heads 3
+PYTHONPATH=experiments python -m hstar.cli --n 3 --max-heads 3
 ```
 
 Useful flags: `--limit` / `--start-index` / `--end-index` to slice the representative
