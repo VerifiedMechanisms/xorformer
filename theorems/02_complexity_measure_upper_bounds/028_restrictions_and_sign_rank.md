@@ -222,7 +222,7 @@ There is a sharp size screen before attempting this route. To prove $H^{\ast}(f)
 
 $$ 2^{h+1}-1. $$
 
-But every $2^{\lvert I\rvert}\times2^{\lvert J\rvert}$ matrix has sign-rank at most $2^{\min(\lvert I\rvert,\lvert J\rvert)}$. Therefore a necessary condition is
+Assume $h\gt0$. Every $2^{\lvert I\rvert}\times2^{\lvert J\rvert}$ matrix has sign-rank at most $2^{\min(\lvert I\rvert,\lvert J\rvert)}$. Therefore a necessary condition is
 
 $$ \min(\lvert I\rvert,\lvert J\rvert)\geq h+1, $$
 
@@ -231,3 +231,35 @@ and some usable partition can exist only if
 $$ n\geq2h+2. $$
 
 Thus partition sign-rank is inherently a low-head lower-bound method. When $n\lt2h+2$, it cannot rule out $h$ heads, regardless of how accurately sign-rank is estimated.
+
+The condition $h\gt0$ is necessary for this size screen. At $h=0$, a
+one-column strict sign matrix can have sign-rank one and can already certify
+that a function is nonconstant.
+
+## Lean Correspondence
+
+Coordinate restrictions are formalized by `CoordFace`, `FracAtom.restrict`,
+`computableWithHeadsN.restrict`, and `HStar_restrict_le`. The parity and
+complemented-parity consequences are `parity_face_le_HStar` and
+`complement_parity_face_le_HStar`.
+
+The zero-weight limiting construction for added coordinates is
+`FracAtom.liftDummy`. Its fixed-head and minimum-head consequences are
+`computableWithHeadsN_dummyVariablesAlong_iff`,
+`HStar_dummyVariablesAlong`, `HStar_dummyVariables`, and
+`IsJuntaVia.HStar_eq`. Coordinate permutations, global input flips, and output
+complements are recorded by `HStar_permute`, `HStar_flip`, and
+`HStar_complement`.
+
+For a partition equivalence, `partitionSignRank` is the minimum rank of a real
+matrix with the required strict sign pattern. The fixed-head tangent and
+degree bounds are combined by
+`partitionSignRank_le_all_of_computableWithHeadsN`. At the optimal head count,
+`partitionSignRank_le_all` gives the minimum of $2^{H+1}-2$ and the two
+binomial monomial caps. The logarithmic inversion is
+`clog_partitionSignRank_sub_one_le_HStar`.
+
+`partition_min_side_screen` and `partition_ambient_size_screen` formalize the
+two size screens with the necessary hypothesis $h\gt0$. The algebraic proof is
+factored through `TangentRank.tangentMatrix_rank_le`, the partition-polynomial
+degree expansions, and a reusable finite-matrix rank subadditivity API.

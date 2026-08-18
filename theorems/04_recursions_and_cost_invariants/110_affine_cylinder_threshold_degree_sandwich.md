@@ -53,3 +53,25 @@ For the halfspace-intersection family $F_n=T_n\wedge U_n$ from [105_halfspace_in
 $$ \mathrm{actc}(F_n)\geq c n. $$
 
 Thus $\mathrm{actc}$ correctly assigns large cost to the families that refute uncalibrated threshold-vote and LTF decision-list upper bounds.
+
+## Lean Correspondence
+
+`CubeCylinder` records disjoint positive and negative literal sets. Its
+oriented expansion and uniform atom approximation are proved in
+`Atoms/CylinderApproximation.lean`.
+
+`CylinderThresholdCertificate` and
+`AffineCylinderThresholdCertificate` are the finite strict-margin certificate
+types for $\mathrm{ctc}$ and $\mathrm{actc}$. Both minimum costs are inhabited,
+attained, and equipped with minimality theorems. The short Lean names are
+`ctc` and `actc`.
+
+The two compilers are `CylinderThresholdCertificate.computable` and
+`AffineCylinderThresholdCertificate.computable`. The hierarchy is expressed
+by `HStar_le_actc`, `actc_le_ctc`, `actc_le_affineFreeSparsity`, and
+`actc_le_affineFreeSparsity_le_ptfSparsity`.
+
+The headline theorem is
+`thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` in
+`Results/AffineCylinderThreshold.lean`. The degree support-count consequence is
+`actc_le_one_add_sum_choose_of_ThresholdDegLE`.
