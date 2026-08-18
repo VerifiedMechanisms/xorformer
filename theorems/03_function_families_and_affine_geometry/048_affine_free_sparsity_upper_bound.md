@@ -155,3 +155,31 @@ $$ P(x,y) = \frac{1}{2} - \sum_{i=1}^{m}x_i - \sum_{i=1}^{m}y_i + 2\sum_{i=1}^{m
 It has one affine part and $m$ nonlinear monomials, so
 
 $$ H^{\ast}(\mathrm{EQ}_m)\leq m+1. $$
+
+## Lean Correspondence
+
+`SquarefreePolynomial` is the finite coefficient presentation of a multilinear
+cube polynomial. It defines `affineFreeSupportCost`, `ptfSupportCost`, weak and
+strict sign representation, and degree bounds. Conversion from the existing
+multivariate-polynomial threshold certificates is provided by
+`SquarefreePolynomial.ofMvPolynomial_eval` and
+`SquarefreePolynomial.ofMvPolynomial_degreeLE`.
+
+The approximation engine is `UniformlyOneAtomApproximable` in
+`Atoms/UniformApproximation.lean`. The affine and signed-monomial instances are
+`uniformlyOneAtomApproximable_affineValue` and
+`uniformlyOneAtomApproximable_signedMonomial`. The finite strict-margin
+compiler is `computableWithHeadsN_of_uniformlyOneAtomApproximable`.
+
+The direct support theorem is
+`SquarefreePolynomial.computableWithHeadsN_affineFreeSupportCost`. The two
+attained minimum invariants are `affineFreeSparsity` and `ptfSparsity`. The
+headline inequalities are `HStar_le_affineFreeSparsity` and
+`affineFreeSparsity_le_ptfSparsity` in
+`Results/AffineFreeSparsity.lean`.
+
+The degree-only consequence is machine-checked as
+`HStar_le_one_add_sum_choose_of_ThresholdDegLE`, with minimum-degree form
+`HStar_le_one_add_sum_choose_thresholdDeg`. The Lean statement does not need a
+nonconstancy assumption, since the extra leading one is harmless for constant
+functions.

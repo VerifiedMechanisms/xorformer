@@ -75,3 +75,30 @@ The current determinant-threshold universal upper bounds are:
 $$ \begin{array}{c|rrrrrrrrrr} n & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 \cr \hline \left\lceil (2^n - 1)/n \right\rceil & 3 & 4 & 7 & 11 & 19 & 32 & 57 & 103 & 187 & 342. \end{array} $$
 
 This does not prove that the threshold formula holds for all $n$. It does give a compact reproducible certificate through $n=12$, and it replaces the need for separate large coefficient tables at $n=11$ and $n=12$.
+
+## Lean Correspondence
+
+The analytic determinant-span implication is machine-checked by
+`ClearedSpanCertificate` in `Results/DeterminantSpan.lean`. A certificate
+supplies positive affine denominators and coordinates spanning every real
+function on the Boolean cube. `ClearedSpanCertificate.computable` compiles
+those coordinates into fractional atoms, and
+`ClearedSpanCertificate.HStar_le` gives the universal head bound.
+
+`ClearedFeatureDeterminantCertificate` gives the square feature-matrix form
+used in this note. Its methods `toClearedSpanCertificate`, `computable`, and
+`HStar_le` turn a nonzero selected feature determinant into the same universal
+conclusion. The integer modular bridge is
+`HStar_le_of_integer_zmod_feature_det`. For large generated certificates,
+`HStar_le_of_integer_zmod_feature_rightInverse` accepts a checked modular right
+inverse and avoids symbolic determinant expansion. These interfaces live in
+`Atoms/ClearedFeatureMatrix.lean` and
+`Results/DeterminantFeatureBridge.lean`.
+
+The ten modular determinant computations in this note are not yet imported as
+Lean kernel certificates. The current repository records their denominator
+formula and nonzero residues in this writeup, but it does not contain compact
+LU, inverse, or pivot witnesses suitable for checking the $4096$ by $4096$
+case in Lean. Thus Lean verifies the reusable theorem-21 implication needed by
+this result, while the dimension-specific numerical premises remain an
+external exact computation.
