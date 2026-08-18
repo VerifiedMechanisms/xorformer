@@ -111,3 +111,36 @@ Consequently, if the signed blown-up system is infeasible in every chart of ever
 $$ H^{\ast}(f)\gt H. $$
 
 This formulation is the preferred exact branch-and-bound target. Candidate separation and exact verification require one signed inequality per truth-table vertex, rather than one inequality per oppositely labeled pair.
+
+## Lean Correspondence
+
+The generic signed construction is machine-checked in
+`Polynomial/SignedSecantBlowup.lean`. The exact quotient identity is
+`signedRayScore_eq_mul_eval_divided`, and
+`dividedSignedRayPolynomial_natDegree_le` proves the scalar degree bound.
+`signedSecantFeasible_iff_signedBlowupFeasible` and
+`interiorSignedSecantFeasible_iff_interiorSignedBlowupFeasible` prove the
+closed and interior equivalences, including the opening of a strict point at
+the new zero boundary. The Boolean-cube specialization is
+`orientedSignedSecantFeasible_iff_signedBlowupFeasible`.
+
+`Atoms/OrientedAtomTangent.lean` normalizes actual fractional-atom
+denominators and their cleared affine tangent directions into oriented
+simplex coordinates. `orientedTangentFeasible_of_computableWithHeadsN` then
+connects every exact fixed-head model to the signed exceptional divisor.
+`Atoms/FracComputableMonotone.lean` supplies zero-atom padding, so the bridge
+also applies when the optimum uses fewer than the tested number of heads.
+
+The finite symmetry reduction is in
+`Polynomial/OrientedSecantSymmetry.lean`. It proves that all orientations are
+equivalent to the $H+1$ canonical orientation-count branches and that the
+normalization chart type has cardinality exactly $4(n+1)+2$. The ultimate
+Results theorem is
+`H_lt_HStar_of_no_signedBlowup_countBranchChartTypes`: infeasibility of every
+available chart type in every count branch implies $H\lt H^{\ast}(f)$.
+
+The present Lean development does not yet formalize the separate symbolic
+bookkeeping claims that the quotient has total parameter degree at most
+$2H+1$ and degree at most one in each joint head block. The scalar degree,
+analytic equivalences, model bridge, symmetry quotient, and head-complexity
+consequence are all kernel-checked.

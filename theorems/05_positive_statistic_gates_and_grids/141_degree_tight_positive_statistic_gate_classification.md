@@ -47,3 +47,16 @@ Thus these gates have exact value $C$. $\blacksquare$
 ## Consequence
 
 Internal positive slabs are the case $C=2$. LTF features are the case $C=1$. The same table now applies to every positive-statistic feature whose sign-change count equals its threshold degree.
+
+## Lean Correspondence
+
+The exact gate table is
+`oneBitGate_HStar_exact_of_degree_tight_positiveProjection` in
+`Results/PositiveOrderOneBitGate.lean`. The equivalent polynomial-certificate
+form is
+`oneBitGate_HStar_exact_of_degree_tight_positiveWeightedSignDeg`.
+
+Both results combine the exact threshold-degree trichotomy from theorem 82
+with the degree-sensitive raw-bit atom compiler from theorem 138. Constants
+and raw-bit literals are discharged by `HStar_constantFn`,
+`HStar_freshRawBit`, and `HStar_freshRawBitComplement`.

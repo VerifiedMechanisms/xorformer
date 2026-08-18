@@ -115,3 +115,15 @@ while
 $$ \deg_{\pm}(z\oplus T(y)) = \deg_{\pm}(T)+1. $$
 
 Thus the lower-bound behavior of one-bit branching depends on the gate, not just on the presence of a fresh raw bit.
+
+## Lean Correspondence
+
+The fresh-coordinate polynomial operations and their degree bounds are in
+`Polynomial/FreshBit.lean`. The key exact results are
+`thresholdDeg_freshXor` and `thresholdDeg_freshXnor`.
+
+`UnarySliceKind.classify` classifies each unary gate slice as constant,
+identity, or complement. `thresholdDeg_gateOfSliceKinds` proves the exact
+degree for the canonical pair of slice kinds. The arbitrary-gate statement is
+`oneBitGate_thresholdDeg_trichotomy` in
+`Results/OneBitGateThresholdDegree.lean`.

@@ -119,3 +119,30 @@ Therefore, if the blown-up pair-gap system is infeasible in every one of the $H+
 $$ H^{\ast}(f)\gt H. $$
 
 The blow-up does not make this global infeasibility easy. It removes the universal zero diagonal and replaces it with finitely charted tangent directions, which is the correct starting point for rational McCormick subdivision, pair generation, and exact residual certificates.
+
+## Lean Correspondence
+
+The generic simplex-product development is in
+`Polynomial/PositiveSecantBlowup.lean`. `pairGapPolynomial_eq_X_mul_divided`
+and `pairGap_ray_eq_mul_eval_divided` prove exact divisibility and evaluation,
+including at the diagonal. The quotient degree bound is
+`dividedPairGapPolynomial_natDegree_le`.
+
+`SecantFeasible` and `BlowupFeasible` are the two closed feasibility systems.
+Their exact equivalence is `secantFeasible_iff_blowupFeasible`.
+`InteriorSecantFeasible` and `InteriorBlowupFeasible` record the strict simplex
+forms, with equivalence
+`interiorSecantFeasible_iff_interiorBlowupFeasible`. The finite chart identity
+is `normalizedDirection_iff_charts`.
+
+`orientedLiteralFamily` specializes the generic system to the oriented Boolean
+cube denominators from this note. The headline results are
+`orientedSecantFeasible_iff_blowupFeasible`,
+`orientedInteriorSecantFeasible_iff_interiorBlowupFeasible`, and
+`orientedDividedPairGapPolynomial_natDegree_le`.
+
+The head-complexity consequence is completed through the equivalent signed
+formulation in theorem 194. `orientedTangentFeasible_of_computableWithHeadsN`
+constructs the oriented tangent point from every exact model, and
+`H_lt_HStar_of_no_signedBlowup` turns branch infeasibility into the strict
+lower bound.

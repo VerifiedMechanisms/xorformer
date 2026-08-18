@@ -125,3 +125,13 @@ For the finite range $3\leq n\leq 12$, the compact determinant certificates impr
 $$ W(n) \leq \left\lceil \frac{2^n-1}{n} \right\rceil. $$
 
 This counting lemma does not identify the exact invariant $H^{\ast}(f)$. It shows that any exact invariant must be able to take exponentially large values on typical Boolean functions.
+
+## Lean Status
+
+This result is not yet kernel-formalized. Its decisive input is the multivariate
+Warren, Milnor-Thom polynomial sign-pattern bound. The pinned Mathlib version
+contains Sauer-Shelah theory and univariate root counting, but no theorem that
+bounds the number of strict sign vectors realized by finitely many bounded-degree
+real multivariate polynomials. Adding that result axiomatically would fail this
+repository's axiom audit, so the formalization does not expose a weakened or
+conditional theorem under the same name.

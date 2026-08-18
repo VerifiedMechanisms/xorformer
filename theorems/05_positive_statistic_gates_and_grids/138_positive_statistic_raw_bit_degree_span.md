@@ -83,3 +83,14 @@ Every denominator $B_h(z,t(y))$ has positive constant term and positive coeffici
 ## Consequence
 
 The quadratic and cubic span lemmas are the $d=2$ and $d=3$ cases with small explicit determinant witnesses. The general form supplies a direct degree-sensitive upper bound for any one raw bit coupled to one positive statistic.
+
+## Lean Correspondence
+
+`PositiveStatisticRawBitDegLE` packages the two univariate slice polynomials,
+their strict sign conditions, and the common degree bound. The shared-shift
+partial-fraction algebra is formalized by `real_affineNumerator_span` and
+`exists_rawBit_affineNumerator_span`.
+
+`PositiveStatisticRawBitDegLE.computable` is the degree-sensitive compiler in
+`Atoms/PositiveStatisticRawBit.lean`. Its result-facing head bound is
+`HStar_le_of_positiveStatisticRawBitDegLE`.
