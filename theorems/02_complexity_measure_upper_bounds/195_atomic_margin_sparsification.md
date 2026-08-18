@@ -58,6 +58,20 @@ at every cube vertex.
 
 Each $a^{(j)}$ is a valid one-head score vector. The coefficient $\Lambda\alpha_j$ is absorbed into that head's final readout weight, and $c$ is the global readout bias. Hence $c+\Lambda\widetilde u$ is an $m$-head score with the signs of $f$. This proves the first claim. Taking the infimum gives the invariant bound. $\blacksquare$
 
+## Lean Correspondence
+
+The Lean formalization uses `AtomicMarginCertificate` in `HeadComplexity/Atoms/AtomicMargin.lean`. Its scope is a finite atom index type $J$, a probability measure $\mu$ on $J$, genuine fractional atoms whose output vectors satisfy $\lvert a_j(x)\rvert\leq1$, and explicit positive parameters `scale` and `margin`. Thus `atomicAverage` represents a finite convex combination in output space. `FracAtom.scale` proves that the sampled coefficients can be absorbed into valid heads.
+
+`exists_empirical_oneSided_approximation` in `HeadComplexity/Atoms/AtomicSampling.lean` proves the simultaneous coordinate estimate by independent finite sampling, Mathlib's sub-Gaussian Hoeffding inequality, and a finite union bound. The result module `HeadComplexity/Results/AtomicMarginSparsification.lean` obtains the exact natural-valued bound
+
+$$ H^{\ast}(f)\leq\left\lceil32(n+1)\left(\frac{\Lambda}{\gamma}\right)^2\right\rceil. $$
+
+This is `AtomicMarginCertificate.HStar_le_atomicSampleCount`. For nonconstant functions, output normalization implies $1\leq\Lambda/\gamma$, so the ceiling can be absorbed uniformly. The Results-facing theorem `AtomicMarginCertificate.HStar_real_le_atomicCondition` states
+
+$$ \bigl(H^{\ast}(f):\mathbb R\bigr)\leq33(n+1)\left(\frac{\Lambda}{\gamma}\right)^2. $$
+
+The certificate-level predicate `AtomicConditionLE` and theorem `HStar_real_le_of_atomicConditionLE` provide the corresponding bound for any certified upper bound on $\Lambda/\gamma$. The Lean development intentionally does not define the literal `sInf` wrapper for $\kappa_{\mathrm{atom}}(f)$: the finite-certificate theorem and its arbitrary certified-ratio corollary contain the proved mathematical content without introducing attainment or infimum bookkeeping.
+
 ## Certificate And Estimation Consequence
 
 For a fixed strictly positive oriented denominator $B$, pricing a normalized affine numerator $A$ against residual weights $r_x$ is a linear program:
