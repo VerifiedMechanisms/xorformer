@@ -121,3 +121,20 @@ every signed-tolerance predicate
 $$ \mathbf{1}[-t\leq X-Y\leq t] $$
 
 uses at most two heads. Thus equality is the radius-zero endpoint of a larger two-head family.
+
+## Lean Correspondence
+
+`FracAtom.ofPositiveAffineRatio` and
+`FracAtom.ofNegativeAffineRatio` give exact atom constructors for affine
+numerators over positive affine denominators in either orientation. Their
+evaluation lemmas live in `Atoms/PositiveAffineRatio.lean`.
+
+`affineSlab` is the closed interval predicate from the statement.
+`affineSlab_computable` implements the displayed two-ratio
+identity for arbitrary real coefficients, with no coefficient-sign
+restriction. `HStar_affineSlab_le_two` gives the upper bound, and
+`HStar_affineSlab_classification` proves the exact zero, one, or two case split
+using the existing low-complexity characterization.
+
+The level-set specialization is `HStar_affineLevelSet_le_two`. These results
+are in `Results/AffineSlab.lean`.

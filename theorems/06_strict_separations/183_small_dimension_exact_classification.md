@@ -144,3 +144,28 @@ Combined with the eight-bit Hamming-threshold separation
 the smallest possible strict separation lies in the certified range
 
 $$ 5\leq n_{\mathrm{sep}}\leq8. $$
+
+## Lean Status
+
+The analytic certificate boundary and a total finite checker are now
+machine-checked. `IntegralClearedScoreCertificate` compiles exact integral
+cleared scores with either valid denominator orientation. `IntegralPositiveCircuit`
+turns exact nonnegative moment identities into threshold-degree obstructions.
+`FourBitClassificationData` stores one structurally total row for every one of
+the $32768$ complement representatives, and its Boolean method `check` verifies
+all denominator, score, circuit, parity, and coverage conditions.
+
+The checker soundness chain is `valid_of_check_eq_true`,
+`exactCertificate_of_check_eq_true`, and the Results theorem
+`smallDimension_exact_of_check_eq_true`. Thus any concrete data value $D$ with
+`D.check = true` yields
+
+$$ H^{\ast}(f)=\deg_{\pm}(f)\qquad\text{for every }n\leq4. $$
+
+The tracked NPZ payload is not embedded as a Lean constant. It contains more
+than half a million scalar entries and would require millions of exact integer
+terms to reduce in the kernel. Consequently, the reusable checker and its
+end-to-end soundness theorem are in Lean, while the unconditional theorem for
+the archived dataset still lacks the single data-specific premise
+`archivedData.check = true`. No external verifier result, unverified parser, or
+`native_decide` axiom is used by the current Lean result surface.
