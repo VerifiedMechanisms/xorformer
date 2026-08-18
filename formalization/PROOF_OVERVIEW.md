@@ -79,7 +79,10 @@ weighted statistic and invokes `exists_partialFraction_sign_atoms` plus
 `weightedAtomFamily_readout` to realize the certificate with exactly `K` heads. Its
 minimum, `positiveWeightedSignDeg`, is finite by binary-weight interpolation and is
 the polynomial-certificate presentation of the existing positive-projection
-invariant $C_{+}$.
+invariant $C_{+}$. `PositiveProjection` separately records the strictly ordered
+finite statistic image and its label alternations. The formalization proves
+`positiveProjectionSignChanges_eq_positiveWeightedSignDeg`, so the two
+presentations are interchangeable inside Lean.
 
 ## Capstones
 
@@ -96,12 +99,50 @@ invariant $C_{+}$.
   `HStar_lower_bound_of_symmetric_face` combines atom restriction with the theorem
   12 sign-change value on a face.
 * **Theorem 69** (`Results/PositiveWeightedSignDegree.lean`,
-  `Results/WeightedFaceExact.lean`):
-  `thresholdDeg_le_HStar_le_positiveWeightedSignDeg` is the
-  polynomial-certificate form of the existing positive-projection sandwich.
-  Coincident endpoints give equality. The formalization also exposes the
-  fixed-certificate form, the low-alternation exact-two case, and checked band
-  instances.
+  `Results/PositiveProjection.lean`, `Results/WeightedFaceExact.lean`): the
+  ordered-image and polynomial presentations are equal. Both give the
+  threshold-degree and head-complexity sandwich, endpoint exactness, the
+  low-alternation classification, and fixed-certificate instances.
+* **Theorem 28** (`Results/DummyVariables.lean`,
+  `Results/StructuralInvariances.lean`, `Results/PartitionSignRank.lean`):
+  restriction, dummy-variable, junta, complement, permutation, and global bit
+  flip invariance, followed by the tangent and degree partition sign-rank caps
+  and their logarithmic inversion.
+* **Theorems 45 and 48** (`Results/FourierSupport.lean`,
+  `Results/AffineFreeSparsity.lean`): uniform atom approximation compiles sparse
+  Walsh scores and squarefree polynomial-threshold scores while retaining their
+  natural support costs.
+* **Theorem 62** (`Results/AffineSlab.lean`): two explicit affine-ratio atoms
+  give the full zero, one, or two affine-slab classification.
+* **Theorem 110** (`Results/AffineCylinderThreshold.lean`): finite cylinder and
+  affine-cylinder certificates are attained and compile into the complete
+  threshold-degree, head-complexity, and certificate-cost sandwich.
+* **Theorem 183** (`Results/FourBitCertificateChecker.lean`,
+  `Results/SmallDimensionExactCertificate.lean`): exact integral cleared scores
+  and nonnegative moment circuits feed a total Boolean checker for all four-bit
+  complement representatives. `smallDimension_exact_of_check_eq_true` proves
+  end-to-end soundness through four variables. The large archived data value and
+  its successful kernel check are not bundled.
+* **Theorems 193 and 194** (`Polynomial/PositiveSecantBlowup.lean`,
+  `Polynomial/SignedSecantBlowup.lean`,
+  `Results/SecantObstruction.lean`): exact division at the secant diagonal,
+  finite continuity opening, atom-to-tangent normalization, and head-padding
+  turn signed-blow-up infeasibility into a strict head lower bound. Head
+  permutation symmetry reduces the search to $H+1$ orientation counts and
+  $4(n+1)+2$ normalization chart types per count branch.
+* **Theorem 195** (`Atoms/AtomicMargin.lean`, `Atoms/AtomicSampling.lean`,
+  `Results/AtomicMarginSparsification.lean`): independent finite sampling,
+  sub-Gaussian Hoeffding bounds, and a finite union bound sparsify an
+  output-normalized finite atomic-margin certificate. The exact sample count has
+  constant 32 under a ceiling, and the real-valued Results theorem has absolute
+  constant 33. `AtomicConditionLE` records arbitrary certified ratio bounds
+  without introducing a literal infimum wrapper.
+* **Theorems 82, 138, 141, and 144**
+  (`Results/OneBitGateThresholdDegree.lean`,
+  `Results/PositiveOrderOneBitGate.lean`): fresh-coordinate polynomial
+  operations give the exact threshold-degree trichotomy, while shared-shift
+  partial fractions give the universal positive-order gate sandwich and its
+  degree-tight exact table.
 
 ## Strict separation
 

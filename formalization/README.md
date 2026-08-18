@@ -38,13 +38,26 @@ existing mathematical statements, not newly numbered theorems.
 | Existing note | Lean coverage | File |
 |---|---|---|
 | theorem 12 with restriction monotonicity from theorem 28 | `HStar_restrict_le`, `HStar_lower_bound_of_symmetric_face` | `Results/SymmetricFaceLowerBound.lean` |
-| theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveWeightedSignDeg`, `HStar_eq_thresholdDeg_of_eq_positiveWeightedSignDeg` | `Results/PositiveWeightedSignDegree.lean` |
+| theorem 21 determinant-span schema | `ClearedSpanCertificate.HStar_le` | `Results/DeterminantSpan.lean` |
+| theorem 28 invariances, juntas, and sign-rank | `HStar_dummyVariables`, `HStar_complement`, `partitionSignRank_le_all` | `Results/DummyVariables.lean`, `Results/StructuralInvariances.lean`, `Results/PartitionSignRank.lean` |
+| theorem 45 Fourier support cost | `FourierSupportCertificate.HStar_le` | `Results/FourierSupport.lean` |
+| theorem 48 affine-free sparsity | `HStar_le_affineFreeSparsity`, `affineFreeSparsity_le_ptfSparsity` | `Results/AffineFreeSparsity.lean` |
+| theorem 62 affine slabs | `HStar_affineSlab_le_two`, `HStar_affineSlab_classification` | `Results/AffineSlab.lean` |
+| theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveProjectionSignChanges`, `HStar_eq_thresholdDeg_of_eq_positiveProjectionSignChanges` | `Results/PositiveProjection.lean` |
 | theorem 69 fixed-certificate and checked instances | `HStar_eq_thresholdDeg_of_weightedPolynomial`, `HStar_eq_two_of_positiveWeightedSignDeg_le_two`, `HStar_isolatedXor3` | `Results/PositiveWeightedSignDegree.lean`, `Results/WeightedFaceExact.lean` |
+| theorem 82 one-bit threshold degree | `oneBitGate_thresholdDeg_trichotomy` | `Results/OneBitGateThresholdDegree.lean` |
+| theorem 110 affine-cylinder sandwich | `thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` | `Results/AffineCylinderThreshold.lean` |
+| theorems 138, 141, and 144 positive-statistic gates | `HStar_le_of_positiveStatisticRawBitDegLE`, `oneBitGate_HStar_sandwich_positiveProjection`, `oneBitGate_HStar_exact_of_degree_tight_positiveProjection` | `Results/PositiveOrderOneBitGate.lean` |
+| theorem 183 finite-checker soundness | `smallDimension_exact_of_check_eq_true` | `Results/FourBitCertificateChecker.lean`, `Results/SmallDimensionExactCertificate.lean` |
+| theorem 193 positive-secant blow-up | `PositiveSecant.orientedSecantFeasible_iff_blowupFeasible` | `Polynomial/PositiveSecantBlowup.lean` |
+| theorem 194 signed-secant obstruction | `SignedSecant.H_lt_HStar_of_no_signedBlowup_countBranchChartTypes` | `Polynomial/SignedSecantBlowup.lean`, `Polynomial/OrientedSecantSymmetry.lean`, `Results/SecantObstruction.lean` |
+| theorem 195 atomic-margin sparsification | `HStar_le_atomicSampleCount`, `HStar_real_le_atomicCondition`, `HStar_real_le_of_atomicConditionLE` | `Results/AtomicMarginSparsification.lean` |
 
-Lean uses `positiveWeightedSignDeg` as the polynomial-certificate presentation
-of the positive-projection sign-change invariant $C_{+}$ from theorem 69. The
-current development does not define a second ordered-image invariant named
-`C₊`; the correspondence is documented in the theorem writeup.
+Lean exposes both presentations of the theorem 69 invariant.
+`positiveProjectionSignChanges` is the literal minimum ordered-image
+alternation count $C_{+}$, while `positiveWeightedSignDeg` is its minimum
+polynomial-certificate presentation. Their equality is machine-checked as
+`positiveProjectionSignChanges_eq_positiveWeightedSignDeg`.
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:

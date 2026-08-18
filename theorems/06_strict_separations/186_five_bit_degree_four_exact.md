@@ -111,3 +111,12 @@ verified exact H4 certificates for all 65535 face-family targets
 
 By itself, this theorem leaves threshold degree two or three as the only possibilities for a five-bit strict separation. Together with the degree-two classification in
 [187_five_bit_degree_two_exact.md](187_five_bit_degree_two_exact.md), any five-bit strict separation must have threshold degree three.
+
+## Lean Status
+
+The reduction, shattering, residual-orbit, and face-family artifacts have exact
+external verifiers. They are not yet imported into Lean. A faithful kernel proof
+needs verified representations of the NPZ and JSON certificates, together with
+reflection lemmas for the finite score, shattering, and orbit checks. The current
+development therefore does not claim the quantified five-bit classification as
+a Lean theorem.

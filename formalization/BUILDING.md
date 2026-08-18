@@ -248,7 +248,26 @@ theorem theorem69_positive_projection_sandwich
 ```
 
 Here `positiveWeightedSignDeg` is Lean's polynomial-certificate presentation of
-the positive-projection sign-change invariant $C_{+}$. When the two endpoints
-coincide, `theorem69_positive_projection_exactness` determines `HStar` exactly.
-The result surface also contains `theorem69_low_alternation_two` and checked
-instances such as `theorem69_isolated_xor_instance`.
+the positive-projection sign-change invariant $C_{+}$. The literal ordered
+presentation is `positiveProjectionSignChanges`, and
+`theorem69_projection_presentations_equal` proves that the two minima agree.
+When the sandwich endpoints coincide,
+`theorem69_positive_projection_exactness` determines `HStar` exactly.
+
+The expanded `HeadComplexity.Results.All` surface also includes:
+
+- `theorem28_partition_sign_rank` and
+  `theorem28_partition_sign_rank_inversion`;
+
+- `theorem45_fourier_support`, `theorem48_affine_free_sparsity`, and
+  `theorem195_atomic_margin_sparsification`;
+
+- `theorem82_one_bit_gate_threshold_degree` and
+  `theorem144_positive_order_gate_sandwich`;
+
+- `theorem194_signed_secant_obstruction`, which turns the finite
+  symmetry-reduced blow-up obstruction into a strict `HStar` lower bound;
+
+- `theorem183_checked_small_dimension_exactness`, the soundness theorem for a
+  successful kernel check of complete four-bit certificate data. The large NPZ
+  payload itself is not embedded in the Lean source.

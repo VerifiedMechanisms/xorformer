@@ -116,3 +116,12 @@ objective edge counts: {(0, 2): 379, (1, 4): 1}
 ## Consequence
 
 Together with the exact constant and one-head characterizations, every five-bit function of threshold degree at most two has head complexity equal to its threshold degree. Combined with the degree-four theorem and the exact parity theorem, any five-bit strict separation must have threshold degree three.
+
+## Lean Status
+
+The cocircuit inventory, tangent cover, stress reduction, and fixed-chord
+extremizer have exact external verifiers. They are not yet Lean kernel
+certificates. Formalizing the headline requires verified polyhedral
+extreme-ray, Gordan-alternative, symmetry-orbit, and archive-reflection layers,
+not merely replaying the existing scripts. No axiom or unverified data import is
+used in the current Lean result surface.
