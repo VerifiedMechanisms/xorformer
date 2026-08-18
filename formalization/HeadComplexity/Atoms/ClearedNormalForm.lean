@@ -99,6 +99,65 @@ theorem computableWithHeadsN_iff_clearedAtomRep
   · intro h
     exact computable_of_fracComputable ((fracComputable_iff_clearedAtomRep f).mpr h)
 
+/-- A fractional certificate can be shifted so its score is strictly positive
+on true inputs and strictly negative on false inputs. -/
+theorem exists_strict_fracCertificate
+    {f : (Fin n → Bool) → Bool} (hf : fracComputable n H f) :
+    ∃ (phi : Fin H → FracAtom n) (c : ℝ),
+      ∀ x : Fin n → Bool,
+        if f x then 0 < c + ∑ h, (phi h).eval x
+        else c + ∑ h, (phi h).eval x < 0 := by
+  classical
+  rcases hf with ⟨phi, c, hphi⟩
+  let score : (Fin n → Bool) → ℝ := fun x ↦ c + ∑ h, (phi h).eval x
+  let trueInputs : Finset (Fin n → Bool) :=
+    Finset.univ.filter fun x ↦ f x = true
+  by_cases hT : trueInputs.Nonempty
+  · let margin : ℝ := trueInputs.inf' hT score / 2
+    have hmargin_pos : 0 < margin := by
+      apply half_pos
+      rw [Finset.lt_inf'_iff]
+      intro x hx
+      exact (hphi x).mpr (Finset.mem_filter.mp hx).2
+    refine ⟨phi, c - margin, fun x ↦ ?_⟩
+    have hrewrite : c - margin + ∑ h, (phi h).eval x = score x - margin := by
+      dsimp [score]
+      ring
+    rw [hrewrite]
+    cases hfx : f x with
+    | false =>
+        simp only [Bool.false_eq_true, ↓reduceIte]
+        have hnpos : score x ≤ 0 := by
+          apply le_of_not_gt
+          intro hpos
+          have := (hphi x).mp hpos
+          simp [hfx] at this
+        linarith
+    | true =>
+        simp only [↓reduceIte]
+        have hxT : x ∈ trueInputs :=
+          Finset.mem_filter.mpr ⟨Finset.mem_univ x, hfx⟩
+        have hle : trueInputs.inf' hT score ≤ score x :=
+          Finset.inf'_le score hxT
+        dsimp [margin] at hmargin_pos ⊢
+        linarith
+  · refine ⟨phi, c - 1, fun x ↦ ?_⟩
+    have hfalse : f x = false := by
+      apply Bool.eq_false_of_not_eq_true
+      intro hx
+      exact hT ⟨x, Finset.mem_filter.mpr ⟨Finset.mem_univ x, hx⟩⟩
+    simp only [hfalse, Bool.false_eq_true, ↓reduceIte]
+    have hnpos : score x ≤ 0 := by
+      apply le_of_not_gt
+      intro hpos
+      have := (hphi x).mp hpos
+      simp [hfalse] at this
+    have hrewrite : c - 1 + ∑ h, (phi h).eval x = score x - 1 := by
+      dsimp [score]
+      ring
+    rw [hrewrite]
+    linarith
+
 theorem atomDenProduct_totalDegree_le (φ : Fin H → FracAtom n) :
     (atomDenProduct φ).totalDegree ≤ H := by
   unfold atomDenProduct
