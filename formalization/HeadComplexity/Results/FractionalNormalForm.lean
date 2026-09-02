@@ -22,6 +22,14 @@ theorem computableWithHeadsN_iff_fracComputable (H : ℕ) (f : (Fin n → Bool) 
     computableWithHeadsN n H f ↔ fracComputable n H f :=
   ⟨fracComputable_of_computable, computable_of_fracComputable⟩
 
+/-- Theorem 10 for the literal model from `model.md`: shared-embedding
+computability with `H` heads is equivalent to `H` fractional atoms. -/
+theorem computableWithSharedHeadsN_iff_fracComputable
+    (H : ℕ) (f : (Fin n → Bool) → Bool) :
+    computableWithSharedHeadsN n H f ↔ fracComputable n H f :=
+  (computableWithHeadsN_iff_computableWithSharedHeadsN n H f).symm.trans
+    (computableWithHeadsN_iff_fracComputable H f)
+
 /-- **Theorem 10.** The head complexity equals the linear-fractional complexity. -/
 theorem HStar_eq_Lfrac (f : (Fin n → Bool) → Bool) : HStar n f = Lfrac n f := by
   classical
@@ -33,5 +41,11 @@ theorem HStar_eq_Lfrac (f : (Fin n → Bool) → Bool) : HStar n f = Lfrac n f :
   refine le_antisymm ?_ ?_
   · exact Nat.find_min' hexC ((hiff _).mpr (Nat.find_spec hexF))
   · exact Nat.find_min' hexF ((hiff _).mp (Nat.find_spec hexC))
+
+/-- Theorem 10 stated with the least head count of the literal shared-embedding
+model from `model.md`. -/
+theorem SharedHStar_eq_Lfrac (f : (Fin n → Bool) → Bool) :
+    SharedHStar n f = Lfrac n f :=
+  (SharedHStar_eq_HStar n f).trans (HStar_eq_Lfrac f)
 
 end HeadComplexity

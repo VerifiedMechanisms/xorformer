@@ -10,7 +10,7 @@ The public theorem surface lives under `HeadComplexity.Results`; lower-level
 constructions imported by those result facades. There is also an examples umbrella
 for an explicit list of direct applications.
 
-## The model (`Foundation/Vec.lean`, `Model/Head.lean`)
+## The model (`Foundation/Vec.lean`, `Model/Head.lean`, `Model/SharedEmbedding.lean`)
 
 A single softmax attention head is `Head n d`: token embeddings `Fin 3 → Vec d`
 (bit-0 / bit-1 / query), positional embeddings `Option (Fin n) → Vec d`, and linear
@@ -22,6 +22,16 @@ average `attnUpdate = (∑ p σ p)⁻¹ • ∑ p σ p • WV (x p)`. A function
 linear `⟪w, ·⟫ > τ`, equals `f`. `HStar n f` (= `H*`) is the least such `H`
 (`Nat.find`, `0` if none — but every `f` is computable, so this default never
 bites; see Theorem 9 universal bound).
+
+`SharedHeadFamily n d H` is the literal model from `model.md`: it has one token
+embedding and one positional embedding, with only `WQ`, `WK`, and `WV` indexed
+by the head. `shareHeadEmbeddings` converts any head-local width-`d` family to a
+shared-embedding width-`H * d` family by concatenating the local parameter
+blocks. `computableWithHeadsN_iff_computableWithSharedHeadsN` proves that this
+widening preserves head-count expressivity in both directions. In particular,
+`SharedHStar_eq_HStar` identifies their least head counts, and
+`SharedHStar_eq_Lfrac` states the later Theorem 10 directly for the literal
+shared-embedding model.
 
 ## Two spines
 

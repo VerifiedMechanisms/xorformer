@@ -1,5 +1,6 @@
 import HeadComplexity.Atoms.FracAtom
 import HeadComplexity.Atoms.HammingAtom
+import HeadComplexity.Model.SharedEmbedding
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 set_option linter.style.header false
@@ -260,5 +261,13 @@ theorem computable_of_fracComputable {n H : ℕ} {f : (Fin n → Bool) → Bool}
   constructor
   · intro h; linarith
   · intro h; linarith
+
+/-- Every fractional-atom family is also computable in the literal
+shared-embedding model, with the same number of heads. The bridge concatenates
+the width-`3` atom-head blocks into width `H * 3`. -/
+theorem computableWithSharedHeadsN_of_fracComputable
+    {n H : ℕ} {f : (Fin n → Bool) → Bool}
+    (h : fracComputable n H f) : computableWithSharedHeadsN n H f :=
+  computableWithSharedHeadsN_of_computableWithHeadsN (computable_of_fracComputable h)
 
 end HeadComplexity
