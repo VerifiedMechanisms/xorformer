@@ -69,6 +69,13 @@ alias theorem9_universal := HStar_le_universal_boolean
 /-- **Theorem 10.** Exact linear-fractional normal form: `H*(f) = L_frac(f)`. -/
 alias theorem10_normal_form := HStar_eq_Lfrac
 
+/-- **Theorem 10.** The same normal form for the literal shared-embedding model. -/
+alias theorem10_shared_embedding_per_head_count :=
+  computableWithSharedHeadsN_iff_fracComputable
+
+/-- **Theorem 10.** Exact shared-embedding head complexity equals `L_frac`. -/
+alias theorem10_shared_embedding_normal_form := SharedHStar_eq_Lfrac
+
 /-- **Theorem 11.** `H* = 0` iff `f` is constant … -/
 alias theorem11_level0 := HStar_eq_zero_iff
 
