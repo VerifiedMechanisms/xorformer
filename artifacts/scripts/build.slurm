@@ -1,10 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=lean-build
-#SBATCH --account=gusr38169
-# cbuild is the official build partition (has internet, for refreshing elan/cache);
-# staging is the same srv hardware as a fallback (officially data-transfer, but works).
-# SLURM schedules on whichever is free first. Both bill 2.0 SBU/thread-hour.
-#SBATCH --partition=cbuild,staging
+# Set your HPC account at submit time: sbatch -A <hpc-account> ...
+# Pick a partition with outbound internet if elan or the mathlib cache must be refreshed.
+#SBATCH --partition=<partition>
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16

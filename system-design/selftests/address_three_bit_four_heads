@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""Exact four-head certificate for the three-bit address function."""
+
+from fractions import Fraction as F
+from itertools import product
+from math import prod
+
+
+# Variable order: a_1,a_2,a_3,y_0,...,y_7.  Each row contains the affine
+# constant followed by the eleven variable coefficients.
+DENOMINATORS = [
+    [1000, 22026466, 1, 22026466, 1, 1, 4764, 1, 1, 1, 1, 1],
+    [22029032, -22026466, -1, -563, -1, -485, -1, -76, -415, -1, -22, -1],
+    [22034149, -1959, -3563, -22026466, -1, -121, -1, -1, -1, -1, -1, -1034],
+    [22030391, -1, -22026466, -1, -1, -144, -1, -1571, -1066, -1, -1, -138],
+]
+
+NUMERATORS = [
+    [-42568, -10314, -171161, -36369, 124386, -13248, 1052, -12245, -5783, 7390, -22003, -22036],
+    [-16622, -2559, -204994, -65214, -1610, 29882, 655, 2624, -677, 12207, 625, -6785],
+    [-14668, 234978, -36046, -10799, 5177, -13621, -5057, -1519, 74534, 12665, -4377, -17400],
+    [83654, 72237, 91371, -132731, -5346, 9544, 5519, -28717, -61088, -5598, 58660, 13018],
+]
+
+EXPECTED_MARGIN = F(145955662462817, 271312146681030)
+
+
+def main():
+    minimum_margin = None
+    for denominator in DENOMINATORS:
+        coefficients = denominator[1:]
+        assert all(value > 0 for value in coefficients) or all(
+            value < 0 for value in coefficients
+        )
+        assert min(
+            denominator[0] + sum(value * bit for value, bit in zip(coefficients, x))
+            for x in product([0, 1], repeat=11)
+        ) > 0
+
+    for x in product([0, 1], repeat=11):
+        address = x[0] + 2 * x[1] + 4 * x[2]
+        label = 1 if x[3 + address] else -1
+        score = F(0)
+        for denominator, numerator in zip(DENOMINATORS, NUMERATORS):
+            denominator_value = denominator[0] + sum(
+                value * bit for value, bit in zip(denominator[1:], x)
+            )
+            numerator_value = numerator[0] + sum(
+                value * bit for value, bit in zip(numerator[1:], x)
+            )
+            score += F(numerator_value, denominator_value)
+        signed_margin = label * score
+        minimum_margin = (
+            signed_margin
+            if minimum_margin is None
+            else min(minimum_margin, signed_margin)
+        )
+    assert minimum_margin == EXPECTED_MARGIN
+
+    # The certificate is not a disguised sparse selector identity: after
+    # clearing denominators its multilinear polynomial has every monomial of
+    # degree at most four and no higher-degree monomial.
+    cleared_values = []
+    for word in range(1 << 11):
+        x = tuple((word >> i) & 1 for i in range(11))
+        denominator_values = [
+            row[0] + sum(value * bit for value, bit in zip(row[1:], x))
+            for row in DENOMINATORS
+        ]
+        numerator_values = [
+            row[0] + sum(value * bit for value, bit in zip(row[1:], x))
+            for row in NUMERATORS
+        ]
+        cleared_values.append(
+            sum(
+                numerator_values[h]
+                * prod(
+                    denominator_values[k]
+                    for k in range(4)
+                    if k != h
+                )
+                for h in range(4)
+            )
+        )
+    coefficients = list(cleared_values)
+    for bit in range(11):
+        for word in range(1 << 11):
+            if (word >> bit) & 1:
+                coefficients[word] -= coefficients[word ^ (1 << bit)]
+    support_by_degree = {
+        degree: sum(
+            bool(coefficient) and subset.bit_count() == degree
+            for subset, coefficient in enumerate(coefficients)
+        )
+        for degree in range(12)
+    }
+    assert support_by_degree == {
+        0: 1,
+        1: 11,
+        2: 55,
+        3: 165,
+        4: 330,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+    }
+    print("IDX_3 four-head rational certificate: exact")
+    print(f"minimum signed margin: {minimum_margin}")
+    print("cleared support by degree: 1, 11, 55, 165, 330")
+
+
+if __name__ == "__main__":
+    main()

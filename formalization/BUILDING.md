@@ -3,7 +3,7 @@
 This document gives **exact, reproducible** instructions for compiling the
 `head-complexity` Lean 4 formalization and checking that the results are
 axiom-clean. It covers both a generic machine and the specific HPC environment
-(SURF Snellius, project `gusr0688`) the proofs were developed on.
+(an HPC cluster with a shared project directory) the proofs were developed on.
 
 For the wider project context see [`README.md`](README.md), and for the current
 proof architecture see [`PROOF_OVERVIEW.md`](PROOF_OVERVIEW.md).
@@ -99,7 +99,7 @@ metadata, so build a changed source first as shown above. The shared validator
 already builds and then passes all tracked Lean source paths to it.
 
 `artifacts/scripts/build.slurm` (§5) calls the same validator, so local,
-GitLab, and Snellius verification cannot drift apart.
+GitLab, and HPC verification cannot drift apart.
 
 ---
 
@@ -114,8 +114,8 @@ parser chokes.
 
 **Fix:** place a wrapper at the path mathlib's `getCurl` (in `Cache/IO.lean`)
 probes — `<mathlib-cache-dir>/curl-7.88.1` — that delegates to a working system
-`curl` and repairs the writeout JSON on the fly. On Snellius the cache dir is
-`/projects/gusr0688/.cache/mathlib`; adjust for your `XDG`/cache location.
+`curl` and repairs the writeout JSON on the fly. On the HPC cluster the cache dir is
+`/projects/<project>/.cache/mathlib`; adjust for your `XDG`/cache location.
 
 ```bash
 #!/usr/bin/env bash
@@ -130,7 +130,7 @@ exit "${PIPESTATUS[0]}"
 
 ```bash
 # install it (make executable; mathlib picks it up automatically, no re-download)
-install -m755 curl-wrapper.sh /projects/gusr0688/.cache/mathlib/curl-7.88.1
+install -m755 curl-wrapper.sh /projects/<project>/.cache/mathlib/curl-7.88.1
 ```
 
 `getCurl` uses this path **only if the file exists**, otherwise it falls back to
@@ -139,19 +139,19 @@ try the plain build in §2 first.
 
 ---
 
-## 5. Building on Snellius compute nodes (recommended here)
+## 5. Building on HPC compute nodes (recommended here)
 
 The login node is heavily contended (load ~35–40); offload builds to a compute
 node via SLURM. **All toolchain + cache state lives on shared GPFS**
-(`/gpfs/work5/0/gusr0688/...` and `/projects/gusr0688/...`), visible from every
+(`/gpfs/<work>/<project>/...` and `/projects/<project>/...`), visible from every
 node, so compute nodes build fully **offline** — no re-fetch needed.
 
 Make Lean available in the submission environment before starting a job. SLURM
-exports that environment by default. On Snellius, the shared installation can be
+exports that environment by default. On the HPC cluster, the shared installation can be
 selected with:
 
 ```bash
-export ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan
+export ELAN_HOME=/gpfs/<work>/<project>/.elan
 export PATH="$ELAN_HOME/bin:$PATH"
 ```
 
@@ -162,15 +162,13 @@ Each job script sets `LEAN_NUM_THREADS` from its requested CPU count.
 > job once stalled at ~8 s CPU in 3 min. With the cap, a full `lake build` +
 > axiom check finishes in ~2–3 min.
 
-**Account / partitions:** account `gusr38169` has budget only for `cbuild`,
-`staging`, and GPU partitions (not `rome`/`genoa`). Use `--partition=cbuild,staging`
-and let SLURM pick whichever is free (both are the identical shared `srv[1-10]`
-hardware, 32 cores / 224 GB, ~2.0 SBU/thread-hour). `cbuild` is the official build
-partition and has **outbound internet** (use it if you ever need to re-fetch the
-mathlib cache or a toolchain); `staging` is officially data-transfer but works as
-a fallback. Set `--mem` explicitly so the job fits the shared node's free RAM (a
-too-large `--mem`, e.g. 16 cpu × 7 G = 112 G, makes the job pend on `Resources`).
-A 16-thread ~3-min build costs ≈ 1.6 SBU.
+**Account / partitions:** submit with your own account and a CPU partition, passed
+at submit time (`sbatch -A <hpc-account> -p <partition> ...`) or set in the
+`#SBATCH` lines of the job scripts. Pick a partition with **outbound internet** if
+you ever need to re-fetch the mathlib cache or a toolchain. The scripts assume a
+shared node with a few dozen cores; set `--mem` explicitly so the job fits the
+node's free RAM (a too-large `--mem`, e.g. 16 cpu × 7 G = 112 G, makes the job
+pend on `Resources`). A 16-thread build finishes in about 3 minutes.
 
 ### Job scripts (in `artifacts/scripts`)
 
@@ -219,7 +217,7 @@ bash artifacts/scripts/validate.sh --fetch-cache
 # repeat validation after the mathlib cache is present:
 bash artifacts/scripts/validate.sh
 
-# watch for DONE_SENTINEL on Snellius, offloaded
+# watch for DONE_SENTINEL on the HPC cluster, offloaded
 sbatch artifacts/scripts/build.slurm && tail -f formalization/build.slurm.out
 ```
 

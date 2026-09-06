@@ -1,0 +1,607 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xorformer Theorem Map</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --ink: #22262e;
+    --muted: #5d6572;
+    --line: #dcdfe5;
+    --edge: #a9b0bb;
+    --lo: #7e8590;
+    --chip-text: #ffffff;
+    --t-deg: #4a5aa8;
+    --t-nf: #1d7a68;
+    --t-con: #8f6b14;
+    --t-sym: #7d4b96;
+    --t-sep: #b0532e;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171b;
+      --surface: #1e2126;
+      --ink: #e8eaee;
+      --muted: #9aa2ad;
+      --line: #33373e;
+      --edge: #565d68;
+      --lo: #838a95;
+      --chip-text: #15171b;
+      --t-deg: #93a2e8;
+      --t-nf: #57b8a2;
+      --t-con: #d0a83c;
+      --t-sym: #c08ad6;
+      --t-sep: #e08a63;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171b;
+    --surface: #1e2126;
+    --ink: #e8eaee;
+    --muted: #9aa2ad;
+    --line: #33373e;
+    --edge: #565d68;
+    --lo: #838a95;
+    --chip-text: #15171b;
+    --t-deg: #93a2e8;
+    --t-nf: #57b8a2;
+    --t-con: #d0a83c;
+    --t-sym: #c08ad6;
+    --t-sep: #e08a63;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  header { padding: 34px 28px 6px; max-width: 1240px; margin: 0 auto; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 8px;
+  }
+  h1 {
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 600; font-size: 30px; line-height: 1.15;
+    margin: 0 0 10px; text-wrap: balance;
+  }
+  .intro { max-width: 68ch; color: var(--muted); margin: 0 0 4px; }
+  .intro .m, .intro b { color: var(--ink); }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+    padding: 14px 28px 4px; max-width: 1240px; margin: 0 auto;
+    font-size: 12.5px; color: var(--muted);
+  }
+  .legend .key { display: inline-flex; align-items: center; gap: 7px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+  .legend svg { flex: none; }
+
+  .stage { max-width: 1240px; margin: 0 auto; padding: 10px 16px 26px; }
+  .scroller { overflow-x: auto; padding: 6px 6px 14px; }
+  .canvas { position: relative; width: 1190px; height: 380px; margin: 0 auto; }
+  .canvas > svg { position: absolute; inset: 0; width: 1190px; height: 380px; }
+
+  .wire { fill: none; stroke: var(--edge); stroke-width: 1.6; marker-end: url(#arr); transition: opacity .15s ease; }
+  .wire.dashed { stroke-dasharray: 5 5; }
+  .wire.up   { stroke: var(--ink); stroke-width: 2.1; marker-end: url(#arr-up); }
+  .wire.down { stroke: var(--lo);  stroke-width: 2.1; marker-end: url(#arr-down); }
+  .wire.dim, .wlabel.dim { opacity: .18; }
+  .wlabel {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 9.5px; fill: var(--muted); text-anchor: middle;
+    transition: opacity .15s ease;
+  }
+  .lvl {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px; letter-spacing: .12em; fill: var(--muted);
+  }
+
+  .node {
+    position: absolute; width: 200px; height: 132px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 5px;
+    padding: 10px 12px; text-align: left;
+    background: color-mix(in srgb, var(--tc) 5%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--tc) 34%, var(--line));
+    border-radius: 8px;
+    color: var(--ink); font: inherit; cursor: pointer;
+    transition: opacity .15s ease, box-shadow .15s ease, transform .1s ease;
+  }
+  .node:hover { box-shadow: 0 3px 14px rgba(0,0,0,.12); transform: translateY(-1px); }
+  .node:focus-visible { outline: 2px solid var(--tc); outline-offset: 2px; }
+  .node .chip {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10.5px; font-weight: 500; letter-spacing: .05em;
+    background: var(--tc); color: var(--chip-text);
+    padding: 1px 7px; border-radius: 999px;
+  }
+  .node .name {
+    font-family: 'Spectral', Georgia, serif;
+    font-weight: 600; font-size: 13.5px; line-height: 1.22;
+  }
+  .node .short { font-size: 11px; line-height: 1.32; color: var(--muted); overflow: hidden; }
+  .node.sel { outline: 2.5px solid var(--tc); outline-offset: 1px; box-shadow: 0 6px 22px rgba(0,0,0,.16); }
+  .node.anc { border-color: var(--ink); }
+  .node.desc { border-style: dashed; border-color: color-mix(in srgb, var(--ink) 55%, var(--line)); }
+  .node.dimmed { opacity: .38; }
+
+  .hint {
+    max-width: 1240px; margin: 0 auto; padding: 0 28px 40px;
+    font-size: 12.5px; color: var(--muted);
+  }
+
+  /* math typography */
+  .m { font-family: 'Spectral', Georgia, serif; font-style: italic; white-space: nowrap; }
+  .m .up { font-style: normal; }
+  .m sup, .m sub { font-size: .72em; }
+  .fm {
+    font-family: 'Spectral', Georgia, serif; font-style: italic;
+    text-align: center; margin: 12px 0; font-size: 16px;
+  }
+  .fm .up { font-style: normal; }
+  .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 .15em; }
+  .frac > span { padding: 0 .35em; line-height: 1.35; }
+  .frac > span:first-child { border-bottom: 1px solid currentColor; }
+
+  /* drawer */
+  .drawer {
+    position: fixed; top: 12px; right: 12px; bottom: 12px;
+    width: min(430px, calc(100vw - 24px));
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.22);
+    transform: translateX(calc(100% + 24px));
+    transition: transform .22s ease;
+    display: flex; flex-direction: column; z-index: 10;
+  }
+  .drawer.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .drawer, .wire, .node, .wlabel { transition: none; }
+  }
+  .drawer-head {
+    padding: 18px 20px 12px; border-bottom: 1px solid var(--line);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .drawer-head .chip {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px; font-weight: 500;
+    background: var(--tc); color: var(--chip-text);
+    padding: 2px 8px; border-radius: 999px; flex: none; margin-top: 3px;
+  }
+  .drawer-head .titles { flex: 1; }
+  .drawer-head .track {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--tc); margin: 0 0 2px;
+  }
+  .drawer-head h2 {
+    font-family: 'Spectral', Georgia, serif; font-weight: 600;
+    font-size: 19px; line-height: 1.2; margin: 0;
+  }
+  .drawer-close {
+    flex: none; border: 1px solid var(--line); background: none; color: var(--muted);
+    width: 28px; height: 28px; border-radius: 7px; cursor: pointer;
+    font-size: 15px; line-height: 1;
+  }
+  .drawer-close:hover { color: var(--ink); border-color: var(--ink); }
+  .drawer-close:focus-visible { outline: 2px solid var(--tc); outline-offset: 1px; }
+  .drawer-body { padding: 14px 20px 20px; overflow-y: auto; font-size: 13.5px; }
+  .drawer-body .fm { overflow-x: auto; max-width: 100%; padding-bottom: 2px; }
+  .drawer-body h3 {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10.5px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--muted); margin: 18px 0 6px;
+  }
+  .drawer-body h3:first-child { margin-top: 2px; }
+  .drawer-body p { margin: 0 0 9px; }
+  .drawer-body .fm { font-size: 15.5px; }
+  .rel { display: flex; flex-wrap: wrap; gap: 6px; }
+  .rel button {
+    font: 12px 'IBM Plex Sans', sans-serif; cursor: pointer;
+    background: color-mix(in srgb, var(--rc) 8%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--rc) 40%, var(--line));
+    color: var(--ink); border-radius: 999px; padding: 3px 10px;
+  }
+  .rel button:hover { border-color: var(--rc); }
+  .rel button:focus-visible { outline: 2px solid var(--rc); outline-offset: 1px; }
+  .rel .num { font-family: 'IBM Plex Mono', ui-monospace, monospace; color: var(--rc); font-size: 10.5px; margin-right: 4px; }
+  .rel .why { color: var(--muted); }
+  .src {
+    margin-top: 16px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px; color: var(--muted); word-break: break-all;
+  }
+  .none { color: var(--muted); font-size: 12.5px; }
+</style>
+
+<header>
+  <p class="eyebrow">xorformer · theorems</p>
+  <h1>Xorformer Theorem Map</h1>
+  <p class="intro">
+    <b>Head complexity</b> <span class="m">H<sup>*</sup>(f)</span> is the minimum number of attention heads a
+    one-layer, attention-only transformer needs to compute a Boolean function
+    <span class="m">f : {0,1}<sup>n</sup> → {0,1}</span>, reading out with a thresholded linear probe at the query
+    token (the model of <span style="font-family:'IBM Plex Mono',monospace;font-size:.9em">model.md</span>).
+    The five core results plus the separation 013 carry the full picture; the folder's other seven notes
+    (001–005, 007, 008) are corollaries of them, and each panel's Subsumes section says which. Boxes sit in levels: level 0 depends on
+    nothing else, a solid arrow <span class="m">A → B</span> means the proof of <span class="m">B</span> uses
+    <span class="m">A</span>. Click any box for the full statement.
+  </p>
+</header>
+
+<div class="legend" id="legend">
+  <span class="key"><span class="dot" style="background:var(--t-deg)"></span>Polynomial method</span>
+  <span class="key"><span class="dot" style="background:var(--t-nf)"></span>Normal form</span>
+  <span class="key"><span class="dot" style="background:var(--t-con)"></span>Constructions</span>
+  <span class="key"><span class="dot" style="background:var(--t-sym)"></span>Symmetric picture</span>
+  <span class="key"><span class="dot" style="background:var(--t-sep)"></span>Separations</span>
+  <span class="key"><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--edge)" stroke-width="1.6"/></svg>used in the proof</span>
+  <span class="key"><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--edge)" stroke-width="1.6" stroke-dasharray="5 5"/></svg>combined in the sandwich</span>
+</div>
+
+<main class="stage">
+  <div class="scroller">
+    <div class="canvas" id="canvas">
+      <svg id="wires" viewBox="0 0 1190 380" role="img" aria-label="Dependency graph of the five core theorems, arranged in levels; arrows point from a result to the results that use it.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--edge)"/>
+          </marker>
+          <marker id="arr-up" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--ink)"/>
+          </marker>
+          <marker id="arr-down" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--lo)"/>
+          </marker>
+        </defs>
+        <g aria-hidden="true">
+          <text class="lvl" x="15" y="18">LEVEL 0 · FOUNDATIONS</text>
+          <text class="lvl" x="15" y="214">LEVEL 1</text>
+        </g>
+        <g id="wiregroup"></g>
+      </svg>
+      <!-- nodes injected by script -->
+    </div>
+  </div>
+</main>
+
+<p class="hint">
+  Selecting a theorem highlights everything it builds on (solid border) and everything built on it (dashed border).
+  Source notes live in <span style="font-family:'IBM Plex Mono',monospace">theorems/</span> (each panel shows the
+  exact path); the seven subsumed notes also remain there.
+</p>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="false" aria-label="Theorem details">
+  <div class="drawer-head">
+    <span class="chip" id="d-chip"></span>
+    <div class="titles">
+      <p class="track" id="d-track"></p>
+      <h2 id="d-name"></h2>
+    </div>
+    <button class="drawer-close" id="d-close" aria-label="Close details">✕</button>
+  </div>
+  <div class="drawer-body" id="d-body"></div>
+</aside>
+
+<script>
+const TRACKS = {
+  deg:  { label: 'Polynomial method',      color: 'var(--t-deg)' },
+  nf:   { label: 'Normal form',            color: 'var(--t-nf)' },
+  con:  { label: 'Constructions',          color: 'var(--t-con)' },
+  sym:  { label: 'Symmetric picture',      color: 'var(--t-sym)' },
+  sep:  { label: 'Separations',            color: 'var(--t-sep)' },
+};
+
+const M = (s) => `<span class="m">${s}</span>`;
+const FM = (s) => `<div class="fm">${s}</div>`;
+const UP = (s) => `<span class="up">${s}</span>`;
+const FRAC = (a, b) => `<span class="frac"><span>${a}</span><span>${b}</span></span>`;
+const HS = `H<sup>*</sup>`;
+
+const NODES = {
+  '006': {
+    x: 120, y: 28, track: 'deg',
+    name: 'Degree Lower Bound',
+    short: 'deg±(f) ≤ H*(f): every H-head model yields a degree-H sign-representing polynomial.',
+    file: '01_foundations_and_normal_form/006_threshold_degree_head_complexity_bound.md',
+    detail: `
+      <h3>Statement</h3>
+      <p>The <b>threshold degree</b> ${M(`${UP('deg')}<sub>±</sub>(f)`)} is the least degree of a real
+      polynomial ${M('P')} with ${M('P(x) > 0')} exactly where ${M('f(x) = 1')} and ${M('P(x) < 0')} exactly
+      where ${M('f(x) = 0')}. For every ${M('f')} computable in the model,</p>
+      ${FM(`${UP('deg')}<sub>±</sub>(f) ≤ ${HS}(f).`)}
+      <h3>In more detail</h3>
+      <p>Each head's scalar contribution to the probe score is a ratio ${M(`a<sub>h</sub>(x)/b<sub>h</sub>(x)`)}
+      of <b>affine</b> functions with ${M('b<sub>h</sub> > 0')} on the cube (softmax weights are affine in each
+      bit since ${M('x<sub>i</sub> ∈ {0,1}')}). After making the classification strict, multiplying the score by
+      the positive product ${M('∏ b<sub>h</sub>')} clears all denominators and leaves a polynomial of degree at
+      most ${M('H')} with the same signs.</p>
+      <h3>Why it matters</h3>
+      <p>This imports the polynomial method wholesale: any threshold-degree lower bound is automatically a head
+      lower bound. It is the lower-bound half of the symmetric characterization (012), where it forces for
+      instance ${M(`${HS}(${UP('XOR')}<sub>n</sub>) ≥ n`)}, and the left end of the sandwich
+      ${M(`${UP('deg')}<sub>±</sub> ≤ ${HS} = L<sub>frac</sub> ≤ M<sub>+</sub>−1`)} stated in 011. The bound
+      is not tight in general: 013 exhibits an explicit ${M('f<sub>10</sub>')} where it is strict.</p>`
+  },
+  '009': {
+    x: 870, y: 28, track: 'con',
+    name: 'Weighted-Sum Upper Bound',
+    short: 'Depends only on a positive weighted sum with M values ⇒ H*(f) ≤ M − 1.',
+    file: '01_foundations_and_normal_form/009_weighted_sum_upper_bound.md',
+    detail: `
+      <h3>Statement</h3>
+      <p>Suppose ${M('f(x) = F(t(x))')} where ${M(`t(x) = Σ<sub>i</sub> λ<sub>i</sub>x<sub>i</sub>`)} with all
+      ${M('λ<sub>i</sub> > 0')}, and let ${M('M = |Im(t)|')} be the number of distinct values the statistic
+      takes. Then</p>
+      ${FM(`${HS}(f) ≤ M − 1.`)}
+      <h3>In more detail</h3>
+      <p>Positional embeddings encode ${M('log λ<sub>i</sub>')} into the attention logits, so head ${M('j')}
+      outputs ${M('g<sub>j</sub>(t(x))')} for a linear-fractional ${M('g<sub>j</sub>')}. The
+      ${M('M−1')} heads together with the constant span <i>all</i> real functions on ${M('Im(t)')}
+      (a rational-interpolation argument), so the probe interpolates the sign pattern of ${M('F')}.
+      Corollaries: every symmetric ${M('f')} has
+      ${M(`${HS}(f) ≤ n`)}; with binary weights ${M('λ<sub>i</sub> = 2<sup>i−1</sup>')}, every Boolean function
+      has ${M(`${HS}(f) ≤ 2<sup>n</sup> − 1`)}.</p>
+      <h3>Why it matters</h3>
+      <p>Defines the invariant ${M('M<sub>+</sub>(f)')} (the least achievable image size over valid positive
+      weightings), giving the right end of the sandwich in 011:
+      ${M(`${HS}(f) ≤ M<sub>+</sub>(f) − 1 ≤ 2<sup>n</sup> − 1`)}. It is the general-purpose upper-bound tool
+      of the collection.</p>
+      <h3>Subsumes</h3>
+      <p>Note 008's explicit ${M('n')}-head parity network is the unit-weight special case: with every
+      ${M('λ<sub>i</sub> = 1')} the construction realizes any symmetric function with ${M('n')} heads.</p>`
+  },
+  '010': {
+    x: 495, y: 28, track: 'nf',
+    name: 'Linear-Fractional Normal Form',
+    short: 'H*(f) = L_frac(f): fewest linear-fractional atoms that sign-represent f.',
+    file: '01_foundations_and_normal_form/010_linear_fractional_normal_form.md',
+    detail: `
+      <h3>Statement</h3>
+      <p>A <b>one-head atom</b> is a function of the shape</p>
+      ${FM(`φ(x) = ${FRAC('η + Σ<sub>i</sub> ρ<sub>i</sub>α<sup>x<sub>i</sub></sup>(m<sub>i</sub> + δx<sub>i</sub>)', 'γ + Σ<sub>i</sub> ρ<sub>i</sub>α<sup>x<sub>i</sub></sup>')}`)}
+      <p>with ${M('γ, ρ<sub>i</sub>, α > 0')}. Let ${M('L<sub>frac</sub>(f)')} be the least ${M('H')} such that
+      ${M('c + φ<sub>1</sub>(x) + ⋯ + φ<sub>H</sub>(x) > 0')} exactly on ${M('f = 1')}. Then</p>
+      ${FM(`${HS}(f) = L<sub>frac</sub>(f).`)}
+      <h3>In more detail</h3>
+      <p>Both directions are constructive. Every head's scalar contribution to the readout is such an atom
+      (softmax weights ${M('ρ<sub>i</sub>α<sup>x<sub>i</sub></sup>')}, affine values). Conversely, every atom is
+      realized exactly by one head, built in its own private subspace block so atoms add without interference.</p>
+      <h3>Why it matters</h3>
+      <p>Head complexity becomes a purely algebraic quantity about sums of linear-fractional atoms, with no
+      transformer left in the statement. This model-native invariant is what 011 analyzes at level 1, and what
+      012's upper bound builds from (reciprocal atoms ${M('d/(|x|+r)')}).</p>`
+  },
+  '011': {
+    x: 680, y: 224, track: 'nf',
+    name: 'One-Head Characterization',
+    short: 'H*(f) ≤ 1 ⟺ f is a linear threshold function. Every non-LTF needs ≥ 2 heads.',
+    file: '01_foundations_and_normal_form/011_one_head_characterization.md',
+    detail: `
+      <h3>Statement</h3>
+      <p>The first two levels of the hierarchy, exactly:</p>
+      ${FM(`${HS}(f) = 0 &nbsp;⟺&nbsp; f ${UP('is constant')}`)}
+      ${FM(`${HS}(f) = 1 &nbsp;⟺&nbsp; f ${UP('is a nonconstant linear threshold function.')}`)}
+      <p>Equivalently: ${M('f')} is computable with one head iff there is an affine
+      ${M(`L(x) = β<sub>0</sub> + Σβ<sub>i</sub>x<sub>i</sub>`)} with ${M('f(x) = 1 ⟺ L(x) > 0')}.</p>
+      <h3>In more detail</h3>
+      <p>Via the normal form (010): a constant plus one atom has the sign of ${M('cD(x) + N(x)')}, and both
+      ${M('N, D')} are affine on the cube (${M('α<sup>x<sub>i</sub></sup>')} is affine in a bit), so one-head
+      functions are LTFs. Conversely any affine ${M('L')} is the numerator of a single well-chosen atom with
+      positive denominator.</p>
+      <h3>Why it matters</h3>
+      <p>The exact identification of the first nontrivial level of the hierarchy. Combined with 006 and 009 it
+      gives the current general sandwich:</p>
+      ${FM(`${UP('deg')}<sub>±</sub>(f) ≤ ${HS}(f) = L<sub>frac</sub>(f) ≤ M<sub>+</sub>(f) − 1 ≤ 2<sup>n</sup> − 1.`)}
+      <h3>Subsumes</h3>
+      <p>The whole checkerboard track (notes 001, 002, 003): a 2-bit checkerboard (XOR-pattern) restriction is
+      not linearly separable, and a restriction of an LTF is still an LTF, so any ${M('f')} containing one needs
+      at least 2 heads. It also covers note 004's upper bound, since Hamming-weight thresholds are LTFs.</p>`
+  },
+  '012': {
+    x: 300, y: 224, track: 'sym',
+    name: 'Sign-Change Characterization',
+    short: 'Symmetric f: H*(f) = number of sign changes of the weight truth table.',
+    file: '01_foundations_and_normal_form/012_symmetric_sign_changes.md',
+    detail: `
+      <h3>Statement</h3>
+      <p>Let ${M('f(x) = F(|x|)')} be symmetric, write ${M('σ<sub>k</sub> = ±1')} for the value of ${M('F(k)')},
+      and let ${M('C(F)')} count the sign changes:</p>
+      ${FM(`C(F) = #{ t : σ<sub>t−1</sub> ≠ σ<sub>t</sub> }, &nbsp;&nbsp; ${HS}(f) = C(F).`)}
+      <h3>In more detail</h3>
+      <p><b>Lower bound.</b> For symmetric functions, threshold degree <i>equals</i> ${M('C(F)')}
+      (symmetrize any sign-representing polynomial, reduce to a univariate polynomial in ${M('k')}, and count
+      forced real roots); then apply 006.</p>
+      <p><b>Upper bound.</b> Each shifted reciprocal ${M('d/(|x| + r)')} is a one-head atom in the sense of 010.
+      Writing the degree-${M('C')} sign polynomial ${M('P(z)')} over ${M('∏(z + r<sub>j</sub>)')} and taking
+      partial fractions,</p>
+      ${FM(`${FRAC('P(z)', '∏<sub>j</sub>(z + r<sub>j</sub>)')} = c + Σ<sub>j</sub> ${FRAC('d<sub>j</sub>', 'z + r<sub>j</sub>')}`)}
+      <p>realizes the sign pattern with exactly ${M('C(F)')} heads.</p>
+      <h3>Why it matters</h3>
+      <p>A complete answer for all symmetric functions: thresholds 1, internal exact-counts 2, parity ${M('n')}.
+      What remains open is the right invariant for <i>nonsymmetric</i> functions.</p>
+      <h3>Subsumes</h3>
+      <p>Notes 004 (thresholds have one sign change), 007 (its Theorem 1 at ${M('F =')} parity gives
+      ${M(`${UP('deg')}<sub>±</sub>(${UP('PARITY')}<sub>n</sub>) = n`)}), 008 (parity alternates at every
+      weight, so ${M(`${HS}(${UP('XOR')}<sub>n</sub>) = n`)}), and the family packaging in 005
+      (OR / AND / MAJORITY 1, internal EXACT 2, PARITY ${M('n')}).</p>`
+  },
+  '013': {
+    x: 15, y: 224, track: 'sep',
+    name: 'Strict Degree Separation',
+    short: 'Explicit f₁₀ on ten bits with deg±(f₁₀) = 2 < 3 ≤ H*(f₁₀): the degree bound can be strict.',
+    file: '02_separations_and_counterexamples/013_strict_threshold_degree_separation.md',
+    detail: `
+      <h3>Statement</h3>
+      <p>Split ten bits into two blocks of five, encoded as signs ${M('x, y ∈ {−1,+1}<sup>5</sup>')}, and define
+      the quadratic score</p>
+      ${FM(`Q(x,y) = (Σ<sub>i</sub> x<sub>i</sub>)(Σ<sub>j</sub> y<sub>j</sub>) − 3 Σ<sub>i</sub> x<sub>i</sub>y<sub>i</sub>,`)}
+      <p>with ${M('f<sub>10</sub>(x,y) = 1 ⟺ Q(x,y) > 0')}. Then</p>
+      ${FM(`${UP('deg')}<sub>±</sub>(f<sub>10</sub>) = 2 &lt; 3 ≤ ${HS}(f<sub>10</sub>).`)}
+      <p>So the general lower bound ${M(`${UP('deg')}<sub>±</sub>(f) ≤ ${HS}(f)`)} from 006 can be strict.</p>
+      <h3>In more detail</h3>
+      <p><b>Degree exactly 2.</b> A counting identity gives ${M('Q ≡ 2 (mod 4)')}, so ${M('Q')} never
+      vanishes and is a strict quadratic sign representation; a 2-dimensional face of the cube shows an XOR
+      checkerboard, ruling out degree 1.</p>
+      <p><b>At least 3 heads.</b> By the normal form (010), a two-head score clears to
+      ${M('L<sub>1</sub>R<sub>1</sub> + L<sub>2</sub>R<sub>2</sub>')} with all four factors affine. The mixed
+      antipodal difference ${M('g(x,y) − g(x,−y) − g(−x,y) + g(−x,−y)')} of such a score gives a 5×5 matrix of
+      rank at most 4, while the target sign pattern forces that matrix to be strictly column diagonally
+      dominant, hence invertible of rank 5 (Levy–Desplanques). Contradiction, so two heads cannot compute
+      ${M('f<sub>10</sub>')}.</p>
+      <h3>Why it matters</h3>
+      <p>Threshold degree does not determine head complexity: the left end of the sandwich is not tight, so the
+      exact invariant for nonsymmetric functions is genuinely open. The note proves only
+      ${M(`${HS}(f<sub>10</sub>) ≥ 3`)}; the exact value of ${M(`${HS}(f<sub>10</sub>)`)} is not known.</p>`
+  },
+};
+
+const EDGES = [
+  { f: '006', t: '012', d: 'M 250 160 C 290 190, 320 200, 365 221' },
+  { f: '010', t: '012', d: 'M 560 160 C 520 190, 480 200, 435 221' },
+  { f: '010', t: '011', d: 'M 630 160 C 670 190, 700 200, 745 221' },
+  { f: '006', t: '011', d: 'M 290 160 C 420 185, 560 202, 705 221', kind: 'dashed', label: 'sandwich', lx: 390, ly: 172 },
+  { f: '009', t: '011', d: 'M 940 160 C 910 186, 880 200, 845 221', kind: 'dashed', label: 'sandwich', lx: 940, ly: 189 },
+  { f: '006', t: '013', d: 'M 160 160 C 145 185, 130 200, 115 221' },
+  { f: '010', t: '013', d: 'M 510 160 C 400 192, 290 202, 190 221' },
+];
+
+// why-lines for relation chips
+const WHY = {
+  '006>012': 'lower bound via symmetric threshold degree',
+  '010>012': 'reciprocal atoms d/(|x|+r) cost one head each',
+  '010>011': 'one atom + constant is an affine sign test',
+  '006>011': 'left end of the sandwich: deg± ≤ H*',
+  '009>011': 'right end of the sandwich: H* ≤ M₊ − 1',
+  '006>013': 'shows this lower bound can be strict',
+  '010>013': 'clears two heads to L₁R₁ + L₂R₂',
+};
+
+const canvas = document.getElementById('canvas');
+const wiregroup = document.getElementById('wiregroup');
+const drawer = document.getElementById('drawer');
+const dChip = document.getElementById('d-chip');
+const dTrack = document.getElementById('d-track');
+const dName = document.getElementById('d-name');
+const dBody = document.getElementById('d-body');
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+// build edges
+const edgeEls = [];
+for (const e of EDGES) {
+  const p = document.createElementNS(SVGNS, 'path');
+  p.setAttribute('d', e.d);
+  p.setAttribute('class', 'wire' + (e.kind === 'dashed' ? ' dashed' : ''));
+  wiregroup.appendChild(p);
+  let labelEl = null;
+  if (e.label) {
+    labelEl = document.createElementNS(SVGNS, 'text');
+    labelEl.setAttribute('x', e.lx); labelEl.setAttribute('y', e.ly);
+    labelEl.setAttribute('class', 'wlabel');
+    labelEl.textContent = e.label;
+    wiregroup.appendChild(labelEl);
+  }
+  edgeEls.push({ ...e, el: p, labelEl });
+}
+
+// build nodes
+const nodeEls = {};
+for (const [id, n] of Object.entries(NODES)) {
+  const b = document.createElement('button');
+  b.className = 'node';
+  b.style.left = n.x + 'px';
+  b.style.top = n.y + 'px';
+  b.style.setProperty('--tc', TRACKS[n.track].color);
+  b.setAttribute('aria-haspopup', 'dialog');
+  b.innerHTML = `<span class="chip">${id}</span><span class="name">${n.name}</span><span class="short">${n.short}</span>`;
+  b.addEventListener('click', (ev) => { ev.stopPropagation(); select(id); });
+  canvas.appendChild(b);
+  nodeEls[id] = b;
+}
+
+// adjacency + transitive closures
+const parents = {}, children = {};
+for (const id of Object.keys(NODES)) { parents[id] = []; children[id] = []; }
+for (const e of EDGES) { parents[e.t].push(e.f); children[e.f].push(e.t); }
+function closure(id, rel) {
+  const out = new Set(), stack = [...rel[id]];
+  while (stack.length) {
+    const v = stack.pop();
+    if (!out.has(v)) { out.add(v); stack.push(...rel[v]); }
+  }
+  return out;
+}
+
+let selected = null;
+
+function relChips(ids, dirWhy) {
+  if (!ids.length) return dirWhy === 'in'
+    ? '<p class="none">nothing, this is a foundation</p>'
+    : '<p class="none">no later result builds on this</p>';
+  return '<div class="rel">' + ids.map(pid => {
+    const key = dirWhy === 'in' ? `${pid}>${selected}` : `${selected}>${pid}`;
+    const why = WHY[key] ? ` <span class="why">· ${WHY[key]}</span>` : '';
+    return `<button data-go="${pid}" style="--rc:${TRACKS[NODES[pid].track].color}">` +
+      `<span class="num">${pid}</span>${NODES[pid].name}${why}</button>`;
+  }).join('') + '</div>';
+}
+
+function select(id) {
+  selected = id;
+  const n = NODES[id];
+  const anc = closure(id, parents);
+  const desc = closure(id, children);
+
+  for (const [nid, el] of Object.entries(nodeEls)) {
+    el.classList.remove('sel', 'anc', 'desc', 'dimmed');
+    if (nid === id) el.classList.add('sel');
+    else if (anc.has(nid)) el.classList.add('anc');
+    else if (desc.has(nid)) el.classList.add('desc');
+    else el.classList.add('dimmed');
+  }
+  for (const e of edgeEls) {
+    e.el.classList.remove('up', 'down', 'dim');
+    if (e.labelEl) e.labelEl.classList.remove('dim');
+    const inUp = anc.has(e.f) && (e.t === id || anc.has(e.t));
+    const inDown = (e.f === id || desc.has(e.f)) && desc.has(e.t);
+    if (inUp) e.el.classList.add('up');
+    else if (inDown) e.el.classList.add('down');
+    else { e.el.classList.add('dim'); if (e.labelEl) e.labelEl.classList.add('dim'); }
+  }
+
+  drawer.style.setProperty('--tc', TRACKS[n.track].color);
+  dChip.textContent = id;
+  dTrack.textContent = TRACKS[n.track].label;
+  dName.textContent = n.name;
+  dBody.innerHTML = n.detail +
+    `<h3>Builds on</h3>` + relChips(parents[id], 'in') +
+    `<h3>Used by</h3>` + relChips(children[id], 'out') +
+    `<p class="src">theorems/${n.file}</p>`;
+  dBody.scrollTop = 0;
+  dBody.querySelectorAll('[data-go]').forEach(btn =>
+    btn.addEventListener('click', () => select(btn.dataset.go)));
+  drawer.classList.add('open');
+}
+
+function clearSelection() {
+  selected = null;
+  drawer.classList.remove('open');
+  for (const el of Object.values(nodeEls)) el.classList.remove('sel', 'anc', 'desc', 'dimmed');
+  for (const e of edgeEls) {
+    e.el.classList.remove('up', 'down', 'dim');
+    if (e.labelEl) e.labelEl.classList.remove('dim');
+  }
+}
+
+document.getElementById('d-close').addEventListener('click', clearSelection);
+document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') clearSelection(); });
+canvas.addEventListener('click', clearSelection);
+</script>

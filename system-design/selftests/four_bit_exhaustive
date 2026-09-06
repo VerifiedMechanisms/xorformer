@@ -1,0 +1,267 @@
+#!/usr/bin/env python3
+"""Exact exhaustive certificate for the four-bit theorem in answer.md.
+
+For a rational evaluation space V in R^16, let C be a rational basis of
+V-perp, written with one row c_x per cube vertex.  V misses an open orthant y
+exactly when there is a nonzero w with y_x <c_x,w> >= 0 for every x.  The
+resulting compatibility cone is pointed because the c_x span the normal
+space.  If it is nonzero, it has an extreme ray cut out by c-1 independent
+row hyperplanes, where c=codim(V).  It therefore suffices to enumerate those
+row intersections and all sign extensions at their zero coordinates.
+
+Everything below uses fractions and finite enumeration.  No floating-point
+feasibility decision enters the certificate.
+"""
+
+from fractions import Fraction as F
+from itertools import combinations, product
+from collections import defaultdict
+
+
+VERTEX_COUNT = 16
+ALL_ORTHANTS = (1 << VERTEX_COUNT) - 1
+CUBE = list(product([0, 1], repeat=4))
+
+
+def nullspace_basis(rows, column_count):
+    matrix = [[F(value) for value in row] for row in rows]
+    rank = 0
+    pivots = []
+    for column in range(column_count):
+        pivot = next(
+            (i for i in range(rank, len(matrix)) if matrix[i][column]),
+            None,
+        )
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        scale = matrix[rank][column]
+        matrix[rank] = [value / scale for value in matrix[rank]]
+        for i in range(len(matrix)):
+            if i != rank and matrix[i][column]:
+                scale = matrix[i][column]
+                matrix[i] = [
+                    left - scale * right
+                    for left, right in zip(matrix[i], matrix[rank])
+                ]
+        pivots.append(column)
+        rank += 1
+
+    basis = []
+    for free in (column for column in range(column_count) if column not in pivots):
+        vector = [F(0)] * column_count
+        vector[free] = F(1)
+        for row, pivot in zip(matrix[:rank], pivots):
+            vector[pivot] = -row[free]
+        basis.append(vector)
+    return basis
+
+
+def row_rank(rows, column_count):
+    matrix = [[F(value) for value in row] for row in rows]
+    rank = 0
+    for column in range(column_count):
+        pivot = next(
+            (i for i in range(rank, len(matrix)) if matrix[i][column]),
+            None,
+        )
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        scale = matrix[rank][column]
+        matrix[rank] = [value / scale for value in matrix[rank]]
+        for i in range(rank + 1, len(matrix)):
+            if matrix[i][column]:
+                scale = matrix[i][column]
+                matrix[i] = [
+                    left - scale * right
+                    for left, right in zip(matrix[i], matrix[rank])
+                ]
+        rank += 1
+        if rank == column_count:
+            break
+    return rank
+
+
+def missed_orthants(evaluation_rows):
+    normal_columns = nullspace_basis(
+        list(zip(*evaluation_rows)),
+        VERTEX_COUNT,
+    )
+    codimension = len(normal_columns)
+    normal_rows = [
+        [normal_columns[j][i] for j in range(codimension)]
+        for i in range(VERTEX_COUNT)
+    ]
+
+    missed = set()
+    for active in combinations(range(VERTEX_COUNT), codimension - 1):
+        ray_basis = nullspace_basis(
+            [normal_rows[i] for i in active],
+            codimension,
+        )
+        if len(ray_basis) != 1:
+            continue
+        ray = ray_basis[0]
+        values = [
+            sum(left * right for left, right in zip(row, ray))
+            for row in normal_rows
+        ]
+        zeros = [i for i, value in enumerate(values) if not value]
+        positive_mask = sum(
+            1 << i for i, value in enumerate(values) if value > 0
+        )
+        for zero_mask in range(1 << len(zeros)):
+            orthant = positive_mask
+            for j, coordinate in enumerate(zeros):
+                if (zero_mask >> j) & 1:
+                    orthant |= 1 << coordinate
+            missed.add(orthant)
+            missed.add(ALL_ORTHANTS ^ orthant)
+    return missed
+
+
+def polynomial_evaluation(max_degree):
+    monomials = [
+        subset
+        for degree in range(max_degree + 1)
+        for subset in combinations(range(4), degree)
+    ]
+    return [
+        [F(int(all(x[i] for i in subset))) for subset in monomials]
+        for x in CUBE
+    ]
+
+
+def head_evaluation(denominators):
+    rows = []
+    for x in CUBE:
+        row = [F(1)]
+        for constant, coefficients in denominators:
+            denominator = constant + sum(
+                coefficient * bit
+                for coefficient, bit in zip(coefficients, x)
+            )
+            assert denominator > 0
+            nonzero = [value for value in coefficients if value]
+            assert len(nonzero) == len(coefficients) and (
+                all(value > 0 for value in nonzero)
+                or all(value < 0 for value in nonzero)
+            )
+            row.extend(F(x[i], denominator) for i in range(4))
+        rows.append(row)
+    return rows
+
+
+TWO_HEAD_DENOMINATORS = [
+    [(8, [9, 1, 2, 5]), (3, [9, 4, 3, 2])],
+    [(7, [2, 3, 2, 1]), (4, [2, 2, 3, 1])],
+    [(7, [8, 4, 2, 9]), (8, [8, 2, 5, 9])],
+    [(5, [6, 9, 8, 8]), (6, [3, 5, 3, 7])],
+    [(3, [4, 8, 7, 6]), (8, [8, 2, 7, 2])],
+    [(3, [6, 7, 4, 8]), (9, [1, 7, 9, 8])],
+    [(1, [6, 2, 9, 6]), (1, [5, 2, 6, 7])],
+    [(7, [9, 6, 1, 2]), (3, [8, 4, 4, 9])],
+    [(5, [1, 6, 3, 15]), (4, [6, 9, 1, 15])],
+    [(10, [2, 11, 6, 13]), (7, [14, 8, 14, 10])],
+    [(15, [11, 3, 11, 9]), (1, [15, 2, 3, 2])],
+    [(11, [4, 3, 9, 11]), (24, [-9, -1, -5, -1])],
+]
+
+
+THREE_HEAD_DENOMINATORS = [
+    [(9, [4, 6, 12, 9]), (5, [1, 6, 4, 3]), (9, [12, 7, 6, 7])],
+    [(9, [8, 4, 3, 8]), (12, [11, 5, 7, 1]), (3, [4, 10, 11, 1])],
+    [(8, [9, 9, 7, 2]), (11, [7, 10, 3, 7]), (3, [9, 8, 8, 4])],
+    [(7, [11, 12, 1, 9]), (12, [4, 12, 11, 11]), (3, [10, 10, 4, 8])],
+    [(6, [2, 1, 6, 9]), (2, [11, 5, 6, 2]), (7, [4, 9, 8, 2])],
+    [(9, [8, 10, 8, 10]), (3, [5, 10, 9, 4]), (11, [4, 2, 10, 1])],
+]
+
+
+def verify_mixed_pair_directly():
+    denominators = TWO_HEAD_DENOMINATORS[-1]
+    numerators = [
+        (0, [-798, -510, -1210, -1500]),
+        (1307, [-508, 198, -158, 262]),
+    ]
+    target = 43347
+    minimum_margin = None
+    for index, x in enumerate(CUBE):
+        score = F(0)
+        for (d0, ds), (n0, ns) in zip(denominators, numerators):
+            denominator = d0 + sum(d * bit for d, bit in zip(ds, x))
+            numerator = n0 + sum(n * bit for n, bit in zip(ns, x))
+            score += F(numerator, denominator)
+        label = 1 if (target >> index) & 1 else -1
+        signed_margin = label * score
+        assert signed_margin > 0
+        minimum_margin = (
+            signed_margin
+            if minimum_margin is None
+            else min(minimum_margin, signed_margin)
+        )
+    assert minimum_margin == F(7, 377)
+
+
+def affine_threshold_count():
+    normals = [(1,) + x for x in CUBE]
+    coefficients = defaultdict(int)
+    for subset_mask in range(1 << VERTEX_COUNT):
+        chosen = [
+            normals[i]
+            for i in range(VERTEX_COUNT)
+            if (subset_mask >> i) & 1
+        ]
+        rank = row_rank(chosen, 5)
+        coefficients[5 - rank] += (-1) ** len(chosen)
+    assert dict(coefficients) == {
+        5: 1,
+        4: -16,
+        3: 120,
+        2: -460,
+        1: 820,
+        0: -465,
+    }
+    characteristic_at_minus_one = sum(
+        coefficient * (-1) ** exponent
+        for exponent, coefficient in coefficients.items()
+    )
+    return -characteristic_at_minus_one
+
+
+def main():
+    assert affine_threshold_count() == 1_882
+
+    degree_two_missed = missed_orthants(polynomial_evaluation(2))
+    degree_two = set(range(1 << VERTEX_COUNT)) - degree_two_missed
+    assert len(degree_two) == 57_574
+
+    uncovered = set(degree_two)
+    for denominators in TWO_HEAD_DENOMINATORS:
+        uncovered &= missed_orthants(head_evaluation(denominators))
+    assert not uncovered
+    verify_mixed_pair_directly()
+
+    even_parity = sum(
+        1 << i for i, x in enumerate(CUBE) if sum(x) % 2 == 0
+    )
+    nonparity = set(range(1 << VERTEX_COUNT)) - {
+        even_parity,
+        ALL_ORTHANTS ^ even_parity,
+    }
+    uncovered = set(nonparity)
+    for denominators in THREE_HEAD_DENOMINATORS:
+        uncovered &= missed_orthants(head_evaluation(denominators))
+    assert not uncovered
+
+    print("four-bit degree-at-most-two orthants (57,574): exact")
+    print("four-bit affine threshold orthants (1,882): exact")
+    print("twelve rational two-head spaces cover all of them: exact")
+    print("six rational three-head spaces cover every nonparity orthant: exact")
+    print("head counts with H=0 allowed: 2, 1,880, 55,692, 7,960, 2")
+    print("therefore H*(f) = threshold-degree(f) for every four-bit f")
+
+
+if __name__ == "__main__":
+    main()

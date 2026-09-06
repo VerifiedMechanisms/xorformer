@@ -51,4 +51,4 @@ markdown-math-check:
   script:
     - python3 artifacts/scripts/test_check_md_math.py
     - npm install --no-save katex
-    - git ls-files -z -- '*.md' ':!:.claude/**' | xargs -0 python3 artifacts/scripts/check_md_math.py --katex
+    - git ls-files -z -- '*.md' ':!:.claude/**' ':!:system-design/**' | xargs -0 python3 artifacts/scripts/check_md_math.py --katex

@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""Reproduce larger exact modular interpolation-rank certificates."""
+
+from itertools import product
+from random import Random
+
+import numpy as np
+
+
+PRIME = 1_000_000_007
+
+
+def modular_rank_certificate(n, head_count, seed):
+    """Return the rank of the explicit positive-denominator evaluation matrix."""
+    vertex_count = 1 << n
+    random = Random(seed)
+    denominators = [
+        (random.randrange(1, 1000), [random.randrange(1, 1000) for _ in range(n)])
+        for _ in range(head_count)
+    ]
+
+    inverse_cache = {}
+    rows = []
+    for x in product([0, 1], repeat=n):
+        row = [1]
+        for d0, ds in denominators:
+            denominator = (d0 + sum(d * bit for d, bit in zip(ds, x))) % PRIME
+            if denominator not in inverse_cache:
+                inverse_cache[denominator] = pow(
+                    denominator,
+                    PRIME - 2,
+                    PRIME,
+                )
+            inverse = inverse_cache[denominator]
+            row.extend((bit * inverse) % PRIME for bit in x)
+        rows.append(row)
+
+    matrix = np.asarray(rows, dtype=np.int64)
+    rank = 0
+    for column in range(matrix.shape[1]):
+        candidates = np.flatnonzero(matrix[rank:, column])
+        if not len(candidates):
+            continue
+        pivot = rank + int(candidates[0])
+        if pivot != rank:
+            matrix[[rank, pivot]] = matrix[[pivot, rank]]
+        inverse = pow(int(matrix[rank, column]), PRIME - 2, PRIME)
+        matrix[rank, column:] = (matrix[rank, column:] * inverse) % PRIME
+
+        targets = np.flatnonzero(matrix[rank + 1 :, column]) + rank + 1
+        # Working in small batches bounds temporary memory.  Products are less
+        # than PRIME**2 and therefore fit safely in signed 64-bit integers.
+        for start in range(0, len(targets), 64):
+            batch = targets[start : start + 64]
+            scales = matrix[batch, column].copy()
+            matrix[batch, column:] = (
+                matrix[batch, column:]
+                - scales[:, None] * matrix[rank, column:]
+            ) % PRIME
+        rank += 1
+        if rank == vertex_count:
+            break
+    return rank
+
+
+def main():
+    cases = [(10, 103, 7010), (11, 187, 7011), (12, 342, 7012)]
+    for n, head_count, seed in cases:
+        rank = modular_rank_certificate(n, head_count, seed)
+        assert rank == 1 << n
+        print(
+            f"n={n}, H={head_count}, seed={seed}: "
+            f"rank {rank} modulo {PRIME}"
+        )
+
+
+if __name__ == "__main__":
+    main()

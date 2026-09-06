@@ -61,7 +61,7 @@ rerun exec_command with tty=true". So for a background consult, keep Codex's
 own command-running light: ask it to **reason from reading the code** and tell
 it the build/verify results yourself, rather than having it run heavy builds.
 Codex *can* run `lake`/`lean` (they're on its `PATH` via `~/.bashrc` →
-`ELAN_HOME=/gpfs/work5/0/gusr0688/fair_stuff/.elan`), but a 90 s+ compile under
+`ELAN_HOME=/gpfs/<work>/<project>/.elan`), but a 90 s+ compile under
 a closed stdin is what breaks — short commands (`grep`, `lake --version`) are
 fine.
 

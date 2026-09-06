@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Language Refiner"
+  short_description: "Align scientific prose with established field language"
+  default_prompt: "Use $literature-language-refiner to refine this sentence using terminology verified in relevant primary research papers."

@@ -1,0 +1,1122 @@
+#!/usr/bin/env python3
+"""Exact-arithmetic sanity checks for answer.md.
+
+These checks are not substitutes for the proofs.  They exercise the algebraic
+identities and the finite certificates used in the write-up without external
+packages.
+"""
+
+from fractions import Fraction as F
+from functools import reduce
+from itertools import combinations, product
+from math import prod
+from random import Random
+
+
+def matrix_rank(rows):
+    a = [[F(v) for v in row] for row in rows]
+    row = 0
+    for col in range(len(a[0])):
+        pivot = next((i for i in range(row, len(a)) if a[i][col]), None)
+        if pivot is None:
+            continue
+        a[row], a[pivot] = a[pivot], a[row]
+        scale = a[row][col]
+        a[row] = [v / scale for v in a[row]]
+        for i in range(len(a)):
+            if i != row and a[i][col]:
+                scale = a[i][col]
+                a[i] = [u - scale * v for u, v in zip(a[i], a[row])]
+        row += 1
+        if row == len(a):
+            break
+    return row
+
+
+def determinant(rows):
+    a = [[F(v) for v in row] for row in rows]
+    out = F(1)
+    for col in range(len(a)):
+        pivot = next((i for i in range(col, len(a)) if a[i][col]), None)
+        if pivot is None:
+            return F(0)
+        if pivot != col:
+            a[col], a[pivot] = a[pivot], a[col]
+            out = -out
+        scale = a[col][col]
+        out *= scale
+        a[col] = [v / scale for v in a[col]]
+        for i in range(col + 1, len(a)):
+            scale = a[i][col]
+            a[i] = [u - scale * v for u, v in zip(a[i], a[col])]
+    return out
+
+
+def solve_square(rows, right_hand_side):
+    """Solve a nonsingular square rational system exactly."""
+    size = len(rows)
+    augmented = [
+        [F(value) for value in row] + [F(right_hand_side[i])]
+        for i, row in enumerate(rows)
+    ]
+    for col in range(size):
+        pivot = next((i for i in range(col, size) if augmented[i][col]), None)
+        assert pivot is not None
+        augmented[col], augmented[pivot] = augmented[pivot], augmented[col]
+        scale = augmented[col][col]
+        augmented[col] = [value / scale for value in augmented[col]]
+        for i in range(size):
+            if i != col and augmented[i][col]:
+                scale = augmented[i][col]
+                augmented[i] = [
+                    left - scale * right
+                    for left, right in zip(augmented[i], augmented[col])
+                ]
+    return [augmented[i][-1] for i in range(size)]
+
+
+def canonical_row_space(rows, width):
+    a = [[F(value) for value in row] for row in rows]
+    row = 0
+    for col in range(width):
+        pivot = next((i for i in range(row, len(a)) if a[i][col]), None)
+        if pivot is None:
+            continue
+        a[row], a[pivot] = a[pivot], a[row]
+        scale = a[row][col]
+        a[row] = [value / scale for value in a[row]]
+        for i in range(len(a)):
+            if i != row and a[i][col]:
+                scale = a[i][col]
+                a[i] = [left - scale * right for left, right in zip(a[i], a[row])]
+        row += 1
+    return tuple(tuple(values) for values in a[:row])
+
+
+def test_normal_form_converse():
+    cases = [
+        (F(3), [F(1), F(2), F(4)], F(11)),
+        (F(9), [F(-1), F(-2), F(-3)], F(1, 4)),
+    ]
+    numerator = (F(5), [F(-7), F(3), F(9)])
+    cube = list(product([0, 1], repeat=3))
+
+    for d0, ds, t in cases:
+        lambdas = [d / (t - 1) for d in ds]
+        query_mass = d0 - sum(lambdas)
+        assert query_mass > 0 and all(v > 0 for v in lambdas)
+
+        a, bs = numerator
+        values = [b / d for b, d in zip(bs, ds)]
+        query_value = (a - sum(l * c for l, c in zip(lambdas, values))) / query_mass
+
+        for x in cube:
+            expected_d = d0 + sum(d * bit for d, bit in zip(ds, x))
+            actual_d = query_mass + sum(l * t**bit for l, bit in zip(lambdas, x))
+            expected_n = a + sum(b * bit for b, bit in zip(bs, x))
+            actual_n = query_mass * query_value + sum(
+                l * t**bit * c for l, bit, c in zip(lambdas, x, values)
+            )
+            assert actual_d == expected_d
+            assert actual_n == expected_n
+
+
+def test_normal_form_forward():
+    """Check scalarization with a genuinely bit-sensitive value map."""
+    query_mass = F(7, 3)
+    query_value = F(-5, 4)
+    token_masses = [F(2), F(3), F(5), F(11)]
+    token_values = [F(-2), F(1, 3), F(7), F(-4, 5)]
+    bit_value_increment = F(9, 7)
+    for attention_ratio in (F(13, 5), F(2, 9)):
+        d0 = query_mass + sum(token_masses)
+        ds = [(attention_ratio - 1) * mass for mass in token_masses]
+        n0 = query_mass * query_value + sum(
+            mass * value for mass, value in zip(token_masses, token_values)
+        )
+        ns = [
+            mass
+            * (
+                attention_ratio * (value + bit_value_increment)
+                - value
+            )
+            for mass, value in zip(token_masses, token_values)
+        ]
+        assert all(value > 0 for value in ds) or all(value < 0 for value in ds)
+        for x in product([0, 1], repeat=len(token_masses)):
+            direct_denominator = query_mass + sum(
+                mass * attention_ratio**bit
+                for mass, bit in zip(token_masses, x)
+            )
+            direct_numerator = query_mass * query_value + sum(
+                mass
+                * attention_ratio**bit
+                * (value + bit_value_increment * bit)
+                for mass, value, bit in zip(token_masses, token_values, x)
+            )
+            affine_denominator = d0 + sum(
+                value * bit for value, bit in zip(ds, x)
+            )
+            affine_numerator = n0 + sum(
+                value * bit for value, bit in zip(ns, x)
+            )
+            assert direct_denominator == affine_denominator > 0
+            assert direct_numerator == affine_numerator
+
+
+def test_cauchy_interpolation_rank():
+    for n in range(1, 7):
+        node_count = 2**n
+        rows = []
+        for z in range(node_count):
+            rows.append([F(1)] + [F(1, z + t) for t in range(1, node_count)])
+        assert matrix_rank(rows) == node_count
+
+
+def sign_polynomial(labels):
+    flips = [k for k in range(len(labels) - 1) if labels[k] != labels[k + 1]]
+    roots = [F(2 * k + 1, 2) for k in flips]
+    leading = F(labels[0] * (-1) ** len(flips))
+
+    def evaluate(z):
+        out = leading
+        for root in roots:
+            out *= z - root
+        return out
+
+    return flips, leading, evaluate
+
+
+def test_all_small_symmetric_functions():
+    checked = 0
+    for n in range(1, 8):
+        for mask in range(2 ** (n + 1)):
+            labels = [1 if (mask >> k) & 1 else -1 for k in range(n + 1)]
+            flips, leading, p = sign_polynomial(labels)
+            head_count = len(flips)
+            if head_count == 0:
+                continue
+            poles = [F(h + 1) for h in range(head_count)]
+            residues = []
+            for h, pole in enumerate(poles):
+                denominator = F(1)
+                for j, other in enumerate(poles):
+                    if j != h:
+                        denominator *= -pole + other
+                residues.append(p(-pole) / denominator)
+            for k, label in enumerate(labels):
+                score = leading + sum(
+                    (residue / (k + pole) for residue, pole in zip(residues, poles)),
+                    F(0),
+                )
+                assert label * score > 0
+            checked += 1
+    assert checked == 494
+
+
+def test_coherent_statistic_partial_fractions():
+    levels = [F(value) for value in (0, 1, 3, 4, 7, 8, 10, 11)]
+    for mask in range(1 << len(levels)):
+        labels = [1 if (mask >> i) & 1 else -1 for i in range(len(levels))]
+        changes = [
+            i for i in range(len(levels) - 1) if labels[i] != labels[i + 1]
+        ]
+        if not changes:
+            continue
+        roots = [(levels[i] + levels[i + 1]) / 2 for i in changes]
+        leading = F(labels[0] * (-1) ** len(changes))
+
+        def polynomial(value):
+            return leading * prod(value - root for root in roots)
+
+        poles = [F(20 + h) for h in range(len(changes))]
+        residues = []
+        for h, pole in enumerate(poles):
+            derivative = prod(
+                other - pole for j, other in enumerate(poles) if j != h
+            )
+            residues.append(polynomial(-pole) / derivative)
+        for level, label in zip(levels, labels):
+            score = leading + sum(
+                residue / (level + pole)
+                for residue, pole in zip(residues, poles)
+            )
+            assert label * score > 0
+
+
+def test_arbitrary_threshold_level_interpolation():
+    """Exact mixed-sign fallback for threshold intersections and unions."""
+    n = 4
+    affine_forms = [
+        (F(-2), [F(3), F(-5), F(0), F(2)]),
+        (F(1), [F(-2), F(4), F(-3), F(0)]),
+        (F(-1), [F(2), F(2), F(-4), F(1)]),
+    ]
+    gate_tables = []
+    for constant, slopes in affine_forms:
+        support_mask = sum(1 << i for i, slope in enumerate(slopes) if slope)
+        level_by_word = [
+            constant
+            + sum(slopes[i] * ((word >> i) & 1) for i in range(n))
+            for word in range(1 << n)
+        ]
+        levels = sorted(set(level_by_word))
+        labels = [F(int(level > 0)) for level in levels]
+        coefficients = solve_square(
+            [[level**degree for degree in range(len(levels))] for level in levels],
+            labels,
+        )
+        values = [
+            sum(
+                coefficient * level**degree
+                for degree, coefficient in enumerate(coefficients)
+            )
+            for level in level_by_word
+        ]
+        assert values == [F(int(level > 0)) for level in level_by_word]
+
+        mobius = list(values)
+        for bit in range(n):
+            for word in range(1 << n):
+                if (word >> bit) & 1:
+                    mobius[word] -= mobius[word ^ (1 << bit)]
+        for subset, coefficient in enumerate(mobius):
+            if coefficient:
+                assert not (subset & ~support_mask)
+                assert subset.bit_count() <= len(levels) - 1
+        gate_tables.append(values)
+
+    for word in range(1 << n):
+        total = sum((table[word] for table in gate_tables), F(0))
+        intersection_score = total - len(gate_tables) + F(1, 2)
+        union_score = total - F(1, 2)
+        assert (intersection_score > 0) == all(
+            table[word] for table in gate_tables
+        )
+        assert (union_score > 0) == any(table[word] for table in gate_tables)
+
+
+def test_three_bit_certificate():
+    cube = list(product([0, 1], repeat=3))
+    rows = []
+    normal = []
+    for x in cube:
+        d1 = 1 + x[0] + x[1] + x[2]
+        d2 = 1 + 2 * x[0] + 3 * x[1] + 4 * x[2]
+        rows.append(
+            [F(1)]
+            + [F(x[i], d1) for i in range(3)]
+            + [F(x[i], d2) for i in range(3)]
+        )
+        normal.append(F((-1) ** sum(x) * d1 * d2))
+
+    assert matrix_rank(rows) == 7
+    assert determinant(rows[1:]) == F(1, 14515200)
+    for col in range(7):
+        assert sum(normal[row] * rows[row][col] for row in range(8)) == 0
+
+
+def test_three_bit_threshold_arrangement_count():
+    normals = [(1,) + x for x in product([0, 1], repeat=3)]
+    flats = set()
+    for mask in range(1 << len(normals)):
+        chosen = [normals[i] for i in range(len(normals)) if (mask >> i) & 1]
+        flats.add(canonical_row_space(chosen, 4))
+
+    def contained(left, right):
+        return canonical_row_space(list(right) + list(left), 4) == right
+
+    ordered = sorted(flats, key=len)
+    mobius = {}
+    for flat in ordered:
+        if not flat:
+            mobius[flat] = 1
+        else:
+            mobius[flat] = -sum(
+                mobius[lower]
+                for lower in ordered
+                if len(lower) < len(flat) and contained(lower, flat)
+            )
+    coefficient_sums = [
+        sum(mobius[flat] for flat in ordered if len(flat) == rank)
+        for rank in range(5)
+    ]
+    assert coefficient_sums == [1, -8, 28, -44, 23]
+    assert sum(value * (-1) ** (4 - rank) for rank, value in enumerate(coefficient_sums)) == 104
+
+
+def hamming_open_cover(r):
+    n = 2**r - 1
+    columns = list(range(1, 2**r))
+
+    def syndrome(word):
+        out = 0
+        for i, column in enumerate(columns):
+            if (word >> i) & 1:
+                out ^= column
+        return out
+
+    code = {word for word in range(2**n) if syndrome(word) == 0}
+    centers = code | {word ^ 1 for word in code}
+    for word in range(2**n):
+        assert any((word ^ (1 << i)) in centers for i in range(n))
+    assert len(code) == 2**n // (n + 1)
+    assert len(centers) == 2 * len(code)
+
+
+def test_hamming_open_covers():
+    # r=4 already checks all 32768 vertices of Q_15.
+    for r in range(1, 5):
+        hamming_open_cover(r)
+
+
+def test_all_syndrome_open_covers():
+    for n in range(1, 16):
+        r = n.bit_length() - 1
+        syndromes = list(range(1 << r))
+        columns = [syndromes[i % len(syndromes)] for i in range(n)]
+
+        def syndrome(word):
+            out = 0
+            for i, column in enumerate(columns):
+                if (word >> i) & 1:
+                    out ^= column
+            return out
+
+        code = {word for word in range(1 << n) if syndrome(word) == 0}
+        assert len(code) == (1 << (n - r))
+        for word in range(1 << n):
+            assert any((word ^ (1 << i)) in code for i in range(n))
+
+
+def test_multicoset_syndrome_cover():
+    cases = [
+        (
+            6,
+            (17, 18, 20, 23, 26, 31, 34, 39, 56, 58, 61, 63),
+            {0, 6, 10, 20, 22, 48, 49},
+        ),
+        (
+            6,
+            (6, 11, 20, 25, 33, 34, 35, 43, 46, 47, 52, 53, 62, 63),
+            {0, 4, 7, 8, 43, 57},
+        ),
+        (
+            7,
+            (0, 3, 4, 14, 20, 52, 66, 89, 95, 96, 110, 115, 126),
+            {0, 1, 13, 40, 69, 78, 83, 97, 104, 112, 120, 125},
+        ),
+    ]
+    for syndrome_bits, columns, targets in cases:
+        syndrome_count = 1 << syndrome_bits
+        assert {
+            target ^ column for target in targets for column in columns
+        } == set(range(syndrome_count))
+        basis = [0] * syndrome_bits
+        rank = 0
+        for column in columns:
+            value = column
+            while value:
+                pivot = value.bit_length() - 1
+                if basis[pivot]:
+                    value ^= basis[pivot]
+                else:
+                    basis[pivot] = value
+                    rank += 1
+                    break
+        assert rank == syndrome_bits
+
+        def syndrome(word):
+            out = 0
+            for i, column in enumerate(columns):
+                if (word >> i) & 1:
+                    out ^= column
+            return out
+
+        centers = {
+            word
+            for word in range(1 << len(columns))
+            if syndrome(word) in targets
+        }
+        assert len(centers) == len(targets) * (
+            1 << (len(columns) - syndrome_bits)
+        )
+        for word in range(1 << len(columns)):
+            assert any(
+                (word ^ (1 << i)) in centers for i in range(len(columns))
+            )
+
+        # Algebraic verification of Cartesian lifts through three extra bits.
+        for extra_bits in range(4):
+            lifted_columns = {
+                (column, tail)
+                for column in columns
+                for tail in range(1 << extra_bits)
+            }
+            lifted_targets = {(target, 0) for target in targets}
+            assert {
+                (target ^ column, target_tail ^ column_tail)
+                for target, target_tail in lifted_targets
+                for column, column_tail in lifted_columns
+            } == {
+                (head, tail)
+                for head in range(syndrome_count)
+                for tail in range(1 << extra_bits)
+            }
+
+    def maximum_translate_union(points, rank, translate_count):
+        group_size = 1 << rank
+        base_mask = sum(1 << point for point in points)
+        translated = []
+        for shift in range(group_size):
+            translated.append(
+                sum(
+                    1 << (point ^ shift)
+                    for point in range(group_size)
+                    if (base_mask >> point) & 1
+                )
+            )
+        return max(
+            reduce(
+                int.__or__,
+                (translated[shift] for shift in shifts),
+                0,
+            ).bit_count()
+            for shifts in combinations(range(group_size), translate_count)
+        )
+
+    # The five GL-types of a six-point set containing zero.  These exact
+    # maxima prove that six target cosets in F_2^6 need at least 14 columns.
+    assert maximum_translate_union((0, 1, 2, 4, 8, 16), 5, 6) == 30
+    assert maximum_translate_union((0, 1, 2, 4, 8, 3), 4, 3) == 14
+    assert maximum_translate_union((0, 1, 2, 4, 8, 7), 4, 3) == 14
+    assert maximum_translate_union((0, 1, 2, 4, 8, 15), 4, 3) == 13
+    assert maximum_translate_union((0, 1, 2, 3, 4, 5), 3, 1) == 6
+    assert maximum_translate_union((0, 1, 2, 3, 4, 5), 3, 2) == 8
+
+    # Exact integer audit of the three lifted intervals and their strict
+    # 3/2 ratio; checking the right endpoint suffices because n/2^k is
+    # increasing within each interval.
+    for k in range(3, 33):
+        start = 1 << k
+        twelve_start = 12 << (k - 3)
+        thirteen_start = 13 << (k - 3)
+        end = 1 << (k + 1)
+        assert start < twelve_start < thirteen_start < end
+        assert twelve_start == 3 << (k - 1)
+        assert k + 3 <= twelve_start and k + 4 <= thirteen_start
+        assert 2 * (twelve_start - 1) < 3 * (1 << k)
+        assert 14 * (thirteen_start - 1) < 3 * (1 << (k + 3))
+        assert 24 * (end - 1) < 3 * (1 << (k + 4))
+
+
+def test_neighborhood_localization_rank():
+    # In Q_2, Gamma(00) and Gamma(01) cover the four vertices.  At epsilon=1/10
+    # the corresponding mixed-sign witness denominators already have full
+    # affine-numerator interpolation rank.
+    epsilon = F(1, 10)
+    centers = [0b00, 0b01]
+    rows = []
+    for word in range(4):
+        bits = [(word >> i) & 1 for i in range(2)]
+        row = []
+        for center in centers:
+            denominator = F((word ^ center).bit_count() - 1) + epsilon
+            row.extend([F(1) / denominator] + [F(bit) / denominator for bit in bits])
+        rows.append(row)
+    assert matrix_rank(rows) == 4
+
+
+def test_near_cover_mechanism_and_obstruction():
+    # Three Q_3 neighborhoods cover seven coordinates; the shared constant
+    # supplies the eighth.
+    n = 3
+    centers = [0b000, 0b001, 0b010]
+    covered = {center ^ (1 << i) for center in centers for i in range(n)}
+    assert covered == set(range(8)) - {0b111}
+
+    # Exact same-parity boundary maxima in Q_5.  They imply that seven open
+    # neighborhoods cover at most max_k boundary[k]+boundary[7-k] = 29.
+    n = 5
+    even = [word for word in range(1 << n) if word.bit_count() % 2 == 0]
+    boundary_maxima = []
+    for count in range(8):
+        best = 0
+        for chosen in combinations(even, count):
+            boundary = {
+                center ^ (1 << i)
+                for center in chosen
+                for i in range(n)
+            }
+            best = max(best, len(boundary))
+        boundary_maxima.append(best)
+    assert boundary_maxima == [0, 5, 10, 13, 16, 16, 16, 16]
+    assert max(boundary_maxima[k] + boundary_maxima[7 - k] for k in range(8)) == 29
+
+
+def test_small_fixed_denominator_interpolation_widths():
+    """Exact rational certificates for the sharp widths through n=6."""
+    random = Random(19)
+    for n in range(2, 7):
+        vertex_count = 2**n
+        head_count = (vertex_count - 1 + n - 1) // n
+        denominators = [
+            (random.randint(1, 50), [random.randint(1, 50) for _ in range(n)])
+            for _ in range(head_count)
+        ]
+        rows = []
+        for x in product([0, 1], repeat=n):
+            row = [F(1)]
+            for d0, ds in denominators:
+                denominator = d0 + sum(d * bit for d, bit in zip(ds, x))
+                row.extend(F(x[i], denominator) for i in range(n))
+            rows.append(row)
+        assert matrix_rank(rows) == vertex_count
+
+
+def test_degree_n_minus_one_hyperplane():
+    for n in range(1, 7):
+        full = (1 << n) - 1
+        monomials = list(range(full))
+        rows = []
+        parity = []
+        for word in range(1 << n):
+            rows.append([F(1 if (word & subset) == subset else 0) for subset in monomials])
+            parity.append(F((-1) ** word.bit_count()))
+        assert matrix_rank(rows) == (1 << n) - 1
+        for col in range(len(monomials)):
+            assert sum(parity[row] * rows[row][col] for row in range(1 << n)) == 0
+
+
+def test_cleared_bipartite_rank_bound():
+    """Check rank(P) <= H*2^H for random exact shared-factor scores."""
+    random = Random(424242)
+    left_bits = 5
+    right_bits = 5
+    n = left_bits + right_bits
+    for head_count in range(1, 4):
+        denominators = [
+            (
+                random.randrange(1, 20),
+                [random.randrange(1, 20) for _ in range(n)],
+            )
+            for _ in range(head_count)
+        ]
+        numerators = [
+            (
+                random.randrange(-20, 21),
+                [random.randrange(-20, 21) for _ in range(n)],
+            )
+            for _ in range(head_count)
+        ]
+        score_matrix = []
+        for left in product([0, 1], repeat=left_bits):
+            row = []
+            for right in product([0, 1], repeat=right_bits):
+                x = left + right
+                denominator_values = [
+                    d0 + sum(d * bit for d, bit in zip(ds, x))
+                    for d0, ds in denominators
+                ]
+                numerator_values = [
+                    n0 + sum(value * bit for value, bit in zip(ns, x))
+                    for n0, ns in numerators
+                ]
+                cleared = sum(
+                    numerator_values[h]
+                    * prod(
+                        denominator_values[k]
+                        for k in range(head_count)
+                        if k != h
+                    )
+                    for h in range(head_count)
+                )
+                row.append(cleared)
+            score_matrix.append(row)
+        assert matrix_rank(score_matrix) <= head_count * 2**head_count
+
+
+def test_directed_edge_rank_bound():
+    """Check the exact edge-clearing identity and rank <= 2*H*4^(H-1)."""
+    random = Random(8675309)
+    left_bits = 4
+    right_bits = 4
+    remaining = left_bits + right_bits
+    for head_count in range(1, 4):
+        denominators = [
+            (
+                random.randrange(1, 20),
+                [random.randrange(1, 20) for _ in range(remaining + 1)],
+            )
+            for _ in range(head_count)
+        ]
+        numerators = [
+            (
+                random.randrange(-20, 21),
+                [random.randrange(-20, 21) for _ in range(remaining + 1)],
+            )
+            for _ in range(head_count)
+        ]
+        cleared_matrix = []
+        for left in product([0, 1], repeat=left_bits):
+            row = []
+            for right in product([0, 1], repeat=right_bits):
+                base = left + right
+                endpoint_products = []
+                edge_numerators = []
+                direct_difference = F(0)
+                for (d0, ds), (n0, ns) in zip(denominators, numerators):
+                    d_zero = d0 + sum(
+                        d * bit for d, bit in zip(ds[:-1], base)
+                    )
+                    d_one = d_zero + ds[-1]
+                    n_zero = n0 + sum(
+                        value * bit for value, bit in zip(ns[:-1], base)
+                    )
+                    n_one = n_zero + ns[-1]
+                    endpoint_products.append(d_zero * d_one)
+                    edge_numerators.append(ns[-1] * d_zero - ds[-1] * n_zero)
+                    direct_difference += F(n_one, d_one) - F(n_zero, d_zero)
+                cleared = sum(
+                    edge_numerators[h]
+                    * prod(
+                        endpoint_products[k]
+                        for k in range(head_count)
+                        if k != h
+                    )
+                    for h in range(head_count)
+                )
+                assert (
+                    direct_difference * prod(endpoint_products)
+                    == cleared
+                )
+                row.append(cleared)
+            cleared_matrix.append(row)
+        assert matrix_rank(cleared_matrix) <= 2 * head_count * 4 ** (
+            head_count - 1
+        )
+
+
+def test_parity_mobius_density():
+    for n in range(1, 9):
+        values = [F((-1) ** word.bit_count() * (word + 1)) for word in range(1 << n)]
+        for subset in range(1 << n):
+            coefficient = F(0)
+            term = subset
+            while True:
+                coefficient += F((-1) ** (subset.bit_count() - term.bit_count())) * values[term]
+                if term == 0:
+                    break
+                term = (term - 1) & subset
+            assert coefficient != 0
+            assert (1 if coefficient > 0 else -1) == (-1) ** subset.bit_count()
+
+
+def test_dual_endpoint_expansions():
+    positive = {0, 1, 2}
+    negative = {3, 4}
+    for x in product([0, 1], repeat=5):
+        indicator = prod(x[i] for i in positive) * prod(
+            1 - x[i] for i in negative
+        )
+        positive_basis = sum(
+            (-1) ** len(term)
+            * prod(x[i] for i in positive | set(term))
+            for size in range(len(negative) + 1)
+            for term in combinations(negative, size)
+        )
+        complement_basis = sum(
+            (-1) ** len(term)
+            * prod(1 - x[i] for i in negative | set(term))
+            for size in range(len(positive) + 1)
+            for term in combinations(positive, size)
+        )
+        assert indicator == positive_basis == complement_basis
+
+
+def test_positive_interpolation_modular_ranks():
+    # A full-rank certificate over a prime field implies that the corresponding
+    # rational evaluation minor for these explicit positive denominators is
+    # nonzero over the reals.
+    prime = 1_000_000_007
+    cases = [(7, 19, 7007), (8, 32, 20260826), (9, 57, 7009)]
+    for n, head_count, seed in cases:
+        vertex_count = 1 << n
+        random = Random(seed)
+        denominators = [
+            (random.randrange(1, 1000), [random.randrange(1, 1000) for _ in range(n)])
+            for _ in range(head_count)
+        ]
+        rows = []
+        for x in product([0, 1], repeat=n):
+            row = [1]
+            for d0, ds in denominators:
+                denominator = (d0 + sum(d * bit for d, bit in zip(ds, x))) % prime
+                inverse = pow(denominator, prime - 2, prime)
+                row.extend((bit * inverse) % prime for bit in x)
+            rows.append(row)
+
+        rank = 0
+        for col in range(len(rows[0])):
+            pivot = next((i for i in range(rank, vertex_count) if rows[i][col]), None)
+            if pivot is None:
+                continue
+            rows[rank], rows[pivot] = rows[pivot], rows[rank]
+            inverse = pow(rows[rank][col], prime - 2, prime)
+            rows[rank] = [(value * inverse) % prime for value in rows[rank]]
+            for i in range(vertex_count):
+                if i != rank and rows[i][col]:
+                    scale = rows[i][col]
+                    rows[i] = [
+                        (left - scale * right) % prime
+                        for left, right in zip(rows[i], rows[rank])
+                    ]
+            rank += 1
+            if rank == vertex_count:
+                break
+        assert rank == vertex_count
+
+
+def test_binary_subset_sum_osculating_obstruction():
+    # Coalescing H denominators 1+t_h z(x), with binary z(x), produces the
+    # osculating columns x_i z^k.  At the sharp n=6 dimension count these miss
+    # one dimension, so this tempting one-parameter construction cannot prove
+    # the uniform interpolation conjecture.
+    n = 6
+    head_count = 11
+    rows = []
+    for word in range(1, 1 << n):
+        rows.append([
+            F(word**power if (word >> bit) & 1 else 0)
+            for power in range(head_count)
+            for bit in range(n)
+        ])
+    assert matrix_rank(rows) == 62
+
+
+def test_addressing_cauchy_and_parity_minor():
+    for r in range(1, 5):
+        address_count = 1 << r
+        poles = list(range(1, address_count + 1))
+        cauchy = [
+            [F(1, address + pole) for pole in poles]
+            for address in range(address_count)
+        ]
+        assert matrix_rank(cauchy) == address_count
+
+        # Under y_b = z xor parity(b), indexing is z xor parity(address).
+        for address in range(address_count):
+            for z in [0, 1]:
+                data = [z ^ (b.bit_count() & 1) for b in range(address_count)]
+                indexed = data[address]
+                parity_minor = z ^ (address.bit_count() & 1)
+                assert indexed == parity_minor
+
+
+def test_address_two_point_cauchy_relation():
+    for r in range(2, 6):
+        address_count = 1 << r
+        half = address_count // 2
+        head_count = address_count - 1
+
+        # P has every address node except the two even nodes 0 and m/2 as a
+        # root.  Its residues beta_h at the negative Cauchy poles alternate.
+        def polynomial(z):
+            out = F(-1)
+            for node in range(address_count):
+                if node not in (0, half):
+                    out *= z - node
+            return out
+
+        beta = []
+        for h in range(1, address_count):
+            derivative = 1
+            for pole in range(1, address_count):
+                if pole != h:
+                    derivative *= -h + pole
+            beta.append(polynomial(-h) / derivative)
+        assert [1 if value > 0 else -1 for value in beta] == [
+            (-1) ** h for h in range(1, address_count)
+        ]
+
+        # The rational function P/Q is supported only at those two even
+        # nodes, so multiplying it by the low address bit cancels identically.
+        for z in range(address_count):
+            value = sum(beta[h - 1] / F(z + h) for h in range(1, address_count))
+            assert value == F(polynomial(z), prod(range(z + 1, z + address_count)))
+            assert (z & 1) * value == 0
+
+        normal = []
+        for z in range(address_count):
+            q_value = prod(range(z + 1, z + address_count))
+            derivative = 1
+            for node in range(address_count):
+                if node != z:
+                    derivative *= z - node
+            normal.append(F(q_value, derivative))
+        gamma = [
+            -beta[h - 1]
+            * sum(
+                normal[z] / F((z + h) ** 2)
+                for z in range(1, address_count, 2)
+            )
+            for h in range(1, address_count)
+        ]
+        assert min(gamma) < 0 < max(gamma)
+
+
+def test_address_uniform_perturbation_construction():
+    """Exercise every algebraic layer of the uniform (2^r-1)-head proof."""
+    for r in range(2, 4):
+        address_count = 1 << r
+        half = address_count // 2
+        head_count = address_count - 1
+
+        def polynomial(z):
+            out = F(-1)
+            for node in range(address_count):
+                if node not in (0, half):
+                    out *= z - node
+            return out
+
+        beta = []
+        for h in range(1, address_count):
+            derivative = prod(
+                -h + pole
+                for pole in range(1, address_count)
+                if pole != h
+            )
+            beta.append(F(polynomial(-h), derivative))
+
+        reciprocal = [
+            [F(1, z + h) for h in range(1, address_count)]
+            for z in range(address_count)
+        ]
+        normal = []
+        for z in range(address_count):
+            q_value = prod(range(z + 1, z + address_count))
+            v_derivative = prod(
+                z - node for node in range(address_count) if node != z
+            )
+            normal.append(F(q_value, v_derivative))
+
+        generators = [
+            [
+                -beta[h - 1] * (z & 1) / F((z + h) ** 2)
+                for z in range(address_count)
+            ]
+            for h in range(1, address_count)
+        ]
+        gamma = [
+            sum(normal[z] * generators[h][z] for z in range(address_count))
+            for h in range(head_count)
+        ]
+        assert min(gamma) < 0 < max(gamma)
+
+        denominator_slopes = [[F(0)] * address_count for _ in range(head_count)]
+        value_slopes = [[F(0)] * address_count for _ in range(head_count)]
+        square_reciprocal = reciprocal[:head_count]
+        for b in range(address_count):
+            positive = [F(1)] * head_count
+            discrepancy = normal[b] - sum(gamma)
+            if discrepancy:
+                chosen = next(
+                    h
+                    for h, value in enumerate(gamma)
+                    if value * discrepancy > 0
+                )
+                positive[chosen] += discrepancy / gamma[chosen]
+            assert all(value > 0 for value in positive)
+            assert sum(g * q for g, q in zip(gamma, positive)) == normal[b]
+
+            target = [
+                F(z == b)
+                - sum(positive[h] * generators[h][z] for h in range(head_count))
+                for z in range(address_count)
+            ]
+            assert sum(c * value for c, value in zip(normal, target)) == 0
+            values = solve_square(square_reciprocal, target[:head_count])
+            assert all(
+                sum(reciprocal[z][h] * values[h] for h in range(head_count))
+                == target[z]
+                for z in range(address_count)
+            )
+            for h in range(head_count):
+                denominator_slopes[h][b] = positive[h]
+                value_slopes[h][b] = values[h]
+
+        # The finite epsilon representation is checked on every input.  The
+        # loop only chooses a concrete witness; uniform convergence is proved
+        # symbolically by the identities above.
+        epsilon = F(1, 10)
+        cube = product([0, 1], repeat=address_count)
+        data_vectors = list(cube)
+        while True:
+            valid = True
+            for z in range(address_count):
+                for data in data_vectors:
+                    score = F(-1, 2)
+                    for h in range(1, address_count):
+                        denominator = F(z + h) + epsilon * sum(
+                            denominator_slopes[h - 1][b] * data[b]
+                            for b in range(address_count)
+                        )
+                        numerator = beta[h - 1] * (z & 1) / epsilon + sum(
+                            value_slopes[h - 1][b] * data[b]
+                            for b in range(address_count)
+                        )
+                        score += numerator / denominator
+                    if (1 if data[z] else -1) * score <= 0:
+                        valid = False
+                        break
+                if not valid:
+                    break
+            if valid:
+                break
+            epsilon /= 10
+            assert epsilon > F(1, 10**40)
+
+        assert all(value > 0 for row in denominator_slopes for value in row)
+
+
+def test_two_bit_addressing_three_head_certificate():
+    denominators = [
+        (2, [1, 1, 2, 1, 2, 1]),
+        (1, [2, 1, 2, 1, 1, 1]),
+        (1, [1, 2, 1, 2, 2, 1]),
+    ]
+    numerators = [
+        (173, [203, -203, -15, -203, -169, 203]),
+        (-203, [13, 161, -18, 30, 184, -114]),
+        (26, [-203, 1, 45, 170, -18, -33]),
+    ]
+    minimum_margin = None
+    for x in product([0, 1], repeat=6):
+        address = x[0] + 2 * x[1]
+        label = 1 if x[2 + address] else -1
+        score = F(0)
+        for (d0, ds), (n0, ns) in zip(denominators, numerators):
+            denominator = d0 + sum(d * bit for d, bit in zip(ds, x))
+            numerator = n0 + sum(value * bit for value, bit in zip(ns, x))
+            score += F(numerator, denominator)
+        signed_margin = label * score
+        assert signed_margin > 0
+        minimum_margin = (
+            signed_margin
+            if minimum_margin is None
+            else min(minimum_margin, signed_margin)
+        )
+    assert minimum_margin == F(8, 15)
+
+
+def test_address_first_order_rank_evidence():
+    """Exact evidence only for the blocked singular-perturbation conjecture."""
+
+    for r in range(1, 6):
+        vertices = list(product([0, 1], repeat=r))
+        vertex_count = 1 << r
+        head_count = vertex_count - 1
+        nodes = [sum((1 << i) * bit for i, bit in enumerate(x)) for x in vertices]
+        reciprocal = [
+            [F(1, node + h + 1) for h in range(head_count)]
+            for node in nodes
+        ]
+
+        # Cauchy left-null vector: Q(z_a)/V'(z_a).
+        normal = []
+        for a, node in enumerate(nodes):
+            q_value = 1
+            for h in range(head_count):
+                q_value *= node + h + 1
+            v_derivative = 1
+            for b, other in enumerate(nodes):
+                if b != a:
+                    v_derivative *= node - other
+            normal.append(F(q_value, v_derivative))
+        for h in range(head_count):
+            assert sum(normal[a] * reciprocal[a][h] for a in range(vertex_count)) == 0
+
+        variable_count = head_count * (r + 1)
+        relation_rows = []
+        for a, x in enumerate(vertices):
+            row = []
+            for h in range(head_count):
+                row.extend(
+                    [reciprocal[a][h]]
+                    + [bit * reciprocal[a][h] for bit in x]
+                )
+            relation_rows.append(row)
+
+        first_order_rows = [[F(0)] * variable_count for _ in range(head_count)]
+        for h in range(head_count):
+            for j in range(r + 1):
+                first_order_rows[h][h * (r + 1) + j] = sum(
+                    normal[a]
+                    * (1 if j == 0 else vertices[a][j - 1])
+                    * reciprocal[a][h] ** 2
+                    for a in range(vertex_count)
+                )
+
+        relation_rank = matrix_rank(relation_rows)
+        augmented_rank = matrix_rank(relation_rows + first_order_rows)
+        expected_first_order_rank = 0 if r == 1 else head_count
+        assert relation_rank == vertex_count
+        assert augmented_rank - relation_rank == expected_first_order_rank
+
+
+def main():
+    test_normal_form_forward()
+    test_normal_form_converse()
+    test_cauchy_interpolation_rank()
+    test_all_small_symmetric_functions()
+    test_coherent_statistic_partial_fractions()
+    test_arbitrary_threshold_level_interpolation()
+    test_three_bit_certificate()
+    test_three_bit_threshold_arrangement_count()
+    test_hamming_open_covers()
+    test_all_syndrome_open_covers()
+    test_multicoset_syndrome_cover()
+    test_neighborhood_localization_rank()
+    test_near_cover_mechanism_and_obstruction()
+    test_small_fixed_denominator_interpolation_widths()
+    test_degree_n_minus_one_hyperplane()
+    test_cleared_bipartite_rank_bound()
+    test_directed_edge_rank_bound()
+    test_parity_mobius_density()
+    test_dual_endpoint_expansions()
+    test_positive_interpolation_modular_ranks()
+    test_binary_subset_sum_osculating_obstruction()
+    test_addressing_cauchy_and_parity_minor()
+    test_address_two_point_cauchy_relation()
+    test_address_uniform_perturbation_construction()
+    test_two_bit_addressing_three_head_certificate()
+    test_address_first_order_rank_evidence()
+    print("normal-form forward/converse identities: ok")
+    print("Cauchy ranks through n=6: ok")
+    print("all symmetric sign sequences through n=7: ok")
+    print("coherent-statistic partial fractions on irregular levels: ok")
+    print("arbitrary mixed-threshold level interpolation: ok")
+    print("three-bit rank/minor/normal certificate: ok")
+    print("three-bit affine-arrangement count (104): ok")
+    print("Hamming open-neighborhood covers through n=15: ok")
+    print("single-kernel all-syndrome covers through n=15: ok")
+    print("multi-coset 3/2 universal syndrome-cover bound: ok")
+    print("neighborhood-localization rank witness: ok")
+    print("near-cover I_3 witness / Q_5 obstruction: ok")
+    print("exact fixed-denominator interpolation widths through n=6: ok")
+    print("degree-(n-1) parity hyperplanes through n=6: ok")
+    print("cleared bipartite rank bounds through H=3: ok")
+    print("directed-edge identity / subsumed rank route through H=3: ok")
+    print("parity Möbius-density identities through n=8: ok")
+    print("dual endpoint expansions for mixed literals: ok")
+    print("sharp positive interpolation ranks at n=7,8,9 (mod prime): ok")
+    print("binary subset-sum osculating obstruction at n=6 (rank 62/63): ok")
+    print("addressing Cauchy ranks/parity minors through r=4: ok")
+    print("uniform two-point address residue construction through r=5: ok")
+    print("uniform address perturbation identities/full r<=3 classifiers: ok")
+    print("IDX_2 exact three-head rational certificate: ok")
+    print("blocked address first-order ranks through r=5: reproduced")
+
+
+if __name__ == "__main__":
+    main()

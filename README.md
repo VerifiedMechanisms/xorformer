@@ -82,6 +82,7 @@ $I(f)$ with $H^{\ast}(f) \asymp I(f)$. Closing that gap is the main open problem
 | [`artifacts/intro-materials/writeup.md`](artifacts/intro-materials/writeup.md) | Original blog-post writeup of the two-bit XOR result. |
 | [`literature_survey.md`](literature_survey.md) | Related work across transformers and Boolean complexity. |
 | [`formalization/`](formalization/) | Lean 4 formalization of the results (depends on mathlib). |
+| [`system-design/`](system-design/) | Independent from-scratch autonomous re-derivation of the head-complexity answer (`answer.md`, approach registry, self-tests, and its own Lean check), the evidence base for the system-design part of the paper. |
 | [`experiments/hstar/`](experiments/hstar/) | Python package that empirically estimates $H^{\ast}(f)$ by training small attention models. |
 | [`artifacts/intro-materials/proposal.pdf`](artifacts/intro-materials/proposal.pdf) / [`proposal.tex`](artifacts/intro-materials/proposal.tex) | Project proposal (build with `./artifacts/scripts/compile_pdf.sh`). |
 | [`AGENTS.md`](AGENTS.md) | Markdown conventions used across the writeups. |

@@ -2,6 +2,7 @@
 __pycache__/
 .DS_Store
 .claude/settings.local.json
+.ai-code/
 
 # Presentation: blog-sourced figures and LaTeX build cruft
 artifacts/intro-presentation/figures/
@@ -17,3 +18,9 @@ project-management/
 .gitignore
 .env
 node_modules/
+artifacts/scripts/
+.claude/skills/writeup-to-github/
+writeup/build/sync-overleaf.sh
+
+# Manifund proposal (restored from history, kept local)
+writeup/helper-docs/proposal.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refine Paragraph"
+  short_description: "Refine paragraphs into clear, self-contained prose"
+  default_prompt: "Use $refine-paragraph to refine this paragraph into clear, self-consistent academic prose without introducing unnecessary terminology."

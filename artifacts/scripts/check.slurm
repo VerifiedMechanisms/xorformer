@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=lean-check
-#SBATCH --account=gusr38169
-#SBATCH --partition=cbuild,staging
+# Set your HPC account at submit time: sbatch -A <hpc-account> ...
+#SBATCH --partition=<partition>
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
