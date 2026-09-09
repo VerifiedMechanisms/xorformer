@@ -1,0 +1,1200 @@
+\documentclass{article}
+
+\usepackage[dblblindworkshop]{neurips_2026}
+% \usepackage[dblblindworkshop,final]{neurips_2026}
+
+\workshoptitle{Workshop for Autonomous ML Research}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{afterpage}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xspace}
+\usepackage[most]{tcolorbox}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}p{#1}}
+
+\definecolor{theoremframe}{HTML}{3F6F9F}
+\definecolor{theoremfill}{HTML}{F2F7FC}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{corollary}{Corollary}
+\tcolorboxenvironment{theorem}{
+  enhanced,
+  colback=theoremfill,
+  colframe=theoremframe,
+  boxrule=0.5pt,
+  arc=2pt,
+  boxsep=2pt,
+  left=4pt,
+  right=4pt,
+  top=1pt,
+  bottom=1pt,
+  before skip=6pt,
+  after skip=6pt
+}
+\newtcolorbox{sourcebox}{enhanced, breakable, colback=black!3, colframe=black!40, boxrule=0.4pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=4pt, fontupper=\small, before skip=6pt, after skip=6pt}
+% Line-number output handling interferes with page breaks in source boxes.
+% This hook is scoped to the environment and also works without lineno.
+\AddToHook{env/sourcebox/begin}{\par\ifdefined\nolinenumbers\nolinenumbers\fi}
+\newcommand{\hstar}{H^{\ast}}
+\newcommand{\tdeg}{\deg_{\pm}}
+\newcommand{\bits}{\{0,1\}}
+\newcommand{\signchanges}{C(F)}
+\newcommand{\claude}[1]{\textcolor{orange}{\textsf{(MB: #1)}}}
+\newcommand{\gpt}{\textsc{GPT-5.6 Sol}\xspace}
+
+\title{Formally Verified Autoresearch for Analyzing the Expressivity of Multi-Head Attention}
+
+\author{%
+  First Last \\
+  Organization \\
+  \texttt{name@organization} \\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Multi-head attention is a central component of the transformer architecture, yet how its expressivity depends on the number of heads remains poorly understood. We study a one-layer, attention-only transformer and define the head complexity $H^\ast(f)$ of a Boolean function $f$ as the minimum number of attention heads required to represent it. Our main result exactly characterizes head complexity $H^\ast(f)$ for symmetric Boolean functions, showing that it equals the number of times $f$ changes value between consecutive Hamming-weight levels. Beyond the symmetric setting, we prove that threshold degree provides a lower bound on head complexity and give an explicit example showing that this lower bound is not always tight. These results were discovered and formalized by a frontier model through conjecture generation, theorem proving, and machine verification, while human researchers asked the high-level questions and reviewed the generated theorems. This work also lays the groundwork for a publicly available Lean codebase intended to support agent-assisted theorem proving and formal verification in mechanistic interpretability. More broadly, this work serves as a proof of concept for a broader research program that leverages the mathematical capabilities of frontier models, grounded by formal verification, to build towards a fundamental understanding of transformer architectures.
+\end{abstract}
+
+\noindent\textbf{Keywords:} mechanistic interpretability, expressivity, formal verification, autonomous research.
+
+\section{Introduction}
+\label{sec:introduction}
+
+Mechanistic interpretability is an important component of a broader toolkit for AI safety and oversight \cite{ISRSAA2026}. Theoretical mechanistic interpretability works \cite{elhage2021mathematical, elhage2022toymodelssuperposition, geshkovski2025mathematicalperspectivetransformers} have shaped empirical interpretability \cite{olsson2022incontextlearninginductionheads, cunningham2023sparseautoencodershighlyinterpretable, viswanathan2026the} by providing useful abstractions, and principled starting points for experimentation. However, developing this kind of theory has been demanding, requiring sustained expert effort to work through the underlying mathematics. Recent advances in language models for mathematical reasoning and formal theorem proving \cite{tsoukalas2026advancingmathematicsresearchaidriven, alon2026remarksdisproofunitdistance, yang2023leandojo} create an opportunity to accelerate the development of rigorous theory for mechanistic interpretability.
+
+Such theory would be especially valuable for multi-head attention \citep{vaswani2017attention}, since a more fundamental account of how it transforms the residual stream could support mechanistic interpretability in both models at scale and toy models.
+In models at scale, a theory of how attention heads transform and combine features could inform theoretically grounded feature-decomposition tools \citep{cunningham2023sparseautoencodershighlyinterpretable, shafran2026from}, by relating the features the probes recover to computations that the architecture can implement. 
+For toy models, a theory of multi-head attention can provide a principled basis for interpreting and generalizing empirical findings about how learned computations are distributed across attention heads \citep{nanda2023progressmeasuresgrokkingmechanistic, piotrowski2025constrainedbeliefupdatesexplain}. For instance, the problem studied here arose from an empirical finding in a one-layer transformer trained on modular addition \cite{nanda2023progressmeasuresgrokkingmechanistic}: parity was only weakly linearly decodable from individual head outputs, but became nearly perfectly decodable when the head outputs were combined. This suggested that parity was implemented as a distributed computation across heads, motivating us to ask whether single-head attention faces a structural expressivity barrier.
+
+\paragraph{Related work} Transformer expressivity has been studied through logical characterizations, approximation theory, and analyses of formal languages and Boolean functions \citep{weiss2021thinking,yang2024counting,salzer2026counting,kajitsuka2024one,hahn2020theoretical,kozachinskiy2026parity,hsu2026lowerbounds,kover2026geometry}. \citet{yu2026headcount} establish upper and lower bounds on the parameter complexity required for $\epsilon$-approximation as the number of heads varies, while \citet{hsu2026lowerbounds} establishes lower bounds on the head count for representing $n$-bit parity with one-layer transformers. Closest to our setting is concurrent work by \citet{hsu2026attentionbased}, who also obtain the exact head-count characterization for symmetric functions in a model without positional embeddings. Appendix~\ref{app:hsu-comparison} provides a detailed comparison with our work.
+
+Despite this progress, deriving general expressivity guarantees for multi-head attention remains technically demanding because tracking even a single layer involves multiple attention head updates and their interactions. Agent-assisted mathematical reasoning can help navigate this analytical complexity, while formal verification provides a rigorous check on the resulting claims. We apply this framework to a concrete expressivity question for Boolean functions:
+
+\begin{quote}
+For a Boolean function $f$, what is the minimum number of attention heads needed to represent $f$ in a single attention layer?
+\end{quote}
+
+\section{Autonomous Research Result}
+\label{sec:autonomous-result}
+
+% We now make the question posed above precise and present the main autonomous research result. After defining the model and head complexity, we prove a general threshold-degree lower bound, establish an exact characterization for symmetric Boolean functions, and construct an explicit example where the head complexity exceeds its threshold degree.
+
+% \subsection{Method: model and complexity measure}
+\label{sec:model}
+
+% afterpage releases the float only after the current page (2) has shipped,
+% so the [t] placement puts it at the top of page 3.
+\afterpage{%
+\begin{figure}[t]
+  \centering
+  \noindent\input{images/mha_diagram}
+  \caption{{\bfseries One-layer attention-only model.} The input consists of $n$ bit tokens followed by a dedicated query token $q$, which also serves as the readout position. Each position is represented by the sum of a token embedding and a positional embedding, and the resulting embedded sequence is shared by all $H$ heads. The heads update all positions in parallel, but the linear readout uses only position $q$. At this position, the head outputs are added to the residual $\mathbf{u}_q$, yielding $\mathbf{h}_q(\mathbf{x})$. Thus, $f$ is represented exactly when the inputs labelled $0$ and $1$ are linearly separable at the readout position $\mathbf{h}_q(\mathbf{x})$, and $\hstar(f)$ is the minimum $H$ for which this occurs.}
+  \label{fig:model}
+\end{figure}%
+}
+
+\paragraph{Setup}
+\label{paragraph: setup}
+We study a one-layer, attention-only transformer based on multi-head attention \citep{vaswani2017attention}, followed by a linear threshold readout at the position of a dedicated query token $q$, as illustrated in Figure~\ref{fig:model}. For an input $\mathbf{x}$ comprising $n$ bits, let $\mathcal{I}:=[n]\cup\{q\}$ denote the set of sequence positions, and let $\mathbf{u}_j(\mathbf{x})$ denote the input representation at position $j$, obtained by adding its token and positional embeddings. Each head $h$ applies query, key, and value projections given by $W_Q^{(h)}, W_K^{(h)}, W_V^{(h)}$, and the resulting head outputs are linearly combined through an output projection. Appendix~\ref{app:model-details} gives the full parameterization and dimensions.
+
+The final output at the query position is
+
+\begin{equation}
+\mathbf{h}_q(\mathbf{x})=\mathbf{u}_q+\sum_{h=1}^{H}
+W_O^{(h)}
+\frac{\sum_{j\in\mathcal{I}}
+  \exp\!\left(\left\langle W_K^{(h)}\mathbf{u}_j(\mathbf{x}),W_Q^{(h)}\mathbf{u}_q\right\rangle\right)
+  W_V^{(h)}\mathbf{u}_j(\mathbf{x})}
+{\sum_{j\in\mathcal{I}}
+  \exp\!\left(\left\langle W_K^{(h)}\mathbf{u}_j(\mathbf{x}),W_Q^{(h)}\mathbf{u}_q\right\rangle\right)}.
+\label{eq:output}
+\end{equation}
+
+We say that $f$ is \emph{exactly representable} with $H$ heads if there exist model parameters of the form specified in Appendix~\ref{app:model-details}, and a linear readout $(\mathbf{w},\tau)$ such that
+
+\begin{equation}
+\forall\mathbf{x}\in\bits^n,\qquad
+\bigl[f(\mathbf{x})=1 \quad\Longleftrightarrow\quad
+\left\langle \mathbf{w},\mathbf{h}_q(\mathbf{x})\right\rangle>\tau\bigr].
+\label{eq:readout}
+\end{equation}
+
+Adding positional embeddings is a seemingly modest but consequential extension: they can break permutation invariance and enlarge the representable function class. This allows us to study nonsymmetric Boolean functions beyond the setting considered by \citet{hsu2026attentionbased}.
+
+\subsection{Characterizing Head Complexity}
+The \emph{head complexity} of $f$ is the least number of heads in an exact representation:
+\begin{equation}
+\hstar(f)=\min\{H: f\text{ is exactly representable by an }H\text{-head model}\}.
+\label{eq:hstar}
+\end{equation}
+
+Equations~\ref{eq:output} and \ref{eq:readout} define $\hstar(f)$ through the full set of embeddings and weight matrices, making it difficult to analyze directly. Our first result shows that, after readout, each attention head can be replaced by a single linear-fractional function \citep{charnes1962programming}, yielding an equivalent characterization of $\hstar(f)$. We now define this one-head building block, which we call an atom and provide the intuition behind this construction in Appendix~\ref{app:proof-normal-form}.
+
+\begin{definition}[Linear-fractional atom]
+\label{def:atom}
+For $\gamma,\alpha,\rho_1,\ldots,\rho_n\in\mathbb{R}_{>0}$ and $\eta,\beta,m_1,\ldots,m_n\in\mathbb{R}$, define the corresponding \emph{linear-fractional atom} $\phi:\bits^n\to\mathbb{R}$ by
+\begin{equation}
+\phi(\mathbf{x})=
+\frac{\eta+\sum_{i=1}^{n}\rho_i\alpha^{x_i}(m_i+\beta x_i)}
+{\gamma+\sum_{i=1}^{n}\rho_i\alpha^{x_i}},
+\qquad \mathbf{x}\in\bits^n.
+\label{eq:frac-atom}
+\end{equation}
+\end{definition}
+\smallskip
+
+\begin{definition}[Linear-fractional complexity]
+\label{def:lfrac}The \emph{linear-fractional complexity} of $f$, denoted $L_{\mathrm{frac}}(f)$, is the least nonnegative integer $H$ for which there exist linear-fractional atoms $\phi_1,\ldots,\phi_H$ and a constant $c\in\mathbb{R}$ such that, for every $\mathbf{x}\in\bits^n$, $c+\sum_{h=1}^{H}\phi_h(\mathbf{x})>0 \Longleftrightarrow f(\mathbf{x})=1$.
+\end{definition}
+\smallskip
+
+\begin{theorem}[Linear-fractional normal form]
+\label{thm:normal-form}
+For every Boolean function $f$,
+\begin{equation*}
+\hstar(f)=L_{\mathrm{frac}}(f).
+\end{equation*}
+\end{theorem}
+Theorem~\ref{thm:normal-form} reduces head complexity to counting linear-fractional atoms: each head contributes one atom after readout, and each atom can be realized by one head. Appendix~\ref{app:proof-normal-form} proves this equivalence. The upside of Theorem~\ref{thm:normal-form} is that the weight matrices never appear in the rest of the analysis.
+
+\begin{corollary}[One head]
+\label{cor:one-head}
+$\hstar(f)=0$ if and only if $f$ is constant, and $\hstar(f)\leq1$ if and only if $f$ is a linear threshold function: there exist reals $\theta_0,\ldots,\theta_n$ such that, for every $\mathbf{x}\in\bits^n$, $f(\mathbf{x})=1 \Longleftrightarrow \theta_0+\sum_i\theta_ix_i>0$.
+\end{corollary}
+Appendix~\ref{app:proof-one-head} gives the proof. Parity is not a linear threshold function, so Corollary~\ref{cor:one-head} already gives a structural reason why parity was not linearly decodable from single heads in the modular-addition model of Section~\ref{sec:introduction}.
+
+We next relate head complexity to threshold degree. Let $\tdeg(f)$ be the minimum degree of a real polynomial that sign-represents\footnote{A real polynomial $P$ \emph{sign-represents} $f$ if, for every $\mathbf{x}\in\bits^n$, $P(\mathbf{x})>0 \Longleftrightarrow f(\mathbf{x})=1$.} $f$ on the Boolean cube \citep{minsky1969perceptrons}.
+
+\begin{theorem}[Threshold-degree lower bound]
+\label{thm:threshold}
+Every Boolean function satisfies
+\begin{equation*}
+\tdeg(f)\leq\hstar(f).
+\end{equation*}
+\end{theorem}
+By Theorem~\ref{thm:normal-form}, an $H$-head score is a constant plus a sum of $H$ linear-fractional atoms. Multiplying by the product of their positive affine denominators preserves its sign pattern on the Boolean cube and yields a polynomial of degree at most $H$. Appendix~\ref{app:proof-threshold} gives the full argument.
+
+\paragraph{Strictness of the lower bound.}
+The threshold-degree bound is not always tight. For a ten-bit input $\mathbf{x}=(\mathbf{a},\mathbf{b})\in\bits^{10}$, where $\mathbf{a},\mathbf{b}\in\bits^5$, define
+\begin{equation}
+\begin{gathered}
+Q(\mathbf{a},\mathbf{b})=
+\left(\sum_{i=1}^{5}(1-2a_i)\right)\left(\sum_{j=1}^{5}(1-2b_j)\right)
+-3\sum_{i=1}^{5}\left(1-2a_i\right)\left(1-2b_i\right), \\
+f_{10}(\mathbf{x})=1 \Longleftrightarrow Q(\mathbf{a},\mathbf{b})>0
+\end{gathered}
+\label{eq:f10}
+\end{equation}
+\begin{theorem}[Strict separation from threshold degree]
+\label{thm:separation}
+The function $f_{10}$ satisfies
+\begin{equation*}
+\tdeg(f_{10})=2<3\leq\hstar(f_{10}).
+\end{equation*}
+\end{theorem}
+Appendix~\ref{app:proof-separation} gives the proof. We found autoresearch particularly useful for constructing examples when the bound in Theorem~\ref{thm:threshold} is strict, resulting in the example above.
+
+\paragraph{Constructive upper bounds.}
+We next derive a constructive upper bound for functions that depend on a scalar statistic $t_\lambda(\mathbf{x})$, in terms of the number of distinct values that $t_\lambda$ takes on the Boolean cube.
+
+\begin{theorem}[Weighted-sum interpolation]
+\label{thm:weighted-upper}
+Let $\lambda_1,\ldots,\lambda_n>0$ and define $t_\lambda:\bits^n\to\mathbb{R}$ by $t_\lambda(\mathbf{x})=\sum_{i=1}^{n}\lambda_i x_i$. Suppose $f$ depends on its input only through $t_\lambda$, so that $f(\mathbf{x})=F(t_\lambda(\mathbf{x}))$ for some function $F:\mathbb{R}\to\bits$. Then
+\begin{equation*}
+\hstar(f)\leq |\operatorname{Im}(t_\lambda)|-1.
+\end{equation*}
+% For $\lambda_i=2^{i-1}$, $t_\lambda$ is injective and $|\operatorname{Im}(t_\lambda)|=2^n$, so $\hstar(f)\leq2^n-1 ,\ \forall f\colon\bits^n\to\bits$.
+\textnormal{For $\lambda_i=2^{i-1}$, we have $|\operatorname{Im}(t_\lambda)|=2^n$, so $\hstar(f)\leq2^n-1$ for every Boolean function $f$.}
+\end{theorem}
+The proof uses $|\operatorname{Im}(t_\lambda)|-1$ heads to realize the labels assigned by $F$ to the attainable values of $t_\lambda$. Appendix~\ref{app:proof-weighted} gives the construction.
+
+\subsection{Exact Head Complexity for Symmetric Functions}
+
+Let $f:\bits^n\to\bits$ be symmetric. Equivalently, there is a unique function $F:\{0,\ldots,n\}\to\bits$ such that, for every $\mathbf{x}\in\bits^n$, $f(\mathbf{x})=F(|\mathbf{x}|)$, where $|\mathbf{x}|=\sum_{i=1}^{n}x_i$ \citep{paturi1992degree}. We call $F$ the \emph{Hamming-weight profile} of $f$ and define the number of changes in this profile by
+\begin{equation}
+\signchanges=\left|\{k\in[n]:F(k-1)\neq F(k)\}\right|.
+\label{eq:sign-changes}
+\end{equation}
+Taking $\lambda_i=1$ in Theorem~\ref{thm:weighted-upper} gives $\hstar(f)\leq n$. The following result sharpens this bound to the number of changes in $F$.
+
+\begin{theorem}[Exact symmetric characterization]
+\label{thm:symmetric}
+For every symmetric Boolean function $f$ with Hamming-weight profile $F$,
+\begin{equation*}
+\hstar(f)=\tdeg(f)=\signchanges.
+\end{equation*}
+\end{theorem}
+
+\begin{corollary}[Parity]
+\label{cor:parity}
+For every $n\geq1$, $\hstar(\mathrm{PARITY}_n)=n$. This follows from Theorem~\ref{thm:symmetric}, since parity has $n$ sign changes across Hamming-weight levels.
+\end{corollary}
+
+\paragraph{Lower bound.}
+Lemma~2.6 of \citet{aspnes1994expressive} shows that the threshold degree of a symmetric Boolean function equals the number of changes in its univariate Hamming-weight representation, so $\tdeg(f)=\signchanges$. Combining this with Theorem~\ref{thm:threshold} gives $\hstar(f)\geq\signchanges$.
+
+\paragraph{Upper bound.}
+We construct a degree-$\signchanges$ polynomial with sign pattern $F$ by placing one root between each pair of consecutive Hamming-weight levels at which $F$ changes. After dividing this polynomial by a positive polynomial of the same degree, a partial-fraction decomposition yields a representation using $\signchanges$ linear-fractional atoms, so Theorem~\ref{thm:normal-form} gives $\hstar(f)\leq\signchanges$. Appendix~\ref{app:proof-symmetric} gives the full construction.
+
+\subsection{Machine-Checked Formalization}
+
+All results above are formalized and machine-checked in Lean~4. The codebase lays the groundwork for a publicly available Lean environment supporting agent-assisted research in mechanistic interpretability. Section~\ref{sec:system} describes the agents' contributions and the human review process.
+
+\clearpage
+\section{System Design and Meta-Analysis}
+\label{sec:system}
+
+% This is a human-author companion to the main result and should act as a meta-analysis of the research process undertaken. It should describe the agent, harness, tools, research loop, human interventions, and verification used to produce the work. It should also include comments on the significance of the work.
+
+% The theorems in Section~\ref{sec:autonomous-result} were derived by \gpt{} from a single initial prompt, with an additional autonomous run used to find the separation in Theorem~\ref{thm:separation}. The Lean formalizations were initiated through brief prompts such as, ``Can you now commit this and formalize these results in Lean?'' Human researchers were subsequently involved in refining the Lean code to make it legible and reusable. The account below is based on the retained rollout of the anonumised autonomous run labelled as 'rollout.json' in the anonymised repo \footnote{The results had already been obtained in an earlier run. For clarity, this section describes the rollout of a subsequent run. Its main observations also apply to the earlier run.}, which we treat as the source of truth for the research process.
+
+The theorems in Section~\ref{sec:autonomous-result} were derived by \gpt{} from a /goal prompt. The separation\footnote{A \emph{separation} is an explicit Boolean function where the threshold degree is strictly smaller than its head complexity, which shows that the lower bound of Theorem~\ref{thm:threshold} is not always tight.} in Theorem~\ref{thm:separation} was obtained through a separate counterexample search initiated by the authors. The Lean formalizations were generated through straightforward prompting, and human researchers subsequently refined the Lean code to make it legible and reusable. This section is based on the anonymized record of the autonomous run, released as \texttt{theorems-rollout.jsonl} in the repository accompanying this paper.\footnote{The results had already been obtained in an earlier run. For clarity, this section describes the rollout of a subsequent run conducted without access to the earlier run, although its main observations apply to both.}
+
+\subsection{Agent and harness}
+
+% Name and describe the autonomous agent, the underlying model, and the harness or scaffolding it operated within.
+
+The theorems in Section~\ref{sec:autonomous-result} were generated by a single \gpt agent running in a Codex Desktop sandbox. Section~\ref{subsec:tools} describes the execution environment. The agent received the problem setup from Section~\ref{paragraph: setup} and a comprehensive set of acceptance criteria that provided general research guidance without revealing the expected results. In approximately 9.5 hours, it derived the linear-fractional normal form (Theorem~\ref{thm:normal-form}), the threshold-degree lower bound (Theorem~\ref{thm:threshold}), and the exact symmetric characterization (Theorem~\ref{thm:symmetric}). The theorem statements, derivations, and supporting constructions were recorded in \texttt{answer.md}, the run's primary research output. The agent also explored broader bounds not reported in Section~\ref{sec:autonomous-result}. A separate counterexample search subsequently found a 128-bit separation between threshold degree and head complexity, which was later improved to the explicit ten-bit example in Theorem~\ref{thm:separation}.
+
+\paragraph{Defining the problem.}
+Considerable human effort went into specifying the research question precisely and fixing a model against which proposed results could be audited. Appendices~\ref{app:problem-statement} and~\ref{app:model-spec} reproduce the problem statement and model specification, respectively. Since a closed-form characterization of $\hstar(f)$ for arbitrary Boolean functions could not be assumed, the problem statement identified several broader forms of progress, including lower and upper bounds, comparisons with classical complexity measures, and exact results for natural function families.
+
+\paragraph{The theorem-generation prompt.}
+The prompt, adapted from \citet{openai2026cdcprompt}, asked the agent to conduct a diversified search across multiple proof strategies. It was submitted through Codex's \texttt{/goal} command, which maintains a persistent objective and completion condition across turns \citep{pathak2026goals}. The prompt instructed the agent to explore genuinely different proof strategies, organize them by their underlying mathematical ideas, and support them with concrete equations or counterexamples. Public web search was disabled so that the agent could not retrieve existing solutions during the run. The run was one-shot: after receiving the initial prompt, the agent completed the search and returned its answer without further human input. Appendix~\ref{app:prompt} reproduces the prompt verbatim.
+
+The run used a single \texttt{gpt-5.6-sol} process at \texttt{xhigh} reasoning effort in Codex Desktop. Session metadata records Codex CLI build \texttt{0.148.0-alpha.21}, source \texttt{vscode}, a 258,400-token context window, and four context compactions. Although the multi-agent runtime was available, the agent did not spawn any subagents. It used no external connectors and did not invoke Lean during the initial research interval. Lean was introduced only after a subsequent user request because the initial run focused on developing the theory in natural language.
+
+\paragraph{The \texttt{/goal} command alone was insufficient.}
+In preliminary runs, supplying only a \texttt{/goal} objective led the agent to stop after a short period, make only incremental progress, and mark the goal as complete prematurely. Adapting the persistence and search instructions from \citet{openai2026cdcprompt} was therefore important for sustaining a longer research run.
+
+\paragraph{Counterexample-search setup.}
+The counterexample search used a separate Codex Desktop session with a single \gpt agent running at \texttt{ultra} reasoning effort. Its first turn comprised 32 tool calls completed in under seven minutes. Section~\ref{subsec:human-interventions} describes how the search was initiated and refined.
+
+\subsection{Tools}
+\label{subsec:tools}
+
+% List the tools, APIs, compute resources, or environments the agent had access to during the research process.
+
+The run used Python~3, NumPy, SciPy, SymPy, and standard shell and Git tools for numerical experiments, symbolic and exact calculations, repository inspection, and testing. Table~\ref{tab:tool-usage} summarizes the recorded shell activity. Based on command syntax, we classified 373 of the 387 calls and left the remaining 14 unclassified rather than infer their purpose from context. The empirical checks tested the main constructions in \texttt{answer.md} using exact arithmetic and exhaustive evaluation on small instances; the other classified calls included additional checks on small Boolean functions and the proposed upper-bound constructions.
+
+\begin{table}[H]
+  \caption{Recorded shell activity during the theorem-generation run.}
+  \label{tab:tool-usage}
+  \centering
+  \small
+  \begin{tabular}{lr}
+    \toprule
+    Command category & Calls \\
+    \midrule
+    Python invocations & 153 \\
+    \texttt{sed} inspections & 70 \\
+    \texttt{rg} searches & 40 \\
+    Runs of empirical checks & 24 \\
+    Numbered file inspections & 17 \\
+    Git queries & 14 \\
+    Other classified calls & 55 \\
+    Unclassified calls & 14 \\
+    \midrule
+    Total & 387 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Sandboxing details.} The run executed in a Codex Desktop sandbox on a local Linux virtual machine: a managed permission profile with read access to the whole file system, write access only to the project directory and temporary directories, and no network access. Any action outside these bounds would have required the user's approval, and the rollout records no such request before delivery. Its computations were exact or small-scale numerical checks.
+
+\paragraph{Details on the counterexample search.} The counterexample search that reduced the initial 128-bit construction to the ten-bit example in Theorem~\ref{thm:separation} used Python and exact solvers for small Boolean instances, with public web search available. The formalization was carried out in Lean~4 using Mathlib and Lake, with computationally intensive builds run on an institutional SLURM cluster.
+
+\subsection{Research loop}
+
+% Describe how the agent iterated, including hypothesis generation, experimentation, and analysis steps, and how long the process ran.
+
+The run proceeded in two stages. The agent spent approximately 9 hours and 38 minutes developing the proofs and producing \texttt{answer.md}. It then completed the Lean formalization and committed the results in a further 22 minutes. These timings come from the retained platform event log and include tool latency and idle time.
+
+% The rollout also dates the run's internal milestones. The first tool call came at 03:48:42 UTC, eight seconds after the prompt; the approach registry was first written at 03:55:00, \texttt{answer.md} at 04:10:01, and the self-test suite first executed at 04:25:59. Context compactions occurred at 05:12:57, 07:25:44, 09:12:48, and 11:41:14. Before delivery, 300 tool calls touched \texttt{answer.md}, 224 touched the self-tests, and 204 touched the registry, whose last update came at 13:25:57, twenty-three seconds before the final answer: the answer, its checks, and the failure ledger were revised throughout the run rather than written at the end.
+
+
+
+\begin{table}[H]
+  \caption{Summary of the autonomous theorem-generation run. Token counts are
+  taken from the last record before the final answer and therefore exclude
+  that turn.}
+  \label{tab:autonomous-metrics}
+  \centering
+  \begin{tabular}{L{0.27\linewidth}L{0.63\linewidth}}
+    \toprule
+    Measure & Summary \\
+    \midrule
+    Messages
+      & 272 intermediate assistant messages and one final answer. The context was compacted
+        four times. \\
+    Tool use
+      & The log records 949 tool calls and 960 operations within those calls.
+        The latter comprise 387 shell commands, 307 file edits, 205
+        continuations of shell sessions, 55 goal checks, and six goal or plan
+        updates. \\
+    Token use
+      & The platform reported about 142.4 million cumulative input tokens, of
+        which 140.2 million were cached, and 0.64 million output tokens,
+        including 0.32 million reasoning tokens. \\
+    Research process
+      & The agent registered thirteen approach families and used no public web
+        search, external connector, or delegated model call. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Input-token usage is cumulative across model calls, so retained context is counted repeatedly. Of the 142.4 million input tokens recorded, 98.5\% were retrieved from the prompt cache.
+
+\paragraph{Exploring proof strategies.}
+During the run, the agent tracked different approaches in \texttt{approach\_\allowbreak{}registry.md}. Table~\ref{tab:routes} groups these approaches by their goals and summarizes their outcomes.
+
+\begin{table}[H]
+  \caption{High-level summary of the proof families explored during the run.}
+  \label{tab:routes}
+  \centering
+  \begin{tabular}{@{}L{0.20\linewidth}L{0.40\linewidth}L{\dimexpr0.40\linewidth-4\tabcolsep\relax}@{}}
+    \toprule
+    \textbf{Goal} & \textbf{Approach} & \textbf{Outcome} \\
+    \midrule
+    Reformulate head complexity
+      & Replace the full matrix parameterization with a scalar description of
+        each head's contribution.
+      & Derived Theorem~\ref{thm:normal-form}. \\
+    \addlinespace[0.45em]
+    Prove upper bounds
+      & Construct representations for functions determined by weighted sums
+        and for symmetric functions.
+      & Derived Theorems~\ref{thm:weighted-upper}
+        and~\ref{thm:symmetric}, plus bounds not included in the paper. \\
+    \addlinespace[0.45em]
+    Prove lower bounds
+      & Compare head complexity with threshold degree and study functions that
+        require more heads.
+      & Derived Theorem~\ref{thm:threshold} and additional lower-bound
+        arguments. \\
+    \addlinespace[0.45em]
+    Evaluate candidate approaches
+      & Check proposed identities and constructions on finite instances.
+      & Rejected approaches that failed finite checks and set aside those that
+        still required an unproved~lemma. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The agent kept several distinct approaches under consideration rather than committing early to a single line of attack. Patterns observed in small cases were not treated as general results unless the remaining proof steps could be completed. When further exact checks produced counterexamples or showed that a proposed construction could not cover all cases, the corresponding approach was marked as blocked. This process prevented several plausible but unsupported generalizations from entering the final answer.
+
+\subsection{Human interventions}
+\label{subsec:human-interventions}
+
+% Describe when and how humans intervened, including steering, correction, or approval steps.
+
+\paragraph{Theorem generation.}
+The initial prompt specified the problem and the criteria for a complete answer. From the submission of this prompt to the delivery of \texttt{answer.md}, the agent received no further human input, mathematical lemmas, or corrections.
+
+\paragraph{Lean formalization.}
+After the theorem-generation run, the authors asked the agent to commit the artifacts and formalize the core results in Lean. The generated code captured the intended results but was not initially organized for readability or reuse. Human researchers selected the final theorem set, checked that the Lean statements matched the intended claims, and restructured the code to improve its naming, documentation, and use of the existing library.
+
+\paragraph{Counterexample search.}
+The decision to search for an explicit counterexample came from the authors. No such example had emerged during the autonomous theorem-generation runs. Given the one-line goal \emph{find an explicit constructive example when $\tdeg(f)$ is not equal to $\hstar(f)$}, the agent's first turn proceeded without further human input and produced a 128-bit example. In subsequent turns, the authors asked the agent to explain candidate examples, find progressively smaller examples with a Lean-friendly proof, and formalize the result in the shared repository. The search ultimately yielded the ten-bit function in Theorem~\ref{thm:separation}.
+
+\subsection{Verification}
+
+% Describe how humans verified the agent's claims, figures, and results, including any checks used to catch hallucinated content.
+
+We rely on the Lean formalization to verify the reported theorems. The Lean kernel checks each proof, while a Lean expert checks that its formal statement faithfully captures the meaning, assumptions, and scope of the corresponding natural-language claim. This guards against hallucinated proofs. Future work could incorporate Lean's \texttt{comparator} tool to check untrusted, agent-generated proofs against human-reviewed theorem statements in a sandboxed environment \citep{leanfro2026comparator}.
+
+\subsection{Significance of result}
+
+% Why is the main result of interest to the machine learning community? What is the potential impact?
+
+% Previous draft retained for reference:
+% The mathematical result treats the number of attention heads as an architectural resource and shows exactly how this resource constrains symmetric Boolean functions. It provides a tractable setting in which multi-head structure can be studied separately from training dynamics, and connects head complexity to threshold degree while showing that attention can impose additional constraints. The result therefore provides a mathematical reference point for asking whether behavior observed across several heads in a trained toy model is required by the architecture or reflects a particular learned solution.
+%
+% The broader program is to develop component-level results of this kind into mathematical abstractions for tracking features through attention, feed-forward networks, and multiple layers. Such abstractions could provide principled starting points for empirical studies and, eventually, inform feature-discovery tools for larger transformers. The present result is an initial step: it gives exact statements for a stylized one-layer setting rather than demonstrating transfer to trained models at scale.
+%
+% The research process also serves as a proof of concept for mechanistic interpretability researchers who want to pursue mathematically demanding questions but lack ready access to collaborators with expertise in mathematical research or formal theorem proving.
+
+The mathematical result treats the number of attention heads as an architectural resource and exactly characterizes the head count required to represent symmetric Boolean functions. It provides a tractable setting for studying architectural expressivity without modeling training dynamics. More generally, it establishes threshold degree as a lower bound on head complexity while showing that this lower bound need not be tight. These results therefore provide a mathematical reference point for asking whether a computation observed across several heads in a trained toy model is required by the architecture or reflects a particular solution found through training.
+
+The broader program is to develop component-level results of this kind into mathematical abstractions for tracking features through attention, feed-forward networks, and multiple layers. Such abstractions could provide principled starting points for empirical studies and, eventually, inform feature-discovery tools for larger transformers. Many current feature-decomposition methods, including sparse autoencoders, learn features from model activations without constraining those features by the computations that the transformer's architecture can implement \citep{cunningham2023sparseautoencodershighlyinterpretable,shafran2026from}. 
+
+An architecture-aware probe could instead ask how many attention heads are required to construct a given feature in a single attention-layer update. The linear-fractional normal form in Theorem~\ref{thm:normal-form}, which characterizes the contribution realizable by one attention head, provides a theoretical starting point for developing such a probe. The present result is an initial step: it gives exact statements for a one-layer attention only transformer rather than demonstrating transfer to trained models at scale.
+
+Together, the mathematical results and their Lean formalization give other mechanistic interpretability researchers a concrete artifact to reuse and extend. Although the current development is limited to the one-layer Boolean setting studied here, it lays the groundwork for a reusable formal environment in which related questions about transformer components can be stated and verified.
+
+
+\subsection{Interpretability}
+
+% Describe how the research artifacts, such as code, logs, and data, were tracked and preserved so the process can be audited.
+
+During the autonomous theorem-generation run, the agent maintained a registry of approaches and their status, and executable scripts for computational checks. The platform recorded prompts, assistant messages and tool calls that can be useful when we want to audit the autoresearch run. Together, these records allow the research trajectory to be reconstructed, including why some approaches were completed or abandoned.
+
+\subsection{Limitations}
+
+% State what the method does not do, and where it may fail or not generalize.
+
+\paragraph{Auditability of autonomous research.}
+The volume of reasoning and results produced during long autonomous runs makes their progress difficult to inspect and steer. Determining which approaches advanced, failed, or were abandoned requires substantial review. Tools that summarize research branches and track the status of claims could reduce this burden and help researchers identify where human guidance would be most useful.
+
+\paragraph{Repetition and premature claims of progress.}
+Extended runs can produce repetitive updates and apparent progress that does not survive scrutiny. The retained rollout contains prolonged monitoring of stalled searches, an incorrect explanation repeated before correction, and a proposed new bound later removed because an existing bound was stronger. These episodes added work without a corresponding improvement in the final result. A monitor that tracks new evidence, flags repetitive or unsupported claims, and recommends redirection or stopping could help guide the search. Whether such monitoring improves research outcomes remains untested.
+
+Together, these limitations motivate treating autoresearch itself as an object of scientific study. Controlled comparisons of prompts, tools, monitoring, human steering, and stopping rules are needed to determine which workflows produce reliable results and how much computational and human effort they require.
+
+
+
+
+\clearpage
+\section{Broader Impact}
+% Discuss potential societal effects of the work, positive or negative, including any effects specific to autonomous-agent-driven research. How would you like to see the field adapt? Share any suggestions you have for how proper autonomous research should be conducted.
+
+\paragraph{Societal benefits and risks.}
+This work contributes to a longer-term effort to make transformer behavior more understandable and amenable to oversight. Precise results about architectural expressivity can provide foundations for interpretability methods, which may eventually help researchers identify and investigate undesirable model behavior by designing theoretically grounded feature-decomposition tools. These benefits remain prospective: our theorems concern exact representation in a one-layer attention only model and do not establish safety guarantees for deployed systems. Furthermore, the research process in this work serves as a proof of concept for mechanistic interpretability researchers who want to pursue mathematically demanding questions but lack ready access to collaborators with expertise in mathematical research or formal theorem proving. 
+
+\paragraph{Scientific judgment.}
+Autonomous theorem discovery leaves a central role for human scientific judgment, both in asking informative questions and in assessing the resulting claims. Since the overarching question is broad and has no obvious route to a complete answer, researchers must choose tractable idealizations that isolate meaningful aspects of transformer computation that can inform empirical interpretability. While the state of the art agents are good at solving well defined problems, it remains for the researcher to ask the high level questions and guide the autoresearch runs.
+
+\paragraph{Understanding failures and steering autoresearch.}
+We need to understand its failure modes and how to steer it, especially for open-ended theoretical questions, where no obvious scalar metric captures scientific progress. We propose adapting Inspect~\citep{aisi2024inspect} and Inspect Scout~\citep{dubois2026loganalysis} to audit research runs through their logs. A monitoring agent built on this infrastructure could track verified intermediate results and flag repeated attempts that do not contribute to research progress.
+
+\clearpage
+\appendix
+\section{Reproducibility Statement}
+% State what is needed for others to reproduce the primary result: code and data availability, compute used, and how this relates to the verification steps described in Part 2.
+All results in this work are accompanied by an anonymized repository available at \href{https://anonymous.4open.science/r/xorformer-5747/README.md}{https://anonymous.4open.science/r/xorformer-5747/}. The natural-language theorem statements and proofs are collected in the top-level \texttt{theorems/} directory. The corresponding machine-checked Lean~4 development is contained in \texttt{formalization/}.
+
+The repository is self contained and no external datasets are required to reproduce the results. The authors did the 9.5 hour autoresearch run using a ChatGPT Pro plan. The machine-checked results in this work are done using Lean~4.31.0 and Mathlib~4.31.0. Refer to the \texttt{README.md} in the accompanying repository for detailed instructions. 
+
+\section{Disclosure Statement}
+
+\subsection*{Agent(s) / model(s) used}
+
+All theorems and their accompanying Lean formalizations were generated with \gpt{} in Codex Desktop. Codex also produced the initial draft of the technical paper and assisted with sentence-level revisions. The human authors refined the sections presenting the autonomous research results and wrote the system-design section.
+
+\begin{itemize}[leftmargin=1.8em,nosep]
+  \item[$\boxed{\checkmark}$] A human author has curated this work and verified every claim, figure, methodology detail, and reference.
+  \item[$\boxed{\checkmark}$]  A human author takes full accountability for the submission as a human-authored, human-verified artifact.
+\end{itemize}
+
+\clearpage
+\renewcommand{\bibsection}{\section{References}}
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\clearpage
+\section{Relation to Concurrent Work by Hsu and Xu}
+\label{app:hsu-comparison}
+
+\paragraph{Overlapping results.}
+In concurrent work closest to our setting, \citet{hsu2026attentionbased} prove that an $H$-head attention layer with a degree-$D$ polynomial-threshold readout representing $f$ must satisfy $DH\geq\tdeg(f)$, and that this lower bound is exact for symmetric functions. At $D=1$, their result agrees with our symmetric characterization in Theorem~\ref{thm:symmetric}, giving the same minimum head count for nonconstant symmetric functions. We developed the symmetric characterization independently of the publicly released Hsu--Xu manuscript.
+
+\paragraph{Differences in scope.}
+Their model omits positional embeddings, whereas our fixed-query, linear-readout model allows arbitrary additive positional embeddings shared across heads. Theorem~\ref{thm:symmetric} therefore shows that positional information does not lower the required head count for symmetric functions. Beyond the symmetric setting, we additionally derive an exact linear-fractional normal form, prove the universal bound $\hstar(f)\leq 2^n-1$, and exhibit a nonsymmetric function with $\tdeg(f)=2<3\leq\hstar(f)$, showing that threshold degree does not characterize head complexity. Additionally, we also make publicly available a Lean~4 formalization of the attention model and the main results, including the symmetric characterization, the linear-fractional normal form, and the nonsymmetric separation.
+
+\section{Model Details}
+\label{app:model-details}
+
+This section gives a self-contained specification of the model underlying Equations~\eqref{eq:output} and~\eqref{eq:readout}. Fix an input length $n$ and a number of heads $H$. The model receives an $n$-bit input, applies a single multi-head self-attention update, and classifies the resulting representation at a dedicated query position. Figure~\ref{fig:model} gives an overview of this computation.
+
+\paragraph{Input sequence and representations.}
+For $\mathbf{x}=(x_1,\ldots,x_n)\in\bits^n$, append a dedicated query token $q$ to form the sequence $(x_1,\ldots,x_n,q)$. The query token is a distinguished vocabulary element, for which the symbol $=$ is one possible choice. Let $\mathcal{I}:=[n]\cup\{q\}$ denote the set of sequence positions.
+
+Choose a model dimension $d_{\mathrm{model}}$, token embeddings $\mathbf{e}_0,\mathbf{e}_1,\mathbf{e}_q\in\mathbb{R}^{d_{\mathrm{model}}}$, and positional embeddings $\mathbf{p}_1,\ldots,\mathbf{p}_n,\mathbf{p}_q\in\mathbb{R}^{d_{\mathrm{model}}}$. Following the standard additive positional-encoding convention, the representation at each position is the sum of its token embedding and its positional embedding:
+\begin{equation}
+\mathbf{u}_j(\mathbf{x})=
+\begin{cases}
+\mathbf{e}_{x_j}+\mathbf{p}_j, & j\in[n],\\
+\mathbf{e}_q+\mathbf{p}_q, & j=q.
+\end{cases}
+\label{eq:app-input-representations}
+\end{equation}
+In each case, the first term identifies the token occupying the position and the second encodes the position itself. Since the token at the query position is always $q$, $\mathbf{u}_q$ is independent of $\mathbf{x}$. These token and positional embeddings are shared across heads; each head operates on the same embedded sequence $\{\mathbf{u}_j(\mathbf{x})\}_{j\in\mathcal I}$.
+
+\paragraph{Single-head attention update.}
+Choose a head dimension $d_{\mathrm{head}}$. Each head $h\in[H]$ has its own query, key, and value projections
+\begin{equation}
+W_Q^{(h)},W_K^{(h)},W_V^{(h)}
+\in\mathbb{R}^{d_{\mathrm{head}}\times d_{\mathrm{model}}}
+\end{equation}
+and output projection $W_O^{(h)}\in\mathbb{R}^{d_{\mathrm{model}}\times d_{\mathrm{head}}}$. At the query position, head $h$ assigns position $j\in\mathcal I$ the logit and normalized attention weight
+\begin{align}
+\ell_j^{(h)}(\mathbf{x})
+&=\left\langle W_K^{(h)}\mathbf{u}_j(\mathbf{x}),
+W_Q^{(h)}\mathbf{u}_q\right\rangle,
+\label{eq:app-attention-logit}\\
+a_j^{(h)}(\mathbf{x})
+&=\frac{\exp\!\left(\ell_j^{(h)}(\mathbf{x})\right)}
+{\sum_{r\in\mathcal I}\exp\!\left(\ell_r^{(h)}(\mathbf{x})\right)}.
+\label{eq:app-attention-weight}
+\end{align}
+Its contribution to the query position is
+\begin{equation}
+\mathbf{y}_q^{(h)}(\mathbf{x})
+=W_O^{(h)}\sum_{j\in\mathcal I}
+a_j^{(h)}(\mathbf{x})W_V^{(h)}\mathbf{u}_j(\mathbf{x})
+\in\mathbb{R}^{d_{\mathrm{model}}}.
+\label{eq:app-head-output}
+\end{equation}
+Only the output at $q$ is used for readout; outputs at other positions are not analyzed in this work.
+
+\paragraph{Multi-head output and readout.}
+The projected head outputs are added to the residual stream at the query position:
+\begin{equation}
+\mathbf{h}_q(\mathbf{x})
+=\mathbf{u}_q+\sum_{h=1}^{H}\mathbf{y}_q^{(h)}(\mathbf{x}).
+\label{eq:app-multihead-output}
+\end{equation}
+Given a readout vector $\mathbf{w}\in\mathbb{R}^{d_{\mathrm{model}}}$ and threshold $\tau\in\mathbb{R}$, an $H$-head configuration exactly represents $f:\bits^n\to\bits$ if
+\begin{equation}
+\forall\mathbf{x}\in\bits^n,\qquad
+\bigl[f(\mathbf{x})=1
+\quad\Longleftrightarrow\quad
+\left\langle\mathbf{w},\mathbf{h}_q(\mathbf{x})\right\rangle>\tau\bigr].
+\label{eq:app-linear-readout}
+\end{equation}
+The head complexity $\hstar(f)$ is the minimum $H\in\mathbb{Z}_{\geq0}$ over all choices of dimensions, embeddings, projections, and readout parameters that exactly represent $f$.
+
+\paragraph{Conventions and scope.}
+All parameters are real-valued, and $d_{\mathrm{model}}$ and $d_{\mathrm{head}}$ are unrestricted. The usual factor $1/\sqrt{d_{\mathrm{head}}}$ in scaled dot-product attention is omitted because it can be absorbed into the query or key projections. Likewise, $W_O^{(h)}$ can be composed with $W_V^{(h)}$; we retain the output projections to distinguish the model and head dimensions. The residual $\mathbf{u}_q$ is independent of $\mathbf{x}$ and can therefore be absorbed into the readout threshold. Unrestricted width allows the shared embeddings to allocate orthogonal coordinate blocks selected by different heads.
+
+The query token occurs last, so full attention and a standard causal mask expose it to the same set of positions. The architecture contains no MLP, layer normalization, dropout, or additional layers.
+
+\section{Proofs of the Main Results}
+\label{app:proofs}
+
+\subsection{Linear-Fractional Normal Form}
+\label{app:proof-normal-form}
+
+This appendix derives Definition~\ref{def:atom} from Equation~\eqref{eq:output} and proves Theorem~\ref{thm:normal-form}. Fix an $H$-head model with readout $(\mathbf{w},\tau)$, and let $\mathbf{y}_q^{(h)}(\mathbf{x})$ denote the projected output of head $h$, that is, the $h$-th summand in Equation~\eqref{eq:output}. Define its scalar contribution after readout by
+\begin{equation}
+g^{(h)}(\mathbf{x})
+:=\left\langle\mathbf{w},\mathbf{y}_q^{(h)}(\mathbf{x})\right\rangle,
+\qquad h\in[H],
+\label{eq:normal-head-contribution}
+\end{equation}
+Taking the inner product of Equation~\eqref{eq:output} with $\mathbf{w}$ then gives
+\begin{equation}
+\left\langle\mathbf{w},\mathbf{h}_q(\mathbf{x})\right\rangle
+=\left\langle\mathbf{w},\mathbf{u}_q\right\rangle
++\sum_{h=1}^{H}g^{(h)}(\mathbf{x}),
+\label{eq:normal-score-decomposition}
+\end{equation}
+Since the first term is independent of $\mathbf{x}$, it can serve as the constant $c$ in Definition~\ref{def:lfrac}. Thus, proving $L_{\mathrm{frac}}(f)\leq\hstar(f)$ reduces to showing that each $g^{(h)}$ is a linear-fractional atom.
+
+\paragraph{From a head to an atom.}
+\label{app:from-head-to-atom}
+For a head $h$, define
+\begin{equation}
+\mathbf{q}^{(h)}=W_Q^{(h)}\mathbf{u}_q,
+\qquad
+\Delta\mathbf{e}=\mathbf{e}_1-\mathbf{e}_0.
+\end{equation}
+The query vector $\mathbf{q}^{(h)}$ is independent of the input. Since $x_i\in\{0,1\}$, the representation at input position $i$ can be written as
+\begin{equation}
+\mathbf{u}_i(\mathbf{x})
+=\mathbf{e}_{x_i}+\mathbf{p}_i
+=\mathbf{e}_0+\mathbf{p}_i+x_i\Delta\mathbf{e}.
+\label{eq:normal-input-decomposition}
+\end{equation}
+Let $\ell_j^{(h)}(\mathbf{x})$ denote the attention logit at position $j$, and let $s_j^{(h)}(\mathbf{x})$ denote its scalar value after the value projection, output projection, and readout:
+\begin{equation}
+\ell_j^{(h)}(\mathbf{x})
+=\left\langle W_K^{(h)}\mathbf{u}_j(\mathbf{x}),\mathbf{q}^{(h)}\right\rangle,
+\qquad
+s_j^{(h)}(\mathbf{x})
+=\left\langle\mathbf{w},W_O^{(h)}W_V^{(h)}\mathbf{u}_j(\mathbf{x})\right\rangle.
+\end{equation}
+Substituting Equation~\eqref{eq:normal-input-decomposition} into the logit gives
+\begin{align}
+\ell_i^{(h)}(\mathbf{x})
+&=\left\langle W_K^{(h)}(\mathbf{e}_0+\mathbf{p}_i),\mathbf{q}^{(h)}\right\rangle
++x_i\left\langle W_K^{(h)}\Delta\mathbf{e},\mathbf{q}^{(h)}\right\rangle,
+\label{eq:normal-logit-expansion}\\
+\exp\!\left(\ell_i^{(h)}(\mathbf{x})\right)
+&=\rho_i^{(h)}\bigl(\alpha^{(h)}\bigr)^{x_i},
+\label{eq:normal-logit-factorization}
+\end{align}
+where
+\begin{equation}
+\rho_i^{(h)}
+=\exp\!\left(\left\langle W_K^{(h)}(\mathbf{e}_0+\mathbf{p}_i),\mathbf{q}^{(h)}\right\rangle\right),
+\qquad
+\alpha^{(h)}
+=\exp\!\left(\left\langle W_K^{(h)}\Delta\mathbf{e},\mathbf{q}^{(h)}\right\rangle\right).
+\end{equation}
+Likewise, substituting Equation~\eqref{eq:normal-input-decomposition} into the scalar value gives
+\begin{align}
+s_i^{(h)}(\mathbf{x})
+&=m_i^{(h)}+\beta^{(h)}x_i,
+\label{eq:normal-value-factorization}\\
+m_i^{(h)}
+&=\left\langle\mathbf{w},W_O^{(h)}W_V^{(h)}(\mathbf{e}_0+\mathbf{p}_i)\right\rangle,
+\qquad
+\beta^{(h)}
+=\left\langle\mathbf{w},W_O^{(h)}W_V^{(h)}\Delta\mathbf{e}\right\rangle.
+\end{align}
+Thus $\rho_i^{(h)}$ and $m_i^{(h)}$ are the unnormalized attention weight and the value of position $i$ when $x_i=0$, while $\alpha^{(h)}$ is the factor gained and $\beta^{(h)}$ the shift incurred when $x_i=1$. The latter two depend only on $\Delta\mathbf{e}$, so they are the same at every position. At the query position, both quantities are input-independent. Set
+\begin{equation}
+\gamma^{(h)}
+=\exp\!\left(\left\langle W_K^{(h)}\mathbf{u}_q,\mathbf{q}^{(h)}\right\rangle\right),
+\qquad
+\eta^{(h)}
+=\gamma^{(h)}
+\left\langle\mathbf{w},W_O^{(h)}W_V^{(h)}\mathbf{u}_q\right\rangle.
+\label{eq:normal-query-parameters}
+\end{equation}
+The scalar contribution of head $h$ to the readout score is therefore
+\begin{align}
+g^{(h)}(\mathbf{x})
+&=\frac{\sum_{j\in\mathcal{I}}
+\exp\!\left(\ell_j^{(h)}(\mathbf{x})\right)s_j^{(h)}(\mathbf{x})}
+{\sum_{j\in\mathcal{I}}\exp\!\left(\ell_j^{(h)}(\mathbf{x})\right)}
+\notag\\
+&=\frac{\eta^{(h)}+\sum_{i=1}^{n}\rho_i^{(h)}
+\bigl(\alpha^{(h)}\bigr)^{x_i}
+\bigl(m_i^{(h)}+\beta^{(h)}x_i\bigr)}
+{\gamma^{(h)}+\sum_{i=1}^{n}\rho_i^{(h)}
+\bigl(\alpha^{(h)}\bigr)^{x_i}}.
+\label{eq:normal-head-calculation}
+\end{align}
+The exponential definitions imply $\rho_i^{(h)},\alpha^{(h)},\gamma^{(h)}>0$, so Equation~\eqref{eq:normal-head-calculation} is a linear-fractional atom in the sense of Definition~\ref{def:atom}. On the cube, $\alpha^{x_i}=1+(\alpha-1)x_i$ and $x_i^2=x_i$, so its numerator and denominator are affine functions of $\mathbf{x}$, and the denominator is positive. By Equation~\eqref{eq:normal-score-decomposition}, the complete pre-threshold score is
+\begin{equation}
+\left\langle\mathbf{w},\mathbf{h}_q(\mathbf{x})\right\rangle-\tau
+=\underbrace{\left\langle\mathbf{w},\mathbf{u}_q\right\rangle-\tau}_{c}
++\sum_{h=1}^{H}g^{(h)}(\mathbf{x}).
+\end{equation}
+Thus every $H$-head representation gives an $H$-atom representation, proving $L_{\mathrm{frac}}(f)\leq\hstar(f)$.
+
+\paragraph{From atoms to heads.}
+Conversely, consider prescribed atoms $\phi_1,\ldots,\phi_H$, with their parameters indexed by $h$. Choose $d_{\mathrm{model}}\geq4H$ and orthonormal vectors $\mathbf{q}^{(h)},\mathbf{k}^{(h)},\mathbf{v}^{(h)},\mathbf{o}^{(h)}\in\mathbb{R}^{d_{\mathrm{model}}}$ for each $h$. Let $d_{\mathrm{head}}\geq1$ be arbitrary, and fix a unit vector $\mathbf{r}\in\mathbb{R}^{d_{\mathrm{head}}}$. Choose the embeddings
+\begin{align}
+\mathbf{e}_0&=0,
+&
+\mathbf{e}_1&=\sum_h\left((\log\alpha^{(h)})\mathbf{k}^{(h)}
++\beta^{(h)}\mathbf{v}^{(h)}\right),
+\label{eq:normal-token-embeddings}
+\end{align}
+\begin{equation}
+\begin{aligned}
+\mathbf{e}_q&=\sum_h\left(\mathbf{q}^{(h)}
++(\log\gamma^{(h)})\mathbf{k}^{(h)}
++\frac{\eta^{(h)}}{\gamma^{(h)}}\mathbf{v}^{(h)}\right),
+\\
+\mathbf{p}_i&=\sum_h\left((\log\rho_i^{(h)})\mathbf{k}^{(h)}
++m_i^{(h)}\mathbf{v}^{(h)}\right),
+\qquad \mathbf{p}_q=0.
+\end{aligned}
+\label{eq:normal-position-embeddings}
+\end{equation}
+For each head $h$, define the linear maps on these directions by
+\begin{equation}
+W_Q^{(h)}\mathbf{q}^{(h)}=\mathbf{r},
+\qquad
+W_K^{(h)}\mathbf{k}^{(h)}=\mathbf{r},
+\qquad
+W_V^{(h)}\mathbf{v}^{(h)}=\mathbf{r},
+\qquad
+W_O^{(h)}\mathbf{r}=\mathbf{o}^{(h)},
+\label{eq:normal-projection-construction}
+\end{equation}
+extending each map by zero on the orthogonal complement of its displayed input direction. The logits at input position $i$ and the query position are
+\begin{equation}
+\log\rho_i^{(h)}+x_i\log\alpha^{(h)}
+\qquad\text{and}\qquad
+\log\gamma^{(h)},
+\end{equation}
+and the corresponding scalar values in the $\mathbf{o}^{(h)}$ direction are $m_i^{(h)}+\beta^{(h)}x_i$ and $\eta^{(h)}/\gamma^{(h)}$. Hence head $h$ writes $\phi_h(\mathbf{x})\mathbf{o}^{(h)}$. Reading in direction $\sum_h\mathbf{o}^{(h)}$ and absorbing the desired constant into the threshold realizes the sum of the atoms. The query residual is orthogonal to the readout. This proves $\hstar(f)\leq L_{\mathrm{frac}}(f)$, and the two inequalities establish the theorem.
+
+\subsection{One-Head Characterization}
+\label{app:proof-one-head}
+
+We prove Corollary~\ref{cor:one-head}.
+
+\paragraph{Zero heads.}
+When $H=0$, Equation~\eqref{eq:output} reduces to $\mathbf{h}_q(\mathbf{x})=\mathbf{u}_q$, which is independent of $\mathbf{x}$. Every zero-head classifier is therefore constant. Conversely, either constant function can be realized by placing the readout threshold above or below the fixed score $\langle\mathbf{w},\mathbf{u}_q\rangle$. Hence $\hstar(f)=0$ if and only if $f$ is constant.
+
+\paragraph{At most one head implies linear threshold.}
+Suppose $\hstar(f)\leq1$. The zero-head case is covered above. Otherwise, Theorem~\ref{thm:normal-form} gives a constant $c$ and one atom $\phi=N/D$ such that $f(\mathbf{x})=1$ exactly when $c+\phi(\mathbf{x})>0$. The numerator $N$ and denominator $D$ are affine on the Boolean cube, and $D(\mathbf{x})>0$. Therefore
+\begin{equation}
+c+\phi(\mathbf{x})
+=\frac{cD(\mathbf{x})+N(\mathbf{x})}{D(\mathbf{x})}
+\end{equation}
+has the same sign as the affine function $cD+N$. Thus $f$ is a linear threshold function.
+
+\paragraph{Linear threshold implies at most one head.}
+Suppose $f(\mathbf{x})=1$ exactly when $\theta_0+\sum_{i=1}^{n}\theta_ix_i>0$. In Equation~\eqref{eq:frac-atom}, take
+\begin{equation}
+\alpha=2,\qquad \gamma=1,\qquad \rho_i=1,\qquad \beta=0,\qquad m_i=\theta_i,\qquad
+\eta=\theta_0-\sum_{i=1}^{n}\theta_i.
+\end{equation}
+Since $2^{x_i}=1+x_i$ on the Boolean cube, the numerator of the resulting atom is
+\begin{equation}
+\theta_0-\sum_{i=1}^{n}\theta_i
++\sum_{i=1}^{n}2^{x_i}\theta_i
+=\theta_0+\sum_{i=1}^{n}\theta_ix_i.
+\end{equation}
+Its denominator $1+\sum_i2^{x_i}$ is strictly positive, so the atom has the same sign as the given affine threshold function. Taking $c=0$ in Definition~\ref{def:lfrac} yields $L_{\mathrm{frac}}(f)\leq1$, and Theorem~\ref{thm:normal-form} then gives $\hstar(f)\leq1$.
+
+\subsection{Threshold-Degree Lower Bound}
+\label{app:proof-threshold}
+
+We prove Theorem~\ref{thm:threshold}. On the Boolean cube, the numerator and denominator of every atom in Equation~\eqref{eq:frac-atom} are affine functions, because $x_i\in\{0,1\}$ and $x_i^2=x_i$. After moving the readout threshold into a constant, an $H$-head classifier therefore has a scalar score
+\begin{equation}
+S(\mathbf{x})=c+\sum_{h=1}^{H}\frac{N_h(\mathbf{x})}{D_h(\mathbf{x})},
+\qquad D_h(\mathbf{x})>0,
+\label{eq:appendix-rational-score}
+\end{equation}
+where $N_h$ and $D_h$ are affine. Since the domain is finite, the threshold can be perturbed so that $S$ is strictly positive on inputs labelled one and strictly negative on inputs labelled zero. Multiplication by the positive common denominator preserves this sign pattern and gives
+\begin{equation}
+P(\mathbf{x})=
+c\prod_{h=1}^{H}D_h(\mathbf{x})+
+\sum_{h=1}^{H}N_h(\mathbf{x})\prod_{g\neq h}D_g(\mathbf{x}).
+\label{eq:appendix-cleared-score}
+\end{equation}
+Every summand has degree at most $H$, so $P$ is a degree-at-most-$H$ sign representation. Minimizing over $H$ proves $\tdeg(f)\leq\hstar(f)$.
+
+\subsection{Strict Separation from Threshold Degree}
+\label{app:proof-separation}
+
+We prove Theorem~\ref{thm:separation} for the function in Equation~\eqref{eq:f10}. For its Boolean blocks $\mathbf{a},\mathbf{b}\in\bits^5$, introduce the sign coordinates
+\begin{equation}
+s_i=1-2a_i,
+\qquad
+t_i=1-2b_i,
+\qquad i\in[5],
+\label{eq:f10-sign-coordinates}
+\end{equation}
+so $\mathbf{s},\mathbf{t}\in\{-1,+1\}^5$. Define the corresponding quadratic form on the sign cube by
+\begin{equation}
+\widetilde Q(\mathbf{s},\mathbf{t})=
+\left(\sum_{i=1}^{5}s_i\right)\left(\sum_{j=1}^{5}t_j\right)
+-3\sum_{i=1}^{5}s_it_i.
+\label{eq:f10-signed-form}
+\end{equation}
+Equation~\eqref{eq:f10} then gives $Q(\mathbf{a},\mathbf{b})=\widetilde Q(\mathbf{s},\mathbf{t})$. The coordinate change is an invertible affine map between the Boolean and sign cubes. Substitution in either direction does not increase polynomial degree, so threshold degree is unchanged; affine forms also remain affine.
+
+Let $A$ and $B$ be the numbers of negative entries in $\mathbf{s}$ and $\mathbf{t}$, and let $C$ count coordinates at which both are negative. Direct substitution gives
+\begin{equation}
+\widetilde Q(\mathbf{s},\mathbf{t})=10+4(-A-B+AB-3C)\equiv2\pmod 4.
+\label{eq:f10-mod-four}
+\end{equation}
+Thus $\widetilde Q$ never vanishes, so the polynomial $Q$ in Equation~\eqref{eq:f10} is a strict degree-two sign representation of $f_{10}$. On the two-dimensional face of the sign cube
+\begin{equation}
+\mathbf{s}=(r,1,1,-1,-1),\qquad
+\mathbf{t}=(w,1,-1,1,-1),\qquad r,w\in\{-1,+1\},
+\end{equation}
+we have $\widetilde Q(\mathbf{s},\mathbf{t})=-2rw$. Under the inverse coordinate change, this is a two-dimensional face of the original Boolean cube whose sign pattern is XOR, so it cannot be sign-represented by an affine function. Consequently, $\tdeg(f_{10})=2$.
+
+It remains to rule out two heads. If two heads represented $f_{10}$, Equation~\eqref{eq:appendix-cleared-score} would give a strict sign-representing polynomial
+\begin{equation}
+P=cD_1D_2+N_1D_2+N_2D_1=(cD_1+N_1)D_2+N_2D_1.
+\label{eq:two-head-regrouping}
+\end{equation}
+Since $N_1,N_2,D_1,D_2$ are affine, this is a sum of two products of affine forms. Pull this polynomial back to the sign cube by setting
+\begin{equation}
+P^{\pm}(\mathbf{s},\mathbf{t})=
+P\left(\frac{\mathbf{1}-\mathbf{s}}{2},
+       \frac{\mathbf{1}-\mathbf{t}}{2}\right),
+\end{equation}
+where $\mathbf{1}$ denotes the all-ones vector. Because the coordinate change is affine, the regrouping retains the form
+\begin{equation}
+P^{\pm}=L_1R_1+L_2R_2,
+\label{eq:two-products}
+\end{equation}
+where all four factors are affine in $(\mathbf{s},\mathbf{t})$, and $P^{\pm}$ has the sign pattern of $\widetilde Q$. For a function $g$ on the two signed blocks, define its mixed antipodal difference
+\begin{equation}
+\Delta g(\mathbf{s},\mathbf{t})=
+g(\mathbf{s},\mathbf{t})-g(\mathbf{s},-\mathbf{t})
+-g(-\mathbf{s},\mathbf{t})+g(-\mathbf{s},-\mathbf{t}).
+\end{equation}
+Writing an affine form as $L(\mathbf{s},\mathbf{t})=\ell_0+\mathbf{c}_L\cdot\mathbf{s}+\mathbf{d}_L\cdot\mathbf{t}$ gives
+\begin{equation}
+\Delta(LR)(\mathbf{s},\mathbf{t})=
+4\bigl[(\mathbf{c}_L\cdot\mathbf{s})(\mathbf{d}_R\cdot\mathbf{t})
++(\mathbf{c}_R\cdot\mathbf{s})(\mathbf{d}_L\cdot\mathbf{t})\bigr].
+\label{eq:mixed-product}
+\end{equation}
+Each product $L_hR_h$ therefore contributes two outer products, $4\mathbf{c}_{L_h}\mathbf{d}_{R_h}^{\top}$ and $4\mathbf{c}_{R_h}\mathbf{d}_{L_h}^{\top}$, to the mixed coefficient matrix. Each has rank at most one. Thus $\Delta P^{\pm}(\mathbf{s},\mathbf{t})=\mathbf{s}^{\top}K\mathbf{t}$ for a matrix $K$ with $\operatorname{rank}(K)\leq4$.
+
+For $j\in[5]$, let $\mathbf{z}^{(j)}$ have entry $-1$ in coordinate $j$ and $+1$ elsewhere. Equation~\eqref{eq:f10-signed-form} gives
+\begin{equation}
+\widetilde Q(\mathbf{s},\mathbf{z}^{(j)})=6s_j,
+\end{equation}
+and negating either whole block reverses its sign. Set $Z=[\mathbf{z}^{(1)}\ \cdots\ \mathbf{z}^{(5)}]$ and $M=KZ$. The $j$th column of $M$ is the coefficient vector of the slice $\Delta P^{\pm}(\mathbf{s},\mathbf{z}^{(j)})=\sum_i M_{ij}s_i$, and $\operatorname{rank}(M)\leq\operatorname{rank}(K)\leq4$. Since $P^{\pm}$ has the sign pattern of $\widetilde Q$, all four terms in this difference have sign $s_j$, giving
+\begin{equation}
+s_j\sum_iM_{ij}s_i>0
+\qquad\text{for every }\mathbf{s}\in\{-1,+1\}^5.
+\end{equation}
+Fixing $s_j=1$ and choosing every other sign to oppose $M_{ij}$ yields
+\begin{equation}
+M_{jj}>\sum_{i\neq j}|M_{ij}|.
+\end{equation}
+Thus $M$ is strictly column diagonally dominant and therefore invertible, so it has rank five. This contradicts the bound $\operatorname{rank}(M)\leq4$ established above. Two heads cannot represent $f_{10}$, proving $3\leq\hstar(f_{10})$ and completing Theorem~\ref{thm:separation}.
+
+\subsection{Weighted-Sum Interpolation}
+\label{app:proof-weighted}
+
+We prove Theorem~\ref{thm:weighted-upper}. Set $M=|\operatorname{Im}(t_\lambda)|$. The claim is immediate when $M=1$, so assume $M\geq2$. Let $\Lambda=\sum_i\lambda_i$ and enumerate the image of $t_\lambda$ as $0=\tau_0<\tau_1<\cdots<\tau_{M-1}$.
+
+Choose distinct $\alpha_1,\ldots,\alpha_{M-1}>1$. For each $j$, take the atom in Equation~\eqref{eq:frac-atom} with $\gamma=1$, $\rho_i=\lambda_i$, $\alpha=\alpha_j$, $\eta=m_i=0$, and $\beta=1$. On the Boolean cube, this gives
+\begin{equation}
+\phi_j(\mathbf{x})=\frac{\alpha_j t_\lambda(\mathbf{x})}{1+\Lambda+(\alpha_j-1)t_\lambda(\mathbf{x})}
+=g_j(t_\lambda(\mathbf{x})).
+\label{eq:weighted-response}
+\end{equation}
+
+It remains to show that $1,g_1,\ldots,g_{M-1}$ form a basis for functions on $\operatorname{Im}(t_\lambda)$. Suppose a linear combination of these functions vanishes on the image. Evaluation at $\tau_0=0$ eliminates its constant coefficient. Dividing the remaining equations by each $\tau_m>0$ and setting $r_j=(1+\Lambda)/(\alpha_j-1)$ reduces them to $\sum_jd_j/(\tau_m+r_j)=0$ for $m=1,\ldots,M-1$. After multiplication by $\prod_j(s+r_j)$, the corresponding rational function has a numerator of degree at most $M-2$ with $M-1$ distinct roots. It is therefore identically zero. Evaluating at each pole $-r_j$ shows that every $d_j$, and hence every original coefficient, vanishes. The $M$ functions are linearly independent on an $M$-point set, so they form a basis.
+
+Interpolating the target signs gives a score $c+\sum_{j=1}^{M-1}a_jg_j(t_\lambda(\mathbf{x}))$. Each scaled term is an atom: replace $\beta=1$ by $\beta=a_j$ in the construction above. The normal form in Theorem~\ref{thm:normal-form} therefore gives an $(M-1)$-head representation. Taking $\lambda_i=2^{i-1}$ makes $t_\lambda$ injective on the Boolean cube, so $M=2^n$ and $\hstar(f)\leq2^n-1$ for every Boolean function.
+
+\subsection{Exact Symmetric Characterization}
+\label{app:proof-symmetric}
+
+We prove Theorem~\ref{thm:symmetric}. Write $\sigma_k=+1$ when $F(k)=1$ and $\sigma_k=-1$ otherwise, and let
+\begin{equation}
+T=\{k\in[n]:\sigma_{k-1}\neq\sigma_k\},
+\qquad |T|=\signchanges.
+\end{equation}
+The polynomial
+\begin{equation}
+P(z)=\sigma_0\prod_{k\in T}\left(k-\frac12-z\right)
+\label{eq:symmetric-sign-polynomial}
+\end{equation}
+has sign $\sigma_k$ at every integer $k\in\{0,\ldots,n\}$ and degree $\signchanges$. Thus $P(|\mathbf{x}|)$ sign-represents $f$.
+
+For the reverse threshold-degree inequality, take any degree-$d$ polynomial sign-representing $f$, multilinearize it on the Boolean cube, and average it over all coordinate permutations. The averaged polynomial remains a strict sign representation because $f$ is symmetric. Every symmetric multilinear polynomial of degree at most $d$, evaluated on a Boolean input of weight $k$, is a univariate polynomial $R(k)$ of degree at most $d$: the degree-$m$ elementary symmetric polynomial evaluates to $\binom{k}{m}$. Whenever $F$ changes between $k-1$ and $k$, the values $R(k-1)$ and $R(k)$ have opposite signs, so $R$ has a root in $(k-1,k)$. These intervals are disjoint, giving $d\geq\signchanges$. Hence
+\begin{equation}
+\tdeg(f)=\signchanges,
+\end{equation}
+and Theorem~\ref{thm:threshold} gives $\hstar(f)\geq\signchanges$.
+
+For the upper bound, assume $C=\signchanges>0$ and choose distinct $r_1,\ldots,r_C>0$. Set $B(z)=\prod_{h=1}^{C}(z+r_h)$. Since $B(k)>0$ at every Hamming weight, $P/B$ has the target sign pattern. Partial fractions give
+\begin{equation}
+\frac{P(z)}{B(z)}=c+\sum_{h=1}^{C}\frac{d_h}{z+r_h}.
+\label{eq:symmetric-partial-fractions}
+\end{equation}
+Each shifted reciprocal is realized by one atom. Indeed, for fixed $r>0$ and $d\in\mathbb{R}$, choose $\alpha>1+n/r$ in Equation~\eqref{eq:frac-atom}, set
+\begin{equation}
+\rho_i=1,\qquad
+\gamma=(\alpha-1)r-n,\qquad
+\eta=(\alpha-1)d,\qquad
+m_i=\beta=0.
+\end{equation}
+Then $\gamma>0$ and the atom reduces exactly to $d/(|\mathbf{x}|+r)$. Equation~\eqref{eq:symmetric-partial-fractions} is therefore realized with $C$ heads. If $C=0$, $f$ is constant and needs no heads. This proves $\hstar(f)\leq\signchanges$ and completes the equality.
+
+\section{Initial Prompt and Repository README of the Autonomous Run}
+\label{app:prompt}
+
+\subsection{Initial prompt}
+
+The single user message that started the theorem-generation run, reproduced from the retained rollout (25 August 2026, 03:48:34 UTC). Typos are as in the original. The counterexample search was opened on 13 July 2026 with the one-line goal \emph{find an explicit constructive example when $\tdeg(f)$ not equal to $\hstar(f)$}; the retained rollout covers that single turn.
+
+\begin{sourcebox}
+/goal Answer the main question posed in the \texttt{README.md} file. Here are some additional guidelines that should help you get to the best possible answer:
+\begin{itemize}[leftmargin=*,nosep]
+  \item Assume for purposes of this task that a complete affirmative result exists. Partial progress does not count unless it implies exactly the resolution above. In particular, proofs for very narrowly restricted boolean function classes, very weak upper or lower bounds, and trivial or simple enough cases are insufficient.
+  \item Begin with a genuinely diverse portfolio of approaches. Explore substantially different formulations, invariants, reductions, algebraic or geometric viewpoints, extremal arguments, and computational sanity checks.
+  \item Maintain an explicit registry of approach families. Group your experments by the mathematical idea they are using, not by superficial wording. If many attempts converge to one family, redirect some of them toward underexplored formulations.
+  \item Do not allow one approach to dominate merely because it gives elegant reductions. A route that ends at a lemma equivalent in strength to the original conjecture is not close to completion unless it supplies a genuinely new proof of that lemma.
+  \item When an approach stalls at a theorem-strength missing lemma, mark that route as blocked. Only continue working on it if someone proposes a materially new mechanism, invariant, or construction.
+  \item Keep several incompatible proof routes alive through multiple rounds. Cross-pollinate ideas only after you have developed them far enough to expose their real strengths and gaps.
+  \item Require results to container concrete theorems, constructions, equations, or counterexamples to previously proposed such. Reject status reports, vague optimism, and claims that an unproved global compatibility statement is ``routine.''
+  \item You should repeatedly synthesize, challenge, redirect, and launch new rounds. Do not stop after the first wave fails. Produce a complete proof if one survives audit; otherwise report only the strongest rigorously proved derivation and its exact remaining gap. Do not return merely because current approaches fail or you report theorem-strength gaps. Continue launching new rounds, reopening blocked approaches only when there is a genuinely new mechanism, and searching for fresh formulations. Return only when a complete affirmative proof has been found and survives adversarial audit. Do not return a reduction, partial result, isolated missing lemma, ``best effort'' summary, or explanation of why the problem is difficult. Spend at least 8 hours on this before even thinking of returning or giving up. Public search may not be used for ordinary mathematical background or standard named theorems, neither to search for a solution to this exact conjecture or benchmark.
+\end{itemize}
+\end{sourcebox}
+
+\subsection{Repository README at the start of the run}
+\label{app:readme}
+
+The prompt refers to the main question posed in the repository's \texttt{README.md}. At the start of the run the repository contained only this file, \texttt{problem\_statement.md}, and \texttt{model.md}; the agent rewrote the README during the run, so the version below is the one it was given, reproduced verbatim.
+
+\begin{sourcebox}
+
+  A from-scratch attack on the head-complexity problem: what is the minimum number of attention heads $H^{\ast}(f)$ that a single-layer, attention-only transformer with a linear readout needs to compute a Boolean function $f$?
+
+This repo deliberately starts with only the problem definition. No prior results, proofs, or surveys are carried over.
+\begin{itemize}[leftmargin=*,nosep]
+  \item \texttt{problem\_statement.md}: the problem, the central quantity $H^{\ast}(f)$, and the core questions.
+  \item \texttt{model.md}: the precise architecture (embeddings, attention heads, residual stream, readout, masking convention, deliberate simplifications).
+\end{itemize}
+\end{sourcebox}
+
+\subsection{Problem statement at the start of the run}
+\label{app:problem-statement}
+
+Reproduced verbatim from \texttt{problem\_statement.md}, which did not change during the run.
+
+\begin{sourcebox}
+\paragraph{Goal}
+
+We want to characterize the minimum number of attention heads required to compute a Boolean function
+
+\[f : \lbrace 0,1 \rbrace^n \to \lbrace 0,1 \rbrace\]
+
+in a \textbf{single-layer attention-only transformer} with a \textbf{linear readout} from a designated query token.
+
+The motivating example is that, in the 2-bit setting, a single head can linearly realize functions such as $\mathrm{AND}$ and $\mathrm{OR}$, but cannot realize $\mathrm{XOR}$, while two heads suffice. This suggests that the number of heads may define a meaningful complexity measure for Boolean functions.
+
+\paragraph{Model}
+
+We fix the following architecture.
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{Input:} a sequence consisting of $n$ input bits and one dedicated query token \texttt{=}.
+  \item \textbf{Embedding:} token embeddings plus positional embeddings.
+  \item \textbf{Computation:} a \emph{single self-attention layer} with $H$ parallel heads and no MLP.
+  \item \textbf{Output:} the residual stream at the query token after the attention update.
+  \item \textbf{Readout:} a linear probe (equivalently, a thresholded affine functional) applied to that query residual.
+\end{itemize}
+
+A Boolean function $f$ is said to be \textbf{computable with $H$ heads} if there exists a choice of embeddings, attention parameters, and linear readout such that the resulting classifier equals $f$ on all inputs in $\lbrace 0,1 \rbrace^n$.
+
+\paragraph{Main Quantity}
+
+Define
+
+\[H^{\ast}(f) := \min \left\lbrace H : f \text{ is computable with } H \text{ heads in the above model} \right\rbrace.\]
+
+Our central problem is to understand $H^{\ast}(f)$ as a function of $f$.
+
+\paragraph{Core Questions}
+
+\begin{enumerate}[leftmargin=*,nosep]
+  \item \textbf{Exact characterization.} Can $H^{\ast}(f)$ be expressed, exactly or approximately, in terms of a known invariant of $f$?
+  \item \textbf{Lower bounds.} What techniques prove that a function requires at least $H$ heads?
+  \item \textbf{Upper bounds.} Can we constructively realize broad classes of Boolean functions with few heads?
+  \item \textbf{Comparison to classical complexity measures.} How does $H^{\ast}(f)$ relate to:
+\begin{itemize}[leftmargin=*,nosep]
+  \item threshold degree,
+  \item rational degree,
+  \item threshold density / sparsity,
+  \item circuit depth / threshold-circuit complexity,
+  \item Fourier or spectral complexity measures?
+\end{itemize}
+  \item \textbf{Natural families.} What is $H^{\ast}(f)$ for standard functions such as:
+\begin{itemize}[leftmargin=*,nosep]
+  \item $\mathrm{AND}$, $\mathrm{OR}$,
+  \item parity / $\mathrm{XOR}$,
+  \item majority,
+  \item exact-count / symmetric functions,
+  \item address / indexing functions,
+  \item intersections of threshold functions?
+\end{itemize}
+\end{enumerate}
+
+\paragraph{Desired Outcome}
+
+We would like to identify either:
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item an invariant $I(f)$ such that $H^{\ast}(f)$ is controlled by $I(f)$ (ideally $H^{\ast}(f) \asymp I(f)$ on broad classes), or
+  \item explicit function families for which the head complexity exhibits qualitatively new behavior compared to classical measures.
+\end{itemize}
+
+In short:
+
+\begin{quote}\textbf{What is the right notion of Boolean-function complexity captured by the minimum number of attention heads in one-layer attention with a linear readout?}\end{quote}
+\end{sourcebox}
+
+\subsection{Model specification at the start of the run}
+\label{app:model-spec}
+
+Reproduced verbatim from \texttt{model.md}, which did not change during the run.
+
+\begin{sourcebox}
+\paragraph{Purpose}
+
+This file fixes the mathematical model used throughout the project.
+
+We study Boolean functions
+
+\[f : \lbrace 0,1\rbrace^n \to \lbrace 0,1\rbrace\]
+
+computed by a one-layer attention-only architecture with a linear readout from a designated query token.
+
+\paragraph{Input Sequence}
+
+For an input
+
+\[x = (x_1, \ldots, x_n) \in \lbrace 0,1\rbrace^n,\]
+
+the model sees the sequence
+
+\[(x_1, \ldots, x_n, =).\]
+
+The final symbol \texttt{=} is a distinguished query token. We only read out the residual stream at that token.
+
+\paragraph{Embeddings}
+
+Fix a model dimension $d_{\mathrm{model}} \geq 1$ and a head dimension $d_{\mathrm{head}} \geq 1$.
+
+Choose token embeddings
+
+\[e_0, e_1, e_= \in \mathbb{R}^{d_{\mathrm{model}}}\]
+
+and positional embeddings
+
+\[p_1, \ldots, p_n, p_= \in \mathbb{R}^{d_{\mathrm{model}}}.\]
+
+For an input $x$, define the embedded vectors
+
+\[u_i(x) := e_{x_i} + p_i \qquad \text{for } 1 \leq i \leq n,\]
+
+and
+
+\[u_=(x) := e_= + p_=.\]
+
+Note that $u_=(x)$ is constant as a function of $x$.
+
+\paragraph{One Attention Head}
+
+For each head $h \in \lbrace 1, \ldots, H\rbrace$, choose matrices
+
+\[W_Q^{(h)}, W_K^{(h)}, W_V^{(h)} \in \mathbb{R}^{d_{\mathrm{head}} \times d_{\mathrm{model}}}.\]
+
+Also choose output-projection blocks
+
+\[W_O^{(h)} \in \mathbb{R}^{d_{\mathrm{model}} \times d_{\mathrm{head}}}.\]
+
+Equivalently, one may concatenate these blocks into a single matrix
+
+\[W_O = \begin{bmatrix} W_O^{(1)} & \cdots & W_O^{(H)} \end{bmatrix} \in \mathbb{R}^{d_{\mathrm{model}} \times H d_{\mathrm{head}}}.\]
+
+For each position
+
+\[j \in \lbrace 1, \ldots, n, =\rbrace,\]
+
+define
+
+\[q^{(h)}(x) := W_Q^{(h)} u_=(x) \in \mathbb{R}^{d_{\mathrm{head}}},\]
+
+\[k_j^{(h)}(x) := W_K^{(h)} u_j(x) \in \mathbb{R}^{d_{\mathrm{head}}},\]
+
+and
+
+\[v_j^{(h)}(x) := W_V^{(h)} u_j(x) \in \mathbb{R}^{d_{\mathrm{head}}}.\]
+
+The query-token logit is
+
+\[\ell_j^{(h)}(x) := \bigl(q^{(h)}(x)\bigr)^\top k_j^{(h)}(x).\]
+
+The attention weights are the softmax probabilities
+
+\[\alpha_j^{(h)}(x) := \frac{\exp\bigl(\ell_j^{(h)}(x)\bigr)}{\sum_{k \in \lbrace 1,\ldots,n,=\rbrace} \exp\bigl(\ell_k^{(h)}(x)\bigr)}.\]
+
+The unprojected output of head $h$ at the query position is
+
+\[\widetilde y^{(h)}(x) := \sum_{j \in \lbrace 1,\ldots,n,=\rbrace} \alpha_j^{(h)}(x) v_j^{(h)}(x) \in \mathbb{R}^{d_{\mathrm{head}}}.\]
+
+The projected contribution of head $h$ to the residual stream is
+
+\[y^{(h)}(x) := W_O^{(h)} \widetilde y^{(h)}(x) \in \mathbb{R}^{d_{\mathrm{model}}}.\]
+
+\paragraph{Residual Stream At The Query Token}
+
+With $H$ parallel heads, the residual stream at the query token after the attention layer is
+
+\[r(x) := u_=(x) + \sum_{h=1}^{H} y^{(h)}(x).\]
+
+This is the only representation used by the final classifier.
+
+\paragraph{Readout}
+
+Choose a readout vector
+
+\[w \in \mathbb{R}^{d_{\mathrm{model}}}\]
+
+and a threshold
+
+\[\tau \in \mathbb{R}.\]
+
+The classifier outputs
+
+\[f(x) = 1 \qquad \Longleftrightarrow \qquad w^\top r(x) > \tau.\]
+
+Equivalently, one may write an affine score
+
+\[S(x) := w^\top r(x) - \tau\]
+
+and classify by the rule
+
+\[f(x) = 1 \qquad \Longleftrightarrow \qquad S(x) > 0.\]
+
+\paragraph{Computability And Head Complexity}
+
+A Boolean function $f$ is \textbf{computable with $H$ heads} if there exist:
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item a model dimension $d_{\mathrm{model}}$,
+  \item a head dimension $d_{\mathrm{head}}$,
+  \item token and positional embeddings,
+  \item attention parameters $\lbrace W_Q^{(h)}, W_K^{(h)}, W_V^{(h)}, W_O^{(h)}\rbrace_{h=1}^{H}$,
+  \item a readout vector $w$ and threshold $\tau$,
+\end{itemize}
+
+such that the resulting classifier agrees with $f$ on every input in $\lbrace 0,1\rbrace^n$.
+
+We then define
+
+\[H^{\ast}(f) := \min \left\lbrace H : f \text{ is computable with } H \text{ heads in the above model} \right\rbrace.\]
+
+\paragraph{Masking Convention}
+
+The formulas above sum over all input positions and the query position itself.
+
+For the current project, this is equivalent to the usual causal-mask convention, because:
+
+\begin{enumerate}[leftmargin=*,nosep]
+  \item the query token \texttt{=} is placed last in the sequence,
+  \item only the residual stream at that final token is ever read out.
+\end{enumerate}
+
+So a standard causal mask would still allow the query token to attend to every input bit and to itself. None of the current results depend on choosing between these two conventions.
+
+\paragraph{Deliberate Simplifications}
+
+The model in this project deliberately excludes several features of a full transformer block:
+
+\begin{itemize}[leftmargin=*,nosep]
+  \item no MLP,
+  \item no layer normalization,
+  \item no dropout,
+  \item no multi-layer stacking,
+  \item no extra nonlinearity after the attention update.
+\end{itemize}
+
+The only nonlinearity in the model is the softmax inside each attention head, followed by the final thresholding in the readout.
+
+\paragraph{Notes On Conventions}
+
+\begin{enumerate}[leftmargin=*,nosep]
+  \item Any constant scaling factor in the logits, such as $1 / \sqrt{d_{\mathrm{head}}}$, can be absorbed into the choice of $W_Q^{(h)}$ or $W_K^{(h)}$, so it is omitted from the specification.
+  \item Although $W_O$ is now part of the formal model, many lower-bound arguments can compose the final linear readout with $W_O^{(h)}$ and thereby reduce each head again to a scalar contribution.
+  \item Because $u_=(x)$ is constant in $x$, any contribution from the query token's skip connection can always be absorbed into the readout threshold when proving lower or upper bounds.
+\end{enumerate}
+\end{sourcebox}
+
+\end{document}
