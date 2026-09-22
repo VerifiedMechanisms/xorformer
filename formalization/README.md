@@ -39,6 +39,7 @@ existing mathematical statements, not newly numbered theorems.
 |---|---|---|
 | theorem 12 with restriction monotonicity from theorem 28 | `HStar_restrict_le`, `HStar_lower_bound_of_symmetric_face` | `Results/SymmetricFaceLowerBound.lean` |
 | theorem 21 determinant-span schema | `ClearedSpanCertificate.HStar_le` | `Results/DeterminantSpan.lean` |
+| theorem 26 counting lower bound, conditional on Warren's estimate | `card_headComputableFunctions_le_warren`, `card_headComputableFunctions_le_two_pow_of_warren`, `worstCaseHeadComplexity_gt_div_of_warren` | `Results/CountingLowerBound.lean` |
 | theorem 30 threshold-degree span schema | `DegreeClearedSpanCertificate.HStar_le_of_ThresholdDegLE`, `DegreeClearedSpanCertificate.dimension_obstruction` | `Results/ThresholdDegreeSpan.lean` |
 | theorem 28 invariances, juntas, and sign-rank | `HStar_dummyVariables`, `HStar_complement`, `partitionSignRank_le_all` | `Results/DummyVariables.lean`, `Results/StructuralInvariances.lean`, `Results/PartitionSignRank.lean` |
 | theorem 45 Fourier support cost | `FourierSupportCertificate.HStar_le` | `Results/FourierSupport.lean` |

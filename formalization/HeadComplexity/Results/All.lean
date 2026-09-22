@@ -12,6 +12,7 @@ import HeadComplexity.Results.PositiveWeightedSignDegree
 import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.ThresholdDegreeSpan
+import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.StructuralInvariances
 import HeadComplexity.Results.DummyVariables
@@ -187,6 +188,37 @@ alias theorem30_threshold_degree_span :=
 nonredundant cleared features as the low-degree polynomial space. -/
 alias theorem30_span_dimension_obstruction :=
   DegreeClearedSpanCertificate.dimension_obstruction
+
+/-- **Theorem 26.** `H` relaxed affine fractions use exactly
+`1 + 2 * H * (n + 1)` real parameters. -/
+alias theorem26_counting_parameter_count := card_countingParameter
+
+/-- **Theorem 26.** Every `H`-head function is a strict sign pattern of the
+fixed-input cleared parameter polynomials. -/
+alias theorem26_strict_sign_pattern_reduction :=
+  card_headComputableFunctions_le_strictPatterns
+
+/-- **Theorem 26.** Warren's strict sign-pattern estimate gives the displayed
+exact real-valued count for `H`-head functions. -/
+alias theorem26_warren_count := card_headComputableFunctions_le_warren
+
+/-- **Theorem 26.** Under Warren's estimate, the number of `H`-head functions
+is at most `2^(35 * n^2 * H)` in the stated finite regime. -/
+alias theorem26_coarse_count :=
+  card_headComputableFunctions_le_two_pow_of_warren
+
+/-- **Theorem 26.** Under Warren's estimate, some truth table needs more than
+`H` heads whenever `35 * n^2 * H < 2^n`. -/
+alias theorem26_exists_hard_function := exists_HStar_gt_of_warren
+
+/-- **Theorem 26.** Conditional explicit division form of the worst-case
+`Omega(2^n / n^2)` lower bound. -/
+alias theorem26_worst_case_lower_bound :=
+  worstCaseHeadComplexity_gt_div_of_warren
+
+/-- **Theorem 26.** Universal interpolation gives the worst-case upper bound
+`W(n) ≤ 2^n - 1`. -/
+alias theorem26_worst_case_upper_bound := worstCaseHeadComplexity_le
 
 /-- **Theorem 21.** A nonzero selected cleared-feature determinant supplies a
 universal head upper bound. -/

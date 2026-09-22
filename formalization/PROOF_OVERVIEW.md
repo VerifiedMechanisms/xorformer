@@ -128,6 +128,15 @@ presentations are interchangeable inside Lean.
   threshold degree at most $d$. Linear independence of the low-degree
   monomials also gives the necessary dimension inequality
   $D(n,d)\leq1+nH$.
+* **Theorem 26** (`Results/CountingLowerBound.lean`): a relaxed $H$-fraction
+  family has exactly $1+2H(n+1)$ parameters. At every cube point, its cleared
+  score is a universal parameter polynomial of degree at most $H+1$.
+  Strictification and positive denominator clearing inject all $H$-head truth
+  tables into the corresponding strict sign patterns. From an explicit
+  proposition expressing Warren's multivariate sign-pattern inequality, Lean
+  derives the exact count, the bound $2^{35n^2H}$, density decay, existence of
+  hard functions, and the finite worst-case lower bound. The Warren inequality
+  itself remains the single named external analytic premise, not an axiom.
 * **Theorem 62** (`Results/AffineSlab.lean`): two explicit affine-ratio atoms
   give the full zero, one, or two affine-slab classification.
 * **Theorems 49 and 63** (`Results/EqualityExact.lean`,

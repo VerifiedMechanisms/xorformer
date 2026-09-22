@@ -126,12 +126,22 @@ $$ W(n) \leq \left\lceil \frac{2^n-1}{n} \right\rceil. $$
 
 This counting lemma does not identify the exact invariant $H^{\ast}(f)$. It shows that any exact invariant must be able to take exponentially large values on typical Boolean functions.
 
-## Lean Status
+## Lean Correspondence
 
-This result is not yet kernel-formalized. Its decisive input is the multivariate
-Warren, Milnor-Thom polynomial sign-pattern bound. The pinned Mathlib version
-contains Sauer-Shelah theory and univariate root counting, but no theorem that
-bounds the number of strict sign vectors realized by finitely many bounded-degree
-real multivariate polynomials. Adding that result axiomatically would fail this
-repository's axiom audit, so the formalization does not expose a weakened or
-conditional theorem under the same name.
+The complete finite reduction is kernel-checked in `formalization/HeadComplexity/Results/CountingLowerBound.lean`. The multivariate Warren inequality is isolated as the proposition `WarrenStrictSignPatternBound`; it is an explicit premise of the final counting theorems and is not introduced as an axiom.
+
+- `card_countingParameter` proves the exact parameter count $1+2H(n+1)$.
+
+- `countingClearedPoly_totalDegree_le` and `eval_countingClearedPoly` prove that every fixed-input parameter polynomial has degree at most $H+1$ and specializes exactly to the cleared affine-fraction score.
+
+- `mem_strictPatterns_of_computable` performs strictification and proves that every $H$-head truth table belongs to the resulting strict sign-pattern family.
+
+- `card_headComputableFunctions_le_warren` is the faithful specialization of Warren's displayed real-valued estimate.
+
+- `card_headComputableFunctions_le_two_pow_of_warren` proves the explicit bound $2^{35n^2H}$ for $1\leq n$, $1\leq H\leq2^n$, including the trivial branch where the parameter count exceeds the number of cube inputs.
+
+- `card_headComputableFunctions_mul_deficit_le_all_of_warren`, `exists_HStar_gt_of_warren`, and `worstCaseHeadComplexity_gt_div_of_warren` prove the finite density deficit, existence of hard truth tables, and an explicit division-form worst-case lower bound.
+
+- `card_all_booleanFunctions` proves the exact total count $2^{2^n}$, while `worstCaseHeadComplexity_le` proves the matching elementary upper side $W(n)\leq2^n-1$.
+
+The pinned Mathlib version does not contain the required multivariate Warren, Milnor-Thom sign-pattern theorem. Consequently, only that analytic inequality remains external; all head-model, polynomial-degree, finite-counting, and worst-case deductions from it are axiom-clean Lean theorems.
