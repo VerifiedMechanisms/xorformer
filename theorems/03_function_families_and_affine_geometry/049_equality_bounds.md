@@ -99,3 +99,18 @@ Equality now gives a fully exact low-degree family:
 $$ \deg_{\pm}(\mathrm{EQ}_m)=2, \qquad H^{\ast}(\mathrm{EQ}_m)=2. $$
 
 Thus equality is no longer a candidate separation between threshold degree and head complexity. It is a useful model case for constructing two affine-over-positive-affine atoms from a quadratic sign representation.
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/EqualityExact.lean` defines
+`equalityFn m` on two adjacent $m$-bit blocks. Binary weights identify equality
+with the zero level set of one affine statistic in
+`equalityFn_eq_affineLevelSet`. The affine-slab compiler therefore proves
+`HStar_equality_le_two`.
+
+For $m\geq1$, a two-coordinate restriction is the complement of the XOR
+checkerboard. Restriction monotonicity and complement invariance give the
+matching lower bound in `HStar_equality`. Finally,
+`thresholdDeg_equality` proves the exact threshold degree by combining the
+head upper bound with the universal degree lower bound and the one-head LTF
+characterization.

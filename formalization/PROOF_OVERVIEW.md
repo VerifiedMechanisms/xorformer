@@ -130,6 +130,15 @@ presentations are interchangeable inside Lean.
   $D(n,d)\leq1+nH$.
 * **Theorem 62** (`Results/AffineSlab.lean`): two explicit affine-ratio atoms
   give the full zero, one, or two affine-slab classification.
+* **Theorems 49 and 63** (`Results/EqualityExact.lean`,
+  `Results/AffineStatisticSignChanges.lean`): equality is an affine level set
+  with an XOR checkerboard restriction, giving exact threshold degree and head
+  complexity two. More generally, ordered sign changes along an arbitrary
+  affine statistic give exact zero- and one-change cases, the complete
+  two-change LTF split, and a support-sensitive bound thereafter.
+* **Theorem 109** (`Results/LowAffineCylinderCost.lean`): when affine-cylinder
+  cost is at most two, the universal constant, nonconstant LTF, and remaining
+  cases have exact head complexity zero, one, and two, respectively.
 * **Theorem 110** (`Results/AffineCylinderThreshold.lean`): finite cylinder and
   affine-cylinder certificates are attained and compile into the complete
   threshold-degree, head-complexity, and certificate-cost sandwich.

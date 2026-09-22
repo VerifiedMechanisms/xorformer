@@ -26,6 +26,9 @@ import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.PositiveOrderOneBitGate
 import HeadComplexity.Results.SecantObstruction
 import HeadComplexity.Results.AffineSlab
+import HeadComplexity.Results.EqualityExact
+import HeadComplexity.Results.AffineStatisticSignChanges
+import HeadComplexity.Results.LowAffineCylinderCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
 
 set_option linter.style.header false
@@ -258,6 +261,19 @@ alias theorem62_affine_slab_upper_bound := HStar_affineSlab_le_two
 classification. -/
 alias theorem62_affine_slab_classification := HStar_affineSlab_classification
 
+/-- **Theorem 49.** Equality of two nonempty Boolean blocks has exact head
+complexity two. -/
+alias theorem49_equality_exact := HStar_equality
+
+/-- **Theorem 49.** Equality of two nonempty Boolean blocks has exact threshold
+degree two. -/
+alias theorem49_equality_threshold_degree := thresholdDeg_equality
+
+/-- **Theorem 63.** Sign changes along an arbitrary affine statistic give the
+exact small-change cases and the support-sensitive general upper bound. -/
+alias theorem63_affine_statistic_sign_changes :=
+  AffineStatisticProfile.signChange_four_cases
+
 /-- **Theorem 69.** Literal ordered positive-projection sandwich. -/
 alias theorem69_ordered_projection_sandwich :=
   thresholdDeg_le_HStar_le_positiveProjectionSignChanges
@@ -280,6 +296,10 @@ alias theorem82_one_bit_gate_threshold_degree :=
 cylinder cost, and affine-free sparsity form the stated sandwich. -/
 alias theorem110_affine_cylinder_sandwich :=
   thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity
+
+/-- **Theorem 109.** Affine-cylinder cost at most two gives the exact universal
+zero-, one-, or two-head classification. -/
+alias theorem109_low_affine_cylinder_cost := HStar_low_actc_classification
 
 /-- **Theorem 138.** A raw bit coupled to one positive statistic is compiled
 with its polynomial degree many heads. -/

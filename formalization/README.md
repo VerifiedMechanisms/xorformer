@@ -43,10 +43,13 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 28 invariances, juntas, and sign-rank | `HStar_dummyVariables`, `HStar_complement`, `partitionSignRank_le_all` | `Results/DummyVariables.lean`, `Results/StructuralInvariances.lean`, `Results/PartitionSignRank.lean` |
 | theorem 45 Fourier support cost | `FourierSupportCertificate.HStar_le` | `Results/FourierSupport.lean` |
 | theorem 48 affine-free sparsity | `HStar_le_affineFreeSparsity`, `affineFreeSparsity_le_ptfSparsity` | `Results/AffineFreeSparsity.lean` |
+| theorem 49 equality | `HStar_equality`, `thresholdDeg_equality` | `Results/EqualityExact.lean` |
 | theorem 62 affine slabs | `HStar_affineSlab_le_two`, `HStar_affineSlab_classification` | `Results/AffineSlab.lean` |
+| theorem 63 arbitrary affine-statistic sign changes | `AffineStatisticProfile.signChange_four_cases` | `Results/AffineStatisticSignChanges.lean` |
 | theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveProjectionSignChanges`, `HStar_eq_thresholdDeg_of_eq_positiveProjectionSignChanges` | `Results/PositiveProjection.lean` |
 | theorem 69 fixed-certificate and checked instances | `HStar_eq_thresholdDeg_of_weightedPolynomial`, `HStar_eq_two_of_positiveWeightedSignDeg_le_two`, `HStar_isolatedXor3` | `Results/PositiveWeightedSignDegree.lean`, `Results/WeightedFaceExact.lean` |
 | theorem 82 one-bit threshold degree | `oneBitGate_thresholdDeg_trichotomy` | `Results/OneBitGateThresholdDegree.lean` |
+| theorem 109 low affine-cylinder cost exactness | `HStar_low_actc_classification` | `Results/LowAffineCylinderCost.lean` |
 | theorem 110 affine-cylinder sandwich | `thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` | `Results/AffineCylinderThreshold.lean` |
 | theorems 138, 141, and 144 positive-statistic gates | `HStar_le_of_positiveStatisticRawBitDegLE`, `oneBitGate_HStar_sandwich_positiveProjection`, `oneBitGate_HStar_exact_of_degree_tight_positiveProjection` | `Results/PositiveOrderOneBitGate.lean` |
 | theorem 183 finite-checker soundness | `smallDimension_exact_of_check_eq_true` | `Results/FourBitCertificateChecker.lean`, `Results/SmallDimensionExactCertificate.lean` |
