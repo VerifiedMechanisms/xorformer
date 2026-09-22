@@ -11,6 +11,7 @@ import HeadComplexity.Results.SymmetricFaceLowerBound
 import HeadComplexity.Results.PositiveWeightedSignDegree
 import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.DeterminantSpan
+import HeadComplexity.Results.ThresholdDegreeSpan
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.StructuralInvariances
 import HeadComplexity.Results.DummyVariables
@@ -19,6 +20,7 @@ import HeadComplexity.Results.PositiveProjection
 import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.AtomicMarginSparsification
+import HeadComplexity.Results.AtomicCondition
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.PositiveOrderOneBitGate
@@ -165,6 +167,16 @@ alias theorem69_isolated_xor_instance := HStar_isolatedXor3
 function by its denominator count. -/
 alias theorem21_determinant_span_schema := ClearedSpanCertificate.HStar_le
 
+/-- **Theorem 30.** A degree-restricted cleared-span certificate computes every
+Boolean function whose threshold degree is at most the certified degree. -/
+alias theorem30_threshold_degree_span :=
+  DegreeClearedSpanCertificate.HStar_le_of_ThresholdDegLE
+
+/-- **Theorem 30.** Such a fixed-denominator span needs at least as many
+nonredundant cleared features as the low-degree polynomial space. -/
+alias theorem30_span_dimension_obstruction :=
+  DegreeClearedSpanCertificate.dimension_obstruction
+
 /-- **Theorem 21.** A nonzero selected cleared-feature determinant supplies a
 universal head upper bound. -/
 alias theorem21_determinant_feature_schema :=
@@ -234,6 +246,11 @@ bound with the explicit absolute constant `33`. -/
 alias theorem195_atomic_margin_sparsification :=
   AtomicMarginCertificate.HStar_real_le_atomicCondition
 
+/-- **Theorem 195.** Literal infimum form of the output-normalized atomic
+condition-number upper bound. -/
+alias theorem195_atomic_condition_number :=
+  HStar_real_le_atomicConditionNumber
+
 /-- **Theorem 62.** Every affine slab has head complexity at most two. -/
 alias theorem62_affine_slab_upper_bound := HStar_affineSlab_le_two
 
@@ -283,6 +300,11 @@ alias theorem144_positive_order_gate_sandwich :=
 oriented Boolean-cube products. -/
 alias theorem193_positive_secant_blowup :=
   PositiveSecant.orientedSecantFeasible_iff_blowupFeasible
+
+/-- **Theorem 193.** Infeasibility of every positive blow-up orientation branch
+gives the strict head-complexity lower bound. -/
+alias theorem193_positive_secant_obstruction :=
+  SignedSecant.H_lt_HStar_of_no_positiveBlowup
 
 /-- **Theorem 194.** Exact signed-secant diagonal blow-up equivalence. -/
 alias theorem194_signed_secant_blowup :=

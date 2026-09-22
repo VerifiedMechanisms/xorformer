@@ -112,3 +112,23 @@ The existing three-bit quadratic theorem is the case
 $$ n=3,\qquad d=2,\qquad D(3,2)=7,\qquad H=2. $$
 
 The full universal determinant-span schema from [021_determinant_span_schema.md](../01_foundations_and_normal_form/021_determinant_span_schema.md) is the case $d=n$.
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/ThresholdDegreeSpan.lean` defines
+`DegreeClearedSpanCertificate n H d`. Its `spans` field is the full containment
+hypothesis above for squarefree polynomials of degree at most $d$.
+
+`DegreeClearedSpanCertificate.HStar_le_of_ThresholdDegLE` formalizes the upper
+bound $H^{\ast}(f)\leq H$. It reuses the squarefree strict sign representation,
+the positive affine-ratio atom constructor, and the exact linear-fractional
+normal form.
+
+`DegreeClearedSpanCertificate.dimension_obstruction` proves
+
+$$ D(n,d)\leq1+nH. $$
+
+The proof removes one redundant constant numerator per head before comparing
+dimensions. The supporting declarations `card_lowDegreeMonomialIndex` and
+`linearIndependent_lowDegreeMonomials` verify that the squarefree monomials of
+degree at most $d$ have dimension $D(n,d)$ as functions on the Boolean cube.

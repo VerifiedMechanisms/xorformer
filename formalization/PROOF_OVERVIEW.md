@@ -122,6 +122,12 @@ presentations are interchangeable inside Lean.
   `Results/AffineFreeSparsity.lean`): uniform atom approximation compiles sparse
   Walsh scores and squarefree polynomial-threshold scores while retaining their
   natural support costs.
+* **Theorem 30** (`Results/ThresholdDegreeSpan.lean`): a fixed family of
+  positive affine denominators whose reduced cleared features span every
+  squarefree polynomial of degree at most $d$ computes every Boolean function of
+  threshold degree at most $d$. Linear independence of the low-degree
+  monomials also gives the necessary dimension inequality
+  $D(n,d)\leq1+nH$.
 * **Theorem 62** (`Results/AffineSlab.lean`): two explicit affine-ratio atoms
   give the full zero, one, or two affine-slab classification.
 * **Theorem 110** (`Results/AffineCylinderThreshold.lean`): finite cylinder and
@@ -137,16 +143,18 @@ presentations are interchangeable inside Lean.
   `Polynomial/SignedSecantBlowup.lean`,
   `Results/SecantObstruction.lean`): exact division at the secant diagonal,
   finite continuity opening, atom-to-tangent normalization, and head-padding
-  turn signed-blow-up infeasibility into a strict head lower bound. Head
+  turn both positive and signed blow-up infeasibility into strict head lower
+  bounds. Head
   permutation symmetry reduces the search to $H+1$ orientation counts and
   $4(n+1)+2$ normalization chart types per count branch.
 * **Theorem 195** (`Atoms/AtomicMargin.lean`, `Atoms/AtomicSampling.lean`,
-  `Results/AtomicMarginSparsification.lean`): independent finite sampling,
+  `Results/AtomicMarginSparsification.lean`, `Results/AtomicCondition.lean`): independent finite sampling,
   sub-Gaussian Hoeffding bounds, and a finite union bound sparsify an
   output-normalized finite atomic-margin certificate. The exact sample count has
   constant 32 under a ceiling, and the real-valued Results theorem has absolute
-  constant 33. `AtomicConditionLE` records arbitrary certified ratio bounds
-  without introducing a literal infimum wrapper.
+  constant 33. The finite explicit certificate wrapper is always inhabited for
+  nonconstant Boolean functions, and its literal infimum
+  `atomicConditionNumber` satisfies the same quadratic bound.
 * **Theorems 82, 138, 141, and 144**
   (`Results/OneBitGateThresholdDegree.lean`,
   `Results/PositiveOrderOneBitGate.lean`): fresh-coordinate polynomial

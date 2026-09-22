@@ -141,8 +141,10 @@ cube denominators from this note. The headline results are
 `orientedInteriorSecantFeasible_iff_interiorBlowupFeasible`, and
 `orientedDividedPairGapPolynomial_natDegree_le`.
 
-The head-complexity consequence is completed through the equivalent signed
-formulation in theorem 194. `orientedTangentFeasible_of_computableWithHeadsN`
-constructs the oriented tangent point from every exact model, and
-`H_lt_HStar_of_no_signedBlowup` turns branch infeasibility into the strict
-lower bound.
+The result module `HeadComplexity/Results/SecantObstruction.lean` now also
+contains the direct positive-system consequence. The bridge
+`positiveSecantFeasible_of_signedSecantFeasible` eliminates the mixture scalar,
+and `positiveBlowupFeasible_of_computableWithHeadsN` sends every exact
+$H$-head model of a nonconstant function to some positive blow-up orientation
+branch. Consequently, `H_lt_HStar_of_no_positiveBlowup` states exactly that
+infeasibility of every such branch implies $H\lt H^{\ast}(f)$.
