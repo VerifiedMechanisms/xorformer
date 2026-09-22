@@ -95,3 +95,21 @@ $$ H^{\ast}(f) \leq a_1(R_{\mathcal A})+\sum_{\substack{S\in\mathcal{A}\cr \lver
 which can be much smaller than both the monomial-expansion cost and the uniform degree-only upper bound
 
 $$ \sum_{r=1}^{d}\binom{n}{r}. $$
+
+## Lean Correspondence
+
+`walshCharacter` represents parity on an arbitrary finite coordinate support.
+The theorem `exists_walsh_atoms_uniform` gives a uniformly accurate ambient
+score using exactly the cardinality of that support. It reuses exact scalar
+Hamming-profile interpolation and the quantitative dummy-coordinate lift.
+
+`FourierSupportCertificate` packages the affine part, the nonlinear Walsh
+supports, their coefficients, and the strict sign condition. Its `cost` is
+exactly one when the affine part is active, plus the sum of the nonlinear
+support cardinalities. The core results are
+`FourierSupportCertificate.computable` and
+`FourierSupportCertificate.HStar_le` in `Results/FourierSupport.lean`.
+
+The bounded-degree simplification is
+`FourierSupportCertificate.HStar_le_affine_add_mul`. The uniform Fourier-tail
+form is `FourierSupportCertificate.HStar_le_of_fourier_uniform_lt_one`.

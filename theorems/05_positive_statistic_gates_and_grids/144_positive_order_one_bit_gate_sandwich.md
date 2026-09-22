@@ -49,3 +49,15 @@ holds for every function with $H^{\ast}(f)=C_{+}(f)$. More generally, this lemma
 $$ H^{\ast}(z\oplus f)\leq C_{+}(f)+1 $$
 
 for every Boolean function $f$.
+
+## Lean Correspondence
+
+`oneBitGate_HStar_sandwich_positiveProjection` is the literal ordered-image
+form of the complete sandwich. Its polynomial-certificate counterpart is
+`oneBitGate_HStar_sandwich_positiveWeightedSignDeg`.
+
+The implementation classifies the two unary slices of an arbitrary Boolean
+gate and covers every gate, including the constant-feature branch through
+`oneBitGate_HStar_of_constant`. The canonical slice-pair theorem is
+`gateOfSliceKinds_HStar_sandwich_positiveWeightedSignDeg`. These results live
+in `Results/PositiveOrderOneBitGate.lean`.
