@@ -95,3 +95,17 @@ This proves the theorem. $\blacksquare$
 ## Consequence
 
 Theorem 178 is the zero-width case $\alpha=\beta=0$ after absorbing constants into $c$. Theorem 177 is the further specialization where the affine level intersects the grid in one point. More generally, every two-block profile whose true set is one affine strip is exactly controlled by bivariate grid sign degree and costs at most two heads.
+
+## Lean Correspondence
+
+The complete statement is kernel-checked in `formalization/HeadComplexity/Results/TwoBlockAffineGridStrip.lean`.
+
+- `HStar_twoBlockAffineGridStrip_classification` proves the exact zero-, one-, or two-head classification through the affine-slab theorem.
+
+- `BivariateGridThresholdDegLE` and `bivariateGridThresholdDeg` define the independent strict polynomial sign degree on the finite two-dimensional grid.
+
+- `affineGridStrip_thresholdDegLE_two` constructs the strict quadratic grid certificate.
+
+- `IsBivariateGridLTF.isLTF_twoBlockGridLift` and `isBivariateGridLTF_of_isLTF_twoBlockGridLift` prove both directions of grid-to-cube LTF transport. The reverse direction strictifies and averages an affine separator over within-block coordinate permutations.
+
+- `HStar_affineGridStrip_eq_bivariateGridThresholdDeg` proves the final equality for two nonempty blocks. Its Lean statement is slightly stronger than the displayed theorem because it does not require $(a,b)\neq(0,0)$.

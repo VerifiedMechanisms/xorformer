@@ -73,3 +73,15 @@ so all three quantities are equal. $\blacksquare$
 ## Consequence
 
 The positive-grid cost $\mathrm{pgc}_{+}^{z\mid y}$ is the two-block special case where the block order is optimized over the two possible orders.
+
+## Lean Correspondence
+
+The complete invariant is kernel-checked in `formalization/HeadComplexity/Results/PositiveMultigrid.lean`.
+
+- `positiveMultigridCost` is the attained minimum over positive multigrid certificates and all block orders, with block order represented by relabeling the fixed partition.
+
+- `HStar_le_positiveMultigridCost` and `positiveProjectionSignChanges_le_positiveMultigridCost` prove the two stated upper bounds.
+
+- `HStar_eq_of_thresholdDeg_eq_positiveMultigridCost` proves endpoint exactness.
+
+- `positiveMultigridCost_complement`, `positiveMultigridCost_congr_partition`, and `positiveMultigridCost_permute` prove output-complement, block-relabeling, and simultaneous coordinate-permutation invariance.

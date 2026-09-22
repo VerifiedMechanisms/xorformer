@@ -56,6 +56,9 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 109 low affine-cylinder cost exactness | `HStar_low_actc_classification` | `Results/LowAffineCylinderCost.lean` |
 | theorem 110 affine-cylinder sandwich | `thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` | `Results/AffineCylinderThreshold.lean` |
 | theorems 138, 141, and 144 positive-statistic gates | `HStar_le_of_positiveStatisticRawBitDegLE`, `oneBitGate_HStar_sandwich_positiveProjection`, `oneBitGate_HStar_exact_of_degree_tight_positiveProjection` | `Results/PositiveOrderOneBitGate.lean` |
+| theorem 170 positive lexicographic multigrids | `PositiveLexMultigrid.HStar_le_alternations`, `PositiveLexMultigrid.HStar_fiber_le` | `Results/PositiveMultigrid.lean` |
+| theorem 173 positive multigrid cost | `HStar_le_positiveMultigridCost`, `positiveProjectionSignChanges_le_positiveMultigridCost`, `HStar_eq_of_thresholdDeg_eq_positiveMultigridCost` | `Results/PositiveMultigrid.lean` |
+| theorem 179 two-block affine grid strips | `HStar_twoBlockAffineGridStrip_classification`, `HStar_affineGridStrip_eq_bivariateGridThresholdDeg` | `Results/TwoBlockAffineGridStrip.lean` |
 | theorem 183 finite-checker soundness | `smallDimension_exact_of_check_eq_true` | `Results/FourBitCertificateChecker.lean`, `Results/SmallDimensionExactCertificate.lean` |
 | theorem 190 homogeneous slice-rank-two obstruction | `homogeneousSliceRankTwoSignRep_of_computableWithHeadsN`, `HStar_gt_of_no_homogeneousSliceRankTwoSignRep` | `Results/SliceRankTwo.lean` |
 | theorem 192 multiway sign CP-rank bound and input-count barrier | `multiwaySignCPRank_le_of_HStar_le`, `multiwaySignCPRank_le_tangent_count_of_input_bound` | `Results/MultiwaySignTensorRank.lean` |

@@ -19,6 +19,7 @@ import HeadComplexity.Results.PartitionSignRank
 import HeadComplexity.Results.MultiwaySignTensorRank
 import HeadComplexity.Results.SliceRankTwo
 import HeadComplexity.Results.PositiveProjection
+import HeadComplexity.Results.PositiveMultigrid
 import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.AtomicMarginSparsification
@@ -32,6 +33,7 @@ import HeadComplexity.Results.RawCalibratedVote
 import HeadComplexity.Results.PositiveOrderOneBitGate
 import HeadComplexity.Results.SecantObstruction
 import HeadComplexity.Results.AffineSlab
+import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.AffineStatisticSignChanges
 import HeadComplexity.Results.LowAffineCylinderCost
@@ -354,6 +356,55 @@ alias theorem141_degree_tight_gate_classification :=
 positive-projection form. -/
 alias theorem144_positive_order_gate_sandwich :=
   oneBitGate_HStar_sandwich_positiveProjection
+
+/-- **Theorem 170.** A finite positive-statistic multigrid costs at most the
+number of label alternations along its lexicographic traversal. -/
+alias theorem170_positive_lexicographic_multigrid :=
+  PositiveLexMultigrid.HStar_le_alternations
+
+/-- **Theorem 170.** Every one-block fiber of a multigrid certificate gives a
+restriction lower bound. -/
+alias theorem170_multigrid_fiber_lower_bound :=
+  PositiveLexMultigrid.HStar_fiber_le
+
+/-- **Theorem 170.** Matching threshold degree and multigrid alternations give
+the exact head complexity. -/
+alias theorem170_multigrid_endpoint_exactness :=
+  PositiveLexMultigrid.HStar_eq_of_thresholdDeg_eq_alternations
+
+/-- **Theorem 173.** Positive multigrid cost upper-bounds head complexity. -/
+alias theorem173_positive_multigrid_cost :=
+  HStar_le_positiveMultigridCost
+
+/-- **Theorem 173.** Optimized positive-projection alternations are bounded by
+positive multigrid cost. -/
+alias theorem173_positive_projection_le_multigrid_cost :=
+  positiveProjectionSignChanges_le_positiveMultigridCost
+
+/-- **Theorem 173.** Matching threshold degree and positive multigrid cost give
+the exact head complexity. -/
+alias theorem173_multigrid_endpoint_exactness :=
+  HStar_eq_of_thresholdDeg_eq_positiveMultigridCost
+
+/-- **Theorem 173.** Positive multigrid cost is invariant under output
+complement. -/
+alias theorem173_multigrid_complement_invariance :=
+  positiveMultigridCost_complement
+
+/-- **Theorem 173.** Positive multigrid cost is invariant under simultaneous
+coordinate permutation of the function and partition. -/
+alias theorem173_multigrid_permutation_invariance :=
+  positiveMultigridCost_permute
+
+/-- **Theorem 179.** Two-block affine grid strips have the exact zero-, one-,
+or two-head classification. -/
+alias theorem179_affine_grid_strip_classification :=
+  HStar_twoBlockAffineGridStrip_classification
+
+/-- **Theorem 179.** For two nonempty blocks, affine-grid-strip head
+complexity equals strict bivariate grid threshold degree. -/
+alias theorem179_affine_grid_strip_exactness :=
+  HStar_affineGridStrip_eq_bivariateGridThresholdDeg
 
 /-- **Theorem 190.** Every cleared `H`-head score with `H ≥ 2` has a
 homogeneous degree-`H` slice-rank-two strict sign realization whose second

@@ -182,6 +182,21 @@ presentations are interchangeable inside Lean.
   the finite cube, is bounded by exact affine-free multilinear support, and
   adds only over active vote features. Independently, every one-fresh-bit gate
   other than XOR and XNOR costs at most one additional head.
+* **Theorems 170 and 173** (`Results/PositiveMultigrid.lean`): finite scale
+  separation turns any lexicographically ordered product of positive block
+  statistics into one positive projection with exactly the same label
+  alternations. This proves the per-certificate upper and fiber lower bounds,
+  then minimizes over all positive statistics and block orders to obtain the
+  attained multigrid cost, its $H^{\ast}$ and $C_{+}$ bounds, endpoint
+  exactness, and complement, block-relabeling, and coordinate-permutation
+  invariance.
+* **Theorem 179** (`Results/TwoBlockAffineGridStrip.lean`): a two-block affine
+  grid strip is an affine slab on the cube and therefore has the exact zero-,
+  one-, or two-head classification. An independent bivariate polynomial
+  threshold degree is developed on the finite grid. Strictification followed
+  by averaging over within-block permutations proves that grid and cube LTF
+  cases coincide, yielding unconditional equality of the two complexities for
+  nonempty blocks.
 * **Theorem 190** (`Results/SliceRankTwo.lean`): homogenizing the affine
   numerator and denominator forms makes the cleared score homogeneous of
   degree $H$. Isolating one head gives two degree $(1,H-1)$ slices, with an
