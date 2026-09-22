@@ -23,6 +23,7 @@ import HeadComplexity.Results.AtomicMarginSparsification
 import HeadComplexity.Results.AtomicCondition
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.OneBitGateThresholdDegree
+import HeadComplexity.Results.ParityBlockThresholdDegree
 import HeadComplexity.Results.CalibratedThresholdVote
 import HeadComplexity.Results.OneBitNonXorGate
 import HeadComplexity.Results.RawCalibratedVote
@@ -294,6 +295,20 @@ alias theorem69_projection_presentations_equal :=
 one-bit gate. -/
 alias theorem82_one_bit_gate_threshold_degree :=
   oneBitGate_thresholdDeg_trichotomy
+
+/-- **Theorem 83.** XOR with a fresh parity block raises threshold degree by
+exactly the size of the block. -/
+alias theorem83_parity_block_threshold_degree := thresholdDeg_parityBlockXor
+
+/-- **Theorem 83.** The parity-block degree identity gives the corresponding
+head-complexity lower bound. -/
+alias theorem83_parity_block_lower_bound :=
+  thresholdDeg_add_le_HStar_parityBlockXor
+
+/-- **Theorem 83.** Minimum polynomial-threshold sparsity gives the stated
+exponential sparse-PTF fallback upper bound. -/
+alias theorem83_parity_block_sparse_upper :=
+  HStar_parityBlockXor_le_ptfSparsity
 
 /-- **Theorem 85.** A weighted threshold vote whose raw features have
 one-atom approximations within the strict margin costs at most one head per

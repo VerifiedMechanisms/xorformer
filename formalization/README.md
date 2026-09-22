@@ -49,6 +49,7 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveProjectionSignChanges`, `HStar_eq_thresholdDeg_of_eq_positiveProjectionSignChanges` | `Results/PositiveProjection.lean` |
 | theorem 69 fixed-certificate and checked instances | `HStar_eq_thresholdDeg_of_weightedPolynomial`, `HStar_eq_two_of_positiveWeightedSignDeg_le_two`, `HStar_isolatedXor3` | `Results/PositiveWeightedSignDegree.lean`, `Results/WeightedFaceExact.lean` |
 | theorem 82 one-bit threshold degree | `oneBitGate_thresholdDeg_trichotomy` | `Results/OneBitGateThresholdDegree.lean` |
+| theorem 83 parity-block amplification | `thresholdDeg_parityBlockXor`, `HStar_parityBlockXor_le_ptfSparsity` | `Results/ParityBlockThresholdDegree.lean` |
 | theorem 85 calibrated threshold votes | `HStar_thresholdVote_le` | `Results/CalibratedThresholdVote.lean` |
 | theorem 87 one-bit non-XOR recursion | `HStar_freshBitGate_le_succ_of_ne_xor_xnor` | `Results/OneBitNonXorGate.lean` |
 | theorem 93 raw-calibrated vote support | `HStar_thresholdVote_le_rawVoteCost`, `HStar_thresholdVote_le_exactAffineFreeVoteCost` | `Results/RawCalibratedVote.lean` |

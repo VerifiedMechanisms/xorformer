@@ -170,6 +170,11 @@ presentations are interchangeable inside Lean.
   operations give the exact threshold-degree trichotomy, while shared-shift
   partial fractions give the universal positive-order gate sandwich and its
   degree-tight exact table.
+* **Theorem 83** (`Results/ParityBlockThresholdDegree.lean`): iteration of the
+  fresh-bit XOR identity raises threshold degree by exactly the parity-block
+  size. A reusable sparse-monomial certificate transforms $H$ terms into
+  $2H+1$ terms at each fresh XOR, giving the matching
+  $2^k(\mathrm{ptfsp}(T)+1)-1$ fallback upper bound.
 * **Theorems 85, 87, and 93** (`Results/CalibratedThresholdVote.lean`,
   `Results/OneBitNonXorGate.lean`, `Results/RawCalibratedVote.lean`): uniform
   atom approximations compose through a strict weighted vote when their total
