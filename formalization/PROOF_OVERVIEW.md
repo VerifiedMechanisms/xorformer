@@ -145,6 +145,12 @@ presentations are interchangeable inside Lean.
   complexity two. More generally, ordered sign changes along an arbitrary
   affine statistic give exact zero- and one-change cases, the complete
   two-change LTF split, and a support-sensitive bound thereafter.
+* **Theorem 53** (`Results/LocalPatternCountProfile.lean`): a one-bit identity
+  or complement slice restricts a local two-bit count profile to the symmetric
+  sign-change theorem. In the other direction, the univariate sign polynomial
+  in the count is expanded through the canonical multilinear products of the
+  local predicate. The union of their nonlinear supports, plus one shared
+  affine charge when needed, gives the exact expansion-cost upper bound.
 * **Theorem 109** (`Results/LowAffineCylinderCost.lean`): when affine-cylinder
   cost is at most two, the universal constant, nonconstant LTF, and remaining
   cases have exact head complexity zero, one, and two, respectively.

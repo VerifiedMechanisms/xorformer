@@ -133,3 +133,15 @@ This schema recovers the three profile families recorded separately in these not
    $\Lambda_{p,m}(C) \leq 1+m+\sum_{r=2}^{C}2^r\binom{m}{r}$
 
    for $C\geq1$. This is the directed-defect profile bound from [052_directed_defect_profile_bounds.md](052_directed_defect_profile_bounds.md).
+
+## Lean Correspondence
+
+The formalization is in `formalization/HeadComplexity/Results/LocalPatternCountProfile.lean`.
+
+- `LocalPatternCountProfile.signChanges_le_HStar` proves the one-bit-slice lower bound.
+
+- `LocalPatternCountProfile.HStar_le_expansionCost` proves the exact finite-support upper bound.
+
+- `LocalPatternCountProfile.signChanges_le_HStar_le_expansionCost` is the combined theorem stated above.
+
+The Lean statement also covers $m=0$. Its `expansionCost` is definitionally the cardinality of the union of all nonlinear monomial supports, together with one shared affine charge exactly when an eligible product has a nonzero linear term.

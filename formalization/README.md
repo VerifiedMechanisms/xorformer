@@ -45,6 +45,7 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 45 Fourier support cost | `FourierSupportCertificate.HStar_le` | `Results/FourierSupport.lean` |
 | theorem 48 affine-free sparsity | `HStar_le_affineFreeSparsity`, `affineFreeSparsity_le_ptfSparsity` | `Results/AffineFreeSparsity.lean` |
 | theorem 49 equality | `HStar_equality`, `thresholdDeg_equality` | `Results/EqualityExact.lean` |
+| theorem 53 local-pattern count profiles | `LocalPatternCountProfile.signChanges_le_HStar_le_expansionCost` | `Results/LocalPatternCountProfile.lean` |
 | theorem 62 affine slabs | `HStar_affineSlab_le_two`, `HStar_affineSlab_classification` | `Results/AffineSlab.lean` |
 | theorem 63 arbitrary affine-statistic sign changes | `AffineStatisticProfile.signChange_four_cases` | `Results/AffineStatisticSignChanges.lean` |
 | theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveProjectionSignChanges`, `HStar_eq_thresholdDeg_of_eq_positiveProjectionSignChanges` | `Results/PositiveProjection.lean` |

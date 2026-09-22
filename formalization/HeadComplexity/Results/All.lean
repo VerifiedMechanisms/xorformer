@@ -36,6 +36,7 @@ import HeadComplexity.Results.SecantObstruction
 import HeadComplexity.Results.AffineSlab
 import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.EqualityExact
+import HeadComplexity.Results.LocalPatternCountProfile
 import HeadComplexity.Results.AffineStatisticSignChanges
 import HeadComplexity.Results.LowAffineCylinderCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
@@ -308,6 +309,20 @@ alias theorem49_equality_exact := HStar_equality
 /-- **Theorem 49.** Equality of two nonempty Boolean blocks has exact threshold
 degree two. -/
 alias theorem49_equality_threshold_degree := thresholdDeg_equality
+
+/-- **Theorem 53.** A symmetric one-bit slice of a local two-bit predicate
+forces the profile sign-change lower bound. -/
+alias theorem53_local_pattern_lower_bound :=
+  LocalPatternCountProfile.signChanges_le_HStar
+
+/-- **Theorem 53.** The exact union of nonlinear expansion supports, together
+with one shared affine charge, upper-bounds local-pattern profile complexity. -/
+alias theorem53_local_pattern_upper_bound :=
+  LocalPatternCountProfile.HStar_le_expansionCost
+
+/-- **Theorem 53.** Combined local-pattern count profile sandwich. -/
+alias theorem53_local_pattern_profile_schema :=
+  LocalPatternCountProfile.signChanges_le_HStar_le_expansionCost
 
 /-- **Theorem 63.** Sign changes along an arbitrary affine statistic give the
 exact small-change cases and the support-sensitive general upper bound. -/
