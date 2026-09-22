@@ -79,3 +79,16 @@ In particular, a finite calibrated certificate for a vote consists of:
 3. uniform error bounds $\epsilon_j$ satisfying $\sum_j\lvert c_j\rvert\epsilon_j\lt\mu$.
 
 Such a certificate immediately proves an $s$-head upper bound.
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/CalibratedThresholdVote.lean` defines
+`thresholdVoteScore`, `thresholdVote`, and the exact finite-cube minimum
+`thresholdVoteMargin`. The theorem `calibratedThresholdVote_computable` scales
+the supplied fractional atoms by the outer vote weights and proves strict sign
+preservation from the weighted error budget.
+
+The Results-facing statement `HStar_thresholdVote_le` is the bound
+$H^{\ast}(f)\leq s$. Its assumptions match the certificate in this note,
+including a separate error allowance for every feature and the strict
+margin-budget inequality.

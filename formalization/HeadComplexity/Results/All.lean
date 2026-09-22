@@ -23,6 +23,9 @@ import HeadComplexity.Results.AtomicMarginSparsification
 import HeadComplexity.Results.AtomicCondition
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.OneBitGateThresholdDegree
+import HeadComplexity.Results.CalibratedThresholdVote
+import HeadComplexity.Results.OneBitNonXorGate
+import HeadComplexity.Results.RawCalibratedVote
 import HeadComplexity.Results.PositiveOrderOneBitGate
 import HeadComplexity.Results.SecantObstruction
 import HeadComplexity.Results.AffineSlab
@@ -291,6 +294,25 @@ alias theorem69_projection_presentations_equal :=
 one-bit gate. -/
 alias theorem82_one_bit_gate_threshold_degree :=
   oneBitGate_thresholdDeg_trichotomy
+
+/-- **Theorem 85.** A weighted threshold vote whose raw features have
+one-atom approximations within the strict margin costs at most one head per
+feature. -/
+alias theorem85_calibrated_threshold_vote := HStar_thresholdVote_le
+
+/-- **Theorem 87.** Combining an arbitrary feature with one fresh raw bit
+through any gate other than XOR or XNOR costs at most one extra head. -/
+alias theorem87_one_bit_non_xor_recursion :=
+  HStar_freshBitGate_le_succ_of_ne_xor_xnor
+
+/-- **Theorem 93.** Raw calibration costs add over the active features in a
+strict weighted vote. -/
+alias theorem93_raw_calibrated_vote := HStar_thresholdVote_le_rawVoteCost
+
+/-- **Theorem 93.** The exact multilinear affine-free support costs give a
+concrete fallback for a strict weighted vote. -/
+alias theorem93_exact_support_vote :=
+  HStar_thresholdVote_le_exactAffineFreeVoteCost
 
 /-- **Theorem 110.** Threshold degree, head complexity, affine-cylinder cost,
 cylinder cost, and affine-free sparsity form the stated sandwich. -/

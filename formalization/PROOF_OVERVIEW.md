@@ -170,6 +170,13 @@ presentations are interchangeable inside Lean.
   operations give the exact threshold-degree trichotomy, while shared-shift
   partial fractions give the universal positive-order gate sandwich and its
   degree-tight exact table.
+* **Theorems 85, 87, and 93** (`Results/CalibratedThresholdVote.lean`,
+  `Results/OneBitNonXorGate.lean`, `Results/RawCalibratedVote.lean`): uniform
+  atom approximations compose through a strict weighted vote when their total
+  weighted error stays below its margin. Raw calibration cost is attained on
+  the finite cube, is bounded by exact affine-free multilinear support, and
+  adds only over active vote features. Independently, every one-fresh-bit gate
+  other than XOR and XNOR costs at most one additional head.
 
 ## Strict separation
 

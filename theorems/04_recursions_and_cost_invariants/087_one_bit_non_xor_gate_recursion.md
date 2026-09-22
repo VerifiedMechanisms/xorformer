@@ -135,3 +135,19 @@ $$ H^{\ast}(z\wedge T)\leq H^{\ast}(T)+1. $$
 The same proof handles $z\vee T$, implications, reverse implications, NAND, NOR, and all literal variants.
 
 Combined with the one-bit gate threshold-degree trichotomy, this isolates XOR and XNOR as the only one-bit gates that both raise threshold degree and remain outside the proved $H^{\ast}(T)+1$ recursion theorem.
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/OneBitNonXorGate.lean` proves the
+stronger slice construction `oneSliceFeature_computable_succ`: an arbitrary
+feature may occupy either fresh-bit slice, with either Boolean constant on the
+other slice, using one additional head.
+
+Every binary Boolean gate is classified by its two unary slices. The theorem
+`HStar_freshBitGate_le_succ_of_ne_xor_xnor` eliminates exactly the XOR and XNOR
+slice patterns and proves
+
+$$ H^{\ast}(G(z,T(y)))\leq H^{\ast}(T)+1 $$
+
+for all remaining gates, including constants, literals, conjunctions,
+disjunctions, implications, and their complemented variants.
