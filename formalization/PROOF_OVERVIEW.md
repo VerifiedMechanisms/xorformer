@@ -200,6 +200,15 @@ presentations are interchangeable inside Lean.
   complement representatives. `smallDimension_exact_of_check_eq_true` proves
   end-to-end soundness through four variables. The large archived data value and
   its successful kernel check are not bundled.
+* **Theorem 186** (`Results/FiveBitDegreeFourCertificate.lean`): integral
+  cleared-feature rows have a Boolean checker and compile through the existing
+  oriented-denominator certificate. The rank-and-margin argument is proved as
+  an exact finite gluing lemma: a base row vanishing on a zero set dominates
+  off that set after positive integral scaling, while an arbitrary perturbation
+  realizes the requested signs on it. The formal certificate boundary records
+  the sixty shattering families, all five named residual orbits, and the full
+  coordinate-permutation, global-input-flip, and output-complement quotient.
+  The large archive rows and their coverage proof are not embedded.
 * **Theorem 187** (`Results/FiveBitDegreeTwoCertificate.lean`): the
   triangle-free two-coloring reduction on $K_5$, exact nonnegative integral
   Gordan-circuit soundness, and the weak wrong-edge obstruction are

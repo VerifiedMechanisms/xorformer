@@ -46,6 +46,7 @@ import HeadComplexity.Results.AffineCylinderCofactorRecursion
 import HeadComplexity.Results.SplitAffineCylinderRefinement
 import HeadComplexity.Results.FreshXorTargetCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
+import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
 
 set_option linter.style.header false
@@ -593,6 +594,27 @@ four-bit certificate data proves exact equality in every dimension at most
 four. The archived payload itself is not embedded by this alias. -/
 alias theorem183_checked_small_dimension_exactness :=
   smallDimension_exact_of_check_eq_true
+
+/-- **Theorem 186.** Integral rank-and-margin gluing combines a base score
+with a sufficiently large positive scale and preserves all target signs. -/
+alias theorem186_integral_shattering_glue :=
+  exists_integral_scale_strict_sign_glue
+
+/-- **Theorem 186.** A fixed-denominator family-shattering certificate gives
+the corresponding head upper bound for every covered extension. -/
+alias theorem186_family_shattering_bound :=
+  IntegralFamilyShatteringCertificate.HStar_le
+
+/-- **Theorem 186.** The exact quotient operations used by the five-bit orbit
+reduction preserve head complexity. -/
+alias theorem186_orbit_symmetry_invariance :=
+  FiveBitOrbitSymmetry.HStar_act
+
+/-- **Theorem 186, conditional archive boundary.** Exact reduction,
+shattering, and five residual-coverage certificates imply five-bit
+degree-four exactness. -/
+alias theorem186_five_bit_degree_four_exact_of_certificate :=
+  FiveBitDegreeFourCertificate.exact
 
 /-- **Theorem 187.** A triangle-free two-coloring of the edges of `K_5` has
 degree two in each color at every vertex. -/
