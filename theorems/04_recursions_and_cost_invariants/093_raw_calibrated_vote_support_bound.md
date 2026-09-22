@@ -121,3 +121,22 @@ Thus
 $$ \rho(T)\leq3, $$
 
 while Lemma 91 shows $\rho(T)\neq1$. This makes the obstruction quantitative: internal threshold indicators can still be calibrated by spending more raw atoms.
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/RawCalibratedVote.lean` defines
+`RawApproximableWith r T` and the attained natural-valued minimum
+`rawCalibrationCost T`. The apparent infinity case in the statement cannot
+occur on a finite Boolean cube: `exactBooleanSquarefreePolynomial` constructs
+the exact multilinear expansion of every Boolean feature, and
+`exists_rawApproximableWith` supplies a finite atom count.
+
+`rawCalibrationCost_le_exactAffineFreeSupportCost` proves
+$\rho(T)\leq\mathrm{eafs}(T)$ for the canonical expansion. The stronger theorem
+`rawCalibrationCost_le_of_exactPolynomial` accepts any exact squarefree
+expansion.
+
+For the outer vote, `rawVoteCost` charges only indices with nonzero vote
+weight. The headline theorem `HStar_thresholdVote_le_rawVoteCost` proves the
+sum of $\rho$ bound, and `HStar_thresholdVote_le_exactAffineFreeVoteCost`
+substitutes the exact support fallback from the statement.

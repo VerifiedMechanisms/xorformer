@@ -97,3 +97,19 @@ and hence $R_k(H)\geq k^H$. The ambient sign CP-rank ceiling is therefore at mos
 ## Consequence
 
 A multiway tensor backend should be treated as a structured research layer, not as the default continuation of partition sign-rank. Any useful improvement must exploit equations or norms that couple different flattenings, positivity, or the tangential factor sharing. Ordinary flattening ranks and the ambient CP-rank ceiling cannot improve the balanced two-block input-count screen.
+
+## Lean Correspondence
+
+The complete statement is kernel-checked in `formalization/HeadComplexity/Results/MultiwaySignTensorRank.lean`.
+
+- `card_activeTangentTerm` proves the exact count $k(k^H-(k-1)^H)$.
+
+- `multiwayTangentValue_eq_sum_active` and `multiwayTangentValue_cpRankLE` construct the active pure-tensor expansion and its CP-rank bound.
+
+- `multiwaySignCPRank_le_of_HStar_le` transfers the expansion through positive denominator clearing to every nonconstant function with $H^{\ast}(f)\leq H$.
+
+- `two_block_tangent_count` proves $R_2(H)=2^{H+1}-2$.
+
+- `multiwaySignCPRank_le_two_pow_complement` proves the ambient $2^{n-|I_j|}$ fiber ceiling for every omitted mode.
+
+- `multiwaySignCPRank_le_tangent_count_of_input_bound` proves the final universal limitation for $H\geq2$, $n\leq2H+1$, and every partition into at least two nonempty blocks.

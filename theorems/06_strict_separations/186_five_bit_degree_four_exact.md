@@ -114,9 +114,29 @@ By itself, this theorem leaves threshold degree two or three as the only possibi
 
 ## Lean Status
 
-The reduction, shattering, residual-orbit, and face-family artifacts have exact
-external verifiers. They are not yet imported into Lean. A faithful kernel proof
-needs verified representations of the NPZ and JSON certificates, together with
-reflection lemmas for the finite score, shattering, and orbit checks. The current
-development therefore does not claim the quantified five-bit classification as
-a Lean theorem.
+`Results/FiveBitDegreeFourCertificate.lean` now formalizes the lightweight
+symbolic and reflection boundary. `IntegralClearedScoreRow` evaluates an
+integral row in a fixed cleared-feature space, has a Boolean checker, and
+compiles every checked row through the existing oriented-denominator
+certificate.
+
+The rank-and-margin step of Lemma 2 is kernel-checked. The theorem
+`exists_integral_scale_strict_sign_glue` constructs a positive integral scale
+whose base score dominates away from the zero set while leaving the
+perturbation unchanged on it. Consequently,
+`IntegralFamilyShatteringCertificate.HStar_le` turns the exact vanishing,
+forced-sign, and shattering premises into a head upper bound for every member
+of the family.
+
+`FiveBitDegreeFourCertificate` then records the sixty uniform shattering
+families, separate exact-coverage certificates for residual orbits $8$, $44$,
+$62$, $63$, and $64$, and the cocircuit reduction modulo coordinate
+permutation, simultaneous input complement, and output complement. Its theorem
+`FiveBitDegreeFourCertificate.exact` derives the displayed equality from those
+premises.
+
+The large JSON and NPZ rows, including four residual-orbit archives not present
+in the repository, are not embedded. Thus the unconditional quantified
+classification is still data-blocked, but every subsequent analytic,
+symmetry, score-checking, and exactness deduction is now in Lean. No exhaustive
+kernel computation, unverified parser result, or new axiom is used.

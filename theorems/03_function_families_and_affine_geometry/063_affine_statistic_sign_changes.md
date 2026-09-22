@@ -135,3 +135,22 @@ $$ H^{\ast}(f) \leq 1+\sum_{r=2}^{\min\lbrace C,k\rbrace}\binom{k}{r}. $$
 The cases $C=1$ and $C=2$ are sharper:
 
 $$ C=1 \Longrightarrow H^{\ast}(f)=1, \qquad C=2 \Longrightarrow H^{\ast}(f)\leq2. $$
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/AffineStatisticSignChanges.lean`
+defines `AffineStatisticProfile`, an ordered finite image of the statistic with
+realization, coverage, and label-agreement proofs. The canonical constructor
+`AffineStatisticProfile.ofFunction` builds this profile from a displayed
+factorization $f(x)=G(L(x))$.
+
+`AffineStatisticProfile.univariateThresholdDegLE` constructs the sign
+polynomial from the ordered changes. The active-coordinate retraction and the
+affine-free support compiler prove `HStar_le_support_sum_min`. For exactly two
+changes, `exists_affineSlab_or_complement_of_alternations_eq_two` identifies the
+function or its complement with an affine slab.
+
+The headline theorem `AffineStatisticProfile.signChange_four_cases` packages
+the four conclusions from this note. In particular, it permits arbitrary real
+coefficients in the affine statistic and depends on the number of active
+coordinates rather than the ambient dimension.

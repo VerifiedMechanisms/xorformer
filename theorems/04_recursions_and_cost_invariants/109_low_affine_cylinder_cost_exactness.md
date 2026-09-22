@@ -41,3 +41,15 @@ Since
 $$ \mathrm{actc}(f) \leq \min\lbrace\mathrm{ctc}(f),\mathrm{afs}_{\pm}(f)\rbrace, $$
 
 the same exactness conclusion applies whenever either $\mathrm{ctc}(f)\leq2$ or $\mathrm{afs}_{\pm}(f)\leq2$.
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/LowAffineCylinderCost.lean` proves
+`HStar_eq_two_of_actc_le_two` by combining the affine-cylinder compiler with
+the universal zero-head and one-head characterizations. The full case split is
+`HStar_low_actc_classification`.
+
+The corollaries `HStar_eq_two_of_ctc_le_two` and
+`HStar_eq_two_of_affineFreeSparsity_le_two` use the established inequalities
+$\mathrm{actc}(f)\leq\mathrm{ctc}(f)$ and
+$\mathrm{actc}(f)\leq\mathrm{afs}_{\pm}(f)$, respectively.

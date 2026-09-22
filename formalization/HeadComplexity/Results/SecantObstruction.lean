@@ -171,6 +171,124 @@ theorem signedBlowupFeasible_of_orientedTangent {n H : ℕ}
   rw [heq]
   exact hmul
 
+private theorem orientedProductScore_nonneg {n H : ℕ}
+    (sigma : Fin H → Bool) (theta : Fin H → Option (Fin n) → ℝ)
+    (htheta : IsSimplexPoint theta) (x : Fin n → Bool) :
+    0 ≤ productScore (orientedLiteralFamily sigma) theta x := by
+  classical
+  apply Finset.prod_nonneg
+  intro h _
+  unfold factor orientedLiteralFamily orientedLiteral
+  apply Finset.sum_nonneg
+  intro j _
+  apply mul_nonneg (htheta.1 h j)
+  cases j with
+  | none => norm_num
+  | some i =>
+      cases hsigma : sigma h <;> cases hxi : x i <;>
+        simp [boolToReal, hxi]
+
+/-- A signed secant that strictly classifies a nonconstant Boolean function
+also separates every positive-negative pair by the positive pair-gap system. -/
+theorem positiveSecantFeasible_of_signedSecantFeasible {n H : ℕ}
+    (f : (Fin n → Bool) → Bool) (sigma : Fin H → Bool)
+    (hsigned : SignedSecantFeasible (orientedLiteralFamily sigma)
+      (truthSign f) Finset.univ) :
+    SecantFeasible (orientedLiteralFamily sigma)
+      (positiveInputs f) (negativeInputs f) := by
+  classical
+  rcases hsigned with
+    ⟨theta₀, theta₁, s, htheta₀, htheta₁, hs, hstrict⟩
+  refine ⟨theta₀, theta₁, htheta₀, htheta₁, ?_⟩
+  intro p hp q hq
+  have hfp : f p = true := (mem_positiveInputs f p).mp hp
+  have hfq : f q = false := (mem_negativeInputs f q).mp hq
+  have hpstrict := hstrict p (Finset.mem_univ p)
+  have hqstrict := hstrict q (Finset.mem_univ q)
+  simp only [truthSign, hfp, if_true, one_mul] at hpstrict
+  simp only [truthSign, hfq, Bool.false_eq_true, if_false, neg_mul,
+    neg_pos] at hqstrict
+  let A := productScore (orientedLiteralFamily sigma) theta₁ p
+  let B := productScore (orientedLiteralFamily sigma) theta₀ p
+  let C := productScore (orientedLiteralFamily sigma) theta₁ q
+  let D := productScore (orientedLiteralFamily sigma) theta₀ q
+  have hA0 : 0 ≤ A := orientedProductScore_nonneg sigma theta₁ htheta₁ p
+  have hB0 : 0 ≤ B := orientedProductScore_nonneg sigma theta₀ htheta₀ p
+  have hC0 : 0 ≤ C := orientedProductScore_nonneg sigma theta₁ htheta₁ q
+  have hD0 : 0 ≤ D := orientedProductScore_nonneg sigma theta₀ htheta₀ q
+  have hspos : 0 < s := by
+    by_contra h
+    have hsnonpos : s ≤ 0 := le_of_not_gt h
+    dsimp [A, B] at hA0 hB0
+    dsimp [secantScore] at hpstrict
+    nlinarith
+  have hsone : s < 1 := by
+    by_contra h
+    have hone : 1 ≤ s := le_of_not_gt h
+    dsimp [C, D] at hC0 hD0
+    dsimp [secantScore] at hqstrict
+    nlinarith
+  have hpos : (1 - s) * B < s * A := by
+    dsimp [A, B, secantScore] at hpstrict ⊢
+    linarith
+  have hneg : s * C < (1 - s) * D := by
+    dsimp [C, D, secantScore] at hqstrict ⊢
+    linarith
+  have hA : 0 < A := by
+    have : 0 < s * A := lt_of_le_of_lt
+      (mul_nonneg (sub_nonneg.mpr hs.2) hB0) hpos
+    by_contra h
+    exact (not_lt_of_ge (mul_nonpos_of_nonneg_of_nonpos hspos.le
+      (le_of_not_gt h))) this
+  have hleft : (1 - s) * (B * C) ≤ s * (A * C) := by
+    have := mul_le_mul_of_nonneg_right hpos.le hC0
+    nlinarith
+  have hright : s * (A * C) < (1 - s) * (A * D) := by
+    have := mul_lt_mul_of_pos_right hneg hA
+    nlinarith
+  have hpair : B * C < A * D := by
+    exact lt_of_mul_lt_mul_left (hleft.trans_lt hright)
+      (sub_pos.mpr hsone).le
+  unfold pairGap
+  dsimp [A, B, C, D] at hpair
+  linarith
+
+/-- Every exact `H`-head model of a nonconstant function supplies a feasible
+branch of the theorem-193 positive blow-up system. -/
+theorem positiveBlowupFeasible_of_computableWithHeadsN {n H : ℕ}
+    (hH : 0 < H) (f : (Fin n → Bool) → Bool)
+    (hf : ¬ ∀ x y, f x = f y) (hcomp : computableWithHeadsN n H f) :
+    ∃ sigma : Fin H → Bool,
+      BlowupFeasible (orientedLiteralFamily sigma)
+        (positiveInputs f) (negativeInputs f) := by
+  obtain ⟨sigma, htangent⟩ :=
+    orientedTangentFeasible_of_computableWithHeadsN f hcomp
+  have hsignedBlowup :=
+    signedBlowupFeasible_of_orientedTangent f sigma htangent
+  have hsignedSecant :=
+    (orientedSignedSecantFeasible_iff_signedBlowupFeasible hH f sigma).2
+      hsignedBlowup
+  have hpositiveSecant :=
+    positiveSecantFeasible_of_signedSecantFeasible f sigma hsignedSecant
+  exact ⟨sigma,
+    (orientedSecantFeasible_iff_blowupFeasible hH f hf sigma).1
+      hpositiveSecant⟩
+
+/-- **Theorem 193 head lower bound.** If every orientation branch of the
+positive blow-up system is infeasible, then `H < HStar n f`. -/
+theorem H_lt_HStar_of_no_positiveBlowup {n H : ℕ}
+    (hH : 0 < H) (f : (Fin n → Bool) → Bool)
+    (hf : ¬ ∀ x y, f x = f y)
+    (hobs : ∀ sigma : Fin H → Bool,
+      ¬ BlowupFeasible (orientedLiteralFamily sigma)
+        (positiveInputs f) (negativeInputs f)) :
+    H < HStar n f := by
+  by_contra hnot
+  have hle : HStar n f ≤ H := Nat.le_of_not_gt hnot
+  obtain ⟨sigma, hfeasible⟩ := positiveBlowupFeasible_of_computableWithHeadsN
+    hH f hf (computableWithHeadsN_mono hle (HStar_computable f))
+  exact hobs sigma hfeasible
+
 /-- Infeasibility of every orientation branch rules out every strict cleared
 tangent pattern with `H` heads. -/
 theorem no_orientedTangent_of_no_signedBlowup {n H : ℕ}

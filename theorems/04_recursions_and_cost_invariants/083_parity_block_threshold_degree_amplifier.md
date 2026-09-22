@@ -85,3 +85,24 @@ $$ \deg_{\pm}(\pi_k)=k. $$
 For $T=\mathrm{XOR}_m$, it recovers the parity identity
 
 $$ \deg_{\pm}(\mathrm{XOR}_{m+k})=m+k. $$
+
+## Lean Correspondence
+
+The result module `HeadComplexity/Results/ParityBlockThresholdDegree.lean`
+defines `parityBlockXor k T` by iterating the established fresh-bit XOR
+operation. `thresholdDeg_parityBlockXor` proves the exact additive degree
+identity, and `thresholdDeg_add_le_HStar_parityBlockXor` composes it with the
+universal threshold-degree lower bound for head complexity.
+
+For the upper bound, `SparseMonomialCertificate` records a strict score as a
+constant plus finitely many signed squarefree monomials. Its `freshXor`
+operation implements multiplication by $1-2z$: each old monomial contributes
+its lifted copy and its product with $z$, while the old bias contributes one
+additional $z$ term. Thus the term count obeys $H\mapsto2H+1$.
+
+`HStar_parityBlockXor_le_ptfSupportCost` iterates this construction to prove the
+bound from any fixed strict polynomial certificate. After strictifying an
+attained minimum-sparsity certificate,
+`HStar_parityBlockXor_le_ptfSparsity` gives
+
+$$ H^{\ast}(\pi_k\mathbin\oplus T)\leq2^k\bigl(\mathrm{ptfsp}(T)+1\bigr)-1. $$

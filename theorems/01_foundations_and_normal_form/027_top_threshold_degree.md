@@ -67,3 +67,13 @@ Combining the two directions proves the claim. $\blacksquare$
 ## Consequence
 
 Threshold degree alone cannot prove superlinear head lower bounds. In particular, the counting lower bound in [026_counting_lower_bound.md](026_counting_lower_bound.md) is a genuinely different obstruction: it shows that typical functions need exponentially many heads, even though every threshold-degree lower bound is at most $n$.
+
+## Lean Correspondence
+
+The formalization is in `formalization/HeadComplexity/Results/TopThresholdDegree.lean`.
+
+- `thresholdDegLE_pred_of_ne_parity_complement` constructs a strict degree at most $n-1$ sign polynomial for every truth table other than parity and its complement.
+
+- `thresholdDeg_eq_ambient_iff` proves the stated equivalence for $n\geq1$.
+
+The proof uses an explicit Boolean-cube interpolation basis whose common top monomial cancels. It removes the parity component of the signed truth table and proves both the required orthogonality and strict sign preservation inside Lean.

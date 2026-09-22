@@ -79,3 +79,17 @@ The two sides match, so $H^{\ast}(f)=\deg_{\pm}(f)=L_{\mathrm{lex}}(F)$. $\black
 ## Consequence
 
 Theorem 165 is the two-block case. This theorem gives a direct route for functions of several positive statistics.
+
+## Lean Correspondence
+
+The complete statement is kernel-checked in `formalization/HeadComplexity/Results/PositiveMultigrid.lean`.
+
+- `PositiveLexMultigrid.exists_of_factorization` constructs the finite ordered grid certificate from arbitrary positive block statistics.
+
+- `PositiveLexMultigrid.toPositiveProjection` formalizes finite lexicographic scale separation and produces one positive projection with the same ordered labels.
+
+- `PositiveLexMultigrid.HStar_le_alternations` proves the lexicographic alternation upper bound.
+
+- `PositiveLexMultigrid.HStar_fiber_le` proves the arbitrary one-block fiber restriction bound.
+
+- `PositiveLexMultigrid.HStar_eq_of_thresholdDeg_eq_alternations` proves the threshold-degree endpoint equality.

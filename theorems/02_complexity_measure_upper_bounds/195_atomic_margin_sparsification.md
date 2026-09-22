@@ -70,7 +70,20 @@ This is `AtomicMarginCertificate.HStar_le_atomicSampleCount`. For nonconstant fu
 
 $$ \bigl(H^{\ast}(f):\mathbb R\bigr)\leq33(n+1)\left(\frac{\Lambda}{\gamma}\right)^2. $$
 
-The certificate-level predicate `AtomicConditionLE` and theorem `HStar_real_le_of_atomicConditionLE` provide the corresponding bound for any certified upper bound on $\Lambda/\gamma$. The Lean development intentionally does not define the literal `sInf` wrapper for $\kappa_{\mathrm{atom}}(f)$: the finite-certificate theorem and its arbitrary certified-ratio corollary contain the proved mathematical content without introducing attainment or infimum bookkeeping.
+The certificate-level predicate `AtomicConditionLE` and theorem
+`HStar_real_le_of_atomicConditionLE` provide the corresponding bound for any
+certified upper bound on $\Lambda/\gamma$.
+
+The result module `HeadComplexity/Results/AtomicCondition.lean` additionally
+formalizes the literal infimum in the statement. `FiniteAtomicMarginCertificate`
+uses explicit finite convex weights and converts them to the measure-based
+certificate above. `atomicConditionRatios` is the set of its realized ratios,
+and `atomicConditionNumber` is their infimum. Every nonconstant Boolean
+function has such a finite certificate, and
+`one_le_atomicConditionNumber` proves the normalization lower bound. The
+headline theorem `HStar_real_le_atomicConditionNumber` is
+
+$$ \bigl(H^{\ast}(f):\mathbb R\bigr)\leq33(n+1)\kappa_{\mathrm{atom}}(f)^2. $$
 
 ## Certificate And Estimation Consequence
 

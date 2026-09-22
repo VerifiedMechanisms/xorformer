@@ -39,19 +39,42 @@ existing mathematical statements, not newly numbered theorems.
 |---|---|---|
 | theorem 12 with restriction monotonicity from theorem 28 | `HStar_restrict_le`, `HStar_lower_bound_of_symmetric_face` | `Results/SymmetricFaceLowerBound.lean` |
 | theorem 21 determinant-span schema | `ClearedSpanCertificate.HStar_le` | `Results/DeterminantSpan.lean` |
+| theorem 25 compact determinant specialization | `HStar_le_compact_of_checked_determinant`, `HStar_le_compact_of_rightInverse` | `Results/CompactThresholdCertificate.lean` |
+| theorem 26 counting lower bound, conditional on Warren's estimate | `card_headComputableFunctions_le_warren`, `card_headComputableFunctions_le_two_pow_of_warren`, `worstCaseHeadComplexity_gt_div_of_warren` | `Results/CountingLowerBound.lean` |
+| theorem 27 top threshold-degree classification | `thresholdDeg_eq_ambient_iff`, `thresholdDegLE_pred_of_ne_parity_complement` | `Results/TopThresholdDegree.lean` |
+| theorem 30 threshold-degree span schema | `DegreeClearedSpanCertificate.HStar_le_of_ThresholdDegLE`, `DegreeClearedSpanCertificate.dimension_obstruction` | `Results/ThresholdDegreeSpan.lean` |
 | theorem 28 invariances, juntas, and sign-rank | `HStar_dummyVariables`, `HStar_complement`, `partitionSignRank_le_all` | `Results/DummyVariables.lean`, `Results/StructuralInvariances.lean`, `Results/PartitionSignRank.lean` |
 | theorem 45 Fourier support cost | `FourierSupportCertificate.HStar_le` | `Results/FourierSupport.lean` |
 | theorem 48 affine-free sparsity | `HStar_le_affineFreeSparsity`, `affineFreeSparsity_le_ptfSparsity` | `Results/AffineFreeSparsity.lean` |
+| theorem 49 equality | `HStar_equality`, `thresholdDeg_equality` | `Results/EqualityExact.lean` |
+| theorem 53 local-pattern count profiles | `LocalPatternCountProfile.signChanges_le_HStar_le_expansionCost` | `Results/LocalPatternCountProfile.lean` |
 | theorem 62 affine slabs | `HStar_affineSlab_le_two`, `HStar_affineSlab_classification` | `Results/AffineSlab.lean` |
+| theorem 63 arbitrary affine-statistic sign changes | `AffineStatisticProfile.signChange_four_cases` | `Results/AffineStatisticSignChanges.lean` |
 | theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveProjectionSignChanges`, `HStar_eq_thresholdDeg_of_eq_positiveProjectionSignChanges` | `Results/PositiveProjection.lean` |
 | theorem 69 fixed-certificate and checked instances | `HStar_eq_thresholdDeg_of_weightedPolynomial`, `HStar_eq_two_of_positiveWeightedSignDeg_le_two`, `HStar_isolatedXor3` | `Results/PositiveWeightedSignDegree.lean`, `Results/WeightedFaceExact.lean` |
+| theorem 73 DNF/CNF hybrid upper bounds | `DNFJuntaCertificate.HStar_le_four_costs`, `CNFJuntaCertificate.HStar_le_four_costs` | `Results/DnfCnfHybrid.lean` |
 | theorem 82 one-bit threshold degree | `oneBitGate_thresholdDeg_trichotomy` | `Results/OneBitGateThresholdDegree.lean` |
+| theorem 83 parity-block amplification | `thresholdDeg_parityBlockXor`, `HStar_parityBlockXor_le_ptfSparsity` | `Results/ParityBlockThresholdDegree.lean` |
+| theorem 85 calibrated threshold votes | `HStar_thresholdVote_le` | `Results/CalibratedThresholdVote.lean` |
+| theorem 87 one-bit non-XOR recursion | `HStar_freshBitGate_le_succ_of_ne_xor_xnor` | `Results/OneBitNonXorGate.lean` |
+| theorem 93 raw-calibrated vote support | `HStar_thresholdVote_le_rawVoteCost`, `HStar_thresholdVote_le_exactAffineFreeVoteCost` | `Results/RawCalibratedVote.lean` |
+| theorem 109 low affine-cylinder cost exactness | `HStar_low_actc_classification` | `Results/LowAffineCylinderCost.lean` |
 | theorem 110 affine-cylinder sandwich | `thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` | `Results/AffineCylinderThreshold.lean` |
+| theorem 114 split affine-cylinder refinement | `global_split_affine_cylinder_refinement`, `splitDataOfSquarefreePair_cost` | `Results/SplitAffineCylinderRefinement.lean` |
+| theorem 120 affine-cylinder cofactor recursion | `global_affineCylinder_cofactor_recursion`, `splitAffineCylinderCost_le_oriented_zero`, `splitAffineCylinderCost_le_oriented_one` | `Results/AffineCylinderCofactorRecursion.lean` |
+| theorem 124 fresh-bit XOR target cost | `freshXor_target_bounds`, `freshXnor_target_bounds`, `HStar_freshXor_eq_of_target_eq`, `xorTargetCost_le_actc` | `Results/FreshXorTargetCost.lean` |
 | theorems 138, 141, and 144 positive-statistic gates | `HStar_le_of_positiveStatisticRawBitDegLE`, `oneBitGate_HStar_sandwich_positiveProjection`, `oneBitGate_HStar_exact_of_degree_tight_positiveProjection` | `Results/PositiveOrderOneBitGate.lean` |
+| theorem 170 positive lexicographic multigrids | `PositiveLexMultigrid.HStar_le_alternations`, `PositiveLexMultigrid.HStar_fiber_le` | `Results/PositiveMultigrid.lean` |
+| theorem 173 positive multigrid cost | `HStar_le_positiveMultigridCost`, `positiveProjectionSignChanges_le_positiveMultigridCost`, `HStar_eq_of_thresholdDeg_eq_positiveMultigridCost` | `Results/PositiveMultigrid.lean` |
+| theorem 179 two-block affine grid strips | `HStar_twoBlockAffineGridStrip_classification`, `HStar_affineGridStrip_eq_bivariateGridThresholdDeg` | `Results/TwoBlockAffineGridStrip.lean` |
 | theorem 183 finite-checker soundness | `smallDimension_exact_of_check_eq_true` | `Results/FourBitCertificateChecker.lean`, `Results/SmallDimensionExactCertificate.lean` |
-| theorem 193 positive-secant blow-up | `PositiveSecant.orientedSecantFeasible_iff_blowupFeasible` | `Polynomial/PositiveSecantBlowup.lean` |
+| theorem 186 five-bit degree-four certificate boundary | `exists_integral_scale_strict_sign_glue`, `IntegralFamilyShatteringCertificate.HStar_le`, `FiveBitDegreeFourCertificate.exact` | `Results/FiveBitDegreeFourCertificate.lean` |
+| theorem 187 five-bit degree-two certificate boundary | `K5EdgeColoring.colorDegree_eq_two_of_no_monochromaticTriangle`, `IntegralGordanCircuit.excludes_strict_solution`, `FiveBitDegreeTwoArchive.exact` | `Results/FiveBitDegreeTwoCertificate.lean` |
+| theorem 190 homogeneous slice-rank-two obstruction | `homogeneousSliceRankTwoSignRep_of_computableWithHeadsN`, `HStar_gt_of_no_homogeneousSliceRankTwoSignRep` | `Results/SliceRankTwo.lean` |
+| theorem 192 multiway sign CP-rank bound and input-count barrier | `multiwaySignCPRank_le_of_HStar_le`, `multiwaySignCPRank_le_tangent_count_of_input_bound` | `Results/MultiwaySignTensorRank.lean` |
+| theorem 193 positive-secant blow-up and obstruction | `PositiveSecant.orientedSecantFeasible_iff_blowupFeasible`, `SignedSecant.H_lt_HStar_of_no_positiveBlowup` | `Polynomial/PositiveSecantBlowup.lean`, `Results/SecantObstruction.lean` |
 | theorem 194 signed-secant obstruction | `SignedSecant.H_lt_HStar_of_no_signedBlowup_countBranchChartTypes` | `Polynomial/SignedSecantBlowup.lean`, `Polynomial/OrientedSecantSymmetry.lean`, `Results/SecantObstruction.lean` |
-| theorem 195 atomic-margin sparsification | `HStar_le_atomicSampleCount`, `HStar_real_le_atomicCondition`, `HStar_real_le_of_atomicConditionLE` | `Results/AtomicMarginSparsification.lean` |
+| theorem 195 atomic-margin sparsification | `HStar_le_atomicSampleCount`, `HStar_real_le_atomicCondition`, `HStar_real_le_atomicConditionNumber` | `Results/AtomicMarginSparsification.lean`, `Results/AtomicCondition.lean` |
 
 Lean exposes both presentations of the theorem 69 invariant.
 `positiveProjectionSignChanges` is the literal minimum ordered-image

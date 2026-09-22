@@ -71,3 +71,18 @@ The old cofactor sparse-polynomial route now factors through the affine-cylinder
 $$ H^{\ast}(f) \leq \mathrm{sactc}(f) \leq \mathrm{scafs}_{\pm}(f). $$
 
 Thus any improvement to local cylinder scoring immediately improves the recursive split search without losing any certificate already covered by split affine-free support.
+
+## Lean correspondence
+
+`Results/SplitAffineCylinder.lean` defines the two oriented split-data
+certificates and compiles each one to an ambient affine-cylinder certificate.
+`Results/AffineCylinderCofactorRecursion.lean` adds cost-preserving coordinate
+transport and defines `globalSplitAffineCylinderCost` by minimizing over all
+split coordinates. `Results/SplitAffineCylinderRefinement.lean` defines the
+matching `globalSplitAffineFreeCost` and proves the displayed chain as
+`global_split_affine_cylinder_refinement`.
+
+For a fixed pair of strict squarefree cofactor polynomials,
+`splitDataOfSquarefreePair_cost` proves exact equality between the constructed
+split affine-cylinder cost and `splitAffineFreePairCost`. Thus the global
+inequality is obtained by minimizing a pointwise, kernel-checked cost identity.
