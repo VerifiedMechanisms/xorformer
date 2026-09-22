@@ -13,6 +13,7 @@ import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.ThresholdDegreeSpan
 import HeadComplexity.Results.CountingLowerBound
+import HeadComplexity.Results.TopThresholdDegree
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.StructuralInvariances
 import HeadComplexity.Results.DummyVariables
@@ -221,6 +222,15 @@ alias theorem26_worst_case_lower_bound :=
 /-- **Theorem 26.** Universal interpolation gives the worst-case upper bound
 `W(n) ≤ 2^n - 1`. -/
 alias theorem26_worst_case_upper_bound := worstCaseHeadComplexity_le
+
+/-- **Theorem 27.** Every non-parity, non-complement truth table has a strict
+sign polynomial of degree at most `n - 1`. -/
+alias theorem27_degree_drop :=
+  thresholdDegLE_pred_of_ne_parity_complement
+
+/-- **Theorem 27.** For positive ambient dimension, threshold degree equals
+the ambient dimension exactly for parity and its output complement. -/
+alias theorem27_top_threshold_degree := thresholdDeg_eq_ambient_iff
 
 /-- **Theorem 21.** A nonzero selected cleared-feature determinant supplies a
 universal head upper bound. -/

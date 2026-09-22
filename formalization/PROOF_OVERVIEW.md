@@ -137,6 +137,12 @@ presentations are interchangeable inside Lean.
   derives the exact count, the bound $2^{35n^2H}$, density decay, existence of
   hard functions, and the finite worst-case lower bound. The Warren inequality
   itself remains the single named external analytic premise, not an axiom.
+* **Theorem 27** (`Results/TopThresholdDegree.lean`): the Boolean truth-table
+  sign vector is projected away from the top parity character. When the table
+  is neither parity nor its complement, the remaining vector keeps the strict
+  target sign and is interpolated by an explicit cube polynomial of degree at
+  most $n-1$. Consequently, ambient threshold degree $n$ occurs exactly for
+  parity and its output complement when $n\geq1$.
 * **Theorem 62** (`Results/AffineSlab.lean`): two explicit affine-ratio atoms
   give the full zero, one, or two affine-slab classification.
 * **Theorems 49 and 63** (`Results/EqualityExact.lean`,
