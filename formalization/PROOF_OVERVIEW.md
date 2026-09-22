@@ -200,6 +200,14 @@ presentations are interchangeable inside Lean.
   complement representatives. `smallDimension_exact_of_check_eq_true` proves
   end-to-end soundness through four variables. The large archived data value and
   its successful kernel check are not bundled.
+* **Theorem 187** (`Results/FiveBitDegreeTwoCertificate.lean`): the
+  triangle-free two-coloring reduction on $K_5$, exact nonnegative integral
+  Gordan-circuit soundness, and the weak wrong-edge obstruction are
+  machine-checked. Coordinate permutations, simultaneous input complement,
+  and output complement preserve the archive conclusion. A finite family of
+  integral two-head representatives therefore proves exact degree-two head
+  complexity once the absent cocircuit and tangent-cover archive supplies the
+  stated symmetry-coverage premise. No archive enumeration runs in Lean.
 * **Theorems 193 and 194** (`Polynomial/PositiveSecantBlowup.lean`,
   `Polynomial/SignedSecantBlowup.lean`,
   `Results/SecantObstruction.lean`): exact division at the secant diagonal,

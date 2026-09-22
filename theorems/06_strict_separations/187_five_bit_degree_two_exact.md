@@ -119,9 +119,23 @@ Together with the exact constant and one-head characterizations, every five-bit 
 
 ## Lean Status
 
-The cocircuit inventory, tangent cover, stress reduction, and fixed-chord
-extremizer have exact external verifiers. They are not yet Lean kernel
-certificates. Formalizing the headline requires verified polyhedral
-extreme-ray, Gordan-alternative, symmetry-orbit, and archive-reflection layers,
-not merely replaying the existing scripts. No axiom or unverified data import is
-used in the current Lean result surface.
+`Results/FiveBitDegreeTwoCertificate.lean` now formalizes the lightweight
+symbolic and reflection boundary. In particular,
+`K5EdgeColoring.colorDegree_eq_two_of_no_monochromaticTriangle` proves that
+every vertex in a triangle-free two-coloring of $K_5$ has degree two in each
+color. `IntegralGordanCircuit.excludes_strict_solution` proves the exact
+nonnegative-dependence contradiction used by a Gordan leaf, and
+`not_coordinateLocked_of_wrongEdge` proves the weak wrong-edge implication.
+
+The same module formalizes invariance under the archive's coordinate
+permutations, simultaneous input complement, and output complement. A
+`FiveBitDegreeTwoArchive` contains exact integral two-head certificates for its
+representatives and a separately named symmetry-coverage proposition. Its
+theorem `FiveBitDegreeTwoArchive.exact` derives the displayed equality from
+that proposition.
+
+The cocircuit inventory, tangent cover, and the $380$ rational certificate
+rows are not present in the repository, so the symmetry-coverage proposition
+cannot presently be discharged in Lean. No archive is embedded, no exhaustive
+kernel computation is run, and no axiom or unverified parser result enters the
+formal result surface.

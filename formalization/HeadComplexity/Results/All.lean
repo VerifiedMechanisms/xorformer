@@ -46,6 +46,7 @@ import HeadComplexity.Results.AffineCylinderCofactorRecursion
 import HeadComplexity.Results.SplitAffineCylinderRefinement
 import HeadComplexity.Results.FreshXorTargetCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
+import HeadComplexity.Results.FiveBitDegreeTwoCertificate
 
 set_option linter.style.header false
 
@@ -592,5 +593,25 @@ four-bit certificate data proves exact equality in every dimension at most
 four. The archived payload itself is not embedded by this alias. -/
 alias theorem183_checked_small_dimension_exactness :=
   smallDimension_exact_of_check_eq_true
+
+/-- **Theorem 187.** A triangle-free two-coloring of the edges of `K_5` has
+degree two in each color at every vertex. -/
+alias theorem187_k5_complementary_degree :=
+  K5EdgeColoring.colorDegree_eq_two_of_no_monochromaticTriangle
+
+/-- **Theorem 187.** An exact nonnegative integral Gordan circuit excludes
+every strictly positive solution of the corresponding finite system. -/
+alias theorem187_gordan_leaf_soundness :=
+  IntegralGordanCircuit.excludes_strict_solution
+
+/-- **Theorem 187.** A weak wrong-edge witness disproves coordinate locking. -/
+alias theorem187_wrong_edge_soundness :=
+  not_coordinateLocked_of_wrongEdge
+
+/-- **Theorem 187, conditional archive boundary.** Exact representative
+certificates and complete symmetry coverage imply five-bit degree-two
+exactness. -/
+alias theorem187_five_bit_degree_two_exact_of_archive :=
+  FiveBitDegreeTwoArchive.exact
 
 end HeadComplexity

@@ -68,6 +68,7 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 173 positive multigrid cost | `HStar_le_positiveMultigridCost`, `positiveProjectionSignChanges_le_positiveMultigridCost`, `HStar_eq_of_thresholdDeg_eq_positiveMultigridCost` | `Results/PositiveMultigrid.lean` |
 | theorem 179 two-block affine grid strips | `HStar_twoBlockAffineGridStrip_classification`, `HStar_affineGridStrip_eq_bivariateGridThresholdDeg` | `Results/TwoBlockAffineGridStrip.lean` |
 | theorem 183 finite-checker soundness | `smallDimension_exact_of_check_eq_true` | `Results/FourBitCertificateChecker.lean`, `Results/SmallDimensionExactCertificate.lean` |
+| theorem 187 five-bit degree-two certificate boundary | `K5EdgeColoring.colorDegree_eq_two_of_no_monochromaticTriangle`, `IntegralGordanCircuit.excludes_strict_solution`, `FiveBitDegreeTwoArchive.exact` | `Results/FiveBitDegreeTwoCertificate.lean` |
 | theorem 190 homogeneous slice-rank-two obstruction | `homogeneousSliceRankTwoSignRep_of_computableWithHeadsN`, `HStar_gt_of_no_homogeneousSliceRankTwoSignRep` | `Results/SliceRankTwo.lean` |
 | theorem 192 multiway sign CP-rank bound and input-count barrier | `multiwaySignCPRank_le_of_HStar_le`, `multiwaySignCPRank_le_tangent_count_of_input_bound` | `Results/MultiwaySignTensorRank.lean` |
 | theorem 193 positive-secant blow-up and obstruction | `PositiveSecant.orientedSecantFeasible_iff_blowupFeasible`, `SignedSecant.H_lt_HStar_of_no_positiveBlowup` | `Polynomial/PositiveSecantBlowup.lean`, `Results/SecantObstruction.lean` |
