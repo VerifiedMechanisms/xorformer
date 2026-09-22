@@ -170,6 +170,25 @@ presentations are interchangeable inside Lean.
 * **Theorem 110** (`Results/AffineCylinderThreshold.lean`): finite cylinder and
   affine-cylinder certificates are attained and compile into the complete
   threshold-degree, head-complexity, and certificate-cost sandwich.
+* **Theorem 114** (`Results/SplitAffineCylinder.lean`,
+  `Results/AffineCylinderCofactorRecursion.lean`,
+  `Results/SplitAffineCylinderRefinement.lean`): positive and negative split
+  data compile cofactor scores into an ambient affine-cylinder certificate.
+  Cost-preserving coordinate permutations turn the fixed first-coordinate
+  construction into invariants minimized over every coordinate. Positive
+  squarefree monomials then realize the split affine-free pair cost exactly,
+  proving the full global refinement chain.
+* **Theorem 120** (`Results/AffineCylinderCofactorRecursion.lean`): attained
+  optimal cofactor certificates are normalized by deleting vacuous cylinders,
+  then interpolated in either fresh-literal orientation. The two estimates are
+  minimized to obtain the cofactor recurrence, both at a fixed split and for
+  the coordinate-minimized invariant at every selected coordinate.
+* **Theorem 124** (`Results/FreshXorTargetCost.lean`): a normalized
+  affine-cylinder score is interpolated with its negation in both fresh-bit
+  orientations. Minimizing the exact resulting cost gives `xorTargetCost`.
+  Fresh-bit threshold-degree amplification supplies the lower endpoint,
+  output complement supplies XNOR, and equality of the endpoints gives the
+  exactness statements.
 * **Theorem 73** (`Results/DnfCnfHybrid.lean`): exact DNF and CNF certificates
   on their used-variable cubes simultaneously give the sparse-volume,
   oriented-literal, universal-junta, and width-degree bounds. Junta transport

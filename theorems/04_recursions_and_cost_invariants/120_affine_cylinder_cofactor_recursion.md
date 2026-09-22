@@ -105,3 +105,19 @@ If both cofactors have bounded affine-cylinder cost, then $f$ has bounded head c
 $$ H^{\ast}(f) \leq 1+m+2(r_0+r_1)+\min\lbrace r_0,r_1\rbrace. $$
 
 This is not intended to be tight for parity, where the exact recursion costs one head per fresh XOR bit. Its use is as a safe fallback when two cofactors have good affine-cylinder certificates but do not share enough structure for the sharper split interpolation lemmas to apply.
+
+## Lean correspondence
+
+`Results/AffineCylinderCofactorRecursion.lean` formalizes both oriented
+estimates as `splitAffineCylinderCost_le_oriented_zero` and
+`splitAffineCylinderCost_le_oriented_one`. Their minimum is
+`splitAffineCylinderCost_le_cofactorRecursion`, and
+`affineCylinder_cofactor_recursion` packages the complete fixed-coordinate
+chain.
+
+The same file transports affine-cylinder certificates through coordinate
+permutations without changing their cost. It defines
+`globalSplitAffineCylinderCost` by minimizing over every coordinate and proves
+the literal coordinate-free statement as
+`global_affineCylinder_cofactor_recursion`. Its recurrence bound is available
+for every chosen split coordinate, not merely for a distinguished first bit.

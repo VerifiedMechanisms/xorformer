@@ -42,6 +42,9 @@ import HeadComplexity.Results.LocalPatternCountProfile
 import HeadComplexity.Results.AffineStatisticSignChanges
 import HeadComplexity.Results.DnfCnfHybrid
 import HeadComplexity.Results.LowAffineCylinderCost
+import HeadComplexity.Results.AffineCylinderCofactorRecursion
+import HeadComplexity.Results.SplitAffineCylinderRefinement
+import HeadComplexity.Results.FreshXorTargetCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
 
 set_option linter.style.header false
@@ -430,6 +433,50 @@ alias theorem110_affine_cylinder_sandwich :=
 /-- **Theorem 109.** Affine-cylinder cost at most two gives the exact universal
 zero-, one-, or two-head classification. -/
 alias theorem109_low_affine_cylinder_cost := HStar_low_actc_classification
+
+/-- **Theorem 114.** Coordinate-minimized split affine-cylinder cost refines
+coordinate-minimized split affine-free support cost. -/
+alias theorem114_split_affine_cylinder_refinement :=
+  global_split_affine_cylinder_refinement
+
+/-- **Theorem 114.** A fixed pair of strict squarefree cofactor scores compiles
+to split affine-cylinder data with exactly the advertised support cost. -/
+alias theorem114_squarefree_pair_to_split_cylinder :=
+  splitDataOfSquarefreePair_cost
+
+/-- **Theorem 120.** The coordinate-minimized split affine-cylinder invariant
+obeys the cofactor recursion at every selected coordinate. -/
+alias theorem120_affine_cylinder_cofactor_recursion :=
+  global_affineCylinder_cofactor_recursion
+
+/-- **Theorem 120.** Fixed-coordinate recursion with the zero cofactor as the
+shared cylinder block. -/
+alias theorem120_cofactor_recursion_base_zero :=
+  splitAffineCylinderCost_le_oriented_zero
+
+/-- **Theorem 120.** Fixed-coordinate recursion with the one cofactor as the
+shared cylinder block. -/
+alias theorem120_cofactor_recursion_base_one :=
+  splitAffineCylinderCost_le_oriented_one
+
+/-- **Theorem 124.** Threshold degree and normalized XOR-target cost sandwich
+the head complexity of a fresh-bit XOR. -/
+alias theorem124_fresh_xor_target_bounds := freshXor_target_bounds
+
+/-- **Theorem 124.** The same sandwich holds for fresh-bit XNOR. -/
+alias theorem124_fresh_xnor_target_bounds := freshXnor_target_bounds
+
+/-- **Theorem 124.** Equality of XOR-target cost and the degree lower bound
+gives exact fresh-bit XOR head complexity. -/
+alias theorem124_fresh_xor_exactness := HStar_freshXor_eq_of_target_eq
+
+/-- **Theorem 124.** Equality of XOR-target cost and the degree lower bound
+gives exact fresh-bit XNOR head complexity. -/
+alias theorem124_fresh_xnor_exactness := HStar_freshXnor_eq_of_target_eq
+
+/-- **Theorem 124.** XOR-target cost is bounded by the stated affine-cylinder
+fallback. -/
+alias theorem124_xor_target_cost_comparison := xorTargetCost_le_actc
 
 /-- **Theorem 138.** A raw bit coupled to one positive statistic is compiled
 with its polynomial degree many heads. -/

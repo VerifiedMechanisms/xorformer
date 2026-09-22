@@ -91,3 +91,16 @@ $$ \deg_{\pm}(T)+1 \leq H^{\ast}(z\oplus T) \leq \mathrm{xactc}(T). $$
 Thus the exact fresh-bit XOR problem becomes the concrete equality problem
 
 $$ \mathrm{xactc}(T)=\deg_{\pm}(T)+1. $$
+
+## Lean correspondence
+
+`Results/FreshXorTargetCost.lean` defines the per-certificate cost
+`xorTargetCostOf` and its attained minimum `xorTargetCost`. Before charging the
+cost, `removeVacuous` deletes constant-one cylinders and proves that this does
+not change the underlying affine-cylinder certificate cost. This makes the
+positive- and negative-fresh lift bounds apply without an extra assumption.
+
+Theorems `freshXor_target_bounds` and `freshXnor_target_bounds` prove the two
+displayed sandwiches. Theorems `HStar_freshXor_eq_of_target_eq` and
+`HStar_freshXnor_eq_of_target_eq` prove endpoint exactness, while
+`xorTargetCost_le_actc` gives the comparison with affine-cylinder cost.

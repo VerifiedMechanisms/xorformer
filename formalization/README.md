@@ -60,6 +60,9 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 93 raw-calibrated vote support | `HStar_thresholdVote_le_rawVoteCost`, `HStar_thresholdVote_le_exactAffineFreeVoteCost` | `Results/RawCalibratedVote.lean` |
 | theorem 109 low affine-cylinder cost exactness | `HStar_low_actc_classification` | `Results/LowAffineCylinderCost.lean` |
 | theorem 110 affine-cylinder sandwich | `thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` | `Results/AffineCylinderThreshold.lean` |
+| theorem 114 split affine-cylinder refinement | `global_split_affine_cylinder_refinement`, `splitDataOfSquarefreePair_cost` | `Results/SplitAffineCylinderRefinement.lean` |
+| theorem 120 affine-cylinder cofactor recursion | `global_affineCylinder_cofactor_recursion`, `splitAffineCylinderCost_le_oriented_zero`, `splitAffineCylinderCost_le_oriented_one` | `Results/AffineCylinderCofactorRecursion.lean` |
+| theorem 124 fresh-bit XOR target cost | `freshXor_target_bounds`, `freshXnor_target_bounds`, `HStar_freshXor_eq_of_target_eq`, `xorTargetCost_le_actc` | `Results/FreshXorTargetCost.lean` |
 | theorems 138, 141, and 144 positive-statistic gates | `HStar_le_of_positiveStatisticRawBitDegLE`, `oneBitGate_HStar_sandwich_positiveProjection`, `oneBitGate_HStar_exact_of_degree_tight_positiveProjection` | `Results/PositiveOrderOneBitGate.lean` |
 | theorem 170 positive lexicographic multigrids | `PositiveLexMultigrid.HStar_le_alternations`, `PositiveLexMultigrid.HStar_fiber_le` | `Results/PositiveMultigrid.lean` |
 | theorem 173 positive multigrid cost | `HStar_le_positiveMultigridCost`, `positiveProjectionSignChanges_le_positiveMultigridCost`, `HStar_eq_of_thresholdDeg_eq_positiveMultigridCost` | `Results/PositiveMultigrid.lean` |
