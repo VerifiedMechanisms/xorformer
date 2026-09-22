@@ -182,6 +182,19 @@ presentations are interchangeable inside Lean.
   the finite cube, is bounded by exact affine-free multilinear support, and
   adds only over active vote features. Independently, every one-fresh-bit gate
   other than XOR and XNOR costs at most one additional head.
+* **Theorem 190** (`Results/SliceRankTwo.lean`): homogenizing the affine
+  numerator and denominator forms makes the cleared score homogeneous of
+  degree $H$. Isolating one head gives two degree $(1,H-1)$ slices, with an
+  actual positive denominator as the second linear generator. The certificate
+  includes real and scalar-extension common-zero containment, strict Boolean
+  sign preservation, and the resulting contrapositive lower bound on $H^{\ast}$.
+* **Theorem 192** (`Results/MultiwaySignTensorRank.lean`): block-local affine
+  splitting expands a cleared tangent score into one pure tensor for every
+  active assignment-block pair. Their exact count is
+  $k(k^H-(k-1)^H)$. A separate fiber expansion proves the ambient
+  $2^{n-|I_j|}$ ceiling, and the checked arithmetic comparison shows that on
+  $n\leq2H+1$ coordinates no nonempty multiway partition can exceed the
+  tangent count.
 
 ## Strict separation
 

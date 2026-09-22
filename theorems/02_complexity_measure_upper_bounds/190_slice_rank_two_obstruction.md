@@ -91,3 +91,19 @@ If $H\geq\lceil(n+1)/2\rceil$, one fixed plane spans every degree at most $H$ cu
 The slice-rank-two relaxation lies in the second secant of the reducible-form variety of type $(1,H-1)$. Relevant geometric references include [Bik and Oneto](https://arxiv.org/abs/2005.08617) and [Catalisano, Geramita, Gimigliano, Harbourne, Migliore, Nagel, and Shin](https://arxiv.org/abs/1502.00167). [Flavi, Gesmundo, Oneto, and Ventura](https://arxiv.org/abs/2509.12322) give determinantal equations for small strength and a generic-section reduction theorem for cubic slice rank two.
 
 The broader numerical hierarchy is developed in [general_hstar_scalable_research_program.md](https://github.com/karthikviswanathn/how-many-attention-heads-xor/blob/autoresearch/artifacts/calculations/general_hstar_scalable_research_program.md).
+
+## Lean Correspondence
+
+The headline obstruction is kernel-checked in `formalization/HeadComplexity/Results/SliceRankTwo.lean`.
+
+- `homogenizedClearedAffinePoly_isHomogeneous` proves degree $H$ homogeneity.
+
+- `sliceRankTwoCertificate` constructs the displayed two-slice decomposition, including degree $1$ generators and degree $(H-1)$ cofactors.
+
+- `eval_eq_zero_of_generators_eq_zero` proves the real common-zero containment, and `map_eval_eq_zero_of_generators_eq_zero` proves it after an arbitrary scalar extension, including $\mathbb C$.
+
+- `sliceRankTwoCertificate_linear₂_pos` records that the second generator is an actual positive denominator on the Boolean cube.
+
+- `homogeneousSliceRankTwoSignRep_of_computableWithHeadsN` and `HStar_gt_of_no_homogeneousSliceRankTwoSignRep` prove the strict sign realization and its contrapositive $H^{\ast}$ lower bound.
+
+The fixed-plane dimension, singular-scheme prefilter, and bounded Grassmann-atlas sections describe downstream geometric and computational refinements. They are not premises of the formalized headline obstruction.

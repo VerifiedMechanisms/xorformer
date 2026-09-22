@@ -57,6 +57,8 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 110 affine-cylinder sandwich | `thresholdDeg_le_HStar_le_actc_le_min_ctc_affineFreeSparsity` | `Results/AffineCylinderThreshold.lean` |
 | theorems 138, 141, and 144 positive-statistic gates | `HStar_le_of_positiveStatisticRawBitDegLE`, `oneBitGate_HStar_sandwich_positiveProjection`, `oneBitGate_HStar_exact_of_degree_tight_positiveProjection` | `Results/PositiveOrderOneBitGate.lean` |
 | theorem 183 finite-checker soundness | `smallDimension_exact_of_check_eq_true` | `Results/FourBitCertificateChecker.lean`, `Results/SmallDimensionExactCertificate.lean` |
+| theorem 190 homogeneous slice-rank-two obstruction | `homogeneousSliceRankTwoSignRep_of_computableWithHeadsN`, `HStar_gt_of_no_homogeneousSliceRankTwoSignRep` | `Results/SliceRankTwo.lean` |
+| theorem 192 multiway sign CP-rank bound and input-count barrier | `multiwaySignCPRank_le_of_HStar_le`, `multiwaySignCPRank_le_tangent_count_of_input_bound` | `Results/MultiwaySignTensorRank.lean` |
 | theorem 193 positive-secant blow-up and obstruction | `PositiveSecant.orientedSecantFeasible_iff_blowupFeasible`, `SignedSecant.H_lt_HStar_of_no_positiveBlowup` | `Polynomial/PositiveSecantBlowup.lean`, `Results/SecantObstruction.lean` |
 | theorem 194 signed-secant obstruction | `SignedSecant.H_lt_HStar_of_no_signedBlowup_countBranchChartTypes` | `Polynomial/SignedSecantBlowup.lean`, `Polynomial/OrientedSecantSymmetry.lean`, `Results/SecantObstruction.lean` |
 | theorem 195 atomic-margin sparsification | `HStar_le_atomicSampleCount`, `HStar_real_le_atomicCondition`, `HStar_real_le_atomicConditionNumber` | `Results/AtomicMarginSparsification.lean`, `Results/AtomicCondition.lean` |

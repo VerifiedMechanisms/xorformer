@@ -16,6 +16,8 @@ import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.StructuralInvariances
 import HeadComplexity.Results.DummyVariables
 import HeadComplexity.Results.PartitionSignRank
+import HeadComplexity.Results.MultiwaySignTensorRank
+import HeadComplexity.Results.SliceRankTwo
 import HeadComplexity.Results.PositiveProjection
 import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.FourierSupport
@@ -352,6 +354,32 @@ alias theorem141_degree_tight_gate_classification :=
 positive-projection form. -/
 alias theorem144_positive_order_gate_sandwich :=
   oneBitGate_HStar_sandwich_positiveProjection
+
+/-- **Theorem 190.** Every cleared `H`-head score with `H ≥ 2` has a
+homogeneous degree-`H` slice-rank-two strict sign realization whose second
+linear generator is an actual positive denominator. -/
+alias theorem190_slice_rank_two :=
+  homogeneousSliceRankTwoSignRep_of_computableWithHeadsN
+
+/-- **Theorem 190.** Failure of every homogeneous slice-rank-two strict sign
+realization forces head complexity strictly above `H`. -/
+alias theorem190_slice_rank_two_obstruction :=
+  HStar_gt_of_no_homogeneousSliceRankTwoSignRep
+
+/-- **Theorem 192.** Every coordinate partition of an `H`-head function has
+multiway sign CP rank at most `k * (k^H - (k-1)^H)`. -/
+alias theorem192_multiway_sign_tensor_rank :=
+  multiwaySignCPRank_le_of_HStar_le
+
+/-- **Theorem 192.** The ambient fiber expansion bounds a partition tensor by
+`2^(n - |I_j|)` for each omitted mode `j`. -/
+alias theorem192_ambient_cp_rank_ceiling :=
+  multiwaySignCPRank_le_two_pow_complement
+
+/-- **Theorem 192.** On at most `2H + 1` inputs, the ambient ceiling of every
+partition into nonempty blocks is already below the tangent count. -/
+alias theorem192_input_count_barrier :=
+  multiwaySignCPRank_le_tangent_count_of_input_bound
 
 /-- **Theorem 193.** Exact positive-secant diagonal blow-up equivalence for
 oriented Boolean-cube products. -/
