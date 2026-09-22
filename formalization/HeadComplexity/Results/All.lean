@@ -38,6 +38,7 @@ import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.LocalPatternCountProfile
 import HeadComplexity.Results.AffineStatisticSignChanges
+import HeadComplexity.Results.DnfCnfHybrid
 import HeadComplexity.Results.LowAffineCylinderCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
 
@@ -341,6 +342,23 @@ alias theorem69_ordered_projection_exactness :=
 the optimized positive-projection invariant. -/
 alias theorem69_projection_presentations_equal :=
   positiveProjectionSignChanges_eq_positiveWeightedSignDeg
+
+/-- **Theorem 73.** All four DNF bounds hold simultaneously after exact
+transport from the used-variable cube. -/
+alias theorem73_dnf_four_bounds := DNFJuntaCertificate.HStar_le_four_costs
+
+/-- **Theorem 73.** Minimum-cost form of the DNF hybrid upper bound. -/
+alias theorem73_dnf_hybrid_bound := DNFJuntaCertificate.HStar_le_hybridCost
+
+/-- **Theorem 73.** All four dual CNF bounds hold simultaneously after exact
+transport from the used-variable cube. -/
+alias theorem73_cnf_four_bounds := CNFJuntaCertificate.HStar_le_four_costs
+
+/-- **Theorem 73.** Minimum-cost form of the CNF hybrid upper bound. -/
+alias theorem73_cnf_hybrid_bound := CNFJuntaCertificate.HStar_le_hybridCost
+
+/-- **Theorem 73.** Constant Boolean functions have zero head complexity. -/
+alias theorem73_constant_branch := HStar_eq_zero_of_constant
 
 /-- **Theorem 82.** Exact threshold-degree trichotomy for an arbitrary
 one-bit gate. -/

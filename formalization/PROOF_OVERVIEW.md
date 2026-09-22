@@ -157,6 +157,11 @@ presentations are interchangeable inside Lean.
 * **Theorem 110** (`Results/AffineCylinderThreshold.lean`): finite cylinder and
   affine-cylinder certificates are attained and compile into the complete
   threshold-degree, head-complexity, and certificate-cost sandwich.
+* **Theorem 73** (`Results/DnfCnfHybrid.lean`): exact DNF and CNF certificates
+  on their used-variable cubes simultaneously give the sparse-volume,
+  oriented-literal, universal-junta, and width-degree bounds. Junta transport
+  preserves head complexity in the ambient cube, and CNF follows from the DNF
+  of falsifying cylinders together with output-complement invariance.
 * **Theorem 183** (`Results/FourBitCertificateChecker.lean`,
   `Results/SmallDimensionExactCertificate.lean`): exact integral cleared scores
   and nonnegative moment circuits feed a total Boolean checker for all four-bit

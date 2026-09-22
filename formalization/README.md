@@ -50,6 +50,7 @@ existing mathematical statements, not newly numbered theorems.
 | theorem 63 arbitrary affine-statistic sign changes | `AffineStatisticProfile.signChange_four_cases` | `Results/AffineStatisticSignChanges.lean` |
 | theorem 69 positive-projection sandwich and tightness | `thresholdDeg_le_HStar_le_positiveProjectionSignChanges`, `HStar_eq_thresholdDeg_of_eq_positiveProjectionSignChanges` | `Results/PositiveProjection.lean` |
 | theorem 69 fixed-certificate and checked instances | `HStar_eq_thresholdDeg_of_weightedPolynomial`, `HStar_eq_two_of_positiveWeightedSignDeg_le_two`, `HStar_isolatedXor3` | `Results/PositiveWeightedSignDegree.lean`, `Results/WeightedFaceExact.lean` |
+| theorem 73 DNF/CNF hybrid upper bounds | `DNFJuntaCertificate.HStar_le_four_costs`, `CNFJuntaCertificate.HStar_le_four_costs` | `Results/DnfCnfHybrid.lean` |
 | theorem 82 one-bit threshold degree | `oneBitGate_thresholdDeg_trichotomy` | `Results/OneBitGateThresholdDegree.lean` |
 | theorem 83 parity-block amplification | `thresholdDeg_parityBlockXor`, `HStar_parityBlockXor_le_ptfSparsity` | `Results/ParityBlockThresholdDegree.lean` |
 | theorem 85 calibrated threshold votes | `HStar_thresholdVote_le` | `Results/CalibratedThresholdVote.lean` |

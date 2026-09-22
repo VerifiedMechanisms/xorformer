@@ -103,3 +103,15 @@ $$ H^{\ast}(f) \leq 1+\sum_{r=2}^{\min\lbrace w,v\rbrace}\binom{v}{r}. $$
 For fixed width $w$, this is polynomial in the number of variables used by the formula. It is independent of the number of terms, unlike the volume and local-expansion bounds.
 
 If the formula is monotone, then every term has one literal sign, so the local-expansion term gives the monotone one-head-per-term bound. If every term has high width inside a small used-variable set, the volume term may be better. If the formula uses only a few variables, the junta term may be best.
+
+## Lean Correspondence
+
+The formalization is in `formalization/HeadComplexity/Results/DnfCnfHybrid.lean`.
+
+- `DNFJuntaCertificate.HStar_le_four_costs` proves all four displayed DNF bounds simultaneously, and `DNFJuntaCertificate.HStar_le_hybridCost` packages their minimum.
+
+- `CNFJuntaCertificate.HStar_le_four_costs` and `CNFJuntaCertificate.HStar_le_hybridCost` prove the dual CNF statements through the DNF of falsifying cylinders and output-complement invariance.
+
+- `HStar_eq_zero_of_constant` proves the constant branch.
+
+The certificate structures require consistent nonempty terms or clauses and require their local coordinates to be exactly the used-variable set. `DNFJuntaCertificate` and `CNFJuntaCertificate` then transport the formula through an injection into the ambient cube.
