@@ -128,6 +128,13 @@ presentations are interchangeable inside Lean.
   threshold degree at most $d$. Linear independence of the low-degree
   monomials also gives the necessary dimension inequality
   $D(n,d)\leq1+nH$.
+* **Theorem 25** (`Results/CompactThresholdCertificate.lean`): the explicit
+  modular denominator formula, its blockwise feature selection, the head and
+  residual counts, and the ten recorded nonzero residues are defined in Lean.
+  The determinant bridge derives the universal compact bound from either the
+  exact recorded-residue equality or a modular right inverse. The ten large
+  numerical matrix witnesses are not present in the repository and remain the
+  only dimension-specific premises.
 * **Theorem 26** (`Results/CountingLowerBound.lean`): a relaxed $H$-fraction
   family has exactly $1+2H(n+1)$ parameters. At every cube point, its cleared
   score is a universal parameter polynomial of degree at most $H+1$.

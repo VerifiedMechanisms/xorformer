@@ -39,6 +39,7 @@ existing mathematical statements, not newly numbered theorems.
 |---|---|---|
 | theorem 12 with restriction monotonicity from theorem 28 | `HStar_restrict_le`, `HStar_lower_bound_of_symmetric_face` | `Results/SymmetricFaceLowerBound.lean` |
 | theorem 21 determinant-span schema | `ClearedSpanCertificate.HStar_le` | `Results/DeterminantSpan.lean` |
+| theorem 25 compact determinant specialization | `HStar_le_compact_of_checked_determinant`, `HStar_le_compact_of_rightInverse` | `Results/CompactThresholdCertificate.lean` |
 | theorem 26 counting lower bound, conditional on Warren's estimate | `card_headComputableFunctions_le_warren`, `card_headComputableFunctions_le_two_pow_of_warren`, `worstCaseHeadComplexity_gt_div_of_warren` | `Results/CountingLowerBound.lean` |
 | theorem 27 top threshold-degree classification | `thresholdDeg_eq_ambient_iff`, `thresholdDegLE_pred_of_ne_parity_complement` | `Results/TopThresholdDegree.lean` |
 | theorem 30 threshold-degree span schema | `DegreeClearedSpanCertificate.HStar_le_of_ThresholdDegLE`, `DegreeClearedSpanCertificate.dimension_obstruction` | `Results/ThresholdDegreeSpan.lean` |

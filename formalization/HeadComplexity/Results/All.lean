@@ -15,6 +15,7 @@ import HeadComplexity.Results.ThresholdDegreeSpan
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.TopThresholdDegree
 import HeadComplexity.Results.DeterminantFeatureBridge
+import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.StructuralInvariances
 import HeadComplexity.Results.DummyVariables
 import HeadComplexity.Results.PartitionSignRank
@@ -241,6 +242,19 @@ alias theorem21_determinant_feature_schema :=
 cleared-feature matrices. -/
 alias theorem21_modular_right_inverse_schema :=
   ClearedFeatureDeterminantCertificate.HStar_le_of_integer_zmod_feature_rightInverse
+
+/-- **Theorem 25.** The explicit generated denominators, selected features,
+and recorded modular determinant residue imply the compact universal bound. -/
+alias theorem25_compact_bound_of_checked_determinant :=
+  HStar_le_compact_of_checked_determinant
+
+/-- **Theorem 25.** A modular right inverse for the explicit generated matrix
+is an alternative kernel witness for the same compact universal bound. -/
+alias theorem25_compact_bound_of_rightInverse :=
+  HStar_le_compact_of_rightInverse
+
+/-- **Theorem 25.** Checked head-count table through dimension twelve. -/
+alias theorem25_compact_head_counts := compactHeadCount_values
 
 /-- **Theorem 28.** Head complexity is invariant under coordinate
 permutations. -/

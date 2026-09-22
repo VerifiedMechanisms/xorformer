@@ -95,10 +95,17 @@ inverse and avoids symbolic determinant expansion. These interfaces live in
 `Atoms/ClearedFeatureMatrix.lean` and
 `Results/DeterminantFeatureBridge.lean`.
 
-The ten modular determinant computations in this note are not yet imported as
-Lean kernel certificates. The current repository records their denominator
-formula and nonzero residues in this writeup, but it does not contain compact
-LU, inverse, or pivot witnesses suitable for checking the $4096$ by $4096$
-case in Lean. Thus Lean verifies the reusable theorem-21 implication needed by
-this result, while the dimension-specific numerical premises remain an
-external exact computation.
+`Results/CompactThresholdCertificate.lean` now also formalizes the explicit
+head count, residual count, modular denominator formula, blockwise feature
+selection, and residue table from this note. The theorem
+`HStar_le_compact_of_checked_determinant` proves the displayed universal bound
+from the exact assertion that the generated determinant equals its recorded
+residue. The alternative theorem `HStar_le_compact_of_rightInverse` accepts a
+modular right inverse for the same generated matrix.
+
+The ten large numerical witnesses themselves are not present in the
+repository. In particular, there is no compact LU, inverse, pivot, or
+right-inverse payload for the $4096$ by $4096$ case. The dimension-specific
+determinant equalities therefore remain external exact computations, while all
+formula generation, positivity, nonzero-residue, and universal-bound deductions
+are kernel-checked.
