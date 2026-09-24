@@ -1,6 +1,7 @@
 import HeadComplexity.Examples.OneHead
 import HeadComplexity.Examples.TwoHeads
 import HeadComplexity.Examples.BooleanFunctions
+import HeadComplexity.Examples.ReLU
 
 set_option linter.style.header false
 
@@ -47,5 +48,8 @@ alias example10_HStar_xnor := HStar_xnor
 /-- **Example 11.** Every symmetric two-bit Boolean function has the listed exact
 head complexity. -/
 alias example11_HStar_symmFn := HStar_symmFn
+
+/-- **Example 12.** One head followed by exactly one hidden ReLU unit computes XOR. -/
+alias example12_one_head_mlp_xor := OneHeadMLPWidth_xor
 
 end HeadComplexity

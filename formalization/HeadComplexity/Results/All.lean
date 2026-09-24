@@ -48,6 +48,7 @@ import HeadComplexity.Results.FreshXorTargetCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
 import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
+import HeadComplexity.Results.ReLUExpressivity
 
 set_option linter.style.header false
 

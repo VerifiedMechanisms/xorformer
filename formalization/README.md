@@ -82,6 +82,32 @@ alternation count $C_{+}$, while `positiveWeightedSignDeg` is its minimum
 polynomial-certificate presentation. Their equality is machine-checked as
 `positiveProjectionSignChanges_eq_positiveWeightedSignDeg`.
 
+### One head with a residual ReLU MLP
+
+`Model/MLP.lean` adds a single residual ReLU MLP at the query position, with
+separate residual and hidden widths. `computableWithOneHeadMLP` and
+`OneHeadMLPWidth` describe this architecture; the attention-only `HStar` is
+unchanged.
+
+The following results formalize Theorems 2.8 and 2.9(a) of Joshua Kames-King's
+September 2026 *VerifiedMechanisms: Expressivity vs Learnability* write-up:
+
+| Result | Lean theorem | File |
+|---|---|---|
+| Exact equivalence with shallow ReLU classifiers at each width | `computableWithOneHeadMLP_iff_shallowReLUComputable` | `Atoms/ReLUHead.lean` |
+| Equality of minimum hidden widths | `OneHeadMLPWidth_eq_ShallowReLUWidth` | `Results/ReLUExpressivity.lean` |
+| One neuron per input in the smaller label class | `OneHeadMLPWidth_le_min_label_count` | `Results/ReLUExpressivity.lean` |
+| Full Boolean expressivity with at most 2ⁿ⁻¹ hidden neurons for positive n | `OneHeadMLPWidth_le_universal_boolean`, `computableWithOneHeadMLP_universal_boolean` | `Results/ReLUExpressivity.lean` |
+| Zero hidden width exactly for linear threshold functions, including constants | `OneHeadMLPWidth_eq_zero_iff_isLTF` | `Results/ReLUExpressivity.lean` |
+| XOR requires exactly one hidden neuron behind one head | `OneHeadMLPWidth_xor` | `Examples/ReLU.lean` |
+
+The construction reuses the existing affine head with residual width $n + 1$.
+Its private value channels and affine biases supply every hidden preactivation
+over a shared positive denominator. Exact ReLU point indicators then prove the
+Boolean upper bound. This does not invoke continuous universal approximation.
+The PDF's counting lower bound, threshold-circuit equivalence, and continuous
+approximation appendix are not formalized by these modules.
+
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
 
