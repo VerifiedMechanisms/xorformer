@@ -24,3 +24,50 @@ writeup/build/sync-overleaf.sh
 
 # Manifund proposal (restored from history, kept local)
 writeup/helper-docs/proposal.md
+
+# Local research artifacts carried over from autoresearch
+/artifact/calculations/quadratic-matrix-regions/
+/artifacts/autoresearch-runs/
+/artifacts/calculations/plot_weighted_pair_phase_diagram.py
+/artifacts/calculations/weighted_pair_phase_diagram.png
+/artifacts/calculations/weighted_pair_phase_diagram.svg
+
+# Local Lean research files carried over from autoresearch
+/formalization/HeadComplexity/Atoms/FracAtomNormalization.lean
+/formalization/HeadComplexity/Atoms/OrientedAffineFraction.lean
+/formalization/HeadComplexity/Atoms/QuadraticProductConstruction.lean
+/formalization/HeadComplexity/Foundation/VectorPadding.lean
+/formalization/HeadComplexity/Geometry/ActiveConstraintComponent.lean
+/formalization/HeadComplexity/Geometry/ExplicitGridRounding.lean
+/formalization/HeadComplexity/Geometry/FiniteCircuitSigns.lean
+/formalization/HeadComplexity/Geometry/FiniteRationalAtlas.lean
+/formalization/HeadComplexity/Geometry/FiniteResponseSeparation.lean
+/formalization/HeadComplexity/Geometry/LinearSignChambers.lean
+/formalization/HeadComplexity/Geometry/LinearSignFacets.lean
+/formalization/HeadComplexity/Geometry/LinearSignRegions.lean
+/formalization/HeadComplexity/Geometry/NormalizedHeadAtlas.lean
+/formalization/HeadComplexity/Geometry/NormalizedHeadPolynomialSystem.lean
+/formalization/HeadComplexity/Geometry/NormalizedResponseRows.lean
+/formalization/HeadComplexity/Geometry/PositiveCircuit.lean
+/formalization/HeadComplexity/Geometry/RationalCircuitCoefficients.lean
+/formalization/HeadComplexity/Model/SharedAttention.lean
+/formalization/HeadComplexity/Polynomial/QuadraticProductDecomposition.lean
+/formalization/HeadComplexity/Results/BlockOddBilinearRank.lean
+/formalization/HeadComplexity/Results/CircuitTransitions.lean
+/formalization/HeadComplexity/Results/EssentialPairRank.lean
+/formalization/HeadComplexity/Results/EvenQuadratic.lean
+/formalization/HeadComplexity/Results/EvenTwoHeadCharacterization.lean
+/formalization/HeadComplexity/Results/EvenTwoHeadRank.lean
+/formalization/HeadComplexity/Results/FiniteCircuitRegions.lean
+/formalization/HeadComplexity/Results/FiniteDenominatorCircuits.lean
+/formalization/HeadComplexity/Results/FiniteHeadAtlas.lean
+/formalization/HeadComplexity/Results/HeadMonotonicity.lean
+/formalization/HeadComplexity/Results/NormalizedHeadCompleteness.lean
+/formalization/HeadComplexity/Results/NormalizedHeadRealization.lean
+/formalization/HeadComplexity/Results/QuadraticBoundaryRegions.lean
+/formalization/HeadComplexity/Results/QuadraticClassification.lean
+/formalization/HeadComplexity/Results/QuadraticFiniteRegions.lean
+/formalization/HeadComplexity/Results/QuadraticHeadUpperBound.lean
+/formalization/HeadComplexity/Results/QuadraticProductBound.lean
+/formalization/HeadComplexity/Results/RawMatrixRankCounterexample.lean
+/formalization/HeadComplexity/Results/SymmetricQuadraticRegions.lean
