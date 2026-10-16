@@ -1,9 +1,8 @@
 \documentclass{article}
 
-\usepackage[dblblindworkshop]{neurips_2026}
-% \usepackage[dblblindworkshop,final]{neurips_2026}
+\usepackage[dblblindworkshop,final]{neurips_2026}
 
-\workshoptitle{Workshop for Autonomous ML Research}
+\workshoptitle{Autonomous Machine Learning Research}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -65,9 +64,20 @@
 \title{Formally Verified Autoresearch for Analyzing the Expressivity of Multi-Head Attention}
 
 \author{%
-  First Last \\
-  Organization \\
-  \texttt{name@organization} \\
+  Karthik Viswanathan$^{1,2}$\thanks{Correspondence to \href{mailto:vkarthik095@gmail.com}{\texttt{vkarthik095@gmail.com}}.} \quad
+  Plamen Dimitrov$^{1}$ \quad
+  Stefano Rocca$^{1}$ \quad
+  Sarayu Sirikonda$^{1,3}$ \\
+  $^{1}$Verified Mechanisms \quad $^{2}$MATS Research \quad
+  $^{3}$University of California, Berkeley
+}
+
+\hypersetup{
+  hidelinks,
+  pdftitle={Formally Verified Autoresearch for Analyzing the Expressivity of Multi-Head Attention},
+  pdfauthor={Karthik Viswanathan, Plamen Dimitrov, Stefano Rocca, Sarayu Sirikonda},
+  pdfsubject={NeurIPS 2026 Workshop for Autonomous Machine Learning Research},
+  pdfkeywords={mechanistic interpretability, expressivity, formal verification, autonomous research}
 }
 
 \begin{document}
@@ -75,7 +85,7 @@
 \maketitle
 
 \begin{abstract}
-Multi-head attention is a central component of the transformer architecture, yet how its expressivity depends on the number of heads remains poorly understood. We study a one-layer, attention-only transformer and define the head complexity $H^\ast(f)$ of a Boolean function $f$ as the minimum number of attention heads required to represent it. Our main result exactly characterizes head complexity $H^\ast(f)$ for symmetric Boolean functions, showing that it equals the number of times $f$ changes value between consecutive Hamming-weight levels. Beyond the symmetric setting, we prove that threshold degree provides a lower bound on head complexity and give an explicit example showing that this lower bound is not always tight. These results were discovered and formalized by a frontier model through conjecture generation, theorem proving, and machine verification, while human researchers asked the high-level questions and reviewed the generated theorems. This work also lays the groundwork for a publicly available Lean codebase intended to support agent-assisted theorem proving and formal verification in mechanistic interpretability. More broadly, this work serves as a proof of concept for a broader research program that leverages the mathematical capabilities of frontier models, grounded by formal verification, to build towards a fundamental understanding of transformer architectures.
+Multi-head attention is a central component of the transformer architecture, yet how its expressivity depends on the number of heads remains poorly understood. We study a one-layer, attention-only transformer with additive positional embeddings and define the head complexity $H^\ast(f)$ of a Boolean function $f$ as the minimum number of attention heads required to represent it. We derive an exact linear-fractional normal form for head complexity, prove a general threshold-degree lower bound, and give an explicit ten-bit function for which this bound is strict. For symmetric Boolean functions, we independently show that head complexity equals the number of times the function changes value between consecutive Hamming-weight levels, even when positional embeddings are allowed. This agrees with the concurrent characterization of \citet{hsu2026attentionbased} in a model without positional embeddings. The symmetric lower bound combines our general threshold-degree bound with the classical result of \citet{aspnes1994expressive}. These results were discovered and formalized by a frontier model through conjecture generation, theorem proving, and machine verification, while human researchers asked the high-level questions and reviewed the generated theorems. We make the Lean formalization and research traces publicly available to support agent-assisted theorem proving and formal verification in mechanistic interpretability. This work provides a proof of concept for using the capabilities of frontier models, grounded by formal verification, to develop an understanding of transformer architectures.
 \end{abstract}
 
 \noindent\textbf{Keywords:} mechanistic interpretability, expressivity, formal verification, autonomous research.
@@ -484,7 +494,7 @@ We need to understand its failure modes and how to steer it, especially for open
 \appendix
 \section{Reproducibility Statement}
 % State what is needed for others to reproduce the primary result: code and data availability, compute used, and how this relates to the verification steps described in Part 2.
-All results in this work are accompanied by an anonymized repository available at \href{https://anonymous.4open.science/r/xorformer-5747/README.md}{https://anonymous.4open.science/r/xorformer-5747/}. The natural-language theorem statements and proofs are collected in the top-level \texttt{theorems/} directory. The corresponding machine-checked Lean~4 development is contained in \texttt{formalization/}.
+All results in this work are accompanied by a public repository available at \url{https://github.com/VerifiedMechanisms/automlr}. The natural-language theorem statements and proofs are collected in the top-level \texttt{theorems/} directory. The corresponding machine-checked Lean~4 development is contained in \texttt{formalization/}. The theorem-generation and counterexample-search records are released in \texttt{system-design/rollouts/}. Build and proof-integrity checks are documented in \texttt{formalization/README.md} and \texttt{formalization/BUILDING.md}.
 
 The repository is self contained and no external datasets are required to reproduce the results. The authors did the 9.5 hour autoresearch run using a ChatGPT Pro plan. The machine-checked results in this work are done using Lean~4.31.0 and Mathlib~4.31.0. Refer to the \texttt{README.md} in the accompanying repository for detailed instructions. 
 
@@ -498,6 +508,10 @@ All theorems and their accompanying Lean formalizations were generated with \gpt
   \item[$\boxed{\checkmark}$] A human author has curated this work and verified every claim, figure, methodology detail, and reference.
   \item[$\boxed{\checkmark}$]  A human author takes full accountability for the submission as a human-authored, human-verified artifact.
 \end{itemize}
+
+\begin{ack}
+This work was supported in part by a Rapid Grant from BlueDot Impact. The grant funded AI tool subscriptions used during the Lean formalization. Karthik Viswanathan was funded by AI Safety Support (AISS) during this work. Karthik Viswanathan worked on this project as part of the MATS program, and thanks Nayara Fonseca, Paul Riechers, Adam Shai, and Dmitry Manning-Coe for productive discussions and support through the research process. We thank \href{https://talmenta.org}{Talmenta}, Jasper van de Kreeke, and Fahad Sarwar for their help with research management.
+\end{ack}
 
 \clearpage
 \renewcommand{\bibsection}{\section{References}}
