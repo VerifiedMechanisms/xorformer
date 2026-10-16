@@ -1,6 +1,6 @@
 # Proof architecture
 
-How the twelve formalized theorems and the first separation fit together.
+How the thirteen formalized theorems fit together.
 See `README.md` for the theorem→theorem→file map,
 `HeadComplexity/Results/All.lean` for a verified table of contents,
 and `BUILDING.md` to reproduce the build.
@@ -81,8 +81,34 @@ atom is realized by a head (`Atoms/FracAtomHead.lean`), so `H* = L_frac`.
   `≤` from the upper-bound spine, joined by `le_antisymm` over `Nat.find`.
 * **L4, L5, L8** (`Results/ExactFamilies.lean`): corollaries of L12 — the head complexity
   of a standard family is the number of sign changes of its profile.
-* **L10** (`Results/FractionalNormalForm.lean`), **L11** (`Results/LowComplexity.lean`): the exact normal form and
-  the level-0/1 classification, both using that every `f` is computable.
+* **L10** (`Results/FractionalNormalForm.lean`, `Results/AffineFractionNormalForm.lean`): the exact atom and affine-ratio normal forms, with matching minimum counts.
+* **L11** (`Results/LowComplexity.lean`): the level-0/1 classification.
+
+## Exact affine coefficients within Theorem 10
+
+The supporting module `Atoms/AffineFraction.lean` bundles the four coefficients
+of an affine ratio. `FracAtom.toAffineFraction` expands an atom; separate numerator and
+denominator identities prove equality of scores. `AffineFraction.realizable_iff`
+characterizes the exact image of this map, including constant denominators and
+dimension zero. Different tuples can still define the same cube function.
+
+`AffineFraction.Admissible` uses the same conditions as the writeup: positivity
+at every Boolean input, uniform denominator slopes, and uniform numerator slopes
+when the denominator is constant. `UniformSign` means all strictly positive, all
+strictly negative, or all zero. The converse reads the needed inequalities from
+the all-zero and all-one inputs, then constructs the atom's parameters.
+
+`Results/AffineFractionNormalForm.lean` completes L10 in
+`shared_score_iff_affineFraction`: exact real-valued scores are a free constant
+plus a sum of admissible ratios, one per head. The reverse construction converts
+each ratio to an atom and shares the head embeddings by concatenating their
+blocks. The threshold absorbs the constant query residual. This works for zero
+heads and zero input dimensions as well.
+
+Thresholding gives the equivalence at each head budget. Rewriting the same
+computability predicate identifies the minimum counts directly. The examples
+cover strict coefficient boundaries, zero-head constant scores, and a score
+with both admissible and inadmissible ratio representations and a free offset.
 
 ## Strict separation
 

@@ -2,7 +2,30 @@
 
 ## Statement
 
-This note gives an exact normal form for $H^{\ast}(f)$ in the model from [../../model.md](../../model.md).
+In the Boolean-input model from [../../model.md](../../model.md), the scalar scores realizable with $H$ heads are **exactly** the functions
+
+$$ \Phi(x)=c+\sum_{h=1}^{H}\frac{A_h^\top x+b_h}{C_h^\top x+d_h}, \qquad x\in\lbrace0,1\rbrace^n, $$
+
+The constant $c$ and the numerator constants $b_h$ are arbitrary. For each head:
+
+1. The denominator $C_h^\top x+d_h$ is strictly positive throughout the Boolean cube.
+2. The entries of $C_h$ are all strictly positive, all strictly negative, or all zero.
+
+The numerator is arbitrary when the denominator is nonconstant. If $C_h=0$, the entries of $A_h$ must also be all strictly positive, all strictly negative, or all zero. Call such coefficient tuples *admissible*.
+
+The correspondence preserves the entire real-valued score before thresholding, with shared token and positional embeddings and unrestricted model width. The constant $c$ absorbs the readout threshold and the constant query residual.
+
+For $H=0$, the sum is empty and $\Phi(x)=c$. For $n=0$, admissibility reduces to $d_h\gt0$.
+
+Consequently, if $L_{\mathrm{aff}}(f)$ denotes the least number of admissible ratios in a score with $f(x)=1$ exactly when $\Phi(x)\gt0$, then
+
+$$ H^{\ast}(f)=L_{\mathrm{frac}}(f)=L_{\mathrm{aff}}(f). $$
+
+Here $L_{\mathrm{frac}}$ is the equivalent atom count defined below.
+
+> **Scope.** Admissibility characterizes coefficients obtained by expanding individual heads. A cube function may have several ratio representations, so an inadmissible tuple does not rule out another admissible representation of that function.
+
+### Equivalent atom form
 
 For parameters
 
@@ -28,15 +51,19 @@ $$ f(x) = 1 \qquad \Longleftrightarrow \qquad c + \sum_{h=1}^{H} \phi_h(x) \gt 0
 
 for every $x \in \lbrace0,1\rbrace^n$. For $H = 0$, the sum is empty.
 
-Then
+The atom and affine-ratio forms agree under the coefficient map
 
-$$ H^{\ast}(f) = L_{\mathrm{frac}}(f). $$
+$$ A_{h,i}=\rho_{h,i}\bigl((\alpha_h-1)m_{h,i}+\alpha_h\delta_h\bigr), \qquad b_h=\eta_h+\sum_i\rho_{h,i}m_{h,i}, $$
 
-> **Interpretation.** The exact model-native invariant for head complexity is the minimum number of one-head linear-fractional atoms whose sum, plus a constant, sign-represents $f$. The first two levels of this hierarchy are pinned down in [011_one_head_characterization.md](011_one_head_characterization.md).
+$$ C_{h,i}=\rho_{h,i}(\alpha_h-1), \qquad d_h=\gamma_h+\sum_i\rho_{h,i}. $$
+
+A prescribed coefficient tuple is obtained by this map **if and only if** it is admissible.
+
+> **Interpretation.** Head complexity is the minimum number of admissible affine ratios whose sum, plus a constant, sign-represents $f$. The first two levels are pinned down in [011_one_head_characterization.md](011_one_head_characterization.md).
 
 ## Proof
 
-We prove the normal form in both directions.
+We prove the head-to-atom correspondence in both directions, then characterize the coefficients of each atom exactly.
 
 ### Theorem 1. Every attention head gives one atom
 
@@ -100,7 +127,7 @@ Thus every $H$-head model gives an $H$-atom representation.
 
 Now suppose we are given $H$ atoms. We construct an $H$-head model realizing their sum.
 
-If $H = 0$, the represented function is constant, and a zero-head model computes it by choosing the readout threshold on the correct side of the constant query score. So assume $H \geq 1$.
+If $H = 0$, choose $w=0$ and $\tau=-c$ to realize the constant score $c$ exactly. So assume $H \geq 1$.
 
 For each head $h$, take an independent block with orthonormal basis
 
@@ -163,10 +190,74 @@ The skip connection at the query token is orthogonal to every $o_h$, so it contr
 
 $$ w^\top r(x) - \tau = c + \sum_{h=1}^{H} \phi_h(x). $$
 
-So the model computes exactly the Boolean function represented by the atoms.
+So the model realizes the entire score represented by the atoms.
+
+### Theorem 3. Exact affine coefficients
+
+Suppress the head index and consider a single atom.
+
+**Expansion and necessity.** For a bit $x_i$, we have
+
+$$ \alpha^{x_i}=1+(\alpha-1)x_i, \qquad \alpha^{x_i}(m_i+\delta x_i)=m_i+\bigl((\alpha-1)m_i+\alpha\delta\bigr)x_i. $$
+
+Expanding the numerator and denominator separately gives the coefficient map. Since $\gamma,\rho_i,\alpha\gt0$, we have $d\gt0$. The cases $\alpha\gt1$ and $\alpha\lt1$ give the two strict orientations of $C$. In the latter case,
+
+$$ d+\sum_i C_i=\gamma+\alpha\sum_i\rho_i\gt0. $$
+
+When $\alpha=1$, we have $C_i=0$ and $A_i=\rho_i\delta$, so the numerator slopes share the sign of $\delta$.
+
+**Constructive converse.** Fix a prescribed admissible tuple $(A,b,C,d)$.
+
+Denominator positivity gives $d\gt0$ by evaluating at the all-zero input. If every $C_i\lt0$, evaluating at the all-one input also gives $d+\sum_i C_i\gt0$. Conversely, under the sign condition on $C$, these inequalities ensure positivity throughout the cube. We use them to construct the atom below.
+
+**Nonconstant denominator.** In either strict orientation, use the same inverse formulas:
+
+$$ \rho_i=\frac{C_i}{\alpha-1}, \qquad \gamma=d-\sum_i\rho_i, \qquad \delta=0, \qquad m_i=\frac{A_i}{C_i}, \qquad \eta=b-\sum_i\rho_i m_i. $$
+
+It remains to choose $\alpha$ so that $\alpha,\rho_i,\gamma\gt0$.
+
+For positive slopes, put $S=\sum_i C_i$ and $\alpha=2+S/d$. Then every $\rho_i\gt0$ and $\sum_i\rho_i=S/(1+S/d)\lt d$.
+
+For negative slopes, put $S=-\sum_i C_i$ and $\alpha=(d-S)/(2d)$. The hypothesis gives $0\leq S\lt d$, hence $0\lt\alpha\lt1$. Every $\rho_i\gt0$, and $\sum_i\rho_i=2dS/(d+S)\lt d$.
+
+Thus both constructions have $\gamma\gt0$ and produce the prescribed coefficients exactly.
+
+**Constant denominator.** Set $\alpha=1$. If the numerator slopes share a strict sign, choose $\sigma\in\lbrace-1,1\rbrace$ with $v_i=\sigma A_i\gt0$, and set
+
+$$ q=1+\frac{\sum_i v_i}{d}, \qquad \rho_i=\frac{v_i}{q}, \qquad \delta=\sigma q, \qquad m_i=0, \qquad \eta=b, \qquad \gamma=d-\sum_i\rho_i. $$
+
+Then $\rho_i\delta=A_i$, every $\rho_i\gt0$, and $\sum_i\rho_i\lt d$.
+
+If $A=C=0$, choose $\delta=0$, $m_i=0$, $\eta=b$, and $\rho_i=\gamma=d/(n+1)$. All required weights are positive and the coefficients are exact. This also covers $n=0$: there are no position weights, and $\gamma=d$, $\eta=b$.
+
+Every admissible denominator is therefore an atom denominator, which is strictly positive on the Boolean cube.
 
 ### Combining the two directions
 
-Theorem 1 shows $H^{\ast}(f) \geq L_{\mathrm{frac}}(f)$ and Theorem 2 shows $H^{\ast}(f) \leq L_{\mathrm{frac}}(f)$. Together,
+The head-to-atom constructions preserve the exact score and the number of heads. The coefficient characterization above shows that expanding each atom gives an admissible affine ratio, and every prescribed admissible tuple comes from an atom. Substituting these identities term by term gives precisely
 
-$$ H^{\ast}(f) = L_{\mathrm{frac}}(f). \qquad \blacksquare $$
+$$ \Phi(x)=c+\sum_{h=1}^{H}\frac{A_h^\top x+b_h}{C_h^\top x+d_h} $$
+
+in both directions. Thresholding at zero and minimizing the number of terms yields
+
+$$ H^{\ast}(f)=L_{\mathrm{frac}}(f)=L_{\mathrm{aff}}(f). \qquad \blacksquare $$
+
+## Different representations and strict boundaries
+
+The tuple with numerator $x_1-x_2$ and denominator $1$ is inadmissible because its numerator slopes have opposite signs. Nevertheless,
+
+$$ x_1-x_2=\frac{2x_1-2x_2}{1+x_1+x_2}, \qquad (x_1,x_2)\in\lbrace0,1\rbrace^2. $$
+
+The tuple on the right is admissible. The identity follows from $x_i^2=x_i$, so this score is exactly realizable by one atom.
+
+Denominator positivity alone is insufficient. The positive denominator $3+x_1-x_2$ has mixed slopes, and $1+x_1$ in two dimensions has partially zero slopes. Neither is an expanded atom denominator. The boundary denominator $2-x_1-x_2$ is also excluded: it vanishes at the all-one vertex.
+
+These statements concern the existing Boolean-input model. They make no claim about continuous probe inputs.
+
+## Formalization
+
+`Atoms/AffineFraction.lean` defines `AffineFraction.Admissible` directly by positivity on the Boolean cube, `UniformSign` for the denominator slopes, and `UniformSign` for the numerator slopes when the denominator is constant. It proves the coefficient characterization in `AffineFraction.realizable_iff`, using separate numerator and denominator expansion identities and a constructive converse. The public index exposes it as `theorem10_affine_coefficients`.
+
+`shared_score_iff_affineFraction` in `Results/AffineFractionNormalForm.lean` proves the exact score equivalence for the shared-embedding model, including zero heads and zero inputs. `computableWithSharedHeadsN_iff_affineFractionComputable` and `SharedHStar_eq_LaffineFrac` give the thresholded and minimum-count statements. The public index exposes them as `theorem10_affine_score_normal_form`, `theorem10_affine_per_head_count`, and `theorem10_affine_complexity`.
+
+`Examples/AffineFraction.lean` verifies all coefficient cases, dimension zero, zero-head constant scores, the strict exclusions, and the alternative representation above with an arbitrary additive constant.

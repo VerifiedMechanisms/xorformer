@@ -3,14 +3,22 @@
 Lean 4 formalization of the head-complexity results for one-layer attention. The
 definitions and theorems mirror the informal proofs in the top-level `theorems/` writeups.
 
-## Status: twelve formalized theorems and one separation counterexample
+## Status: thirteen formalized theorems
 
 Every theorem in `theorems/01_foundations_and_normal_form/` (L1–L12) is machine-checked
 for **general `n`**, with no `sorry`/`admit`, depending only on the three standard
 Lean axioms `[propext, Classical.choice, Quot.sound]` (the full build runs a
 `#print axioms` gate). `H*` is `HStar` (the least number of heads realizing `f`).
 The explicit counterexample in `theorems/02_separations_and_counterexamples/` is
-machine-checked as Theorem 13.
+machine-checked as Theorem 13. Theorem 10 characterizes exact scores as a free
+constant plus a sum of admissible affine ratios, one per head, including the
+exact coefficient conditions and their constructive converse.
+
+`AffineFraction.Admissible` follows the statement directly: the denominator is
+positive throughout the Boolean cube, its slopes have `UniformSign`, and a
+constant denominator requires numerator slopes with `UniformSign` as well.
+Here `UniformSign` means all strictly positive, all strictly negative, or all zero.
+The numerator constant is unrestricted.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -23,7 +31,7 @@ machine-checked as Theorem 13.
 | 7 | `deg±(parity) = n` | `parity_thresholdDeg` | `Results/ThresholdDegree.lean` |
 | 8 | `H*(XOR_n) = n` | `HStar_parity` | `Results/ExactFamilies.lean` |
 | 9 | weighted-sum `H* ≤ M−1`; universal `≤ 2ⁿ−1` | `HStar_le_weighted_sum`, `HStar_le_universal_boolean` | `Results/WeightedUpperBound.lean` |
-| 10 | linear-fractional normal form `H*=L_frac` | `HStar_eq_Lfrac` | `Results/FractionalNormalForm.lean` |
+| 10 | exact coefficients and score normal form; `H*=L_frac=L_aff` | `AffineFraction.realizable_iff`, `shared_score_iff_affineFraction`, `SharedHStar_eq_LaffineFrac` | `Atoms/AffineFraction.lean`, `Results/AffineFractionNormalForm.lean` (builds on `Results/FractionalNormalForm.lean`) |
 | 11 | levels 0/1: const / nonconstant LTF | `HStar_eq_zero_iff`, `HStar_eq_one_iff` | `Results/LowComplexity.lean` |
 | 12 | symmetric `H*=C(F)` (sign changes) | `HStar_symmetricFn` | `Results/SymmetricComplexity.lean` |
 | 13 | explicit strict separation `deg±<H*` | `f10_strict_separation` | `Results/StrictSeparation.lean` |

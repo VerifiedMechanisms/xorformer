@@ -3,6 +3,7 @@ import HeadComplexity.Results.ExactFamilies
 import HeadComplexity.Results.ThresholdDegree
 import HeadComplexity.Results.WeightedUpperBound
 import HeadComplexity.Results.FractionalNormalForm
+import HeadComplexity.Results.AffineFractionNormalForm
 import HeadComplexity.Results.LowComplexity
 import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.StrictSeparation
@@ -75,6 +76,20 @@ alias theorem10_shared_embedding_per_head_count :=
 
 /-- **Theorem 10.** Exact shared-embedding head complexity equals `L_frac`. -/
 alias theorem10_shared_embedding_normal_form := SharedHStar_eq_Lfrac
+
+/-- **Theorem 10.** Exact image of the atom coefficient map. -/
+alias theorem10_affine_coefficients := AffineFraction.realizable_iff
+
+/-- **Theorem 10.** Exact scores are constants plus sums of
+admissible affine ratios, with one ratio per head. -/
+alias theorem10_affine_score_normal_form := shared_score_iff_affineFraction
+
+/-- **Theorem 10.** Thresholding preserves each head budget. -/
+alias theorem10_affine_per_head_count :=
+  computableWithSharedHeadsN_iff_affineFractionComputable
+
+/-- **Theorem 10.** Head complexity is the least ratio count. -/
+alias theorem10_affine_complexity := SharedHStar_eq_LaffineFrac
 
 /-- **Theorem 11.** `H* = 0` iff `f` is constant … -/
 alias theorem11_level0 := HStar_eq_zero_iff

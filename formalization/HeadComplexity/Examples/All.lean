@@ -1,4 +1,5 @@
 import HeadComplexity.Examples.OneHead
+import HeadComplexity.Examples.AffineFraction
 import HeadComplexity.Examples.TwoHeads
 import HeadComplexity.Examples.BooleanFunctions
 

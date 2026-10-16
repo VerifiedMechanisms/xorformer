@@ -12,7 +12,7 @@ For nearby literature and context, see [literature_survey.md](literature_survey.
 
 ## Current Status
 
-The current main-branch theorem stack uses the numbered foundation files in `theorems/01_foundations_and_normal_form/`, through Theorem 12. The first explicit counterexample is Theorem 13 in `theorems/02_separations_and_counterexamples/`.
+The foundation files in `theorems/01_foundations_and_normal_form/` contain Theorems 1–12, including the exact affine coefficient characterization in Theorem 10. The first explicit counterexample is Theorem 13 in `theorems/02_separations_and_counterexamples/`.
 
 These notes give:
 
@@ -22,6 +22,7 @@ These notes give:
 - the threshold-degree lower-bound route,
 - a constructive weighted-sum upper-bound route,
 - an exact linear-fractional normal form for head complexity,
+- an exact characterization of the affine coefficient tuples produced by one head,
 - an exact characterization of the zero-head and one-head levels,
 - an explicit function for which threshold degree is strictly smaller than head complexity.
 
@@ -163,19 +164,24 @@ In particular:
 
 ### Theorem 10. Exact linear-fractional normal form
 
-Define a one-head atom to be a function of the form
+The scalar scores realizable with $H$ heads are exactly
 
-$$ \phi(x) = \frac{ \eta + \sum_{i=1}^{n} \rho_i \alpha^{x_i}(m_i + \delta x_i) }{ \gamma + \sum_{i=1}^{n} \rho_i \alpha^{x_i} }, $$
+$$ \Phi(x)=c+\sum_{h=1}^{H}\frac{A_h^\top x+b_h}{C_h^\top x+d_h}, $$
 
-where
+The constant $c$ and the numerator constants $b_h$ are arbitrary. For each head:
 
-$$ \gamma \gt 0, \qquad \rho_1, \ldots, \rho_n \gt 0, \qquad \alpha \gt 0. $$
+1. The denominator $C_h^\top x+d_h$ is strictly positive throughout the Boolean cube.
+2. The entries of $C_h$ are all strictly positive, all strictly negative, or all zero.
 
-Let $L_{\mathrm{frac}}(f)$ be the least $H$ such that $f$ is computed by thresholding a constant plus a sum of $H$ such atoms. Then
+The numerator is arbitrary when the denominator is nonconstant. If $C_h=0$, the entries of $A_h$ must also be all strictly positive, all strictly negative, or all zero. Call such coefficient tuples *admissible*.
 
-$$ H^{\ast}(f) = L_{\mathrm{frac}}(f). $$
+These are exactly the coefficients obtained by expanding a one-head atom; different tuples may represent the same cube function. The correspondence preserves the entire real-valued score, with shared embeddings and unrestricted width. The empty sum gives the zero-head constant scores.
 
-> **Interpretation.** The exact model-native invariant is the minimum number of one-head linear-fractional atoms needed before the final threshold.
+Let $L_{\mathrm{frac}}(f)$ be the least number of atoms whose sum plus a constant sign-represents $f$, and let $L_{\mathrm{aff}}(f)$ count admissible affine ratios in the same way. Then
+
+$$ H^{\ast}(f)=L_{\mathrm{frac}}(f)=L_{\mathrm{aff}}(f). $$
+
+> **Interpretation.** One head corresponds to one admissible affine ratio, and the classifier is $f(x)=\mathbf{1}[\Phi(x)\gt0]$.
 
 **Proof.** [theorems/01_foundations_and_normal_form/010_linear_fractional_normal_form.md](theorems/01_foundations_and_normal_form/010_linear_fractional_normal_form.md)
 
@@ -260,7 +266,7 @@ The current dependency structure is:
 7. Theorem 7 computes the threshold degree of parity exactly.
 8. Theorem 8 combines Theorems 6 and 7 with an explicit $n$-head construction for parity.
 9. Theorem 9 gives a broader constructive upper-bound route by interpolating over the image of a positive weighted sum.
-10. Theorem 10 gives the exact linear-fractional normal form for $H^{\ast}$.
+10. Theorem 10 gives the exact affine-ratio normal form, including the coefficient characterization and constructive converse.
 11. Theorem 11 uses Theorem 10 to characterize the zero-head and one-head levels exactly.
 12. Theorem 12 uses Theorems 6 and 10 to characterize every symmetric Boolean function exactly.
 13. Theorem 13 uses Theorem 10 to clear two heads, then applies a five-dimensional antipodal rank obstruction to obtain a strict separation from threshold degree.

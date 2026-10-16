@@ -5,12 +5,14 @@ import HeadComplexity.Results.LowComplexity
 set_option linter.style.header false
 
 /-!
-# Theorem 10 — `H*(f) = L_frac(f)` (capstone).
+# Theorem 10. Atom form: `H*(f) = L_frac(f)`.
 
 Combining the two directions (`fracComputable_of_computable` and
 `computable_of_fracComputable`) gives, for every `H`, that computability with `H`
 heads is equivalent to representability by `H` linear-fractional atoms; hence the
-two least-counts coincide.
+two least-counts coincide. `Results.AffineFractionNormalForm` adds the exact
+coefficient characterization and the explicit affine-ratio score form of the
+same theorem.
 -/
 
 namespace HeadComplexity

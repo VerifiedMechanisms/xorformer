@@ -46,6 +46,13 @@ dependency order between them, in [`theorems.md`](theorems.md).
   every Boolean function at most $2^n - 1$.
 
 **Exact answers.**
+
+[Theorem 10](theorems/01_foundations_and_normal_form/010_linear_fractional_normal_form.md) gives the exact scalar score normal form
+
+$$ \Phi(x)=c+\sum_{h=1}^{H}\frac{A_h^\top x+b_h}{C_h^\top x+d_h}. $$
+
+The theorem characterizes exactly which coefficient tuples are admissible. Every head gives one admissible ratio, and every such sum is realizable with the same head count. The classifier is $f(x)=\mathbf{1}[\Phi(x)\gt0]$, and head complexity is the minimum number of ratios in such a sum.
+
 - *Parity is the extremal case.* $H^{\ast}(\mathrm{XOR}_n) = n$: in this model, parity needs
   exactly one head per input bit. The lower bound comes from $\deg _{\pm}(\mathrm{PARITY}_n) = n$, the upper bound from an explicit $n$-head construction.
 - A first split inside the symmetric functions: monotone thresholds have complexity $1$,
