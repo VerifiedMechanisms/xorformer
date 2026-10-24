@@ -27,6 +27,7 @@ import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.AtomicMarginSparsification
 import HeadComplexity.Results.AtomicCondition
+import HeadComplexity.Results.AtomicMarginRefinement
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.ParityBlockThresholdDegree
@@ -324,6 +325,21 @@ alias theorem195_atomic_margin_sparsification :=
 condition-number upper bound. -/
 alias theorem195_atomic_condition_number :=
   HStar_real_le_atomicConditionNumber
+
+/-- **Theorem 195 refinement.** The same normalized certificate needs at most
+`ceil (2 * (n + 1) * (scale / margin)^2)` heads. -/
+alias theorem195_atomic_margin_sample_bound_refined :=
+  AtomicMarginCertificate.HStar_le_refinedAtomicSampleCount
+
+/-- **Theorem 195 refinement.** The real-valued certificate bound has
+absolute constant `3`. -/
+alias theorem195_atomic_margin_sparsification_refined :=
+  AtomicMarginCertificate.HStar_real_le_atomicCondition_refined
+
+/-- **Theorem 195 refinement.** The literal infimum bound has absolute
+constant `3`, without an attainment assumption. -/
+alias theorem195_atomic_condition_number_refined :=
+  HStar_real_le_atomicConditionNumber_refined
 
 /-- **Theorem 62.** Every affine slab has head complexity at most two. -/
 alias theorem62_affine_slab_upper_bound := HStar_affineSlab_le_two

@@ -90,25 +90,21 @@ private theorem centered_coordinate_subgaussian
     HasSubgaussianMGF
       (fun omega : Fin m → J ↦
         y * (finiteProbabilityAverage mu v k - v (omega i) k))
-      4 (Measure.pi (fun _ : Fin m ↦ mu)) := by
+      1 (Measure.pi (fun _ : Fin m ↦ mu)) := by
   have hsg := hasSubgaussianMGF_of_mem_Icc_of_integral_eq_zero
     (X := fun omega : Fin m → J ↦
       y * (finiteProbabilityAverage mu v k - v (omega i) k))
-    (a := (-2 : ℝ)) (b := (2 : ℝ))
+    (a := y * finiteProbabilityAverage mu v k - 1)
+    (b := y * finiteProbabilityAverage mu v k + 1)
     (measurable_of_finite _).aemeasurable (by
       filter_upwards [] with omega
-      have hu := finiteProbabilityAverage_mem_Icc mu v hv k
-      have habsu : |finiteProbabilityAverage mu v k| ≤ 1 := abs_le.mpr hu
-      have hdiff :
-          |finiteProbabilityAverage mu v k - v (omega i) k| ≤ 2 :=
-        (abs_sub _ _).trans (by linarith [hv (omega i) k])
-      have hprod :
-          |y * (finiteProbabilityAverage mu v k - v (omega i) k)| ≤ 2 := by
+      have hprod : |y * v (omega i) k| ≤ 1 := by
         rw [abs_mul, hy, one_mul]
-        exact hdiff
-      exact abs_le.mp hprod)
+        exact hv (omega i) k
+      constructor <;> nlinarith [abs_le.mp hprod])
     (centered_coordinate_integral mu v m y i k)
-  norm_num at hsg
+  norm_num [show y * finiteProbabilityAverage mu v k + 1 -
+    (y * finiteProbabilityAverage mu v k - 1) = 2 by ring] at hsg
   exact hsg
 
 private theorem one_coordinate_tail
@@ -121,7 +117,7 @@ private theorem one_coordinate_tail
       {omega | (m : ℝ) * epsilon ≤
         ∑ i : Fin m, y k *
           (finiteProbabilityAverage mu v k - v (omega i) k)} ≤
-      Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) := by
+      Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) := by
   let productMeasure : Measure (Fin m → J) :=
     Measure.pi (fun _ : Fin m ↦ mu)
   let centered : Fin m → (Fin m → J) → ℝ :=
@@ -133,11 +129,11 @@ private theorem one_coordinate_tail
       (X := fun _i j ↦ y k * (finiteProbabilityAverage mu v k - v j k))
       (fun _ ↦ (measurable_of_finite _).aemeasurable)
   have hsub : ∀ i : Fin m,
-      HasSubgaussianMGF (centered i) 4 productMeasure := by
+      HasSubgaussianMGF (centered i) 1 productMeasure := by
     intro i
     exact centered_coordinate_subgaussian mu v hv m (y k) (hy k) i k
   have htail := HasSubgaussianMGF.measure_sum_ge_le_of_iIndepFun
-    hindep (c := fun _ : Fin m ↦ 4) (s := Finset.univ)
+    hindep (c := fun _ : Fin m ↦ 1) (s := Finset.univ)
       (fun i _ ↦ hsub i) (ε := (m : ℝ) * epsilon)
       (mul_nonneg (Nat.cast_nonneg _) hepsilon)
   change productMeasure.real
@@ -146,25 +142,24 @@ private theorem one_coordinate_tail
     productMeasure.real
         {omega | (m : ℝ) * epsilon ≤ ∑ i : Fin m, centered i omega} ≤
       Real.exp (-((m : ℝ) * epsilon) ^ 2 /
-        (2 * (∑ _i : Fin m, (4 : NNReal) : NNReal))) := htail
-    _ = Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) := by
+        (2 * (∑ _i : Fin m, (1 : NNReal) : NNReal))) := htail
+    _ = Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) := by
       congr 1
       push_cast
       simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin,
         nsmul_eq_mul]
       field_simp
-      ring
 
 /-- Simultaneous one-sided empirical approximation on a finite coordinate
 set. The displayed exponential condition is exactly the union-bound budget. -/
-theorem exists_empirical_oneSided_approximation
+theorem exists_empirical_oneSided_approximation_sharp
     {J K : Type*} [Finite J] [MeasurableSpace J]
     [MeasurableSingletonClass J] (mu : Measure J) [IsProbabilityMeasure mu]
     [Fintype K] (v : J → K → ℝ) (hv : ∀ j k, |v j k| ≤ 1)
     (m : ℕ) (hm : 0 < m) (y : K → ℝ) (hy : ∀ k, |y k| = 1)
     (epsilon : ℝ) (hepsilon : 0 ≤ epsilon)
     (hbudget : (Fintype.card K : ℝ) *
-      Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) < 1) :
+      Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) < 1) :
     ∃ sample : Fin m → J, ∀ k : K,
       (∑ i : Fin m, y k *
         (finiteProbabilityAverage mu v k - v (sample i) k)) <
@@ -180,17 +175,17 @@ theorem exists_empirical_oneSided_approximation
         (finiteProbabilityAverage mu v k - v (sample i) k)}
   have hbad : productMeasure.real (⋃ k, bad k) ≤
       (Fintype.card K : ℝ) *
-        Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) := by
+        Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) := by
     calc
       productMeasure.real (⋃ k, bad k) ≤
           ∑ k : K, productMeasure.real (bad k) :=
         measureReal_iUnion_fintype_le bad
-      _ ≤ ∑ _k : K, Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) := by
+      _ ≤ ∑ _k : K, Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) := by
         apply Finset.sum_le_sum
         intro k _
         exact one_coordinate_tail mu v hv m hm y hy k epsilon hepsilon
       _ = (Fintype.card K : ℝ) *
-          Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) := by simp
+          Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) := by simp
   by_contra hsample
   push Not at hsample
   have hall : (⋃ k, bad k) = Set.univ :=
@@ -199,12 +194,32 @@ theorem exists_empirical_oneSided_approximation
       obtain ⟨k, hk⟩ := hsample sample
       exact ⟨k, hk⟩
   have hone : (1 : ℝ) ≤ (Fintype.card K : ℝ) *
-      Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) := by
+      Real.exp (-((m : ℝ) * epsilon ^ 2) / 2) := by
     calc
       (1 : ℝ) = productMeasure.real Set.univ :=
         (probReal_univ (μ := productMeasure)).symm
       _ = productMeasure.real (⋃ k, bad k) := by rw [hall]
       _ ≤ _ := hbad
   linarith
+
+/-- The original, weaker budget remains available to existing callers. -/
+theorem exists_empirical_oneSided_approximation
+    {J K : Type*} [Finite J] [MeasurableSpace J]
+    [MeasurableSingletonClass J] (mu : Measure J) [IsProbabilityMeasure mu]
+    [Fintype K] (v : J → K → ℝ) (hv : ∀ j k, |v j k| ≤ 1)
+    (m : ℕ) (hm : 0 < m) (y : K → ℝ) (hy : ∀ k, |y k| = 1)
+    (epsilon : ℝ) (hepsilon : 0 ≤ epsilon)
+    (hbudget : (Fintype.card K : ℝ) *
+      Real.exp (-((m : ℝ) * epsilon ^ 2) / 8) < 1) :
+    ∃ sample : Fin m → J, ∀ k : K,
+      (∑ i : Fin m, y k *
+        (finiteProbabilityAverage mu v k - v (sample i) k)) <
+      (m : ℝ) * epsilon := by
+  apply exists_empirical_oneSided_approximation_sharp mu v hv m hm y hy
+    epsilon hepsilon
+  apply lt_of_le_of_lt _ hbudget
+  apply mul_le_mul_of_nonneg_left _ (Nat.cast_nonneg _)
+  apply Real.exp_le_exp.mpr
+  nlinarith [mul_nonneg (Nat.cast_nonneg m) (sq_nonneg epsilon)]
 
 end HeadComplexity
