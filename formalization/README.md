@@ -17,6 +17,15 @@ theorem 12 and a polynomial-certificate presentation of the positive-projection
 sandwich and exactness result in theorem 69. These are Lean formalizations of
 existing mathematical statements, not newly numbered theorems.
 
+The 38-note later-result selection now has a machine-readable manifest and five
+normalized-contract spot checks using the pinned `theorem-subsumption` tool.
+The review preserves the selected set, while the certified spot checks separate
+logical subsumption from contextual specialization and incomparability. See the
+[audit report](../artifacts/theorem-subsumption/README.md), its
+[`selection.json`](../artifacts/theorem-subsumption/selection.json), and the
+kernel-checked comparison module
+[`HeadComplexity/SelectionSubsumption.lean`](HeadComplexity/SelectionSubsumption.lean).
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |

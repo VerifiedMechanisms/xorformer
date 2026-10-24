@@ -14,5 +14,10 @@ name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.31.0"
 
+[[require]]
+name = "theorem-subsumption"
+git = "https://github.com/pevogam/theorem-subsumption.git"
+rev = "112d2d977cb3c1daa452a9ed6db6561fd025f128"
+
 [[lean_lib]]
 name = "HeadComplexity"
