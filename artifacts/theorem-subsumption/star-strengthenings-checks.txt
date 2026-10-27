@@ -1,0 +1,25 @@
+Preservation baseline: 50b66da5bbcfe1d7dd98c5e403874cc5089d7e98
+Lean toolchain: leanprover/lean4:v4.31.0
+Theorem-subsumption pin: 112d2d977cb3c1daa452a9ed6db6561fd025f128
+Allowed axioms: propext, Classical.choice, Quot.sound
+
+bash artifacts/scripts/validate_star_strengthenings.sh
+  PASS: focused build and placeholder rejection
+  PASS: 391 theorem declarations audited across 12 modules
+  PASS: all 135 baseline Lean source files preserved; All.lean only gains lines
+  PASS: StarUpperBoundSubsumption: 3 strict comparisons
+  PASS: UniversalSublinearSubsumption: 3 strict comparisons
+  PASS: UniversalLinearSavingSubsumption: 2 strict comparisons
+  Every comparison: requirements PROVED/PROVED, guarantees PROVED/REFUTED
+  Every classification: source strictly subsumes target under this alignment
+
+bash artifacts/scripts/validate.sh
+  PASS: build of all 146 tracked Lean modules
+  PASS: placeholder rejection
+  PASS: axiom audit of all 3,637 theorem declarations
+
+All tracked Markdown, excluding .claude skill internals:
+  PASS: static lint and KaTeX, 220 files, 12,896 math spans
+
+git diff --check
+  PASS
