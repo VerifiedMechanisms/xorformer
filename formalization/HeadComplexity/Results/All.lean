@@ -53,6 +53,8 @@ import HeadComplexity.Results.FreshXorTargetCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
 import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
+import HeadComplexity.Results.StarDegreeUpperBound
+import HeadComplexity.Results.UniversalLinearSaving
 
 set_option linter.style.header false
 
@@ -693,5 +695,27 @@ certificates and complete symmetry coverage imply five-bit degree-two
 exactness. -/
 alias theorem187_five_bit_degree_two_exact_of_archive :=
   FiveBitDegreeTwoArchive.exact
+
+/-- **Theorem 198, strengthening theorem 6.** Threshold degree and the
+degree-sensitive star budget sandwich minimum head complexity. -/
+alias theorem198_degree_head_sandwich := thresholdDeg_le_HStar_le_starDegreeBound
+
+/-- **Theorem 198.** A quadratic threshold function needs at most `n` heads. -/
+alias theorem198_quadratic_upper_bound := HStar_le_ambient_of_quadratic
+
+/-- **Theorem 198, strengthening theorem 9.** Every positive-dimensional
+truth table needs at most `11 * 2^n / n` heads. -/
+alias theorem198_universal_linear_saving := HStar_real_le_eleven_mul_two_pow_div
+
+/-- **Theorem 198.** Preserve all earlier universal endpoints and add the
+linear saving with downward integer rounding. -/
+alias theorem198_universal_integer_bound := HStar_le_universalElevenStarBound
+
+/-- **Theorem 198.** Worst-case form of the universal linear saving. -/
+alias theorem198_worst_case_upper_bound :=
+  worstCaseHeadComplexity_real_le_eleven_mul_two_pow_div
+
+/-- **Theorem 198.** Worst-case cost divided by truth-table size tends to zero. -/
+alias theorem198_normalized_worst_case_limit := tendsto_worstCaseHeadComplexity_div_two_pow
 
 end HeadComplexity

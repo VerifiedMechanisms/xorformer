@@ -41,6 +41,17 @@ strictly above one. Five new theorem-subsumption comparisons check the
 strengthenings, with semantic bridges and strictness proofs on genuine data.
 `Results/All.lean` exports the new results alongside every existing declaration.
 
+The [monomial-star research](../theorems/02_complexity_measure_upper_bounds/198_monomial_star_universal_head_bound.md)
+strengthens the core theorems 6 and 9. Every Boolean function on a positive
+number of inputs now satisfies $H^{\ast}(f)\leq 11\cdot2^n/n$. A threshold-degree
+certificate of degree at most $d$ gives the head budget
+$\sum_{r=0}^{d-1}\binom{n-1}{r}$ for $n\gt0$, including $n$ heads for quadratics.
+Eight strict theorem-subsumption comparisons cover the original universal bound,
+the degree lower-bound theorem, the support-count bound, and the intermediate
+universal refinements. The [certification report](../artifacts/theorem-subsumption/star-strengthenings.md)
+records exact alignments, model bridges, counterexamples, and reproduction commands.
+All existing declarations and the attention model remain unchanged.
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |
