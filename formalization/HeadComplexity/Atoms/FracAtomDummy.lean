@@ -129,7 +129,8 @@ private theorem liftDummy_wt_active (phi : FracAtom m) (e : Fin m ↪ Fin n)
     (epsilon : ℝ) (hepsilon : 0 < epsilon) (y : Fin n → Bool) (i : Fin m) :
     (phi.liftDummy e epsilon hepsilon).wt y (e i) =
       phi.wt (pullBitsAlong e y) i := by
-  simp [FracAtom.wt, liftDummy, pullBitsAlong]
+  simp only [FracAtom.wt, liftDummy, pullBitsAlong, dummyRhoAt_active]
+  rfl
 
 private theorem liftDummy_wt_fixed (phi : FracAtom m) (e : Fin m ↪ Fin n)
     (epsilon : ℝ) (hepsilon : 0 < epsilon) (y : Fin n → Bool)
@@ -166,7 +167,8 @@ theorem liftDummy_eval (phi : FracAtom m) (e : Fin m ↪ Fin n)
         ((phi.liftDummy e epsilon hepsilon).m (e i) +
           if y (e i) then (phi.liftDummy e epsilon hepsilon).δ else 0) = _
     rw [liftDummy_wt_active]
-    simp [liftDummy, pullBitsAlong]
+    simp only [liftDummy, pullBitsAlong, dummyM_active]
+    rfl
   have hfixedDenom :
       (∑ j ∈ (embeddingFace e).fixedSet,
         (phi.liftDummy e epsilon hepsilon).wt y j) =

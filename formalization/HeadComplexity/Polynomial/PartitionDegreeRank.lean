@@ -125,7 +125,7 @@ theorem mem_subsetsUpToDegree_iff (S : Finset ι) (H : ℕ) :
     S ∈ subsetsUpToDegree ι H ↔ S.card ≤ H := by
   classical
   unfold subsetsUpToDegree
-  rw [Finset.mem_disjiUnion]
+  erw [Finset.mem_disjiUnion]
   constructor
   · rintro ⟨k, hk, hS⟩
     have hklt : k < min H (Fintype.card ι) + 1 := Finset.mem_range.mp hk
@@ -145,7 +145,7 @@ theorem card_subsetsUpToDegree (ι : Type*) [Fintype ι] (H : ℕ) :
         (Fintype.card ι).choose k := by
   classical
   unfold subsetsUpToDegree
-  rw [Finset.card_disjiUnion]
+  erw [Finset.card_disjiUnion]
   apply Finset.sum_congr rfl
   intro k _
   exact Finset.card_powersetCard k Finset.univ

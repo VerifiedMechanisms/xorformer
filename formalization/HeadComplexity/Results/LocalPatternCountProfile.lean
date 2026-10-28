@@ -380,7 +380,7 @@ def rightFreeFace (fixed : Bool) : CoordFace m (m + m) where
     rightBit ((leftFreeFace fixed).apply z) i = fixed := by
   rw [rightBit, CoordFace.apply]
   simp only [leftFreeFace]
-  rw [dif_neg]
+  erw [dif_neg]
   rintro ⟨j, hj⟩
   have hval := congrArg Fin.val hj
   simp at hval
@@ -390,7 +390,7 @@ def rightFreeFace (fixed : Bool) : CoordFace m (m + m) where
     leftBit ((rightFreeFace fixed).apply z) i = fixed := by
   rw [leftBit, CoordFace.apply]
   simp only [rightFreeFace]
-  rw [dif_neg]
+  erw [dif_neg]
   rintro ⟨j, hj⟩
   have hval := congrArg Fin.val hj
   simp at hval

@@ -74,7 +74,8 @@ def permute (phi : FracAtom n) (sigma : Equiv.Perm (Fin n)) : FracAtom n where
 @[simp] theorem permute_wt (phi : FracAtom n) (sigma : Equiv.Perm (Fin n))
     (x : Fin n → Bool) (i : Fin n) :
     (phi.permute sigma).wt x (sigma i) = phi.wt (permuteBits sigma x) i := by
-  simp [FracAtom.wt, permute, permuteBits]
+  simp only [FracAtom.wt, permute, permuteBits, Equiv.symm_apply_apply]
+  rfl
 
 @[simp] theorem permute_eval (phi : FracAtom n) (sigma : Equiv.Perm (Fin n))
     (x : Fin n → Bool) :
@@ -96,7 +97,8 @@ def permute (phi : FracAtom n) (sigma : Equiv.Perm (Fin n)) : FracAtom n where
         (phi.m i + if permuteBits sigma x i then phi.δ else 0))
       (fun j ↦ (phi.permute sigma).wt x j *
         ((phi.permute sigma).m j + if x j then (phi.permute sigma).δ else 0))
-      (fun i ↦ by rw [permute_wt]; simp [permute, permuteBits])).symm
+      (fun i ↦ by rw [permute_wt]; simp only [permute, permuteBits,
+        Equiv.symm_apply_apply]; rfl)).symm
   unfold FracAtom.eval
   rw [hden, hnum]
   rfl

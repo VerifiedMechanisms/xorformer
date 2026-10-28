@@ -295,7 +295,7 @@ theorem f10Q_ne_zero (z : Fin 10 → Bool) : f10Q z ≠ 0 := by
     change @Fin.addCases 5 5 (fun _ ↦ Bool)
       (fun i : Fin 5 ↦ z (Fin.castAdd 5 i))
       (fun j : Fin 5 ↦ z (Fin.natAdd 5 j)) = z
-    exact Fin.addCases_castAdd_natAdd (m := 5) (n := 5) z
+    exact funext (Fin.addCases_castAdd_natAdd (m := 5) (n := 5) z)
   simpa only [hjoin] using f10Q_join_ne_zero (f10Left z) (f10Right z)
 
 private theorem f10Q_antipode_left (x y : FiveBits) :

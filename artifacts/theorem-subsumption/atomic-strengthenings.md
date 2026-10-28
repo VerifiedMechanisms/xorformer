@@ -120,7 +120,7 @@ Context-free reverse refutations may use scalar tuples that do not satisfy those
 
 ## Reproduction
 
-Use the pinned Lean 4.31.0, Mathlib v4.31.0, and theorem-subsumption dependency. From the repository root:
+Use the pinned Lean 4.35.0, Mathlib v4.35.0, and theorem-subsumption dependency. From the repository root:
 
 ```sh
 bash artifacts/scripts/validate_atomic_strengthenings.sh

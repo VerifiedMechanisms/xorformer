@@ -14,9 +14,9 @@ proof architecture see [`PROOF_OVERVIEW.md`](PROOF_OVERVIEW.md).
 
 | Component | Version | Where selected |
 |-----------|----------------|--------------|
-| Lean      | `leanprover/lean4:v4.31.0` | `lean-toolchain` |
+| Lean      | `leanprover/lean4:v4.35.0` | `lean-toolchain` |
 | Lake      | `5.0.0-src` (ships with the toolchain) | — |
-| mathlib   | `v4.31.0` (`leanprover-community/mathlib4`) | `lakefile.toml` → `[[require]]`, locked in `lake-manifest.json` |
+| mathlib   | `v4.35.0` (`leanprover-community/mathlib4`) | `lakefile.toml` → `[[require]]`, locked in `lake-manifest.json` |
 | elan      | Current stable (any recent version works) | official `elan.lean-lang.org` installer |
 
 `elan` installs the exact Lean/Lake the toolchain file requests, so you do **not**
