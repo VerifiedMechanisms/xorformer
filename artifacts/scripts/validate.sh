@@ -70,7 +70,7 @@ for source_file in "${tracked_lean_files[@]}"; do
 done
 
 echo "=== Building ${#library_targets[@]} tracked Lean library sources ==="
-if lake build "${library_targets[@]}"; then
+if lake --wfail build "${library_targets[@]}"; then
   echo "BUILD_RC=0"
 else
   build_rc=$?

@@ -90,7 +90,7 @@ theorem parity_ThresholdDegLE (n : ℕ) : ThresholdDegLE (PARITY n) n := by
 theorem thresholdDeg_parity (n : ℕ) : thresholdDeg (PARITY n) = n := by
   classical
   have hex : ∃ d, ThresholdDegLE (PARITY n) d := ⟨n, parity_ThresholdDegLE n⟩
-  rw [thresholdDeg, dif_pos hex]
+  rw [thresholdDeg, dite_eq_left hex]
   refine le_antisymm (Nat.find_min' hex (parity_ThresholdDegLE n)) ?_
   have hspec : ThresholdDegLE (n := n) (symmetricFn (fun k => decide (Odd k))) (Nat.find hex) := by
     rw [← PARITY_eq_symmetricFn]; exact Nat.find_spec hex

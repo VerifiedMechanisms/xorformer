@@ -37,7 +37,7 @@ theorem HStar_eq_Lfrac (f : (Fin n → Bool) → Bool) : HStar n f = Lfrac n f :
   have hexC : ∃ k, computableWithHeadsN n k f := exists_computable f
   have hexF : ∃ H, fracComputable n H f := hexC.imp fun k => (hiff k).mp
   unfold HStar Lfrac
-  rw [dif_pos hexC, dif_pos hexF]
+  rw [dite_eq_left hexC, dite_eq_left hexF]
   refine le_antisymm ?_ ?_
   · exact Nat.find_min' hexC ((hiff _).mpr (Nat.find_spec hexF))
   · exact Nat.find_min' hexF ((hiff _).mp (Nat.find_spec hexC))

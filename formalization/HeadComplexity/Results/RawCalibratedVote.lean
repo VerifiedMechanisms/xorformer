@@ -56,7 +56,7 @@ theorem uniformlyAtomsApproximable_affineFreeSupportCost
     UniformlyAtomsApproximable (Fin P.affineFreeSupportCost) P.eval := by
   classical
   by_cases hlin : P.HasLinearPart
-  · rw [affineFreeSupportCost, if_pos hlin]
+  · rw [affineFreeSupportCost, ite_eq_left hlin]
     let g : Fin (P.nonlinearSupport.card + 1) → (Fin n → Bool) → ℝ :=
       Fin.cases (affineValue 0 (fun i ↦ P.coeff {i}))
         (fun j bits ↦
@@ -86,7 +86,7 @@ theorem uniformlyAtomsApproximable_affineFreeSupportCost
       simp [SquarefreePolynomial.eval, add_assoc]]
     exact uniformlyAtomsApproximable_const_add
       (CubeCylinder.uniformlyAtomsApproximable_fin_sum g hg) (P.coeff ∅)
-  · rw [affineFreeSupportCost, if_neg hlin, Nat.add_zero]
+  · rw [affineFreeSupportCost, ite_eq_right hlin, Nat.add_zero]
     let g : Fin P.nonlinearSupport.card → (Fin n → Bool) → ℝ :=
       fun j bits ↦
         let S := ((P.nonlinearSupport.equivFin).symm j).1
@@ -128,11 +128,11 @@ theorem eval_booleanPointPolynomial (target bits : Fin n → Bool) :
   rw [booleanPointPolynomial, map_prod]
   by_cases h : bits = target
   · subst bits
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     apply Finset.prod_eq_one
     intro i _
     cases hi : target i <;> simp [hi, cubePoint, boolToReal]
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     obtain ⟨i, hi⟩ : ∃ i, bits i ≠ target i := by
       by_contra hall
       push Not at hall
@@ -281,13 +281,13 @@ theorem HStar_thresholdVote_le_rawVoteCost
     · change UniformlyAtomsApproximable
         (Fin (if c j = 0 then 0 else rawCalibrationCost (T j)))
         (fun bits ↦ c j * boolToReal (T j bits))
-      rw [if_pos hj]
+      rw [ite_eq_left hj]
       simpa [hj] using
         (CubeCylinder.uniformlyAtomsApproximable_const (n := n) 0)
     · change UniformlyAtomsApproximable
         (Fin (if c j = 0 then 0 else rawCalibrationCost (T j)))
         (fun bits ↦ c j * boolToReal (T j bits))
-      rw [if_neg hj]
+      rw [ite_eq_right hj]
       exact uniformlyAtomsApproximable_scale
         (rawCalibrationCost_spec (T j)) (c j) hj
   have hstrict : StrictSignRepresentsScore

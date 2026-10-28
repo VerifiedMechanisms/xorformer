@@ -114,7 +114,7 @@ theorem productPolynomial_eval (p : Bool → Bool → Bool)
     simp [productPolynomial, constantOnePolynomial,
       SquarefreePolynomial.eval, SquarefreePolynomial.nonlinearSupport,
       affineValue, squarefreeMonomial]
-  · rw [productPolynomial, if_neg hS,
+  · rw [productPolynomial, ite_eq_right hS,
       exactBooleanSquarefreePolynomial_eval,
       squarefreeMonomial_patternBits]
 
@@ -327,9 +327,9 @@ theorem expandedPolynomial_affineFreeSupportCost_le
     (expanded_nonlinearSupport_subset (m := m) p R hdeg)
   unfold SquarefreePolynomial.affineFreeSupportCost expansionCost
   by_cases hlin : (expandedPolynomial (m := m) p R).HasLinearPart
-  · rw [if_pos hlin, if_pos (expanded_hasLinearPart p R hdeg hlin)]
+  · rw [ite_eq_left hlin, ite_eq_left (expanded_hasLinearPart p R hdeg hlin)]
     omega
-  · rw [if_neg hlin]
+  · rw [ite_eq_right hlin]
     split <;> omega
 
 /-! ## Upper bound -/
@@ -380,7 +380,7 @@ def rightFreeFace (fixed : Bool) : CoordFace m (m + m) where
     rightBit ((leftFreeFace fixed).apply z) i = fixed := by
   rw [rightBit, CoordFace.apply]
   simp only [leftFreeFace]
-  erw [dif_neg]
+  erw [dite_eq_right]
   rintro ⟨j, hj⟩
   have hval := congrArg Fin.val hj
   simp at hval
@@ -390,7 +390,7 @@ def rightFreeFace (fixed : Bool) : CoordFace m (m + m) where
     leftBit ((rightFreeFace fixed).apply z) i = fixed := by
   rw [leftBit, CoordFace.apply]
   simp only [rightFreeFace]
-  erw [dif_neg]
+  erw [dite_eq_right]
   rintro ⟨j, hj⟩
   have hval := congrArg Fin.val hj
   simp at hval

@@ -143,7 +143,7 @@ theorem HStar_le_compact_of_rightInverse
         (compactSelected n)))
     (f : (Fin n → Bool) → Bool) :
     HStar n f ≤ compactHeadCount n := by
-  letI : Fact (1 < 1000003) := ⟨by norm_num⟩
+  let : Fact (1 < 1000003) := ⟨by norm_num⟩
   exact
     ClearedFeatureDeterminantCertificate.HStar_le_of_integer_zmod_feature_rightInverse
       1000003 (compactDenConst n) (compactDenCoeff n)

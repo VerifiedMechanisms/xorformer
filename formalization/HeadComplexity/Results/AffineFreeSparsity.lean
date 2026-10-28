@@ -197,9 +197,9 @@ theorem shiftConstant_affineFreeSupportCost
   rw [affineFreeSupportCost, affineFreeSupportCost,
     shiftConstant_nonlinearSupport]
   by_cases hlin : P.HasLinearPart
-  · rw [if_pos hlin, if_pos ((shiftConstant_HasLinearPart P ε).mpr hlin)]
-  · rw [if_neg hlin,
-      if_neg (fun h ↦ hlin ((shiftConstant_HasLinearPart P ε).mp h))]
+  · rw [ite_eq_left hlin, ite_eq_left ((shiftConstant_HasLinearPart P ε).mpr hlin)]
+  · rw [ite_eq_right hlin,
+      ite_eq_right (fun h ↦ hlin ((shiftConstant_HasLinearPart P ε).mp h))]
 
 theorem shiftConstant_ptfSupportCost
     (P : SquarefreePolynomial n) (ε : ℝ) :
@@ -314,13 +314,13 @@ private theorem squarefreeMonomial_eq_indicator
     (A : Finset (Fin n)) (bits : Fin n → Bool) :
     squarefreeMonomial A bits = if A ⊆ onesSet bits then 1 else 0 := by
   by_cases hsub : A ⊆ onesSet bits
-  · rw [if_pos hsub]
+  · rw [ite_eq_left hsub]
     unfold squarefreeMonomial
     apply Finset.prod_eq_one
     intro i hi
     have hbit := mem_onesSet.mp (hsub hi)
     simp [boolToReal, hbit]
-  · rw [if_neg hsub]
+  · rw [ite_eq_right hsub]
     obtain ⟨i, hi, hix⟩ : ∃ i ∈ A, i ∉ onesSet bits := by
       by_contra hcon
       push Not at hcon
@@ -419,7 +419,7 @@ theorem affineFreeSupportCost_le_ptfSupportCost (P : SquarefreePolynomial n) :
   classical
   unfold affineFreeSupportCost ptfSupportCost
   by_cases hlin : P.HasLinearPart
-  · rw [if_pos hlin]
+  · rw [ite_eq_left hlin]
     obtain ⟨i, hi⟩ := hlin
     let singleton : Finset (Fin n) := {i}
     have hsingle_mem : singleton ∈ P.nonconstantSupport := by
@@ -435,7 +435,7 @@ theorem affineFreeSupportCost_le_ptfSupportCost (P : SquarefreePolynomial n) :
     have hcard := Finset.card_le_card hsubset
     rw [Finset.card_insert_of_notMem hsingle_not] at hcard
     omega
-  · rw [if_neg hlin]
+  · rw [ite_eq_right hlin]
     exact Finset.card_le_card (nonlinearSupport_subset_nonconstantSupport P)
 
 /-- A degree bound limits the nonlinear support by the number of subsets of
@@ -488,7 +488,7 @@ theorem computableWithHeadsN_affineFreeSupportCost
     computableWithHeadsN n P.affineFreeSupportCost f := by
   classical
   by_cases hlin : P.HasLinearPart
-  · rw [affineFreeSupportCost, if_pos hlin]
+  · rw [affineFreeSupportCost, ite_eq_left hlin]
     let g : Fin (P.nonlinearSupport.card + 1) → (Fin n → Bool) → ℝ :=
       Fin.cases (affineValue 0 (fun i ↦ P.coeff {i}))
         (fun j bits ↦
@@ -515,7 +515,7 @@ theorem computableWithHeadsN_affineFreeSupportCost
         exact sum_equivFin_nonlinearSupport P
           (fun S ↦ P.coeff S * squarefreeMonomial S bits)]
       simpa [SquarefreePolynomial.eval, add_assoc] using hP bits
-  · rw [affineFreeSupportCost, if_neg hlin, Nat.add_zero]
+  · rw [affineFreeSupportCost, ite_eq_right hlin, Nat.add_zero]
     let g : Fin P.nonlinearSupport.card → (Fin n → Bool) → ℝ :=
       fun j bits ↦
         let S := ((P.nonlinearSupport.equivFin).symm j).1

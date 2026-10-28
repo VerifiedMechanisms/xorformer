@@ -44,7 +44,7 @@ def profile (C : PositiveProjection f) : ℕ → Bool := fun k =>
 
 @[simp] theorem profile_at (C : PositiveProjection f) (i : Fin (C.steps + 1)) :
     C.profile i = C.label i := by
-  rw [profile, dif_pos (Nat.lt_succ_iff.mp i.isLt)]
+  rw [profile, dite_eq_left (Nat.lt_succ_iff.mp i.isLt)]
   congr
 
 /-- The number of adjacent label changes along this ordered projection. -/
@@ -78,7 +78,7 @@ theorem alternations_le_of_univariateThresholdDegLE (C : PositiveProjection f)
   have hsign := hPsign bits
   rw [← hbits] at hsign
   have hagree := C.agrees bits i hbits
-  rw [profile, dif_pos hk]
+  rw [profile, dite_eq_left hk]
   simpa [i, hagree] using hsign
 
 /-- The least univariate sign degree available through this fixed statistic. -/

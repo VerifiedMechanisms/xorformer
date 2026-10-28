@@ -137,7 +137,6 @@ theorem CubeCylinder.liftTail_cost (C : CubeCylinder m) :
     else min (2 ^ (C.positive.image (Fin.succEmb m)).card)
       (2 ^ (C.negative.image (Fin.succEmb m)).card)) = _
   simp only [Finset.image_eq_empty,
-    Finset.card_image_of_injective _ (Fin.succEmb m).injective,
     Finset.card_image_of_injective _ (Fin.succEmb m).injective]
 
 private theorem min_double_left_le (a b : ℕ) :
@@ -170,7 +169,7 @@ theorem CubeCylinder.liftPositiveFresh_cost_le (C : CubeCylinder m)
       (2 ^ (C.negative.image (Fin.succEmb m)).card)) ≤
       2 * (if C.positive = ∅ ∧ C.negative = ∅ then 0
         else min (2 ^ C.positive.card) (2 ^ C.negative.card))
-  rw [if_neg (by simp), if_neg hnv, Finset.card_insert_of_notMem hfresh,
+  rw [ite_eq_right (by simp), ite_eq_right hnv, Finset.card_insert_of_notMem hfresh,
     Finset.card_image_of_injective _ (Fin.succEmb m).injective,
     Finset.card_image_of_injective _ (Fin.succEmb m).injective, pow_succ]
   simpa [Nat.mul_comm] using
@@ -188,7 +187,7 @@ theorem CubeCylinder.liftNegativeFresh_cost_le (C : CubeCylinder m)
       (2 ^ (insert 0 (C.negative.image (Fin.succEmb m))).card)) ≤
       2 * (if C.positive = ∅ ∧ C.negative = ∅ then 0
         else min (2 ^ C.positive.card) (2 ^ C.negative.card))
-  rw [if_neg (by simp), if_neg hnv,
+  rw [ite_eq_right (by simp), ite_eq_right hnv,
     Finset.card_image_of_injective _ (Fin.succEmb m).injective,
     Finset.card_insert_of_notMem hfresh,
     Finset.card_image_of_injective _ (Fin.succEmb m).injective, pow_succ]
@@ -224,7 +223,9 @@ theorem splitAffineValue_consBit
     (a₀ a₁ : ℝ) (α₀ : Fin m → ℝ) (z : Bool) (y : Fin m → Bool) :
     affineValue a₀ (splitAffineCoeff a₀ a₁ α₀) (consBit z y) =
       if z then affineValue a₁ α₀ y else affineValue a₀ α₀ y := by
-  cases z <;> simp [affineValue, splitAffineCoeff, Fin.sum_univ_succ, boolToReal] <;>
+  cases z
+  · simp [affineValue, splitAffineCoeff, Fin.sum_univ_succ, boolToReal]
+  · simp [affineValue, splitAffineCoeff, Fin.sum_univ_succ, boolToReal]
     ring
 
 /-- A positive-oriented split presentation.  The zero slice uses the shared
@@ -336,7 +337,10 @@ private theorem termSum_consBit (D : PositiveSplitData f₀ f₁)
       else ∑ j, D.baseCoefficient j * (D.baseCylinder j).eval y := by
   classical
   rw [Fintype.sum_sum_type, Fintype.sum_sum_type]
-  cases z <;> simp [termCoefficient, termCylinder, boolToReal] <;> ring
+  cases z
+  · simp [termCoefficient, termCylinder, boolToReal]
+  · simp [termCoefficient, termCylinder, boolToReal]
+    ring
 
 noncomputable def ambientCertificate
     (D : PositiveSplitData f₀ f₁) :
@@ -380,7 +384,7 @@ noncomputable def ambientCertificate
     joinCofactors_consBit]
   cases z
   · simpa using D.represents₀ y
-  · simp only [if_true]
+  · simp only [ite_true]
     have hscore :
         affineValue D.affineConst₁ D.affineCoeff₀ y +
             ((∑ i : {i // i ∈ D.changedLinearSupport},
@@ -425,15 +429,16 @@ theorem ambientCertificate_cost (D : PositiveSplitData f₀ f₁) :
   dsimp only
   by_cases hlin : ∃ i, splitAffineCoeff D.affineConst₀ D.affineConst₁
       D.affineCoeff₀ i ≠ 0
-  · simp only [if_pos hlin]
+  · simp only [ite_eq_left hlin]
     rw [hsum, Fintype.sum_sum_type, Fintype.sum_sum_type]
-    simp [termCylinder]
+    simp only [Finset.univ_eq_attach, termCylinder, freshSlopeCylinder_cost,
+      Finset.sum_const, Finset.card_attach, smul_eq_mul, mul_one]
     simp_rw [CubeCylinder.liftTail_cost]
     omega
-
-  · simp only [if_neg hlin]
+  · simp only [ite_eq_right hlin]
     rw [hsum, Fintype.sum_sum_type, Fintype.sum_sum_type]
-    simp [termCylinder]
+    simp only [Finset.univ_eq_attach, termCylinder, freshSlopeCylinder_cost,
+      Finset.sum_const, Finset.card_attach, smul_eq_mul, mul_one, zero_add]
     simp_rw [CubeCylinder.liftTail_cost]
     omega
 
@@ -554,7 +559,7 @@ private theorem termSum_consBit (D : NegativeSplitData f₀ f₁)
           ∑ j, D.changeCoefficient j * (D.changeCylinder j).eval y := by
   classical
   rw [Fintype.sum_sum_type, Fintype.sum_sum_type]
-  cases z <;> simp [termCoefficient, termCylinder, boolToReal] <;> ring
+  cases z <;> simp [termCoefficient, termCylinder, boolToReal]
 
 noncomputable def ambientCertificate
     (D : NegativeSplitData f₀ f₁) :
@@ -598,7 +603,7 @@ noncomputable def ambientCertificate
     joinCofactors_consBit]
   cases z
   · simpa [add_assoc] using D.represents₀ y
-  · simp only [if_true]
+  · simp only [ite_true]
     have hscore :
         affineValue D.affineConst₁ D.affineCoeff₀ y +
             ((∑ i : {i // i ∈ D.changedLinearSupport},
@@ -638,15 +643,16 @@ theorem ambientCertificate_cost (D : NegativeSplitData f₀ f₁) :
   dsimp only
   by_cases hlin : ∃ i, splitAffineCoeff D.affineConst₀ D.affineConst₁
       D.affineCoeff₀ i ≠ 0
-  · simp only [if_pos hlin]
+  · simp only [ite_eq_left hlin]
     rw [hsum, Fintype.sum_sum_type, Fintype.sum_sum_type]
-    simp [termCylinder]
+    simp only [Finset.univ_eq_attach, termCylinder, freshSlopeCylinder_cost,
+      Finset.sum_const, Finset.card_attach, smul_eq_mul, mul_one]
     simp_rw [CubeCylinder.liftTail_cost]
     omega
-
-  · simp only [if_neg hlin]
+  · simp only [ite_eq_right hlin]
     rw [hsum, Fintype.sum_sum_type, Fintype.sum_sum_type]
-    simp [termCylinder]
+    simp only [Finset.univ_eq_attach, termCylinder, freshSlopeCylinder_cost,
+      Finset.sum_const, Finset.card_attach, smul_eq_mul, mul_one, zero_add]
     simp_rw [CubeCylinder.liftTail_cost]
     omega
 

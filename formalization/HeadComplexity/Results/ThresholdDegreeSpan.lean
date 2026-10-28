@@ -76,12 +76,12 @@ def finsetBits (S : Finset (Fin n)) (i : Fin n) : Bool :=
     squarefreeMonomial S (finsetBits T) = if S ⊆ T then 1 else 0 := by
   classical
   by_cases hST : S ⊆ T
-  · rw [if_pos hST]
+  · rw [ite_eq_left hST]
     unfold squarefreeMonomial
     apply Finset.prod_eq_one
     intro i hi
     simp [finsetBits, hST hi, boolToReal]
-  · rw [if_neg hST]
+  · rw [ite_eq_right hST]
     obtain ⟨i, hiS, hiT⟩ : ∃ i ∈ S, i ∉ T := by
       simpa [Finset.subset_iff] using hST
     unfold squarefreeMonomial
@@ -115,7 +115,7 @@ theorem linearIndependent_lowDegreeMonomials (n d : ℕ) :
           · intro T hT hTS
             rw [squarefreeMonomial_finsetBits]
             by_cases hsub : T.1 ⊆ S.1
-            · rw [if_pos hsub, ih T.1.card]
+            · rw [ite_eq_left hsub, ih T.1.card]
               · simp
               · have hne : T.1 ≠ S.1 := fun heq ↦ hTS (Subtype.ext heq)
                 have hcard : T.1.card < S.1.card :=

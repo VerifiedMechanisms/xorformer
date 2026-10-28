@@ -166,7 +166,7 @@ theorem universalStarBound_lt_half {n : ℕ} (hn : 32 ≤ n) :
     apply (Nat.floor_lt hpos).mpr
     simpa only [Nat.cast_pow, Nat.cast_ofNat] using logarithmicStarBudget_lt_half hn
   have hle : universalStarBound n ≤ ⌊logarithmicStarBudget n⌋₊ := by
-    simp only [universalStarBound, if_pos hn2]
+    simp only [universalStarBound, ite_eq_left hn2]
     exact min_le_right _ _
   exact hle.trans_lt hf
 

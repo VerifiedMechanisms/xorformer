@@ -66,7 +66,7 @@ theorem exists_strictUnivariateSignRep_of_UnivariateThresholdDegLE
     (h : UnivariateThresholdDegLE t f K) :
     ∃ P : ℝ[X], P.natDegree ≤ K ∧ StrictUnivariateSignRep P t f := by
   classical
-  letI := Fintype.ofFinite α
+  let := Fintype.ofFinite α
   obtain ⟨P, hPdeg, hPsign⟩ := h
   let T : Finset α := Finset.univ.filter (fun x ↦ f x = true)
   obtain ⟨ε, hεpos, hεlt⟩ :

@@ -19,7 +19,7 @@ open Finset
 open scoped BigOperators
 
 private theorem exists_positive_lex_weights :
-    ∀ d : ℕ, ∀ {α : Type*} [Fintype α]
+    ∀ d : ℕ, ∀ {α : Type*} [Finite α]
       (v : α → Fin d → ℝ) (R : α → α → Prop),
       (∀ x y, R x y → Pi.Lex (· < ·) (· < ·) (v x) (v y)) →
       ∃ K : Fin d → ℝ, (∀ j, 0 < K j) ∧
@@ -35,6 +35,7 @@ private theorem exists_positive_lex_weights :
   | succ d ih =>
       intro α _ v R hlex
       classical
+      let : Fintype α := Fintype.ofFinite α
       let tail : α → Fin d → ℝ := fun x j ↦ v x j.succ
       let Rtail : α → α → Prop := fun x y ↦ R x y ∧ v x 0 = v y 0
       have htaillex : ∀ x y, Rtail x y →
@@ -160,7 +161,7 @@ def profile (C : PositiveLexMultigrid (b := b) f) : ℕ → Bool := fun k ↦
 
 @[simp] theorem profile_at (C : PositiveLexMultigrid (b := b) f)
     (i : Fin (C.steps + 1)) : C.profile i = C.label i := by
-  rw [profile, dif_pos (Nat.lt_succ_iff.mp i.isLt)]
+  rw [profile, dite_eq_left (Nat.lt_succ_iff.mp i.isLt)]
   congr
 
 def alternations (C : PositiveLexMultigrid (b := b) f) : ℕ :=

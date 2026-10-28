@@ -157,7 +157,9 @@ noncomputable def freshXor (C : SparseMonomialCertificate ι T) :
         squarefreeMonomial_insert_zero_image_succ]
       cases hz : bits 0
       · simp [squarefreeMonomial, boolToReal, hz]
-      · simp [squarefreeMonomial, boolToReal, hz]
+      · simp only [squarefreeMonomial, boolToReal, neg_mul, ↓reduceIte, one_mul,
+          Finset.sum_neg_distrib, Finset.univ_unique, PUnit.default_eq_unit,
+          Finset.prod_singleton, hz, mul_one, Finset.sum_const, Finset.card_singleton, one_smul]
         have htwo :
             (∑ x, 2 * C.coefficient x *
                 ∏ j ∈ C.support x,

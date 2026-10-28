@@ -367,7 +367,7 @@ theorem bivariateGridThresholdDeg_spec_of_exists {p q : ℕ}
     BivariateGridThresholdDegLE G (bivariateGridThresholdDeg G) := by
   classical
   unfold bivariateGridThresholdDeg
-  rw [dif_pos h]
+  rw [dite_eq_left h]
   exact Nat.find_spec h
 
 theorem bivariateGridThresholdDeg_le {p q d : ℕ}
@@ -377,7 +377,7 @@ theorem bivariateGridThresholdDeg_le {p q d : ℕ}
   classical
   have hex : ∃ e, BivariateGridThresholdDegLE G e := ⟨d, h⟩
   unfold bivariateGridThresholdDeg
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact Nat.find_min' hex h
 
 /-- The affine-strip predicate on the rectangular integer grid. -/

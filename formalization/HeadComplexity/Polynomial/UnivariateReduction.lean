@@ -49,12 +49,12 @@ theorem mem_onesSet {x : Fin n → Bool} {i : Fin n} : i ∈ onesSet x ↔ x i =
 theorem eval_cube_monomial (x : Fin n → Bool) (d : Fin n →₀ ℕ) :
     (∏ i ∈ d.support, cubePoint x i ^ d i) = if d.support ⊆ onesSet x then 1 else 0 := by
   by_cases hsub : d.support ⊆ onesSet x
-  · rw [if_pos hsub]
+  · rw [ite_eq_left hsub]
     apply Finset.prod_eq_one
     intro i hi
     have hx : x i = true := mem_onesSet.mp (hsub hi)
     simp [cubePoint, boolToReal, hx]
-  · rw [if_neg hsub]
+  · rw [ite_eq_right hsub]
     obtain ⟨i, hi, hix⟩ : ∃ i ∈ d.support, i ∉ onesSet x := by
       by_contra hcon; push Not at hcon; exact hsub (fun i hi => hcon i hi)
     apply Finset.prod_eq_zero hi
@@ -158,7 +158,7 @@ theorem supportCoeffSum_eq_beta (hP : P.IsSymmetric) (A : Finset (Fin n)) :
     supportCoeffSum P A = betaCoeff P A.card := by
   unfold betaCoeff
   have hex : ∃ B : Finset (Fin n), B.card = A.card := ⟨A, rfl⟩
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact supportCoeffSum_const P hP hex.choose_spec.symm
 
 theorem support_card_le_totalDegree {d : Fin n →₀ ℕ} (hd : d ∈ P.support) :
@@ -173,7 +173,7 @@ theorem betaCoeff_eq_zero_of_gt {H : ℕ} (hdeg : P.totalDegree ≤ H) {j : ℕ}
     betaCoeff P j = 0 := by
   unfold betaCoeff
   by_cases hex : ∃ A : Finset (Fin n), A.card = j
-  · rw [dif_pos hex]
+  · rw [dite_eq_left hex]
     unfold supportCoeffSum
     apply Finset.sum_eq_zero
     intro d hd
@@ -182,7 +182,7 @@ theorem betaCoeff_eq_zero_of_gt {H : ℕ} (hdeg : P.totalDegree ≤ H) {j : ℕ}
     have hcard := support_card_le_totalDegree P hd.1
     rw [hd.2, hex.choose_spec] at hcard
     omega
-  · rw [dif_neg hex]
+  · rw [dite_eq_right hex]
 
 /-! ## The univariate binomial polynomial `k ↦ C(k, j)` -/
 

@@ -1,6 +1,6 @@
 import HeadComplexity.Polynomial.MatrixRank
 import Mathlib.Algebra.BigOperators.Ring.Finset
-import Mathlib.Data.Real.Basic
+import Mathlib.Basic.Real.Basic
 
 set_option linter.style.header false
 
@@ -327,7 +327,7 @@ theorem tangentMatrix_rank_le (hI : 0 < Fintype.card I) (c : ℝ)
     (a r : I → X → ℝ) (b q : I → Y → ℝ) :
     (tangentMatrix c a r b q).rank ≤ 2 ^ (Fintype.card I + 1) - 2 := by
   classical
-  letI : Nonempty I := Fintype.card_pos_iff.mp hI
+  let : Nonempty I := Fintype.card_pos_iff.mp hI
   let all : Finset (Finset I) := (Finset.univ : Finset I).powerset
   let proper : Finset (Finset I) := (all.erase ∅).erase Finset.univ
   have hempty : (∅ : Finset I) ∈ all := by simp [all]

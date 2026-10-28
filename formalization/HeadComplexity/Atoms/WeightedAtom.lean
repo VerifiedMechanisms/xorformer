@@ -109,7 +109,7 @@ variable (lam : Fin n → ℝ) (a b : ℝ) (hn : 1 ≤ n) (hlam : ∀ i, 0 < lam
 
 include hn hlam in
 private theorem wLam_pos : 0 < wLam lam := by
-  letI : Nonempty (Fin n) := Fin.pos_iff_nonempty.mp hn
+  let : Nonempty (Fin n) := Fin.pos_iff_nonempty.mp hn
   unfold wLam
   exact positiveNormalizer_pos lam hlam
 
@@ -154,11 +154,11 @@ theorem wHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
   rw [wHead_x_some_coord0]
   cases bits i with
   | false =>
-      simp only [cond_false, wTok_zero_coord0, zero_add]
+      simp only [Bool.cond_false, wTok_zero_coord0, zero_add]
       rw [div_mul_cancel₀ _ hs, Real.exp_log (hlam i)]
       simp
   | true =>
-      simp only [cond_true, wTok_one_coord0]
+      simp only [Bool.cond_true, wTok_one_coord0]
       rw [← add_div, div_mul_cancel₀ _ hs,
         show Real.log 2 + Real.log (lam i) = Real.log (2 * lam i) from
           (Real.log_mul (by norm_num) (hlam i).ne').symm,

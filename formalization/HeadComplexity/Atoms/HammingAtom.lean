@@ -146,7 +146,7 @@ theorem atomHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
   cases bits i with
   | false => simp
   | true =>
-      simp only [cond_true, atomTok_one_coord0]
+      simp only [Bool.cond_true, atomTok_one_coord0]
       rw [div_mul_cancel₀ _ hs, Real.exp_log (by norm_num)]
       simp
 

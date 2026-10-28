@@ -124,15 +124,18 @@ private theorem splitPolynomialIndicator_eq
       · exact ⟨i.succ, by simpa [splitAffineCoeff] using hi⟩
   by_cases h : ∃ i, splitAffineCoeff (P₀.coeff ∅) (P₁.coeff ∅)
       (fun j ↦ P₀.coeff {j}) i ≠ 0
-  · rw [if_pos h, if_pos (hex.mp h)]
-  · rw [if_neg h, if_neg (fun h' ↦ h (hex.mpr h'))]
+  · rw [ite_eq_left h, ite_eq_left (hex.mp h)]
+  · rw [ite_eq_right h, ite_eq_right (fun h' ↦ h (hex.mpr h'))]
 
 private theorem liftedPositiveMonomial_cost
     (S : Finset (Fin m)) :
     (CubeCylinder.positiveMonomial S).liftPositiveFresh.cost = 1 := by
   unfold CubeCylinder.liftPositiveFresh CubeCylinder.positiveMonomial
     CubeCylinder.cost
-  simp
+  simp only [Fin.coe_succEmb, Finset.insert_ne_empty, Finset.image_empty, and_true,
+    ↓reduceIte, Finset.mem_image, Fin.succ_ne_zero, and_false, exists_false,
+    not_false_eq_true, Finset.card_insert_of_notMem, Finset.card_empty, pow_zero,
+    inf_eq_right]
   exact Nat.one_le_pow _ 2 (by omega)
 
 /-- The positive-monomial split presentation associated to two strict

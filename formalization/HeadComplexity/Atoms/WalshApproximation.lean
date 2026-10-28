@@ -59,11 +59,11 @@ theorem walshCharacter_eq_prod (S : Finset (Fin n))
   by_cases heven : hammingWeight (pullBitsAlong e bits) % 2 = 0
   · have hEven : Even (hammingWeight (pullBitsAlong e bits)) :=
       Nat.even_iff.mpr heven
-    rw [if_pos heven, hprod, hEven.neg_one_pow]
+    rw [ite_eq_left heven, hprod, hEven.neg_one_pow]
   · have hOdd : Odd (hammingWeight (pullBitsAlong e bits)) := by
       rw [Nat.odd_iff]
       omega
-    rw [if_neg heven, hprod, hOdd.neg_one_pow]
+    rw [ite_eq_right heven, hprod, hOdd.neg_one_pow]
 
 /-- Any signed Walsh character has a `|S|`-atom ambient score with arbitrary
 uniform accuracy. -/

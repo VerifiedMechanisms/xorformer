@@ -156,7 +156,7 @@ theorem exists_of_nonconstant
     | false =>
         rw [signedLabel_of_false hfb]
         have hs := hstrict bits
-        simp only [hfb, Bool.false_eq_true, if_false] at hs
+        simp only [hfb, Bool.false_eq_true, ite_false] at hs
         linarith
     | true =>
         rw [signedLabel_of_true hfb, one_mul]

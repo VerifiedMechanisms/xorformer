@@ -106,7 +106,7 @@ theorem HStar_symmetricFn_eq_signChanges {n : ℕ} {F : ℕ → Bool}
   classical
   have hExists : ∃ k, computableWithHeadsN n k (symmetricFn F) := ⟨_, hub⟩
   unfold HStar
-  rw [dif_pos hExists]
+  rw [dite_eq_left hExists]
   apply le_antisymm
   · exact Nat.find_min' hExists hub
   · exact signChanges_le_of_computableWithHeadsN (Nat.find_spec hExists)

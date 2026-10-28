@@ -95,7 +95,7 @@ theorem sequence_reverse_refuted :
         simpa using this
       have hpowReal : (2 : ℝ) ≤ (2 : ℝ) ^ n := by exact_mod_cast hpowNat
       dsimp [g, originalUniversalRatio]
-      rw [if_neg hn, Nat.cast_sub (by omega : 1 ≤ 2 ^ n)]
+      rw [ite_eq_right hn, Nat.cast_sub (by omega : 1 ≤ 2 ^ n)]
       push_cast
       apply (le_div_iff₀ (by positivity : (0 : ℝ) < 2 ^ n)).mpr
       nlinarith

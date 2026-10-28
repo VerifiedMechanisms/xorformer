@@ -265,7 +265,7 @@ theorem SharedHStar_eq_HStar (n : ℕ) (f : (Fin n → Bool) → Bool) :
   by_cases hLocal : ∃ k, computableWithHeadsN n k f
   · have hShared : ∃ k, computableWithSharedHeadsN n k f :=
       hLocal.imp fun k => computableWithSharedHeadsN_of_computableWithHeadsN
-    rw [dif_pos hShared, dif_pos hLocal]
+    rw [dite_eq_left hShared, dite_eq_left hLocal]
     refine le_antisymm ?_ ?_
     · exact Nat.find_min' hShared
         (computableWithSharedHeadsN_of_computableWithHeadsN (Nat.find_spec hLocal))
@@ -274,6 +274,6 @@ theorem SharedHStar_eq_HStar (n : ℕ) (f : (Fin n → Bool) → Bool) :
   · have hShared : ¬ ∃ k, computableWithSharedHeadsN n k f := by
       rintro ⟨k, hk⟩
       exact hLocal ⟨k, computableWithHeadsN_of_computableWithSharedHeadsN hk⟩
-    rw [dif_neg hShared, dif_neg hLocal]
+    rw [dite_eq_right hShared, dite_eq_right hLocal]
 
 end HeadComplexity

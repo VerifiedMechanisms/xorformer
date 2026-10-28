@@ -87,7 +87,7 @@ theorem exists_fracAtom_approx_monomial_mul_affineValue
       by_cases hi : i ∈ S
       · simp [hall i hi, boolToReal, hδ.le]
       · dsimp [w]
-        rw [if_neg hi]
+        rw [ite_eq_right hi]
         nlinarith [boolToReal_nonneg (bits i)]
     have hTle : T ≤ (n : ℝ) * δ := by
       calc

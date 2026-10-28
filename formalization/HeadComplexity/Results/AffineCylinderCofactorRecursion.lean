@@ -224,12 +224,12 @@ theorem splitAffineCylinderCost_le_cofactorRecursion
   by_cases h : AffineCylinderThresholdCertificate.minimumCost f₀ ≤
       AffineCylinderThresholdCertificate.minimumCost f₁
   · rw [Nat.min_eq_left h]
-    convert splitAffineCylinderCost_le_oriented_zero f₀ f₁ using 1 <;>
-      omega
+    convert splitAffineCylinderCost_le_oriented_zero f₀ f₁ using 1
+    omega
   · have h' := Nat.le_of_not_ge h
     rw [Nat.min_eq_right h']
-    convert splitAffineCylinderCost_le_oriented_one f₀ f₁ using 1 <;>
-      omega
+    convert splitAffineCylinderCost_le_oriented_one f₀ f₁ using 1
+    omega
 
 theorem affineCylinder_cofactor_recursion
     (f₀ f₁ : (Fin m → Bool) → Bool) :

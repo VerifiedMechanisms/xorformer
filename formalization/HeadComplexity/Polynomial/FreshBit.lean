@@ -188,7 +188,7 @@ theorem freshDifferencePolynomial_totalDegree_le
   intro i hi
   by_cases h0 : i = 0
   · simp [h0]
-  · simp only [h0, if_false]
+  · simp only [h0, ite_false]
     by_cases hcoeff : (asFreshPolynomial P).coeff i = 0
     · simp [hcoeff]
     · have hadd : ((asFreshPolynomial P).coeff i).totalDegree + i ≤

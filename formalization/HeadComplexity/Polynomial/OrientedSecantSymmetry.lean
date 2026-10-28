@@ -561,7 +561,7 @@ theorem orientedSignedBlowupFeasible_iff_countBranch {n H : ℕ}
         (orientedLiteralFamily
           (canonicalOrientation H (orientationCountIndex sigma)))
         (truthSign f) Finset.univ := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   obtain ⟨e, he⟩ := exists_headPerm_to_canonicalOrientation sigma
   have hfamily := permuteHeadFamily_orientedLiteralFamily (n := n) e sigma he
   rw [← hfamily]
@@ -627,7 +627,7 @@ theorem all_orientedSignedBlowup_infeasible_iff_all_countBranchCharts
         ¬ SignedBlowupChartFeasible
           (orientedLiteralFamily (canonicalOrientation H k))
           (truthSign f) Finset.univ c := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   rw [all_orientedSignedBlowup_infeasible_iff_all_countBranches hH f]
   apply forall_congr'
   intro k
@@ -651,7 +651,7 @@ theorem all_orientedSignedBlowup_infeasible_iff_all_countBranchChartTypes
           (truthSign f) Finset.univ
           (orientedSignedNormalizationChartRepresentative
             (canonicalOrientation H k) q hq) := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   rw [all_orientedSignedBlowup_infeasible_iff_all_countBranches hH f]
   apply forall_congr'
   intro k

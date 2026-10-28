@@ -24,7 +24,7 @@ theorem thresholdDeg_le_of_ThresholdDegLE {f : (Fin n → Bool) → Bool} {d : �
   classical
   have hex : ∃ e, ThresholdDegLE f e := ⟨d, h⟩
   unfold thresholdDeg
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact Nat.find_min' hex h
 
 /-- The minimum threshold degree is attained. -/
@@ -35,7 +35,7 @@ theorem thresholdDeg_spec (f : (Fin n → Bool) → Bool) :
     signReprDegLe_of_computableWithHeadsN (HStar_computable f)
   have hex : ∃ d, ThresholdDegLE f d := ⟨HStar n f, hdeg⟩
   unfold thresholdDeg
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact Nat.find_spec hex
 
 /-- **Theorem 6 (minimum form).** Threshold degree is at most head

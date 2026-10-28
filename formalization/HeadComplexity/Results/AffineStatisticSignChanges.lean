@@ -203,7 +203,7 @@ def profile (C : AffineStatisticProfile c cs f) : ℕ → Bool := fun k ↦
 
 @[simp] theorem profile_at (C : AffineStatisticProfile c cs f)
     (i : Fin (C.steps + 1)) : C.profile i = C.label i := by
-  rw [profile, dif_pos (Nat.lt_succ_iff.mp i.isLt)]
+  rw [profile, dite_eq_left (Nat.lt_succ_iff.mp i.isLt)]
   congr
 
 def alternations (C : AffineStatisticProfile c cs f) : ℕ :=
@@ -234,7 +234,7 @@ theorem alternations_le_of_univariateThresholdDegLE
   have hsign := hPsign bits
   rw [← hbits] at hsign
   have hagree := C.agrees bits i hbits
-  rw [profile, dif_pos hk]
+  rw [profile, dite_eq_left hk]
   simpa [i, hagree] using hsign
 
 theorem eq_of_affineValue_eq (C : AffineStatisticProfile c cs f)
@@ -387,7 +387,7 @@ theorem exists_affineSlab_or_complement_of_alternations_eq_two
         rw [hprodform] at hs
         have hlastprof : C.profile C.steps = C.label last := by
           unfold profile
-          rw [dif_pos le_rfl]
+          rw [dite_eq_left le_rfl]
           congr
         rw [hlastprof] at hs
         simpa [C.profile_at] using hs
@@ -445,7 +445,7 @@ theorem exists_affineSlab_or_complement_of_alternations_eq_two
         rw [hprodform] at hs
         have hlastprof : C.profile C.steps = C.label last := by
           unfold profile
-          rw [dif_pos le_rfl]
+          rw [dite_eq_left le_rfl]
           congr
         rw [hlastprof] at hs
         simpa [C.profile_at] using hs

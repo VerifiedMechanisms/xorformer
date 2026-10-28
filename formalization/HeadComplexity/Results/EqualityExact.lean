@@ -139,7 +139,7 @@ private theorem complementEquality_checkerboard {m : ℕ} (hm : 0 < m) :
       have hcross : Fin.natAdd m ⟨0, hm⟩ ≠ equalityLeftIndex hm := by
         simpa [equalityLeftIndex] using hnat_cast ⟨0, hm⟩ ⟨0, hm⟩
       simp only [Head.restrictBits]
-      rw [if_neg hcross]
+      rw [ite_eq_right hcross]
       simp [equalityRightIndex]
     · have hsame : Fin.natAdd m i ≠ equalityRightIndex hm := by
         intro h
@@ -149,7 +149,7 @@ private theorem complementEquality_checkerboard {m : ℕ} (hm : 0 < m) :
       have hcross : Fin.natAdd m i ≠ equalityLeftIndex hm := by
         simpa [equalityLeftIndex] using hnat_cast i ⟨0, hm⟩
       simp only [Head.restrictBits]
-      rw [if_neg hcross, if_neg hsame, if_neg hi]
+      rw [ite_eq_right hcross, ite_eq_right hsame, ite_eq_right hi]
       rfl
   have heq (b : Bool) :
       equalityLeftBlock

@@ -44,7 +44,7 @@ theorem orientedAffineWeights_eval (sigma : Bool) (c : ℝ)
   classical
   cases sigma with
   | false =>
-      simp only [orientedAffineWeights, Bool.false_eq_true, if_false,
+      simp only [orientedAffineWeights, Bool.false_eq_true, ite_false,
         orientedLiteral, affineValue]
       simp only [univ_option, Finset.sum_insertNone]
       simp_rw [neg_mul, mul_sub, mul_one, neg_sub]
@@ -84,12 +84,12 @@ noncomputable def tangentTheta (phi : FracAtom n) : Option (Fin n) → ℝ :=
 theorem tangentDenScale_pos (phi : FracAtom n) : 0 < tangentDenScale phi := by
   classical
   by_cases ha : 1 ≤ phi.α
-  · rw [tangentDenScale, if_pos ha]
+  · rw [tangentDenScale, ite_eq_left ha]
     have hsum : 0 ≤ ∑ i, phi.ρ i :=
       Finset.sum_nonneg fun i _ ↦ (phi.hρ i).le
     exact add_pos_of_pos_of_nonneg phi.hγ
       (mul_nonneg (zero_le_one.trans ha) hsum)
-  · rw [tangentDenScale, if_neg ha]
+  · rw [tangentDenScale, ite_eq_right ha]
     exact add_pos_of_pos_of_nonneg phi.hγ
       (Finset.sum_nonneg fun i _ ↦ (phi.hρ i).le)
 
@@ -97,7 +97,7 @@ theorem tangentTheta_nonneg (phi : FracAtom n) (j : Option (Fin n)) :
     0 ≤ tangentTheta phi j := by
   classical
   by_cases ha : 1 ≤ phi.α
-  · rw [tangentTheta, dif_pos ha]
+  · rw [tangentTheta, dite_eq_left ha]
     cases j with
     | none =>
         exact div_nonneg
@@ -107,7 +107,7 @@ theorem tangentTheta_nonneg (phi : FracAtom n) (j : Option (Fin n)) :
     | some i =>
         exact div_nonneg (mul_nonneg (phi.hρ i).le (sub_nonneg.mpr ha))
           (tangentDenScale_pos phi).le
-  · rw [tangentTheta, dif_neg ha]
+  · rw [tangentTheta, dite_eq_right ha]
     have halt : phi.α < 1 := lt_of_not_ge ha
     cases j with
     | none =>
@@ -132,7 +132,7 @@ theorem tangentTheta_sum (phi : FracAtom n) :
     rw [← add_div]
     have hs := (tangentDenScale_pos phi).ne'
     rw [div_eq_one_iff_eq hs]
-    rw [tangentDenScale, if_pos ha]
+    rw [tangentDenScale, ite_eq_left ha]
     rw [← Finset.sum_mul]
     ring
   · rw [show (∑ j, tangentTheta phi j) =
@@ -143,7 +143,7 @@ theorem tangentTheta_sum (phi : FracAtom n) :
     rw [← add_div]
     have hs := (tangentDenScale_pos phi).ne'
     rw [div_eq_one_iff_eq hs]
-    rw [tangentDenScale, if_neg ha]
+    rw [tangentDenScale, ite_eq_right ha]
     rw [← Finset.sum_mul]
     ring
 
@@ -159,13 +159,13 @@ theorem tangentTheta_eq_orientedAffineWeights_div (phi : FracAtom n) :
   classical
   funext j
   by_cases ha : 1 ≤ phi.α
-  · rw [tangentTheta, dif_pos ha]
-    simp only [tangentOrientation, if_pos ha, orientedAffineWeights,
-      if_true]
+  · rw [tangentTheta, dite_eq_left ha]
+    simp only [tangentOrientation, ite_eq_left ha, orientedAffineWeights,
+      ite_true]
     cases j <;> rfl
-  · rw [tangentTheta, dif_neg ha]
-    simp only [tangentOrientation, if_neg ha, orientedAffineWeights,
-      Bool.false_eq_true, if_false]
+  · rw [tangentTheta, dite_eq_right ha]
+    simp only [tangentOrientation, ite_eq_right ha, orientedAffineWeights,
+      Bool.false_eq_true, ite_false]
     cases j with
     | none =>
         dsimp [tangentDenConst, tangentDenCoeff]
@@ -351,7 +351,7 @@ theorem tangentV_productDirectionalDerivative {H : ℕ}
           (fun g ↦ tangentTheta (phi g)) x *
         ((∑ h, (phi h).eval x) - ∑ h, tangentQ (phi h)) := by
   classical
-  letI : DecidableEq (Fin H) := Classical.decEq _
+  let : DecidableEq (Fin H) := Classical.decEq _
   unfold productDirectionalDerivative
   simp_rw [tangentV_family_directionFactor]
   have hprod : ∀ h : Fin H,

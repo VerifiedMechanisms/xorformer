@@ -54,14 +54,14 @@ noncomputable def dummyM (phi : FracAtom m) (e : Fin m ↪ Fin n)
 @[simp] theorem dummyRhoAt_active (phi : FracAtom m) (e : Fin m ↪ Fin n)
     (epsilon : ℝ) (i : Fin m) :
     dummyRhoAt phi e epsilon (e i) = phi.ρ i := by
-  rw [dummyRhoAt, dif_pos ⟨i, rfl⟩]
+  rw [dummyRhoAt, dite_eq_left ⟨i, rfl⟩]
   congr 1
   exact e.injective (Classical.choose_spec
     (show ∃ k, e k = e i from ⟨i, rfl⟩))
 
 @[simp] theorem dummyM_active (phi : FracAtom m) (e : Fin m ↪ Fin n)
     (i : Fin m) : dummyM phi e (e i) = phi.m i := by
-  rw [dummyM, dif_pos ⟨i, rfl⟩]
+  rw [dummyM, dite_eq_left ⟨i, rfl⟩]
   congr 1
   exact e.injective (Classical.choose_spec
     (show ∃ k, e k = e i from ⟨i, rfl⟩))
@@ -69,14 +69,14 @@ noncomputable def dummyM (phi : FracAtom m) (e : Fin m ↪ Fin n)
 theorem dummyRhoAt_fixed (phi : FracAtom m) (e : Fin m ↪ Fin n)
     (epsilon : ℝ) {j : Fin n} (hj : j ∈ (embeddingFace e).fixedSet) :
     dummyRhoAt phi e epsilon j = epsilon := by
-  rw [dummyRhoAt, dif_neg]
+  rw [dummyRhoAt, dite_eq_right]
   intro h
   exact (Finset.mem_sdiff.mp hj).2 ((embeddingFace e).mem_freeSet j |>.2 h)
 
 theorem dummyM_fixed (phi : FracAtom m) (e : Fin m ↪ Fin n)
     {j : Fin n} (hj : j ∈ (embeddingFace e).fixedSet) :
     dummyM phi e j = 0 := by
-  rw [dummyM, dif_neg]
+  rw [dummyM, dite_eq_right]
   intro h
   exact (Finset.mem_sdiff.mp hj).2 ((embeddingFace e).mem_freeSet j |>.2 h)
 
@@ -93,9 +93,9 @@ noncomputable def liftDummy (phi : FracAtom m) (e : Fin m ↪ Fin n)
   hα := phi.hα
   hρ := fun j ↦ by
     by_cases h : ∃ i, e i = j
-    · rw [dummyRhoAt, dif_pos h]
+    · rw [dummyRhoAt, dite_eq_left h]
       exact phi.hρ _
-    · rw [dummyRhoAt, dif_neg h]
+    · rw [dummyRhoAt, dite_eq_right h]
       exact hepsilon
 
 /-- The denominator contribution of the dummy coordinates with their common

@@ -247,7 +247,7 @@ theorem partition_ambient_size_screen {h : ℕ} (hh : 0 < h)
     (part : Fin n ≃ ι ⊕ κ) (f : (Fin n → Bool) → Bool)
     (hlarge : 2 ^ (h + 1) - 1 ≤ partitionSignRank part f) :
     2 * h + 2 ≤ n := by
-  letI := partitionLeftFintype part
+  let := partitionLeftFintype part
   have hmin := partition_min_side_screen hh part f hlarge
   have hleft : h + 1 ≤ Fintype.card ι :=
     hmin.trans (min_le_left _ _)

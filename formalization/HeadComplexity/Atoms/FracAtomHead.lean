@@ -140,9 +140,9 @@ theorem atomHead'_x_some_coord1 (bits : Fin n → Bool) (i : Fin n) :
 theorem fracReadout_inner (v : Vec 3) : ⟪fracReadout, v⟫_ℝ = v 1 := by
   rw [fracReadout, vecN_inner']
   rw [Finset.sum_eq_single (1 : Fin 3)]
-  · rw [PiLp.single_apply, if_pos rfl, one_mul]
+  · rw [PiLp.single_apply, ite_eq_left rfl, one_mul]
   · intro b _ hb
-    rw [PiLp.single_apply, if_neg hb, zero_mul]
+    rw [PiLp.single_apply, ite_eq_right hb, zero_mul]
   · intro h; exact absurd (Finset.mem_univ _) h
 
 end
@@ -159,10 +159,10 @@ theorem atomHead'_score (bits : Fin n → Bool) (p : SeqPos n) :
       = ((atomHead' φ).x bits p) 0 := by
   rw [atomHead'_WK, atomHead'_WQ, projTo0_apply, projTo0_apply, vecN_inner']
   rw [Finset.sum_eq_single (0 : Fin 3)]
-  · rw [PiLp.single_apply, PiLp.single_apply, if_pos rfl, if_pos rfl,
+  · rw [PiLp.single_apply, PiLp.single_apply, ite_eq_left rfl, ite_eq_left rfl,
       atomHead'_x_none, fracTok_two_coord2, mul_one]
   · intro b _ hb
-    rw [PiLp.single_apply, if_neg hb, zero_mul]
+    rw [PiLp.single_apply, ite_eq_right hb, zero_mul]
   · intro h; exact absurd (Finset.mem_univ _) h
 
 /-- Softmax weight at the query token is `γ`. -/
@@ -179,11 +179,11 @@ theorem atomHead'_sigma_some (bits : Fin n → Bool) (i : Fin n) :
   unfold FracAtom.wt
   cases hb : bits i with
   | false =>
-      simp only [cond_false, Bool.false_eq_true, if_false]
+      simp only [Bool.cond_false, Bool.false_eq_true, ite_false]
       have h0 : fracTok φ 0 0 = 0 := by simp [fracTok]
       rw [h0, zero_add, Real.exp_log (φ.hρ i), mul_one]
   | true =>
-      simp only [cond_true, if_true]
+      simp only [Bool.cond_true, ite_true]
       have h1 : fracTok φ 1 0 = Real.log φ.α := by simp [fracTok]
       rw [h1, ← Real.log_mul (φ.hα).ne' (φ.hρ i).ne',
         Real.exp_log (mul_pos φ.hα (φ.hρ i)), mul_comm]
@@ -225,11 +225,11 @@ theorem atomHead'_numread (bits : Fin n → Bool) :
   cases hb : bits i with
   | false =>
       have h0 : fracTok φ 0 1 = 0 := by simp [fracTok]
-      simp only [cond_false, Bool.false_eq_true, if_false]
+      simp only [Bool.cond_false, Bool.false_eq_true, ite_false]
       rw [h0, zero_add, add_zero]
   | true =>
       have h1 : fracTok φ 1 1 = φ.δ := by simp [fracTok]
-      simp only [cond_true, if_true]
+      simp only [Bool.cond_true, ite_true]
       rw [h1, add_comm φ.δ (φ.m i)]
 
 /-- **`⟪e₁, attnUpdate⟫ = φ.eval`.** -/

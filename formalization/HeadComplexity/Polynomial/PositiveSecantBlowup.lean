@@ -261,7 +261,7 @@ theorem eventually_isSimplexPoint_ray [Finite I]
     ∀ᶠ t in nhdsWithin (0 : ℝ) (Set.Ioi 0),
       IsSimplexPoint (rayPoint theta v t) := by
   classical
-  letI := Fintype.ofFinite I
+  let := Fintype.ofFinite I
   have hnonneg :
       ∀ᶠ t in nhdsWithin (0 : ℝ) (Set.Ioi 0),
         ∀ h j, 0 ≤ rayPoint theta v t h j := by
@@ -292,7 +292,7 @@ theorem eventually_isInteriorSimplexPoint_ray [Finite I]
     ∀ᶠ t in nhdsWithin (0 : ℝ) (Set.Ioi 0),
       IsInteriorSimplexPoint (rayPoint theta v t) := by
   classical
-  letI := Fintype.ofFinite I
+  let := Fintype.ofFinite I
   have hpos :
       ∀ᶠ t in nhdsWithin (0 : ℝ) (Set.Ioi 0),
         ∀ h j, 0 < rayPoint theta v t h j := by
@@ -720,7 +720,7 @@ theorem orientedSecantFeasible_iff_blowupFeasible {n H : ℕ}
         (positiveInputs f) (negativeInputs f) ↔
       BlowupFeasible (orientedLiteralFamily sigma)
         (positiveInputs f) (negativeInputs f) := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   exact secantFeasible_iff_blowupFeasible
     (orientedLiteralFamily sigma)
     (positiveInputs_nonempty_of_nonconstant hf)
@@ -734,7 +734,7 @@ theorem orientedInteriorSecantFeasible_iff_interiorBlowupFeasible
         (positiveInputs f) (negativeInputs f) ↔
       InteriorBlowupFeasible (orientedLiteralFamily sigma)
         (positiveInputs f) (negativeInputs f) := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   exact interiorSecantFeasible_iff_interiorBlowupFeasible
     (orientedLiteralFamily sigma)
     (positiveInputs_nonempty_of_nonconstant hf)

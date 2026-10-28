@@ -201,7 +201,7 @@ private theorem prod_sum_except_eq_assignment_sum
       ∏ g ∈ Finset.univ.erase h, ∑ ℓ, b g ℓ := by
     rw [← Finset.mul_prod_erase Finset.univ (fun g ↦ ∑ ℓ, F g ℓ)
       (Finset.mem_univ h)]
-    simp only [F, if_pos, Finset.sum_ite_eq', Finset.mem_univ, one_mul]
+    simp only [F, ite_eq_left, Finset.sum_ite_eq', Finset.mem_univ, one_mul]
     apply Finset.prod_congr rfl
     intro g hg
     simp [Finset.ne_of_mem_erase hg]
@@ -210,10 +210,10 @@ private theorem prod_sum_except_eq_assignment_sum
   apply Finset.sum_congr rfl
   intro τ _
   by_cases hτ : τ h = j
-  · simp only [hτ, if_pos]
+  · simp only [hτ, ite_eq_left]
     rw [← Finset.mul_prod_erase Finset.univ (fun g ↦ F g (τ g))
       (Finset.mem_univ h)]
-    simp only [F, if_pos, hτ, one_mul]
+    simp only [F, ite_eq_left, hτ, one_mul]
     apply Finset.prod_congr rfl
     intro g hg
     simp [Finset.ne_of_mem_erase hg]
@@ -236,7 +236,7 @@ private theorem assignmentBlockPureTensor_eq
       localTangentFactor a b τ j (hℓ ▸ x ℓ)
     else ∏ g ∈ assignmentFiber τ ℓ, b g ℓ (x ℓ))
     (Finset.mem_univ j)]
-  simp only [dif_pos]
+  simp only [dite_eq_left]
   have hrest :
       (∏ ℓ ∈ Finset.univ.erase j,
         if hℓ : ℓ = j then
@@ -372,7 +372,7 @@ theorem multiwayTangentValue_eq_sum_active
   apply Finset.sum_congr rfl
   intro p _
   by_cases hp : ∃ h, p.1 h = p.2
-  · simp only [hp, if_pos]
+  · simp only [hp, ite_eq_left]
   · simp only [hp]
     exact assignmentBlockPureTensor_eq_zero_of_inactive a b p.1 p.2 hp x
 
@@ -452,8 +452,8 @@ private theorem ambient_sum_pure (T : MultiwayTensor X) (j₀ : Fin k)
         exact hall j
       obtain ⟨j, hj⟩ := hne
       apply Finset.prod_eq_zero (Finset.mem_univ j.1)
-      simp only [ambientCPFactor, dif_neg j.2]
-      apply if_neg
+      simp only [ambientCPFactor, dite_eq_right j.2]
+      apply ite_eq_right
       intro heq
       exact hj heq.symm
     · intro hnot
@@ -508,10 +508,11 @@ theorem signCPRank_le_card_otherModes [∀ j, Fintype (X j)]
     (cpRankLE_card_otherModes (booleanSignTensor f) j₀)
 
 /-- For nonzero tensor order, the least sign CP-rank bound is attained. -/
-theorem signCPRank_spec [∀ j, Fintype (X j)]
+theorem signCPRank_spec [∀ j, Finite (X j)]
     (f : (∀ j, X j) → Bool) (j₀ : Fin k) :
     ∃ T : MultiwayTensor X,
       StrictSignTensor T f ∧ CPRankLE T (signCPRank f) := by
+  let : ∀ j, Fintype (X j) := fun j ↦ Fintype.ofFinite (X j)
   change signCPRank f ∈
     {r | ∃ T : MultiwayTensor X, StrictSignTensor T f ∧ CPRankLE T r}
   unfold signCPRank
@@ -688,13 +689,15 @@ theorem clearedAtomMultiwayTensor_strict
       rw [hfy] at hs
       exact mul_pos (atomDenProduct_eval_pos phi y) hs
 
+omit [∀ j, Fintype (I j)] in
 /-- Every `H`-head computation satisfies the multiway tangent CP-rank cap
 for every partition into at least two blocks. -/
-theorem multiwaySignCPRank_le_of_computableWithHeadsN
+theorem multiwaySignCPRank_le_of_computableWithHeadsN [∀ j, Finite (I j)]
     (hH : 0 < H) (hk : 2 ≤ k) (part : Fin n ≃ Σ j, I j)
     (f : (Fin n → Bool) → Bool) (hf : computableWithHeadsN n H f) :
     multiwaySignCPRank part f ≤ k * (k ^ H - (k - 1) ^ H) := by
   classical
+  let : ∀ j, Fintype (I j) := fun j ↦ Fintype.ofFinite (I j)
   obtain ⟨phi, c, hscore⟩ :=
     exists_strict_fracCertificate (fracComputable_of_computable hf)
   let A := FracAtom.affineFamily phi
@@ -707,11 +710,12 @@ theorem multiwaySignCPRank_le_of_computableWithHeadsN
   rw [clearedAffineMultiwayTensor_eq_tangent part A c h₀ j₀]
   exact multiwayTangentValue_cpRankLE _ _
 
+omit [∀ j, Fintype (I j)] in
 /-- **Theorem 192, multiway sign-tensor rank bound.** If a nonconstant
 Boolean function has head complexity at most `H`, every partition into
 `k ≥ 2` blocks has sign CP rank at most
 `k * (k^H - (k-1)^H)`. -/
-theorem multiwaySignCPRank_le_of_HStar_le
+theorem multiwaySignCPRank_le_of_HStar_le [∀ j, Finite (I j)]
     (hk : 2 ≤ k) (part : Fin n ≃ Σ j, I j)
     (f : (Fin n → Bool) → Bool)
     (hnonconstant : ¬ ∀ x y, f x = f y) (hle : HStar n f ≤ H) :
@@ -790,16 +794,19 @@ private theorem two_pow_le_three_pow_of_three_mul_le {s H : ℕ}
         congr 1
         omega
 
+omit [∀ j, Fintype (I j)] in
 /-- **Theorem 192, universal input-count barrier.** If `H ≥ 2` and there
 are at most `2H + 1` input coordinates, then the ambient CP-rank ceiling of
 every partition into at least two nonempty blocks already lies below the
 multiway tangent count. -/
 theorem multiwaySignCPRank_le_tangent_count_of_input_bound
+    [∀ j, Finite (I j)]
     [∀ j, Nonempty (I j)]
     (hH : 2 ≤ H) (hk : 2 ≤ k) (hn : n ≤ 2 * H + 1)
     (part : Fin n ≃ Σ j, I j) (f : (Fin n → Bool) → Bool) :
     multiwaySignCPRank part f ≤ k * (k ^ H - (k - 1) ^ H) := by
   classical
+  let : ∀ j, Fintype (I j) := fun j ↦ Fintype.ofFinite (I j)
   have hcard : n = ∑ j, Fintype.card (I j) := by
     calc
       n = Fintype.card (Fin n) := by simp

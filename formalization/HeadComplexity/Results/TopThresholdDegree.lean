@@ -209,9 +209,9 @@ theorem eval_monicCubeIndicator (x y : Fin n → Bool) :
       if x = y then cubeIndicatorTopSign x else 0 := by
   by_cases hxy : x = y
   · subst y
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     exact eval_monicCubeIndicator_self x
-  · rw [if_neg hxy]
+  · rw [ite_eq_right hxy]
     exact eval_monicCubeIndicator_ne hxy
 
 theorem eval_lowerCubeIndicator (x y : Fin n → Bool) :
@@ -222,7 +222,7 @@ theorem eval_lowerCubeIndicator (x y : Fin n → Bool) :
     eval_monicCubeIndicator]
   have htop : cubeIndicatorTopSign (fun _ : Fin n ↦ true) = 1 := by
     rw [cubeIndicatorTopSign, paritySignValue_eq_prod]
-    simp only [boolToReal, if_true, mul_one, Finset.prod_const,
+    simp only [boolToReal, ite_true, mul_one, Finset.prod_const,
       Finset.card_univ, Fintype.card_fin]
     rw [show (1 - 2 : ℝ) = -1 by norm_num, ← pow_two, ← pow_mul]
     norm_num
@@ -263,13 +263,13 @@ theorem eval_lowerCubeInterpolation
       (∑ x, cubeIndicatorTopSign x * r x *
         (if x = y then cubeIndicatorTopSign x else 0)) = r y := by
     rw [Finset.sum_eq_single y]
-    · rw [if_pos rfl]
+    · rw [ite_eq_left rfl]
       calc
         cubeIndicatorTopSign y * r y * cubeIndicatorTopSign y =
             cubeIndicatorTopSign y ^ 2 * r y := by ring
         _ = r y := by rw [cubeIndicatorTopSign_sq, one_mul]
     · intro x hx hxy
-      rw [if_neg hxy]
+      rw [ite_eq_right hxy]
       ring
     · intro hy
       exact (hy (Finset.mem_univ y)).elim
@@ -337,14 +337,14 @@ private theorem parityCorrelationSum_bounds
         ∑ x, parityAgreementValue f x := by
     apply Finset.sum_lt_sum hallLower
     exact ⟨xne, Finset.mem_univ _, by
-      rw [parityAgreementValue_eq, if_neg hxne]
+      rw [parityAgreementValue_eq, ite_eq_right hxne]
       norm_num⟩
   have hupper :
       (∑ x, parityAgreementValue f x) <
         ∑ _x : Fin n → Bool, (1 : ℝ) := by
     apply Finset.sum_lt_sum hallUpper
     exact ⟨xeq, Finset.mem_univ _, by
-      rw [parityAgreementValue_eq, if_pos hxeq]
+      rw [parityAgreementValue_eq, ite_eq_left hxeq]
       norm_num⟩
   constructor
   · simpa [parityCorrelationSum, Fintype.card_bool] using hlower

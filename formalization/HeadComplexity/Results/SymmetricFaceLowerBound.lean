@@ -29,7 +29,7 @@ theorem HStar_restrict_le (rho : CoordFace m n) (f : (Fin n → Bool) → Bool) 
     HStar m (fun x => f (rho.apply x)) ≤ HStar n f := by
   classical
   unfold HStar
-  rw [dif_pos ⟨HStar n f, computableWithHeadsN.restrict rho (HStar_computable f)⟩]
+  rw [dite_eq_left ⟨HStar n f, computableWithHeadsN.restrict rho (HStar_computable f)⟩]
   exact Nat.find_min' _ (computableWithHeadsN.restrict rho (HStar_computable f))
 
 /-- If the restriction of an `H`-head function to a coordinate face is

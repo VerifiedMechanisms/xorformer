@@ -72,7 +72,7 @@ theorem sigma_some_eq_wt (i : Fin n) :
   cases hbi : bits i with
   | false => simp
   | true =>
-      simp only [cond_true, if_true]
+      simp only [Bool.cond_true, ite_true]
       have hsplit : H.tokenEmbed 1 + H.posEmbed (some i)
           = (H.tokenEmbed 0 + H.posEmbed (some i)) + (H.tokenEmbed 1 - H.tokenEmbed 0) := by
         abel
@@ -95,7 +95,7 @@ theorem value_some_eq (i : Fin n) :
   cases hbi : bits i with
   | false => simp
   | true =>
-      simp only [cond_true, if_true]
+      simp only [Bool.cond_true, ite_true]
       have hsplit : H.tokenEmbed 1 + H.posEmbed (some i)
           = (H.tokenEmbed 0 + H.posEmbed (some i)) + (H.tokenEmbed 1 - H.tokenEmbed 0) := by
         abel

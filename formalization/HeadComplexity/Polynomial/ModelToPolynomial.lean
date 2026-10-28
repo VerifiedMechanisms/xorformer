@@ -60,9 +60,9 @@ theorem exists_affine_of_single_pos (s : (Fin n → Bool) → ℝ) (p : Fin n)
   by_cases h : bits p
   · have hb : bits p = (Function.update (fun _ : Fin n => false) p true) p := by
       simp [Function.update_self, h]
-    rw [if_pos h]; exact (hdep bits _ hb).symm
+    rw [ite_eq_left h]; exact (hdep bits _ hb).symm
   · have hb : bits p = (fun _ : Fin n => false) p := by simp [h]
-    rw [if_neg h]; exact (hdep bits _ hb).symm
+    rw [ite_eq_right h]; exact (hdep bits _ hb).symm
 
 /-- A constant function has a degree 0 representing polynomial. -/
 theorem exists_const_poly (c : ℝ) :

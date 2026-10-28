@@ -147,7 +147,7 @@ private theorem f10_not_ThresholdDegLE_one : ¬ ThresholdDegLE f10 1 := by
 theorem thresholdDeg_f10 : thresholdDeg f10 = 2 := by
   classical
   have hex : ∃ d, ThresholdDegLE f10 d := ⟨2, f10_ThresholdDegLE_two⟩
-  rw [thresholdDeg, dif_pos hex]
+  rw [thresholdDeg, dite_eq_left hex]
   apply le_antisymm
   · exact Nat.find_min' hex f10_ThresholdDegLE_two
   · by_contra h

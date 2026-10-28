@@ -304,9 +304,9 @@ theorem ThresholdDegLE.oneSliceFeature
         simp [Q, inactiveSlicePolynomial, cubePoint, boolToReal, consBit]
     rw [hQeval, oneSliceFeature_consBit]
     by_cases hza : z = active
-    · rw [if_pos hza, if_pos hza]
+    · rw [ite_eq_left hza, ite_eq_left hza]
       simpa only [mul_zero, add_zero] using hPstrict.signRepresents y
-    · rw [if_neg hza, if_neg hza]
+    · rw [ite_eq_right hza, ite_eq_right hza]
       simp only [mul_one]
       have habs := abs_eval_lt_cubeStrictBound P y
       have hlo : -M < eval (cubePoint y) P := by
@@ -316,9 +316,9 @@ theorem ThresholdDegLE.oneSliceFeature
         dsimp [M]
         exact (lt_of_abs_lt habs)
       cases constant
-      · simp only [if_false, Bool.false_eq_true, iff_false]
+      · simp only [ite_false, Bool.false_eq_true, iff_false]
         linarith
-      · simp only [if_true, iff_true]
+      · simp only [ite_true, iff_true]
         linarith
 
 /-- A nonconstant feature has exactly the same threshold degree when placed on

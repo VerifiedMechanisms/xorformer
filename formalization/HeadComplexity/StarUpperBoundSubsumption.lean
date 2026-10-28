@@ -154,7 +154,8 @@ run_cmd Command.liftTermElabM do
   checkStrict report
 
 run_cmd Command.liftTermElabM do
-  let report ← compareTheorems ``star_threshold_degree_contract ``original_threshold_degree_contract {
+  let report ← compareTheorems ``star_threshold_degree_contract
+    ``original_threshold_degree_contract {
     mode := .logical
     facts := #[``threshold_degree_forward, ``threshold_degree_reverse_refuted]
     allowedAxioms? := some #[``propext, ``Classical.choice, ``Quot.sound]

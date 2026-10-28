@@ -93,7 +93,7 @@ theorem eval_point (target bits : Fin n → Bool) :
   by_cases heq : bits = target
   · subst bits
     simp
-  · rw [if_neg heq]
+  · rw [ite_eq_right heq]
     have hex : ∃ i, bits i ≠ target i := by
       by_contra h
       push Not at h
@@ -304,7 +304,7 @@ theorem uniformlyAtomsApproximable (C : CubeCylinder n) (a : ℝ) :
       (fun bits ↦ a * C.eval bits) := by
   classical
   by_cases hvac : C.positive = ∅ ∧ C.negative = ∅
-  · rw [cost, if_pos hvac]
+  · rw [cost, ite_eq_left hvac]
     obtain ⟨hp, hn⟩ := hvac
     have heval : ∀ bits, C.eval bits = 1 := by
       intro bits
@@ -312,12 +312,12 @@ theorem uniformlyAtomsApproximable (C : CubeCylinder n) (a : ℝ) :
     simpa only [heval, mul_one] using
       (uniformlyAtomsApproximable_const (n := n) a)
   · by_cases horient : 2 ^ C.positive.card ≤ 2 ^ C.negative.card
-    · rw [cost, if_neg hvac, Nat.min_eq_left horient]
+    · rw [cost, ite_eq_right hvac, Nat.min_eq_left horient]
       rw [← Finset.card_powerset]
       exact negativeExpansion_uniformlyAtomsApproximable C a
     · have horient' : 2 ^ C.negative.card ≤ 2 ^ C.positive.card :=
         Nat.le_of_not_ge horient
-      rw [cost, if_neg hvac, Nat.min_eq_right horient']
+      rw [cost, ite_eq_right hvac, Nat.min_eq_right horient']
       rw [← Finset.card_powerset]
       exact positiveExpansion_uniformlyAtomsApproximable C a
 

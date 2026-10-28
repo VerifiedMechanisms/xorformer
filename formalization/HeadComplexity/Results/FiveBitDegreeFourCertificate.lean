@@ -128,7 +128,7 @@ theorem exists_integral_scale_strict_sign_glue
       (0 < perturbation x + scale * base x ↔ target x = true) ∧
         perturbation x + scale * base x ≠ 0 := by
   classical
-  letI := Fintype.ofFinite X
+  let := Fintype.ofFinite X
   let scale : ℤ := ∑ x, |perturbation x| + 1
   have hsum_nonneg : 0 ≤ ∑ x, |perturbation x| :=
     Finset.sum_nonneg fun _ _ ↦ abs_nonneg _

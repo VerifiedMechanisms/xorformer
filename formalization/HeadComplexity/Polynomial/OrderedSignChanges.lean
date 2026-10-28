@@ -32,7 +32,7 @@ theorem orderedCut_between {n : ℕ} (τ : Fin (n + 1) → ℝ)
     (hτ : StrictMono τ) {t : ℕ} (ht : t < n) :
     τ (orderedNodeIndex n t ht.le) < orderedCut τ t ∧
       orderedCut τ t < τ (orderedNodeIndex n (t + 1) ht) := by
-  rw [orderedCut, dif_pos ht]
+  rw [orderedCut, dite_eq_left ht]
   have hstep : τ (orderedNodeIndex n t ht.le) <
       τ (orderedNodeIndex n (t + 1) ht) := by
     apply hτ
@@ -145,11 +145,11 @@ theorem exists_ordered_sign_poly {n : ℕ} (τ : Fin (n + 1) → ℝ)
         exact sub_ne_zero.mpr (ne_of_gt
           ((orderedCut_between τ hτ htn).2.trans_le hmono))
     by_cases hFn : F n = true
-    · rw [if_pos hFn, one_mul, hsgn, ← hpar, hFn]
+    · rw [ite_eq_left hFn, one_mul, hsgn, ← hpar, hFn]
     · have hFn' : F n = false := by
         revert hFn
         cases F n <;> simp
-      rw [if_neg hFn, neg_one_mul, neg_pos]
+      rw [ite_eq_right hFn, neg_one_mul, neg_pos]
       have hlt :
           ((∏ t ∈ changeSet F n,
               (τ (orderedNodeIndex n k hk) - orderedCut τ t)) < 0) ↔

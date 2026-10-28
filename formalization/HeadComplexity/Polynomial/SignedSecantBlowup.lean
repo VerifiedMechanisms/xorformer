@@ -334,7 +334,7 @@ theorem dividedProductRayPolynomial_eval_zero
   rw [← Polynomial.coeff_zero_eq_eval_zero, dividedProductRayPolynomial,
     Polynomial.coeff_divX]
   simp only [zero_add, Polynomial.coeff_sub, Polynomial.coeff_C,
-    if_neg (by norm_num : (1 : ℕ) ≠ 0), sub_zero]
+    ite_eq_right (by norm_num : (1 : ℕ) ≠ 0), sub_zero]
   have hderiv := congrArg (fun p : ℝ[X] ↦ p.eval 0)
     (Polynomial.derivative_prod_finset
       (s := (Finset.univ : Finset I))
@@ -604,7 +604,7 @@ theorem orientedSignedSecantFeasible_iff_signedBlowupFeasible
     (sigma : Fin H → Bool) :
     SignedSecantFeasible (orientedLiteralFamily sigma) (truthSign f) Finset.univ ↔
       SignedBlowupFeasible (orientedLiteralFamily sigma) (truthSign f) Finset.univ := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   exact signedSecantFeasible_iff_signedBlowupFeasible
     (orientedLiteralFamily sigma) (truthSign f) Finset.univ_nonempty
 
@@ -616,7 +616,7 @@ theorem orientedInteriorSignedSecantFeasible_iff_interiorSignedBlowupFeasible
         (truthSign f) Finset.univ ↔
       InteriorSignedBlowupFeasible (orientedLiteralFamily sigma)
         (truthSign f) Finset.univ := by
-  letI : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
+  let : Nonempty (Fin H) := Fin.pos_iff_nonempty.mp hH
   exact interiorSignedSecantFeasible_iff_interiorSignedBlowupFeasible
     (orientedLiteralFamily sigma) (truthSign f) Finset.univ_nonempty
 

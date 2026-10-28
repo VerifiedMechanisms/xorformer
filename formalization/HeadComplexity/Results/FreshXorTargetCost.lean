@@ -93,8 +93,8 @@ private theorem splitAffineIndicator_eq
   unfold xorAffineIndicator
   by_cases h : ∃ i, splitAffineCoeff C.affineConst (-C.affineConst)
       C.affineCoeff i ≠ 0
-  · rw [if_pos h, if_pos (hex.mp h)]
-  · rw [if_neg h, if_neg (fun h' ↦ h (hex.mpr h'))]
+  · rw [ite_eq_left h, ite_eq_left (hex.mp h)]
+  · rw [ite_eq_right h, ite_eq_right (fun h' ↦ h (hex.mpr h'))]
 
 private theorem flippedLinearSupport_eq
     {f : (Fin m → Bool) → Bool}

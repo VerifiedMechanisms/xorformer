@@ -36,7 +36,7 @@ noncomputable def apply (rho : CoordFace m n) (x : Fin m → Bool) : Fin n → B
 
 @[simp] theorem apply_free (rho : CoordFace m n) (x : Fin m → Bool) (i : Fin m) :
     rho.apply x (rho.free i) = x i := by
-  rw [apply, dif_pos ⟨i, rfl⟩]
+  rw [apply, dite_eq_left ⟨i, rfl⟩]
   congr 1
   exact rho.free.injective
     (Classical.choose_spec (show ∃ k, rho.free k = rho.free i from ⟨i, rfl⟩))
@@ -56,7 +56,7 @@ noncomputable def fixedSet (rho : CoordFace m n) : Finset (Fin n) :=
 
 @[simp] theorem apply_fixed (rho : CoordFace m n) (x : Fin m → Bool) {j : Fin n}
     (hj : j ∈ rho.fixedSet) : rho.apply x j = rho.base j := by
-  rw [apply, dif_neg]
+  rw [apply, dite_eq_right]
   intro h
   have : j ∈ rho.freeSet := (rho.mem_freeSet j).2 h
   exact (Finset.mem_sdiff.mp hj).2 this

@@ -165,7 +165,7 @@ theorem exists_empirical_oneSided_approximation_profile
       (m : ℝ) * epsilon k := by
   let productMeasure : Measure (Fin m → J) :=
     Measure.pi (fun _ : Fin m ↦ mu)
-  letI : IsProbabilityMeasure productMeasure := by
+  let : IsProbabilityMeasure productMeasure := by
     dsimp [productMeasure]
     infer_instance
   let bad : K → Set (Fin m → J) := fun k ↦

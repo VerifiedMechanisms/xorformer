@@ -26,7 +26,7 @@ private theorem HStar_ge_two_of_not_computable_zero_one {n : ℕ}
     2 ≤ HStar n f := by
   classical
   unfold HStar
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   by_contra hlt
   have hcases : Nat.find hex = 0 ∨ Nat.find hex = 1 := by omega
   rcases hcases with hzero | hone

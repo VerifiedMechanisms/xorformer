@@ -275,7 +275,7 @@ theorem polynomialPartitionMatrix_rank_le_right
     (polynomialPartitionMatrix part P).rank ≤
       ∑ k ∈ Finset.range (min H (Fintype.card κ) + 1),
         (Fintype.card κ).choose k := by
-  letI := partitionLeftFintype part
+  let := partitionLeftFintype part
   have hleft := polynomialPartitionMatrix_rank_le_left
     (part := swapPartition part) P H hP
   rw [polynomialPartitionMatrix_swap, Matrix.rank_transpose] at hleft

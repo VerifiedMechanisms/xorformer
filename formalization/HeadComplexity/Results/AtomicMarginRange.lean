@@ -70,14 +70,14 @@ the finite atom index type is nonempty. -/
 noncomputable def minAtomOutput (C : AtomicMarginCertificate f J mu)
     (bits : Fin n → Bool) : ℝ :=
   Finset.univ.inf' (by
-    haveI : Nonempty J := nonempty_of_isProbabilityMeasure mu
+    have : Nonempty J := nonempty_of_isProbabilityMeasure mu
     exact Finset.univ_nonempty) (fun j ↦ (C.atom j).eval bits)
 
 /-- Maximum atom output at a fixed input. -/
 noncomputable def maxAtomOutput (C : AtomicMarginCertificate f J mu)
     (bits : Fin n → Bool) : ℝ :=
   Finset.univ.sup' (by
-    haveI : Nonempty J := nonempty_of_isProbabilityMeasure mu
+    have : Nonempty J := nonempty_of_isProbabilityMeasure mu
     exact Finset.univ_nonempty) (fun j ↦ (C.atom j).eval bits)
 
 theorem minAtomOutput_le (C : AtomicMarginCertificate f J mu) (j : J) (bits : Fin n → Bool) :

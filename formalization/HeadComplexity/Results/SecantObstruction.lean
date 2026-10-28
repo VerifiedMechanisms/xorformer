@@ -79,11 +79,11 @@ theorem orientedTangentFeasible_of_fracComputable {n H : ℕ}
   | false =>
       simp only [hfx, Bool.false_eq_true, ↓reduceIte] at hs
       have hneg := mul_neg_of_pos_of_neg hproduct hs
-      simp only [truthSign, hfx, Bool.false_eq_true, if_false, neg_mul]
+      simp only [truthSign, hfx, Bool.false_eq_true, ite_false, neg_mul]
       simpa only [one_mul] using (neg_pos.mpr hneg)
   | true =>
       simp only [hfx, ↓reduceIte] at hs
-      simp only [truthSign, hfx, if_true, one_mul]
+      simp only [truthSign, hfx, ite_true, one_mul]
       exact mul_pos hproduct hs
 
 theorem orientedTangentFeasible_of_computableWithHeadsN {n H : ℕ}
@@ -205,8 +205,8 @@ theorem positiveSecantFeasible_of_signedSecantFeasible {n H : ℕ}
   have hfq : f q = false := (mem_negativeInputs f q).mp hq
   have hpstrict := hstrict p (Finset.mem_univ p)
   have hqstrict := hstrict q (Finset.mem_univ q)
-  simp only [truthSign, hfp, if_true, one_mul] at hpstrict
-  simp only [truthSign, hfq, Bool.false_eq_true, if_false, neg_mul,
+  simp only [truthSign, hfp, ite_true, one_mul] at hpstrict
+  simp only [truthSign, hfq, Bool.false_eq_true, ite_false, neg_mul,
     neg_pos] at hqstrict
   let A := productScore (orientedLiteralFamily sigma) theta₁ p
   let B := productScore (orientedLiteralFamily sigma) theta₀ p

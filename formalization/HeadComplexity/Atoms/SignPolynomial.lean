@@ -56,7 +56,7 @@ theorem negCount_succ {k : ℕ} (hk : k < n) :
   congr 1
   -- the second set is `{k}` iff `F k ≠ F (k+1)`, else `∅`
   by_cases hF : F k ≠ F (k + 1)
-  · rw [if_pos hF]
+  · rw [ite_eq_left hF]
     rw [show ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ t = k)) = {k} from ?_]
     · exact Finset.card_singleton k
     · ext t
@@ -64,7 +64,7 @@ theorem negCount_succ {k : ℕ} (hk : k < n) :
       constructor
       · rintro ⟨_, _, rfl⟩; rfl
       · rintro rfl; exact ⟨hk, hF, rfl⟩
-  · rw [if_neg hF]
+  · rw [ite_eq_right hF]
     rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
     intro t _ ⟨h1, h2⟩; subst h2; exact hF h1
 
@@ -90,8 +90,8 @@ theorem eq_Fn_iff_even_negCount_aux (F : ℕ → Bool) (n : ℕ) :
       have hrec := negCount_succ (F := F) (n := n) hkn
       have hIH := ih (k + 1) (by omega)
       by_cases hF : F k = F (k + 1)
-      · rw [hrec, if_neg (not_not.mpr hF), add_zero, hF]; exact hIH
-      · rw [hrec, if_pos hF, Nat.even_add_one, ← hIH]
+      · rw [hrec, ite_eq_right (not_not.mpr hF), add_zero, hF]; exact hIH
+      · rw [hrec, ite_eq_left hF, Nat.even_add_one, ← hIH]
         revert hF; cases F k <;> cases F (k + 1) <;> cases F n <;> decide
 
 /-- **Flip parity.** `F k = F n` exactly when the number of sign changes above `k`
@@ -163,9 +163,9 @@ theorem exists_sign_poly (F : ℕ → Bool) (n : ℕ) :
     have hne : (∏ t ∈ changeSet F n, ((k : ℝ) - ((t : ℝ) + 1 / 2))) ≠ 0 :=
       Finset.prod_ne_zero_iff.mpr (fun t _ => factor_ne_zero k t)
     by_cases hFn : F n = true
-    · rw [if_pos hFn, one_mul, hsgn, ← hpar, hFn]
+    · rw [ite_eq_left hFn, one_mul, hsgn, ← hpar, hFn]
     · have hFn' : F n = false := by revert hFn; cases F n <;> simp
-      rw [if_neg hFn, neg_one_mul, neg_pos]
+      rw [ite_eq_right hFn, neg_one_mul, neg_pos]
       have hlt : ((∏ t ∈ changeSet F n, ((k : ℝ) - ((t : ℝ) + 1 / 2))) < 0)
           ↔ ¬ (0 < ∏ t ∈ changeSet F n, ((k : ℝ) - ((t : ℝ) + 1 / 2))) :=
         ⟨fun h => not_lt.mpr (le_of_lt h), fun h => lt_of_le_of_ne (not_lt.mp h) hne⟩

@@ -113,7 +113,7 @@ theorem affHead_score_some (bits : Fin n → Bool) (i : Fin n) :
   rw [PiLp.add_apply]
   have hsucc : (EuclideanSpace.single i.succ (affCoeff cs c i) : Vec (n + 1)) 0 = 0 := by
     rw [PiLp.single_apply]
-    rw [if_neg (Fin.succ_ne_zero i).symm]
+    rw [ite_eq_right (Fin.succ_ne_zero i).symm]
   rw [hsucc, add_zero]
   cases bits i with
   | false => simp [affTok]
@@ -126,7 +126,7 @@ theorem affHead_sigma_none (bits : Fin n → Bool) :
   rw [affHead_x_none]
   simp only [affHead_WK, affHead_WQ, LinearMap.id_coe, id_eq]
   rw [affReadout_query_inner]
-  rw [PiLp.single_apply, if_pos rfl]
+  rw [PiLp.single_apply, ite_eq_left rfl]
 
 /-- Softmax weight at position `i`: `2` if bit set, else `1`. -/
 theorem affHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
@@ -138,7 +138,7 @@ theorem affHead_sigma_some (bits : Fin n → Bool) (i : Fin n) :
   cases bits i with
   | false => simp
   | true =>
-      simp only [if_true]
+      simp only [ite_true]
       rw [Real.exp_log (by norm_num : (0:ℝ) < 2)]
 
 end
@@ -171,21 +171,21 @@ theorem affReadout_x_none (bits : Fin n → Bool) :
     ⟪affReadout n, (affHead cs c).x bits none⟫_ℝ = 0 := by
   rw [affHead_x_none, affReadout_inner]
   refine Finset.sum_eq_zero (fun i _ => ?_)
-  rw [PiLp.single_apply, if_neg (Fin.succ_ne_zero i)]
+  rw [PiLp.single_apply, ite_eq_right (Fin.succ_ne_zero i)]
 
 /-- Readout of the embedding at position `i` is `a i`. -/
 theorem affReadout_x_some (bits : Fin n → Bool) (i : Fin n) :
     ⟪affReadout n, (affHead cs c).x bits (some i)⟫_ℝ = affCoeff cs c i := by
   rw [affHead_x_some, affReadout_inner]
   rw [Finset.sum_eq_single i]
-  · rw [PiLp.add_apply, PiLp.single_apply, if_pos rfl]
+  · rw [PiLp.add_apply, PiLp.single_apply, ite_eq_left rfl]
     have htok : (affTok (cond (bits i) 1 0) : Vec (n + 1)) i.succ = 0 := by
       cases bits i with
       | false => simp [affTok]
       | true =>
-          simp only [cond_true]
+          simp only [Bool.cond_true]
           rw [show (affTok 1 : Vec (n + 1)) = EuclideanSpace.single 0 (Real.log 2) from rfl]
-          rw [PiLp.single_apply, if_neg (Fin.succ_ne_zero i)]
+          rw [PiLp.single_apply, ite_eq_right (Fin.succ_ne_zero i)]
     rw [htok, zero_add]
   · intro j _ hj
     rw [PiLp.add_apply]
@@ -193,10 +193,10 @@ theorem affReadout_x_some (bits : Fin n → Bool) (i : Fin n) :
       cases bits i with
       | false => simp [affTok]
       | true =>
-          simp only [cond_true]
+          simp only [Bool.cond_true]
           rw [show (affTok 1 : Vec (n + 1)) = EuclideanSpace.single 0 (Real.log 2) from rfl]
-          rw [PiLp.single_apply, if_neg (Fin.succ_ne_zero j)]
-    rw [htok, zero_add, PiLp.single_apply, if_neg (fun h => hj (Fin.succ_inj.mp h))]
+          rw [PiLp.single_apply, ite_eq_right (Fin.succ_ne_zero j)]
+    rw [htok, zero_add, PiLp.single_apply, ite_eq_right (fun h => hj (Fin.succ_inj.mp h))]
   · intro h; exact absurd (Finset.mem_univ _) h
 
 end

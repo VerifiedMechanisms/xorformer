@@ -1,6 +1,6 @@
 import Mathlib.Algebra.Polynomial.Eval.Defs
 import Mathlib.Algebra.Polynomial.Degree.Defs
-import Mathlib.Data.Real.Basic
+import Mathlib.Basic.Real.Basic
 
 set_option linter.style.header false
 

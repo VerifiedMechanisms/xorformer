@@ -88,7 +88,7 @@ theorem clearedAffinePartitionMatrix_rank_le (hH : 0 < H)
     (part : Fin n ≃ ι ⊕ κ) (A : AffineFractionFamily n H) (c : ℝ) :
     (clearedAffinePartitionMatrix part A c).rank ≤ 2 ^ (H + 1) - 2 := by
   classical
-  letI := partitionLeftFintype part
+  let := partitionLeftFintype part
   rw [clearedAffinePartitionMatrix_eq_tangentMatrix]
   simpa using TangentRank.tangentMatrix_rank_le
     (I := Fin H) (X := ι → Bool) (Y := κ → Bool) (by simpa using hH) c

@@ -48,7 +48,7 @@ theorem HStar_computable (f : (Fin n → Bool) → Bool) :
   classical
   have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
   unfold HStar
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact Nat.find_spec hex
 
 /-- Any explicit `H`-head realization upper-bounds the minimum head
@@ -59,7 +59,7 @@ theorem HStar_le_of_computableWithHeadsN {H : ℕ}
   classical
   have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
   unfold HStar
-  rw [dif_pos hex]
+  rw [dite_eq_left hex]
   exact Nat.find_min' hex h
 
 /-! ## Zero heads ⟺ constant -/
@@ -86,7 +86,7 @@ theorem HStar_eq_zero_iff (f : (Fin n → Bool) → Bool) :
   classical
   have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
   unfold HStar
-  rw [dif_pos hex, Nat.find_eq_zero hex]
+  rw [dite_eq_left hex, Nat.find_eq_zero hex]
   exact computableWithHeadsN_zero_iff f
 
 /-! ## Threshold degree `≤ 1` is exactly LTF -/
@@ -180,7 +180,7 @@ theorem HStar_eq_one_iff (f : (Fin n → Bool) → Bool) :
     HStar n f = 1 ↔ (¬ (∀ x y, f x = f y) ∧ isLTF f) := by
   classical
   have hex : ∃ k, computableWithHeadsN n k f := exists_computable f
-  have hfind : HStar n f = Nat.find hex := by unfold HStar; rw [dif_pos hex]
+  have hfind : HStar n f = Nat.find hex := by unfold HStar; rw [dite_eq_left hex]
   constructor
   · intro h1
     have hne : HStar n f ≠ 0 := by omega

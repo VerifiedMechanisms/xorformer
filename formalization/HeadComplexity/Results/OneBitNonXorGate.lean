@@ -174,57 +174,37 @@ theorem oneSliceFeature_computable_succ
     have hs := hstrict (tailBits x)
     have hb := hbound (tailBits x)
     cases hx : x 0
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      change ((0 < c + ∑ h, (phi h).eval (tailBits x) ↔
-          f (tailBits x) = true) ∧
-        c + ∑ h, (phi h).eval (tailBits x) ≠ 0)
-      exact hs
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      have hneg : c - M + ∑ h, (phi h).eval (tailBits x) < 0 := by
+    · simpa [oneSliceFeature, hx, boolToReal] using hs
+    · have hneg : c - M + ∑ h, (phi h).eval (tailBits x) < 0 := by
         linarith [lt_of_abs_lt hb]
-      constructor <;> linarith
+      simpa [oneSliceFeature, hx, boolToReal] using ⟨hneg.le, ne_of_lt hneg⟩
   · apply computableWithHeadsN_tailAtoms_add_raw phi c M
     intro x
     have hs := hstrict (tailBits x)
     have hb := hbound (tailBits x)
     cases hx : x 0
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      change ((0 < c + ∑ h, (phi h).eval (tailBits x) ↔
-          f (tailBits x) = true) ∧
-        c + ∑ h, (phi h).eval (tailBits x) ≠ 0)
-      exact hs
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      have hpos : 0 < c + M + ∑ h, (phi h).eval (tailBits x) := by
+    · simpa [oneSliceFeature, hx, boolToReal] using hs
+    · have hpos : 0 < c + M + ∑ h, (phi h).eval (tailBits x) := by
         linarith [neg_lt_of_abs_lt hb]
-      exact ⟨hpos, ne_of_gt hpos⟩
+      simpa [oneSliceFeature, hx, boolToReal] using ⟨hpos, ne_of_gt hpos⟩
   · apply computableWithHeadsN_tailAtoms_add_raw phi (c - M) M
     intro x
     have hs := hstrict (tailBits x)
     have hb := hbound (tailBits x)
     cases hx : x 0
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      have hneg : c - M + ∑ h, (phi h).eval (tailBits x) < 0 := by
+    · have hneg : c - M + ∑ h, (phi h).eval (tailBits x) < 0 := by
         linarith [lt_of_abs_lt hb]
-      exact ⟨hneg.le, ne_of_lt hneg⟩
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      change ((0 < c + ∑ h, (phi h).eval (tailBits x) ↔
-          f (tailBits x) = true) ∧
-        c + ∑ h, (phi h).eval (tailBits x) ≠ 0)
-      exact hs
+      simpa [oneSliceFeature, hx, boolToReal] using ⟨hneg.le, ne_of_lt hneg⟩
+    · simpa [oneSliceFeature, hx, boolToReal] using hs
   · apply computableWithHeadsN_tailAtoms_add_raw phi (c + M) (-M)
     intro x
     have hs := hstrict (tailBits x)
     have hb := hbound (tailBits x)
     cases hx : x 0
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      have hpos : 0 < c + M + ∑ h, (phi h).eval (tailBits x) := by
+    · have hpos : 0 < c + M + ∑ h, (phi h).eval (tailBits x) := by
         linarith [neg_lt_of_abs_lt hb]
-      exact ⟨hpos, ne_of_gt hpos⟩
-    · simp [oneSliceFeature, hx, boolToReal] at ⊢
-      change ((0 < c + ∑ h, (phi h).eval (tailBits x) ↔
-          f (tailBits x) = true) ∧
-        c + ∑ h, (phi h).eval (tailBits x) ≠ 0)
-      exact hs
+      simpa [oneSliceFeature, hx, boolToReal] using ⟨hpos, ne_of_gt hpos⟩
+    · simpa [oneSliceFeature, hx, boolToReal] using hs
 
 /-- Head-complexity form of the one-active-slice construction. -/
 theorem HStar_oneSliceFeature_le_succ
@@ -397,10 +377,8 @@ theorem HStar_freshBitGate_le_succ_of_ne_xor_xnor
   have hG : G = gateOfSliceKinds k₀ k₁ := by
     funext z u
     cases z
-    · simpa [gateOfSliceKinds, k₀] using
-        (UnarySliceKind.eval_classify (G false) u).symm
-    · simpa [gateOfSliceKinds, k₁] using
-        (UnarySliceKind.eval_classify (G true) u).symm
+    · simp [gateOfSliceKinds, k₀]
+    · simp [gateOfSliceKinds, k₁]
   have hkxor : ¬ (k₀ = .id ∧ k₁ = .neg) := by
     rintro ⟨hk₀, hk₁⟩
     apply hxor

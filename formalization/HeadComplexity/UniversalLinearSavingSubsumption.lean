@@ -71,7 +71,7 @@ theorem logarithmic_reverse_refuted :
         rw [show (256 : ℝ) / 2 = 128 by norm_num, hpowReal]
         ring
   have hold : heads ≤ universalStarBound 256 := by
-    simp only [universalStarBound, if_pos (by decide : 2 ≤ 256)]
+    simp only [universalStarBound, ite_eq_left (by decide : 2 ≤ 256)]
     apply Nat.le_min.mpr
     refine ⟨?_, Nat.le_floor hreal⟩
     change 23 * b ≤ min (2 ^ 256 - 1) (2 ^ 255)

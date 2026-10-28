@@ -287,7 +287,7 @@ theorem exists_fracAtom_approx_signedMonomial
         by_cases hi : i ∈ S
         · simp [hall i hi, boolToReal, hδ.le]
         · dsimp [w]
-          rw [if_neg hi]
+          rw [ite_eq_right hi]
           have hle := boolToReal_nonneg (bits i)
           nlinarith
       have hTle : T ≤ (n : ℝ) * δ := by
