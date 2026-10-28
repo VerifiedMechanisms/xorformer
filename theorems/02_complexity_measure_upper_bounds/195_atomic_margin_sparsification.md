@@ -85,6 +85,22 @@ headline theorem `HStar_real_le_atomicConditionNumber` is
 
 $$ \bigl(H^{\ast}(f):\mathbb R\bigr)\leq33(n+1)\kappa_{\mathrm{atom}}(f)^2. $$
 
+## Certified Strengthenings
+
+The existing theorem 195 refinement improves the sample coefficient to two and the real coefficient to three. The [certified strengthening report](../../artifacts/theorem-subsumption/atomic-strengthenings.md) proves further improvements under the same certificate hypotheses:
+
+$$ H^{\ast}(f)\leq\left\lfloor2n\log 2\left(\frac{\Lambda}{\gamma}\right)^2\right\rfloor+1, \qquad H^{\ast}(f)\leq(2n\log 2+1)\left(\frac{\Lambda}{\gamma}\right)^2. $$
+
+The homogeneous real bound also holds for the literal infimum. Local signed margins and canonical atom-output widths give strictly more general sufficient sampling conditions, with actual nonconstant certificates witnessing the improvement.
+
+There is also a structural obstruction beyond the old condition-number lower endpoint one. Put $N=2^n$. For a nonconstant function,
+
+$$ H^{\ast}(f)\geq2\quad\Longrightarrow\quad\kappa_{\mathrm{atom}}(f)\geq\frac{N}{N-1}. $$
+
+For balanced labels and $n\geq2$, the lower endpoint improves to $N/(N-2)$. In particular, the atomic condition number of two-bit XOR is at least two. The proof selects a single atom whenever its total label deficit is below two; taking the infimum needs no attainment assumption.
+
+`Results/AtomicMarginEntropy.lean`, `Results/AtomicMarginProfile.lean`, `Results/AtomicMarginRange.lean`, and `Results/AtomicConditionGap.lean` contain the proofs. Five pinned theorem-subsumption comparisons certify the stronger guarantees and weaker sampling requirements. Their semantic bridges, genuine strictness witnesses, and reproduction commands are in the report.
+
 ## Certificate And Estimation Consequence
 
 For a fixed strictly positive oriented denominator $B$, pricing a normalized affine numerator $A$ against residual weights $r_x$ is a linear program:

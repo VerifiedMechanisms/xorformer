@@ -26,6 +26,21 @@ logical subsumption from contextual specialization and incomparability. See the
 kernel-checked comparison module
 [`HeadComplexity/SelectionSubsumption.lean`](HeadComplexity/SelectionSubsumption.lean).
 
+The theorem 195 refinement sharpens its sampling constant from 32 to 2 and its
+real-valued constant from 33 to 3 under the same hypotheses. The original
+declarations remain available alongside the refined aliases in `Results/All.lean`.
+The [refinement report](../artifacts/theorem-subsumption/atomic-margin-refinement.md)
+links the proofs, semantic contract bridge, and certified strict comparison in
+[`HeadComplexity/AtomicMarginSubsumption.lean`](HeadComplexity/AtomicMarginSubsumption.lean).
+
+Further [certified strengthenings](../artifacts/theorem-subsumption/atomic-strengthenings.md)
+use this refined theorem 195 result: the entropy coefficient becomes $2n\log 2+1$,
+local signed margins and canonical output widths weaken the sampling condition,
+and functions needing at least two heads have an atomic condition number
+strictly above one. Five new theorem-subsumption comparisons check the
+strengthenings, with semantic bridges and strictness proofs on genuine data.
+`Results/All.lean` exports the new results alongside every existing declaration.
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |
