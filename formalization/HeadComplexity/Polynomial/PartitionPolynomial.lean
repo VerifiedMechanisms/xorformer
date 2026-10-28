@@ -1,6 +1,6 @@
+import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.BooleanCube.Partition
 import HeadComplexity.Polynomial.TangentRank
-import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.Results.LowComplexity
 
 set_option linter.style.header false

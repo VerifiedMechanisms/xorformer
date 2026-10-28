@@ -1,7 +1,14 @@
-import HeadComplexity.Results.AtomicMarginRange
 import HeadComplexity.AtomicProfileSubsumption
+import HeadComplexity.Results.AtomicMarginRange
 
 set_option linter.style.header false
+
+/-!
+# Certified atomic-range sampling comparisons
+
+This module certifies that sampling with the actual atom output ranges strengthens the uniform
+sampling bound, with bridges to the original head-complexity statements.
+-/
 
 namespace HeadComplexity.AtomicRangeSubsumption
 

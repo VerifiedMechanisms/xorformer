@@ -1,7 +1,8 @@
-import HeadComplexity.Results.BernoulliStarCover
-import HeadComplexity.Results.UniversalSublinearUpperBound
 import Mathlib.Data.Finset.Sum
 import Mathlib.Logic.Equiv.Fin.Basic
+
+import HeadComplexity.Results.BernoulliStarCover
+import HeadComplexity.Results.UniversalSublinearUpperBound
 
 set_option linter.style.header false
 

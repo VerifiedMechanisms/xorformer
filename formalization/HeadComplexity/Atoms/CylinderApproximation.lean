@@ -1,7 +1,8 @@
-import HeadComplexity.Atoms.FracAtomSymmetry
-import HeadComplexity.Atoms.UniformApproximationSum
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Data.Finset.Powerset
+
+import HeadComplexity.Atoms.FracAtomSymmetry
+import HeadComplexity.Atoms.UniformApproximationSum
 
 set_option linter.style.header false
 

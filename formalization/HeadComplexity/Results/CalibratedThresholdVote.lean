@@ -39,8 +39,8 @@ noncomputable def thresholdVoteMargin
 theorem thresholdVoteMargin_le_abs_score
     (T : Fin s → (Fin n → Bool) → Bool) (c₀ : ℝ) (c : Fin s → ℝ)
     (bits : Fin n → Bool) :
-    thresholdVoteMargin T c₀ c ≤ |thresholdVoteScore T c₀ c bits| := by
-  exact Finset.inf'_le _ (Finset.mem_univ bits)
+    thresholdVoteMargin T c₀ c ≤ |thresholdVoteScore T c₀ c bits| :=
+  Finset.inf'_le _ (Finset.mem_univ bits)
 
 /-- **Calibrated threshold-vote theorem.** Fixed one-atom approximations whose
 weighted error budget is below the vote margin give an `s`-head model. -/

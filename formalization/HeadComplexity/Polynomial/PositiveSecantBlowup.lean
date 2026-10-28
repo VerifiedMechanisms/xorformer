@@ -1,9 +1,10 @@
-import HeadComplexity.Polynomial.ThresholdDegree
 import Mathlib.Algebra.Polynomial.BigOperators
 import Mathlib.Algebra.Polynomial.Div
 import Mathlib.Topology.Algebra.Polynomial
 import Mathlib.Topology.Order.DenselyOrdered
 import Mathlib.Topology.Order.LeftRightNhds
+
+import HeadComplexity.Polynomial.ThresholdDegree
 
 set_option linter.style.header false
 

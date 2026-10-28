@@ -1,5 +1,5 @@
-import HeadComplexity.Model.AdditiveSplit
 import HeadComplexity.Examples.TwoBit
+import HeadComplexity.Model.AdditiveSplit
 
 set_option linter.style.header false
 
@@ -24,7 +24,7 @@ private def pairBits (ab : Bool × Bool) : Fin 2 → Bool :=
     pairBits (a, b) = bits2 a b := rfl
 
 private theorem restrictBits_pairBits (ab : Bool × Bool) :
-    Head.restrictBits (fun _ : Fin 2 => false) 0 1 ab = pairBits ab := by
+    Head.restrictBits (fun _ : Fin 2 ↦ false) 0 1 ab = pairBits ab := by
   rcases ab with ⟨a, b⟩
   exact restrictBits_zero_one a b
 
@@ -52,7 +52,7 @@ theorem numerator_additive_split :
     ∃ (A B : Bool → Vec d) (C : Vec d), ∀ a b : Bool,
       boolNumerator H (a, b) = A a + B b + C := by
   have h01 : (0 : Fin 2) ≠ 1 := by decide
-  rcases Head.numerator_additive_split H (fun _ : Fin 2 => false) 0 1 h01 with
+  rcases Head.numerator_additive_split H (fun _ : Fin 2 ↦ false) 0 1 h01 with
     ⟨A, B, C, h⟩
   refine ⟨A, B, C, ?_⟩
   intro a b
@@ -63,7 +63,7 @@ theorem denominator_additive_split :
     ∃ (α β : Bool → ℝ) (γ : ℝ), ∀ a b : Bool,
       boolDenominator H (a, b) = α a + β b + γ := by
   have h01 : (0 : Fin 2) ≠ 1 := by decide
-  rcases Head.denominator_additive_split H (fun _ : Fin 2 => false) 0 1 h01 with
+  rcases Head.denominator_additive_split H (fun _ : Fin 2 ↦ false) 0 1 h01 with
     ⟨α, β, γ, h⟩
   refine ⟨α, β, γ, ?_⟩
   intro a b
@@ -73,17 +73,17 @@ theorem denominator_additive_split :
 over the diagonal equals summing over the off-diagonal. -/
 theorem numerator_antipode :
     boolNumerator H (false, false) + boolNumerator H (true, true)
-    = boolNumerator H (false, true) + boolNumerator H (true, false) := by
-  exact boolSquare_antipode_of_additive_split
-    (fun a b => boolNumerator H (a, b)) (numerator_additive_split H)
+    = boolNumerator H (false, true) + boolNumerator H (true, false) :=
+  boolSquare_antipode_of_additive_split
+    (fun a b ↦ boolNumerator H (a, b)) (numerator_additive_split H)
 
 /-- The antipode identity for the attention denominator: summing `D(a,b)`
 across the diagonal equals summing across the off-diagonal. -/
 theorem denominator_antipode :
     boolDenominator H (false, false) + boolDenominator H (true, true)
-    = boolDenominator H (false, true) + boolDenominator H (true, false) := by
-  exact boolSquare_antipode_of_additive_split
-    (fun a b => boolDenominator H (a, b)) (denominator_additive_split H)
+    = boolDenominator H (false, true) + boolDenominator H (true, false) :=
+  boolSquare_antipode_of_additive_split
+    (fun a b ↦ boolDenominator H (a, b)) (denominator_additive_split H)
 
 /-- Multiplying the attention update by the denominator recovers the numerator. -/
 theorem denom_smul_attn (ab : Bool × Bool) :
@@ -162,21 +162,21 @@ theorem one_head_cannot_xor_attnUpdate {d : ℕ} (H : Head 2 d) :
     ¬ computesXor H.attnUpdate := by
   intro hxor
   have hcomp : computableWithHeadsN 2 1 xorFn := by
-    refine ⟨d, fun _ => H, ?_⟩
+    refine ⟨d, fun _ ↦ H, ?_⟩
     rcases hxor with ⟨w, τ, hw⟩
     refine ⟨w, τ, ?_⟩
     intro bits
     simpa [computesXor, headFamilyAttnUpdate] using hw bits
-  have h00 : xorFn (Head.restrictBits (fun _ => false) 0 1 (false, false)) = false := by
+  have h00 : xorFn (Head.restrictBits (fun _ ↦ false) 0 1 (false, false)) = false := by
     simp [xorFn, Head.restrictBits]
-  have h11 : xorFn (Head.restrictBits (fun _ => false) 0 1 (true, true)) = false := by
+  have h11 : xorFn (Head.restrictBits (fun _ ↦ false) 0 1 (true, true)) = false := by
     simp [xorFn, Head.restrictBits]
-  have h01 : xorFn (Head.restrictBits (fun _ => false) 0 1 (false, true)) = true := by
+  have h01 : xorFn (Head.restrictBits (fun _ ↦ false) 0 1 (false, true)) = true := by
     simp [xorFn, Head.restrictBits]
-  have h10 : xorFn (Head.restrictBits (fun _ => false) 0 1 (true, false)) = true := by
+  have h10 : xorFn (Head.restrictBits (fun _ ↦ false) 0 1 (true, false)) = true := by
     simp [xorFn, Head.restrictBits]
   exact (parity_restriction_not_computable_with_one_head
-    xorFn (fun _ => false) 0 1 (by decide) h00 h11 h01 h10) hcomp
+    xorFn (fun _ ↦ false) 0 1 (by decide) h00 h11 h01 h10) hcomp
 
 /-- The skip connection does not change two-bit XOR computability. -/
 theorem computesXor_residual_iff_attnUpdate {d : ℕ} (H : Head 2 d) :

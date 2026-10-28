@@ -1,7 +1,8 @@
+import Mathlib.Data.Fintype.EquivFin
+
 import HeadComplexity.Atoms.UniformApproximation
 import HeadComplexity.Polynomial.UnivariateReduction
 import HeadComplexity.Results.ThresholdDegree
-import Mathlib.Data.Fintype.EquivFin
 
 set_option linter.style.header false
 

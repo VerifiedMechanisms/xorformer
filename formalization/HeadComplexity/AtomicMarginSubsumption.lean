@@ -1,5 +1,6 @@
-import HeadComplexity.Results.AtomicMarginRefinement
 import TheoremSubsumption
+
+import HeadComplexity.Results.AtomicMarginRefinement
 
 set_option linter.style.header false
 

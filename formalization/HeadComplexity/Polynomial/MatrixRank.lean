@@ -22,18 +22,8 @@ variable {K m n ι : Type*} [Field K] [Fintype n]
 /-- Natural-number matrix rank is subadditive. -/
 theorem rank_add_le (A B : Matrix m n K) :
     (A + B).rank ≤ A.rank + B.rank := by
-  rw [Matrix.rank, Matrix.rank, Matrix.rank]
-  have hrange :
-      LinearMap.range (A + B).mulVecLin ≤
-        LinearMap.range A.mulVecLin ⊔ LinearMap.range B.mulVecLin := by
-    rintro y ⟨x, rfl⟩
-    change (A + B).mulVec x ∈
-      LinearMap.range A.mulVecLin ⊔ LinearMap.range B.mulVecLin
-    rw [Matrix.add_mulVec]
-    apply Submodule.add_mem_sup
-    · exact ⟨x, rfl⟩
-    · exact ⟨x, rfl⟩
-  exact (Submodule.finrank_mono hrange).trans
+  rw [Matrix.rank, Matrix.rank, Matrix.rank, Matrix.mulVecLin_add]
+  exact (Submodule.finrank_mono (LinearMap.range_add_le A.mulVecLin B.mulVecLin)).trans
     (Submodule.finrank_add_le_finrank_add_finrank _ _)
 
 /-- The rank of a sum over a finite set is at most the sum of the ranks. -/

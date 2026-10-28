@@ -1,7 +1,8 @@
+import Mathlib.Probability.ProbabilityMassFunction.Integrals
+
+import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.Results.AtomicMarginSparsification
 import HeadComplexity.Results.FractionalNormalForm
-import HeadComplexity.Atoms.ClearedNormalForm
-import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
 set_option linter.style.header false
 

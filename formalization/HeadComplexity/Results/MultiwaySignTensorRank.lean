@@ -1,7 +1,8 @@
+import Mathlib.Algebra.BigOperators.Ring.Finset
+
 import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.Atoms.FracComputableMonotone
 import HeadComplexity.Results.LowComplexity
-import Mathlib.Algebra.BigOperators.Ring.Finset
 
 set_option linter.style.header false
 
@@ -43,8 +44,8 @@ noncomputable def signCPRank (f : (∀ j, X j) → Bool) : ℕ :=
 theorem signCPRank_le_of_strict
     {f : (∀ j, X j) → Bool} {T : MultiwayTensor X} {r : ℕ}
     (hstrict : StrictSignTensor T f) (hrank : CPRankLE T r) :
-    signCPRank f ≤ r := by
-  exact Nat.sInf_le ⟨T, hstrict, hrank⟩
+    signCPRank f ≤ r :=
+  Nat.sInf_le ⟨T, hstrict, hrank⟩
 
 /-- Assignments of the `H` factors to the `k` coordinate blocks. -/
 abbrev BlockAssignment (H k : ℕ) := Fin H → Fin k

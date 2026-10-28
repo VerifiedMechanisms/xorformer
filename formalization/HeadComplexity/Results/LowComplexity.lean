@@ -1,5 +1,5 @@
-import HeadComplexity.Atoms.WeightedAtom
 import HeadComplexity.Atoms.AffineHead
+import HeadComplexity.Atoms.WeightedAtom
 
 set_option linter.style.header false
 
@@ -34,8 +34,8 @@ binary-weight universal construction of Theorem 9. -/
 theorem exists_computable (f : (Fin n → Bool) → Bool) :
     ∃ k, computableWithHeadsN n k f := by
   classical
-  set lam : Fin n → ℝ := fun i => (2 : ℝ) ^ (i : ℕ) with hlamdef
-  have hlam : ∀ i, 0 < lam i := fun i => by rw [hlamdef]; positivity
+  set lam : Fin n → ℝ := fun i ↦ (2 : ℝ) ^ (i : ℕ) with hlamdef
+  have hlam : ∀ i, 0 < lam i := fun i ↦ by rw [hlamdef]; positivity
   have hinj : Function.Injective (wT lam) := by rw [hlamdef]; exact wT_two_pow_injective
   refine ⟨_, weighted_computable lam hlam f (f ∘ Function.invFun (wT lam)) ?_⟩
   intro bits
@@ -93,7 +93,7 @@ theorem HStar_eq_zero_iff (f : (Fin n → Bool) → Bool) :
 
 open MvPolynomial in
 /-- A monomial exponent vector with exponent-sum `≤ 1` is `0` or `single i 1`. -/
-private theorem finsupp_sum_le_one (d : Fin n →₀ ℕ) (h : d.sum (fun _ e => e) ≤ 1) :
+private theorem finsupp_sum_le_one (d : Fin n →₀ ℕ) (h : d.sum (fun _ e ↦ e) ≤ 1) :
     d = 0 ∨ ∃ i, d = Finsupp.single i 1 := by
   classical
   by_cases h0 : d = 0
@@ -102,16 +102,16 @@ private theorem finsupp_sum_le_one (d : Fin n →₀ ℕ) (h : d.sum (fun _ e =>
     have hcard : d.support.card ≤ 1 := by
       calc d.support.card = ∑ _j ∈ d.support, 1 := by simp
         _ ≤ ∑ j ∈ d.support, d j :=
-            Finset.sum_le_sum fun j hj =>
+            Finset.sum_le_sum fun j hj ↦
               Nat.succ_le_of_lt (Nat.pos_of_ne_zero (Finsupp.mem_support_iff.mp hj))
-        _ = d.sum (fun _ e => e) := rfl
+        _ = d.sum (fun _ e ↦ e) := rfl
         _ ≤ 1 := h
-    have hsub : d.support ⊆ {i} := fun j hj => by
+    have hsub : d.support ⊆ {i} := fun j hj ↦ by
       simpa using Finset.card_le_one.mp hcard j hj i hi
     have hd : d = Finsupp.single i (d i) := Finsupp.support_subset_singleton.mp hsub
     have hdi : d i = 1 := by
       have hpos : 0 < d i := Nat.pos_of_ne_zero (Finsupp.mem_support_iff.mp hi)
-      have hle : d i ≤ 1 := (Finset.single_le_sum (fun j _ => Nat.zero_le _) hi).trans h
+      have hle : d i ≤ 1 := (Finset.single_le_sum (fun j _ ↦ Nat.zero_le _) hi).trans h
       omega
     exact Or.inr ⟨i, by rw [hd, hdi]⟩
 
@@ -124,23 +124,23 @@ theorem eval_cubePoint_affine (P : MvPolynomial (Fin n) ℝ) (hP : P.totalDegree
   classical
   rw [eval_eq]
   have hsupp : P.support ⊆
-      insert (0 : Fin n →₀ ℕ) (Finset.univ.image fun i : Fin n => Finsupp.single i 1) := by
+      insert (0 : Fin n →₀ ℕ) (Finset.univ.image fun i : Fin n ↦ Finsupp.single i 1) := by
     intro d hd
-    have hd1 : d.sum (fun _ e => e) ≤ 1 := (le_totalDegree hd).trans hP
+    have hd1 : d.sum (fun _ e ↦ e) ≤ 1 := (le_totalDegree hd).trans hP
     rcases finsupp_sum_le_one d hd1 with rfl | ⟨i, rfl⟩
     · exact Finset.mem_insert_self _ _
     · exact Finset.mem_insert_of_mem (Finset.mem_image_of_mem _ (Finset.mem_univ i))
   rw [Finset.sum_subset hsupp
-    (fun d _ hdnot => by rw [MvPolynomial.notMem_support_iff.mp hdnot, zero_mul])]
-  have h0not : (0 : Fin n →₀ ℕ) ∉ (Finset.univ.image fun i : Fin n => Finsupp.single i 1) := by
+    (fun d _ hdnot ↦ by rw [MvPolynomial.notMem_support_iff.mp hdnot, zero_mul])]
+  have h0not : (0 : Fin n →₀ ℕ) ∉ (Finset.univ.image fun i : Fin n ↦ Finsupp.single i 1) := by
     rw [Finset.mem_image]
     rintro ⟨i, -, hi⟩
     exact (Finsupp.single_ne_zero.mpr one_ne_zero) hi
   rw [Finset.sum_insert h0not,
-    Finset.sum_image (fun i _ j _ h => Finsupp.single_left_injective one_ne_zero h)]
+    Finset.sum_image (fun i _ j _ h ↦ Finsupp.single_left_injective one_ne_zero h)]
   congr 1
   · simp
-  · refine Finset.sum_congr rfl (fun i _ => ?_)
+  · refine Finset.sum_congr rfl (fun i _ ↦ ?_)
     rw [Finsupp.support_single i one_ne_zero, Finset.prod_singleton,
       Finsupp.single_eq_same]
     simp [cubePoint]
@@ -151,7 +151,7 @@ theorem eval_cubePoint_affine (P : MvPolynomial (Fin n) ℝ) (hP : P.totalDegree
 theorem isLTF_of_computable_one (f : (Fin n → Bool) → Bool)
     (h : computableWithHeadsN n 1 f) : isLTF f := by
   obtain ⟨P, hPdeg, hPsign⟩ := signReprDegLe_of_computableWithHeadsN h
-  refine ⟨P.coeff 0, fun i => P.coeff (Finsupp.single i 1), fun x => ?_⟩
+  refine ⟨P.coeff 0, fun i ↦ P.coeff (Finsupp.single i 1), fun x ↦ ?_⟩
   rw [← eval_cubePoint_affine P hPdeg x]
   exact hPsign x
 
@@ -168,7 +168,7 @@ theorem ThresholdDegLE_one_iff_isLTF (f : (Fin n → Bool) → Bool) :
   constructor
   · intro h
     obtain ⟨P, hPdeg, hPsign⟩ := h
-    refine ⟨P.coeff 0, fun i => P.coeff (Finsupp.single i 1), fun x => ?_⟩
+    refine ⟨P.coeff 0, fun i ↦ P.coeff (Finsupp.single i 1), fun x ↦ ?_⟩
     rw [← eval_cubePoint_affine P hPdeg x]
     exact hPsign x
   · intro h
@@ -184,13 +184,13 @@ theorem HStar_eq_one_iff (f : (Fin n → Bool) → Bool) :
   constructor
   · intro h1
     have hne : HStar n f ≠ 0 := by omega
-    refine ⟨fun hc => hne ((HStar_eq_zero_iff f).mpr hc), ?_⟩
+    refine ⟨fun hc ↦ hne ((HStar_eq_zero_iff f).mpr hc), ?_⟩
     have hfind1 : Nat.find hex = 1 := by rw [← hfind]; exact h1
     exact isLTF_of_computable_one f (hfind1 ▸ Nat.find_spec hex)
   · rintro ⟨hnc, hLTF⟩
     have hle : HStar n f ≤ 1 := by
       rw [hfind]; exact Nat.find_min' hex (computable_one_of_isLTF f hLTF)
-    have hne : HStar n f ≠ 0 := fun h0 => hnc ((HStar_eq_zero_iff f).mp h0)
+    have hne : HStar n f ≠ 0 := fun h0 ↦ hnc ((HStar_eq_zero_iff f).mp h0)
     omega
 
 end HeadComplexity

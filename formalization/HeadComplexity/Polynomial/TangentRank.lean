@@ -1,6 +1,7 @@
-import HeadComplexity.Polynomial.MatrixRank
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Basic.Real.Basic
+
+import HeadComplexity.Polynomial.MatrixRank
 
 set_option linter.style.header false
 

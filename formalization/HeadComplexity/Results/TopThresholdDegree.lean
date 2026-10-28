@@ -1,5 +1,6 @@
-import HeadComplexity.Results.OneBitGateThresholdDegree
 import Mathlib.Algebra.BigOperators.Ring.Finset
+
+import HeadComplexity.Results.OneBitGateThresholdDegree
 
 set_option linter.style.header false
 

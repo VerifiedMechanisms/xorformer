@@ -1,6 +1,6 @@
+import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.StarDegreeUpperBound
 import HeadComplexity.Results.WeightedUpperBound
-import HeadComplexity.Results.CountingLowerBound
 
 set_option linter.style.header false
 

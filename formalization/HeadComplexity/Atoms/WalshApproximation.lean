@@ -1,7 +1,8 @@
+import Mathlib.Data.Finset.Sort
+
 import HeadComplexity.Atoms.ExactHammingProfile
 import HeadComplexity.Atoms.FracAtomApproximation
 import HeadComplexity.Polynomial.ParityThresholdDegree
-import Mathlib.Data.Finset.Sort
 
 set_option linter.style.header false
 

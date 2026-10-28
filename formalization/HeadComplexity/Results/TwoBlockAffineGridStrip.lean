@@ -1,5 +1,5 @@
-import HeadComplexity.Results.AffineSlab
 import HeadComplexity.Polynomial.UnivariateReduction
+import HeadComplexity.Results.AffineSlab
 
 set_option linter.style.header false
 

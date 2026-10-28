@@ -1,9 +1,10 @@
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.LinearAlgebra.Lagrange
+
 import HeadComplexity.Atoms.HammingAtom
 import HeadComplexity.Atoms.PartialFraction
 import HeadComplexity.Foundation.Softmax
 import HeadComplexity.Polynomial.UnivariateThresholdDegree
-import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.Algebra.BigOperators.Fin
 
 set_option linter.style.header false
 
@@ -200,7 +201,7 @@ theorem wHead_numread (bits : Fin n → Bool) :
     intro i
     rw [wHead_sigma_some lam a b hlam ha, wReadout_inner, wHead_x_some_coord1]
     cases bits i <;> simp <;> ring
-  rw [Finset.sum_congr rfl (fun i _ => hbit i)]
+  rw [Finset.sum_congr rfl (fun i _ ↦ hbit i)]
   rw [← Finset.sum_div, ← Finset.mul_sum, show ∑ i, lam i = wLam lam from rfl,
     mul_div_assoc, div_self hL, mul_one]
 
@@ -219,14 +220,14 @@ theorem weightedAtomFamily_readout {C : ℕ} (hn : 1 ≤ n) (hlam : ∀ i, 0 < l
       = ∑ h, bv h / (wT lam bits + av h) := by
   rw [inner_sum]
   exact Finset.sum_congr rfl
-    (fun h _ => weightedAtom_readout lam (av h) (bv h) hn hlam (hav h) bits)
+    (fun h _ ↦ weightedAtom_readout lam (av h) (bv h) hn hlam (hav h) bits)
 
 end
 
 /-- The weighted statistic is nonnegative. -/
 theorem wT_nonneg {lam : Fin n → ℝ} (hlam : ∀ i, 0 < lam i) (bits : Fin n → Bool) :
     0 ≤ wT lam bits :=
-  Finset.sum_nonneg (fun i _ => by by_cases h : bits i <;> simp [h, (hlam i).le])
+  Finset.sum_nonneg (fun i _ ↦ by by_cases h : bits i <;> simp [h, (hlam i).le])
 
 open Polynomial in
 /-- Lagrange interpolation on the finite image of a weighted statistic gives a
@@ -241,16 +242,16 @@ theorem weighted_univariateThresholdDegLE (lam : Fin n → ℝ)
   classical
   set S := Finset.univ.image (wT lam) with hS
   set M := S.card with hMdef
-  set P := Lagrange.interpolate S id (fun x => if G x then (1 : ℝ) else -1) with hP
+  set P := Lagrange.interpolate S id (fun x ↦ if G x then (1 : ℝ) else -1) with hP
   refine ⟨P, ?_, ?_⟩
   · exact Polynomial.natDegree_le_iff_degree_le.mpr
       (Lagrange.degree_interpolate_le
-        (r := fun x => if G x then (1 : ℝ) else -1) (Set.injOn_id _))
+        (r := fun x ↦ if G x then (1 : ℝ) else -1) (Set.injOn_id _))
   · intro bits
     have hmem : wT lam bits ∈ S := Finset.mem_image_of_mem _ (Finset.mem_univ bits)
     have heval : P.eval (wT lam bits) = if G (wT lam bits) then (1 : ℝ) else -1 := by
       have := Lagrange.eval_interpolate_at_node (s := S) (v := id)
-        (r := fun x => if G x then (1 : ℝ) else -1) (Set.injOn_id _) hmem
+        (r := fun x ↦ if G x then (1 : ℝ) else -1) (Set.injOn_id _) hmem
       simpa [hP] using this
     rw [heval, hf bits]
     cases G (wT lam bits) <;> norm_num
@@ -267,7 +268,7 @@ theorem exists_weighted_atoms (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
   obtain ⟨P, hPdeg, hPsign⟩ := weighted_univariateThresholdDegLE lam f G hf
   obtain ⟨av, bv, τ, hav, hatoms⟩ :=
     exists_partialFraction_sign_atoms P (wLam lam + 1) hPdeg
-  have hLnn : 0 ≤ wLam lam := Finset.sum_nonneg (fun i _ => (hlam i).le)
+  have hLnn : 0 ≤ wLam lam := Finset.sum_nonneg (fun i _ ↦ (hlam i).le)
   refine ⟨av, bv, τ, hav, ?_⟩
   intro bits
   have hTnn : 0 ≤ wT lam bits := wT_nonneg hlam bits
@@ -291,7 +292,7 @@ theorem weighted_computable (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
     rw [headFamilyAttnUpdate_zero, inner_zero_right, Subsingleton.elim bits default]
     cases f default <;> norm_num
   · obtain ⟨av, bv, τ, hav, hatom⟩ := exists_weighted_atoms lam hlam f G hf
-    refine ⟨2, fun h => weightedAtomHead lam (av h) (bv h), atomReadout, τ, ?_⟩
+    refine ⟨2, fun h ↦ weightedAtomHead lam (av h) (bv h), atomReadout, τ, ?_⟩
     intro bits
     change ⟪atomReadout, ∑ h, (weightedAtomHead lam (av h) (bv h)).attnUpdate bits⟫_ℝ > τ ↔ _
     rw [weightedAtomFamily_readout lam hn hlam av bv hav bits]
@@ -301,19 +302,19 @@ theorem weighted_computable (lam : Fin n → ℝ) (hlam : ∀ i, 0 < lam i)
 
 /-- The binary weighting `λ_i = 2^i` separates all inputs. -/
 theorem wT_two_pow_injective :
-    Function.Injective (wT (n := n) (fun i => (2 : ℝ) ^ (i : ℕ))) := by
+    Function.Injective (wT (n := n) (fun i ↦ (2 : ℝ) ^ (i : ℕ))) := by
   have key : ∀ bits : Fin n → Bool,
-      wT (fun i => (2 : ℝ) ^ (i : ℕ)) bits
-        = ((finFunctionFinEquiv (fun i => if bits i then (1 : Fin 2) else 0) : ℕ) : ℝ) := by
+      wT (fun i ↦ (2 : ℝ) ^ (i : ℕ)) bits
+        = ((finFunctionFinEquiv (fun i ↦ if bits i then (1 : Fin 2) else 0) : ℕ) : ℝ) := by
     intro bits
     rw [finFunctionFinEquiv_apply, Nat.cast_sum]
     unfold wT
-    refine Finset.sum_congr rfl (fun i _ => ?_)
+    refine Finset.sum_congr rfl (fun i _ ↦ ?_)
     by_cases hb : bits i <;> simp [hb]
   intro b b' h
   rw [key, key] at h
-  have h2 : finFunctionFinEquiv (fun i => if b i then (1 : Fin 2) else 0)
-      = finFunctionFinEquiv (fun i => if b' i then (1 : Fin 2) else 0) := by
+  have h2 : finFunctionFinEquiv (fun i ↦ if b i then (1 : Fin 2) else 0)
+      = finFunctionFinEquiv (fun i ↦ if b' i then (1 : Fin 2) else 0) := by
     apply Fin.val_injective
     exact_mod_cast h
   have h3 := finFunctionFinEquiv.injective h2
@@ -325,8 +326,8 @@ theorem wT_two_pow_injective :
 theorem universal_computable (f : (Fin n → Bool) → Bool) :
     computableWithHeadsN n (2 ^ n - 1) f := by
   classical
-  set lam : Fin n → ℝ := fun i => (2 : ℝ) ^ (i : ℕ) with hlamdef
-  have hlam : ∀ i, 0 < lam i := fun i => by rw [hlamdef]; positivity
+  set lam : Fin n → ℝ := fun i ↦ (2 : ℝ) ^ (i : ℕ) with hlamdef
+  have hlam : ∀ i, 0 < lam i := fun i ↦ by rw [hlamdef]; positivity
   have hinj : Function.Injective (wT lam) := wT_two_pow_injective
   have hf : ∀ bits, f bits = (f ∘ Function.invFun (wT lam)) (wT lam bits) := by
     intro bits

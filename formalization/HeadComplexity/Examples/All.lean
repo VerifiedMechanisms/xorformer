@@ -1,6 +1,6 @@
+import HeadComplexity.Examples.BooleanFunctions
 import HeadComplexity.Examples.OneHead
 import HeadComplexity.Examples.TwoHeads
-import HeadComplexity.Examples.BooleanFunctions
 
 set_option linter.style.header false
 

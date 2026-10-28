@@ -21,10 +21,10 @@ variable {α : Type*} {d n : ℕ}
 threshold, so it does not change `computesPred`. -/
 theorem computesPred_iff_of_add_const
     (f : α → Bool) (g : α → Vec d) (c : Vec d) :
-    computesPred f g ↔ computesPred f (fun a => c + g a) := by
+    computesPred f g ↔ computesPred f (fun a ↦ c + g a) := by
   constructor
   · rintro ⟨w, τ, h⟩
-    refine ⟨w, τ + ⟪w, c⟫_ℝ, fun a => ?_⟩
+    refine ⟨w, τ + ⟪w, c⟫_ℝ, fun a ↦ ?_⟩
     simp only [inner_add_right]
     constructor
     · intro hgt
@@ -33,7 +33,7 @@ theorem computesPred_iff_of_add_const
       have := (h a).mpr hf
       linarith
   · rintro ⟨w, τ, h⟩
-    refine ⟨w, τ - ⟪w, c⟫_ℝ, fun a => ?_⟩
+    refine ⟨w, τ - ⟪w, c⟫_ℝ, fun a ↦ ?_⟩
     have key := h a
     simp only [inner_add_right] at key
     constructor
@@ -49,7 +49,7 @@ namespace Head
 update. -/
 theorem residual_eq_const_add_attnUpdate
     (H : Head n d) (base : Fin n → Bool) :
-    H.residual = fun bits => H.x base none + H.attnUpdate bits := by
+    H.residual = fun bits ↦ H.x base none + H.attnUpdate bits := by
   funext bits
   change H.x bits none + H.attnUpdate bits = H.x base none + H.attnUpdate bits
   rfl
@@ -59,8 +59,8 @@ the constant query embedding is absorbed into the threshold. -/
 theorem computesPred_residual_iff_attnUpdate
     (H : Head n d) (f : (Fin n → Bool) → Bool) :
     computesPred f H.residual ↔ computesPred f H.attnUpdate := by
-  rw [H.residual_eq_const_add_attnUpdate (fun _ => false)]
-  exact (computesPred_iff_of_add_const f H.attnUpdate (H.x (fun _ => false) none)).symm
+  rw [H.residual_eq_const_add_attnUpdate (fun _ ↦ false)]
+  exact (computesPred_iff_of_add_const f H.attnUpdate (H.x (fun _ ↦ false) none)).symm
 
 end Head
 

@@ -46,7 +46,7 @@ theorem atomDenProduct_eval_pos (φ : Fin H → FracAtom n)
     (x : Fin n → Bool) :
     0 < MvPolynomial.eval (cubePoint x) (atomDenProduct φ) := by
   simp only [atomDenProduct, map_prod]
-  exact Finset.prod_pos (fun h _ => (φ h).denPoly_pos x)
+  exact Finset.prod_pos (fun h _ ↦ (φ h).denPoly_pos x)
 
 /-- Clearing denominators multiplies the fractional score by a positive factor. -/
 theorem clearedAtomPoly_eval (φ : Fin H → FracAtom n) (c : ℝ)
@@ -56,9 +56,9 @@ theorem clearedAtomPoly_eval (φ : Fin H → FracAtom n) (c : ℝ)
         (c + ∑ h, (φ h).eval x) := by
   classical
   simp only [clearedAtomPoly, atomDenProduct, map_add, map_mul, map_sum, map_prod, eval_C]
-  let D : Fin H → ℝ := fun h => MvPolynomial.eval (cubePoint x) (φ h).denPoly
-  let N : Fin H → ℝ := fun h => MvPolynomial.eval (cubePoint x) (φ h).numPoly
-  have hD : ∀ h, 0 < D h := fun h => (φ h).denPoly_pos x
+  let D : Fin H → ℝ := fun h ↦ MvPolynomial.eval (cubePoint x) (φ h).denPoly
+  let N : Fin H → ℝ := fun h ↦ MvPolynomial.eval (cubePoint x) (φ h).numPoly
+  have hD : ∀ h, 0 < D h := fun h ↦ (φ h).denPoly_pos x
   have hfrac : ∀ h, (φ h).eval x = N h / D h := by
     intro h
     exact (φ h).eval_eq_numPoly_div_denPoly x
@@ -66,10 +66,10 @@ theorem clearedAtomPoly_eval (φ : Fin H → FracAtom n) (c : ℝ)
   rw [mul_add, Finset.mul_sum]
   congr 1
   · ring
-  · refine Finset.sum_congr rfl (fun h _ => ?_)
+  · refine Finset.sum_congr rfl (fun h _ ↦ ?_)
     rw [hfrac h]
     rw [← Finset.mul_prod_erase Finset.univ
-      (fun g => MvPolynomial.eval (cubePoint x) (φ g).denPoly) (Finset.mem_univ h)]
+      (fun g ↦ MvPolynomial.eval (cubePoint x) (φ g).denPoly) (Finset.mem_univ h)]
     field_simp [(hD h).ne']
 
 /-- Exact equivalence between fractional computation and the cleared atom normal form. -/
@@ -78,12 +78,12 @@ theorem fracComputable_iff_clearedAtomRep
     fracComputable n H f ↔ ClearedAtomRep n H f := by
   constructor
   · rintro ⟨φ, c, hsign⟩
-    refine ⟨φ, c, fun x => ?_⟩
+    refine ⟨φ, c, fun x ↦ ?_⟩
     rw [clearedAtomPoly_eval φ c x]
     rw [mul_pos_iff_of_pos_left (atomDenProduct_eval_pos φ x)]
     exact hsign x
   · rintro ⟨φ, c, hsign⟩
-    refine ⟨φ, c, fun x => ?_⟩
+    refine ⟨φ, c, fun x ↦ ?_⟩
     have hs := hsign x
     rw [clearedAtomPoly_eval φ c x,
       mul_pos_iff_of_pos_left (atomDenProduct_eval_pos φ x)] at hs
@@ -161,8 +161,8 @@ theorem exists_strict_fracCertificate
 theorem atomDenProduct_totalDegree_le (φ : Fin H → FracAtom n) :
     (atomDenProduct φ).totalDegree ≤ H := by
   unfold atomDenProduct
-  simpa using (totalDegree_prod_le_card Finset.univ (fun h => (φ h).denPoly)
-    (fun h => (φ h).denPoly_totalDegree_le))
+  simpa using (totalDegree_prod_le_card Finset.univ (fun h ↦ (φ h).denPoly)
+    (fun h ↦ (φ h).denPoly_totalDegree_le))
 
 /-- The exact cleared normal form has total degree at most its number of atoms. -/
 theorem clearedAtomPoly_totalDegree_le (φ : Fin H → FracAtom n) (c : ℝ) :
@@ -173,11 +173,11 @@ theorem clearedAtomPoly_totalDegree_le (φ : Fin H → FracAtom n) (c : ℝ) :
   · refine (totalDegree_mul _ _).trans ?_
     rw [totalDegree_C, Nat.zero_add]
     exact atomDenProduct_totalDegree_le φ
-  · refine totalDegree_finsetSum_le (fun h _ => ?_)
+  · refine totalDegree_finsetSum_le (fun h _ ↦ ?_)
     refine (totalDegree_mul _ _).trans ?_
     have hprod : (∏ g ∈ Finset.univ.erase h, (φ g).denPoly).totalDegree ≤ H - 1 := by
       refine (totalDegree_prod_le_card (Finset.univ.erase h)
-        (fun g => (φ g).denPoly) (fun g => (φ g).denPoly_totalDegree_le)).trans ?_
+        (fun g ↦ (φ g).denPoly) (fun g ↦ (φ g).denPoly_totalDegree_le)).trans ?_
       rw [Finset.card_erase_of_mem (Finset.mem_univ h), Finset.card_fin]
     have hH : 0 < H := Nat.pos_of_ne_zero (by rintro rfl; exact h.elim0)
     have := Nat.add_le_add (φ h).numPoly_totalDegree_le hprod
@@ -211,7 +211,7 @@ theorem clearedAffinePoly_totalDegree_le (A : AffineFractionFamily n H) (c : ℝ
   · refine (totalDegree_mul _ _).trans ?_
     rw [totalDegree_C, Nat.zero_add]
     simpa using (totalDegree_prod_le_card Finset.univ A.den A.den_degree)
-  · refine totalDegree_finsetSum_le (fun h _ => ?_)
+  · refine totalDegree_finsetSum_le (fun h _ ↦ ?_)
     refine (totalDegree_mul _ _).trans ?_
     have hprod : (∏ g ∈ Finset.univ.erase h, A.den g).totalDegree ≤ H - 1 := by
       refine (totalDegree_prod_le_card (Finset.univ.erase h) A.den A.den_degree).trans ?_
@@ -254,16 +254,16 @@ theorem clearedAffinePoly_eq_sum_absorbBias
       ∑ h, A.absorbBias c h0 h * ∏ g ∈ Finset.univ.erase h, A.den g := by
   classical
   let T : Fin H → MvPolynomial (Fin n) ℝ :=
-    fun h => A.num h * ∏ g ∈ Finset.univ.erase h, A.den g
+    fun h ↦ A.num h * ∏ g ∈ Finset.univ.erase h, A.den g
   rw [show (∑ h, A.absorbBias c h0 h * ∏ g ∈ Finset.univ.erase h, A.den g) =
       (A.num h0 + C c * A.den h0) * ∏ g ∈ Finset.univ.erase h0, A.den g +
         ∑ h ∈ Finset.univ.erase h0, T h by
     rw [← Finset.add_sum_erase Finset.univ
-      (fun h => A.absorbBias c h0 h * ∏ g ∈ Finset.univ.erase h, A.den g)
+      (fun h ↦ A.absorbBias c h0 h * ∏ g ∈ Finset.univ.erase h, A.den g)
       (Finset.mem_univ h0)]
     congr 1
     · simp [AffineFractionFamily.absorbBias]
-    · refine Finset.sum_congr rfl (fun h hh => ?_)
+    · refine Finset.sum_congr rfl (fun h hh ↦ ?_)
       simp [AffineFractionFamily.absorbBias, T, Finset.ne_of_mem_erase hh]]
   unfold clearedAffinePoly
   rw [show (∑ h, A.num h * ∏ g ∈ Finset.univ.erase h, A.den g) =
@@ -278,11 +278,11 @@ theorem clearedAffinePoly_eq_sum_absorbBias
 numerator and positive affine denominator. -/
 noncomputable def FracAtom.affineFamily (φ : Fin H → FracAtom n) :
     AffineFractionFamily n H where
-  num := fun h => (φ h).numPoly
-  den := fun h => (φ h).denPoly
-  num_degree := fun h => (φ h).numPoly_totalDegree_le
-  den_degree := fun h => (φ h).denPoly_totalDegree_le
-  den_pos := fun h x => (φ h).denPoly_pos x
+  num := fun h ↦ (φ h).numPoly
+  den := fun h ↦ (φ h).denPoly
+  num_degree := fun h ↦ (φ h).numPoly_totalDegree_le
+  den_degree := fun h ↦ (φ h).denPoly_totalDegree_le
+  den_pos := fun h x ↦ (φ h).denPoly_pos x
 
 @[simp] theorem clearedAffinePoly_affineFamily
     (φ : Fin H → FracAtom n) (c : ℝ) :
@@ -300,12 +300,12 @@ theorem clearedAffineRep_of_fracComputable
 theorem not_fracComputable_of_no_clearedAffineRep
     {f : (Fin n → Bool) → Bool}
     (hobs : ¬ ClearedAffineRep n H f) : ¬ fracComputable n H f :=
-  fun hf => hobs (clearedAffineRep_of_fracComputable hf)
+  fun hf ↦ hobs (clearedAffineRep_of_fracComputable hf)
 
 /-- A factorization obstruction rules out an `H`-head attention computation. -/
 theorem not_computableWithHeadsN_of_no_clearedAffineRep
     {f : (Fin n → Bool) → Bool}
     (hobs : ¬ ClearedAffineRep n H f) : ¬ computableWithHeadsN n H f :=
-  fun hf => hobs (clearedAffineRep_of_fracComputable (fracComputable_of_computable hf))
+  fun hf ↦ hobs (clearedAffineRep_of_fracComputable (fracComputable_of_computable hf))
 
 end HeadComplexity

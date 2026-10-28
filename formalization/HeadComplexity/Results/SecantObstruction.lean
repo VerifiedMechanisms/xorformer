@@ -1,6 +1,6 @@
-import HeadComplexity.Polynomial.OrientedSecantSymmetry
 import HeadComplexity.Atoms.FracComputableMonotone
 import HeadComplexity.Atoms.OrientedAtomTangent
+import HeadComplexity.Polynomial.OrientedSecantSymmetry
 import HeadComplexity.Results.LowComplexity
 
 set_option linter.style.header false

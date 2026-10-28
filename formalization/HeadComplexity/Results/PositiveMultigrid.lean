@@ -1,6 +1,7 @@
+import Mathlib.Order.Fin.Tuple
+
 import HeadComplexity.Results.AffineStatisticSignChanges
 import HeadComplexity.Results.PositiveProjection
-import Mathlib.Order.Fin.Tuple
 
 set_option linter.style.header false
 
@@ -343,8 +344,8 @@ noncomputable def fiber (C : PositiveLexMultigrid (b := b) f)
 /-- Every one-block fiber supplies a restriction lower bound. -/
 theorem HStar_fiber_le (C : PositiveLexMultigrid (b := b) f)
     (j : Fin b) (base : Fin n → Bool) :
-    HStar (C.blockSet j).card (C.fiber j base) ≤ HStar n f := by
-  exact HStar_restrict_le (C.blockFace j base) f
+    HStar (C.blockSet j).card (C.fiber j base) ≤ HStar n f :=
+  HStar_restrict_le (C.blockFace j base) f
 
 /-- Every ordered partition map admits a multigrid certificate for every
 Boolean function. Binary weights make the vector of block statistics
@@ -457,8 +458,8 @@ def SameBlockPartition {n b : ℕ} (block block' : Fin n → Fin b) : Prop :=
   ∃ pi : Equiv.Perm (Fin b), ∀ i, block' i = pi (block i)
 
 theorem sameBlockPartition_refl {n b : ℕ} (block : Fin n → Fin b) :
-    SameBlockPartition block block := by
-  exact ⟨Equiv.refl _, fun _ ↦ rfl⟩
+    SameBlockPartition block block :=
+  ⟨Equiv.refl _, fun _ ↦ rfl⟩
 
 theorem sameBlockPartition_symm {n b : ℕ}
     {block block' : Fin n → Fin b}

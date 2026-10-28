@@ -1,5 +1,5 @@
-import HeadComplexity.Atoms.WeightedAtom
 import HeadComplexity.Atoms.HeadToFracAtom
+import HeadComplexity.Atoms.WeightedAtom
 import HeadComplexity.Polynomial.UnivariateThresholdDegree
 
 set_option linter.style.header false
@@ -38,9 +38,9 @@ theorem exists_weightedPolynomial_atoms (lam : Fin n → ℝ) (hlam : ∀ i, 0 <
         0 < P.eval (wT lam bits)) := by
   obtain ⟨av, bv, τ, hav, hsign⟩ :=
     exists_partialFraction_sign_atoms P (wLam lam + 1) hdeg
-  refine ⟨av, bv, τ, hav, fun bits => hsign (wT lam bits) ?_⟩
+  refine ⟨av, bv, τ, hav, fun bits ↦ hsign (wT lam bits) ?_⟩
   have hT : 0 ≤ wT lam bits := wT_nonneg hlam bits
-  have hL : 0 ≤ wLam lam := Finset.sum_nonneg (fun i _ => (hlam i).le)
+  have hL : 0 ≤ wLam lam := Finset.sum_nonneg (fun i _ ↦ (hlam i).le)
   linarith
 
 /-- **Weighted-polynomial upper construction.** If a Boolean function is
@@ -53,14 +53,14 @@ theorem weightedPolynomial_computable (lam : Fin n → ℝ) (hlam : ∀ i, 0 < l
   classical
   rcases Nat.eq_zero_or_pos n with hn0 | hn
   · subst hn0
-    refine ⟨2, (fun _ => weightedAtomHead lam 2 0), 0,
+    refine ⟨2, (fun _ ↦ weightedAtomHead lam 2 0), 0,
       (if f default then -1 else 1), ?_⟩
     intro bits
     rw [inner_zero_left, Subsingleton.elim bits default]
     cases f default <;> norm_num
   · obtain ⟨av, bv, τ, hav, hatom⟩ :=
       exists_weightedPolynomial_atoms lam hlam P hdeg
-    refine ⟨2, (fun h => weightedAtomHead lam (av h) (bv h)), atomReadout, τ, ?_⟩
+    refine ⟨2, (fun h ↦ weightedAtomHead lam (av h) (bv h)), atomReadout, τ, ?_⟩
     intro bits
     change ⟪atomReadout,
       ∑ h, (weightedAtomHead lam (av h) (bv h)).attnUpdate bits⟫_ℝ > τ ↔ _

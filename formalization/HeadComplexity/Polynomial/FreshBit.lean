@@ -1,6 +1,7 @@
-import HeadComplexity.Polynomial.StrictSign
-import Mathlib.Algebra.MvPolynomial.Polynomial
 import Mathlib.Algebra.MvPolynomial.Degrees
+import Mathlib.Algebra.MvPolynomial.Polynomial
+
+import HeadComplexity.Polynomial.StrictSign
 
 set_option linter.style.header false
 

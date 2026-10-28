@@ -1,5 +1,6 @@
-import HeadComplexity.Atoms.FracAtomHead
 import Mathlib.Probability.Moments.SubGaussian
+
+import HeadComplexity.Atoms.FracAtomHead
 
 set_option linter.style.header false
 

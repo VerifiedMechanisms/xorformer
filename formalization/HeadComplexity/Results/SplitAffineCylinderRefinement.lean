@@ -354,8 +354,8 @@ theorem split_affine_cylinder_refinement
       AffineCylinderThresholdCertificate.minimumCost
           (joinCofactors f₀ f₁) ≤
         splitAffineCylinderCost f₀ f₁ ∧
-      splitAffineCylinderCost f₀ f₁ ≤ splitAffineFreeCost f₀ f₁ := by
-  exact ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost _,
+      splitAffineCylinderCost f₀ f₁ ≤ splitAffineFreeCost f₀ f₁ :=
+  ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost _,
     actc_join_le_splitAffineCylinderCost f₀ f₁,
     splitAffineCylinderCost_le_splitAffineFreeCost f₀ f₁⟩
 
@@ -415,8 +415,8 @@ theorem global_split_affine_cylinder_refinement
         AffineCylinderThresholdCertificate.minimumCost f ∧
       AffineCylinderThresholdCertificate.minimumCost f ≤
         globalSplitAffineCylinderCost f ∧
-      globalSplitAffineCylinderCost f ≤ globalSplitAffineFreeCost f := by
-  exact ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost f,
+      globalSplitAffineCylinderCost f ≤ globalSplitAffineFreeCost f :=
+  ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost f,
     actc_le_globalSplitAffineCylinderCost f,
     globalSplitAffineCylinderCost_le_globalSplitAffineFreeCost f⟩
 

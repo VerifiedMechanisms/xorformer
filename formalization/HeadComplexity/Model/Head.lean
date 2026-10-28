@@ -1,5 +1,5 @@
-import HeadComplexity.Foundation.Softmax
 import HeadComplexity.Foundation.SegmentCrossing
+import HeadComplexity.Foundation.Softmax
 
 set_option linter.style.header false
 
@@ -92,7 +92,7 @@ theorem sigma_pos (H : Head n d) (bits : Fin n → Bool) (p : SeqPos n) :
 theorem denominator_pos (H : Head n d) (bits : Fin n → Bool) :
     0 < H.denominator bits := by
   unfold denominator
-  exact positiveNormalizer_pos (H.sigma bits) (fun p => H.sigma_pos bits p)
+  exact positiveNormalizer_pos (H.sigma bits) (fun p ↦ H.sigma_pos bits p)
 
 theorem denominator_ne_zero (H : Head n d) (bits : Fin n → Bool) :
     H.denominator bits ≠ 0 :=
@@ -108,13 +108,13 @@ theorem denom_smul_attn (H : Head n d) (bits : Fin n → Bool) :
     by `base`. -/
 def restrictBits (base : Fin n → Bool) (i j : Fin n) (ab : Bool × Bool) :
     Fin n → Bool :=
-  fun k => if k = i then ab.1 else if k = j then ab.2 else base k
+  fun k ↦ if k = i then ab.1 else if k = j then ab.2 else base k
 
 /-- The restricted attention-update map on the chosen 2-bit subcube. -/
 noncomputable def restrictedUpdate
     (H : Head n d) (base : Fin n → Bool) (i j : Fin n) :
     Bool × Bool → Vec d :=
-  fun ab => H.attnUpdate (restrictBits base i j ab)
+  fun ab ↦ H.attnUpdate (restrictBits base i j ab)
 
 private theorem restrict_term_antipode
     (H : Head n d) (base : Fin n → Bool) (i j : Fin n) (hij : i ≠ j)
@@ -169,7 +169,7 @@ theorem restricted_numerator_antipode
       =
     H.numerator (restrictBits base i j (false, true))
       + H.numerator (restrictBits base i j (true, false)) := by
-  have hsum := congrArg (fun u : SeqPos n → Vec d => ∑ p, u p)
+  have hsum := congrArg (fun u : SeqPos n → Vec d ↦ ∑ p, u p)
     (funext (restrict_term_antipode H base i j hij))
   simpa [numerator, Finset.sum_add_distrib] using hsum
 
@@ -180,7 +180,7 @@ theorem restricted_denominator_antipode
       =
     H.denominator (restrictBits base i j (false, true))
       + H.denominator (restrictBits base i j (true, false)) := by
-  have hsum := congrArg (fun u : SeqPos n → ℝ => ∑ p, u p)
+  have hsum := congrArg (fun u : SeqPos n → ℝ ↦ ∑ p, u p)
     (funext (restrict_sigma_antipode H base i j hij))
   simpa [denominator, Finset.sum_add_distrib] using hsum
 
@@ -284,7 +284,7 @@ abbrev HeadFamily (n d H : ℕ) : Type := Fin H → Head n d
 /-- Summed multi-head attention update for the generalized model. -/
 noncomputable def headFamilyAttnUpdate {n d H : ℕ} (Hs : HeadFamily n d H) :
     (Fin n → Bool) → Vec d :=
-  fun bits => ∑ h, (Hs h).attnUpdate bits
+  fun bits ↦ ∑ h, (Hs h).attnUpdate bits
 
 /-- `n`-bit head computability with `H` heads. -/
 def computableWithHeadsN (n H : ℕ) (f : (Fin n → Bool) → Bool) : Prop :=
@@ -351,7 +351,7 @@ theorem checkerboard_restriction_not_computable_with_one_head
     (h10 : f (Head.restrictBits base i j (true, false)) = !c) :
     ¬ computableWithHeadsN n 1 f := by
   rintro ⟨d, Hs, hH⟩
-  let gBool : Bool × Bool → Bool := fun ab => f (Head.restrictBits base i j ab)
+  let gBool : Bool × Bool → Bool := fun ab ↦ f (Head.restrictBits base i j ab)
   have hg : computesPred gBool ((Hs 0).restrictedUpdate base i j) := by
     rcases hH with ⟨w, τ, hw⟩
     refine ⟨w, τ, ?_⟩
@@ -371,8 +371,8 @@ theorem parity_restriction_not_computable_with_one_head
     (h11 : f (Head.restrictBits base i j (true, true)) = false)
     (h01 : f (Head.restrictBits base i j (false, true)) = true)
     (h10 : f (Head.restrictBits base i j (true, false)) = true) :
-    ¬ computableWithHeadsN n 1 f := by
-  exact checkerboard_restriction_not_computable_with_one_head
+    ¬ computableWithHeadsN n 1 f :=
+  checkerboard_restriction_not_computable_with_one_head
     f base i j hij false h00 h11 h01 h10
 
 theorem parity_restriction_exactHeadComplexity_ge_two

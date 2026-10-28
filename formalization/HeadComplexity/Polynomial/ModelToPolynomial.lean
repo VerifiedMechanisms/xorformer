@@ -53,15 +53,15 @@ theorem exists_affine_of_single_pos (s : (Fin n → Bool) → ℝ) (p : Fin n)
     ∃ P : MvPolynomial (Fin n) ℝ, P.totalDegree ≤ 1 ∧
       ∀ bits, eval (cubePoint bits) P = s bits := by
   classical
-  refine ⟨affineAt p (s (fun _ => false)) (s (Function.update (fun _ => false) p true)),
+  refine ⟨affineAt p (s (fun _ ↦ false)) (s (Function.update (fun _ ↦ false) p true)),
     affineAt_totalDegree_le _ _ _, ?_⟩
   intro bits
   rw [affineAt_eval]
   by_cases h : bits p
-  · have hb : bits p = (Function.update (fun _ : Fin n => false) p true) p := by
+  · have hb : bits p = (Function.update (fun _ : Fin n ↦ false) p true) p := by
       simp [Function.update_self, h]
     rw [ite_eq_left h]; exact (hdep bits _ hb).symm
-  · have hb : bits p = (fun _ : Fin n => false) p := by simp [h]
+  · have hb : bits p = (fun _ : Fin n ↦ false) p := by simp [h]
     rw [ite_eq_right h]; exact (hdep bits _ hb).symm
 
 /-- A constant function has a degree 0 representing polynomial. -/
@@ -124,13 +124,13 @@ theorem Head.exists_denomPoly :
     intro p
     cases p with
     | none =>
-        obtain ⟨P, hP1, hP2⟩ := exists_const_poly (n := n) (H.sigma (fun _ => false) none)
-        exact ⟨P, hP1, fun bits => (hP2 bits).trans (Head_sigma_none_const H _ bits)⟩
+        obtain ⟨P, hP1, hP2⟩ := exists_const_poly (n := n) (H.sigma (fun _ ↦ false) none)
+        exact ⟨P, hP1, fun bits ↦ (hP2 bits).trans (Head_sigma_none_const H _ bits)⟩
     | some i =>
-        exact exists_affine_of_single_pos (fun bits => H.sigma bits (some i)) i
-          (fun b₁ b₂ h => Head_sigma_single H i b₁ b₂ h)
+        exact exists_affine_of_single_pos (fun bits ↦ H.sigma bits (some i)) i
+          (fun b₁ b₂ h ↦ Head_sigma_single H i b₁ b₂ h)
   choose Dp hDp1 hDp2 using hp
-  refine ⟨∑ p, Dp p, totalDegree_finsetSum_le (fun p _ => hDp1 p), ?_⟩
+  refine ⟨∑ p, Dp p, totalDegree_finsetSum_le (fun p _ ↦ hDp1 p), ?_⟩
   intro bits
   rw [map_sum]
   simp_rw [hDp2]
@@ -148,20 +148,20 @@ theorem Head.exists_numPoly (w : Vec d) :
     cases p with
     | none =>
         obtain ⟨P, hP1, hP2⟩ := exists_const_poly (n := n)
-          (H.sigma (fun _ => false) none * ⟪w, H.value (fun _ => false) none⟫_ℝ)
-        exact ⟨P, hP1, fun bits => (hP2 bits).trans (Head_scoreTerm_none_const H w _ bits)⟩
+          (H.sigma (fun _ ↦ false) none * ⟪w, H.value (fun _ ↦ false) none⟫_ℝ)
+        exact ⟨P, hP1, fun bits ↦ (hP2 bits).trans (Head_scoreTerm_none_const H w _ bits)⟩
     | some i =>
         exact exists_affine_of_single_pos
-          (fun bits => H.sigma bits (some i) * ⟪w, H.value bits (some i)⟫_ℝ) i
-          (fun b₁ b₂ h => Head_scoreTerm_single H w i b₁ b₂ h)
+          (fun bits ↦ H.sigma bits (some i) * ⟪w, H.value bits (some i)⟫_ℝ) i
+          (fun b₁ b₂ h ↦ Head_scoreTerm_single H w i b₁ b₂ h)
   choose Np hNp1 hNp2 using hp
-  refine ⟨∑ p, Np p, totalDegree_finsetSum_le (fun p _ => hNp1 p), ?_⟩
+  refine ⟨∑ p, Np p, totalDegree_finsetSum_le (fun p _ ↦ hNp1 p), ?_⟩
   intro bits
   rw [map_sum]
   simp_rw [hNp2]
   rw [show H.numerator bits = ∑ p, H.sigma bits p • H.value bits p from rfl, inner_sum]
   exact Finset.sum_congr rfl
-    (fun p _ => (inner_smul_right w (H.value bits p) (H.sigma bits p)).symm)
+    (fun p _ ↦ (inner_smul_right w (H.value bits p) (H.sigma bits p)).symm)
 
 /-! ## Degree helpers -/
 
@@ -169,7 +169,7 @@ theorem totalDegree_prod_le_card {ι : Type*} (s : Finset ι)
     (D : ι → MvPolynomial (Fin n) ℝ) (hD : ∀ g, (D g).totalDegree ≤ 1) :
     (∏ g ∈ s, D g).totalDegree ≤ s.card := by
   refine (totalDegree_finsetProd _ _).trans ?_
-  refine (Finset.sum_le_card_nsmul _ _ 1 (fun g _ => hD g)).trans ?_
+  refine (Finset.sum_le_card_nsmul _ _ 1 (fun g _ ↦ hD g)).trans ?_
   rw [smul_eq_mul, mul_one]
 
 /-! ## Main theorem (Theorem 6): `H` heads give a degree-≤H sign representation. -/
@@ -178,12 +178,12 @@ theorem signReprDegLe_of_computableWithHeadsN {n H : ℕ} {f : (Fin n → Bool) 
     (hf : computableWithHeadsN n H f) : ThresholdDegLE f H := by
   classical
   obtain ⟨dim, Hs, w, τ, hsep⟩ := hf
-  choose D hD1 hDeval using fun h : Fin H => (Hs h).exists_denomPoly
-  choose N hN1 hNeval using fun h : Fin H => (Hs h).exists_numPoly w
+  choose D hD1 hDeval using fun h : Fin H ↦ (Hs h).exists_denomPoly
+  choose N hN1 hNeval using fun h : Fin H ↦ (Hs h).exists_numPoly w
   refine ⟨(∑ h, N h * ∏ g ∈ Finset.univ.erase h, D g) - C τ * ∏ g, D g, ?_, ?_⟩
   · -- total degree ≤ H
     refine (totalDegree_sub _ _).trans (max_le ?_ ?_)
-    · refine totalDegree_finsetSum_le (fun h _ => ?_)
+    · refine totalDegree_finsetSum_le (fun h _ ↦ ?_)
       refine (totalDegree_mul _ _).trans ?_
       have he : (∏ g ∈ Finset.univ.erase h, D g).totalDegree ≤ H - 1 := by
         refine (totalDegree_prod_le_card _ D hD1).trans ?_
@@ -197,13 +197,13 @@ theorem signReprDegLe_of_computableWithHeadsN {n H : ℕ} {f : (Fin n → Bool) 
       rw [Finset.card_fin]
   · -- sign representation
     intro bits
-    have hdpos : ∀ h, 0 < (Hs h).denominator bits := fun h => (Hs h).denominator_pos bits
-    have hprodpos : 0 < ∏ g, (Hs g).denominator bits := Finset.prod_pos (fun g _ => hdpos g)
+    have hdpos : ∀ h, 0 < (Hs h).denominator bits := fun h ↦ (Hs h).denominator_pos bits
+    have hprodpos : 0 < ∏ g, (Hs g).denominator bits := Finset.prod_pos (fun g _ ↦ hdpos g)
     -- score in cleared form
     have hU : ⟪w, headFamilyAttnUpdate Hs bits⟫_ℝ
         = ∑ h, ((Hs h).denominator bits)⁻¹ * ⟪w, (Hs h).numerator bits⟫_ℝ := by
       rw [show headFamilyAttnUpdate Hs bits = ∑ h, (Hs h).attnUpdate bits from rfl, inner_sum]
-      refine Finset.sum_congr rfl (fun h _ => ?_)
+      refine Finset.sum_congr rfl (fun h _ ↦ ?_)
       rw [show (Hs h).attnUpdate bits
             = ((Hs h).denominator bits)⁻¹ • (Hs h).numerator bits from rfl, inner_smul_right]
     -- eval of the cleared polynomial
@@ -220,8 +220,8 @@ theorem signReprDegLe_of_computableWithHeadsN {n H : ℕ} {f : (Fin n → Bool) 
         = (∏ g, (Hs g).denominator bits) * (⟪w, headFamilyAttnUpdate Hs bits⟫_ℝ - τ) := by
       rw [hU, mul_sub, Finset.mul_sum]
       congr 1
-      · refine Finset.sum_congr rfl (fun h _ => ?_)
-        rw [← Finset.mul_prod_erase Finset.univ (fun g => (Hs g).denominator bits)
+      · refine Finset.sum_congr rfl (fun h _ ↦ ?_)
+        rw [← Finset.mul_prod_erase Finset.univ (fun g ↦ (Hs g).denominator bits)
               (Finset.mem_univ h)]
         have hne : (Hs h).denominator bits ≠ 0 := (hdpos h).ne'
         field_simp

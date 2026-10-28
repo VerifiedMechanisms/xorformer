@@ -1,6 +1,7 @@
-import HeadComplexity.BooleanCube.SymmetricSignChanges
 import Mathlib.Topology.Algebra.Polynomial
 import Mathlib.Topology.Order.IntermediateValue
+
+import HeadComplexity.BooleanCube.SymmetricSignChanges
 
 set_option linter.style.header false
 
@@ -38,7 +39,7 @@ theorem signChanges_le_natDegree (p : ℝ[X]) (F : ℕ → Bool) (n : ℕ)
     intro t ht hne
     have htn : t ≤ n := le_of_lt ht
     have ht1n : t + 1 ≤ n := ht
-    have hcont : ContinuousOn (fun x => p.eval x) (Icc (t : ℝ) ((t + 1 : ℕ) : ℝ)) :=
+    have hcont : ContinuousOn (fun x ↦ p.eval x) (Icc (t : ℝ) ((t + 1 : ℕ) : ℝ)) :=
       (Polynomial.continuous p).continuousOn
     have hab : (t : ℝ) ≤ ((t + 1 : ℕ) : ℝ) := by exact_mod_cast Nat.le_succ t
     cases hFt : F t with
@@ -61,7 +62,7 @@ theorem signChanges_le_natDegree (p : ℝ[X]) (F : ℕ → Bool) (n : ℕ)
         obtain ⟨c, hc, hce⟩ := intermediate_value_Ioo' hab hcont ⟨e2, e1⟩
         exact ⟨c, hc, hce⟩
   rw [signChanges]
-  set S := (Finset.range n).filter (fun t => F t ≠ F (t + 1)) with hSdef
+  set S := (Finset.range n).filter (fun t ↦ F t ≠ F (t + 1)) with hSdef
   -- Total choice function picking a root for each sign change.
   have key : ∀ t : ℕ, ∃ c : ℝ,
       t ∈ S → c ∈ Ioo (t : ℝ) ((t + 1 : ℕ) : ℝ) ∧ p.eval c = 0 := by
@@ -70,8 +71,8 @@ theorem signChanges_le_natDegree (p : ℝ[X]) (F : ℕ → Bool) (n : ℕ)
     · have ht : t < n ∧ F t ≠ F (t + 1) := by
         rw [hSdef, Finset.mem_filter, Finset.mem_range] at htS; exact htS
       obtain ⟨c, hc1, hc2⟩ := hroot t ht.1 ht.2
-      exact ⟨c, fun _ => ⟨hc1, hc2⟩⟩
-    · exact ⟨0, fun h => absurd h htS⟩
+      exact ⟨c, fun _ ↦ ⟨hc1, hc2⟩⟩
+    · exact ⟨0, fun h ↦ absurd h htS⟩
   choose g hg using key
   -- g is injective on S (disjoint open intervals) and lands in the roots.
   have hinj : Set.InjOn g (S : Set ℕ) := by

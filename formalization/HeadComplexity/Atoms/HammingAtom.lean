@@ -1,5 +1,6 @@
-import HeadComplexity.Polynomial.UnivariateReduction
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
+
+import HeadComplexity.Polynomial.UnivariateReduction
 
 set_option linter.style.header false
 
@@ -41,7 +42,7 @@ noncomputable def atomTok (n : ℕ) (a b : ℝ) : Fin 3 → Vec 2 :=
 /-- The atom head: scores depend only on the token, values live in coordinate 1. -/
 noncomputable def atomHead (n : ℕ) (a b : ℝ) : Head n 2 where
   tokenEmbed := atomTok n a b
-  posEmbed := fun _ => 0
+  posEmbed := fun _ ↦ 0
   WQ := LinearMap.id
   WK := LinearMap.id
   WV := LinearMap.id
@@ -191,7 +192,7 @@ theorem atomHead_numread (bits : Fin n → Bool) :
     have hseq : Head.seqTok bits (some i) = cond (bits i) 1 0 := rfl
     rw [hseq]
     cases bits i <;> simp; ring
-  rw [Finset.sum_congr rfl (fun i _ => hbit i), Finset.sum_const, Finset.card_univ,
+  rw [Finset.sum_congr rfl (fun i _ ↦ hbit i), Finset.sum_const, Finset.card_univ,
     Fintype.card_fin, nsmul_eq_mul]
   field_simp
 
@@ -213,6 +214,6 @@ theorem atomFamily_readout {C : ℕ} (hn : 1 ≤ n) (av bv : Fin C → ℝ)
     ⟪atomReadout, ∑ h, (atomHead n (av h) (bv h)).attnUpdate bits⟫_ℝ
       = ∑ h, bv h / ((hammingWeight bits : ℝ) + av h) := by
   rw [inner_sum]
-  exact Finset.sum_congr rfl (fun h _ => atomHead_readout (av h) (bv h) hn (ha h) bits)
+  exact Finset.sum_congr rfl (fun h _ ↦ atomHead_readout (av h) (bv h) hn (ha h) bits)
 
 end HeadComplexity

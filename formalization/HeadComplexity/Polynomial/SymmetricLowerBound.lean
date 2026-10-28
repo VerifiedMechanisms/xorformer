@@ -32,10 +32,10 @@ open scoped BigOperators
 
 /-- Hamming weight is invariant under permuting coordinates. -/
 theorem hammingWeight_comp_perm (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)) :
-    hammingWeight (fun i => x (σ i)) = hammingWeight x := by
+    hammingWeight (fun i ↦ x (σ i)) = hammingWeight x := by
   unfold hammingWeight
   rw [Finset.card_filter, Finset.card_filter]
-  exact Equiv.sum_comp σ (fun j => if x j = true then 1 else 0)
+  exact Equiv.sum_comp σ (fun j ↦ if x j = true then 1 else 0)
 
 /-- Average over all coordinate permutations. -/
 noncomputable def symmetrize (P : MvPolynomial (Fin n) ℝ) : MvPolynomial (Fin n) ℝ :=
@@ -43,14 +43,14 @@ noncomputable def symmetrize (P : MvPolynomial (Fin n) ℝ) : MvPolynomial (Fin 
 
 theorem symmetrize_totalDegree_le {P : MvPolynomial (Fin n) ℝ} {H : ℕ}
     (hP : P.totalDegree ≤ H) : (symmetrize P).totalDegree ≤ H :=
-  totalDegree_finsetSum_le (fun _ _ => (totalDegree_rename_le _ _).trans hP)
+  totalDegree_finsetSum_le (fun _ _ ↦ (totalDegree_rename_le _ _).trans hP)
 
 theorem symmetrize_isSymmetric (P : MvPolynomial (Fin n) ℝ) :
     (symmetrize P).IsSymmetric := by
   intro τ
   unfold symmetrize
-  rw [map_sum, ← Equiv.sum_comp (Equiv.mulLeft τ) (fun σ => rename (σ : Fin n → Fin n) P)]
-  refine Finset.sum_congr rfl (fun σ _ => ?_)
+  rw [map_sum, ← Equiv.sum_comp (Equiv.mulLeft τ) (fun σ ↦ rename (σ : Fin n → Fin n) P)]
+  refine Finset.sum_congr rfl (fun σ _ ↦ ?_)
   rw [rename_rename]
   congr 1
 
@@ -59,21 +59,21 @@ theorem symmetrize_strictSignRep {F : ℕ → Bool} {P : MvPolynomial (Fin n) �
     (hP : StrictSignRep P (symmetricFn F)) :
     StrictSignRep (symmetrize P) (symmetricFn F) := by
   have key : ∀ (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)),
-      symmetricFn F (fun i => x (σ i)) = symmetricFn F x := by
+      symmetricFn F (fun i ↦ x (σ i)) = symmetricFn F x := by
     intro x σ; simp only [symmetricFn]; rw [hammingWeight_comp_perm]
   have hcomp : ∀ (x : Fin n → Bool) (σ : Equiv.Perm (Fin n)),
-      cubePoint x ∘ (σ : Fin n → Fin n) = cubePoint (fun i => x (σ i)) := fun x σ => rfl
+      cubePoint x ∘ (σ : Fin n → Fin n) = cubePoint (fun i ↦ x (σ i)) := fun x σ ↦ rfl
   intro x
-  refine ⟨fun hx => ?_, fun hx => ?_⟩
+  refine ⟨fun hx ↦ ?_, fun hx ↦ ?_⟩
   · unfold symmetrize
     rw [map_sum]
-    refine Finset.sum_pos (fun σ _ => ?_) Finset.univ_nonempty
+    refine Finset.sum_pos (fun σ _ ↦ ?_) Finset.univ_nonempty
     rw [eval_rename, hcomp x σ]
-    exact (hP (fun i => x (σ i))).1 ((key x σ).trans hx)
+    exact (hP (fun i ↦ x (σ i))).1 ((key x σ).trans hx)
   · unfold symmetrize
     rw [map_sum]
-    refine Finset.sum_neg (fun σ _ => ?_) Finset.univ_nonempty
+    refine Finset.sum_neg (fun σ _ ↦ ?_) Finset.univ_nonempty
     rw [eval_rename, hcomp x σ]
-    exact (hP (fun i => x (σ i))).2 ((key x σ).trans hx)
+    exact (hP (fun i ↦ x (σ i))).2 ((key x σ).trans hx)
 
 end HeadComplexity

@@ -1,7 +1,7 @@
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import Mathlib.Analysis.Convex.Segment
-import Mathlib.Analysis.SpecialFunctions.Exp
 import Mathlib.Analysis.Complex.Exponential
+import Mathlib.Analysis.Convex.Segment
+import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Analysis.SpecialFunctions.Exp
 import Mathlib.Data.Matrix.Mul
 import Mathlib.LinearAlgebra.Matrix.ToLin
 

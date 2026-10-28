@@ -1,5 +1,6 @@
-import HeadComplexity.Results.AtomicMarginEntropy
 import TheoremSubsumption
+
+import HeadComplexity.Results.AtomicMarginEntropy
 
 set_option linter.style.header false
 

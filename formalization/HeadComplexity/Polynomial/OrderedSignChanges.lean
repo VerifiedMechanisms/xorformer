@@ -59,18 +59,18 @@ theorem ordered_prod_sign {n : ℕ} (τ : Fin (n + 1) → ℝ)
         rw [Nat.odd_iff] at ho
         omega
   rw [← hpow,
-    ← Finset.prod_filter_mul_prod_filter_not (changeSet F n) (fun t => k ≤ t)]
+    ← Finset.prod_filter_mul_prod_filter_not (changeSet F n) (fun t ↦ k ≤ t)]
   have hge :
-      (∏ t ∈ (changeSet F n).filter (fun t => k ≤ t),
+      (∏ t ∈ (changeSet F n).filter (fun t ↦ k ≤ t),
           (τ (orderedNodeIndex n k hk) - orderedCut τ t)) =
         (-1) ^ negCount F n k *
-          ∏ t ∈ (changeSet F n).filter (fun t => k ≤ t),
+          ∏ t ∈ (changeSet F n).filter (fun t ↦ k ≤ t),
             (orderedCut τ t - τ (orderedNodeIndex n k hk)) := by
     rw [show negCount F n k =
-      ((changeSet F n).filter (fun t => k ≤ t)).card from rfl, ← Finset.prod_neg]
-    exact Finset.prod_congr rfl (fun t _ => by ring)
+      ((changeSet F n).filter (fun t ↦ k ≤ t)).card from rfl, ← Finset.prod_neg]
+    exact Finset.prod_congr rfl (fun t _ ↦ by ring)
   have hge_pos : 0 <
-      ∏ t ∈ (changeSet F n).filter (fun t => k ≤ t),
+      ∏ t ∈ (changeSet F n).filter (fun t ↦ k ≤ t),
         (orderedCut τ t - τ (orderedNodeIndex n k hk)) := by
     apply Finset.prod_pos
     intro t ht
@@ -83,7 +83,7 @@ theorem ordered_prod_sign {n : ℕ} (τ : Fin (n + 1) → ℝ)
       exact hτ.monotone (by simpa [orderedNodeIndex] using ht.2)
     exact sub_pos.mpr (hmono.trans_lt (orderedCut_between τ hτ htn).1)
   have hlt_pos : 0 <
-      ∏ t ∈ (changeSet F n).filter (fun t => ¬ k ≤ t),
+      ∏ t ∈ (changeSet F n).filter (fun t ↦ ¬ k ≤ t),
         (τ (orderedNodeIndex n k hk) - orderedCut τ t) := by
     apply Finset.prod_pos
     intro t ht
@@ -113,7 +113,7 @@ theorem exists_ordered_sign_poly {n : ℕ} (τ : Fin (n + 1) → ℝ)
   · dsimp [P]
     rw [natDegree_C_mul (by split <;> norm_num :
       (if F n then (1 : ℝ) else -1) ≠ 0),
-      natDegree_prod _ _ (fun i _ => (monic_X_sub_C _).ne_zero)]
+      natDegree_prod _ _ (fun i _ ↦ (monic_X_sub_C _).ne_zero)]
     simp only [natDegree_X_sub_C, Finset.sum_const, smul_eq_mul, mul_one]
     rw [changeSet_card]
   · intro k hk
@@ -155,8 +155,8 @@ theorem exists_ordered_sign_poly {n : ℕ} (τ : Fin (n + 1) → ℝ)
               (τ (orderedNodeIndex n k hk) - orderedCut τ t)) < 0) ↔
             ¬ (0 < ∏ t ∈ changeSet F n,
               (τ (orderedNodeIndex n k hk) - orderedCut τ t)) :=
-        ⟨fun h => not_lt.mpr (le_of_lt h),
-          fun h => lt_of_le_of_ne (not_lt.mp h) hne⟩
+        ⟨fun h ↦ not_lt.mpr (le_of_lt h),
+          fun h ↦ lt_of_le_of_ne (not_lt.mp h) hne⟩
       rw [hlt, hsgn, ← hpar, hFn']
       cases F k <;> simp
 
@@ -181,7 +181,7 @@ theorem ordered_signChanges_le_natDegree {n : ℕ} (p : ℝ[X])
     let it : Fin (n + 1) := orderedNodeIndex n t ht.le
     let its : Fin (n + 1) := orderedNodeIndex n (t + 1) ht
     have hab : τ it ≤ τ its := (hτ (by simp [it, its, orderedNodeIndex])).le
-    have hcont : ContinuousOn (fun x => p.eval x) (Icc (τ it) (τ its)) :=
+    have hcont : ContinuousOn (fun x ↦ p.eval x) (Icc (τ it) (τ its)) :=
       (Polynomial.continuous p).continuousOn
     cases hFt : F t with
     | false =>
@@ -203,8 +203,8 @@ theorem ordered_signChanges_le_natDegree {n : ℕ} (p : ℝ[X])
         obtain ⟨c, hc, hce⟩ := intermediate_value_Ioo' hab hcont ⟨e2, e1⟩
         exact ⟨c, hc, hce⟩
   rw [signChanges]
-  set S := (Finset.range n).filter (fun t => F t ≠ F (t + 1)) with hSdef
-  let g : ℕ → ℝ := fun t =>
+  set S := (Finset.range n).filter (fun t ↦ F t ≠ F (t + 1)) with hSdef
+  let g : ℕ → ℝ := fun t ↦
     if ht : t < n ∧ F t ≠ F (t + 1) then
       Classical.choose (hroot t ht.1 ht.2)
     else 0
@@ -272,9 +272,9 @@ theorem ordered_signChanges_le_of_sign_iff {n : ℕ} (p : ℝ[X])
       (0 < p.eval (τ (orderedNodeIndex n k hk)) ↔ F k = true)) :
     signChanges n F ≤ p.natDegree := by
   classical
-  let T : Finset (Fin (n + 1)) := Finset.univ.filter (fun i => F i = true)
+  let T : Finset (Fin (n + 1)) := Finset.univ.filter (fun i ↦ F i = true)
   by_cases hT : T.Nonempty
-  · let V : Finset ℝ := T.image (fun i => p.eval (τ i))
+  · let V : Finset ℝ := T.image (fun i ↦ p.eval (τ i))
     have hV : V.Nonempty := hT.image _
     let m : ℝ := V.min' hV
     have hmpos : 0 < m := by

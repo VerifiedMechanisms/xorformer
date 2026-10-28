@@ -1,6 +1,7 @@
-import HeadComplexity.Atoms.PositiveAffineRatio
 import Mathlib.Data.ZMod.Basic
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+
+import HeadComplexity.Atoms.PositiveAffineRatio
 
 set_option linter.style.header false
 

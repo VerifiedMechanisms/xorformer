@@ -45,7 +45,7 @@ theorem eval_parityPoly (x : Fin n → Bool) :
       = -∏ i : Fin n, (1 - 2 * boolToReal (x i)) := by
   rw [map_neg, map_prod]
   congr 1
-  refine Finset.prod_congr rfl (fun i _ => ?_)
+  refine Finset.prod_congr rfl (fun i _ ↦ ?_)
   simp [cubePoint, map_sub, map_mul, eval_C, eval_X]
 
 /-- On the cube the product of `1 - 2 x_i` is `(-1)^{|x|}`. -/
@@ -55,7 +55,7 @@ theorem prod_one_sub_two (x : Fin n → Bool) :
       (1 - 2 * boolToReal (x i) : ℝ) = if x i = true then (-1 : ℝ) else 1 := by
     intro i
     rcases Bool.eq_false_or_eq_true (x i) with h | h <;> rw [h] <;> norm_num [boolToReal]
-  rw [Finset.prod_congr rfl (fun i _ => hterm i), ← Finset.prod_filter, Finset.prod_const]
+  rw [Finset.prod_congr rfl (fun i _ ↦ hterm i), ← Finset.prod_filter, Finset.prod_const]
   rfl
 
 /-- `0 < -(-1)^m` exactly when `m` is odd. -/
@@ -81,7 +81,7 @@ theorem parity_ThresholdDegLE (n : ℕ) : ThresholdDegLE (PARITY n) n := by
   refine ⟨-∏ i : Fin n, (C 1 - C 2 * X i), ?_, signRep_parityPoly⟩
   rw [totalDegree_neg]
   have h := totalDegree_prod_le_card (Finset.univ : Finset (Fin n))
-    (fun i => C (1 : ℝ) - C 2 * X i) totalDegree_parityFactor
+    (fun i ↦ C (1 : ℝ) - C 2 * X i) totalDegree_parityFactor
   simpa using h
 
 /-! ## Theorem 7 -/
@@ -92,7 +92,7 @@ theorem thresholdDeg_parity (n : ℕ) : thresholdDeg (PARITY n) = n := by
   have hex : ∃ d, ThresholdDegLE (PARITY n) d := ⟨n, parity_ThresholdDegLE n⟩
   rw [thresholdDeg, dite_eq_left hex]
   refine le_antisymm (Nat.find_min' hex (parity_ThresholdDegLE n)) ?_
-  have hspec : ThresholdDegLE (n := n) (symmetricFn (fun k => decide (Odd k))) (Nat.find hex) := by
+  have hspec : ThresholdDegLE (n := n) (symmetricFn (fun k ↦ decide (Odd k))) (Nat.find hex) := by
     rw [← PARITY_eq_symmetricFn]; exact Nat.find_spec hex
   have hsc := signChanges_le_of_ThresholdDegLE hspec
   rwa [signChanges_parity] at hsc

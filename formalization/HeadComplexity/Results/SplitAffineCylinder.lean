@@ -1,7 +1,7 @@
+import HeadComplexity.BooleanCube.Symmetry
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.LowAffineCylinderCost
 import HeadComplexity.Results.OneBitGateThresholdDegree
-import HeadComplexity.BooleanCube.Symmetry
 
 set_option linter.style.header false
 
@@ -449,8 +449,8 @@ theorem minimumCost_join_le_cost (D : PositiveSplitData f₀ f₁) :
   exact AffineCylinderThresholdCertificate.minimumCost_le D.ambientCertificate
 
 theorem HStar_join_le_cost (D : PositiveSplitData f₀ f₁) :
-    HStar (m + 1) (joinCofactors f₀ f₁) ≤ D.cost := by
-  exact (AffineCylinderThresholdCertificate.HStar_le_minimumCost _).trans
+    HStar (m + 1) (joinCofactors f₀ f₁) ≤ D.cost :=
+  (AffineCylinderThresholdCertificate.HStar_le_minimumCost _).trans
     D.minimumCost_join_le_cost
 
 end PositiveSplitData
@@ -663,8 +663,8 @@ theorem minimumCost_join_le_cost (D : NegativeSplitData f₀ f₁) :
   exact AffineCylinderThresholdCertificate.minimumCost_le D.ambientCertificate
 
 theorem HStar_join_le_cost (D : NegativeSplitData f₀ f₁) :
-    HStar (m + 1) (joinCofactors f₀ f₁) ≤ D.cost := by
-  exact (AffineCylinderThresholdCertificate.HStar_le_minimumCost _).trans
+    HStar (m + 1) (joinCofactors f₀ f₁) ≤ D.cost :=
+  (AffineCylinderThresholdCertificate.HStar_le_minimumCost _).trans
     D.minimumCost_join_le_cost
 
 end NegativeSplitData

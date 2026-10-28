@@ -1,7 +1,8 @@
-import HeadComplexity.BooleanCube.SymmetricSignChanges
-import Mathlib.Algebra.Polynomial.Roots
-import Mathlib.Algebra.Polynomial.BigOperators
 import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+import Mathlib.Algebra.Polynomial.BigOperators
+import Mathlib.Algebra.Polynomial.Roots
+
+import HeadComplexity.BooleanCube.SymmetricSignChanges
 
 set_option linter.style.header false
 
@@ -21,10 +22,10 @@ namespace HeadComplexity
 variable (F : ℕ → Bool) (n : ℕ)
 
 /-- The set of sign-change positions of `F` below `n`. -/
-def changeSet : Finset ℕ := (Finset.range n).filter (fun t => F t ≠ F (t + 1))
+def changeSet : Finset ℕ := (Finset.range n).filter (fun t ↦ F t ≠ F (t + 1))
 
 /-- Number of sign changes at position `≥ k`. -/
-def negCount (k : ℕ) : ℕ := ((changeSet F n).filter (fun t => k ≤ t)).card
+def negCount (k : ℕ) : ℕ := ((changeSet F n).filter (fun t ↦ k ≤ t)).card
 
 theorem changeSet_card : (changeSet F n).card = signChanges n F := rfl
 
@@ -34,9 +35,9 @@ theorem negCount_succ {k : ℕ} (hk : k < n) :
   classical
   unfold negCount changeSet
   rw [Finset.filter_filter, Finset.filter_filter]
-  have hsplit : ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ k ≤ t))
-      = ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ k + 1 ≤ t))
-        ∪ ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ t = k)) := by
+  have hsplit : ((Finset.range n).filter (fun t ↦ F t ≠ F (t + 1) ∧ k ≤ t))
+      = ((Finset.range n).filter (fun t ↦ F t ≠ F (t + 1) ∧ k + 1 ≤ t))
+        ∪ ((Finset.range n).filter (fun t ↦ F t ≠ F (t + 1) ∧ t = k)) := by
     rw [← Finset.filter_or]
     apply Finset.filter_congr
     intro t ht
@@ -48,8 +49,8 @@ theorem negCount_succ {k : ℕ} (hk : k < n) :
     · rintro (⟨h1, h2⟩ | ⟨h1, h2⟩)
       · exact ⟨h1, by omega⟩
       · exact ⟨h1, by omega⟩
-  have hdisj : Disjoint ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ k + 1 ≤ t))
-      ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ t = k)) := by
+  have hdisj : Disjoint ((Finset.range n).filter (fun t ↦ F t ≠ F (t + 1) ∧ k + 1 ≤ t))
+      ((Finset.range n).filter (fun t ↦ F t ≠ F (t + 1) ∧ t = k)) := by
     rw [Finset.disjoint_filter]
     intro x _ hx; omega
   rw [hsplit, Finset.card_union_of_disjoint hdisj]
@@ -57,7 +58,7 @@ theorem negCount_succ {k : ℕ} (hk : k < n) :
   -- the second set is `{k}` iff `F k ≠ F (k+1)`, else `∅`
   by_cases hF : F k ≠ F (k + 1)
   · rw [ite_eq_left hF]
-    rw [show ((Finset.range n).filter (fun t => F t ≠ F (t + 1) ∧ t = k)) = {k} from ?_]
+    rw [show ((Finset.range n).filter (fun t ↦ F t ≠ F (t + 1) ∧ t = k)) = {k} from ?_]
     · exact Finset.card_singleton k
     · ext t
       simp only [Finset.mem_filter, Finset.mem_range, Finset.mem_singleton]
@@ -112,21 +113,21 @@ theorem prod_sign (F : ℕ → Bool) (n k : ℕ) :
       constructor
       · intro h; norm_num at h
       · intro h; rw [Nat.even_iff] at h; rw [Nat.odd_iff] at ho; omega
-  rw [← hpow, ← Finset.prod_filter_mul_prod_filter_not (changeSet F n) (fun t => k ≤ t)]
-  have hge : ∏ t ∈ (changeSet F n).filter (fun t => k ≤ t), ((k : ℝ) - ((t : ℝ) + 1 / 2))
+  rw [← hpow, ← Finset.prod_filter_mul_prod_filter_not (changeSet F n) (fun t ↦ k ≤ t)]
+  have hge : ∏ t ∈ (changeSet F n).filter (fun t ↦ k ≤ t), ((k : ℝ) - ((t : ℝ) + 1 / 2))
       = (-1) ^ negCount F n k
-        * ∏ t ∈ (changeSet F n).filter (fun t => k ≤ t), ((t : ℝ) + 1 / 2 - (k : ℝ)) := by
-    rw [show negCount F n k = ((changeSet F n).filter (fun t => k ≤ t)).card from rfl,
+        * ∏ t ∈ (changeSet F n).filter (fun t ↦ k ≤ t), ((t : ℝ) + 1 / 2 - (k : ℝ)) := by
+    rw [show negCount F n k = ((changeSet F n).filter (fun t ↦ k ≤ t)).card from rfl,
       ← Finset.prod_neg]
-    exact Finset.prod_congr rfl (fun t _ => by ring)
+    exact Finset.prod_congr rfl (fun t _ ↦ by ring)
   have hge_pos : 0 <
-      ∏ t ∈ (changeSet F n).filter (fun t => k ≤ t), ((t : ℝ) + 1 / 2 - (k : ℝ)) := by
+      ∏ t ∈ (changeSet F n).filter (fun t ↦ k ≤ t), ((t : ℝ) + 1 / 2 - (k : ℝ)) := by
     apply Finset.prod_pos
     intro t ht; rw [Finset.mem_filter] at ht
     have : (k : ℝ) ≤ (t : ℝ) := by exact_mod_cast ht.2
     linarith
   have hlt_pos : 0 <
-      ∏ t ∈ (changeSet F n).filter (fun t => ¬ k ≤ t), ((k : ℝ) - ((t : ℝ) + 1 / 2)) := by
+      ∏ t ∈ (changeSet F n).filter (fun t ↦ ¬ k ≤ t), ((k : ℝ) - ((t : ℝ) + 1 / 2)) := by
     apply Finset.prod_pos
     intro t ht; rw [Finset.mem_filter] at ht
     have : (t : ℝ) + 1 ≤ (k : ℝ) := by exact_mod_cast (Nat.lt_of_not_le ht.2)
@@ -149,7 +150,7 @@ theorem exists_sign_poly (F : ℕ → Bool) (n : ℕ) :
   classical
   refine ⟨C (if F n then (1 : ℝ) else -1) * ∏ t ∈ changeSet F n, (X - C ((t : ℝ) + 1 / 2)), ?_, ?_⟩
   · rw [natDegree_C_mul (by split <;> norm_num : (if F n then (1 : ℝ) else -1) ≠ 0),
-      natDegree_prod _ _ (fun i _ => (monic_X_sub_C _).ne_zero)]
+      natDegree_prod _ _ (fun i _ ↦ (monic_X_sub_C _).ne_zero)]
     simp only [natDegree_X_sub_C, Finset.sum_const, smul_eq_mul, mul_one]
     rw [changeSet_card]
   · intro k hk
@@ -161,14 +162,14 @@ theorem exists_sign_poly (F : ℕ → Bool) (n : ℕ) :
     have hpar := eq_Fn_iff_even_negCount F n hk
     have hsgn := prod_sign F n k
     have hne : (∏ t ∈ changeSet F n, ((k : ℝ) - ((t : ℝ) + 1 / 2))) ≠ 0 :=
-      Finset.prod_ne_zero_iff.mpr (fun t _ => factor_ne_zero k t)
+      Finset.prod_ne_zero_iff.mpr (fun t _ ↦ factor_ne_zero k t)
     by_cases hFn : F n = true
     · rw [ite_eq_left hFn, one_mul, hsgn, ← hpar, hFn]
     · have hFn' : F n = false := by revert hFn; cases F n <;> simp
       rw [ite_eq_right hFn, neg_one_mul, neg_pos]
       have hlt : ((∏ t ∈ changeSet F n, ((k : ℝ) - ((t : ℝ) + 1 / 2))) < 0)
           ↔ ¬ (0 < ∏ t ∈ changeSet F n, ((k : ℝ) - ((t : ℝ) + 1 / 2))) :=
-        ⟨fun h => not_lt.mpr (le_of_lt h), fun h => lt_of_le_of_ne (not_lt.mp h) hne⟩
+        ⟨fun h ↦ not_lt.mpr (le_of_lt h), fun h ↦ lt_of_le_of_ne (not_lt.mp h) hne⟩
       rw [hlt, hsgn, ← hpar, hFn']
       cases F k <;> simp
 

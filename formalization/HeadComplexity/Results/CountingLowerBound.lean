@@ -1,7 +1,8 @@
+import Mathlib.Analysis.Complex.ExponentialBounds
+
 import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.Atoms.FracComputableMonotone
 import HeadComplexity.Results.LowComplexity
-import Mathlib.Analysis.Complex.ExponentialBounds
 
 set_option linter.style.header false
 

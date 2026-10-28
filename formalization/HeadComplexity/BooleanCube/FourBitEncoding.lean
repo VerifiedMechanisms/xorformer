@@ -1,5 +1,6 @@
-import HeadComplexity.Polynomial.ParityThresholdDegree
 import Mathlib.Combinatorics.Colex
+
+import HeadComplexity.Polynomial.ParityThresholdDegree
 
 set_option linter.style.header false
 

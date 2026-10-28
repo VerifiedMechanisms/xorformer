@@ -30,9 +30,9 @@ depending only on `a`, `B` only on `b`, and `C` constant. -/
 theorem numerator_additive_split (H : Head n d) (base : Fin n → Bool)
     (i j : Fin n) (hij : i ≠ j) :
     ∃ (A B : Bool → Vec d) (C : Vec d), ∀ a b : Bool,
-      H.numerator (restrictBits base i j (a, b)) = A a + B b + C := by
-  exact boolSquare_additive_split_of_antipode
-    (fun a b => H.numerator (restrictBits base i j (a, b)))
+      H.numerator (restrictBits base i j (a, b)) = A a + B b + C :=
+  boolSquare_additive_split_of_antipode
+    (fun a b ↦ H.numerator (restrictBits base i j (a, b)))
     (H.restricted_numerator_antipode base i j hij)
 
 /-- **Theorem 1 (denominator).** On a two-coordinate restriction, the softmax
@@ -40,9 +40,9 @@ denominator decomposes additively as `α a + β b + γ`. -/
 theorem denominator_additive_split (H : Head n d) (base : Fin n → Bool)
     (i j : Fin n) (hij : i ≠ j) :
     ∃ (α β : Bool → ℝ) (γ : ℝ), ∀ a b : Bool,
-      H.denominator (restrictBits base i j (a, b)) = α a + β b + γ := by
-  exact boolSquare_additive_split_of_antipode
-    (fun a b => H.denominator (restrictBits base i j (a, b)))
+      H.denominator (restrictBits base i j (a, b)) = α a + β b + γ :=
+  boolSquare_additive_split_of_antipode
+    (fun a b ↦ H.denominator (restrictBits base i j (a, b)))
     (H.restricted_denominator_antipode base i j hij)
 
 end Head

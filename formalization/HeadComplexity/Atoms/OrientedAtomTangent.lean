@@ -210,8 +210,8 @@ theorem tangentTheta_family_factor {H : ℕ} (phi : Fin H → FracAtom n)
     (h : Fin H) (x : Fin n → Bool) :
     factor (orientedLiteralFamily (fun g ↦ tangentOrientation (phi g)))
       (fun g ↦ tangentTheta (phi g)) h x =
-      ((phi h).γ + ∑ i, (phi h).wt x i) / tangentDenScale (phi h) := by
-  exact tangentTheta_factor (phi h) x
+      ((phi h).γ + ∑ i, (phi h).wt x i) / tangentDenScale (phi h) :=
+  tangentTheta_factor (phi h) x
 
 /-! ## Numerator directions in the same oriented basis -/
 

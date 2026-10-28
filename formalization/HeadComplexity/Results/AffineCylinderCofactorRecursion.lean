@@ -244,8 +244,8 @@ theorem affineCylinder_cofactor_recursion
             (AffineCylinderThresholdCertificate.minimumCost f₀ +
               AffineCylinderThresholdCertificate.minimumCost f₁) +
           min (AffineCylinderThresholdCertificate.minimumCost f₀)
-            (AffineCylinderThresholdCertificate.minimumCost f₁) := by
-  exact ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost _,
+            (AffineCylinderThresholdCertificate.minimumCost f₁) :=
+  ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost _,
     actc_join_le_splitAffineCylinderCost f₀ f₁,
     splitAffineCylinderCost_le_cofactorRecursion f₀ f₁⟩
 
@@ -348,8 +348,8 @@ theorem globalSplitAffineCylinderCost_le_coordinateRecursion
         min (AffineCylinderThresholdCertificate.minimumCost
               (coordinateCofactor f j false))
           (AffineCylinderThresholdCertificate.minimumCost
-            (coordinateCofactor f j true)) := by
-  exact (globalSplitAffineCylinderCost_le_coordinate f j).trans
+            (coordinateCofactor f j true)) :=
+  (globalSplitAffineCylinderCost_le_coordinate f j).trans
     (splitAffineCylinderCost_le_cofactorRecursion
       (coordinateCofactor f j false) (coordinateCofactor f j true))
 
@@ -370,8 +370,8 @@ theorem global_affineCylinder_cofactor_recursion
           min (AffineCylinderThresholdCertificate.minimumCost
                 (coordinateCofactor f j false))
             (AffineCylinderThresholdCertificate.minimumCost
-              (coordinateCofactor f j true)) := by
-  exact ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost f,
+              (coordinateCofactor f j true)) :=
+  ⟨AffineCylinderThresholdCertificate.HStar_le_minimumCost f,
     actc_le_globalSplitAffineCylinderCost f,
     globalSplitAffineCylinderCost_le_coordinateRecursion f j⟩
 

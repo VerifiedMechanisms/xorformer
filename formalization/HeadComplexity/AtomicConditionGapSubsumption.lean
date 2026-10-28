@@ -1,8 +1,16 @@
-import HeadComplexity.Results.AtomicConditionGap
-import HeadComplexity.Results.ExactFamilies
 import TheoremSubsumption
 
+import HeadComplexity.Results.AtomicConditionGap
+import HeadComplexity.Results.ExactFamilies
+
 set_option linter.style.header false
+
+/-!
+# Certified atomic-condition gap comparisons
+
+This module compares the refined atomic-condition lower bounds with the baseline normalization
+bound, retaining the invariant's exact value in both contracts.
+-/
 
 namespace HeadComplexity.AtomicConditionGapSubsumption
 

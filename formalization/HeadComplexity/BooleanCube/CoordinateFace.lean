@@ -32,7 +32,7 @@ variable {m n : ℕ}
 /-- Insert the free bits into their selected coordinates and use `base`
 everywhere else. -/
 noncomputable def apply (rho : CoordFace m n) (x : Fin m → Bool) : Fin n → Bool :=
-  fun j => if h : ∃ i, rho.free i = j then x (Classical.choose h) else rho.base j
+  fun j ↦ if h : ∃ i, rho.free i = j then x (Classical.choose h) else rho.base j
 
 @[simp] theorem apply_free (rho : CoordFace m n) (x : Fin m → Bool) (i : Fin m) :
     rho.apply x (rho.free i) = x i := by

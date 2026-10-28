@@ -1,7 +1,8 @@
-import HeadComplexity.Polynomial.SymmetricLowerBound
-import Mathlib.RingTheory.Polynomial.Pochhammer
 import Mathlib.Data.Finset.Powerset
 import Mathlib.Data.Fintype.EquivFin
+import Mathlib.RingTheory.Polynomial.Pochhammer
+
+import HeadComplexity.Polynomial.SymmetricLowerBound
 
 set_option linter.style.header false
 
@@ -38,7 +39,7 @@ variable {n : ℕ}
 /-! ## Evaluation on the Boolean cube as a subset-indicator sum -/
 
 /-- The set of coordinates set to `true`. -/
-def onesSet (x : Fin n → Bool) : Finset (Fin n) := univ.filter (fun i => x i = true)
+def onesSet (x : Fin n → Bool) : Finset (Fin n) := univ.filter (fun i ↦ x i = true)
 
 @[simp] theorem onesSet_card (x : Fin n → Bool) : (onesSet x).card = hammingWeight x := rfl
 
@@ -56,7 +57,7 @@ theorem eval_cube_monomial (x : Fin n → Bool) (d : Fin n →₀ ℕ) :
     simp [cubePoint, boolToReal, hx]
   · rw [ite_eq_right hsub]
     obtain ⟨i, hi, hix⟩ : ∃ i ∈ d.support, i ∉ onesSet x := by
-      by_contra hcon; push Not at hcon; exact hsub (fun i hi => hcon i hi)
+      by_contra hcon; push Not at hcon; exact hsub (fun i hi ↦ hcon i hi)
     apply Finset.prod_eq_zero hi
     have hdi : d i ≠ 0 := Finsupp.mem_support_iff.mp hi
     have hxf : x i = false := by
@@ -70,7 +71,7 @@ theorem eval_cube_eq_subset_sum (x : Fin n → Bool) (P : MvPolynomial (Fin n) �
     eval (cubePoint x) P
       = ∑ d ∈ P.support, P.coeff d * (if d.support ⊆ onesSet x then 1 else 0) := by
   rw [eval_eq]
-  exact Finset.sum_congr rfl (fun d _ => by rw [eval_cube_monomial])
+  exact Finset.sum_congr rfl (fun d _ ↦ by rw [eval_cube_monomial])
 
 /-! ## A permutation sending one set onto another of the same size -/
 
@@ -103,7 +104,7 @@ variable (P : MvPolynomial (Fin n) ℝ)
 
 /-- Sum of coefficients of monomials with a given support set. -/
 def supportCoeffSum (A : Finset (Fin n)) : ℝ :=
-  ∑ d ∈ P.support.filter (fun d => d.support = A), P.coeff d
+  ∑ d ∈ P.support.filter (fun d ↦ d.support = A), P.coeff d
 
 /-- For symmetric `P`, `supportCoeffSum` depends only on the cardinality of the set. -/
 theorem supportCoeffSum_const (hP : P.IsSymmetric) {A A' : Finset (Fin n)}
@@ -123,11 +124,11 @@ theorem supportCoeffSum_const (hP : P.IsSymmetric) {A A' : Finset (Fin n)}
     intro e; rw [← Finsupp.mapDomain_comp, Equiv.symm_comp_self, Finsupp.mapDomain_id]
   have hsuppσ : ∀ d : Fin n →₀ ℕ,
       (Finsupp.mapDomain (σ : Fin n → Fin n) d).support = d.support.image (σ : Fin n → Fin n) :=
-    fun d => Finsupp.mapDomain_support_of_injective σ.injective d
+    fun d ↦ Finsupp.mapDomain_support_of_injective σ.injective d
   have hsuppσ' : ∀ e : Fin n →₀ ℕ,
       (Finsupp.mapDomain (σ.symm : Fin n → Fin n) e).support
         = e.support.image (σ.symm : Fin n → Fin n) :=
-    fun e => Finsupp.mapDomain_support_of_injective σ.symm.injective e
+    fun e ↦ Finsupp.mapDomain_support_of_injective σ.symm.injective e
   have hA'symm : A'.image (σ.symm : Fin n → Fin n) = A := by
     rw [← hσ, Finset.image_image, Equiv.symm_comp_self, Finset.image_id]
   unfold supportCoeffSum
@@ -165,8 +166,8 @@ theorem support_card_le_totalDegree {d : Fin n →₀ ℕ} (hd : d ∈ P.support
     d.support.card ≤ P.totalDegree := by
   calc d.support.card = ∑ _i ∈ d.support, 1 := by rw [Finset.card_eq_sum_ones]
     _ ≤ ∑ i ∈ d.support, d i :=
-        Finset.sum_le_sum (fun i hi => Nat.one_le_iff_ne_zero.mpr (Finsupp.mem_support_iff.mp hi))
-    _ = d.sum (fun _ e => e) := rfl
+        Finset.sum_le_sum (fun i hi ↦ Nat.one_le_iff_ne_zero.mpr (Finsupp.mem_support_iff.mp hi))
+    _ = d.sum (fun _ e ↦ e) := rfl
     _ ≤ P.totalDegree := le_totalDegree hd
 
 theorem betaCoeff_eq_zero_of_gt {H : ℕ} (hdeg : P.totalDegree ≤ H) {j : ℕ} (hj : H < j) :
@@ -210,11 +211,11 @@ theorem eval_eq_betaSum (hP : P.IsSymmetric) (x : Fin n → Bool) :
   rw [eval_cube_eq_subset_sum]
   -- group exponent vectors by their support set
   have hmaps1 : ∀ d ∈ P.support, d.support ∈ (univ : Finset (Fin n)).powerset :=
-    fun d _ => Finset.mem_powerset.mpr (Finset.subset_univ _)
+    fun d _ ↦ Finset.mem_powerset.mpr (Finset.subset_univ _)
   rw [← Finset.sum_fiberwise_of_maps_to hmaps1]
   -- simplify each support-fiber to an indicator times the aggregated coefficient
   have hinner : ∀ A ∈ (univ : Finset (Fin n)).powerset,
-      (∑ d ∈ P.support.filter (fun d => d.support = A),
+      (∑ d ∈ P.support.filter (fun d ↦ d.support = A),
           P.coeff d * (if d.support ⊆ onesSet x then (1 : ℝ) else 0))
         = (if A ⊆ onesSet x then (1 : ℝ) else 0) * supportCoeffSum P A := by
     intro A _
@@ -234,25 +235,25 @@ theorem eval_eq_betaSum (hP : P.IsSymmetric) (x : Fin n → Bool) :
   apply Finset.sum_congr rfl
   intro j _
   -- count the subsets of the ones-set of size j
-  have hcount : (∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A => A.card = j),
+  have hcount : (∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A ↦ A.card = j),
         (if A ⊆ onesSet x then (1 : ℝ) else 0)) = ((hammingWeight x).choose j : ℝ) := by
-    have hset : ((univ : Finset (Fin n)).powerset.filter (fun A => A.card = j)).filter
-          (fun A => A ⊆ onesSet x) = (onesSet x).powersetCard j := by
+    have hset : ((univ : Finset (Fin n)).powerset.filter (fun A ↦ A.card = j)).filter
+          (fun A ↦ A ⊆ onesSet x) = (onesSet x).powersetCard j := by
       ext A
       simp only [Finset.mem_filter, Finset.mem_powerset, Finset.mem_powersetCard]
       constructor
       · rintro ⟨⟨_, hc⟩, hs⟩; exact ⟨hs, hc⟩
       · rintro ⟨hs, hc⟩; exact ⟨⟨Finset.subset_univ _, hc⟩, hs⟩
     rw [Finset.sum_boole, hset, Finset.card_powersetCard, onesSet_card]
-  calc (∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A => A.card = j),
+  calc (∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A ↦ A.card = j),
           (if A ⊆ onesSet x then (1 : ℝ) else 0) * supportCoeffSum P A)
-      = ∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A => A.card = j),
+      = ∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A ↦ A.card = j),
           betaCoeff P j * (if A ⊆ onesSet x then (1 : ℝ) else 0) := by
         apply Finset.sum_congr rfl
         intro A hA
         rw [Finset.mem_filter] at hA
         rw [supportCoeffSum_eq_beta P hP A, hA.2]; ring
-    _ = betaCoeff P j * ∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A => A.card = j),
+    _ = betaCoeff P j * ∑ A ∈ (univ : Finset (Fin n)).powerset.filter (fun A ↦ A.card = j),
           (if A ⊆ onesSet x then (1 : ℝ) else 0) := by rw [Finset.mul_sum]
     _ = betaCoeff P j * ((hammingWeight x).choose j : ℝ) := by rw [hcount]
 
@@ -287,8 +288,8 @@ theorem exists_hammingWeight_eq {k : ℕ} (hk : k ≤ n) :
   classical
   obtain ⟨T, _, hTcard⟩ := Finset.exists_subset_card_eq
     (show k ≤ (univ : Finset (Fin n)).card by rw [Finset.card_univ, Fintype.card_fin]; exact hk)
-  refine ⟨fun i => decide (i ∈ T), ?_⟩
-  rw [show hammingWeight (fun i => decide (i ∈ T)) = T.card by
+  refine ⟨fun i ↦ decide (i ∈ T), ?_⟩
+  rw [show hammingWeight (fun i ↦ decide (i ∈ T)) = T.card by
         unfold hammingWeight
         congr 1
         ext i

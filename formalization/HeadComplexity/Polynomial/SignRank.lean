@@ -1,5 +1,6 @@
-import HeadComplexity.Polynomial.MatrixRank
 import Mathlib.Basic.Real.Basic
+
+import HeadComplexity.Polynomial.MatrixRank
 
 set_option linter.style.header false
 

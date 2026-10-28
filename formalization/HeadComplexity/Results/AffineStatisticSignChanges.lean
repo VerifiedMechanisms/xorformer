@@ -1,8 +1,9 @@
-import HeadComplexity.Results.AffineFreeSparsity
-import HeadComplexity.Polynomial.OrderedSignChanges
 import Mathlib.Data.Finset.Sort
-import HeadComplexity.Results.DummyVariables
+
+import HeadComplexity.Polynomial.OrderedSignChanges
+import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.AffineSlab
+import HeadComplexity.Results.DummyVariables
 import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.StructuralInvariances
 
@@ -614,8 +615,8 @@ theorem signChange_four_cases (C : AffineStatisticProfile c cs f) :
         HStar n f ≤ 1 +
           ∑ r ∈ Finset.Icc 2
               (min C.alternations (affineSupport cs).card),
-            (affineSupport cs).card.choose r) := by
-  exact ⟨C.HStar_eq_zero_of_affineStatistic_alternations_eq_zero,
+            (affineSupport cs).card.choose r) :=
+  ⟨C.HStar_eq_zero_of_affineStatistic_alternations_eq_zero,
     C.HStar_eq_one_of_affineStatistic_alternations_eq_one,
     C.HStar_affineStatistic_alternations_eq_two_classification,
     fun _ ↦ C.HStar_le_support_sum_min⟩

@@ -1,6 +1,7 @@
+import Mathlib.Data.Finset.Sort
+
 import HeadComplexity.Atoms.PositiveWeightedSignDegree
 import HeadComplexity.Polynomial.OrderedSignChanges
-import Mathlib.Data.Finset.Sort
 
 set_option linter.style.header false
 
@@ -39,7 +40,7 @@ structure PositiveProjection (f : (Fin n → Bool) → Bool) where
 namespace PositiveProjection
 
 /-- Extend the finite label vector to a natural-number profile. -/
-def profile (C : PositiveProjection f) : ℕ → Bool := fun k =>
+def profile (C : PositiveProjection f) : ℕ → Bool := fun k ↦
   if hk : k ≤ C.steps then C.label (orderedNodeIndex C.steps k hk) else false
 
 @[simp] theorem profile_at (C : PositiveProjection f) (i : Fin (C.steps + 1)) :
@@ -116,18 +117,18 @@ theorem changesLE_of_positiveWeightedSignDegLE
   obtain ⟨lam, hlam, P, hPdeg, hPsign⟩ := h
   let S : Finset ℝ := Finset.univ.image (wT lam)
   have hS : S.Nonempty := by
-    exact ⟨wT lam (fun _ => false), Finset.mem_image_of_mem _ (Finset.mem_univ _)⟩
+    exact ⟨wT lam (fun _ ↦ false), Finset.mem_image_of_mem _ (Finset.mem_univ _)⟩
   have hcard : S.card - 1 + 1 = S.card := Nat.sub_add_cancel (Finset.card_pos.mpr hS)
   let e : Fin (S.card - 1 + 1) ≃o Fin S.card := Fin.castOrderIso hcard
   let nodes : Fin (S.card - 1 + 1) → ℝ :=
-    fun i => S.orderEmbOfFin rfl (e i)
+    fun i ↦ S.orderEmbOfFin rfl (e i)
   let C : PositiveProjection f :=
     { lam := lam
       lam_pos := hlam
       steps := S.card - 1
       node := nodes
       node_strictMono := (S.orderEmbOfFin rfl).strictMono.comp e.strictMono
-      label := fun i => decide (0 < P.eval (nodes i))
+      label := fun i ↦ decide (0 < P.eval (nodes i))
       realized := by
         intro i
         have hiS : nodes i ∈ S := by

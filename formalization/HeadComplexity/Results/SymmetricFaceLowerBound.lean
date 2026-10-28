@@ -26,7 +26,7 @@ variable {m n H : ℕ}
 
 /-- Restricting input coordinates cannot increase `HStar`. -/
 theorem HStar_restrict_le (rho : CoordFace m n) (f : (Fin n → Bool) → Bool) :
-    HStar m (fun x => f (rho.apply x)) ≤ HStar n f := by
+    HStar m (fun x ↦ f (rho.apply x)) ≤ HStar n f := by
   classical
   unfold HStar
   rw [dite_eq_left ⟨HStar n f, computableWithHeadsN.restrict rho (HStar_computable f)⟩]

@@ -74,15 +74,15 @@ private theorem f10Poly_totalDegree_le : f10Poly.totalDegree ≤ 2 := by
     exact totalDegree_parityFactor j
   have hleft :
       (∑ i : Fin 5, f10SpinPoly (Fin.castAdd 5 i)).totalDegree ≤ 1 :=
-    totalDegree_finsetSum_le (fun i _ => hspin _)
+    totalDegree_finsetSum_le (fun i _ ↦ hspin _)
   have hright :
       (∑ i : Fin 5, f10SpinPoly (Fin.natAdd 5 i)).totalDegree ≤ 1 :=
-    totalDegree_finsetSum_le (fun i _ => hspin _)
+    totalDegree_finsetSum_le (fun i _ ↦ hspin _)
   have hdiag :
       (∑ i : Fin 5,
         f10SpinPoly (Fin.castAdd 5 i) *
           f10SpinPoly (Fin.natAdd 5 i)).totalDegree ≤ 2 := by
-    refine totalDegree_finsetSum_le (fun i _ => ?_)
+    refine totalDegree_finsetSum_le (fun i _ ↦ ?_)
     exact (totalDegree_mul _ _).trans (Nat.add_le_add (hspin _) (hspin _))
   refine (totalDegree_sub _ _).trans (max_le ?_ ?_)
   · exact (totalDegree_mul _ _).trans (Nat.add_le_add hleft hright)
@@ -107,12 +107,12 @@ private theorem f10Q_checker (a b : Bool) :
     f10Q (Head.restrictBits f10CheckerBase 0 5 (a, b))
       = -2 * bitSign a * bitSign b := by
   let z := Head.restrictBits f10CheckerBase 0 5 (a, b)
-  have hx : (fun i : Fin 5 => f10Left z i) =
+  have hx : (fun i : Fin 5 ↦ f10Left z i) =
       ![a, false, false, true, true] := by
     funext i
     fin_cases i <;>
       simp [z, f10Left, f10CheckerBase, Head.restrictBits, Fin.castAdd]
-  have hy : (fun i : Fin 5 => f10Right z i) =
+  have hy : (fun i : Fin 5 ↦ f10Right z i) =
       ![b, false, true, false, true] := by
     funext i
     fin_cases i <;>
@@ -166,8 +166,8 @@ private def f10Join (x y : FiveBits) : Fin 10 → Bool :=
   simp [f10Join]
 
 @[simp] private theorem f10Join_natAdd (x y : FiveBits) (i : Fin 5) :
-    f10Join x y (Fin.natAdd 5 i) = y i := by
-  exact Fin.addCases_right _
+    f10Join x y (Fin.natAdd 5 i) = y i :=
+  Fin.addCases_right _
 
 @[simp] private theorem f10Left_join (x y : FiveBits) : f10Left (f10Join x y) = x := by
   funext i

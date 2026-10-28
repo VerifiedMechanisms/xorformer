@@ -1,6 +1,7 @@
+import Mathlib.LinearAlgebra.Dimension.Constructions
+
 import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.DeterminantSpan
-import Mathlib.LinearAlgebra.Dimension.Constructions
 
 set_option linter.style.header false
 

@@ -1,6 +1,7 @@
-import HeadComplexity.BooleanCube.SymmetricSignChanges
-import Mathlib.Algebra.MvPolynomial.Degrees
 import Mathlib.Algebra.MvPolynomial.CommRing
+import Mathlib.Algebra.MvPolynomial.Degrees
+
+import HeadComplexity.BooleanCube.SymmetricSignChanges
 
 set_option linter.style.header false
 
@@ -27,7 +28,7 @@ variable {n : ℕ}
 def boolToReal (b : Bool) : ℝ := if b then 1 else 0
 
 /-- The real point of the cube corresponding to a Boolean assignment. -/
-def cubePoint (x : Fin n → Bool) : Fin n → ℝ := fun i => boolToReal (x i)
+def cubePoint (x : Fin n → Bool) : Fin n → ℝ := fun i ↦ boolToReal (x i)
 
 /-- `P` sign-represents `f` on the cube: its value is positive exactly where `f`
 is true. -/

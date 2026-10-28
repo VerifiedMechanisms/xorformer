@@ -1,6 +1,8 @@
-import HeadComplexity.Results.AtomicMarginProfile
 import Mathlib.Analysis.Complex.ExponentialBounds
+
 import TheoremSubsumption
+
+import HeadComplexity.Results.AtomicMarginProfile
 
 set_option linter.style.header false
 

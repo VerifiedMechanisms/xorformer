@@ -53,7 +53,7 @@ theorem wt_pos (φ : FracAtom n) (x : Fin n → Bool) (i : Fin n) : 0 < φ.wt x 
 
 /-- The atom's denominator is positive. -/
 theorem denom_pos (φ : FracAtom n) (x : Fin n → Bool) : 0 < φ.γ + ∑ i, φ.wt x i :=
-  add_pos_of_pos_of_nonneg φ.hγ (Finset.sum_nonneg fun i _ => (φ.wt_pos x i).le)
+  add_pos_of_pos_of_nonneg φ.hγ (Finset.sum_nonneg fun i _ ↦ (φ.wt_pos x i).le)
 
 end FracAtom
 

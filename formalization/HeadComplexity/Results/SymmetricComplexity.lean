@@ -26,7 +26,7 @@ open scoped BigOperators InnerProductSpace
 /-- Hamming weight never exceeds `n`. -/
 theorem hammingWeight_le (n : ℕ) (bits : Fin n → Bool) : hammingWeight bits ≤ n := by
   unfold hammingWeight
-  calc (Finset.univ.filter fun i => bits i = true).card ≤ (Finset.univ : Finset (Fin n)).card :=
+  calc (Finset.univ.filter fun i ↦ bits i = true).card ≤ (Finset.univ : Finset (Fin n)).card :=
         Finset.card_filter_le _ _
     _ = n := by rw [Finset.card_univ, Fintype.card_fin]
 
@@ -38,7 +38,7 @@ theorem exists_rational_atoms (F : ℕ → Bool) (n : ℕ) :
       ∀ k : ℕ, k ≤ n → ((∑ h, bv h / ((k : ℝ) + av h)) > τ ↔ F k = true) := by
   classical
   obtain ⟨P, hPdeg, hPsign⟩ := exists_sign_poly F n
-  set av : Fin (signChanges n F) → ℝ := fun h => (n : ℝ) + 2 + (h : ℕ) with hav
+  set av : Fin (signChanges n F) → ℝ := fun h ↦ (n : ℝ) + 2 + (h : ℕ) with hav
   have havinj : Function.Injective av := by
     intro a b hab
     rw [hav] at hab
@@ -52,14 +52,14 @@ theorem exists_rational_atoms (F : ℕ → Bool) (n : ℕ) :
   have hfacpos : ∀ h : Fin (signChanges n F), (0 : ℝ) < (k : ℝ) + av h := by
     intro h; rw [hav]; have : (0 : ℝ) ≤ (h : ℕ) := Nat.cast_nonneg _; positivity
   have hQpos : 0 < ∏ h : Fin (signChanges n F), ((k : ℝ) + av h) :=
-    Finset.prod_pos (fun h _ => hfacpos h)
+    Finset.prod_pos (fun h _ ↦ hfacpos h)
   have hQne : (∏ h : Fin (signChanges n F), ((k : ℝ) + av h)) ≠ 0 := ne_of_gt hQpos
   have herase_ne : ∀ h : Fin (signChanges n F),
       (∏ j ∈ Finset.univ.erase h, ((k : ℝ) + av j)) ≠ 0 :=
-    fun h => Finset.prod_ne_zero_iff.mpr (fun j _ => ne_of_gt (hfacpos j))
+    fun h ↦ Finset.prod_ne_zero_iff.mpr (fun j _ ↦ ne_of_gt (hfacpos j))
   have hQfac : ∀ h : Fin (signChanges n F),
       (∏ j, ((k : ℝ) + av j)) = ((k : ℝ) + av h) * ∏ j ∈ Finset.univ.erase h, ((k : ℝ) + av j) :=
-    fun h => (Finset.mul_prod_erase Finset.univ (fun j => (k : ℝ) + av j) (Finset.mem_univ h)).symm
+    fun h ↦ (Finset.mul_prod_erase Finset.univ (fun j ↦ (k : ℝ) + av j) (Finset.mem_univ h)).symm
   -- the key identity: `∑ b_h/(k+a_h) = P(k)/Q(k) - A`
   have hkey : (∑ h, bv h / ((k : ℝ) + av h))
       = P.eval (k : ℝ) / (∏ h, ((k : ℝ) + av h)) - A := by
@@ -67,7 +67,7 @@ theorem exists_rational_atoms (F : ℕ → Bool) (n : ℕ) :
         = (∑ h, bv h * ∏ j ∈ Finset.univ.erase h, ((k : ℝ) + av j))
           / (∏ h, ((k : ℝ) + av h)) := by
       rw [Finset.sum_div]
-      refine Finset.sum_congr rfl (fun h _ => ?_)
+      refine Finset.sum_congr rfl (fun h _ ↦ ?_)
       rw [hQfac h, mul_div_mul_right _ _ (herase_ne h)]
     rw [h1, hpf (k : ℝ)]
     field_simp
@@ -90,7 +90,7 @@ theorem symmetricFn_computable (F : ℕ → Bool) (n : ℕ) :
     simp only [symmetricFn, hw0]
     cases F 0 <;> norm_num
   · obtain ⟨av, bv, τ, hav, hatom⟩ := exists_rational_atoms F n
-    refine ⟨2, fun h => atomHead n (av h) (bv h), atomReadout, τ, ?_⟩
+    refine ⟨2, fun h ↦ atomHead n (av h) (bv h), atomReadout, τ, ?_⟩
     intro bits
     change ⟪atomReadout, ∑ h, (atomHead n (av h) (bv h)).attnUpdate bits⟫_ℝ > τ ↔ _
     rw [atomFamily_readout hn av bv hav bits]

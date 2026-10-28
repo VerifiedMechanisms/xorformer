@@ -43,11 +43,11 @@ noncomputable def headToAtom (H : Head n d) (w : Vec d) : FracAtom n where
   δ := ⟪w, H.WV (H.tokenEmbed 1 - H.tokenEmbed 0)⟫_ℝ
   γ := Real.exp ⟪H.WK H.queryVec, H.queryQ⟫_ℝ
   α := Real.exp ⟪H.WK (H.tokenEmbed 1 - H.tokenEmbed 0), H.queryQ⟫_ℝ
-  ρ := fun i => Real.exp ⟪H.WK (H.tokenEmbed 0 + H.posEmbed (some i)), H.queryQ⟫_ℝ
-  m := fun i => ⟪w, H.WV (H.tokenEmbed 0 + H.posEmbed (some i))⟫_ℝ
+  ρ := fun i ↦ Real.exp ⟪H.WK (H.tokenEmbed 0 + H.posEmbed (some i)), H.queryQ⟫_ℝ
+  m := fun i ↦ ⟪w, H.WV (H.tokenEmbed 0 + H.posEmbed (some i))⟫_ℝ
   hγ := Real.exp_pos _
   hα := Real.exp_pos _
-  hρ := fun _ => Real.exp_pos _
+  hρ := fun _ ↦ Real.exp_pos _
 
 section
 variable (H : Head n d) (w : Vec d) (bits : Fin n → Bool)
@@ -108,7 +108,7 @@ theorem denominator_eq_atom_denom :
   rw [Fintype.sum_option]
   rw [sigma_none_eq_gamma H w bits]
   refine congrArg _ ?_
-  exact Finset.sum_congr rfl (fun i _ => sigma_some_eq_wt H w bits i)
+  exact Finset.sum_congr rfl (fun i _ ↦ sigma_some_eq_wt H w bits i)
 
 /-- Readout of the numerator equals the atom's numerator
 `η + ∑ i, wt i * (m i + …)`. -/
@@ -127,7 +127,7 @@ theorem numerator_readout_eq :
   have hsome : (∑ i, H.sigma bits (some i) * ⟪w, H.WV (H.x bits (some i))⟫_ℝ)
       = ∑ i, (headToAtom H w).wt bits i
           * ((headToAtom H w).m i + (if bits i then (headToAtom H w).δ else 0)) := by
-    refine Finset.sum_congr rfl (fun i _ => ?_)
+    refine Finset.sum_congr rfl (fun i _ ↦ ?_)
     rw [sigma_some_eq_wt H w bits i, value_some_eq H w bits i]
   rw [hnone, hsome]
 
@@ -146,12 +146,12 @@ then `f` is computable by `H` linear-fractional atoms. -/
 theorem fracComputable_of_computable {n H : ℕ} {f : (Fin n → Bool) → Bool}
     (h : computableWithHeadsN n H f) : fracComputable n H f := by
   obtain ⟨d, Hs, w, τ, hsep⟩ := h
-  refine ⟨fun h => headToAtom (Hs h) w, -τ, ?_⟩
+  refine ⟨fun h ↦ headToAtom (Hs h) w, -τ, ?_⟩
   intro bits
   have hsum : ⟪w, headFamilyAttnUpdate Hs bits⟫_ℝ
       = ∑ h, (headToAtom (Hs h) w).eval bits := by
     rw [show headFamilyAttnUpdate Hs bits = ∑ h, (Hs h).attnUpdate bits from rfl, inner_sum]
-    exact Finset.sum_congr rfl (fun h _ => head_readout_eq_eval (Hs h) w bits)
+    exact Finset.sum_congr rfl (fun h _ ↦ head_readout_eq_eval (Hs h) w bits)
   have hsep' := hsep bits
   rw [gt_iff_lt, hsum] at hsep'
   rw [← hsep']

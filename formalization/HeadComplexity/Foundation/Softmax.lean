@@ -1,5 +1,5 @@
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Algebra.Module.Basic
 import Mathlib.Analysis.SpecialFunctions.Exp
 
@@ -20,11 +20,8 @@ open Finset
 /-- A finite sum of strictly positive terms over a nonempty type is strictly
 positive. -/
 theorem positiveNormalizer_pos {ι : Type*} [Fintype ι] [Nonempty ι]
-    (w : ι → ℝ) (hw : ∀ i, 0 < w i) : 0 < ∑ i, w i := by
-  apply Finset.sum_pos
-  · intro i _
-    exact hw i
-  · exact Finset.univ_nonempty
+    (w : ι → ℝ) (hw : ∀ i, 0 < w i) : 0 < ∑ i, w i :=
+  Finset.sum_pos (fun i _ ↦ hw i) Finset.univ_nonempty
 
 /-- The finite softmax denominator `∑ i, exp (s i)`. -/
 noncomputable def softmaxDenom {ι : Type*} [Fintype ι] (s : ι → ℝ) : ℝ :=
@@ -32,12 +29,12 @@ noncomputable def softmaxDenom {ι : Type*} [Fintype ι] (s : ι → ℝ) : ℝ 
 
 /-- Finite softmax weights. -/
 noncomputable def softmax {ι : Type*} [Fintype ι] (s : ι → ℝ) : ι → ℝ :=
-  fun i => Real.exp (s i) / softmaxDenom s
+  fun i ↦ Real.exp (s i) / softmaxDenom s
 
 /-- The finite softmax denominator is strictly positive. -/
 theorem softmaxDenom_pos {ι : Type*} [Fintype ι] [Nonempty ι]
-    (s : ι → ℝ) : 0 < softmaxDenom s := by
-  exact positiveNormalizer_pos (fun i => Real.exp (s i)) (fun _ => Real.exp_pos _)
+    (s : ι → ℝ) : 0 < softmaxDenom s :=
+  positiveNormalizer_pos (fun i ↦ Real.exp (s i)) (fun _ ↦ Real.exp_pos _)
 
 /-- Each finite softmax weight is strictly positive. -/
 theorem softmax_pos {ι : Type*} [Fintype ι] [Nonempty ι]
@@ -60,9 +57,6 @@ inverse-scaled sum of its weighted summands. -/
 theorem twoTermWeightedAverage_eq_inv_smul_sum
     {V : Type*} [AddCommGroup V] [Module ℝ V] (a b : ℝ) (u v : V) :
     (a / (a + b)) • u + (b / (a + b)) • v = (a + b)⁻¹ • (a • u + b • v) := by
-  rw [smul_add, smul_smul, smul_smul]
-  congr 1
-  · rw [div_eq_mul_inv, mul_comm]
-  · rw [div_eq_mul_inv, mul_comm]
+  simp [smul_add, smul_smul, div_eq_mul_inv, mul_comm]
 
 end HeadComplexity

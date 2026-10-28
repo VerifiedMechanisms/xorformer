@@ -1,7 +1,8 @@
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+
 import HeadComplexity.Atoms.FracAtom
 import HeadComplexity.Atoms.HammingAtom
 import HeadComplexity.Model.SharedEmbedding
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 set_option linter.style.header false
 
@@ -51,7 +52,7 @@ variable {n : ℕ}
 private theorem vecN_inner' {d : ℕ} (x y : Vec d) : ⟪x, y⟫_ℝ = ∑ i, x i * y i := by
   change dotProduct (y.ofLp) (star x.ofLp) = _
   simp only [dotProduct, Pi.star_apply, star_trivial]
-  exact Finset.sum_congr rfl (fun i _ => mul_comm _ _)
+  exact Finset.sum_congr rfl (fun i _ ↦ mul_comm _ _)
 
 /-- A coordinate projection back into the score channel:
 `projTo0 j x = single 0 (x j)` as a linear map on `Vec 3`. -/
@@ -206,7 +207,7 @@ theorem atomHead'_denom (bits : Fin n → Bool) :
   unfold Head.denominator
   rw [Fintype.sum_option, atomHead'_sigma_none]
   congr 1
-  exact Finset.sum_congr rfl (fun i _ => atomHead'_sigma_some φ bits i)
+  exact Finset.sum_congr rfl (fun i _ ↦ atomHead'_sigma_some φ bits i)
 
 /-- Readout `⟪e₁, ·⟫` of the numerator is
 `η + ∑ i, φ.wt · (m_i + δ x_i)`. -/
@@ -220,7 +221,7 @@ theorem atomHead'_numread (bits : Fin n → Bool) :
   rw [atomHead'_sigma_none, atomHead'_x_none, fracTok_two_coord1,
     mul_div_cancel₀ _ φ.hγ.ne']
   congr 1
-  refine Finset.sum_congr rfl (fun i _ => ?_)
+  refine Finset.sum_congr rfl (fun i _ ↦ ?_)
   rw [atomHead'_sigma_some, atomHead'_x_some_coord1]
   cases hb : bits i with
   | false =>
@@ -246,14 +247,14 @@ theorem atomFamily'_readout {H : ℕ} (φ : Fin H → FracAtom n) (bits : Fin n 
     ⟪fracReadout, ∑ h, (atomHead' (φ h)).attnUpdate bits⟫_ℝ
       = ∑ h, (φ h).eval bits := by
   rw [inner_sum]
-  exact Finset.sum_congr rfl (fun h _ => atomHead'_readout (φ h) bits)
+  exact Finset.sum_congr rfl (fun h _ ↦ atomHead'_readout (φ h) bits)
 
 /-- **Theorem 10 (one direction).** Every `fracComputable` function is computable
 with the same number of attention heads. -/
 theorem computable_of_fracComputable {n H : ℕ} {f : (Fin n → Bool) → Bool}
     (h : fracComputable n H f) : computableWithHeadsN n H f := by
   obtain ⟨φ, c, hc⟩ := h
-  refine ⟨3, fun h => atomHead' (φ h), fracReadout, -c, ?_⟩
+  refine ⟨3, fun h ↦ atomHead' (φ h), fracReadout, -c, ?_⟩
   intro bits
   change ⟪fracReadout, ∑ h, (atomHead' (φ h)).attnUpdate bits⟫_ℝ > -c ↔ _
   rw [atomFamily'_readout]

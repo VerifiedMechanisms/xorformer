@@ -26,7 +26,7 @@ open scoped BigOperators InnerProductSpace
 /-- Project block `h` from a vector whose `H` blocks each have width `d`. -/
 noncomputable def headBlockProject {H d : ℕ} (h : Fin H) :
     Vec (H * d) →ₗ[ℝ] Vec d where
-  toFun v := WithLp.toLp 2 (fun j => v (finProdFinEquiv (h, j)))
+  toFun v := WithLp.toLp 2 (fun j ↦ v (finProdFinEquiv (h, j)))
   map_add' x y := by
     ext j
     rfl
@@ -37,7 +37,7 @@ noncomputable def headBlockProject {H d : ℕ} (h : Fin H) :
 /-- Inject a width-`d` vector into block `h` of an `H * d` vector. -/
 noncomputable def headBlockInject {H d : ℕ} (h : Fin H) :
     Vec d →ₗ[ℝ] Vec (H * d) where
-  toFun v := WithLp.toLp 2 (fun k =>
+  toFun v := WithLp.toLp 2 (fun k ↦
     if (finProdFinEquiv.symm k).1 = h then v (finProdFinEquiv.symm k).2 else 0)
   map_add' x y := by
     ext k
@@ -47,13 +47,13 @@ noncomputable def headBlockInject {H d : ℕ} (h : Fin H) :
     by_cases hk : k.divNat = h <;> simp [hk]
 
 @[simp] private theorem finProdFinEquiv_divNat {H d : ℕ} (h : Fin H) (j : Fin d) :
-    (finProdFinEquiv (h, j)).divNat = h := by
-  exact congrArg Prod.fst
+    (finProdFinEquiv (h, j)).divNat = h :=
+  congrArg Prod.fst
     ((finProdFinEquiv (m := H) (n := d)).symm_apply_apply (h, j))
 
 @[simp] private theorem finProdFinEquiv_modNat {H d : ℕ} (h : Fin H) (j : Fin d) :
-    (finProdFinEquiv (h, j)).modNat = j := by
-  exact congrArg Prod.snd
+    (finProdFinEquiv (h, j)).modNat = j :=
+  congrArg Prod.snd
     ((finProdFinEquiv (m := H) (n := d)).symm_apply_apply (h, j))
 
 @[simp] theorem headBlockProject_inject {H d : ℕ} (h : Fin H) (v : Vec d) :
@@ -74,7 +74,7 @@ theorem headBlockInject_inner {H d : ℕ} (h : Fin H) (x y : Vec d) :
 
 /-- Concatenate `H` width-`d` vectors into one width-`H * d` vector. -/
 noncomputable def headBlockConcat {H d : ℕ} (v : Fin H → Vec d) : Vec (H * d) :=
-  WithLp.toLp 2 (fun k => v k.divNat k.modNat)
+  WithLp.toLp 2 (fun k ↦ v k.divNat k.modNat)
 
 @[simp] theorem headBlockProject_concat {H d : ℕ} (h : Fin H)
     (v : Fin H → Vec d) : headBlockProject h (headBlockConcat v) = v h := by
@@ -146,8 +146,8 @@ noncomputable def headBlockLift {H d : ℕ} (h : Fin H) (A : Vec d →ₗ[ℝ] V
 The number of heads is unchanged and the width grows from `d` to `H * d`. -/
 noncomputable def shareHeadEmbeddings {n d H : ℕ} (Hs : HeadFamily n d H) :
     SharedHeadFamily n (H * d) H where
-  tokenEmbed t := headBlockConcat (fun h => (Hs h).tokenEmbed t)
-  posEmbed p := headBlockConcat (fun h => (Hs h).posEmbed p)
+  tokenEmbed t := headBlockConcat (fun h ↦ (Hs h).tokenEmbed t)
+  posEmbed p := headBlockConcat (fun h ↦ (Hs h).posEmbed p)
   WQ h := headBlockLift h (Hs h).WQ
   WK h := headBlockLift h (Hs h).WK
   WV h := headBlockLift h (Hs h).WV
@@ -218,13 +218,13 @@ noncomputable def shareHeadEmbeddings {n d H : ℕ} (Hs : HeadFamily n d H) :
 head-local model. The old readout vector is repeated in every output block. -/
 theorem shareHeadEmbeddings_readout {n d H : ℕ} (Hs : HeadFamily n d H) (w : Vec d)
     (bits : Fin n → Bool) :
-    ⟪headBlockConcat (fun _ : Fin H => w), (shareHeadEmbeddings Hs).attnUpdate bits⟫_ℝ =
+    ⟪headBlockConcat (fun _ : Fin H ↦ w), (shareHeadEmbeddings Hs).attnUpdate bits⟫_ℝ =
       ⟪w, headFamilyAttnUpdate Hs bits⟫_ℝ := by
   rw [show (shareHeadEmbeddings Hs).attnUpdate bits =
       ∑ h, ((shareHeadEmbeddings Hs).head h).attnUpdate bits from rfl]
   rw [show headFamilyAttnUpdate Hs bits = ∑ h, (Hs h).attnUpdate bits from rfl]
   rw [inner_sum, inner_sum]
-  exact Finset.sum_congr rfl (fun h _ => by
+  exact Finset.sum_congr rfl (fun h _ ↦ by
     rw [shareHeadEmbeddings_attnUpdate, headBlockConcat_inner_inject])
 
 /-! ## Head-count expressivity equivalence -/
@@ -235,7 +235,7 @@ theorem computableWithSharedHeadsN_of_computableWithHeadsN
     {n H : ℕ} {f : (Fin n → Bool) → Bool}
     (hf : computableWithHeadsN n H f) : computableWithSharedHeadsN n H f := by
   obtain ⟨d, Hs, w, τ, hsep⟩ := hf
-  refine ⟨H * d, shareHeadEmbeddings Hs, headBlockConcat (fun _ : Fin H => w), τ, ?_⟩
+  refine ⟨H * d, shareHeadEmbeddings Hs, headBlockConcat (fun _ : Fin H ↦ w), τ, ?_⟩
   intro bits
   rw [shareHeadEmbeddings_readout]
   exact hsep bits
@@ -264,7 +264,7 @@ theorem SharedHStar_eq_HStar (n : ℕ) (f : (Fin n → Bool) → Bool) :
   unfold SharedHStar HStar
   by_cases hLocal : ∃ k, computableWithHeadsN n k f
   · have hShared : ∃ k, computableWithSharedHeadsN n k f :=
-      hLocal.imp fun k => computableWithSharedHeadsN_of_computableWithHeadsN
+      hLocal.imp fun k ↦ computableWithSharedHeadsN_of_computableWithHeadsN
     rw [dite_eq_left hShared, dite_eq_left hLocal]
     refine le_antisymm ?_ ?_
     · exact Nat.find_min' hShared

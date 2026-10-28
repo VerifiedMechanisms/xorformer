@@ -1,8 +1,9 @@
-import HeadComplexity.Polynomial.PartitionPolynomial
+import Mathlib.Data.Nat.Log
+
 import HeadComplexity.Polynomial.PartitionDegreeRank
+import HeadComplexity.Polynomial.PartitionPolynomial
 import HeadComplexity.Polynomial.SignRank
 import HeadComplexity.Results.LowComplexity
-import Mathlib.Data.Nat.Log
 
 set_option linter.style.header false
 

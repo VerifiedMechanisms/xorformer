@@ -1,5 +1,5 @@
-import HeadComplexity.Atoms.PositiveWeightedSignDegree
 import HeadComplexity.Atoms.AffineHead
+import HeadComplexity.Atoms.PositiveWeightedSignDegree
 import HeadComplexity.Atoms.SignPolynomial
 import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.ThresholdDegree
@@ -99,9 +99,9 @@ theorem HStar_eq_two_of_positiveWeightedSignDeg_le_two
   have hle : HStar n f ≤ 2 :=
     (HStar_le_positiveWeightedSignDeg f).trans hdeg
   have hne0 : HStar n f ≠ 0 :=
-    fun h0 => hnconst ((HStar_eq_zero_iff f).mp h0)
+    fun h0 ↦ hnconst ((HStar_eq_zero_iff f).mp h0)
   have hne1 : HStar n f ≠ 1 :=
-    fun h1 => hnLTF ((HStar_eq_one_iff f).mp h1).2
+    fun h1 ↦ hnLTF ((HStar_eq_one_iff f).mp h1).2
   omega
 
 end HeadComplexity

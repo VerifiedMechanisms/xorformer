@@ -37,14 +37,14 @@ def symmetricFn (F : ℕ → Bool) (bits : Fin n → Bool) : Bool :=
     symmetricFn F bits = F (hammingWeight bits) := rfl
 
 /-- `PARITY n` is the symmetric function with profile `Odd`. -/
-theorem PARITY_eq_symmetricFn : PARITY n = symmetricFn (fun k => decide (Odd k)) := rfl
+theorem PARITY_eq_symmetricFn : PARITY n = symmetricFn (fun k ↦ decide (Odd k)) := rfl
 
 /-- `EXACT n k` is the symmetric function with profile `· = k`. -/
-theorem EXACT_eq_symmetricFn (k : ℕ) : EXACT n k = symmetricFn (fun m => decide (m = k)) := rfl
+theorem EXACT_eq_symmetricFn (k : ℕ) : EXACT n k = symmetricFn (fun m ↦ decide (m = k)) := rfl
 
 /-- The number of sign changes of the weight profile `F` along `0, 1, …, n`. -/
 def signChanges (n : ℕ) (F : ℕ → Bool) : ℕ :=
-  ((Finset.range n).filter fun t => F t ≠ F (t + 1)).card
+  ((Finset.range n).filter fun t ↦ F t ≠ F (t + 1)).card
 
 /-! ## A base of prescribed off-coordinate weight -/
 
@@ -61,16 +61,16 @@ theorem exists_checkerboard_base (hn : 2 ≤ n) (m : ℕ) (hm : m ≤ n - 2) :
   have hcard : m ≤ ({i, j}ᶜ : Finset (Fin n)).card := by
     rw [Finset.card_compl, Fintype.card_fin, Finset.card_pair hij]; omega
   obtain ⟨T, hTsub, hTcard⟩ := Finset.exists_subset_card_eq hcard
-  set base : Fin n → Bool := fun x => decide (x ∈ T) with hbase
-  have hoff : (Finset.filter (fun x => base x = true)
+  set base : Fin n → Bool := fun x ↦ decide (x ∈ T) with hbase
+  have hoff : (Finset.filter (fun x ↦ base x = true)
       ({i, j}ᶜ : Finset (Fin n))).card = m := by
-    have hset : (Finset.filter (fun x => base x = true)
+    have hset : (Finset.filter (fun x ↦ base x = true)
         ({i, j}ᶜ : Finset (Fin n))) = T := by
       ext x
       simp only [Finset.mem_filter, hbase, decide_eq_true_eq]
-      exact ⟨fun h => h.2, fun h => ⟨hTsub h, h⟩⟩
+      exact ⟨fun h ↦ h.2, fun h ↦ ⟨hTsub h, h⟩⟩
     rw [hset, hTcard]
-  exact ⟨base, fun a b => by rw [hammingWeight_restrictBits base i j hij, hoff]⟩
+  exact ⟨base, fun a b ↦ by rw [hammingWeight_restrictBits base i j hij, hoff]⟩
 
 /-! ## General-`n` lower bound from a width-1 spike -/
 
@@ -111,12 +111,12 @@ theorem signChanges_ge_two_of_spike (F : ℕ → Bool) (w : ℕ) (hw : w + 2 ≤
     (h1 : F (w + 1) ≠ F w) (h2 : F (w + 2) = F w) : 2 ≤ signChanges n F := by
   rw [signChanges]
   have hsub : ({w, w + 1} : Finset ℕ)
-      ⊆ (Finset.range n).filter (fun t => F t ≠ F (t + 1)) := by
+      ⊆ (Finset.range n).filter (fun t ↦ F t ≠ F (t + 1)) := by
     intro x hx
     rw [Finset.mem_insert, Finset.mem_singleton] at hx
     rw [Finset.mem_filter, Finset.mem_range]
     rcases hx with rfl | rfl
-    · exact ⟨by omega, fun h => h1 h.symm⟩
+    · exact ⟨by omega, fun h ↦ h1 h.symm⟩
     · refine ⟨by omega, ?_⟩
       change F (w + 1) ≠ F (w + 2)
       rw [h2]; exact h1
@@ -125,7 +125,7 @@ theorem signChanges_ge_two_of_spike (F : ℕ → Bool) (w : ℕ) (hw : w + 2 ≤
 
 /-- **Parity has the maximal sign-change count `n`.** Every adjacent pair of
 weights flips parity. -/
-theorem signChanges_parity : signChanges n (fun k => decide (Odd k)) = n := by
+theorem signChanges_parity : signChanges n (fun k ↦ decide (Odd k)) = n := by
   rw [signChanges, Finset.filter_true_of_mem, Finset.card_range]
   intro t _
   by_cases h : Odd t

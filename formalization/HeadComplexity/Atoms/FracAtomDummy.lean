@@ -1,5 +1,6 @@
-import HeadComplexity.Atoms.Restriction
 import Mathlib.Order.Filter.Finite
+
+import HeadComplexity.Atoms.Restriction
 
 set_option linter.style.header false
 

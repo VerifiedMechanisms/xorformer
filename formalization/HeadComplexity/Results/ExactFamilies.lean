@@ -24,16 +24,16 @@ open Finset
 variable {n : ℕ}
 
 /-- The monotone symmetric threshold `T_{n,t}(x) = [|x| ≥ t]` as a symmetric function. -/
-def THRESHOLD (n t : ℕ) : (Fin n → Bool) → Bool := symmetricFn (fun k => decide (t ≤ k))
+def THRESHOLD (n t : ℕ) : (Fin n → Bool) → Bool := symmetricFn (fun k ↦ decide (t ≤ k))
 
 /-! ## Sign-change counts of the standard profiles -/
 
 /-- A monotone threshold profile `[t ≤ ·]` changes sign exactly once (at `t-1`)
 along `0, …, n`, provided `1 ≤ t ≤ n`. -/
 theorem signChanges_threshold (t : ℕ) (ht1 : 1 ≤ t) (htn : t ≤ n) :
-    signChanges n (fun k => decide (t ≤ k)) = 1 := by
+    signChanges n (fun k ↦ decide (t ≤ k)) = 1 := by
   rw [signChanges]
-  have hset : ((range n).filter fun s => decide (t ≤ s) ≠ decide (t ≤ s + 1)) = {t - 1} := by
+  have hset : ((range n).filter fun s ↦ decide (t ≤ s) ≠ decide (t ≤ s + 1)) = {t - 1} := by
     ext s
     simp only [mem_filter, mem_range, mem_singleton, ne_eq, decide_eq_decide]
     omega
@@ -42,9 +42,9 @@ theorem signChanges_threshold (t : ℕ) (ht1 : 1 ≤ t) (htn : t ≤ n) :
 /-- An internal exact-count profile `[· = k]` changes sign exactly twice (at `k-1`
 and `k`) along `0, …, n`, provided `1 ≤ k ≤ n-1`. -/
 theorem signChanges_exact (k : ℕ) (hk1 : 1 ≤ k) (hkn : k ≤ n - 1) :
-    signChanges n (fun m => decide (m = k)) = 2 := by
+    signChanges n (fun m ↦ decide (m = k)) = 2 := by
   rw [signChanges]
-  have hset : ((range n).filter fun s => decide (s = k) ≠ decide (s + 1 = k)) = {k - 1, k} := by
+  have hset : ((range n).filter fun s ↦ decide (s = k) ≠ decide (s + 1 = k)) = {k - 1, k} := by
     ext s
     simp only [mem_filter, mem_range, mem_insert, mem_singleton, ne_eq, decide_eq_decide]
     omega

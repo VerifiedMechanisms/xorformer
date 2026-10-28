@@ -35,7 +35,7 @@ theorem HStar_eq_Lfrac (f : (Fin n → Bool) → Bool) : HStar n f = Lfrac n f :
   classical
   have hiff := computableWithHeadsN_iff_fracComputable (n := n) (f := f)
   have hexC : ∃ k, computableWithHeadsN n k f := exists_computable f
-  have hexF : ∃ H, fracComputable n H f := hexC.imp fun k => (hiff k).mp
+  have hexF : ∃ H, fracComputable n H f := hexC.imp fun k ↦ (hiff k).mp
   unfold HStar Lfrac
   rw [dite_eq_left hexC, dite_eq_left hexF]
   refine le_antisymm ?_ ?_

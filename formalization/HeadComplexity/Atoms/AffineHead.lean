@@ -39,11 +39,11 @@ variable {n : ℕ}
 theorem vecN_inner {d : ℕ} (x y : Vec d) : ⟪x, y⟫_ℝ = ∑ i, x i * y i := by
   change dotProduct (y.ofLp) (star x.ofLp) = _
   simp only [dotProduct, Pi.star_apply, star_trivial]
-  exact Finset.sum_congr rfl (fun i _ => mul_comm _ _)
+  exact Finset.sum_congr rfl (fun i _ ↦ mul_comm _ _)
 
 /-- The affine coefficients `a i = cs i + τ`. -/
 noncomputable def affCoeff (cs : Fin n → ℝ) (c : ℝ) : Fin n → ℝ :=
-  fun i => cs i + (∑ j, cs j - c) / Real.exp 1
+  fun i ↦ cs i + (∑ j, cs j - c) / Real.exp 1
 
 /-- The threshold `τ = (∑ j, cs j - c) / exp 1`. -/
 noncomputable def affTau (cs : Fin n → ℝ) (c : ℝ) : ℝ :=
@@ -153,7 +153,7 @@ theorem affReadout_inner (v : Vec (n + 1)) :
     ⟪affReadout n, v⟫_ℝ = ∑ i : Fin n, v i.succ := by
   unfold affReadout
   rw [sum_inner]
-  refine Finset.sum_congr rfl (fun i _ => ?_)
+  refine Finset.sum_congr rfl (fun i _ ↦ ?_)
   rw [vecN_inner]
   rw [Finset.sum_eq_single i.succ]
   · simp
@@ -170,7 +170,7 @@ theorem affHead_value (bits : Fin n → Bool) (p : SeqPos n) :
 theorem affReadout_x_none (bits : Fin n → Bool) :
     ⟪affReadout n, (affHead cs c).x bits none⟫_ℝ = 0 := by
   rw [affHead_x_none, affReadout_inner]
-  refine Finset.sum_eq_zero (fun i _ => ?_)
+  refine Finset.sum_eq_zero (fun i _ ↦ ?_)
   rw [PiLp.single_apply, ite_eq_right (Fin.succ_ne_zero i)]
 
 /-- Readout of the embedding at position `i` is `a i`. -/
@@ -196,7 +196,7 @@ theorem affReadout_x_some (bits : Fin n → Bool) (i : Fin n) :
           simp only [Bool.cond_true]
           rw [show (affTok 1 : Vec (n + 1)) = EuclideanSpace.single 0 (Real.log 2) from rfl]
           rw [PiLp.single_apply, ite_eq_right (Fin.succ_ne_zero j)]
-    rw [htok, zero_add, PiLp.single_apply, ite_eq_right (fun h => hj (Fin.succ_inj.mp h))]
+    rw [htok, zero_add, PiLp.single_apply, ite_eq_right (fun h ↦ hj (Fin.succ_inj.mp h))]
   · intro h; exact absurd (Finset.mem_univ _) h
 
 end
@@ -211,7 +211,7 @@ theorem hammingWeight_eq_sum (bits : Fin n → Bool) :
     (hammingWeight bits : ℝ) = ∑ i, boolToReal (bits i) := by
   unfold hammingWeight boolToReal
   rw [Finset.card_filter, Nat.cast_sum]
-  refine Finset.sum_congr rfl (fun i _ => ?_)
+  refine Finset.sum_congr rfl (fun i _ ↦ ?_)
   cases bits i <;> simp
 
 /-- Denominator is `exp 1 + n + |x|`. -/
@@ -238,7 +238,7 @@ theorem affHead_numread (bits : Fin n → Bool) :
   rw [inner_sum, Fintype.sum_option]
   simp_rw [inner_smul_right, affHead_value]
   rw [affReadout_x_none, mul_zero, zero_add]
-  refine Finset.sum_congr rfl (fun i _ => ?_)
+  refine Finset.sum_congr rfl (fun i _ ↦ ?_)
   rw [affHead_sigma_some, affReadout_x_some]
   cases bits i with
   | false => simp [boolToReal]
@@ -257,7 +257,7 @@ theorem affHead_sign_identity (bits : Fin n → Bool) :
   have hnum : ∑ j, (cs j + τ) * (1 + boolToReal (bits j))
       = (∑ j, cs j) + (∑ j, cs j * boolToReal (bits j))
         + τ * (n : ℝ) + τ * ∑ j, boolToReal (bits j) := by
-    rw [Finset.sum_congr rfl (fun j _ =>
+    rw [Finset.sum_congr rfl (fun j _ ↦
       show (cs j + τ) * (1 + boolToReal (bits j))
         = cs j + cs j * boolToReal (bits j) + τ + τ * boolToReal (bits j) by ring)]
     rw [Finset.sum_add_distrib, Finset.sum_add_distrib, Finset.sum_add_distrib]
@@ -285,7 +285,7 @@ computed by a single attention head. -/
 theorem affine_computable {n : ℕ} (f : (Fin n → Bool) → Bool) (c : ℝ) (cs : Fin n → ℝ)
     (hsign : ∀ x, (0 < c + ∑ i, cs i * boolToReal (x i)) ↔ f x = true) :
     computableWithHeadsN n 1 f := by
-  refine ⟨n + 1, fun _ : Fin 1 => affHead cs c, affReadout n, affTau cs c, ?_⟩
+  refine ⟨n + 1, fun _ : Fin 1 ↦ affHead cs c, affReadout n, affTau cs c, ?_⟩
   intro bits
   change ⟪affReadout n, ∑ h : Fin 1, (affHead cs c).attnUpdate bits⟫_ℝ > affTau cs c ↔ _
   rw [Fintype.sum_unique]

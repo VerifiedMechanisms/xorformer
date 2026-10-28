@@ -1,5 +1,6 @@
-import HeadComplexity.Atoms.PositiveAffineRatio
 import Mathlib.Data.Finset.Powerset
+
+import HeadComplexity.Atoms.PositiveAffineRatio
 
 set_option linter.style.header false
 

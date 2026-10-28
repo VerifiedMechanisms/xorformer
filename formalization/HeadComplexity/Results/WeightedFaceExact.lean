@@ -1,5 +1,5 @@
-import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.Atoms.AffineHead
+import HeadComplexity.Atoms.ClearedNormalForm
 import HeadComplexity.Atoms.PositiveWeightedSignDegree
 import HeadComplexity.Results.ExactFamilies
 import HeadComplexity.Results.SymmetricFaceLowerBound

@@ -131,8 +131,8 @@ theorem monomialStarCoverNumber_real_le_eleven (n : ℕ) (hn : 0 < n) :
 
 /-- Compatibility form of the first linear-saving constant. -/
 theorem monomialStarCoverNumber_real_le_twelve (n : ℕ) (hn : 0 < n) :
-    (monomialStarCoverNumber n : ℝ) ≤ 12 * (2 : ℝ) ^ n / n := by
-  exact (monomialStarCoverNumber_real_le_eleven n hn).trans (by gcongr; norm_num)
+    (monomialStarCoverNumber n : ℝ) ≤ 12 * (2 : ℝ) ^ n / n :=
+  (monomialStarCoverNumber_real_le_eleven n hn).trans (by gcongr; norm_num)
 
 /-- The sharper constant 11 applies to every actual attention function. -/
 theorem HStar_real_le_eleven_mul_two_pow_div {n : ℕ} (hn : 0 < n)

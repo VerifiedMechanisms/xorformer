@@ -1,6 +1,7 @@
+import Mathlib.Data.Nat.Choose.Sum
+
 import HeadComplexity.Polynomial.PartitionPolynomial
 import HeadComplexity.Polynomial.UnivariateReduction
-import Mathlib.Data.Nat.Choose.Sum
 
 set_option linter.style.header false
 

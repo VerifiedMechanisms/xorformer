@@ -1,6 +1,7 @@
-import HeadComplexity.Results.MonomialStarCover
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Algebra.Order.Floor.Ring
+import Mathlib.Analysis.SpecialFunctions.Log.Basic
+
+import HeadComplexity.Results.MonomialStarCover
 
 set_option linter.style.header false
 

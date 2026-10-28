@@ -1,5 +1,6 @@
-import HeadComplexity.Results.UniversalStarUpperBound
 import TheoremSubsumption
+
+import HeadComplexity.Results.UniversalStarUpperBound
 
 set_option linter.style.header false
 

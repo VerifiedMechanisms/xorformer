@@ -1,5 +1,6 @@
-import HeadComplexity.Results.MonomialStarCover
 import Mathlib.Data.Nat.Choose.Sum
+
+import HeadComplexity.Results.MonomialStarCover
 
 set_option linter.style.header false
 

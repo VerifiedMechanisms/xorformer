@@ -81,12 +81,12 @@ noncomputable def maxAtomOutput (C : AtomicMarginCertificate f J mu)
     exact Finset.univ_nonempty) (fun j ↦ (C.atom j).eval bits)
 
 theorem minAtomOutput_le (C : AtomicMarginCertificate f J mu) (j : J) (bits : Fin n → Bool) :
-    C.minAtomOutput bits ≤ (C.atom j).eval bits := by
-  exact Finset.inf'_le (fun j ↦ (C.atom j).eval bits) (Finset.mem_univ j)
+    C.minAtomOutput bits ≤ (C.atom j).eval bits :=
+  Finset.inf'_le (fun j ↦ (C.atom j).eval bits) (Finset.mem_univ j)
 
 theorem le_maxAtomOutput (C : AtomicMarginCertificate f J mu) (j : J) (bits : Fin n → Bool) :
-    (C.atom j).eval bits ≤ C.maxAtomOutput bits := by
-  exact Finset.le_sup' (fun j ↦ (C.atom j).eval bits) (Finset.mem_univ j)
+    (C.atom j).eval bits ≤ C.maxAtomOutput bits :=
+  Finset.le_sup' (fun j ↦ (C.atom j).eval bits) (Finset.mem_univ j)
 
 theorem minAtomOutput_le_maxAtomOutput (C : AtomicMarginCertificate f J mu) (bits : Fin n → Bool) :
     C.minAtomOutput bits ≤ C.maxAtomOutput bits := by

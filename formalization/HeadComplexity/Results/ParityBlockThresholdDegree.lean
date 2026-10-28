@@ -1,7 +1,7 @@
+import HeadComplexity.Atoms.UniformApproximation
+import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.ThresholdDegree
-import HeadComplexity.Results.AffineFreeSparsity
-import HeadComplexity.Atoms.UniformApproximation
 
 set_option linter.style.header false
 

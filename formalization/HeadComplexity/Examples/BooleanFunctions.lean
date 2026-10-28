@@ -22,17 +22,17 @@ def computesBool (f : (Fin 2 → Bool) → Bool) (g : (Fin 2 → Bool) → Vec d
   computesPred f g
 
 /-- Named versions of the standard 2-bit Boolean functions. -/
-def falseFn : (Fin 2 → Bool) → Bool := fun _ => false
-def trueFn : (Fin 2 → Bool) → Bool := fun _ => true
-def orFn : (Fin 2 → Bool) → Bool := fun bits => bits 0 || bits 1
-def andFn : (Fin 2 → Bool) → Bool := fun bits => bits 0 && bits 1
-def norFn : (Fin 2 → Bool) → Bool := fun bits => !(orFn bits)
-def nandFn : (Fin 2 → Bool) → Bool := fun bits => !(andFn bits)
-def xnorFn : (Fin 2 → Bool) → Bool := fun bits => !(xorFn bits)
+def falseFn : (Fin 2 → Bool) → Bool := fun _ ↦ false
+def trueFn : (Fin 2 → Bool) → Bool := fun _ ↦ true
+def orFn : (Fin 2 → Bool) → Bool := fun bits ↦ bits 0 || bits 1
+def andFn : (Fin 2 → Bool) → Bool := fun bits ↦ bits 0 && bits 1
+def norFn : (Fin 2 → Bool) → Bool := fun bits ↦ !(orFn bits)
+def nandFn : (Fin 2 → Bool) → Bool := fun bits ↦ !(andFn bits)
+def xnorFn : (Fin 2 → Bool) → Bool := fun bits ↦ !(xorFn bits)
 
 /-- The 2-bit symmetric Boolean function determined by its values on Hamming
 weights `0`, `1`, and `2`. -/
-def symmFn (c0 c1 c2 : Bool) : (Fin 2 → Bool) → Bool := fun bits =>
+def symmFn (c0 c1 c2 : Bool) : (Fin 2 → Bool) → Bool := fun bits ↦
   match bits 0, bits 1 with
   | false, false => c0
   | false, true => c1
@@ -78,13 +78,13 @@ noncomputable def HStar2 (f : (Fin 2 → Bool) → Bool) : ℕ :=
 @[simp] theorem xnorFn_apply (bits : Fin 2 → Bool) : xnorFn bits = !(xorFn bits) := rfl
 
 theorem HStar2_eq_of_exact {f : (Fin 2 → Bool) → Bool} {k : ℕ}
-    (hk : exactHeadComplexity f k) : HStar2 f = k := by
-  exact HStar_eq_of_exact hk
+    (hk : exactHeadComplexity f k) : HStar2 f = k :=
+  HStar_eq_of_exact hk
 
 /-- Adding a constant vector only shifts the probe threshold. -/
 theorem computesBool_iff_of_add_const
     (f : (Fin 2 → Bool) → Bool) (g : (Fin 2 → Bool) → Vec d) (c : Vec d) :
-    computesBool f g ↔ computesBool f (fun bits => c + g bits) := by
+    computesBool f g ↔ computesBool f (fun bits ↦ c + g bits) := by
   simpa [computesBool] using computesPred_iff_of_add_const f g c
 
 /-- Generic skip-connection reduction for two-bit Boolean classification. -/
@@ -269,28 +269,28 @@ theorem true_computable_with_zero_heads :
 
 /-- A single head suffices to compute `OR` in the query residual. -/
 theorem or_computable_with_one_head :
-    ∃ H : Head 2 3, computesBool orFn H.residual := by
-  exact ⟨head1, head1_computes_or_residual⟩
+    ∃ H : Head 2 3, computesBool orFn H.residual :=
+  ⟨head1, head1_computes_or_residual⟩
 
 /-- A single head suffices to compute `AND` in the query residual. -/
 theorem and_computable_with_one_head :
-    ∃ H : Head 2 3, computesBool andFn H.residual := by
-  exact ⟨head1, head1_computes_and_residual⟩
+    ∃ H : Head 2 3, computesBool andFn H.residual :=
+  ⟨head1, head1_computes_and_residual⟩
 
 /-- A single head suffices to compute `NOR` in the query residual. -/
 theorem nor_computable_with_one_head :
-    ∃ H : Head 2 3, computesBool norFn H.residual := by
-  exact ⟨head1, head1_computes_nor_residual⟩
+    ∃ H : Head 2 3, computesBool norFn H.residual :=
+  ⟨head1, head1_computes_nor_residual⟩
 
 /-- A single head suffices to compute `NAND` in the query residual. -/
 theorem nand_computable_with_one_head :
-    ∃ H : Head 2 3, computesBool nandFn H.residual := by
-  exact ⟨head1, head1_computes_nand_residual⟩
+    ∃ H : Head 2 3, computesBool nandFn H.residual :=
+  ⟨head1, head1_computes_nand_residual⟩
 
 private theorem one_head_count_of_attnUpdate
     {f : (Fin 2 → Bool) → Bool} {H : Head 2 3}
     (h : computesBool f H.attnUpdate) : computableWithHeads f 1 := by
-  refine ⟨3, (fun _ => H), ?_⟩
+  refine ⟨3, (fun _ ↦ H), ?_⟩
   rcases h with ⟨w, τ, hw⟩
   refine ⟨w, τ, ?_⟩
   intro bits
@@ -326,26 +326,26 @@ theorem not_computableWithHeads_zero_of_false_true
 
 /-- `OR` is not computable with zero heads. -/
 theorem or_not_computable_with_zero_heads :
-    ¬ computableWithHeads orFn 0 := by
-  exact not_computableWithHeads_zero_of_false_true orFn
+    ¬ computableWithHeads orFn 0 :=
+  not_computableWithHeads_zero_of_false_true orFn
     (bits2 false false) (bits2 false true) rfl rfl
 
 /-- `AND` is not computable with zero heads. -/
 theorem and_not_computable_with_zero_heads :
-    ¬ computableWithHeads andFn 0 := by
-  exact not_computableWithHeads_zero_of_false_true andFn
+    ¬ computableWithHeads andFn 0 :=
+  not_computableWithHeads_zero_of_false_true andFn
     (bits2 false false) (bits2 true true) rfl rfl
 
 /-- `NOR` is not computable with zero heads. -/
 theorem nor_not_computable_with_zero_heads :
-    ¬ computableWithHeads norFn 0 := by
-  exact not_computableWithHeads_zero_of_false_true norFn
+    ¬ computableWithHeads norFn 0 :=
+  not_computableWithHeads_zero_of_false_true norFn
     (bits2 false true) (bits2 false false) rfl rfl
 
 /-- `NAND` is not computable with zero heads. -/
 theorem nand_not_computable_with_zero_heads :
-    ¬ computableWithHeads nandFn 0 := by
-  exact not_computableWithHeads_zero_of_false_true nandFn
+    ¬ computableWithHeads nandFn 0 :=
+  not_computableWithHeads_zero_of_false_true nandFn
     (bits2 true true) (bits2 false false) rfl rfl
 
 /-- No single head computes `XOR` in this model. -/
@@ -364,21 +364,21 @@ theorem checkerboard_not_computable_with_one_head_attnUpdate
     ¬ computesBool f H.attnUpdate := by
   intro hComp
   have hCompN : computableWithHeadsN 2 1 f := by
-    refine ⟨d, fun _ => H, ?_⟩
+    refine ⟨d, fun _ ↦ H, ?_⟩
     rcases hComp with ⟨w, τ, hw⟩
     refine ⟨w, τ, ?_⟩
     intro bits
     simpa [computesBool, headFamilyAttnUpdate] using hw bits
-  have h00N : f (Head.restrictBits (fun _ => false) 0 1 (false, false)) = c := by
+  have h00N : f (Head.restrictBits (fun _ ↦ false) 0 1 (false, false)) = c := by
     simpa [restrictBits_zero_one] using h00
-  have h11N : f (Head.restrictBits (fun _ => false) 0 1 (true, true)) = c := by
+  have h11N : f (Head.restrictBits (fun _ ↦ false) 0 1 (true, true)) = c := by
     simpa [restrictBits_zero_one] using h11
-  have h01N : f (Head.restrictBits (fun _ => false) 0 1 (false, true)) = !c := by
+  have h01N : f (Head.restrictBits (fun _ ↦ false) 0 1 (false, true)) = !c := by
     simpa [restrictBits_zero_one] using h01
-  have h10N : f (Head.restrictBits (fun _ => false) 0 1 (true, false)) = !c := by
+  have h10N : f (Head.restrictBits (fun _ ↦ false) 0 1 (true, false)) = !c := by
     simpa [restrictBits_zero_one] using h10
   exact (checkerboard_restriction_not_computable_with_one_head
-    f (fun _ => false) 0 1 (by decide) c h00N h11N h01N h10N) hCompN
+    f (fun _ ↦ false) 0 1 (by decide) c h00N h11N h01N h10N) hCompN
 
 /-- Residual-form checkerboard lower bound. -/
 theorem checkerboard_not_computable_with_one_head_residual
@@ -393,8 +393,8 @@ theorem checkerboard_not_computable_with_one_head_residual
 
 /-- `XOR` is not computable with zero heads. -/
 theorem xor_not_computable_with_zero_heads :
-    ¬ computableWithHeads xorFn 0 := by
-  exact not_computableWithHeads_zero_of_false_true xorFn
+    ¬ computableWithHeads xorFn 0 :=
+  not_computableWithHeads_zero_of_false_true xorFn
     (bits2 false false) (bits2 false true) rfl rfl
 
 /-- `XOR` is not computable with a single head in the uniform multi-head model. -/

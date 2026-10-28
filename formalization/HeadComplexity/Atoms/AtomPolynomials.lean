@@ -32,7 +32,7 @@ theorem denPoly_eval (φ : FracAtom n) (x : Fin n → Bool) :
     MvPolynomial.eval (cubePoint x) φ.denPoly = φ.γ + ∑ i, φ.wt x i := by
   simp only [denPoly, map_add, eval_C, map_sum, affineAt_eval]
   congr 1
-  refine Finset.sum_congr rfl (fun i _ => ?_)
+  refine Finset.sum_congr rfl (fun i _ ↦ ?_)
   unfold wt
   cases x i <;> simp
 
@@ -41,7 +41,7 @@ theorem numPoly_eval (φ : FracAtom n) (x : Fin n → Bool) :
       φ.η + ∑ i, φ.wt x i * (φ.m i + if x i then φ.δ else 0) := by
   simp only [numPoly, map_add, eval_C, map_sum, affineAt_eval]
   congr 1
-  refine Finset.sum_congr rfl (fun i _ => ?_)
+  refine Finset.sum_congr rfl (fun i _ ↦ ?_)
   cases hx : x i
   · simp [wt, hx]
   · simp [wt, hx]
@@ -51,14 +51,14 @@ theorem denPoly_totalDegree_le (φ : FracAtom n) : φ.denPoly.totalDegree ≤ 1 
   refine (totalDegree_add _ _).trans (max_le ?_ ?_)
   · rw [totalDegree_C]
     omega
-  · exact totalDegree_finsetSum_le (fun i _ => affineAt_totalDegree_le _ _ _)
+  · exact totalDegree_finsetSum_le (fun i _ ↦ affineAt_totalDegree_le _ _ _)
 
 theorem numPoly_totalDegree_le (φ : FracAtom n) : φ.numPoly.totalDegree ≤ 1 := by
   unfold numPoly
   refine (totalDegree_add _ _).trans (max_le ?_ ?_)
   · rw [totalDegree_C]
     omega
-  · exact totalDegree_finsetSum_le (fun i _ => affineAt_totalDegree_le _ _ _)
+  · exact totalDegree_finsetSum_le (fun i _ ↦ affineAt_totalDegree_le _ _ _)
 
 theorem eval_eq_numPoly_div_denPoly (φ : FracAtom n) (x : Fin n → Bool) :
     φ.eval x = MvPolynomial.eval (cubePoint x) φ.numPoly /

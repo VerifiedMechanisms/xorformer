@@ -30,12 +30,12 @@ noncomputable def restrict (phi : FracAtom n) (rho : CoordFace m n) : FracAtom m
   δ := phi.δ
   γ := phi.γ + ∑ j ∈ rho.fixedSet, phi.wt rho.base j
   α := phi.α
-  ρ := fun i => phi.ρ (rho.free i)
-  m := fun i => phi.m (rho.free i)
+  ρ := fun i ↦ phi.ρ (rho.free i)
+  m := fun i ↦ phi.m (rho.free i)
   hγ := add_pos_of_pos_of_nonneg phi.hγ
-    (Finset.sum_nonneg fun j _ => (phi.wt_pos rho.base j).le)
+    (Finset.sum_nonneg fun j _ ↦ (phi.wt_pos rho.base j).le)
   hα := phi.hα
-  hρ := fun i => phi.hρ (rho.free i)
+  hρ := fun i ↦ phi.hρ (rho.free i)
 
 @[simp] theorem restrict_wt (phi : FracAtom n) (rho : CoordFace m n)
     (x : Fin m → Bool) (i : Fin m) :
@@ -49,8 +49,8 @@ noncomputable def restrict (phi : FracAtom n) (rho : CoordFace m n) : FracAtom m
   unfold FracAtom.eval
   simp_rw [restrict_wt]
   simp only [restrict]
-  rw [rho.sum_eq_free_add_fixed (fun j => phi.wt (rho.apply x) j)]
-  rw [rho.sum_eq_free_add_fixed (fun j =>
+  rw [rho.sum_eq_free_add_fixed (fun j ↦ phi.wt (rho.apply x) j)]
+  rw [rho.sum_eq_free_add_fixed (fun j ↦
     phi.wt (rho.apply x) j * (phi.m j + if rho.apply x j then phi.δ else 0))]
   have hfixed_wt : (∑ j ∈ rho.fixedSet, phi.wt (rho.apply x) j) =
       ∑ j ∈ rho.fixedSet, phi.wt rho.base j := by
@@ -76,16 +76,16 @@ variable {m n H : ℕ}
 /-- Atom computability is monotone under coordinate restriction. -/
 theorem fracComputable.restrict {f : (Fin n → Bool) → Bool}
     (rho : CoordFace m n) (hf : fracComputable n H f) :
-    fracComputable m H (fun x => f (rho.apply x)) := by
+    fracComputable m H (fun x ↦ f (rho.apply x)) := by
   rcases hf with ⟨phi, c, hphi⟩
-  refine ⟨fun h => (phi h).restrict rho, c, ?_⟩
+  refine ⟨fun h ↦ (phi h).restrict rho, c, ?_⟩
   intro x
   simpa using hphi (rho.apply x)
 
 /-- Head computability is monotone under coordinate restriction. -/
 theorem computableWithHeadsN.restrict {f : (Fin n → Bool) → Bool}
     (rho : CoordFace m n) (hf : computableWithHeadsN n H f) :
-    computableWithHeadsN m H (fun x => f (rho.apply x)) :=
+    computableWithHeadsN m H (fun x ↦ f (rho.apply x)) :=
   computable_of_fracComputable
     (fracComputable.restrict rho (fracComputable_of_computable hf))
 

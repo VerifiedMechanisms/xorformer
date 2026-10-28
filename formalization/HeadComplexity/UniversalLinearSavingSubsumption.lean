@@ -1,6 +1,7 @@
+import TheoremSubsumption
+
 import HeadComplexity.Results.UniversalLinearSaving
 import HeadComplexity.UniversalSublinearSubsumption
-import TheoremSubsumption
 
 set_option linter.style.header false
 

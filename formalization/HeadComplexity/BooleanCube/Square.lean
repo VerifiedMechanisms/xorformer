@@ -20,7 +20,7 @@ theorem boolSquare_additive_split_of_antipode {A : Type*} [AddCommGroup A]
     (f : Bool → Bool → A)
     (hanti : f false false + f true true = f false true + f true false) :
     ∃ (row col : Bool → A) (c : A), ∀ a b : Bool, f a b = row a + col b + c := by
-  refine ⟨fun a => f a false, fun b => f false b, -f false false, ?_⟩
+  refine ⟨fun a ↦ f a false, fun b ↦ f false b, -f false false, ?_⟩
   intro a b
   cases a <;> cases b <;> dsimp only
   · abel

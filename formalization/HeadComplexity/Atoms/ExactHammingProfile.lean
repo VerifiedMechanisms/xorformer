@@ -1,7 +1,8 @@
+import Mathlib.LinearAlgebra.Lagrange
+
 import HeadComplexity.Atoms.PartialFraction
 import HeadComplexity.Atoms.PositiveAffineRatio
 import HeadComplexity.Results.SymmetricComplexity
-import Mathlib.LinearAlgebra.Lagrange
 
 set_option linter.style.header false
 

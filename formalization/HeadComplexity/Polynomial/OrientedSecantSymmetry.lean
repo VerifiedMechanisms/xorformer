@@ -379,8 +379,8 @@ def canonicalOrientation (H : ℕ) (k : Fin (H + 1)) : Fin H → Bool :=
   fun h ↦ decide (h.val < k.val)
 
 theorem orientationTrueCount_le {H : ℕ} (sigma : Fin H → Bool) :
-    orientationTrueCount sigma ≤ H := by
-  exact (Finset.card_filter_le _ _).trans_eq (Fintype.card_fin H)
+    orientationTrueCount sigma ≤ H :=
+  (Finset.card_filter_le _ _).trans_eq (Fintype.card_fin H)
 
 /-- The count itself, packaged as one of the `H + 1` canonical branches. -/
 def orientationCountIndex {H : ℕ} (sigma : Fin H → Bool) : Fin (H + 1) :=

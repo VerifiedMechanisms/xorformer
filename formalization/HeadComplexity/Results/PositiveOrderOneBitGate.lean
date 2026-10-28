@@ -59,7 +59,6 @@ theorem strictPositiveStatistic_ignoreFresh_computable
   · intro z y
     simpa using hstrict.signRepresents y
 
-set_option linter.flexible false in
 /-- A strict positive-statistic feature may occupy either raw-bit slice while
 the other slice is an arbitrary constant, at no additional head cost. -/
 theorem strictPositiveStatistic_oneSliceFeature_computable
@@ -90,8 +89,11 @@ theorem strictPositiveStatistic_oneSliceFeature_computable
     have hhi : P.eval (wT lam y) < M := by
       exact lt_of_abs_lt (by simpa [M] using habs)
     cases active <;> cases z <;> cases constant <;>
-      simp [P0, R, s, oneSliceFeature, boolToReal] <;>
-      first | exact hstrict.signRepresents y | linarith
+      first
+      | simpa [P0, R, s, oneSliceFeature, boolToReal] using hstrict.signRepresents y
+      | simpa [P0, R, s, oneSliceFeature, boolToReal] using hhi.le
+      | simpa [P0, R, s, oneSliceFeature, boolToReal] using
+          (show 0 < P.eval (wT lam y) + M by linarith)
 
 /-- Fresh XOR of a strict positive-statistic feature costs one extra head. -/
 theorem strictPositiveStatistic_freshXor_computable
