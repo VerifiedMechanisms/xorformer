@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "repository": "https://github.com/pevogam/theorem-subsumption",
+    "version": "0.2.0",
+    "commit": "112d2d977cb3c1daa452a9ed6db6561fd025f128"
+  },
+  "manifest_kind": "curated_summary",
+  "status_regression_checked_by": "formalization/HeadComplexity/SelectionSubsumption.lean",
+  "certification_level": "normalized_contract",
+  "complete_corpus_certified": false,
+  "selection_review_outcome": "unchanged",
+  "selected_notes": [
+    "theorems/01_foundations_and_normal_form/021_determinant_span_schema.md",
+    "theorems/01_foundations_and_normal_form/025_compact_threshold_certificates.md",
+    "theorems/01_foundations_and_normal_form/026_counting_lower_bound.md",
+    "theorems/01_foundations_and_normal_form/027_top_threshold_degree.md",
+    "theorems/02_complexity_measure_upper_bounds/028_restrictions_and_sign_rank.md",
+    "theorems/02_complexity_measure_upper_bounds/030_threshold_degree_span_schema.md",
+    "theorems/02_complexity_measure_upper_bounds/045_fourier_support_upper_bound.md",
+    "theorems/03_function_families_and_affine_geometry/048_affine_free_sparsity_upper_bound.md",
+    "theorems/03_function_families_and_affine_geometry/049_equality_bounds.md",
+    "theorems/03_function_families_and_affine_geometry/053_local_pattern_count_profile_schema.md",
+    "theorems/03_function_families_and_affine_geometry/062_affine_slab_upper_bound.md",
+    "theorems/03_function_families_and_affine_geometry/063_affine_statistic_sign_changes.md",
+    "theorems/03_function_families_and_affine_geometry/069_positive_projection_degree_tight_exact.md",
+    "theorems/03_function_families_and_affine_geometry/073_dnf_cnf_hybrid_upper_bound.md",
+    "theorems/04_recursions_and_cost_invariants/082_one_bit_gate_threshold_degree_trichotomy.md",
+    "theorems/04_recursions_and_cost_invariants/083_parity_block_threshold_degree_amplifier.md",
+    "theorems/04_recursions_and_cost_invariants/085_calibrated_threshold_vote_upper_bound.md",
+    "theorems/04_recursions_and_cost_invariants/087_one_bit_non_xor_gate_recursion.md",
+    "theorems/04_recursions_and_cost_invariants/093_raw_calibrated_vote_support_bound.md",
+    "theorems/04_recursions_and_cost_invariants/109_low_affine_cylinder_cost_exactness.md",
+    "theorems/04_recursions_and_cost_invariants/110_affine_cylinder_threshold_degree_sandwich.md",
+    "theorems/04_recursions_and_cost_invariants/114_split_affine_cylinder_refines_split_affine_free.md",
+    "theorems/04_recursions_and_cost_invariants/120_affine_cylinder_cofactor_recursion.md",
+    "theorems/04_recursions_and_cost_invariants/124_fresh_bit_xor_target_cost.md",
+    "theorems/05_positive_statistic_gates_and_grids/138_positive_statistic_raw_bit_degree_span.md",
+    "theorems/05_positive_statistic_gates_and_grids/141_degree_tight_positive_statistic_gate_classification.md",
+    "theorems/05_positive_statistic_gates_and_grids/144_positive_order_one_bit_gate_sandwich.md",
+    "theorems/05_positive_statistic_gates_and_grids/170_positive_lexicographic_multigrid_bound.md",
+    "theorems/05_positive_statistic_gates_and_grids/173_positive_multigrid_cost_invariant.md",
+    "theorems/05_positive_statistic_gates_and_grids/179_two_block_affine_grid_strips_exact.md",
+    "theorems/06_strict_separations/183_small_dimension_exact_classification.md",
+    "theorems/06_strict_separations/186_five_bit_degree_four_exact.md",
+    "theorems/06_strict_separations/187_five_bit_degree_two_exact.md",
+    "theorems/02_complexity_measure_upper_bounds/190_slice_rank_two_obstruction.md",
+    "theorems/02_complexity_measure_upper_bounds/192_multiway_sign_tensor_rank.md",
+    "theorems/02_complexity_measure_upper_bounds/193_positive_secant_diagonal_blowup.md",
+    "theorems/02_complexity_measure_upper_bounds/194_signed_secant_diagonal_blowup.md",
+    "theorems/02_complexity_measure_upper_bounds/195_atomic_margin_sparsification.md"
+  ],
+  "comparisons": [
+    {
+      "source": "theorem110_contract",
+      "target": "theorem48_headline_contract",
+      "source_note": "theorems/04_recursions_and_cost_invariants/110_affine_cylinder_threshold_degree_sandwich.md",
+      "target_note": "theorems/03_function_families_and_affine_geometry/048_affine_free_sparsity_upper_bound.md",
+      "requirements_forward": "PROVED",
+      "requirements_reverse": "PROVED",
+      "guarantee_forward": "PROVED",
+      "guarantee_reverse": "REFUTED",
+      "classification": "strict_source_subsumption"
+    },
+    {
+      "source": "theorem69_contract",
+      "target": "theorem013_positive_projection_contract",
+      "source_note": "theorems/03_function_families_and_affine_geometry/069_positive_projection_degree_tight_exact.md",
+      "target_note": "theorems/01_foundations_and_normal_form/013_positive_projection_sign_changes.md",
+      "requirements_forward": "PROVED",
+      "requirements_reverse": "PROVED",
+      "guarantee_forward": "PROVED",
+      "guarantee_reverse": "REFUTED",
+      "classification": "strict_source_subsumption"
+    },
+    {
+      "source": "theorem144_contract",
+      "target": "theorem141_contract",
+      "source_note": "theorems/05_positive_statistic_gates_and_grids/144_positive_order_one_bit_gate_sandwich.md",
+      "target_note": "theorems/05_positive_statistic_gates_and_grids/141_degree_tight_positive_statistic_gate_classification.md",
+      "requirements_forward": "PROVED",
+      "requirements_reverse": "UNKNOWN",
+      "guarantee_forward": "REFUTED",
+      "guarantee_reverse": "REFUTED",
+      "contextual_forward": "PROVED",
+      "classification": "incomparable"
+    },
+    {
+      "source": "theorem93_contract",
+      "target": "theorem85_contract",
+      "source_note": "theorems/04_recursions_and_cost_invariants/093_raw_calibrated_vote_support_bound.md",
+      "target_note": "theorems/04_recursions_and_cost_invariants/085_calibrated_threshold_vote_upper_bound.md",
+      "requirements_forward": "PROVED",
+      "requirements_reverse": "UNKNOWN",
+      "guarantee_forward": "REFUTED",
+      "guarantee_reverse": "REFUTED",
+      "contextual_forward": "PROVED",
+      "classification": "incomparable"
+    },
+    {
+      "source": "theorem173_contract",
+      "target": "theorem170_contract",
+      "source_note": "theorems/05_positive_statistic_gates_and_grids/173_positive_multigrid_cost_invariant.md",
+      "target_note": "theorems/05_positive_statistic_gates_and_grids/170_positive_lexicographic_multigrid_bound.md",
+      "requirements_forward": "PROVED",
+      "requirements_reverse": "UNKNOWN",
+      "guarantee_forward": "REFUTED",
+      "guarantee_reverse": "REFUTED",
+      "classification": "incomparable"
+    }
+  ],
+  "unresolved_markdown_candidates": [
+    {
+      "path": "theorems/05_positive_statistic_gates_and_grids/162_positive_concatenation_exactness_criterion.md",
+      "reason": "No directly comparable Lean declaration is present."
+    },
+    {
+      "path": "theorems/02_complexity_measure_upper_bounds/191_boolean_cube_slice_relaxation_ceiling.md",
+      "reason": "No directly comparable Lean declaration is present."
+    },
+    {
+      "path": "theorems/02_complexity_measure_upper_bounds/196_optimal_fourier_tail_knapsack.md",
+      "reason": "No directly comparable Lean declaration is present."
+    }
+  ]
+}

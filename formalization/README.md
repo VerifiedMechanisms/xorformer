@@ -17,6 +17,41 @@ theorem 12 and a polynomial-certificate presentation of the positive-projection
 sandwich and exactness result in theorem 69. These are Lean formalizations of
 existing mathematical statements, not newly numbered theorems.
 
+The 38-note later-result selection now has a machine-readable manifest and five
+normalized-contract spot checks using the pinned `theorem-subsumption` tool.
+The review preserves the selected set, while the certified spot checks separate
+logical subsumption from contextual specialization and incomparability. See the
+[audit report](../artifacts/theorem-subsumption/README.md), its
+[`selection.json`](../artifacts/theorem-subsumption/selection.json), and the
+kernel-checked comparison module
+[`HeadComplexity/SelectionSubsumption.lean`](HeadComplexity/SelectionSubsumption.lean).
+
+The theorem 195 refinement sharpens its sampling constant from 32 to 2 and its
+real-valued constant from 33 to 3 under the same hypotheses. The original
+declarations remain available alongside the refined aliases in `Results/All.lean`.
+The [refinement report](../artifacts/theorem-subsumption/atomic-margin-refinement.md)
+links the proofs, semantic contract bridge, and certified strict comparison in
+[`HeadComplexity/AtomicMarginSubsumption.lean`](HeadComplexity/AtomicMarginSubsumption.lean).
+
+Further [certified strengthenings](../artifacts/theorem-subsumption/atomic-strengthenings.md)
+use this refined theorem 195 result: the entropy coefficient becomes $2n\log 2+1$,
+local signed margins and canonical output widths weaken the sampling condition,
+and functions needing at least two heads have an atomic condition number
+strictly above one. Five new theorem-subsumption comparisons check the
+strengthenings, with semantic bridges and strictness proofs on genuine data.
+`Results/All.lean` exports the new results alongside every existing declaration.
+
+The [monomial-star research](../theorems/02_complexity_measure_upper_bounds/198_monomial_star_universal_head_bound.md)
+strengthens the core theorems 6 and 9. Every Boolean function on a positive
+number of inputs now satisfies $H^{\ast}(f)\leq 11\cdot2^n/n$. A threshold-degree
+certificate of degree at most $d$ gives the head budget
+$\sum_{r=0}^{d-1}\binom{n-1}{r}$ for $n\gt0$, including $n$ heads for quadratics.
+Eight strict theorem-subsumption comparisons cover the original universal bound,
+the degree lower-bound theorem, the support-count bound, and the intermediate
+universal refinements. The [certification report](../artifacts/theorem-subsumption/star-strengthenings.md)
+records exact alignments, model bridges, counterexamples, and reproduction commands.
+All existing declarations and the attention model remain unchanged.
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |

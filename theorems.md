@@ -16,6 +16,8 @@ The current notes do **not** yet give an exact characterization of $H^{\ast}(f)$
 
 What they *do* give is:
 
+- a Lean-verified universal bound $H^{\ast}(f)\leq11\cdot2^n/n$ for $n\gt0$, with the earlier universal endpoints retained by taking their minimum,
+- a degree-sensitive star-cover sandwich $d\leq H^{\ast}(f)\leq\sum_{r=0}^{d-1}\binom{n-1}{r}$ for $n\gt0$, where $d=\deg_{\pm}(f)$,
 - a structural one-head lower bound via checkerboard restrictions,
 - an exact normal form as a thresholded sum of one-head linear-fractional atoms,
 - an exact characterization of the zero-head and one-head levels,
@@ -3958,6 +3960,14 @@ Both endpoints are exact rational values and require $O(m\log m)$ comparisons. A
 
 **Proof.** [theorems/02_complexity_measure_upper_bounds/197_box_sum_greedy_affine_bounds.md](theorems/02_complexity_measure_upper_bounds/197_box_sum_greedy_affine_bounds.md)
 
+### Theorem 198. Monomial stars strengthen the universal and degree bounds
+
+For $n\gt0$, every Boolean function satisfies $H^{\ast}(f)\leq11\cdot2^n/n$. A threshold-degree certificate of degree at most $d$ gives $H^{\ast}(f)\leq\sum_{r=0}^{d-1}\binom{n-1}{r}$, including $n$ heads for quadratic threshold functions. The latter strengthens core theorem 6 to a two-sided sandwich; the former strengthens the original universal part of core theorem 9. The unconditional integer theorem retains all earlier universal endpoints by taking their minimum.
+
+**Proof.** One atom approximates a positive monomial times a whole affine function. Cover monomial supports by upward radius-one stars, then use finite weighted alteration and a balanced semidirect block recursion. All proofs connect to the unchanged attention model. Eight strict theorem-subsumption comparisons check the advances and their intermediate bounds.
+
+See [198_monomial_star_universal_head_bound.md](theorems/02_complexity_measure_upper_bounds/198_monomial_star_universal_head_bound.md) and the [certification report](artifacts/theorem-subsumption/star-strengthenings.md).
+
 ## Dependency Order
 
 The current dependency structure is:
@@ -4158,6 +4168,8 @@ The current dependency structure is:
 195. Theorem 195 applies approximate Carathéodory in an $\ell_p$ space with $p=\Theta(n)$ to the convex hull of output-normalized one-head score vectors.
 196. Theorem 196 combines the Fourier support-cost compiler with the absolute Walsh-tail test and solves the resulting bounded integer-cost cover problem by exact knapsack dynamic programming.
 197. Theorem 197 is the exact fractional-knapsack solution of linear optimization over a rational box intersected with one sum equality.
+
+198. Theorem 198 combines the actual one-atom affine-ratio realization, strict squarefree sign polynomials, finite weighted alteration, and a semidirect star-cover recursion. It strengthens core theorems 6 and 9 without changing their statements or the model.
 
 ## What This Currently Says About The First Core Question
 

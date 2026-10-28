@@ -27,6 +27,11 @@ import HeadComplexity.Results.AffineFreeSparsity
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.AtomicMarginSparsification
 import HeadComplexity.Results.AtomicCondition
+import HeadComplexity.Results.AtomicMarginRefinement
+import HeadComplexity.Results.AtomicMarginEntropy
+import HeadComplexity.Results.AtomicMarginProfile
+import HeadComplexity.Results.AtomicMarginRange
+import HeadComplexity.Results.AtomicConditionGap
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.ParityBlockThresholdDegree
@@ -48,6 +53,8 @@ import HeadComplexity.Results.FreshXorTargetCost
 import HeadComplexity.Results.SmallDimensionExactCertificate
 import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
+import HeadComplexity.Results.StarDegreeUpperBound
+import HeadComplexity.Results.UniversalLinearSaving
 
 set_option linter.style.header false
 
@@ -324,6 +331,59 @@ alias theorem195_atomic_margin_sparsification :=
 condition-number upper bound. -/
 alias theorem195_atomic_condition_number :=
   HStar_real_le_atomicConditionNumber
+
+/-- **Theorem 195 refinement.** The same normalized certificate needs at most
+`ceil (2 * (n + 1) * (scale / margin)^2)` heads. -/
+alias theorem195_atomic_margin_sample_bound_refined :=
+  AtomicMarginCertificate.HStar_le_refinedAtomicSampleCount
+
+/-- **Theorem 195 refinement.** The real-valued certificate bound has
+absolute constant `3`. -/
+alias theorem195_atomic_margin_sparsification_refined :=
+  AtomicMarginCertificate.HStar_real_le_atomicCondition_refined
+
+/-- **Theorem 195 refinement.** The literal infimum bound has absolute
+constant `3`, without an attainment assumption. -/
+alias theorem195_atomic_condition_number_refined :=
+  HStar_real_le_atomicConditionNumber_refined
+
+/-- **Theorem 195 entropy improvement.** Strictly smaller integer bounds for
+every nonconstant certificate, retaining the exact finite-domain logarithm. -/
+alias theorem195_atomic_margin_sample_bound_entropy :=
+  AtomicMarginCertificate.HStar_le_min_entropy_refined
+
+/-- **Theorem 195 entropy improvement.** The real coefficient is
+`2 * n * log 2 + 1`, improving the refined coefficient `3 * (n + 1)`. -/
+alias theorem195_atomic_margin_sparsification_entropy :=
+  AtomicMarginCertificate.HStar_real_le_atomicCondition_entropy
+
+/-- **Theorem 195 entropy improvement.** Literal infimum form. -/
+alias theorem195_atomic_condition_number_entropy :=
+  HStar_real_le_atomicConditionNumber_entropy
+
+/-- **Theorem 195 profile improvement.** Use each input's actual margin. -/
+alias theorem195_atomic_profile_budget :=
+  AtomicMarginCertificate.HStar_le_of_profile_budget
+
+/-- **Theorem 195 range improvement.** Use the canonical atom-output widths,
+with exact treatment of zero-width inputs. -/
+alias theorem195_atomic_range_budget :=
+  AtomicMarginCertificate.HStar_le_of_tightRange_budget
+
+/-- **Theorem 195 condition gap.** Near-minimal conditioning forces one head,
+without an infimum-attainment hypothesis. -/
+alias theorem195_atomic_condition_one_head :=
+  HStar_le_one_of_atomicConditionNumber_lt_gap
+
+/-- **Theorem 195 condition gap.** Strictly improve the old lower endpoint
+on every function requiring at least two heads. -/
+alias theorem195_atomic_condition_gap :=
+  one_add_gap_le_atomicConditionNumber_of_two_le_HStar
+
+/-- **Theorem 195 balanced condition gap.** Bias cancellation sharpens the
+lower endpoint to `2^n / (2^n - 2)` for balanced functions needing two heads. -/
+alias theorem195_atomic_condition_gap_balanced :=
+  balanced_atomicConditionNumber_lower_bound
 
 /-- **Theorem 62.** Every affine slab has head complexity at most two. -/
 alias theorem62_affine_slab_upper_bound := HStar_affineSlab_le_two
@@ -635,5 +695,27 @@ certificates and complete symmetry coverage imply five-bit degree-two
 exactness. -/
 alias theorem187_five_bit_degree_two_exact_of_archive :=
   FiveBitDegreeTwoArchive.exact
+
+/-- **Theorem 198, strengthening theorem 6.** Threshold degree and the
+degree-sensitive star budget sandwich minimum head complexity. -/
+alias theorem198_degree_head_sandwich := thresholdDeg_le_HStar_le_starDegreeBound
+
+/-- **Theorem 198.** A quadratic threshold function needs at most `n` heads. -/
+alias theorem198_quadratic_upper_bound := HStar_le_ambient_of_quadratic
+
+/-- **Theorem 198, strengthening theorem 9.** Every positive-dimensional
+truth table needs at most `11 * 2^n / n` heads. -/
+alias theorem198_universal_linear_saving := HStar_real_le_eleven_mul_two_pow_div
+
+/-- **Theorem 198.** Preserve all earlier universal endpoints and add the
+linear saving with downward integer rounding. -/
+alias theorem198_universal_integer_bound := HStar_le_universalElevenStarBound
+
+/-- **Theorem 198.** Worst-case form of the universal linear saving. -/
+alias theorem198_worst_case_upper_bound :=
+  worstCaseHeadComplexity_real_le_eleven_mul_two_pow_div
+
+/-- **Theorem 198.** Worst-case cost divided by truth-table size tends to zero. -/
+alias theorem198_normalized_worst_case_limit := tendsto_worstCaseHeadComplexity_div_two_pow
 
 end HeadComplexity
