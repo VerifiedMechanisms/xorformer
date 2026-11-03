@@ -1,0 +1,40 @@
+Automlr integration validation, 2026-11-03
+
+Focused validation:
+  bash artifacts/scripts/validate_automlr_improvements.sh
+  Warning-free Lake build: passed.
+  Placeholder scan: passed.
+  Audited 479 theorem declarations across 17 modules.
+  All axioms are drawn from propext, Classical.choice, Quot.sound.
+  Five strict subsumption comparisons passed:
+    requirements PROVED / PROVED;
+    context-free guarantees PROVED / REFUTED.
+  All 20 generated component certificates are kernel-checked.
+  Exact syndrome-cover and addressing-construction checks: passed.
+  Independent exhaustive four-bit covector classification: passed.
+  Preservation of pre-existing Lean sources from f4781ed: passed.
+  Results/All.lean only gains imports and aliases.
+
+Full repository validation:
+  bash artifacts/scripts/validate.sh
+  BUILD_RC=0
+  PLACEHOLDER_RC=0
+  Audited 3974 theorem declarations across 162 modules.
+  AXIOM_RC=0
+  All axioms are drawn from propext, Classical.choice, Quot.sound.
+
+Markdown validation:
+  python3 artifacts/scripts/check_md_math.py --katex <11 changed Markdown files>
+  2688 math spans: static lint and KaTeX clean.
+  Faithful GitHub and GitLab render audits were not run:
+    gh and glab are not installed in this environment.
+
+Proof scope:
+  Universal interpolation, the three-halves bound, exact power-of-two widths,
+  addressing threshold degree and small exact head counts, shared width, and
+  strict-system rational witness existence have Lean proofs.
+  Fixed-degree counting is checked as an explicit finite implication using
+  Warren and the displayed parameter/budget hypotheses. Its asymptotic
+  estimates remain in the written proof.
+  The general 2^r-1 addressing upper bound is a written proof with supplemental
+  exact arithmetic checks, rather than an additional Lean declaration.

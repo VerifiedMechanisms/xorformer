@@ -1,3 +1,5 @@
+import HeadComplexity.Polynomial.RationalStrictWitness
+import HeadComplexity.Results.AddressingCertificates
 import HeadComplexity.Results.AffineCylinderCofactorRecursion
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.AffineFreeSparsity
@@ -22,6 +24,8 @@ import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.ExactFamilies
 import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
+import HeadComplexity.Results.FixedDegreeCounting
+import HeadComplexity.Results.FixedDenominatorInterpolation
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.FractionalNormalForm
 import HeadComplexity.Results.FreshXorTargetCost
@@ -40,6 +44,7 @@ import HeadComplexity.Results.PositiveWeightedSignDegree
 import HeadComplexity.Results.RawCalibratedVote
 import HeadComplexity.Results.RestrictionLowerBounds
 import HeadComplexity.Results.SecantObstruction
+import HeadComplexity.Results.SharedWidthNormalForm
 import HeadComplexity.Results.SliceRankTwo
 import HeadComplexity.Results.SmallDimensionExactCertificate
 import HeadComplexity.Results.SplitAffineCylinderRefinement
@@ -53,6 +58,7 @@ import HeadComplexity.Results.ThresholdDegreeSpan
 import HeadComplexity.Results.TopThresholdDegree
 import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.UniversalLinearSaving
+import HeadComplexity.Results.UniversalNeighborhoodBound
 import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.WeightedUpperBound
 
@@ -126,6 +132,15 @@ alias theorem10_shared_embedding_per_head_count :=
 
 /-- **Theorem 10.** Exact shared-embedding head complexity equals `L_frac`. -/
 alias theorem10_shared_embedding_normal_form := SharedHStar_eq_Lfrac
+
+/-- **Theorem 10 refinement.** Shared width `n+2`, independent of head count. -/
+alias theorem10_shared_width := exists_shared_width_n_add_two
+
+/-- **Theorem 10 refinement.** Keep the direct-sum width when it is smaller. -/
+alias theorem10_shared_width_budget := sharedWidthAtHeads_le_min
+
+/-- **Theorem 10 corollary.** Strict finite polynomial systems have rational witnesses. -/
+alias theorem10_rational_strict_system := exists_rational_strict_polynomial_witness
 
 /-- **Theorem 11.** `H* = 0` iff `f` is constant … -/
 alias theorem11_level0 := HStar_eq_zero_iff
@@ -717,5 +732,38 @@ alias theorem198_worst_case_upper_bound :=
 
 /-- **Theorem 198.** Worst-case cost divided by truth-table size tends to zero. -/
 alias theorem198_normalized_worst_case_limit := tendsto_worstCaseHeadComplexity_div_two_pow
+
+/-- **Theorem 199.** Universal head coefficient strictly below three halves. -/
+alias theorem199_universal_three_halves := HStar_real_lt_three_halves
+
+/-- **Theorem 199.** The integer budget preserves every earlier endpoint. -/
+alias theorem199_universal_integer_bound := HStar_le_universalNeighborhoodBound
+
+/-- **Theorem 199.** Fixed positive denominators interpolate every numeric cube function. -/
+alias theorem199_open_neighborhood_span := OpenNeighborhoodCover.nonempty_clearedSpanCertificate
+
+/-- **Theorem 199.** The interpolation width obeys the same three-halves bound. -/
+alias theorem199_interpolation_three_halves := fixedDenominatorWidth_real_lt_three_halves
+
+/-- **Theorem 199.** Exact interpolation width at power-of-two input dimensions. -/
+alias theorem199_interpolation_power_two := fixedDenominatorWidth_power_two
+
+/-- **Theorem 200.** Finite exact-degree hard-function theorem, with Warren explicit. -/
+alias theorem200_exact_degree_hard := exists_exact_fixed_degree_hard
+
+/-- **Theorem 200.** Corresponding lower bound on the exact-degree class maximum. -/
+alias theorem200_fixed_degree_maximum := fixed_degree_maximum_gt
+
+/-- **Theorem 201.** Addressing has threshold degree exactly one plus the address count. -/
+alias theorem201_address_threshold_degree := thresholdDeg_IDX
+
+/-- **Theorem 201.** One address bit needs exactly two heads. -/
+alias theorem201_address_one := AddressingCertificates.HStar_IDX1
+
+/-- **Theorem 201.** Two address bits need exactly three heads. -/
+alias theorem201_address_two := AddressingCertificates.HStar_IDX2
+
+/-- **Theorem 201.** Three address bits need exactly four heads. -/
+alias theorem201_address_three := AddressingCertificates.HStar_IDX3
 
 end HeadComplexity
