@@ -44,6 +44,10 @@ dependency order between them, in [`theorems.md`](theorems.md).
   positive weights $\lambda_i$ and the weighted sum takes $M$ distinct values, then
   $H^{\ast}(f) \leq M - 1$. Consequently every symmetric function needs at most $n$ heads and
   every Boolean function at most $2^n - 1$.
+- [Neighborhood interpolation](theorems/02_complexity_measure_upper_bounds/199_neighborhood_interpolation_universal_bound.md)
+  sharpens the universal bound to $H^{\ast}(f)\lt3\cdot2^n/(2n)$ for $n\geq8$.
+  Fixed positive denominators also interpolate every numerical cube function at
+  this scale, with exact interpolation width $2^n/n$ when $n\geq2$ is a power of two.
 
 **Exact answers.**
 - *Parity is the extremal case.* $H^{\ast}(\mathrm{XOR}_n) = n$: in this model, parity needs
@@ -51,20 +55,25 @@ dependency order between them, in [`theorems.md`](theorems.md).
 - A first split inside the symmetric functions: monotone thresholds have complexity $1$,
   while parity and the internal exact-count predicates $\mathrm{EXACT}_{n,k}$ need at
   least $2$.
+- [Addressing](theorems/03_function_families_and_affine_geometry/201_addressing_exact_head_counts.md)
+  with one, two, or three address bits needs exactly two, three, or four heads.
 
 **Strict separation.**
 - [Theorem 13](theorems/02_separations_and_counterexamples/013_strict_threshold_degree_separation.md)
   gives an explicit ten-bit function $f_{10}$ with
   $\deg_{\pm}(f_{10})=2 \lt 3\leq H^{\ast}(f_{10})$. Thus threshold degree is a genuine
   lower bound, not an exact characterization of head complexity.
+- [Fixed-degree counting](theorems/06_strict_separations/200_fixed_degree_head_complexity_lower_bounds.md)
+  gives degree-exact $d$ functions requiring $\Omega_d(n^{d-1}/\log n)$ heads for
+  each fixed $d\geq2$. The finite Lean theorem keeps Warren's estimate explicit.
 
 Taken together this is a *partial* characterization, not yet a single invariant
 $I(f)$ with $H^{\ast}(f) \asymp I(f)$. Closing that gap is the main open problem.
 
 ## Open directions
 
-- Determine the exact value of $H^{\ast}(f_{10})$, and find scalable families with a
-  growing gap between threshold degree and head complexity.
+- Determine the exact value of $H^{\ast}(f_{10})$ and close the logarithmic gap
+  between the known upper and lower bounds within each fixed threshold degree.
 - Tighten the gap between the threshold-degree lower bound and the weighted-sum upper
   bound.
 - Push the formalization in [`formalization/`](formalization/) to cover more of the

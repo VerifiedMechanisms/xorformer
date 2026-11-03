@@ -34,6 +34,14 @@ widening preserves head-count expressivity in both directions. In particular,
 `SharedHStar_eq_Lfrac` states the later Theorem 10 directly for the literal
 shared-embedding model.
 
+`Results/SharedWidthNormalForm.lean` sharpens the shared construction to width
+`n+2`, independently of the number of heads. Canonical position, bit, and query
+coordinates linearly reconstruct each existing three-coordinate atom embedding.
+All attention maps have one-dimensional images. `sharedWidthAtHeads_le_min`
+keeps the direct-sum width when it is smaller. The finite strict-system lemma in
+`Polynomial/RationalStrictWitness.lean` supplies rational parameter witnesses
+by openness and density; it does not implement real quantifier elimination.
+
 ## Two spines
 
 Everything is built from a **lower-bound spine** (you need many heads) and an
@@ -281,6 +289,35 @@ presentations are interchangeable inside Lean.
   tangent count.
 
 ## Strict separation
+
+The independent-derivation integration adds three later interfaces:
+
+* **Theorem 199** (`Results/AffineZeroSetInterpolation.lean`,
+  `Results/OpenNeighborhoodCover.lean`, the `Syndrome` modules,
+  `Results/UniversalNeighborhoodBound.lean`): zero-set-isolating numerator
+  columns resolve to an identity matrix. Determinant continuity gives a
+  nonsingular mixed-coefficient witness, and multivariate polynomial
+  extensionality transfers it to positive coefficients. Exact syndrome covers
+  and Cartesian lifting give the strict three-halves budget. The independent
+  invariant in `Results/FixedDenominatorInterpolation.lean` reuses theorem 30
+  for its dimension obstruction and proves exact widths at powers of two.
+* **Theorem 200** (`Results/RestrictedCounting.lean`,
+  `Results/FixedDegreeCounting.lean`): the head counting polynomials are
+  restricted to any shattered finite grid. A second linear coefficient family
+  counts lower-degree exceptions. The one-hot tensor grid supplies every
+  labeling with a degree-bounded extension, so a strict combined-budget deficit
+  gives exact-degree hard functions. Warren and the exact finite inequalities
+  remain explicit premises. The asymptotic estimates are in the theorem note.
+* **Theorem 201** (`Polynomial/AffineSubstitution.lean`,
+  `Results/Addressing.lean`, `Results/AddressingCertificates.lean`): affine
+  identification reduces addressing to parity with a fresh bit. Selector
+  polynomials give the matching degree. Kernel-checked integral rows then give
+  exact head counts two, three, and four for the first three address sizes.
+  The general one-head-saving perturbation is proved in the writeup.
+
+`AutomlrSubsumption.lean` checks five strict numerical-contract improvements
+with semantic connections to these declarations. Its fixed-degree comparison
+is conditional on the displayed analytic and finite counting requirements.
 
 **L13** (`Results/StrictSeparation.lean`) defines an explicit ten-bit function
 with threshold degree two and head complexity at least three. Its lower-bound

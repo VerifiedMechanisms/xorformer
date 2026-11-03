@@ -52,6 +52,15 @@ universal refinements. The [certification report](../artifacts/theorem-subsumpti
 records exact alignments, model bridges, counterexamples, and reproduction commands.
 All existing declarations and the attention model remain unchanged.
 
+The [independent-derivation integration](../artifacts/theorem-subsumption/automlr-improvements.md)
+adds the sharper universal coefficient $3/2$ for $n\geq8$, fixed-denominator
+interpolation with exact power-of-two widths, addressing exactness on six and
+eleven inputs, and shared embedding width $n+2$ independent of head count.
+Five further strict subsumption comparisons have checked connections to the
+actual head, width, and exact-degree-class invariants. The fixed-degree
+counting theorem is formalized with exact finite budgets and an explicit
+Warren premise; its asymptotic consequence is proved in the accompanying note.
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |
@@ -110,6 +119,11 @@ All existing declarations and the attention model remain unchanged.
 | theorem 193 positive-secant blow-up and obstruction | `PositiveSecant.orientedSecantFeasible_iff_blowupFeasible`, `SignedSecant.H_lt_HStar_of_no_positiveBlowup` | `Polynomial/PositiveSecantBlowup.lean`, `Results/SecantObstruction.lean` |
 | theorem 194 signed-secant obstruction | `SignedSecant.H_lt_HStar_of_no_signedBlowup_countBranchChartTypes` | `Polynomial/SignedSecantBlowup.lean`, `Polynomial/OrientedSecantSymmetry.lean`, `Results/SecantObstruction.lean` |
 | theorem 195 atomic-margin sparsification | `HStar_le_atomicSampleCount`, `HStar_real_le_atomicCondition`, `HStar_real_le_atomicConditionNumber` | `Results/AtomicMarginSparsification.lean`, `Results/AtomicCondition.lean` |
+| theorem 10 shared-width and strict rational-witness refinements | `exists_shared_width_n_add_two`, `sharedWidthAtHeads_le_min`, `exists_rational_strict_polynomial_witness` | `Results/SharedWidthNormalForm.lean`, `Polynomial/RationalStrictWitness.lean` |
+| theorem 199 neighborhood interpolation and universal bound | `OpenNeighborhoodCover.nonempty_clearedSpanCertificate`, `HStar_real_lt_three_halves`, `HStar_le_universalNeighborhoodBound` | `Results/OpenNeighborhoodCover.lean`, `Results/UniversalNeighborhoodBound.lean` |
+| theorem 199 fixed-denominator width | `fixedDenominatorWidth_dimension`, `fixedDenominatorWidth_real_lt_three_halves`, `fixedDenominatorWidth_power_two` | `Results/FixedDenominatorInterpolation.lean` |
+| theorem 200 finite exact-degree counting consequence | `exists_exact_fixed_degree_hard`, `fixed_degree_maximum_gt` | `Results/RestrictedCounting.lean`, `Results/FixedDegreeCounting.lean` |
+| theorem 201 addressing degree and exact small cases | `thresholdDeg_IDX`, `AddressingCertificates.HStar_IDX1`, `AddressingCertificates.HStar_IDX2`, `AddressingCertificates.HStar_IDX3` | `Results/Addressing.lean`, `Results/AddressingCertificates.lean` |
 
 Lean exposes both presentations of the theorem 69 invariant.
 `positiveProjectionSignChanges` is the literal minimum ordered-image

@@ -16,7 +16,11 @@ The current notes do **not** yet give an exact characterization of $H^{\ast}(f)$
 
 What they *do* give is:
 
-- a Lean-verified universal bound $H^{\ast}(f)\leq11\cdot2^n/n$ for $n\gt0$, with the earlier universal endpoints retained by taking their minimum,
+- a Lean-verified universal bound $H^{\ast}(f)\lt3\cdot2^n/(2n)$ for $n\geq8$, with every earlier endpoint retained by taking the minimum,
+- fixed-denominator interpolation width of order $2^n/n$, exactly $2^n/n$ when $n\geq2$ is a power of two,
+- exact-degree $d$ functions requiring $\Omega_d(n^{d-1}/\log n)$ heads for every fixed $d\geq2$, with a finite Warren-dependent Lean theorem,
+- addressing threshold degree $r+1$ and exact head counts $2,3,4$ for the first three address sizes,
+- a shared embedding of width $n+2$, independent of head count, and rational witnesses for finite strict polynomial systems,
 - a degree-sensitive star-cover sandwich $d\leq H^{\ast}(f)\leq\sum_{r=0}^{d-1}\binom{n-1}{r}$ for $n\gt0$, where $d=\deg_{\pm}(f)$,
 - a structural one-head lower bound via checkerboard restrictions,
 - an exact normal form as a thresholded sum of one-head linear-fractional atoms,
@@ -3968,6 +3972,40 @@ For $n\gt0$, every Boolean function satisfies $H^{\ast}(f)\leq11\cdot2^n/n$. A t
 
 See [198_monomial_star_universal_head_bound.md](theorems/02_complexity_measure_upper_bounds/198_monomial_star_universal_head_bound.md) and the [certification report](artifacts/theorem-subsumption/star-strengthenings.md).
 
+### Theorem 199. Neighborhood interpolation and the three-halves universal bound
+
+Every Boolean function satisfies $H^{\ast}(f)\lt3\cdot2^n/(2n)$ for $n\geq8$.
+More strongly, fixed positive affine denominators interpolate every numerical
+cube function at the same scale. The least interpolation width is exactly
+$2^n/n$ when $n\geq2$ is a power of two. The new joint integer head budget keeps
+all earlier endpoints. The complete construction and dimension comparison are
+kernel-checked, and the universal-budget subsumption certificate is strict.
+
+**Proof.** [199_neighborhood_interpolation_universal_bound.md](theorems/02_complexity_measure_upper_bounds/199_neighborhood_interpolation_universal_bound.md)
+
+### Theorem 200. Large head complexity at every fixed threshold degree
+
+For every fixed $d\geq2$, some functions of threshold degree exactly $d$ require
+$\Omega_d(n^{d-1}/\log n)$ heads. Together with theorem 198, this determines the
+degree-class maximum within a logarithmic factor. Lean proves the finite
+one-hot-grid counting implication with explicit Warren and strict budget
+premises; the asymptotic estimates are proved in the note. A conditional
+subsumption certificate compares the resulting class-maximum lower guarantee
+with the old threshold-degree lower guarantee.
+
+**Proof.** [200_fixed_degree_head_complexity_lower_bounds.md](theorems/06_strict_separations/200_fixed_degree_head_complexity_lower_bounds.md)
+
+### Theorem 201. Addressing degree and exact small head counts
+
+Addressing has threshold degree $r+1$. Its first three nontrivial head counts
+are exactly $2,3,4$, with kernel-checked integral certificates. A data-dependent
+Cauchy perturbation gives the general upper bound $2^r-1$ for $r\geq2$; this
+general construction is proved in the writeup. The six- and eleven-input exact
+cases have strict subsumption certificates against their degree-sensitive
+upper and lower intervals.
+
+**Proof.** [201_addressing_exact_head_counts.md](theorems/03_function_families_and_affine_geometry/201_addressing_exact_head_counts.md)
+
 ## Dependency Order
 
 The current dependency structure is:
@@ -4170,6 +4208,12 @@ The current dependency structure is:
 197. Theorem 197 is the exact fractional-knapsack solution of linear optimization over a rational box intersected with one sum equality.
 
 198. Theorem 198 combines the actual one-atom affine-ratio realization, strict squarefree sign polynomials, finite weighted alteration, and a semidirect star-cover recursion. It strengthens core theorems 6 and 9 without changing their statements or the model.
+
+199. Theorem 199 combines affine zero-set isolation, determinant continuity, positive-box polynomial extensionality, and exact lifted syndrome covers. It reuses the theorem-30 dimension obstruction for interpolation exactness.
+
+200. Theorem 200 restricts the theorem-26 counting polynomials to a one-hot tensor grid and counts lower-degree exceptions separately, giving exact-degree hard functions.
+
+201. Theorem 201 uses affine substitution into parity for its lower bound, selector polynomials for degree exactness, and integral cleared-score certificates for exact small head counts.
 
 ## What This Currently Says About The First Core Question
 

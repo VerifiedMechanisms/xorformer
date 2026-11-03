@@ -114,11 +114,26 @@ $\blacksquare$
 
 ## Consequence
 
-The general worst-case head complexity is now bracketed as
+Keeping the exact Warren estimate also gives the leading asymptotic coefficient
 
-$$ \Omega \left(\frac{2^n}{n^2}\right) \leq W(n) \leq 2^n-1, $$
+$$ W(n)\geq\left(\frac12-o(1)\right)\frac{2^n}{n^2}. $$
 
-where the upper bound is the positive weighted-sum interpolation bound from [009_weighted_sum_upper_bound.md](009_weighted_sum_upper_bound.md).
+Indeed, the logarithm of the exact pattern bound is at most
+$(2+o(1))Hn^2$. Taking $H\leq(1/2-\varepsilon)2^n/n^2$ leaves an exponentially
+small fraction of all truth tables for every fixed $\varepsilon\gt0$. This is
+an arithmetic consequence of the existing exact estimate, not a separate
+counting mechanism. Lean already exposes the exact finite estimate; this
+asymptotic simplification is stated here in prose.
+
+The newer [neighborhood interpolation theorem](../02_complexity_measure_upper_bounds/199_neighborhood_interpolation_universal_bound.md)
+sharpens the general upper side to strictly below $3\cdot2^n/(2n)$ for
+$n\geq8$, without changing the counting premise.
+
+The general worst-case head complexity is therefore bracketed, for $n\geq8$, as
+
+$$ \left(\frac12-o(1)\right)\frac{2^n}{n^2}\leq W(n)\lt\frac{3\cdot2^n}{2n}, $$
+
+with the lower side conditional on Warren's estimate and the upper side unconditional. The original positive weighted-sum bound from [009_weighted_sum_upper_bound.md](009_weighted_sum_upper_bound.md) remains available in every dimension.
 
 For the finite range $3\leq n\leq 12$, the compact determinant certificates improve the upper side to
 

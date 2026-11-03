@@ -170,3 +170,43 @@ So the model computes exactly the Boolean function represented by the atoms.
 Theorem 1 shows $H^{\ast}(f) \geq L_{\mathrm{frac}}(f)$ and Theorem 2 shows $H^{\ast}(f) \leq L_{\mathrm{frac}}(f)$. Together,
 
 $$ H^{\ast}(f) = L_{\mathrm{frac}}(f). \qquad \blacksquare $$
+
+## Shared Width Independent of the Head Count
+
+The shared-embedding construction can be sharpened to
+
+$$ d_{\mathrm{model}}=n+2,\qquad d_{\mathrm{head}}=1, $$
+
+independently of the number of heads. Use a common basis $p_1,\ldots,p_n,b,q$, with token embeddings $e_0=0$, $e_1=b$, $e_=q$, input positional embeddings $p_i$, and zero query position.
+
+For head $h$, the scalar query map reads the $q$ coordinate. Its key map sends $p_i,b,q$ respectively to $\log\rho_{h,i}$, $\log\alpha_h$, and $\log\gamma_h$. Its scalar value map sends them respectively to $m_{h,i}$, $\delta_h$, and $\eta_h/\gamma_h$. Write the scalar output in the common $q$ direction. The readout then reproduces the atom exactly. A threshold shift absorbs the constant query residual.
+
+`Results/SharedWidthNormalForm.lean` proves this by linearly reconstructing the existing three-coordinate atom embeddings from the canonical shared embedding. Query, key, and value maps have one-dimensional images. The construction works for every atom, including those with attention ratio one.
+
+Let $w(f,H)$ be the minimum shared width at a feasible head count $H$. Keeping the earlier direct-sum construction gives the checked resource bound
+
+$$ w(f,H)\leq\min\lbrace3H,n+2\rbrace. $$
+
+The width comparison in `HeadComplexity/AutomlrSubsumption.lean` certifies strict improvement of this numerical guarantee over $w(f,H)\leq3H$. This is a resource refinement of the same model, not a change to the value of $H^{\ast}$.
+
+## Strict Coherent Fractions and Rational Witnesses
+
+For nonconstant classifiers, strictify the finite score margin. A head with a constant denominator can then be perturbed to one with strictly coherent nonconstant slopes while holding its affine numerator fixed. The finite score margin persists.
+
+Conversely, suppose $D(x)=d_0+\sum_i d_i x_i$ is positive on the cube and its nonconstant coefficients are all strictly positive or all strictly negative. Choose $t\gt1$ in the positive case, or $0\lt t\lt1$ in the negative case, so that
+
+$$ \lambda_i=\frac{d_i}{t-1}\gt0,\qquad \gamma=d_0-\sum_i\lambda_i\gt0. $$
+
+Then $D(x)=\gamma+\sum_i\lambda_i t^{x_i}$. For an arbitrary affine numerator $N(x)=a+\sum_i b_i x_i$, set
+
+$$ m_i=\frac{b_i}{d_i},\qquad \delta=0,\qquad \eta=a-\sum_i\lambda_i m_i. $$
+
+This realizes $N/D$ as a genuine atom. The existing positive- and negative-affine-ratio constructors already implement this converse. Together with the finite perturbation, it shows that bit-dependent values are unnecessary for strict Boolean expressivity.
+
+At fixed positive width $H$ and fixed denominator orientations $\sigma_h\in\lbrace-1,1\rbrace$, feasibility is a finite system of strict polynomial inequalities:
+
+$$ \sigma_h d_{h,i}\gt0,\qquad D_h(x)\gt0,\qquad (2f(x)-1)\sum_hN_h(x)\prod_{k\neq h}D_k(x)\gt0. $$
+
+The feasible set is open. Density of rational tuples gives a rational numerator-denominator witness whenever a real witness exists. `Polynomial/RationalStrictWitness.lean` proves the general finite strict-system density lemma. The zero-ratio-shift perturbation and its connection to this exact classifier system are mathematical arguments here, rather than additional Lean declarations.
+
+Real quantifier elimination decides each fixed-width feasibility question. Enumerating widths up to the finite universal bound therefore gives an exact, potentially very inefficient, truth-table decision procedure for $H^{\ast}$. Constant functions are handled separately at width zero. No executable quantifier-elimination implementation is added to the repository.
