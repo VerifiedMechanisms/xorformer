@@ -53,6 +53,7 @@ theorem headComplexity_symmetricFn_two (a b c : Bool) :
       (if a ≠ b then 1 else 0) + (if b ≠ c then 1 else 0) := by
   rw [headComplexity_symmetricFn]
   simp [signChanges, Finset.card_filter, Fin.sum_univ_two]
+  by_cases h : a = b <;> simp [h]
 
 /-- The head complexity of a symmetric binary gate counts its changes across the three Hamming
 weights. -/

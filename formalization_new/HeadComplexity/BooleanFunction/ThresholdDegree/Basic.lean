@@ -41,7 +41,7 @@ private theorem eval_cubeIndicator [Fintype ι] (x y : ι → Bool) [Decidable (
 theorem exists_eval_cubePoint_eq [Finite ι] (a : (ι → Bool) → R) :
     ∃ p : MvPolynomial ι R, ∀ x, eval (Bool.cubePoint R x) p = a x := by
   classical
-  letI := Fintype.ofFinite ι
+  let := Fintype.ofFinite ι
   refine ⟨∑ y, C (a y) * cubeIndicator y, fun x ↦ ?_⟩
   simp [eval_cubeIndicator, mul_ite]
 

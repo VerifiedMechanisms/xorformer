@@ -8,6 +8,7 @@ public import Mathlib.Algebra.Polynomial.Eval.Defs
 public import Mathlib.Data.Finset.Powerset
 public import Mathlib.RingTheory.MvPolynomial.Symmetric.Defs
 import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.MvPolynomial.CommRing
 import Mathlib.Algebra.Order.BigOperators.Expect
 import Mathlib.Logic.Equiv.Fintype
 import Mathlib.RingTheory.Polynomial.Pochhammer
@@ -233,7 +234,6 @@ private theorem signChanges_succ {n : ℕ} (F : Fin (n + 2) → Bool) :
       if F (Fin.last n).castSucc ≠ F (Fin.last (n + 1)) then 1 else 0 := by
   simp only [signChanges, Finset.card_filter, Fin.sum_univ_castSucc, Function.comp_apply,
     Fin.castSucc_succ, Fin.succ_last, Nat.succ_eq_add_one]
-  rfl
 
 /-- A profile extended constantly to the right has a polynomial with the prescribed strict signs
 at every natural number and degree at most the original number of flips. -/
@@ -261,7 +261,7 @@ private theorem exists_polynomial_sign_profileTail {n : ℕ} (F : Fin (n + 1) �
       · simpa only [htail k (lt_of_not_ge hk), htailG k (lt_of_not_ge hk), h] using hs k
     · let q : ℝ[X] := C ((n : ℝ) + 1 / 2) - X
       refine ⟨p * q, ?_, fun k ↦ ?_⟩
-      · rw [signChanges_succ, if_pos h]
+      · rw [signChanges_succ, ite_eq_left h]
         exact natDegree_mul_le.trans (Nat.add_le_add hp ((natDegree_sub_le _ _).trans (by simp)))
       rw [eval_mul]
       have hsign := hs k

@@ -1,7 +1,7 @@
 module
 
-public import Mathlib.Data.Finite.Defs
-public import Mathlib.Data.Real.Basic
+public import Mathlib.Basic.Finite.Defs
+public import Mathlib.Basic.Real.Basic
 import Mathlib.Algebra.Order.Field.Pi
 import Mathlib.Data.Fintype.EquivFin
 

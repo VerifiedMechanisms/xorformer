@@ -462,7 +462,7 @@ private theorem exists_model_of_scalarHeadProfile {n H : ℕ} (p : Fin H → Sca
     change ⟪(read (fun _ ↦ 1) 0).smulRight e (M.embed x none),
       (read (p h).baseLogit (p h).logitIncrement).smulRight e (M.embed x j)⟫_ℝ = _
     simp only [LinearMap.smulRight_apply, read_embed, Option.map_none, Option.getD_none,
-      Bool.false_eq_true, if_false, add_zero, one_smul, real_inner_smul_right, he, mul_one,
+      Bool.false_eq_true, ite_false, add_zero, one_smul, real_inner_smul_right, he, mul_one,
       ScalarHeadProfile.logit]
   · intro h x j
     change ⟪w, (F.toBasis.constr ℝ (fun _ ↦ (1 : ℝ))).smulRight w

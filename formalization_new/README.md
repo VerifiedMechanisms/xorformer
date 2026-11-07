@@ -40,7 +40,7 @@ The worked [Boolean gates](HeadComplexity/Examples/BooleanGates.lean) and
 
 ## Build
 
-The project uses Lean and Mathlib `v4.31.0`. Run the following from this directory.
+The project uses Lean and Mathlib `v4.35.0`. Run the following from this directory.
 
 ```bash
 lake exe cache get   # first time only

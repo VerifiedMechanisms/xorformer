@@ -51,13 +51,13 @@ theorem eq_C_add_sum_C_mul_X_of_totalDegree_le_one (p : MvPolynomial ι R)
   ext d
   by_cases h0 : d = 0
   · subst d
-    simp [coeff_sum, coeff_C_mul, coeff_X]
+    simp [coeff_C_mul, coeff_X]
   by_cases h1 : ∃ i, d = Finsupp.single i 1
   · obtain ⟨i, rfl⟩ := h1
-    simp [coeff_sum, coeff_C_mul, coeff_X, Finsupp.single_left_inj one_ne_zero, Ne.symm h0]
+    simp [coeff_C_mul, coeff_X, Finsupp.single_left_inj one_ne_zero, Ne.symm h0]
   suffices 1 < ∑ i ∈ d.support, d i by
     rw [coeff_eq_zero_of_totalDegree_lt (hp.trans_lt this)]
-    simp [coeff_sum, coeff_C_mul, coeff_X, Ne.symm h0, fun i ↦ Ne.symm (fun hi ↦ h1 ⟨i, hi⟩)]
+    simp [coeff_C_mul, coeff_X, Ne.symm h0, fun i ↦ Ne.symm (fun hi ↦ h1 ⟨i, hi⟩)]
   by_contra! hle
   exact h1 ((Finsupp.sum_eq_one_iff d).mp (le_antisymm hle (Finset.sum_pos
     (fun i hi ↦ Nat.pos_of_ne_zero (Finsupp.mem_support_iff.mp hi))

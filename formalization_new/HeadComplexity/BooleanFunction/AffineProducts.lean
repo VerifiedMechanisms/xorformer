@@ -131,8 +131,8 @@ private theorem exists_rank_le_four [Fintype ι] [Finite κ] (e : ι ⊕ κ ≃ 
           R₂ (Bool.cubePoint ℝ (Sum.elim x y ∘ e.symm))) x (slice j) =
       ((fun i ↦ Bool.spin ℝ (x i)) ᵥ* M) j := by
   classical
-  letI := Fintype.ofFinite κ
-  letI := Fintype.ofEquiv (ι ⊕ κ) e
+  let := Fintype.ofFinite κ
+  let := Fintype.ofEquiv (ι ⊕ κ) e
   let U : Matrix ι (Fin 4) ℝ := Matrix.of fun i ↦
     ![L₁.coeff (e (.inl i)), R₁.coeff (e (.inl i)), L₂.coeff (e (.inl i)), R₂.coeff (e (.inl i))]
   let V : Matrix (Fin 4) ι ℝ := Matrix.of fun k j ↦
