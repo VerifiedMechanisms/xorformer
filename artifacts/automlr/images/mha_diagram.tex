@@ -1,0 +1,117 @@
+% Multi-head attention architecture diagram (paper version, left to right).
+%
+% Drawn at the paper's native scale: coordinates are in cm, text uses the
+% document's \small and \footnotesize, and the picture is 13.6 cm wide by
+% about 4.2 cm tall (the embedding is a labelled line, not a block), which fits the NeurIPS 5.5 in text width without any
+% \resizebox. Notation follows the paper: the dedicated query token is indexed
+% by q and also serves as the readout position. The paper discusses = as one
+% possible concrete choice for this token.
+% Head h's update at this position is \mathbf{y}^{(h)}(\mathbf{x}),
+% and the residual-stream vector \mathbf{h}_q(\mathbf{x}) is read out linearly.
+%
+% Usage:
+%   \usepackage{xcolor}
+%   \usepackage{tikz}
+%   \usetikzlibrary{arrows.meta}
+%   ...
+%   \begin{figure}[t]
+%     \centering
+%     \input{images/mha_diagram}
+%     \caption{...}
+%   \end{figure}
+
+% Palette taken from the XOR architecture figure (xor-architecture.png).
+\providecolor{xorpeach}{HTML}{FFEBD8}%  head box fill
+\providecolor{xorpeachline}{HTML}{EFD8C1}%  head box border
+\providecolor{xorcream}{HTML}{FFFDE8}%  plus circle fill
+\providecolor{xorcreamline}{HTML}{ECD9C7}%  plus circle border
+\providecolor{xorgray}{HTML}{F4F4F4}%  token cell fill
+\providecolor{xorgrayline}{HTML}{BFBFBF}%  token cell border
+\providecolor{xorpanelline}{HTML}{CBCCCB}%  panel border
+\providecolor{xorblue}{HTML}{0072B2}%  class f(\mathbf{x})=0
+\providecolor{xororange}{HTML}{D55E00}%  class f(\mathbf{x})=1
+\providecolor{xorsalmon}{HTML}{FF6666}%  separating line
+
+% Faux semibold for the head labels: Times has no semibold face, so draw the
+% regular face with a hairline stroke (pdfTeX only; other engines get bold).
+\ifdefined\pdfliteral
+  \providecommand{\headlabel}[1]{\pdfliteral direct{q 0 0 0 RG 1 J 1 j 0.2 w 2 Tr}#1\pdfliteral direct{0 Tr Q}}%
+\else
+  \providecommand{\headlabel}[1]{\textbf{#1}}%
+\fi
+\begin{tikzpicture}[x=1cm, y=1cm, font=\small,
+  block/.style={draw=xorpeachline, fill=xorpeach, rounded corners=3pt,
+                line width=0.8pt, align=center, text=black},
+  head/.style={block, minimum width=1.5cm, minimum height=0.55cm},
+  flow/.style={-{Stealth[length=1.7mm,width=1.3mm]}, black,
+               line width=0.55pt, line cap=round, line join=round},
+  headflow/.style={black, line width=0.55pt, line cap=round,
+                   line join=round},
+  note/.style={font=\footnotesize, inner sep=1.5pt},
+  classzero/.style={circle, fill=xorblue, minimum size=0.16cm, inner sep=0pt},
+  classone/.style={circle, fill=xororange, minimum size=0.16cm, inner sep=0pt}]
+
+  % Input sequence as a column: n bits followed by query token q, instantiated here by =.
+  \path[draw=xorgrayline, fill=xorgray, rounded corners=3pt, line width=0.7pt]
+    (0,-1.6) rectangle (0.9,1.6);
+  \foreach \y in {-0.96,-0.32,0.32,0.96}
+    \draw[xorgrayline, line width=0.6pt] (0,\y) -- (0.9,\y);
+  \node[text=black] at (0.45,1.28) {$x_1$};
+  \node[text=black] at (0.45,0.64) {$x_2$};
+  \node[text=black] at (0.45,0) {$\vdots$};
+  \node[text=black] at (0.45,-0.64) {$x_n$};
+  \node[text=black] at (0.45,-1.28) {$q$};
+
+  % Token and positional embedding, drawn on the line into the head fan-out.
+  \coordinate (split) at (3.2,0);
+  \draw[black, line width=0.55pt, line cap=round] (0.9,0) -- (split);
+  \node[text=black, anchor=south, inner sep=2pt] at (2.05,0) {token + pos};
+  \node[text=black, anchor=north, inner sep=2pt] at (2.05,0) {embed};
+  \fill[black] (split) circle (1.6pt);
+
+  % Parallel attention heads.
+  \node[head] (headone) at (4.55,1.275) {\headlabel{Head 1}};
+  \node[head] (headtwo) at (4.55,0.425) {\headlabel{Head 2}};
+  \node[text=black] at (4.55,-0.425) {$\vdots$};
+  \node[head] (headh) at (4.55,-1.275) {\headlabel{Head $H$}};
+
+  \draw[flow] (split) |- (headone.west);
+  \draw[flow] (split) |- (headtwo.west);
+  \draw[flow] (split) |- (headh.west);
+
+  % Head updates at the readout position are summed.
+  \draw[headflow] (headone.east) -- (6.1,1.275);
+  \draw[headflow] (headtwo.east) -- (6.1,0.425);
+  \draw[headflow] (headh.east) -- (6.1,-1.275);
+  \draw[headflow] (6.1,1.275) -- (6.1,-1.275);
+
+  \node[circle, draw=xorcreamline, fill=xorcream, line width=0.8pt,
+        minimum size=0.5cm, inner sep=0pt, font=\small\bfseries]
+    (add) at (8.3,0) {$+$};
+  \draw[flow] (6.1,0) -- (add.west)
+    node[midway, above=1pt, text=black, inner sep=1.5pt] {$\sum_{h} \mathbf{y}^{(h)}(\mathbf{x})$};
+
+  % Skip connection carrying the embedded sequence u(x) into the residual stream.
+  \draw[flow] (split) -- (3.2,2.0) -| (add.north);
+  \node[text=black, anchor=south, inner sep=2pt] at (5.75,2.0) {$\mathbf{u}(\mathbf{x})$};
+
+  % The residual stream at the readout position feeds the linear readout.
+  \draw[flow] (add.east) -- (10.0,0)
+    node[midway, above=1pt, text=black, inner sep=1.5pt]
+    {$\mathbf{h}_q(\mathbf{x})$};
+
+  \draw[draw=xorpanelline, fill=white, rounded corners=4pt, line width=0.7pt]
+    (10.0,-1.6) rectangle (13.6,1.6);
+  \node[note, text=xorsalmon] at (11.8,1.25) {Is $\mathbf{h}_q(\mathbf{x})$ linearly separable?};
+  \node[classzero] at (10.60,0.65) {};
+  \node[classzero] at (11.40,0.45) {};
+  \node[classzero] at (12.20,0.7) {};
+  \node[classzero] at (13.00,0.5) {};
+  \node[classone] at (10.80,-0.65) {};
+  \node[classone] at (11.60,-0.5) {};
+  \node[classone] at (12.40,-0.7) {};
+  \node[classone] at (13.20,-0.45) {};
+  \draw[xorsalmon, dashed, line width=0.8pt] (10.3,-0.05) -- (13.3,-0.2);
+  \node[text=xorblue, inner sep=1.5pt] at (10.85,-1.25) {$\bullet$\;$f(\mathbf{x})=0$};
+  \node[text=xororange, inner sep=1.5pt] at (12.75,-1.25) {$\bullet$\;$f(\mathbf{x})=1$};
+\end{tikzpicture}%
