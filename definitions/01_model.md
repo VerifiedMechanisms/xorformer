@@ -1,4 +1,4 @@
-# Model
+# Definition 1.1. Model
 
 ## Inputs and parameters
 

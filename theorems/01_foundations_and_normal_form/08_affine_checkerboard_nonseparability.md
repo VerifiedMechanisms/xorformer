@@ -2,11 +2,11 @@
 
 ## Statement
 
-Let $c\in\lbrace0,1\rbrace$ and $g:\lbrace0,1\rbrace^2\to\lbrace0,1\rbrace$ have the [checkerboard pattern](../../definitions/11_checkerboard_restrictions.md)
+Let $c\in\lbrace0,1\rbrace$ and $g:\lbrace0,1\rbrace^2\to\lbrace0,1\rbrace$ have the [checkerboard pattern (Definition 1.11)](../../definitions/11_checkerboard_restrictions.md)
 
 $$ g(0,0)=g(1,1)=c, \qquad g(0,1)=g(1,0)=1-c. $$
 
-Then $g$ is not a [linear threshold function](../../definitions/09_linear_threshold_functions.md).
+Then $g$ is not a [linear threshold function (Definition 1.9)](../../definitions/09_linear_threshold_functions.md).
 
 ## Proof
 
@@ -20,9 +20,9 @@ One diagonal consists of true inputs, so its score sum is strictly positive. The
 
 **Definitions**
 
-- [Classification](../../definitions/03_classification.md).
-- [Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
-- [Checkerboard restrictions](../../definitions/11_checkerboard_restrictions.md).
+- [Definition 1.3. Classification](../../definitions/03_classification.md).
+- [Definition 1.9. Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
+- [Definition 1.11. Checkerboard restrictions](../../definitions/11_checkerboard_restrictions.md).
 
 **Theorems**
 

@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$. Expanding an [atom](../../definitions/06_atoms.md) $\phi$ gives the affine coefficients
+Let $n\in\mathbb{Z}_{\geq1}$. Expanding an [atom (Definition 1.6)](../../definitions/06_atoms.md) $\phi$ gives the affine coefficients
 
 $$ A_i=\rho_i((\alpha-1)m_i+\alpha\delta), \qquad b=\eta+\sum_i\rho_i m_i, \qquad C_i=\rho_i(\alpha-1), \qquad d=\gamma+\sum_i\rho_i, $$
 
@@ -10,7 +10,7 @@ and the identity
 
 $$ \phi(x)=\frac{A^\top x+b}{C^\top x+d}, \qquad x\in\lbrace0,1\rbrace^n. $$
 
-A prescribed coefficient tuple $(A,b,C,d)$ is obtained by this map if and only if it is [admissible](../../definitions/07_admissible_ratios.md).
+A prescribed coefficient tuple $(A,b,C,d)$ is obtained by this map if and only if it is [admissible (Definition 1.7)](../../definitions/07_admissible_ratios.md).
 
 ## Proof
 
@@ -60,8 +60,8 @@ These parameters satisfy all positivity conditions. Their denominator constant i
 
 **Definitions**
 
-- [Atoms](../../definitions/06_atoms.md).
-- [Admissible ratios](../../definitions/07_admissible_ratios.md).
+- [Definition 1.6. Atoms](../../definitions/06_atoms.md).
+- [Definition 1.7. Admissible ratios](../../definitions/07_admissible_ratios.md).
 
 **Theorems**
 

@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq2}$ and fix a one-head [model](../../definitions/01_model.md). On a [two-coordinate restriction](../../definitions/10_two_coordinate_restrictions.md), write $z(a,b)=y_1(x^{(a,b)})$ for the projected head output. Then
+Let $n\in\mathbb{Z}_{\geq2}$ and fix a one-head [model (Definition 1.1)](../../definitions/01_model.md). On a [two-coordinate restriction (Definition 1.10)](../../definitions/10_two_coordinate_restrictions.md), write $z(a,b)=y_1(x^{(a,b)})$ for the projected head output. Then
 
 $$ [z(0,0),z(1,1)]\cap[z(0,1),z(1,0)]\neq\varnothing, $$
 
@@ -52,8 +52,8 @@ Each pair of weights is positive and sums to one. Thus $P$ belongs to both segme
 
 **Definitions**
 
-- [Model](../../definitions/01_model.md).
-- [Two-coordinate restrictions](../../definitions/10_two_coordinate_restrictions.md).
+- [Definition 1.1. Model](../../definitions/01_model.md).
+- [Definition 1.10. Two-coordinate restrictions](../../definitions/10_two_coordinate_restrictions.md).
 
 **Theorems**
 

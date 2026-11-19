@@ -2,11 +2,11 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. Its [head complexity](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
+Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. Its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
 
 $$ H^{\ast}(f)=1\quad\Longleftrightarrow\quad f\text{ is a nonconstant linear threshold function}, $$
 
-using the definition of a [linear threshold function](../../definitions/09_linear_threshold_functions.md).
+using the notion of a [linear threshold function (Definition 1.9)](../../definitions/09_linear_threshold_functions.md).
 
 ## Proof
 
@@ -30,11 +30,11 @@ The denominator is at least one and all its slopes equal one. Thus this ratio is
 
 **Definitions**
 
-- [Score](../../definitions/02_score.md).
-- [Classification](../../definitions/03_classification.md).
-- [Head complexity](../../definitions/05_head_complexity.md).
-- [Admissible ratios](../../definitions/07_admissible_ratios.md).
-- [Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
+- [Definition 1.2. Score](../../definitions/02_score.md).
+- [Definition 1.3. Classification](../../definitions/03_classification.md).
+- [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
+- [Definition 1.7. Admissible ratios](../../definitions/07_admissible_ratios.md).
+- [Definition 1.9. Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
 
 **Theorems**
 

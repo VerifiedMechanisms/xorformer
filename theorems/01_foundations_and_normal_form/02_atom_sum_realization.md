@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $H\in\mathbb{Z} _{\geq0}$, let $\phi_1,\ldots,\phi_H$ be [atoms](../../definitions/06_atoms.md) on $\lbrace0,1\rbrace^n$, and let $c\in\mathbb{R}$. The [score](../../definitions/02_score.md) $\Phi$ defined by
+Let $n\in\mathbb{Z}_{\geq1}$ and $H\in\mathbb{Z} _{\geq0}$, let $\phi_1,\ldots,\phi_H$ be [atoms (Definition 1.6)](../../definitions/06_atoms.md) on $\lbrace0,1\rbrace^n$, and let $c\in\mathbb{R}$. The [score (Definition 1.2)](../../definitions/02_score.md) $\Phi$ defined by
 
 $$ \Phi(x)=c+\sum_{h=1}^{H}\phi_h(x) $$
 
@@ -36,9 +36,9 @@ This realizes the prescribed score with the stated dimensions. $\blacksquare$
 
 **Definitions**
 
-- [Model](../../definitions/01_model.md).
-- [Score](../../definitions/02_score.md).
-- [Atoms](../../definitions/06_atoms.md).
+- [Definition 1.1. Model](../../definitions/01_model.md).
+- [Definition 1.2. Score](../../definitions/02_score.md).
+- [Definition 1.6. Atoms](../../definitions/06_atoms.md).
 
 **Theorems**
 

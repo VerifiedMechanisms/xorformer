@@ -1,4 +1,4 @@
-# Computability
+# Definition 1.4. Computability
 
 Let $n\in\mathbb{Z}_{\geq1}$, $H\in\mathbb{Z} _{\geq0}$, and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$.
 

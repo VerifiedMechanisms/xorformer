@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq2}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ contains a [checkerboard restriction](../../definitions/11_checkerboard_restrictions.md), then its [head complexity](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
+Let $n\in\mathbb{Z}_{\geq2}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ contains a [checkerboard restriction (Definition 1.11)](../../definitions/11_checkerboard_restrictions.md), then its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
 
 $$ H^{\ast}(f)\geq2. $$
 
@@ -32,13 +32,13 @@ Thus neither zero nor one is a feasible head count. The minimum is at least two 
 
 **Definitions**
 
-- [Model](../../definitions/01_model.md).
-- [Score](../../definitions/02_score.md).
-- [Classification](../../definitions/03_classification.md).
-- [Head complexity](../../definitions/05_head_complexity.md).
-- [Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
-- [Two-coordinate restrictions](../../definitions/10_two_coordinate_restrictions.md).
-- [Checkerboard restrictions](../../definitions/11_checkerboard_restrictions.md).
+- [Definition 1.1. Model](../../definitions/01_model.md).
+- [Definition 1.2. Score](../../definitions/02_score.md).
+- [Definition 1.3. Classification](../../definitions/03_classification.md).
+- [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
+- [Definition 1.9. Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
+- [Definition 1.10. Two-coordinate restrictions](../../definitions/10_two_coordinate_restrictions.md).
+- [Definition 1.11. Checkerboard restrictions](../../definitions/11_checkerboard_restrictions.md).
 
 **Theorems**
 

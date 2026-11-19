@@ -1,4 +1,4 @@
-# Atoms
+# Definition 1.6. Atoms
 
 For $n\in\mathbb{Z}_{\geq1}$, an **atom** $\phi$ is a function on $\lbrace0,1\rbrace^n$ of the form
 

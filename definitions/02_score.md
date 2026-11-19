@@ -1,4 +1,4 @@
-# Score
+# Definition 1.2. Score
 
 For $n\in\mathbb{Z}_{\geq1}$, a **score** on $n$ input bits is a function $\Phi:\lbrace0,1\rbrace^n\to\mathbb{R}$.
 

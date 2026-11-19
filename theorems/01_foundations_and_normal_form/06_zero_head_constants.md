@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. Its [head complexity](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
+Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. Its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
 
 $$ H^{\ast}(f)=0\quad\Longleftrightarrow\quad f\text{ is constant}. $$
 
@@ -16,10 +16,10 @@ Conversely, suppose $f(x)=c$ for every input, with $c\in\lbrace0,1\rbrace$. Choo
 
 **Definitions**
 
-- [Model](../../definitions/01_model.md).
-- [Score](../../definitions/02_score.md).
-- [Classification](../../definitions/03_classification.md).
-- [Head complexity](../../definitions/05_head_complexity.md).
+- [Definition 1.1. Model](../../definitions/01_model.md).
+- [Definition 1.2. Score](../../definitions/02_score.md).
+- [Definition 1.3. Classification](../../definitions/03_classification.md).
+- [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
 
 **Theorems**
 

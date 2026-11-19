@@ -1,4 +1,4 @@
-# Checkerboard restrictions
+# Definition 1.11. Checkerboard restrictions
 
 Let $n\in\mathbb{Z}_{\geq2}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. A [two-coordinate restriction](10_two_coordinate_restrictions.md) $g(a,b)=f(x^{(a,b)})$ is a **checkerboard restriction** if there exists $c\in\lbrace0,1\rbrace$ such that
 

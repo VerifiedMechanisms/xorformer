@@ -1,4 +1,4 @@
-# Classification
+# Definition 1.3. Classification
 
 A [score](02_score.md) $\Phi$ **classifies** a Boolean function $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ if
 

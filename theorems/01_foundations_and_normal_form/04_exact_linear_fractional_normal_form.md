@@ -2,11 +2,11 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $H\in\mathbb{Z} _{\geq0}$. The [scores](../../definitions/02_score.md) $\Phi$ realizable with $H$ heads are exactly the functions
+Let $n\in\mathbb{Z}_{\geq1}$ and $H\in\mathbb{Z} _{\geq0}$. The [scores (Definition 1.2)](../../definitions/02_score.md) $\Phi$ realizable with $H$ heads are exactly the functions
 
 $$ \Phi(x)=c+\sum_{h=1}^{H}\frac{A_h^\top x+b_h}{C_h^\top x+d_h}, \qquad x\in\lbrace0,1\rbrace^n, $$
 
-where $c\in\mathbb{R}$ and every tuple $(A_h,b_h,C_h,d_h)$ is [admissible](../../definitions/07_admissible_ratios.md). For $H=0$, the sum is empty.
+where $c\in\mathbb{R}$ and every tuple $(A_h,b_h,C_h,d_h)$ is [admissible (Definition 1.7)](../../definitions/07_admissible_ratios.md). For $H=0$, the sum is empty.
 
 ## Proof
 
@@ -18,8 +18,8 @@ Conversely, Theorem 1.3 realizes each prescribed admissible tuple as the coeffic
 
 **Definitions**
 
-- [Score](../../definitions/02_score.md).
-- [Admissible ratios](../../definitions/07_admissible_ratios.md).
+- [Definition 1.2. Score](../../definitions/02_score.md).
+- [Definition 1.7. Admissible ratios](../../definitions/07_admissible_ratios.md).
 
 **Theorems**
 

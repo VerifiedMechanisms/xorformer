@@ -1,4 +1,4 @@
-# Two-coordinate restrictions
+# Definition 1.10. Two-coordinate restrictions
 
 Let $n\in\mathbb{Z}_{\geq2}$ and choose distinct coordinates $i,j\in\lbrace1,\ldots,n\rbrace$. Write $I=\lbrace1,\ldots,n\rbrace\setminus\lbrace i,j\rbrace$ and fix an assignment $\xi:I\to\lbrace0,1\rbrace$ to the other coordinates.
 

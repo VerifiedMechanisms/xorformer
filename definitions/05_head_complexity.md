@@ -1,4 +1,4 @@
-# Head complexity
+# Definition 1.5. Head complexity
 
 For $n\in\mathbb{Z}_{\geq1}$ and a Boolean function $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$, its **head complexity** $H^{\ast}(f)$ is defined by
 

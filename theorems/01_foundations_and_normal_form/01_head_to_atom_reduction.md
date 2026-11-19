@@ -2,11 +2,11 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $H\in\mathbb{Z} _{\geq0}$. Every [score](../../definitions/02_score.md) $\Phi$ realizable with $H$ heads has the form
+Let $n\in\mathbb{Z}_{\geq1}$ and $H\in\mathbb{Z} _{\geq0}$. Every [score (Definition 1.2)](../../definitions/02_score.md) $\Phi$ realizable with $H$ heads has the form
 
 $$ \Phi(x)=c+\sum_{h=1}^{H}\phi_h(x), \qquad x\in\lbrace0,1\rbrace^n, $$
 
-where $c\in\mathbb{R}$ and each $\phi_h$ is an [atom](../../definitions/06_atoms.md).
+where $c\in\mathbb{R}$ and each $\phi_h$ is an [atom (Definition 1.6)](../../definitions/06_atoms.md).
 
 ## Proof
 
@@ -34,9 +34,9 @@ For $H=0$, the head sum is empty. $\blacksquare$
 
 **Definitions**
 
-- [Model](../../definitions/01_model.md).
-- [Score](../../definitions/02_score.md).
-- [Atoms](../../definitions/06_atoms.md).
+- [Definition 1.1. Model](../../definitions/01_model.md).
+- [Definition 1.2. Score](../../definitions/02_score.md).
+- [Definition 1.6. Atoms](../../definitions/06_atoms.md).
 
 **Theorems**
 
