@@ -24,7 +24,9 @@ Each realization may choose any positive finite model and head dimensions; only 
 
 ## Mathematical account
 
-The [theorem index](theorems.md) begins with five results establishing the exact linear-fractional normal form. They characterize realizable scores as sums of admissible affine ratios plus a constant, and identify minimum head and ratio counts.
+The mathematical account develops representations of attention scores, constructions for computing Boolean functions, and lower bounds on head complexity.
+
+The [theorem index](theorems.md) organizes results by chapter and records their dependencies. Each theorem includes a statement and proof, with links to the definitions and earlier results it uses.
 
 Start with the definitions, then read [Chapter 1: Foundations and normal form](theorems/01_foundations_and_normal_form/README.md).
 

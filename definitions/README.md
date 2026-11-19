@@ -10,5 +10,8 @@ Read these definitions in order. Each file is the authoritative location for its
 6. [Atoms](06_atoms.md): the scalar expressions used in the normal form.
 7. [Admissible ratios](07_admissible_ratios.md): the allowed affine coefficient tuples.
 8. [Ratio complexity](08_ratio_complexity.md): the minimum admissible ratio count.
+9. [Linear threshold functions](09_linear_threshold_functions.md): classification by an affine score.
+10. [Two-coordinate restrictions](10_two_coordinate_restrictions.md): two free input bits with all other coordinates fixed.
+11. [Checkerboard restrictions](11_checkerboard_restrictions.md): opposite labels on the two diagonals of a restricted square.
 
 Continue with [Chapter 1: Foundations and normal form](../theorems/01_foundations_and_normal_form/README.md).
