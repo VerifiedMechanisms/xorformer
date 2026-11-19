@@ -1,12 +1,12 @@
 # Getting started with the LNF Probe
 
-[Theorem 10](https://github.com/VerifiedMechanisms/xorformer/blob/main/theorems/01_foundations_and_normal_form/010_linear_fractional_normal_form.md) has been the basis for many of the other theorems in the [autoresearch branch](https://github.com/VerifiedMechanisms/xorformer/tree/autoresearch). I initially thought we needed more theoretical progress before we could get to empirical work. Recent discussions have convinced me that it's worth trying some empirical analysis with Theorem 10 as it stands.
+[Theorem 1.4](../../theorems/01_foundations_and_normal_form/04_exact_linear_fractional_normal_form.md) provides a starting point for empirical analysis. I initially thought we needed more theoretical progress before we could get to empirical work. Recent discussions have convinced me that it's worth trying some empirical analysis with this normal form as it stands.
 
 Its linear-fractional normal form (LNF) describes each head's contribution in our Boolean-input model and gives us a concrete set of coefficients to examine.
 
-## Brief intro to Theorem 10
+## Brief intro to the normal form
 
-**Theorem 10 (Linear-fractional normal form).** In our one-layer, attention-only model with Boolean inputs, shared token and positional embeddings, and a linear readout at a fixed query token, the scalar scores realizable with $H$ heads are exactly
+**Theorem 1.4 (Exact linear-fractional normal form).** In the [model](../../definitions/01_model.md), the scalar scores realizable with $H$ heads are exactly
 
 $$ \Phi(x)=c+\sum_{h=1}^{H}\frac{(A^{(h)})^\top x+b^{(h)}}{(C^{(h)})^\top x+d^{(h)}}, \qquad x\in\lbrace0,1\rbrace^n. $$
 
@@ -24,9 +24,9 @@ For each head $h$:
 
 </details>
 
-On every Boolean input, $\Phi(x)$ is the model's classification score, with the query token's residual contribution and classification threshold absorbed into $c$. Conversely, every sum satisfying these conditions is realizable with $H$ heads, shared embeddings, and unrestricted model width.
+On every Boolean input, $\Phi(x)$ is the model's classification score, with the query token's residual contribution and classification threshold absorbed into $c$. Conversely, every sum satisfying these conditions is realizable with $H$ heads.
 
-These conditions describe exactly which coefficient tuples can be obtained from a head's attention weights and scalar values using the formulas below. Different coefficient tuples can represent the same function on the cube. The [proof of Theorem 10](https://github.com/VerifiedMechanisms/xorformer/blob/main/theorems/01_foundations_and_normal_form/010_linear_fractional_normal_form.md) is in the repository.
+These conditions describe exactly which coefficient tuples can be obtained from a head's attention weights and scalar values using the formulas below. Different coefficient tuples can represent the same function on the cube. The [proof of Theorem 1.4](../../theorems/01_foundations_and_normal_form/04_exact_linear_fractional_normal_form.md) is in the repository.
 
 ## Model weights ↔ LNF coefficients
 
@@ -101,7 +101,7 @@ The [QK/OV framework](https://transformer-circuits.pub/2021/framework/) already 
 
 ## First experiments
 
-Let's train the [model specified in model.md](https://github.com/VerifiedMechanisms/xorformer/blob/main/model.md) on small Boolean functions $f$ and analyse $A^{(h)},b^{(h)},C^{(h)},d^{(h)}$ for each learned head. Two-bit XOR, $f(x)=x_1\oplus x_2$, is one example. I would also consider nonsymmetric Boolean functions.
+Let's train the [model](../../definitions/01_model.md) on small Boolean functions $f$ and analyse $A^{(h)},b^{(h)},C^{(h)},d^{(h)}$ for each learned head. Two-bit XOR, $f(x)=x_1\oplus x_2$, is one example. I would also consider nonsymmetric Boolean functions.
 
 Here are some experiments off the top of my head.
 

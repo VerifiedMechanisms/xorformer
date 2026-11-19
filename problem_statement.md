@@ -2,33 +2,23 @@
 
 ## Goal
 
-We want to characterize the minimum number of attention heads required to compute a Boolean function
+For a positive integer $n$, we want to characterize the minimum number of attention heads required to compute a Boolean function
 
 $$f : \lbrace 0,1 \rbrace^n \to \lbrace 0,1 \rbrace$$
 
 in a **single-layer attention-only transformer** with a **linear readout** from a designated query token.
 
-The motivating example is that, in the 2-bit setting, a single head can linearly realize functions such as $\mathrm{AND}$ and $\mathrm{OR}$, but cannot realize $\mathrm{XOR}$, while two heads suffice. This suggests that the number of heads may define a meaningful complexity measure for Boolean functions.
+[Two-bit XOR](https://www.lesswrong.com/posts/T66BKwSufh5SfiPHm/how-many-attention-heads-do-you-need-to-do-xor-3) is a motivating test case for understanding how head count limits the functions this architecture can compute.
 
 ## Model
 
-We fix the following architecture.
+The [model definition](definitions/01_model.md) fixes the architecture. Its query residual produces a [score](definitions/02_score.md) $\Phi$, which determines the output using the [classification convention](definitions/03_classification.md).
 
-- **Input:** a sequence consisting of $n$ input bits and one dedicated query token `=`.
-- **Embedding:** token embeddings plus positional embeddings.
-- **Computation:** a *single self-attention layer* with $H$ parallel heads and no MLP.
-- **Output:** the residual stream at the query token after the attention update.
-- **Readout:** a linear probe (equivalently, a thresholded affine functional) applied to that query residual.
-
-A Boolean function $f$ is said to be **computable with $H$ heads** if there exists a choice of embeddings, attention parameters, and linear readout such that the resulting classifier equals $f$ on all inputs in $\lbrace 0,1 \rbrace^n$.
+[Computability](definitions/04_computability.md) requires agreement with the target function on every Boolean input. Model and head dimensions are arbitrary positive finite integers and may vary between realizations; head count is the resource being measured.
 
 ## Main Quantity
 
-Define
-
-$$H^{\ast}(f) := \min \left\lbrace H : f \text{ is computable with } H \text{ heads in the above model} \right\rbrace.$$
-
-Our central problem is to understand $H^{\ast}(f)$ as a function of $f$.
+Our central problem is to understand the [head complexity](definitions/05_head_complexity.md) $H^{\ast}(f)$ as a function of $f$. Its definition permits zero heads and uses infinity when no realization exists.
 
 ## Core Questions
 
@@ -56,6 +46,4 @@ We would like to identify either:
 - an invariant $I(f)$ such that $H^{\ast}(f)$ is controlled by $I(f)$ (ideally $H^{\ast}(f) \asymp I(f)$ on broad classes), or
 - explicit function families for which the head complexity exhibits qualitatively new behavior compared to classical measures.
 
-In short:
-
-> **What is the right notion of Boolean-function complexity captured by the minimum number of attention heads in one-layer attention with a linear readout?**
+The [theorem index](theorems.md) records the results currently developed in the mathematical account.

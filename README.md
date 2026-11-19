@@ -2,25 +2,31 @@
 
 We study the expressivity of single-layer, attention-only transformers: how does the number of parallel attention heads limit the Boolean functions they can compute?
 
-The motivating example is two-bit XOR. A single head can compute AND and OR with a linear readout, but XOR requires two heads. This suggests using the minimum number of heads as a complexity measure for Boolean functions.
+Two-bit XOR is a motivating test case: how many heads are needed to distinguish its two positive inputs from its two negative inputs?
 
 ## Problem statement
 
-Given a Boolean function
+For a positive integer $n$ and a Boolean function
 
 $$ f : \lbrace 0,1\rbrace^n \to \lbrace 0,1\rbrace, $$
 
 determine the smallest number of attention heads needed to compute it exactly on every input.
 
-We call this minimum the function's **head complexity**, denoted $H^{\ast}(f)$. We seek structural explanations for it: lower bounds that establish what attention cannot compute, and constructions that show how to compute a function with few heads.
+We call this minimum the function's [head complexity](definitions/05_head_complexity.md), denoted $H^{\ast}(f)$. We seek structural explanations for it: lower bounds that establish what attention cannot compute, and constructions that show how to compute a function with few heads.
 
 The [problem statement](problem_statement.md) defines the research goal and core questions, including exact complexity for natural function families and connections to classical Boolean complexity measures.
 
 ## Model
 
-The baseline uses shared token-plus-position embeddings, one softmax self-attention layer, and a thresholded linear readout from a final query token. The query attends to every input position and itself, and its output includes the residual connection. There is no MLP or layer normalization.
+The baseline uses token-plus-position embeddings, one softmax self-attention layer, and a thresholded linear readout from a final query token. The query attends to every input position and itself, and its output includes the residual connection. There is no MLP or layer normalization.
 
-Model and head dimensions are unrestricted; the quantity being minimized is the number of heads. The [model specification](model.md) gives the complete equations, computability definition, masking convention, and architectural assumptions.
+Each realization may choose any positive finite model and head dimensions; only the number of heads is minimized. The [definitions](definitions/README.md) specify the architecture, scores, classification convention, and complexity measures.
+
+## Mathematical account
+
+The [theorem index](theorems.md) begins with five results establishing the exact linear-fractional normal form. They characterize realizable scores as sums of admissible affine ratios plus a constant, and identify minimum head and ratio counts.
+
+Start with the definitions, then read [Chapter 1: Foundations and normal form](theorems/01_foundations_and_normal_form/README.md).
 
 ## Further reading and contributing
 
