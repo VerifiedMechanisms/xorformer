@@ -140,6 +140,65 @@ In particular dictionaries specified by $n+1$ coefficients each from
 a set of $2^{o(n)}$ values cannot suffice at the requested head count.
 Arbitrary real denominators are not subject to this restriction.
 
+The linear-space assertion and its normalized fixed-denominator consequence
+are kernel checked in
+\texttt{formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean}.
+The principal declarations are
+\texttt{meetsEveryStrictOrthant\_iff\_eq\_top} and
+\texttt{two\_pow\_le\_one\_add\_heads\_mul\_dimension\_of\_fixed\_denominators}.
+They impose no restriction on a target-dependent list.
+
+\section{Low-degree parameterizations cannot supply the missing factor}
+
+\begin{proposition}[Polynomial-template obstruction]
+Fix constants $a,b,C>0$. Suppose a proposed construction represents its
+scores on the $N=2^n$ vertices by polynomials in at most $p\le anH$
+real parameters, each of degree at most $n^b$, where
+$H\le C2^n/n^2$. Then this single polynomial template cannot strictly
+represent every Boolean function for all sufficiently large $n$.
+The assertion also holds for a union of $2^{o(2^n)}$ such templates.
+\end{proposition}
+\begin{proof}
+For large $n$, $p<N$. Warren's strict sign-pattern bound gives at most
+$(4en^bN/p)^p$ patterns. The function
+$t\mapsto t\log_2(4en^bN/t)$ is increasing for $1\le t\le aCN/n$
+when $n$ is sufficiently large. Its value at this upper endpoint is
+$O(N\log n/n)=o(N)$. Thus the template realizes at most $2^{o(N)}$
+patterns. Multiplication by $2^{o(N)}$ still yields $2^{o(N)}<2^N$.
+Zero parameter templates realize at most one pattern and cause no exception.
+\end{proof}
+
+For example, a sum of $H$ completely factorized multilinear terms has
+$O(nH)$ parameters and parameter degree $n+1$. A universal construction
+with $O(2^n/n^2)$ such terms is therefore impossible. This is a restriction
+on that proposed intermediate representation, not on attention heads:
+clearing $H$ independently parameterized head denominators gives parameter
+degree $H$, which is exponentially large in the relevant regime.
+
+\begin{proposition}[A scalar algebraic decoder needs many oscillations]
+Let $N$ target bits be the strict signs of rational functions
+$p_i(t)/q_i(t)$ of one real encoding parameter, with
+$\deg p_i,\deg q_i\le D$, and omit parameters where any denominator or
+numerator vanishes. At most $2ND+1$ different strict sign vectors occur.
+Consequently universal decoding of $N$ independently chosen bits requires
+$D\ge(2^N-1)/(2N)$.
+\end{proposition}
+\begin{proof}
+If some numerator is identically zero there are no strict sign vectors.
+Otherwise the union of the real zeros of all numerators and denominators
+has at most $2ND$ elements. On every component of its complement all
+rational functions are continuous and nonzero, so every sign is constant.
+There are at most $2ND+1$ components.
+\end{proof}
+
+Thus encoding a table in a large integer, a residue, or an irrational
+parameter is insufficient without an admissible decoder. Periodic
+activations used in number-theoretic superexpressiveness arguments are
+absent from this model. Yarotsky's
+\href{https://proceedings.mlr.press/v139/yarotsky21a.html}{Elementary
+superexpressive activations} explicitly uses periodic functions in its
+positive construction; it does not supply a reciprocal-affine decoder.
+
 \section{A pole deformation does not preserve sign universality}
 
 \begin{proposition}[Explicit continuation counterexample]
