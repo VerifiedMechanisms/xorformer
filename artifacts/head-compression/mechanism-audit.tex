@@ -400,4 +400,69 @@ identity therefore does not encode an arbitrary Boolean table. A claim
 that independent directions can be substituted while keeping all the
 needed cancellations would require a separate, presently absent theorem.
 
+\paragraph{Reciprocal linear spaces.}
+Kummer and Vinzant's
+\href{https://arxiv.org/abs/1610.04584}{The Chow form of a reciprocal linear space}
+gives definite determinantal representations and a real-fibered projection
+property for coordinatewise reciprocals of linear spaces. Bocci, Carlini,
+and Kileel's
+\href{https://web.ma.utexas.edu/users/jkileel/HadamardPublished.pdf}{Hadamard products of linear spaces}
+studies dimensions and degrees of Hadamard products, including reciprocal
+factors. These are relevant to the algebraic geometry of the head family,
+but the statements do not assert that a small sum meets every real orthant
+using denominators in the prescribed positive cone.
+For example, the one-head counterexample above already excludes such an
+inference from real-fiberedness alone.
+
+\paragraph{Permutation encoding.}
+Maass's
+\href{https://igi-web.tugraz.at/people/maass/psfiles/66a.pdf}{Neural Nets with Superlinear VC-Dimension}
+constructs Boolean-input networks of depth three that store logarithmically
+many program bits per weight. Its construction explicitly tests equality
+of a selected permutation value, extracts a bit, and combines the tests
+in a second hidden layer. This is a concrete encoding mechanism, but it
+does not give an affine-ratio implementation of the decoder in one layer.
+Neither its shattered set nor its architecture is the one required here.
+
+\section{A precise dual formulation, with its unresolved step exposed}
+
+Fix a sign table $f_x\in\{-1,1\}$ and a list of positive normalized
+denominators $B_h(x)=1+b_h\cdot x$. Define
+\[
+ v_x=f_x\left(1,\left(\frac{x_i}{B_h(x)}\right)_{h,i}\right)
+       \in\mathbb R^{1+nH}.
+\]
+Exactly one of the following holds:
+\begin{enumerate}
+\item Some $\theta$ satisfies $\theta\cdot v_x>0$ for every $x$.
+\item There are $\lambda_x\ge0$ with $\sum_x\lambda_x=1$ and
+      $\sum_x\lambda_xv_x=0$.
+\end{enumerate}
+Here is an elementary proof. The two assertions are incompatible by
+taking the weighted sum of the strict inequalities. If the origin is not
+in the convex hull of the finitely many $v_x$, choose its nearest point
+$q$ in that compact convex hull. Then $q\ne0$, and minimizing squared
+distance along the segment from $q$ to $v_x$ gives
+$q\cdot(v_x-q)\ge0$. Thus $\theta=q$ gives
+$\theta\cdot v_x\ge\|q\|^2>0$. If the origin is in the convex hull,
+its convex-combination coefficients give the second assertion.
+
+Writing $w_x=\lambda_x f_x$, the obstruction in the second assertion is
+\[
+ \sum_xw_x=0,\qquad
+ \sum_x\frac{w_xx_i}{1+b_h\cdot x}=0\quad\hbox{for every }h,i.
+\]
+On the open domain where all denominators are positive, put
+\[
+ \Phi_w(b)=\sum_xw_x\log(1+b\cdot x).
+\]
+The last equations say $\nabla\Phi_w(b_h)=0$ for every chosen head.
+This identifies the connection to critical points of logarithmic
+potentials exactly. To obtain the requested theorem one must choose
+$O(2^n/n^2)$ admissible points $b_h$, depending on $f$, for which there
+is no such signed measure $w$. No result establishing this assertion
+has been obtained. It is an equivalent feasibility problem, not a new
+proof or a lemma that can be assumed. This route is blocked unless a
+new construction excludes all these measures simultaneously.
+
 \end{document}
