@@ -19,10 +19,14 @@ Read the [definitions](definitions/README.md) first. The current chapter develop
 | 1.11 | [Boolean polynomial interpolation](theorems/01_foundations_and_normal_form/11_boolean_polynomial_interpolation.md) | Strict sign representation, threshold degree |
 | 1.12 | [Threshold-degree head bound](theorems/01_foundations_and_normal_form/12_threshold_degree_head_bound.md) | Theorems 1.4 and 1.11; computability, strict sign representation, complexity definitions |
 | 1.13 | [Two-head denominator clearing](theorems/01_foundations_and_normal_form/13_two_head_denominator_clearing.md) | Theorem 1.4; computability, strict sign representation, real affine forms |
-| 1.14 | [Weighted-sum interpolation upper bound](theorems/01_foundations_and_normal_form/14_weighted_sum_interpolation_upper_bound.md) | Theorem 1.4; positive weighted statistics, admissible ratios, classification, head complexity |
+| 1.14 | [Weighted-sum interpolation upper bound](theorems/01_foundations_and_normal_form/14_weighted_sum_interpolation_upper_bound.md) | Model, score, classification, head complexity, positive weighted statistics |
 | 1.15 | [Universal head bound](theorems/01_foundations_and_normal_form/15_universal_head_bound.md) | Theorem 1.14; positive weighted statistics, head complexity |
 | 1.16 | [Symmetric threshold degree](theorems/01_foundations_and_normal_form/16_symmetric_threshold_degree.md) | Symmetric functions, sign-change count, strict sign representation, threshold degree |
 | 1.17 | [Exact symmetric head complexity](theorems/01_foundations_and_normal_form/17_exact_symmetric_head_complexity.md) | Theorems 1.4, 1.6, 1.12, and 1.16; symmetric functions, sign-change count, admissible ratios, classification, head complexity |
+| 1.18 | [Symmetric threshold complexity](theorems/01_foundations_and_normal_form/18_symmetric_threshold_complexity.md) | Theorem 1.17; model, score, classification, symmetric thresholds, sign-change count, head complexity |
+| 1.19 | [Parity complexity](theorems/01_foundations_and_normal_form/19_parity_complexity.md) | Theorems 1.10, 1.12, 1.16, and 1.17; parity, sign-change count, strict sign representation, complexity definitions |
+| 1.20 | [Exact-count complexity](theorems/01_foundations_and_normal_form/20_exact_count_complexity.md) | Theorems 1.10 and 1.17; exact-count predicates, sign-change count, head complexity |
+| 1.21 | [Symmetric score interpolation](theorems/01_foundations_and_normal_form/21_symmetric_score_interpolation.md) | Theorem 1.14; model, score, positive weighted statistics, Hamming weight |
 
 See the [chapter contents](theorems/01_foundations_and_normal_form/README.md) for the reading order. Theorems 1.5, 1.12, and 1.15 relate [threshold degree (Definition 1.13)](definitions/13_threshold_degree.md) $\deg_{\pm}(f)$, [head complexity (Definition 1.5)](definitions/05_head_complexity.md) $H^{\ast}(f)$, and [ratio complexity (Definition 1.8)](definitions/08_ratio_complexity.md) $L(f)$:
 

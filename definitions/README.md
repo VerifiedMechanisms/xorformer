@@ -21,5 +21,8 @@ Read these definitions in order. Each file is the authoritative location for its
 | 1.15 | [Positive weighted statistics](15_positive_weighted_statistics.md) | Positive weighted sums of bits and their sets of attained values. |
 | 1.16 | [Symmetric functions](16_symmetric_functions.md) | Boolean functions whose labels depend only on Hamming weight. |
 | 1.17 | [Sign-change count](17_sign_change_count.md) | The number of label changes between adjacent weights. |
+| 1.18 | [Symmetric thresholds](18_symmetric_thresholds.md) | Hamming-weight thresholds, including OR, AND, and majority. |
+| 1.19 | [Parity](19_parity.md) | The odd-weight predicate, also called XOR. |
+| 1.20 | [Exact-count predicates](20_exact_count_predicates.md) | Predicates for a specified Hamming weight, including internal and endpoint counts. |
 
 Continue with [Chapter 1: Foundations and normal form](../theorems/01_foundations_and_normal_form/README.md).

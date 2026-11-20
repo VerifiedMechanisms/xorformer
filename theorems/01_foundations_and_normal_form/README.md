@@ -40,10 +40,10 @@ Theorem 1.11 uses only the definitions. Theorem 1.12 uses the normal form and Th
 
 | Number | Theorem | Content |
 |---|---|---|
-| 1.14 | [Weighted-sum interpolation upper bound](14_weighted_sum_interpolation_upper_bound.md) | Realize arbitrary scores on the levels of a positive weighted statistic and bound the heads needed for Boolean labels. |
+| 1.14 | [Weighted-sum interpolation upper bound](14_weighted_sum_interpolation_upper_bound.md) | Realize arbitrary scores on positive weighted statistics with explicit dimensions. |
 | 1.15 | [Universal head bound](15_universal_head_bound.md) | Prove finite head complexity for every Boolean function using binary weights. |
 
-Theorem 1.14 proves the reciprocal interpolation basis inside its proof and uses the normal form to realize the resulting score. Theorem 1.15 applies it to an injective statistic.
+Theorem 1.14 proves the reciprocal interpolation basis and gives an explicit attention construction using only the definitions. Theorem 1.15 applies the interpolation result to an injective statistic.
 
 ## Symmetric complexity
 
@@ -53,3 +53,21 @@ Theorem 1.14 proves the reciprocal interpolation basis inside its proof and uses
 | 1.17 | [Exact symmetric head complexity](17_exact_symmetric_head_complexity.md) | Identify head complexity with sign-change count, including constant functions. |
 
 Theorem 1.16 proves the polynomial construction and symmetrization argument using only the definitions. Theorem 1.17 combines its witness and the threshold-degree head bound with a partial-fraction construction, realized through the normal form. The zero-head characterization handles constants.
+
+## Standard symmetric families
+
+| Number | Theorem | Content |
+|---|---|---|
+| 1.18 | [Symmetric threshold complexity](18_symmetric_threshold_complexity.md) | Prove exact one-head complexity and give a two-dimensional construction with zero positional embeddings, including OR, AND, and majority. |
+| 1.19 | [Parity complexity](19_parity_complexity.md) | Identify parity's threshold degree and head complexity with its number of inputs. |
+| 1.20 | [Exact-count complexity](20_exact_count_complexity.md) | Determine exact head counts for both internal and endpoint counts. |
+
+All three results apply Theorem 1.17. Theorem 1.18 also supplies the explicit two-dimensional realization. Theorem 1.19 uses Theorem 1.16 and retains the Fourier lower bound, combined with Theorem 1.12. Theorems 1.19 and 1.20 retain the two-coordinate checkerboard arguments using Theorem 1.10.
+
+## Symmetric score construction
+
+| Number | Theorem | Content |
+|---|---|---|
+| 1.21 | [Symmetric score interpolation](21_symmetric_score_interpolation.md) | Realize arbitrary Hamming-weight scores with zero positional embeddings and explicit dimensions. |
+
+Theorem 1.21 specializes the construction in Theorem 1.14 to equal weights and removes the unused positional coordinate.
