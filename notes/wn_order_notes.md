@@ -247,7 +247,7 @@ reproduces every target exactly (checked).
 | 4 | 30 targets, values 1 to 4 | 2.9 | 6 | 4 | 1.0 | 4.0 |
 | 5 | 3,5,5,3,6,4,3,4,4,4 | 4.1 | 10 | 5 | 1.3 | 6.4 |
 | 6 | 5,6,7,6,6 | 6.0 | greater than 13 | greater than 7 | 1.8 | 10.7 |
-| 7 | 9, 10, 11, [9,10], [10,11], [11,12], [11,13], one target at least 11 (running) | about 10.7 | | | 2.6 | 18.3 |
+| 7 | 9, 10, 11, [9,10], [10,11], [11,12], [11,12], [11,13] (8 targets, 15-minute SAT caps) | about 10.6 | | | 2.6 | 18.3 |
 
 Structure of the optimal solutions (correct decoding): most rules are used (22 to 28 nonempty fibers out of 30 to 42
 at n = 6), fibers are small (mean 2.2 to 2.9 points, maximum 9 to 12), and the used rules sit at mean position 2.5
@@ -255,7 +255,7 @@ in their orders (dimension about n-3.5). Parity uses fibers of size 1 or 2 only 
 n = 5), i.e. essentially one rule per point: parity and majority are exponentially more expensive in the sub-model
 than in the full model ($H^{\ast}=n$ and $1$), confirming that dominance alone cannot replace cancellation. For
 random targets the mean fiber size grows slowly with n (1.9, 2.3, 2.6 at n = 4, 5, 6); an $N/n^2$ rate would need
-mean fiber size proportional to n. The normalized values $Hn/N$ for the random means are $0.72, 0.64, 0.56$ and about $0.57$ at $n=4,5,6,7$ (n=7: values 9, 10, [10,11], and lower bounds 9, 11, 11; roughly stable),
+mean fiber size proportional to n. The normalized values $Hn/N$ for the random means are $0.72, 0.64, 0.56$ and about $0.57$ at $n=4,5,6,7$ (n=7: eight targets with midpoint mean 10.6; roughly stable),
 while $Hn^2/N$ grows ($2.9, 3.2, 3.4, 3.8$): within this small range the exact optima of the dominance sub-model scale like
 $N/n$ with constant about $0.55$, comparable to the paper's universal bounds for the full model, not like $N/n^2$.
 The greedy constructor of Section 17 is far from these optima.
