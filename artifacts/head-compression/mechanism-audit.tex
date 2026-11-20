@@ -1097,4 +1097,113 @@ nonattainment, including constant and negative-slope admissible
 denominators.
 \end{proof}
 
+\section{A positive-denominator permutation decoder}
+
+The following construction supplies an explicit selection mechanism, but
+only on a promised one-hot domain. It does not establish a universal
+bound on the full cube.
+
+\begin{proposition}[Cauchy bump decoding]
+Let $m,d,\ell$ be positive integers, let $\pi_q$ be a permutation of
+$\{0,\ldots,m-1\}$ for every $q\in\{1,\ldots,d\}$, and fix signs
+$\sigma_{h,j}\in\{-1,1\}$ for $0\le h<m$ and $1\le j\le\ell$.
+There is a score using $2m$ admissible heads on $m+d+\ell$ Boolean
+variables $(y,x,z)$ such that
+\[
+ \operatorname{sgn} S(e_p,e_q,e_j)
+   =\sigma_{\pi_q^{-1}(p),j}.
+\]
+All its denominators have strictly positive variable coefficients.
+One explicit choice has margin at least $13/(279\cdot32^p)$ at each
+of these promised inputs.
+\end{proposition}
+\begin{proof}
+Set $R=32$, $\delta=1/16$, $\varepsilon=1/32$, and define affine forms
+\[
+ P(y)=\sum_{p=0}^{m-1} R^p y_p,\qquad
+ B_h(x)=\sum_{q=1}^d R^{\pi_q(h)}x_q,\qquad
+ J_h(z)=\sum_{j=1}^{\ell}\sigma_{h,j}z_j,
+\]
+\[
+ D_h=P+B_h+\delta\left(1+\sum_p y_p+\sum_q x_q+\sum_jz_j\right).
+\]
+Use the $2m$-head score
+\[
+ S=\sum_{h=0}^{m-1}\left(
+       \frac{B_h/\varepsilon}{D_h}
+       -\frac{B_h/\varepsilon}{D_h+\varepsilon J_h}\right).
+\]
+Both denominators have positive constant term $\delta$. Their $y$ and
+$x$ coefficients are positive, and their $z$ coefficients are either
+$\delta$ or $\delta+\varepsilon\sigma_{h,j}\ge1/32$. Thus they are
+admissible on the entire Boolean cube, not only on the promised domain.
+The numerators are affine.
+
+Fix $(y,x,z)=(e_p,e_q,e_j)$ and write $P=R^p$.
+The summand belonging to $h$ is exactly
+\[
+ \frac{R^{\pi_q(h)}\sigma_{h,j}}
+ {(P+R^{\pi_q(h)}+4\delta)
+  (P+R^{\pi_q(h)}+4\delta+\varepsilon\sigma_{h,j})}.
+\]
+There is a unique $h_0=\pi_q^{-1}(p)$ with $R^{\pi_q(h_0)}=P$.
+Since $P\ge1$, both factors in its denominator are less than $3P$.
+Its absolute value is therefore greater than $1/(9P)$, and its sign
+is $\sigma_{h_0,j}$.
+
+For every other $h$, both denominator factors are greater than
+$P+R^{\pi_q(h)}$, because $4\delta-\varepsilon>0$.
+As $\pi_q$ is a permutation, the sum of all competing absolute values
+is less than
+\[
+ \sum_{s<p}\frac{R^s}{P^2}+\sum_{s>p}R^{-s}
+ <\frac{2}{P(R-1)}=\frac{2}{31P}.
+\]
+Here an empty sum is zero; each nonempty finite sum is bounded by its
+corresponding geometric series. Consequently the signed margin is
+greater than
+\[
+ \frac1P\left(\frac19-\frac2{31}\right)=\frac{13}{279P}>0.
+\]
+\end{proof}
+
+\paragraph{Compatibility audit.}
+For $m=2^{\ell}$ one may take the rows $\sigma_{h,\cdot}$ to encode
+all $\ell$-bit strings. This decodes a separately programmable
+permutation for every one-hot selector $q$. An arbitrary map from
+addresses to bit strings need not be a permutation. The four-permutation
+decomposition in Maass, \emph{Neural Nets with Superlinear VC-Dimension}
+(1994), uses bitwise exclusive OR, followed by additional threshold
+processing. Exclusive OR of two decoded signs is not obtained by a
+linear readout. Multiplying two sums of fractions also produces products
+of denominators and numerators, which are not themselves affine.
+Partial fraction decomposition in the common address scalar does not
+remove this problem: its coefficients can depend jointly on $q$ and
+$j$, whereas an affine numerator restricted to $(e_q,e_j)$ has only
+the form $a_q+c_j+c_0$.
+
+The address values $R^p$ are affine in one-hot $y$. Replacing $y$ by
+the binary digits of $p$ does not preserve that fact. Thus neither an
+arbitrary-table compiler nor an extension to all Boolean cube vertices
+has been proved. The present proposition is a mechanism test, not a
+claimed proof of the target.
+
+\begin{proposition}[Column-bias assignment obstruction]
+Fix a real $m$-by-$m$ matrix $K$. Suppose real numbers $\theta_h$
+make the unique minimum of $K_{p,h}+\theta_h$ in each row $p$ occur
+at column $\pi(p)$, where $\pi$ is a permutation. Then $\pi$ is the
+unique minimum-cost permutation of $K$. In particular, varying only
+the column biases cannot strictly select two different permutations.
+\end{proposition}
+\begin{proof}
+For a different permutation $\tau$, every row satisfies
+$K_{p,\pi(p)}+\theta_{\pi(p)}\le
+K_{p,\tau(p)}+\theta_{\tau(p)}$, and at least one inequality is strict.
+Sum the inequalities. Both bias sums equal $\sum_h\theta_h$, so they
+cancel and leave
+$\sum_pK_{p,\pi(p)}<\sum_pK_{p,\tau(p)}$.
+Two different permutations cannot both be the unique minimizer of the
+same cost matrix.
+\end{proof}
+
 \end{document}
