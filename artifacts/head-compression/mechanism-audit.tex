@@ -941,4 +941,71 @@ the target. This obstruction allows continuous adaptive nodes and
 arbitrary real numerator coefficients; it does not rely on a finite
 precision or bounded-node assumption.
 
+\section{Conditioning and margin required by a universal construction}
+
+\begin{proposition}[A quantitative restriction on compressed representations]
+Let $K,R\ge1$ and $H\ge2$, and put
+\[
+ D=\lceil K\log(2KR)\rceil+1,\qquad
+ k=1+(2n+1)H,\qquad N=2^n.
+\]
+Consider strict representations on the cube, written in coordinates
+$z_i=2x_i-1$ and scaled per head as
+\[
+ S(z)=c+\sum_{h=1}^H\frac{a_{h,0}+\sum_i a_{h,i}z_i}
+                                  {1+\sum_i b_{h,i}z_i}.
+\]
+Assume that each denominator's maximum divided by its minimum on the
+cube is at most $K$. Put
+\[
+ M=\sum_{h=1}^H\sum_{i=0}^n|a_{h,i}|,\qquad
+ \gamma=\min_z f(z)S(z)>0,
+\]
+and assume $M/\gamma\le R$. If $k\le N$, the number of Boolean
+functions having such representations is at most
+\[
+ \left(\frac{65536N}{k}\right)^k D^{nH}.
+\]
+In particular, if $H=\lfloor C2^n/n^2\rfloor$ for fixed $C>0$ and
+$\log_2(K\log(2KR))=o(n)$, this is $2^{o(2^n)}$.
+No bound on $K$ or $R$ is imposed by the manuscript's model, so this
+proposition does not rule out the requested universal construction.
+\end{proposition}
+\begin{proof}
+Every positive affine denominator can be divided by its value at the
+center of the cube to obtain the displayed form. If
+$\rho_h=\sum_i|b_{h,i}|$, its extrema are $1-\rho_h$ and
+$1+\rho_h$. Hence
+\[
+ 0\le\rho_h\le\rho:=\frac{K-1}{K+1}<1.
+\]
+Replace each reciprocal by its first $D$ geometric-series terms,
+obtaining
+\[
+ T_D(z)=c+\sum_{h=1}^H
+       \left(a_{h,0}+\sum_i a_{h,i}z_i\right)
+       \sum_{j=0}^{D-1}\left(-\sum_i b_{h,i}z_i\right)^j.
+\]
+The geometric-series remainder gives
+$\max_z|S(z)-T_D(z)|\le M\rho^D/(1-\rho)$.
+When $K=1$, the replacement is exact. When $K>1$, one has
+$-\log\rho=\log((K+1)/(K-1))\ge2/K$ and $1-\rho\ge1/K$.
+Therefore
+\[
+ \frac{\rho^D}{1-\rho}
+ \le K\exp(-2D/K)
+ <\frac{1}{4KR^2}<\frac1R.
+\]
+Thus the error is less than $\gamma$, unless $M=0$, in which case
+it is zero. In both cases $T_D$ strictly represents the same function.
+
+As a polynomial in parameters, $T_D(z)$ has degree at most $D-1$ in
+the $nH$ denominator parameters, and degree one in the
+$1+(n+1)H$ numerator and bias parameters. The two-block lemma with
+degrees $(D,2)$ gives the stated count, since $D\ge2$.
+At the proposed head count, $k=O_C(N/n)$, so
+$k\log_2(65536N/k)=o(N)$. The remaining term is
+$nH\log_2D=o(N)$ under the stated assumption.
+\end{proof}
+
 \end{document}
