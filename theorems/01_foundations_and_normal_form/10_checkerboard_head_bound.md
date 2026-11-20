@@ -24,7 +24,7 @@ For the realizing readout $w,\tau$, the [score](../../definitions/02_score.md) $
 
 $$ \Phi(x^{(a,b)})=\Lambda(z(a,b)), \qquad \Lambda(z)=w^\top z+c, \qquad c=w^\top u_{=}-\tau. $$
 
-By the [classification convention](../../definitions/03_classification.md), $\Lambda$ is positive at both endpoints of the true diagonal and nonpositive at both endpoints of the false diagonal. An affine function preserves convex combinations, so these inequalities hold on the respective segments. At their common point $P$, this would give both $\Lambda(P)\gt0$ and $\Lambda(P)\leq0$, a contradiction.
+By the [classification convention](../../definitions/03_classification.md), $\Lambda$ is strictly positive at both endpoints of the true diagonal and strictly negative at both endpoints of the false diagonal. An affine function preserves convex combinations, so these strict inequalities hold on the respective segments. At their common point $P$, this would give both $\Lambda(P)\gt0$ and $\Lambda(P)\lt0$, a contradiction.
 
 Thus neither zero nor one is a feasible head count. The minimum is at least two if the feasible set is nonempty, and is $\infty$ otherwise. In either case, the claimed bound holds. $\blacksquare$
 

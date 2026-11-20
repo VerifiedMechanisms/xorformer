@@ -1,6 +1,6 @@
 # Theorem index
 
-Read the [definitions](definitions/README.md) first. The current chapter establishes the normal form, characterizes zero-head and one-head computation, and proves a checkerboard obstruction.
+Read the [definitions](definitions/README.md) first. The current chapter develops the normal form and bounds on head complexity.
 
 ## Chapter 1. Foundations and normal form
 
@@ -16,7 +16,10 @@ Read the [definitions](definitions/README.md) first. The current chapter establi
 | 1.8 | [Affine checkerboard nonseparability](theorems/01_foundations_and_normal_form/08_affine_checkerboard_nonseparability.md) | Classification, linear threshold functions, checkerboard restrictions |
 | 1.9 | [Intersection of output diagonals](theorems/01_foundations_and_normal_form/09_intersection_of_output_diagonals.md) | Model, two-coordinate restrictions |
 | 1.10 | [Checkerboard head bound](theorems/01_foundations_and_normal_form/10_checkerboard_head_bound.md) | Theorems 1.6–1.9; checkerboard restrictions |
+| 1.11 | [Boolean polynomial interpolation](theorems/01_foundations_and_normal_form/11_boolean_polynomial_interpolation.md) | Strict sign representation, threshold degree |
+| 1.12 | [Threshold-degree head bound](theorems/01_foundations_and_normal_form/12_threshold_degree_head_bound.md) | Theorems 1.4 and 1.11; computability, strict sign representation, complexity definitions |
+| 1.13 | [Two-head denominator clearing](theorems/01_foundations_and_normal_form/13_two_head_denominator_clearing.md) | Theorem 1.4; computability, strict sign representation, real affine forms |
 
-See the [chapter contents](theorems/01_foundations_and_normal_form/README.md) for the reading order. The first three results establish the constructions used in the normal form. Theorem 1.5 identifies [head complexity](definitions/05_head_complexity.md) $H^{\ast}(f)$ and [ratio complexity](definitions/08_ratio_complexity.md) $L(f)$:
+See the [chapter contents](theorems/01_foundations_and_normal_form/README.md) for the reading order. Theorems 1.5 and 1.12 relate [threshold degree (Definition 1.13)](definitions/13_threshold_degree.md) $\deg_{\pm}(f)$, [head complexity (Definition 1.5)](definitions/05_head_complexity.md) $H^{\ast}(f)$, and [ratio complexity (Definition 1.8)](definitions/08_ratio_complexity.md) $L(f)$:
 
-$$ H^{\ast}(f)=L(f). $$
+$$ \deg_{\pm}(f)\leq H^{\ast}(f)=L(f). $$

@@ -12,7 +12,7 @@ in a **single-layer attention-only transformer** with a **linear readout** from 
 
 ## Model
 
-The [model definition](definitions/01_model.md) fixes the architecture. Its query residual produces a [score](definitions/02_score.md) $\Phi$, which determines the output using the [classification convention](definitions/03_classification.md).
+The [model definition](definitions/01_model.md) fixes the architecture. Its query residual produces a [score](definitions/02_score.md) $\Phi$, which determines the output using the [strict classification convention](definitions/03_classification.md).
 
 [Computability](definitions/04_computability.md) requires agreement with the target function on every Boolean input. Model and head dimensions are arbitrary positive finite integers and may vary between realizations; head count is the resource being measured.
 
@@ -26,7 +26,7 @@ Our central problem is to understand the [head complexity](definitions/05_head_c
 2. **Lower bounds.** What techniques prove that a function requires at least $H$ heads?
 3. **Upper bounds.** Can we constructively realize broad classes of Boolean functions with few heads?
 4. **Comparison to classical complexity measures.** How does $H^{\ast}(f)$ relate to:
-   - threshold degree,
+   - [threshold degree (Definition 1.13)](definitions/13_threshold_degree.md) $\deg_{\pm}(f)$,
    - rational degree,
    - threshold density / sparsity,
    - circuit depth / threshold-circuit complexity,

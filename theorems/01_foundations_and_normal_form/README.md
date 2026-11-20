@@ -25,3 +25,13 @@ Theorems 1.1–1.3 use only the definitions. Theorem 1.4 combines those three re
 | 1.10 | [Checkerboard head bound](10_checkerboard_head_bound.md) | Rule out zero and one head for any function containing a checkerboard restriction. |
 
 Theorem 1.7 uses the normal form and Theorem 1.6. Theorems 1.8 and 1.9 use only the definitions. Theorem 1.10 gives an affine proof using Theorems 1.6–1.8 and a geometric proof using Theorems 1.6 and 1.9.
+
+## Polynomial lower bounds
+
+| Number | Theorem | Content |
+|---|---|---|
+| 1.11 | [Boolean polynomial interpolation](11_boolean_polynomial_interpolation.md) | Represent every cube function by a multilinear polynomial and establish finite threshold degree. |
+| 1.12 | [Threshold-degree head bound](12_threshold_degree_head_bound.md) | Bound threshold degree by head complexity using positive denominator clearing. |
+| 1.13 | [Two-head denominator clearing](13_two_head_denominator_clearing.md) | Express a two-head classifier's polynomial sign representation as two products of affine forms. |
+
+Theorem 1.11 uses only the definitions. Theorem 1.12 uses the normal form and Theorem 1.11, including zero heads and an empty feasible set. Theorem 1.13 uses the normal form directly to obtain the two-product structure.

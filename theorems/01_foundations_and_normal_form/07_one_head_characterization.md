@@ -14,11 +14,11 @@ using the notion of a [linear threshold function (Definition 1.9)](../../definit
 
 $$ \Phi(x)=c+\frac{N(x)}{D(x)}, $$
 
-where $N,D$ are affine and $D(x)\gt0$ on every input. The affine score $\ell(x)=cD(x)+N(x)$ has the same classification as $\Phi$, since
+where $N,D$ are affine and $D(x)\gt0$ on every input. The affine score $\ell(x)=cD(x)+N(x)$ satisfies
 
-$$ \Phi(x)\gt0\quad\Longleftrightarrow\quad\ell(x)\gt0. $$
+$$ \ell(x)=D(x)\Phi(x). $$
 
-Hence $f$ is a linear threshold function. It is nonconstant by [Theorem 1.6](06_zero_head_constants.md).
+The positive factor $D(x)$ preserves both strict signs, so $\ell$ classifies $f$. Hence $f$ is a linear threshold function. It is nonconstant by [Theorem 1.6](06_zero_head_constants.md).
 
 **Sufficiency.** Suppose $f$ is nonconstant and [classified](../../definitions/03_classification.md) by an affine score $\ell(x)=\beta_0+\beta^\top x$. Set
 

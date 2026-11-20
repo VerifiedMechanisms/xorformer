@@ -82,7 +82,7 @@ Each coefficient has a direct interpretation, with all attention weights underst
 
 At each input position, the Boolean bit selects one of two fixed embeddings. Its contribution to the numerator is therefore its bit-zero contribution plus $A_i^{(h)}x_i$, and its contribution to the denominator is its bit-zero attention weight plus $C_i^{(h)}x_i$. Summing over positions and including the query token gives exactly $(A^{(h)})^\top x+b^{(h)}$ and $(C^{(h)})^\top x+d^{(h)}$. Their ratio is the head's contribution to the classification score.
 
-Together, these quantities determine the score $\Phi(x)$; the classifier outputs one when $\Phi(x)\gt0$.
+Together, these quantities determine the score $\Phi(x)$. Under the [classification convention](../../definitions/03_classification.md), a score computing a Boolean function is positive on true inputs and negative on false inputs.
 
 ## From QK/OV circuits to **causal** contributions
 
