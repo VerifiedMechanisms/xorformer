@@ -438,3 +438,10 @@ $H\approx8$) is not reached on the cube by this optimizer, and $N/n^2=4$ is far 
   cover all subsets realizes every f; a symmetric chain decomposition gives $T(f)\leq\binom{n}{\lfloor n/2\rfloor}$ for
   every f (3, 6, 10, 20, 35, 70 for n = 3..8), attained by parity for n = 3, 4, 5. So the dominance sub-model has worst case
   $\Theta(N/\sqrt n)$ at most and at least $14$ at $n=6$ for parity, against $H^{\ast}(\mathrm{PARITY}_n)=n$ in the full model.
+
+## 28. Certified 9-bit search
+
+With slopes clipped to $[10^{-1},10]$, hinge objective, 500 iterations, 4 restarts: a random 9-bit function is certified with
+$H=24$ heads ($nH+1=217$, $2nH+1=433$, $N=512$); $H=22$ fails with hinge loss 5.3, $H\leq20$ fails clearly. The paper's
+universal bound at $n=9$ is $\lceil511/9\rceil=57$ and the fixed-list Cover threshold is about $28$. The certified counts
+$8, 11, 24$ at $n=7,8,9$ grow faster than $N/n$ because the optimizer degrades with size; they are upper bounds only.
