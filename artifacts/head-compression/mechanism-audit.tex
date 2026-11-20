@@ -859,4 +859,55 @@ Otherwise the at most $m$ distinct roots partition the interval into
 at most $m+1$ intervals of constant strict sign vector.
 \end{proof}
 
+\section{A denominator-direction rank obstruction}
+
+\begin{proposition}[Rank-sensitive sign count]
+In the normalized chart, suppose the $n\times H$ matrix of denominator
+slopes has rank at most $r$, where $1\le r\le n$ and $H\ge2$.
+Put $q=nr+rH$, $k=q+1+nH$, and $N=2^n$. If $k\le N$, the number
+$M_r(n,H)$ of strict sign vectors in this family satisfies
+\[
+ M_r(n,H)\le \left(\frac{65536N}{k}\right)^k(2H)^q.
+\]
+In particular, for fixed $C>0$, $H=\lfloor CN/n^2\rfloor$, and any
+sequence $1\le r=r_n\le n$,
+\[
+ \log_2 M_r(n,H)\le\left(C\frac r n+o(1)\right)N.
+\]
+The error tends to zero uniformly over $1\le r\le n$.
+Thus $r=o(n)$ gives only $2^{o(N)}$ functions. More generally, for any
+fixed $\epsilon>0$, the fraction of all Boolean functions having such
+representations with $r\le(1-\epsilon)n/C$ tends to zero exponentially
+in $N$.
+\end{proposition}
+\begin{proof}
+Factor the slope matrix as $UV$, where $U$ is $n\times r$ and $V$ is
+$r\times H$. Every matrix of rank at most $r$ admits such a real
+factorization; no positivity condition on these factors is imposed.
+Thus
+\[
+ B_h(x)=1+\sum_{i=1}^n\sum_{j=1}^r U_{ij}V_{jh}x_i.
+\]
+After clearing denominators, $P_x$ from the earlier counting proof has
+degree at most $2H$ in the $q$ entries of $U,V$ together, and degree
+at most one in the $1+nH$ numerator and bias parameters. The two-block
+lemma gives the displayed bound, again enlarging the domain to all
+real parameters after using positivity to preserve signs.
+
+Uniformly for $r\le n$, one has $k=O_C(N/n)+O(n^2)$ and hence
+$k\log_2(65536N/k)=o(N)$. Also
+\[
+ q\log_2(2H)
+ =(rH+nr)(n-2\log_2n+O_C(1))
+ =\left(C\frac r n+o(1)\right)N.
+\]
+The terms involving $nr$ are $O(n^3)=o(N)$, and the other error
+terms are $O_C(N\log n/n)=o(N)$. Subtracting $N$ from the logarithm
+of the count proves the assertion about the fraction of all functions.
+\end{proof}
+
+This is a constraint on a universal construction, not a claim that
+every individual Boolean function needs many denominator directions.
+It leaves the full-rank, target-dependent case open.
+
 \end{document}
