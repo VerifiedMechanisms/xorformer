@@ -284,3 +284,25 @@ consistent with this. Cancellation schemes are linear-like by dimension counting
 if one exists, must live in the non-perturbative regime where $\Theta(n)$ heads of comparable magnitude interact at a typical
 input; this regime has no combinatorial description and its real interpolation multiplicity (Sections 11, 15) is the open
 quantity.
+
+## 19. Selezneva's XOR-of-pseudoproducts result (bibliography; full texts not reachable from the sandbox)
+
+- S. N. Selezneva, Moscow Univ. Comput. Math. Cybern. 38(2):64-68 (2014): first bounds for the length $L^{ESPP}(n)$ of Boolean
+  functions as XOR sums of pseudoproducts (products of affine functions over $\mathbb F_2$, i.e. indicators of affine subspaces).
+- S. N. Selezneva, Moscow Univ. Comput. Math. Cybern. 40(3):123-127 (2016): $L^{ESPP}(n)\asymp2^n/n^2$; the abstract adds that
+  $L^{ESPP}(n)$ equals the least $l$ such that every Boolean function is a mod-2 sum of at most $l$ multiaffine functions.
+- S. N. Selezneva, Comput. Math. Math. Phys. 57(5):898-903 (2017): $O(k^n/n^2)$ over every finite field $\mathbb F_k$.
+- Lower bound (counting): the number of affine subspaces of $\mathbb F_2^n$ is $2^{n^2/4+n/2+O(1)}$, so $L\geq(4-o(1))2^n/n^2$.
+- Structural facts (derived, not quoted): the representation cost is invariant under affine substitutions (shearing is free);
+  counting forces the terms to be generic flats of dimension about $n/2$; the trivial block recursion $L(n)\leq2^{n-m}L(m)$ loses a
+  factor 4 per halving, so the construction must be global. The construction itself could not be read.
+- Over the reals, the counting lower bound $\Omega(2^n/n^2)$ for signed sums of affine-subspace indicators persists; whether
+  $O(2^n/n^2)$ is achievable with real coefficients is unknown, and in any case affine subspaces of $\mathbb F_2^n$ (parity
+  constraints) are not available to single heads of the attention model (parity on $n$ bits costs $n$ heads).
+
+## 20. Two-variable grid miniature (uninformative)
+
+On a $12\times12$ grid in $[0,1]^2$ with heads $(u\cdot x)/(1+b\cdot x)$, the hinge search fails even at $H=36$ (numerator dimension
+$73\approx P/2$), where Cover's count would predict success for a generic point set: the grid is far from general position
+(the features are smooth functions of two coordinates), so this miniature does not probe Warren tightness. Recorded for
+completeness; not used.
