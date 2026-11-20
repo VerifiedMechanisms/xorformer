@@ -248,7 +248,7 @@ reproduces every target exactly (checked).
 | 5 | 3,5,5,3,6,4,3,4,4,4 | 4.1 | 10 | 5 | 1.3 | 6.4 |
 | 6 | 5,6,7,6,6 | 6.0 | [14, 20] | [8, 11] | 1.8 | 10.7 |
 | 7 | 9, 10, 11, [9,10], [10,11], [11,12], [11,12], [11,13] (8 targets, 15-minute SAT caps) | about 10.6 | | | 2.6 | 18.3 |
-| 8 | [12,17], [12,19], [12,19] (UNSAT proved through 11; SAT found at 17 to 19 in 4 to 10 minutes; intermediate values timed out at 15 minutes), one target running | 15 to 18 | | | 4.0 | 32.0 |
+| 8 | [12,17], [12,19], [12,23], [12,19] (UNSAT proved through 11; SAT found at 17 to 23; H = 12 to 16, and 18, 21 with 40-minute caps, timed out) | 12 to 19.5 | | | 4.0 | 32.0 |
 
 Structure of the optimal solutions (correct decoding): most rules are used (22 to 28 nonempty fibers out of 30 to 42
 at n = 6), fibers are small (mean 2.2 to 2.9 points, maximum 9 to 12), and the used rules sit at mean position 2.5
@@ -421,3 +421,20 @@ With slopes clipped to $[10^{-1},10]$, 1500 iterations and 10 restarts, a random
 $H=11$ heads ($nH+1=89$ numerator dimensions, $2nH+1=177$ parameters, $N=256$); $H=10$ fails with hinge loss about 1.5.
 So the certified typical head count at $n=8$ is 11 to 12; the "all parameters count once" fingerprint ($2nH+1\approx N/2$,
 $H\approx8$) is not reached on the cube by this optimizer, and $N/n^2=4$ is far away.
+
+## 27. Final report of the exact tropical solver (subagent, 20 Nov 2026, 21:30)
+
+- Verification: n = 3 all 128 targets agree with brute force (384/384 decisions); n = 4 all 33 targets agree with an
+  independent greedy brute force; n = 5 reproduced without symmetry breaking.
+- Random targets, ratios $T/(N/n^2)$: 2.97, 3.28, 3.38, 3.9 to 4.2, 3.0 to 4.9 for n = 4..8; ratios $T/(N/n)$: 0.74, 0.66,
+  0.56, 0.56 to 0.60, 0.38 to 0.62. Within this range the growth of T lies between the $N/n^2$ and $N/n$ scalings (from
+  n = 5 to 7 the mean grew by a factor 2.5 against 2.0 and 2.9); the n = 8 brackets are too loose to decide. Neither
+  reading is supported by enough data; the sub-model's typical complexity at these sizes is 3 to 4 times $N/n^2$ and 0.4 to
+  0.7 times $N/n$.
+- Special targets: $T(\mathrm{PARITY}_n)=3,6,10$ for n = 3,4,5 and $[14,20]$ for n = 6; $T(\mathrm{MAJ}_n)=4,5$ for
+  n = 4,5 and $[8,11]$ for n = 6.
+- Universal tropical bound (subagent's observation, verified by simulation for n = 3..8): giving round k to the
+  dimension-(k-1) rule of every head leaves at most one uncovered point per rule, so any family of orders whose suffix sets
+  cover all subsets realizes every f; a symmetric chain decomposition gives $T(f)\leq\binom{n}{\lfloor n/2\rfloor}$ for
+  every f (3, 6, 10, 20, 35, 70 for n = 3..8), attained by parity for n = 3, 4, 5. So the dominance sub-model has worst case
+  $\Theta(N/\sqrt n)$ at most and at least $14$ at $n=6$ for parity, against $H^{\ast}(\mathrm{PARITY}_n)=n$ in the full model.
