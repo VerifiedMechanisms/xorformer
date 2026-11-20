@@ -366,6 +366,78 @@ def min_heads(n, f, Hmax, timeout=600, H0=1, solver_name='cadical153', log=None,
             'model': per_H[hi].get('model') if hi is not None else None}
 
 
+def bracket_heads(n, f, lb, ub, timeout=900, solver_name='cadical153', log=None, max_timeouts=2, **opts):
+    """Bisection between lb (largest H proved UNSAT) and ub (an H known to be SAT, e.g. from the
+    universal construction).  A timed-out probe is left unresolved and the next probe moves toward the
+    SAT side (larger H), where satisfiable instances are easier; at most max_timeouts timeouts."""
+    per_H = {}
+    probe_lb, timeouts = lb, 0
+    while ub - probe_lb > 1 and timeouts < max_timeouts:
+        mid = (probe_lb + ub) // 2
+        res = representable(n, f, mid, timeout=timeout, solver_name=solver_name, **opts)
+        per_H[mid] = res
+        if log:
+            log(f'    H={mid}: {res["status"]} [{res["time"]:.1f}s]')
+        if res['status'] == 'SAT':
+            ub = mid
+        elif res['status'] == 'UNSAT':
+            lb = probe_lb = mid
+        else:
+            timeouts += 1
+            probe_lb = mid
+    sat_H = [H for H, r in per_H.items() if r['status'] == 'SAT']
+    return {'per_H': {H: {'status': r['status'], 'time': round(r['time'], 2)} for H, r in sorted(per_H.items())},
+            'lo': lb + 1, 'hi': ub, 'proved': (lb + 1 == ub),
+            'model': per_H[min(sat_H)].get('model') if sat_H else None}
+
+
+# ----------------------------------------------------------------------------- universal construction
+def symmetric_chain_perms(n):
+    """C(n, n//2) permutations whose suffix sets {pi(k),...,pi(n-1)} cover every subset of [n].
+    Greene-Kleitman symmetric chain decomposition: read a subset as a bracket string (1 = open, 0 =
+    close) and match brackets; the chain through it flips the unmatched positions from right to left.
+    Each chain is extended to a maximal chain and the insertion order gives the permutation (the first
+    element inserted is the last position of pi)."""
+    import math
+    perms = []
+    for bottom in range(1 << n):           # chain bottoms: every 1 is matched
+        stack, unmatched = [], []
+        for i in range(n):
+            if (bottom >> i) & 1:
+                stack.append(i)
+            elif stack:
+                stack.pop()
+            else:
+                unmatched.append(i)
+        if stack:
+            continue
+        order = [i for i in range(n) if (bottom >> i) & 1] + list(reversed(unmatched))
+        order += [i for i in range(n) if i not in order]
+        perms.append(tuple(reversed(order)))
+    assert len(perms) == math.comb(n, n // 2)
+    return perms
+
+
+def universal_model(n, f):
+    """Explicit representation of ANY f with H = C(n, n//2) heads: round k (k = 1..n) places the
+    dimension-(k-1) rule of every head; at that time its only possibly uncovered point is its suffix
+    k-set, so the rule is monochromatic whatever f is.  Rules of earlier rounds get higher priority."""
+    perms = symmetric_chain_perms(n)
+    H = len(perms)
+    rank, signs = {}, {}
+    for h, pi in enumerate(perms):
+        for k in range(n):
+            rank[h, k] = (n - 1 - k) * H + h
+            signs[h, k] = f[sum(1 << i for i in pi[k:])]
+    return perms, rank, signs
+
+
+def verify_universal(n, f):
+    perms, rank, signs = universal_model(n, f)
+    out = evaluate(n, perms, rank, signs)
+    return all(out[x] == f[x] for x in nonzero_points(n)), len(perms)
+
+
 # ----------------------------------------------------------------------------- brute force
 def rule_masks(n, pi, pts):
     """bitmask over point indices of each rule R(h,k) of permutation pi."""
@@ -500,8 +572,17 @@ def run(args):
     for name, f in targets:
         print(f'n={n} target={name} f={fkey(n, f)}', flush=True)
         t0 = time.time()
-        res = min_heads(n, f, args.Hmax, timeout=args.timeout, H0=args.H0, solver_name=args.solver,
-                        log=lambda s: print(s, flush=True), **opts)
+        if args.ub:
+            ub = args.ub
+            if ub < 0:                      # use the universal construction as the upper bound
+                ok, ub = verify_universal(n, f)
+                assert ok, 'universal construction failed to realize f (bug)'
+                print(f'    universal construction verified: T <= C({n},{n // 2}) = {ub}', flush=True)
+            res = bracket_heads(n, f, args.lb, ub, timeout=args.timeout, solver_name=args.solver,
+                                log=lambda s: print(s, flush=True), **opts)
+        else:
+            res = min_heads(n, f, args.Hmax, timeout=args.timeout, H0=args.H0, solver_name=args.solver,
+                            log=lambda s: print(s, flush=True), **opts)
         dt = time.time() - t0
         T = res['hi']
         status = ('T = %d (proved)' % T) if res['proved'] else (
@@ -526,9 +607,22 @@ def bf(args):
               f'[{time.time()-t0:.0f}s]', flush=True)
 
 
+def chains(args):
+    """Verify the universal construction T(f) <= C(n, n//2) by simulation on the given targets."""
+    import math
+    for n in range(3, args.n + 1):
+        targets = make_targets(n, args.nrand, args.seed, args.targets.split(','))
+        res = [(name, verify_universal(n, f)) for name, f in targets]
+        bad = [name for name, (ok, H) in res if not ok]
+        print(f'n={n}: universal construction with H = C({n},{n // 2}) = {math.comb(n, n // 2)} heads realizes '
+              f'{len(res) - len(bad)}/{len(res)} targets ({args.targets}); failures: {bad}', flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('mode', choices=['selftest', 'run', 'bf'])
+    ap.add_argument('mode', choices=['selftest', 'run', 'bf', 'chains'])
+    ap.add_argument('--lb', type=int, default=0, help='largest H already proved UNSAT (bracket mode)')
+    ap.add_argument('--ub', type=int, default=0, help='an H known SAT (bracket mode); -1 = universal construction')
     ap.add_argument('--n', type=int, default=4)
     ap.add_argument('--nrand', type=int, default=30)
     ap.add_argument('--seed', type=int, default=0)
@@ -549,6 +643,8 @@ def main():
                  lex=not args.no_lex, amo_win=args.amo_win, alo_rule=not args.no_alo)
     elif args.mode == 'run':
         run(args)
+    elif args.mode == 'chains':
+        chains(args)
     else:
         bf(args)
 
