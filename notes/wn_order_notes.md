@@ -400,3 +400,13 @@ a proof: the sampler can miss solutions, and the regime $H\asymp N/n^2$ is out o
   activations). The argument lets pairs of nearby points force approximate zeros at $n+1$ generic locations, impossible for an
   $n$-parameter analytic family; it concerns open sets of Euclidean samples, not a fixed combinatorial set, and bichromatic cube
   edges only force zeros somewhere on segments, which is not a codimension condition. So neither result transfers to $W(n)$.
+
+## 25. Weight-two miniature at 64 vertices and the "all parameters count once" pattern
+
+At n = 64 (2016 pairs) the hinge search finds a random graph with H = 8 heads (2nH = 1024, nH+1 = 513 numerator
+dimensions) and fails for H <= 6. Cover's threshold for the numerators alone is H ~ 16; Warren's rate would allow H ~ 3.
+Together with n = 32 (found 4, Cover 8) the certified successes sit where the TOTAL parameter count 2nH+1 is about half the
+number of points, i.e. exactly as if every parameter (numerator or denominator) contributed one linear dimension: a
+"linear-like with 2nH effective dimensions" picture. On the cube at n = 8 the same picture would predict about 8 heads;
+the search finds 12 to 14, so there the optimizer is weaker. None of this is evidence about the asymptotics, but it is the
+cleanest empirical fingerprint we have: denominators behave like extra linear parameters, not like n-bit encoders.
