@@ -682,4 +682,115 @@ open interval. Its number of zeros is at most $H$, proving the bound.
 The case $H=0$ is a constant score and is immediate.
 \end{proof}
 
+\section{Using separate numerator and denominator degrees}
+
+The following consequence uses Theorems 12 and 13 of Basu and Rizzie,
+\emph{Multi-degree bounds on the Betti numbers of real varieties and
+semi-algebraic sets and applications}, Discrete Comput. Geom. 59
+(2018), 553--620; the audited version is
+\url{https://arxiv.org/pdf/1507.03958v7}, page 11.
+It strengthens a lower bound and does not establish the upper-bound target.
+
+\begin{lemma}[Two-block sign count]
+Let $P_1,\ldots,P_s$ be real polynomials in two blocks of $k_1,k_2$
+variables, with block degrees at most $d_1,d_2$, where $k_i\ge1$,
+$d_i\ge2$, and $k=k_1+k_2\le s$. The number of realized strict sign
+vectors is at most
+\[
+ \left(\frac{32768s}{k}\right)^k d_1^{k_1}d_2^{k_2}.
+\]
+\end{lemma}
+\begin{proof}
+The cited theorems bound the number by
+$\sum_{j=1}^k\binom sj4^jG_{\min}(d,k,j)$.
+Their explicit formula gives, with two blocks,
+\[
+ G_{\min}(d,k,j)\le \tfrac12G_{\rm gen}(2d,k,1)
+ \le 1+4(k+1)^2 54^k d_1^{k_1}d_2^{k_2}
+ \le 1728^k d_1^{k_1}d_2^{k_2}.
+\]
+Here the reciprocal multinomial coefficient in $G_{\rm gen}$ is at
+most one, and $4(k+1)^2\le16^k$ for $k\ge2$.
+For $t=k/s\le1$,
+\[
+ \sum_{j=0}^k\binom sj\le t^{-k}(1+t)^s\le(es/k)^k.
+\]
+Now $4e\cdot1728<32768$. Each nonempty strict sign realization has
+at least one connected component, so the bound on the sum of zeroth
+Betti numbers bounds the number of sign vectors. No genericity of
+coefficients is required.
+\end{proof}
+
+\begin{proposition}[Sharper asymptotic counting lower bound]
+For the manuscript's exact model,
+\[
+ \liminf_{n\to\infty}\frac{n^2W(n)}{2^n}\ge1.
+\]
+More precisely, for $H\ge2$, $N=2^n$, and $k=1+2nH\le N$, the number
+$M(n,H)$ of Boolean functions representable with at most $H$ heads obeys
+\[
+ M(n,H)\le \left(\frac{65536N}{k}\right)^k H^{nH}.
+\]
+\end{proposition}
+\begin{proof}
+Use the normalized chart from the first lemma, and put
+$B_h(x)=1+b_h\cdot x$. Multiplication by the positive product of all
+$B_h(x)$ preserves every sign on the cube. The resulting polynomial is
+\[
+ P_x=c\prod_{h=1}^H B_h(x)+
+       \sum_{h=1}^H(u_h\cdot x)\prod_{\ell\ne h}B_\ell(x).
+\]
+Its degree in the $nH$ denominator parameters is at most $H$, and its
+degree in the $1+nH$ numerator and bias parameters is at most one.
+Apply the two-block lemma with $(d_1,d_2)=(H,2)$, and absorb
+$2^{1+nH}\le2^k$ into the constant. Enlarging the parameter domain
+from admissible denominators to all real parameters can only increase
+the count. A representation with fewer heads can be padded by heads
+with zero numerator and denominator one.
+
+For fixed $0<\alpha<1$, take $H=\lfloor\alpha N/n^2\rfloor$.
+For all sufficiently large $n$ the preceding hypotheses hold, and
+\[
+ \log_2 M(n,H)
+ \le nH\log_2 H+k\log_2(N/k)+16k
+ \le (\alpha+o(1))N<N.
+\]
+Indeed $nH\log_2H=(\alpha+o(1))N$, whereas
+$k\log_2(N/k)=O(N\log n/n)=o(N)$ and $k=o(N)$.
+Hence some Boolean function requires more than $H$ heads. Since this
+holds for every fixed $\alpha<1$, the asserted lower limit follows.
+\end{proof}
+
+\begin{proposition}[Common denominators' statistic, with arbitrary numerators]
+For every fixed $C>0$, representations using at most $C2^n/n^2$ heads
+and denominators of the form
+$B_h(x)=\gamma_h+\delta_hL(x)$ for a single target-dependent affine
+form $L$ realize only $2^{o(2^n)}$ Boolean functions as $n\to\infty$.
+This remains true with unrestricted affine numerators.
+Consequently this mechanism cannot prove the requested universal bound.
+\end{proposition}
+\begin{proof}
+Absorb the constant of $L$ into each $\gamma_h$, so $L(x)=a\cdot x$.
+After clearing the positive denominators, every score has the sign of
+\[
+ P_0(a\cdot x)+\sum_{i=1}^n x_iP_i(a\cdot x),
+ \qquad \deg P_i\le H.
+\]
+Allowing the coefficients of all $P_i$ to vary independently enlarges
+the family. Its two parameter blocks have sizes $n$ and
+$d=(n+1)(H+1)$, with respective degrees at most $H$ and one.
+For $H\ge2$ and $k=n+d\le N$, the two-block lemma bounds its number
+of sign vectors by
+\[
+ \left(\frac{65536N}{k}\right)^k H^n.
+\]
+If $H=\lfloor CN/n^2\rfloor$, then $k=(C+o(1))N/n$ and
+\[
+ k\log_2(65536N/k)+n\log_2H
+ =O_C(N\log n/n)+O(n^2)=o(N).
+\]
+Padding with constant denominators covers smaller head counts.
+The estimate is uniform in every target-dependent choice of $L$.
+\end{proof}
+
 \end{document}
