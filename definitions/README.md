@@ -19,5 +19,7 @@ Read these definitions in order. Each file is the authoritative location for its
 | 1.13 | [Threshold degree](13_threshold_degree.md) | The minimum total degree of a polynomial strict sign representation. |
 | 1.14 | [Real affine forms](14_real_affine_forms.md) | A constant plus a linear combination of the input coordinates. |
 | 1.15 | [Positive weighted statistics](15_positive_weighted_statistics.md) | Positive weighted sums of bits and their sets of attained values. |
+| 1.16 | [Symmetric functions](16_symmetric_functions.md) | Boolean functions whose labels depend only on Hamming weight. |
+| 1.17 | [Sign-change count](17_sign_change_count.md) | The number of label changes between adjacent weights. |
 
 Continue with [Chapter 1: Foundations and normal form](../theorems/01_foundations_and_normal_form/README.md).

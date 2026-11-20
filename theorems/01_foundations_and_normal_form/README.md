@@ -44,3 +44,12 @@ Theorem 1.11 uses only the definitions. Theorem 1.12 uses the normal form and Th
 | 1.15 | [Universal head bound](15_universal_head_bound.md) | Prove finite head complexity for every Boolean function using binary weights. |
 
 Theorem 1.14 proves the reciprocal interpolation basis inside its proof and uses the normal form to realize the resulting score. Theorem 1.15 applies it to an injective statistic.
+
+## Symmetric complexity
+
+| Number | Theorem | Content |
+|---|---|---|
+| 1.16 | [Symmetric threshold degree](16_symmetric_threshold_degree.md) | Identify threshold degree with sign-change count and construct a polynomial in Hamming weight attaining it. |
+| 1.17 | [Exact symmetric head complexity](17_exact_symmetric_head_complexity.md) | Identify head complexity with sign-change count, including constant functions. |
+
+Theorem 1.16 proves the polynomial construction and symmetrization argument using only the definitions. Theorem 1.17 combines its witness and the threshold-degree head bound with a partial-fraction construction, realized through the normal form. The zero-head characterization handles constants.
