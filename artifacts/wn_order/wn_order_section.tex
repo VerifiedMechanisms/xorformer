@@ -155,7 +155,13 @@ structural facts about parity in the sub-model, swap exclusion (no fiber
 contains two points at swap distance) and edge explanation (every edge is
 explained by the forced coordinates of the finalizing rules of its
 endpoints), are machine-checked in core Lean~4 in
-\texttt{formalization/HeadComplexity/Tropical/SwapExclusion.lean}.
+\texttt{formalization/HeadComplexity/Tropical/SwapExclusion.lean}. They
+imply an exponential separation: fibers are swap-free independent sets,
+so a shadow argument gives $|F|\le2^{d+1}/(d+1)$ for a fiber inside a
+subcube of dimension $d$, an edge count gives $\sum_xd(x)\le n2^{n-1}$
+for the finalizer dimensions, and each head has one rule per dimension;
+together these force at least $(1-o(1))2^{n/2}/16$ heads for parity in
+the sub-model (proof in the theorem file), against $n$ in the model.
 
 \subsection{Rate caps of local mechanisms}
 \begin{proposition}[Local cells cannot reach $N/n^2$]

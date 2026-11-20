@@ -42,6 +42,12 @@ $$ u_h\cdot x=c_{h,k}K^{e_{h,t}}(1+\epsilon_h),\qquad 1+b_h\cdot x=K^{m_{h,t}}(1
 
 and the ratio is $c_{h,k}K^{w_{h,k}}(1+\delta_h)$ with $|\delta_h|\leq1/(nH)$. The maximizing head has weight at least one larger than every other head, so its term exceeds the sum of the absolute values of all the others, which is at most $(H-1)K^{w^{\ast}-1}(1+1/(nH))\lt K^{w^{\ast}}/2$. Thus the sign of $\sigma+\sum_hu_h\cdot x/(1+b_h\cdot x)$ is $T(x)$ for every $x\neq0$ once $|\sigma|$ is smaller than $K^{\min w}/2$; take $\sigma=\pm K^{\min w}/4$ with the sign $2f(0)-1$. All slopes are positive, so the normal form theorem realizes the score with $H$ heads. $\blacksquare$
 
+### Theorem 4. Parity needs exponentially many heads in the tropical sub-model
+
+**Claim.** The least number $T(\mathrm{PARITY}_n)$ of heads in a tropical representation of parity satisfies $T(\mathrm{PARITY}_n)\geq\frac{n}{16\cdot2^{n/2}}\big(\frac{2^n}{n+1}-3\big)=(1-o(1))2^{n/2}/16$, whereas $H^{\ast}(\mathrm{PARITY}_n)=n$.
+
+**Proof.** List the rules with nonempty fibers in priority order; let $\Sigma_k$, $d_k$, $F_k$ be the subcube, its dimension and the fiber of the $k$-th rule. (a) $F_k$ is parity-monochromatic, hence independent, and by the swap-exclusion lemma (`Tropical.Model.swap_exclusion`) it has no two points at swap distance; so points of equal relative weight $w$ have distance at least $4$ and their $(w-1)$-shadows are disjoint, giving at most $\binom{d_k}{w-1}/w$ points of weight $w\geq1$ and $|F_k|\leq1+\sum_{j\lt d_k}\binom{d_k}{j}/(j+1)\leq2^{d_k+1}/(d_k+1)$. (b) Each $x\in F_k$ has $d_k$ neighbours inside $\Sigma_k$, at which the $k$-th rule is available but is not the top rule, so they are finalized earlier; counting each edge once from its later endpoint, $\sum_kd_k|F_k|\leq n2^{n-1}$. (c) Each head has one rule per dimension, so at most $H$ rules have a given dimension. With $P_d$ the fiber mass at dimension $d$ and $D=\lfloor n/2\rfloor$: $\sum_{d\leq D}P_d\leq H(2^{D+3}/(D+1)+2)$ by (a), (c); $\sum_{d\gt D}P_d\leq nN/(n+1)$ by (b); and $\sum_dP_d=N-1$. Combining gives the bound. $\blacksquare$
+
 ### Remarks
 
 1. The paper's spanning lists use $N/n$ distinct directions, so Theorem 2 does not affect them; it rules out the sub-approach "fix one direction, vary scales and numerators".

@@ -453,3 +453,41 @@ values are being tried. Certified typical counts so far: $8$ ($n=7$), $11$ to $1
 The ratios $Hn/N$ are $0.44, 0.36, 0.40, 0.39$ and $Hn^2/N$ are $3.1, 2.9, 3.6, 3.9$: the certified counts of this
 optimizer track $0.4\,N/n$ more closely than a multiple of $N/n^2$, but they are heuristic upper bounds whose own
 inefficiency may grow with $n$, so they do not constrain the asymptotics of $W(n)$.
+
+## 30. Theorem: parity needs exponentially many heads in the tropical sub-model
+
+**Theorem.** Let $T(\mathrm{PARITY}_n)$ be the least number of heads of a tropical representation of parity (Section 9). Then
+
+$$ T(\mathrm{PARITY}_n)\geq\frac{n}{16\cdot2^{n/2}}\Big(\frac{2^n}{n+1}-3\Big)=(1-o(1))\frac{2^{n/2}}{16}. $$
+
+Since $H^{\ast}(\mathrm{PARITY}_n)=n$, the dominance sub-model is exponentially weaker than the full model.
+
+**Proof.** Fix a tropical representation of parity with $H$ heads, and list the rules with nonempty fibers in priority order
+$\rho_1\succ\rho_2\succ\cdots$; write $\Sigma_k$ for the subcube of $\rho_k$, $d_k$ for its dimension (number of free coordinates)
+and $F_k$ for its fiber. Three facts.
+
+(a) Fiber bound: $|F_k|\leq 2^{d_k+1}/(d_k+1)$. Indeed $F_k\subseteq\Sigma_k\cong Q_{d_k}$ is parity-monochromatic, hence an
+independent set, and by Lemma A (swap exclusion) it contains no two points at swap distance. Two points of $F_k$ with the same
+relative weight $w$ (number of ones among the free coordinates) therefore have distance at least $4$ inside $\Sigma_k$, so
+their $(w-1)$-shadows (the $w$ subsets obtained by deleting one of their free ones) are pairwise disjoint; hence at most
+$\binom{d_k}{w-1}/w$ points of relative weight $w\geq1$, and at most one point of relative weight $0$. Summing,
+$|F_k|\leq1+\sum_{j=0}^{d_k-1}\binom{d_k}{j}/(j+1)=1+(2^{d_k+1}-2)/(d_k+1)\leq2^{d_k+1}/(d_k+1)$.
+
+(b) Edge bound: every $x\in F_k$ has $d_k$ neighbours inside $\Sigma_k$ (one per free coordinate), none of them in $F_k$;
+$\rho_k$ is available at each such neighbour $y$ and is not $\operatorname{top}(y)$, so $\operatorname{top}(y)\succ\rho_k$: all
+$d_k$ in-subcube neighbours are finalized earlier. Counting each cube edge at most once from its later endpoint,
+$\sum_k d_k|F_k|\leq n2^{n-1}$.
+
+(c) Each head has exactly one rule of each dimension $0,\dots,n-1$, so at most $H$ rules have dimension $d$.
+
+Let $P_d=\sum_{k:d_k=d}|F_k|\leq H\cdot2^{d+1}/(d+1)$ and $D=\lfloor n/2\rfloor$. Then
+$A:=\sum_{d\leq D}P_d\leq H\sum_{d\leq D}2^{d+1}/(d+1)\leq H(2^{D+3}/(D+1)+2)$, because consecutive terms of the sum grow by
+a factor at least $4/3$ for $d\geq1$. Every rule of dimension $d\gt D$ has $d\geq(n+1)/2$, so (b) gives
+$\tfrac{n+1}2\sum_{d\gt D}P_d\leq n2^{n-1}$, i.e. $\sum_{d\gt D}P_d\leq nN/(n+1)$. Since $\sum_dP_d=N-1$,
+$A\geq N/(n+1)-1$, and therefore $H\geq(N/(n+1)-3)(D+1)/2^{D+3}\geq(N/(n+1)-3)\,n/(16\cdot2^{n/2})$. $\blacksquare$
+
+Remarks. (i) Optimizing the same three constraints as a linear program (mass at dimension $n/2+j$ costs $j$ units of the
+edge budget, which is at most $4H2^{n/2}$, while capacities are $2H2^{d}/(d+1)$) improves the bound to $\Omega(n2^{n/2})$; the
+exact SAT values ($6,10,[14,20]$ for $n=4,5,6$) and the symmetric-chain upper bound $\binom{n}{\lfloor n/2\rfloor}$ suggest the
+truth is of order $N/\sqrt n$ or $N/n$. (ii) Facts (a) and (b) rely only on Lemmas A and B, both machine-checked in
+`formalization/HeadComplexity/Tropical/SwapExclusion.lean`; the counting is elementary.
