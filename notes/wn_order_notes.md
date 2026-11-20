@@ -214,3 +214,24 @@ lower bound is $\Omega(N/(n\log n))$ heads, and with constant precision $\Omega(
 integer coefficients of size $O(n)$ (precision $O(\log n)$), consistent with their $N/n$ head counts; the cancelling-pair
 construction uses an integer scale $s\leq N(H-1)+1$, i.e. $O(n)$ bits, which is why a parameter count rather than a precision
 count limits it.
+
+## 15. Why the univariate collapse does not extend: Chow degrees (heuristic, labelled as such)
+
+The cleared score $P_\theta=\sigma\prod_hB_h+\sum_hA_h\prod_{g\neq h}B_g$ is a first-order perturbation of the product
+$Q_\theta=\prod_hB_h$. The products of $H$ affine forms in $n$ variables form the Chow variety of completely reducible forms,
+of dimension $nH$ and degree
+
+$$ \deg\operatorname{Chow}_H(\mathbb P^n)=\frac{(nH)!}{H!\,(n!)^H}, $$
+
+the degree of the multiplication map $(\mathbb P^n)^H\to\mathbb P(\operatorname{Sym}^H)$ divided by $H!$ (check: reducible conics
+in $\mathbb P^2$ have degree $3$, triangles have degree $15$). For $n=1$ every binary form splits, so the Chow variety is the
+whole space and has degree $1$: this is exactly why univariate (and common-direction) sums of simple fractions interpolate
+uniquely and have a linear-like sign-pattern count. For $n\geq2$, Stirling gives
+
+$$ \log_2\deg\operatorname{Chow}_H(\mathbb P^n)\approx(n-1)H\log_2H, $$
+
+which for $H\asymp N/n^2$ is $\Theta(n^2H)=\Theta(N)$: the complex multiplicity of "a product (or its polarization) vanishing at
+$\Theta(nH)$ prescribed points" is Warren-like. So there is no algebraic collapse once the directions spread; the open quantity is
+the number of real solutions in the admissible orthant for cube points. This explains the experimental observation that the
+optimizer finds genuinely nonlinear representations below the fixed-list threshold only when the directions are spread and the
+dynamic ranges are large, and it leaves both conjectures standing.
