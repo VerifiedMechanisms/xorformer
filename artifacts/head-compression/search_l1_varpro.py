@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Variable projection with exact LP inner optimization of hinge loss.
+"""Variable projection with LP inner optimization of hinge loss.
 
 This changes the search objective, not the attention model. Any accepted
 table is independently checked with integer arithmetic. Use heavy.

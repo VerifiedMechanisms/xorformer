@@ -33,29 +33,31 @@ def exact_midpoint(value):
     return Fraction(int(mantissa))*Fraction(2)**exponent
 
 
-def run(checkpoint, out, bits):
+def build_basis(logs, orientation, bits=512, progress=False):
     started = time.monotonic()
     ctx.prec = bits
-    saved = np.load(checkpoint)
-    labels = saved["labels"].astype(int)
-    orientation = saved["orientation"].astype(int)
-    n, h = len(labels).bit_length()-1, len(orientation)
-    assert len(labels) == 1 << n
-    b_float = np.exp(saved["logs"].reshape(h, n))
+    h = len(orientation)
+    n = np.asarray(logs).size//h
+    b_float = np.exp(np.asarray(logs).reshape(h, n))
     b = [[rational_ball(v) for v in row] for row in b_float]
     dimension = 1+n*h
     rows = []
-    for x in range(len(labels)):
+    denominators = []
+    for x in range(1 << n):
         row = [arb(1)]
+        denominator_row = []
         for j in range(h):
             active = [bool(x >> i & 1) == (orientation[j] > 0) for i in range(n)]
             denominator = arb(1)+sum((b[j][i] for i in range(n) if active[i]), arb(0))
+            denominator_row.append(denominator)
             row.extend(arb(int(flag))/denominator for flag in active)
         rows.append(row)
+        denominators.append(denominator_row)
     features = arb_mat(rows)
     del rows
-    print(json.dumps({"stage": "features", "seconds": time.monotonic()-started,
-                      "n": n, "heads": h, "bits": bits}), flush=True)
+    if progress:
+        print(json.dumps({"stage": "features", "seconds": time.monotonic()-started,
+                          "n": n, "heads": h, "bits": bits}), flush=True)
     gram = features.transpose()*features
     lower = [[arb(0) for _ in range(dimension)] for _ in range(dimension)]
     for i in range(dimension):
@@ -67,13 +69,26 @@ def run(checkpoint, out, bits):
                 lower[i][j] = value.sqrt()
             else:
                 lower[i][j] = value/lower[j][j]
-        if i % 25 == 0:
+        if progress and i % 25 == 0:
             print(json.dumps({"stage": "cholesky", "row": i,
                               "seconds": time.monotonic()-started}), flush=True)
     inverse = arb_mat(lower).transpose().inv()
     orthogonal = features*inverse
     q = np.array([[float(orthogonal[i,j].mid()) for j in range(dimension)]
-                  for i in range(len(labels))])
+                  for i in range(1 << n)])
+    return features, inverse, q, b, b_float, denominators
+
+
+def run(checkpoint, out, bits):
+    started = time.monotonic()
+    saved = np.load(checkpoint)
+    labels = saved["labels"].astype(int)
+    orientation = saved["orientation"].astype(int)
+    n, h = len(labels).bit_length()-1, len(orientation)
+    assert len(labels) == 1 << n
+    features, inverse, q, b, b_float, denominators = build_basis(
+        saved["logs"], orientation, bits, progress=True)
+    dimension = 1+n*h
     # QR here only improves the double-precision conditioning of the LP.
     # Retain the transformation to recover coefficients in the Arb basis.
     qq, rr = la.qr(q, mode="economic", check_finite=False)
