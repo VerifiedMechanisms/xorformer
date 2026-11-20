@@ -246,7 +246,7 @@ reproduces every target exactly (checked).
 |---|---|---|---|---|---|---|
 | 4 | 30 targets, values 1 to 4 | 2.9 | 6 | 4 | 1.0 | 4.0 |
 | 5 | 3,5,5,3,6,4,3,4,4,4 | 4.1 | 10 | 5 | 1.3 | 6.4 |
-| 6 | 5,6,7,6,6 | 6.0 | greater than 13 | greater than 7 | 1.8 | 10.7 |
+| 6 | 5,6,7,6,6 | 6.0 | [14, 20] | [8, 11] | 1.8 | 10.7 |
 | 7 | 9, 10, 11, [9,10], [10,11], [11,12], [11,12], [11,13] (8 targets, 15-minute SAT caps) | about 10.6 | | | 2.6 | 18.3 |
 | 8 | [12,17] (first target; SAT at 17 took 610 s, 12 to 16 timed out), others running | | | | 4.0 | 32.0 |
 
