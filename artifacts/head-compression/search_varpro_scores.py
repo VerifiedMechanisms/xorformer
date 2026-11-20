@@ -96,6 +96,7 @@ class Problem:
         self.inner_method = inner_method
         self.score_penalty = score_penalty
         self.resume = resume
+        self.initial_logs = None
 
     def objective(self, logs):
         if time.monotonic() >= self.deadline:
@@ -156,6 +157,9 @@ class Problem:
         try:
             while time.monotonic() < self.deadline:
                 logs = self.rng.normal(0, 2, self.n*self.h)
+                if not restarts and self.initial_logs is not None:
+                    assert self.initial_logs.size == self.n*self.h
+                    logs = self.initial_logs.copy().ravel()
                 checkpoint = self.out / f"checkpoint-{self.label_kind}-n{self.n}-h{self.h}-seed{self.seed}.npz"
                 if not restarts and self.resume and checkpoint.exists():
                     saved = np.load(checkpoint)
