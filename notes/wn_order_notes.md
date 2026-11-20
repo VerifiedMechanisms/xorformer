@@ -384,3 +384,18 @@ a proof: the sampler can miss solutions, and the regime $H\asymp N/n^2$ is out o
   real number and this independence fails, which is why Warren's bound is the only general tool. Super-linear capacity for
   one-hidden-layer networks on BOOLEAN inputs is not known for any unit type we found; the Boolean cube is a highly structured
   point set, so neither the generic-position linear bound nor the special-set $W\log W$ constructions apply directly.
+
+## 24. Kowalczyk and Sontag (details obtained; primary texts not reachable)
+
+- Kowalczyk (Neural Networks 10, 1997): for a one-hidden-layer threshold network with $h_1$ units on a randomly selected
+  $N$-tuple of points in general position, memorizing 100% of all dichotomies with probability one forces $N\leq nh_1+1$, and 50%
+  forces $N\leq2(nh_1+1)$; the number of implementable dichotomies is locally constant on general-position tuples but may differ
+  between tuples (no exact counting function; Mitchison, Durbin 1989 made the same point). The mechanism is Cover-type cell
+  counting in the first-layer parameter space, which is specific to threshold units (a unit affects the rest of the network only
+  through its Boolean pattern). It needs general position and says nothing about the Boolean cube, where the per-function
+  conclusion is false (parity uses $n$ heads).
+- Sontag (Neural Computation 9, 1997): for concept classes defined by certain classes of analytic functions with $n$ parameters
+  there are nonempty open sets of samples of length $2n+2$ that cannot be shattered (weaker form for piecewise-analytic
+  activations). The argument lets pairs of nearby points force approximate zeros at $n+1$ generic locations, impossible for an
+  $n$-parameter analytic family; it concerns open sets of Euclidean samples, not a fixed combinatorial set, and bichromatic cube
+  edges only force zeros somewhere on segments, which is not a codimension condition. So neither result transfers to $W(n)$.
