@@ -21,9 +21,9 @@ from flint import arb, arb_mat, ctx, fmpq
 from refit_high_precision import exact_midpoint, rational_ball
 
 
-def trial(b, sigma, labels, bits):
+def grid_basis(b, sigma, m, bits):
     ctx.prec = bits
-    m, k = labels.shape
+    k = sigma.shape[1]
     h = len(b)
     bb = [arb(fmpq(v.numerator, v.denominator)) for v in b]
     f = arb_mat([[4*bb[t]*int(sigma[t,j])/(p+bb[t])**2
@@ -44,6 +44,13 @@ def trial(b, sigma, labels, bits):
     q = np.array([[float(orthogonal[i,j].mid()) for j in range(h)]
                   for i in range(m*k)])
     qq, rr = la.qr(q, mode="economic", check_finite=False)
+    return f, inverse, qq, rr, bb
+
+
+def trial(b, sigma, labels, bits):
+    m, k = labels.shape
+    h = len(b)
+    f, inverse, qq, rr, bb = grid_basis(b,sigma,m,bits)
     yy = labels.ravel()
     matrix = sp.hstack((-sp.csr_matrix(yy[:,None]*qq),-sp.eye(m*k)),format="csr")
     fit = opt.linprog(np.r_[np.zeros(h),np.ones(m*k)],A_ub=matrix,
