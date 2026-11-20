@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newcommand{\Qn}{\{0,1\}^n}
+\begin{document}
+\title{Audit of Mechanisms for Universal Head Compression}
+\author{}
+\date{Research begun 20 November 2026}
+\maketitle
+
+\paragraph{Status.}
+This is a research audit, not a proof of the requested bound.
+The target is an unconditional absolute constant $C$ such that
+$W(n)\le C2^n/n^2$ for every positive integer $n$.
+The definitions of the attention model, admissible denominators, and
+head complexity in the attached \texttt{version-5.tex} are unchanged.
+The results below rule out particular mechanisms; none is a lower bound
+contradicting the target.
+
+\section{Exact interpolation has the wrong parameter budget}
+
+\begin{lemma}[Normalized chart]
+Every score $c+\sum_{h=1}^H A_h/B_h$ with affine $A_h,B_h$ and
+$B_h(0)>0$ can be written
+\[
+ F(c',u,b)(x)=c'+\sum_{h=1}^H
+       \frac{\sum_{i=1}^n u_{h,i}x_i}{1+\sum_{i=1}^n b_{h,i}x_i}.
+\]
+The chart has $p=1+2nH$ real parameters.
+\end{lemma}
+\begin{proof}
+Write $A_h=a_{h,0}+a_h\cdot x$ and $B_h=d_{h,0}+d_h\cdot x$.
+Set $b_h=d_h/d_{h,0}$, $\alpha_h=a_{h,0}/d_{h,0}$,
+$u_h=a_h/d_{h,0}-\alpha_h b_h$, and $c'=c+\sum_h\alpha_h$.
+Then $A_h/B_h=\alpha_h+(u_h\cdot x)/(1+b_h\cdot x)$.
+This is an equality of scores, without a sign approximation.
+\end{proof}
+
+\begin{proposition}[Adaptive exact-table obstruction]
+If every real table on $\Qn$ has an exact $H$-head affine-ratio
+representation, even allowing arbitrary positive affine denominators,
+then $2^n\le 1+2nH$.
+Every full-row-rank Jacobian argument for the normalized evaluation map
+has the same necessary inequality.
+\end{proposition}
+\begin{proof}
+Put $N=2^n$ and suppose $p=1+2nH<N$.
+All $N$ coordinates of the normalized evaluation map are rational
+functions in $p$ variables. We give the algebraic-dependence argument
+explicitly. Write these functions over a common nonzero polynomial
+denominator $Q$ as $P_1/Q,\ldots,P_N/Q$, and choose an integer
+$D\ge1$ bounding the degrees of $Q,P_1,\ldots,P_N$.
+For every multi-index $\alpha\in\mathbb N^N$ with $|\alpha|\le k$,
+the polynomial $P^\alpha Q^{k-|\alpha|}$ has degree at most $Dk$.
+There are $\binom{N+k}{N}$ such polynomials, while the vector space
+containing them has dimension $\binom{p+Dk}{p}$.
+For sufficiently large $k$ the former number is larger, since $N>p$.
+Thus a nontrivial linear relation between these polynomials gives a
+nonzero polynomial $R\in\mathbb R[Y_1,\ldots,Y_N]$ that vanishes on
+the rational image wherever $Q\ne0$.
+For this map take $Q$ to be the product of all evaluated denominators;
+it is nonzero at every allowed representation.
+A nonzero real polynomial cannot vanish on all of $\mathbb R^N$:
+induction on the number of variables reduces this to the finite-root
+property for univariate polynomials. Hence some real table is missing.
+The Jacobian assertion follows because an $N\times p$ matrix has
+rank at most $p$.
+\end{proof}
+
+For $H\le C2^n/n^2$, the inequality $1+2nH<2^n$ holds for all
+sufficiently large $n$. Thus neither a regular-zero construction nor
+any other exact representation of every real table can prove the target
+at that head count. This does not apply to sign representation: the
+image need only meet every open orthant, not contain every real vector.
+
+\section{Fixed lists do not gain anything from signs}
+
+\begin{lemma}[Orthant universality of a linear space]
+A real linear subspace $U\subseteq\mathbb R^N$ meets every open
+orthant if and only if $U=\mathbb R^N$.
+\end{lemma}
+\begin{proof}
+The reverse implication is immediate. If $U$ is proper, choose
+$v\ne0$ in its orthogonal complement. Assign sign $\operatorname{sgn}(v_i)$
+in every coordinate where $v_i\ne0$, and any sign where $v_i=0$.
+Every vector $z$ in this open orthant satisfies
+$v\cdot z=\sum_{i:v_i\ne0}|v_i||z_i|>0$, so none belongs to $U$.
+\end{proof}
+
+\begin{proposition}[Fixed-list sign obstruction]
+If one list $B_1,\ldots,B_H$ of nonvanishing affine denominators
+sign-represents every Boolean function using affine numerators and
+a free constant, then
+\[
+ H\ge\left\lceil\frac{2^n-1}{n}\right\rceil.
+\]
+\end{proposition}
+\begin{proof}
+The score space is linear. Each space of fractions with denominator
+$B_h$ has dimension at most $n+1$ and contains the constants, so their
+sum, with the constant, has dimension at most $1+nH$ (also for $H=0$).
+Sign universality means it meets all $2^{2^n}$ open orthants. Apply
+the preceding lemma.
+\end{proof}
+
+\begin{proposition}[Size of a library of denominator lists]
+Let $N=2^n$, $d=1+nH\le N$, and let $\mathcal L$ be a finite library
+of $K$ lists of $H$ nonvanishing affine denominators. The number of
+Boolean functions sign-representable by some list in the library is
+at most
+\[
+ K\,2\sum_{j=0}^{d-1}\binom{N-1}{j}.
+\]
+Consequently, if $H\le C2^n/n^2$ for an absolute $C$, a universal
+library must have $\log_2 K\ge(1-o(1))2^n$.
+\end{proposition}
+\begin{proof}
+On each score space, the coordinate zero sets form an arrangement
+of $N$ central hyperplanes in dimension at most $d$. Such an
+arrangement has at most $2\sum_{j=0}^{d-1}\binom{N-1}{j}$ chambers.
+For completeness, adding its last hyperplane splits at most as many
+old chambers as the restricted arrangement has chambers in dimension
+$d-1$. This gives the recurrence $r(N,d)\le r(N-1,d)+r(N-1,d-1)$,
+with $r(1,d)\le2$ and $r(N,1)\le2$; Pascal's identity gives the bound.
+Degenerate arrangements have no more chambers, by an arbitrarily small
+generic perturbation preserving a representative of each strict pattern.
+Each chamber gives only one sign pattern. Sum over the $K$ lists.
+Finally $d-1=nH=O(N/n)$, so the logarithm of the binomial sum is
+$O((N/n)\log n)=o(N)$, for example by the usual entropy bound for a
+binomial tail. Covering all $2^N$ patterns forces the stated inequality.
+\end{proof}
+
+This also identifies a numerical-resolution requirement for a discrete
+dictionary route. If denominators are selected from a dictionary of
+$M_n$ entries, at most $M_n^H$ ordered lists are available. Universality
+at $H\le C2^n/n^2$ therefore forces
+$\log_2 M_n\ge(1-o(1))n^2/C$.
+In particular dictionaries specified by $n+1$ coefficients each from
+a set of $2^{o(n)}$ values cannot suffice at the requested head count.
+Arbitrary real denominators are not subject to this restriction.
+
+\section{A pole deformation does not preserve sign universality}
+
+\begin{proposition}[Explicit continuation counterexample]
+On $\{0,1\}^2$ the ratio
+\[
+ R(x_1,x_2)=\frac{x_1+x_2-1/2}{x_1+x_2-3/2}
+\]
+strictly represents equality of the two bits. Nevertheless equality
+cannot be strictly represented by $c+A/B$ for any affine $A,B$ with
+$B>0$ at all four vertices.
+\end{proposition}
+\begin{proof}
+At Hamming weights $0,1,2$, the displayed ratio has values $1/3,-1,3$.
+For a positive denominator, the sign of $c+A/B$ is that of the affine
+function $L=cB+A$. Every affine $L$ satisfies
+$L(0,0)+L(1,1)=L(1,0)+L(0,1)$.
+The equality pattern would make the left side positive and the right
+side negative, a contradiction.
+\end{proof}
+
+For example, replacing the denominator by
+$x_1+x_2-3/2+s(2+x_1+x_2)$ makes all its coefficients positive for
+$s\ge1$. No choice of affine numerator and free constant at such an
+$s$ can retain this pattern. Thus the manuscript's rational
+nonvanishing-minor continuation is valid for spanning, but it has no
+automatic analogue for sign-only constructions with fewer parameters.
+
+\section{Literature mechanisms and their exact limits}
+
+\paragraph{Connected domination and codes.}
+Griggs proves $\gamma_c(Q_n)=(1+o(1))2^n/n$ in
+\emph{Spanning trees and domination in hypercubes}, Integers 21A (2021),
+\href{https://math.colgate.edu/~integers/graham13/graham13.pdf}{Paper A13}.
+This supplies the graph theorem used by the manuscript's derivative
+construction. Increasing the covering radius reduces the number of
+centres, but it does not provide local sign interpolation. In particular,
+a product of two radius-one stars contains a two-by-two checkerboard,
+which one positive-denominator affine ratio cannot classify.
+
+\paragraph{Threshold circuits.}
+Sherstov's \emph{Optimal bounds for sign-representing the intersection
+of two halfspaces by polynomials},
+\href{https://web.cs.ucla.edu/~sherstov/pdf/opthshs.pdf}{Combinatorica 33 (2013)},
+provides intersections of two halfspaces with threshold degree
+$\Omega(n)$. Since threshold degree is a head lower bound, there is
+no constant-overhead conversion of arbitrary threshold-gate votes to
+these heads. This obstruction is already recorded in repository
+Theorems 105 and 106 and is not a new result of this run.
+
+\paragraph{Nearest-neighbour representations.}
+Hajnal, Liu, and Tur\'an obtain a universal $O(2^n/n)$ prototype bound in
+\href{https://arxiv.org/abs/2004.01741}{Nearest neighbor representations
+of Boolean functions}. Anthony's
+\href{https://arxiv.org/abs/2609.23094}{Counting and Covering in
+Nearest-Neighbour Representations of Boolean Functions} records a
+remaining factor-$O(n)$ gap between unrestricted-prototype upper and
+counting lower bounds. Neither result supplies the missing head
+construction, and a prototype-to-head conversion would itself need proof.
+
+\paragraph{Rational networks and information encoding.}
+The rational-network parameter analysis of Pardo and Sebasti\'an,
+\href{https://arxiv.org/abs/2504.11345}{Erzeugungsgrad, VC-Dimension and
+Neural Networks with rational activation function}, concerns complexity
+bounds for parameterized families. A VC upper bound is not a construction
+shattering the entire prescribed Boolean cube. Chinese-remainder or
+fractional-part encoding likewise needs an admissible decoding operation;
+neither residues nor a floor operation is present in the head model.
+
+\end{document}
