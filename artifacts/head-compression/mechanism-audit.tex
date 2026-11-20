@@ -1364,4 +1364,66 @@ size and direction constraints must be accounted for in any transfer
 to heads. The four-head identity above does not itself resolve that
 transfer.
 
+\section{A zero-count obstruction at every codebook size}
+
+\begin{lemma}[Positive-shift reciprocal powers]
+Let $r>0$, let $b_1,\ldots,b_H$ be distinct positive reals, and let
+$c_1,\ldots,c_H$ be nonzero real coefficients. Then
+\[
+ g(p)=\sum_{h=1}^H \frac{c_h}{(p+b_h)^r},\qquad p>0,
+\]
+has at most $H-1$ distinct zeros on $(0,\infty)$.
+\end{lemma}
+\begin{proof}
+We prove the assertion simultaneously for all $r>0$ by induction on
+$H$. For $H=1$ the function never vanishes. Suppose $H\geq2$ and
+multiply $g$ by the strictly positive factor $(p+b_1)^r$. Its
+derivative is
+\[
+ \frac{d}{dp}\big((p+b_1)^r g(p)\big)
+ =r(p+b_1)^{r-1}
+   \sum_{h=2}^H\frac{c_h(b_h-b_1)}{(p+b_h)^{r+1}}.
+\]
+All $H-1$ coefficients in the sum are nonzero. By the induction
+hypothesis that sum has at most $H-2$ distinct positive zeros.
+If $g$ had $H$ distinct positive zeros, multiplication by the positive
+factor would preserve them and Rolle's theorem on the $H-1$ disjoint
+intervening open intervals would give $H-1$ distinct derivative zeros,
+a contradiction. Repeated shifts in an arbitrary sum may first be
+combined, and zero resulting coefficients may be discarded.
+\end{proof}
+
+\begin{proposition}[Failure of a single complete binary codebook]
+Let $k\geq2$, $m=2^k$, and enumerate the $m$ vectors
+$\sigma_h\in\{-1,1\}^k$, using each exactly once. For arbitrary
+$a_h\in\mathbb R$ and $b_h>0$, put
+\[
+ F_j(p)=\sum_{h=1}^m
+       \frac{a_h b_h\sigma_{h,j}}{(p+b_h)^2}.
+\]
+For any increasing positive addresses $p_1<\cdots<p_m$, these
+functions cannot have the strict signs
+\[
+ \operatorname{sign}F_j(p_s)=(-1)^s
+ \qquad(1\leq j\leq k,\ 1\leq s\leq m).
+\]
+\end{proposition}
+\begin{proof}
+The sum $F_1+F_2$ has the same prescribed alternating strict signs.
+Exactly $m/2$ code vectors have $\sigma_{h,1}+\sigma_{h,2}\neq0$.
+Thus $F_1+F_2$ is a sum of at most $m/2$ reciprocal-square kernels,
+after combining any repeated shifts. It is not identically zero
+because its values at the addresses are nonzero. The lemma bounds
+its positive zeros by $m/2-1$. Continuity and the alternating signs
+give at least $m-1$ distinct positive zeros, one in each intervening
+open interval. Since $m-1>m/2-1$, this is impossible.
+\end{proof}
+
+The proposition concerns arbitrary label tables on the promised grid;
+its alternating table repeats output codes. The separate four-address
+permutation obstruction above concerns a table without repetitions.
+Duplicating the whole codebook changes the zero-count budget, so this
+argument does not exclude the replicated-codebook experiment. No
+universal theorem for that experiment is asserted.
+
 \end{document}
