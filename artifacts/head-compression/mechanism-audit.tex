@@ -1240,6 +1240,60 @@ It does not exclude a different codebook, more poles, or the full
 attention model. A numerical failure on a permutation table is not
 covered by this particular obstruction.
 
+\begin{proposition}[A permutation obstruction at four consecutive addresses]
+The same four-pole codebook cannot have the successive strict output
+sign pairs $(+,+),(-,-),(-,+),(+,-)$ at addresses $1,2,3,4$.
+\end{proposition}
+\begin{proof}
+We first quantify the variation of two kernels. If
+$g(p)=u/(p+b)^2+v/(p+c)^2$, with $b,c>0$, is nonzero and has a
+positive zero $r$, then $b\ne c$, $u\ne0$, and
+$v=-u(r+c)^2/(r+b)^2$. Factoring the resulting numerator gives
+\[
+ g(p)=\frac{u(b-c)}{(r+b)^2}(p-r)L_r(p),\qquad
+ L_r(p)=\frac{r+b}{(p+b)^2(p+c)}+
+        \frac{r+c}{(p+b)(p+c)^2}.
+\]
+For $0<p<q$, each term of $L_r$ is a positive constant divided by
+three positive shifted factors. Every shifted-factor ratio satisfies
+$p/q<(p+d)/(q+d)<1$ when $d>0$. Therefore
+\[
+ (p/q)^3< L_r(q)/L_r(p)<1.
+\]
+
+Suppose the asserted output signs hold. Put $U=F_1+F_2$ and
+$V=F_1-F_2$. The function $U=2(K_3-K_0)$ has a unique positive
+zero $\alpha\in(1,2)$ and $V=2(K_1-K_2)$ has a unique positive
+zero $\beta\in(3,4)$, by continuity and the preceding proposition's
+two-kernel zero argument. In particular, $U,V$ are both negative
+at $2$ and $3$. The signs of $F_1,F_2$ imply
+\[
+ |U(2)|>|V(2)|,\qquad |V(3)|>|U(3)|.
+\]
+On the other hand, the factorizations and the ratio bound give
+\[
+ \frac{|U(3)|}{|U(2)|}
+ =\frac{3-\alpha}{2-\alpha}
+   \frac{L_\alpha(3)}{L_\alpha(2)}
+ >2(2/3)^3=\frac{16}{27},
+ \qquad
+ \frac{|V(3)|}{|V(2)|}
+ =\frac{\beta-3}{\beta-2}
+   \frac{L_\beta(3)}{L_\beta(2)}<\frac12.
+\]
+The two occurrences of $L$ may have different pole pairs; the uniform
+ratio bounds apply to both. Since $16/27>1/2$ and
+$|U(2)|>|V(2)|$, these inequalities imply
+$|U(3)|>|V(3)|$, a contradiction.
+\end{proof}
+
+The obstructed sign pairs are a permutation of the complete two-bit
+codebook. Thus the one-hot decoder cannot be converted to the tested
+binary-address decoder merely by replacing geometric address values
+by consecutive integers. This obstruction allows arbitrary real
+amplitudes and arbitrary positive poles, not just a bounded numerical
+search range.
+
 \section{Real cancellation versus roots of unity}
 
 \begin{proposition}[Second-order cancellation of real linear factors]
