@@ -69,7 +69,7 @@ def convex_hinge_fit(yq, initial, method, score_penalty):
 
 class Problem:
     def __init__(self, n, h, seed, seconds, out, label_kind, inner_method="newton",
-                 score_penalty=1e-7, resume=False):
+                 score_penalty=1e-7, resume=False, initialization="independent"):
         self.n, self.h, self.seed, self.out = n, h, seed, out
         self.start = time.monotonic()
         self.deadline = self.start + seconds
@@ -82,6 +82,9 @@ class Problem:
         else:
             self.y = self.rng.choice([-1., 1.], len(self.x))
         self.orientation = self.rng.choice([-1, 1], h)
+        self.initialization = initialization
+        if initialization == "paired":
+            self.orientation[1:2*(h//2):2] = self.orientation[:2*(h//2):2]
         self.t = np.where(self.orientation[None, :, None] > 0,
                           self.x[:, None, :], 1-self.x[:, None, :])
         self.previous = None
@@ -159,6 +162,10 @@ class Problem:
         try:
             while time.monotonic() < self.deadline:
                 logs = self.rng.normal(0, 2, self.n*self.h)
+                if self.initialization == "paired":
+                    rows = logs.reshape(self.h, self.n)
+                    rows[1:2*(self.h//2):2] = (rows[:2*(self.h//2):2] +
+                        self.rng.normal(0, .1, (self.h//2, self.n)))
                 if not restarts and self.initial_logs is not None:
                     assert self.initial_logs.size == self.n*self.h
                     logs = self.initial_logs.copy().ravel()
@@ -183,6 +190,7 @@ class Problem:
             stop_reason = "integer certificate"
         return {"n": self.n, "heads": self.h, "seed": self.seed,
                 "label_kind": self.label_kind, "evaluations": self.evaluations,
+                "initialization": self.initialization,
                 "seconds": time.monotonic()-self.start, "best_errors": self.best_errors,
                 "best_loss": self.best_loss, "certificate": self.certificate,
                 "restarts": restarts, "stop_reason": stop_reason,
@@ -202,6 +210,7 @@ def main():
     p.add_argument("--inner-method", choices=["newton", "lbfgs"], default="newton")
     p.add_argument("--score-penalty", type=float, default=1e-7)
     p.add_argument("--resume", action="store_true")
+    p.add_argument("--initialization", choices=["independent", "paired"], default="independent")
     args = p.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.gradient_check:
@@ -224,7 +233,8 @@ def main():
         h = max(n, math.ceil(c*(1 << n)/n**2))
         problem = Problem(n, h, args.seed+trial,
                           min(args.trial_seconds, args.seconds-(time.monotonic()-start)),
-                          args.out, args.labels, args.inner_method, args.score_penalty, args.resume)
+                          args.out, args.labels, args.inner_method, args.score_penalty, args.resume,
+                          args.initialization)
         result = problem.run()
         with (args.out/"trials.jsonl").open("a") as stream:
             stream.write(json.dumps(result)+"\n")
