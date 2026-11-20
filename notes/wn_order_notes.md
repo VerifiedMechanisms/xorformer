@@ -239,17 +239,24 @@ dynamic ranges are large, and it leaves both conjectures standing.
 ## 16. Exact tropical-model complexities (SAT, CaDiCaL; see experiments/wn_search/tropical_exact.py)
 
 Verified against brute force at n = 3 (384/384 decisions agree). T(f) = minimum number of heads in the tropical
-(dominance) sub-model.
+(dominance) sub-model. Stored models use "smaller rank = higher priority"; decoding them with that convention
+reproduces every target exactly (checked).
 
-| n | random targets (10 at n=5, 5 at n=6) | parity | majority | N/n^2 | N/n |
-|---|---|---|---|---|---|
-| 4 | 2 to 4 (see log) | 6 | 4 | 1.0 | 4.0 |
-| 5 | 3,5,5,3,6,4,3,4,4,4 (mean 4.1) | 10 | 5 | 1.3 | 6.4 |
-| 6 | 5,6,7,6,6 (mean 6.0) | greater than 13 | greater than 7 | 1.8 | 10.7 |
+| n | random targets | mean | parity | majority | N/n^2 | N/n |
+|---|---|---|---|---|---|---|
+| 4 | 30 targets, values 1 to 4 | 2.9 | 6 | 4 | 1.0 | 4.0 |
+| 5 | 3,5,5,3,6,4,3,4,4,4 | 4.1 | 10 | 5 | 1.3 | 6.4 |
+| 6 | 5,6,7,6,6 | 6.0 | greater than 13 | greater than 7 | 1.8 | 10.7 |
+| 7 | 9 (one target), others greater than 8 or 9 (running) | about 9.5 | | | 2.6 | 18.3 |
 
-Parity and majority are exponentially more expensive in the sub-model than in the full model ($H^{\ast}=n$ and $1$),
-confirming that dominance alone cannot replace cancellation. For random targets the growth from n=5 to n=6 is a factor
-1.46, between the N/n^2 ratio 1.39 and the N/n ratio 1.67; larger n is needed to separate the two scalings.
+Structure of the optimal solutions (correct decoding): most rules are used (22 to 28 nonempty fibers out of 30 to 42
+at n = 6), fibers are small (mean 2.2 to 2.9 points, maximum 9 to 12), and the used rules sit at mean position 2.5
+in their orders (dimension about n-3.5). Parity uses fibers of size 1 or 2 only (30 nonempty fibers for 31 points at
+n = 5), i.e. essentially one rule per point: parity and majority are exponentially more expensive in the sub-model
+than in the full model ($H^{\ast}=n$ and $1$), confirming that dominance alone cannot replace cancellation. For
+random targets the mean fiber size grows slowly with n (1.9, 2.3, 2.6 at n = 4, 5, 6); an $N/n^2$ rate would need
+mean fiber size proportional to n. Larger n is needed to separate the scalings; the greedy constructor of Section 17
+is far from these optima.
 
 ## 17. Greedy tropical constructor (experiments/wn_search/tropical_greedy.py)
 
