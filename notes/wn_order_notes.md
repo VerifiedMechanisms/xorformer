@@ -313,3 +313,31 @@ On a $12\times12$ grid in $[0,1]^2$ with heads $(u\cdot x)/(1+b\cdot x)$, the hi
 $73\approx P/2$), where Cover's count would predict success for a generic point set: the grid is far from general position
 (the features are smooth functions of two coordinates), so this miniature does not probe Warren tightness. Recorded for
 completeness; not used.
+
+## 21. Parity in the tropical sub-model: two rigorous observations
+
+Write rules as $(i,U)$ with subcube $\lbrace x_i=1,\ x_U=0\rbrace$; a rule is available at $x$ iff $U\subseteq Z(x)$ and
+$i\in\operatorname{supp}(x)$; $\operatorname{top}(x)$ is the highest-priority available rule and the fibers of top are
+the sets finalized by each rule. In a valid tropical representation of parity every fiber is an independent set of the
+cube graph.
+
+**Lemma A (swap exclusion).** No fiber contains two points $x$ and $x'=x+e_a-e_b$ ($a\in Z(x)$, $b\in\operatorname{supp}(x)$).
+
+*Proof.* Let $\rho=(i,U)=\operatorname{top}(x)=\operatorname{top}(x')$ and $y=x+e_a=x'+e_b$. Membership of $x'$ in the subcube
+of $\rho$ gives $a\notin U$ and $b\neq i$, so $\rho$ is available at $y$. Since $y$ is adjacent to $x$, parity forces
+$\operatorname{top}(y)\neq\rho$, hence $\operatorname{top}(y)\succ\rho$. If $\operatorname{top}(y)=(i',U')$ were available at $x$ it would
+beat $\rho$ there; as $U'\subseteq Z(y)\subseteq Z(x)$, non-availability at $x$ means $i'\notin\operatorname{supp}(x)$, i.e. $i'=a$.
+The same argument from $x'$ gives $i'=b$, a contradiction since $a\neq b$. $\blacksquare$
+
+**Lemma B (edge explanation).** For every edge $(x,x+e_m)$ of the nonzero cube, either $i(\operatorname{top}(x+e_m))=m$ or
+$m\in U(\operatorname{top}(x))$. Consequently $\sum_x\big(|U(\operatorname{top}(x))|+1\big)\geq n(N-1)/2-n$, so the finalizing rules have
+$|U|\geq n/2-2$ on average, and (taking $x=\mathbf 1$) at least $n-1$ heads have distinct first elements: $T(\mathrm{PARITY}_n)\geq n-1$.
+
+*Proof.* If $m\notin U(\operatorname{top}(x))$ then $\operatorname{top}(x)$ is available at $x+e_m$ and, by the argument of Lemma A,
+$\operatorname{top}(x+e_m)$ is a higher-priority rule not available at $x$, which forces $i=m$. Each point explains at most
+$|U|+1$ of its incident edges (its up-directions in $U$ and its down-direction $i$), and every edge needs one explanation.
+For $x=\mathbf 1$ the top rule is a half-cube $(i_1,\varnothing)$; every other direction $m$ needs
+$i(\operatorname{top}(\mathbf 1-e_m))=m$, i.e. a head whose order starts with $m$. $\blacksquare$
+
+These match the SAT data (fibers of size one or two, $T=6,10,\geq14$ for $n=4,5,6$) but do not yet give the conjectured
+$T(\mathrm{PARITY}_n)=\Omega(N/n)$; a fiber could still be a distance-four code inside a weight level.
