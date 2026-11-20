@@ -1,4 +1,4 @@
-# Definition 1.16. Symmetric functions
+# Definition 1.17. Symmetric functions
 
 Let $n\in\mathbb{Z}_{\geq1}$. The **Hamming weight** of an input $x\in\lbrace0,1\rbrace^n$ is
 

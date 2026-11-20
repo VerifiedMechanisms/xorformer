@@ -1,4 +1,4 @@
-# Definition 1.14. Real affine forms
+# Definition 1.7. Real affine forms
 
 Let $n\in\mathbb{Z}_{\geq1}$. A **real affine form** is a function $\ell:\mathbb{R}^n\to\mathbb{R}$ of the form
 

@@ -26,7 +26,7 @@ Our central problem is to understand the [head complexity](definitions/05_head_c
 2. **Lower bounds.** What techniques prove that a function requires at least $H$ heads?
 3. **Upper bounds.** Can we constructively realize broad classes of Boolean functions with few heads?
 4. **Comparison to classical complexity measures.** How does $H^{\ast}(f)$ relate to:
-   - [threshold degree (Definition 1.13)](definitions/13_threshold_degree.md) $\deg_{\pm}(f)$,
+   - [threshold degree (Definition 1.14)](definitions/14_threshold_degree.md) $\deg_{\pm}(f)$,
    - rational degree,
    - threshold density / sparsity,
    - circuit depth / threshold-circuit complexity,

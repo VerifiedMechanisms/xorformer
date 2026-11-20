@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $L_1,R_1,L_2,R_2$ be [real affine forms (Definition 1.14)](../../definitions/14_real_affine_forms.md) on $\mathbb{R}^5\times\mathbb{R}^5$, and set
+Let $L_1,R_1,L_2,R_2$ be [real affine forms (Definition 1.7)](../../definitions/07_real_affine_forms.md) on $\mathbb{R}^5\times\mathbb{R}^5$, and set
 
 $$ g(x,y)=L_1(x,y)R_1(x,y)+L_2(x,y)R_2(x,y). $$
 
@@ -38,7 +38,7 @@ The mixed difference is linear in $g$, so these columns satisfy the asserted ide
 
 **Definitions**
 
-- [Definition 1.14. Real affine forms](../../definitions/14_real_affine_forms.md).
+- [Definition 1.7. Real affine forms](../../definitions/07_real_affine_forms.md).
 - [Definition 1.23. Mixed antipodal difference](../../definitions/23_mixed_antipodal_difference.md).
 
 **Theorems**

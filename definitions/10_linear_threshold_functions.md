@@ -1,4 +1,4 @@
-# Definition 1.9. Linear threshold functions
+# Definition 1.10. Linear threshold functions
 
 Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. The function $f$ is a **linear threshold function** if there exist $\beta_0\in\mathbb{R}$ and $\beta\in\mathbb{R}^n$ such that the affine [score](02_score.md) $\ell$ given by
 

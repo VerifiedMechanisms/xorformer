@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. Its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ and [ratio complexity (Definition 1.8)](../../definitions/08_ratio_complexity.md) $L(f)$ satisfy
+Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. Its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ and [ratio complexity (Definition 1.9)](../../definitions/09_ratio_complexity.md) $L(f)$ satisfy
 
 $$ H^{\ast}(f)=L(f). $$
 
@@ -21,7 +21,7 @@ The feasible sets coincide, including their possible zero element. Their minima 
 - [Definition 1.3. Classification](../../definitions/03_classification.md).
 - [Definition 1.4. Computability](../../definitions/04_computability.md).
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
-- [Definition 1.8. Ratio complexity](../../definitions/08_ratio_complexity.md).
+- [Definition 1.9. Ratio complexity](../../definitions/09_ratio_complexity.md).
 
 **Theorems**
 

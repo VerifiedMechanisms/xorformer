@@ -1,16 +1,16 @@
 # How many attention heads do you need to do XOR?
 
-*   By [Karthik Viswanathan](/users/karthik-viswanathan)
+*   By [Karthik Viswanathan](https://www.lesswrong.com/users/karthik-viswanathan)
 *   2026-04-02 22:56:31Z
 *   19 points
-*   Tag: [Interpretability (ML & AI)](/w/interpretability-ml-and-ai)
-*   Tag: [AI](/w/ai)
+*   Tag: [Interpretability (ML & AI)](https://www.lesswrong.com/w/interpretability-ml-and-ai)
+*   Tag: [AI](https://www.lesswrong.com/w/ai)
 *   Frontpage
 *   Comments: 0
-*   Post URL (HTML): [/posts/T66BKwSufh5SfiPHm/how-many-attention-heads-do-you-need-to-do-xor-3](/posts/T66BKwSufh5SfiPHm/how-many-attention-heads-do-you-need-to-do-xor-3)
-*   Post URL (Markdown): [/api/post/how-many-attention-heads-do-you-need-to-do-xor-3](/api/post/how-many-attention-heads-do-you-need-to-do-xor-3)
-*   Comments URL (Markdown): [/api/post/how-many-attention-heads-do-you-need-to-do-xor-3/comments](/api/post/how-many-attention-heads-do-you-need-to-do-xor-3/comments)
-*   Post URL (Markdown, compact): [/api/post/how-many-attention-heads-do-you-need-to-do-xor-3?compact=1](/api/post/how-many-attention-heads-do-you-need-to-do-xor-3?compact=1)
+*   Post URL (HTML): [Original article](https://www.lesswrong.com/posts/T66BKwSufh5SfiPHm/how-many-attention-heads-do-you-need-to-do-xor-3)
+*   Post URL (Markdown): [Article Markdown](https://www.lesswrong.com/api/post/how-many-attention-heads-do-you-need-to-do-xor-3)
+*   Comments URL (Markdown): [Article comments](https://www.lesswrong.com/api/post/how-many-attention-heads-do-you-need-to-do-xor-3/comments)
+*   Post URL (Markdown, compact): [Compact article Markdown](https://www.lesswrong.com/api/post/how-many-attention-heads-do-you-need-to-do-xor-3?compact=1)
 
 *You need* ***at least two attention heads to do XOR****, and we will find that it is a surprisingly crisp result which uses only a few lines of algebra.*
 
@@ -80,7 +80,7 @@ Let $v_j := W_V x_j$ denote the value vector at position $j$. The attention upda
 
 $\qquad z_=(a,b) := p_a  v_a + p_b  v_b + p_=  v_=, \qquad p_a + p_b + p_= = 1,\quad p_j \gt 0.$
 
-The attention probabilities are the softmax of the raw attention logits $\sigma_a, \sigma_b, \sigma_=$, which measure how strongly the `=` token's query matches each key:
+Write $\sigma_a, \sigma_b, \sigma_=$ for the positive unnormalized attention weights, obtained by exponentiating the raw query-key logits:
 
 $\qquad \sigma_a := \exp(x_=^\top W_Q^\top W_K x_a), \quad \sigma_b := \exp(x_=^\top W_Q^\top W_K x_b), \quad \sigma_= := \exp(x_=^\top W_Q^\top W_K x_=)$
 
@@ -134,7 +134,7 @@ The key structural fact is that $N(a,b)$ and $D(a,b)$ each split into an $a$-onl
 
 $\qquad N(a,b) = \underbrace{\sigma_a v_a}_{a\text{-only}}+\underbrace{\sigma_b v_b} _{b\text{-only}}+\underbrace{\sigma _= v _=} _{\text{const}}, \qquad D(a,b)=\underbrace{\sigma_a} _{a\text{-only}}+\underbrace{\sigma_b} _{b\text{-only}}+\underbrace{\sigma _=} _{\text{const}}.$
 
-Because of this, summing over the main diagonal $\lbrace(0,0),(1,1)\rbrace$ versus the off-diagonal $\lbrace(0,1),(1,0)\rbrace$ yields identical totals — in both cases you collect exactly one copy each of the $a{=}0$ and $a{=}1$ contributions, and one copy each of the $b{=}0$ and $b{=}1$ contributions. This gives the **key identities**:
+Because of this, summing over the main diagonal $\lbrace(0,0),(1,1)\rbrace$ versus the off-diagonal $\lbrace(0,1),(1,0)\rbrace$ yields identical totals: in both cases you collect exactly one copy each of the $a{=}0$ and $a{=}1$ contributions, and one copy each of the $b{=}0$ and $b{=}1$ contributions. This gives the **key identities**:
   
 $\qquad N(0,0)+N(1,1) = N(0,1)+N(1,0) = \mathcal{N},$
 
@@ -163,7 +163,7 @@ $\qquad P  \in  [z_=(0,0), z_=(1,1)]  \cap  [z_=(0,1), z_=(1,0)].$
 
 In words: the segment joining the two XOR-negative hidden states always crosses the segment joining the two XOR-positive hidden states.
 
-This immediately rules out linear separability. If a probe $L(z) = w^\top z - \tau$ had $L \lt 0$ at both $z_=(0,0)$ and $z_=(1,1)$, then by convexity $L \lt 0$ on the entire segment $[z_=(0,0), z_=(1,1)]$. Likewise $L \gt 0$ on $[z_=(0,1), z_=(1,0)]$. But $P$ lies on both segments, forcing $L(P) \lt 0$ and $L(P) \gt 0$ simultaneously, resulting in a contradiction. $\square$
+This immediately rules out linear separability. If a probe $L(z) = w^\top z - \tau$ had $L \lt 0$ at both $z_=(0,0)$ and $z_=(1,1)$, then by convexity $L \lt 0$ on the entire segment $[z_=(0,0), z_=(1,1)]$. Likewise $L \gt 0$ on $[z_=(0,1), z_=(1,0)]$. But $P$ lies on both segments, forcing $L(P) \lt 0$ and $L(P) \gt 0$ simultaneously, resulting in a contradiction. $\blacksquare$
 
 > **Conclusion.** A single attention head with a linear readout cannot compute XOR.
 
@@ -215,7 +215,11 @@ Choosing $w = e_0 + e_1$, the probe score $w^\top z_=(a,b)$ takes only two disti
 
 $w^\top z_=(0,0) = w^\top z_=(1,1) = \frac{2e}{2e+1} \approx 0.84, \quad w^\top z_=(0,1) = w^\top z_=(1,0) = \frac{2e}{e+2} \approx 1.15.$
 
-The mixed inputs score strictly higher, so any threshold $\tau \in (0.84, 1.15)$ together with $w = e_0 + e_1$ correctly classifies XOR.
+The score gap is
+
+$$ \frac{2e}{e+2}-\frac{2e}{2e+1}=\frac{2e(e-1)}{(e+2)(2e+1)}\gt0. $$
+
+Thus any threshold satisfying $2e/(2e+1)\lt\tau\lt2e/(e+2)$, together with $w=e_0+e_1$, strictly classifies XOR. The query residual contributes zero to this readout because $w^\top e_{=}=0$.
 
 > **Conclusion.** Two attention heads are sufficient to compute XOR with a linear readout.
 
@@ -235,9 +239,9 @@ In a single-layer, attention-only model with a linear readout from the query pos
 
 Together, these establish that two attention heads are necessary and sufficient to compute XOR with a logistic regression probe.
 
-**Open questions.** A few natural directions this raises:
+**Further directions.** The general parity question is now resolved; broader applications remain of interest:
 
-*   ***Parity on*** $n$ ***bits:*** How does the minimum number of heads scale with input length?
+*   **Parity on more bits.** [Theorem 1.20](../../theorems/01_foundations_and_normal_form/20_parity_complexity.md) gives the exact head count for every positive input length.
 *   ***Wider implications:*** *The geometric constraint is not specific to XOR or binary inputs: for any two token values* $A \neq B$*, a single attention head cannot linearly separate "same" inputs* $\lbrace(A,A),(B,B)\rbrace$ *from "mixed" inputs* $\lbrace(A,B),(B,A)\rbrace$*. This is a purely structural consequence of the weighted-average form of attention, independent of dimension or parameters. Where else does this diagonal-vs-off-diagonal bottleneck limit single-head expressivity?*
 
 [^s2t3zpf12v]: OR(a,b) = max(a,b), AND(a,b) = min(a,b), XOR(a,b) = (a + b) mod 2. XOR is denoted by ⊕ in equations.

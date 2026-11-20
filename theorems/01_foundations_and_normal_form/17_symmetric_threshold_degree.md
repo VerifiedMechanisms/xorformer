@@ -1,12 +1,12 @@
-# Theorem 1.16. Symmetric threshold degree
+# Theorem 1.17. Symmetric threshold degree
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and let $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ be a [symmetric function (Definition 1.16)](../../definitions/16_symmetric_functions.md), with $f(x)=F(|x|)$. Its [threshold degree (Definition 1.13)](../../definitions/13_threshold_degree.md) $\deg _{\pm}(f)$ equals its [sign-change count (Definition 1.17)](../../definitions/17_sign_change_count.md) $C(F)$:
+Let $n\in\mathbb{Z}_{\geq1}$ and let $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ be a [symmetric function (Definition 1.17)](../../definitions/17_symmetric_functions.md), with $f(x)=F(|x|)$. Its [threshold degree (Definition 1.14)](../../definitions/14_threshold_degree.md) $\deg _{\pm}(f)$ equals its [sign-change count (Definition 1.18)](../../definitions/18_sign_change_count.md) $C(F)$:
 
 $$ \deg_{\pm}(f)=C(F). $$
 
-There is a univariate polynomial $P\in\mathbb{R}[z]$ of degree $C(F)$ such that $x\mapsto P(|x|)$ is a [strict sign representation (Definition 1.12)](../../definitions/12_strict_sign_representation.md) of $f$.
+There is a univariate polynomial $P\in\mathbb{R}[z]$ of degree $C(F)$ such that $x\mapsto P(|x|)$ is a [strict sign representation (Definition 1.13)](../../definitions/13_strict_sign_representation.md) of $f$.
 
 ## Proof
 
@@ -50,10 +50,10 @@ Every polynomial strict sign representation has degree at least $C$, while the c
 
 **Definitions**
 
-- [Definition 1.12. Strict sign representation](../../definitions/12_strict_sign_representation.md).
-- [Definition 1.13. Threshold degree](../../definitions/13_threshold_degree.md).
-- [Definition 1.16. Symmetric functions](../../definitions/16_symmetric_functions.md).
-- [Definition 1.17. Sign-change count](../../definitions/17_sign_change_count.md).
+- [Definition 1.13. Strict sign representation](../../definitions/13_strict_sign_representation.md).
+- [Definition 1.14. Threshold degree](../../definitions/14_threshold_degree.md).
+- [Definition 1.17. Symmetric functions](../../definitions/17_symmetric_functions.md).
+- [Definition 1.18. Sign-change count](../../definitions/18_sign_change_count.md).
 
 **Theorems**
 

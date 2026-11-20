@@ -1,4 +1,4 @@
-# Definition 1.7. Admissible ratios
+# Definition 1.8. Admissible ratios
 
 Let $n\in\mathbb{Z}_{\geq1}$, $A,C\in\mathbb{R}^n$, and $b,d\in\mathbb{R}$. The coefficient tuple $(A,b,C,d)$ is **admissible** when:
 

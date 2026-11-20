@@ -1,4 +1,4 @@
-# Definition 1.12. Strict sign representation
+# Definition 1.13. Strict sign representation
 
 Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$.
 

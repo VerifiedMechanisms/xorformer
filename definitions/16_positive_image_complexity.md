@@ -1,4 +1,4 @@
-# Definition 1.21. Positive-image complexity
+# Definition 1.16. Positive-image complexity
 
 Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$.
 

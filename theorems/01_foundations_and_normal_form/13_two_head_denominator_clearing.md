@@ -2,11 +2,11 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ is [computable (Definition 1.4)](../../definitions/04_computability.md) with two heads, then it has a polynomial [strict sign representation (Definition 1.12)](../../definitions/12_strict_sign_representation.md) $P$ of the form
+Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ is [computable (Definition 1.4)](../../definitions/04_computability.md) with two heads, then it has a polynomial [strict sign representation (Definition 1.13)](../../definitions/13_strict_sign_representation.md) $P$ of the form
 
 $$ P=L_1R_1+L_2R_2, $$
 
-where $L_1,R_1,L_2,R_2$ are [real affine forms (Definition 1.14)](../../definitions/14_real_affine_forms.md) in the input coordinates.
+where $L_1,R_1,L_2,R_2$ are [real affine forms (Definition 1.7)](../../definitions/07_real_affine_forms.md) in the input coordinates.
 
 ## Proof
 
@@ -31,8 +31,8 @@ The multiplier $D_1(x)D_2(x)$ is strictly positive, so $P$ has the same strict s
 - [Definition 1.2. Score](../../definitions/02_score.md).
 - [Definition 1.3. Classification](../../definitions/03_classification.md).
 - [Definition 1.4. Computability](../../definitions/04_computability.md).
-- [Definition 1.12. Strict sign representation](../../definitions/12_strict_sign_representation.md).
-- [Definition 1.14. Real affine forms](../../definitions/14_real_affine_forms.md).
+- [Definition 1.7. Real affine forms](../../definitions/07_real_affine_forms.md).
+- [Definition 1.13. Strict sign representation](../../definitions/13_strict_sign_representation.md).
 
 **Theorems**
 

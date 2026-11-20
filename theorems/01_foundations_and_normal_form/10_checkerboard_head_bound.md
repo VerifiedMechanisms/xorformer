@@ -2,17 +2,17 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq2}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ contains a [checkerboard restriction (Definition 1.11)](../../definitions/11_checkerboard_restrictions.md), then its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
+Let $n\in\mathbb{Z}_{\geq2}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ contains a [checkerboard restriction (Definition 1.12)](../../definitions/12_checkerboard_restrictions.md), then its [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfies
 
 $$ H^{\ast}(f)\geq2. $$
 
 ## Proof
 
-Fix a [two-coordinate restriction](../../definitions/10_two_coordinate_restrictions.md) $g(a,b)=f(x^{(a,b)})$ with the checkerboard pattern. It takes both Boolean values, so $f$ is nonconstant. [Theorem 1.6](06_zero_head_constants.md) rules out zero heads. Each of the following arguments rules out one head.
+Fix a [two-coordinate restriction](../../definitions/11_two_coordinate_restrictions.md) $g(a,b)=f(x^{(a,b)})$ with the checkerboard pattern. It takes both Boolean values, so $f$ is nonconstant. [Theorem 1.6](06_zero_head_constants.md) rules out zero heads. Each of the following arguments rules out one head.
 
 ### Affine proof
 
-If one head computed $f$, its head complexity would be one, since zero is already excluded. By [Theorem 1.7](07_one_head_characterization.md), the function $f$ would be a [linear threshold function](../../definitions/09_linear_threshold_functions.md), classified by an affine score $\ell(x)$.
+If one head computed $f$, its head complexity would be one, since zero is already excluded. By [Theorem 1.7](07_one_head_characterization.md), the function $f$ would be a [linear threshold function](../../definitions/10_linear_threshold_functions.md), classified by an affine score $\ell(x)$.
 
 Substituting the fixed coordinates into $\ell$ leaves an affine function of the two free bits $a,b$. It would classify $g$, contrary to [Theorem 1.8](08_affine_checkerboard_nonseparability.md).
 
@@ -36,9 +36,9 @@ Thus neither zero nor one is a feasible head count. The minimum is at least two 
 - [Definition 1.2. Score](../../definitions/02_score.md).
 - [Definition 1.3. Classification](../../definitions/03_classification.md).
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
-- [Definition 1.9. Linear threshold functions](../../definitions/09_linear_threshold_functions.md).
-- [Definition 1.10. Two-coordinate restrictions](../../definitions/10_two_coordinate_restrictions.md).
-- [Definition 1.11. Checkerboard restrictions](../../definitions/11_checkerboard_restrictions.md).
+- [Definition 1.10. Linear threshold functions](../../definitions/10_linear_threshold_functions.md).
+- [Definition 1.11. Two-coordinate restrictions](../../definitions/11_two_coordinate_restrictions.md).
+- [Definition 1.12. Checkerboard restrictions](../../definitions/12_checkerboard_restrictions.md).
 
 **Theorems**
 

@@ -1,8 +1,8 @@
-# Theorem 1.18. Symmetric threshold complexity
+# Theorem 1.19. Symmetric threshold complexity
 
 ## Statement
 
-Let $n,t$ be integers with $n\geq1$ and $1\leq t\leq n$. The [symmetric threshold (Definition 1.18)](../../definitions/18_symmetric_thresholds.md) $T_{n,t}$ has [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md)
+Let $n,t$ be integers with $n\geq1$ and $1\leq t\leq n$. The [symmetric threshold (Definition 1.19)](../../definitions/19_symmetric_thresholds.md) $T_{n,t}$ has [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md)
 
 $$ H^{\ast}(T_{n,t})=1. $$
 
@@ -10,7 +10,7 @@ It can be computed with one head, all positional embeddings zero, and [model and
 
 $$ d_{\mathrm{model}}=d_{\mathrm{head}}=2. $$
 
-In particular, the OR, AND, and majority functions from Definition 1.18 satisfy
+In particular, the OR, AND, and majority functions from Definition 1.19 satisfy
 
 $$ H^{\ast}(\mathrm{OR}_n)=H^{\ast}(\mathrm{AND}_n)=H^{\ast}(\mathrm{MAJORITY}_n)=1. $$
 
@@ -18,9 +18,9 @@ $$ H^{\ast}(\mathrm{OR}_n)=H^{\ast}(\mathrm{AND}_n)=H^{\ast}(\mathrm{MAJORITY}_n
 
 ### Exact head count
 
-Write $T_{n,t}(x)=F(|x|)$. The weight sequence $F$ is zero for $0\leq s\lt t$ and one for $t\leq s\leq n$. It changes label exactly once, between weights $t-1$ and $t$, so its [sign-change count (Definition 1.17)](../../definitions/17_sign_change_count.md) is $C(F)=1$.
+Write $T_{n,t}(x)=F(|x|)$. The weight sequence $F$ is zero for $0\leq s\lt t$ and one for $t\leq s\leq n$. It changes label exactly once, between weights $t-1$ and $t$, so its [sign-change count (Definition 1.18)](../../definitions/18_sign_change_count.md) is $C(F)=1$.
 
-By [Theorem 1.17](17_exact_symmetric_head_complexity.md), $H^{\ast}(T_{n,t})=C(F)=1$. The stated examples correspond to $t=1,n,\lceil n/2\rceil$, respectively, all of which lie between one and $n$.
+By [Theorem 1.18](18_exact_symmetric_head_complexity.md), $H^{\ast}(T_{n,t})=C(F)=1$. The stated examples correspond to $t=1,n,\lceil n/2\rceil$, respectively, all of which lie between one and $n$.
 
 ### Two-dimensional realization
 
@@ -54,9 +54,9 @@ Strict monotonicity makes this score negative when $k\lt t$ and positive when $k
 - [Definition 1.2. Score](../../definitions/02_score.md).
 - [Definition 1.3. Classification](../../definitions/03_classification.md).
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
-- [Definition 1.17. Sign-change count](../../definitions/17_sign_change_count.md).
-- [Definition 1.18. Symmetric thresholds](../../definitions/18_symmetric_thresholds.md).
+- [Definition 1.18. Sign-change count](../../definitions/18_sign_change_count.md).
+- [Definition 1.19. Symmetric thresholds](../../definitions/19_symmetric_thresholds.md).
 
 **Theorems**
 
-- [Theorem 1.17. Exact symmetric head complexity](17_exact_symmetric_head_complexity.md).
+- [Theorem 1.18. Exact symmetric head complexity](18_exact_symmetric_head_complexity.md).

@@ -1,8 +1,8 @@
-# Theorem 1.21. Symmetric score interpolation
+# Theorem 1.15. Symmetric score interpolation
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $G:\lbrace0,1,\ldots,n\rbrace\to\mathbb{R}$. Using [Hamming weight (Definition 1.16)](../../definitions/16_symmetric_functions.md) $|x|$, define the [score (Definition 1.2)](../../definitions/02_score.md) $\Phi$ by
+Let $n\in\mathbb{Z}_{\geq1}$ and $G:\lbrace0,1,\ldots,n\rbrace\to\mathbb{R}$. Using [Hamming weight (Definition 1.17)](../../definitions/17_symmetric_functions.md) $|x|$, define the [score (Definition 1.2)](../../definitions/02_score.md) $\Phi$ by
 
 $$ \Phi(x)=G(|x|). $$
 
@@ -35,7 +35,7 @@ Using the displayed orthonormal basis of $V$ gives both dimensions equal to $n+2
 - [Definition 1.1. Model](../../definitions/01_model.md).
 - [Definition 1.2. Score](../../definitions/02_score.md).
 - [Definition 1.15. Positive weighted statistics](../../definitions/15_positive_weighted_statistics.md).
-- [Definition 1.16. Symmetric functions](../../definitions/16_symmetric_functions.md).
+- [Definition 1.17. Symmetric functions](../../definitions/17_symmetric_functions.md).
 
 **Theorems**
 

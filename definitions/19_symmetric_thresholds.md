@@ -1,6 +1,6 @@
-# Definition 1.18. Symmetric thresholds
+# Definition 1.19. Symmetric thresholds
 
-Let $n,t$ be integers with $n\geq1$ and $1\leq t\leq n$. Using [Hamming weight (Definition 1.16)](16_symmetric_functions.md) $|x|$, the **symmetric threshold** $T_{n,t}:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ is
+Let $n,t$ be integers with $n\geq1$ and $1\leq t\leq n$. Using [Hamming weight (Definition 1.17)](17_symmetric_functions.md) $|x|$, the **symmetric threshold** $T_{n,t}:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ is
 
 $$ T_{n,t}(x)=\begin{cases} 1 & |x|\geq t, \cr 0 & |x|\lt t. \end{cases} $$
 

@@ -2,9 +2,9 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ is [computable (Definition 1.4)](../../definitions/04_computability.md) with $H\in\mathbb{Z} _{\geq0}$ heads, then it has a polynomial [strict sign representation (Definition 1.12)](../../definitions/12_strict_sign_representation.md) $P$ of total degree at most $H$.
+Let $n\in\mathbb{Z}_{\geq1}$ and $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$. If $f$ is [computable (Definition 1.4)](../../definitions/04_computability.md) with $H\in\mathbb{Z} _{\geq0}$ heads, then it has a polynomial [strict sign representation (Definition 1.13)](../../definitions/13_strict_sign_representation.md) $P$ of total degree at most $H$.
 
-Consequently, its [threshold degree (Definition 1.13)](../../definitions/13_threshold_degree.md) $\deg_{\pm}(f)$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfy
+Consequently, its [threshold degree (Definition 1.14)](../../definitions/14_threshold_degree.md) $\deg_{\pm}(f)$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$ satisfy
 
 $$ \deg_{\pm}(f)\leq H^{\ast}(f). $$
 
@@ -32,8 +32,8 @@ It follows that $\deg_{\pm}(f)\leq H$ for every feasible head count. If $H^{\ast
 - [Definition 1.3. Classification](../../definitions/03_classification.md).
 - [Definition 1.4. Computability](../../definitions/04_computability.md).
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
-- [Definition 1.12. Strict sign representation](../../definitions/12_strict_sign_representation.md).
-- [Definition 1.13. Threshold degree](../../definitions/13_threshold_degree.md).
+- [Definition 1.13. Strict sign representation](../../definitions/13_strict_sign_representation.md).
+- [Definition 1.14. Threshold degree](../../definitions/14_threshold_degree.md).
 
 **Theorems**
 

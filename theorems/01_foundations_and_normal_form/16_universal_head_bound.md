@@ -1,8 +1,8 @@
-# Theorem 1.15. Universal head bound
+# Theorem 1.16. Universal head bound
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$. Every Boolean function $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ has finite [positive-image complexity (Definition 1.21)](../../definitions/21_positive_image_complexity.md) $M _{+}(f)$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$, with
+Let $n\in\mathbb{Z}_{\geq1}$. Every Boolean function $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ has finite [positive-image complexity (Definition 1.16)](../../definitions/16_positive_image_complexity.md) $M _{+}(f)$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$, with
 
 $$ H^{\ast}(f)\leq M_{+}(f)-1\leq2^n-1. $$
 
@@ -36,7 +36,7 @@ Both complexities are therefore finite, with the asserted bounds. $\blacksquare$
 
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
 - [Definition 1.15. Positive weighted statistics](../../definitions/15_positive_weighted_statistics.md).
-- [Definition 1.21. Positive-image complexity](../../definitions/21_positive_image_complexity.md).
+- [Definition 1.16. Positive-image complexity](../../definitions/16_positive_image_complexity.md).
 
 **Theorems**
 

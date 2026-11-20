@@ -2,17 +2,17 @@
 
 ## Statement
 
-The [separation example (Definition 1.22)](../../definitions/22_separation_example.md) $f_{10}$ has [threshold degree (Definition 1.13)](../../definitions/13_threshold_degree.md) $\deg_{\pm}(f_{10})$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f_{10})$ satisfying
+The [separation example (Definition 1.22)](../../definitions/22_separation_example.md) $f_{10}$ has [threshold degree (Definition 1.14)](../../definitions/14_threshold_degree.md) $\deg_{\pm}(f_{10})$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f_{10})$ satisfying
 
 $$ \deg_{\pm}(f_{10})=2\lt3\leq H^{\ast}(f_{10}). $$
 
-The two-bit [parity function (Definition 1.19)](../../definitions/19_parity.md) $\mathrm{PARITY}_2$ has the same threshold degree and head complexity two. Thus threshold degree does not determine head complexity.
+The two-bit [parity function (Definition 1.20)](../../definitions/20_parity.md) $\mathrm{PARITY}_2$ has the same threshold degree and head complexity two. Thus threshold degree does not determine head complexity.
 
 ## Proof
 
 By [Theorem 2.1](01_threshold_degree_of_the_separation_example.md), the threshold degree of $f_{10}$ is two. The lower bound in [Theorem 1.12](../01_foundations_and_normal_form/12_threshold_degree_head_bound.md) therefore excludes zero and one head.
 
-Suppose $f_{10}$ is [computable (Definition 1.4)](../../definitions/04_computability.md) with two heads. By [Theorem 1.13](../01_foundations_and_normal_form/13_two_head_denominator_clearing.md), there is a polynomial [strict sign representation (Definition 1.12)](../../definitions/12_strict_sign_representation.md) $P$ that is a sum of two products of [real affine forms (Definition 1.14)](../../definitions/14_real_affine_forms.md).
+Suppose $f_{10}$ is [computable (Definition 1.4)](../../definitions/04_computability.md) with two heads. By [Theorem 1.13](../01_foundations_and_normal_form/13_two_head_denominator_clearing.md), there is a polynomial [strict sign representation (Definition 1.13)](../../definitions/13_strict_sign_representation.md) $P$ that is a sum of two products of [real affine forms (Definition 1.7)](../../definitions/07_real_affine_forms.md).
 
 Use the inverse encoding $z(x,y)$ from Definition 1.22 and set $g(x,y)=P(z(x,y))$. This affine change of variables preserves affine forms, so $g$ is also a sum of two affine products. Moreover, $g(x,y)$ has the same strict sign as $Q(x,y)$ at every pair of sign vectors.
 
@@ -44,7 +44,7 @@ $$ \begin{aligned} M_{jj}\lvert v_j\rvert&=\left\lvert\sum_{i\neq j}M_{ij}v_i\ri
 
 This contradiction shows that $M^\top$ has trivial kernel. Hence $\mathrm{rank}(M)=5$, contradicting Theorem 2.2. Two heads are therefore impossible. Together with the exclusion of zero and one head, this proves $H^{\ast}(f_{10})\geq3$.
 
-Finally, [Theorem 1.19](../01_foundations_and_normal_form/19_parity_complexity.md) gives
+Finally, [Theorem 1.20](../01_foundations_and_normal_form/20_parity_complexity.md) gives
 
 $$ \deg _{\pm}(\mathrm{PARITY}_2)=H^{\ast}(\mathrm{PARITY}_2)=2. $$
 
@@ -56,10 +56,10 @@ Thus the two functions have equal threshold degree and different head complexiti
 
 - [Definition 1.4. Computability](../../definitions/04_computability.md).
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
-- [Definition 1.12. Strict sign representation](../../definitions/12_strict_sign_representation.md).
-- [Definition 1.13. Threshold degree](../../definitions/13_threshold_degree.md).
-- [Definition 1.14. Real affine forms](../../definitions/14_real_affine_forms.md).
-- [Definition 1.19. Parity](../../definitions/19_parity.md).
+- [Definition 1.7. Real affine forms](../../definitions/07_real_affine_forms.md).
+- [Definition 1.13. Strict sign representation](../../definitions/13_strict_sign_representation.md).
+- [Definition 1.14. Threshold degree](../../definitions/14_threshold_degree.md).
+- [Definition 1.20. Parity](../../definitions/20_parity.md).
 - [Definition 1.22. Separation example](../../definitions/22_separation_example.md).
 - [Definition 1.23. Mixed antipodal difference](../../definitions/23_mixed_antipodal_difference.md).
 
@@ -67,6 +67,6 @@ Thus the two functions have equal threshold degree and different head complexiti
 
 - [Theorem 1.12. Threshold-degree head bound](../01_foundations_and_normal_form/12_threshold_degree_head_bound.md).
 - [Theorem 1.13. Two-head denominator clearing](../01_foundations_and_normal_form/13_two_head_denominator_clearing.md).
-- [Theorem 1.19. Parity complexity](../01_foundations_and_normal_form/19_parity_complexity.md).
+- [Theorem 1.20. Parity complexity](../01_foundations_and_normal_form/20_parity_complexity.md).
 - [Theorem 2.1. Threshold degree of the separation example](01_threshold_degree_of_the_separation_example.md).
 - [Theorem 2.2. Mixed-rank bound for two affine products](02_mixed_rank_bound_for_two_affine_products.md).

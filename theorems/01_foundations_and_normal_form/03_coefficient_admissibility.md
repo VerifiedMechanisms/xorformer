@@ -10,7 +10,7 @@ and the identity
 
 $$ \phi(x)=\frac{A^\top x+b}{C^\top x+d}, \qquad x\in\lbrace0,1\rbrace^n. $$
 
-A prescribed coefficient tuple $(A,b,C,d)$ is obtained by this map if and only if it is [admissible (Definition 1.7)](../../definitions/07_admissible_ratios.md).
+A prescribed coefficient tuple $(A,b,C,d)$ is obtained by this map if and only if it is [admissible (Definition 1.8)](../../definitions/08_admissible_ratios.md).
 
 ## Proof
 
@@ -61,7 +61,7 @@ These parameters satisfy all positivity conditions. Their denominator constant i
 **Definitions**
 
 - [Definition 1.6. Atoms](../../definitions/06_atoms.md).
-- [Definition 1.7. Admissible ratios](../../definitions/07_admissible_ratios.md).
+- [Definition 1.8. Admissible ratios](../../definitions/08_admissible_ratios.md).
 
 **Theorems**
 
