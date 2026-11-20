@@ -238,25 +238,39 @@ spread directions. The same search does not recover the $n$-head
 representation of parity for $n\ge6$, so its failures carry no
 information.
 \item \emph{Tropical sub-model.} An exact SAT decision procedure gives,
-for random targets, $T(f)\in\{3,\dots,6\}$ at $n=5$ (mean $4.1$) and
-$\{5,6,7\}$ at $n=6$ (mean $6.0$); parity needs $10$ heads at $n=5$ and
-more than $13$ at $n=6$, majority more than $7$ at $n=6$. In the optimal
+for random targets, $T(f)\in\{3,\dots,6\}$ at $n=5$ (mean $4.1$),
+$\{5,6,7\}$ at $n=6$ (mean $6.0$) and values $9$, $10$, $[9,10]$,
+$[10,11]$, $[11,12]$ at $n=7$ (mean about $10.5$), so $Tn/N$ stays near
+$0.6$ while $Tn^2/N$ grows: within this range the sub-model scales like
+$N/n$; parity needs $10$ heads at $n=5$ and more than $13$ at $n=6$,
+majority more than $7$ at $n=6$. In the optimal
 solutions most rules are used, the fibers of the finalizing rules have
 $2$ to $3$ points on average (parity: one point), and the mean fiber
 size grows only slowly with $n$, whereas an $N/n^2$ rate needs mean
 fiber size proportional to $n$. A greedy constructor
 with random orders needs $Hn/N\approx1.6,2.1,3.1,3.3$ heads at
 $n=5,6,7,8$, i.e.\ more than $N/n$ and increasing.
-\item \emph{Interpolation multiplicity.} For $n=5$, $H=2$ and a planted
-target at $2nH=20$ cube points, Levenberg--Marquardt from $1500$ random
-starts finds $19$ distinct real solutions, $3$ of them admissible: the
-interpolation problem is not unique, in line with the Chow-degree
-heuristic, but the sample is too small to measure growth.
+\item \emph{Interpolation multiplicity.} For planted targets at $2nH$
+cube points, Levenberg--Marquardt from $600$ to $1500$ random starts
+finds $19,27,26,12,12$ distinct real solutions (of which $3,10,11,2,2$
+admissible) for $(n,H)=(5,2),(5,3),(6,2),(7,2),(6,3)$, while the Chow
+degrees are $126$, $1.3\cdot10^5$, $462$, $1716$, $2.9\cdot10^6$. The
+found real multiplicities do not track the complex degree; if real
+admissible multiplicities stay polynomial in $nH$, the cell count is
+linear-like and $W(n)=\Omega(N/n)$. This is suggestive, not a proof:
+the sampler can miss solutions and the regime $H\asymp N/n^2$ is out
+of reach.
+\item \emph{Bounded dynamic range.} Clipping the denominator slopes to
+$[10^{-1},10]$ does not hurt: random $8$-bit functions are still found
+with $12$ heads (one of them only with $14$ heads when the range is
+$[10^{-2},10^2]$), and $9$ to $11$ heads fail. So the nonlinear gain
+below the fixed-list threshold comes from the comparable-scale regime,
+not from suppression.
 \item \emph{Weight-two miniature.} Restricting the family to the
 $\binom n2$ inputs of weight two (graphs), where Cover's threshold is
 $H\approx n/4$ and Warren's about $n/(2\log_2n)$, the search finds
 random graphs on $16$, $32$ vertices with $3$, $4$ heads; at $64$
-vertices $3$ heads fail and the run is ongoing.
+vertices $3$ to $6$ heads fail (Cover's threshold is $16$).
 \end{itemize}
 
 \subsection{Status}
