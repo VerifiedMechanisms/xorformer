@@ -2,7 +2,7 @@
 
 ## Statement
 
-Let $N=2^n$ and $W(n)=\max_f H^{\ast}(f)$. The paper in the companion package proves $(\tfrac12+o(1))N/n^2\leq W(n)\leq(1+o(1))N/n$ and leaves the order of $W(n)$ open. This note records three rigorous statements that locate the obstruction to a $2^n/n^2$ upper bound, together with a transfer theorem for a combinatorial sub-model.
+Let $N=2^n$ and $W(n)=\max_f H^{\ast}(f)$. The paper in the companion package proves $(\tfrac12+o(1))N/n^2\leq W(n)\leq(1+o(1))N/n$ and leaves the order of $W(n)$ open. This note records four rigorous statements: two that locate the obstruction to a $2^n/n^2$ upper bound, a transfer theorem for a combinatorial sub-model, and an exponential lower bound for parity in that sub-model.
 
 **Theorem 1 (normalized scores and where the information sits).** Every $H$-head score equals, on the cube,
 
@@ -56,4 +56,4 @@ and the ratio is $c_{h,k}K^{w_{h,k}}(1+\delta_h)$ with $|\delta_h|\leq1/(nH)$. T
 
 ## Consequence
 
-The open question $W(n)=O(2^n/n^2)$ is equivalent to a Warren-tight dependence of the sign pattern on the denominator parameters. The three statements above exclude common-direction lists, dominant polynomial-size cells, and (through the parameter count) regular-zero exact representations as routes; the tropical sub-model is counting-compatible and remains the only identified candidate mechanism, with the caveat of Remark 2. The status is recorded in `notes/wn_order_notes.md` and in `artifacts/wn_order/wn_order_section.tex`.
+The open question $W(n)=O(2^n/n^2)$ is equivalent to a Warren-tight dependence of the sign pattern on the denominator parameters. The three statements above exclude common-direction lists, dominant polynomial-size cells, and (through the parameter count) regular-zero exact representations as routes; the tropical sub-model is counting-compatible and remains the only identified candidate mechanism, but Theorem 4 shows that dominance alone is exponentially more expensive than the full model on parity, so any $2^n/n^2$ construction would have to combine dominance with cancellation at comparable scales. The status is recorded in `notes/wn_order_notes.md` and in `artifacts/wn_order/wn_order_section.tex`.
