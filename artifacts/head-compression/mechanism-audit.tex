@@ -472,7 +472,7 @@ It spans tables by curvature features, not by the scores of the original
 heads. These two assertions must not be conflated.
 
 \begin{proposition}[A quadratic curvature-feature spanning list]
-For every $n\ge1$ there are $H\le 32\cdot 2^n/n^2$ affine forms
+For every $n\ge1$ there are $H\le 16\cdot 2^n/n^2$ affine forms
 $B_h$ with strictly positive constant and variable coefficients such that
 \[
  \operatorname{span}\left(\{1\}\cup
@@ -487,21 +487,18 @@ write $n=m+\ell$ with $m=\lfloor n/2\rfloor$ and $\ell=n-m$.
 In dimension $s\ge1$, the Hamming-code construction in the manuscript
 gives a radius-one covering set $C_s$ of size
 $2^{s-\lfloor\log_2(s+1)\rfloor}<2^{s+1}/(s+1)$.
-Hence $D_0=C_m\times C_\ell$ covers the cube by radius-two balls and
+Hence $D=C_m\times C_\ell$ covers the cube by radius-two balls and
 \[
- |D_0|<\frac{4\cdot2^n}{(m+1)(\ell+1)}
+ |D|<\frac{4\cdot2^n}{(m+1)(\ell+1)}
        \le\frac{16\cdot2^n}{n^2}.
 \]
-The graph on $D_0$ joining centers at distance at most five is connected:
-assign every cube vertex a center at distance at most two, assign centers
-to themselves, and map cube paths to walks of these assigned centers.
-Take a spanning tree of this graph. For a tree edge at distance five,
-add the vertex two steps from its first endpoint along a shortest path.
-The new center is at distance two from the first endpoint and three from
-the second. Radius-two balls about centers at distance at most four
-intersect. Edges of distance at most four need no new center. Thus the
-resulting set $D$ has at most $2|D_0|-1$ centers, its radius-two balls
-cover the cube, and their intersection graph is connected.
+For each factor $C_s$, the graph joining centers at distance at most
+three is connected: assign cube vertices centers at distance at most
+one, assign centers to themselves, and map cube paths to walks of assigned
+centers. Moving along one factor at a time therefore connects $D$ by
+steps of distance at most three. Radius-two balls about centers at
+distance at most three intersect. Thus their intersection graph is
+connected, without adding any centers.
 
 For $v\in D$, set $a_v=\mathbf1+v$. Consider multilinear polynomials
 $q$ and their first and mixed second derivatives at these points.
