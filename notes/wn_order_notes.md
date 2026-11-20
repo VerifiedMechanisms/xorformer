@@ -448,8 +448,8 @@ $8, 11, 24$ at $n=7,8,9$ grow faster than $N/n$ because the optimizer degrades w
 
 ## 29. Certified 10-bit search and the certified-count trend
 
-A random 10-bit function is certified with $H=40$ heads (first value tried; $nH+1=401$, $2nH+1=801$, $N=1024$); smaller
-values are being tried. Certified typical counts so far: $8$ ($n=7$), $11$ to $12$ ($n=8$), $22$ to $24$ ($n=9$), $\leq40$ ($n=10$).
+A random 10-bit function is certified with $H=40$ heads ($nH+1=401$, $2nH+1=801$, $N=1024$); $H=30,34,37$ fail with hinge
+losses $190, 90, 54$. Certified typical counts: $8$ ($n=7$), $11$ to $12$ ($n=8$), $22$ to $24$ ($n=9$), $38$ to $40$ ($n=10$).
 The ratios $Hn/N$ are $0.44, 0.36, 0.40, 0.39$ and $Hn^2/N$ are $3.1, 2.9, 3.6, 3.9$: the certified counts of this
 optimizer track $0.4\,N/n$ more closely than a multiple of $N/n^2$, but they are heuristic upper bounds whose own
 inefficiency may grow with $n$, so they do not constrain the asymptotics of $W(n)$.
