@@ -41,9 +41,9 @@ Theorem 1.11 uses only the definitions. Theorem 1.12 uses the normal form and Th
 | Number | Theorem | Content |
 |---|---|---|
 | 1.14 | [Weighted-sum interpolation upper bound](14_weighted_sum_interpolation_upper_bound.md) | Realize arbitrary scores on positive weighted statistics with explicit dimensions. |
-| 1.15 | [Universal head bound](15_universal_head_bound.md) | Prove finite head complexity for every Boolean function using binary weights. |
+| 1.15 | [Universal head bound](15_universal_head_bound.md) | Bound head complexity by positive-image complexity and establish finite universal bounds using binary weights. |
 
-Theorem 1.14 proves the reciprocal interpolation basis and gives an explicit attention construction using only the definitions. Theorem 1.15 applies the interpolation result to an injective statistic.
+Theorem 1.14 proves the reciprocal interpolation basis and gives an explicit attention construction using only the definitions. Theorem 1.15 uses binary weights to establish finite positive-image complexity, then applies interpolation to a minimizing statistic.
 
 ## Symmetric complexity
 

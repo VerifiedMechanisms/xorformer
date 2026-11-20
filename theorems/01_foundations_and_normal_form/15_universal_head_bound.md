@@ -2,9 +2,9 @@
 
 ## Statement
 
-Let $n\in\mathbb{Z}_{\geq1}$. Every Boolean function $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ has finite [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$, with
+Let $n\in\mathbb{Z}_{\geq1}$. Every Boolean function $f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace$ has finite [positive-image complexity (Definition 1.21)](../../definitions/21_positive_image_complexity.md) $M _{+}(f)$ and [head complexity (Definition 1.5)](../../definitions/05_head_complexity.md) $H^{\ast}(f)$, with
 
-$$ H^{\ast}(f)\leq2^n-1. $$
+$$ H^{\ast}(f)\leq M_{+}(f)-1\leq2^n-1. $$
 
 ## Proof
 
@@ -18,7 +18,17 @@ $$ \sum_{i=1}^{k-1}2^{i-1}=2^{k-1}-1\lt2^{k-1}. $$
 
 All higher-coordinate terms vanish, so $t(x)\neq t(y)$.
 
-Consequently, the image $T$ has $2^n$ elements, and $F(t(x))=f(x)$ defines a function $F:T\to\lbrace0,1\rbrace$. Applying [Theorem 1.14](14_weighted_sum_interpolation_upper_bound.md) with $M=2^n$ gives a realization with $2^n-1$ heads. Hence the feasible head counts are nonempty and $H^{\ast}(f)\leq2^n-1$. $\blacksquare$
+Consequently, the image $T$ has $2^n$ elements, and $F(t(x))=f(x)$ defines a function $F:T\to\lbrace0,1\rbrace$. This factorization is feasible in the definition of $M_{+}(f)$, so $M_{+}(f)\leq2^n$.
+
+The feasible image sizes form a nonempty set of positive integers, so their minimum is attained. Choose a minimizing statistic $t_{\ast}$ and a corresponding function $F_{\ast}$ with
+
+$$ \lvert\mathrm{Im}(t_{\ast})\rvert=M_{+}(f), \qquad f=F_{\ast}\circ t_{\ast}. $$
+
+Applying [Theorem 1.14](14_weighted_sum_interpolation_upper_bound.md) to this factorization gives a realization with $M_{+}(f)-1$ heads. Thus the feasible head counts are nonempty and
+
+$$ H^{\ast}(f)\leq M_{+}(f)-1\leq2^n-1. $$
+
+Both complexities are therefore finite, with the asserted bounds. $\blacksquare$
 
 ## Dependencies
 
@@ -26,6 +36,7 @@ Consequently, the image $T$ has $2^n$ elements, and $F(t(x))=f(x)$ defines a fun
 
 - [Definition 1.5. Head complexity](../../definitions/05_head_complexity.md).
 - [Definition 1.15. Positive weighted statistics](../../definitions/15_positive_weighted_statistics.md).
+- [Definition 1.21. Positive-image complexity](../../definitions/21_positive_image_complexity.md).
 
 **Theorems**
 

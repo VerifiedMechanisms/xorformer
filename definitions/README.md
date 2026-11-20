@@ -24,5 +24,6 @@ Read these definitions in order. Each file is the authoritative location for its
 | 1.18 | [Symmetric thresholds](18_symmetric_thresholds.md) | Hamming-weight thresholds, including OR, AND, and majority. |
 | 1.19 | [Parity](19_parity.md) | The odd-weight predicate, also called XOR. |
 | 1.20 | [Exact-count predicates](20_exact_count_predicates.md) | Predicates for a specified Hamming weight, including internal and endpoint counts. |
+| 1.21 | [Positive-image complexity](21_positive_image_complexity.md) | The smallest image of a positive weighted statistic through which a Boolean function factors. |
 
 Continue with [Chapter 1: Foundations and normal form](../theorems/01_foundations_and_normal_form/README.md).
