@@ -1206,4 +1206,63 @@ Two different permutations cannot both be the unique minimizer of the
 same cost matrix.
 \end{proof}
 
+\begin{proposition}[A repeated-code obstruction for four Cauchy poles]
+Let $0<p_1<p_2<p_3$, let $b_0,b_1,b_2,b_3>0$, and let
+$a_0,a_1,a_2,a_3$ be arbitrary real numbers. Set
+\[
+ K_h(p)=\frac{a_hb_h}{(p+b_h)^2},\qquad
+ F_1=-K_0+K_1-K_2+K_3,\qquad
+ F_2=-K_0-K_1+K_2+K_3.
+\]
+It is impossible for both $F_1$ and $F_2$ to have strict signs
+$+,-,+$ at $p_1,p_2,p_3$.
+\end{proposition}
+\begin{proof}
+Their sum is $2(K_3-K_0)$ and would have those same three strict
+signs. For any $b,c>0$ and real $u,v$, the function
+$g(p)=u/(p+b)^2+v/(p+c)^2$ is either identically zero or has at most
+one zero on $p>0$. If one coefficient is zero or both nonzero
+coefficients have the same sign, the assertion is immediate. Otherwise
+the equation $g(p)=0$ is equivalent to
+\[
+ \frac{p+c}{p+b}=\sqrt{-v/u},
+\]
+since both sides of the ratio are positive. If $b\ne c$ the left side
+is strictly monotone, because its derivative is $(b-c)/(p+b)^2$.
+If $b=c$, the original function is a single constant multiple of
+$(p+b)^{-2}$. The intermediate value theorem would give two distinct
+zeros between the three asserted signs, a contradiction.
+\end{proof}
+
+This excludes arbitrary-table universality for the four-pole,
+two-bit codebook mechanism, even with arbitrary signed amplitudes.
+It does not exclude a different codebook, more poles, or the full
+attention model. A numerical failure on a permutation table is not
+covered by this particular obstruction.
+
+\section{Real cancellation versus roots of unity}
+
+\begin{proposition}[Second-order cancellation of real linear factors]
+Let $\ell_1,\ldots,\ell_m$ be real linear forms on $\mathbb R^d$.
+If the coefficients of $t$ and $t^2$ in
+$\prod_{h=1}^m(1+t\ell_h)$ both vanish identically, then every
+$\ell_h$ is zero.
+\end{proposition}
+\begin{proof}
+The two hypotheses say $\sum_h\ell_h=0$ and
+$\sum_{h<k}\ell_h\ell_k=0$. The polynomial identity
+\[
+ \left(\sum_h\ell_h\right)^2
+ =\sum_h\ell_h^2+2\sum_{h<k}\ell_h\ell_k
+\]
+therefore gives $\sum_h\ell_h(x)^2=0$ for every real $x$.
+Every summand is nonnegative, so each $\ell_h(x)=0$ for every $x$.
+\end{proof}
+
+The proposition concerns cancellation as real polynomials, not merely
+identities after restriction to the Boolean cube. It explains one
+specific obstruction to importing roots-of-unity product constructions
+over $\mathbb C$. It makes no assertion about all possible real border
+constructions or about the requested head-complexity bound.
+
 \end{document}

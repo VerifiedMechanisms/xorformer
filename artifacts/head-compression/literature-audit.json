@@ -98,6 +98,46 @@
       "checked_location": "Classification regions and the distinction between real and tropical parameter geometry",
       "mechanism": "Tropical inequalities organize classification regions and reveal nonconvexity.",
       "gap": "The geometry alone does not assert a solution for every labeling or provide positive affine denominators with the required head count."
+    },
+    {
+      "title": "Neural Nets with Superlinear VC-Dimension",
+      "authors": "Wolfgang Maass",
+      "url": "https://eccc.weizmann.ac.il/report/1994/017/download/",
+      "checked_location": "Permutation encoding construction and its two hidden layers",
+      "mechanism": "A small collection of permutations encodes arbitrary bit tables on specially chosen one-hot input triples.",
+      "gap": "The decoding uses exclusive OR and additional threshold processing. The positive-denominator decoder in mechanism-audit.tex establishes only promised-grid permutation decoding; it does not compile the extra nonlinear operations or cover the full cube."
+    },
+    {
+      "title": "Counting and Covering in Nearest-Neighbour Representations of Boolean Functions",
+      "authors": "Martin Anthony",
+      "url": "https://arxiv.org/pdf/2609.23094",
+      "checked_location": "Introduction and Section 3 counting and VC-dimension estimates",
+      "mechanism": "Counting prototype systems and comparison with unions of halfspaces.",
+      "gap": "The full-cube universal upper bound described in the paper remains at order 2^n/n. A matching capacity order on some point set is not shattering of the fixed Boolean cube, and nearest-neighbour evaluation is not an affine-ratio score."
+    },
+    {
+      "title": "VC Dimension and Expressivity of Real-Valued Transformers",
+      "authors": "Gavin Dooley, Andy Yang, Yijia Jessica Zhu, David Chiang, Peter Cholak, Anand Pillay",
+      "url": "https://arxiv.org/pdf/2609.31999",
+      "checked_location": "Architecture-dependent VC statements and Proposition 6.3 indexing construction",
+      "mechanism": "Definability bounds and a one-layer indexing example.",
+      "gap": "The indexing query contains the requested index k. The manuscript fixes the query token, so that example is not a decoder in the present model. Architecture-dependent VC bounds also do not give the requested universal head-count construction."
+    },
+    {
+      "title": "Geometric complexity theory for product-plus-power",
+      "authors": "Pranjal Dutta, Fulvio Gesmundo, Christian Ikenmeyer, Gorav Jindal, Vladimir Lysikov",
+      "url": "https://goravjindal.github.io/assets/pdf/gctppp.pdf",
+      "checked_location": "Introduction, Theorem 1.1, and the Newton-identity argument",
+      "mechanism": "Relates border product-plus-power complexity to border Waring rank over the complex numbers.",
+      "gap": "Complex roots-of-unity cancellation has no established real positive-affine-denominator compiler. The elementary second-order real cancellation obstruction is recorded separately in mechanism-audit.tex."
+    },
+    {
+      "title": "Extremal properties of polynomial threshold functions",
+      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
+      "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
+      "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
+      "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
+      "gap": "Weak representations may vanish at most inputs, whereas the requested representation must have a strict sign everywhere. Polynomial products and parity constraints also lack a proved small-head compiler."
     }
   ]
 }
