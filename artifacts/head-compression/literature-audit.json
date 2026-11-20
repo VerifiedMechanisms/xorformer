@@ -1,0 +1,103 @@
+{
+  "status": "None of these sources supplies the requested universal upper bound or a proved transfer to it.",
+  "source_policy": "Technical conclusions below are based on primary papers, not search-result summaries alone.",
+  "entries": [
+    {
+      "title": "Betti numbers of semi-algebraic sets defined by multi-degree constraints",
+      "authors": "Saugata Basu and Anthony Rizzie",
+      "url": "https://arxiv.org/pdf/1507.03958v7",
+      "checked_location": "Theorems 12 and 13, printed page 11",
+      "mechanism": "Bounds on components of sign conditions using separate parameter blocks and their separate degrees.",
+      "application": "The two-block estimate in mechanism-audit.tex gives a full-model lower bound with asymptotic constant one. It also excludes low-rank denominator directions, adaptive moment-curve nodes, and uniformly mild conditioning/margin as universal compressed constructions.",
+      "gap": "A sign-pattern upper count is a lower-bound method for head complexity. It provides no universal existence construction."
+    },
+    {
+      "title": "The capacity of feedforward neural networks",
+      "authors": "Pierre Baldi and Roman Vershynin",
+      "url": "https://arxiv.org/pdf/1901.00434",
+      "checked_location": "Theorem 3.1 and its dimensional assumptions",
+      "mechanism": "Capacity estimates for layered threshold networks.",
+      "gap": "The dimensional hypotheses used for the relevant asymptotics do not cover exponentially many hidden units relative to input dimension. Counting many functions is also weaker than representing every function, and a threshold activation is not an admissible head value."
+    },
+    {
+      "title": "Exact hyperplane covers for subsets of the hypercube",
+      "authors": "Scott Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, Dawid Kielak",
+      "url": "https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf",
+      "checked_location": "Theorem 2, Lemmas 9 and 10, and their proofs",
+      "mechanism": "Hamming-neighborhood covers and a count of hyperplane intersection patterns.",
+      "gap": "The universal upper bound has order 2^n/n. The lower bound has order 2^n/n^2. Moreover a hyperplane equality predicate cannot simply be inserted as a flat-valued head and combined by an assumed free OR operation."
+    },
+    {
+      "title": "Explicit exponential lower bounds for exact hyperplane covers",
+      "authors": "Benjamin E. Diamond and Amir Yehudayoff",
+      "url": "https://eccc.weizmann.ac.il/report/2021/148/revision/1/download/",
+      "checked_location": "Introduction and main lower-bound theorem",
+      "mechanism": "Communication complexity gives explicit subsets with exponentially large exact cover number.",
+      "gap": "This is a lower bound for a different covering resource, not a universal construction at the requested scale."
+    },
+    {
+      "title": "Dimension of projections in Boolean functions",
+      "authors": "Ramamohan Paturi and Francis Zane",
+      "url": "https://cseweb.ucsd.edu/~paturi/myPapers/pubs/PaturiZane_1998_jdm.pdf",
+      "checked_location": "Theorem 2 and definition of a projection",
+      "mechanism": "Find monochromatic projections defined by fixed coordinates and equal or complementary coordinate identifications.",
+      "gap": "The guaranteed dimension is around log_2(n), not 2 log_2(n). This does not provide arbitrary-label cells of quadratic size or an admissible-head compiler."
+    },
+    {
+      "title": "Stability for hyperplane covers",
+      "authors": "Shagnik Das, Valjak Djaljapayan, Yen-Chi Roger Lin, Wei-Hsuan Yu",
+      "url": "https://arxiv.org/pdf/2306.07574",
+      "checked_location": "Weighted hyperplane inequality and its equality and stability conditions",
+      "mechanism": "The vertex weight 1/(|x| binomial(n,|x|)) bounds the weight of a hyperplane avoiding the origin.",
+      "gap": "Almost covers and multiplicity covers do not supply target-dependent monochromatic exact covers of arbitrary subsets. No head-count upper bound follows."
+    },
+    {
+      "title": "Polynomial threshold functions and Boolean threshold circuits",
+      "authors": "Kristoffer Arnsfelt Hansen and Vladimir V. Podolskii",
+      "url": "https://eccc.weizmann.ac.il/report/2013/021/download/",
+      "checked_location": "Section 5, especially Lemmas 19 and 20",
+      "mechanism": "Compare maxima of affine input statistics, then lift a strict exponent winner to a signed exponential sum.",
+      "gap": "An exponential of an affine input statistic is a product over input coordinates. It is not an affine numerator or denominator. The dominant-power head construction instead takes maxima over active coefficient exponents and has a different feasibility problem."
+    },
+    {
+      "title": "Sign conditions for injectivity of generalized polynomial maps with applications to chemical reaction networks and real algebraic geometry",
+      "authors": "Stefan Mueller, Elisenda Feliu, Georg Regensburger, Carsten Conradi, Anne Shiu, Alicia Dickenstein",
+      "url": "https://arxiv.org/pdf/1311.5493",
+      "checked_location": "Theorems 1.4 and 1.5, especially the existence clause of Theorem 1.5",
+      "mechanism": "Oriented-matroid conditions on maximal minors give injectivity and, with additional hypotheses, positive solutions in a specified cone.",
+      "gap": "Arbitrary Boolean label cones do not automatically satisfy the required matching-minor signs. Establishing the relevant compatibility at the requested head count remains a theorem-strength gap."
+    },
+    {
+      "title": "Unit signatures in real biquadratic and multiquadratic number fields",
+      "authors": "David S. Dummit and Hershy Kisilevsky",
+      "url": "https://arxiv.org/pdf/1904.04411",
+      "checked_location": "Definitions of signature and deficiency, Proposition 1, and the introductory statements of the main constructions",
+      "mechanism": "Real embeddings of a multiquadratic field are indexed by Boolean sign choices, so algebraic signatures form Boolean tables.",
+      "gap": "The constructions concern multiplicative unit groups and extraction of square roots. These operations have no established small-head compilation. Signature rank can also be deficient; unrestricted signature universality must not be assumed for units."
+    },
+    {
+      "title": "Erzeugungsgrad, VC-dimension and neural networks with rational activation function",
+      "authors": "Luis Miguel Pardo and Daniel Sebastian",
+      "url": "https://arxiv.org/pdf/2504.11345",
+      "checked_location": "Introduction and scope of constructible families",
+      "mechanism": "Intersection theory relates algebraic dimension and classification capacity through generation degree.",
+      "gap": "A capacity bound or dimension comparison does not prove that the fixed Boolean cube is shattered by the manuscript's constrained rational family."
+    },
+    {
+      "title": "Network size and weights size for memorization with two-layers neural networks",
+      "authors": "Sebastien Bubeck, Ronen Eldan, Yin Tat Lee, Dan Mikulincer",
+      "url": "https://proceedings.neurips.cc/paper/2020/file/34609bdc08a07ace4e1526bbb1777673-Paper.pdf",
+      "checked_location": "Introduction, general-position condition, and stated memorization bounds",
+      "mechanism": "Threshold and ReLU memorization at the number-of-points divided by input-dimension scale; complex recombination controls weights in approximation.",
+      "gap": "The scale is 2^n/n, the cube fails the stated general-position condition, and the activations differ from admissible affine ratios."
+    },
+    {
+      "title": "The real tropical geometry of neural networks",
+      "authors": "Marie-Charlotte Brandenburg, Georg Loho, Guido Montufar",
+      "url": "https://openreview.net/pdf?id=I7JWf8XA2w",
+      "checked_location": "Classification regions and the distinction between real and tropical parameter geometry",
+      "mechanism": "Tropical inequalities organize classification regions and reveal nonconvexity.",
+      "gap": "The geometry alone does not assert a solution for every labeling or provide positive affine denominators with the required head count."
+    }
+  ]
+}
