@@ -45,7 +45,7 @@
     },
     {
       "title": "Stability for hyperplane covers",
-      "authors": "Shagnik Das, Valjak Djaljapayan, Yen-Chi Roger Lin, Wei-Hsuan Yu",
+      "authors": "Shagnik Das, Valjakas Djaljapayan, Yen-Chi Roger Lin, Wei-Hsuan Yu",
       "url": "https://arxiv.org/pdf/2306.07574",
       "checked_location": "Weighted hyperplane inequality and its equality and stability conditions",
       "mechanism": "The vertex weight 1/(|x| binomial(n,|x|)) bounds the weight of a hyperplane avoiding the origin.",
