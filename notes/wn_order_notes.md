@@ -115,3 +115,37 @@ i.e. $|R|/k\approx 2n\log_2(|R|/(2nk))$ points per head. Reaching $n^2/c$ points
 cells must be exponentially large, so a $2^n/n^2$ construction cannot be assembled from cells of polynomial size.
 For $k=1$ this is the paper's star cells ($n+1$ points per head); the inverse-function-theorem route is capped at
 $2n$ points per head (parameter count), i.e. $W(n)\leq(\tfrac12+o(1))N/n$ at best; the paper achieves $2/3$.
+
+## 9. The tropical (dominance) sub-model and its transfer theorem
+
+Let head $h$ carry a permutation $\pi_h$ of $[n]$, integers $w_{h,1},\dots,w_{h,n}$ (all $nH$ integers distinct) and signs
+$c_{h,k}\in\lbrace\pm1\rbrace$. For $x\neq0$ let $k_h(x)$ be the $\pi_h$-position of the first element of $\operatorname{supp}(x)$
+in the order $\pi_h$. Define $T(x)=c_{h^{\ast},k_{h^{\ast}}(x)}$ where $h^{\ast}=\arg\max_h w_{h,k_h(x)}$.
+
+**Theorem (tropical transfer).** If $T=2f-1$ on $\lbrace0,1\rbrace^n\setminus\lbrace0\rbrace$ then $H^{\ast}(f)\leq H$.
+
+**Proof.** Put $L=2\max|w|+2$, $m_{h,\pi_h(k)}=kL$, $e_{h,\pi_h(k)}=kL+w_{h,k}$, $b_{h,i}=K^{m_{h,i}}$ and $u_{h,i}=c_{h,\pi_h^{-1}(i)}K^{e_{h,i}}$
+for a large $K$. With $t=\pi_h(k_h(x))$, the numerator $u_h\cdot x$ equals $c_{h,k}K^{e_{h,t}}(1+O(nK^{-L/2}))$ and the denominator
+$1+b_h\cdot x$ equals $K^{m_{h,t}}(1+O(nK^{-L/2}))$, because every other element of the support sits later in $\pi_h$ and has exponent at least
+$L/2$ smaller. Hence $u_h\cdot x/(1+b_h\cdot x)=c_{h,k}K^{w_{h,k}}(1+O(nK^{-L/2}))$. Since the $nH$ weights are distinct integers the
+head with the largest weight dominates the sum by a factor $K/(nH)$, so for $K\gt 4nH$ the sign of $\sigma+\sum_h u_h\cdot x/(1+b_h\cdot x)$
+is $T(x)$ for $x\neq0$; choose $\sigma=2f(0)-1$. All slopes $b_{h,i}$ are positive, so Theorem 2.6 applies. $\blacksquare$
+
+Equivalently $T$ is a decision list whose rules are the $nH$ subcubes $\Sigma_{h,k}=\lbrace x_{\pi_h(k)}=1,\ x_{\pi_h(j)}=0\ (j\lt k)\rbrace$
+(one forced one, nested forced zeros), ordered by the weights, each rule carrying a sign. Negative-slope heads give the complementary rules
+(one forced zero, nested forced ones). Counting: there are at most $(n!)^H(nH)!\,2^{nH}\leq2^{nH(n+1)}$ such lists, so the tropical model
+cannot beat $H=(1-o(1))N/n^2$; it is a candidate for a Warren-tight mechanism, and it is a strict sub-model: parity needs about $N$ rules
+in it (every fiber is a subcube minus earlier subcubes and must be an independent set of the cube graph), while $H^{\ast}(\mathrm{PARITY}_n)=n$.
+
+## 10. Literature update (second survey)
+
+- Depth-two threshold circuits (LTF of LTFs): Kane, Williams (2016) give the counting bound $\Omega(2^n/n^2)$ for almost all functions;
+  the best known universal upper bound is the trivial $2^{n-1}+1$. So the exact analogue of our gap is open there with an even larger gap.
+  Lupanov (1972) and Nechiporuk (1964): unbounded-depth threshold circuits have Shannon function $\sim2\sqrt{2^n/n}$.
+- Selezneva: XOR sums of products of affine forms over $\mathbb F_2$ (indicators of affine subspaces) have Shannon function $\Theta(2^n/n^2)$:
+  a Warren-tight dictionary result on the cube, over $\mathbb F_2$ and with exact XOR rather than real signs. Kirichenko (2005): XOR of
+  products of literals needs at most $2^{n+1}(\log_2n+1)/n$ terms; Even, Kohavi, Paz lower bound $2^n/(n\log_23)$.
+- Warren tightness: Basu, Pollack, Roy (2009) show products of $d$ generic linear forms attain $((2d)^m/m!)N^m$ connected sign cells;
+  so Warren's bound is tight in the base constant for generic products of linear forms, but univariate sums of $t$ simple fractions have
+  at most $t-1$ zeros (Laguerre, Descartes), and fewnomial (Khovanskii, Zell) bounds depend on the number of monomials, not the degree.
+- Alon, Frankl, Rodl: sign rank of almost all $N\times N$ matrices is in $[N/32,N/2+o(N)]$; the Warren count is tight up to constants.
