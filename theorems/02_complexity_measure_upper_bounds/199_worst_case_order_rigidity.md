@@ -8,7 +8,7 @@ Let $N=2^n$ and $W(n)=\max_f H^{\ast}(f)$. The paper in the companion package pr
 
 $$ S(x)=\sigma+\sum_{h\in P}\frac{u_h\cdot x}{1+b_h\cdot x}+\sum_{h\in M}\frac{v_h\cdot(\mathbf 1-x)}{1+d_h\cdot(\mathbf 1-x)},\qquad b_h,d_h\in\mathbb R^n_{\geq0}, $$
 
-up to one additional affine head. For a fixed list of denominators at most $2\sum_{i\leq nH}\binom{N-1}{i}$ Boolean functions are realizable. With $H=cN/n^2$ this is $2^{(N/n)\log_2(ecn)+O(1)}=2^{o(N)}$, so a representation of every Boolean function with $cN/n^2$ heads must use target-dependent denominators carrying $N(1-o(1))$ bits in their $nH$ real parameters.
+up to one additional affine head. For a fixed list of denominators at most $2\sum_{i\leq nH}\binom{N-1}{i}$ Boolean functions are realizable. With $H=cN/n^2$ this is $2^{(cN/n)\log_2(en/c)+O(1)}=2^{o(N)}$, so a representation of every Boolean function with $cN/n^2$ heads must use target-dependent denominators carrying $N(1-o(1))$ bits in their $nH$ real parameters.
 
 **Theorem 2 (common-direction collapse).** If every denominator has the form $1+t_h\beta\cdot x$ for one fixed $\beta\in\mathbb R^n_{\geq0}$ (or every denominator has the form $1+t_h\beta\cdot(\mathbf 1-x)$), then every sign-represented function is a sign pattern of a fixed linear space of dimension at most $(n+1)H+1$. Consequently at most $2\sum_{i\leq(n+1)H+1}\binom{N-1}{i}$ functions are representable by such lists, and representing every Boolean function, or a fraction of them bounded away from zero, requires $H\geq(\tfrac12-o(1))N/(n+1)$.
 

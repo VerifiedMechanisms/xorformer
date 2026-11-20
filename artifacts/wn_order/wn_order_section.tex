@@ -38,7 +38,7 @@ fixed list by $2\sum_{i\le nH}\binom{N-1}{i}$.
 \begin{proposition}[Where the information must sit]
 \label{prop:wn-information}
 Let $H=cN/n^2$ with $c$ fixed. For any fixed denominator list, at most
-$2\sum_{i\le nH}\binom{N-1}i\le 2^{(N/n)\log_2(ecn)+O(1)}$ Boolean
+$2\sum_{i\le nH}\binom{N-1}i\le 2^{(cN/n)\log_2(en/c)+1}$ Boolean
 functions are realizable. Consequently a representation of all Boolean
 functions with $H=cN/n^2$ heads must use denominators that depend on
 the target, and the $nH$ denominator parameters must carry $\Theta(n)$
@@ -49,7 +49,7 @@ The first claim is Cover's bound for a linear family of dimension
 $nH+1$ on $N$ points, using $\binom{N-1}{i}\le(eN/i)^i$. For the second,
 the number of realizable functions is at most the number of distinct
 fixed-list pattern sets times the maximum size of one such set; the
-latter is $2^{(N/n)\log_2(ecn)+O(1)}=2^{o(N)}$, so $2^{N}$ functions
+latter is $2^{(cN/n)\log_2(en/c)+1}=2^{o(N)}$, so $2^{N}$ functions
 require $2^{N(1-o(1))}$ distinct pattern sets, i.e. $N(1-o(1))$ bits
 in the $nH=N/n$ denominator parameters.
 \end{proof}

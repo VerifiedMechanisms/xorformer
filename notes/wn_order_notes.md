@@ -33,7 +33,7 @@ into any P-head by the paper's perturbation argument).
 
 Fix the denominators. The numerators form a linear family of dimension $nH+1$, so by the Cover count
 at most $2\sum_{i\leq nH}\binom{N-1}{i}\leq 2(eN/(nH))^{nH}$ functions are realizable. With $H=cN/n^2$ this is
-$2^{(N/n)\log_2(ecn)+O(1)}\ll2^N$. Consequently:
+$2^{(cN/n)\log_2(en/c)+O(1)}\ll2^N$. Consequently:
 
 - no fixed denominator list can realize all functions with $H\lt N/(3.1n)$ heads (solve $(N/t)\log_2(et)=N$);
 - in the regime $H\asymp N/n^2$ the numerators carry only $O(\log n)$ bits per real parameter, while the
