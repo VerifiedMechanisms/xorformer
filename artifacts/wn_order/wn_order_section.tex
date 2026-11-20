@@ -218,6 +218,45 @@ Warren-like. Hence no algebraic collapse occurs once the denominator
 directions spread, and the open quantity is the number of real
 admissible solutions for cube points.
 
+
+\subsection{Computational evidence}
+\label{sec:wn-experiments}
+All searches below are heuristic: a success is certified by exact rational
+evaluation of the score on every cube point, a failure proves nothing.
+Scripts and logs are in \texttt{experiments/wn\_search/}.
+
+\begin{itemize}
+\item \emph{Alternating LP search.} For fixed denominators the best
+numerators solve a linear program (maximum margin, or minimum hinge
+loss); Danskin's theorem gives a subgradient in the denominators, which
+are updated multiplicatively with random restarts. Random $7$-bit
+functions are found with $8$ heads and random $8$-bit functions with
+$12$ to $14$ heads, below the fixed-list threshold $nH\ge N/2$ of Cover's
+bound ($16$ heads at $n=8$) but far above $N/n^2$. The certified
+denominators have dynamic ranges $10^4$ to $10^{10}$ within a head and
+spread directions. The same search does not recover the $n$-head
+representation of parity for $n\ge6$, so its failures carry no
+information.
+\item \emph{Tropical sub-model.} An exact SAT decision procedure gives,
+for random targets, $T(f)\in\{3,\dots,6\}$ at $n=5$ (mean $4.1$) and
+$\{5,6,7\}$ at $n=6$ (mean $6.0$); parity needs $10$ heads at $n=5$ and
+more than $13$ at $n=6$, majority more than $7$ at $n=6$. The optimal
+small solutions catch one colour class exactly and let a default rule
+take the rest, a structure that does not scale. A greedy constructor
+with random orders needs $Hn/N\approx1.6,2.1,3.1,3.3$ heads at
+$n=5,6,7,8$, i.e.\ more than $N/n$ and increasing.
+\item \emph{Interpolation multiplicity.} For $n=5$, $H=2$ and a planted
+target at $2nH=20$ cube points, Levenberg--Marquardt from $1500$ random
+starts finds $19$ distinct real solutions, $3$ of them admissible: the
+interpolation problem is not unique, in line with the Chow-degree
+heuristic, but the sample is too small to measure growth.
+\item \emph{Weight-two miniature.} Restricting the family to the
+$\binom n2$ inputs of weight two (graphs), where Cover's threshold is
+$H\approx n/4$ and Warren's about $n/(2\log_2n)$, the search finds
+random graphs on $16$, $32$ vertices with $3$, $4$ heads; at $64$
+vertices $3$ heads fail and the run is ongoing.
+\end{itemize}
+
 \subsection{Status}
 \label{sec:wn-status}
 The lower bound $(\tfrac12+o(1))N/n^2$ is Warren's count applied to the
@@ -225,8 +264,9 @@ $2nH$ real parameters of \eqref{eq:wn-normal}; by
 Proposition~\ref{prop:wn-information} it is attained only if the sign
 pattern depends on the denominators in a Warren-tight way. Every
 mechanism available in the paper (exact spanning by fixed lists,
-regular zeros, dominant cells, the tropical regime, boosting) is capped
-at order $N/n$ by the arguments above. The analogous question for
+regular zeros, dominant cells, boosting) is capped at order $N/n$ by
+the arguments above, and the tropical regime with random orders is
+worse than $N/n$ in the greedy experiments. The analogous question for
 depth-two threshold circuits (threshold of thresholds) is open with a
 gap between the counting bound $\Omega(2^n/n^2)$ and the trivial
 $2^{n-1}+1$; the only Warren-tight dictionary result on the cube known to
