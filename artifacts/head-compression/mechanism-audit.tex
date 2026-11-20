@@ -910,4 +910,35 @@ This is a constraint on a universal construction, not a claim that
 every individual Boolean function needs many denominator directions.
 It leaves the full-rank, target-dependent case open.
 
+\begin{proposition}[Adaptive moment-curve nodes still have insufficient sign capacity]
+Consider scores with arbitrary affine numerators and target-dependent positive
+nodes $t_1,\ldots,t_H$, with denominators
+\[
+ B_h(x)=1+\sum_{i=1}^n t_h^i x_i.
+\]
+For every fixed $C>0$, the family with at most $C2^n/n^2$ heads realizes
+only $2^{o(2^n)}$ Boolean functions as $n\to\infty$.
+\end{proposition}
+\begin{proof}
+Normalize the numerators as before. Clearing the positive denominators
+gives degree at most $nH$ in the $H$ nodes and degree at most one in
+the $1+nH$ numerator and bias parameters. For $H\ge2$ and
+$k=1+(n+1)H\le N=2^n$, the two-block sign-count lemma therefore gives
+\[
+ M_{\mathrm{node}}(n,H)
+ \le\left(\frac{65536N}{k}\right)^k(nH)^H.
+\]
+At $H=\lfloor CN/n^2\rfloor$, its base-two logarithm is
+$O_C(N\log n/n)+O_C(N/n)=o(N)$. Padding by zero numerators covers
+all smaller head counts. Every positive node produces an admissible
+denominator, but allowing every real node when applying the count
+only enlarges the family.
+\end{proof}
+
+Thus the manuscript's integer-node determinant construction cannot
+reach the requested head budget merely by making its nodes depend on
+the target. This obstruction allows continuous adaptive nodes and
+arbitrary real numerator coefficients; it does not rely on a finite
+precision or bounded-node assumption.
+
 \end{document}
