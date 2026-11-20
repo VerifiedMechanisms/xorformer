@@ -226,6 +226,84 @@ $s$ can retain this pattern. Thus the manuscript's rational
 nonvanishing-minor continuation is valid for spanning, but it has no
 automatic analogue for sign-only constructions with fewer parameters.
 
+\section{A direct obstruction to bounded-atom boosting}
+
+\begin{proposition}[Sharp parity correlation bound for one head]
+Let $n\ge1$, let $A,B$ be affine, and suppose $B$ is positive on the
+cube and has all variable coefficients nonnegative or all nonpositive.
+Write $R=A/B$ and $\chi(x)=(-1)^{|x|}$. Then
+\[
+ \left|\sum_{x\in\Qn}\chi(x)R(x)\right|
+ \le \max_{x\in\Qn}R(x)-\min_{x\in\Qn}R(x)
+ \le 2\|R\|_\infty.
+\]
+The constant $2$ in the last bound cannot be decreased uniformly.
+\end{proposition}
+\begin{proof}
+Complementing all coordinates multiplies the alternating sum by
+$(-1)^n$ and preserves its absolute value and the range. Thus assume
+$B(x)=b_0+\sum_i b_ix_i$ with $b_0>0$ and $b_i\ge0$.
+Define the convergent integrals
+\[
+ I_0=\int_0^\infty e^{-b_0t}\prod_j(1-e^{-b_jt})\,dt,
+ \qquad
+ J_i=\int_0^\infty e^{-(b_0+b_i)t}
+                \prod_{j\ne i}(1-e^{-b_jt})\,dt.
+\]
+Expanding the finite products and using
+$\int_0^\infty e^{-ct}\,dt=1/c$ for $c>0$ gives
+$I_0=\sum_x\chi(x)/B(x)$ and
+$-J_i=\sum_x\chi(x)x_i/B(x)$.
+In particular $b_0I_0-\sum_i b_iJ_i=\sum_x\chi(x)=0$.
+Write $R_0=R(0)$ and $R_i=R(e_i)$. The numerator coefficients satisfy
+$a_0=b_0R_0$ and $a_i=(b_0+b_i)R_i-b_0R_0$. Consequently
+\[
+ \sum_x\chi(x)R(x)
+ =L R_0-\sum_i\lambda_iR_i,
+ \qquad
+ \lambda_i=(b_0+b_i)J_i\ge0,
+ \quad L=\sum_i\lambda_i=b_0\left(I_0+\sum_iJ_i\right).
+\]
+For fixed $t\ge0$ put $q_i=e^{-b_it}\in[0,1]$. The quantity
+\[
+ \prod_i(1-q_i)+\sum_i q_i\prod_{j\ne i}(1-q_j)
+\]
+lies in $[0,1]$: it is the sum of the zero-success and one-success
+terms in the expansion of $\prod_i((1-q_i)+q_i)=1$.
+It follows that $0\le L\le b_0\int_0^\infty e^{-b_0t}\,dt=1$.
+The displayed alternating sum is therefore a nonnegative combination,
+of total mass at most one, of differences $R_0-R_i$. This proves the
+range bound.
+
+For sharpness take $B(x)=\varepsilon+\sum_i x_i$ and
+$R(x)=2\varepsilon/B(x)-1$. Its sup norm equals one, while
+$\sum_x\chi(x)R(x)\to2$ as $\varepsilon\downarrow0$: the term
+$2\varepsilon/B(0)$ equals two and all other such terms tend to zero.
+These denominators have strictly positive slopes.
+\end{proof}
+
+\begin{proposition}[Parity requires exponential atomic amplitude]
+If $S=c+\sum_hR_h$ is an admissible score with
+$\chi(x)S(x)\ge\delta>0$ at every vertex, then
+\[
+ \sum_h\bigl(\max R_h-\min R_h\bigr)\ge 2^n\delta,
+ \qquad
+ \sum_h\|R_h\|_\infty\ge2^{n-1}\delta.
+\]
+\end{proposition}
+\begin{proof}
+Sum $\chi(x)S(x)\ge\delta$ over the cube. The free constant has zero
+alternating sum, and apply the preceding proposition term by term.
+\end{proof}
+
+Thus a proposed boosting theorem whose atoms have sup norm at most one
+cannot uniformly guarantee correlation $cn/\sqrt{2^n}$ with every
+labeling, even under the uniform input distribution: parity has
+correlation at most $2^{1-n}$ with every atom. This rules out that
+specific mechanism without placing any new restriction on unbounded
+real parameters or proving an exponential head lower bound. Parity's
+known $n$-head representation is consistent with the amplitude bound.
+
 \section{Literature mechanisms and their exact limits}
 
 \paragraph{Connected domination and codes.}
