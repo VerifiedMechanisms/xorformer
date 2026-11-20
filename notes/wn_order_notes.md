@@ -355,6 +355,7 @@ solutions (deduplicated up to head permutation), admissible = all denominator sl
 | (5,3) | 30 | 800 | 164 | 27 | 10 | 126126 |
 | (6,2) | 24 | 800 | 257 | 26 | 11 | 462 |
 | (7,2) | 28 | 600 | 116 | 12 | 2 | 1716 |
+| (6,3) | 36 | 600 | 53 | 12 | 2 | 2858856 |
 
 The number of distinct real solutions found saturates (a few hundred converged runs land on a few dozen solutions), so
 the real multiplicity is plausibly of order tens here, while the complex degree of the product variety jumps by a factor
