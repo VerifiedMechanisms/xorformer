@@ -69,6 +69,7 @@ def run(n,h,seconds,out):
     print(json.dumps(record),flush=True)
     with (out/"results.jsonl").open("a") as stream:
         stream.write(json.dumps(record)+"\n")
+    return answer
 
 
 def main():
@@ -76,14 +77,19 @@ def main():
     parser.add_argument("--out",type=Path,required=True)
     parser.add_argument("--seconds",type=float,default=18000)
     parser.add_argument("--trial-seconds",type=float,default=1800)
+    parser.add_argument("--min-n",type=int,default=2)
     args=parser.parse_args();args.out.mkdir(parents=True,exist_ok=True)
     deadline=time.monotonic()+args.seconds
     cases=[(2,2),(3,3),(3,4)]+[(4,h) for h in range(4,9)]+[(5,h) for h in range(5,17)]
+    solved=set()
     for n,h in cases:
+        if n<args.min_n or n in solved:
+            continue
         remaining=deadline-time.monotonic()
         if remaining<=0:
             break
-        run(n,h,min(args.trial_seconds,remaining),args.out)
+        if run(n,h,min(args.trial_seconds,remaining),args.out)==z3.sat:
+            solved.add(n)
 
 
 if __name__=="__main__":
