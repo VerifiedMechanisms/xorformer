@@ -162,6 +162,30 @@ arguments with the atoms as weak learners also stop at $N/n$, because
 the atoms form a class of pseudo-dimension $O(n)$ and a random
 function has correlation $O(n/\sqrt N)$ with every atom.
 
+
+\subsection{The crux as an interpolation multiplicity}
+\label{sec:wn-crux}
+For fixed $\theta=(\sigma,u,b)$ the sign vector of $S(\cdot;\theta)$ is the
+cell of $\theta$ in the arrangement of the $N$ hypersurfaces
+$W_x=\{\theta:S(x;\theta)=0\}$ in $\mathbb R^{2nH}$. Warren's argument
+bounds the number of cells by $\sum_{k\le2nH}\binom NkI_k$, where $I_k$
+bounds the number of connected components of $k$-fold intersections; for
+hyperplanes $I_k=1$ and the count is the linear one, while
+Milnor--Thom gives $I_k\le(2\deg)^{2nH}$. A $(2nH)$-fold intersection is
+the set of parameters whose score vanishes at $2nH$ prescribed cube
+points, i.e.\ the solution set of a rational interpolation problem.
+Hence $W(n)=\Theta(N/n^2)$ holds, up to constants in the exponent, if
+and only if generic interpolation problems $S(x_j;\theta)=0$
+($j\le2nH$) have $2^{\Theta(n^2H)}$ isolated real admissible solutions,
+whereas $2^{O(nH\log n)}$ solutions would give $W(n)=\Omega(N/n)$. In
+the univariate analogue the problem is linear after clearing
+denominators (Cauchy interpolation) and has a unique solution; for
+$H=1$ on the cube it is linear in $(u,b)$. For $H\ge2$ eliminating the
+numerators leaves $nH$ polynomial conditions of degree up to $H(nH+1)$
+in the $nH$ denominator parameters, whose B\'ezout number matches
+Warren's bound; the number of real solutions in the admissible orthant
+is the open quantity.
+
 \subsection{Status}
 \label{sec:wn-status}
 The lower bound $(\tfrac12+o(1))N/n^2$ is Warren's count applied to the

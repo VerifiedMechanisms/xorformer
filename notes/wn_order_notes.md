@@ -149,3 +149,34 @@ in it (every fiber is a subcube minus earlier subcubes and must be an independen
   so Warren's bound is tight in the base constant for generic products of linear forms, but univariate sums of $t$ simple fractions have
   at most $t-1$ zeros (Laguerre, Descartes), and fewnomial (Khovanskii, Zell) bounds depend on the number of monomials, not the degree.
 - Alon, Frankl, Rodl: sign rank of almost all $N\times N$ matrices is in $[N/32,N/2+o(N)]$; the Warren count is tight up to constants.
+
+## 11. The crux as an interpolation-multiplicity question
+
+For fixed numerators and denominators the sign vector of $S(\cdot;\theta)$ is the cell of $\theta\in\mathbb R^{2nH}$ in the
+arrangement of the $N$ hypersurfaces $W_x=\lbrace\theta:S(x;\theta)=0\rbrace$. Warren's proof bounds the number of cells by
+$\sum_{k\leq2nH}\binom Nk I_k$ where $I_k$ bounds the number of connected components of $k$-fold intersections. For hyperplanes
+$I_k=1$ and the count is linear-like; Warren uses the Milnor-Thom bound $I_k\leq(2\deg)^{2nH}$. Here a $k$-fold intersection with
+$k=2nH$ is the set of parameter vectors whose score vanishes at $2nH$ prescribed cube points: the solution set of a rational
+interpolation problem. So
+
+- $W(n)=\Theta(N/n^2)$ is equivalent (up to constants in the exponent) to: generic interpolation problems "$S(x_j;\theta)=0$,
+  $j\leq2nH$" have $2^{\Theta(nH\cdot n)}$ isolated real solutions, i.e. Bezout-like multiplicity;
+- $W(n)=\Omega(N/n)$ would follow from: such problems have $2^{O(nH\log n)}$ real solutions (polynomially many per parameter).
+
+In the univariate analogue the interpolation problem is linear after clearing denominators (Cauchy interpolation), so it has a
+unique solution and the count is linear-like. For $H=1$ on the cube the problem is linear in $(u,b)$ (unique solution). For
+$H\geq2$ the elimination of the numerators leaves $nH$ polynomial conditions of degree up to $H(nH+1)$ in the $nH$ denominator
+parameters, whose Bezout number matches Warren; the actual number of real solutions in the admissible orthant is unknown. This
+is the precise algebraic statement separating the two conjectures.
+
+## 12. Experimental record (heuristic searches, not evidence of optimality)
+
+- search2.py (alternating max-margin LP in the numerators, Danskin subgradient ascent on the denominators, multiplicative updates,
+  random restarts, exact rational verification): random 7-bit functions found with 8 heads (none with 7); random 8-bit functions
+  found with 12-14 heads (none with 10). Fixed generic lists succeed only when $nH\gtrsim N/2$ (Cover), so the optimizer does find
+  genuinely nonlinear representations, but only slightly below $N/(2n)$: at $n=8$, $N/(2n)=16$, found $12$-$14$; $N/n^2=4$.
+  The found denominators have dynamic ranges of $10^4$-$10^{10}$ within a head (suppression regime) and spread directions.
+- The same optimizer fails to recover the known $n$-head representation of parity for $n\geq6$ (margins $\sim10^{-10}$), so its
+  failures are not evidence; its successes are certified exactly.
+- tropical.py (simulated annealing over orders and priorities): random 5-bit targets need 4-8 heads, 6-bit targets 8-10,
+  7-bit targets more than 12 within the budget; the annealer stalls with a few conflicts, so these are upper estimates only.
