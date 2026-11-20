@@ -180,3 +180,21 @@ is the precise algebraic statement separating the two conjectures.
   failures are not evidence; its successes are certified exactly.
 - tropical.py (simulated annealing over orders and priorities): random 5-bit targets need 4-8 heads, 6-bit targets 8-10,
   7-bit targets more than 12 within the budget; the annealer stalls with a few conflicts, so these are upper estimates only.
+
+## 13. Audit of the paper's W(n) proofs (version-5.tex, 15 November 2026)
+
+- Theorem 3.5 (worst-case bounds). Normalization: dividing by $B_h(0)\gt0$, absorbing numerator constants into $c=S(0)\neq0$
+  (strictification guarantees $c\neq0$), scaling by $1/|c|$: correct. Cleared polynomials $P_x$ have parameter degree $H$
+  (the term $\sigma\prod_hB_h$ has degree $H$, each $(u_h\cdot x)\prod_{g\neq h}B_g$ has degree $1+(H-1)$): correct. Warren with
+  $m=2nH\leq N-1$ polynomials... (with $N-1$ polynomials in $2nH$ variables) gives $2(2e(N-1)/n)^{2nH}=2^{1+2nHL_n}$; comparison
+  with $2^N$ gives $H\geq(N-1)/(2nL_n)$ and $L_n=n-\log_2n+\log_2(2e)+o(1)$: correct. The case $2nH\gt N-1$ is handled by
+  $L_n\gt1$: correct.
+- Lemma (series derivative criterion) and Lemma (cube edges give the derivative rank): the identity
+  $q(v\oplus e_i)-q(v)=(1-2v_i)\partial_ip(\mathbf 1+v)$ holds because $p$ is affine in each coordinate; the kernel of the
+  derivative map is the space of $q$ constant on the components of $G_D$, of dimension $c(D)$; rank $2^n-c(D)$: correct.
+  Connected $G_D$ gives spanning for all positive scales outside a finite set (rationality argument): correct.
+- Theorem 3.7: $s(n)\leq\gamma_c(Q_n)$ and Griggs (2021, Theorem 6.1) $\gamma_c(Q_n)=(1+o(1))2^n/n$: confirmed by the survey.
+- Theorem 3.8 (cancelling pairs): the identity $A_1/B_1+A_2/B_2=0$ on the cube uses $u(1-u)=0$; the $3d\times3d$ limiting
+  Jacobian block is block upper triangular with invertible diagonal blocks; admissibility by adding $sC$ and nonvanishing of the
+  determinant for some integer $s\geq1$ by finiteness of zeros: correct. Head count $H_{d,r}=(2^d/d)(2\lfloor2^r/3\rfloor+t_r)$ and
+  the subsequence constant $2/3$: correct. The parameter count caps this mechanism at $(\tfrac12+o(1))N/n$.
