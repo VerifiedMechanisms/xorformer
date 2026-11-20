@@ -255,7 +255,7 @@ in their orders (dimension about n-3.5). Parity uses fibers of size 1 or 2 only 
 n = 5), i.e. essentially one rule per point: parity and majority are exponentially more expensive in the sub-model
 than in the full model ($H^{\ast}=n$ and $1$), confirming that dominance alone cannot replace cancellation. For
 random targets the mean fiber size grows slowly with n (1.9, 2.3, 2.6 at n = 4, 5, 6); an $N/n^2$ rate would need
-mean fiber size proportional to n. The normalized values $Hn/N$ for the random means are $0.72, 0.64, 0.56$ and about $0.55$ at $n=4,5,6,7$ (roughly stable),
+mean fiber size proportional to n. The normalized values $Hn/N$ for the random means are $0.72, 0.64, 0.56$ and about $0.57$ at $n=4,5,6,7$ (n=7: values 9, 10, [10,11], and lower bounds 9, 11, 11; roughly stable),
 while $Hn^2/N$ grows ($2.9, 3.2, 3.4, 3.8$): within this small range the exact optima of the dominance sub-model scale like
 $N/n$ with constant about $0.55$, comparable to the paper's universal bounds for the full model, not like $N/n^2$.
 The greedy constructor of Section 17 is far from these optima.
@@ -354,6 +354,7 @@ solutions (deduplicated up to head permutation), admissible = all denominator sl
 | (5,2) | 20 | 1500 | 461 | 19 | 3 | 126 |
 | (5,3) | 30 | 800 | 164 | 27 | 10 | 126126 |
 | (6,2) | 24 | 800 | 257 | 26 | 11 | 462 |
+| (7,2) | 28 | 600 | 116 | 12 | 2 | 1716 |
 
 The number of distinct real solutions found saturates (a few hundred converged runs land on a few dozen solutions), so
 the real multiplicity is plausibly of order tens here, while the complex degree of the product variety jumps by a factor
