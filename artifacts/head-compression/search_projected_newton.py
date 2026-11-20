@@ -97,12 +97,31 @@ def run(checkpoint, out, seconds, seed):
         gram = normalized.T @ normalized
         gram.flat[::len(gram)+1] += damping
         rhs = normalized.T @ residual[active]
-        try:
-            delta = la.solve(gram, rhs, assume_a="pos", check_finite=False)/scale
-        except la.LinAlgError:
-            delta = la.lstsq(gram, rhs, check_finite=False)[0]/scale
+        # Remove outward directions at active box constraints. Clipping an
+        # unconstrained Newton direction afterwards need not preserve descent.
+        free = np.ones(len(rhs), dtype=bool)
+        flat_logs = logs.ravel()
+        for _ in range(len(rhs)+1):
+            delta = np.zeros(len(rhs))
+            if not free.any():
+                break
+            subgram = gram[np.ix_(free, free)]
+            try:
+                delta[free] = la.solve(subgram, rhs[free], assume_a="pos",
+                                      check_finite=False)/scale[free]
+            except la.LinAlgError:
+                delta[free] = la.lstsq(subgram, rhs[free], check_finite=False)[0]/scale[free]
+            outward = (((flat_logs >= 20-1e-8) & (delta > 0)) |
+                       ((flat_logs <= -20+1e-8) & (delta < 0))) & free
+            if not outward.any():
+                break
+            free[outward] = False
         delta = delta.reshape(h, n)
         alpha = min(1., 2/max(np.max(np.abs(delta)), 1e-30))
+        moving = np.abs(delta) > 1e-30
+        if moving.any():
+            distance = np.where(delta > 0, 20-logs, -20-logs)
+            alpha = min(alpha, float(np.min((distance[moving]/delta[moving]))))
         accepted = False
         for _ in range(20):
             if time.monotonic() >= deadline:
