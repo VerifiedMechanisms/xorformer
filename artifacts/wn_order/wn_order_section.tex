@@ -1,0 +1,185 @@
+% Standalone section on the order of W(n); uses the macros of version-5.tex
+% (\Hs, \B, \degpm). Compile by \input-ing after the preamble of version-5.tex.
+\section{On the order of the worst-case head complexity}
+\label{sec:wn-order}
+
+Write $N=2^n$ and $W(n)=\max_f\Hs(f)$. Theorems~\ref{thm:worst} and
+\ref{thm:asymptotic-spanning} give
+$(\tfrac12+o(1))N/n^2\le W(n)\le(1+o(1))N/n$. This section records what
+is known about the order of $W(n)$ after an audit of those proofs, two
+new rigidity theorems, and an analysis of the mechanisms that a
+$2^n/n^2$ construction would have to use. The question whether
+$W(n)=O(N/n^2)$ remains open; the section identifies precisely where
+every known mechanism stops.
+
+\subsection{Normalized scores}
+\label{sec:wn-normalized}
+Every $H$-head score can be written as
+\begin{equation}
+\label{eq:wn-normal}
+ S(x)=\sigma+\sum_{h\in P}\frac{u_h\cdot x}{1+b_h\cdot x}
+          +\sum_{h\in M}\frac{v_h\cdot(\mathbf1-x)}{1+d_h\cdot(\mathbf1-x)},
+ \qquad b_h,d_h\in\mathbb R^n_{\ge0},
+\end{equation}
+with $\sigma\in\mathbb R$ and $u_h,v_h\in\mathbb R^n$ arbitrary.
+Indeed, dividing an atom with positive slopes by $B_h(0)>0$ and writing
+$A_h/B_h=A_h(0)+(u_h-A_h(0)b_h)\cdot x/B_h$ absorbs all numerator
+constants into $\sigma$; an atom with negative slopes becomes, in the
+complemented variables $y=\mathbf1-x$, an atom with positive slopes;
+constant-slope atoms are affine functions and are absorbed into one
+extra head by the perturbation in the proof of Theorem~\ref{thm:nf}.
+For fixed denominators the realizable Boolean functions are exactly the
+halfspace dichotomies of the $N$ points
+$\phi_B(x)=(1,(x_i/B_h(x))_{h,i})\in\mathbb R^{1+nH}$
+(Proposition~\ref{prop:uniform-dual-certificate}); in particular
+Cover's count bounds the number of functions realizable with any one
+fixed list by $2\sum_{i\le nH}\binom{N-1}{i}$.
+
+\begin{proposition}[Where the information must sit]
+\label{prop:wn-information}
+Let $H=cN/n^2$ with $c$ fixed. For any fixed denominator list, at most
+$2\sum_{i\le nH}\binom{N-1}i\le 2^{(N/n)\log_2(ecn)+O(1)}$ Boolean
+functions are realizable. Consequently a representation of all Boolean
+functions with $H=cN/n^2$ heads must use denominators that depend on
+the target, and the $nH$ denominator parameters must carry $\Theta(n)$
+bits each, while the numerator parameters carry $O(\log n)$ bits each.
+\end{proposition}
+\begin{proof}
+The first claim is Cover's bound for a linear family of dimension
+$nH+1$ on $N$ points, using $\binom{N-1}{i}\le(eN/i)^i$. For the second,
+the number of realizable functions is at most the number of distinct
+fixed-list pattern sets times the maximum size of one such set; the
+latter is $2^{(N/n)\log_2(ecn)+O(1)}=2^{o(N)}$, so $2^{N}$ functions
+require $2^{N(1-o(1))}$ distinct pattern sets, i.e. $N(1-o(1))$ bits
+in the $nH=N/n$ denominator parameters.
+\end{proof}
+
+\subsection{Rigidity of common directions}
+\begin{theorem}[Common-direction collapse]
+\label{thm:wn-common-direction}
+Let $\beta\in\mathbb R^n_{\ge0}$, $s(x)=\beta\cdot x$, and suppose every
+denominator has the form $B_h=1+t_h s$ with $t_h>0$ (or every denominator
+has the form $1+t_h\,\beta\cdot(\mathbf1-x)$). Then every function
+sign-represented by $\sigma+\sum_{h\le H}A_h/B_h$ with affine $A_h$ is a
+sign pattern of the fixed linear space
+\[
+ \mathcal W=\Bigl\{R_0(s)+\sum_{i=1}^nx_iR_i(s):\ \deg R_0\le H,\ \deg R_i\le H-1\Bigr\},
+ \qquad \dim\mathcal W\le(n+1)H+1 .
+\]
+Hence at most $2\sum_{i\le(n+1)H+1}\binom{N-1}i$ functions admit such a
+representation, and representing every Boolean function (or a fraction
+bounded away from zero of them) by lists with one common direction
+requires $H\ge(\tfrac12-o(1))N/(n+1)$.
+\end{theorem}
+\begin{proof}
+Multiply the score by $Q(s)=\prod_h(1+t_hs)>0$. Each
+$A_h\prod_{g\ne h}(1+t_gs)$ equals $a_{h,0}\prod_{g\ne h}(1+t_gs)+\sum_ix_ia_{h,i}\prod_{g\ne h}(1+t_gs)$,
+and the products have degree $\le H-1$ in $s$; $\sigma Q$ has degree
+$H$. So $QS\in\mathcal W$, and $\operatorname{sign}S=\operatorname{sign}QS$.
+The pattern count of a linear space of dimension $D$ on $N$ points is at
+most $2\sum_{i\le D}\binom{N-1}i$, which is below $2^N$ unless
+$D\ge(N-1)/2$ and is $o(2^N)$ unless $D\ge N/2-O(\sqrt N)$.
+\end{proof}
+
+The lists of Theorems~\ref{thm:uniform-spanning} and
+\ref{thm:asymptotic-spanning} use $|D|\approx N/n$ distinct directions
+$\mathbf1+v$, so they are not affected. The theorem shows that the
+degree-$H$ factor in Warren's bound, which is the entire source of the
+gap between $N/n^2$ and $N/n$, is illusory unless the denominator
+directions spread: with one direction the products
+$\prod_{g\ne h}B_g$ span a space independent of the $t_h$.
+
+\subsection{A combinatorial sub-model and its transfer theorem}
+\label{sec:wn-tropical}
+Let head $h$ carry a permutation $\pi_h$ of $[n]$, distinct integers
+$w_{h,1},\dots,w_{h,n}$ (distinct across all $nH$ pairs) and signs
+$c_{h,k}\in\{\pm1\}$. For $x\ne0$ let $k_h(x)$ be the $\pi_h$-position of
+the first element of $\operatorname{supp}(x)$ in the order $\pi_h$, and
+put $T(x)=c_{h^\ast,k_{h^\ast}(x)}$ with
+$h^\ast=\arg\max_hw_{h,k_h(x)}$. Equivalently $T$ is the decision list
+whose rules are the $nH$ subcubes
+$\Sigma_{h,k}=\{x_{\pi_h(k)}=1,\ x_{\pi_h(j)}=0\ (j<k)\}$, ordered by the
+weights, each carrying a sign; the $n$ rules of one head partition
+$\B^n\setminus\{0\}$.
+
+\begin{theorem}[Tropical transfer]
+\label{thm:wn-tropical}
+If $T(x)=2f(x)-1$ for all $x\ne0$, then $\Hs(f)\le H$.
+\end{theorem}
+\begin{proof}
+Put $L=2\max_{h,k}|w_{h,k}|+2$, $m_{h,\pi_h(k)}=kL$,
+$e_{h,\pi_h(k)}=kL+w_{h,k}$, $b_{h,i}=K^{m_{h,i}}$ and
+$u_{h,i}=c_{h,\pi_h^{-1}(i)}K^{e_{h,i}}$ for a large integer $K$. Fix
+$x\ne0$, let $k=k_h(x)$ and $t=\pi_h(k)$. Every other element of the
+support lies later in $\pi_h$, so its exponents are smaller by at least
+$L/2$. Hence $u_h\cdot x=c_{h,k}K^{e_{h,t}}(1+\epsilon)$ and
+$1+b_h\cdot x=K^{m_{h,t}}(1+\epsilon')$ with $|\epsilon|,|\epsilon'|\le nK^{-L/2}+K^{-L}$, and
+\[
+ \frac{u_h\cdot x}{1+b_h\cdot x}=c_{h,k}K^{w_{h,k}}(1+O(nK^{-L/2})).
+\]
+The weights are distinct integers, so the head attaining
+$\max_hw_{h,k_h(x)}$ exceeds every other head by the factor $K$; for
+$K>4nH$ the sign of $\sigma+\sum_hu_h\cdot x/(1+b_h\cdot x)$ equals
+$T(x)$ for $x\ne0$ and equals $\operatorname{sign}\sigma$ at $x=0$. All
+slopes are positive, so Theorem~\ref{thm:nf} applies.
+\end{proof}
+
+There are at most $(n!)^H(nH)!\,2^{nH}\le2^{nH(n+1)}$ tropical
+representations with $H$ heads, so this sub-model cannot beat
+$H=(1-o(1))N/n^2$; it is the regime of exponentially spread denominators
+and it is a strict sub-model: parity needs about $N$ rules in it (each
+fiber is a subcube minus earlier subcubes, hence an independent set of
+the cube graph), whereas $\Hs(\mathrm{PARITY}_n)=n$. The cancellation
+mechanism of Theorem~\ref{thm:sym} and the spanning mechanism of
+Section~\ref{sec:upper-bounds} are therefore not captured by it.
+
+\subsection{Rate caps of local mechanisms}
+\begin{proposition}[Local cells cannot reach $N/n^2$]
+\label{prop:wn-local-cap}
+Suppose $k$ heads dominate a set $R\subseteq\B^n$ in the sense that on
+$R$ their denominators are $O(s)$ and all other contributions are
+$O(1)$, while off $R$ their contributions are bounded. Then as $s\to0$
+the sign pattern on $R$ is a $k$-head pattern of the restricted problem,
+hence one of at most $2(e|R|/(2nk))^{2nk}$ patterns. All $2^{|R|}$
+patterns are available only if $|R|\le2nk\log_2(e|R|/(2nk))$. In
+particular a mechanism that controls $|R|/k\ge n^2/c$ points per head
+needs $|R|\ge2nk\,2^{n/(2c)}$: the dominated sets must have exponential
+size.
+\end{proposition}
+\begin{proof}
+On $R$ the score is $s^{-1}\sum_{j\le k}A_j/C_j+O(1)$ with $C_j$ the
+positive affine forms $B_j/s$; for small $s$ its sign is that of
+$\sum_jA_j/C_j$, a $k$-head score. Warren's theorem for $2nk$ parameters
+and degree $k$ on $|R|$ points gives the count (Theorem~\ref{thm:worst}).
+\end{proof}
+
+For $k=1$ this is the star-cell mechanism of
+Lemma~\ref{lem:pole-partition-spanning} ($n+1$ points per head); the
+regular-zero mechanism of Theorem~\ref{thm:adaptive-cancellation} is
+capped by its parameter count at $2n$ points per head, i.e. at
+$W(n)\le(\tfrac12+o(1))N/n$, of which $2/3$ is attained. Boosting-type
+arguments with the atoms as weak learners also stop at $N/n$, because
+the atoms form a class of pseudo-dimension $O(n)$ and a random
+function has correlation $O(n/\sqrt N)$ with every atom.
+
+\subsection{Status}
+\label{sec:wn-status}
+The lower bound $(\tfrac12+o(1))N/n^2$ is Warren's count applied to the
+$2nH$ real parameters of \eqref{eq:wn-normal}; by
+Proposition~\ref{prop:wn-information} it is attained only if the sign
+pattern depends on the denominators in a Warren-tight way. Every
+mechanism available in the paper (exact spanning by fixed lists,
+regular zeros, dominant cells, the tropical regime, boosting) is capped
+at order $N/n$ by the arguments above. The analogous question for
+depth-two threshold circuits (threshold of thresholds) is open with a
+gap between the counting bound $\Omega(2^n/n^2)$ and the trivial
+$2^{n-1}+1$; the only Warren-tight dictionary result on the cube known to
+us is Selezneva's $\Theta(2^n/n^2)$ for exclusive-or sums of products of
+affine forms over $\mathbb F_2$, whose mechanism (exact cancellation in
+characteristic two) has no real-signed counterpart in the present model.
+We state the two possibilities as a conjecture pair: either
+$W(n)=\Theta(N/n^2)$, which requires a global construction in which
+$\Theta(n)$ heads contribute comparably at a typical input, or
+$W(n)=\omega(N/n^2)$, which requires a lower bound beyond Warren's
+theorem that exploits the positivity and one-sign structure of the
+denominators. Neither is established here.
