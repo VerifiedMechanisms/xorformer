@@ -1574,4 +1574,69 @@ Products of these gates have not been compiled at additive head cost;
 nor has arbitrary labeling of blocks been established from them.
 Those missing properties are not inferred from the corner identities.
 
+\section{Vector-pair routing and its address limitation}
+
+\begin{lemma}[Disjoint routing from orthant matchings]
+Let $v_1,\ldots,v_K\in\mathbb R^k$ and let $m\geq1$.
+For each $\eta\in\{-1,1\}^k$, form a graph on $[K]$ by joining
+$a\neq b$ if some $\alpha,\beta\in\mathbb R$ satisfy
+\[
+ \eta_j(\alpha v_{a,j}+\beta v_{b,j})>0\quad(1\leq j\leq k).
+\]
+Suppose each graph has a matching with at least $2m-1$ edges.
+Then for any sequence $\eta^{(1)},\ldots,\eta^{(m)}$ there are
+pairwise disjoint pairs $\{a_p,b_p\}$ and coefficients
+$\alpha_p,\beta_p$ whose vector sums have the corresponding strict
+signs $\eta^{(p)}$.
+\end{lemma}
+\begin{proof}
+Choose the pairs successively. Before step $p$, exactly $2(p-1)$
+dictionary vertices have been used. They meet at most $2(p-1)$ edges
+of the specified matching for $\eta^{(p)}$, since its edges are
+disjoint. This number is less than $2m-1$, so an unused edge remains.
+Choose it and its defining coefficients. The induction proves the claim.
+\end{proof}
+
+An integer-vector search and a separate exact rational verifier produced
+such dictionaries with $K=8\cdot2^k$ and matching size $2\cdot2^k$
+for $3\leq k\leq9$. The certificates establish only those finite
+dictionary statements. They do not establish an asymptotic dictionary
+theorem or a Boolean-cube representation theorem.
+
+The routing lemma is compatible with the earlier kernel decoder on
+geometrically separated one-hot addresses: two heads assigned to an
+address may have arbitrary real residue directions and coefficients.
+The head parameters can vary with a one-hot memory coordinate. This
+observation does not supply geometrically separated binary addresses.
+The following obstruction applies to every affine address map, including
+ones with unrestricted signs of their variable coefficients.
+
+\begin{proposition}[Affine binary addresses cannot all be geometrically separated]
+Let $k\geq2$ and let $P:\{0,1\}^k\longrightarrow(0,\infty)$ be
+affine and injective. Write its $N=2^k$ distinct values as
+$0<p_1<\cdots<p_N$. If $R>1$ and
+$p_{i+1}\geq Rp_i$ for all $1\leq i<N$, then
+\[
+ R^{N/2-1}<2.
+\]
+\end{proposition}
+\begin{proof}
+Affineness gives a positive constant $S$ such that
+$P(x)+P(\boldsymbol 1-x)=S$ for every $x$.
+The map $t\mapsto S-t$ reverses the ordered value set, hence
+$p_i+p_{N+1-i}=S$. In particular $p_{N/2+1}>S/2$, while
+$p_N<S$ because its complementary value is positive. Iterating the
+assumed ratio inequality through the upper half of the list yields
+\[
+ R^{N/2-1}\leq\frac{p_N}{p_{N/2+1}}<2.
+\]
+\end{proof}
+
+Thus a fixed separation factor such as $R=32$ cannot be realized by
+an affine address on all binary inputs even when $k=2$. Replacing
+one-hot addresses by binary coordinates is a substantive missing
+construction in the vector-pair route. The matching result alone does
+not remove it. The earlier equally spaced Cauchy experiment is a
+different decoder and is not excluded by this address proposition.
+
 \end{document}
