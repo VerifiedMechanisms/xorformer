@@ -345,4 +345,31 @@ shattering the entire prescribed Boolean cube. Chinese-remainder or
 fractional-part encoding likewise needs an admissible decoding operation;
 neither residues nor a floor operation is present in the head model.
 
+\paragraph{Moment cancellation from number theory.}
+Coppersmith, Mossinghoff, Scheinerman, and VanderKam study ideal
+Prouhet--Tarry--Escott solutions in
+\href{https://arxiv.org/abs/2304.11254}{their 2023 paper}.
+Croot, Mao, and Yip prove moment-matching constructions in small-doubling
+sets in \href{https://arxiv.org/abs/2609.05061}{their 2026 paper},
+including sets of size $2^k$ matching the first $k$ moments.
+Here is the precise reciprocal identity relevant to this route.
+If finite multisets $E,F$ have equal power sums through order $k$
+(including order zero), then, for fixed real $z$ and small $t$,
+\[
+ \sum_{a\in E}\frac{1}{1+taz}-\sum_{a\in F}\frac{1}{1+taz}
+ =(-tz)^{k+1}\left(\sum_{a\in E}a^{k+1}
+                 -\sum_{a\in F}a^{k+1}\right)+O(t^{k+2}).
+\]
+This follows by the finite geometric expansion with remainder of each
+reciprocal. On a finite cube the remainder is uniform when $z=L(x)$.
+If $L$ has positive slopes, shifting both multisets far enough makes all
+the slopes of the denominators positive, and sufficiently small $t>0$
+makes every denominator positive on the cube. However, this construction
+has a common linear statistic: its first nonzero term is a constant
+multiple of $L^{k+1}$. Its sign is constant away from zeros when $k+1$ is
+even, and the sign of one affine form when $k+1$ is odd. The cancellation
+identity therefore does not encode an arbitrary Boolean table. A claim
+that independent directions can be substituted while keeping all the
+needed cancellations would require a separate, presently absent theorem.
+
 \end{document}

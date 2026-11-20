@@ -22,6 +22,7 @@ import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.ExactFamilies
 import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
+import HeadComplexity.Results.FixedDenominatorSignBarrier
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.FractionalNormalForm
 import HeadComplexity.Results.FreshXorTargetCost
