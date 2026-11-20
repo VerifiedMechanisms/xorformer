@@ -24,7 +24,9 @@ paper's proofs, a literature survey, and certified computational evidence. Every
    one variable form a degree-one variety, in $n\geq2$ variables a variety of degree $(nH)!/(H!(n!)^H)$).
 4. Tropical transfer theorem: decision lists over the rules $\lbrace x_{\pi_h(k)}=1,x_{\pi_h(j)}=0\ (j\lt k)\rbrace$ with
    priorities and signs are realized by $H$ heads with exponentially spread parameters; this sub-model is counting-compatible
-   with $N/n^2$ but exponentially weaker on parity (Lemmas A, B in the notes: swap exclusion, edge explanation).
+   with $N/n^2$ but exponentially weaker on parity (Lemmas A, B in the notes: swap exclusion, edge explanation; both
+   machine-checked in core Lean 4: `Tropical.Model.swap_exclusion`, `Tropical.Model.edge_explanation` in
+   `formalization/HeadComplexity/Tropical/SwapExclusion.lean`, axiom-clean).
 5. Rate caps: dominant cells give at most $2nk\log_2(e|R|/(2nk))$ controllable points per $k$ heads; regular-zero exact
    representations are capped at $(\tfrac12+o(1))N/n$ by the parameter count; boosting with atoms as weak learners stops at $N/n$.
 
