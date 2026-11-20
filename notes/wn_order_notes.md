@@ -270,10 +270,12 @@ finishes, random targets, 3 per n, 2 order samples:
 | 5 | 10.0 | 7.8 | 1.6 |
 | 6 | 22.7 | 12.8 | 2.1 |
 | 7 | 56.7 | 21.7 | 3.1 |
-| 8 | about 105 | 26 | 3.3 |
+| 8 | about 95 | 23 | 2.9 |
+| 9 | 186 | 29 | 3.3 |
+| 10 | 340 | 33 | 3.3 |
 
-The ratio H n/N grows with n, so with random orders the dominance regime needs more than N/n heads and the trend is
-away from N/n^2; the exact SAT optima at n = 5, 6 (3 to 7 heads) are much smaller only because at small n the
+The ratio H n/N grows from 1.6 to about 3.3 and then plateaus (n = 9, 10), so with random orders the dominance regime
+is linear-like with a poor constant, about 3N/n, and the trend is away from N/n^2; the exact SAT optima at n = 5, 6 (3 to 7 heads) are much smaller only because at small n the
 "catch one whole colour class, let the default rule take the other" structure is available. The schedule obstruction
 (each head has one rule per dimension, and a rule of dimension d is usable only when all but about log(nH) of its points
 are already caught) is visible here. Conclusion: the tropical transfer theorem is a valid tool, but the dominance regime by

@@ -56,7 +56,7 @@ def run_greedy(n, H, f, rng):
 
 def min_H(n, f, rng, tries=2, Hmax=None):
     N = 2 ** n
-    if Hmax is None: Hmax = max(4, N // 2)
+    if Hmax is None: Hmax = N
     lo, hi = 1, Hmax
     # exponential search for a success
     H = 1
@@ -88,9 +88,11 @@ def main():
         for fi in range(args.funcs):
             f = rng.choice([-1, 1], size=N - 1)
             Hm = min_H(n, f, rng, tries=args.tries)
+            if Hm is None:
+                print(f"n={n} func={fi} greedy failed up to Hmax", flush=True); continue
             vals.append(Hm)
             print(f"n={n} func={fi} greedy_min_H={Hm}  H*n^2/N={Hm*n*n/N:.2f}  H*n/N={Hm*n/N:.3f} [{time.time()-t0:.0f}s]", flush=True)
-        print(f"n={n} mean greedy H = {np.mean(vals):.2f}; N/n^2={N/n/n:.2f}; N/n={N/n:.1f}", flush=True)
+        if vals: print(f"n={n} mean greedy H = {np.mean(vals):.2f}; N/n^2={N/n/n:.2f}; N/n={N/n:.1f}", flush=True)
 
 
 if __name__ == "__main__":
