@@ -29,8 +29,45 @@ class Certified(Exception):
     pass
 
 
+def convex_hinge_fit(yq, initial, method):
+    """Numerator optimization in orthonormal coordinates."""
+    def inner(z):
+        residual = np.maximum(1-yq @ z, 0)
+        return .5*residual @ residual, -(yq.T @ residual)
+
+    if method == "lbfgs":
+        return opt.minimize(inner, initial, jac=True, method="L-BFGS-B",
+                            options={"gtol": 1e-9, "ftol": 1e-14, "maxiter": 2000,
+                                     "maxls": 40, "maxcor": 30})
+    z = initial.copy()
+    for iteration in range(100):
+        residual = np.maximum(1-yq @ z, 0)
+        value, gradient = .5*residual @ residual, -(yq.T @ residual)
+        if np.max(np.abs(gradient)) < 1e-9:
+            break
+        active = residual > 0
+        qa = yq[active]
+        gram = qa.T @ qa
+        gram.flat[::len(gram)+1] += 1e-12
+        try:
+            direction = la.solve(gram, -gradient, assume_a="pos", check_finite=False)
+        except la.LinAlgError:
+            direction = la.lstsq(qa, residual[active], cond=1e-13,
+                                 check_finite=False, lapack_driver="gelsy")[0]
+        slope = gradient @ direction
+        alpha = 1.
+        for _ in range(30):
+            trial_value = inner(z+alpha*direction)[0]
+            if trial_value <= value+1e-4*alpha*slope:
+                break
+            alpha *= .5
+        z += alpha*direction
+    value, gradient = inner(z)
+    return opt.OptimizeResult(x=z, fun=value, jac=gradient, nit=iteration+1)
+
+
 class Problem:
-    def __init__(self, n, h, seed, seconds, out, label_kind):
+    def __init__(self, n, h, seed, seconds, out, label_kind, inner_method="newton"):
         self.n, self.h, self.seed, self.out = n, h, seed, out
         self.start = time.monotonic()
         self.deadline = self.start + seconds
@@ -54,6 +91,7 @@ class Problem:
         self.label_kind = label_kind
         self.last_log = self.start
         self.check_certificate = True
+        self.inner_method = inner_method
 
     def objective(self, logs):
         if time.monotonic() >= self.deadline:
@@ -68,13 +106,7 @@ class Problem:
         yq = self.y[:, None] * q
         z0 = q.T @ (features @ self.previous) if self.previous is not None else q.T @ self.y
 
-        def inner(z):
-            residual = np.maximum(1 - yq @ z, 0)
-            return .5 * residual @ residual, -(yq.T @ residual)
-
-        fit = opt.minimize(inner, z0, jac=True, method="L-BFGS-B",
-                           options={"gtol": 1e-9, "ftol": 1e-14, "maxiter": 2000,
-                                    "maxls": 40, "maxcor": 30})
+        fit = convex_hinge_fit(yq, z0, self.inner_method)
         coeff = la.solve_triangular(r, fit.x, check_finite=False)
         self.previous = coeff
         s = q @ fit.x
@@ -150,6 +182,7 @@ def main():
     p.add_argument("--labels", choices=["random", "parity", "bent"], default="random")
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--gradient-check", action="store_true")
+    p.add_argument("--inner-method", choices=["newton", "lbfgs"], default="newton")
     args = p.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.gradient_check:
@@ -172,7 +205,7 @@ def main():
         h = max(n, math.ceil(c*(1 << n)/n**2))
         problem = Problem(n, h, args.seed+trial,
                           min(args.trial_seconds, args.seconds-(time.monotonic()-start)),
-                          args.out, args.labels)
+                          args.out, args.labels, args.inner_method)
         result = problem.run()
         with (args.out/"trials.jsonl").open("a") as stream:
             stream.write(json.dumps(result)+"\n")
