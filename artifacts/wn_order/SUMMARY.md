@@ -11,7 +11,8 @@ $2^n$, counting bound $\Omega(2^n/n^2)$; the audited paper is ahead with $(1+o(1
 rigorous map of the obstruction, new rigidity theorems, a transfer theorem for a combinatorial sub-model, an audit of the
 paper's proofs, a literature survey, and certified computational evidence. Everything is in the repository
 (branch of this run): `theorems/02_complexity_measure_upper_bounds/199_worst_case_order_rigidity.md`,
-`artifacts/wn_order/wn_order_section.tex`, `notes/wn_order_notes.md`, `experiments/wn_search/`.
+`artifacts/wn_order/wn_order_section.tex`, `artifacts/wn_order/AUDIT.md`, `notes/wn_order_notes.md`, `experiments/wn_search/`,
+`formalization/HeadComplexity/Tropical/SwapExclusion.lean`.
 
 ## Rigorous results (new)
 1. Normalization and information location: fixed denominator lists realize at most $2\sum_{i\leq nH}\binom{N-1}i$ functions
@@ -29,13 +30,20 @@ paper's proofs, a literature survey, and certified computational evidence. Every
    `formalization/HeadComplexity/Tropical/SwapExclusion.lean`, axiom-clean).
 5. Rate caps: dominant cells give at most $2nk\log_2(e|R|/(2nk))$ controllable points per $k$ heads; regular-zero exact
    representations are capped at $(\tfrac12+o(1))N/n$ by the parameter count; boosting with atoms as weak learners stops at $N/n$.
+6. Parity in the tropical sub-model needs at least $(1-o(1))\,n2^{n/2}/32$ heads (fibers are swap-free independent sets, bounded
+   by a shadow argument; an edge count caps the average finalizer dimension; one rule per dimension per head), an exponential
+   separation from $H^{\ast}(\mathrm{PARITY}_n)=n$; the two structural lemmas it rests on are machine-checked in core Lean 4.
 
 ## Audit of the paper
 Theorems 3.5, 3.7, 3.8 and the spanning lemmas were re-derived and found correct (details in the notes, Section 13).
 
 ## Computational evidence (certified successes only)
-Random 7-bit functions: 8 heads; random 8-bit: 12 to 14 heads (fixed-list threshold 16); exact tropical optima for random
-targets scale like $0.55N/n$ for $n\leq7$; interpolation multiplicity at $n=5$: 19 and 27 real solutions for $H=2,3$.
+Random functions: 8 heads at 7 bits, 11 to 12 at 8 bits (fixed-list threshold 16), 22 to 24 at 9 bits, 38 to 40 at 10 bits,
+with denominator slopes clipped to $[0.1,10]$ (so the gain over fixed lists is not suppression). Exact tropical optima
+(SAT) for random targets: means $3.0, 4.1, 6.0, 10.6$ at $n=4..7$ and brackets $[12,17],[12,19],[12,22],[12,19]$ at $n=8$:
+$Tn/N\approx0.74,0.66,0.56,0.58$ and $Tn^2/N\approx3.0,3.3,3.4,4.0$, between the two scalings. Interpolation multiplicity:
+$19,27,26,12,12$ real solutions for $(n,H)=(5,2),(5,3),(6,2),(7,2),(6,3)$ against Chow degrees up to $2.9\cdot10^6$.
+Weight-two miniature: random graphs on $16,32,64$ vertices with $3,4,8$ heads (about half the Cover threshold).
 
 ## What remains open
 Whether the non-perturbative regime (many heads of comparable magnitude at a typical input) is Warren-tight; equivalently
