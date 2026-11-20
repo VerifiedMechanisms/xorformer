@@ -3968,6 +3968,16 @@ For $n\gt0$, every Boolean function satisfies $H^{\ast}(f)\leq11\cdot2^n/n$. A t
 
 See [198_monomial_star_universal_head_bound.md](theorems/02_complexity_measure_upper_bounds/198_monomial_star_universal_head_bound.md) and the [certification report](artifacts/theorem-subsumption/star-strengthenings.md).
 
+### Theorem 199. Rigidity theorems for the order of the worst-case head complexity
+
+Let $N=2^n$ and $W(n)=\max_fH^{\ast}(f)$, with $(\tfrac12+o(1))N/n^2\leq W(n)\leq(1+o(1))N/n$ known. Three statements locate the obstruction to a $2^n/n^2$ upper bound. (1) For any fixed denominator list at most $2\sum_{i\leq nH}\binom{N-1}{i}$ functions are realizable, so with $H=cN/n^2$ heads the denominators must depend on the target and carry $N(1-o(1))$ bits. (2) If all denominators share one direction, $1+t_h\beta\cdot x$, the sign patterns lie in a fixed linear space of dimension at most $(n+1)H+1$, so such lists need $H\geq(\tfrac12-o(1))N/(n+1)$ for almost all functions. (3) Tropical transfer: a decision list over the $nH$ subcubes $\lbrace x_{\pi_h(k)}=1,\ x_{\pi_h(j)}=0\ (j\lt k)\rbrace$ ordered by distinct integer weights, each rule carrying a sign, is realized by $H$ heads with exponentially spread parameters.
+
+> **Interpretation.** The degree factor in Warren's count, the whole gap between $N/n^2$ and $N/n$, is illusory unless the denominator directions spread; dominant polynomial-size cells and regular-zero exact representations are capped at order $N/n$; the tropical sub-model is the only identified counting-compatible candidate, and it computes parity only with about $N$ rules. The question $W(n)=O(2^n/n^2)$ remains open.
+
+**Proof.** Normalize atoms, use Cover's count for fixed lists; clear the common denominator $\prod_h(1+t_hs)$ and observe that the products span a space independent of the scales; for the transfer, take exponents increasing along each order with gaps exceeding the weight range, so each ratio is $c\,K^{w}(1+O(nK^{-L/2}))$ and the largest weight dominates.
+
+See [199_worst_case_order_rigidity.md](theorems/02_complexity_measure_upper_bounds/199_worst_case_order_rigidity.md), the working notes [notes/wn_order_notes.md](notes/wn_order_notes.md), and the LaTeX section [artifacts/wn_order/wn_order_section.tex](artifacts/wn_order/wn_order_section.tex).
+
 ## Dependency Order
 
 The current dependency structure is:
@@ -4170,6 +4180,7 @@ The current dependency structure is:
 197. Theorem 197 is the exact fractional-knapsack solution of linear optimization over a rational box intersected with one sum equality.
 
 198. Theorem 198 combines the actual one-atom affine-ratio realization, strict squarefree sign polynomials, finite weighted alteration, and a semidirect star-cover recursion. It strengthens core theorems 6 and 9 without changing their statements or the model.
+199. Theorem 199 uses the normal form (Lemma 10), Cover's dichotomy count, and the counting lower bound of Lemma 26; it adds no new universal bound but records which mechanisms cannot reach $2^n/n^2$ and which sub-model remains counting-compatible.
 
 ## What This Currently Says About The First Core Question
 
