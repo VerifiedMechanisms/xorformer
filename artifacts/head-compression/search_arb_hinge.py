@@ -24,7 +24,7 @@ from search_varpro_scores import Problem, TimeLimit, Certified
 from verify_certificate import verify
 
 
-def fit_hinge(logs, orientation, labels, bits):
+def fit_hinge(logs, orientation, labels, bits, lp_seconds=120):
     features, inverse, q, b, b_float, den = build_basis(logs, orientation, bits)
     rows, columns = q.shape
     h = len(orientation)
@@ -37,7 +37,7 @@ def fit_hinge(logs, orientation, labels, bits):
                      method="highs",
                      options={"dual_feasibility_tolerance": 1e-9,
                               "primal_feasibility_tolerance": 1e-9,
-                              "time_limit": 120})
+                              "time_limit": lp_seconds})
     if not fit.success:
         raise ArithmeticError(f"Inner LP did not produce an optimum: {fit.message}")
     margin = labels*(qq @ fit.x[:columns])
@@ -115,7 +115,8 @@ class ArbProblem(Problem):
         if time.monotonic() >= self.deadline:
             raise TimeLimit
         loss, gradient, cc, margin, b_float = fit_hinge(logs, self.orientation,
-                                                       self.y, self.bits)
+                                                       self.y, self.bits,
+                                                       getattr(self, "lp_seconds", 120))
         coefficients = np.array([float(cc[i,0].mid()) for i in range(cc.nrows())])
         self.evaluations += 1
         errors = int((margin <= 0).sum())
