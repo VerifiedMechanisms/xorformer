@@ -413,3 +413,10 @@ number of points, i.e. exactly as if every parameter (numerator or denominator) 
 "linear-like with 2nH effective dimensions" picture. On the cube at n = 8 the same picture would predict about 8 heads;
 the search finds 12 to 14, so there the optimizer is weaker. None of this is evidence about the asymptotics, but it is the
 cleanest empirical fingerprint we have: denominators behave like extra linear parameters, not like n-bit encoders.
+
+## 26. Longer bounded-range search at n = 8
+
+With slopes clipped to $[10^{-1},10]$, 1500 iterations and 10 restarts, a random 8-bit function is certified with
+$H=11$ heads ($nH+1=89$ numerator dimensions, $2nH+1=177$ parameters, $N=256$); $H=10$ fails with hinge loss about 1.5.
+So the certified typical head count at $n=8$ is 11 to 12; the "all parameters count once" fingerprint ($2nH+1\approx N/2$,
+$H\approx8$) is not reached on the cube by this optimizer, and $N/n^2=4$ is far away.
