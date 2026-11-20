@@ -35,6 +35,7 @@ import HeadComplexity.Results.MultiwaySignTensorRank
 import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.OneBitNonXorGate
 import HeadComplexity.Results.ParityBlockThresholdDegree
+import HeadComplexity.Results.ParityHingeNonattainment
 import HeadComplexity.Results.PartitionSignRank
 import HeadComplexity.Results.PositiveMultigrid
 import HeadComplexity.Results.PositiveOrderOneBitGate
