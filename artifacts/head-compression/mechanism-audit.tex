@@ -230,7 +230,7 @@ automatic analogue for sign-only constructions with fewer parameters.
 
 \begin{proposition}[Sharp parity correlation bound for one head]
 Let $n\ge1$, let $A,B$ be affine, and suppose $B$ is positive on the
-cube and has all variable coefficients nonnegative or all nonpositive.
+cube. No restriction on the signs of its variable coefficients is needed.
 Write $R=A/B$ and $\chi(x)=(-1)^{|x|}$. Then
 \[
  \left|\sum_{x\in\Qn}\chi(x)R(x)\right|
@@ -240,8 +240,10 @@ Write $R=A/B$ and $\chi(x)=(-1)^{|x|}$. Then
 The constant $2$ in the last bound cannot be decreased uniformly.
 \end{proposition}
 \begin{proof}
-Complementing all coordinates multiplies the alternating sum by
-$(-1)^n$ and preserves its absolute value and the range. Thus assume
+Complement every coordinate whose denominator coefficient is negative.
+Each complement multiplies the alternating sum by $-1$ and preserves
+its absolute value and the range. The resulting constant coefficient is
+the minimum value of $B$ on the cube, so it is positive. Thus assume
 $B(x)=b_0+\sum_i b_ix_i$ with $b_0>0$ and $b_i\ge0$.
 Define the convergent integrals
 \[
@@ -281,6 +283,32 @@ $\sum_x\chi(x)R(x)\to2$ as $\varepsilon\downarrow0$: the term
 $2\varepsilon/B(0)$ equals two and all other such terms tend to zero.
 These denominators have strictly positive slopes.
 \end{proof}
+
+There is also an independent algebraic proof. For $S\subseteq[n]$ set
+$\Delta_S v=\sum_{T\subseteq S}(-1)^{|T|}v(1_T)$.
+Expansion gives the exact product rule
+\[
+ \Delta_S(Bv)=\left(b_0+\sum_{i\in S}b_i\right)\Delta_Sv
+              -\sum_{i\in S}b_i\Delta_{S\setminus\{i\}}v.
+\]
+Indeed $\Delta_S(x_iv)=\Delta_Sv-\Delta_{S\setminus\{i\}}v$ for
+$i\in S$, by separating subsets containing $i$ from those avoiding it.
+For $v=A/B$ and $|S|\ge2$, the left side is $\Delta_SA=0$. Hence
+\[
+ \Delta_Sv=\sum_{i\in S}
+ \frac{b_i}{b_0+\sum_{j\in S}b_j}\Delta_{S\setminus\{i\}}v.
+\]
+The coefficients are nonnegative and their sum is less than one.
+For a singleton $S=\{i\}$ the alternating sum is $v(0)-v(e_i)$,
+whose absolute value is at most the range of $v$. Induction on $|S|$
+proves the bound for every nonempty face, including $S=[n]$.
+This proof is kernel checked in
+\texttt{formalization/HeadComplexity/Results/AffineFractionAlternation.lean},
+especially \texttt{faceAlternation\_affine\_mul},
+\texttt{faceAlternation\_range\_of\_affine\_product}, and
+\texttt{abs\_faceAlternation\_affineFraction\_le\_range}.
+The Lean statement is in coordinates where $b_0>0$ and $b_i\ge0$;
+the coordinate-complement reduction above is not part of that statement.
 
 \begin{proposition}[Parity requires exponential atomic amplitude]
 If $S=c+\sum_hR_h$ is an admissible score with

@@ -24,9 +24,10 @@ def MeetsEveryStrictOrthant {ι : Type*} (U : Submodule ℝ (ι → ℝ)) : Prop
   ∀ s : ι → Bool, ∃ z ∈ U, ∀ i, if s i then 0 < z i else z i < 0
 
 /-- A proper real linear subspace misses a strict orthant. -/
-theorem eq_top_of_meetsEveryStrictOrthant {ι : Type*} [Fintype ι]
+theorem eq_top_of_meetsEveryStrictOrthant {ι : Type*} [Finite ι]
     (U : Submodule ℝ (ι → ℝ)) (hU : MeetsEveryStrictOrthant U) : U = ⊤ := by
   classical
+  let : Fintype ι := Fintype.ofFinite ι
   by_contra hne
   obtain ⟨φ, hφ, hker⟩ := U.exists_le_ker_of_lt_top (lt_top_iff_ne_top.mpr hne)
   let a : ι → ℝ := fun i ↦ φ (Pi.single i 1)
@@ -49,18 +50,18 @@ theorem eq_top_of_meetsEveryStrictOrthant {ι : Type*} [Fintype ι]
   have hnonneg (i : ι) : 0 ≤ a i * z i := by
     specialize hz i
     by_cases hi : 0 < a i
-    · simp [hi] at hz
-      exact le_of_lt (mul_pos hi hz)
-    · simp [hi] at hz
-      exact mul_nonneg_of_nonpos_of_nonpos (le_of_not_gt hi) (le_of_lt hz)
+    · have hzi : 0 < z i := by simpa [hi] using hz
+      exact le_of_lt (mul_pos hi hzi)
+    · have hzi : z i < 0 := by simpa [hi] using hz
+      exact mul_nonneg_of_nonpos_of_nonpos (le_of_not_gt hi) (le_of_lt hzi)
   obtain ⟨j, hj⟩ := ha
   have hpos : 0 < a j * z j := by
     specialize hz j
     rcases lt_or_gt_of_ne hj with hj | hj
-    · simp [not_lt_of_gt hj] at hz
-      exact mul_pos_of_neg_of_neg hj hz
-    · simp [hj] at hz
-      exact mul_pos hj hz
+    · have hzj : z j < 0 := by simpa [not_lt_of_gt hj] using hz
+      exact mul_pos_of_neg_of_neg hj hzj
+    · have hzj : 0 < z j := by simpa [hj] using hz
+      exact mul_pos hj hzj
   have hsum : 0 < ∑ i, a i * z i :=
     Finset.sum_pos' (fun i _ ↦ hnonneg i) ⟨j, Finset.mem_univ j, hpos⟩
   have hz0 : φ z = 0 := hker hzU
@@ -68,7 +69,7 @@ theorem eq_top_of_meetsEveryStrictOrthant {ι : Type*} [Fintype ι]
   exact (lt_irrefl 0) hsum
 
 /-- Strict orthant universality and linear surjectivity coincide. -/
-theorem meetsEveryStrictOrthant_iff_eq_top {ι : Type*} [Fintype ι]
+theorem meetsEveryStrictOrthant_iff_eq_top {ι : Type*} [Finite ι]
     (U : Submodule ℝ (ι → ℝ)) : MeetsEveryStrictOrthant U ↔ U = ⊤ := by
   classical
   refine ⟨eq_top_of_meetsEveryStrictOrthant U, ?_⟩
