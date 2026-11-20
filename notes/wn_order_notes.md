@@ -71,7 +71,7 @@ must have $\Theta(n)$ heads contributing comparably at a typical point.
 ## 6. A rigorous linear-collapse theorem for common-direction lists
 
 **Theorem (common direction).** Let $\beta\in\mathbb R^n_{\geq0}$ and suppose every denominator has the form
-$B_h=1+t_h\,\beta\cdot x$ with $t_h\gt0$ (or every $B_h=1+t_h\beta\cdot(\mathbf 1-x)$). Then the set of Boolean
+$B_h=1+t_h\beta\cdot x$ with $t_h\gt0$ (or every $B_h=1+t_h\beta\cdot(\mathbf 1-x)$). Then the set of Boolean
 functions sign-represented by $\sigma+\sum_{h\leq H}A_h/B_h$ with affine $A_h$ is contained in the set of
 sign patterns of the fixed linear space
 
@@ -247,7 +247,7 @@ reproduces every target exactly (checked).
 | 4 | 30 targets, values 1 to 4 | 2.9 | 6 | 4 | 1.0 | 4.0 |
 | 5 | 3,5,5,3,6,4,3,4,4,4 | 4.1 | 10 | 5 | 1.3 | 6.4 |
 | 6 | 5,6,7,6,6 | 6.0 | greater than 13 | greater than 7 | 1.8 | 10.7 |
-| 7 | 9 (one target), one target greater than 10, others greater than 8 or 9 (running) | about 10 | | | 2.6 | 18.3 |
+| 7 | 9, 10, [9,10], [10,11], [11,12], [11,13], two targets at least 10 and 11 (running) | about 10.5 | | | 2.6 | 18.3 |
 
 Structure of the optimal solutions (correct decoding): most rules are used (22 to 28 nonempty fibers out of 30 to 42
 at n = 6), fibers are small (mean 2.2 to 2.9 points, maximum 9 to 12), and the used rules sit at mean position 2.5
