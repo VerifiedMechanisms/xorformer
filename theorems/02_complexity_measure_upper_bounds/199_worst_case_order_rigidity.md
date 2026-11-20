@@ -45,7 +45,7 @@ and the ratio is $c_{h,k}K^{w_{h,k}}(1+\delta_h)$ with $|\delta_h|\leq1/(nH)$. T
 ### Remarks
 
 1. The paper's spanning lists use $N/n$ distinct directions, so Theorem 2 does not affect them; it rules out the sub-approach "fix one direction, vary scales and numerators".
-2. In the tropical model each fiber of the finalizing rule is a subcube minus earlier subcubes. For parity such a fiber must be an independent set of the cube graph, which forces the first rule to be a single point and inductively about $N$ rules; so the sub-model does not contain the cancellation mechanism that gives $H^{\ast}(\mathrm{PARITY}_n)=n$.
+2. In the tropical model each fiber of the finalizing rule is a subcube minus earlier subcubes. For parity such a fiber must be an independent set of the cube graph; moreover no fiber contains two points at swap distance (one coordinate switched on and another switched off). The latter is machine-checked in core Lean 4 as `Tropical.Model.swap_exclusion` (with the auxiliary `Tropical.Model.pos_top_upd`) in `formalization/HeadComplexity/Tropical/SwapExclusion.lean`, axiom-clean and independent of Mathlib. Exact SAT computations give $T(\mathrm{PARITY}_n)=6,10$ for $n=4,5$ and at least $14$ for $n=6$, so the sub-model does not contain the cancellation mechanism that gives $H^{\ast}(\mathrm{PARITY}_n)=n$.
 3. A mechanism in which $k$ heads dominate a cell $R$ realizes at most $2(e|R|/(2nk))^{2nk}$ patterns on $R$ (Warren on the restricted problem), so all patterns on $R$ need $|R|\leq2nk\log_2(e|R|/(2nk))$: reaching $n^2/c$ points per head forces $|R|\geq2nk\,2^{n/(2c)}$. Dominant-cell constructions with polynomial-size cells are capped at order $N/n$.
 
 ## Consequence

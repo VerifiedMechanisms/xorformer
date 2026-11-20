@@ -3976,7 +3976,7 @@ Let $N=2^n$ and $W(n)=\max_fH^{\ast}(f)$, with $(\tfrac12+o(1))N/n^2\leq W(n)\le
 
 **Proof.** Normalize atoms, use Cover's count for fixed lists; clear the common denominator $\prod_h(1+t_hs)$ and observe that the products span a space independent of the scales; for the transfer, take exponents increasing along each order with gaps exceeding the weight range, so each ratio is $c\,K^{w}(1+O(nK^{-L/2}))$ and the largest weight dominates.
 
-See [199_worst_case_order_rigidity.md](theorems/02_complexity_measure_upper_bounds/199_worst_case_order_rigidity.md), the working notes [notes/wn_order_notes.md](notes/wn_order_notes.md), and the LaTeX section [artifacts/wn_order/wn_order_section.tex](artifacts/wn_order/wn_order_section.tex).
+The swap-exclusion lemma for parity in the sub-model is formalized in core Lean 4 as `Tropical.Model.swap_exclusion` (`formalization/HeadComplexity/Tropical/SwapExclusion.lean`, axiom-clean, no Mathlib import). See [199_worst_case_order_rigidity.md](theorems/02_complexity_measure_upper_bounds/199_worst_case_order_rigidity.md), the working notes [notes/wn_order_notes.md](notes/wn_order_notes.md), and the LaTeX section [artifacts/wn_order/wn_order_section.tex](artifacts/wn_order/wn_order_section.tex).
 
 ## Dependency Order
 

@@ -247,7 +247,7 @@ reproduces every target exactly (checked).
 | 4 | 30 targets, values 1 to 4 | 2.9 | 6 | 4 | 1.0 | 4.0 |
 | 5 | 3,5,5,3,6,4,3,4,4,4 | 4.1 | 10 | 5 | 1.3 | 6.4 |
 | 6 | 5,6,7,6,6 | 6.0 | greater than 13 | greater than 7 | 1.8 | 10.7 |
-| 7 | 9, 10, [9,10], [10,11], [11,12], [11,13], two targets at least 10 and 11 (running) | about 10.5 | | | 2.6 | 18.3 |
+| 7 | 9, 10, 11, [9,10], [10,11], [11,12], [11,13], one target at least 11 (running) | about 10.7 | | | 2.6 | 18.3 |
 
 Structure of the optimal solutions (correct decoding): most rules are used (22 to 28 nonempty fibers out of 30 to 42
 at n = 6), fibers are small (mean 2.2 to 2.9 points, maximum 9 to 12), and the used rules sit at mean position 2.5
@@ -341,7 +341,7 @@ $|U|+1$ of its incident edges (its up-directions in $U$ and its down-direction $
 For $x=\mathbf 1$ the top rule is a half-cube $(i_1,\varnothing)$; every other direction $m$ needs
 $i(\operatorname{top}(\mathbf 1-e_m))=m$, i.e. a head whose order starts with $m$. $\blacksquare$
 
-These match the SAT data (fibers of size one or two, $T=6,10,\geq14$ for $n=4,5,6$) but do not yet give the conjectured
+Lemma A is machine-checked in core Lean 4 (`Tropical.Model.swap_exclusion`, `formalization/HeadComplexity/Tropical/SwapExclusion.lean`, axioms propext, Classical.choice, Quot.sound only). These match the SAT data (fibers of size one or two, $T=6,10,\geq14$ for $n=4,5,6$) but do not yet give the conjectured
 $T(\mathrm{PARITY}_n)=\Omega(N/n)$; a fiber could still be a distance-four code inside a weight level.
 
 ## 22. Interpolation multiplicity: real counts versus Chow degrees (experiments/wn_search/interp_count.py)
