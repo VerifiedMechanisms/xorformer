@@ -36,9 +36,10 @@ def fit_hinge(logs, orientation, labels, bits):
                      bounds=[(None,None)]*columns+[(0,None)]*rows,
                      method="highs",
                      options={"dual_feasibility_tolerance": 1e-9,
-                              "primal_feasibility_tolerance": 1e-9})
+                              "primal_feasibility_tolerance": 1e-9,
+                              "time_limit": 120})
     if not fit.success:
-        raise RuntimeError(fit.message)
+        raise ArithmeticError(f"Inner LP did not produce an optimum: {fit.message}")
     margin = labels*(qq @ fit.x[:columns])
     if margin.min() > 1e-6:
         coordinates = la.solve_triangular(rr, fit.x[:columns], check_finite=False)

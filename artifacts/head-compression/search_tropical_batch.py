@@ -15,10 +15,14 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--seconds", type=float, default=28800)
     parser.add_argument("--trial-seconds", type=float, default=600)
+    parser.add_argument("--mixed-orientations", action="store_true")
     args = parser.parse_args()
     deadline = time.monotonic()+args.seconds
     cases = [(3, 3, "parity"), (4, 4, "parity"), (4, 5, "parity"),
              (5, 6, "random"), (6, 8, "random"), (6, 12, "random")]
+    if args.mixed_orientations:
+        cases = [(5, 3, "random"), (5, 4, "random"), (6, 5, "random"),
+                 (6, 6, "random"), (7, 8, "random"), (7, 11, "random")]
     trial = 0
     while time.monotonic() < deadline:
         n, heads, kind = cases[trial % len(cases)]
@@ -27,7 +31,7 @@ def main():
         out = args.out/f"{kind}-n{n}-h{heads}-bound{bound}-seed{seed}"
         out.mkdir(parents=True, exist_ok=True)
         run(n, heads, seed, min(args.trial_seconds, deadline-time.monotonic()),
-            out, kind, bound)
+            out, kind, bound, mixed_orientations=args.mixed_orientations)
         trial += 1
 
 
