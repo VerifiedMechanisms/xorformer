@@ -29,11 +29,12 @@ class Certified(Exception):
     pass
 
 
-def convex_hinge_fit(yq, initial, method):
+def convex_hinge_fit(yq, initial, method, score_penalty):
     """Numerator optimization in orthonormal coordinates."""
     def inner(z):
         residual = np.maximum(1-yq @ z, 0)
-        return .5*residual @ residual, -(yq.T @ residual)
+        return (.5*residual @ residual + .5*score_penalty*(z @ z),
+                -(yq.T @ residual) + score_penalty*z)
 
     if method == "lbfgs":
         return opt.minimize(inner, initial, jac=True, method="L-BFGS-B",
@@ -42,17 +43,17 @@ def convex_hinge_fit(yq, initial, method):
     z = initial.copy()
     for iteration in range(100):
         residual = np.maximum(1-yq @ z, 0)
-        value, gradient = .5*residual @ residual, -(yq.T @ residual)
+        value, gradient = inner(z)
         if np.max(np.abs(gradient)) < 1e-9:
             break
         active = residual > 0
         qa = yq[active]
         gram = qa.T @ qa
-        gram.flat[::len(gram)+1] += 1e-12
+        gram.flat[::len(gram)+1] += max(score_penalty, 1e-12)
         try:
             direction = la.solve(gram, -gradient, assume_a="pos", check_finite=False)
         except la.LinAlgError:
-            direction = la.lstsq(qa, residual[active], cond=1e-13,
+            direction = la.lstsq(gram, -gradient, cond=1e-13,
                                  check_finite=False, lapack_driver="gelsy")[0]
         slope = gradient @ direction
         alpha = 1.
@@ -67,7 +68,8 @@ def convex_hinge_fit(yq, initial, method):
 
 
 class Problem:
-    def __init__(self, n, h, seed, seconds, out, label_kind, inner_method="newton"):
+    def __init__(self, n, h, seed, seconds, out, label_kind, inner_method="newton",
+                 score_penalty=1e-7, resume=False):
         self.n, self.h, self.seed, self.out = n, h, seed, out
         self.start = time.monotonic()
         self.deadline = self.start + seconds
@@ -92,6 +94,8 @@ class Problem:
         self.last_log = self.start
         self.check_certificate = True
         self.inner_method = inner_method
+        self.score_penalty = score_penalty
+        self.resume = resume
 
     def objective(self, logs):
         if time.monotonic() >= self.deadline:
@@ -106,17 +110,17 @@ class Problem:
         yq = self.y[:, None] * q
         z0 = q.T @ (features @ self.previous) if self.previous is not None else q.T @ self.y
 
-        fit = convex_hinge_fit(yq, z0, self.inner_method)
+        fit = convex_hinge_fit(yq, z0, self.inner_method, self.score_penalty)
         coeff = la.solve_triangular(r, fit.x, check_finite=False)
         self.previous = coeff
         s = q @ fit.x
         margin = self.y * s
         residual = np.maximum(1 - margin, 0)
-        loss = .5 * residual @ residual / len(self.x)
+        loss = (.5 * residual @ residual + .5*self.score_penalty*(s @ s)) / len(self.x)
         u = coeff[1:].reshape(self.h, self.n)
         num = np.einsum("xhi,hi->xh", self.t, u)
         # Envelope derivative; the inner numerator problem is convex.
-        weights = self.y * residual
+        weights = self.y * residual - self.score_penalty*s
         grad = np.einsum("x,xh,xhi,hi->hi", weights, num / d**2, self.t, b) / len(self.x)
         self.evaluations += 1
         errors = int((margin <= 0).sum())
@@ -152,6 +156,12 @@ class Problem:
         try:
             while time.monotonic() < self.deadline:
                 logs = self.rng.normal(0, 2, self.n*self.h)
+                checkpoint = self.out / f"checkpoint-{self.label_kind}-n{self.n}-h{self.h}-seed{self.seed}.npz"
+                if not restarts and self.resume and checkpoint.exists():
+                    saved = np.load(checkpoint)
+                    assert np.array_equal(saved['labels'], self.y)
+                    assert np.array_equal(saved['orientation'], self.orientation)
+                    logs = saved['logs'].copy()
                 if restarts and self.best_errors < len(self.x)//4:
                     logs = self.best_logs + self.rng.normal(0, .5, logs.shape)
                 self.previous = None
@@ -160,6 +170,7 @@ class Problem:
                              options={"maxiter": 100000, "gtol": 1e-10, "ftol": 1e-14,
                                       "maxls": 40, "maxcor": 30})
                 restarts += 1
+                self.score_penalty = max(self.score_penalty*.1, 1e-11)
         except TimeLimit:
             pass
         except Certified:
@@ -183,6 +194,8 @@ def main():
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--gradient-check", action="store_true")
     p.add_argument("--inner-method", choices=["newton", "lbfgs"], default="newton")
+    p.add_argument("--score-penalty", type=float, default=1e-7)
+    p.add_argument("--resume", action="store_true")
     args = p.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.gradient_check:
@@ -205,7 +218,7 @@ def main():
         h = max(n, math.ceil(c*(1 << n)/n**2))
         problem = Problem(n, h, args.seed+trial,
                           min(args.trial_seconds, args.seconds-(time.monotonic()-start)),
-                          args.out, args.labels, args.inner_method)
+                          args.out, args.labels, args.inner_method, args.score_penalty, args.resume)
         result = problem.run()
         with (args.out/"trials.jsonl").open("a") as stream:
             stream.write(json.dumps(result)+"\n")
