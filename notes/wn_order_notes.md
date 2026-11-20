@@ -343,3 +343,20 @@ $i(\operatorname{top}(\mathbf 1-e_m))=m$, i.e. a head whose order starts with $m
 
 These match the SAT data (fibers of size one or two, $T=6,10,\geq14$ for $n=4,5,6$) but do not yet give the conjectured
 $T(\mathrm{PARITY}_n)=\Omega(N/n)$; a fiber could still be a distance-four code inside a weight level.
+
+## 22. Interpolation multiplicity: real counts versus Chow degrees (experiments/wn_search/interp_count.py)
+
+Planted targets at $2nH$ random nonzero cube points, Levenberg-Marquardt from random starts, distinct converged real
+solutions (deduplicated up to head permutation), admissible = all denominator slopes nonnegative.
+
+| (n,H) | unknowns | starts | converged | distinct real | admissible | Chow degree $(nH)!/(H!(n!)^H)$ |
+|---|---|---|---|---|---|---|
+| (5,2) | 20 | 1500 | 461 | 19 | 3 | 126 |
+| (5,3) | 30 | 800 | 164 | 27 | 10 | 126126 |
+| (6,2) | 24 | 800 | 257 | 26 | 11 | 462 |
+
+The number of distinct real solutions found saturates (a few hundred converged runs land on a few dozen solutions), so
+the real multiplicity is plausibly of order tens here, while the complex degree of the product variety jumps by a factor
+$10^3$ from $(5,2)$ to $(5,3)$. If real admissible multiplicities stay polynomial in $nH$ rather than exponential, the
+cell count is linear-like and $W(n)=\Omega(N/n)$ up to constants. This is suggestive evidence for the refutation side, not
+a proof: the sampler can miss solutions, and the regime $H\asymp N/n^2$ is out of reach.
