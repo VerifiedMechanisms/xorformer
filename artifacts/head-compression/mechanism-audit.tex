@@ -793,4 +793,70 @@ Padding with constant denominators covers smaller head counts.
 The estimate is uniform in every target-dependent choice of $L$.
 \end{proof}
 
+\section{An exact lift of a dominant-power construction}
+
+\begin{lemma}[Dominant-power lift]
+For $h\in\{1,\ldots,H\}$ and $i\in\{0,\ldots,n\}$, choose integers
+$a_{h,i},b_{h,i}$ and signs $\sigma_{h,i}\in\{-1,1\}$.
+Also choose integer bias exponents $p_+,p_-$. For a cube vertex $x$,
+put $I(x)=\{0\}\cup\{i:x_i=1\}$ and
+\[
+ d_h(x)=\max_{i\in I(x)} b_{h,i},\qquad
+ E_\pm(x)=\max\left(\{p_\pm\}\cup
+ \{a_{h,i}-d_h(x):i\in I(x),\ \sigma_{h,i}=\pm1\}\right).
+\]
+Suppose a target labeling $f:\Qn\to\{-1,1\}$ satisfies
+$f(x)(E_+(x)-E_-(x))\ge1$ for every $x$.
+For every integer $T>(n+1)(H(n+1)+1)$, the following admissible
+$H$-head score strictly represents $f$:
+\[
+ S_T(x)=T^{p_+}-T^{p_-}+\sum_{h=1}^H
+ \frac{\sigma_{h,0}T^{a_{h,0}}+
+          \sum_{i=1}^n\sigma_{h,i}T^{a_{h,i}}x_i}
+      {T^{b_{h,0}}+\sum_{i=1}^nT^{b_{h,i}}x_i}.
+\]
+\end{lemma}
+\begin{proof}
+All denominator coefficients are strictly positive. At $x$, the
+$h$th denominator lies between $T^{d_h(x)}$ and
+$(n+1)T^{d_h(x)}$. Separate the score into its positive and negative
+summands, including the two bias terms. Suppose $f(x)=1$ and write
+$E=E_+(x)$. One positive summand is at least $T^E/(n+1)$.
+Every negative summand is at most $T^{E_-(x)}\le T^{E-1}$,
+and there are at most $H(n+1)+1$ such summands. Consequently
+\[
+ S_T(x)\ge \frac{T^E}{n+1}-(H(n+1)+1)T^{E-1}>0.
+\]
+The same reasoning with signs reversed proves the negative-label case.
+This proof allows repeated exponents and arbitrary cancellation among
+summands of the same magnitude below the winning level.
+\end{proof}
+
+The script \texttt{search\_tropical\_scores.py} searches the hypotheses
+using linear inequalities, Boolean sign choices, and maxima encoded by
+if-then-else expressions. Rational exponent solutions are multiplied by
+a common positive integer to obtain the integral hypotheses above.
+Every emitted ordinary rational score is checked exactly at every cube
+vertex. A failure or an unsatisfiability result concerns only this
+restricted ansatz. No universal bound on its required number of heads
+has been proved.
+
+\begin{lemma}[One-head affine parameter paths have no bit decoder]
+Fix the bias and all heads except one. Allow the numerator and the
+denominator of that head to depend affinely on a real scalar $t$,
+and restrict $t$ to an interval on which its denominator is positive
+at every cube vertex. At any fixed vertex, the score has at most one
+sign change as a function of $t$. On $m$ fixed vertices, the number of
+strict sign vectors seen along this interval is at most $m+1$.
+\end{lemma}
+\begin{proof}
+At a fixed vertex the score is
+$r+(a+tu)/(b+tv)$ with $b+tv>0$. Its sign is that of the affine
+polynomial $rb+a+t(rv+u)$. Each nonconstant polynomial has one root;
+a constant nonzero polynomial has none. If any polynomial vanishes
+identically, no strict sign vector on all $m$ vertices is realized.
+Otherwise the at most $m$ distinct roots partition the interval into
+at most $m+1$ intervals of constant strict sign vector.
+\end{proof}
+
 \end{document}
