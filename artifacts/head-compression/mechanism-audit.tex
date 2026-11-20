@@ -1319,4 +1319,49 @@ specific obstruction to importing roots-of-unity product constructions
 over $\mathbb C$. It makes no assertion about all possible real border
 constructions or about the requested head-complexity bound.
 
+\section{Boolean switching identities}
+
+\begin{proposition}[A noncollinear cancellation on a Boolean coordinate]
+Let $B$ be affine with strictly positive constant and variable
+coefficients, fix a coordinate $i$, and let $t>0$ be smaller than
+the coefficient of $x_i$ in $B$. Then all four denominators below
+are admissible and, on the entire Boolean cube,
+\[
+ \frac1{B+t x_i}+\frac1{B+t(1-x_i)}
+ -\frac1B-\frac1{B+t}=0.
+\]
+The four perturbing affine forms $x_i$, $1-x_i$, $0$, and $1$
+are not collinear in affine-coefficient space. Moreover, for every
+nonnegative integer $j$,
+\[
+ x_i^j+(1-x_i)^j-0^j-1^j=0
+\]
+on the cube, with the usual polynomial convention $0^0=1$.
+\end{proposition}
+\begin{proof}
+If $x_i=0$ the first two denominator values are $B$ and $B+t$;
+if $x_i=1$ their order is reversed. This proves the fraction identity
+and the power identities. In coefficient coordinates consisting of
+constant and $x_i$ coefficients, the four forms are
+$(0,1),(1,-1),(0,0),(1,0)$; the last three are not collinear.
+For admissibility, the only decreasing variable coefficient is the
+$x_i$ coefficient of $B+t(1-x_i)$, and the assumption on $t$ keeps
+it strictly positive. All constants and other slopes stay positive.
+\end{proof}
+
+Consequently, a bound on the geometry of points annihilating all real
+polynomials of a given degree cannot be applied merely from moment
+identities on the Boolean cube. The example has identities of every
+order and still has noncollinear coefficient vectors.
+
+The switching-component framework in Hajdu and Tijdeman,
+\emph{Algebraic aspects of discrete tomography}, Theorem~1 and its
+proof, describes zero line sums on an integer rectangle by translates
+of a product of binomials associated with the projection directions.
+It supplies exact cancellation identities. It does not assert sparse
+strict-sign representations for arbitrary tables, and its support
+size and direction constraints must be accounted for in any transfer
+to heads. The four-head identity above does not itself resolve that
+transfer.
+
 \end{document}
