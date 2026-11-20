@@ -15,7 +15,7 @@ a success is certified exactly (rational arithmetic in `exact_verify`), a failur
 Model: P-heads `(u.x)/(1+b.x)` with `b >= 0`; M-heads in complemented coordinates. Results are in `results/`
 (logs and JSON with certified parameters). Summary of certified findings (20 Nov 2026):
 
-- random 7-bit functions: 8 heads (none found with 7); random 8-bit functions: 11 to 14 heads (none with 10); one random 9-bit function: 24 heads (bounded-range hinge search);
+- random 7-bit functions: 8 heads (none found with 7); random 8-bit functions: 11 to 14 heads (none with 10); random 9-bit functions: 22 and 24 heads, a random 10-bit function: at most 40 heads (bounded-range hinge search);
   fixed generic lists need nH >= N/2 (Cover), so these are genuinely nonlinear representations, but far from N/n^2;
 - the optimizer does not recover the known n-head parity representations for n >= 6, so failures are uninformative;
 - weight-two inputs: 16 vertices need 3 heads, 32 vertices 4 heads (linear threshold about 8);
