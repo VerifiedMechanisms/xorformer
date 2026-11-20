@@ -25,5 +25,7 @@ Read these definitions in order. Each file is the authoritative location for its
 | 1.19 | [Parity](19_parity.md) | The odd-weight predicate, also called XOR. |
 | 1.20 | [Exact-count predicates](20_exact_count_predicates.md) | Predicates for a specified Hamming weight, including internal and endpoint counts. |
 | 1.21 | [Positive-image complexity](21_positive_image_complexity.md) | The smallest image of a positive weighted statistic through which a Boolean function factors. |
+| 1.22 | [Separation example](22_separation_example.md) | A ten-bit Boolean function defined by a quadratic polynomial in sign coordinates. |
+| 1.23 | [Mixed antipodal difference](23_mixed_antipodal_difference.md) | The alternating sum obtained by negating either or both coordinate blocks. |
 
 Continue with [Chapter 1: Foundations and normal form](../theorems/01_foundations_and_normal_form/README.md).

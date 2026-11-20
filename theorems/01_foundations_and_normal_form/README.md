@@ -71,3 +71,5 @@ All three results apply Theorem 1.17. Theorem 1.18 also supplies the explicit tw
 | 1.21 | [Symmetric score interpolation](21_symmetric_score_interpolation.md) | Realize arbitrary Hamming-weight scores with zero positional embeddings and explicit dimensions. |
 
 Theorem 1.21 specializes the construction in Theorem 1.14 to equal weights and removes the unused positional coordinate.
+
+Continue with [Chapter 2: Threshold-degree separation analysis](../02_tdeg_separation_analysis/README.md).

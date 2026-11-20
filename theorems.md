@@ -1,6 +1,6 @@
 # Theorem index
 
-Read the [definitions](definitions/README.md) first. The current chapter develops the normal form and bounds on head complexity.
+Read the [definitions](definitions/README.md) first. Chapter 1 develops the normal form and bounds on head complexity. Chapter 2 proves a strict separation from threshold degree.
 
 ## Chapter 1. Foundations and normal form
 
@@ -31,3 +31,13 @@ Read the [definitions](definitions/README.md) first. The current chapter develop
 See the [chapter contents](theorems/01_foundations_and_normal_form/README.md) for the reading order. Theorems 1.5, 1.12, and 1.15 relate [threshold degree (Definition 1.13)](definitions/13_threshold_degree.md) $\deg_{\pm}(f)$, [head complexity (Definition 1.5)](definitions/05_head_complexity.md) $H^{\ast}(f)$, [ratio complexity (Definition 1.8)](definitions/08_ratio_complexity.md) $L(f)$, and [positive-image complexity (Definition 1.21)](definitions/21_positive_image_complexity.md) $M_{+}(f)$:
 
 $$ \deg_{\pm}(f)\leq H^{\ast}(f)=L(f)\leq M_{+}(f)-1\leq2^n-1. $$
+
+## Chapter 2. Threshold-degree separation analysis
+
+| Number | Theorem | Dependencies |
+|---|---|---|
+| 2.1 | [Threshold degree of the separation example](theorems/02_tdeg_separation_analysis/01_threshold_degree_of_the_separation_example.md) | Theorem 1.8; separation example, checkerboard restrictions, strict sign representation, threshold degree, real affine forms |
+| 2.2 | [Mixed-rank bound for two affine products](theorems/02_tdeg_separation_analysis/02_mixed_rank_bound_for_two_affine_products.md) | Real affine forms, mixed antipodal difference |
+| 2.3 | [Strict threshold-degree separation](theorems/02_tdeg_separation_analysis/03_strict_threshold_degree_separation.md) | Theorems 1.12, 1.13, 1.19, 2.1, and 2.2; computability, strict sign representation, real affine forms, separation example, mixed antipodal difference, parity, complexity definitions |
+
+See the [chapter contents](theorems/02_tdeg_separation_analysis/README.md) for the proof structure. The example has threshold degree two and requires at least three heads. Two-bit parity has threshold degree two and requires exactly two heads, so threshold degree does not determine head complexity.
