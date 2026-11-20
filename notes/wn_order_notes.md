@@ -491,3 +491,23 @@ edge budget, which is at most $4H2^{n/2}$, while capacities are $2H2^{d}/(d+1)$)
 exact SAT values ($6,10,[14,20]$ for $n=4,5,6$) and the symmetric-chain upper bound $\binom{n}{\lfloor n/2\rfloor}$ suggest the
 truth is of order $N/\sqrt n$ or $N/n$. (ii) Facts (a) and (b) rely only on Lemmas A and B, both machine-checked in
 `formalization/HeadComplexity/Tropical/SwapExclusion.lean`; the counting is elementary.
+
+## 31. Refinement of Section 30: $T(\mathrm{PARITY}_n)\geq(1-o(1))\,n2^{n/2}/32$
+
+Keep the notation of Section 30 ($P_d$ = fiber mass at dimension $d$, $c_d=2^{d+1}/(d+1)$, $P_d\leq Hc_d$, $\sum_dP_d=N-1$,
+$\sum_ddP_d\leq nN/2$) and let $M=\lfloor n/2\rfloor$. Write the excess and deficit
+$E=\sum_{d\gt M}(d-M)P_d$ and $\Delta=\sum_{d\lt M}(M-d)P_d$. Then $\sum_ddP_d=M(N-1)+E-\Delta$, so
+
+$$ E\leq\Delta+(n/2-M)N+M\leq\Delta+N/2+M,\qquad\text{and }E\leq\Delta+M\text{ for even }n. $$
+
+Upper bound for the deficit: $\Delta\leq H\sum_{t=1}^{M}t\,c_{M-t}\leq H\cdot2^{M+1}\sum_{t\geq1}t2^{-t}/(M-t+1)\leq(8+o(1))H2^M/M$.
+Lower bound for the excess: mass at dimension $M+j$ costs $j$, and at most $Hc_{M+1}$ units sit at $j=1$, so
+$E\geq2P_{\gt M}-Hc_{M+1}$ with $P_{\gt M}\geq N-1-H\sum_{d\leq M}c_d\geq N-1-H(2^{M+3}/(M+1)+2)$. Combining, for even $n$,
+
+$$ 2N-2\leq H\Big(\frac{2^{M+4}}{M+1}+4+\frac{2^{M+2}}{M+2}+\frac{(8+o(1))2^M}{M}\Big)+M\leq(28+o(1))\frac{H2^M}{M}, $$
+
+hence $H\geq(1-o(1))NM/(14\cdot2^M)=(1-o(1))\,n2^{n/2}/28$; for odd $n$ the extra $N/2$ gives $(3/2)N\leq(28+o(1))H2^M/M$ with
+$M=(n-1)/2$, i.e. $H\geq(1-o(1))(n-1)2^{(n+1)/2}/37$. In all cases $T(\mathrm{PARITY}_n)\geq(1-o(1))\,n2^{n/2}/32$.
+The ingredients are exactly (a), (b), (c) of Section 30; only the bookkeeping of the two sums changed. The true value is
+probably much larger (SAT: $6,10,[14,20]$ at $n=4,5,6$; upper bound $\binom{n}{\lfloor n/2\rfloor}$), but this suffices for the
+qualitative statement that dominance alone is exponentially more expensive than the full model on parity.
