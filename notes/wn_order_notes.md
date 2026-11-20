@@ -361,3 +361,26 @@ the real multiplicity is plausibly of order tens here, while the complex degree 
 $10^3$ from $(5,2)$ to $(5,3)$. If real admissible multiplicities stay polynomial in $nH$ rather than exponential, the
 cell count is linear-like and $W(n)=\Omega(N/n)$ up to constants. This is suggestive evidence for the refutation side, not
 a proof: the sampler can miss solutions, and the regime $H\asymp N/n^2$ is out of reach.
+
+## 23. Neural-network capacity literature (from the third survey) and what it says about the cube
+
+- Decision lists over subcubes: counting bound $2^n/(1.585n)$; no universal $O(2^n/n)$ bound in print; exact Shannon values
+  $2,3,5,9=2^{n-1}+1$ for $n\leq4$ (attained by parity); parity has a product-lemma list of length $5^{n/3}$ and needs
+  $\geq2^{n/2+1}$ rules, so for general subcube decision lists parity is exponentially harder than random functions
+  (random 5-bit functions need 7-8 rules). Threshold of subcube indicators: counting $\approx1.71\cdot2^n/n$, no universal
+  $O(2^n/n)$ bound found; in the $2^n$-monomial basis the density is $\Theta(2^n)$ (Oztop 2006: $\leq0.75\cdot2^n$; Amano
+  2010: almost all $\leq0.617\cdot2^n$; counting $\geq0.11\cdot2^n$).
+- Depth-two threshold circuits: Kane, Williams (STOC 2016) $\Omega(2^n/n^2)$ for almost all functions, trivial upper bound
+  $2^{n-1}+1$, no improvement found; the gap is of exactly our type.
+- Capacity of one-hidden-layer networks: Baum (1988) shows $\lceil N/n\rceil$ threshold units memorize $N$ points in general
+  position; Kowalczyk (1997, Neural Networks 10:1417-1433) shows that for general-position $N$-tuples full memorization by
+  $h$ threshold units forces $N\leq nh+1$, i.e. the LINEAR count is exact for generic inputs (the Warren-type $W\log W$ is not
+  attained on generic point sets); Maass (1994) attains $\Omega(W\log W)$ only with two hidden layers (Boolean inputs), Sakurai
+  (1993) with one hidden layer but real inputs at exponentially separated scales; Sontag (1997): shattering all general-position
+  $k$-sets needs about $k/2$ parameters for broad activation classes.
+- Interpretation for $W(n)$: for threshold units the linear count for generic points comes from the fact that a unit's effect on
+  the rest of the network is only through its Boolean output pattern, so every unit can be moved to a vertex of its own
+  arrangement independently (Cover's trick). For real-valued units (our atoms $(u\cdot x)/(1+b\cdot x)$) the contribution is a
+  real number and this independence fails, which is why Warren's bound is the only general tool. Super-linear capacity for
+  one-hidden-layer networks on BOOLEAN inputs is not known for any unit type we found; the Boolean cube is a highly structured
+  point set, so neither the generic-position linear bound nor the special-set $W\log W$ constructions apply directly.
