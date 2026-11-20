@@ -1604,7 +1604,7 @@ dictionary statements. They do not establish an asymptotic dictionary
 theorem or a Boolean-cube representation theorem.
 
 The routing lemma is compatible with the earlier kernel decoder on
-geometrically separated one-hot addresses: two heads assigned to an
+geometrically separated one-hot addresses: two kernel terms assigned to an
 address may have arbitrary real residue directions and coefficients.
 The head parameters can vary with a one-hot memory coordinate. This
 observation does not supply geometrically separated binary addresses.
@@ -1638,5 +1638,81 @@ one-hot addresses by binary coordinates is a substantive missing
 construction in the vector-pair route. The matching result alone does
 not remove it. The earlier equally spaced Cauchy experiment is a
 different decoder and is not excluded by this address proposition.
+
+\section{A real reciprocal construction from regular polygons}
+
+This construction uses real affine denominators throughout. Complex
+notation is used only to prove a polynomial identity.
+
+\begin{proposition}[Harmonic powers with positive affine denominators]
+Let $m\geq2$, and let $u,v$ be any real affine functions of $n$ Boolean
+variables. There exists a sum of $2m$ admissible affine fractions whose
+sign agrees, including its zero set, with
+\[
+ \operatorname{Re}((u(x)+iv(x))^m).
+\]
+In particular, whenever the latter expression is nonzero at every cube
+vertex, its Boolean sign function has at most $2m$ heads.
+\end{proposition}
+\begin{proof}
+Write $z=u+iv$, $\zeta=\exp(2\pi i/m)$, and
+$\eta=\exp(\pi i/m)$. Define real affine forms
+\[
+ L_j=\operatorname{Re}(\zeta^jz),\qquad
+ M_j=\operatorname{Re}(\eta\zeta^jz),\quad 0\leq j<m.
+\]
+For each $1\leq r<m$, expand the $r$th powers using
+$L_j=(\zeta^jz+\zeta^{-j}\bar z)/2$. Summation over $j$ kills every
+Fourier exponent except zero: the exponents lie between $-r$ and $r$,
+and $m$ divides only zero in this interval. The surviving term, present
+only when $r$ is even, is unchanged by $\eta$. Hence
+\[
+ \sum_j L_j^r=\sum_j M_j^r\qquad(1\leq r<m).
+\]
+For $r=m$, the two additional exponents $m$ and $-m$ survive.
+They change sign under multiplication by $\eta$, so
+\[
+ \sum_j L_j^m-\sum_j M_j^m
+   =m2^{2-m}\operatorname{Re}(z^m).
+\]
+Newton's identities therefore give the polynomial identity, in an
+independent variable $p$,
+\[
+ P(p)-Q(p)=\kappa\operatorname{Re}(z^m),\qquad
+ P(p)=\prod_j(p+L_j),\quad Q(p)=\prod_j(p+M_j),\quad
+ \kappa=(-1)^{m-1}2^{2-m}.
+\]
+Indeed the elementary symmetric coefficients through degree $m-1$
+agree, and the difference of the degree-$m$ coefficients is
+$(-1)^{m-1}/m$ times the displayed power-sum difference.
+Consequently $P'=Q'$, and wherever all factors are positive,
+\[
+ \kappa^{-1}\left(\sum_j\frac1{p+M_j}
+                    -\sum_j\frac1{p+L_j}\right)
+ =\operatorname{Re}(z^m)\frac{P'(p)}{P(p)Q(p)}.
+\]
+The factor on the right is strictly positive: $P,Q>0$, and $P'$ is
+the sum of the $m$ positive products obtained by deleting one factor
+from $P$.
+
+It remains to make every denominator admissible on the original cube.
+Write $L_j=\ell_{j,0}+\sum_i\ell_{j,i}x_i$ and
+$M_j=q_{j,0}+\sum_iq_{j,i}x_i$. Choose
+\[
+ p(x)=a_0+\sum_i a_i x_i,\qquad
+ a_i=1+\max_j\{ |\ell_{j,i}|,|q_{j,i}|\}\quad(0\leq i\leq n).
+\]
+All constants and all variable coefficients of $p+L_j$ and $p+M_j$
+are at least one. Substituting this affine $p(x)$ into the identity
+therefore gives admissible denominators and preserves the sign equality.
+The numerator constants $\pm\kappa^{-1}$ are unrestricted real
+parameters, as required by the model.
+\end{proof}
+
+The proposition is an explicit real implementation of a roots-of-unity
+cancellation. It is restricted to harmonic powers of two affine forms.
+No decomposition of every Boolean labeling into these scores at the
+requested total head cost has been proved. Such a decomposition is not
+inferred from the cancellation identity.
 
 \end{document}

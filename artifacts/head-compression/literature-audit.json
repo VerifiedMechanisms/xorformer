@@ -163,6 +163,30 @@
       "checked_location": "Theorem 1 and the proof of Lemma 2",
       "mechanism": "Relate the fraction of polynomial sign patterns to real evaluation ranks and then to Reed-Muller erasure recovery over the binary field.",
       "gap": "The theorem concerns almost all functions and polynomial degree. It supplies neither every-function coverage nor a compiler into the admissible affine-fraction model at the requested head count."
+    },
+    {
+      "title": "Old and new examples of k-nets in P^2",
+      "authors": "Janis Stipins",
+      "url": "https://arxiv.org/pdf/math/0701046",
+      "checked_location": "Definition 1.1, Propositions 2.2 and 2.10, and Sections 4.2-4.5",
+      "mechanism": "Products of line equations in a pencil, including constructions from finite elliptic-curve subgroups and explicit real low-degree nets.",
+      "gap": "Incidence and factorization identities do not supply arbitrary Boolean signs or Boolean-compatible affine embeddings. Some configurations, including the displayed Hesse four-net, are intrinsically complex."
+    },
+    {
+      "title": "Completely reducible hypersurfaces in a pencil",
+      "authors": "J. V. Pereira and S. Yuzvinsky",
+      "url": "https://arxiv.org/pdf/math/0701312",
+      "checked_location": "Theorem 2.1, its stated irreducible-generic-fiber hypothesis, and Section 6.2",
+      "mechanism": "Bound the essential dimension of pencils with several completely split fibers and give reflection-group examples of product identities.",
+      "gap": "Theorems concern full polynomial identities over the complex field. They cannot be applied directly to identities modulo the Boolean ideal, nor without checking the generic-fiber hypothesis. No arbitrary-sign head construction follows."
+    },
+    {
+      "title": "Small Boolean Sections in Alon-Furedi Covers",
+      "authors": "Zoltan Lorant Nagy",
+      "url": "https://arxiv.org/pdf/2607.26301",
+      "checked_location": "Theorems 1.3 and 3.2, Proposition 3.3, and the complete control-slice proof in Section 3",
+      "mechanism": "Explicit integer hyperplanes permute Hamming layers between binary control slices; a roots-of-unity estimate balances their intersection sizes at (1+o(1))*2^n/n.",
+      "gap": "This is a balanced cover of all vertices except one. It is not a cover of an arbitrary target-dependent subset, and no additive implementation of its product polynomial by the requested number of admissible heads is supplied."
     }
   ]
 }
