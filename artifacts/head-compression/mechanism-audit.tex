@@ -334,6 +334,28 @@ known $n$-head representation is consistent with the amplitude bound.
 
 \section{Literature mechanisms and their exact limits}
 
+\paragraph{Exact hyperplane covers.}
+Aaronson, Groenland, Grzesik, Johnston, and Kielak,
+\emph{Exact hyperplane covers for subsets of the hypercube},
+\href{https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf}{Discrete Mathematics 344 (2021), 112490},
+Theorem 2, give bounds $2^{n-2}/n^2\le\operatorname{ec}(n)\le2^{n+1}/n$.
+Their subsequent counting observation improves the lower bound to
+$2^n/n^2$. The upper construction uses radius-one Hamming spheres,
+every subset of which is an exact hyperplane intersection pattern.
+Thus that construction retains the same factor-$n$ gap.
+There is an additional conversion issue: a two-head sign representation
+of a thin affine slab does not give an approximate indicator with small
+values outside the slab. Adding such scores therefore does not implement
+the union of an exact cover without a separate amplitude argument.
+
+\paragraph{Local receptive fields.}
+Schmitt's \emph{Neural Networks with Local Receptive Fields and
+Superlinear VC Dimension},
+\href{https://eccc.weizmann.ac.il/report/2001/045/download/}{ECCC TR01-045},
+constructs shattered sets of real inputs. The discussion on page 30
+explicitly leaves Boolean inputs as a further question. Neither the
+input set nor the activation family is the one required here.
+
 \paragraph{Connected domination and codes.}
 Griggs proves $\gamma_c(Q_n)=(1+o(1))2^n/n$ in
 \emph{Spanning trees and domination in hypercubes}, Integers 21A (2021),
@@ -595,5 +617,69 @@ curvature mechanism and a negative-curvature test, but do not prove
 that a feasible $O(2^n/n^2)$-head representation exists. Replacing this
 missing global step by an assertion about optimization convergence
 would be invalid.
+
+\section{A common scalar statistic cannot decode arbitrary labels cheaply}
+
+\begin{proposition}[Uniform alternation over all affine projection orders]
+For every $n\ge1$, there is a labeling $f:\Qn\to\{-1,1\}$ with the
+following property. If a strict sign representation of $f$ has the form
+\[
+ S(x)=c+\sum_{h=1}^H
+       \frac{\alpha_h+\beta_h L(x)}{\gamma_h+\delta_h L(x)},
+ \qquad L(x)=a_0+a\cdot x,
+\]
+and every denominator is positive on the cube, then
+\[
+ H\ge \frac{2^n-1}{2}-n\sqrt{2^n}.
+\]
+In particular, allowing $L$ and every coefficient to depend on $f$
+does not make this scalar decoding mechanism sufficient for the target.
+The assertion does not restrict representations whose numerators depend
+on coordinates independently of $L$.
+\end{proposition}
+\begin{proof}
+Write $N=2^n$. The strict orders of the numbers $a\cdot x$, as $a$
+varies and the projections remain distinct, are constant on the chambers
+of the hyperplanes $a\cdot(x-y)=0$ for distinct cube vertices $x,y$.
+There are at most $M=(3^n-1)/2$ distinct such hyperplanes, since
+$x-y\in\{-1,0,1\}^n\setminus\{0\}$ and opposite differences give
+the same hyperplane. An arrangement of $M$ hyperplanes in $\mathbb R^n$
+has at most $\sum_{j=0}^n\binom Mj\le(M+1)^n\le3^{n^2}$ chambers.
+The first inequality follows by induction, adding one hyperplane at a
+time and counting regions of the induced arrangement on it. For the
+second, use $\binom Mj\le M^j$ and compare with the expansion of
+$(M+1)^n$.
+
+Choose all $f(x)$ independently and uniformly. Along any fixed order,
+the $N-1$ indicators of consecutive sign changes are independent fair
+bits: the initial sign and those indicators determine the full sequence
+bijectively. If $X$ is their sum, then for $t>0$,
+\[
+ \Pr\{X\le(N-1)/2-t\}\le
+             \exp\left(-\frac{2t^2}{N-1}\right).
+\]
+For completeness, apply Markov's inequality to
+$\exp(-s(X-(N-1)/2))$, use
+$\cosh(s/2)^{N-1}\le\exp((N-1)s^2/8)$, and minimize at
+$s=4t/(N-1)$. With $t=n\sqrt N$, the union bound over all orders
+is at most
+\[
+ \exp\left(n^2\log3-\frac{2n^2N}{N-1}\right)<1.
+\]
+Thus there is a labeling having more than $(N-1)/2-n\sqrt N$
+changes along every strict affine projection order.
+
+For a representation through $L$, labels must be constant on each
+fiber of $L$. A sufficiently small generic perturbation of $a$ refines
+the order of its fibers without interleaving distinct fibers, so the
+number of changes between fibers has the same lower bound.
+Each affine denominator is positive throughout the interval from the
+smallest to the largest value of $L$, since it is positive at both
+endpoints. Clearing their product gives a univariate numerator of
+degree at most $H$. It is nonzero, and every sign change between
+consecutive fibers requires a distinct real zero in the intervening
+open interval. Its number of zeros is at most $H$, proving the bound.
+The case $H=0$ is a constant score and is immediate.
+\end{proof}
 
 \end{document}
