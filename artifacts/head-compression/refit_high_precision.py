@@ -33,6 +33,38 @@ def exact_midpoint(value):
     return Fraction(int(mantissa))*Fraction(2)**exponent
 
 
+def select_hinge_basis(q, margins, multipliers):
+    """Choose candidate equality rows; the caller must refit and audit them.
+
+    Fractional dual variables must be included. Complete them using near-unit
+    margins with large residual row norm. This selection is numerical and is
+    never itself accepted as a proof of primal or dual feasibility.
+    """
+    dimension = q.shape[1]
+    selected = np.flatnonzero((multipliers > 1e-7) & (multipliers < 1-1e-7)).tolist()
+    if len(selected) > dimension:
+        raise ArithmeticError("too many fractional dual variables")
+    if selected:
+        basis, rr = la.qr(q[selected].T, mode="economic", check_finite=False)
+        if np.min(np.abs(np.diag(rr))) < 1e-12:
+            raise ArithmeticError("fractional equality rows are numerically dependent")
+    else:
+        basis = np.empty((dimension,0))
+    candidates = [int(i) for i in np.flatnonzero(np.abs(margins-1) < 1e-5)
+                  if i not in set(selected)]
+    while len(selected) < dimension:
+        if not candidates:
+            raise ArithmeticError("not enough candidate hinge equalities")
+        residual = q[candidates]-(q[candidates]@basis)@basis.T
+        norms = la.norm(residual,axis=1)
+        index = int(np.argmax(norms))
+        if norms[index] < 1e-12:
+            raise ArithmeticError("candidate hinge equalities have insufficient numerical rank")
+        selected.append(candidates.pop(index))
+        basis = np.column_stack((basis,residual[index]/norms[index]))
+    return np.array(selected,dtype=int)
+
+
 def build_basis(logs, orientation, bits=512, progress=False):
     started = time.monotonic()
     ctx.prec = bits

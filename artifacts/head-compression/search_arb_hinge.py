@@ -19,7 +19,7 @@ import scipy.linalg as la
 import scipy.optimize as opt
 import scipy.sparse as sp
 from flint import arb, arb_mat
-from refit_high_precision import build_basis, exact_midpoint, rational_ball
+from refit_high_precision import build_basis, exact_midpoint, rational_ball, select_hinge_basis
 from search_varpro_scores import Problem, TimeLimit, Certified
 from verify_certificate import verify
 
@@ -48,13 +48,10 @@ def fit_hinge(logs, orientation, labels, bits, lp_seconds=120):
         actual_margin = np.array([int(labels[i])*float(scores[i,0].mid()) for i in range(rows)])
         return (float(np.maximum(1-actual_margin, 0).mean()), np.zeros(n*h),
                 coefficients, actual_margin, b_float)
-    kinks = np.flatnonzero(np.abs(margin-1) < 1e-6)
-    if len(kinks) != columns:
-        # No claim that a degenerate LP vertex has this many independent
-        # active margin equations. Such a state is rejected explicitly.
-        raise ArithmeticError(f"Expected {columns} independent kinks, found {len(kinks)}")
+    multipliers = -fit.ineqlin.marginals
+    kinks = select_hinge_basis(qq, margin, multipliers)
     kink_set = set(kinks.tolist())
-    active = [i for i in range(rows) if i not in kink_set and margin[i] < 1]
+    active = [int(i) for i in np.flatnonzero(multipliers >= 1-1e-7) if i not in kink_set]
     fk = arb_mat([[features[i,j] for j in range(columns)] for i in kinks])
     coefficients = fk.solve(arb_mat([[int(labels[i])] for i in kinks]))
     # w is the derivative of the hinge objective with respect to scores.

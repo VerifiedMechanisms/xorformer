@@ -18,7 +18,7 @@ import scipy.optimize as opt
 import scipy.sparse as sp
 from flint import arb, arb_mat
 from search_cauchy_arb import grid_basis
-from refit_high_precision import exact_midpoint, rational_ball
+from refit_high_precision import exact_midpoint, rational_ball, select_hinge_basis
 from verify_cauchy_grid import verify
 
 
@@ -41,10 +41,10 @@ def fit(logs, sigma, labels, bits):
         coefficients=inverse*arb_mat([[rational_ball(v)] for v in z])
         return 0.,np.zeros(h),coefficients,b,margins
     multipliers=-lp.ineqlin.marginals
-    fractional=np.flatnonzero((multipliers>1e-7)&(multipliers<1-1e-7))
-    if len(fractional)!=h:
-        raise ArithmeticError(f"need {h} fractional dual variables, found {len(fractional)}")
-    active=np.flatnonzero(multipliers>=1-1e-7)
+    fractional=select_hinge_basis(q,margins,multipliers)
+    selected=set(fractional.tolist())
+    active=np.array([int(i) for i in np.flatnonzero(multipliers>=1-1e-7)
+                     if i not in selected],dtype=int)
     fk=arb_mat([[f[i,j] for j in range(h)] for i in fractional])
     coefficients=fk.solve(arb_mat([[int(y[i])] for i in fractional]))
     rhs=arb_mat([[sum((f[i,j]*int(y[i]) for i in active),arb(0))] for j in range(h)])
@@ -85,6 +85,7 @@ def main():
     parser.add_argument("--bits",type=int,default=768)
     parser.add_argument("--k",type=int,default=4)
     parser.add_argument("--seed",type=int,default=230002)
+    parser.add_argument("--checkpoint",type=Path)
     args=parser.parse_args()
     args.out.mkdir(parents=True,exist_ok=True)
     m,k=1<<args.k,args.k
@@ -122,7 +123,13 @@ def main():
             raise StopSearch
         return loss,gradient
     while time.monotonic()-start<args.seconds:
-        initial=rng.uniform(-4,np.log(m)+4,2*m)
+        if restarts==0 and args.checkpoint is not None:
+            saved=np.load(args.checkpoint)
+            assert np.array_equal(saved["labels"],labels)
+            assert np.array_equal(saved["sigma"],sigma)
+            initial=saved["logs"]
+        else:
+            initial=rng.uniform(-4,np.log(m)+4,2*m)
         try:
             opt.minimize(objective,initial,jac=True,method="L-BFGS-B",
                 bounds=[(-8,np.log(m)+8)]*(2*m),
