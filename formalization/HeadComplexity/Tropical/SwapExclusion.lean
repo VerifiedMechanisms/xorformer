@@ -128,6 +128,31 @@ theorem swap_exclusion (hpv : M.ParityValid) (x : Fin n → Bool) (a b : Fin n) 
   rw [hy'] at h2
   exact hab (h1.symm.trans h2)
 
+
+/-- Lemma B (edge explanation). In a parity-valid model, for every edge `(x, upd x a true)` with
+`x a = false`, either the forced-one coordinate of `top (upd x a true)` is `a`, or `a` is a forced-zero
+coordinate of `top x`. -/
+theorem edge_explanation (hpv : M.ParityValid) (x : Fin n → Bool) (a : Fin n) (hxa : x a = false) :
+    M.pos (M.top (upd x a true)) = a ∨ M.zeros (M.top x) a = true := by
+  cases hz : M.zeros (M.top x) a with
+  | true => exact Or.inr rfl
+  | false =>
+    left
+    have hρx := M.top_avail x
+    have hpos_ne_a : M.pos (M.top x) ≠ a := by
+      intro h
+      have h1 := hρx.1
+      rw [h, hxa] at h1
+      cases h1
+    have hav : M.avail (M.top x) (upd x a true) := by
+      refine ⟨?_, ?_⟩
+      · rw [upd_other x a _ true hpos_ne_a]; exact hρx.1
+      · intro j hj
+        by_cases hja : j = a
+        · subst hja; rw [hz] at hj; cases hj
+        · rw [upd_other _ _ _ _ hja]; exact hρx.2 j hj
+    exact M.pos_top_upd hpv x a hxa hav
+
 end Model
 
 end Tropical
