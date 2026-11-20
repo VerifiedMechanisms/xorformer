@@ -35,3 +35,12 @@ Theorem 1.7 uses the normal form and Theorem 1.6. Theorems 1.8 and 1.9 use only 
 | 1.13 | [Two-head denominator clearing](13_two_head_denominator_clearing.md) | Express a two-head classifier's polynomial sign representation as two products of affine forms. |
 
 Theorem 1.11 uses only the definitions. Theorem 1.12 uses the normal form and Theorem 1.11, including zero heads and an empty feasible set. Theorem 1.13 uses the normal form directly to obtain the two-product structure.
+
+## Interpolation and upper bounds
+
+| Number | Theorem | Content |
+|---|---|---|
+| 1.14 | [Weighted-sum interpolation upper bound](14_weighted_sum_interpolation_upper_bound.md) | Realize arbitrary scores on the levels of a positive weighted statistic and bound the heads needed for Boolean labels. |
+| 1.15 | [Universal head bound](15_universal_head_bound.md) | Prove finite head complexity for every Boolean function using binary weights. |
+
+Theorem 1.14 proves the reciprocal interpolation basis inside its proof and uses the normal form to realize the resulting score. Theorem 1.15 applies it to an injective statistic.

@@ -18,5 +18,6 @@ Read these definitions in order. Each file is the authoritative location for its
 | 1.12 | [Strict sign representation](12_strict_sign_representation.md) | Representing Boolean labels by the strict signs of a function or polynomial. |
 | 1.13 | [Threshold degree](13_threshold_degree.md) | The minimum total degree of a polynomial strict sign representation. |
 | 1.14 | [Real affine forms](14_real_affine_forms.md) | A constant plus a linear combination of the input coordinates. |
+| 1.15 | [Positive weighted statistics](15_positive_weighted_statistics.md) | Positive weighted sums of bits and their sets of attained values. |
 
 Continue with [Chapter 1: Foundations and normal form](../theorems/01_foundations_and_normal_form/README.md).
