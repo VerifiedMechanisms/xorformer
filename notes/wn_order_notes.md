@@ -269,3 +269,18 @@ away from N/n^2; the exact SAT optima at n = 5, 6 (3 to 7 heads) are much smalle
 (each head has one rule per dimension, and a rule of dimension d is usable only when all but about log(nH) of its points
 are already caught) is visible here. Conclusion: the tropical transfer theorem is a valid tool, but the dominance regime by
 itself does not approach $N/n^2$; any $N/n^2$ construction must combine dominance with cancellation at comparable scales.
+
+## 18. Why dominance hierarchies stay linear-like (heuristic accounting)
+
+In any dominance scheme a head is productive on a region of scale $b$ (points of a block of size $b$, or pairs inside a vertex
+set of size $b$) only through a pattern with about $b\log b$ bits (an affine pattern on a block, a chain graph on a block of
+pairs), so a head finalizes at most $O(b\log b)$ points of a random target there. Regions of every scale are needed, because a
+region of scale $b$ can be used only after all but $O(b\log b)$ of its points were finalized at smaller scales. With the natural
+nested-block hierarchy the cost of scale $\ell$ (blocks of size $2^\ell$) is (points handled at scale $\ell$)/($\ell2^\ell$).
+For the weight-two miniature this is $n/(4\ell)$ heads per level, and summing over the levels $\ell\in[\ell_0,\log_2n]$ gives
+$\Theta(n)$ heads, the linear-like rate, even though the top level alone would cost only $n/(4\log_2n)$ (the Warren rate).
+For the cube the same accounting reproduces $\Theta(N/n)$. The exact SAT values and the greedy data (Sections 16, 17) are
+consistent with this. Cancellation schemes are linear-like by dimension counting (Section 8). Hence a $2^n/n^2$ construction,
+if one exists, must live in the non-perturbative regime where $\Theta(n)$ heads of comparable magnitude interact at a typical
+input; this regime has no combinatorial description and its real interpolation multiplicity (Sections 11, 15) is the open
+quantity.
