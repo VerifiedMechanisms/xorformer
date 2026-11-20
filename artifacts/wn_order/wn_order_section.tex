@@ -150,7 +150,12 @@ and it is a strict sub-model: parity needs about $N$ rules in it (each
 fiber is a subcube minus earlier subcubes, hence an independent set of
 the cube graph), whereas $\Hs(\mathrm{PARITY}_n)=n$. The cancellation
 mechanism of Theorem~\ref{thm:sym} and the spanning mechanism of
-Section~\ref{sec:upper-bounds} are therefore not captured by it.
+Section~\ref{sec:upper-bounds} are therefore not captured by it. Two
+structural facts about parity in the sub-model, swap exclusion (no fiber
+contains two points at swap distance) and edge explanation (every edge is
+explained by the forced coordinates of the finalizing rules of its
+endpoints), are machine-checked in core Lean~4 in
+\texttt{formalization/HeadComplexity/Tropical/SwapExclusion.lean}.
 
 \subsection{Rate caps of local mechanisms}
 \begin{proposition}[Local cells cannot reach $N/n^2$]
@@ -247,14 +252,14 @@ $0.74,0.66,0.56,0.58$ for $n=4,\dots,7$ and $Tn^2/N$ are
 $3.0,3.3,3.4,4.0$: the growth lies between the two scalings and the
 data do not decide. The sub-model has the universal bound
 $T(f)\le\binom{n}{\lfloor n/2\rfloor}$ (symmetric chain decomposition,
-one rule per round and dimension), attained by parity for $n\le5$; parity needs $10$ heads at $n=5$ and more than $13$ at $n=6$,
-majority more than $7$ at $n=6$. In the optimal
+one rule per round and dimension), attained by parity for $n\le5$; parity needs $10$ heads at $n=5$ and between $14$ and $20$ at $n=6$,
+majority between $8$ and $11$ at $n=6$ (against $n$ and $1$ in the full model). In the optimal
 solutions most rules are used, the fibers of the finalizing rules have
 $2$ to $3$ points on average (parity: one point), and the mean fiber
 size grows only slowly with $n$, whereas an $N/n^2$ rate needs mean
 fiber size proportional to $n$. A greedy constructor
-with random orders needs $Hn/N\approx1.6,2.1,3.1,3.3$ heads at
-$n=5,6,7,8$, i.e.\ more than $N/n$ and increasing.
+with random orders needs $Hn/N\approx1.6,2.1,3.1,2.9,3.3,3.3,3.7$ heads at
+$n=5,\dots,11$, i.e.\ several times $N/n$ and slowly increasing.
 \item \emph{Interpolation multiplicity.} For planted targets at $2nH$
 cube points, Levenberg--Marquardt from $600$ to $1500$ random starts
 finds $19,27,26,12,12$ distinct real solutions (of which $3,10,11,2,2$
