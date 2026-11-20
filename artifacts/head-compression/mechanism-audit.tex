@@ -1426,4 +1426,68 @@ Duplicating the whole codebook changes the zero-count budget, so this
 argument does not exclude the replicated-codebook experiment. No
 universal theorem for that experiment is asserted.
 
+\section{Independently programmable small gadgets cannot give the target}
+
+\begin{proposition}[A shattering bound on an arbitrary subset]
+Let $n,H\geq1$, and let $X\subseteq\{0,1\}^n$. If every strict
+sign labeling of $X$ is realized by an admissible score with at most
+$H$ heads, then
+\[
+ |X|<16nH\log_2(8H).
+\]
+\end{proposition}
+\begin{proof}
+Put $m=|X|$ and $p=2nH$. For any score strict on $X$, a sufficiently
+small constant perturbation preserves all those signs and makes its
+value at the zero vertex nonzero, whether or not zero belongs to $X$.
+Normalize the denominators at zero and absorb numerator constants as
+in the manuscript's counting proof. After positive rescaling the score
+has the form
+\[
+ \sigma+\sum_{h=1}^H\frac{u_h\cdot x}{1+b_h\cdot x},
+ \qquad \sigma\in\{-1,1\}.
+\]
+For fixed $\sigma$, clearing the positive denominators gives $m$
+polynomials of degree at most $H$ in $p$ parameters. If $m\geq p$,
+Warren's strict-sign bound, allowing the two choices of $\sigma$,
+bounds the number of labelings by
+\[
+ 2\left(\frac{4eHm}{p}\right)^p.
+\]
+Suppose for a contradiction that $m\geq8pL$, where
+$L=\log_2(8H)\geq3$, and put $q=m/p$. Shattering and the last
+display imply
+\[
+ q\leq\frac1p+\log_2(4eH)+\log_2 q
+       <L+2+\log_2 q.
+\]
+Here $q\geq8L\geq24$. The elementary inequality
+$\log_2 q\leq q/2$ for $q\geq4$ and the bound
+$L+2\leq2L\leq q/4$ imply $q<3q/4$, a contradiction.
+Since $8pL=16nH\log_2(8H)$, the result follows.
+\end{proof}
+
+\begin{corollary}[Fixed independent blocks]
+Suppose a fixed partition of the Boolean cube into blocks $X_i$ is
+used, and each block can be independently given every strict labeling
+using a gadget of $H_i\geq1$ heads. If $H_i\leq h$ for every block,
+then the total gadget budget satisfies
+\[
+ \sum_i H_i>\frac{2^n}{16n\log_2(8h)}.
+\]
+In particular, gadgets with $\log h=o(n)$ cannot establish the
+requested $O(2^n/n^2)$ bound by this fixed independent-block scheme.
+\end{corollary}
+\begin{proof}
+Apply the proposition to each block, sum, and use
+$\sum_i|X_i|=2^n$ and $\log_2(8H_i)\leq\log_2(8h)$.
+\end{proof}
+
+This statement requires the blocks to be fixed and individually
+programmable. It does not cover function-dependent partitions or
+constructions in which heads interact globally across blocks. It
+also grants the gadgets arbitrary behavior outside their blocks, so
+adding a separate localization requirement cannot invalidate the
+obstruction under its stated assumptions.
+
 \end{document}
