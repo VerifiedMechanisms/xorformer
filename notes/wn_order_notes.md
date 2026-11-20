@@ -235,3 +235,18 @@ $\Theta(nH)$ prescribed points" is Warren-like. So there is no algebraic collaps
 the number of real solutions in the admissible orthant for cube points. This explains the experimental observation that the
 optimizer finds genuinely nonlinear representations below the fixed-list threshold only when the directions are spread and the
 dynamic ranges are large, and it leaves both conjectures standing.
+
+## 16. Exact tropical-model complexities (SAT, CaDiCaL; see experiments/wn_search/tropical_exact.py)
+
+Verified against brute force at n = 3 (384/384 decisions agree). T(f) = minimum number of heads in the tropical
+(dominance) sub-model.
+
+| n | random targets (10 at n=5, 5 at n=6) | parity | majority | N/n^2 | N/n |
+|---|---|---|---|---|---|
+| 4 | 2 to 4 (see log) | 6 | 4 | 1.0 | 4.0 |
+| 5 | 3,5,5,3,6,4,3,4,4,4 (mean 4.1) | 10 | 5 | 1.3 | 6.4 |
+| 6 | 5,6,7,6,6 (mean 6.0) | greater than 13 | greater than 7 | 1.8 | 10.7 |
+
+Parity and majority are exponentially more expensive in the sub-model than in the full model ($H^{\ast}=n$ and $1$),
+confirming that dominance alone cannot replace cancellation. For random targets the growth from n=5 to n=6 is a factor
+1.46, between the N/n^2 ratio 1.39 and the N/n ratio 1.67; larger n is needed to separate the two scalings.
