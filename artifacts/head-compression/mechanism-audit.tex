@@ -15,7 +15,7 @@ The target is an unconditional absolute constant $C$ such that
 $W(n)\le C2^n/n^2$ for every positive integer $n$.
 The definitions of the attention model, admissible denominators, and
 head complexity in the attached \texttt{version-5.tex} are unchanged.
-The results below rule out particular mechanisms; none is a lower bound
+The results below test particular mechanisms; none is a lower bound
 contradicting the target.
 
 \section{Exact interpolation has the wrong parameter budget}
@@ -464,5 +464,139 @@ is no such signed measure $w$. No result establishing this assertion
 has been obtained. It is an equivalent feasibility problem, not a new
 proof or a lemma that can be assumed. This route is blocked unless a
 new construction excludes all these measures simultaneously.
+
+\section{Second-order splitting: a real mechanism with a definite limit}
+
+The next construction makes the quadratic scale appear in a precise way.
+It spans tables by curvature features, not by the scores of the original
+heads. These two assertions must not be conflated.
+
+\begin{proposition}[A quadratic curvature-feature spanning list]
+For every $n\ge1$ there are $H\le 32\cdot 2^n/n^2$ affine forms
+$B_h$ with strictly positive constant and variable coefficients such that
+\[
+ \operatorname{span}\left(\{1\}\cup
+ \{x_i/B_h^2:1\le i\le n,\ h\le H\}\cup
+ \{x_ix_j/B_h^2:1\le i<j\le n,\ h\le H\}\right)
+ =\mathbb R^{\Qn}.
+\]
+\end{proposition}
+\begin{proof}
+For $n=1$ one form $B=1+x_1$ suffices. Suppose $n\ge2$, and
+write $n=m+\ell$ with $m=\lfloor n/2\rfloor$ and $\ell=n-m$.
+In dimension $s\ge1$, the Hamming-code construction in the manuscript
+gives a radius-one covering set $C_s$ of size
+$2^{s-\lfloor\log_2(s+1)\rfloor}<2^{s+1}/(s+1)$.
+Hence $D_0=C_m\times C_\ell$ covers the cube by radius-two balls and
+\[
+ |D_0|<\frac{4\cdot2^n}{(m+1)(\ell+1)}
+       \le\frac{16\cdot2^n}{n^2}.
+\]
+The graph on $D_0$ joining centers at distance at most five is connected:
+assign every cube vertex a center at distance at most two, assign centers
+to themselves, and map cube paths to walks of these assigned centers.
+Take a spanning tree of this graph. For a tree edge at distance five,
+add the vertex two steps from its first endpoint along a shortest path.
+The new center is at distance two from the first endpoint and three from
+the second. Radius-two balls about centers at distance at most four
+intersect. Edges of distance at most four need no new center. Thus the
+resulting set $D$ has at most $2|D_0|-1$ centers, its radius-two balls
+cover the cube, and their intersection graph is connected.
+
+For $v\in D$, set $a_v=\mathbf1+v$. Consider multilinear polynomials
+$q$ and their first and mixed second derivatives at these points.
+If all these derivatives vanish, put $r(z)=q(\mathbf1+z)$.
+Multilinear Taylor expansion on at most two flipped coordinates shows
+that $r$ is constant on each radius-two ball about $v$. Connectivity
+and coverage imply that $r$ is constant on the cube. Cube evaluation
+is an isomorphism for multilinear polynomials, so $q$ is constant.
+Thus these derivative evaluations have rank $2^n-1$ on the nonconstant
+monomials.
+
+Set $B_{v,\varepsilon}(x)=1+\varepsilon a_v\cdot x$.
+For $i\in S$ the leading multilinear coefficient is
+\[
+ [x_S]\frac{x_i}{B_{v,\varepsilon}^2}
+ =(-\varepsilon)^{|S|-1}|S|!
+       \prod_{k\in S\setminus\{i\}}a_{v,k}
+   +O(\varepsilon^{|S|}),
+\]
+and it is zero if $i\notin S$. For $i<j$ with $\{i,j\}\subseteq S$,
+\[
+ [x_S]\frac{x_ix_j}{B_{v,\varepsilon}^2}
+ =(-\varepsilon)^{|S|-2}(|S|-1)!
+       \prod_{k\in S\setminus\{i,j\}}a_{v,k}
+   +O(\varepsilon^{|S|-1}).
+\]
+These follow from $(1+z)^{-2}=\sum_{k\ge0}(k+1)(-z)^k$
+and finite multilinear reduction. Multiply each second-degree column
+by $-\varepsilon$, and divide nonempty row $S$ by
+$(-\varepsilon)^{|S|-1}(|S|-1)!$.
+The limit matrix has columns corresponding to the functionals
+$\partial_i(Eq)(a_v)$ and $\partial_i\partial_jq(a_v)$, where
+$E=\sum_k a_k\partial_k$ is the Euler operator.
+Indeed $E a_S=|S|a_S$. Since $q$ is multilinear,
+\[
+ \partial_i(Eq)=\partial_iq+\sum_{j\ne i}a_j\partial_i\partial_jq.
+\]
+Its kernel therefore equals the kernel of the first and second derivative
+evaluations already considered. A nonzero minor persists for sufficiently
+small positive $\varepsilon$. All displayed features vanish at $x=0$,
+so the constant function completes the span. The denominators are
+admissible for every positive $\varepsilon$.
+\end{proof}
+
+\begin{proposition}[A necessary condition for a minimum at duplicated heads]
+Let $\mathcal L(S)$ be a differentiable real loss on the finite score
+vector $S\in\mathbb R^{\Qn}$, with gradient $g_x$.
+Suppose a parameter configuration contains, for each $h$, two heads
+with the same affine numerator $A_h$ and the same denominator $B_h$.
+Assume each $B_h$ has strictly positive slopes and is positive on the
+cube. If this configuration is a local minimum in the unrestricted
+parameter space of all $2H$ heads and the bias, then
+\[
+ \sum_x g_x=0,\qquad
+ \sum_x\frac{g_x U(x)V(x)}{B_h(x)^2}=0
+ \quad\text{for every pair of affine forms }U,V\text{ and every }h.
+\]
+For the spanning list of the preceding proposition this forces $g=0$.
+In particular, for squared hinge loss on strict labels $y_x\in\{-1,1\}$,
+every such local minimum satisfies $y_xS_x\ge1$ at all vertices.
+\end{proposition}
+\begin{proof}
+Bias variation gives the first identity. Fix $h,U,V$ and replace its
+duplicated heads by $(A_h+tU)/(B_h+tV)$ and
+$(A_h-tU)/(B_h-tV)$. For sufficiently small $|t|$, both denominator
+slopes remain strictly positive and both denominators remain positive
+on the finite cube. Their sum differs from $2A_h/B_h$ by
+\[
+ 2t^2\left(\frac{A_h V^2}{B_h^3}-\frac{UV}{B_h^2}\right)+O(t^4).
+\]
+Differentiability of $\mathcal L$ and local minimality imply
+\[
+ \sum_x g_x\left(\frac{A_h(x)V(x)^2}{B_h(x)^3}
+                    -\frac{U(x)V(x)}{B_h(x)^2}\right)\ge0.
+\]
+Replace $U$ by an arbitrary real multiple of itself, holding $V$ fixed.
+The coefficient of that multiple must vanish. Products of affine forms
+include the monomials $x_i$ and $x_ix_j$, and the bias supplies the
+constant feature. The spanning proposition therefore gives $g=0$.
+For squared hinge loss $\mathcal L(S)=\frac12\sum_x(1-y_xS_x)_+^2$,
+the derivative is $g_x=-y_x(1-y_xS_x)_+$, proving the last assertion.
+\end{proof}
+
+\paragraph{The exact gap.}
+There is no reason for a local minimum of the full $2H$-head problem
+to have paired denominators. A descent direction in the last proof
+splits the pairs and leaves that set of configurations. In fact, with
+the denominator list fixed and pairs identical, the scores form a
+linear space of dimension at most $1+nH$. When this is below $2^n$,
+some strict orthants are absent by the fixed-denominator theorem.
+For those labels no successful local minimum can lie at the specified
+duplicated configurations. Thus the propositions give a concrete
+curvature mechanism and a negative-curvature test, but do not prove
+that a feasible $O(2^n/n^2)$-head representation exists. Replacing this
+missing global step by an assertion about optimization convergence
+would be invalid.
 
 \end{document}

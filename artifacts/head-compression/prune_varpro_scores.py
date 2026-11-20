@@ -56,11 +56,11 @@ def main():
             stream.write(json.dumps(result)+"\n")
         print(json.dumps({k:v for k,v in result.items() if k != "events"}), flush=True)
         if result["certificate"]:
-            logs = problem.best_logs.reshape(h, n).copy()
+            logs = problem.certified_logs.reshape(h, n).copy()
             orientation = problem.orientation.copy()
             tried.clear()
             np.savez(args.out/"latest.npz", logs=logs, orientation=orientation,
-                     labels=labels, coefficients=problem.best_coeff)
+                     labels=labels, coefficients=problem.certified_coeff)
         trial += 1
     print(json.dumps({"final_heads": len(orientation), "target": args.target,
                       "seconds": time.monotonic()-start,

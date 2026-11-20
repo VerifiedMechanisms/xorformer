@@ -145,6 +145,8 @@ class Problem:
             cert = export(self.n, self.y, u, b, self.orientation, coeff[0])
             check = exact_check(cert)
             if check["certified"]:
+                self.certified_logs = logs.copy()
+                self.certified_coeff = coeff.copy()
                 cert["verification"] = check
                 self.certificate = f"{self.label_kind}-n{self.n}-h{self.h}-seed{self.seed}.json"
                 (self.out / self.certificate).write_text(json.dumps(cert)+"\n")
