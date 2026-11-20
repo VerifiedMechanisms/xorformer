@@ -187,6 +187,46 @@
       "checked_location": "Theorems 1.3 and 3.2, Proposition 3.3, and the complete control-slice proof in Section 3",
       "mechanism": "Explicit integer hyperplanes permute Hamming layers between binary control slices; a roots-of-unity estimate balances their intersection sizes at (1+o(1))*2^n/n.",
       "gap": "This is a balanced cover of all vertices except one. It is not a cover of an arbitrary target-dependent subset, and no additive implementation of its product polynomial by the requested number of admissible heads is supplied."
+    },
+    {
+      "title": "Understanding the Loss Surface of Neural Networks for Binary Classification",
+      "authors": "Shiyu Liang, Ruoyu Sun, Yixuan Li, R. Srikant",
+      "url": "https://proceedings.mlr.press/v80/liang18a/liang18a.pdf",
+      "checked_location": "Theorems 1 and 2 and their data assumptions",
+      "mechanism": "Exclude bad local minima under label-dependent subspace separation or linear separability assumptions, with suitable smooth activations and losses.",
+      "gap": "Arbitrary Boolean labelings do not satisfy these assumptions. The theorem does not prove attainment or a zero-loss configuration for the requested rational model."
+    },
+    {
+      "title": "Spurious Valleys in One-hidden-layer Neural Network Optimization Landscapes",
+      "authors": "Luca Venturi, Afonso S. Bandeira, Joan Bruna",
+      "url": "https://jmlr.org/papers/volume20/18-674/18-674.pdf",
+      "checked_location": "Theorem 8 and its proof in Appendix A.1",
+      "mechanism": "At width at least the upper intrinsic dimension, redundant units can be exchanged until the feature matrix spans the relevant space, after which the readout is optimized convexly.",
+      "gap": "The width condition uses the dimension of the full feature span. It does not provide every-label sign coverage with width smaller by the requested factor."
+    },
+    {
+      "title": "The smallest sets of points not determined by their X-rays",
+      "authors": "Andreas Alpers and David G. Larman",
+      "url": "https://arxiv.org/pdf/1406.0781v3",
+      "checked_location": "Theorems 2.1, 2.2, 3.3 and the complete pigeonhole proof in Section 3",
+      "mechanism": "Choose many short primitive lattice directions; count projection data of half-sized subsets of a lattice box to produce two distinct subsets with equal projections and polynomial support size.",
+      "gap": "The directions are selected as part of the construction. The result does not provide polynomial-size unweighted switching components for prescribed directions, arbitrary Boolean sign tables, or an admissible-head compiler at the target count."
+    },
+    {
+      "title": "On the reconstruction of static and dynamic discrete structures",
+      "authors": "Andreas Alpers and Peter Gritzmann",
+      "url": "https://arxiv.org/pdf/1809.06141",
+      "checked_location": "Theorems 3-5 and Section 8, especially Theorems 24 and 25",
+      "mechanism": "Switching components in several directions yield multivariate equal-power-sum identities and Prouhet-Tarry-Escott solutions.",
+      "gap": "Equal moments are cancellation constraints. They do not by themselves interpolate arbitrary strict signs, and the planar direction-selection hypothesis is not a Boolean-cube embedding theorem."
+    },
+    {
+      "title": "Two applications of number theory to discrete tomography",
+      "authors": "Rob Tijdeman",
+      "url": "https://hrj.episciences.org/5111/pdf",
+      "checked_location": "Sections 2-4, including the direct substitution proof of Theorem 3.2",
+      "mechanism": "Encode weighted point sets by bivariate polynomials; zero line sums imply divisibility by direction binomials, hence by their product in a unique factorization domain.",
+      "gap": "This gives switching identities rather than arbitrary sign interpolation. The general Chinese-remainder assertion as printed in Theorem 3.1 must not be used without a comaximality hypothesis: the coprime polynomials x,y with remainders 0,1 are already incompatible at (0,0). The product-divisibility implication used here is valid independently of that assertion."
     }
   ]
 }

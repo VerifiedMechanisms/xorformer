@@ -1715,4 +1715,82 @@ No decomposition of every Boolean labeling into these scores at the
 requested total head cost has been proved. Such a decomposition is not
 inferred from the cancellation identity.
 
+
+\section{Weighted switching gives a uniform Hamming-layer gate}
+
+The direction-binomial method also gives an explicit family in every
+block dimension, without an assumption about unweighted switching sets.
+This family is useful for auditing composition proposals, but its cost
+is not the requested universal cost.
+
+\begin{proposition}[A polynomial-size weighted switching identity]
+For an integer $r\geq1$, let $w=x_1+\cdots+x_r$ and
+$c=1+r(r-1)/2$. For $0\leq k\leq r$ and integers $s$, let
+\[
+ a_{r,k,s}=\bigl|\{S\subseteq\{0,\ldots,r-1\}:|S|=k,
+                                  \ \sum_{j\in S}j=s\}\bigr|.
+\]
+For every real $p\geq0$, define
+\[
+ G_r(w,p)=\sum_{k,s:a_{r,k,s}>0}
+          \frac{(-1)^k a_{r,k,s}}{p+c+kw-s}.
+\]
+Every denominator is positive for $w\geq0$. On the Boolean cube,
+$G_r(w,p)=0$ when $w<r$, and $G_r(r,p)>0$.
+The number of displayed fractions is exactly
+\[
+ (r+1)+\sum_{k=0}^r k(r-k)
+       =\frac{(r+1)(r(r-1)+6)}6.
+\]
+The constant-denominator term is allowed by the normal form. All other
+terms have strictly positive coefficients in the $r$ input variables.
+The identity remains valid if $p$ is replaced by any affine function
+nonnegative on the cube; admissibility additionally requires that the
+resulting variable coefficients have an allowed common sign, as they
+do when all coefficients of $p$ are strictly positive.
+\end{proposition}
+\begin{proof}
+Before grouping equal denominators, the sum is
+\[
+ \sum_{S\subseteq\{0,\ldots,r-1\}}
+ \frac{(-1)^{|S|}}{p+c+\sum_{j\in S}(w-j)}.
+\]
+Its denominator is at least $p+c-\sum_{j=0}^{r-1}j\geq1$.
+At any integer $w\in\{0,\ldots,r-1\}$, pair $S$ with
+$S\mathbin{\triangle}\{w\}$. These two terms have the same
+denominator and opposite coefficients, proving exact cancellation.
+At $w=r$, the elementary integral formula for a reciprocal gives
+\[
+ G_r(r,p)=\int_0^\infty e^{-(p+c)t}
+                    \prod_{j=1}^r(1-e^{-jt})\,dt>0.
+\]
+The integrand is positive for $t>0$ and is bounded by
+$e^{-(p+c)t}$, which is integrable.
+For a fixed $k$, the sums of $k$ distinct members of
+$\{0,\ldots,r-1\}$ fill the entire integer interval
+$[k(k-1)/2,k(2r-k-1)/2]$.
+Indeed, subtract $0,1,\ldots,k-1$ from the increasing selected
+indices. The resulting nondecreasing $k$ numbers range from zero to
+$r-k$, and realize every sum from zero to $k(r-k)$: write the
+sum as $qk+t$ with $0\leq t<k$, and use $k-t$ copies of $q$ and
+$t$ copies of $q+1$. At the endpoint $q=r-k$, necessarily $t=0$.
+There are therefore $k(r-k)+1$ distinct denominators for this $k$.
+Denominators from different $k$ have different coefficients of $w$,
+so summing these counts proves the claimed head count.
+\end{proof}
+
+\paragraph{Composition audit.}
+A point gate with an additional affine argument is not a free
+multiplication operation. Replacing $p$ by each denominator $B_h$
+in an arbitrary score produces $\sum_h A_h G_r(w,B_h)$.
+At the retained layer this weights the different heads by different
+positive factors $B_hG_r(r,B_h)$, and hence need not preserve the
+sign of $\sum_h A_h/B_h$. A uniform composition theorem or a
+construction avoiding this head-dependent reweighting is still needed.
+For example, $G_1(1,p)=1/((p+1)(p+2))$. The constant score
+$11/10-1/1=1/10$ is positive, whereas applying this substitution
+term by term gives $11G_1(1,10)-G_1(1,1)=-1/12$. Thus even
+strict positivity can be reversed by the proposed composition.
+This proposition alone gives no improvement to the universal bound.
+
 \end{document}
