@@ -187,3 +187,65 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# Hinge-loss variant: minimize total violation; better behaved when infeasible.
+# ---------------------------------------------------------------------------
+def lp_hinge(Phi, s):
+    """min sum xi  s.t.  s_x Phi(x).w + xi_x >= 1, xi >= 0, |w| <= C (box).  Returns (loss, w, duals)."""
+    N, m = Phi.shape
+    C = 1e3
+    # variables: w (m), xi (N)
+    A_ub = np.concatenate([-(s[:, None] * Phi), -np.eye(N)], axis=1)
+    b_ub = -np.ones(N)
+    c = np.concatenate([np.zeros(m), np.ones(N)])
+    bounds = [(-C, C)] * m + [(0, None)] * N
+    res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
+    if res.status != 0:
+        return np.inf, None, None
+    w = res.x[:m]
+    lam = -res.ineqlin.marginals  # >= 0, dual of the margin constraints
+    return float(res.fun), w, lam
+
+
+def alt_search_hinge(X, s, HP, HM, iters=300, restarts=5, lr0=0.3, seed=0, verbose=False, init_scale=3.0):
+    """Subgradient descent on the hinge loss L(b) = min_w sum_x [1 - s_x S(x)]_+ via Danskin:
+    dL/db = sum_x lam_x s_x dS(x)/db at the optimal (w, lam). Success when L = 0 and the strict LP confirms."""
+    N, n = X.shape
+    rng = np.random.default_rng(seed)
+    best = (np.inf, None)
+    for r in range(restarts):
+        Bp = np.exp(rng.uniform(-init_scale, init_scale, size=(n, HP)))
+        Dm = np.exp(rng.uniform(-init_scale, init_scale, size=(n, HM)))
+        lr = lr0; last = np.inf
+        for it in range(iters):
+            Phi = features(X, Bp, Dm)
+            loss, w, lam = lp_hinge(Phi, s)
+            if w is None:
+                break
+            sigma, U, V = unpack(w, n, HP, HM)
+            if loss < best[0]:
+                best = (loss, (sigma, U, Bp.copy(), V, Dm.copy()))
+            if loss < 1e-9:
+                t, w2, _ = lp_margin(Phi, s)
+                if t > 1e-7:
+                    sigma, U, V = unpack(w2, n, HP, HM)
+                    if verbose: print(f"  restart {r} it {it} loss 0 margin {t:.3e} SUCCESS", flush=True)
+                    return t, (sigma, U, Bp.copy(), V, Dm.copy())
+            gB, gD = grad_b(X, s, lam, U, Bp, V, Dm)   # this is d/db of sum lam s S = -dL/db direction? (L = sum lam (1 - sS)), so dL/db = -grad
+            g = np.concatenate([(gB * Bp).ravel(), (gD * Dm).ravel()])
+            nrm = np.linalg.norm(g)
+            if nrm < 1e-14:
+                Bp *= np.exp(rng.normal(0, 0.3, Bp.shape)); Dm *= np.exp(rng.normal(0, 0.3, Dm.shape))
+                continue
+            step = lr / nrm
+            # ascent on sum lam s S  <=> descent on hinge loss
+            Bp *= np.exp(step * gB * Bp); Dm *= np.exp(step * gD * Dm)
+            Bp = np.clip(Bp, 1e-8, 1e8); Dm = np.clip(Dm, 1e-8, 1e8)
+            if loss >= last - 1e-12:
+                lr *= 0.97
+            last = loss
+            if verbose and it % 50 == 0:
+                print(f"  restart {r} it {it} hinge {loss:.4f} lr {lr:.3f}", flush=True)
+    return best

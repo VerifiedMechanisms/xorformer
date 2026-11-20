@@ -54,6 +54,25 @@ require $2^{N(1-o(1))}$ distinct pattern sets, i.e. $N(1-o(1))$ bits
 in the $nH=N/n$ denominator parameters.
 \end{proof}
 
+
+\begin{proposition}[Precision requirement]
+\label{prop:wn-precision}
+If every parameter of the normalized score \eqref{eq:wn-normal} is an
+integer multiple of $2^{-p}$ of absolute value at most $2^p$, then at
+most $2^{(2nH+1)(2p+2)}$ Boolean functions are representable with $H$
+heads. Consequently a family of representations of all Boolean
+functions with $H\le cN/n^2$ heads must use parameters with
+$p\ge n/(4c)-1$ bits of precision.
+\end{proposition}
+\begin{proof}
+Each parameter takes at most $2^{2p+1}+1\le2^{2p+2}$ values and the
+function is determined by the parameters.
+\end{proof}
+With $p=O(\log n)$ (polynomial resolution) the bound is
+$\Omega(N/(n\log n))$ heads and with constant precision $\Omega(N/n)$.
+The spanning lists of Section~\ref{sec:upper-bounds} use integer
+coefficients of size $O(n)$, consistent with their head counts.
+
 \subsection{Rigidity of common directions}
 \begin{theorem}[Common-direction collapse]
 \label{thm:wn-common-direction}

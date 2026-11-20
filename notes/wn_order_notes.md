@@ -198,3 +198,19 @@ is the precise algebraic statement separating the two conjectures.
   Jacobian block is block upper triangular with invertible diagonal blocks; admissibility by adding $sC$ and nonvanishing of the
   determinant for some integer $s\geq1$ by finiteness of zeros: correct. Head count $H_{d,r}=(2^d/d)(2\lfloor2^r/3\rfloor+t_r)$ and
   the subsequence constant $2/3$: correct. The parameter count caps this mechanism at $(\tfrac12+o(1))N/n$.
+
+## 14. Precision requirement (rigorous, elementary)
+
+**Proposition.** Suppose a Boolean function is represented in the normalized form of Section 1 with every parameter
+$\sigma,u_{h,i},b_{h,i}$ (and $v,d$) an integer multiple of $2^{-p}$ of absolute value at most $2^p$. The number of functions
+representable this way with $H$ heads is at most $2^{(2nH+1)(2p+2)}$. Hence representing all Boolean functions needs
+$H\geq(N-1)/(2n(2p+2))$, and any family of representations with $H\leq cN/n^2$ heads must use parameters of precision
+$p\geq n/(4c)-1$ bits (equivalently dynamic range or resolution $2^{\Omega(n)}$).
+
+**Proof.** Each parameter takes at most $2^{2p+1}+1\leq2^{2p+2}$ values, so there are at most $2^{(2nH+1)(2p+2)}$ parameter vectors, each giving one function. $\blacksquare$
+
+So "Warren-tightness" is a statement about exponential-precision parameters: with polynomial precision $p=O(\log n)$ the
+lower bound is $\Omega(N/(n\log n))$ heads, and with constant precision $\Omega(N/n)$. The paper's spanning constructions use
+integer coefficients of size $O(n)$ (precision $O(\log n)$), consistent with their $N/n$ head counts; the cancelling-pair
+construction uses an integer scale $s\leq N(H-1)+1$, i.e. $O(n)$ bits, which is why a parameter count rather than a precision
+count limits it.
