@@ -841,6 +841,14 @@ vertex. A failure or an unsatisfiability result concerns only this
 restricted ansatz. No universal bound on its required number of heads
 has been proved.
 
+The inequalities bounding sums of powers, individual fractional terms,
+and the winning contribution are kernel checked in
+\texttt{formalization/HeadComplexity/Results/DominantPowerLift.lean}.
+The declarations are \texttt{sum\_zpow\_bounds},
+\texttt{zpow\_div\_bounds}, \texttt{zpow\_winner\_dominates\_sum}, and
+\texttt{positive\_of\_dominant\_power}. These are the lifting inequalities,
+not a formalized existence theorem for exponent assignments.
+
 \begin{lemma}[One-head affine parameter paths have no bit decoder]
 Fix the bias and all heads except one. Allow the numerator and the
 denominator of that head to depend affinely on a real scalar $t$,
@@ -1006,6 +1014,87 @@ degrees $(D,2)$ gives the stated count, since $D\ge2$.
 At the proposed head count, $k=O_C(N/n)$, so
 $k\log_2(65536N/k)=o(N)$. The remaining term is
 $nH\log_2D=o(N)$ under the stated assumption.
+\end{proof}
+
+\section{Piecewise-linear loss and nonattainment}
+
+\begin{proposition}[Smooth hinge minima impose quadratic equations]
+For a finite input set $E$, fix labels $f_x\in\{-1,1\}$ and consider
+\[
+ S(x)=c+\sum_{h=1}^H A_h(x)/B_h(x),\qquad
+ L=\sum_{x\in E}\max(0,1-f_xS(x)).
+\]
+Suppose the coefficients are at an interior local minimum of $L$, all
+$B_h$ are positive on $E$, and no margin $f_xS(x)$ equals one.
+Put $w_x=-f_x$ when $f_xS(x)<1$ and $w_x=0$ otherwise.
+For every head $h$ and every pair of affine forms $U,V$,
+\[
+ \sum_{x\in E}w_x=0,\qquad
+ \sum_{x\in E} w_x\frac{U(x)V(x)}{B_h(x)^2}=0.
+\]
+Consequently, if the constant and these quadratic-over-square features
+span $\mathbb R^E$, this local minimum has zero loss.
+\end{proposition}
+\begin{proof}
+In a neighbourhood of the given parameters, every hinge keeps the same
+active status. Thus the loss is an affine function of the score table
+there, with gradient $w$. Variation of $c$ gives the first equality.
+For one head vary $A_h$ to $A_h+sU$ and $B_h$ to $B_h+tV$.
+The second derivative of the loss in the $s$ direction is zero, and
+its mixed derivative is
+\[
+ -\sum_{x\in E}w_x U(x)V(x)/B_h(x)^2.
+\]
+The Hessian at an interior smooth local minimum is positive semidefinite.
+A positive semidefinite two-by-two matrix whose first diagonal entry
+is zero has zero off-diagonal entry: otherwise its quadratic form
+at $(s,1)$ has both signs as $s$ varies. This proves the second
+equality. The spanning assumption then gives $w=0$, so no hinge is
+active and the loss is zero.
+\end{proof}
+
+This differs from the paired-head calculation: no duplicated head is
+needed, because the loss is locally affine in the score. It nevertheless
+does not establish the target. Hinge minima may occur at margins equal
+to one, and the parameter domain is noncompact. The next exact example
+shows that nonattainment cannot be omitted from such an argument.
+
+\begin{proposition}[Positive unattained hinge infimum in the exact model]
+On $\{0,1\}^2$, give $00,11$ label $+1$ and $10,01$ label $-1$.
+The infimum of the unnormalized hinge loss over admissible one-head
+scores is $2$, and no such score attains it.
+For a fixed positive affine denominator $B$, its minimum over all
+affine numerators and biases is exactly
+\[
+ \frac{\sum_x B(x)}{\max_x B(x)}.
+\]
+\end{proposition}
+\begin{proof}
+Absorb the bias into the affine numerator, so $S=A/B$.
+The affine identity on the square gives
+\[
+ 0=A(00)+A(11)-A(10)-A(01)=\sum_x f_x A(x).
+\]
+Writing $m_x=f_xA(x)/B(x)$ and $M=\max_xB(x)$, one obtains
+\[
+ \sum_x B(x)
+ =\sum_xB(x)(1-m_x)
+ \le\sum_xB(x)\max(0,1-m_x)
+ \le M L.
+\]
+Choose a vertex $v$ with $B(v)=M$. Set $m_x=1$ for $x\ne v$ and
+$m_v=-\sum_{x\ne v}B(x)/B(v)$. The values $A(x)=f_xB(x)m_x$
+satisfy the affine identity, which is the only linear condition for
+four values on a square to be affine. They therefore define an
+affine numerator, and their loss equals $\sum_xB(x)/M$.
+
+For any positive affine form on a square,
+$\sum_xB(x)=2(\min_xB(x)+\max_xB(x))$. Hence the displayed minimum
+is strictly greater than $2$. The admissible denominators
+$B_t(x)=1+t(x_1+x_2)$ for $t>0$ have minimum loss
+$2+2/(1+2t)$, tending to $2$. This proves both the infimum and its
+nonattainment, including constant and negative-slope admissible
+denominators.
 \end{proof}
 
 \end{document}

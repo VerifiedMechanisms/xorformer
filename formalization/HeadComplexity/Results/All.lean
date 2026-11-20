@@ -17,6 +17,7 @@ import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
+import HeadComplexity.Results.DominantPowerLift
 import HeadComplexity.Results.DummyVariables
 import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.ExactFamilies
