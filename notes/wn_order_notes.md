@@ -250,3 +250,22 @@ Verified against brute force at n = 3 (384/384 decisions agree). T(f) = minimum 
 Parity and majority are exponentially more expensive in the sub-model than in the full model ($H^{\ast}=n$ and $1$),
 confirming that dominance alone cannot replace cancellation. For random targets the growth from n=5 to n=6 is a factor
 1.46, between the N/n^2 ratio 1.39 and the N/n ratio 1.67; larger n is needed to separate the two scalings.
+
+## 17. Greedy tropical constructor (experiments/wn_search/tropical_greedy.py)
+
+Random orders, priorities assigned greedily (largest monochromatic uncaught part first). Minimal H for which the greedy
+finishes, random targets, 3 per n, 2 order samples:
+
+| n | greedy H (mean) | H n^2/N | H n/N |
+|---|---|---|---|
+| 5 | 10.0 | 7.8 | 1.6 |
+| 6 | 22.7 | 12.8 | 2.1 |
+| 7 | 56.7 | 21.7 | 3.1 |
+| 8 | about 105 | 26 | 3.3 |
+
+The ratio H n/N grows with n, so with random orders the dominance regime needs more than N/n heads and the trend is
+away from N/n^2; the exact SAT optima at n = 5, 6 (3 to 7 heads) are much smaller only because at small n the
+"catch one whole colour class, let the default rule take the other" structure is available. The schedule obstruction
+(each head has one rule per dimension, and a rule of dimension d is usable only when all but about log(nH) of its points
+are already caught) is visible here. Conclusion: the tropical transfer theorem is a valid tool, but the dominance regime by
+itself does not approach $N/n^2$; any $N/n^2$ construction must combine dominance with cancellation at comparable scales.

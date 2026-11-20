@@ -332,21 +332,36 @@ def representable(n, f, H, timeout=600, solver_name='cadical153', **opts):
 
 
 def min_heads(n, f, Hmax, timeout=600, H0=1, solver_name='cadical153', log=None, **opts):
-    """Ascending search H = H0, H0+1, ... ; returns per-H statuses and the bracket for T(f)."""
+    """Search for T(f).  Ascend H = H0, H0+1, ... until the first SAT; if the very first call (H0 > 1)
+    is already SAT, descend to confirm (UNSAT at H-1 proves optimality).  Representability is
+    monotone in H (an extra head can be put at the bottom of the priority), so UNSAT at H proves
+    T(f) > H.  Returns per-H statuses and the bracket lo <= T(f) <= hi (proved iff lo == hi)."""
     per_H = {}
-    lo, hi = H0, None
-    for H in range(H0, Hmax + 1):
+
+    def solve(H):
         res = representable(n, f, H, timeout=timeout, solver_name=solver_name, **opts)
         per_H[H] = res
         if log:
             log(f'    H={H}: {res["status"]} [{res["time"]:.1f}s]')
-        if res['status'] == 'UNSAT' and lo == H:
-            lo = H + 1
-        if res['status'] == 'SAT':
-            hi = H
-            break
-    # proved optimal iff every H < hi is UNSAT (lo == hi)
-    return {'per_H': {H: {'status': r['status'], 'time': round(r['time'], 2)} for H, r in per_H.items()},
+        return res['status']
+
+    H = H0
+    while H <= Hmax and solve(H) != 'SAT':
+        H += 1
+    hi = H if H <= Hmax else None
+    if hi is not None and hi == H0 and H0 > 1:   # started too high: descend to confirm
+        H, budget = H0 - 1, 2                      # at most two consecutive timeouts below the last SAT
+        while H >= 1 and budget > 0:
+            st = solve(H)
+            if st == 'SAT':
+                hi, budget = H, 2
+            elif st == 'UNSAT':
+                break
+            else:
+                budget -= 1
+            H -= 1
+    lo = 1 + max([H for H, r in per_H.items() if r['status'] == 'UNSAT'], default=0)
+    return {'per_H': {H: {'status': r['status'], 'time': round(r['time'], 2)} for H, r in sorted(per_H.items())},
             'lo': lo, 'hi': hi, 'proved': (hi is not None and lo == hi),
             'model': per_H[hi].get('model') if hi is not None else None}
 
