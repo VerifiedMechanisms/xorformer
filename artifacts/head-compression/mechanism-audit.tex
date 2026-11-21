@@ -6054,18 +6054,22 @@ are linear functions of $H$ pole variables and the $n+1$ coefficients
 of the common shift. The numerator block has dimension
 $k_1=1+(n+1)H$ including the bias, and the denominator block has
 dimension $k_2=H+n+1$. Set $N=2^n$ and $k=k_1+k_2$.
-The cleared score at each vertex is polynomial of degree at most one
-in the first block and at most $H$ in the second block. For all
+Let $Q$ be the product of the evaluated denominators and $P$ the
+cleared numerator, so the score is $P/Q$ wherever it is defined.
+The polynomial $PQ$ has the same strict sign, since
+$PQ=(P/Q)Q^2$. Its degree is at most one in the first block and at
+most $2H$ in the second block. This also handles nonpositive but
+nonzero denominators in the enlarged counting family. For all
 sufficiently large $n$, $k\le N$. The two-block sign-count estimate
 used earlier therefore bounds the total number of strict patterns by
 \[
  (n+1)^H H!\left(\frac{32768N}{k}\right)^k
-              2^{k_1}H^{k_2}.
+              2^{k_1}(2H)^{k_2}.
 \]
 Its base-two logarithm is
 $O_{C_0}(N\log n/n+n^2)=o(N)$: the partition and permutation factors
 cost $O(H\log n+H\log H)$, the second-block degree costs
-$O((H+n)\log H)$, and $k=O_{C_0}(N/n+n)$ gives the remaining estimate.
+$O((H+n)\log(2H))$, and $k=O_{C_0}(N/n+n)$ gives the remaining estimate.
 Summing over the allowed head counts adds only $O(n)$ to the logarithm.
 The counted parameter space is larger than the admissible one, so any
 denominator restrictions can only reduce the number of patterns.
