@@ -1,0 +1,109 @@
+{
+  "run": "Adaptive Rational Head Compression",
+  "status": "Research ongoing. The universal target is unproved in this run.",
+  "original_model_or_target_changed": false,
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened.",
+  "lean_results": [
+    {
+      "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
+      "main_declaration": "HeadComplexity.two_pow_le_one_add_heads_mul_dimension_of_fixed_denominators",
+      "scope": "A fixed denominator list whose numerator span meets every strict orthant must have at least (2^n-1)/n heads. Target-dependent denominator lists are not excluded."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/AffineFractionAlternation.lean",
+      "main_declaration": "HeadComplexity.abs_faceAlternation_affineFraction_le_range",
+      "scope": "Bounds one admissible atom's alternating face sum by its range. Arbitrary unbounded coefficients prevent a universal head lower bound from this alone."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/DominantPowerLift.lean",
+      "main_declaration": "HeadComplexity.positive_of_dominant_power",
+      "scope": "Strict tropical winning inequalities imply an ordinary real rational sign representation at a sufficiently large finite base. Existence of such winners for all truth tables is not proved."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ParityHingeNonattainment.lean",
+      "main_declaration": "HeadComplexity.isGLB_positiveAffineSquareParityLosses",
+      "scope": "For the two-bit parity labeling, positive affine-denominator one-head hinge losses have unattained infimum two. This invalidates an unqualified minimizer-existence step."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/CauchyDecoderObstruction.lean",
+      "main_declaration": "HeadComplexity.four_cauchy_codebook_no_repeated_valley",
+      "scope": "A particular fixed Cauchy codebook cannot contain repeated prescribed valleys. Adaptive general denominators are not excluded."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/SixFractionGate.lean",
+      "main_declaration": "HeadComplexity.sixFractionGate_boolean_identity",
+      "scope": "An exact finite Boolean corner identity using six fractions. No asymptotically efficient universal composition follows."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/EightFractionGate.lean",
+      "main_declaration": "HeadComplexity.eightFractionGate_boolean_identity",
+      "scope": "An exact finite Boolean corner identity using eight fractions. No asymptotically efficient universal composition follows."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/TropicalChainObstruction.lean",
+      "main_declaration": "HeadComplexity.choose_le_heads_of_tropical_layer_flip",
+      "scope": "A restricted constant-numerator tropical ansatz needs a binomial number of heads for a prescribed adjacent-layer flip. This is not a lower bound for the full model."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/OrthantRankDistance.lean",
+      "main_declaration": "HeadComplexity.rank_ball_card_bound",
+      "scope": "A finite set with injective coordinate ranks in a small summed-rank-distance ball has bounded cardinality."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/SpanPairDominance.lean",
+      "main_declaration": "HeadComplexity.dominant_span_signs_constant",
+      "scope": "Dominance in a positive two-vector combination forces common coordinate signs on the dominating vector. This is an algebraic lemma, not the full matching obstruction."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/OrthantSignEnergy.lean",
+      "main_declaration": "HeadComplexity.orthant_exception_second_moment",
+      "scope": "Exact orthant sign orthogonality and second moments bound the fraction of exceptional orthants for a fixed vector."
+    }
+  ],
+  "validation": {
+    "build": "lake build HeadComplexity.Results.All succeeded after all eleven modules were imported.",
+    "build_log": "/out/head-compression/lean-all-orthant-energy-build.log",
+    "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
+    "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
+    "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples."
+  },
+  "manual_results": [
+    "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
+    "A multidegree count yields a full-model asymptotic lower bound with constant one, not the desired upper bound.",
+    "Universal compressed families cannot use only a low-dimensional denominator direction space, common scalar statistic, polynomial-degree moment curve, or uniformly mild conditioning and relative margin.",
+    "A family with H <= C*2^n/n^2 whose denominator slopes use K projective directions has at most 2^(n^2*K+O_C(2^n*log(n)/n)) strict sign patterns. Thus universality requires K >= (1-o(1))*2^n/n^2.",
+    "Quadratic curvature features span all tables with O(2^n/n^2) base denominators, but this does not supply score representations with that many heads.",
+    "Independent spherical and logarithmic-scale random span dictionaries have vanishing expected matched fraction in a fixed orthant at exponential dictionary size. These probability statements do not exclude rare or correlated deterministic constructions."
+  ],
+  "blocked_routes": [
+    {
+      "route": "Curvature and optimization",
+      "gap": "Paired-head perturbations do not preserve pairing. Smooth hinge arguments do not cover kink minima or nonattainment. The unpenalized fixed-denominator refit succeeds on one saved example and fails on others."
+    },
+    {
+      "route": "Cauchy codebooks and binary addresses",
+      "gap": "One-hot finite decoders do not establish efficient affine addressing and simultaneous aggregation for all labels."
+    },
+    {
+      "route": "Number-theoretic real encodings",
+      "gap": "CRT and digit encodings require an admissible single-layer decoder. Floor, residue extraction, multiplication, and added depth cannot be treated as free."
+    },
+    {
+      "route": "Local gates and covers",
+      "gap": "Explicit switching identities do not yield n-squared bits of independently programmable local capacity at constant head cost."
+    },
+    {
+      "route": "Tropical dominant powers",
+      "gap": "A lifting theorem is proved, but universal low-head dominant configurations are not constructed. SMT timeouts are not impossibility results."
+    },
+    {
+      "route": "Orthant routing",
+      "gap": "Several independent random and structured dictionaries are obstructed. A correlated dictionary with all required matchings and admissible affine addressing has not been supplied."
+    },
+    {
+      "route": "Algebraic and threshold capacity",
+      "gap": "Counting many sign patterns, complex closure results, and lower bounds do not establish coverage of every Boolean labeling."
+    }
+  ],
+  "remaining_target": "Prove, without modifying the manuscript model, that a single absolute C gives W(n)<=C*2^n/n^2 for every positive integer n. No complete construction or existence proof is claimed."
+}

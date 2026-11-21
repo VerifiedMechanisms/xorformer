@@ -323,6 +323,14 @@
       "checked_location": "Theorem 1, Corollary 2, Theorem 3, and the chamber-count argument in Section 2.1",
       "mechanism": "Sharp asymptotic enumeration of linear threshold functions, via random sign-vector spans and hyperplane-arrangement chambers.",
       "gap": "Counting about 2^(n^2) single-neuron functions does not prove that O(2^n/n^2) neurons cover every Boolean labeling. This paper supplies neither an admissible affine-ratio decoder nor the required universal covering theorem."
+    },
+    {
+      "title": "On Non-Deterministic Representation of Boolean Functions",
+      "authors": "Sudharshan Rajagopalan and Nitin Saurabh",
+      "url": "https://arxiv.org/pdf/2611.11966",
+      "checked_location": "Theorem 3, Lemma 4, Theorems 6-8, Proposition 26 and Lemma 27",
+      "mechanism": "Random Hadamard submatrices give almost-everywhere rational-degree bounds. Separate examples obstruct low-degree partitions of unity on the Boolean cube.",
+      "gap": "The results concern polynomial degree and polynomial quotients, not sums of admissible affine fractions. Almost-everywhere coverage does not give the requested worst-case theorem. No head-efficient transfer has been proved."
     }
   ]
 }
