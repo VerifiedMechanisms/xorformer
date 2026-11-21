@@ -950,7 +950,9 @@
     "initial_loss": 0.3410816768749205,
     "final_loss": 0.26506518568222176,
     "certificate": null,
-    "scope": "Finite diagnostic, no convergence or universal claim."
+    "scope": "Finite diagnostic, no convergence or universal claim.",
+    "majorizer_trials": 100,
+    "majorizer_maximum_loss_minus_bound": -0.10053023178836207
   },
   "column_permutation_interleaved_stopped": {
     "last_checkpoint": {
