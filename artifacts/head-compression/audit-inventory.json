@@ -100,12 +100,14 @@
     "For every positive affine denominator, in any dimension, the absolute full-cube alternating sum of A/B is at most its range. A positive weighted edge-difference identity proves the sharp constant one. Consequently every unit-margin parity representation has total head range at least 2^n, independently of head count.",
     "A downward radius-one covering code gives an explicit positive-slope full-cube representation with margin at least 3/4, using Mobius coefficients and epsilon=1/(4*n*3^n). This is an O(2^n/n) initialization only. A fixed number of heads cannot shatter all labelings of a radius-two Hamming ball, by a local Warren count.",
     "Two positive-slope representations on opposite cube faces can be glued with the sum of their head counts, using explicit scale separation. Thus W_+(n)<=2^(n-m)*W_+(m). A target-rate positive-slope bound on power-of-two dimensions would extend to all positive dimensions with a factor four; that antecedent remains unproved. This statement does not assume that mixed-orientation scores can be glued at the same cost.",
-    "For a fixed residual score and one denominator orientation, strict completion by one head is equivalent to a linear program having positive common slack. Prescribed single-head margin superlevel sets are convex. No coupled-head progress theorem follows."
+    "For a fixed residual score and one denominator orientation, strict completion by one head is equivalent to a linear program having positive common slack. Prescribed single-head margin superlevel sets are convex. No coupled-head progress theorem follows.",
+    "For N polynomial score coordinates of degree at most d in p<=N parameters, universal strict-sign coverage requires d>=(p/(4*e*N))*2^(N/p); an M-chart union has exponent (N-log2(M))/p. Fixed-base bounded-order perturbations at the target head budget therefore cannot be universal.",
+    "The entire largest-denominator-term proxy with arbitrary affine numerators and both uniform orientations has at most [2*(n+1)!]^H*(8*e*2^n/p)^p strict sign tables, p=1+2*H*(n+1)<=2^n. It cannot be universal at O(2^n/n^2) heads, and almost every function needs at least (1-o(1))*2^n/(n*log2(n)) proxy heads. This includes the unit-gap dominant-power certificate family, but is not a lower bound for full affine denominator sums."
   ],
   "blocked_routes": [
     {
       "route": "Curvature and optimization",
-      "gap": "Paired-head perturbations do not preserve pairing. Smooth hinge arguments do not cover kink minima or nonattainment. A denominator-only regularizer can ensure an attained positive minimum at hinge kinks, as formalized in RegularizedParityHinge. The unpenalized fixed-denominator refit succeeds on one saved example and fails on others."
+      "gap": "Paired-head perturbations do not preserve pairing. Smooth hinge arguments do not cover kink minima or nonattainment. A denominator-only regularizer can ensure an attained positive minimum at hinge kinks, as formalized in RegularizedParityHinge. The unpenalized fixed-denominator refit succeeds on one saved example and fails on others. Fixed-base polynomial perturbation charts of degree polynomial in n cannot provide universal sign coverage at the target head budget, even when their separate features span all tables. Continuously varying base denominators or sufficiently high-order effects are not excluded."
     },
     {
       "route": "Cauchy codebooks and binary addresses",
@@ -121,7 +123,7 @@
     },
     {
       "route": "Tropical dominant powers",
-      "gap": "A lifting theorem is proved, but universal low-head dominant configurations are not constructed. SMT timeouts are not impossibility results."
+      "gap": "Closed at the target order: every unit-gap dominant-power certificate lifts with the same signs to a largest-term denominator proxy. Counting all coefficient orders, orientations, and arbitrary affine numerators bounds proxy coverage by 2^o(2^n) at H=O(2^n/n^2). Reopening requires using full denominator sums or cancellations outside that certificate condition."
     },
     {
       "route": "Orthant routing",

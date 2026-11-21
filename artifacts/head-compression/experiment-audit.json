@@ -324,6 +324,21 @@
       "certificates/parity-n3-literal-h3.json",
       "certificates/parity-n4-literal-h4.json"
     ],
-    "scope": "Restricted dominant-term ansatz only. Small parity cases do not improve known head bounds. No universal coverage theorem."
+    "scope": "Restricted dominant-term ansatz only. Small parity cases do not improve known head bounds. No universal coverage theorem.",
+    "status": "Closed as an asymptotic universal route by the largest-denominator-term proxy counting theorem. Finite certificates remain valid.",
+    "interrupted_batch": {
+      "log": "/out/head-compression/extension-literal-dominance.log",
+      "reason": "Mathematical obstruction applies to the entire unit-gap dominance-certified family.",
+      "completed_cases": [
+        "parity n=3 H=3 SAT, independent exact check",
+        "parity n=4 H=4 SAT, independent exact check"
+      ],
+      "unfinished_case": "parity n=5 H=5 was interrupted, with no SAT or UNSAT conclusion",
+      "unstarted_cases": [
+        "random n=5 H=4",
+        "random n=6 H=6",
+        "random n=6 H=10"
+      ]
+    }
   }
 }

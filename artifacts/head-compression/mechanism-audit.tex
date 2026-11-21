@@ -3486,4 +3486,142 @@ inconclusive iterative eigenvalue diagnostic in this example.
 It does not show that every unsuccessful configuration has a
 descending direction or that a bounded-head search must succeed.
 
+\section{A counting obstruction to bounded-order fixed-base perturbations}
+
+\begin{proposition}[Degree required by a polynomial sign chart]
+Let $N$ score coordinates be real polynomials in $p$ parameters,
+of degree at most $d\ge1$, where $1\le p\le N$. If their strict
+sign vectors contain all $2^N$ sign words, then
+\[
+ d\ge\frac{p}{4eN}2^{N/p}.
+\]
+More generally, if $M$ such charts together contain all sign words,
+with the same degree and parameter bounds, then
+\[
+ d\ge\frac{p}{4eN}2^{(N-\log_2 M)/p}.
+\]
+\end{proposition}
+\begin{proof}
+Warren's strict sign-pattern bound gives at most
+$(4edN/p)^p$ words per chart. Thus
+$2^N\le M(4edN/p)^p$. Taking the $p$th root and rearranging
+proves the claim. Charts with fewer parameters can be padded by
+unused variables before applying the bound.
+\end{proof}
+
+For example, fix the affine functions $A_h,B_h$ in the paired-head
+second-order calculation, with each $B_h$ positive on the cube.
+The possible second-order score tables
+\[
+ c+\sum_{h=1}^H\left(
+ \frac{A_hV_h^2}{B_h^3}-\frac{U_hV_h}{B_h^2}\right)
+\]
+are polynomials of degree at most two in the coefficients of the
+affine functions $U_h,V_h$ and the scalar $c$. There are
+$p=1+2H(n+1)$ such parameters. If $H\le C2^n/n^2$ for fixed
+$C$, then $p=O_C(2^n/n)$ and Warren's bound gives
+\[
+ \log_2\#\{\text{strict sign tables}\}
+ =O_C\left(\frac{2^n\log n}{n}\right)=o(2^n).
+\]
+Consequently these second-order tables cannot sign-represent every
+Boolean function in all sufficiently large dimensions, even if the
+linear span of their separate curvature features is the full table
+space. The same conclusion holds for any fixed polynomial degree
+in $n$ and for a collection of $2^{o(2^n)}$ fixed-base charts.
+
+This conclusion concerns the polynomial perturbation tables just
+specified. It is not a lower bound for the original head model.
+Allowing the base denominators to vary continuously introduces
+rational dependence on those parameters; clearing their products
+can raise the degree by a factor proportional to the number of
+heads. The preceding fixed-base degree estimate then does not
+apply. Nor does it exclude a construction that controls sufficiently
+high-order terms. It rules out the proposed shortcut from full
+quadratic feature span to universal sign coverage by one bounded-order
+split per fixed base head.
+
+\section{A stronger obstruction for largest-denominator-term models}
+
+Fix $N=2^n$. Consider the enlarged proxy class
+\[
+ F(x)=c+\sum_{h=1}^H
+ \frac{A_h(x)}{\max\{b_{h0},b_{h1}t_{h1}(x),\ldots,
+                         b_{hn}t_{hn}(x)\}},
+\]
+where $A_h$ is arbitrary affine, all $b_{hi}>0$, and within each
+head either all $t_{hi}=x_i$ or all $t_{hi}=1-x_i$.
+This is a largest-term denominator proxy, not the manuscript model.
+
+\begin{proposition}[Counting all oriented largest-term proxies]
+Put $p=1+2H(n+1)$ and assume $p\le N$. The number of strict sign
+tables in this proxy class is at most
+\[
+ \bigl(2(n+1)!\bigr)^H
+ \left(\frac{8eN}{p}\right)^p.
+\]
+For every fixed $C>0$, proxy scores with at most $C2^n/n^2$ heads
+realize only $2^{o(2^n)}$ strict sign tables as $n\to\infty$.
+More sharply, for every fixed $\eta\in(0,1)$ and all sufficiently
+large $n$, fewer than a $2^{-\eta 2^n/2}$ fraction of Boolean
+functions are represented with
+\[
+ H\le (1-\eta)\frac{2^n}{n\log_2 n}.
+\]
+\end{proposition}
+\begin{proof}
+Choose each head's orientation and a total ordering of its $n+1$
+positive coefficients, using a fixed tie-breaking rule. There are
+at most $\bigl(2(n+1)!\bigr)^H$ choices. For each such choice and
+each vertex, the maximizing active index $j_h(x)$ is fixed: the
+constant index is always active, and the other active indices are
+determined by the input bits and the orientation.
+
+Write $A_h(x)=\sum_{i=0}^n a_{hi}z_i(x)$, where $z_0=1$
+and $z_i=x_i$, and put $r_{hj}=1/b_{hj}$. On this chart,
+\[
+ F(x)=c+\sum_{h=1}^H\sum_{i=0}^n\sum_{j=0}^n
+      a_{hi}r_{hj}z_i(x)\mathbf1_{\{j_h(x)=j\}}.
+\]
+Each score coordinate is a polynomial of degree two in the $p$
+variables $c,a_{hi},r_{hj}$. Relaxing positivity and ordering
+constraints only enlarges the set of sign tables. Warren's bound
+therefore gives $(8eN/p)^p$ tables per chart, proving the finite
+bound.
+
+If $H\le CN/n^2$, the logarithm of the chart count and the
+logarithm of the polynomial sign bound are both
+$O_C(N\log n/n)=o(N)$. The second term can be bounded at the
+largest allowed $p$, since $p\log(8eN/p)$ increases for $p\le N$.
+For the sharper assertion, take
+$H\le(1-\eta)N/(n\log_2 n)$. Then
+\[
+ H\log_2\bigl(2(n+1)!\bigr)\le(1-\eta+o(1))N,
+ \qquad
+ p\log_2(8eN/p)=O\left(\frac{N\log\log n}{\log n}\right).
+\]
+For sufficiently large $n$ their sum is at most
+$(1-\eta/2)N$. Dividing the number of represented sign tables
+by $2^N$ proves the stated fraction.
+\end{proof}
+
+Every score certified by the preceding unit-gap dominant-power
+construction has the same strict signs after replacing each
+denominator by its largest active term. The winning contribution
+then has magnitude at least $T^L$, whereas all opposing
+contributions have total magnitude at most $KT^{L-1}<T^L$.
+Collecting numerator literals does not change the affine numerator.
+Consequently the counting obstruction applies to that complete
+dominance-certified family, including arbitrary literal numerators,
+mixed head orientations, unrestricted exponent sizes, and
+target-dependent coefficient orders.
+
+This does not apply to a general sum of the manuscript's fractions.
+The lower-order positive terms in a denominator, and cancellations
+not certified by the unit-gap dominance condition, can change the
+sign of the sum. They are precisely the information discarded by
+the proxy. Thus the extended dominance search is closed as a route
+to the requested universal order, although its finite certificates
+remain valid admissible head representations.
+
 \end{document}

@@ -405,6 +405,30 @@
       "checked_location": "Theorems 13-15 and Section 5.3",
       "mechanism": "Quaternary linear duality explains the weight distributions. For binary length l=2^(m+1), odd m>=3, the Preparata image has 2^l/l^2 codewords, minimum distance six, and covering radius at most four via the Gray isometry.",
       "gap": "The count is a code size, not a representation of arbitrary labels. The finite-ring syndrome decoder uses operations not supplied by a one-layer affine-ratio score. Global cancellation across cells and an admissible low-head decoder are not proved."
+    },
+    {
+      "title": "The Quarks of Attention: Structure and Capacity of Neural Attention Building Blocks",
+      "authors": "Pierre Baldi and Roman Vershynin",
+      "url": "https://arxiv.org/pdf/2202.08371",
+      "checked_location": "Sections 4.3, 5.5, and Theorem 7.1 with its proof",
+      "mechanism": "Threshold-unit gating and selector multiplexing yield cardinal-capacity estimates. Theorem 7.1 gives capacity asymptotic to 2mn^2 for m<=2^{o(n)}.",
+      "gap": "This counts a family of Boolean functions; it does not assert every truth table is represented. The required width is outside the stated subexponential regime. Threshold gating and its iterated products are not the manuscript affine-fraction score operations."
+    },
+    {
+      "title": "Rational Neural Networks have Expressivity Advantages",
+      "authors": "Maosen Tang and Alex Townsend",
+      "url": "https://arxiv.org/pdf/2602.12390",
+      "checked_location": "Version 2, Section 3 and Theorems 4.1-4.4",
+      "mechanism": "Low-degree rational gates achieve high-degree rational approximation by composition across depth.",
+      "gap": "The size savings depend on depth and rational denominators of degree greater than one. No flattening theorem into the manuscript one-layer affine-ratio family, or all-Boolean-functions head bound, is provided."
+    },
+    {
+      "title": "Local Modifications of Nearest-Neighbor and Min-Plus Representations",
+      "authors": "Liliia Redina",
+      "url": "https://arxiv.org/html/2611.13787v1",
+      "checked_location": "Theorem 9 and its proof, and Theorem 5",
+      "mechanism": "A min-plus representation on the cube can correct d prescribed labels by adding d affine forms. The correction adds 2 times Hamming distance minus 1 to an existing minimizing form.",
+      "gap": "Evaluation uses minima of labeled affine forms, not a sum of affine fractions. The correcting forms have mixed slopes at a general vertex, and no admissible constant-head compiler is supplied. This is a local modification theorem, not a universal quadratic head saving."
     }
   ]
 }
