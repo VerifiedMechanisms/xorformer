@@ -22,7 +22,7 @@
     },
     {
       "title": "Exact hyperplane covers for subsets of the hypercube",
-      "authors": "Scott Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, Dawid Kielak",
+      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bart\u0142omiej Kielak",
       "url": "https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf",
       "checked_location": "Theorem 2, Lemmas 9 and 10, and their proofs",
       "mechanism": "Hamming-neighborhood covers and a count of hyperplane intersection patterns.",
@@ -558,6 +558,22 @@
       "checked_location": "Definitions 1-3 and Remark 2, printed pages 21-22; Theorem 4, printed page 25",
       "mechanism": "Piecewise rational approximation and threshold-degree lower bounds for bounded-weight networks computing symmetric functions with inverse-polynomial separation.",
       "gap": "The bounded-weight and separation assumptions are absent from the manuscript. The construction concerns parity and related symmetric functions, and supplies neither a universal upper bound nor a one-layer affine-fraction compiler."
+    },
+    {
+      "title": "Universal Approximation with Softmax Attention",
+      "authors": "Jerry Yao-Chieh Hu, Hude Liu, Hong-Yu Chen, Weimin Wu, and Han Liu",
+      "url": "https://proceedings.mlr.press/v306/hu26af.html",
+      "checked_location": "Theorem 3.2, Lemmas 3.2-3.3, and Section E.3 of arXiv:2504.15956v2; the final ICML 2026 abstract was cross-checked.",
+      "mechanism": "Interpolation points in value vectors and data-dependent query scores approximate truncated affine functions token by token. General sequence approximation adds another attention layer or a final softmax stage.",
+      "gap": "The manuscript reads a fixed query token and permits only a linear output. Packing all input bits into a data-bearing query, mixing tokens before attention, or adding the second selection stage changes the model. No universal head-count construction in the stipulated model follows."
+    },
+    {
+      "title": "Covering the hypercube, the uncertainty principle, and an interpolation formula",
+      "authors": "Paata Ivanisvili, Ohad Klein, and Roman Vershynin",
+      "url": "https://arxiv.org/pdf/2310.13277",
+      "checked_location": "Theorems 4 and 6 and the proof of Lemma 11, version 2 dated 2 October 2025.",
+      "mechanism": "Injectivity of a weighted Boolean-lattice incidence operator excludes low-degree polynomial support inside a skew hyperplane. An explicit signed probability formula recovers top-degree coefficients from Hamming weights divisible by an even integer.",
+      "gap": "The interpolation theorem assumes degree at most n/m-1/2 and concerns polynomial coefficients. It supplies neither an adaptive affine-fraction sign construction for arbitrary tables nor a target-order head bound."
     }
   ]
 }
