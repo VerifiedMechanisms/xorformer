@@ -1854,7 +1854,7 @@ This proposition alone gives no improvement to the universal bound.
 \section{Outside-option choice models and their exact margin radius}
 
 \begin{proposition}
-Let a random ranking of $\{0,1,\ldots,n\}$ select the highest ranked
+Let $n\ge1$. Let a random ranking of $\{0,1,\ldots,n\}$ select the highest ranked
 item of each offered set $\{0\}\cup S$, and write $p(S)$ for the
 probability that item zero wins. In the $2^n-1$ coordinates indexed
 by nonempty $S\subseteq[n]$, the largest axis-parallel cube contained
@@ -2007,7 +2007,8 @@ fail asymptotically, even when the constant relating dimension and
 logarithmic dictionary size is made arbitrarily small.
 
 \begin{proposition}
-Fix $c>0$. For each positive integer $k$, let $M\leq e^{ck}$ and
+Fix $c>0$. For each positive integer $k$, let $M$ be an integer with
+$1\leq M\leq e^{ck}$ and
 sample $X_1,\ldots,X_M$ independently and uniformly from $[0,1]^k$.
 Join two sampled points when one is coordinatewise smaller than the
 other, and let $\nu$ be the matching number of this graph. Put
