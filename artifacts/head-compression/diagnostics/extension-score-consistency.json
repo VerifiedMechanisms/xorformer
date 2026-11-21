@@ -1,0 +1,52 @@
+{
+  "extension-schur-n14-c4": {
+    "direct_longdouble_loss": 0.16979965995971147,
+    "errors": 1840,
+    "minimum_margin": -2.4866616067032705,
+    "checkpoint_mtime": 1795267351.7325757,
+    "scope": "Numerical extended-precision diagnostic, not interval certification.",
+    "closest_logged_iteration": 66,
+    "closest_logged_loss": 0.1697996599597567,
+    "difference_from_closest_logged_loss": -4.524158825347513e-14
+  },
+  "extension-positive-face0-n13": {
+    "direct_longdouble_loss": 0.23142836787726348,
+    "errors": 1363,
+    "minimum_margin": -1.3950607238603372,
+    "checkpoint_mtime": 1795267466.9478424,
+    "scope": "Numerical extended-precision diagnostic, not interval certification.",
+    "closest_logged_iteration": 757,
+    "closest_logged_loss": 0.23142836787727344,
+    "difference_from_closest_logged_loss": -9.96425164601078e-15
+  },
+  "extension-mixed-face1-n13": {
+    "direct_longdouble_loss": 0.2298677717608559,
+    "errors": 1329,
+    "minimum_margin": -2.0365588619521593,
+    "checkpoint_mtime": 1795267471.6158125,
+    "scope": "Numerical extended-precision diagnostic, not interval certification.",
+    "closest_logged_iteration": 795,
+    "closest_logged_loss": 0.2298677717608526,
+    "difference_from_closest_logged_loss": 3.3029134982598407e-15
+  },
+  "extension-sorted-permutations-n14": {
+    "direct_longdouble_loss": 0.19148338342392912,
+    "errors": 2105,
+    "minimum_margin": -1.9884839323245558,
+    "checkpoint_mtime": 1795267172.9947023,
+    "scope": "Numerical extended-precision diagnostic, not interval certification.",
+    "closest_logged_iteration": 1,
+    "closest_logged_loss": 0.19148338342394305,
+    "difference_from_closest_logged_loss": -1.3933298959045715e-14
+  },
+  "extension-schur-n13": {
+    "direct_longdouble_loss": 0.0007236009455310483,
+    "errors": 0,
+    "minimum_margin": 0.09910427127033472,
+    "checkpoint_mtime": 1795253684.8844128,
+    "scope": "Numerical extended-precision diagnostic, not interval certification.",
+    "closest_logged_iteration": 275,
+    "closest_logged_loss": 0.0007235992909945797,
+    "difference_from_closest_logged_loss": 1.6545364686605321e-09
+  }
+}
