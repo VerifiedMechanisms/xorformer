@@ -1793,4 +1793,108 @@ term by term gives $11G_1(1,10)-G_1(1,1)=-1/12$. Thus even
 strict positivity can be reversed by the proposed composition.
 This proposition alone gives no improvement to the universal bound.
 
+\section{Outside-option choice models and their exact margin radius}
+
+\begin{proposition}
+Let a random ranking of $\{0,1,\ldots,n\}$ select the highest ranked
+item of each offered set $\{0\}\cup S$, and write $p(S)$ for the
+probability that item zero wins. In the $2^n-1$ coordinates indexed
+by nonempty $S\subseteq[n]$, the largest axis-parallel cube contained
+in the set of possible vectors $p$ has radius
+\[
+ r_n=\frac1{3^n-1}.
+\]
+One center attaining this radius is
+$p_*(S)=3^{n-|S|}/(3^n-1)$ for nonempty $S$.
+\end{proposition}
+\begin{proof}
+For each ranking let $T$ be the set of ordinary items ranked below
+item zero. Every subset $T$ can occur, and item zero wins precisely
+when $S\subseteq T$. Consequently the choice vectors are exactly
+\[
+ p(S)=\sum_{T\supseteq S}q_T,\qquad
+ q_T\geq0,\qquad \sum_Tq_T=1.
+\]
+Include the fixed coordinate $p(\varnothing)=1$. Boolean lattice
+inversion gives
+\[
+ q_T=\sum_{S\supseteq T}(-1)^{|S\setminus T|}p(S).
+\]
+On an axis-parallel cube of radius $r$ about a center $p_*$, the
+minimum of this affine expression is $q_{*,T}-r a_T$, where
+$a_T=2^{n-|T|}$ for nonempty $T$ and
+$a_{\varnothing}=2^n-1$. The subtraction of one in the latter
+case accounts for the fixed empty coordinate. Thus containment of
+the cube is equivalent to $q_{*,T}\geq r a_T$ for every $T$.
+Summing yields $1\geq r\sum_Ta_T=r(3^n-1)$.
+Conversely, set $q_{*,T}=a_T/(3^n-1)$. These numbers are
+nonnegative and sum to one, and all the containment inequalities
+hold with equality at $r=r_n$. For nonempty $S$, summing over
+$T\supseteq S$ gives the displayed formula for $p_*(S)$.
+\end{proof}
+
+\paragraph{Transfer audit.}
+The uniform approximation theorem of Chierichetti, Kumar and Tomkins,
+\emph{Light RUMs} (ICML 2021, Theorem 1 and Corollary 9), uses
+$O(n/\varepsilon^2)$ permutations or multinomial-logit components
+at additive error $\varepsilon$. The preceding proposition shows
+that the natural construction which encodes all sign tables by
+a fixed center plus uniform signed perturbations has radius at
+most $(3^n-1)^{-1}$. Substituting half this radius into that
+approximation theorem gives only an $O(n9^n)$ guarantee, even if
+the center could be subtracted at no head cost. This is a failure
+of that particular transfer argument, not a lower bound on the
+number of components actually needed. It does not constrain the
+full manuscript model with arbitrary signed affine numerators,
+target-dependent centers, and unbounded coefficients.
+
+\section{A chain obstruction for constant-numerator dominant powers}
+
+\begin{proposition}
+Let $v_h(S)=\min(c_h,\min_{i\in S}w_{hi})$, with $v_h(\varnothing)=c_h$,
+and let $Q$ be any antitone real function of subsets of $[n]$.
+Suppose that for every $k$-element subset $S$ some $h\in[H]$ satisfies
+$v_h(S)>Q(S)$, whereas for every $(k+1)$-element subset $T$ every
+$h\in[H]$ satisfies $v_h(T)\leq Q(T)$. Then
+\[
+ H\geq\binom nk.
+\]
+\end{proposition}
+\begin{proof}
+Choose a winning head $h$ for $S$, and put $t=v_h(S)$. If an
+outside coordinate $j\notin S$ had $w_{hj}\geq t$, then
+$v_h(S\cup\{j\})=t>Q(S)\geq Q(S\cup\{j\})$, contradicting
+the next-layer hypothesis. Therefore $w_{hj}<t$ outside $S$,
+while $w_{hi}\geq t$ inside $S$. Thus every set on which $h$
+can win is a strict upper level set of its fixed coefficient list.
+Such sets are linearly ordered by inclusion, so at most one has
+cardinality $k$. Assigning a winning head to each $k$-element set
+is therefore injective.
+\end{proof}
+
+This proof is checked in Lean as
+\texttt{HeadComplexity.choose\_le\_heads\_of\_tropical\_layer\_flip}
+in \texttt{Results/TropicalChainObstruction.lean}.
+For constant numerators with increasing denominators and a unique
+dominant power, the exponent of one head is exactly
+\[
+ a_h-\max(d_{h0},\max_{i\in S}d_{hi})
+ =\min(a_h-d_{h0},\min_{i\in S}(a_h-d_{hi})).
+\]
+The maxima over positive and negative heads are antitone. Applying
+the proposition to alternating parity layers therefore requires
+at least $\binom nk$ positive components for an even layer $k$,
+and the analogous bound for negative components on an odd layer.
+A constant bias can be counted as one additional component of its
+sign. Central layers already give order $2^n/\sqrt n$ components.
+
+\paragraph{Scope audit.}
+This obstruction concerns only unique dominant powers with constant
+numerators and one denominator orientation. It is not a head lower
+bound in the manuscript model. In particular, general affine
+numerators destroy the antitone-head property, and cancellations
+between equal leading powers are excluded from this argument.
+The ongoing mixed-orientation affine-numerator search is not
+covered by this proposition.
+
 \end{document}

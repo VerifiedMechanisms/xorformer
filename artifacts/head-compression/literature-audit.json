@@ -227,6 +227,14 @@
       "checked_location": "Sections 2-4, including the direct substitution proof of Theorem 3.2",
       "mechanism": "Encode weighted point sets by bivariate polynomials; zero line sums imply divisibility by direction binomials, hence by their product in a unique factorization domain.",
       "gap": "This gives switching identities rather than arbitrary sign interpolation. The general Chinese-remainder assertion as printed in Theorem 3.1 must not be used without a comaximality hypothesis: the coprime polynomials x,y with remainders 0,1 are already incompatible at (0,0). The product-divisibility implication used here is valid independently of that assertion."
+    },
+    {
+      "title": "Light RUMs",
+      "authors": "Flavio Chierichetti, Ravi Kumar, Andrew Tomkins",
+      "url": "https://proceedings.mlr.press/v139/chierichetti21a/chierichetti21a.pdf",
+      "checked_location": "Theorem 1, Observation 8, Corollary 9, Theorems 10 and 12",
+      "mechanism": "Sampling gives O(n/epsilon^2) permutations or multinomial-logit components with uniform additive approximation over all slates.",
+      "gap": "A Boolean sign transfer needs quantitative margins. The exact outside-option choice polytope has maximum axis-parallel cube radius 1/(3^n-1); the fixed-center uniform-perturbation transfer therefore gives no target bound. Arbitrary signed affine payoffs remain outside this obstruction."
     }
   ]
 }

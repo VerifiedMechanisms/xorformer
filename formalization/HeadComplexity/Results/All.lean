@@ -14,6 +14,7 @@ import HeadComplexity.Results.CalibratedThresholdVote
 import HeadComplexity.Results.CauchyDecoderObstruction
 import HeadComplexity.Results.SixFractionGate
 import HeadComplexity.Results.EightFractionGate
+import HeadComplexity.Results.TropicalChainObstruction
 import HeadComplexity.Results.ClearedNormalForm
 import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.CountingLowerBound
