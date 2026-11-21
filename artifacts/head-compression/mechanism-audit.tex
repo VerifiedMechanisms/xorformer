@@ -6218,4 +6218,27 @@ signature rank, a compiler from those elements into the permitted sums
 of affine fractions must still be supplied and counted. These sources
 do not fill that construction gap.
 
+
+\section{Two signed mixtures do not mean two components}
+
+Saito's \emph{Axiomatization of the Mixed Logit Model},
+\url{https://saito.caltech.edu/documents/3687/revised_mixed_logit11.pdf},
+Proposition 2 and Corollary 6, gives an affine-hull and signed-mixture
+representation of random choice functions. The coefficient grouping in
+its proof is explicit. If
+\[
+ q=\sum_{i=1}^m\lambda_iq_i,\qquad \sum_{i=1}^m\lambda_i=1,
+\]
+and both signs of coefficient occur, define
+\[
+ a=\sum_{\lambda_i>0}\lambda_i,\qquad
+ q_+=a^{-1}\sum_{\lambda_i>0}\lambda_iq_i,\qquad
+ q_-=(a-1)^{-1}\sum_{\lambda_i<0}(-\lambda_i)q_i.
+\]
+Then $q=aq_+-(a-1)q_-$, but the two displayed mixtures still contain
+$m$ components in total. The all-nonnegative case is already a single
+mixture and gives no component reduction either. Thus the number two
+in this result does not furnish a constant-size head construction.
+A count on the atoms inside the mixtures remains necessary.
+
 \end{document}

@@ -687,6 +687,14 @@
       "checked_location": "Section 2, Theorems 3.1-3.2, Lemma 3.4 and induction through Case 1.",
       "mechanism": "Power-vector sumsets over an entire characteristic-zero field are closed under multiplication with a quantified increase in the number of summands; finite differences and induction give additive bases.",
       "gap": "Multiplication and unrestricted field inputs leave the affine conjugate subspace. Existence of a field additive basis does not establish the required asymptotic head count."
+    },
+    {
+      "title": "Axiomatization of the Mixed Logit Model",
+      "authors": "Kota Saito",
+      "url": "https://saito.caltech.edu/documents/3687/revised_mixed_logit11.pdf",
+      "checked_location": "Definitions 1--5, Propositions 1--2, Corollary 6 and its displayed proof, Appendix C argument for Proposition 2.",
+      "mechanism": "The affine hull of random utility functions contains every random choice function; grouping the positive and negative coefficients yields two mixtures. General position and polynomial utility lifting characterize interior mixed-logit representability.",
+      "gap": "Two mixtures do not mean two logit components. The grouping proof retains all original components and supplies no O(2^n/n^2) component bound. Arbitrary utility feature lifting also cannot be identified with affine Boolean input denominators."
     }
   ]
 }

@@ -303,7 +303,14 @@
     "zero_separation": "strict margin permits ConfluentFractionLift perturbation",
     "transcendental_rounding": "rounded rational score is directly checked; high-precision exponential evaluation is not trusted as a proof step",
     "search": "/out/head-compression/stable-pair-n14-h336",
-    "target_proved": false
+    "target_proved": false,
+    "large_search_termination": {
+      "seconds": 18746.56234458089,
+      "reason": "Stopped after a separate full shared-affine certificate was obtained; effort redirected to certified pruning.",
+      "best_loss": 0.1233176956236296,
+      "certificate": null,
+      "conclusion": "No feasibility or infeasibility theorem follows."
+    }
   },
   "private_repository_refresh_2026_11_21_1809_utc": {
     "repositories": [
@@ -340,7 +347,18 @@
       "target_proved": false
     },
     "stage17_exact_audit": "artifacts/head-compression/diagnostics/curriculum-stage17-exact-audit.json",
-    "stage18_exact_audit": "artifacts/head-compression/diagnostics/curriculum-stage18-exact-audit.json"
+    "stage18_exact_audit": "artifacts/head-compression/diagnostics/curriculum-stage18-exact-audit.json",
+    "curriculum_termination": {
+      "seconds": 12269.230186508968,
+      "original_protected_vertices": 14965,
+      "last_protected_vertices": 16363,
+      "best_full_metric": [
+        21,
+        210464.10623507207
+      ],
+      "certificate": null,
+      "reason": "Stopped after a separate full shared-affine certificate was obtained; the stage18 score retains its independent 21-error audit."
+    }
   },
   "shared_affine_gauss_newton_audit": {
     "script": "artifacts/head-compression/search_shared_affine_gauss_newton.py",
