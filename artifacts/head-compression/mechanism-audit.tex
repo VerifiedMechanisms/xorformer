@@ -6161,4 +6161,61 @@ both the independent Fraction checker and the integer-interval checker
 verify all 32 target signs and denominator conditions. This checks the
 pipeline on that diagnostic truth table only.
 
+\section{A full fourteen-bit certificate and its limited scope}
+
+The file \texttt{certificates/random-n14-shared-affine-h336.json} supplies
+integer affine numerators and denominators for 336 heads. Its SHA-256 is
+\texttt{38bdc230b4197087b5a45eb39499055663e4e8c8db06c9567e5c69ad1965109a}.
+The target labels agree exactly with the original numerical-search labels;
+their signed-eight-bit byte hash is
+\texttt{722d0b23906e62105954a4c91abf6aefb5a78bce75403b12030c57bdc1505f36}.
+The independent integer checker verifies denominator positivity and the
+required common sign of each denominator's slopes, then checks all 16384
+vertices. If $S$ is the supplied rational score and $y_x$ the supplied label,
+its outward interval computation proves
+\[
+ y_xS(x)\ge
+ \frac{26948625896800650306040109515579323759502977302597447784830792882417}
+ {2^{224}}>0
+ \quad\text{for every }x\in\{0,1\}^{14}.
+\]
+This is a finite certificate, not a bound for every fourteen-bit function
+and not an asymptotic theorem. The original search saved the strict
+checkpoint before hitting Python's integer-to-string digit limit.
+Recovery with the corrected exporter and a separate checker produced
+the displayed certificate. No labels were replaced in that recovery.
+
+\section{Waring identities and field signatures do not give free inputs}
+
+Poonen's \emph{Sums of values of a rational function},
+\url{https://math.mit.edu/~poonen/papers/rational.pdf}, constructs sums
+of rational-function values over a number field. Im and Larsen's
+\emph{Waring's problem for rational functions in one variable},
+\url{https://arxiv.org/pdf/1801.06770}, uses power-vector sumsets over
+an entire characteristic-zero field and their multiplicative closure.
+Neither input domain is the affine Boolean conjugate subspace required
+here. The following explicit calculation checks that distinction.
+
+Let $K=\mathbb Q(\sqrt{p_1},\ldots,\sqrt{p_n})$ be multiquadratic
+of degree $2^n$, and let
+$L=\operatorname{span}_{\mathbb Q}(1,\sqrt{p_1},\ldots,\sqrt{p_n})$.
+For $n\ge2$ one has
+\[
+ \sqrt{p_1},\sqrt{p_2}\in L,
+ \qquad \sqrt{p_1}\sqrt{p_2}\notin L.
+\]
+The last assertion follows from independence of the square-root monomial
+basis. Equivalently, the conjugate table of their product is a nonzero
+degree-two Walsh character, whereas every element of $L$ has only
+degree-zero and degree-one characters. Thus multiplication used in an
+additive-basis proof cannot be treated as preserving affine inputs.
+
+Simon's \emph{Signature of units and pseudo-units},
+\url{https://simond.users.lmno.cnrs.fr/maths/signunit_final.pdf}, supplies
+a lower bound on pseudo-unit signature rank. It does not assert all
+signatures for every field. Even when a chosen field does have full
+signature rank, a compiler from those elements into the permitted sums
+of affine fractions must still be supplied and counted. These sources
+do not fill that construction gap.
+
 \end{document}

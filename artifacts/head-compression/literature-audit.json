@@ -655,6 +655,38 @@
       "checked_location": "Theorem 1.1 and Section 2 real-case proof, including Lemmas 2.1 and 2.2",
       "mechanism": "Greedy disjoint pairs yield positive superadditive difference sequences. Products of those sequences have cubically many subset sums, giving an optimal-order support bound for permutation dot products.",
       "gap": "The conclusion counts distinct values as a permutation varies, not labelings on the Boolean cube. Its disjoint-transposition construction leaves the scalar value affine in the swap bits. No head-count upper bound follows."
+    },
+    {
+      "title": "Logarithmic asymptotics for polynomial threshold functions",
+      "authors": "Martin Anthony",
+      "url": "https://arxiv.org/html/2610.34378v2",
+      "checked_location": "Theorems A-D statements and Section 2.1 evaluation matrices; no claim to have audited all 39 pages.",
+      "mechanism": "Uniform asymptotic counting of polynomial threshold functions using Reed-Muller evaluation matrices and independent-set counts.",
+      "gap": "A count asymptotic to all Boolean functions is not universal realization. No conversion to the manuscript affine-fraction head budget is supplied."
+    },
+    {
+      "title": "Signature of units and pseudo-units",
+      "authors": "Denis Simon",
+      "url": "https://simond.users.lmno.cnrs.fr/maths/signunit_final.pdf",
+      "checked_location": "Introduction, Theorem 1, Proposition 6 and Section 2 proof.",
+      "mechanism": "The signature rank of pseudo-units equals the real degree minus the difference of narrow and ordinary class-group 2-ranks; the reflection bound yields rank at least half the real degree.",
+      "gap": "The signature statement is not universal surjectivity in general. Even surjectivity would not place the elements or their inverses in the affine Boolean conjugate subspace."
+    },
+    {
+      "title": "Sums of values of a rational function",
+      "authors": "Bjorn Poonen",
+      "url": "https://math.mit.edu/~poonen/papers/rational.pdf",
+      "checked_location": "Theorems 1.1-1.2, introductory proof sketch, Proposition 2.1, Lemma 3.2 proof through the split-prime pole-isolation construction.",
+      "mechanism": "Fractional-linear substitutions, pole translations, a Laurent-module Nullstellensatz argument, and split primes isolate poles and yield bounded sums or differences over a number field.",
+      "gap": "Inputs and substitution coefficients range over the whole field. The manuscript permits affine Boolean numerator and denominator tables only, and the proof does not bound conversion into that restricted family."
+    },
+    {
+      "title": "Waring's problem for rational functions in one variable",
+      "authors": "Bo-Hae Im, Michael Larsen",
+      "url": "https://arxiv.org/pdf/1801.06770",
+      "checked_location": "Section 2, Theorems 3.1-3.2, Lemma 3.4 and induction through Case 1.",
+      "mechanism": "Power-vector sumsets over an entire characteristic-zero field are closed under multiplication with a quantified increase in the number of summands; finite differences and induction give additive bases.",
+      "gap": "Multiplication and unrestricted field inputs leave the affine conjugate subspace. Existence of a field additive basis does not establish the required asymptotic head count."
     }
   ]
 }
