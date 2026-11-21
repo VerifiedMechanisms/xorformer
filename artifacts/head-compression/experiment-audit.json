@@ -1313,5 +1313,26 @@
     "initial_batch": 8,
     "certificate": null,
     "scope": "Finite numerical continuation; only full-cube exact verification counts as success."
+  },
+  "protected_barrier_continuation": {
+    "replaced_scaled_direction_run": {
+      "directory": "/out/head-compression/protected-barrier-n14-h336",
+      "result": {
+        "n": 14,
+        "lifted_heads": 336,
+        "seconds": 1584.1343182390556,
+        "protected_vertices": 16235,
+        "best_metric": [
+          149,
+          1247.6660032980144
+        ],
+        "certificate": null,
+        "scope": "Finite heuristic with numerical protected signs. No universal theorem.",
+        "failure_is_not_a_lower_bound": true
+      },
+      "reason": "The bounded joint quadratic subproblem passed an independent small diagnostic and substantially reduced the model value. The replacement starts from the same independently audited seed.",
+      "replacement_directory": "/out/head-compression/protected-barrier-box-n14-h336",
+      "scope": "Neither run establishes the requested universal theorem."
+    }
   }
 }
