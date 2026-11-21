@@ -1,0 +1,35 @@
+{
+  "jacobians": [
+    {
+      "separation": [
+        0.6,
+        -0.8
+      ],
+      "jacobian_error": 5.227118737849423e-11
+    },
+    {
+      "separation": [
+        0.0,
+        0.0
+      ],
+      "jacobian_error": 6.971345722917022e-11
+    }
+  ],
+  "gradient_error": 4.87890977618477e-18,
+  "adjoint_error": 0.0,
+  "old_loss": 0.497463105242208,
+  "trial_loss": 0.49432171848958917,
+  "refitted_loss": 0.4875026856946754,
+  "alpha": 0.5,
+  "joint_step": {
+    "lsmr_stop": 2,
+    "lsmr_iterations": 28,
+    "lsmr_residual_norm": 4.37984058201767,
+    "lsmr_normal_residual_norm": 5.994347769596905e-07,
+    "linear_model_directional_derivative": -0.39545737781136353,
+    "linear_model_loss": 0.20022567292586263,
+    "active_vertices": 32,
+    "scale_floor": 3.030834485962845e-06
+  },
+  "scope": "Derivative and descent diagnostic only; no sign certificate."
+}

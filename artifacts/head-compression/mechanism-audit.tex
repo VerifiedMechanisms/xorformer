@@ -5668,4 +5668,64 @@ route requires a real admissible deformation or a different explicit
 fraction construction. Neither a universal sign representation by
 such schemes nor that lifting property is established here.
 
+\section{Joint Gauss--Newton steps in the orientation-crossing chart}
+
+The score lift does not imply that a first-order search finds a strict
+score. A separate implementation tests a joint linear response of the
+numerators and the denominator parameters. Let $\Phi=QR$ be the thin
+QR factorization of the current coefficient feature matrix, let $J$ be
+the score Jacobian in the nonlinear parameters, let $M$ be the diagonal
+indicator of margins below one, and set $r=M(S-f)$. The proposed step
+solves the damped linear problem
+\[
+ \min_{u,v}\|r+M(Qu+Jv)\|_2^2
+       +\lambda\bigl(\|u\|_2^2+\|Dv\|_2^2\bigr),
+ \qquad \lambda>0,
+\]
+where $D$ is a positive diagonal column scaling. Its numerator
+coefficient response is $R^{-1}u$. This is a Gauss--Newton model;
+the residual contribution to the exact Hessian is not included.
+
+At an exact nonzero solution of this damped problem the normal equations
+give
+\[
+ r^{\mathsf T}M(Qu+Jv)
+ =-\|M(Qu+Jv)\|_2^2
+  -\lambda\bigl(\|u\|_2^2+\|Dv\|_2^2\bigr)<0.
+\]
+Hence the combined response is a local descent direction for squared
+hinge loss. This loss is continuously differentiable even at margin one.
+The statement gives no direction when the joint gradient is zero and
+does not imply global convergence. Numerical iteration, clipping, and
+finite step sizes also require an actual loss check.
+
+For one chart unit, the two nonlinear derivative formulas are
+\[
+ \frac{\partial S}{\partial\ell_{hi}}
+ =A_h\frac{q_hp_{hi}\bigl(x_it_{h,0}-(1-x_i)t_{h,1}\bigr)}{B_h^2},
+ \qquad
+ \frac{\partial S}{\partial s_h}
+ =A_hr_h\left(\frac2{q_h+1}-\frac{2q_ht_{h,1}}{B_h}\right).
+\]
+The sum of the log-shape derivatives within each unit is zero, as
+required by its scaling invariance. These formulas are valid at
+$q_h=1$ as well.
+
+\texttt{search\_shared\_affine\_gauss\_newton.py} uses matrix-free
+LSMR for the joint linear solve, tests the numerator and denominator
+changes together on the actual score, and only then performs the full
+convex numerator refit. A gradient fallback is also tested on the
+actual score. The program retains the previous state if refitting
+fails to preserve descent. It uses the existing exact rational lift
+and full-cube verification before declaring a certificate.
+
+The independent finite-difference diagnostic checks the score Jacobian
+both at ordinary units and at $q_h=1$, with maximum errors below
+$7\cdot10^{-11}$. It also checks the linear operator's adjoint and
+the agreement with the separately implemented loss gradient. A five-bit
+parity diagnostic starts at positive loss $0.4974631$, accepts a real
+joint step with loss $0.4943218$, and refits to loss $0.4875027$.
+This is a descent diagnostic only; it is not a parity representation
+or a universal head-count result.
+
 \end{document}
