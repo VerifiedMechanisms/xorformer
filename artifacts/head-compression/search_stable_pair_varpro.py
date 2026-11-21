@@ -276,7 +276,36 @@ def self_test():
         assert cert is not None, check
         records.append({"epsilon": eps.tolist(), "gradient_max_error": error, "exact_check": check})
         last = cert
-    return {"tests": records, "scope": "Finite derivative and exact-export diagnostics only."}, last
+    # Test the envelope derivative after an independent convex refit at every
+    # perturbed point. One pair cannot sign-represent four-bit parity, so this
+    # diagnostic has positive loss and does not pass because all derivatives
+    # happen to vanish at an interpolating score.
+    parity = 1-2*(x.sum(axis=1) % 2)
+    one_t, one_logs, one_w = t[:, :1], logs[:1], w[:1]
+    reduced_records = []
+    for epsilon in (0., .7, -1e-7):
+        def reduced(parameters):
+            ll, ww, ee = unpack(parameters, 1, n)
+            feature = features_and_geometry(one_t, ll, ww, ee)[0]
+            q, r = la.qr(feature, mode="economic")
+            fit = convex_hinge_fit(parity[:, None]*q, q.T@parity, "newton", 0.)
+            coefficient = la.solve_triangular(r, fit.x)
+            assert np.max(np.abs(fit.jac)) < 1e-8
+            return score_gradient(one_t, parity, ll, ww, ee, coefficient)
+        parameters = np.r_[one_logs.ravel(), one_w.ravel(), epsilon]
+        value, _, gradient = reduced(parameters)
+        numerical = []
+        for i in range(len(parameters)):
+            step = np.zeros_like(parameters)
+            step[i] = 1e-5
+            numerical.append((reduced(parameters+step)[0]-
+                              reduced(parameters-step)[0])/2e-5)
+        error = float(np.max(np.abs(gradient-numerical)))
+        assert value > 0 and error < 1e-6, (epsilon, value, error)
+        reduced_records.append({"epsilon": epsilon, "positive_loss": value,
+                                "refitted_gradient_max_error": error})
+    return {"tests": records, "refitted_gradient_tests": reduced_records,
+            "scope": "Finite derivative and exact-export diagnostics only."}, last
 
 
 if __name__ == "__main__":

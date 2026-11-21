@@ -40,5 +40,22 @@
       }
     }
   ],
+  "refitted_gradient_tests": [
+    {
+      "epsilon": 0.0,
+      "positive_loss": 0.440102875206163,
+      "refitted_gradient_max_error": 1.3494889233856e-11
+    },
+    {
+      "epsilon": 0.7,
+      "positive_loss": 0.4346919389847416,
+      "refitted_gradient_max_error": 6.458111823093304e-12
+    },
+    {
+      "epsilon": -1e-07,
+      "positive_loss": 0.44010287441735596,
+      "refitted_gradient_max_error": 1.5296264255226788e-11
+    }
+  ],
   "scope": "Finite derivative and exact-export diagnostics only."
 }
