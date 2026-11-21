@@ -2626,4 +2626,171 @@ This restriction is absent from the full problem, which permits
 $K=H$ independent directions. Thus the proposition excludes a grouped
 univariate shortcut and does not contradict the requested bound.
 
+\section{A binary-addressed scalar decoder from single-track codes}
+
+This section develops a different decoder mechanism from the fixed-sign
+Cauchy codebooks considered above. The code parameter is a freely supplied
+positive real number. It is not an affine encoding of an arbitrary truth
+table on the full Boolean cube.
+
+\begin{proposition}[An unconditional scalar lookup construction]
+Let $r=2^k$ with $k\geq3$. There are positive integers $q,H$, real
+numbers $\alpha_1,\ldots,\alpha_H$, and positive integers
+$t_\sigma$, one for each $\sigma\in\{-1,1\}^r$, such that
+\[
+ H\leq\frac{2^{r+1}}r+4r-3,
+ \qquad
+ \sigma_j\sum_{h=1}^H\frac{\alpha_h}{t_\sigma+qj+h}>0
+ \quad(0\leq j<r).
+\]
+Writing $j=\sum_{i=0}^{k-1}2^iy_i$, the denominator of each summand
+is affine with strictly positive coefficients in $t,y_0,\ldots,y_{k-1}$
+and is positive whenever $t>0$ and $y\in\{0,1\}^k$.
+\end{proposition}
+
+\begin{proof}
+We use the following precise combinatorial result of Etzion and Paterson,
+\href{https://etzion.net.technion.ac.il/files/2016/02/P36.pdf}
+{Near Optimal Single-Track Gray Codes}, Theorem 20 and its properties
+C1--C3. For $r=2^k\geq8$, representatives
+$S_0,\ldots,S_{q-1}$ of all cyclic orbits of self-dual words of length
+$2r$ can be ordered so that consecutive representatives differ in two
+positions, where $q=2^r/(2r)$. Only the consecutive-pair part of C1
+is needed here. A self-dual word has the form $(X,\overline X)$.
+All these words have cyclic period $2r$: a proper period dividing $2r$
+would divide $r$, contradicting the complement relation. Each orbit
+therefore has $2r$ elements.
+
+Put $P=2rq=2^r$ and define the periodic binary track
+\[
+ a_{bq+i}=(S_i)_{-b\bmod 2r},
+ \qquad 0\leq b<2r,\quad0\leq i<q.
+\]
+For $t=bq+i$, its sampled word at spacing $q$ is
+\[
+ (a_{t+jq})_{j=0}^{r-1}
+   =((S_i)_{-b-j\bmod2r})_{j=0}^{r-1}.
+\]
+These are exactly all $2^r$ binary words, each once. Indeed, every
+self-dual word occurs once among all rotations of the representatives;
+reading $r$ consecutive coordinates in reverse order is a bijective
+encoding of a self-dual word by its half-word.
+
+Let $T$ be the number of changes in one full period of the track.
+The changes within the $2r$ blocks total $2(q-1)$, because each
+consecutive pair $S_i,S_{i+1}$ differs in precisely two coordinates.
+There are $2r$ block boundaries, including the cyclic boundary, so
+\[
+ T\leq2(q-1)+2r=\frac{2^r}r+2r-2.
+\]
+We do not claim that the full enumeration is a Gray code. At a block
+boundary several coordinates of the sampled word may change. Allowing
+these changes avoids the obstruction to complete single-track Gray codes.
+
+Consider the integer sample points $z=1,\ldots,2P$, and assign sign
+$2a_{z-1}-1$ to each. Place one simple root at $z+1/2$ exactly when
+the signs at $z$ and $z+1$ differ. The resulting polynomial $p$, with
+its overall sign chosen correctly at $z=1$, has the required strict
+signs at every integer sample point and degree $D\leq2T$. Define
+\[
+ d(z)=\prod_{h=1}^{D+1}(z+h),
+ \qquad R(z)=\frac{p(z)}{d(z)}.
+\]
+All factors of $d$ are positive for $z>0$. The poles are distinct,
+$\deg p<\deg d$, and ordinary univariate partial fractions give
+\[
+ R(z)=\sum_{h=1}^{D+1}\frac{\alpha_h}{z+h},
+ \qquad
+ \alpha_h=\frac{p(-h)}{\prod_{\ell\neq h}(\ell-h)}.
+\]
+For each desired sign word choose the unique track position
+$0\leq t<P$ at which its sampled word occurs, and set $t_\sigma=t+1$.
+Every evaluation argument $t_\sigma+qj$ lies between $1$ and
+$P+(r-1)q<2P$. Consequently all required signs hold. Taking
+$H=D+1\leq2T+1$ proves the bound and all positivity assertions.
+\end{proof}
+
+\begin{proposition}[A lower bound for every scalar-code decoder]
+Suppose $r$ rational functions of a positive scalar parameter have the
+form
+\[
+ R_j(t)=c_j+\sum_{h=1}^H
+   \frac{a_{hj}t+b_{hj}}{u_{hj}t+v_{hj}},
+ \qquad 0\leq j<r,
+\]
+with denominators positive for every $t>0$. If their simultaneous
+strict signs realize all $2^r$ sign words as $t$ varies, then
+\[
+ rH\geq2^r-1.
+\]
+The coefficients may vary freely with the address $j$, so this lower
+bound also holds when the address coefficients are constrained to be
+affine in binary bits.
+\end{proposition}
+
+\begin{proof}
+Clearing the $H$ positive denominators for address $j$ gives a
+polynomial $p_j$ of degree at most $H$ with the same signs. No $p_j$
+is identically zero, since all sign words are attained strictly.
+The union of their positive real zero sets contains at most $rH$
+points. Its complement in $(0,\infty)$ has at most $rH+1$ connected
+components, and the entire sign word is constant on each component.
+Every strictly attained word occurs in such a component. Hence
+$2^r\leq rH+1$.
+\end{proof}
+
+The scalar construction is thus optimal up to an absolute factor as
+$r$ tends to infinity through powers of two. This is a decoder theorem,
+not the requested head-complexity theorem. In particular, the code
+$t_\sigma$ cannot be supplied independently at exponentially many cube
+inputs without an encoder construction. Supplying all such codes as
+independent affine values on one-hot selectors increases the input
+dimension and only establishes a promised-domain result.
+
+The script \texttt{build\_single\_track\_decoder.py} constructs an
+eight-bit instance using 50 poles. Its independently checked lookup table
+contains all 256 sign words at all eight binary addresses, for 2048
+strict inequalities. The checker
+\texttt{verify\_single\_track\_decoder.py} evaluates the displayed
+partial fractions with exact rational arithmetic and does not import
+the generator. Neither script asserts a full-cube upper bound.
+
+\begin{proposition}[Rational composition need not preserve affine poles]
+Let
+\[
+ B_1=1+x+2y,\quad B_2=1+2x+y,\qquad
+ S=\frac1{B_1}+\frac1{B_2}.
+\]
+Both denominators are admissible on the two-dimensional Boolean cube.
+As a rational function on a nonempty open subset of $\mathbb R^2$,
+$1/(1+S)$ cannot equal a finite sum of affine numerators divided by
+nonzero affine denominators, even without positivity restrictions.
+\end{proposition}
+
+\begin{proof}
+The affine coordinates $u=B_1$, $v=B_2$ are independent, and
+\[
+ \frac1{1+S}=\frac{uv}{uv+u+v}.
+\]
+The polynomial $Q=uv+u+v$ is irreducible in $\mathbb R[u,v]$.
+For if it factored, its degree-two homogeneous part $uv$ would force
+the two linear factors, after rescaling and interchange, to be
+$(u+a)(v+b)$. The coefficients of $u$ and $v$ force $a=b=1$,
+contradicting the zero constant coefficient of $Q$.
+Also $Q$ is relatively prime to $uv$.
+
+A finite sum of affine fractions has, after clearing denominators,
+a denominator that is a product of affine polynomials. Equality of
+rational functions would force the irreducible quadratic $Q$ to
+divide this product, which is impossible. Equality on a nonempty
+open set implies equality of the cleared polynomial identities,
+so the same contradiction applies there.
+\end{proof}
+
+This last proposition is solely an obstruction to an identity-based
+compiler for composing the decoder with a sum of heads. It is not a
+Boolean head lower bound: on the finite cube, the displayed function
+is positive and its sign is constant. A compiler that only preserves
+signs on the cube would require a separate construction.
+
 \end{document}

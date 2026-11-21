@@ -339,6 +339,30 @@
       "checked_location": "Definitions and main theorem on printed pages 82-84; spherical decomposition in Lemma 1",
       "mechanism": "Partition a power-of-two-dimensional cube into open Hamming neighborhoods. A threshold gate handles an arbitrary labeling of each neighborhood and its center, then auxiliary gates correct center values.",
       "gap": "The stated Shannon complexity is the sum of absolute integer input weights, not gate count. The construction uses cells of linear size. Threshold outputs are not affine-fraction head values, so neither the desired quadratic saving nor an admissible compiler follows."
+    },
+    {
+      "title": "Balanced Gray Codes",
+      "authors": "Girish S. Bhat and Carla D. Savage",
+      "url": "https://www2.math.ethz.ch/EMIS/journals/EJC/Volume_3/PDF/v3i1r25.pdf",
+      "checked_location": "Lemma 2 and Theorem 1, including the explicit transition-count selection proof",
+      "mechanism": "A Gray enumeration in every dimension with each bit changing within two of the average number of transitions.",
+      "gap": "It gives efficient separate scalar polynomials for one-hot bit addresses. Binary addressing and a full-cube encoder do not follow from this theorem."
+    },
+    {
+      "title": "Near Optimal Single-Track Gray Codes",
+      "authors": "Tuvi Etzion and Kenneth G. Paterson",
+      "url": "https://etzion.net.technion.ac.il/files/2016/02/P36.pdf",
+      "checked_location": "Example 4, properties C1-C3, Lemma 19, and Theorems 20-21",
+      "mechanism": "Order all self-dual necklaces in power-of-two word lengths with neighboring representatives at Hamming distance two. A modified full enumeration has one generating track with few transitions, enabling the explicit binary-addressed affine-fraction scalar decoder proved in mechanism-audit.tex.",
+      "gap": "The code parameter remains an independent positive scalar. Supplying arbitrary codewords at all cube inputs, and composing or aggregating such encoders without extra head cost, remains unproved."
+    },
+    {
+      "title": "The structure of single-track Gray codes",
+      "authors": "Moshe Schwartz and Tuvi Etzion",
+      "url": "https://etzion.net.technion.ac.il/files/2016/02/P54.pdf",
+      "checked_location": "Definitions 3-5 and Theorems 1-4, including the self-dual construction and equally spaced reading positions",
+      "mechanism": "Describes cyclic column shifts and the relation to full-order self-dual necklaces; separates full enumerations from the stricter Gray adjacency condition.",
+      "gap": "The binary full-period Gray obstruction does not prohibit our enumeration, which permits several bits to change at block boundaries. Neither type of enumeration supplies the missing full-cube encoder."
     }
   ]
 }

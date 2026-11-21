@@ -161,5 +161,25 @@
         "maximum_matched_fraction": 0.139129638671875
       }
     ]
-  }
+  },
+  "scalar_decoders": [
+    {
+      "certificate": "certificates/single-track-r8-scalar-decoder.json",
+      "independent_verifier": "verify_single_track_decoder.py",
+      "result": {
+        "certified": true,
+        "pairs_checked": 2048,
+        "distinct_words": 256,
+        "word_bits": 8,
+        "address_bits": 3,
+        "heads": 50,
+        "minimum_margin": [
+          286469696074246182019016060733309515877,
+          19445391839845269192327325411069182070701727793555701760000
+        ],
+        "sha256": "98d733db15cc4cc57591429fa9a33a898d1a635f27d698717883669c38b06237",
+        "scope": "Exact scalar-code lookup only. The scalar encoder is not supplied."
+      }
+    }
+  ]
 }

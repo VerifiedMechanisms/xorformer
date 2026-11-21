@@ -82,7 +82,10 @@
     "Universal compressed families cannot use only a low-dimensional denominator direction space, common scalar statistic, polynomial-degree moment curve, or uniformly mild conditioning and relative margin.",
     "A family with H <= C*2^n/n^2 whose denominator slopes use K projective directions has at most 2^(n^2*K+O_C(2^n*log(n)/n)) strict sign patterns. Thus universality requires K >= (1-o(1))*2^n/n^2.",
     "Quadratic curvature features span all tables with O(2^n/n^2) base denominators, but this does not supply score representations with that many heads.",
-    "Independent spherical and logarithmic-scale random span dictionaries have vanishing expected matched fraction in a fixed orthant at exponential dictionary size. These probability statements do not exclude rare or correlated deterministic constructions."
+    "Independent spherical and logarithmic-scale random span dictionaries have vanishing expected matched fraction in a fixed orthant at exponential dictionary size. These probability statements do not exclude rare or correlated deterministic constructions.",
+    "For r=2^k, k>=3, an unconditional binary-addressed scalar decoder uses at most 2^(r+1)/r+4*r-3 positive affine-pole fractions. It follows from a full self-dual necklace enumeration with few track transitions. The scalar encoder is not supplied.",
+    "Every scalar-code decoder with r output bits and H affine fractions per bit satisfies r*H>=2^r-1 if it realizes all words. Thus the new scalar decoder has optimal order on the stated sequence of r.",
+    "The explicit composition 1/(1+1/(1+x+2*y)+1/(1+2*x+y)) has an irreducible quadratic pole, so no finite sum of affine fractions equals it as a rational identity. This is not a Boolean sign lower bound."
   ],
   "blocked_routes": [
     {
@@ -91,7 +94,7 @@
     },
     {
       "route": "Cauchy codebooks and binary addresses",
-      "gap": "One-hot finite decoders do not establish efficient affine addressing and simultaneous aggregation for all labels."
+      "gap": "The new single-track construction resolves binary addressing for a freely supplied scalar code. It does not supply an affine encoder for independently chosen words at all cube inputs. Raw composition with sums of heads can create irreducible poles; an admissible sign-preserving compiler remains missing."
     },
     {
       "route": "Number-theoretic real encodings",
