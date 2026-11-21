@@ -3994,4 +3994,168 @@ same statement holds for squared hinge loss. It disproves the proposed
 inference from nonzero Boolean residual moments to negative full
 curvature for squared regression. It supplies no head lower bound.
 
+\section{Interior positive hinge minima by biased random labels}
+
+The preceding interval example concerned regression. A different,
+probabilistic construction also rules out an unconditional claim that
+positive squared-hinge loss cannot have an interior strict local minimum.
+It uses one head, not the proposed exponential head budget.
+
+\begin{proposition}[An interior squared-hinge minimum]
+For every $n\ge1000$, there is a Boolean labelling $y:\Qn\to\{-1,1\}$
+such that the loss
+\[
+ L_y(\theta)=2^{-n-1}\sum_{x\in\Qn}
+       \max\{0,1-y(x)S_\theta(x)\}^2,
+ \qquad S_\theta(x)=c+\frac{u\cdot x}{1+b\cdot x}
+\]
+has a strict local minimum in the open parameter chart $b_i>0$.
+At this minimum every hinge is active, $L_y>9/32$, and at least one
+vertex has strictly negative signed margin. The full $(2n+1)$-parameter
+Hessian is positive definite.
+\end{proposition}
+\begin{proof}
+All expectations over $x$ below use the uniform measure on the cube.
+Start on three coordinates with
+\[
+ B_0=1+2x_1+3x_2+5x_3,\qquad
+ U_0=(x_1+7x_2-4x_3)/100,\qquad F_0=U_0/B_0.
+\]
+The Jacobian row in the canonical parameter order is
+\[
+ J_0=(1,x_1/B_0,x_2/B_0,x_3/B_0,
+              -U_0x_1/B_0^2,-U_0x_2/B_0^2,-U_0x_3/B_0^2).
+\]
+Let $G_0=\mathbb E[J_0^{\top}J_0]$ and
+$V_0=\mathbb E[v_0^{\top}v_0]$, where
+$v_0=(1/B_0,-U_0/B_0^2)$. Exact rational arithmetic gives
+\[
+ \det G_0=\frac{2039473}{153991989161655646814208000000000000},\qquad
+ \operatorname{tr}G_0=\frac{1822531722731161}{1748711669760000},
+\]
+\[
+ \det V_0=\frac{24421240297}{49741131939840000},\qquad
+ \operatorname{tr}V_0=\frac{553217537378401}{3497423339520000}.
+\]
+Both matrices are Gram matrices with positive determinant. The inequality
+$\lambda_{\min}(G)\ge\det(G)/(\operatorname{tr}G)^{d-1}$ for a positive
+definite $d$ by $d$ matrix therefore gives
+\[
+ G_0\succeq10^{-30}I_7,\qquad V_0\succeq10^{-6}I_2.
+\]
+The script \texttt{verify\_immersion\_gram.py} checks these rational
+inequalities, determinants, and the identities used next using only
+Python's exact fraction arithmetic.
+
+First extend to $n$ coordinates with the new numerator and denominator
+coefficients zero. For every new coordinate the two Jacobian columns
+are $x_jv_0$. Replacing $x_j$ by $x_j-1/2$ makes these pairs mutually
+orthogonal in $L^2$ and orthogonal to the original seven columns.
+Their Gram matrix is $V_0/4$. The mean terms belong to the original
+span: the coefficient vectors expressing the two entries of $v_0$
+in the $J_0$ basis are
+\[
+ a_t=(1,-2,-3,-5,0,0,0),\qquad
+ a_w=(0,-1/100,-7/100,4/100,-2,-3,-5).
+\]
+Both have squared norm at most $39$. If $(a,r,s)$ is a vector of
+original parameter increments, the coefficient vector after this
+centering is $(a',r,s)$, where
+\[
+ a'=a+\frac12\sum_{j=4}^n(r_ja_t+s_ja_w).
+\]
+Cauchy--Schwarz gives
+\[
+ \|a\|^2+\|r\|^2+\|s\|^2
+ \le 2\|a'\|^2+(39(n-3)+1)(\|r\|^2+\|s\|^2)
+ \le40n(\|a'\|^2+\|r\|^2+\|s\|^2).
+\]
+Consequently the extended Jacobian Gram matrix is at least
+$10^{-30}I/(40n)$.
+
+Put $\kappa=10^{-40}$ and $\delta=\kappa/n^6$. Let $q$ be the parameter
+point with $c=0$, the original three $u,b$ coefficients as above, all
+new $u_j=0$, and all new $b_j=\delta$. This point is strictly admissible.
+The change in the denominator is between zero and $n\delta$.
+Every Jacobian entry changes by at most $n\delta$, both the old and
+new Jacobian rows have norm at most $\sqrt{2n+1}$, and hence their
+Gram matrices differ in operator norm by at most $8n^2\delta$.
+Writing $J$ for the Jacobian at $q$, we obtain
+\[
+ G=\mathbb E[J^{\top}J]\succeq\gamma I,
+ \qquad\gamma=10^{-33}/n.
+\]
+
+Set $p=2n+1$ and $\rho=\delta/4$. On the Euclidean closed ball
+$K=\{q+h:\|h\|\le\rho\}$ all denominator coefficients are positive,
+$B\ge1$, $|U|<1/10$, and $|S|<1/4$.
+Each first and second coordinate derivative of $S$ has absolute value
+at most $1$, and each third derivative has absolute value at most $2$.
+For any binary labelling, every hinge is therefore active throughout
+$K$, and every third coordinate derivative of its loss has absolute
+value less than $6$. Its Hessian changes by operator norm at most
+\[
+ 6p^{3/2}\|h\|\le6p^2\rho\le\gamma/4
+\]
+between $q$ and $q+h\in K$.
+
+Independently choose $Y(x)\in\{-1,1\}$ with mean
+$\mu(x)=S_q(x)$. These are valid probabilities because $|\mu|<1/4$.
+At $q$, the expected gradient is zero and the expected Hessian is $G$.
+Each coordinate of the gradient, and each coordinate of the difference
+between the Hessian and $G$, is an average of $2^n$ independent centered
+random variables whose ranges have length at most $2$. Hoeffding's
+inequality and a union bound show that all these coordinates have
+absolute value at most $\epsilon$ with probability at least
+\[
+ 1-2(p+p^2)\exp(-2^n\epsilon^2/2),\qquad
+ \epsilon=\frac{\gamma\rho}{8p}\ge\frac{10^{-75}}{n^8}.
+\]
+This probability is positive for every $n\ge1000$. Indeed,
+$2^n\ge10^{200}n^{20}$ in that range: it holds at $1000$, and the ratio
+$2^n/n^{20}$ increases thereafter. Thus
+\[
+ 2^n\epsilon^2/2\ge10^{50}n^4/2\ge10n^2,
+ \qquad 2(p+p^2)\le24n^2<\exp(10n^2).
+\]
+The last strict inequality follows already from the quadratic term in
+the exponential series. All numerical starting inequalities are checked
+as integer or rational inequalities by the script above.
+
+Fix one successful labelling $y$. It satisfies
+$\|\nabla L_y(q)\|\le\gamma\rho/8$ and
+$\|\nabla^2L_y(q)-G\|_{\rm op}\le p\epsilon\le\gamma/4$.
+The Hessian is consequently at least $\gamma I/2$ throughout $K$.
+For $\|h\|=\rho$, Taylor's theorem along the segment gives
+\[
+ L_y(q+h)\ge L_y(q)-\gamma\rho^2/8+\gamma\rho^2/4>L_y(q).
+\]
+The minimum on the compact ball is therefore interior; the positive
+definite Hessian makes it a strict local minimum. Throughout the ball
+$|S|<1/4$, so every summand gives $L_y>9/32$.
+
+Finally, suppose all signed margins at this stationary point were
+nonnegative. Differentiating along simultaneous scaling of $c$ and $u$
+gives
+\[
+ 0=\mathbb E[(S-y)S]=\mathbb E[S^2-yS]
+   =\mathbb E[S^2-|S|].
+\]
+Since $|S|<1/4$, this forces $S=0$ at every vertex. That is impossible
+in $K$: at the vertex $x_1=1$, $x_i=0$ for $i\ne1$, we have
+\[
+ S\ge-\rho+\frac{1/100-\rho}{3+\rho}>1/400,
+\]
+since $0<\rho<10^{-4}$. Hence a strictly negative margin exists.
+\end{proof}
+
+The proof gives a finite deterministic description of a suitable
+labelling: select the first truth table in lexicographic order satisfying
+the displayed coordinate gradient and Hessian inequalities at the
+rational point $q$. Each test is rational, and the probability argument
+proves that such a table exists. This is not an efficient construction.
+The proposition does not assert nonglobality of the local minimum and
+does not address a hypothesis requiring $H$ to be of order $2^n/n^2$.
+It closes only the unconditional one-head interior-minimum escape claim.
+
 \end{document}

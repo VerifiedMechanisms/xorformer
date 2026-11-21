@@ -1,0 +1,10 @@
+{
+  "base_gram_determinant": "2039473/153991989161655646814208000000000000",
+  "base_gram_trace": "1822531722731161/1748711669760000",
+  "base_eigenvalue_lower_bound": "378729453111903638060784802768409812488110846509056000000000000/36648025246292513830475193226239816856148778750981795914481382999027566408911923304510490961",
+  "pair_gram_determinant": "24421240297/49741131939840000",
+  "pair_gram_trace": "553217537378401/3497423339520000",
+  "pair_eigenvalue_lower_bound": "219791162673/70811844784435328",
+  "all_finite_checks_passed": true,
+  "scope": "Finite rational identities and constants for a one-head interior squared-hinge local minimum existence proof. Not the requested universal head bound."
+}
