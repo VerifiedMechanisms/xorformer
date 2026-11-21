@@ -1,0 +1,20 @@
+{
+  "status": "Finite explicit examples only. No universal or asymptotic upper bound follows.",
+  "certificates": [
+    {
+      "file": "random-n13-h146.json",
+      "sha256": "23635a881a95b12e64439ce6afc907d9433428f77cc5d81966f7f2150d3b0342",
+      "scope": "All 8192 vertices of this one Boolean function."
+    },
+    {
+      "file": "binary-onehot-k8-d8-h32.json",
+      "sha256": "65bd6150ebcd67e823f16a409b141f178de1e3a0ed1f19c26f52664d020755b8",
+      "scope": "Only the 2048 explicitly listed promised vertices; denominators admissible on the full 16-cube."
+    },
+    {
+      "file": "inner-product-n12-h57.json",
+      "sha256": "51586df456a41671393469529b82d358fdeff4b497e3afb26e3d2d7779a86300",
+      "scope": "All 4096 vertices of this inner-product-mod-two function."
+    }
+  ]
+}

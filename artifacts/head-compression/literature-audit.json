@@ -315,6 +315,14 @@
       "checked_location": "Theorems 1.1-1.9; Section 4.2; Section 6.3",
       "mechanism": "Rational approximation, algebraic parameter bounds, and sequential bit extraction give bounds and simulations for sigmoid circuits.",
       "gap": "The activation and architectures differ from the manuscript. The small inner-product circuit uses growing depth; the universal simulations incur polynomial overhead and do not imply the target head bound."
+    },
+    {
+      "title": "Boolean threshold functions, neuron capacity, and memory retrieval",
+      "authors": "Xinyuan Xie",
+      "url": "https://arxiv.org/pdf/2609.29756",
+      "checked_location": "Theorem 1, Corollary 2, Theorem 3, and the chamber-count argument in Section 2.1",
+      "mechanism": "Sharp asymptotic enumeration of linear threshold functions, via random sign-vector spans and hyperplane-arrangement chambers.",
+      "gap": "Counting about 2^(n^2) single-neuron functions does not prove that O(2^n/n^2) neurons cover every Boolean labeling. This paper supplies neither an admissible affine-ratio decoder nor the required universal covering theorem."
     }
   ]
 }
