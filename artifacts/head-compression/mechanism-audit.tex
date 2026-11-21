@@ -3077,4 +3077,64 @@ removal is independently checked on the entire finite cube. There is
 no theorem that this process reaches $O(2^n/n^2)$ heads, and it is not
 used as an asymptotic argument.
 
+\section{A logarithmic evaluation chart for the unchanged sign problem}
+
+This section concerns numerical discovery, not an existence argument.
+For each head choose coordinates $t_{hi}(x)=x_i$ for positive
+orientation, or $t_{hi}(x)=1-x_i$ for negative orientation, and set
+$t_{h0}=1$. Write
+\[
+ B_h(x)=\sum_{i=0}^n e^{b_{hi}}t_{hi}(x),\qquad
+ A_h(x)=\sum_{i=0}^n\sigma_{hi}e^{a_{hi}}t_{hi}(x),
+ \qquad \sigma_{hi}\in\{-1,1\},
+\]
+and write the bias as $e^{\beta_+}-e^{\beta_-}$. Every denominator
+is admissible. Every strict representation with constant denominators
+or zero numerator coefficients can be perturbed to such a chart,
+possibly with different signs $\sigma$, because it has finitely many
+strict inequalities with positive margin. This does not make a search
+with fixed $\sigma$ or bounded exponents universal.
+
+Define positive quantities
+\[
+ P(x)=e^{\beta_+}+\sum_h\sum_{i:\sigma_{hi}=1}
+                   \frac{e^{a_{hi}}t_{hi}(x)}{B_h(x)},\qquad
+ M(x)=e^{\beta_-}+\sum_h\sum_{i:\sigma_{hi}=-1}
+                   \frac{e^{a_{hi}}t_{hi}(x)}{B_h(x)}.
+\]
+The original score is exactly $S=P-M$. Since the logarithm is strictly
+increasing on positive reals,
+\[
+ \operatorname{sgn}S(x)
+ =\operatorname{sgn}\bigl(\log P(x)-\log M(x)\bigr).
+\]
+Both logarithms can be evaluated with log-sum-exp operations without
+subtracting large nearly equal raw contributions. This is an evaluation
+method; no logarithm or exponential has been added as a model operation.
+For a prescribed logarithmic margin $\delta>0$,
+\[
+ \log P-\log M\geq\delta
+ \quad\Longleftrightarrow\quad
+ P-M\geq(e^\delta-1)M.
+\]
+The analogous negative-label inequality interchanges $P$ and $M$.
+Thus strict logarithmic margins certify the same signs, but the new
+loss is nonconvex and no global convergence claim follows.
+
+Two exact gauge changes help condition the search. Adding the same
+constant to $a_{hi}$ and $b_{hi}$ for every coefficient of one head
+does not change that head. Subtracting a common constant from every
+$a_{hi}$ and both bias exponents multiplies the whole score by a
+positive scalar and preserves signs. The finite implementation also
+uses explicit exponent bounds, which restrict only that experiment.
+
+The script \texttt{search\_logarithmic\_scores.py} passed a direct
+logarithm identity check and a finite-difference gradient check with
+maximum discrepancy below $6\cdot10^{-9}$. Its eight-bit example
+with sixteen heads was independently evaluated by
+\texttt{verify\_certificate.py} using exact rational arithmetic on
+all $256$ vertices. The committed certificate has SHA-256
+\texttt{92dd28fccf37b4449493a182f45d3962d56a416f48074eac43f9a46de77b1848}.
+This single example is not a universal bound.
+
 \end{document}

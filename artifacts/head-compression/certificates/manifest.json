@@ -20,6 +20,11 @@
       "file": "inner-product-n14-h251.json",
       "sha256": "45259835e79971bb88446a32fe0abe5e15301e80cccc556b6455666ce886ceb2",
       "scope": "All 16384 vertices of this one inner-product-mod-two function. Independently verified; no universal bound."
+    },
+    {
+      "file": "random-n8-logarithmic-h16.json",
+      "sha256": "92dd28fccf37b4449493a182f45d3962d56a416f48074eac43f9a46de77b1848",
+      "scope": "All 256 vertices of one eight-bit function. Found using logarithmic evaluation of the unchanged affine-ratio score; independently verified."
     }
   ]
 }

@@ -181,5 +181,22 @@
         "scope": "Exact scalar-code lookup only. The scalar encoder is not supplied."
       }
     }
-  ]
+  ],
+  "logarithmic_evaluation": {
+    "script": "search_logarithmic_scores.py",
+    "gradient_check": "/out/head-compression/logarithmic-gradient/gradient-check.json",
+    "maximum_gradient_error": 5.605516939510835e-09,
+    "finite_certificate": "certificates/random-n8-logarithmic-h16.json",
+    "independent_result": {
+      "file": "/out/head-compression/extension-logarithmic-n8/certificate.json",
+      "sha256": "92dd28fccf37b4449493a182f45d3962d56a416f48074eac43f9a46de77b1848",
+      "n": 8,
+      "heads": 16,
+      "vertices_checked": 256,
+      "strict_signs_and_admissibility": true,
+      "margin_approximation": 0.011630497052843554,
+      "scope": "This finite truth table only; not a universal bound."
+    },
+    "scope": "New evaluation coordinates, no new operations in the mathematical model. No convergence or universal head bound is proved."
+  }
 }
