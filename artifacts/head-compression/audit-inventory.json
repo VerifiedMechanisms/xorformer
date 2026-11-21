@@ -438,5 +438,12 @@
     "minimum_margin_lower_bound": 0.9995,
     "target_proved": false,
     "scope": "One finite target only. Original exporter hit integer-string digit limit after saving strict checkpoint; patched recovery and independent audit passed."
+  },
+  "shared_affine_pruning": {
+    "script": "artifacts/head-compression/prune_shared_affine_scores.py",
+    "diagnostic": "diagnostics/shared-affine-prune-self-test.json",
+    "large_run": "/out/head-compression/shared-affine-prune-n14",
+    "mechanism": "Rank candidate deletions by lost score-space projection, refit all remaining numerators, then optionally optimize surviving denominators. Every accepted deletion requires an exact full-cube audit.",
+    "target_proved": false
   }
 }

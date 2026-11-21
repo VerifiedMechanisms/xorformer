@@ -1,0 +1,34 @@
+{
+  "initial_heads": 4,
+  "final_heads": 2,
+  "removed_units": 2,
+  "seconds": 0.013781501911580563,
+  "scope": "One finite target only; failed deletion is not a lower bound.",
+  "target_proved": false,
+  "fraction_checker": "passed all 32 vertices",
+  "integer_interval_audit": {
+    "input_file": "/out/head-compression/shared-prune-self-test/run/trial-0001/certificate.json",
+    "input_sha256": "bfebc0719c608f5c9551fd00f4fba1e0e5f731b3347724facf3ec1fe14228e5b",
+    "n": 5,
+    "heads": 2,
+    "vertices_checked": 32,
+    "precision_bits": 224,
+    "whole_cube_denominator_admissibility": true,
+    "positive_margins_certified": 32,
+    "negative_margins_certified": 0,
+    "unseparated_margins": 0,
+    "negative_vertices": [],
+    "unseparated_vertices": [],
+    "minimum_margin_interval_numerators": [
+      26959946667034436524387647112121103121615549786924107033954129805312,
+      26959946667034436524387647112121103121615549786924107033954129805315
+    ],
+    "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+    "minimum_margin_approximation": 0.9999999999956898,
+    "all_target_signs_certified": true,
+    "seconds": 0.00016610091552138329,
+    "scope": "This supplied rational score and truth table only. No universal bound.",
+    "failure_is_not_a_lower_bound": true
+  },
+  "certificate_sha256": "bfebc0719c608f5c9551fd00f4fba1e0e5f731b3347724facf3ec1fe14228e5b"
+}
