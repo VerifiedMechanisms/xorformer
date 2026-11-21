@@ -4793,4 +4793,110 @@ the target: unrestricted real parameters permit arbitrarily large
 ranges and arbitrarily small strict margins. In particular no numerical
 precision or range restriction may be added to the target definition.
 
+
+\section{Stable confluent pairs with an exact finite lift}
+
+The range-to-margin obstruction motivates retaining near-cancellation
+symbolically during a search. The following construction implements a
+rank-one quadratic fraction by two ordinary heads whenever its signs
+are strict. It does not establish the existence of the required
+confluent scores at a universal head budget.
+
+\begin{proposition}[An explicit two-head lift]
+For each $h\le m$, choose an orientation $t_{hi}(x)=x_i$ for all $i$
+or $t_{hi}(x)=1-x_i$ for all $i$. Let
+\[
+ B_h=\beta_h+\sum_i b_{hi}t_{hi},\quad
+ C_h=\sum_i c_{hi}t_{hi},\quad U_h=\sum_i u_{hi}t_{hi},\quad
+ V_h=\sum_i v_{hi}t_{hi},\qquad \beta_h,b_{hi}>0.
+\]
+Suppose
+\[
+ S_0=c+\sum_{h=1}^m\left(\frac{C_h}{B_h}
+                         +\frac{U_hV_h}{B_h^2}\right),\qquad
+ f(x)S_0(x)\ge\gamma>0\quad(x\in\Qn).
+\]
+Set $K=\sum_h\|u_h\|_1\|v_h\|_1^2/\beta_h^3$.
+Choose $\varepsilon>0$ with
+\[
+ \varepsilon|v_{hi}|\le b_{hi}/2\quad\text{for all }h,i,
+ \qquad 2\varepsilon K\le\gamma/2.
+\]
+The second condition is automatic when $K=0$.
+Then the ordinary $2m$-head score
+\[
+ S_\varepsilon=c+\sum_{h=1}^m
+ \left(\frac{C_h+U_h/\varepsilon}{B_h}
+             -\frac{U_h/\varepsilon}{B_h+\varepsilon V_h}\right)
+\]
+is admissible and has signed margin at least $\gamma/2$ on the cube.
+\end{proposition}
+\begin{proof}
+The finitely many slope constraints permit a sufficiently small positive
+$\varepsilon$, as does the margin constraint. Each new denominator
+has constant term $\beta_h$ and oriented slopes at least $b_{hi}/2>0$.
+Thus both denominators in the pair are admissible in the original
+input coordinates. Moreover,
+\[
+ |\varepsilon V_h(x)|\le\tfrac12\sum_i b_{hi}t_{hi}(x)
+ \le B_h(x)/2,
+ \qquad B_h(x)+\varepsilon V_h(x)\ge B_h(x)/2.
+\]
+The exact identity for each pair is
+\[
+ \frac{C+U/\varepsilon}{B}-\frac{U/\varepsilon}{B+\varepsilon V}
+       -\left(\frac CB+\frac{UV}{B^2}\right)
+ =-\frac{\varepsilon UV^2}{B^2(B+\varepsilon V)}.
+\]
+It follows that
+\[
+ |S_\varepsilon(x)-S_0(x)|
+ \le2\varepsilon\sum_h
+       \frac{\|u_h\|_1\|v_h\|_1^2}{\beta_h^3}
+ =2\varepsilon K\le\gamma/2.
+\]
+The strict signs and margin follow. The identity and its pointwise
+error estimate are separately kernel checked in
+\texttt{ConfluentFractionLift.lean}; the affine coefficient and finite-sum
+steps are the manual proof above.
+\end{proof}
+
+In the numerical chart $\beta_h=1$, put $b_{hi}=e^{\ell_{hi}}$,
+$L_{hi}=t_{hi}/B_h$, and $d_h=\sum_i v_{hi}L_{hi}$. For fixed
+$\ell,v$ the coefficient features are $1$, $L_{hi}$, and
+$d_hL_{hi}$, so fitting $c,c_{hi},u_{hi}$ is convex. Write
+$P_h=C_h/B_h$ and $Q_h=U_hV_h/B_h^2$. The exact score derivatives,
+holding the fitted coefficients fixed, are
+\[
+ \frac{\partial S_0}{\partial\ell_{hi}}
+   =-(P_h+2Q_h)b_{hi}L_{hi},\qquad
+ \frac{\partial S_0}{\partial v_{hi}}
+   =\frac{U_h}{B_h}L_{hi}.
+\]
+At an exact inner optimum these also give the envelope derivative of
+the reduced squared-hinge loss. The implementation logs the inner
+optimality residual and the discrepancy between direct and QR scores;
+these are numerical diagnostics, not a global convergence guarantee.
+
+The script \texttt{search\_confluent\_varpro.py} stores binary rational
+coefficients exactly at export. It first encloses every confluent score
+using integer division of $(CB+UV)/B^2$, obtains a positive rational
+lower bound for $\gamma$, and chooses a dyadic $\varepsilon$ below
+all the displayed rational bounds. It constructs both head denominators
+using exact rational addition, so a perturbation below floating-point
+resolution is retained. The resulting ordinary score is checked again
+using integer intervals, and any retained certificate is also eligible
+for the independent Fraction verifier.
+
+In the small diagnostic, fixed-coefficient and refitted finite-difference
+gradient errors are below $10^{-10}$. The four-bit lifted score uses four
+heads, has exact-check margin greater than $0.067$, and uses
+$\varepsilon=1/512$. This diagnostic validates the implementation only.
+Two adaptive searches use $73$ and $168$ confluent units, respectively,
+on a thirteen-bit face table and the associated fourteen-bit target.
+No general existence assertion is inferred from these finite searches.
+The base denominators vary; if they were fixed, the earlier bounded-degree
+polynomial-chart obstruction would apply to this rank-one quadratic
+parameterization.
+
 \end{document}

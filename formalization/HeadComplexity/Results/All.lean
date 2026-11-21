@@ -24,6 +24,7 @@ import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.ConditionalFractionCompletion
 import HeadComplexity.Results.BooleanMomentIndefiniteness
 import HeadComplexity.Results.MaxNormalizedReciprocal
+import HeadComplexity.Results.ConfluentFractionLift
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan

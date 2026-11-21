@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -101,6 +101,14 @@
         "HeadComplexity.largestTerm_affineFraction_error_le"
       ],
       "scope": "An exact geometric remainder and summed error bound after normalization by (n+1) times a largest active term. The polynomial sign-count consequence is a separate manual proof. No universal upper bound follows."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ConfluentFractionLift.lean",
+      "main_declaration": "HeadComplexity.confluentPairScore_error_le",
+      "companion_declarations": [
+        "HeadComplexity.confluentPairScore_error_identity"
+      ],
+      "scope": "Exact two-fraction error identity and a pointwise bound for lifting a strict adaptive confluent score. Existence of such scores at the target budget is not asserted."
     }
   ],
   "validation": {
@@ -210,6 +218,17 @@
     "all_module_build": "passed, 9192 jobs",
     "axioms": "All six new theorems use only propext, Classical.choice, and Quot.sound",
     "target_proved": false,
-    "reviewed_utc": "2026-11-21 17:53 UTC"
+    "reviewed_utc": "2026-11-21 17:49 UTC"
+  },
+  "confluent_pair_audit": {
+    "core_build": "passed, 3137 jobs",
+    "all_module_build": "passed, 9193 jobs",
+    "axioms": "Both declarations use only propext, Classical.choice, and Quot.sound",
+    "small_diagnostic": "artifacts/head-compression/diagnostics/confluent-self-test.json",
+    "large_searches": [
+      "/out/head-compression/confluent-n14-h336",
+      "/out/head-compression/confluent-positive-face0-n13-h146"
+    ],
+    "target_proved": false
   }
 }
