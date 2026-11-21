@@ -5591,6 +5591,12 @@ not preserve the asserted norm identity. This blocks precisely that
 fixed-norm implementation; a unit-signature theorem alone supplies
 neither the required denominator family nor an additive head decoder.
 
+The native-model identity and product implication are kernel-checked in
+\texttt{DenominatorProductSubmodularity.lean}. In native parameters the
+square defect is exactly $\rho_i\rho_j(\alpha-1)^2$, so the equality
+case forces $\alpha=1$ for every factor. The full project build passes;
+this adds no assertion of the requested universal head bound.
+
 \section{Noncurvilinear collision schemes and the missing lifting property}
 
 The single-curve jet obstruction proved above concerns the coefficient

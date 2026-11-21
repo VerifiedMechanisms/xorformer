@@ -137,6 +137,19 @@
         "HeadComplexity.computableWithHeadsN_of_sharedAffineScore"
       ],
       "scope": "Given a strict sign score in the orientation-crossing chart with M units, construct M+1 actual attention heads. Includes q=1 perturbation and uniform approximation of the shared affine correction. Does not assert existence of a strict chart score at the target budget."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/DenominatorProductSubmodularity.lean",
+      "main_declaration": "HeadComplexity.atomDenProduct_constant_forces_alpha_one",
+      "companion_declarations": [
+        "HeadComplexity.FracAtom.denPoly_square_defect",
+        "HeadComplexity.FracAtom.denPoly_square_le",
+        "HeadComplexity.FracAtom.denPoly_square_lt",
+        "HeadComplexity.atomDenProduct_eval_square_le",
+        "HeadComplexity.atomDenProduct_eval_square_lt",
+        "HeadComplexity.atomDenProduct_square_eq_forces_alpha_one"
+      ],
+      "scope": "Native FracAtom denominators have nonnegative square defect, strict unless alpha=1. Their product is strictly log-submodular if any factor is nonconstant. A constant denominator product in dimension at least two therefore has only constant factors. This audits an arithmetic norm encoding, not the universal upper bound."
     }
   ],
   "validation": {
@@ -164,7 +177,13 @@
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
     "inventory_references": "31 listed main and companion declaration names matched to 18 Lean source modules; all are imported in Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
-    "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound."
+    "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
+    "denominator_product": {
+      "build": "/out/head-compression/lean-denominator-product-all-build.log",
+      "build_jobs": 9205,
+      "axioms": "/out/head-compression/lean-denominator-product-axioms.log",
+      "axiom_scope": "All inspected declarations use only propext, Classical.choice, and Quot.sound. No target theorem or original definition was changed."
+    }
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
