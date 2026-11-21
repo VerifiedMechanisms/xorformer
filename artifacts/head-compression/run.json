@@ -1,7 +1,7 @@
 {
   "run": "Adaptive Rational Head Compression",
   "started_utc": "2026-11-20 15:48:46 UTC",
-  "minimum_research_end_utc": "2026-11-21 16:17:12 UTC",
+  "minimum_research_end_utc": "2026-11-22 17:29:02 UTC",
   "source": "/out/attachments/version-5.tex",
   "source_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "target": "There exists an absolute C>0 such that W(n)<=C*2^n/n^2 for every positive integer n.",
@@ -21,6 +21,12 @@
       "started_utc": "2026-11-21 04:17:12 UTC",
       "minimum_research_end_utc": "2026-11-21 16:17:12 UTC",
       "instruction": "Continue your analysis for 12 more hours"
+    },
+    {
+      "requested_additional_hours": 24,
+      "started_utc": "2026-11-21 17:29:02 UTC",
+      "minimum_research_end_utc": "2026-11-22 17:29:02 UTC",
+      "instruction": "Keep going for 24 more hours"
     }
   ]
 }
