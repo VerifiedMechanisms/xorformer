@@ -47,8 +47,10 @@ def audit(directory):
     result = {
         "directory": str(directory),
         "checkpoint_sha256": hashlib.sha256(raw).hexdigest(),
+        "labels_sha256": hashlib.sha256(labels.astype(np.int8).tobytes()).hexdigest(),
         "n": n,
         "heads": heads,
+        "positive_orientation_heads": int(np.count_nonzero(orientation == 1)),
         "vertices": len(labels),
         "longdouble_mantissa_bits": int(np.finfo(np.longdouble).nmant),
         "direct_longdouble_loss": float(loss),
