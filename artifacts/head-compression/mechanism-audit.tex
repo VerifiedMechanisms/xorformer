@@ -2011,4 +2011,96 @@ It does not exclude correlated or deterministic dictionaries, and
 it does not imply any lower bound for the manuscript's full model.
 The separate binary-address compilation gap also remains unresolved.
 
+\section{A deterministic obstruction to full-rate orthant pair routing}
+
+The following bound is stronger than the preceding product-cloud
+calculation in the regime $M=O(2^k)$. It applies to every dictionary,
+not only to independent samples.
+
+\begin{proposition}
+Let $v_1,\ldots,v_M\in\mathbb R^k$, where $M,k\geq1$.
+For $\sigma\in\{-1,1\}^k$, join $a,b$ in $G_\sigma$ if either
+$\sigma_i(v_{b,i}-v_{a,i})>0$ for every $i$, or the reverse
+inequalities all hold. Write $\nu_\sigma$ for the matching number.
+For every $r>0$,
+\[
+ \frac{1}{2^k}\sum_\sigma\frac{\nu_\sigma}{M}
+ \leq 2\exp(-2r^2/k)+\frac{8rM}{k2^k}.
+\]
+Consequently, for $k\geq2$,
+\[
+ \min_\sigma\frac{\nu_\sigma}{M}
+ \leq\frac{2}{k^2}
+       +8\frac{M}{2^k}\sqrt{\frac{\log k}{k}}.
+\]
+Thus a family with $M=O(2^k)$ cannot have a matching of size
+$\rho M$ in every orthant for a fixed $\rho>0$ in all dimensions.
+\end{proposition}
+\begin{proof}
+First suppose that each coordinate takes distinct values. Replace
+the values in coordinate $i$ by their ranks $R_i(a)\in\{1,\ldots,M\}$.
+This preserves all the graphs. Set
+\[
+ q_i(a)=\frac{R_i(a)-(M+1)/2}{M},\qquad
+ T_\sigma(a)=\sum_{i=1}^k\sigma_iq_i(a).
+\]
+For uniformly random independent signs $\sigma_i$, the summands
+are centered and belong to intervals of lengths at most one.
+The exponential moment estimate gives
+\[
+ \Pr_\sigma(|T_\sigma(a)|>r)\leq2e^{-2r^2/k}.
+\]
+Let $V_\sigma$ count the vertices violating $|T_\sigma(a)|\leq r$.
+Then $2^{-k}\sum_\sigma V_\sigma\leq2Me^{-2r^2/k}$.
+
+Call an unordered pair short if
+\[
+ D(a,b):=\sum_{i=1}^k|R_i(a)-R_i(b)|\leq2rM.
+\]
+An edge of $G_\sigma$ with both endpoints outside $V_\sigma$
+must be short: orient it in the increasing $\sigma$ direction
+and use $D(a,b)/M=T_\sigma(b)-T_\sigma(a)\leq2r$.
+
+Fix $a$, and let $S$ be the set consisting of $a$ and all its
+short neighbors; write $d=|S|$. For each $i$, the $d$ distinct
+integer ranks have total distance from $R_i(a)$ at least
+$\lfloor d^2/4\rfloor\geq(d^2-1)/4$. This follows by placing
+the other $d-1$ ranks as close to $R_i(a)$ as possible, alternately
+on its two sides. Therefore
+\[
+ \frac{k(d^2-1)}4
+ \leq\sum_{b\in S}D(a,b)\leq2drM.
+\]
+As $d\geq1$, this implies $d-1\leq8rM/k$. The number of short
+unordered pairs is consequently at most $4rM^2/k$.
+
+Each unordered pair belongs to exactly two of the graphs
+$G_\sigma$, for opposite sign vectors. In a matching, at most
+$V_\sigma$ edges meet the exceptional vertices. The remaining
+edges are short. Sum this inequality over all $\sigma$ and use
+the preceding bound on short pairs to obtain
+\[
+ \sum_\sigma\nu_\sigma
+ \leq 2^{k+1}Me^{-2r^2/k}+\frac{8rM^2}{k}.
+\]
+Division by $2^kM$ proves the first assertion. Taking
+$r=\sqrt{k\log k}$ proves the second one.
+
+If a coordinate has ties, perturb those ties while preserving
+all strict comparisons already present. Every original graph
+is a subgraph of the perturbed graph, so the same upper bound
+holds for the original matching numbers.
+\end{proof}
+
+\paragraph{Consequence for the proposed dictionary.}
+The earlier sufficient routing criterion asked for a dictionary
+of $8m$ vectors in $\mathbb R^k$, where $m=2^k$, having a
+matching of size at least $2m-1$ in every orthant. The proposition
+shows that this criterion fails in sufficiently large dimensions:
+its required matching fraction tends to $1/4$, whereas the
+displayed upper bound tends to zero. Finite certificates for
+$k\leq9$ do not extend that criterion asymptotically. This is an
+obstruction to the stated sufficient criterion, not to other
+rational decoders, and not a lower bound for $W(n)$.
+
 \end{document}
