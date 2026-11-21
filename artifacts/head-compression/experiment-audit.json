@@ -674,5 +674,29 @@
     },
     "labels_sha256": "f694e1319417d41d6d99cc2e8272355af2068cea74742b85a2cc3db07edf62d4",
     "final_minimum_margin_exact_check_approximation": 0.09904653374156572
+  },
+  "extension_logarithmic_n12": {
+    "n": 12,
+    "heads": 114,
+    "seed": 450002,
+    "labels": "random",
+    "seconds": 14400.463367388002,
+    "steps": 18911,
+    "best_errors": 608,
+    "best_log_margin": -0.003740208224290331,
+    "certificate": null,
+    "failure_is_not_a_lower_bound": true
+  },
+  "related_run_refresh_2026_11_21": {
+    "repository": "VerifiedMechanisms/autoresearch-runs",
+    "branch": "ar/1dc3df1f7016",
+    "commit": "045a8fb",
+    "commit_utc": "2026-11-21 06:16:49 UTC",
+    "checked_files": [
+      "proof/SUMMARY.md",
+      "git history from 90ecc1d"
+    ],
+    "result": "The continuation proves further fixed-denominator O(2^n/n) covering bounds and small-dimension exact covers; it explicitly leaves the requested O(2^n/n^2) bound unproved. No target theorem imported.",
+    "fetch_note": "Bare clones have no default branch refspec. Explicit refs/heads/* fetching was necessary to update all branches."
   }
 }
