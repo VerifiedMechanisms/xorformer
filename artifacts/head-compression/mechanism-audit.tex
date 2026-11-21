@@ -944,6 +944,27 @@ denominator, but allowing every real node when applying the count
 only enlarges the family.
 \end{proof}
 
+More generally, suppose each slope is a fixed polynomial
+$p_{h,i}(t_h)$ of degree at most $D_n\ge1$, with one adaptive scalar
+node per head. The polynomials may depend on $n$ and on the head and
+coordinate indices, but are fixed independently of the target table.
+The same proof gives
+\[
+ M(n,H)\le
+ \left(\frac{65536N}{1+(n+1)H}\right)^{1+(n+1)H}(HD_n)^H.
+\]
+In particular, if this family is universal with
+$H=\lfloor CN/n^2\rfloor$, then
+\[
+ \log_2D_n\ge\frac{n^2}{C}-O_C(n\log n).
+\]
+Indeed, the logarithm of the first factor is
+$O_C(N\log n/n)$, while $H\log_2H=O_C(N/n)$; subtract these
+terms from $N\le\log_2M$ and divide by $H$.
+Thus even fixed polynomial curves of degree $2^{O(n)}$ remain
+insufficient. Curves of degree $2^{\Theta(n^2)}$ or larger are not
+excluded by this count, but no construction using them is supplied.
+
 Thus the manuscript's integer-node determinant construction cannot
 reach the requested head budget merely by making its nodes depend on
 the target. This obstruction allows continuous adaptive nodes and
