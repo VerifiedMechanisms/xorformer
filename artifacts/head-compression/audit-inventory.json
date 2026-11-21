@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -89,6 +89,18 @@
       "file": "formalization/HeadComplexity/Results/BooleanMomentIndefiniteness.lean",
       "main_declaration": "HeadComplexity.booleanMoment_has_opposite_quadratic_signs",
       "scope": "A nonzero symmetric Boolean moment matrix whose distinguished row annihilates a strictly positive vector is indefinite. This does not imply that the full squared-loss Hessian is indefinite."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/MaxNormalizedReciprocal.lean",
+      "main_declaration": "HeadComplexity.sum_largestTerm_affineFraction_error_le",
+      "companion_declarations": [
+        "HeadComplexity.normalizedReciprocalSum_remainder",
+        "HeadComplexity.affineFraction_geometric_remainder",
+        "HeadComplexity.affineFraction_geometric_error_le",
+        "HeadComplexity.largestTerm_normalization_bounds",
+        "HeadComplexity.largestTerm_affineFraction_error_le"
+      ],
+      "scope": "An exact geometric remainder and summed error bound after normalization by (n+1) times a largest active term. The polynomial sign-count consequence is a separate manual proof. No universal upper bound follows."
     }
   ],
   "validation": {
@@ -146,7 +158,8 @@
     "An affine array with a fixed value multiset at every Boolean vertex has mutually orthogonal nonzero slope columns perpendicular to the all-ones vector. An exact five-coordinate affine square disproves the shortcut that its permutation parity must be affine. Generic tomography directions are not the prescribed Boolean directions (1,x).",
     "For a single log-slope column, an explicit squared-hinge quadratic majorizer bounds finite parameter changes. Sorting the old column against a gradient step exactly minimizes its isotropic quadratic model over permutations. Under the stated majorizer and displacement conditions a nonzero move decreases loss. The discrete proposal may still be stationary at positive loss.",
     "An independent scalar-memory decoder whose affine coefficients each depend affinely on at most one memory and whose bias is fixed satisfies sum_j m_j <= 2*(n+1)*H. The proof counts one-parameter sign changes and memory-head incidences. To obtain a full-cube obstruction the assigned vertex sets must cover the cube. Its independence assumptions are stronger than general target-dependent sign representation.",
-    "For positive slope coordinates b=exp(ell), the reduced gradient and Hessian transform by G_b=diag(1/b)*G_ell and H_b=diag(1/b)*(H_ell-diag(G_ell))*diag(1/b). The direct-coordinate implementation passes independent small finite-difference checks and found one exactly verified six-bit three-head example. Neither the change of coordinates nor the example establishes global convergence or the universal target."
+    "For positive slope coordinates b=exp(ell), the reduced gradient and Hessian transform by G_b=diag(1/b)*G_ell and H_b=diag(1/b)*(H_ell-diag(G_ell))*diag(1/b). The direct-coordinate implementation passes independent small finite-difference checks and found one exactly verified six-bit three-head example. Neither the change of coordinates nor the example establishes global convergence or the universal target.",
+    "Largest-active-term normalization yields a condition-free counting obstruction: for fixed C>0 and 0<alpha<1/(2C), the fraction of functions with H<=C*2^n/n^2 and total head half-range divided by margin at most exp(2^(alpha*n)) is at most 2^(-(1-2*C*alpha-o(1))*2^n). This permits unrestricted denominator conditioning and does not contradict the unrestricted-real target."
   ],
   "blocked_routes": [
     {
@@ -190,5 +203,13 @@
       "gap": "Power-sum constraints and a projection reformulation are proved, but neither generic multiset reconstruction nor the affine permutation example constructs arbitrary Boolean signs. The genericity hypothesis is not available for directions (1,x). Column-permutation searches remain finite experiments."
     }
   ],
-  "remaining_target": "Prove, without modifying the manuscript model, that a single absolute C gives W(n)<=C*2^n/n^2 for every positive integer n. No complete construction or existence proof is claimed."
+  "remaining_target": "Prove, without modifying the manuscript model, that a single absolute C gives W(n)<=C*2^n/n^2 for every positive integer n. No complete construction or existence proof is claimed.",
+  "largest_term_normalization_audit": {
+    "core_lean_build": "passed, 3137 jobs",
+    "manual_count": "two-block degree count; no denominator-condition assumption",
+    "all_module_build": "passed, 9192 jobs",
+    "axioms": "All six new theorems use only propext, Classical.choice, and Quot.sound",
+    "target_proved": false,
+    "reviewed_utc": "2026-11-21 17:53 UTC"
+  }
 }

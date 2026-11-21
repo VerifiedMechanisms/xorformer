@@ -137,7 +137,8 @@
       "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
       "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
       "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
-      "gap": "Weak representations may vanish at most inputs, whereas the requested representation must have a strict sign everywhere. Polynomial products and parity constraints also lack a proved small-head compiler."
+      "gap": "Weak representations may vanish at most inputs, whereas the requested representation must have a strict sign everywhere. Polynomial products and parity constraints also lack a proved small-head compiler.",
+      "revisit": "Table 2 and Section 5 distinguish strong PTF density from weak density; the strong-density lower bound is a positive constant times 2^n. A universal order-2^n/n Fourier-monomial support would contradict that bound."
     },
     {
       "title": "Algebraic aspects of discrete tomography",
@@ -523,6 +524,22 @@
       "checked_location": "Theorems 1.3 and 1.4; Section 2 Fourier decomposition",
       "mechanism": "An arbitrary function into a finite abelian group satisfying the necessary total-sum constraint has asymptotically many decompositions as a sum of three bijections, with an explicit positive singular-series factor. Four summands give asymptotic uniformity.",
       "gap": "Addition is in the finite group. In characteristic two it is bitwise XOR, which is not a linear readout of decoded signs. The theorem also does not encode arbitrary permutations by affine functions of binary inputs. Both the decoder and a flat admissible composition remain missing."
+    },
+    {
+      "title": "On the weight and density bounds of polynomial threshold functions",
+      "authors": "Erhan Oztop and Minoru Asada",
+      "url": "https://arxiv.org/pdf/2007.02509",
+      "checked_location": "Theorem 2 and its proof sketch; Theorem 3 and the integer-weight construction",
+      "mechanism": "A universal strict polynomial sign representation with at most three quarters of the Fourier monomials, together with explicit integer-weight bounds.",
+      "gap": "This is a constant-factor density saving, not order 2^n/n. Fourier monomials are parity products, and grouping them into admissible heads requires a separate compiler."
+    },
+    {
+      "title": "Beyond the Signs: Nonparametric Tensor Completion via Sign Series",
+      "authors": "Chanwoo Lee and Miaoyan Wang",
+      "url": "https://papers.nips.cc/paper_files/paper/2021/file/b60c5ab647a27045b462934977ccad9a-Paper.pdf",
+      "checked_location": "Section 3.1, Definitions 1 and 2, Proposition 1, and Examples 1-5",
+      "mechanism": "Tensor sign-rank can be smaller than exact tensor rank; structured high-rank tensors admit low-rank threshold slices.",
+      "gap": "The results do not give the required rank bound for every Boolean tensor, and a rank-one tensor factor is a product rather than an affine-fraction head. Their sign convention permits zero entries on the positive side, unlike the requested strict signs."
     }
   ]
 }

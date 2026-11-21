@@ -4664,4 +4664,133 @@ The independent Fraction checker verifies all $64$ strict signs and
 all denominator conditions, with minimum margin approximately
 $0.9948901633$. This is only one finite truth table.
 
+
+\section{Largest-term normalization without a condition-number bound}
+
+The largest-term proxy discarded all smaller denominator terms. Here
+those terms are retained through a convergent expansion. The expansion
+has a uniform geometric ratio even when the original denominator is
+arbitrarily ill-conditioned on the cube. Its required degree depends
+on cancellation between heads, which is unrestricted in the model.
+
+\begin{proposition}[A condition-free range-to-margin count]
+Let $n,H\ge1$, let $N=2^n$, and put $p=1+3H(n+1)$. Suppose $p\le N$.
+For an admissible strict score $S=c+\sum_{h=1}^H R_h$, write
+\[
+ \gamma=\min_{x\in\Qn}f(x)S(x)>0,\qquad
+ \mathcal R(S)=\frac{\sum_{h=1}^H
+             (\max_{\Qn}R_h-\min_{\Qn}R_h)}{2\gamma}.
+\]
+For $R\ge1$, define $D=\lceil(n+1)\log(2R)\rceil$.
+The number of strict Boolean sign tables admitting such a representation
+with $\mathcal R(S)\le R$ is at most
+\[
+ \bigl(2(n+1)!\bigr)^H
+ \left(\frac{65536N}{p}\right)^p D^{2H(n+1)}.
+\]
+There is no restriction on denominator condition numbers, numerator
+coefficient magnitudes, or the size of the bias.
+\end{proposition}
+\begin{proof}
+For each head, subtract the midpoint of its output range and add that
+constant to the bias. This changes the numerator by an affine multiple
+of its denominator and leaves both the denominator and the total score
+unchanged. Hence assume
+\[
+ \sum_h\|R_h\|_\infty\le R\gamma.
+\]
+Complement all coordinates within each negative-slope head. A constant
+denominator may be assigned the positive orientation. Each denominator
+now has the form $B_h=\sum_{i=0}^n b_{hi}z_{hi}$, where $b_{h0}>0$,
+$b_{hi}\ge0$, $z_{h0}=1$, and the other $z_{hi}$ are either all $x_i$
+or all $1-x_i$. The numerator remains affine in these coordinates.
+
+Fix a total order of the $n+1$ coefficients in each head, breaking ties
+by index. At every vertex this fixes a largest active coefficient
+$M_h(x)=b_{h,j_h(x)}>0$. Put $L_h(x)=(n+1)M_h(x)$. Positivity gives
+\[
+ M_h(x)\le B_h(x)\le L_h(x),\qquad
+ 0\le q_h(x):=1-B_h(x)/L_h(x)\le\frac{n}{n+1}.
+\]
+The finite geometric identity is exact:
+\[
+ \frac{A_h(x)}{B_h(x)}-
+ \frac{A_h(x)}{L_h(x)}\sum_{k=0}^{D-1}q_h(x)^k
+ =\frac{A_h(x)}{B_h(x)}q_h(x)^D.
+\]
+Replace each head by the displayed truncated sum, calling the total
+$T_D$. Since $n\ge1$ and $D\ge1$,
+\[
+ \|S-T_D\|_\infty
+ \le R\gamma\left(\frac{n}{n+1}\right)^D
+ \le R\gamma\exp\left(-\frac{D}{n+1}\right)
+ \le\gamma/2.
+\]
+Thus $T_D$ has the same strict signs as $S$.
+
+Introduce variables $r_{hi}$ whose values are $1/b_{hi}$ when
+$b_{hi}>0$, and zero otherwise. On the fixed coefficient-order chart,
+$T_D(x)$ is the polynomial
+\[
+ c+\sum_h\frac{A_h(x)r_{h,j_h(x)}}{n+1}
+       \sum_{k=0}^{D-1}\left(
+           1-\frac{r_{h,j_h(x)}\sum_i b_{hi}z_{hi}(x)}{n+1}
+                       \right)^k.
+\]
+There are $p$ variables: the bias and the numerator, denominator, and
+reciprocal coefficient lists. Its degree in the denominator and reciprocal variables together is
+at most $2D$, and its degree in the numerator and bias variables is
+at most one.
+Relaxing the reciprocal identities, positivity, and ordering conditions
+can only enlarge the set of strict sign tables. The two-block sign-count lemma, with degrees $2D$ and $2$, gives
+$(65536N/p)^p D^{2H(n+1)}$ tables for this chart. There are at most
+$\bigl(2(n+1)!\bigr)^H$ orientation and order charts. Summing the
+bounds proves the proposition.
+\end{proof}
+
+\begin{corollary}[Large cancellation is necessary at the proposed rate]
+Fix $C>0$ and $0<\alpha<1/(2C)$. Among the Boolean functions on
+$\Qn$, the fraction admitting a representation with
+\[
+ H\le C2^n/n^2,\qquad
+ \mathcal R(S)\le\exp(2^{\alpha n})
+\]
+is at most
+\[
+ 2^{-(1-2C\alpha-o(1))2^n}
+ \quad\text{as }n\longrightarrow\infty.
+\]
+In particular a universal construction at that head budget cannot
+uniformly impose this range-to-margin bound, even if it allows
+arbitrarily ill-conditioned denominators.
+\end{corollary}
+\begin{proof}
+For sufficiently large $n$, pad with zero-numerator heads to
+$H=\lfloor C2^n/n^2\rfloor\ge1$. This does not change $S$, its
+margin, or $\mathcal R(S)$. Then
+$p=(3C+o(1))2^n/n$ and the logarithm of the chart count is
+$O_C(2^n\log n/n)$. Also
+\[
+ \log_2 D\le\alpha n+O(\log n),\qquad
+ p\log_2(8eN/p)=O_C(2^n\log n/n).
+\]
+The logarithm of the preceding sign count is therefore at most
+$(2C\alpha+o(1))2^n$. Divide by the $2^{2^n}$ Boolean tables.
+\end{proof}
+
+The finite geometric identity, the normalization bounds, and the
+summed error estimate are kernel checked in
+\texttt{formalization/HeadComplexity/Results/MaxNormalizedReciprocal.lean},
+ending with \texttt{sum\_largestTerm\_affineFraction\_error\_le}.
+The orientation chart count and its asymptotic consequence are the
+manual arguments above, not Lean declarations.
+
+The ratio $\mathcal R(S)$ is invariant under shifting constants between
+heads and bias, and under a common positive rescaling of the score.
+This is a stronger diagnostic than the earlier statement that assumed a
+bound on denominator condition numbers. It is not a contradiction to
+the target: unrestricted real parameters permit arbitrarily large
+ranges and arbitrarily small strict margins. In particular no numerical
+precision or range restriction may be added to the target definition.
+
 \end{document}
