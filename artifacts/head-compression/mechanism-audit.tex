@@ -1938,4 +1938,77 @@ drops the number of summands when clearing denominators. No
 stronger bound from that excerpt is used anywhere in this audit,
 and no claim that the textbook theorem is false is made.
 
+\section{Independent random clouds do not provide uniform orthant matchings}
+
+This addresses a specific proposed construction of a residue dictionary.
+Large expected numbers of pairs in an orthant do not imply a large
+matching in that orthant. In fact, independently sampled product clouds
+fail asymptotically, even when the constant relating dimension and
+logarithmic dictionary size is made arbitrarily small.
+
+\begin{proposition}
+Fix $c>0$. For each positive integer $k$, let $M\leq e^{ck}$ and
+sample $X_1,\ldots,X_M$ independently and uniformly from $[0,1]^k$.
+Join two sampled points when one is coordinatewise smaller than the
+other, and let $\nu$ be the matching number of this graph. Put
+$\delta=e^{-c}/(4e)$. Then
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq 2\exp(-2\delta^2 k)+2^{-k}.
+\]
+In particular, $\nu/M$ tends to zero in probability as $k$ tends
+to infinity. The same assertion holds for any fixed orthant after
+reflecting the relevant coordinates.
+\end{proposition}
+\begin{proof}
+Call a point central if its coordinate sum belongs to
+$[k/2-\delta k,k/2+\delta k]$, and write $V_{\rm out}$ for the
+number of noncentral sampled points. The bounded independent
+summand inequality gives
+\[
+ \mathbb E V_{\rm out}\leq 2M\exp(-2\delta^2 k).
+\]
+For completeness, this inequality follows by applying the exponential
+Markov inequality and the estimate
+$\mathbb E\exp(t(U-1/2))\leq\exp(t^2/8)$ for
+$0\leq U\leq1$ with mean $1/2$, separately to the two tails,
+and minimizing over $t>0$.
+
+If independent uniform points $X,Y$ are both central and $X\leq Y$
+coordinatewise, their difference $d=Y-X$ satisfies $d_i\geq0$ and
+$\sum_i d_i\leq2\delta k$. For a fixed $d$, the allowed region
+for $X$ has volume at most one. Hence
+\[
+ \Pr(X,Y\hbox{ central and }X\leq Y)
+ \leq \frac{(2\delta k)^k}{k!}
+ \leq (2e\delta)^k.
+\]
+The first bound is the volume of a simplex, and the second uses
+$k!\geq(k/e)^k$. If $E_{\rm mid}$ counts comparable unordered
+pairs with both endpoints central, it follows that
+\[
+ \mathbb E E_{\rm mid}
+ \leq 2\binom{M}{2}(2e\delta)^k
+ \leq M^2(2e\delta)^k.
+\]
+Every matching has at most $V_{\rm out}$ edges incident to
+noncentral points and at most $E_{\rm mid}$ remaining edges.
+Consequently
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq2e^{-2\delta^2k}+M(2e\delta)^k
+ \leq2e^{-2\delta^2k}+2^{-k}.
+\]
+Markov's inequality proves convergence in probability. Coordinate
+reflections preserve the sampling distribution and reduce each fixed
+orthant to the one considered above.
+\end{proof}
+
+\paragraph{Scope.}
+This excludes an independently sampled uniform product dictionary
+as an asymptotic proof of the earlier orthant-matching condition.
+It does not exclude correlated or deterministic dictionaries, and
+it does not imply any lower bound for the manuscript's full model.
+The separate binary-address compilation gap also remains unresolved.
+
 \end{document}
