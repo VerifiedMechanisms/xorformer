@@ -599,6 +599,30 @@
       "checked_location": "Conventions, Theorems 4.8 and 4.10, and the conormal parametrization in the proof of Theorem 4.10",
       "mechanism": "Deletion-contraction degenerations of reciprocal linear spaces give a dual degree formula and explicit limiting dual components.",
       "gap": "The work is over the complex numbers and describes discriminants, degrees, and flat limits. It supplies neither every real sign orthant nor a real deformation with positive same-sign affine denominators. Degree or multiplicity cannot be substituted for sign coverage."
+    },
+    {
+      "title": "The sum-product conjecture is false for real numbers",
+      "authors": "Thomas F. Bloom, Will Sawin, Carl Schildkraut, Dmitrii Zhelezov",
+      "url": "https://arxiv.org/html/2605.28781v1",
+      "checked_location": "Lemma 4.1 and its proof; Theorems 6.2 and 6.3 and their proofs; Lemmas 3.3-3.5",
+      "mechanism": "Multiply an additive lattice window by a logarithmic unit-lattice window in totally real fields of growing degree and bounded root discriminant. Counting produces many additive and multiplicative relations.",
+      "gap": "The estimates do not ensure arbitrary signatures or a matching in every orthant. Conjugate values cannot be selected freely by affine Boolean inputs; the audit proves the exact character-support condition. A trace identity counts its embeddings as separate fractions."
+    },
+    {
+      "title": "Remarks on the disproof of the unit distance conjecture",
+      "authors": "Noga Alon, Thomas F. Bloom, W. T. Gowers, Daniel Litt, Will Sawin, Arul Shankar, Jacob Tsimerman, Victor Wang, Melanie Matchett Wood",
+      "url": "https://arxiv.org/html/2605.20695v1",
+      "checked_location": "Section 2.1, Lemmas 2.1 and 2.2 and Proposition 2.3",
+      "mechanism": "Many modulus-one elements in a CM field give many lattice-window pairs at a specified distance after an injective projection. Bounded root discriminant and split primes control the exponential factors.",
+      "gap": "Complex modulus one is not a real sign condition. Neither a prescribed Boolean encoder nor arbitrary real orthant coverage nor an admissible fraction compiler is supplied."
+    },
+    {
+      "title": "Cutting towers of number fields",
+      "authors": "Farshid Hajir, Christian Maire, Ravi Ramakrishna",
+      "url": "https://arxiv.org/html/1901.04354v1",
+      "checked_location": "Introduction and Section 2; tower application cross-checked with Proposition 2.3 of arXiv:2605.20695v1",
+      "mechanism": "Refined Golod-Shafarevich inequalities permit quotienting pro-p towers while retaining infinitude, controlling ramification and imposing splitting conditions.",
+      "gap": "Field towers and splitting primes do not supply the required affine sign representation. No arbitrary-sign or head-count statement is inferred."
     }
   ]
 }

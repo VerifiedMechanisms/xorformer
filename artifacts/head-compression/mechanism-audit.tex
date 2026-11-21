@@ -5833,4 +5833,82 @@ with the independent exact-fraction verifier and detects a deliberately
 flipped label. The large rational export also exposed and fixed Python's
 default decimal-integer JSON limit for locally generated certificates.
 
+\section{Number-field amplification and the cost of accessing conjugates}
+
+The number-field constructions in
+\url{https://arxiv.org/html/2605.28781v1}
+use a product $A=GP$ of a bounded logarithmic unit-lattice window and
+an additive window of algebraic integers. Lemma 4.1 bounds the sizes of
+$A$, $A+A$, and $AA$; Theorems 6.2 and 6.3 produce many solutions of
+unit equations. The construction in
+\url{https://arxiv.org/html/2605.20695v1}, Lemmas 2.1 and 2.2,
+uses elements of a CM field having modulus one in every embedding,
+together with a lattice window and an injective projection. Its
+Proposition 2.3 supplies suitable towers with bounded root discriminant
+and split primes, using the tower-cutting mechanism of
+\url{https://arxiv.org/html/1901.04354v1}.
+
+These are mechanisms for constructing many arithmetic relations.
+Neither result asserts arbitrary signs in all real embeddings, a
+matching for every sign orthant, or an affine Boolean encoder.
+In particular, complex modulus one is not a real sign condition.
+The following elementary calculation audits one proposed encoder.
+
+\begin{proposition}[Affine conjugate tables]
+Let $p_1,\ldots,p_n$ be distinct primes and
+$K=\mathbb Q(\sqrt{p_1},\ldots,\sqrt{p_n})$.
+Write uniquely
+\[
+ a=\sum_{S\subseteq[n]}c_S\sqrt{p_S},\qquad
+ c_S\in\mathbb Q,\qquad p_S=\prod_{i\in S}p_i.
+\]
+For $x\in\{0,1\}^n$, let $\sigma_x$ send
+$\sqrt{p_i}$ to $(-1)^{x_i}\sqrt{p_i}$.
+The real table $x\mapsto\sigma_x(a)$ is affine in the Boolean
+coordinates if and only if $c_S=0$ whenever $|S|\ge2$.
+\end{proposition}
+\begin{proof}
+Set $\chi_S(x)=(-1)^{\sum_{i\in S}x_i}$.
+The square-root basis gives
+\[
+ \sigma_x(a)=\sum_{S\subseteq[n]}c_S\sqrt{p_S}\chi_S(x).
+\]
+For any $S,T$, summing $\chi_S\chi_T=\chi_{S\mathbin\triangle T}$
+over the cube gives $2^n$ if $S=T$ and zero otherwise. In the
+latter case, pair each $x$ with the vertex obtained by flipping a
+coordinate in $S\mathbin\triangle T$. Thus the displayed coefficients
+are the unique coefficients in the character basis. An affine table
+$a_0+\sum_i a_i x_i$ equals
+\[
+ \left(a_0+\frac12\sum_i a_i\right)
+       -\frac12\sum_i a_i\chi_{\{i\}}(x),
+\]
+so it has no character of order at least two. Conversely, constants
+and the single-coordinate characters are affine, proving the claim.
+\end{proof}
+
+This proposition does not exclude arithmetic choices of head
+parameters. It excludes treating arbitrary conjugates as affine
+input values at no additional cost. For example, the conjugate table
+of $\sqrt{p_1p_2}$ has mixed difference
+$4\sqrt{p_1p_2}\ne0$ on the first coordinate square.
+
+\paragraph{Trace formulations do not remove the encoder.}
+For a totally real field $K$ of degree $d$, with embeddings
+$\tau_1,\ldots,\tau_d$, suppose
+$a(x)=a_0+\sum_i a_i x_i$ and $b(x)=b_0+\sum_i b_i x_i$ are
+$K$-valued affine forms and every $\tau_h(a(x))$ is positive.
+Then the field trace gives the exact identity
+\[
+ \operatorname{Tr}_{K/\mathbb Q}\!\left(\frac{b(x)}{a(x)}\right)
+ =\sum_{h=1}^d\frac{\tau_h(b_0)+\sum_i\tau_h(b_i)x_i}
+                       {\tau_h(a_0)+\sum_i\tau_h(a_i)x_i}.
+\]
+The right side is a $d$-fraction score only when each denominator also
+satisfies the stipulated common sign of its variable coefficients.
+This identity counts the embeddings as heads; it does not replace
+them with a single operation in the model. Unit equations or congruence
+conditions on $a_i,b_i$ do not prove the required sign inequalities.
+No universal head bound follows from the audited arithmetic results.
+
 \end{document}

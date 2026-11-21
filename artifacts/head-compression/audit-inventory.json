@@ -364,5 +364,10 @@
       "full_run_seconds": 50400,
       "scope": "Numerical trust-region refinement; no global extension theorem."
     }
+  },
+  "number_field_amplification_audit": {
+    "manual_section": "Number-field amplification and the cost of accessing conjugates",
+    "new_result": "In a multiquadratic field, the conjugate table of an element is affine on the Boolean cube exactly when its square-root expansion has support only in degrees zero and one.",
+    "scope": "Manual elementary proof, not Lean. Trace representations count every embedding and must separately satisfy the denominator slope restriction. No universal upper bound."
   }
 }
