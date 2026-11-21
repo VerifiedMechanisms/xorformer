@@ -836,5 +836,43 @@
     },
     "certificate": null,
     "failure_is_not_a_lower_bound": true
+  },
+  "extension_coupled_schur_n14_stopped": {
+    "status": "Stopped after iteration 113 to redirect compute to head recycling. No certificate.",
+    "last_event": {
+      "phase": "refit",
+      "iteration": 113,
+      "seconds": 12869.30297162896,
+      "loss": 0.1914891517279915,
+      "errors": 2106,
+      "minimum_margin": -1.9769817338245976,
+      "inner_gradient": 6.881301084504798e-14,
+      "minimum_eigenvalue": -0.0009023512633575263,
+      "reduced_gradient_norm": 0.00014697041960182438,
+      "inner_gram_regularizer": 1e-12,
+      "scale_floor": 0.006281734946444132,
+      "cheap_trial_evaluations": 40,
+      "accepted_direction": "newton-2.0",
+      "step": 1.0,
+      "trial_loss": 0.1914787607084053
+    },
+    "checkpoint": "/out/head-compression/extension-schur-n14/checkpoint.npz",
+    "failure_is_not_a_lower_bound": true
+  },
+  "head_recycling_formula_check": {
+    "deletion_formula_max_error": 8.881784197001252e-16,
+    "candidate_gradient_max_error": 5.568686137213952e-12,
+    "seed": 570005,
+    "n": 5,
+    "heads": 3,
+    "scope": "Direct projection and central-difference verification of formulas only; no universal progress claim.",
+    "small_path_check": {
+      "n": 6,
+      "heads": 2,
+      "seed": 570006,
+      "initial_loss": 0.4327942504455493,
+      "final_loss": 0.3154355302229318,
+      "scope": "Exercises deletion, candidate fitting, QR insertion, and complete refactorization. No sign certificate."
+    }
   }
 }

@@ -4227,4 +4227,77 @@ The proposition does not assert nonglobality of the local minimum and
 does not address a hypothesis requiring $H$ to be of order $2^n/n^2$.
 It closes only the unconditional one-head interior-minimum escape claim.
 
+\section{A quantified head-replacement step}
+
+This section gives a finite descent certificate, not a universal existence
+theorem. It permits a large change of one denominator and so differs from
+the preceding infinitesimal curvature searches.
+
+Let $F=QR$ be the full-column-rank feature matrix of a fixed list of
+denominators, including a constant column. Here $Q^{\top}Q=I_k$ and
+$R$ is invertible. Write $s=Q\theta$ and suppose $s$ minimizes
+\[
+ L(s)=\frac1{2N}\sum_x(1-y_xs_x)_+^2
+\]
+over $\operatorname{col}(F)$. A head corresponds to an index block
+$I$ of nonconstant columns. Let $E_I$ select these coefficient coordinates,
+and let the columns of $Z$ be an orthonormal basis of
+$\operatorname{col}(R^{-\top}E_I^{\top})$.
+
+\begin{proposition}[Deletion cost and residual gain]
+Deleting this head and refitting all remaining numerators gives a score
+$s_-$ satisfying
+\[
+ L(s_-)\le L(s)+d_I,\qquad
+ d_I=\frac{\|Z^{\top}\theta\|^2}{2N}.
+\]
+Let $g_x=y_x(1-y_x(s_-)_x)_+$. For a new admissible denominator,
+let $V$ be the span of its affine numerator features, and put
+$G=\|P_Vg\|^2/N$. Replacing the deleted head by this denominator and
+refitting numerators gives an attainable score $s_+$ with
+\[
+ L(s_+)\le L(s_-)-\frac G2
+          \le L(s)+d_I-\frac G2.
+\]
+In particular, $G>2d_I$ certifies strict improvement at unchanged head
+count.
+\end{proposition}
+\begin{proof}
+In $Q$ coordinates, deletion imposes
+$E_IR^{-1}\theta=0$. Its feasible subspace is exactly
+$\ker(Z^{\top})$. Thus the orthogonal projection of $s$ onto the
+remaining score space is $Q(I-ZZ^{\top})\theta$, at squared distance
+$\|Z^{\top}\theta\|^2$. The gradient of $L$ is $1/N$-Lipschitz,
+including at hinge boundaries. Optimality of $s$ makes that gradient
+orthogonal to $\operatorname{col}(F)$. The usual smoothness inequality
+therefore bounds the loss of the projected score by $L(s)+d_I$.
+Refitting cannot increase it.
+
+At $s_-$, the gradient is $-g/N$. Adding $v=P_Vg$ is permitted by
+the new head. Smoothness gives
+\[
+ L(s_-+v)\le L(s_-)-\frac{g^{\top}v}{N}
+                       +\frac{\|v\|^2}{2N}
+             =L(s_-)-\frac{\|P_Vg\|^2}{2N}.
+\]
+Refitting all numerators can only improve this value.
+\end{proof}
+
+For candidate search with $B=1+\sum_i e^{\ell_i}t_i$, use
+$F_{xi}=t_i(x)/B(x)$ and least-squares coefficients
+$a=\operatorname*{argmin}_a\|g-Fa\|^2$. With $v=Fa$ and
+$p_i(x)=e^{\ell_i}F_{xi}$, the envelope derivative is
+\[
+ \frac{\partial(-G)}{\partial\ell_i}
+   =\frac2N\sum_x(g_x-v_x)v_xp_i(x).
+\]
+The script \texttt{search\_head\_recycling.py} uses these candidate
+energies, but accepts a change only after rebuilding the complete
+factorization and measuring the actual squared-hinge decrease. The
+deletion formula and this derivative were compared independently with
+direct projection and central differences on a five-bit instance.
+No assertion that $G>2d_I$ must occur is made. Such an assertion at the
+target head count would require a new global argument; the local
+calculation alone supplies none.
+
 \end{document}
