@@ -4565,4 +4565,53 @@ in forty small trials agreed with the sorting minimizer. A six-bit,
 three-head diagnostic reduced loss from $0.3410816769$ to
 $0.2650651857$ but produced no strict sign certificate.
 
+
+\section{Incidence cost of independent scalar memories}
+
+Consider a proposed parameterized decoder with $H$ heads and scalar
+memories $t_1,\ldots,t_p$. Assume the following additional restrictions,
+which are not assumptions on the manuscript model:
+\begin{enumerate}
+\item The bias is fixed. Every affine numerator or denominator
+coefficient is either fixed or an affine function of one memory only.
+\item Memory $j$ is assigned $m_j\ge1$ input vertices. After all other
+memories are fixed at one allowed setting, varying $t_j$ through
+admissible values realizes all $2^{m_j}$ strict sign words on those
+vertices.
+\end{enumerate}
+Let $k_j$ be the number of heads having any coefficient depending on
+$t_j$. Then
+\[
+ 2^{m_j}\le m_jk_j+1,\qquad k_j\ge m_j,
+ \qquad \sum_jm_j\le2(n+1)H.
+\]
+Indeed, with the other memories fixed, the contribution of each of the
+$k_j$ affected heads at a fixed input is a ratio of affine functions of
+$t_j$; all other heads contribute a constant. Clearing the affected
+positive denominators gives a polynomial of degree at most $k_j$.
+The parameter values on which all denominators are positive form an
+interval, possibly empty or unbounded. The additional slope-sign
+requirements can remove points from that interval but cannot create
+new sign words. The $m_j$ numerator polynomials have altogether at
+most $m_jk_j$ distinct real roots, unless one is identically zero,
+in which case universal strict decoding is impossible. Thus at most
+$m_jk_j+1$ words occur. This proves the first inequality.
+
+For every integer $m\ge1$, $2^m-1>m(m-1)$: check $m=1,2,3$;
+from $m\ge3$ to $m+1$ the excess increases by $2^m-2m>0$.
+Consequently $k_j\le m_j-1$ contradicts the first inequality.
+Finally each head has $2(n+1)$ affine coefficients, so under the
+first restriction it depends on at most $2(n+1)$ different memories.
+Counting memory-head incidences gives
+$\sum_jk_j\le2(n+1)H$ and proves the last assertion.
+
+In particular this independent-memory architecture cannot decode all
+$2^n$ labels with $O(2^n/n^2)$ heads. This statement does not exclude
+arbitrary target-dependent denominators. Coefficients may couple several
+stored values, or a proposed representation may have no independent
+memory-block structure at all. Even the second restriction is stronger
+than the unrestricted assertion that each complete truth table has
+some parameter setting. No such independence is inferred from that
+assertion.
+
 \end{document}
