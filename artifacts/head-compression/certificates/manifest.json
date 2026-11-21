@@ -30,6 +30,21 @@
       "file": "random-n10-pruned-h49.json",
       "sha256": "521d733872cbb5e4dc57f514d1b003d8b96891a5991f152314ca53ad78b191a2",
       "scope": "All 1024 vertices of one ten-bit function. Started with the constructive downward-star cover and pruned from 239 to 49 heads. Independently verified; no universal bound."
+    },
+    {
+      "file": "parity-n2-literal-h2.json",
+      "sha256": "f9cfe0b2c790fffe0818273aaa4164edc6c8e0502d648583a7f437bb1eabff02",
+      "scope": "All 4 vertices of parity. Checks the extended literal chart only; does not improve the manuscript parity theorem."
+    },
+    {
+      "file": "parity-n3-literal-h3.json",
+      "sha256": "34836ca6fd22792570b47ee3103554c6057f7e56424093c8dde4f0e7b830bd9c",
+      "scope": "All 8 vertices of parity. Checks the extended literal chart only; does not improve the manuscript parity theorem."
+    },
+    {
+      "file": "parity-n4-literal-h4.json",
+      "sha256": "23fd66758bdb04fd40ef0e3a0585d7a65cf3ddf5823d5b164af123daa785f697",
+      "scope": "All 16 vertices of parity. Checks the extended literal chart only; does not improve the manuscript parity theorem."
     }
   ]
 }

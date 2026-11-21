@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Search for an exactly liftable dominant-term construction using SMT.
 
-Each affine coefficient is a signed integral power of a common integer base.
-Denominator coefficients are positive. An SMT model is lifted to an ordinary
+Numerator literal terms have signed integral-power coefficients. The optional
+literal chart permits exact cancellations when complements are expanded.
+Denominator coefficients in their oriented coordinates are positive powers. An SMT model is lifted to an ordinary
 admissible rational score and independently checked. UNSAT concerns this
 restricted dominance ansatz only, never all admissible head representations.
 Run through heavy.
@@ -32,7 +33,7 @@ def integer_pair(aa, bb):
 
 
 def run(n, h, seed, seconds, out, kind, bound, mixed_orientations=False,
-        parity_coordinate_symmetry=False):
+        parity_coordinate_symmetry=False, literal_numerators=False):
     rng = random.Random(seed)
     labels = [rng.choice([-1, 1]) for _ in range(1 << n)]
     if kind == "parity":
@@ -44,6 +45,8 @@ def run(n, h, seed, seconds, out, kind, bound, mixed_orientations=False,
     positive = [[z3.Bool(f"p_{j}_{i}") for i in range(n+1)] for j in range(h)]
     orientation = [z3.Bool(f"forward_{j}") if mixed_orientations else
                    z3.BoolVal(True) for j in range(h)]
+    literal = [[z3.Bool(f"literal_{j}_{i}") if literal_numerators else
+                orientation[j] for i in range(n)] for j in range(h)]
     bp, bm = z3.Reals("bias_positive bias_negative")
     parameters = [bp, bm]+sum(a, [])+sum(b, [])
     if bound:
@@ -66,10 +69,12 @@ def run(n, h, seed, seconds, out, kind, bound, mixed_orientations=False,
             # b[j][0] is zero, so -1 safely replaces an absent term here.
             d = maximum([z3.If(active[i], b[j][i], -1)
                          for i in range(n+1)])
+            numerator_active = [z3.BoolVal(True)]+[
+                literal[j][i] == z3.BoolVal(bool(x >> i & 1)) for i in range(n)]
             for i in range(n+1):
                 exponent = a[j][i]-d
-                plus.append(z3.If(z3.And(active[i], positive[j][i]), exponent, floor))
-                minus.append(z3.If(z3.And(active[i], z3.Not(positive[j][i])), exponent, floor))
+                plus.append(z3.If(z3.And(numerator_active[i], positive[j][i]), exponent, floor))
+                minus.append(z3.If(z3.And(numerator_active[i], z3.Not(positive[j][i])), exponent, floor))
         pp, mm = maximum(plus), maximum(minus)
         solver.add(pp >= mm+1 if label > 0 else mm >= pp+1)
     start = time.monotonic()
@@ -78,6 +83,7 @@ def run(n, h, seed, seconds, out, kind, bound, mixed_orientations=False,
               "seconds": time.monotonic()-start, "answer": str(answer),
               "exponent_bound": bound,
               "mixed_orientations": mixed_orientations,
+              "literal_numerators": literal_numerators,
               "parity_coordinate_symmetry": parity_coordinate_symmetry,
               "scope": "Restricted dominant-term ansatz on one finite truth table."}
     if answer == z3.unknown:
@@ -100,16 +106,19 @@ def run(n, h, seed, seconds, out, kind, bound, mixed_orientations=False,
             av, bv = [exponent(v) for v in a[j]], [exponent(v) for v in b[j]]
             signs = [1 if z3.is_true(model.eval(v, model_completion=True)) else -1
                      for v in positive[j]]
-            aa, bb = integer_pair([s*power(e) for s, e in zip(signs, av)],
-                                  [power(e) for e in bv])
+            terms = [s*power(e) for s, e in zip(signs, av)]
+            literals = [z3.is_true(model.eval(v, model_completion=True)) for v in literal[j]]
+            aa = [terms[0]+sum(terms[i+1] for i in range(n) if not literals[i])]
+            aa += [terms[i+1] if literals[i] else -terms[i+1] for i in range(n)]
+            bb = [power(e) for e in bv]
             forward = z3.is_true(model.eval(orientation[j], model_completion=True))
             if not forward:
-                # Convert from (1,1-x_1,...,1-x_n) to ordinary affine forms.
-                aa = [sum(aa)]+[-v for v in aa[1:]]
+                # Numerator literals were converted separately above.
                 bb = [sum(bb)]+[-v for v in bb[1:]]
+            aa, bb = integer_pair(aa, bb)
             heads.append({"numerator": aa, "denominator": bb})
             exponent_data.append({"a": av, "b": bv, "signs": signs,
-                                  "forward": forward})
+                                  "forward": forward, "literals": literals})
         bias = power(exponent(bp))-power(exponent(bm))
         cert = {"n": n, "labels": labels, "heads": heads,
                 "bias": [bias.numerator, bias.denominator],
@@ -136,8 +145,10 @@ if __name__ == "__main__":
     parser.add_argument("--exponent-bound", type=int, default=0)
     parser.add_argument("--mixed-orientations", action="store_true")
     parser.add_argument("--parity-coordinate-symmetry", action="store_true")
+    parser.add_argument("--literal-numerators", action="store_true",
+                        help="Allow each numerator term to use x_i or 1-x_i independently.")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     run(args.n, args.heads, args.seed, args.seconds, args.out,
         args.labels, args.exponent_bound, args.mixed_orientations,
-        args.parity_coordinate_symmetry)
+        args.parity_coordinate_symmetry, args.literal_numerators)

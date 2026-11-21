@@ -276,6 +276,54 @@
       "matvecs": 3009,
       "seconds": 197.39942587108817,
       "interpretation": "The residual norms exceed the reported Ritz values. These approximations establish neither semidefiniteness nor a local minimum."
+    },
+    "dense_joint_audit": {
+      "n": 14,
+      "heads": 251,
+      "loss": 0.2055752070773326,
+      "errors": 2326,
+      "minimum_distance_to_hinge_kink": 4.703719832832576e-05,
+      "normalized_gradient_norm": 0.0032819957954912968,
+      "scope": "Numerical diagnostic only; no local or global optimality certificate.",
+      "matrix_symmetry_error": 1.1102230246251565e-16,
+      "eigensolver": "dense symmetric eigensolver",
+      "last_residual_norms": [
+        6.500202886466903e-14,
+        1.4564046941147576e-13,
+        7.612891433071455e-14
+      ],
+      "newton_damping": 0.0006291901668480151,
+      "newton_directional_derivative": -0.007880951253277585,
+      "eigenvalues": [
+        -0.000628190166848015,
+        -0.00037233086000421404,
+        -0.00024943630404729127
+      ],
+      "best_trial_loss": 0.2055742107130965,
+      "matvecs": 3,
+      "seconds": 45.01038169499952,
+      "trials_count": 49,
+      "interpretation": "The dense calculation resolves negative coupled curvature, with residual norms below 1.5e-13. An actual floating-point step decreases the loss. This is neither a global descent theorem nor an exact sign certificate."
     }
+  },
+  "reduced_curvature_derivative_check": {
+    "n": 5,
+    "heads": 2,
+    "loss": 0.23679432835166808,
+    "kink_distance": 0.21307160626595856,
+    "inner_gradient": 4.367950445782753e-12,
+    "gradient_error": 5.1467909031877035e-09,
+    "hessian_error": 1.2354694123306587e-07,
+    "hessian_norm": 0.8885924205369369,
+    "regularizer": 1e-12
+  },
+  "literal_numerator_chart": {
+    "mechanism": "Each affine numerator component independently uses a bit or its complement; expansion allows exact cancellations in the constant coefficient. Denominator orientation remains uniform per head.",
+    "independent_finite_certificates": [
+      "certificates/parity-n2-literal-h2.json",
+      "certificates/parity-n3-literal-h3.json",
+      "certificates/parity-n4-literal-h4.json"
+    ],
+    "scope": "Restricted dominant-term ansatz only. Small parity cases do not improve known head bounds. No universal coverage theorem."
   }
 }

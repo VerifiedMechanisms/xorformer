@@ -3390,4 +3390,100 @@ proved. The radius-two local compiler obstruction recorded earlier
 also prevents replacing this missing global step by arbitrary local
 labels in a constant number of heads.
 
+\section{Literal numerators in the dominant-power chart}
+
+The denominator orientation need not determine the literals used to
+describe an affine numerator. This extends the restricted search chart
+without changing the attention model. Fix $T>1$, integer exponents
+$a_{hi},b_{hi}$ with $b_{h0}=0$, signs $s_{hi}\in\{-1,1\}$,
+and literals $\ell_{hi}(x)\in\{x_i,1-x_i\}$. Let
+\[
+ A_h(x)=s_{h0}T^{a_{h0}}+
+       \sum_{i=1}^n s_{hi}T^{a_{hi}}\ell_{hi}(x),\qquad
+ B_h(x)=1+\sum_{i=1}^n T^{b_{hi}}t_{hi}(x),
+\]
+where, for each head, either every $t_{hi}=x_i$ or every
+$t_{hi}=1-x_i$. These denominators are admissible. Expanding the
+numerator gives constant coefficient
+\[
+ s_{h0}T^{a_{h0}}+
+ \sum_{i:\ell_{hi}=1-x_i}s_{hi}T^{a_{hi}},
+\]
+and coefficient $s_{hi}T^{a_{hi}}$ or $-s_{hi}T^{a_{hi}}$ for
+$x_i$, respectively. Thus exact cancellation among constant terms
+is permitted in this chart.
+
+For a vertex $x$, set $d_h(x)$ to the largest exponent among the
+active denominator terms, including the constant term. A numerator
+term active at $x$ has effective exponent $a_{hi}-d_h(x)$. Include
+the two bias terms $T^{b_+}$ and $-T^{b_-}$ in the list of signed
+effective exponents.
+
+\begin{proposition}[A strict dominant-power certificate]
+Suppose that, at every vertex $x$, the largest effective exponent
+of a term with sign $f(x)$ exceeds every opposing effective
+exponent by at least one. Then the displayed heads and bias
+$T^{b_+}-T^{b_-}$ strictly sign-represent $f$, provided
+\[
+ T\ge 2(n+1)\bigl(H(n+1)+1\bigr).
+\]
+\end{proposition}
+\begin{proof}
+Put $K=H(n+1)+1$ and let $L$ be a winning exponent. Each
+denominator lies between $T^{d_h(x)}$ and
+$(n+1)T^{d_h(x)}$. Therefore one correctly signed term has
+magnitude at least $T^L/(n+1)$. Each opposing term has magnitude
+at most $T^{L-1}$, and there are at most $K$ such terms. Their
+total is at most $KT^{L-1}\le T^L/(2(n+1))$.
+All other correctly signed terms can be discarded from this lower
+bound. This proves a strictly positive signed margin. The same
+estimates include a winning bias term, whose denominator is one.
+\end{proof}
+
+The search uses rational exponents and clears their denominators
+by a common positive integer before choosing $T$. The exponent
+gap remains at least one. The resulting ordinary rational heads
+are checked independently after collecting literal coefficients.
+Small parity certificates with two, three, and four heads were
+checked on all vertices. These do not improve the manuscript's
+known parity theorem and have no asserted universal consequence.
+
+\section{Eliminating numerators from the exact squared-hinge Hessian}
+
+Let $L(u,v)$ be the squared-hinge objective in local numerator
+coordinates $u$ and log-denominator coordinates $v$. Suppose a
+point has no hinge boundary, $L_u=0$, and $L_{uu}$ is positive
+definite. In a neighbourhood of the point, the implicit function
+theorem supplies the optimizing branch $u=u(v)$, and
+\[
+ \nabla_v^2 L(u(v),v)=
+ L_{vv}-L_{vu}L_{uu}^{-1}L_{uv}.
+\]
+Indeed, differentiating $L_u(u(v),v)=0$ gives
+$u'(v)=-L_{uu}^{-1}L_{uv}$; differentiating
+$\nabla_v L(u(v),v)=L_v(u(v),v)$ proves the formula.
+The fixed-active-set squared hinge is convex in $u$, so its
+stationary numerator branch is locally minimizing. No assertion
+is made when this nondegeneracy or fixed-active-set assumption fails.
+
+The new finite diagnostic retains the residual-weighted mixed
+and denominator curvature terms before taking this Schur
+complement. Earlier projected Gauss--Newton searches omitted
+those terms. A five-variable, two-head finite-difference check
+away from hinge boundaries gave maximum gradient error below
+$5.2\cdot10^{-9}$ and maximum Hessian error below
+$1.3\cdot10^{-7}$. These are numerical checks, not formal
+certificates. The code explicitly records the small Gram
+regularizer used in numerical elimination.
+
+For the saved fourteen-variable, 251-head checkpoint, a dense
+joint Hessian calculation gave smallest eigenvalues approximately
+$-0.00062819$, $-0.00037233$, and $-0.00024944$, with numerical
+eigenpair residual norms below $1.5\cdot10^{-13}$. An evaluated
+step lowered the squared-hinge loss from approximately
+$0.2055752071$ to $0.2055742107$. This resolves the earlier
+inconclusive iterative eigenvalue diagnostic in this example.
+It does not show that every unsuccessful configuration has a
+descending direction or that a bounded-head search must succeed.
+
 \end{document}

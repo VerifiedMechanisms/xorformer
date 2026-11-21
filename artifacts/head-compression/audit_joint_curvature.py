@@ -14,6 +14,7 @@ import time
 for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ[key] = "1"
 import numpy as np
+from scipy.linalg import eigh, solve
 from scipy.sparse.linalg import LinearOperator, eigsh, lobpcg, ArpackNoConvergence
 from search_block_curvature import head_data, derivatives
 
@@ -83,8 +84,34 @@ def run(checkpoint, out, seconds, solver):
               "minimum_distance_to_hinge_kink": float(np.min(np.abs(1-y*score))),
               "normalized_gradient_norm": float(np.linalg.norm(gradient)),
               "scope": "Numerical diagnostic only; no local or global optimality certificate."}
+    newton = None
     try:
-        if solver == "lobpcg":
+        if solver == "dense":
+            # A dense factorization resolves the tiny eigenvalues that were
+            # not resolved by the earlier iterative experiments. This may
+            # use several GB and must be run through the heavy wrapper.
+            jac[~active] = 0
+            dense = np.asarray(jac.T@jac/len(y), order="F")
+            for j in range(h):
+                sl = slice(1+2*n*j, 1+2*n*(j+1))
+                dense[sl, sl] -= curvature[j]
+            result["matrix_symmetry_error"] = float(np.max(np.abs(dense-dense.T)))
+            dense = (dense+dense.T)/2
+            print(json.dumps({"stage": "dense matrix formed",
+                              "seconds": time.monotonic()-start}), flush=True)
+            eigenvalues, eigenvectors = eigh(dense, subset_by_index=[0, 2],
+                                             check_finite=False)
+            result["eigensolver"] = "dense symmetric eigensolver"
+            result["last_residual_norms"] = [
+                float(np.linalg.norm(multiply(eigenvectors[:, k])-
+                      eigenvalues[k]*eigenvectors[:, k])) for k in range(3)]
+            damping = max(1e-6, -float(eigenvalues[0])+1e-6)
+            dense.flat[::dimension+1] += damping
+            newton = solve(dense, -gradient, assume_a="sym", check_finite=False)
+            result["newton_damping"] = damping
+            result["newton_directional_derivative"] = float(gradient@newton)
+            del dense
+        elif solver == "lobpcg":
             initial = np.random.default_rng(460003).normal(size=(dimension, 3))
             eigenvalues, eigenvectors, history = lobpcg(
                 operator, initial, largest=False, tol=1e-7, maxiter=1000,
@@ -109,14 +136,21 @@ def run(checkpoint, out, seconds, solver):
         np.savez(out/"eigenvectors.npz", eigenvalues=eigenvalues,
                  eigenvectors=eigenvectors, normalizers=normalizers,
                  value_scales=value_scales)
-        for k in range(len(eigenvalues)):
-            if eigenvalues[k] >= 0:
-                continue
-            direction = normalizers*eigenvectors[:, k]
-            direction /= max(np.max(np.abs(direction[1:])), 1e-30)
+        directions = [(f"eigenvector-{k}", eigenvectors[:, k])
+                      for k in range(len(eigenvalues)) if eigenvalues[k] < 0]
+        if newton is not None:
+            directions.append(("damped-newton", newton))
+        for name, vector in directions:
+            direction = normalizers*vector
+            coordinate_norm = max(np.max(np.abs(direction[1:])), 1e-30)
+            direction /= coordinate_norm
             blocks = direction[1:].reshape(h, 2*n)
-            for sign in (-1, 1):
-                for magnitude in (1e-3, .01, .1, .5, 1.):
+            predicted = jac@vector/coordinate_norm
+            initial_step = min(1., .1/max(float(np.max(np.abs(predicted))), 1e-30))
+            magnitudes = sorted(set([initial_step*2.**(-j) for j in range(21)] +
+                                     [1e-5, 1e-4, 1e-3, .01, .1, .5, 1.]))
+            for sign in ((1,) if name == "damped-newton" else (-1, 1)):
+                for magnitude in magnitudes:
                     alpha = sign*magnitude
                     trial_values = values+alpha*value_scales[:, None]*blocks[:, :n]
                     trial_logs = np.clip(logs+alpha*blocks[:, n:], -35, 35)
@@ -126,7 +160,7 @@ def run(checkpoint, out, seconds, solver):
                         for j in range(h))
                     trial_r = np.maximum(1-y*trial_score, 0)
                     trial_loss = float(trial_r@trial_r/(2*len(y)))
-                    trial = {"eigenvector": k, "alpha": alpha, "loss": trial_loss,
+                    trial = {"direction": name, "alpha": alpha, "loss": trial_loss,
                              "errors": int((y*trial_score <= 0).sum())}
                     trials.append(trial)
                     if trial_loss < loss and (best is None or trial_loss < best[0]):
@@ -149,7 +183,7 @@ if __name__ == "__main__":
     parser.add_argument("checkpoint", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--seconds", type=float, default=3600)
-    parser.add_argument("--solver", choices=["arpack", "lobpcg"], default="lobpcg")
+    parser.add_argument("--solver", choices=["arpack", "lobpcg", "dense"], default="lobpcg")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     run(args.checkpoint, args.out, args.seconds, args.solver)
