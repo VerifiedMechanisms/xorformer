@@ -507,6 +507,22 @@
       "checked_location": "Theorem 1.1, Corollary 1.2, and Section 2 proofs; version 2 dated 4 March 2026",
       "mechanism": "Choose a least-covered vertex, partition coordinate supports of incident hyperplanes, and retain same-sign support pieces. The resulting subcube reduces the problem to the Alon-Furedi covering lower bound.",
       "gap": "The conclusion is a lower bound for nondegenerate covers, with a bounded-coefficient edge-slicing application. It is neither an exact cover of every prescribed subset at the target order nor a construction using admissible fractions."
+    },
+    {
+      "title": "Bruhat intervals that are large hypercubes",
+      "authors": "Jordan Ellenberg, Nicolas Libedinsky, David Plaza, Jose Simental, Geordie Williamson",
+      "url": "https://arxiv.org/html/2601.01235v1",
+      "checked_location": "Theorem 1.1 and Section 2.1 definitions of dyadically well-distributed permutations",
+      "mechanism": "Dyadically well-distributed permutations in S_(2^m) form a Bruhat interval isomorphic as a poset to a Boolean cube of dimension m*2^(m-1).",
+      "gap": "A poset cube is not an affine cube of real permutation vectors. The audit's power-sum invariant bounds the dimension of the latter by H-1 in H coordinates. No affine denominator encoder or numerator readout for arbitrary signs is supplied."
+    },
+    {
+      "title": "More on additive triples of bijections",
+      "authors": "Sean Eberhard",
+      "url": "https://arxiv.org/html/1704.02407v1",
+      "checked_location": "Theorems 1.3 and 1.4; Section 2 Fourier decomposition",
+      "mechanism": "An arbitrary function into a finite abelian group satisfying the necessary total-sum constraint has asymptotically many decompositions as a sum of three bijections, with an explicit positive singular-series factor. Four summands give asymptotic uniformity.",
+      "gap": "Addition is in the finite group. In characteristic two it is bitwise XOR, which is not a linear readout of decoded signs. The theorem also does not encode arbitrary permutations by affine functions of binary inputs. Both the decoder and a flat admissible composition remain missing."
     }
   ]
 }

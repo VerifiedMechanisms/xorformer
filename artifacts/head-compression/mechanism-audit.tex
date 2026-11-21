@@ -3202,10 +3202,12 @@ This single example is not a universal bound.
 
 The following operation supplies a rigorous dimension-padding step for a
 positive-slope construction. It supplies no compressed construction in the
-initial dimensions, and it is not asserted for mixed denominator orientations.
+initial dimensions. The construction below requires strictly positive
+slopes on the lower face; its corollary allows mixed orientations on
+the upper face.
 
 \begin{proposition}[Positive-slope face gluing]
-Let $f_0,f_1:\{0,1\}^m\to\{-1,1\}$. For $i\in\{0,1\}$ suppose
+Let $m\geq1$ and $f_0,f_1:\{0,1\}^m\to\{-1,1\}$. For $i\in\{0,1\}$ suppose
 that $f_i$ has a strict sign score with $H_i\geq1$ heads whose
 denominators have strictly positive variable coefficients. Then the
 function $f(x,y)=f_y(x)$ has such a score with $H_0+H_1$ heads in
@@ -4274,7 +4276,8 @@ $s_-$ satisfying
  d_I=\frac{\|Z^{\top}\theta\|^2}{2N}.
 \]
 Let $g_x=y_x(1-y_x(s_-)_x)_+$. For a new admissible denominator,
-let $V$ be the span of its affine numerator features, and put
+let $V$ be any linear subspace of the span of its affine numerator
+features, and put
 $G=\|P_Vg\|^2/N$. Replacing the deleted head by this denominator and
 refitting numerators gives an attainable score $s_+$ with
 \[
@@ -4311,8 +4314,11 @@ $a=\operatorname*{argmin}_a\|g-Fa\|^2$. With $v=Fa$ and
 $p_i(x)=e^{\ell_i}F_{xi}$, the envelope derivative is
 \[
  \frac{\partial(-G)}{\partial\ell_i}
-   =\frac2N\sum_x(g_x-v_x)v_xp_i(x).
+ =\frac2N\sum_x(g_x-v_x)v_xp_i(x).
 \]
+Here the unprojected search uses $V=\operatorname{col}(F)$, which may
+be smaller than the full affine numerator span. Its projection energy
+still gives the permitted gain bound above.
 The script \texttt{search\_head\_recycling.py} uses these candidate
 energies, but accepts a change only after rebuilding the complete
 factorization and measuring the actual squared-hinge decrease. The
