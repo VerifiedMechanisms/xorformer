@@ -25,6 +25,11 @@
       "file": "random-n8-logarithmic-h16.json",
       "sha256": "92dd28fccf37b4449493a182f45d3962d56a416f48074eac43f9a46de77b1848",
       "scope": "All 256 vertices of one eight-bit function. Found using logarithmic evaluation of the unchanged affine-ratio score; independently verified."
+    },
+    {
+      "file": "random-n10-pruned-h49.json",
+      "sha256": "521d733872cbb5e4dc57f514d1b003d8b96891a5991f152314ca53ad78b191a2",
+      "scope": "All 1024 vertices of one ten-bit function. Started with the constructive downward-star cover and pruned from 239 to 49 heads. Independently verified; no universal bound."
     }
   ]
 }

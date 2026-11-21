@@ -198,5 +198,60 @@
       "scope": "This finite truth table only; not a universal bound."
     },
     "scope": "New evaluation coordinates, no new operations in the mathematical model. No convergence or universal head bound is proved."
+  },
+  "constructive_pruning": {
+    "script": "search_constructive_pruning.py",
+    "result": {
+      "n": 10,
+      "seed": 440000,
+      "target": 41,
+      "initial_heads": 239,
+      "best_certified_heads": 49,
+      "seconds": 2697.777702498948,
+      "scope": "Finite instance only; failure is not a lower bound.",
+      "recorded_trial_count": 40
+    },
+    "independent_result": {
+      "file": "/out/head-compression/pruning-n10-h49-snapshot.json",
+      "sha256": "521d733872cbb5e4dc57f514d1b003d8b96891a5991f152314ca53ad78b191a2",
+      "n": 10,
+      "heads": 49,
+      "vertices_checked": 1024,
+      "strict_signs_and_admissibility": true,
+      "margin_approximation": 0.046843452848273306,
+      "scope": "This finite truth table only; not a universal bound."
+    },
+    "certificate": "certificates/random-n10-pruned-h49.json",
+    "scope": "One finite truth table; no universal pruning theorem.",
+    "log": "/out/head-compression/extension-pruning-n10.log"
+  },
+  "joint_curvature": {
+    "block_script": "search_block_curvature.py",
+    "joint_script": "audit_joint_curvature.py",
+    "derivative_check": {
+      "gradient_max_error": 4.2917986872725855e-12,
+      "hessian_max_error": 1.2174983243795623e-12,
+      "minimum_distance_to_hinge_kink": 0.6296109875812683
+    },
+    "single_head_spectrum": {
+      "file": "/out/head-compression/block-curvature-spectrum.json",
+      "heads_checked": 251,
+      "negative_relative_eigenvalue_below_1e_5": 0
+    },
+    "first_joint_audit": {
+      "n": 14,
+      "heads": 251,
+      "loss": 0.2055752070773326,
+      "errors": 2326,
+      "minimum_distance_to_hinge_kink": 4.703719832832576e-05,
+      "normalized_gradient_norm": 0.0032819957954912968,
+      "scope": "Numerical diagnostic only; no local or global optimality certificate.",
+      "eigensolver": "partial convergence",
+      "eigenvalues": [],
+      "trials": [],
+      "matvecs": 6700,
+      "seconds": 430.8958995100111
+    },
+    "scope": "Numerical diagnostics only. No local-optimum certificate or universal progress theorem."
   }
 }

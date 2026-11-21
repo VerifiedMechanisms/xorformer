@@ -3212,4 +3212,64 @@ is unproved; it is not an affirmative result for the requested target.
 The positive-slope hypothesis matters: adding $My$ to a negative-slope
 denominator would violate the normal form's common-sign restriction.
 
+\section{Joint curvature in normalized head coordinates}
+
+The following derivative calculation underlies a finite search experiment.
+It does not assert the absence of spurious minima. For one head let
+$t_i=x_i$ for every $i$, or $t_i=1-x_i$ for every $i$, according to
+its fixed denominator orientation. Write
+\[
+ b_i=e^{\ell_i},\qquad
+ p_i(x)=\frac{b_it_i(x)}{1+\sum_jb_jt_j(x)},\qquad
+ q(x)=\sum_i v_i p_i(x).
+\]
+This is the same affine-ratio model: the numerator coefficients are
+$a_i=b_iv_i$. A constant numerator can be absorbed into the global
+bias and the remaining numerator coefficients. Direct differentiation
+gives
+\[
+ \frac{\partial q}{\partial v_i}=p_i,\qquad
+ \frac{\partial q}{\partial\ell_i}=p_i(v_i-q),
+\]
+\[
+ \frac{\partial^2q}{\partial v_i\partial\ell_j}
+ =p_i(\delta_{ij}-p_j),\qquad
+ \frac{\partial^2q}{\partial\ell_i\partial\ell_j}
+ =\delta_{ij}p_i(v_i-q)-p_ip_j(v_i+v_j-2q),
+ \qquad \frac{\partial^2q}{\partial v_i\partial v_j}=0.
+\]
+For example, the first mixed identity follows from
+$\partial p_i/\partial\ell_j=p_i(\delta_{ij}-p_j)$.
+Differentiating $p_i(v_i-q)$ gives the second identity.
+
+For the full score $S$ on a finite set $E$, put
+\[
+ \mathcal L=\frac1{2|E|}\sum_{x\in E}(1-f(x)S(x))_+^2,
+ \quad r_x=(1-f(x)S(x))_+,
+ \quad w_x=f(x)r_x.
+\]
+At a point where no margin equals one, let $J$ be the score Jacobian
+and let $D$ be the diagonal matrix with entries
+$\mathbf1_{\{r_x>0\}}$. Then
+\[
+ \nabla\mathcal L=-\frac1{|E|}J^{\mathsf T}w,
+ \qquad
+ \nabla^2\mathcal L=\frac1{|E|}
+ \left(J^{\mathsf T}DJ-\sum_xw_x\nabla^2S(x)\right).
+\]
+The second summand is block diagonal across heads, but the first is
+not. Thus checking each single-head Hessian separately does not test
+joint curvature. At a hinge boundary the displayed ordinary Hessian
+need not exist; the experimental line search evaluates the loss itself.
+
+The finite-difference audit of \texttt{search\_block\_curvature.py}
+found maximum gradient and Hessian discrepancies below
+$4.3\cdot10^{-12}$ and $1.3\cdot10^{-12}$, respectively, at a
+specified four-bit test point away from the hinge boundary.
+\texttt{audit\_joint\_curvature.py} also includes the cross-head
+Jacobian terms. Eigensolver convergence, apparent semidefiniteness,
+and floating-point descent are numerical diagnostics only. Strict
+classification, if reached, still requires the independent rational
+certificate checker.
+
 \end{document}
