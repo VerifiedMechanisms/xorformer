@@ -2,6 +2,7 @@
 \usepackage{amsmath,amssymb,amsthm,hyperref}
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
 \newcommand{\Qn}{\{0,1\}^n}
 \begin{document}
 \title{Audit of Mechanisms for Universal Head Compression}
@@ -2184,5 +2185,133 @@ not just a bipartite subgraph. It applies to the specified sign-orbit
 family. It is not a theorem about general deterministic dictionaries,
 and gives no lower bound for the full head model. The independent
 binary-address and full-cube compilation problems remain.
+
+\section{Random spherical dictionaries also lose a constant matching fraction}
+
+The preceding sign-orbit argument does not cover independent random vectors.
+Here is a separate obstruction that allows arbitrary amplitudes and does cover
+the Gaussian dictionaries used in the span-matching experiment.
+
+\begin{proposition}
+Fix $c>0$. Let $k\geq3$, $M\leq e^{ck}$, and let
+$v_1,\ldots,v_M$ be independent uniform unit vectors in $\mathbb R^k$.
+Join two indices when their real span meets the positive orthant, and
+write $\nu$ for the matching number. Then
+\[
+ \lim_{k\to\infty}\frac{\mathbb E\nu}{M}=0.
+\]
+The assertion is unchanged if the vectors are independent standard
+Gaussians, since nonzero rescaling does not change a two-vector span.
+\end{proposition}
+\begin{proof}
+All constants in this proof depend only on $c$. Set
+\[
+ L=4\sqrt{c+2},\quad a=\frac{e^{-8(c+2)}}{16L},\quad
+ \varepsilon=e^{-16(c+2)},\quad
+ \eta=\sqrt{\varepsilon/2},\quad \delta=a\eta/2.
+\]
+We first exclude two exceptional events involving pairs of vectors.
+
+For two independent uniform unit vectors $v,w$, the inner product
+has density $C_k(1-t^2)^{(k-3)/2}$ on $(-1,1)$, with $C_k\leq\sqrt{k}$.
+For completeness, the normalizing integral is at least $1/\sqrt{k}$:
+on $|t|\leq1/\sqrt{k}$ its integrand is at least $1/2$.
+For $k=3,4$ this is immediate; for $k\geq5$ Bernoulli's inequality
+gives $(1-1/k)^{(k-3)/2}\geq1-(k-3)/(2k)>1/2$.
+It follows that
+\[
+ \Pr(|v\cdot w|>1-\varepsilon)
+ \leq\sqrt{k}(2\varepsilon)^{(k-1)/2}.
+\]
+Outside an event of probability at most
+$M^2\sqrt{k}(2\varepsilon)^{(k-1)/2}$, every pair therefore satisfies
+\[
+ \|\alpha v+\beta w\|_2
+ \geq\eta(|\alpha|+|\beta|)
+ \qquad(\alpha,\beta\in\mathbb R).
+\]
+Indeed its squared norm is at least
+$\varepsilon(\alpha^2+\beta^2)$, which is at least
+$\varepsilon(|\alpha|+|\beta|)^2/2$.
+
+Next, a uniformly random two-dimensional subspace $E$ obeys
+\[
+ \Pr\bigl(\exists z\in E:\|z\|_1<a\sqrt{k}\|z\|_2\bigr)
+ \leq \frac{14}{a}
+ \left[2^{k/2}e^{-L^2k/4}+(4aL)^k\right].
+\]
+To prove this estimate, take an $a/2$-net of the unit circle in $E$
+with at most $14/a$ points, constructed from a uniform orthonormal
+frame. Each net point is uniformly distributed on the ambient sphere.
+The map $z\mapsto\|z\|_1$ is $\sqrt{k}$-Lipschitz for Euclidean
+distance. A unit vector violating the claimed lower bound therefore
+gives a net point $U$ with $\|U\|_1<3a\sqrt{k}/2$.
+Write $U=G/\|G\|_2$ for a standard Gaussian vector $G$.
+The probability of the latter event is at most
+\[
+ \Pr(\|G\|_2>L\sqrt{k})+
+ \Pr\left(\sum_i|G_i|<3aLk/2\right).
+\]
+Exponential Markov with parameter $1/4$ bounds the first term by
+$2^{k/2}e^{-L^2k/4}$. For $s>0$,
+$\mathbb E e^{-s|G_i|}\leq\sqrt{2/\pi}/s$.
+Taking $s=1/(3aL/2)$ bounds the second term by
+$(e\sqrt{2/\pi}\,3aL/2)^k\leq(4aL)^k$.
+The union bound over the net proves the estimate.
+
+The plane spanned by each independent pair is uniformly distributed;
+linear dependence has probability zero. A union bound over all pairs
+shows that, outside an event of probability at most
+\[
+ \frac{28}{a}e^{-(2c+7)k},
+\]
+every pair span satisfies $\|z\|_1\geq a\sqrt{k}\|z\|_2$.
+Here we used $M^2\leq e^{2ck}$ and
+$2^{k/2}e^{-L^2k/4}\leq e^{-(4c+7)k}$,
+$(4aL)^k\leq e^{-8(c+2)k}$.
+
+Call a vertex exceptional when
+$|\sum_i v_i|>\delta\sqrt{k}$. Rotational invariance and
+$U=G/\|G\|_2$ give the bound
+\[
+ p:=\Pr(\text{a vertex is exceptional})
+ \leq e^{-k/12}+2e^{-\delta^2k/4}.
+\]
+In detail, $\sum_i U_i/\sqrt{k}$ has the distribution of $U_1$.
+If $\|G\|_2\geq\sqrt{k/2}$, the event $|U_1|>\delta$ forces
+$|G_1|>\delta\sqrt{k/2}$, whose probability is at most
+$2e^{-\delta^2k/4}$. Exponential Markov with parameter $1/2$
+gives
+$\Pr(\|G\|_2^2<k/2)\leq e^{k/4}2^{-k/2}\leq e^{-k/12}$.
+
+On the good event for pairs, suppose both $v,w$ are nonexceptional
+and $z=\alpha v+\beta w$ has all coordinates positive. Then
+\[
+ a\eta\sqrt{k}(|\alpha|+|\beta|)
+ \leq\|z\|_1=\sum_i z_i
+ \leq\delta\sqrt{k}(|\alpha|+|\beta|),
+\]
+a contradiction since $\delta=a\eta/2$ and $z\ne0$.
+Thus every edge meets the exceptional vertices. If their number is
+$V$, disjointness implies $\nu\leq V$. Consequently
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq e^{-k/12}+2e^{-\delta^2k/4}
+ +e^{2ck}\sqrt{k}(2\varepsilon)^{(k-1)/2}
+ +\frac{28}{a}e^{-(2c+7)k}.
+\]
+All four terms tend to zero. In particular,
+$2c+\tfrac12\log(2\varepsilon)<0$ by the definition of
+$\varepsilon$.
+\end{proof}
+
+\paragraph{Scope and finite experiments.}
+This is an asymptotic statement about an independent random dictionary,
+not a bound for all deterministic dictionaries. The explicit constants
+are deliberately conservative. The observed finite matchings and the
+failure of their constant-density extrapolation are compatible. The
+experiment rounds Gaussian coordinates to integers, so its exact
+certificates are statements about those rounded dictionaries only;
+the proposition is not silently asserted for fixed-precision rounding.
 
 \end{document}
