@@ -58,11 +58,17 @@
       "file": "formalization/HeadComplexity/Results/OrthantSignEnergy.lean",
       "main_declaration": "HeadComplexity.orthant_exception_second_moment",
       "scope": "Exact orthant sign orthogonality and second moments bound the fraction of exceptional orthants for a fixed vector."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/RegularizedParityHinge.lean",
+      "main_declaration": "HeadComplexity.regularized_squareParityHinge_ge_thirteen_quarters",
+      "companion_declaration": "HeadComplexity.regularized_squareParityHinge_attained",
+      "scope": "An explicit denominator-only quadratic penalty gives an attained positive two-bit parity hinge minimum of 13/4 at admissible positive slopes. The minimizer has hinge kinks; regularization alone does not repair the smooth-minimum argument."
     }
   ],
   "validation": {
-    "build": "lake build HeadComplexity.Results.All succeeded after all eleven modules were imported.",
-    "build_log": "/out/head-compression/lean-all-orthant-energy-build.log",
+    "build": "lake build HeadComplexity.Results.All succeeded after all twelve new modules were imported.",
+    "build_log": "/out/head-compression/lean-all-regularized-parity-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples."
@@ -78,7 +84,7 @@
   "blocked_routes": [
     {
       "route": "Curvature and optimization",
-      "gap": "Paired-head perturbations do not preserve pairing. Smooth hinge arguments do not cover kink minima or nonattainment. The unpenalized fixed-denominator refit succeeds on one saved example and fails on others."
+      "gap": "Paired-head perturbations do not preserve pairing. Smooth hinge arguments do not cover kink minima or nonattainment. A denominator-only regularizer can ensure an attained positive minimum at hinge kinks, as formalized in RegularizedParityHinge. The unpenalized fixed-denominator refit succeeds on one saved example and fails on others."
     },
     {
       "route": "Cauchy codebooks and binary addresses",

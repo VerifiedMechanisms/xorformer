@@ -1098,6 +1098,42 @@ nonattainment, including constant and negative-slope admissible
 denominators.
 \end{proof}
 
+\begin{proposition}[A denominator penalty does not remove hinge kinks]
+For two-bit parity with positive labels at $00,11$, write
+$S=A/B$ with $A$ affine and $B=1+px_1+qx_2$, where $p,q>0$.
+Let $L$ be the unnormalized hinge loss. Then
+\[
+ \min_{A,\ p,q>0}\left(L+\frac{p^2+q^2}{2}\right)=\frac{13}{4}.
+\]
+The minimum is attained at $p=q=1/2$ and
+$A=1-(5/2)(x_1+x_2)$. Three margins equal one and the fourth
+equals minus two. In particular, an attained interior denominator
+minimum need not be a smooth hinge minimum or have zero hinge loss.
+\end{proposition}
+\begin{proof}
+Put $s=p+q$. The preceding fixed-denominator formula gives
+\[
+ \min_A L=2+\frac{2}{1+s}.
+\]
+Direct factorization yields
+\[
+ 2+\frac{2}{1+p+q}+\frac{p^2+q^2}{2}-\frac{13}{4}
+ =\frac{(p+q-1)^2(p+q+3)+(p-q)^2(1+p+q)}{4(1+p+q)}
+ \geq0.
+\]
+Equality requires $p=q=1/2$, and the displayed numerator attains
+the fixed-denominator loss there. The four margins are
+$(1,1,1,-2)$, giving hinge loss three and penalty one quarter.
+\end{proof}
+
+For a twice differentiable penalty depending only on denominators,
+the smooth-minimum mixed-derivative calculation above remains valid:
+under $A_h\mapsto A_h+sU$ and $B_h\mapsto B_h+tV$, both
+$\partial_s^2 R$ and $\partial_s\partial_t R$ vanish. The new
+example shows why preserving that calculation and ensuring attainment
+do not supply its missing no-kink hypothesis. No conclusion about the
+full asymptotic head bound follows from this two-bit counterexample.
+
 \section{A positive-denominator permutation decoder}
 
 The following construction supplies an explicit selection mechanism, but
