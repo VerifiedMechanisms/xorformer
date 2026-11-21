@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -76,11 +76,19 @@
         "HeadComplexity.polynomial_sign_sequence_degree_bound",
         "HeadComplexity.scalar_decoder_distinct_sign_words_bound"
       ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ConditionalFractionCompletion.lean",
+      "main_declaration": "HeadComplexity.strictFractionCompletion_iff_positiveSlack",
+      "scope": "For a fixed residual and one denominator orientation, strict one-head completion is equivalent to normalized linear feasibility with positive common slack. A nonnegative moment witness certifies noncompletion of that residual. Neither result proves universal feasibility or progress.",
+      "companion_declarations": [
+        "HeadComplexity.not_strictFractionCompletion_of_moment_witness"
+      ]
     }
   ],
   "validation": {
-    "build": "lake build HeadComplexity.Results.ScalarDecoderRootBound HeadComplexity.Results.All succeeded after all thirteen new modules were imported.",
-    "build_log": "/out/head-compression/lean-scalar-root-build.log",
+    "build": "lake build HeadComplexity.Results.ConditionalFractionCompletion HeadComplexity.Results.All succeeded; fourteen new audit modules are imported.",
+    "build_log": "/out/head-compression/lean-conditional-all-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",

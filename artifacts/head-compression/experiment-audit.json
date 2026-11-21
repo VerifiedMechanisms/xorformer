@@ -347,5 +347,16 @@
     "loss_evaluation_error": 1.6653345369377348e-16,
     "kink_distance": 0.116236003819147,
     "inner_gradient": 5.820066650841227e-13
+  },
+  "conditional_maxmin_completion_n13": {
+    "n": 13,
+    "heads": 146,
+    "sweeps": 12,
+    "seconds": 3600.1562947359635,
+    "epsilon": 1e-14,
+    "minimum_margin": -1.5906902247224934,
+    "errors": 1015,
+    "certificate": null,
+    "scope": "Restricted finite search. No global optimality or universal bound."
   }
 }
