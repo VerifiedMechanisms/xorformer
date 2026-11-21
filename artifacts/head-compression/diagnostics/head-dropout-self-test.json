@@ -1,0 +1,39 @@
+{
+  "fixed_offset_gradient_error": 3.20700375977534e-11,
+  "inner_loss_discrepancy": 8.881784197001252e-16,
+  "refitted_offset_gradient_error": 5.220210375078693e-11,
+  "nonzero_frozen_head_run": {
+    "seconds": 0.030496848048642278,
+    "frozen_scale": 0.0,
+    "reduced_head_certificate": true,
+    "scope": "One finite truth table. Positive frozen scale does not reduce the head count.",
+    "target_proved": false
+  },
+  "independent_integer_audit": {
+    "input_file": "/out/head-compression/dropout-self-test/nonzero-run/stage-0001/certificate.json",
+    "input_sha256": "66bc2098517578e253f911757b3812278e21ea7284d87fc1ca9661f72c47e324",
+    "n": 5,
+    "heads": 3,
+    "vertices_checked": 32,
+    "precision_bits": 224,
+    "whole_cube_denominator_admissibility": true,
+    "positive_margins_certified": 32,
+    "negative_margins_certified": 0,
+    "unseparated_margins": 0,
+    "negative_vertices": [],
+    "unseparated_vertices": [],
+    "minimum_margin_interval_numerators": [
+      26959946666099416749476631018239607248187423129069732011912085075330,
+      26959946666099416749476631018239607248187423129069732011912085075334
+    ],
+    "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+    "minimum_margin_approximation": 0.999999999961008,
+    "all_target_signs_certified": true,
+    "seconds": 0.00016565900295972824,
+    "scope": "This supplied rational score and truth table only. No universal bound.",
+    "failure_is_not_a_lower_bound": true
+  },
+  "independent_fraction_check": "passed all 32 vertices and denominator conditions",
+  "certificate_sha256": "66bc2098517578e253f911757b3812278e21ea7284d87fc1ca9661f72c47e324",
+  "scope": "Derivative and pipeline checks on constructed small instances, including a redundant nonzero frozen head. No universal or generic deletion theorem."
+}

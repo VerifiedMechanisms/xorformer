@@ -402,6 +402,23 @@
       "full_run": "/out/head-compression/protected-barrier-box-n14-h336",
       "full_run_seconds": 50400,
       "scope": "Numerical trust-region refinement; no global extension theorem."
+    },
+    "boxed_run_termination": {
+      "seconds": 6770.5781211059075,
+      "protected_vertices": 16236,
+      "best_metric": [
+        148,
+        1238.9408738538623
+      ],
+      "certificate": null,
+      "reason": "Stopped after a separate full certificate was found; resources redirected to head-count reduction."
+    },
+    "numerator_sweep_termination": {
+      "seconds": 3158.481528240023,
+      "initial_protected": 16236,
+      "final_protected": 16240,
+      "certificate": null,
+      "reason": "Stopped after a separate full certificate was found; this fixed-denominator diagnostic is not an infeasibility theorem."
     }
   },
   "number_field_amplification_audit": {
@@ -462,6 +479,15 @@
     "diagnostic": "diagnostics/shared-affine-prune-self-test.json",
     "large_run": "/out/head-compression/shared-affine-prune-n14",
     "mechanism": "Rank candidate deletions by lost score-space projection, refit all remaining numerators, then optionally optimize surviving denominators. Every accepted deletion requires an exact full-cube audit.",
+    "target_proved": false
+  },
+  "head_dropout_continuation": {
+    "script": "artifacts/head-compression/continue_head_dropout.py",
+    "diagnostic": "diagnostics/head-dropout-self-test.json",
+    "large_run": "/out/head-compression/head-dropout-n14-h335",
+    "initial_certificate": "certificates/random-n14-shared-affine-h336.json",
+    "unit": 270,
+    "mechanism": "Fade a fixed head through a scalar offset while refitting the remaining numerators and denominators. The inner optimization uses score increments in QR coordinates. Every accepted stage is exactly audited. A positive frozen scale still counts the frozen head.",
     "target_proved": false
   }
 }

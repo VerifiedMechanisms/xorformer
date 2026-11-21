@@ -6241,4 +6241,38 @@ mixture and gives no component reduction either. Thus the number two
 in this result does not furnish a constant-size head construction.
 A count on the atoms inside the mixtures remains necessary.
 
+
+\section{Head dropout with an explicitly charged frozen term}
+
+A separate numerical continuation starts from a strict certified score
+$S=C+\sum_{h=1}^M A_hr_h$ in the shared-affine chart. After selecting
+one unit $j$, hold $D=A_jr_j$ fixed and search for
+\[
+ S_\lambda=C_\lambda+\sum_{h\ne j}A_{h,\lambda}r_{h,\lambda}
+                  +\lambda D,\qquad 0\le\lambda\le1.
+\]
+The frozen term remains a head whenever $\lambda>0$. Therefore an
+accepted intermediate stage alone supplies no head reduction.
+Only an exactly audited stage at $\lambda=0$ does so.
+
+For fixed surviving denominators write their feature matrix as $QR$,
+where $Q$ has orthonormal columns. If $c$ is the current coefficient
+vector, the inner problem fits an increment $z$:
+\[
+ \min_z\ \frac12\sum_x
+ \left(1-y_x\bigl(\lambda D(x)+(QRc)(x)+(Qz)(x)\bigr)\right)_+^2.
+\]
+The updated coefficient is $c+R^{-1}z$. This is a change of numerical
+coordinates, not an additional operation allowed to the attention model.
+The actual rational score is recomputed after fitting, and each accepted
+stage is checked separately by integer interval arithmetic.
+
+The offset derivative and the refitted envelope derivative have
+five-bit finite-difference discrepancies below $5.3\cdot10^{-11}$ in
+the diagnostic. A constructed example with a redundant nonzero frozen
+unit reaches $\lambda=0$; both the independent Fraction checker and the
+integer checker verify its three-head, 32-vertex score. Redundancy was
+part of that diagnostic construction. No theorem that an arbitrary
+strict representation can shed a head is asserted.
+
 \end{document}
