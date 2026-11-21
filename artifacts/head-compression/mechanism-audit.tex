@@ -1952,7 +1952,7 @@ numerators and one denominator orientation. It is not a head lower
 bound in the manuscript model. In particular, general affine
 numerators destroy the antitone-head property, and cancellations
 between equal leading powers are excluded from this argument.
-The ongoing mixed-orientation affine-numerator search is not
+The mixed-orientation affine-numerator search is not
 covered by this proposition.
 
 \section{Denominator clearing retains the number of heads}
@@ -4337,13 +4337,20 @@ $Q_-^{\top}g=0$. Hence the same proof permits
  V=\operatorname{col}\bigl((I-Q_-Q_-^{\top})F_B\bigr).
 \]
 The vector $P_Vg$ is obtainable by the new head together with a change
-to existing numerators. If $a$ is its least-squares coefficient vector,
+to existing numerators. Suppose the projected feature matrix has
+locally constant rank as the candidate parameters vary. If $a$ is its
+least-squares coefficient vector,
 $v=(I-Q_-Q_-^{\top})F_Ba$, and $w=F_Ba$, its candidate derivative is
 \[
  \frac{\partial(-G)}{\partial\ell_i}
    =\frac2N\sum_x(g_x-v_x)w_xp_i(x).
 \]
 This follows by the envelope theorem and orthogonality to $Q_-$.
+At a rank-changing parameter this derivative is not asserted: the
+projection energy need not even be continuous. For example, the column
+matrix $F(t)=(t,0)^{\top}$ has projection energy one for $g=(1,0)^{\top}$
+when $t\ne0$, and zero when $t=0$. The gain inequality itself uses the
+subspace at the chosen parameter and does not require differentiability.
 The optional projected candidate search implements this derivative;
 central differences on an independent six-bit instance agreed to
 within $10^{-10}$. Again there is no universal lower bound on this gain.

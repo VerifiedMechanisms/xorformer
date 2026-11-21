@@ -111,7 +111,8 @@
     "baseline_commit": "f4781edee561d9a1d1d020cea43d4f81058f4a24",
     "source_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
     "related_run_refresh": "Read-only fetches of xorformer-runs and autoresearch-runs at 2026-11-21 15:13-15:14 UTC found no new branch updates.",
-    "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json."
+    "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
+    "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements."
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
