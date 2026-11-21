@@ -74,7 +74,8 @@
       "url": "https://arxiv.org/pdf/1904.04411",
       "checked_location": "Definitions of signature and deficiency, Proposition 1, and the introductory statements of the main constructions",
       "mechanism": "Real embeddings of a multiquadratic field are indexed by Boolean sign choices, so algebraic signatures form Boolean tables.",
-      "gap": "The constructions concern multiplicative unit groups and extraction of square roots. These operations have no established small-head compilation. Signature rank can also be deficient; unrestricted signature universality must not be assumed for units."
+      "gap": "The constructions concern multiplicative unit groups and extraction of square roots. These operations have no established small-head compilation. Signature rank can also be deficient; unrestricted signature universality must not be assumed for units.",
+      "implementation_audit": "A product of admissible denominators is strictly log-submodular on every coordinate square if any denominator is nonconstant. Therefore a norm-one table cannot be factored into nonconstant admissible affine conjugates. This excludes that fixed-norm implementation, not all uses of arithmetic signatures."
     },
     {
       "title": "Erzeugungsgrad, VC-dimension and neural networks with rational activation function",

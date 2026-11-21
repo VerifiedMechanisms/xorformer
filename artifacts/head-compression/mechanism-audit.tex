@@ -5547,4 +5547,48 @@ In particular, this search does not establish that every stage succeeds,
 that a failed numerical stage is infeasible, or that the requested head
 budget always permits a continuation. Those assertions are not assumed.
 
+\section{A product invariant for proposed arithmetic norm encodings}
+
+An arithmetic encoding might try to use a family of conjugate affine
+quantities whose product is an input-independent algebraic norm. The
+following invariant tests whether those conjugates can themselves be
+the admissible denominators. It does not exclude other arithmetic
+constructions or arbitrary target-dependent heads.
+
+\begin{proposition}[Strict log-submodularity of denominator products]
+Let $n\ge2$ and let $D=\prod_{h=1}^H B_h$ be a product of admissible
+denominators. On a coordinate square, write $D_{ab}$ for its four
+values. Then
+\[
+ D_{00}D_{11}\le D_{10}D_{01}.
+\]
+If at least one denominator is nonconstant, the inequality is strict
+on every coordinate square. Consequently a constant positive table,
+or a positive multiplicatively separable table
+$D(x)=\prod_i d_i(x_i)$, cannot have such a factorization involving
+a nonconstant denominator.
+\end{proposition}
+\begin{proof}
+Fix the other coordinates and put
+$B_{h,00}=b$, with the two variable coefficients denoted by $u,v$.
+All four values are positive. Direct expansion gives
+\[
+ B_{h,10}B_{h,01}-B_{h,00}B_{h,11}
+ =(b+u)(b+v)-b(b+u+v)=uv.
+\]
+If the denominator is constant, $uv=0$. Otherwise all its variable
+coefficients have the same strict sign, so $uv>0$. Multiplying the
+positive factor inequalities proves the assertion, including its
+strict form. A constant or multiplicatively separable table has
+cross ratio one on every coordinate square, giving the contradiction.
+\end{proof}
+
+In particular, if a proposed totally positive unit construction makes
+all its conjugates admissible affine input denominators and imposes
+norm one at every Boolean input, those denominators must all be
+constant. Adding a common affine form to force admissibility does
+not preserve the asserted norm identity. This blocks precisely that
+fixed-norm implementation; a unit-signature theorem alone supplies
+neither the required denominator family nor an additive head decoder.
+
 \end{document}
