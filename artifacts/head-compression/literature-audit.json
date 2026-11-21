@@ -491,6 +491,14 @@
       "mechanism": "Generic directions separate finite multisets through coloured-matching graph rigidity, with O(k log n log log n) directions.",
       "application": "A fixed-multiset affine denominator array is equivalently equality of projections of two coefficient multisets along directions (1,x).",
       "gap": "The Boolean directions (1,x) are a prescribed nongeneric family. Generic separation is neither a construction of numerator signs nor a compressed realization theorem. No genericity assertion for these directions is used."
+    },
+    {
+      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
+      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams, Tony Wu",
+      "url": "https://eccc.weizmann.ac.il/report/2026/311/download/",
+      "checked_location": "Theorems 1.5, 1.7, 6.1 and 6.2; Section 6.1 proof",
+      "mechanism": "Strict semialgebraic feasibility yields architecture-preserving parameter bounds after exponentiating sigmoid parameters. Other constructions use additional depth.",
+      "gap": "The sigmoid denominator is 1+B times a product of coordinate factors, not an affine input form. Parameter bounds assume an existing representation and do not construct every truth table with the requested number of admissible heads."
     }
   ]
 }
