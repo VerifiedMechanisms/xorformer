@@ -53,12 +53,19 @@ def proposals(logs, orientation, gradient, rng, count):
     for item in bank:
         unique[item[1:]] = item
     ranked = sorted(unique.values())
-    selected = ranked[:max(1, count//2)]
-    remaining = ranked[len(selected):]
+    large = ranked[:max(1, count//2)]
+    remaining = ranked[len(large):]
+    short = []
     if remaining:
         # Also test short swaps, rather than only the largest linear prediction.
         remaining.sort(key=lambda v: abs(logs[v[2], v[1]]-logs[v[3], v[1]]))
-        selected.extend(remaining[:count-len(selected)])
+        short = remaining[:count-len(large)]
+    selected = []
+    for j in range(max(len(large), len(short))):
+        if j < len(large):
+            selected.append(large[j])
+        if j < len(short):
+            selected.append(short[j])
     return selected
 
 

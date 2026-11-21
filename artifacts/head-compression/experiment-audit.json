@@ -933,5 +933,12 @@
     "certificate": null,
     "status": "Stopped after no accepted replacements; redirected compute to the slope-column permutation family.",
     "scope": "Finite diagnostic only. Failure is not a lower bound."
+  },
+  "column_permutation_large_first": {
+    "log": "/out/head-compression/extension-column-permutations-n14-large-first.log",
+    "completed_trials": 12,
+    "accepted_rounds": 0,
+    "status": "Restarted to interleave small swaps and large-gradient proposals instead of testing all large moves first.",
+    "scope": "Finite diagnostic only; no lower bound or convergence claim."
   }
 }
