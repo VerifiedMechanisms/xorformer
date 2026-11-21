@@ -3826,4 +3826,98 @@ away, and the inner numerator gradient was below $1.5\cdot10^{-14}$.
 These validate the numerical coordinate conversion on that instance;
 they are not interval certificates or a convergence proof.
 
+
+\section{Small monochromatic rectangles and a failed head compiler}
+
+The graph-decomposition literature supplies another concrete source of
+logarithmic savings. Csirmaz, Ligeti, and Tardos, \emph{Erd\H{o}s--Pyber
+theorem for hypergraphs and secret sharing}, Theorem 2 and Lemma 1,
+construct biclique partitions with small vertex load. Their proof groups
+vertices into short lists and groups the opposite vertices by their
+neighbourhoods within a list. The following elementary density argument
+makes the desired number of small rectangles explicit. It is a
+combinatorial statement, not an attention representation.
+
+\begin{proposition}[Partition into small monochromatic rectangles]
+Let $m\ge64$ be an integer and $M=2^m$. Every two-colouring of an
+$M\times M$ table has a partition into at most
+\[
+ 4610\frac{M^2}{m^2}
+\]
+monochromatic rectangles, each with both side lengths at most $m/12$.
+\end{proposition}
+\begin{proof}
+It suffices to partition the edges of one bipartite graph with $M$
+vertices in each class using at most $2305M^2/m^2$ rectangles.
+Suppose its edge density is $\delta$. At least $\delta M/2$ vertices
+in the second class have degree at least $\delta M/2$: otherwise
+summing their degrees would give fewer than $\delta M^2$ edges.
+If $1\le k\le\delta M/4$, averaging the common neighbourhood sizes
+over all $k$-subsets of the first class gives a value at least
+\[
+ \frac{\delta M}{2}\left(\frac{\delta}{4}\right)^k.
+\]
+Indeed, for a vertex of degree $d\ge\delta M/2$,
+$\binom d k/\binom M k\ge(\delta/4)^k$, by the product formula.
+If the displayed average is at least $k$, a $K_{k,k}$ exists.
+
+Put $J=\lfloor m/4\rfloor-4$. In phase $j=0,\ldots,J$, remove
+edge-disjoint copies of $K_{k_j,k_j}$ until at most
+$2^{-j-1}M^2$ edges remain, where
+\[
+ k_j=\left\lfloor\frac{m}{4(j+3)}\right\rfloor.
+\]
+At every required removal $\delta>2^{-j-1}$. We have
+$k_j\le\delta M/4$, and the average above is at least
+\[
+ M2^{-j-2}\,2^{-k_j(j+3)}
+ \ge M^{3/4}2^{-j-2}\ge M^{1/2}/4\ge k_j.
+\]
+Thus every removal is justified. Also
+$k_j\ge m/(8(j+3))$, so phase $j$ uses at most
+$64\cdot2^{-j}(j+3)^2M^2/m^2$ rectangles. Summing and using
+$\sum_{j\ge0}2^{-j}(j+3)^2=36$ gives at most $2304M^2/m^2$.
+The remaining at most $16M^{7/4}$ edges are singleton rectangles.
+For $m\ge64$, $16m^2\le2^{m/4}$, so they contribute at most
+$M^2/m^2$. The last inequality holds at $m=64$ and remains true
+by induction, since $2^{1/4}>(65/64)^2$.
+All non-singleton sides have size at most $k_0\le m/12$.
+Applying the same construction to the other colour proves the claim.
+\end{proof}
+
+The proposed constant-head compiler for these rectangles is false,
+even if it only has to compute a rectangle's membership signs.
+Choose $r$ with $2^{r-1}\le m/12$ and let
+\[
+ A=\{u\in\{0,1\}^m:u_{r+1}=\cdots=u_m=0,
+             \quad u_1+\cdots+u_r\equiv0\pmod2\},
+ \qquad R=A\times A.
+\]
+Both sides have $2^{r-1}$ elements. Restricting the second block to zero
+and the unused first-block coordinates to zero makes membership in
+$R$ equal to $r$-bit parity. Clearing the positive denominators of an
+$H$-head score gives a polynomial of degree at most $H$, whereas
+parity has threshold degree $r$. Hence $H\ge r$. Taking
+$r=\lfloor\log_2(m/12)\rfloor+1$ makes this lower bound unbounded.
+
+An exact numerical indicator has an even larger obstruction. A
+nonzero degree-$d$ multilinear polynomial on the $n$-cube is nonzero
+at at least $2^{n-d}$ vertices. This follows by induction: if the
+polynomial depends on the last variable, its nonzero difference has
+degree at most $d-1$, and at least one point in each corresponding
+pair has nonzero value; otherwise the support doubles from dimension
+$n-1$. If an $H$-head score equals $1_R$ exactly, its cleared numerator
+has degree at most $H$ and has support exactly $R$. Consequently
+\[
+ H\ge n-\log_2|R|.
+\]
+For the rectangles above in dimension $n=2m$, this is
+$H\ge2m-2(r-1)$.
+
+These obstructions do not exclude a decomposition which avoids the
+hard rectangles or amortizes their costs. Such a decomposition, and
+a valid way to combine sign-only rectangle recognizers into one flat
+score, have not been constructed. The biclique theorem alone does
+not supply either step. No universal head upper bound is inferred.
+
 \end{document}

@@ -117,7 +117,8 @@
     "For a fixed residual score and one denominator orientation, strict completion by one head is equivalent to a linear program having positive common slack. Prescribed single-head margin superlevel sets are convex. No coupled-head progress theorem follows.",
     "For N polynomial score coordinates of degree at most d in p<=N parameters, universal strict-sign coverage requires d>=(p/(4*e*N))*2^(N/p); an M-chart union has exponent (N-log2(M))/p. Fixed-base bounded-order perturbations at the target head budget therefore cannot be universal.",
     "The entire largest-denominator-term proxy with arbitrary affine numerators and both uniform orientations has at most [2*(n+1)!]^H*(8*e*2^n/p)^p strict sign tables, p=1+2*H*(n+1)<=2^n. It cannot be universal at O(2^n/n^2) heads, and almost every function needs at least (1-o(1))*2^n/(n*log2(n)) proxy heads. This includes the unit-gap dominant-power certificate family, but is not a lower bound for full affine denominator sums.",
-    "A fixed cell of M cube vertices cannot support every local labeling with H<=C*M/n^2 heads unless log2(M)>=(1/(2*C)+o(1))*n. This follows directly from Warren with degree H+1 and 1+2*H*(n+1) parameters. It excludes independent programming on polynomial-size cells, but not global interactions or sufficiently rich label-dependent partitions."
+    "A fixed cell of M cube vertices cannot support every local labeling with H<=C*M/n^2 heads unless log2(M)>=(1/(2*C)+o(1))*n. This follows directly from Warren with degree H+1 and 1+2*H*(n+1) parameters. It excludes independent programming on polynomial-size cells, but not global interactions or sufficiently rich label-dependent partitions.",
+    "For m>=64, every 2^m by 2^m two-coloured table partitions into at most 4610*2^(2*m)/m^2 monochromatic rectangles, each side at most m/12. The density proof is explicit. This counts cells, not heads. A parity restriction forces an unbounded number of heads for some such rectangle memberships; exact numeric indicators need at least n-log2(support size) heads."
   ],
   "blocked_routes": [
     {
@@ -147,6 +148,10 @@
     {
       "route": "Algebraic and threshold capacity",
       "gap": "Counting many sign patterns, complex closure results, and lower bounds do not establish coverage of every Boolean labeling."
+    },
+    {
+      "route": "Small monochromatic rectangle partitions",
+      "gap": "The desired O(2^n/n^2) cell count is proved, but a uniform constant-head compiler for the permitted rectangles is false by a parity restriction. Exact numerical localization has the stronger support-degree obstruction. An amortized compiler that avoids the hard cells and combines sign-only pieces in a flat score has not been supplied."
     }
   ],
   "remaining_target": "Prove, without modifying the manuscript model, that a single absolute C gives W(n)<=C*2^n/n^2 for every positive integer n. No complete construction or existence proof is claimed."

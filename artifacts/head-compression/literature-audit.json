@@ -133,7 +133,7 @@
     },
     {
       "title": "Extremal properties of polynomial threshold functions",
-      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
+      "authors": "Ryan O’Donnell and Rocco A. Servedio",
       "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
       "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
       "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
@@ -443,9 +443,42 @@
       "authors": "Kordag Mehmet Kilic, Jin Sima, and Jehoshua Bruck",
       "url": "https://www.paradise.caltech.edu/papers/etr153.pdf",
       "checked_location": "Theorem 1, Lemma 2, Section IV, and the decoding appendix",
-      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel\u2019s lemma bounds the achievable rate.",
+      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel’s lemma bounds the achievable rate.",
       "application": "This supplies a concrete number-theoretic and coding-theoretic compression mechanism for integer equality tests. With m_0=n_0=1 the rate is k/2+1. It was checked as a possible address encoder for the head problem.",
       "gap": "The decoder explicitly uses reduction modulo two and recursive arithmetic. The circuit consequences concern EQUALITY and COMPARISON with extra threshold/equality gates, not arbitrary Boolean tables in a flat sum of admissible affine fractions. No head compiler with the requested cost is supplied."
+    },
+    {
+      "title": "Erdos-Pyber theorem for hypergraphs and secret sharing",
+      "authors": "Laszlo Csirmaz, Peter Ligeti, and Gabor Tardos",
+      "url": "https://www.renyi.hu/~tardos/erdospyber.pdf",
+      "checked_location": "Theorem 2 and Lemma 1, pages 4-6",
+      "mechanism": "Partition vertices into short lists and group opposite vertices by their neighbourhoods on each list. This gives constructive biclique partitions with vertex load (1+o(1))v/log_2(v), and a fractional variant with constant one half.",
+      "application": "Motivates the separately proved small-rectangle partition in mechanism-audit.tex, which attains O(2^n/n^2) monochromatic cells.",
+      "gap": "Cells are not attention heads. A parity restriction disproves a uniform constant-head compiler for all logarithmic-side rectangles; exact numerical indicators need at least n-log_2(cell size) heads. An amortized compiler and flat combination mechanism remain absent."
+    },
+    {
+      "title": "Approximating Boolean functions with depth-2 circuits",
+      "authors": "Eric Blais and Li-Yang Tan",
+      "url": "https://eccc.weizmann.ac.il/report/2013/051/download/",
+      "checked_location": "Proposition 4.4, Theorems 4 and 14, and the covering-code discussion in Section 4",
+      "mechanism": "Radius-d Hamming-ball covers produce one-sided local degree-d polynomial threshold approximators. Their disjunction gives O(1/n) error using O(2^n/n^d) degree-d gates for fixed d. Radius-one asymptotically perfect covers sharpen the linear-threshold version.",
+      "gap": "For d=2 the number of gates has the requested order, but these are general quadratic threshold gates, the result permits errors, and it composes the gates by disjunction. None of these operations is a constant-cost flat affine-fraction construction. The local radius-two compiler is independently excluded by the previously recorded parameter count."
+    },
+    {
+      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
+      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams, and Tony Wu",
+      "url": "https://arxiv.org/pdf/2611.21910",
+      "checked_location": "Theorems 1.5-1.8, Theorem 4.4, Lemma 4.5, and Section 6.3",
+      "mechanism": "The paper combines polynomial and rational approximation, real-algebraic parameter bounds, and high-precision arithmetic. Its inner-product construction multiplies encoded groups using a quadratic Taylor gadget and decodes a bit of their sum through additional gates.",
+      "gap": "The model uses logistic sigmoids and extra layers. The arithmetic decoder and high-degree rational approximants are not admissible single-layer affine fractions. The paper gives no all-Boolean-functions upper bound of the requested head order. Its depth-two bounded-weight reductions do not apply to unrestricted head parameters."
+    },
+    {
+      "title": "Boolean threshold functions, neuron capacity, and memory retrieval",
+      "authors": "Xinyuan Xie",
+      "url": "https://arxiv.org/pdf/2609.29756",
+      "checked_location": "Abstract and Section 1, threshold-function enumeration and random span theorem",
+      "mechanism": "A sharpened random Boolean-span estimate yields T_n = 2*binomial(2^n-1,n)*(1+O(n^-99)) threshold functions, quantifying the roughly n-squared bits in the choice of one threshold function.",
+      "gap": "Enumerating many threshold functions does not show that an arbitrary truth table can be assembled from 2^n/n^2 admissible heads. The theorem does not supply the required assembly, cancellation, or affine-fraction compiler."
     }
   ]
 }
