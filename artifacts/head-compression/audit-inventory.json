@@ -354,6 +354,15 @@
       "unseparated_margins": 0,
       "scope": "All original finite target labels retained. The exact rational score has 149 certified errors and is not a representation certificate for the target.",
       "checker_validation": "Matches the separate exact Fraction checker on a six-bit certificate and detects one deliberately flipped label."
+    },
+    "box_constrained_variant": {
+      "diagnostic": "diagnostics/protected-barrier-box-self-test.json",
+      "mechanism": "Solve the damped joint quadratic model with separate physical bounds on each nonlinear coordinate. The model retains the globally scaled candidate, so the chosen model value is no worse than that candidate. Actual protected-sign and objective checks remain mandatory.",
+      "small_test_target_margin_after": 0.7143913218045893,
+      "small_test_minimum_protected_margin_after": 0.5240272379101648,
+      "full_run": "/out/head-compression/protected-barrier-box-n14-h336",
+      "full_run_seconds": 50400,
+      "scope": "Numerical trust-region refinement; no global extension theorem."
     }
   }
 }

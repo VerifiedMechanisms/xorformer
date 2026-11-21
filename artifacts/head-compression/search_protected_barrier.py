@@ -18,6 +18,7 @@ for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ[name] = "1"
 import numpy as np
 import scipy.linalg as la
+import scipy.optimize as opt
 import scipy.sparse.linalg as spla
 from search_shared_affine_varpro import exact_lift, features, initialize, unpack
 from search_shared_affine_gauss_newton import quick_score, score_jacobian
@@ -56,7 +57,7 @@ def precise_score(x, logs, separation, coefficient):
 
 
 def direction(x, parameters, coefficient, units, gradient, curvature,
-              damping, maxiter):
+              damping, maxiter, box_iterations=0, step_bound=.5):
     logs, separation = unpack(parameters, units, x.shape[1])
     feature = features(x, logs, separation)
     q, r = la.qr(feature, mode="economic", check_finite=False)
@@ -80,7 +81,34 @@ def direction(x, parameters, coefficient, units, gradient, curvature,
         matvec=forward, rmatvec=backward, dtype=float)
     fit = spla.lsmr(operator, -gradient/sqrt_w, damp=np.sqrt(damping),
                     atol=1e-7, btol=1e-7, maxiter=maxiter)
-    linear_change = (operator@fit[0])/sqrt_w
+    vector = fit[0]
+    boxed = {}
+    if box_iterations:
+        bounds_p = np.r_[np.full(units*x.shape[1], 70.), np.full(units, 35.)]
+        low = np.r_[np.full(width, -np.inf),
+                    np.maximum(-step_bound, -bounds_p-parameters)*scale_j]
+        high = np.r_[np.full(width, np.inf),
+                     np.minimum(step_bound, bounds_p-parameters)*scale_j]
+        factor = min(1., step_bound/max(float(np.max(np.abs(vector[width:]/scale_j))), 1e-30))
+        scaled = np.clip(factor*vector, low, high)
+        clipped = np.clip(vector, low, high)
+        offset = gradient/sqrt_w
+        def quadratic(v):
+            residual = operator@v+offset
+            return (float((residual@residual+damping*(v@v))/2),
+                    operator.rmatvec(residual)+damping*v)
+        scaled_value, clipped_value = quadratic(scaled)[0], quadratic(clipped)[0]
+        initial = scaled if scaled_value <= clipped_value else clipped
+        result = opt.minimize(quadratic, initial, jac=True, method="L-BFGS-B",
+            bounds=opt.Bounds(low, high),
+            options={"maxiter": box_iterations, "maxfun": 5*box_iterations,
+                     "maxls": 30, "maxcor": 20, "gtol": 1e-8, "ftol": 1e-13})
+        candidates = [(quadratic(initial)[0], initial), (quadratic(result.x)[0], result.x)]
+        box_value, vector = min(candidates, key=lambda z: z[0])
+        assert box_value <= scaled_value+1e-8*max(1., abs(scaled_value))
+        boxed = {"box_iterations": int(result.nit), "box_termination": str(result.message),
+                 "scaled_model_value": scaled_value, "boxed_model_value": box_value}
+    linear_change = (operator@vector)/sqrt_w
     derivative = float(gradient@linear_change)
     kind = "joint barrier Gauss-Newton"
     if not np.isfinite(derivative) or derivative >= 0:
@@ -88,14 +116,12 @@ def direction(x, parameters, coefficient, units, gradient, curvature,
         linear_change = (operator@vector)/sqrt_w
         derivative = float(gradient@linear_change)
         kind = "scaled joint gradient"
-    else:
-        vector = fit[0]
     response = la.solve_triangular(r, vector[:width]/scale_q, check_finite=False)
     nonlinear = vector[width:]/scale_j
     diagnostic = {"direction": kind, "model_derivative": derivative,
                   "lsmr_stop": int(fit[1]), "lsmr_iterations": int(fit[2]),
                   "lsmr_residual_norm": float(fit[3]),
-                  "lsmr_normal_residual_norm": float(fit[4])}
+                  "lsmr_normal_residual_norm": float(fit[4]), **boxed}
     return nonlinear, response, diagnostic
 
 
@@ -134,7 +160,8 @@ def backtrack(x, labels, parameters, coefficient, units, protected, target,
     return None
 
 
-def run(checkpoint, out, seconds, mu, ridge, damping, maxiter, max_step, seed):
+def run(checkpoint, out, seconds, mu, ridge, damping, maxiter, max_step, seed,
+        box_iterations=0):
     labels, logs, separation, coefficient = initialize(checkpoint)
     units, n = logs.shape
     x = ((np.arange(len(labels))[:, None] >> np.arange(n)) & 1).astype(float)
@@ -183,7 +210,7 @@ def run(checkpoint, out, seconds, mu, ridge, damping, maxiter, max_step, seed):
                  "mu": mu, "ridge": ridge, "damping": damping}
         print(json.dumps({"phase": "start", **event}), flush=True)
         nonlinear, response, diagnostic = direction(x, parameters, coefficient, units,
-            gradient, curvature, damping, maxiter)
+            gradient, curvature, damping, maxiter, box_iterations, max_step)
         event.update(diagnostic)
         trial = backtrack(x, labels, parameters, coefficient, units, protected, target,
             mu, ridge, nonlinear, response, max_step, deadline, stop_path)
@@ -250,6 +277,14 @@ def self_test(out):
               "final_target_margin": float(labels[target]*trial[2][target]),
               **diagnostic, **trial[3],
               "scope": "Numerical derivative and protected-descent check only."}
+    bn, br, bd = direction(x, parameters, coefficient, units, gradient, curvature,
+                           1e-3, 150, 30, .5)
+    bt = backtrack(x, labels, parameters, coefficient, units, protected, target,
+        mu, ridge, bn, br, .5, time.monotonic()+30, out/"STOP")
+    assert bt is not None and bd["boxed_model_value"] <= bd["scaled_model_value"]
+    assert np.max(np.abs(bn)) <= .5+1e-12
+    result["boxed_trial"] = {**bd, **bt[3],
+        "target_margin_after": float(labels[target]*bt[2][target])}
     (out/"self-test.json").write_text(json.dumps(result, indent=2)+"\n")
     print(json.dumps(result), flush=True)
 
@@ -264,6 +299,7 @@ if __name__ == "__main__":
     parser.add_argument("--damping", type=float, default=.001)
     parser.add_argument("--maxiter", type=int, default=150)
     parser.add_argument("--max-step", type=float, default=.5)
+    parser.add_argument("--box-iterations", type=int, default=0)
     parser.add_argument("--seed", type=int, default=2026112204)
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
@@ -274,4 +310,4 @@ if __name__ == "__main__":
     else:
         assert args.checkpoint is not None
         run(args.checkpoint, args.out, args.seconds, args.mu, args.ridge,
-            args.damping, args.maxiter, args.max_step, args.seed)
+            args.damping, args.maxiter, args.max_step, args.seed, args.box_iterations)

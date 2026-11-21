@@ -5796,6 +5796,21 @@ decreases from $0.504474$ to $0.436270$. This checks the continuation
 mechanism on a finite example only.
 
 
+
+\paragraph{A bounded joint subproblem.}
+A subsequent variant minimizes the same damped quadratic model subject
+to a separate bound on each physical nonlinear-coordinate increment.
+The uniformly scaled unconstrained direction is a feasible candidate;
+the implementation keeps it and accepts a different candidate only when
+its computed model value is no larger. This prevents one large coordinate
+from forcing every useful component to be uniformly tiny. It does not
+replace the actual objective and protected-sign checks.
+On the same five-bit diagnostic the bounded subproblem has model value
+$0.004219$, compared with $0.487861$ for uniform scaling. Its accepted
+actual step makes the new margin $0.714391$ and leaves all protected
+margins above $0.524027$. The inner solver reaches its iteration limit,
+so no assertion of exact box optimality is made.
+
 \paragraph{Independent audit of the fourteen-bit starting score.}
 The shared-affine seed was exported to exact rational data and checked
 against the original fourteen-bit target labels. The independent checker
