@@ -893,5 +893,43 @@
     "final_loss": 0.26676725915231936,
     "final_sign_errors": 12,
     "scope": "Finite diagnostic only. Per-orientation column multisets are preserved exactly; this supplies no universal existence or convergence theorem."
+  },
+  "extension_projected_recycling_n14_stopped": {
+    "n": 14,
+    "heads": 251,
+    "log": "/out/head-compression/extension-projected-recycling-n14.log",
+    "completed_replacement_trials": 24,
+    "accepted_replacements": 0,
+    "last_complete_trial": {
+      "round": 5,
+      "head": 182,
+      "deletion_distance": 0.039120291890534974,
+      "original_loss": 0.19148915172799147,
+      "removed_loss": 0.20527773830405413,
+      "candidate_energies": [
+        -0.011030029527502263,
+        -0.008061358204303357,
+        -0.007822107950650404
+      ],
+      "projected_candidate_polish_steps": 8,
+      "trials": [
+        {
+          "energy": -0.011030029527502263,
+          "loss": 0.19173282477091025,
+          "inner_gradient": 1.4877882257430253e-06
+        },
+        {
+          "energy": -0.008061358204303357,
+          "loss": 0.19591582664670232,
+          "inner_gradient": 1.4315267120278141e-06
+        }
+      ],
+      "candidate_improved": false,
+      "accepted": false,
+      "seconds": 1703.6541087110527
+    },
+    "certificate": null,
+    "status": "Stopped after no accepted replacements; redirected compute to the slope-column permutation family.",
+    "scope": "Finite diagnostic only. Failure is not a lower bound."
   }
 }

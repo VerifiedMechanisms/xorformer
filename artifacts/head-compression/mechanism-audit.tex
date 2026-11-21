@@ -4377,4 +4377,47 @@ physical inputs yields only polynomially many promised points.
 The ranking theorem therefore does not supply the requested universal
 head bound.
 
+\section{The residual master function at a stationary score}
+
+For the normalized score $S(x)=c+\sum_h u_h\cdot x/(1+b_h\cdot x)$,
+let $g_x=y_x(1-y_xS(x))_+$. At an interior stationary point of the
+squared-hinge loss define, holding this residual fixed,
+\[
+ \Phi_g(b)=\sum_{x\in\{0,1\}^n}g_x\log(1+b\cdot x)
+\]
+on the open set where all denominators are positive. The zero vertex
+contributes zero. Direct differentiation gives
+\[
+ \nabla\Phi_g(b)=\sum_x\frac{g_xx}{1+b\cdot x},\qquad
+ \nabla^2\Phi_g(b)=-\sum_x\frac{g_xxx^{\top}}{(1+b\cdot x)^2}.
+\]
+Numerator, denominator, and bias stationarity imply respectively
+\[
+ \nabla\Phi_g(b_h)=0,\qquad
+ \nabla^2\Phi_g(b_h)u_h=0,\qquad \sum_xg_x=0.
+\]
+These statements also hold when some margins equal one, since the
+squared hinge is continuously differentiable. Whenever $u_h\ne0$,
+the point $b_h$ is a degenerate critical point of $\Phi_g$.
+
+This connects the problem to master functions of hyperplane
+arrangements. Varchenko's \emph{Critical Set of the Master Function
+and Characteristic Variety of the Associated Gauss--Manin Differential
+Equations}, Sections 2.10--2.11, treats the same logarithmic form;
+see \url{https://armj.math.stonybrook.edu/html-articles/Files-2015-2024/15-20/}.
+Its generic-weight nondegeneracy theorem cannot be applied to the
+residual weights at a nonzero stationary head: the displayed equations
+already force degeneracy there. The unbalanced-weight theorem counts
+isolated critical points with their Milnor numbers, but supplies no
+bound of the needed order for these residuals or this chamber.
+
+In particular, $\nabla^2\Phi_g(b_h)u_h=0$ is a kernel constraint,
+not the entrywise identity $\nabla^2\Phi_g(b_h)=0$. Replacing it by
+the latter would incorrectly turn about $n$ conditions per head into
+about $n^2$. The independently certified four-bit regression minimum
+above has a nonzero indefinite residual matrix and illustrates why
+that strengthening is unavailable without another argument. No
+critical-point count or local-minimum escape theorem at the requested
+head budget is inferred from this reformulation.
+
 \end{document}

@@ -472,6 +472,15 @@
       "mechanism": "Every oriented graph on m vertices is induced by O(m/log(m)) rankings. Pairs of rankings encode disjoint complete bipartite directed components and cancel elsewhere.",
       "application": "The audit proves an explicit admissible fraction (R^rank(i)-R^rank(j))/(1+R^rank(i)+R^rank(j)) approximating one ranking vote on two one-hot inputs. The majority theorem then transfers to arbitrary promised rectangular sign tables.",
       "gap": "One-hot ranks are independently stored coordinates. Binary encoding makes the required rank powers nonlinear tables; even the natural binary rank has a nonzero mixed difference. No affine encoder, full-cube extension, or target-cost flat compiler follows."
+    },
+    {
+      "title": "Critical Set of the Master Function and Characteristic Variety of the Associated Gauss-Manin Differential Equations",
+      "authors": "Alexander Varchenko",
+      "url": "https://armj.math.stonybrook.edu/html-articles/Files-2015-2024/15-20/",
+      "checked_location": "Sections 2.10 and 2.11, Theorem 2.7 and Lemma 2.8; Lemma 3.6",
+      "mechanism": "Logarithmic master functions have rational gradient equations. Generic weights give nondegenerate critical points; unbalanced weights give isolated points counted with Milnor numbers by the arrangement complement Euler characteristic.",
+      "application": "At an interior stationary head score, the fixed residual defines Phi(b)=sum_x g_x log(1+b.x). Each nonzero numerator gives grad(Phi)(b_h)=0 and Hess(Phi)(b_h)u_h=0.",
+      "gap": "These residuals force degenerate points, so generic nondegeneracy cannot be assumed. A Hessian kernel vector does not make the Hessian zero. The paper gives no target-order count for these residuals in the admissible chamber."
     }
   ]
 }
