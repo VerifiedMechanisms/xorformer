@@ -243,6 +243,30 @@
       "checked_location": "Publisher abstract; related searchable textbook excerpt, Theorem 8.11, audited separately",
       "mechanism": "Transforms sigmoid outputs on discrete inputs into rational functions and bounds sign patterns. The original abstract reports O(W log(WD)).",
       "gap": "This is a capacity upper bound, not a universal construction. An apparently stronger textbook excerpt was not used: the available extraction appeared to omit the number of rational summands in a degree estimate, while the original full article and page image were unavailable. The independent pole example in the audit shows why a head-independent clearing degree cannot be assumed."
+    },
+    {
+      "title": "Nearest neighbor representations of Boolean functions",
+      "authors": "Peter Hajnal, Zhihao Liu, Gyorgy Turan",
+      "url": "https://arxiv.org/pdf/2004.01741",
+      "checked_location": "Sections 5 and 8; universal bound and discussion of the threshold-circuit gap",
+      "mechanism": "Covers the Boolean cube by radius-one neighborhoods and uses geometric prototypes to represent local labels.",
+      "gap": "The universal bound has order 2^n/n. Nearest-prototype comparisons are not affine fractions with the manuscript's coefficient restrictions, and the paper does not supply a sharper universal construction."
+    },
+    {
+      "title": "Provable Tempered Overfitting of Minimal Nets and Typical Nets",
+      "authors": "Itamar Harel, William M. Hoza, Gal Vardi, Itay Evron, Nathan Srebro, Daniel Soudry",
+      "url": "https://arxiv.org/pdf/2410.19092",
+      "checked_location": "Theorem 3.1; Appendix D, especially the hitting-set generator outline and finite-field generator construction",
+      "mechanism": "Uses hitting-set generators and finite-field independence to encode arbitrary partial Boolean tables with nearly optimal binary description length.",
+      "gap": "The construction uses a depth-14 threshold network. No one-layer affine-fraction compilation preserving the required head count is established."
+    },
+    {
+      "title": "Betweenness and Nonbetweenness",
+      "authors": "Ross Atkins",
+      "url": "https://arxiv.org/pdf/1602.05798",
+      "checked_location": "Theorem 1.5 and Lemmas 3.1 and 3.2",
+      "mechanism": "Constructs a logarithmic number of permutations that between-satisfy every ternary constraint, using separating orders and half-order rotations.",
+      "gap": "Ternary betweenness coverage is distinct from a large disjoint matching in every prescribed orthant. The deterministic rank-distance argument in the audit excludes the earlier full-rate matching criterion even for structured dictionaries."
     }
   ]
 }
