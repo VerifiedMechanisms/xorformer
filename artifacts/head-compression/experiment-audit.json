@@ -1280,6 +1280,23 @@
         }
       }
     ],
+    "refitted_gradient_tests": [
+      {
+        "epsilon": 0.0,
+        "positive_loss": 0.440102875206163,
+        "refitted_gradient_max_error": 1.3494889233856e-11
+      },
+      {
+        "epsilon": 0.7,
+        "positive_loss": 0.4346919389847416,
+        "refitted_gradient_max_error": 6.458111823093304e-12
+      },
+      {
+        "epsilon": -1e-07,
+        "positive_loss": 0.44010287441735596,
+        "refitted_gradient_max_error": 1.5296264255226788e-11
+      }
+    ],
     "scope": "Finite derivative and exact-export diagnostics only."
   },
   "stable_pair_n14_started": {
@@ -1287,5 +1304,14 @@
     "seconds_budget": 41400,
     "certificate": null,
     "scope": "Ordinary pairs and their confluent limit in a stable chart, not a universal theorem."
+  },
+  "curriculum_self_test": "diagnostics/curriculum-self-test.json",
+  "curriculum_n14_started": {
+    "path": "/out/head-compression/curriculum-n14-h336",
+    "seconds_budget": 57600,
+    "stage_seconds": 3600,
+    "initial_batch": 8,
+    "certificate": null,
+    "scope": "Finite numerical continuation; only full-cube exact verification counts as success."
   }
 }

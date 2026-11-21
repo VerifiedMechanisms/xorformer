@@ -5510,4 +5510,34 @@ only. The algebraic identities and uniform error bound are also
 proved in \texttt{SharedAffineFractionLift.lean}. No assertion is
 made that $M=O(2^n/n^2)$ such terms suffice for every truth table.
 
+\section{Incremental constraints in the shared-affine search}
+
+The script \texttt{search\_margin\_curriculum.py} tests a different
+optimization path, while retaining the preceding rational family and its
+exact finite lift. Given a current numerical score $S$, let $E$ contain
+the vertices whose target margins are strictly positive. A stage adds a
+small set $F$ of currently unprotected vertices and minimizes
+\[
+ L_{E\cup F}(\theta)=\frac{1}{2|E\cup F|}
+       \sum_{x\in E\cup F}(1-f(x)S_\theta(x))_+^2.
+\]
+For each denominator parameter, the affine numerator problem is solved
+again. The outer derivative is the same envelope derivative as in the
+full-cube search, restricted to these rows. A successful numerical stage
+retains all its constraints before adding any others. A failed stage
+rolls back to its preceding feasible numerical score and reduces the
+batch. A stage check is explicitly not treated as an exact certificate.
+
+The diagnostic uses a five-bit target that was constructed in one fixed
+feature space, so an exact two-head solution is known to exist in advance.
+It starts with two incorrect vertices, adds one, and then the other.
+The resulting full-cube score was independently evaluated with exact
+rational arithmetic at all 32 vertices, with margin greater than
+$0.9999999999999$. This checks promotion, retention, and final export;
+it proves no extension assertion for an arbitrary new label.
+
+In particular, this search does not establish that every stage succeeds,
+that a failed numerical stage is infeasible, or that the requested head
+budget always permits a continuation. Those assertions are not assumed.
+
 \end{document}

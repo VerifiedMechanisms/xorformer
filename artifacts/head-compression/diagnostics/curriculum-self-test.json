@@ -1,0 +1,83 @@
+{
+  "n": 5,
+  "lifted_heads": 2,
+  "original_protected_vertices": 30,
+  "last_protected_vertices": 32,
+  "best_full_metric": [
+    0,
+    1.2543870617285725e-28
+  ],
+  "certificate": "certificate.json",
+  "seconds": 0.021010767901316285,
+  "stages": [
+    {
+      "stage": 0,
+      "termination": "numerical stage passed",
+      "protected_vertices": 31,
+      "introduced_vertices": [
+        26
+      ],
+      "batch": 1,
+      "promoted": true,
+      "seconds": 0.002976963995024562
+    },
+    {
+      "stage": 1,
+      "termination": "exact full-cube certificate",
+      "protected_vertices": 32,
+      "introduced_vertices": [
+        9
+      ],
+      "batch": 2,
+      "promoted": true,
+      "seconds": 0.020981302950531244
+    }
+  ],
+  "events": [
+    {
+      "stage": 0,
+      "evaluation": 0,
+      "seconds": 0.0020724430214613676,
+      "selected_vertices": 31,
+      "protected_vertices": 30,
+      "selected_loss": 1.702515967504196e-26,
+      "full_loss": 0.0433087282181679,
+      "selected_errors": 0,
+      "full_errors": 1,
+      "selected_minimum_margin": 0.9999999999992606,
+      "full_minimum_margin": -0.6648599358392722,
+      "direct_qr_score_discrepancy": 1.7763568394002505e-15,
+      "inner_gradient": 2.5278109471403774e-13
+    },
+    {
+      "stage": 1,
+      "evaluation": 1,
+      "seconds": 0.0039049379993230104,
+      "selected_vertices": 32,
+      "protected_vertices": 31,
+      "selected_loss": 1.2543870617285725e-28,
+      "full_loss": 1.2543870617285725e-28,
+      "selected_errors": 0,
+      "full_errors": 0,
+      "selected_minimum_margin": 0.9999999999999117,
+      "full_minimum_margin": 0.9999999999999117,
+      "direct_qr_score_discrepancy": 7.993605777301127e-15,
+      "inner_gradient": 1.7872235343650847e-14,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 26959946667148263977076597816931178303715761342302871657596784663495,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 32
+      }
+    }
+  ],
+  "scope": "Finite numerical continuation only. Stage tests are not exact proofs.",
+  "failure_is_not_a_lower_bound": true,
+  "independent_verification": {
+    "vertices_checked": 32,
+    "heads": 2,
+    "strict_signs_and_admissibility": true,
+    "sha256": "272adc7ea399be14c604faeaaebfc5f2d6ca5200447802584b1a3a2f956d8dfc",
+    "margin_approximation": 0.9999999999999118
+  }
+}
