@@ -940,5 +940,30 @@
     "accepted_rounds": 0,
     "status": "Restarted to interleave small swaps and large-gradient proposals instead of testing all large moves first.",
     "scope": "Finite diagnostic only; no lower bound or convergence claim."
+  },
+  "sorted_permutation_small_check": {
+    "n": 6,
+    "heads": 3,
+    "assignment_trials": 40,
+    "assignment_size": 6,
+    "maximum_assignment_cost_error": 0.0,
+    "initial_loss": 0.3410816768749205,
+    "final_loss": 0.26506518568222176,
+    "certificate": null,
+    "scope": "Finite diagnostic, no convergence or universal claim."
+  },
+  "column_permutation_interleaved_stopped": {
+    "last_checkpoint": {
+      "phase": "start",
+      "iteration": 3,
+      "seconds": 1624.6073319530115,
+      "loss": 0.19148426139466285,
+      "errors": 2110,
+      "minimum_margin": -1.981798602295332
+    },
+    "completed_trials": 23,
+    "certificate": null,
+    "reason": "Replaced pair swaps by simultaneous sorted-column proposals.",
+    "log": "/out/head-compression/extension-column-permutations-n14.log"
   }
 }

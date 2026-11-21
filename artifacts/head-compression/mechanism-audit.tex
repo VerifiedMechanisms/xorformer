@@ -4499,4 +4499,70 @@ explicit example already demonstrates. Neither theorem compiles
 projection data or permutation signs into affine-fraction scores.
 No universal construction follows from this reformulation.
 
+
+\section{A simultaneous permutation step with an explicit majorizer}
+
+Fix the affine numerators and all denominator columns except column $i$.
+For each head write $R_h(x)=A_h(x)/B_h(x)$ and parameterize its
+positive slope in its oriented coordinate $t_{hi}(x)\in\{0,1\}$ by
+$e^{\ell_h}$. Thus $B_h=1+\sum_j e^{\ell_{hj}}t_{hj}$, which covers
+both uniform slope orientations after complementing the input in that
+head. Set $p_h=e^{\ell_h}t_{hi}/B_h\in[0,1]$.
+For the average squared-hinge loss put
+\[
+ g_x=y_x(1-y_xS(x))_+,\qquad
+ G_h=\frac1N\sum_x g_xR_h(x)p_h(x).
+\]
+This is the gradient in the selected log-slope column.
+
+For a fixed $r>0$ define
+\[
+ K_h=\frac1N\sum_x |R_h(x)|\left(e^r|g_x|
+                  +e^{2r}\sum_a|R_a(x)|\right),\qquad K=\max_h K_h.
+\]
+Every column perturbation $\Delta$ with $|\Delta_h|\le r$ satisfies
+\[
+ L(\ell+\Delta)\le L(\ell)+G\cdot\Delta
+                         +\frac12\sum_hK_h\Delta_h^2.
+\]
+To verify this, along a log-slope path a head has first derivative
+$-R_hp_h$ and second derivative $R_h(2p_h^2-p_h)$.
+Its magnitude along the segment is at most $e^r|R_h(x)|$.
+Writing its score change as $\delta_h$, Taylor's theorem gives
+\[
+ |\delta_h|\le e^r|R_h||\Delta_h|,\qquad
+ |\delta_h+R_hp_h\Delta_h|\le\tfrac12e^r|R_h|\Delta_h^2.
+\]
+The scalar squared hinge has derivative $-g_x$ at $S(x)$ and a
+one-Lipschitz derivative. Hence its increment is at most
+$-g_x\sum_h\delta_h+\frac12(\sum_h\delta_h)^2$.
+Apply weighted Cauchy--Schwarz to the latter square and average over
+vertices to obtain the claimed bound, including hinge boundary points.
+
+For $\eta>0$, the exact minimum of
+\[
+ G\cdot(v-\ell)+\frac1{2\eta}\|v-\ell\|^2
+\]
+over permutations $v$ of the entries of $\ell$ is obtained by sorting
+$\ell-\eta G$ and assigning the sorted entries of $\ell$ in that
+same order. Completing the square reduces the assertion to minimum
+squared distance. Exchanging an oppositely ordered pair cannot increase
+that distance, which proves the rule. It may be applied separately
+inside each orientation class to preserve every column multiset.
+The identity permutation is feasible, so this minimum is nonpositive.
+If the resulting displacement is bounded by $r$ and $\eta K<1$,
+then every nonidentity proposal strictly decreases the exact loss by
+at least $(\eta^{-1}-K)\|\Delta\|^2/2$.
+
+This is a descent certificate, not a universal fitting theorem. For
+small $\eta$ the minimizing permutation can be the identity, even at
+positive loss. The experimental script
+\texttt{search\_sorted\_permutations.py} uses several heuristic step
+sizes and accepts only measured loss improvements after a full
+numerator refit; it does not assert that those steps meet the displayed
+majorizer condition. Exhaustive enumeration of all $6!$ assignments
+in forty small trials agreed with the sorting minimizer. A six-bit,
+three-head diagnostic reduced loss from $0.3410816769$ to
+$0.2650651857$ but produced no strict sign certificate.
+
 \end{document}
