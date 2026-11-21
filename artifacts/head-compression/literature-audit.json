@@ -591,6 +591,14 @@
       "checked_location": "Introduction, divided-power convention in Section 1, and algorithm scope in Section 2",
       "mechanism": "Constructs minimal local apolar schemes and generalized additive decompositions using multiplication and Hankel operators.",
       "gap": "The algorithm does not prove a same-length real smoothing, an admissible denominator realization, or an all-Boolean-functions head bound."
+    },
+    {
+      "title": "Degenerating Discriminants",
+      "authors": "Viktoriia Borovik and Clara Briand",
+      "url": "https://arxiv.org/html/2607.17966",
+      "checked_location": "Conventions, Theorems 4.8 and 4.10, and the conormal parametrization in the proof of Theorem 4.10",
+      "mechanism": "Deletion-contraction degenerations of reciprocal linear spaces give a dual degree formula and explicit limiting dual components.",
+      "gap": "The work is over the complex numbers and describes discriminants, degrees, and flat limits. It supplies neither every real sign orthant nor a real deformation with positive same-sign affine denominators. Degree or multiplicity cannot be substituted for sign coverage."
     }
   ]
 }
