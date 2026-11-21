@@ -26,6 +26,7 @@ import HeadComplexity.Results.BooleanMomentIndefiniteness
 import HeadComplexity.Results.IndicatorApproximationBarrier
 import HeadComplexity.Results.MaxNormalizedReciprocal
 import HeadComplexity.Results.ConfluentFractionLift
+import HeadComplexity.Results.SharedAffineFractionLift
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan

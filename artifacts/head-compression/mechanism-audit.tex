@@ -5399,4 +5399,115 @@ Thus a cheap affine-equality sign compiler cannot be promoted to a
 flat numerical indicator compiler. The result is an obstruction to
 that composition method, not to the requested universal sign bound.
 
+\section{A shared affine correction permits orientation crossing}
+
+The two-head confluent chart can be enlarged in a different direction.
+The following construction uses one additional affine head for an entire
+collection, rather than one cancelling partner for each term. This is a
+finite lift and a search chart, not a universal existence theorem.
+
+For strictly positive numbers $p_1,\ldots,p_n$, put
+\[
+ t_1(x)=\sum_i p_ix_i,\qquad
+ t_0(x)=\sum_i p_i(1-x_i),\qquad P=t_1+t_0=\sum_i p_i.
+\]
+For $q>0$ define
+\[
+ r(q,p;x)=\frac{q(t_1-t_0)}{(q+1)(qt_1+t_0)}.
+\]
+The denominator $B=qt_1+t_0=P+(q-1)\sum_i p_ix_i$ is
+strictly positive on the whole cube. Its variable coefficients are
+strictly positive when $q>1$ and strictly negative when $q<1$.
+Also $|r|\le1$: the inequalities $|t_1-t_0|\le P$ and
+\[
+ (q+1)(qt_1+t_0)-qP=q^2t_1+t_0\ge0
+\]
+give the claim directly.
+
+\begin{proposition}
+Let $C$ be affine, let $A_1,\ldots,A_M$ be homogeneous linear
+forms, and choose positive shape coefficients $p_{hi}$ and parameters
+$q_h>0$. If
+\[
+ T(x)=C(x)+\sum_{h=1}^M A_h(x)r(q_h,p_h;x)
+\]
+has strict signs on the Boolean cube, those signs have an admissible
+representation using at most $M+1$ heads.
+\end{proposition}
+\begin{proof}
+For $q\ne1$, direct algebra gives
+\[
+ r(q,p;x)=\frac{2q}{q^2-1}
+          -\frac{qP}{(q-1)B(x)}.
+\]
+Thus each term uses one ordinary head, and all the affine correction
+terms $2q_hA_h/(q_h^2-1)$ combine with $C$ into one head with
+constant denominator one. This denominator has all variable
+coefficients zero, as expressly allowed in the manuscript.
+
+At $q=1$ the feature is $(t_1-t_0)/(2P)$. The exact error identity is
+\[
+ r(q,p;x)-r(1,p;x)=
+ \frac{(q-1)(t_1-t_0)(t_0-qt_1)}
+ {2P(q+1)(qt_1+t_0)}.
+\]
+Since $|t_1-t_0|\le P$ and $|t_0-qt_1|\le qt_1+t_0$,
+\[
+ |r(q,p;x)-r(1,p;x)|\le\frac{|q-1|}{2(q+1)}.
+\]
+Let $\gamma=\min_x|T(x)|>0$ and
+$K=\sum_{h:q_h=1}\|A_h\|_1$. If $K>0$, choose a positive
+dyadic $\delta\le\min\{1,\gamma/(2K)\}$ and replace every
+$q_h=1$ by $1+\delta$. The score changes by at most
+$K\delta/2\le\gamma/4$. If $K=0$, those terms are zero and
+may be omitted, or assigned any positive separation. The preceding
+exact identity now applies to all remaining terms. The strict signs
+are preserved and the count is still $M+1$.
+\end{proof}
+
+\paragraph{Inclusion of ordinary heads.}
+The chart contains an arbitrary same-orientation fraction after
+addition of an affine correction. In the normalized form
+$a\cdot t/(1+b\cdot t)$, let $P_o=\sum_i b_i$, with $b_i>0$.
+Take $p_i=b_i$ and $q=1+P_o$ for positive orientation, or
+$q=(1+P_o)^{-1}$ for negative orientation. For the former put
+$k_0=0$, $U=a$; for the latter put
+\[
+ k_0=\frac{\sum_i a_i}{1+P_o},\qquad U=-a+k_0b.
+\]
+Writing $\sigma\in\{1,-1\}$ for the orientation, the corresponding
+chart coefficients are
+\[
+ A=-\sigma\frac{P_o}{1+P_o}U,\qquad
+ C_{\rm added}(x)=k_0+\frac{2}{2+P_o}U\cdot x.
+\]
+Substitution verifies equality on every real input where denominators
+are nonzero. Hence this is a genuine enlargement of the ordinary
+search chart, with a single additional affine head for all units.
+
+\paragraph{Derivatives and checks.}
+Using $p_i=e^{u_i}$ up to a common scale, and $q=e^{2s}$,
+the derivatives used in the implementation are
+\[
+ \partial_s r=r\left(\frac2{q+1}-\frac{2qt_1}{B}\right),\qquad
+ \partial_{u_i}r=
+ \frac{qp_i\bigl(x_it_0-(1-x_i)t_1\bigr)}{B^2}.
+\]
+Both expressions are regular at $s=0$. The script
+\texttt{search\_shared\_affine\_varpro.py} checks derivatives with
+fixed and refitted linear coefficients and checks the ordinary-head
+import identity. Rationalized coefficients are checked before the
+finite lift; the resulting ordinary heads are checked again by exact
+integer intervals. A separate checker uses Fraction arithmetic and
+imports no search implementation.
+
+The five-bit diagnostic has three lifted heads and a verified strict
+margin greater than $0.0007223$. Fixed-coefficient derivative errors
+are below $6\cdot10^{-12}$, the refitted derivative error is below
+$9\cdot10^{-13}$, and the ordinary-import score error is below
+$4\cdot10^{-16}$. These finite checks validate the implementation
+only. The algebraic identities and uniform error bound are also
+proved in \texttt{SharedAffineFractionLift.lean}. No assertion is
+made that $M=O(2^n/n^2)$ such terms suffice for every truth table.
+
 \end{document}

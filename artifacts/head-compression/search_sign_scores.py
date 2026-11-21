@@ -46,7 +46,8 @@ def exact_check(certificate, precision=160):
         minimum_margin = margin if minimum_margin is None else min(minimum_margin, margin)
     for head in heads:
         slopes = head["denominator"][1:]
-        if not (all(v > 0 for v in slopes) or all(v < 0 for v in slopes)):
+        if not (all(v > 0 for v in slopes) or all(v < 0 for v in slopes)
+                or all(v == 0 for v in slopes)):
             return {"certified": False, "reason": "denominator orientation"}
     return {"certified": True, "margin_numerator": minimum_margin,
             "margin_denominator": scale, "vertices_checked": 1 << n}

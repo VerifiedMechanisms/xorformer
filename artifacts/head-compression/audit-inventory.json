@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit. SharedAffineFractionLift adds orientationCrossingFeature, whose strict finite scores compile to the original model with one shared affine head.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -118,6 +118,16 @@
         "HeadComplexity.covering_mixture_bounds"
       ],
       "scope": "A quantitative lower bound on numerical indicator approximation from explicit normalized-denominator mass and isolation identities. The positive-affine denominator expansion, covering-set geometry, and random construction are proved manually. This is not a lower bound on strict sign complexity."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/SharedAffineFractionLift.lean",
+      "main_declaration": "HeadComplexity.orientationCrossingFeature_decomposition",
+      "companion_declarations": [
+        "HeadComplexity.orientationCrossingFeature_at_one",
+        "HeadComplexity.orientationCrossingFeature_error_identity",
+        "HeadComplexity.orientationCrossingFeature_error_le"
+      ],
+      "scope": "Exact decomposition and uniform perturbation bound for an orientation-crossing chart. The manual finite lift uses M+1 ordinary heads. Existence at the universal target budget is not proved."
     }
   ],
   "validation": {
@@ -268,5 +278,17 @@
     "exact_sign_check": "Independent Fraction check passed on all 1024 vertices.",
     "manual_scope": "Universal indicator-error inequality and asymptotic sign/approximation separation. Not the requested universal upper bound.",
     "target_proved": false
+  },
+  "shared_affine_audit": {
+    "script": "artifacts/head-compression/search_shared_affine_varpro.py",
+    "diagnostic": "artifacts/head-compression/diagnostics/shared-affine-self-test.json",
+    "core_build": "passed, 3137 jobs",
+    "independent_exact_check": "Passed all 32 vertices, 3 heads, including a constant-denominator affine head.",
+    "small_certificate_sha256": "866f0e35eefb84acc1ea6c258b523269c36d1cf3e23817dc07e52ae65614217d",
+    "checker_correction": "search_sign_scores.exact_check now accepts the manuscript-permitted all-zero slope vector; mixed zero/nonzero slopes remain rejected. The independent Fraction checker already accepted constants.",
+    "large_search": "/out/head-compression/shared-affine-n14-h336",
+    "target_proved": false,
+    "all_module_build": "passed, 9195 jobs",
+    "axioms": "All four declarations use only propext, Classical.choice, and Quot.sound"
   }
 }

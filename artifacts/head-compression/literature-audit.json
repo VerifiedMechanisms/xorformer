@@ -550,6 +550,14 @@
       "mechanism": "Nonnegative combinations of products of the linear inequalities defining a polytope give Handelman positivity certificates.",
       "application": "A product of positive affine cube denominators has a direct nonnegative expansion in coordinate-face indicators of codimension at most the head count; the indicator approximation obstruction uses that elementary expansion.",
       "gap": "The positivity hierarchy does not enforce factorization into admissible denominators with affine residues and does not construct all strict Boolean sign tables at the target head budget."
+    },
+    {
+      "title": "Computing with Almost Optimal Size Neural Networks",
+      "authors": "Kai-Yeung Siu, Vwani Roychowdhury, and Thomas Kailath",
+      "url": "https://papers.nips.cc/paper_files/paper/1992/file/08b255a5d42b89b0585260b6f2360bdd-Paper.pdf",
+      "checked_location": "Definitions 1-3 and Remark 2, printed pages 21-22; Theorem 4, printed page 25",
+      "mechanism": "Piecewise rational approximation and threshold-degree lower bounds for bounded-weight networks computing symmetric functions with inverse-polynomial separation.",
+      "gap": "The bounded-weight and separation assumptions are absent from the manuscript. The construction concerns parity and related symmetric functions, and supplies neither a universal upper bound nor a one-layer affine-fraction compiler."
     }
   ]
 }
