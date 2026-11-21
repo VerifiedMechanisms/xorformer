@@ -13,8 +13,14 @@ import json
 import math
 import os
 from pathlib import Path
+import sys
 import time
 from tempfile import TemporaryDirectory
+
+# Exact shared corrections can have denominators with tens of thousands of
+# digits. These are locally generated certificate integers, not web input.
+if hasattr(sys, "set_int_max_str_digits"):
+    sys.set_int_max_str_digits(0)
 
 for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ[name] = "1"

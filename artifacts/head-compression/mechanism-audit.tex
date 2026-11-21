@@ -5795,4 +5795,27 @@ all 31 protected margins remain above $0.159148$. The barrier objective
 decreases from $0.504474$ to $0.436270$. This checks the continuation
 mechanism on a finite example only.
 
+
+\paragraph{Independent audit of the fourteen-bit starting score.}
+The shared-affine seed was exported to exact rational data and checked
+against the original fourteen-bit target labels. The independent checker
+\texttt{audit\_rational\_score.py} certifies 16235 positive signed margins,
+149 negative signed margins, and no unresolved margins among all 16384
+vertices. Every denominator satisfies the required whole-cube positivity
+and slope-sign conditions. This is a certified erroneous score, not a
+representation of the requested target.
+
+For precision $p$, the checker computes the integer
+\[
+ L_x=\lfloor2^pc_0\rfloor+
+       \sum_{h=1}^H\left\lfloor2^pA_h(x)/B_h(x)\right\rfloor.
+\]
+Integer division and $B_h(x)>0$ give
+$L_x\le2^pS(x)<L_x+H+1$. These outward bounds certify both positive
+and negative margins without forming a common denominator across all
+heads. The checker imports no optimization code. A small check agrees
+with the independent exact-fraction verifier and detects a deliberately
+flipped label. The large rational export also exposed and fixed Python's
+default decimal-integer JSON limit for locally generated certificates.
+
 \end{document}
