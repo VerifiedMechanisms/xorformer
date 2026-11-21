@@ -330,7 +330,8 @@
       "axioms": "All three exported transfer theorems use only propext, Classical.choice, and Quot.sound.",
       "constant_denominator_detail": "An arbitrary affine correction is uniformly approximated by one actual FracAtom before the shared-embedding bridge. Exact realization with an unchanged constant denominator is not asserted.",
       "target_proved": false
-    }
+    },
+    "stage17_exact_audit": "artifacts/head-compression/diagnostics/curriculum-stage17-exact-audit.json"
   },
   "shared_affine_gauss_newton_audit": {
     "script": "artifacts/head-compression/search_shared_affine_gauss_newton.py",

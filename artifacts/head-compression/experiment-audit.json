@@ -1312,7 +1312,17 @@
     "stage_seconds": 3600,
     "initial_batch": 8,
     "certificate": null,
-    "scope": "Finite numerical continuation; only full-cube exact verification counts as success."
+    "scope": "Finite numerical continuation; only full-cube exact verification counts as success.",
+    "stage17_exact_audit": {
+      "report": "artifacts/head-compression/diagnostics/curriculum-stage17-exact-audit.json",
+      "heads": 336,
+      "correct_signs": 16299,
+      "incorrect_signs": 85,
+      "unresolved_signs": 0,
+      "whole_cube_admissibility": true,
+      "target_certificate": false,
+      "scope": "Independent integer intervals for the original truth table. The score still fails on 85 vertices."
+    }
   },
   "protected_barrier_continuation": {
     "replaced_scaled_direction_run": {
