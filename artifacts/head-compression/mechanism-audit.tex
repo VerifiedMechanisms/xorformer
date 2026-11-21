@@ -2793,4 +2793,84 @@ Boolean head lower bound: on the finite cube, the displayed function
 is positive and its sign is constant. A compiler that only preserves
 signs on the cube would require a separate construction.
 
+
+\section{A linear-program descent mechanism for one head}
+
+This mechanism differs from a fixed-denominator refit and from smooth
+Newton descent. It supplies a rigorously descending update even when
+some current margins lie at hinge kinks. It does not establish that all
+positive-loss configurations admit a descending update, or give a head
+budget for reaching zero loss.
+
+\begin{proposition}[A piecewise-linear surrogate with explicit descent]
+Let $X$ be finite and nonempty, let $f:X\to\{-1,1\}$, and fix a residual score
+$F:X\to\mathbb R$. Let $A_0,B_0$ and $A_1,B_1$ be affine forms,
+with both denominators positive on $X$. Write
+\[
+ L_i(x)=(1-f(x)F(x))B_i(x)-f(x)A_i(x),\qquad
+ \ell_0(x)=\frac{\max\{L_0(x),0\}}{B_0(x)}.
+\]
+Define the convex, piecewise-linear function of the candidate coefficients
+\[
+ \Psi(A,B)=\sum_{x\in X}
+ \left(\frac{\max\{(1-f(x)F(x))B(x)-f(x)A(x),0\}}{B_0(x)}
+       -\ell_0(x)\frac{B(x)-B_0(x)}{B_0(x)}\right).
+\]
+If $\Delta=\Psi(A_0,B_0)-\Psi(A_1,B_1)>0$, then sufficiently small
+positive convex interpolation steps from $(A_0,B_0)$ toward $(A_1,B_1)$
+strictly decrease the actual rational hinge loss
+\[
+ \mathcal L(A,B)=\sum_{x\in X}\max\{1-f(x)(F(x)+A(x)/B(x)),0\}.
+\]
+This assertion includes every case in which $L_0(x)=0$.
+If both endpoint denominators have the same strict slope orientation,
+all interpolated denominators retain that orientation and positivity.
+\end{proposition}
+
+\begin{proof}
+Put
+\[
+ d_x=\frac{\max\{L_1(x),0\}-\max\{L_0(x),0\}}{B_0(x)}
+       -\ell_0(x)\frac{B_1(x)-B_0(x)}{B_0(x)},\quad
+ M=\sum_x|d_x|,\quad
+ K=\max_x\left|\frac{B_1(x)}{B_0(x)}-1\right|.
+\]
+Then $\sum_xd_x=-\Delta$ and $M\geq\Delta>0$.
+For $0\leq\theta\leq1$, set $A_\theta=(1-\theta)A_0+\theta A_1$
+and define $B_\theta,L_\theta$ in the same way. The positive-part
+function is convex, so at each $x$
+\[
+ \begin{split}
+ \frac{\max\{L_\theta,0\}}{B_\theta}-\ell_0
+ &\leq\frac{(1-\theta)\max\{L_0,0\}
+                 +\theta\max\{L_1,0\}-\ell_0B_\theta}{B_\theta}\\
+ &=\frac{\theta d_x}{1+\theta(B_1/B_0-1)}.
+ \end{split}
+\]
+If $K=0$, summing gives a decrease at most $-\theta\Delta$.
+Otherwise choose
+\[
+ 0<\theta\leq\min\left\{1,\frac1{2K},\frac{\Delta}{4KM}\right\}.
+\]
+Every denominator in the last displayed fraction is at least $1/2$.
+Consequently
+\[
+ \mathcal L(A_\theta,B_\theta)-\mathcal L(A_0,B_0)
+ \leq-\theta\Delta+2\theta^2KM
+ \leq-\frac{\theta\Delta}{2}<0.
+\]
+Positivity and a common strict slope orientation are preserved under
+convex interpolation. The proof never differentiates the hinge and
+therefore does not assume that current margins avoid its kinks.
+\end{proof}
+
+For a fixed trust box on denominator coefficients, minimizing $\Psi$
+is a linear program: introduce one nonnegative variable for each
+positive-part expression and impose its affine lower bound. The script
+\texttt{search\_block\_linear\_program.py} implements this update and
+accepts it only after checking a decrease in the actual rational loss.
+The all-head problem remains nonconvex. In particular, the explicit
+parity examples above prohibit interpreting this local descent statement
+as a global zero-loss or universal-capacity theorem.
+
 \end{document}

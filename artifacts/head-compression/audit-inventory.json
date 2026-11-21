@@ -67,14 +67,24 @@
         "HeadComplexity.regularized_squareParityHinge_ge_thirteen_quarters",
         "HeadComplexity.regularized_squareParityHinge_attained"
       ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ScalarDecoderRootBound.lean",
+      "main_declaration": "HeadComplexity.scalar_decoder_all_words_lower_bound",
+      "scope": "After clearing positive denominators, an increasing codebook with all 2^r distinct strict polynomial sign words of degree at most H satisfies 2^r <= r*H+1. The rational clearing step is given in the manual audit; the Lean theorem states its polynomial hypotheses explicitly.",
+      "companion_declarations": [
+        "HeadComplexity.polynomial_sign_sequence_degree_bound",
+        "HeadComplexity.scalar_decoder_distinct_sign_words_bound"
+      ]
     }
   ],
   "validation": {
-    "build": "lake build HeadComplexity.Results.All succeeded after all twelve new modules were imported.",
-    "build_log": "/out/head-compression/lean-all-regularized-parity-build.log",
+    "build": "lake build HeadComplexity.Results.ScalarDecoderRootBound HeadComplexity.Results.All succeeded after all thirteen new modules were imported.",
+    "build_log": "/out/head-compression/lean-scalar-root-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
-    "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples."
+    "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",
+    "scalar_root_axioms": "/out/head-compression/lean-scalar-root-axioms.log; all six declarations use only the allowed standard axioms."
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -85,7 +95,8 @@
     "Independent spherical and logarithmic-scale random span dictionaries have vanishing expected matched fraction in a fixed orthant at exponential dictionary size. These probability statements do not exclude rare or correlated deterministic constructions.",
     "For r=2^k, k>=3, an unconditional binary-addressed scalar decoder uses at most 2^(r+1)/r+4*r-3 positive affine-pole fractions. It follows from a full self-dual necklace enumeration with few track transitions. The scalar encoder is not supplied.",
     "Every scalar-code decoder with r output bits and H affine fractions per bit satisfies r*H>=2^r-1 if it realizes all words. Thus the new scalar decoder has optimal order on the stated sequence of r.",
-    "The explicit composition 1/(1+1/(1+x+2*y)+1/(1+2*x+y)) has an irreducible quadratic pole, so no finite sum of affine fractions equals it as a rational identity. This is not a Boolean sign lower bound."
+    "The explicit composition 1/(1+1/(1+x+2*y)+1/(1+2*x+y)) has an irreducible quadratic pole, so no finite sum of affine fractions equals it as a rational identity. This is not a Boolean sign lower bound.",
+    "A convex piecewise-linear surrogate for a single-head rational hinge update gives an explicit positive step with strict actual loss decrease whenever the surrogate improves. The proof includes hinge kinks and preserves denominator admissibility. No global progress or head-count theorem follows."
   ],
   "blocked_routes": [
     {

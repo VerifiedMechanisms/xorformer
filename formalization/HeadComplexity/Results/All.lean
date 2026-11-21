@@ -12,6 +12,7 @@ import HeadComplexity.Results.AtomicMarginRefinement
 import HeadComplexity.Results.AtomicMarginSparsification
 import HeadComplexity.Results.CalibratedThresholdVote
 import HeadComplexity.Results.CauchyDecoderObstruction
+import HeadComplexity.Results.ScalarDecoderRootBound
 import HeadComplexity.Results.SixFractionGate
 import HeadComplexity.Results.EightFractionGate
 import HeadComplexity.Results.TropicalChainObstruction
