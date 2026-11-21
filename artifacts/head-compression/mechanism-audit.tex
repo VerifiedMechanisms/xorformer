@@ -2796,6 +2796,43 @@ is positive and its sign is constant. A compiler that only preserves
 signs on the cube would require a separate construction.
 
 
+\begin{proposition}[Permuting a common pole list does not supply an encoder]
+Let $u\in\{0,1\}^m$ and $v\in\{0,1\}^k$, and let
+$D_1(u,v),\ldots,D_H(u,v)$ be affine in the combined input, with $H>0$.
+Fix real pole offsets $d_1,\ldots,d_H$ and a nonconstant address function
+$a(v)$. Suppose there are functions $\lambda(u)>0$ and $t(u)$ such that
+for every $u,v$ the following multisets, including multiplicities, agree:
+\[
+ \{D_h(u,v):1\le h\le H\}
+   =\{\lambda(u)(t(u)+a(v)+d_h):1\le h\le H\}.
+\]
+Then $\lambda$ is constant and $t$ is affine on the $u$-cube.
+The permutations may depend arbitrarily on both input blocks.
+\end{proposition}
+\begin{proof}
+Summation is invariant under each permutation. Since the original
+denominators are affine in the combined input, there are affine functions
+$L(u)$ and $M(v)$ such that
+\[
+ L(u)+M(v)=H\lambda(u)(t(u)+a(v)+\overline d),
+ \qquad \overline d=H^{-1}\sum_h d_h.
+\]
+Choose $v_0,v_1$ with $a(v_0)\ne a(v_1)$ and subtract the two equations.
+This yields
+\[
+ \lambda(u)=\frac{M(v_1)-M(v_0)}{H(a(v_1)-a(v_0))},
+\]
+which is independent of $u$. This constant is positive by hypothesis.
+Solving the equation at $v_0$ for $t(u)$ now makes $t$ affine.
+\end{proof}
+
+Consequently an input-dependent reindexing, even with a common positive
+rescaling, cannot turn the scalar lookup construction into an encoder
+for independently prescribed words at all cube inputs. The argument
+only addresses a common translated pole list. Head-dependent arguments
+or pole lists that change their shape are outside its hypotheses, and
+no construction for them is supplied by this observation.
+
 \section{A linear-program descent mechanism for one head}
 
 This mechanism differs from a fixed-denominator refit and from smooth

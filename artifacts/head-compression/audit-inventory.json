@@ -121,7 +121,8 @@
     "For m>=64, every 2^m by 2^m two-coloured table partitions into at most 4610*2^(2*m)/m^2 monochromatic rectangles, each side at most m/12. The density proof is explicit. This counts cells, not heads. A parity restriction forces an unbounded number of heads for some such rectangle memberships; exact numeric indicators need at least n-log2(support size) heads.",
     "An independent 384-bit interval-Newton audit certifies an interior one-head squared-regression minimum on a four-bit table. Its full canonical-parameter Hessian is positive definite and its nonzero Boolean residual moment is indefinite. This is a squared-regression counterexample to an unqualified curvature inference, not a squared-hinge theorem, a nonglobal-minimum claim, or a head lower bound.",
     "For every n >= 1000, biased independent labels near an explicitly conditioned one-head immersion produce an interior strict positive squared-hinge minimum with all hinges active and a strict sign error. Exact rational Gram calculations, Hoeffding bounds, and strong convexity prove existence. This does not address a hypothesis requiring an exponential head budget or claim nonglobality.",
-    "Positive-slope lower-face scores can be glued to upper-face scores with arbitrary strict orientations at additive head cost. glue_faces.py implements the construction with exact rational parameters and integer interval margins. The finite parity diagnostic passes the independent Fraction checker."
+    "Positive-slope lower-face scores can be glued to upper-face scores with arbitrary strict orientations at additive head cost. glue_faces.py implements the construction with exact rational parameters and integer interval margins. The finite parity diagnostic passes the independent Fraction checker.",
+    "If affine input denominators form, at each pair of input blocks, a permuted common translated and scaled pole list, then summing the denominators across two distinct addresses forces the scale to be constant and the code to be affine. Thus input-dependent pole permutations do not supply an arbitrary scalar encoder under these hypotheses."
   ],
   "blocked_routes": [
     {
@@ -130,7 +131,7 @@
     },
     {
       "route": "Cauchy codebooks and binary addresses",
-      "gap": "The new single-track construction resolves binary addressing for a freely supplied scalar code. It does not supply an affine encoder for independently chosen words at all cube inputs. Raw composition with sums of heads can create irreducible poles; an admissible sign-preserving compiler remains missing."
+      "gap": "The new single-track construction resolves binary addressing for a freely supplied scalar code. It does not supply an affine encoder for independently chosen words at all cube inputs. Raw composition with sums of heads can create irreducible poles; an admissible sign-preserving compiler remains missing. Permuting and commonly rescaling one translated pole list still forces an affine code, by the new sum invariant."
     },
     {
       "route": "Number-theoretic real encodings",
