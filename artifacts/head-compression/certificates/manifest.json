@@ -15,6 +15,11 @@
       "file": "inner-product-n12-h57.json",
       "sha256": "51586df456a41671393469529b82d358fdeff4b497e3afb26e3d2d7779a86300",
       "scope": "All 4096 vertices of this inner-product-mod-two function."
+    },
+    {
+      "file": "inner-product-n14-h251.json",
+      "sha256": "45259835e79971bb88446a32fe0abe5e15301e80cccc556b6455666ce886ceb2",
+      "scope": "All 16384 vertices of this one inner-product-mod-two function. Independently verified; no universal bound."
     }
   ]
 }

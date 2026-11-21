@@ -2512,6 +2512,13 @@ the family is not universal for all sufficiently large $n$.
 This conclusion also holds with the manuscript's stronger admissibility
 condition. The vectors $v_j$, scalars $t_h$, and assignment $g$ are
 all allowed to depend on the labeling.
+More generally, if only $1\leq K\leq H\leq C2^n/n^2$ is assumed,
+the number of patterns is at most
+\[
+ 2^{\,n^2K+O_C(2^n\log n/n)}.
+\]
+Thus a universal family at this head budget must use at least
+$(1-o(1))2^n/n^2$ distinct projective directions.
 \end{proposition}
 
 \begin{proof}
@@ -2566,6 +2573,17 @@ The total logarithm is $o(N)$, strictly below $N$ for all
 sufficiently large $n$. There are $2^N$ Boolean labelings, proving
 nonuniversality. Fewer than $H$ heads may be padded with zero
 numerators without introducing new directions.
+
+For the more precise estimate, use
+$\log_2(2H)\leq n+O_C(1)$ to obtain, without the assumption
+$K/H\to0$,
+\[
+ k_2\log_2(2H)\leq n^2K+O_C(N/n).
+\]
+Combine this with the preceding uniform bounds for all the other
+logarithmic terms. If every labeling occurs, their total must be at
+least $N$, so
+$n^2K\geq N-O_C(N\log n/n)$, as asserted.
 \end{proof}
 
 This restriction is absent from the full problem, which permits
