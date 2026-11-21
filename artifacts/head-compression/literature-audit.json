@@ -463,6 +463,15 @@
       "checked_location": "Definitions 2.1-2.2, Corollaries 3.2-3.3, Theorems 4.4 and 5.1, and Section 6; the 1995 journal extension abstract was also inspected.",
       "mechanism": "Scalar analytic networks are parametrized through matrix function realizations and proper rational functions. A Hankel rank characterizes finite realization dimension under the stated hypotheses.",
       "gap": "These are scalar functional realizations, potentially with Jordan blocks and complex poles. Neither a Boolean-cube sign construction nor a bound by admissible affine input denominators follows. The realization theorem assumes a finite realization already exists and does not supply the required universal head count."
+    },
+    {
+      "title": "On the representation of directed graphs as unions of orderings",
+      "authors": "Paul Erdos and Leo Moser",
+      "url": "https://www.renyi.hu/~p_erdos/1964-22.pdf",
+      "checked_location": "Sections 2 and 3, especially Lemmas 2 and 4 and the final bilevel-graph decomposition",
+      "mechanism": "Every oriented graph on m vertices is induced by O(m/log(m)) rankings. Pairs of rankings encode disjoint complete bipartite directed components and cancel elsewhere.",
+      "application": "The audit proves an explicit admissible fraction (R^rank(i)-R^rank(j))/(1+R^rank(i)+R^rank(j)) approximating one ranking vote on two one-hot inputs. The majority theorem then transfers to arbitrary promised rectangular sign tables.",
+      "gap": "One-hot ranks are independently stored coordinates. Binary encoding makes the required rank powers nonlinear tables; even the natural binary rank has a nonzero mixed difference. No affine encoder, full-cube extension, or target-cost flat compiler follows."
     }
   ]
 }

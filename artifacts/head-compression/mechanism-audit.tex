@@ -4319,4 +4319,62 @@ The optional projected candidate search implements this derivative;
 central differences on an independent six-bit instance agreed to
 within $10^{-10}$. Again there is no universal lower bound on this gain.
 
+\section{Majority rankings have a promised-domain fraction compiler}
+
+The Erd\H{o}s--Moser theorem on unions of orderings states that every
+oriented graph on $m$ vertices is induced by $O(m/\log m)$ rankings.
+The primary source is \url{https://www.renyi.hu/~p_erdos/1964-22.pdf},
+Sections 2--3. Its cancellation mechanism groups disjoint complete
+bipartite directed graphs into pairs of rankings. There is a concrete
+fraction compiler for these rankings, but its domain restriction matters.
+
+\begin{proposition}[Rank comparison on two one-hot inputs]
+Let $\pi_1,\ldots,\pi_H$ be permutations of $\{1,\ldots,m\}$.
+For distinct $i,j$, put
+\[
+ V(i,j)=\sum_{h=1}^H\operatorname{sgn}(\pi_h(i)-\pi_h(j)).
+\]
+There is an admissible $H$-head score on $\{0,1\}^{2m}$ whose
+sign at $(e_i,e_j)$ agrees with $V(i,j)$ whenever $V(i,j)\ne0$.
+Consequently every strict sign table on a two-one-hot $r$ by $s$
+grid has such a representation with $O((r+s)/\log(r+s))$ heads.
+\end{proposition}
+\begin{proof}
+Take an integer $R>6H$ and set
+\[
+ A_h(z,w)=\sum_{i=1}^m R^{\pi_h(i)}(z_i-w_i),\qquad
+ B_h(z,w)=1+\sum_{i=1}^m R^{\pi_h(i)}(z_i+w_i).
+\]
+Every denominator is positive on the entire cube and all its variable
+coefficients are strictly positive. If $a>b\ge1$, then
+\[
+ 0<1-\frac{R^a-R^b}{1+R^a+R^b}
+   =\frac{1+2R^b}{1+R^a+R^b}<\frac3R.
+\]
+Interchanging $a,b$ gives the corresponding negative-sign estimate.
+Thus the score $\sum_h A_h/B_h$ differs from $V$ by less than
+$3H/R<1/2$ on the promised pairs. A nonzero integer $V$ has
+absolute value at least one, which proves the sign claim.
+For the last assertion, complete the desired oriented edges between
+two disjoint sets of $r$ and $s$ candidates to any tournament on
+$r+s$ candidates, apply the cited majority theorem, and restrict
+the numerator and denominator coefficients to the appropriate two
+one-hot blocks.
+\end{proof}
+
+This does not give a Boolean-cube theorem in logarithmic input
+dimension. Replacing $e_i$ by a binary encoding of $i$ changes
+$R^{\pi_h(i)}$ into an arbitrary table rather than an affine form.
+Even the natural binary rank $i=\sum_{j=0}^{d-1}2^j x_j$ gives
+\[
+ R^i=\prod_{j=0}^{d-1}\bigl(1+(R^{2^j}-1)x_j\bigr).
+\]
+For $d\ge2$ its mixed difference in the first two coordinates is
+$(R-1)(R^2-1)>0$, so it is not affine. No compiler for these
+tables, and no flat composition achieving the target cost, has been
+established. Directly setting $r,s$ proportional to the number of
+physical inputs yields only polynomially many promised points.
+The ranking theorem therefore does not supply the requested universal
+head bound.
+
 \end{document}
