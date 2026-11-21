@@ -3195,6 +3195,38 @@ $B_{0h}+M\geq M>0$. Therefore $f_1(x)R(x,1)>1/2$.
 Both faces have the required strict signs.
 \end{proof}
 
+\begin{corollary}[A mixed-slope background is allowed]
+The same head count $H_0+H_1$ suffices if only the lower-face score has
+strictly positive slopes, while the upper-face score may have either
+strict orientation separately in each head. The resulting score may
+have mixed orientations.
+\end{corollary}
+\begin{proof}
+Use the same normalized $S_0,S_1,L,K,M$, and let $b_*>0$ be a common
+lower bound for all upper-face denominators. Let $o_h\in\{-1,1\}$ be
+the orientation of the $h$th such denominator and set
+\[
+ \eta=\min\{b_*/2,1/(8(L+1))\},\qquad
+ R(x,y)=\sum_h\frac{A_{1h}(x)}{B_{1h}(x)+o_h\eta y}
+       +K\sum_h\frac{A_{0h}(x)}{B_{0h}(x)+My}.
+\]
+Each new denominator coefficient has the required strict sign.
+Every denominator in the first sum is at least half its original
+value. Thus the lower-face margin is at least $1$, as before, and
+\[
+ |R(x,1)-S_1(x)|
+ \le2\eta\sum_h\frac{|A_{1h}(x)|}{B_{1h}(x)^2}
+     +\frac K M\sum_h|A_{0h}(x)|
+ \le\frac{L}{2(L+1)}<\frac12.
+\]
+This proves the strict upper-face margin. The exact rational compiler
+\texttt{glue\_faces.py} implements this construction, including input
+and output integer interval checks. Its separate Fraction-arithmetic
+check on the diagnostic file \texttt{glued-parity-n3-h4.json} verifies
+all eight vertices. This diagnostic is only a check of the compiler;
+its four heads are not optimal for three-bit parity.
+\end{proof}
+
 Let $W_+(m)$ denote the largest, over Boolean functions on the $m$-cube,
 of the minimum positive-slope head count, with at least one head allowed
 for constant functions. This auxiliary notation does not replace the

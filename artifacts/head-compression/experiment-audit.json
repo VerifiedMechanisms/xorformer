@@ -789,5 +789,33 @@
     },
     "proof": "mechanism-audit.tex, Interior positive hinge minima by biased random labels",
     "scope": "Does not assert nonglobality and does not address head budgets of order 2^n/n^2. Not the target upper bound."
+  },
+  "mixed_background_face_gluing": {
+    "compiler": "glue_faces.py",
+    "proof": "mechanism-audit.tex, A mixed-slope background is allowed",
+    "checked_file": "diagnostics/glued-parity-n3-h4.json",
+    "sha256": "5a728a6429fd5f42584b31486ed845d1fbd49f4cb443e8431d0c7833ebc1f22f",
+    "independent_checker": "verify_certificate.py, exact Fraction arithmetic on all eight vertices",
+    "scope": "An additive-cost composition operation requiring a positive-slope lower-face score. The diagnostic uses four heads for three-bit parity and is not an optimality result."
+  },
+  "coupled_interior_hinge_search": {
+    "status": "Stopped after the separate probabilistic construction proved existence of interior positive hinge minima in all n >= 1000.",
+    "last_logged_trial": {
+      "n": 6,
+      "heads": 3,
+      "trial": 660
+    },
+    "candidate_found": false,
+    "scope": "No numerical candidate was certified; search failure is not a theorem."
+  },
+  "public_repository_refresh": {
+    "repository": "karthikviswanathn/how-many-attention-heads-xor",
+    "head": "37bc9db6081a566e1cf3a6ddd324446f311a2ad7",
+    "commit_date": "2026-07-23",
+    "checked_files": [
+      "problem_statement.md",
+      "theorems.md"
+    ],
+    "result": "This public revision predates the attached manuscript and supplies no requested universal quadratic-saving upper bound."
   }
 }
