@@ -575,6 +575,22 @@
       "checked_location": "Theorems 4 and 6 and the proof of Lemma 11, version 2 dated 2 October 2025.",
       "mechanism": "Injectivity of a weighted Boolean-lattice incidence operator excludes low-degree polynomial support inside a skew hyperplane. An explicit signed probability formula recovers top-degree coefficients from Hamming weights divisible by an even integer.",
       "gap": "The interpolation theorem assumes degree at most n/m-1/2 and concerns polynomial coefficients. It supplies neither an adaptive affine-fraction sign construction for arbitrary tables nor a target-order head bound."
+    },
+    {
+      "title": "On the cactus rank of cubic forms",
+      "authors": "Alessandra Bernardi and Kristian Ranestad",
+      "url": "https://iris.unitn.it/retrieve/handle/11572/134847/301086/cubicspoly160412.pdf",
+      "checked_location": "Lemma 2, Theorem 3, and the definitions of cactus, smoothable, and border rank on printed pages 3-5",
+      "mechanism": "Local contraction algebras give short apolar schemes, with length at most 2n+2 for cubics in n+1 variables.",
+      "gap": "Small scheme length does not imply a same-length limit of distinct points. The audit gives a ten-variable cubic example with local apolar length at most 20 but outside the closure of sums of 20 cubes. A real admissible fraction deformation remains required."
+    },
+    {
+      "title": "A refinement on the local cactus rank algorithm",
+      "authors": "Alessandra Bernardi and Oriol Reig Fite",
+      "url": "https://arxiv.org/html/2508.15062",
+      "checked_location": "Introduction, divided-power convention in Section 1, and algorithm scope in Section 2",
+      "mechanism": "Constructs minimal local apolar schemes and generalized additive decompositions using multiplication and Hankel operators.",
+      "gap": "The algorithm does not prove a same-length real smoothing, an admissible denominator realization, or an all-Boolean-functions head bound."
     }
   ]
 }

@@ -242,6 +242,10 @@
     {
       "route": "Affine permutation cubes and tomography",
       "gap": "Power-sum constraints and a projection reformulation are proved, but neither generic multiset reconstruction nor the affine permutation example constructs arbitrary Boolean signs. The genericity hypothesis is not available for directions (1,x). Column-permutation searches remain finite experiments."
+    },
+    {
+      "route": "Noncurvilinear collision schemes",
+      "gap": "The previous single-curve jet count does not cover every noncurvilinear collision. Local cactus-rank bounds do not supply real smoothings: a ten-variable cubic has local apolar length at most 20 yet cannot be a limit of 20 cubes. A real admissible deformation and a universal Boolean sign construction are both unproved."
     }
   ],
   "remaining_target": "Prove, without modifying the manuscript model, that a single absolute C gives W(n)<=C*2^n/n^2 for every positive integer n. No complete construction or existence proof is claimed.",
