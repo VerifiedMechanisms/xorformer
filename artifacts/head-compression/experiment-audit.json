@@ -993,5 +993,18 @@
     },
     "reason": "Switched to direct positive-slope coordinates with coordinatewise feasibility projection.",
     "certificate": null
+  },
+  "sorted_permutation_n14_stopped": {
+    "last_checkpoint": {
+      "phase": "start",
+      "iteration": 5,
+      "seconds": 2318.41438675893,
+      "loss": 0.1914603122984627,
+      "errors": 2112,
+      "minimum_margin": -1.9850951925294664
+    },
+    "completed_trials": 28,
+    "certificate": null,
+    "reason": "Preserved the permutation result and switched to unrestricted direct positive-slope coordinates."
   }
 }
