@@ -1,5 +1,6 @@
 {
   "status": "Finite explicit examples only. No universal or asymptotic upper bound follows.",
+  "full_cube_verifier": "../verify_certificate.py",
   "certificates": [
     {
       "file": "random-n13-h146.json",
@@ -9,6 +10,7 @@
     {
       "file": "binary-onehot-k8-d8-h32.json",
       "sha256": "65bd6150ebcd67e823f16a409b141f178de1e3a0ed1f19c26f52664d020755b8",
+      "verifier": "../verify_promised_certificate.py",
       "scope": "Only the 2048 explicitly listed promised vertices; denominators admissible on the full 16-cube."
     },
     {

@@ -499,6 +499,14 @@
       "checked_location": "Theorems 1.5, 1.7, 6.1 and 6.2; Section 6.1 proof",
       "mechanism": "Strict semialgebraic feasibility yields architecture-preserving parameter bounds after exponentiating sigmoid parameters. Other constructions use additional depth.",
       "gap": "The sigmoid denominator is 1+B times a product of coordinate factors, not an affine input form. Parameter bounds assume an existing representation and do not construct every truth table with the requested number of admissible heads."
+    },
+    {
+      "title": "Nondegenerate hyperplane covers of the hypercube",
+      "authors": "Lisa Sauermann and Zixuan Xu",
+      "url": "https://arxiv.org/html/2507.00773v2",
+      "checked_location": "Theorem 1.1, Corollary 1.2, and Section 2 proofs; version 2 dated 4 March 2026",
+      "mechanism": "Choose a least-covered vertex, partition coordinate supports of incident hyperplanes, and retain same-sign support pieces. The resulting subcube reduces the problem to the Alon-Furedi covering lower bound.",
+      "gap": "The conclusion is a lower bound for nondegenerate covers, with a bounded-coefficient edge-slicing application. It is neither an exact cover of every prescribed subset at the target order nor a construction using admissible fractions."
     }
   ]
 }
