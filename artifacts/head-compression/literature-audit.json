@@ -331,6 +331,14 @@
       "checked_location": "Theorem 3, Lemma 4, Theorems 6-8, Proposition 26 and Lemma 27",
       "mechanism": "Random Hadamard submatrices give almost-everywhere rational-degree bounds. Separate examples obstruct low-degree partitions of unity on the Boolean cube.",
       "gap": "The results concern polynomial degree and polynomial quotients, not sums of admissible affine fractions. Almost-everywhere coverage does not give the requested worst-case theorem. No head-efficient transfer has been proved."
+    },
+    {
+      "title": "Concerning synthesis of depth two schemes of step elements",
+      "authors": "N. P. Red'kin",
+      "url": "https://www.mathnet.ru/links/7b9fb0fdbcfea818fa2e0db60261840f/at10076.pdf",
+      "checked_location": "Definitions and main theorem on printed pages 82-84; spherical decomposition in Lemma 1",
+      "mechanism": "Partition a power-of-two-dimensional cube into open Hamming neighborhoods. A threshold gate handles an arbitrary labeling of each neighborhood and its center, then auxiliary gates correct center values.",
+      "gap": "The stated Shannon complexity is the sum of absolute integer input weights, not gate count. The construction uses cells of linear size. Threshold outputs are not affine-fraction head values, so neither the desired quadratic saving nor an admissible compiler follows."
     }
   ]
 }
