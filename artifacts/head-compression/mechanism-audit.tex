@@ -3624,4 +3624,43 @@ the proxy. Thus the extended dominance search is closed as a route
 to the requested universal order, although its finite certificates
 remain valid admissible head representations.
 
+
+\section{Coupled Schur steps and the numerator response}
+
+The finite search now uses the complete numerator response in its trial
+steps. At a smooth inner optimum, write the Hessian in orthonormalized
+numerator coordinates $u$ and log-denominator coordinates $v$ as
+\[
+ \begin{pmatrix}H_{uu}&H_{uv}\\H_{vu}&H_{vv}\end{pmatrix}.
+\]
+If $H_{uu}$ is positive definite, a denominator displacement $d$ has
+stationary first-order numerator response
+\[
+ \delta u=-H_{uu}^{-1}H_{uv}d,
+ \qquad
+ H_{\mathrm{red}}=H_{vv}-H_{vu}H_{uu}^{-1}H_{uv}.
+\]
+These identities follow by differentiating the inner stationarity
+equations. With $F=QR$ the thin QR decomposition of the numerator
+feature matrix and $u=Ra/\sqrt N$, the response in the original
+numerator coefficients is
+\[
+ \delta a=-\sqrt N R^{-1}H_{uu}^{-1}H_{uv}d.
+\]
+The trial score is evaluated with the actual new denominators and
+coefficients $a+\alpha\delta a$. An accepted trial must decrease the
+actual squared hinge loss. A full convex numerator refit follows only
+after such a decrease has been observed. Consequently a quadratic
+model prediction alone is never recorded as a successful update.
+
+A separate five-bit, two-head finite-difference check, with seed
+490005 and displacement $10^{-5}$, gave relative error
+$1.674\cdot10^{-9}$ for the coefficient response. Direct score
+evaluation and QR evaluation agreed within $7.0\cdot10^{-15}$.
+The nearest hinge kink had distance greater than $0.116$.
+These are numerical implementation checks, not exact error bounds.
+The experiment uses an explicitly reported $10^{-12}$ inner Gram
+regularizer and clips log-denominator coefficients to $[-35,35]$.
+No claim about a global minimum or universal termination follows.
+
 \end{document}

@@ -38,7 +38,7 @@ def evaluate(t, labels, logs, previous=None):
                 residual=residual, inner_gradient=float(np.max(np.abs(fit.jac))))
 
 
-def reduced_hessian(state, labels, logs):
+def reduced_hessian(state, labels, logs, return_lift=False):
     local, coefficient = state["local"], state["coefficient"]
     count, heads, n = local.shape
     q = state["q"]
@@ -74,7 +74,12 @@ def reduced_hessian(state, labels, logs):
     reduced = (reduced+reduced.T)/2
     scale = np.sqrt(np.maximum(np.mean(jacobian[active]**2, axis=0), 1e-20))
     normalized = reduced/scale[:, None]/scale[None, :]
-    return gradient/scale, normalized, scale, regularizer
+    answer = (gradient/scale, normalized, scale, regularizer)
+    if return_lift:
+        lift = -np.sqrt(count)*la.solve_triangular(
+            state["triangular"], solved, check_finite=False)
+        return (*answer, lift)
+    return answer
 
 
 def run(checkpoint, out, seconds, max_iterations=10000):
