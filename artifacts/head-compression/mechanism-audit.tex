@@ -4612,8 +4612,10 @@ first restriction it depends on at most $2(n+1)$ different memories.
 Counting memory-head incidences gives
 $\sum_jk_j\le2(n+1)H$ and proves the last assertion.
 
-In particular this independent-memory architecture cannot decode all
-$2^n$ labels with $O(2^n/n^2)$ heads. This statement does not exclude
+In particular, if the assigned vertex sets cover the whole cube, then
+$2^n\le\sum_jm_j\le2(n+1)H$. Such an independent-memory architecture
+cannot decode all $2^n$ labels with $O(2^n/n^2)$ heads.
+This statement does not exclude
 arbitrary target-dependent denominators. Coefficients may couple several
 stored values, or a proposed representation may have no independent
 memory-block structure at all. Even the second restriction is stronger
