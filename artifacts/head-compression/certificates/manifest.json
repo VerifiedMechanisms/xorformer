@@ -45,6 +45,11 @@
       "file": "parity-n4-literal-h4.json",
       "sha256": "23fd66758bdb04fd40ef0e3a0585d7a65cf3ddf5823d5b164af123daa785f697",
       "scope": "All 16 vertices of parity. Checks the extended literal chart only; does not improve the manuscript parity theorem."
+    },
+    {
+      "file": "random-n13-h146-coupled.json",
+      "sha256": "0e353e7b90f68f7c1b7a2ddc1558de5b3371745328893a584656563a524e47b9",
+      "scope": "All 8192 vertices of a second thirteen-bit truth table. Found by coupled numerator-denominator Newton steps after block linear programming; independently checked with exact rational arithmetic. No universal bound."
     }
   ],
   "optimization_audit_certificates": [
