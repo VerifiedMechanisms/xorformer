@@ -2483,4 +2483,93 @@ be substituted for the uniform matching guarantee required by the
 routing lemma. It does not rule out a different, correlated deterministic
 construction.
 
+\section{Grouping heads along few denominator directions loses universality}
+
+Low linear rank of the denominator directions was considered earlier.
+A different restriction is to allow full ambient rank, but require
+many heads to share one projective direction. This includes a sum of
+univariate rational functions of a small number of affine statistics,
+even when all those statistics depend on the target.
+
+\begin{proposition}[Few projective denominator directions]
+Fix an absolute constant $C>0$. Let $H=H(n)$ and $K=K(n)$ be positive
+integer sequences with
+\[
+ 1\leq K\leq H\leq C\frac{2^n}{n^2},\qquad \frac KH\longrightarrow0.
+\]
+Consider all scores with at most $H$ heads for which the normalized
+denominators can be written
+\[
+ B_h(x)=1+t_h v_{g(h)}\cdot x,
+ \qquad v_1,\ldots,v_K\in\mathbb R^n,
+ \quad t_h\in\mathbb R,
+ \quad g:[H]\longrightarrow[K].
+\]
+Allow arbitrary affine numerators and a bias, and require the
+denominators to be positive on the cube. The number of strict Boolean
+labelings represented by this family is $2^{o(2^n)}$. Consequently
+the family is not universal for all sufficiently large $n$.
+This conclusion also holds with the manuscript's stronger admissibility
+condition. The vectors $v_j$, scalars $t_h$, and assignment $g$ are
+all allowed to depend on the labeling.
+\end{proposition}
+
+\begin{proof}
+Write $N=2^n$ and normalize numerator constants into the bias as before.
+For a fixed assignment $g$, use the two parameter blocks
+\[
+ (c,u_1,\ldots,u_H),\qquad
+ (v_1,\ldots,v_K,t_1,\ldots,t_H).
+\]
+Their dimensions are $k_1=1+nH$ and $k_2=nK+H$.
+At any cube vertex, the cleared numerator is
+\[
+ P_x=c\prod_{h=1}^H(1+t_hv_{g(h)}\cdot x)
+ +\sum_{h=1}^H(u_h\cdot x)
+       \prod_{r\ne h}(1+t_rv_{g(r)}\cdot x).
+\]
+It has degree at most one in the first block and at most $2H$ in
+the second block. For all sufficiently large $n$,
+$k=k_1+k_2\leq N$, since $K\leq H$ and
+$k\leq1+(2n+1)CN/n^2$.
+The two-block sign-count lemma, followed by a union bound over the
+$K^H$ possible assignments, bounds the number of patterns by
+\[
+ K^H\left(\frac{32768N}{k}\right)^k
+       2^{k_1}(2H)^{k_2}.
+\]
+This is an upper bound on the whole parameter space, so imposing
+positivity, uniform signs of slopes, or any further parameter
+restrictions cannot increase it.
+
+We check each term in its base-two logarithm. Since
+$H\leq CN/n^2$, we have $\log_2 H=O(n)$ and therefore
+\[
+ H\log_2 K\leq H\log_2 H=O(N/n),\qquad
+ k_1=O(N/n).
+\]
+Also $k=O(N/n)$, which implies
+\[
+ k\log_2(32768N/k)=O(N\log n/n).
+\]
+For clarity this last estimate is uniform even if $k$ is much
+smaller than $N/n$: the function
+$z\mapsto z\log_2(32768N/z)$ is increasing throughout
+$1\leq z\leq D N/n$ for every fixed $D$ and all sufficiently
+large $n$, and may be bounded at that upper endpoint.
+Finally,
+\[
+ k_2\log_2(2H)=O(n^2K+nH)=o(N),
+\]
+because $n^2K=(K/H)n^2H\leq CN(K/H)=o(N)$.
+The total logarithm is $o(N)$, strictly below $N$ for all
+sufficiently large $n$. There are $2^N$ Boolean labelings, proving
+nonuniversality. Fewer than $H$ heads may be padded with zero
+numerators without introducing new directions.
+\end{proof}
+
+This restriction is absent from the full problem, which permits
+$K=H$ independent directions. Thus the proposition excludes a grouped
+univariate shortcut and does not contradict the requested bound.
+
 \end{document}
