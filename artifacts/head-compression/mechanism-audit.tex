@@ -3736,11 +3736,13 @@ stationary first-order numerator response
 \]
 These identities follow by differentiating the inner stationarity
 equations. With $F=QR$ the thin QR decomposition of the numerator
-feature matrix and $u=Ra/\sqrt N$, the response in the original
+feature matrix at the base point and $u=Ra/\sqrt N$, the response in the original
 numerator coefficients is
 \[
  \delta a=-\sqrt N R^{-1}H_{uu}^{-1}H_{uv}d.
 \]
+Here $Q,R$ are held fixed when defining this local coordinate chart;
+they are not differentiated as functions of the denominator parameters.
 The trial score is evaluated with the actual new denominators and
 coefficients $a+\alpha\delta a$. An accepted trial must decrease the
 actual squared hinge loss. A full convex numerator refit follows only
