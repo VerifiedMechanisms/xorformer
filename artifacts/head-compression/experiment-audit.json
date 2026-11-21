@@ -380,5 +380,38 @@
     "loss_change_interval": "[-4.928510823728771103413708755123576936259700050437148321e-12 +/- 5.26e-67]",
     "strictly_decreases_loss": true,
     "seconds": 18.775759380077943
+  },
+  "coupled_checkpoint_interval_audits": {
+    "checker": "audit_path_basepoint.py",
+    "format": "Exact rational base scores in the path format, verified independently of the optimization code.",
+    "results": [
+      {
+        "input_sha256": "c8128cf9004c8263f8bfc233acc0a66ecd72b200f0e32432778f3ef2c9df3bf5",
+        "n": 13,
+        "heads": 146,
+        "precision_bits": 256,
+        "vertices_checked": 8192,
+        "positive_margins_certified": 8010,
+        "negative_margins_certified": 182,
+        "unseparated_margins": 0,
+        "active_vertices": 2449,
+        "squared_hinge_loss_interval": "[0.05252686513832811405730389885036074382954201600493339958801428387 +/- 3.26e-66]",
+        "scope": "This exact base score only; no universal bound."
+      },
+      {
+        "input_sha256": "18138cc8b19757b3babf1f4469e5be211a26df28703f455a6bc638d2e31f423a",
+        "n": 14,
+        "heads": 251,
+        "precision_bits": 256,
+        "vertices_checked": 16384,
+        "positive_margins_certified": 14142,
+        "negative_margins_certified": 2242,
+        "unseparated_margins": 0,
+        "active_vertices": 10285,
+        "squared_hinge_loss_interval": "[0.199681280028144391307506009517084625589142510633499884864465647916 +/- 6.70e-67]",
+        "scope": "This exact base score only; no universal bound."
+      }
+    ],
+    "scope": "Both checkpoints still have errors. These are numerical search audits, not strict sign certificates and not a universal theorem."
   }
 }

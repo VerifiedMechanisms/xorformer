@@ -1,0 +1,13 @@
+{
+  "input_sha256": "c8128cf9004c8263f8bfc233acc0a66ecd72b200f0e32432778f3ef2c9df3bf5",
+  "n": 13,
+  "heads": 146,
+  "precision_bits": 256,
+  "vertices_checked": 8192,
+  "positive_margins_certified": 8010,
+  "negative_margins_certified": 182,
+  "unseparated_margins": 0,
+  "active_vertices": 2449,
+  "squared_hinge_loss_interval": "[0.05252686513832811405730389885036074382954201600493339958801428387 +/- 3.26e-66]",
+  "scope": "This exact base score only; no universal bound."
+}
