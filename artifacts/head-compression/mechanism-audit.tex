@@ -1897,4 +1897,45 @@ between equal leading powers are excluded from this argument.
 The ongoing mixed-orientation affine-numerator search is not
 covered by this proposition.
 
+\section{Denominator clearing retains the number of heads}
+
+\begin{proposition}
+For every $H\geq2$, there are real constants $a_1,\ldots,a_H$
+such that $\sum_{i=1}^H a_i/(t+i)$ has exactly $H-1$ distinct
+positive zeros, all simple. In particular, no bound on the degree
+of a sign-equivalent polynomial on $(0,\infty)$ can be independent
+of $H$.
+\end{proposition}
+\begin{proof}
+Put $q(t)=\prod_{j=1}^{H-1}(t-j)$ and
+$d(t)=\prod_{i=1}^H(t+i)$. Partial fractions give
+\[
+ \frac{q(t)}{d(t)}=\sum_{i=1}^H\frac{a_i}{t+i},\qquad
+ a_i=\frac{q(-i)}{\prod_{j\ne i}(j-i)}.
+\]
+For completeness, multiplication by $d$ makes both sides
+polynomials of degree at most $H-1$. They agree at each of the
+$H$ distinct points $-1,\ldots,-H$, proving the identity.
+The denominator is strictly positive for $t>0$, and $q$ changes
+sign at $1,\ldots,H-1$. Any polynomial with the same strict signs
+on the complementary open intervals must vanish at all these
+points by continuity, so has degree at least $H-1$.
+For $H=7$ the residue list is explicitly
+$(7,-168,1260,-4200,6930,-5544,1716)$.
+\end{proof}
+
+\paragraph{Literature audit.}
+The original abstract of Bartlett and Williamson (1996),
+\emph{The VC Dimension and Pseudodimension of Two-Layer Neural
+Networks with Discrete Inputs}, reports an $O(W\log(WD))$
+bound. A searchable excerpt of Anthony and Bartlett's textbook,
+Theorem 8.11 and its proof, instead returned an apparent degree
+bound $3ND+2$ after combining an arbitrary number of rational
+hidden-unit outputs. The page image and the original article's
+full proof were not available for verification in this environment.
+The preceding direct calculation excludes an inference which simply
+drops the number of summands when clearing denominators. No
+stronger bound from that excerpt is used anywhere in this audit,
+and no claim that the textbook theorem is false is made.
+
 \end{document}
