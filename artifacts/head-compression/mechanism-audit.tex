@@ -6149,4 +6149,16 @@ A separate fourteen-bit diagnostic starts from a saved continuation
 checkpoint. Only a full independent rational sign audit could turn such
 an experiment into a certificate for its finite truth table.
 
+
+The fourteen-bit numerator-only diagnostic corrects its selected vertex
+in two accepted steps, reducing numerical errors from 149 to 148 while
+retaining all 16235 previously correct signs in extended precision.
+This is not an exact target certificate. The companion sweep reuses one
+QR factorization while attempting further vertices with the same fixed
+denominators. Failure at a vertex does not certify infeasibility.
+Its five-bit end-to-end diagnostic exports a three-head rational score;
+both the independent Fraction checker and the integer-interval checker
+verify all 32 target signs and denominator conditions. This checks the
+pipeline on that diagnostic truth table only.
+
 \end{document}

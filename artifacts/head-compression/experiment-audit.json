@@ -1322,6 +1322,16 @@
       "whole_cube_admissibility": true,
       "target_certificate": false,
       "scope": "Independent integer intervals for the original truth table. The score still fails on 85 vertices."
+    },
+    "stage18_exact_audit": {
+      "report": "artifacts/head-compression/diagnostics/curriculum-stage18-exact-audit.json",
+      "heads": 336,
+      "correct_signs": 16363,
+      "incorrect_signs": 21,
+      "unresolved_signs": 0,
+      "whole_cube_admissibility": true,
+      "target_certificate": false,
+      "scope": "All original labels retained. The exact rational score still fails on 21 vertices."
     }
   },
   "protected_barrier_continuation": {
@@ -1351,6 +1361,30 @@
     "large_diagnostic": "/out/head-compression/protected-refit-n14",
     "seconds_budget": 2400,
     "certificate": null,
-    "scope": "Denominators fixed; numerical barrier Newton refit of all affine coefficients with every protected sign checked after each accepted step. No global head-class guarantee."
+    "scope": "Denominators fixed; numerical barrier Newton refit of all affine coefficients with every protected sign checked after each accepted step. No global head-class guarantee.",
+    "large_diagnostic_result": {
+      "report": "/out/head-compression/protected-refit-n14/result.json",
+      "initial_protected": 16235,
+      "final_errors": 148,
+      "corrected_vertex": 9702,
+      "target_margin_after": 0.027364199802832445,
+      "minimum_protected_margin_after": 0.00489306290546665,
+      "scope": "Numerical extended-precision result only; not yet independently audited."
+    }
+  },
+  "protected_numerator_sweep": {
+    "script": "artifacts/head-compression/search_protected_numerator_sweep.py",
+    "path": "/out/head-compression/protected-numerator-sweep-n14-h336",
+    "seconds_budget": 36000,
+    "initial_errors": 148,
+    "certificate": null,
+    "small_test_certificate": "artifacts/head-compression/diagnostics/protected-sweep-n5-h3-certificate.json",
+    "small_test_audit": "artifacts/head-compression/diagnostics/protected-sweep-n5-h3-exact-audit.json",
+    "small_test_independent_verifiers": [
+      "audit_rational_score.py",
+      "verify_certificate.py"
+    ],
+    "scope": "One fixed denominator list, original 14-bit labels; every previously correct sign is protected numerically. No universal theorem or infeasibility conclusion.",
+    "seed_sha256": "ff6608e145f1efa4b97f8a1c766c6b2fdc6981cdde569561f3b8972924337b36"
   }
 }

@@ -24,19 +24,23 @@ from search_protected_barrier import barrier_terms, precise_score
 
 def refit(x, labels, logs, separation, coefficient, protected, target,
           mu=.1, ridge=1e-6, steps=20, maxiter=100, seconds=1800,
-          emit=None):
+          emit=None, basis=None, stop_path=None):
     started = time.monotonic()
     coefficient = coefficient.copy()
-    feature = features(x, logs, separation)
-    q, r = la.qr(feature, mode='economic', check_finite=False)
-    del feature
+    if basis is None:
+        feature = features(x, logs, separation)
+        q, r = la.qr(feature, mode='economic', check_finite=False)
+        del feature
+    else:
+        q, r = basis
+    assert q.shape[1] == len(coefficient) and r.shape == (len(coefficient), len(coefficient))
     score = quick_score(x, logs, separation, coefficient)
     precise = precise_score(x, logs, separation, coefficient)
     assert np.min((labels*score)[protected]) > 0
     assert np.min((labels*precise)[protected]) > 0
     events = []
     for iteration in range(steps):
-        if time.monotonic()-started >= seconds:
+        if time.monotonic()-started >= seconds or (stop_path is not None and stop_path.exists()):
             break
         value, gradient, curvature = barrier_terms(labels, score, protected, target, mu, ridge)
         precise_value = barrier_terms(labels, precise, protected, target, mu, ridge)[0]
@@ -125,8 +129,15 @@ def self_test(out):
     assert events and any(event['accepted'] for event in events)
     assert (labels*ss)[protected].min() > 0
     assert barrier_terms(labels, ss, protected, target, .1, 1e-6)[0] < value
+    q, r = la.qr(phi, mode='economic', check_finite=False)
+    reused_c, reused_s, reused_events = refit(x, labels, logs, separation, coefficient,
+        protected, target, steps=10, maxiter=100, seconds=60, basis=(q, r))
+    reuse_error = float(np.max(np.abs(reused_s-ss)))
+    assert reuse_error < 1e-9 and reused_events
+    np.savez(out/'seed.npz', labels=labels, logs=logs, separation=separation,
+             coefficients=coefficient, kind='shared-affine')
     result = {'n': n, 'units': units, 'gradient_error': float(grad_error),
-              'hessian_direction_error': hess_error, 'initial_target_margin': float(labels[target]*score[target]),
+              'basis_reuse_score_error': reuse_error, 'hessian_direction_error': hess_error, 'initial_target_margin': float(labels[target]*score[target]),
               'final_target_margin': float(labels[target]*ss[target]), 'events': events,
               'scope': 'Finite numerical check only; no target theorem or global convergence assertion.'}
     (out/'self-test.json').write_text(json.dumps(result, indent=2)+'\n')

@@ -2,13 +2,14 @@
   "n": 5,
   "units": 2,
   "gradient_error": 1.6277024172950405e-09,
+  "basis_reuse_score_error": 0.0,
   "hessian_direction_error": 1.971480756424171e-10,
   "initial_target_margin": -0.14438208507023176,
   "final_target_margin": 0.9982174436995632,
   "events": [
     {
       "iteration": 0,
-      "seconds": 0.0011112180072814226,
+      "seconds": 0.000859136926010251,
       "value": 0.6090338298887512,
       "target": 29,
       "target_margin": -0.14438208507023176,
