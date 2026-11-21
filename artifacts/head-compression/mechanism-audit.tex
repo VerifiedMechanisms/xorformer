@@ -4984,4 +4984,184 @@ proof hypothesis. The small four-bit export also passes the independent
 Fraction checker. No universal convergence or existence theorem is
 asserted for this stable chart.
 
+\section{All-order single-curve jets have insufficient sign capacity}
+
+Increasing the order of one confluent cluster does not remove its
+parameter-counting obstruction. The following statement allows the
+base denominator to depend on the target, and allows exponentially
+large derivative order. It concerns a specified construction class,
+not arbitrary sums of heads with distinct base denominators.
+
+\begin{proposition}[Weighted-degree obstruction for a single jet]
+Let $n\ge1$, $H\ge1$, $K=H-1$, $N=2^n$,
+$m=2(n+1)H+1\le N$, and $b=1+\lfloor\log_2H\rfloor$.
+For arbitrary affine functions $\alpha_0,\ldots,\alpha_K$ and
+$B_0,\beta_1,\ldots,\beta_K$ on the Boolean cube, with $B_0>0$
+everywhere, consider
+\[
+ S(x)=c+[t^K]\frac{\sum_{j=0}^K\alpha_j(x)t^j}
+ {B_0(x)+\sum_{j=1}^K\beta_j(x)t^j}.
+\]
+The number of strict Boolean sign tables represented by these scores
+is at most
+\[
+ \left(32768(b+1)^5\frac Nm\right)^m.
+\]
+Consequently, for every fixed $C>0$, the union of these classes over
+$1\le H\le C2^n/n^2$ represents only $2^{o(2^n)}$ Boolean functions.
+This remains true without imposing any slope restriction on the
+positive base denominator.
+\end{proposition}
+\begin{proof}
+Multiply $S(x)$ by the positive quantity $B_0(x)^H$. Its polynomial
+numerator is
+\[
+ P_x=cB_0^H+
+ \sum_{q=0}^K(-1)^q
+ \sum_{\substack{j\ge0,\ l_1,\ldots,l_q\ge1\\
+                  j+l_1+\cdots+l_q=K}}
+ \alpha_j\beta_{l_1}\cdots\beta_{l_q}B_0^{K-q}.
+\]
+For $q=0$, the inner sum contains the term $j=K$.
+This formula follows by expanding the reciprocal as a formal power
+series with invertible constant term $B_0(x)$. There are $m$ scalar
+parameters, namely the affine coefficients of all the displayed
+functions and the bias $c$.
+
+Give each coefficient of $\alpha_j$ weight $j+1$, each coefficient
+of $\beta_j$ weight $j$, and each coefficient of $B_0$, together
+with $c$, weight one. Every monomial in $P_x$ has weighted degree
+at most $2H$: the summands in the double sum have weight
+$j+1+(K-j)+(K-q)=2K+1-q$, and the bias term has weight $H+1$.
+Group variables of weights in $[2^r,2^{r+1})$, for
+$0\le r\le b-1$. These are nonempty blocks. Their sizes $m_r$ obey
+\[
+ m_r\le 2(n+1)2^r+(n+2)\mathbf1_{r=0},
+ \qquad \sum_r m_r=m.
+\]
+The degree in block $r$ is at most
+$d_r=\lfloor2H/2^r\rfloor\ge2$.
+
+We record explicitly the multi-block consequence of Theorems 12 and
+13 of Basu--Rizzie cited earlier. For $s\ge m$ polynomials in $b$
+nonempty blocks of sizes $m_r$ and degrees $d_r\ge2$, their formulas
+give
+\[
+ G_{\min}(d,m,j)\le\tfrac12G_{\rm gen}(2d,m,1)
+ \le 2^m(m+1)^2(b+1)^{3m+2}\prod_r d_r^{m_r}.
+\]
+Indeed, the reciprocal multinomial in their formula is at most one,
+$b(b+2)\le(b+1)^2$, and the additive term is at most one after
+division by two; the displayed bound absorbs it. Therefore the
+number of strict sign vectors is at most
+\[
+ \left(\frac{32es}{m}\right)^m(b+1)^{5m}
+ \prod_r d_r^{m_r}.
+\]
+Here we used $\sum_{j=0}^m\binom sj\le(es/m)^m$,
+$4^j\le4^m$, $(m+1)^2\le4^m$, and
+$3m+2\le5m$. These bounds hold for nongeneric coefficients too,
+and count strict signs by bounding the number of connected components
+of all sign realizations.
+
+Put $L=\lfloor\log_2H\rfloor$. Since
+$\log_2d_r\le L+2-r$,
+\[
+ \sum_r m_r\log_2d_r
+ \le 2(n+1)\sum_{r=0}^L2^r(L+2-r)+(n+2)(L+2).
+\]
+The finite sum is $3\cdot2^{L+1}-L-4<6H$.
+Also $L+2\le2H$ and $n+2\le3(n+1)/2$. Thus the last display is
+at most $15(n+1)H\le8m$. Substituting $s=N$ and using
+$32e\cdot2^8<32768$ proves the explicit bound. Restricting to
+$B_0>0$, or to admissible slopes, only reduces the number counted.
+
+For $H\le C2^n/n^2$, one has $m=O_C(2^n/n)$ and $b=O_C(n)$.
+The function $u\log_2(N/u)$ is increasing for $u\le N/e$.
+For all sufficiently large $n$, its maximum over the allowed $m$
+is $O_C(N\log n/n)$. The logarithm of the displayed sign bound is
+therefore $O_C(N\log n/n)=o(N)$, uniformly in the allowed $H$.
+The union over those $H$ adds at most $O_C(n)$ to that logarithm.
+\end{proof}
+
+\paragraph{Relation to ordinary heads.}
+Suppose $B_0$ has strictly positive slopes or strictly negative
+slopes, and is positive on the cube. Write $g_x(t)=A(t,x)/B(t,x)$
+for the fraction in the proposition. For sufficiently small
+$\varepsilon>0$, every $B(j\varepsilon,\cdot)$, $0\le j\le K$,
+has that same admissible orientation and is positive on the cube.
+The finite-difference score
+\[
+ c+\frac1{K!\varepsilon^K}
+ \sum_{j=0}^K(-1)^{K-j}\binom Kj g_x(j\varepsilon)
+\]
+uses $H$ ordinary heads and converges to $S(x)$ as
+$\varepsilon\downarrow0$. The convergence is uniform on the finite
+cube, so it preserves every strict sign table for sufficiently small
+$\varepsilon$. For $K=0$ the expression is already one head.
+This explains why the audited jet class is a possible construction
+method. It does not identify that class with all $H$-head scores.
+In particular, an unrestricted number of independently adaptive base
+denominators is absent from this obstruction, and the general
+upper-bound target remains open.
+
+\begin{corollary}[Polynomially many confluent clusters are insufficient]
+Fix positive integers $H_1,\ldots,H_L$ with sum $H$, and put
+$m=2(n+1)H+1\le N$. Replace the single coefficient in the preceding
+proposition by a sum of $L$ such coefficients, where cluster $a$
+has order $H_a-1$ and its own adaptive positive base denominator.
+With $b=1+\lfloor\log_2H\rfloor$, the number of strict sign tables
+is at most
+\[
+ \left(4096L(b+1)^5\frac Nm\right)^m.
+\]
+For fixed $C,d>0$, even the union over all cluster orders with
+$H\le C2^n/n^2$ and $L\le n^d$ represents only $2^{o(2^n)}$
+Boolean functions.
+\end{corollary}
+\begin{proof}
+Clear the positive denominator $\prod_a B_{a,0}^{H_a}$ and use
+the same weights for the parameters within each cluster. A term
+from cluster $a$ has weighted degree at most
+$2H_a-1+(H-H_a)\le2H$, and the bias term has weight $H+1$.
+All block degrees are therefore at most
+$\lfloor2H/2^r\rfloor$; empty blocks may be removed.
+
+For a variable of weight $w$ in block $r$, the degree bound of that
+block is at most $4H/w$. Thus the contribution of cluster $a$ to
+$\log_2\prod_r d_r^{m_r}$ is at most
+\[
+ 2(n+1)\left(H_a\log_2(4H)-\log_2(H_a!)\right)
+ +(n+1)\log_2H_a.
+\]
+This counts the numerator coefficient weights $1,\ldots,H_a$,
+the nonconstant denominator coefficient weights $1,\ldots,H_a-1$,
+and the base denominator coefficients of weight one. The bias
+contributes at most $\log_2(4H)$.
+The integral lower bound on $\log(H_a!)$ gives
+$H_a!\ge(H_a/e)^{H_a}$. Also
+$\log_2H_a\le H_a$ and $\log_2(4H)\le2H\le(n+1)H$.
+It follows that
+\[
+ \log_2\prod_r d_r^{m_r}
+ \le2(n+1)\sum_a H_a\log_2(8eH/H_a)
+ \le2(n+1)H\log_2(8eL)
+ \le m\log_2(16eL).
+\]
+The middle inequality is the entropy bound
+$\sum_a(H_a/H)\log_2(H/H_a)\le\log_2L$.
+Apply the multi-block estimate in the preceding proof and use
+$32e\cdot16e<4096$.
+At the stated budgets its logarithm is $O_{C,d}(N\log n/n)$.
+For each $H$ there are at most $2^{H-1}$ ordered compositions
+into positive parts; summing over them and over $H$ adds only
+$O_C(H+n)=o(N)$ to the logarithm.
+\end{proof}
+
+This closes the proposed repair of using only polynomially many
+adaptive bases and arbitrarily high derivative orders. It does not
+close the many-base stable-pair construction: there $L$ itself is
+of exponential order, and the displayed bound does not give
+$2^{o(N)}$ sign patterns.
+
 \end{document}

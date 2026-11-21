@@ -6,10 +6,11 @@
       "title": "Betti numbers of semi-algebraic sets defined by multi-degree constraints",
       "authors": "Saugata Basu and Anthony Rizzie",
       "url": "https://arxiv.org/pdf/1507.03958v7",
-      "checked_location": "Theorems 12 and 13, printed page 11",
+      "checked_location": "Theorems 12 and 13, printed page 11; general multi-block formulas in Notation 3 and Theorems 12-13, printed page 11, for dyadic weighted-degree groups",
       "mechanism": "Bounds on components of sign conditions using separate parameter blocks and their separate degrees.",
       "application": "The two-block estimate in mechanism-audit.tex gives a full-model lower bound with asymptotic constant one. It also excludes low-rank denominator directions, adaptive moment-curve nodes, and uniformly mild conditioning/margin as universal compressed constructions.",
-      "gap": "A sign-pattern upper count is a lower-bound method for head complexity. It provides no universal existence construction."
+      "gap": "A sign-pattern upper count is a lower-bound method for head complexity. It provides no universal existence construction.",
+      "application_all_order_jets": "The explicit dependence on the number of blocks is only a polynomial raised to the parameter dimension. Dyadic order grouping bounds arbitrary-order Taylor clusters; polynomially many adaptive bases remain non-universal at the target budget."
     },
     {
       "title": "The capacity of feedforward neural networks",
