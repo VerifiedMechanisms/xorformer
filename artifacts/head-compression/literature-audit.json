@@ -133,7 +133,7 @@
     },
     {
       "title": "Extremal properties of polynomial threshold functions",
-      "authors": "Ryan O’Donnell and Rocco A. Servedio",
+      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
       "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
       "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
       "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
@@ -435,7 +435,7 @@
       "authors": "Kordag Mehmet Kilic, Jin Sima, and Jehoshua Bruck",
       "url": "https://www.paradise.caltech.edu/papers/etr153.pdf",
       "checked_location": "Theorem 1, Lemma 2, Section IV, and the decoding appendix",
-      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel’s lemma bounds the achievable rate.",
+      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel\u2019s lemma bounds the achievable rate.",
       "application": "This supplies a concrete number-theoretic and coding-theoretic compression mechanism for integer equality tests. With m_0=n_0=1 the rate is k/2+1. It was checked as a possible address encoder for the head problem.",
       "gap": "The decoder explicitly uses reduction modulo two and recursive arithmetic. The circuit consequences concern EQUALITY and COMPARISON with extra threshold/equality gates, not arbitrary Boolean tables in a flat sum of admissible affine fractions. No head compiler with the requested cost is supplied."
     },
@@ -455,6 +455,14 @@
       "checked_location": "Proposition 4.4, Theorems 4 and 14, and the covering-code discussion in Section 4",
       "mechanism": "Radius-d Hamming-ball covers produce one-sided local degree-d polynomial threshold approximators. Their disjunction gives O(1/n) error using O(2^n/n^d) degree-d gates for fixed d. Radius-one asymptotically perfect covers sharpen the linear-threshold version.",
       "gap": "For d=2 the number of gates has the requested order, but these are general quadratic threshold gates, the result permits errors, and it composes the gates by disjunction. None of these operations is a constant-cost flat affine-fraction construction. The local radius-two compiler is independently excluded by the previously recorded parameter count."
+    },
+    {
+      "title": "Rational Parametrizations of Neural Networks",
+      "authors": "Uwe Helmke and Robert C. Williamson",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/1992/file/0cb929eae7a499e50248a3a78f7acfc7-Paper.pdf",
+      "checked_location": "Definitions 2.1-2.2, Corollaries 3.2-3.3, Theorems 4.4 and 5.1, and Section 6; the 1995 journal extension abstract was also inspected.",
+      "mechanism": "Scalar analytic networks are parametrized through matrix function realizations and proper rational functions. A Hankel rank characterizes finite realization dimension under the stated hypotheses.",
+      "gap": "These are scalar functional realizations, potentially with Jordan blocks and complex poles. Neither a Boolean-cube sign construction nor a bound by admissible affine input denominators follows. The realization theorem assumes a finite realization already exists and does not supply the required universal head count."
     }
   ]
 }

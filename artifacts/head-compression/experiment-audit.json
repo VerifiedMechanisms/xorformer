@@ -817,5 +817,24 @@
       "theorems.md"
     ],
     "result": "This public revision predates the attached manuscript and supplies no requested universal quadratic-saving upper bound."
+  },
+  "extension_block_lp_n14": {
+    "status": "Stopped to test the independent upper-face score needed by the proved gluing construction.",
+    "last_logged_state": {
+      "sweep": 3,
+      "head": 51,
+      "seconds": 4709.81015776901,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "old_loss": 0.38171028850298894,
+      "old_errors": 2282,
+      "surrogate_gain": 1.2999925149122867e-06,
+      "loss": 0.3817089893945716,
+      "alpha": 1.0,
+      "errors": 2282,
+      "minimum_margin": -2.102434087780466
+    },
+    "certificate": null,
+    "failure_is_not_a_lower_bound": true
   }
 }
