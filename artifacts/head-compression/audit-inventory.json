@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit. SharedAffineFractionLift adds orientationCrossingFeature, whose strict finite scores compile to the original model with one shared affine head.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit. SharedAffineFractionLift adds orientationCrossingFeature, whose strict finite scores compile to the original model with one shared affine head. SharedAffineScoreLift adds sharedAffineScore and proves its conditional transfer, including the limiting units, to the literal shared-embedding attention model with M+1 heads.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -128,6 +128,15 @@
         "HeadComplexity.orientationCrossingFeature_error_le"
       ],
       "scope": "Exact decomposition and uniform perturbation bound for an orientation-crossing chart. The manual finite lift uses M+1 ordinary heads. Existence at the universal target budget is not proved."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/SharedAffineScoreLift.lean",
+      "main_declaration": "HeadComplexity.computableWithSharedHeadsN_of_sharedAffineScore",
+      "companion_declarations": [
+        "HeadComplexity.computableWithHeadsN_of_sharedAffineScore_nonzero",
+        "HeadComplexity.computableWithHeadsN_of_sharedAffineScore"
+      ],
+      "scope": "Given a strict sign score in the orientation-crossing chart with M units, construct M+1 actual attention heads. Includes q=1 perturbation and uniform approximation of the shared affine correction. Does not assert existence of a strict chart score at the target budget."
     }
   ],
   "validation": {
@@ -289,6 +298,13 @@
     "large_search": "/out/head-compression/shared-affine-n14-h336",
     "target_proved": false,
     "all_module_build": "passed, 9195 jobs",
-    "axioms": "All four declarations use only propext, Classical.choice, and Quot.sound"
+    "axioms": "All four declarations use only propext, Classical.choice, and Quot.sound",
+    "full_score_lift": {
+      "file": "formalization/HeadComplexity/Results/SharedAffineScoreLift.lean",
+      "all_module_build": "passed, 9196 jobs",
+      "axioms": "All three exported transfer theorems use only propext, Classical.choice, and Quot.sound.",
+      "constant_denominator_detail": "An arbitrary affine correction is uniformly approximated by one actual FracAtom before the shared-embedding bridge. Exact realization with an unchanged constant denominator is not asserted.",
+      "target_proved": false
+    }
   }
 }

@@ -5507,8 +5507,15 @@ are below $6\cdot10^{-12}$, the refitted derivative error is below
 $9\cdot10^{-13}$, and the ordinary-import score error is below
 $4\cdot10^{-16}$. These finite checks validate the implementation
 only. The algebraic identities and uniform error bound are also
-proved in \texttt{SharedAffineFractionLift.lean}. No assertion is
-made that $M=O(2^n/n^2)$ such terms suffice for every truth table.
+proved in \texttt{SharedAffineFractionLift.lean}. The subsequent
+module \texttt{SharedAffineScoreLift.lean} proves the full conditional
+transfer, including the $q=1$ perturbation, the $M+1$ head count, and
+the literal shared-token embedding model. Its affine correction uses
+one-atom uniform approximation: an arbitrary affine numerator with a
+constant denominator need not itself be an exact attention-head value.
+The finite strict margin permits the required small positive-slope
+denominator perturbation. No assertion is made that $M=O(2^n/n^2)$
+such terms suffice for every truth table.
 
 \section{Incremental constraints in the shared-affine search}
 
