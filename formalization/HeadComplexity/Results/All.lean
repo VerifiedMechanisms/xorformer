@@ -29,6 +29,7 @@ import HeadComplexity.Results.ConfluentFractionLift
 import HeadComplexity.Results.SharedAffineFractionLift
 import HeadComplexity.Results.SharedAffineScoreLift
 import HeadComplexity.Results.DenominatorProductSubmodularity
+import HeadComplexity.Results.AffineSidonRows
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan

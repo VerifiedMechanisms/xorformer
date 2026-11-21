@@ -5980,4 +5980,128 @@ construction which the quantified formula does not provide. The full
 head-complexity question is not reduced to uncharged integer predicates,
 rounding operations, or auxiliary quantifiers.
 
+\section{Additive relations are necessary for interacting permutation rows}
+
+The common-shift permutation construction admits an additional invariant
+that distinguishes arithmetically generic poles from structured ones.
+Call a finite set $\Lambda\subset\mathbb R$ Sidon if
+$a+d=b+c$ with $a,b,c,d\in\Lambda$ implies equality of the two
+unordered pairs, with multiplicity.
+
+\begin{proposition}[Sidon permutation cubes split into independent blocks]
+Let $\lambda_1,\ldots,\lambda_H$ be distinct and form a Sidon set.
+Suppose the affine functions
+\[
+ L_h(x)=a_h+\sum_{i=1}^n b_{hi}x_i
+\]
+have value multiset $\{\lambda_1,\ldots,\lambda_H\}$ at every Boolean
+vertex. Each row $h$ has at most one nonzero coefficient $b_{hi}$.
+After indexing the poles so that $a_h=\lambda_h$, the rows partition
+into disjoint sets $I_0,I_1,\ldots,I_n$. For each $i\ge1$ there is a
+permutation $\pi_i$ supported on $I_i$ such that
+\[
+ L_h(x)=\begin{cases}
+ \lambda_{\pi_i(h)},&h\in I_i,\ x_i=1,\\
+ \lambda_h,&\text{otherwise}.
+ \end{cases}
+\]
+In particular the sign of the induced permutation is
+$\prod_i\operatorname{sgn}(\pi_i)^{x_i}$.
+\end{proposition}
+\begin{proof}
+Fix a row and two distinct coordinates $i,j$. Its four values on the
+square based at zero lie in $\Lambda$ and obey
+\[
+ L_h(0)+L_h(e_i+e_j)=L_h(e_i)+L_h(e_j).
+\]
+The Sidon property implies that $L_h(0)$ equals $L_h(e_i)$ or
+$L_h(e_j)$. Thus $b_{hi}=0$ or $b_{hj}=0$, proving the first assertion.
+Let $I_i$ contain precisely the rows with nonzero coefficient in
+coordinate $i$, and let $I_0$ contain the constant rows. At $e_i$,
+all rows outside $I_i$ retain their distinct original values. Equality
+of the full multisets forces the values inside $I_i$ to be a permutation
+of the original values there. This defines $\pi_i$. Each such row depends
+only on $x_i$, so the formula holds at every vertex. The permutations
+have disjoint supports; their product is the induced permutation and
+its sign is the product of their signs.
+\end{proof}
+
+The result remains a statement about the underlying permutation if
+an arbitrary common affine function $C(x)$ is added to every $L_h$.
+Such a shift can enforce denominator admissibility, but cannot introduce
+interactions into the permutation itself. The earlier five-pole square
+uses the non-Sidon pole set $\{1,2,3,4,5\}$ and is therefore consistent
+with this proposition.
+
+\begin{proposition}[A sign-count obstruction for shifted Sidon permutations]
+Fix $C_0>0$. The family of scores with at most
+$H\le C_0 2^n/n^2$ heads and denominators
+$B_h(x)=C(x)+L_h(x)$ as in the preceding proposition realizes only
+$2^{o(2^n)}$ strict Boolean labelings. The pole set, the common affine
+shift, every numerator, and the permutations may all depend on the
+labeling. Positivity and the common-sign slope restrictions may be
+imposed or omitted without invalidating this upper bound.
+\end{proposition}
+\begin{proof}
+It suffices to count each integer $1\le H\le C_0 2^n/n^2$ separately.
+Reindex the poles by the rows at zero. The partition of rows has at most
+$(n+1)^H$ possibilities. For a fixed partition, the number of choices
+of its supported permutations is at most
+$\prod_{i=1}^n|I_i|!\le H!$.
+
+For each such discrete choice, the affine denominator coefficients
+are linear functions of $H$ pole variables and the $n+1$ coefficients
+of the common shift. The numerator block has dimension
+$k_1=1+(n+1)H$ including the bias, and the denominator block has
+dimension $k_2=H+n+1$. Set $N=2^n$ and $k=k_1+k_2$.
+The cleared score at each vertex is polynomial of degree at most one
+in the first block and at most $H$ in the second block. For all
+sufficiently large $n$, $k\le N$. The two-block sign-count estimate
+used earlier therefore bounds the total number of strict patterns by
+\[
+ (n+1)^H H!\left(\frac{32768N}{k}\right)^k
+              2^{k_1}H^{k_2}.
+\]
+Its base-two logarithm is
+$O_{C_0}(N\log n/n+n^2)=o(N)$: the partition and permutation factors
+cost $O(H\log n+H\log H)$, the second-block degree costs
+$O((H+n)\log H)$, and $k=O_{C_0}(N/n+n)$ gives the remaining estimate.
+Summing over the allowed head counts adds only $O(n)$ to the logarithm.
+The counted parameter space is larger than the admissible one, so any
+denominator restrictions can only reduce the number of patterns.
+\end{proof}
+
+This excludes a specific arithmetic routing mechanism, not general
+adaptive denominators. Non-Sidon pole sets can have interacting rows;
+no bound on that larger family or universal construction for it is
+asserted. The new condition that would be needed to reopen this route
+is an explicit family with sufficiently many additive relations and a
+proved reciprocal readout of arbitrary target labels.
+
+
+The permutation-support literature supplies a different, precisely stated
+quantity. Pohoata's \emph{Distinct permutation dot products},
+\url{https://arxiv.org/html/2601.12445v1}, Theorem~2.1 and Lemma~3.2,
+combines additive-energy estimates for subset sums with disjoint swaps.
+Carpenter, Defant and Kravitz,
+\emph{On the number of permutation-twisted dot products},
+\url{https://arxiv.org/html/2601.15276v3}, Section~2, use greedily chosen
+superadditive difference sequences. Both obtain cubic-order lower bounds
+on the number of distinct scalar permutation dot products. For fixed
+disjoint swaps their displayed construction has the exact form
+\[
+ S(x)=S(0)+\sum_i\delta_i x_i.
+\]
+It is therefore an affine scalar statistic of the selection bits. A large
+support for this statistic is not a construction of arbitrary sign tables,
+and the articles do not assert such a construction. These results do not
+remove the additive-relations and reciprocal-readout requirements above.
+
+The coordinate-square argument is kernel-checked in
+\texttt{HeadComplexity.Results.AffineSidonRows}, as
+\texttt{affine\_sidon\_row\_pair\_zero} and
+\texttt{affine\_sidon\_row\_one\_coordinate}.
+The partition and sign-count consequences in this section are manual
+arguments, not claims of formalized universal head bounds.
+
 \end{document}

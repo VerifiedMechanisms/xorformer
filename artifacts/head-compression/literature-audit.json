@@ -639,6 +639,22 @@
       "checked_location": "Lemma 4.1, Theorem 4.2 and proofs; quantifier-elimination discussion in Section 5",
       "mechanism": "A single integer stores the truth table; recursively alternating quantifiers define large integer intervals and decode its selected binary digit. Formula size O(k*2^(n/k)) uses 2k-1 quantifier blocks.",
       "gap": "Attention has no quantified integer-membership operation. A fixed rational decoder of one scalar for N arbitrary signs requires N*H >= 2^N-1, so this encoding cannot be transferred by an uncharged bit-extraction step."
+    },
+    {
+      "title": "Distinct permutation dot products",
+      "authors": "Cosmin Pohoata",
+      "url": "https://arxiv.org/html/2601.12445v1",
+      "checked_location": "Theorem 1.1 statement; Theorem 2.1 and Lemma 3.2 with proofs",
+      "mechanism": "Subset-sum support is bounded below by m^(2k+1)/E_k(D). Disjoint transpositions embed translates of subset sums into the values of permutation dot products.",
+      "gap": "Many distinct scalar outputs do not give arbitrary simultaneous sign words. The disjoint-swap output is affine in its selection bits; neither a target-dependent interacting affine permutation cube nor its required reciprocal readout is constructed."
+    },
+    {
+      "title": "On the number of permutation-twisted dot products",
+      "authors": "Ruben Carpenter, Colin Defant, Noah Kravitz",
+      "url": "https://arxiv.org/html/2601.15276v3",
+      "checked_location": "Theorem 1.1 and Section 2 real-case proof, including Lemmas 2.1 and 2.2",
+      "mechanism": "Greedy disjoint pairs yield positive superadditive difference sequences. Products of those sequences have cubically many subset sums, giving an optimal-order support bound for permutation dot products.",
+      "gap": "The conclusion counts distinct values as a permutation varies, not labelings on the Boolean cube. Its disjoint-transposition construction leaves the scalar value affine in the swap bits. No head-count upper bound follows."
     }
   ]
 }

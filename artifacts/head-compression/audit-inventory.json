@@ -150,6 +150,14 @@
         "HeadComplexity.atomDenProduct_square_eq_forces_alpha_one"
       ],
       "scope": "Native FracAtom denominators have nonnegative square defect, strict unless alpha=1. Their product is strictly log-submodular if any factor is nonconstant. A constant denominator product in dimension at least two therefore has only constant factors. This audits an arithmetic norm encoding, not the universal upper bound."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/AffineSidonRows.lean",
+      "main_declaration": "HeadComplexity.affine_sidon_row_one_coordinate",
+      "companion_declarations": [
+        "HeadComplexity.affine_sidon_row_pair_zero"
+      ],
+      "scope": "An affine row whose Boolean values belong to a Sidon set depends on at most one coordinate. Auxiliary restriction on a proposed permutation-pole construction; no bound on the full head model."
     }
   ],
   "validation": {
@@ -382,5 +390,30 @@
       "A single-scalar fixed affine-fraction decoder for N arbitrary output bits requires N*H>=2^N-1."
     ],
     "scope": "Rejects free affine one-hot substitution and free quantified bit extraction only. No target upper bound or target lower bound."
+  },
+  "sidon_permutation_audit": {
+    "writeup": "artifacts/head-compression/mechanism-audit.tex",
+    "new_auxiliary_definition": "HeadComplexity.HasUniquePairSums",
+    "model_or_target_changed": false,
+    "manual_consequences": [
+      "An affine permutation cube with Sidon poles splits into independent disjoint row blocks.",
+      "The induced permutation sign is a Boolean affine parity.",
+      "Even allowing target-dependent Sidon poles and a common affine shift, H<=C*2^n/n^2 realizes only 2^o(2^n) strict sign tables."
+    ],
+    "validation": {
+      "module_build": "passed, 3137 jobs",
+      "all_results_build": "passed, 9198 jobs",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "logs": [
+        "/out/head-compression/lean-affine-sidon-build.log",
+        "/out/head-compression/lean-affine-sidon-all-build.log",
+        "/out/head-compression/lean-affine-sidon-axioms.log"
+      ]
+    },
+    "scope": "Non-Sidon pole sets and general adaptive denominators are not excluded. The universal target remains unproved."
   }
 }
