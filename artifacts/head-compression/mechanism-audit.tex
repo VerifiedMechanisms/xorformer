@@ -2336,9 +2336,10 @@ For a fixed strict orthant, form the graph on these $M$ vectors in
 which two vertices are adjacent when their real linear span meets
 the orthant. If $\nu$ is its maximum matching size, then
 $\mathbb E\nu/M\longrightarrow0$ as $k\longrightarrow\infty$,
-uniformly in the choices of $R(k)>1$. In particular, taking an
+uniformly in the choices of $R(k)>1$. For every fixed $\rho>0$,
+$\Pr(\nu\geq\rho M)\longrightarrow0$. In particular, taking an
 arbitrarily large range of logarithmic scales does not give a
-constant matching fraction for this independent random construction.
+constant matching fraction with probability bounded away from zero.
 \end{proposition}
 
 \begin{proof}
@@ -2428,6 +2429,7 @@ $\nu\leq M$ on the bad event, yields the explicit bound
  \leq4e^{-a^2k/288}+\frac{16}{a}e^{-4k}
  \longrightarrow0.
 \]
+The probability assertion follows from Markov's inequality.
 \end{proof}
 
 \paragraph{Scope.}
@@ -2437,6 +2439,48 @@ dictionary. The companion finite experiment stores integer exponents
 and verifies edges by exact exponent comparisons. Its certificates
 are valid finite statements; fixed-precision integer exponents are
 not silently identified with the continuous distribution in this
-proposition.
+proposition. Vanishing probability is not an assertion that the
+event is empty for every sufficiently large dimension.
+
+\begin{proposition}[Expected edge count does not certify the required matching]
+For either the spherical or the continuous logarithmic-scale dictionary
+above, let $E$ be the number of edges in its graph for a fixed strict
+orthant. Then
+\[
+ \mathbb E E=\binom M2\frac{2k}{2^k}.
+\]
+In particular, if $M/2^k\longrightarrow C>0$, its expected average
+degree is asymptotic to $2Ck$, while its expected maximum matching
+size divided by $M$ tends to zero.
+\end{proposition}
+\begin{proof}
+For a pair of sampled vectors $v,w$, the coordinate maps on their
+coefficient plane are $(\alpha,\beta)\mapsto\alpha v_i+\beta w_i$.
+Almost surely, these $k$ forms have distinct kernel lines. For the
+spherical case, use independent unnormalized Gaussian vectors;
+normalization does not change equality of kernel lines. For the
+logarithmic case, the joint coordinate distribution is absolutely
+continuous on a finite union of open boxes. In either case, equality
+of two kernel lines is the nonzero polynomial equation
+$v_iw_j-v_jw_i=0$ and has probability zero. They cut the plane
+into $2k$ sectors. Every sector has a constant strict sign vector,
+and distinct sectors have distinct sign vectors. Indeed, the inverse
+image of a prescribed strict orthant is an intersection of open
+half-planes and is convex, so it cannot occupy disconnected sectors.
+Thus the pair span meets exactly $2k$ strict orthants.
+
+The joint distribution of the pair is invariant under reflecting any
+selected coordinate in both vectors. The probability that its span
+meets a specified strict orthant is therefore the same for all $2^k$
+orthants. Summing these probabilities gives $2k$, so each equals
+$2k/2^k$. Sum over the $\binom M2$ pairs and use linearity of
+expectation. Expected average degree is $2\mathbb E E/M$.
+The matching conclusion is given by the preceding propositions.
+\end{proof}
+
+This calculation identifies why the large finite edge counts cannot
+be substituted for the uniform matching guarantee required by the
+routing lemma. It does not rule out a different, correlated deterministic
+construction.
 
 \end{document}
