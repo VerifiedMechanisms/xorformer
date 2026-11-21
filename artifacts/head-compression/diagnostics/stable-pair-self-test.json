@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "epsilon": [
+        1.0,
+        1.0
+      ],
+      "gradient_max_error": 5.613187865904923e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 219314192691853458000595972965802949656839274310472039086635184116,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 16
+      }
+    },
+    {
+      "epsilon": [
+        0.0,
+        0.0
+      ],
+      "gradient_max_error": 7.61957684447534e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 222636135254488494241527377892083994141241204152244845731759532954,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 16
+      }
+    },
+    {
+      "epsilon": [
+        1e-09,
+        -1e-07
+      ],
+      "gradient_max_error": 6.793765203183533e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 222633145228213951117106371197164655022183213541824510590206819555,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 16
+      }
+    }
+  ],
+  "scope": "Finite derivative and exact-export diagnostics only."
+}

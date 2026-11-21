@@ -4899,4 +4899,89 @@ The base denominators vary; if they were fixed, the earlier bounded-degree
 polynomial-chart obstruction would apply to this rank-one quadratic
 parameterization.
 
+
+\section{One stable chart for ordinary and confluent pairs}
+
+The limiting model in the preceding section can be joined continuously
+to ordinary two-head scores. This avoids discarding the higher-order
+terms when importing an existing ordinary score. All exponentials below
+are functions of parameters, never additional input operations.
+
+For one oriented pair let $b_i=e^{\ell_i}>0$, and define
+\[
+ E(z)=\begin{cases}(e^z-1)/z&z\ne0,\\1&z=0,\end{cases}
+ \qquad v_i=b_iw_iE(\varepsilon w_i),
+\]
+\[
+ B_1=1+\sum_i b_it_i,\qquad
+ B_2=1+\sum_i b_ie^{\varepsilon w_i}t_i,\qquad V=\sum_i v_it_i.
+\]
+Then $B_2=B_1+\varepsilon V$ for every real $\varepsilon$, including
+zero. The stable expression is
+\[
+ F=\frac C{B_1}+\frac{UV}{B_1B_2}.
+\]
+When $\varepsilon\ne0$, it equals
+$(C+U/\varepsilon)/B_1-(U/\varepsilon)/B_2$ exactly. Both
+denominators have strictly positive oriented slopes. When
+$\varepsilon=0$, it is the preceding confluent expression, and a strict
+sum of such scores has the finite lift already proved. This remains
+true when some pairs have zero separation and others do not: only the
+zero-separation pairs need perturbation, and their error bounds are
+summed against a common strict margin.
+
+Conversely, two same-orientation ordinary heads with denominators
+$1+\sum_i b_it_i$ and $1+\sum_i d_it_i$, where $b_i,d_i>0$, and
+numerators $A_1,A_2$, have this form with
+\[
+ \varepsilon=1,\quad \ell_i=\log b_i,\quad
+ w_i=\log(d_i/b_i),\quad C=A_1+A_2,\quad U=-A_2.
+\]
+Thus ordinary pairs can be imported without a limiting approximation.
+Pairing heads separately by orientation and padding any orphan by a
+zero numerator increases an arbitrary head count by at most two.
+This is an implementation convention, not a required increase in the
+original definition of head complexity.
+
+For fixed $\ell,w,\varepsilon$, the coefficients of $C,U$ remain
+linear. The nonlinear derivatives used by
+\texttt{search\_stable\_pair\_varpro.py} can be written without
+subtracting two large head values. Put
+$P=C/B_1$, $Q=UV/(B_1B_2)$, and $d_i=b_ie^{\varepsilon w_i}$.
+Then
+\[
+ \frac{\partial F}{\partial\ell_i}
+ =-P\frac{b_it_i}{B_1}
+   +\frac{U}{B_2}\frac{v_it_i}{B_1}
+   -Q\left(\frac{b_it_i}{B_1}+\frac{d_it_i}{B_2}\right),
+ \qquad
+ \frac{\partial F}{\partial w_i}
+ =\frac{U}{B_2}\frac{d_it_i}{B_2}.
+\]
+The second identity follows from
+$\partial_{w_i}V=d_it_i$ and
+$\partial_{w_i}B_2=\varepsilon d_it_i$, followed by
+$B_2-\varepsilon V=B_1$. Finally,
+\[
+ \partial_\varepsilon V=\sum_i b_iw_i^2E'(\varepsilon w_i)t_i,
+ \quad \partial_\varepsilon B_2=\sum_i d_iw_it_i,
+ \quad
+ \partial_\varepsilon F=\frac{U}{B_2}
+       \frac{\partial_\varepsilon V}{B_1}
+       -Q\frac{\partial_\varepsilon B_2}{B_2}.
+\]
+Here $E'(0)=1/2$; its Taylor series is used near zero in the numerical
+code. Finite differences test positive, negative, and zero separation
+with maximum absolute derivative error below $10^{-10}$.
+
+At export the exponential parameter values are rounded using at least
+120 decimal digits, and all subsequent coefficients are rational.
+The rational score is checked directly on the entire cube before any
+zero-separation lift and again afterward. These exact checks certify
+the rounded model itself, so neither an unverified floating-point
+margin nor the accuracy of the transcendental rounding is used as a
+proof hypothesis. The small four-bit export also passes the independent
+Fraction checker. No universal convergence or existence theorem is
+asserted for this stable chart.
+
 \end{document}
