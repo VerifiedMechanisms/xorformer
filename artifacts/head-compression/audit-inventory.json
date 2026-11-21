@@ -230,5 +230,21 @@
       "/out/head-compression/confluent-positive-face0-n13-h146"
     ],
     "target_proved": false
+  },
+  "stable_pair_audit": {
+    "script": "artifacts/head-compression/search_stable_pair_varpro.py",
+    "diagnostic": "artifacts/head-compression/diagnostics/stable-pair-self-test.json",
+    "nonzero_separation": "exact two-head identity",
+    "zero_separation": "strict margin permits ConfluentFractionLift perturbation",
+    "transcendental_rounding": "rounded rational score is directly checked; high-precision exponential evaluation is not trusted as a proof step",
+    "search": "/out/head-compression/stable-pair-n14-h336",
+    "target_proved": false
+  },
+  "private_repository_refresh_2026_11_21_1809_utc": {
+    "repositories": [
+      "VerifiedMechanisms/autoresearch-runs",
+      "VerifiedMechanisms/xorformer-runs"
+    ],
+    "result": "Both fetches completed without changes."
   }
 }
