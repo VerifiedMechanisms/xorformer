@@ -698,5 +698,57 @@
     ],
     "result": "The continuation proves further fixed-denominator O(2^n/n) covering bounds and small-dimension exact covers; it explicitly leaves the requested O(2^n/n^2) bound unproved. No target theorem imported.",
     "fetch_note": "Bare clones have no default branch refspec. Explicit refs/heads/* fetching was necessary to update all branches."
+  },
+  "interior_square_regression_minimum_n4_h1": {
+    "input_sha256": "6c2ed8b90cc2606317a6a260e0a24d077c7be9d4915fe32afdb5c3f8e5e5f852",
+    "n": 4,
+    "heads": 1,
+    "loss_kind": "square",
+    "parameters": 9,
+    "vertices_checked": 16,
+    "precision_bits": 384,
+    "all_slopes_strictly_positive_in_oriented_coordinates": true,
+    "active_vertices": 16,
+    "vertices_with_certified_negative_margin_throughout_box": 3,
+    "loss_interval_throughout_box": "[0.21652881485882694879928489289 +/- 6.39e-30]",
+    "hessian_LDL_pivots": [
+      "1.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "[0.37988885513933120260095256179 +/- 2.93e-30]",
+      "[0.24269437159598557616975425858 +/- 2.77e-30]",
+      "[0.002901309585568046257248285531 +/- 3.56e-31]",
+      "[0.1558130570359788939663481068 +/- 2.41e-29]",
+      "[0.0199490922030401533623795406 +/- 6.57e-29]",
+      "[0.0009084957100529989689101591 +/- 3.55e-29]",
+      "[0.002820533742011178723416793 +/- 5.18e-28]",
+      "[0.00036214013557887024801699 +/- 1.77e-27]"
+    ],
+    "contraction_row_bounds": [
+      "[+/- 7.53e-28]",
+      "[+/- 1.94e-25]",
+      "[+/- 1.74e-25]",
+      "[+/- 1.65e-25]",
+      "[+/- 1.53e-25]",
+      "[+/- 1.94e-25]",
+      "[+/- 1.86e-25]",
+      "[+/- 1.87e-25]",
+      "[+/- 1.59e-25]"
+    ],
+    "image_to_radius_bounds": [
+      "[+/- 7.53e-28]",
+      "[+/- 1.94e-25]",
+      "[+/- 1.74e-25]",
+      "[+/- 1.65e-25]",
+      "[+/- 1.53e-25]",
+      "[+/- 1.94e-25]",
+      "[+/- 1.86e-25]",
+      "[+/- 1.87e-25]",
+      "[+/- 1.59e-25]"
+    ],
+    "unique_stationary_point_in_box": true,
+    "strict_local_minimum": true,
+    "scope": "One positive local minimum of the specified loss. No universal head bound or sign-representation lower bound.",
+    "seconds": 0.0028920149197801948,
+    "single_head_residual_moment_00": "[-1.0847915375828654183985601e-5 +/- 1.08e-31]",
+    "single_head_residual_moment_nonzero": true
   }
 }

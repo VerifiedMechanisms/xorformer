@@ -3920,4 +3920,78 @@ a valid way to combine sign-only rectangle recognizers into one flat
 score, have not been constructed. The biclique theorem alone does
 not supply either step. No universal head upper bound is inferred.
 
+
+\section{A certified positive regression minimum in the actual model}
+
+The positive Gram term can mask the Boolean residual moment even at an
+interior stationary point of an admissible score. This is stronger than
+an example involving two unrelated matrices. It concerns squared
+regression, not squared hinge loss.
+
+\begin{proposition}[A one-head regression minimum]
+On the four-cube, in vertex order $v=\sum_{i=0}^3 2^i x_i$, let the labels be
+\[
+ (-1,1,1,1,-1,-1,-1,-1,1,-1,1,1,-1,1,-1,1).
+\]
+For $b_i>0$, put
+\[
+ S_\theta(x)=c+\frac{\sum_{i=0}^3 u_i x_i}{1+\sum_{i=0}^3 b_i x_i},
+ \qquad E(\theta)=\frac1{32}\sum_x(y_x-S_\theta(x))^2,
+ \qquad\theta=(c,u_0,\ldots,u_3,b_0,\ldots,b_3).
+\]
+There is an interior strict local minimum of $E$ with $E>0.2165$ and
+three strictly misclassified vertices. Its full nine-parameter Hessian
+is positive definite, although its nonzero Boolean residual moment
+matrix is indefinite.
+\end{proposition}
+\begin{proof}[Computational proof with interval enclosures]
+The exact rational centre $q$ is specified by the decimal strings in
+\texttt{diagnostics/interior-square-n4-h1-box.json}. Its SHA-256 is
+\texttt{6c2ed8b90cc2606317a6a260e0a24d077c7be9d4915fe32afdb5c3f8e5e5f852}.
+The denominator slopes are approximately
+$(165.181243,5.120446,92.226201,13.494384)$.
+Set $s_i=1+\lfloor|q_i|\rfloor$, $D=\operatorname{diag}(s_i)$,
+$r=10^{-30}$, and $Q=\{q+Dz:\|z\|_\infty\le r\}$.
+The independent checker \texttt{verify\_stationary\_box.py} evaluates
+all sixteen vertices with 384-bit outward-rounded Arb intervals.
+It checks strict slope positivity throughout $Q$.
+
+Write $G(z)=D\nabla E(q+Dz)$ and $H(z)=D\nabla^2E(q+Dz)D$.
+Validated interval $LDL^{\top}$ elimination gives all positive pivots,
+exceeding $3\cdot10^{-4}$, for the Hessian enclosure throughout $Q$.
+In particular $R=H(0)^{-1}$ exists. With $T(z)=z-RG(z)$, the checked
+bounds are
+\[
+ \sup_{\|z\|_\infty\le r}\|I-RH(z)\|_\infty<2\cdot10^{-25},
+ \qquad \sup_{\|z\|_\infty\le r}\|T(z)\|_\infty/r<2\cdot10^{-25}.
+\]
+The checker obtains the second bound from $T(0)$ and the first bound
+by the mean-value theorem. Thus $T$ maps the closed cube strictly into
+itself and is a contraction. Its unique fixed point gives
+$\nabla E=0$; the positive-definite Hessian makes it a strict local
+minimum. Direct interval evaluation gives
+\[
+ E(Q)\subset
+ [0.21652881485882694879928489289\ \pm\ 6.39\cdot10^{-30}],
+\]
+and certifies three negative margins throughout $Q$.
+
+Absorb the bias into the affine numerator and let $z=(1,x)$ and
+$B=1+\sum_i b_i x_i$. At the stationary point, numerator stationarity
+implies $\sum_x(y_x-S(x))z_i(x)/B(x)=0$. Therefore
+\[
+ M_{ij}=\frac1{16}\sum_x
+       (y_x-S(x))\frac{z_i(x)z_j(x)}{B(x)^2}
+\]
+satisfies the Boolean diagonal and positive-kernel identities proved
+above. The interval check gives
+$M_{00}<-10^{-5}$ throughout $Q$, so $M\ne0$. The Boolean moment
+lemma makes $M$ indefinite, despite the positive-definite full Hessian.
+\end{proof}
+
+This does not claim that the local minimum is nonglobal, nor that the
+same statement holds for squared hinge loss. It disproves the proposed
+inference from nonzero Boolean residual moments to negative full
+curvature for squared regression. It supplies no head lower bound.
+
 \end{document}
