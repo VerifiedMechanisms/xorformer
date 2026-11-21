@@ -3708,4 +3708,49 @@ from this particular state, not a strict sign representation or a
 global optimization theorem. In particular it does not prove the
 requested universal head bound.
 
+
+\section{Independent small-cell compilation cannot give the target rate}
+
+\begin{proposition}[Size of a universally programmable cell]
+Let $E\subseteq\{0,1\}^n$ have $M$ elements, let $H\ge1$, and put
+$p=1+2H(n+1)$. If $p\le M$ and the signs on $E$ of sums of $H$
+affine fractions with denominators positive on $E$ include every
+labeling of $E$, then
+\[
+ M\le p\log_2\left(\frac{4e(H+1)M}{p}\right)
+ \le p\log_2\left(\frac{4eM}{n+1}\right).
+\]
+Consequently, for any fixed $C>0$, a sequence of universally
+programmable cells satisfying $1\le H\le CM/n^2$ must have
+\[
+ \log_2 M\ge\left(\frac1{2C}+o(1)\right)n.
+\]
+In particular, cells of size polynomial in $n$ cannot achieve that
+head rate by independent programming, even if denominators depend
+on all the labels within the cell.
+\end{proposition}
+\begin{proof}
+Use the unrestricted affine numerator and denominator coefficients
+and a scalar bias as the $p$ parameters. At each point of $E$,
+clearing the positive product of denominators gives a polynomial
+of degree at most $H+1$. Warren's bound therefore gives at most
+$(4e(H+1)M/p)^p$ strict sign tables. Universality requires this
+quantity to be at least $2^M$. The second inequality follows from
+$(H+1)/p\le1/(n+1)$ for $H\ge1$.
+
+Under the asserted rate, $M\ge n^2/C$ and
+$p/M\le1/M+2C(n+1)/n^2=(2C+o(1))/n$.
+In particular $p\le M$ eventually. Dividing the first conclusion
+by $M$ and rearranging proves the exponential size requirement.
+\end{proof}
+
+The result is stronger than the earlier constant-head radius-two
+obstruction: the local head count may grow, the cell need not be a
+Hamming ball, and no slope-sign restriction was used. It does not
+exclude a label-dependent choice among exponentially many cell
+partitions, or constructions in which heads interact across cells.
+Those additional mechanisms must themselves be supplied and counted.
+It also does not supply a lower bound for the unrestricted global
+head model, since the whole cube has exponential size.
+
 \end{document}
