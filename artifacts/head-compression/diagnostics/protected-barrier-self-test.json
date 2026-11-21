@@ -1,0 +1,22 @@
+{
+  "n": 5,
+  "units": 2,
+  "gradient_error": 9.800249500813152e-11,
+  "curvature_error": 2.397726461822458e-11,
+  "initial_value": 0.5044734978203748,
+  "initial_target_margin": -0.00233644226011865,
+  "final_target_margin": 0.06230390650410507,
+  "direction": "joint barrier Gauss-Newton",
+  "model_derivative": -1.0985682686919633,
+  "lsmr_stop": 2,
+  "lsmr_iterations": 40,
+  "lsmr_residual_norm": 0.0781194580178975,
+  "lsmr_normal_residual_norm": 5.700493888053351e-08,
+  "alpha": 1.0,
+  "direction_scale": 0.0605211455881717,
+  "value_after": 0.4362690970144586,
+  "extended_value_after": 0.43626909701445865,
+  "extended_minimum_protected_margin": 0.15914829759280444,
+  "double_extended_score_discrepancy": 3.5041414214731503e-16,
+  "scope": "Numerical derivative and protected-descent check only."
+}

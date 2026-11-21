@@ -336,5 +336,14 @@
     "diagnostic": "artifacts/head-compression/diagnostics/shared-affine-gn-self-test.json",
     "scope": "Joint damped Gauss-Newton response and actual-step checks. Small derivative and descent diagnostic passed. No universal convergence or capacity theorem.",
     "target_proved": false
+  },
+  "protected_barrier_audit": {
+    "script": "artifacts/head-compression/search_protected_barrier.py",
+    "diagnostic": "diagnostics/protected-barrier-self-test.json",
+    "mechanism": "One-vertex squared hinge, protected log barrier, score-space quadratic regularization, joint numerator and denominator Gauss-Newton updates with direct protected-sign checks.",
+    "mathematical_scope": "An exact nonzero damped Gauss-Newton direction is a local descent direction and sufficiently small steps retain the open protected sign domain. No global convergence, extension, or universal-width theorem.",
+    "run_seed": "/out/head-compression/protected-barrier-n14-h336/seed.npz",
+    "run_seed_sha256": "e1b2a85c05ae9f2ed3aa286610aa20735b93637d81843236a6ec43fb0891ba40",
+    "certificate_policy": "Only a full-cube exact rational certificate is success; double and extended-precision tests alone are not proofs."
   }
 }

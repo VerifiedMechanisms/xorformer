@@ -5734,4 +5734,65 @@ joint step with loss $0.4943218$, and refits to loss $0.4875027$.
 This is a descent diagnostic only; it is not a parity representation
 or a universal head-count result.
 
+
+\section{Protected signs during one-vertex continuation}
+
+The incremental squared-hinge search may temporarily violate many earlier
+constraints while trying to introduce a new batch. A separate numerical
+mechanism keeps the previous sign chamber throughout every accepted step.
+Let $P$ be a nonempty protected set, let $z\notin P$ be the next vertex,
+let $m_x=y_xS_x$, and choose $\mu,\lambda>0$. On the open domain
+$m_x>0$ for every $x\in P$, use
+\[
+ F(S)=\frac12(1-m_z)_+^2
+      -\frac\mu{|P|}\sum_{x\in P}\log m_x
+      +\frac\lambda{2N}\sum_x S_x^2.
+\]
+As a function of the score vector this is strictly convex. Away from
+$m_z=1$, its score gradient and diagonal score Hessian are
+\[
+ g_x=\frac\lambda N S_x
+     -\mathbf1_{x\in P}\frac{\mu y_x}{|P|m_x}
+     -\mathbf1_{x=z}y_z(1-m_z)_+,
+\]
+\[
+ w_x=\frac\lambda N
+     +\mathbf1_{x\in P}\frac\mu{|P|m_x^2}
+     +\mathbf1_{\{x=z,\ m_z<1\}}>0.
+\]
+These identities follow by differentiating each summand. The barrier
+is applied only on the protected domain; no logarithm of a nonpositive
+margin is used.
+
+If $J$ is the score Jacobian in the joint numerator and denominator
+coordinates, a damped score-space Gauss--Newton direction solves
+\[
+ \min_d\frac12\|W^{1/2}Jd+W^{-1/2}g\|^2
+             +\frac\eta2\|d\|^2,\qquad\eta>0.
+\]
+For a nonzero exact minimizer, its normal equation gives
+\[
+ g^TJd=-\|W^{1/2}Jd\|^2-\eta\|d\|^2<0.
+\]
+A sufficiently small step therefore lowers $F$ and retains all protected
+strict signs, because the protected domain is open and finite. This
+conclusion is local. It gives no progress when $J^Tg=0$, no assertion
+that a new vertex can be made positive, and no head-count theorem.
+Clipping and inexact linear solves require a direct trial check.
+
+\texttt{search\_protected\_barrier.py} implements joint steps using
+QR coordinates for the affine coefficients, column scaling, and LSMR.
+Every accepted trial must lower the actual objective and retain the
+protected signs in both double and extended-precision evaluations.
+These remain numerical tests. The final full-cube score must pass the
+existing exact rational lift and interval certificate checker. A failed
+search is not an infeasibility certificate.
+
+The five-bit diagnostic has score-gradient error below $10^{-10}$ and
+score-curvature error below $2.4\cdot10^{-11}$. One tested step changes
+the new vertex's signed margin from $-0.002337$ to $0.0623039$, while
+all 31 protected margins remain above $0.159148$. The barrier objective
+decreases from $0.504474$ to $0.436270$. This checks the continuation
+mechanism on a finite example only.
+
 \end{document}
