@@ -892,7 +892,9 @@
     "initial_loss": 0.3410816768749205,
     "final_loss": 0.26676725915231936,
     "final_sign_errors": 12,
-    "scope": "Finite diagnostic only. Per-orientation column multisets are preserved exactly; this supplies no universal existence or convergence theorem."
+    "scope": "Finite diagnostic only. Per-orientation column multisets are preserved exactly; this supplies no universal existence or convergence theorem.",
+    "alternative_inner_solver": "The optional L-BFGS fit initialized by projecting the previous score reached the same six-bit final loss 0.26676725915231936.",
+    "large_run_initial_restart": "The initial n=14 run was interrupted before its first six-trial round completed and restarted with L-BFGS candidate fits; the initial Newton log is preserved separately."
   },
   "extension_projected_recycling_n14_stopped": {
     "n": 14,

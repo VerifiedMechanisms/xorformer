@@ -109,10 +109,14 @@ def run(checkpoint, out, seconds, seed, candidates):
                 break
             candidate = logs.copy()
             candidate[a, i], candidate[b, i] = candidate[b, i], candidate[a, i]
-            fit = evaluate(t, labels, candidate)
+            fit = evaluate(t, labels, candidate, solver="lbfgs",
+                           initial_score=state["score"])
             event["trials"].append(dict(column=i, first=a, second=b,
                                          prediction=predicted, loss=fit["loss"],
                                          inner_gradient=fit["inner_gradient"]))
+            print(json.dumps(dict(phase="trial", iteration=iteration,
+                                  seconds=time.monotonic()-start,
+                                  **event["trials"][-1])), flush=True)
             rejected.add((i, a, b))
             if fit["loss"] < state["loss"]-1e-9 and (
                     best is None or fit["loss"] < best[0]["loss"]):

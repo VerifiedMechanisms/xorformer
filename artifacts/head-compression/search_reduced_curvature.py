@@ -21,15 +21,16 @@ from search_newton_scores import export
 from search_sign_scores import exact_check
 
 
-def evaluate(t, labels, logs, previous=None):
+def evaluate(t, labels, logs, previous=None, solver="newton", initial_score=None):
     count, heads, n = t.shape
     slopes = np.exp(logs)
     denominator = 1+np.einsum("xhi,hi->xh", t, slopes)
     local = t/denominator[:, :, None]
     features = np.column_stack((np.ones(count), local.reshape(count, -1)))
     q, triangular = la.qr(features, mode="economic", check_finite=False)
-    initial = q.T@(features@previous) if previous is not None else q.T@labels
-    fit = convex_hinge_fit(labels[:, None]*q, initial, "newton", 0.)
+    initial = (q.T@initial_score if initial_score is not None else
+               q.T@(features@previous) if previous is not None else q.T@labels)
+    fit = convex_hinge_fit(labels[:, None]*q, initial, solver, 0.)
     coefficient = la.solve_triangular(triangular, fit.x, check_finite=False)
     score = q@fit.x
     residual = np.maximum(1-labels*score, 0)
