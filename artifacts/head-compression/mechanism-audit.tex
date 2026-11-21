@@ -2316,4 +2316,127 @@ experiment rounds Gaussian coordinates to integers, so its exact
 certificates are statements about those rounded dictionaries only;
 the proposition is not silently asserted for fixed-precision rounding.
 
+\section{Independent logarithmic scales do not remove the matching obstruction}
+
+The preceding spherical argument uses Euclidean flatness. The following
+different argument permits coordinates separated by arbitrarily many
+orders of magnitude. Its key step is an odd increasing transformation
+that preserves the sign of a sum of two numbers.
+
+\begin{proposition}[Independent signed logarithmic scales]
+Fix $c>0$. For each positive integer $k$, choose
+$1\leq M=M(k)\leq e^{ck}$ and $R=R(k)>1$.
+Independently choose signs $\tau_{vi}\in\{-1,1\}$ uniformly and
+$U_{vi}$ uniformly on $[0,1]$, for $1\leq v\leq M$ and
+$1\leq i\leq k$. Put
+\[
+ x_{vi}=\tau_{vi}R^{U_{vi}}.
+\]
+For a fixed strict orthant, form the graph on these $M$ vectors in
+which two vertices are adjacent when their real linear span meets
+the orthant. If $\nu$ is its maximum matching size, then
+$\mathbb E\nu/M\longrightarrow0$ as $k\longrightarrow\infty$,
+uniformly in the choices of $R(k)>1$. In particular, taking an
+arbitrarily large range of logarithmic scales does not give a
+constant matching fraction for this independent random construction.
+\end{proposition}
+
+\begin{proof}
+Coordinate sign symmetry reduces to the positive orthant. Set
+\[
+ a=\frac{e^{-2c-4}}{4e},\qquad
+ P_v=\sum_i\tau_{vi},\qquad
+ Q_v=\sum_i\tau_{vi}(2+U_{vi}).
+\]
+Call a vertex exceptional if $|P_v|>ak/4$ or $|Q_v|>ak/4$.
+The summands have mean zero, and lie in $[-1,1]$ and $[-3,3]$,
+respectively. Hoeffding's inequality gives
+\[
+ \Pr(v\text{ exceptional})
+ \leq2e^{-a^2k/32}+2e^{-a^2k/288}
+ \leq4e^{-a^2k/288}.
+\]
+
+For distinct $v,w$, signs $s,t\in\{-1,1\}$, and $r\in[-1,1]$,
+write
+\[
+ Z_i(r)=s\tau_{vi}(2+U_{vi})+
+ t\tau_{wi}(2+U_{wi}+r),\qquad
+ F(r)=\sum_i|Z_i(r)|.
+\]
+For fixed $r,s,t$, condition on all the signs. Each $Z_i(r)$
+is a translate of a sum or difference of two independent uniform
+variables on $[0,1]$. It therefore has a density bounded by one,
+and the $Z_i(r)$ are independent over $i$. Consequently, for
+$\lambda>0$,
+\[
+ \mathbb E e^{-\lambda|Z_i(r)|}\leq\frac{2}{\lambda},
+ \qquad
+ \Pr(F(r)\leq2ak)\leq(4ea)^k,
+\]
+where the second inequality uses exponential Markov with
+$\lambda=1/(2a)$.
+
+The function $F$ is $k$-Lipschitz on $[-1,1]$. Choose a net
+with covering radius $a$ and at most $4/a$ points. If
+$F(r)<ak$ anywhere, one net point satisfies $F\leq2ak$.
+A union bound over the net, the four sign pairs, and fewer than
+$M^2$ ordered vector pairs shows that, with probability at least
+\[
+ 1-\frac{16}{a}M^2(4ea)^k
+ \geq1-\frac{16}{a}e^{-4k},
+\]
+every such pair obeys $F(r)\geq ak$ for every $r\in[-1,1]$.
+No independence between different vector pairs is used here.
+
+On this good event, suppose a pair spans a positive vector. If one
+coefficient is zero, one of the endpoints, after sign reversal,
+is positive in every coordinate and is exceptional because
+$|P_v|=k$. Otherwise, divide by the absolute value of the first
+coefficient and write the positive vector as
+\[
+ s x_v+t R^r x_w,
+ \qquad s,t\in\{-1,1\},\quad r\in\mathbb R.
+\]
+If $r>1$, the second summand has strictly greater magnitude in
+every coordinate, so $t x_w$ must be positive in every coordinate.
+If $r<-1$, the same statement holds for $s x_v$. Either case
+has an exceptional endpoint. It remains to consider $-1\leq r\leq1$.
+
+On the positive magnitude interval $[R^{-1},R^2]$, the function
+$z\mapsto2+\log_R z$ is positive and strictly increasing.
+Its odd extension therefore has the following property on the
+signed version of this interval: if $u+v>0$, the sum of the
+transformed values is positive. For equal signs this follows
+from positivity; for opposite signs it follows from strict
+monotonicity and $|u|>|v|$ for the positive summand.
+Applying this fact in every coordinate to
+$s x_{vi}+tR^r x_{wi}>0$ gives $Z_i(r)>0$.
+If both endpoints were nonexceptional, then
+\[
+ ak\leq F(r)=\sum_i Z_i(r)
+ =sQ_v+tQ_w+trP_w
+ \leq |Q_v|+|Q_w|+|P_w|
+ \leq\frac{3ak}{4},
+\]
+a contradiction. Thus every edge meets the exceptional vertices.
+Since matching edges are disjoint, their number is at most the
+number of exceptional vertices. Taking expectations, and using
+$\nu\leq M$ on the bad event, yields the explicit bound
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq4e^{-a^2k/288}+\frac{16}{a}e^{-4k}
+ \longrightarrow0.
+\]
+\end{proof}
+
+\paragraph{Scope.}
+This proposition concerns independent continuously distributed
+logarithmic magnitudes. It does not rule out a correlated deterministic
+dictionary. The companion finite experiment stores integer exponents
+and verifies edges by exact exponent comparisons. Its certificates
+are valid finite statements; fixed-precision integer exponents are
+not silently identified with the continuous distribution in this
+proposition.
+
 \end{document}
