@@ -46,5 +46,13 @@
       "sha256": "23fd66758bdb04fd40ef0e3a0585d7a65cf3ddf5823d5b164af123daa785f697",
       "scope": "All 16 vertices of parity. Checks the extended literal chart only; does not improve the manuscript parity theorem."
     }
+  ],
+  "optimization_audit_certificates": [
+    {
+      "file": "curvature-path-n14-h251.json",
+      "sha256": "b174bdfbcb9bbe2ecda7172c6446ac4efcfd9f3dad3183279781ef6940f3e9de",
+      "verifier": "../verify_curvature_path.py",
+      "scope": "Interval-certified negative coupled curvature and actual descent from one exact rational checkpoint. This is not a strict sign representation."
+    }
   ]
 }

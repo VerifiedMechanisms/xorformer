@@ -429,6 +429,14 @@
       "checked_location": "Theorem 9 and its proof, and Theorem 5",
       "mechanism": "A min-plus representation on the cube can correct d prescribed labels by adding d affine forms. The correction adds 2 times Hamming distance minus 1 to an existing minimizing form.",
       "gap": "Evaluation uses minima of labeled affine forms, not a sum of affine fractions. The correcting forms have mixed slopes at a general vertex, and no admissible constant-head compiler is supplied. This is a local modification theorem, not a universal quadratic head saving."
+    },
+    {
+      "title": "On Non-Deterministic Representation of Boolean Functions",
+      "authors": "Sudharshan Rajagopalan and Nitin Saurabh",
+      "url": "https://arxiv.org/pdf/2611.11966",
+      "checked_location": "Theorem 3, its matrix Chernoff proof and equation (5), Corollary 5, and Proposition 26",
+      "mechanism": "A random Hadamard submatrix has full row rank after deletion of any column, giving almost-all nondeterministic and rational degree n/2+O(sqrt(n log n)). The paper also gives five affine forms for which a compatible Boolean partition of unity must have unbounded degree.",
+      "gap": "The degree theorem concerns a negligible exceptional fraction, not every function, and its polynomial numerator and denominator are not an affine-fraction head decomposition. The displayed probability estimate is not an exponentially small fraction in the truth-table length, so fixed-codimension extension does not promote it to a worst-case bound."
     }
   ]
 }

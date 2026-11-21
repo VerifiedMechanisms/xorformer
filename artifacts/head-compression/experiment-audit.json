@@ -358,5 +358,27 @@
     "errors": 1015,
     "certificate": null,
     "scope": "Restricted finite search. No global optimality or universal bound."
+  },
+  "certified_coupled_curvature_n14": {
+    "input_sha256": "b174bdfbcb9bbe2ecda7172c6446ac4efcfd9f3dad3183279781ef6940f3e9de",
+    "n": 14,
+    "heads": 251,
+    "vertices_checked": 16384,
+    "precision_bits": 256,
+    "all_hinge_kinks_separated": true,
+    "active_vertices": 10409,
+    "loss_interval": "[0.205575207077266245646214670982852181206307933652382290445971088902 +/- 6.72e-67]",
+    "first_derivative_interval": "[4.928509596794938179479823516140827071390452850231332031351717760e-6 +/- 4.74e-70]",
+    "second_derivative_interval": "[-2.45386782008335891425144474023493949597232884869128221412845874e-6 +/- 8.25e-69]",
+    "strictly_negative_second_derivative": true,
+    "scope": "This explicit admissible path only; no universal bound.",
+    "step": [
+      -1,
+      1000000
+    ],
+    "trial_loss_interval": "[0.205575207072337734822485899879438472451184356716122590395533940581 +/- 7.28e-67]",
+    "loss_change_interval": "[-4.928510823728771103413708755123576936259700050437148321e-12 +/- 5.26e-67]",
+    "strictly_decreases_loss": true,
+    "seconds": 18.775759380077943
   }
 }

@@ -3663,4 +3663,49 @@ The experiment uses an explicitly reported $10^{-12}$ inner Gram
 regularizer and clips log-denominator coefficients to $[-35,35]$.
 No claim about a global minimum or universal termination follows.
 
+
+\section{Interval certificate of coupled descent}
+
+The saved 14-bit, 251-head state from the dense joint Hessian audit has
+an independently checked admissible analytic path. Write each head in
+oriented Boolean coordinates $t_i$ as
+\[
+ q(\tau,x)=\frac{\sum_i b_i e^{\tau d_i}(v_i+\tau u_i)t_i(x)}
+ {1+\sum_i b_i e^{\tau d_i}t_i(x)}.
+\]
+All $b_i,d_i,v_i,u_i$ with $b_i>0$ and the affine bias path are exact rationals
+listed in the certificate. The denominator has strictly positive
+coefficients in its oriented coordinates for every real $\tau$.
+Thus it satisfies the manuscript's uniform-sign condition throughout
+the path. If $A,D$ denote numerator and denominator, direct
+differentiation gives
+\[
+ q'=\frac{A'-qD'}D,
+ \qquad q''=\frac{A''-qD''-2q'D'}D.
+\]
+For $L=(2N)^{-1}\sum_x\max(1-f(x)F(x),0)^2$, away from its hinge
+kinks this yields
+\[
+ L''=N^{-1}\sum_{x\text{ active}}
+ \bigl((F'(x))^2-f(x)(1-f(x)F(x))F''(x)\bigr).
+\]
+
+The independent checker uses Arb at 256-bit precision on all 16384
+vertices. It separates every hinge kink and verifies, with interval
+radii smaller than $10^{-65}$ in the reported quantities,
+\[
+ L'(0)\in(4.92850,4.92852)\cdot10^{-6},
+ \qquad L''(0)\in(-2.45388,-2.45385)\cdot10^{-6},
+\]
+\[
+ L(-10^{-6})-L(0)\in(-4.92852,-4.92850)\cdot10^{-12}.
+\]
+The parameter file is
+\texttt{certificates/curvature-path-n14-h251.json}, with SHA-256
+\texttt{b174bdfbcb9bbe2ecda7172c6446ac4efcfd9f3dad3183279781ef6940f3e9de}.
+The verifier imports no search or Hessian code. This certifies descent
+from this particular state, not a strict sign representation or a
+global optimization theorem. In particular it does not prove the
+requested universal head bound.
+
 \end{document}
