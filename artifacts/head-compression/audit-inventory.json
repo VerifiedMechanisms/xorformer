@@ -61,9 +61,12 @@
     },
     {
       "file": "formalization/HeadComplexity/Results/RegularizedParityHinge.lean",
-      "main_declaration": "HeadComplexity.regularized_squareParityHinge_ge_thirteen_quarters",
-      "companion_declaration": "HeadComplexity.regularized_squareParityHinge_attained",
-      "scope": "An explicit denominator-only quadratic penalty gives an attained positive two-bit parity hinge minimum of 13/4 at admissible positive slopes. The minimizer has hinge kinks; regularization alone does not repair the smooth-minimum argument."
+      "main_declaration": "HeadComplexity.isLeast_regularizedPositiveAffineSquareParityLosses",
+      "scope": "An explicit denominator-only quadratic penalty gives an attained positive two-bit parity hinge minimum of 13/4 at admissible positive slopes. The minimizer has hinge kinks; regularization alone does not repair the smooth-minimum argument.",
+      "companion_declarations": [
+        "HeadComplexity.regularized_squareParityHinge_ge_thirteen_quarters",
+        "HeadComplexity.regularized_squareParityHinge_attained"
+      ]
     }
   ],
   "validation": {

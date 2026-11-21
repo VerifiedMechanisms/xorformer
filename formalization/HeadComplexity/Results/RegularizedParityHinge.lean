@@ -59,4 +59,21 @@ theorem regularized_squareParityHinge_attained :
       + (((1 : ℝ)/2)^2+((1 : ℝ)/2)^2)/2 = 13/4 := by
   norm_num [squareParityHinge]
 
+def regularizedPositiveAffineSquareParityLosses : Set ℝ :=
+  {l | ∃ a₀ a₁ a₂ a₃ p q : ℝ,
+    a₀+a₃ = a₁+a₂ ∧ 0 < p ∧ 0 < q ∧
+    l = squareParityHinge a₀ a₁ a₂ a₃ 1 (1+p) (1+q) (1+p+q)
+      + (p^2+q^2)/2}
+
+theorem isLeast_regularizedPositiveAffineSquareParityLosses :
+    IsLeast regularizedPositiveAffineSquareParityLosses ((13 : ℝ)/4) := by
+  constructor
+  · refine ⟨1, -3/2, -3/2, -4, 1/2, 1/2,
+      by norm_num, by norm_num, by norm_num, ?_⟩
+    norm_num [squareParityHinge]
+  · rintro l ⟨a₀, a₁, a₂, a₃, p, q, ha, hp, hq, heq⟩
+    rw [heq]
+    exact regularized_squareParityHinge_ge_thirteen_quarters
+      a₀ a₁ a₂ a₃ p q ha hp hq
+
 end HeadComplexity
