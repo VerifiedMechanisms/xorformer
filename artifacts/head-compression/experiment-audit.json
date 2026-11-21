@@ -873,6 +873,14 @@
       "initial_loss": 0.4327942504455493,
       "final_loss": 0.3154355302229318,
       "scope": "Exercises deletion, candidate fitting, QR insertion, and complete refactorization. No sign certificate."
-    }
+    },
+    "projected_gradient_error": 9.29395102544639e-12
+  },
+  "extension_recycling_n14_unprojected": {
+    "status": "Stopped after four unsuccessful head replacements to test coordinated projected candidates.",
+    "loss": 0.19148915172799147,
+    "errors": 2106,
+    "log": "/out/head-compression/extension-recycling-n14.log",
+    "scope": "No certificate and no lower bound."
   }
 }

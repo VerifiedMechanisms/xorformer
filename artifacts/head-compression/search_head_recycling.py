@@ -32,17 +32,19 @@ def fit_q(q, labels, initial_score):
                 inner_gradient=float(np.max(np.abs(fitted.jac))))
 
 
-def residual_atom(logs, x, residual):
+def residual_atom(logs, x, residual, q=None):
     """Negative least-squares projection energy and its envelope derivative."""
     b = np.exp(logs)
     denominator = 1+x@b
     f = x/denominator[:, None]
-    a = la.lstsq(f, residual, cond=1e-12, check_finite=False,
+    projected = f if q is None else f-q@(q.T@f)
+    a = la.lstsq(projected, residual, cond=1e-12, check_finite=False,
                  lapack_driver="gelsy")[0]
-    s = f@a
+    s = projected@a
+    raw = f@a
     value = -float(s@s)/len(x)
     probability = f*b[None, :]
-    gradient = 2*probability.T@((residual-s)*s)/len(x)
+    gradient = 2*probability.T@((residual-s)*raw)/len(x)
     return value, gradient
 
 
@@ -60,7 +62,7 @@ def deletion_order(state, heads, n):
     return np.argsort(distances), distances
 
 
-def run(checkpoint, out, seconds, seed, starts, candidates):
+def run(checkpoint, out, seconds, seed, starts, candidates, polish_steps=0):
     saved = np.load(checkpoint)
     labels = saved["labels"].astype(float)
     logs = saved["logs"].copy()
@@ -119,9 +121,26 @@ def run(checkpoint, out, seconds, seed, starts, candidates):
                                             "ftol": 1e-14, "maxls": 35})
                 bank.append((float(fit.fun), fit.x.copy(), o))
             bank.sort(key=lambda item: item[0])
+            if polish_steps:
+                residual -= qm@(qm.T@residual)
+                seeds = [(0., logs[h], int(orientation[h]))]+bank[:candidates]
+                polished = []
+                for _, seed_log, o in seeds:
+                    if time.monotonic() >= deadline:
+                        break
+                    tx = x if o > 0 else 1-x
+                    fit = opt.minimize(residual_atom, seed_log,
+                                       args=(tx, residual, qm), jac=True,
+                                       method="L-BFGS-B", bounds=[(-30, 30)]*n,
+                                       options={"maxiter": polish_steps,
+                                                "gtol": 1e-11, "ftol": 1e-13,
+                                                "maxls": 15, "maxcor": 8})
+                    polished.append((float(fit.fun), fit.x.copy(), o))
+                bank = sorted(polished, key=lambda item: item[0])
             event = dict(round=round_number, head=h, deletion_distance=distances[h],
                          original_loss=state["loss"], removed_loss=removed["loss"],
-                         candidate_energies=[v[0] for v in bank], trials=[])
+                         candidate_energies=[v[0] for v in bank],
+                         projected_candidate_polish_steps=polish_steps, trials=[])
             best = None
             for energy, new_log, o in bank[:candidates]:
                 if time.monotonic() >= deadline:
@@ -184,6 +203,8 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=570014)
     parser.add_argument("--starts", type=int, default=12)
     parser.add_argument("--candidates", type=int, default=4)
+    parser.add_argument("--polish-steps", type=int, default=0)
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
-    run(args.checkpoint, args.out, args.seconds, args.seed, args.starts, args.candidates)
+    run(args.checkpoint, args.out, args.seconds, args.seed, args.starts,
+        args.candidates, args.polish_steps)

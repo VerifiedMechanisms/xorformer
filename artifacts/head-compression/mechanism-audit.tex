@@ -4300,4 +4300,23 @@ No assertion that $G>2d_I$ must occur is made. Such an assertion at the
 target head count would require a new global argument; the local
 calculation alone supplies none.
 
+There is a stronger candidate gain that includes coordinated changes to
+the remaining numerators. Let $Q_-$ span their score space and let
+$F_B$ be the new head's feature matrix. Optimality of $s_-$ implies
+$Q_-^{\top}g=0$. Hence the same proof permits
+\[
+ V=\operatorname{col}\bigl((I-Q_-Q_-^{\top})F_B\bigr).
+\]
+The vector $P_Vg$ is obtainable by the new head together with a change
+to existing numerators. If $a$ is its least-squares coefficient vector,
+$v=(I-Q_-Q_-^{\top})F_Ba$, and $w=F_Ba$, its candidate derivative is
+\[
+ \frac{\partial(-G)}{\partial\ell_i}
+   =\frac2N\sum_x(g_x-v_x)w_xp_i(x).
+\]
+This follows by the envelope theorem and orthogonality to $Q_-$.
+The optional projected candidate search implements this derivative;
+central differences on an independent six-bit instance agreed to
+within $10^{-10}$. Again there is no universal lower bound on this gain.
+
 \end{document}
