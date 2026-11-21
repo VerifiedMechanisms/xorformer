@@ -28,7 +28,7 @@ def derivatives(data, parameters):
     gradient = [arb(0) for _ in range(size)]
     hessian = [[arb(0) for _ in range(size)] for _ in range(size)]
     total_loss = arb(0)
-    active = negative = 0
+    active = negative = positive = undetermined = 0
     single_head_moment = arb(0)
     for vertex, label in enumerate(data["labels"]):
         score = parameters[0]
@@ -59,6 +59,10 @@ def derivatives(data, parameters):
         margin = label*score
         if margin < 0:
             negative += 1
+        elif margin > 0:
+            positive += 1
+        else:
+            undetermined += 1
         residual = 1-margin
         if data["loss_kind"] == "hinge":
             if residual < 0:
@@ -75,7 +79,8 @@ def derivatives(data, parameters):
             for j in range(size):
                 hessian[i][j] += (
                     jacobian[i]*jacobian[j]-weight*score_hessian[i][j])/count
-    return total_loss, gradient, hessian, active, negative, single_head_moment
+    return (total_loss, gradient, hessian, active, negative, positive,
+            undetermined, single_head_moment)
 
 
 def positive_definite(matrix):
@@ -118,8 +123,9 @@ def verify(path, out, bits):
     scales = [arb(1+int(abs(Fraction(value)))) for value in data["center"]]
     box = [c+arb(0, scale*radius) for c, scale in zip(center, scales)]
     assert all(slope > 0 for slope in box[1+n*heads:])
-    _, gradient, hessian, point_active, _, _ = derivatives(data, center)
-    box_loss, _, box_hessian, active, negative, moment = derivatives(data, box)
+    _, gradient, hessian, point_active, _, _, _, _ = derivatives(data, center)
+    (box_loss, _, box_hessian, active, negative, positive,
+     undetermined, moment) = derivatives(data, box)
     assert box_loss > 0 and active == point_active
     h0 = [[hessian[i][j]*scales[i]*scales[j] for j in range(size)]
           for i in range(size)]
@@ -149,6 +155,8 @@ def verify(path, out, bits):
         "all_slopes_strictly_positive_in_oriented_coordinates": True,
         "active_vertices": active,
         "vertices_with_certified_negative_margin_throughout_box": negative,
+        "vertices_with_certified_positive_margin_throughout_box": positive,
+        "vertices_with_undetermined_margin_sign": undetermined,
         "loss_interval_throughout_box": str(box_loss),
         "hessian_LDL_pivots": list(map(str, pivots)),
         "contraction_row_bounds": row_bounds,

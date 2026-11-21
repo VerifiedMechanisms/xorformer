@@ -9,6 +9,8 @@
   "all_slopes_strictly_positive_in_oriented_coordinates": true,
   "active_vertices": 16,
   "vertices_with_certified_negative_margin_throughout_box": 3,
+  "vertices_with_certified_positive_margin_throughout_box": 13,
+  "vertices_with_undetermined_margin_sign": 0,
   "loss_interval_throughout_box": "[0.21652881485882694879928489289 +/- 6.39e-30]",
   "hessian_LDL_pivots": [
     "1.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
@@ -46,7 +48,7 @@
   "unique_stationary_point_in_box": true,
   "strict_local_minimum": true,
   "scope": "One positive local minimum of the specified loss. No universal head bound or sign-representation lower bound.",
-  "seconds": 0.0028920149197801948,
+  "seconds": 0.0025699420366436243,
   "single_head_residual_moment_00": "[-1.0847915375828654183985601e-5 +/- 1.08e-31]",
   "single_head_residual_moment_nonzero": true
 }
