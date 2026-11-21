@@ -882,5 +882,16 @@
     "errors": 2106,
     "log": "/out/head-compression/extension-recycling-n14.log",
     "scope": "No certificate and no lower bound."
+  },
+  "column_permutation_small_check": {
+    "seed": 580006,
+    "n": 6,
+    "heads": 3,
+    "directory": "/out/head-compression/column-permutation-small-check",
+    "directional_derivative_error": 2.244860963784845e-10,
+    "initial_loss": 0.3410816768749205,
+    "final_loss": 0.26676725915231936,
+    "final_sign_errors": 12,
+    "scope": "Finite diagnostic only. Per-orientation column multisets are preserved exactly; this supplies no universal existence or convergence theorem."
   }
 }
