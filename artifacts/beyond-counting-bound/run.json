@@ -1,0 +1,10 @@
+{
+  "name": "Beyond the Counting Bound",
+  "started_utc": "2026-11-21T23:56:21Z",
+  "minimum_work_until_utc": "2026-11-22T11:56:21Z",
+  "target": "For every C>0 and n0 there exist n>=n0 and a Boolean f on n bits with HStar(f)>C*2^n/n^2.",
+  "attachment": "/out/attachments/version-5.tex",
+  "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
+  "status": "research; no claimed solution",
+  "model_changes": []
+}
