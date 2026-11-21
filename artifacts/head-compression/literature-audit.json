@@ -623,6 +623,22 @@
       "checked_location": "Introduction and Section 2; tower application cross-checked with Proposition 2.3 of arXiv:2605.20695v1",
       "mechanism": "Refined Golod-Shafarevich inequalities permit quotienting pro-p towers while retaining infinitude, controlling ramification and imposing splitting conditions.",
       "gap": "Field towers and splitting primes do not supply the required affine sign representation. No arbitrary-sign or head-count statement is inferred."
+    },
+    {
+      "title": "On the extension complexity of polytopes separating subsets of the Boolean cube",
+      "authors": "Pavel Hrubes, Navid Talebanfard",
+      "url": "https://iuuk.mff.cuni.cz/~koucky/EPAC/papers/extension-boolean.pdf",
+      "checked_location": "Lemma 5, Theorem 6 and their proofs; Section 4.1",
+      "mechanism": "A bipartite graph on one-hot encodings of half-inputs gives a separating polytope with O(2^(n/2)) lifted inequalities. Boolean points have unique one-hot fibers under projection.",
+      "gap": "The auxiliary one-hot variables are not affine functions of the original bits. Eliminating the lifted variables with the desired affine-fraction cost is unproved; treating the encoding as free changes the model."
+    },
+    {
+      "title": "On the Complexity of Computing a Random Boolean Function Over the Reals",
+      "authors": "Pavel Hrubes",
+      "url": "https://cims.nyu.edu/~regev/toc/articles/v016a009/v016a009.pdf",
+      "checked_location": "Lemma 4.1, Theorem 4.2 and proofs; quantifier-elimination discussion in Section 5",
+      "mechanism": "A single integer stores the truth table; recursively alternating quantifiers define large integer intervals and decode its selected binary digit. Formula size O(k*2^(n/k)) uses 2k-1 quantifier blocks.",
+      "gap": "Attention has no quantified integer-membership operation. A fixed rational decoder of one scalar for N arbitrary signs requires N*H >= 2^N-1, so this encoding cannot be transferred by an uncharged bit-extraction step."
     }
   ]
 }

@@ -370,5 +370,17 @@
     "manual_section": "Number-field amplification and the cost of accessing conjugates",
     "new_result": "In a multiquadratic field, the conjugate table of an element is affine on the Boolean cube exactly when its square-root expansion has support only in degrees zero and one.",
     "scope": "Manual elementary proof, not Lean. Trace representations count every embedding and must separately satisfy the denominator slope restriction. No universal upper bound."
+  },
+  "lifted_encoding_audit": {
+    "writeup": "artifacts/head-compression/mechanism-audit.tex",
+    "primary_sources": [
+      "https://iuuk.mff.cuni.cz/~koucky/EPAC/papers/extension-boolean.pdf",
+      "https://cims.nyu.edu/~regev/toc/articles/v016a009/v016a009.pdf"
+    ],
+    "manual_results": [
+      "A one-hot coordinate on m Boolean bits has unique multilinear degree m, so is not affine for m>=2.",
+      "A single-scalar fixed affine-fraction decoder for N arbitrary output bits requires N*H>=2^N-1."
+    ],
+    "scope": "Rejects free affine one-hot substitution and free quantified bit extraction only. No target upper bound or target lower bound."
   }
 }

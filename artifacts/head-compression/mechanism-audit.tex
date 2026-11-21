@@ -5911,4 +5911,73 @@ them with a single operation in the model. Unit equations or congruence
 conditions on $a_i,b_i$ do not prove the required sign inequalities.
 No universal head bound follows from the audited arithmetic results.
 
+\section{Lifted polytope and quantified integer encodings}
+
+Hrube\v{s} and Talebanfard construct a separating polytope of extension
+complexity $O(2^{n/2})$ for every subset of the Boolean cube
+(\emph{On the extension complexity of polytopes separating subsets of the
+Boolean cube}, Lemma~5 and Theorem~6,
+\url{https://iuuk.mff.cuni.cz/~koucky/EPAC/papers/extension-boolean.pdf}).
+The construction splits the input coordinates into two blocks and uses
+one coordinate for each possible block value. A graph records which pairs
+are accepted. Linear inequalities in the lifted coordinates test its edges.
+The proof that projection preserves the desired Boolean subset uses
+uniqueness of the one-hot preimage at Boolean vertices. It is an existential
+linear feasibility representation, not a flat fraction representation.
+
+Here is an explicit accounting of the missing substitution. For a block
+$z\in\{0,1\}^m$ and an address $a\in\{0,1\}^m$, its one-hot coordinate is
+\[
+ u_a(z)=\prod_{i:a_i=1}z_i\prod_{i:a_i=0}(1-z_i).
+\]
+This polynomial has degree exactly $m$. Indeed, its coefficient of
+$z_1\cdots z_m$ is $(-1)^{m-|a|}$, which is nonzero. Multilinear
+representatives on the Boolean cube are unique: if
+$P=P_0+z_mP_1$ vanishes on the cube, evaluation at $z_m=0$ gives
+$P_0=0$ on the smaller cube, and evaluation at $z_m=1$ then gives
+$P_1=0$ there; induction proves both polynomials are zero.
+Consequently no affine function of the original bits equals $u_a$
+when $m\ge2$.
+
+For two blocks, substituting these coordinates into the graph's edge table
+recovers the ordinary indicator expansion
+\[
+ f(z,w)=\sum_{a,b}f(a,b)u_a(z)v_b(w).
+\]
+This identity is exact but does not supply a short sum of admissible
+fractions. A same-cost substitution of one-hot coordinates into affine
+head denominators is therefore unjustified. A hypothetical general
+elimination theorem with the required resulting head count would contain
+the requested universal construction; no such theorem is assumed here.
+The obstruction is to the proposed affine substitution only, not to
+all nonlinear realizations on the finite cube.
+
+A distinct arithmetic encoding appears in Hrube\v{s},
+\emph{On the Complexity of Computing a Random Boolean Function Over the
+Reals}, Theorem~4.2 and Lemma~4.1,
+\url{https://cims.nyu.edu/~regev/toc/articles/v016a009/v016a009.pdf}.
+A single integer stores the truth table. Alternating quantifiers express
+membership in a doubly exponential interval of integers and recover its
+selected binary digit. The resulting size bound is
+$O(k2^{n/k})$ with $2k-1$ quantifier blocks. This is a precise compression
+mechanism in first-order formulas, but quantifier alternation is not an
+operation of one-layer attention.
+
+For the proposed direct rational replacement, the scalar decoder bound
+proved earlier is decisive. If the truth table is stored in one scalar
+parameter and every output bit is recovered by a sum of $H$ affine ratios
+in that scalar, with fixed remaining coefficients and positive denominators,
+then for $N=2^n$ output bits one must have
+\[
+ NH\ge2^N-1.
+\]
+This follows by clearing the denominators for each output bit: the union
+of the real roots has at most $NH$ points and cuts the scalar parameter
+line into at most $NH+1$ intervals of constant strict sign word.
+Allowing several independently target-dependent head parameters avoids
+this particular restriction, but that is precisely the additional
+construction which the quantified formula does not provide. The full
+head-complexity question is not reduced to uncharged integer predicates,
+rounding operations, or auxiliary quantifiers.
+
 \end{document}
