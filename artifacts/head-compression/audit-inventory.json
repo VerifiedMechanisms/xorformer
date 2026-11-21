@@ -98,7 +98,8 @@
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",
     "scalar_root_axioms": "/out/head-compression/lean-scalar-root-axioms.log; all six declarations use only the allowed standard axioms.",
-    "boolean_moment_extension": "All 9191 build jobs succeeded; the three new declarations use only propext, Classical.choice, and Quot.sound. No target declaration was added."
+    "boolean_moment_extension": "All 9191 build jobs succeeded; the three new declarations use only propext, Classical.choice, and Quot.sound. No target declaration was added.",
+    "absolute_coordinate_chart": "diagnostics/absolute-chart-small-check.json records gradient, Hessian-direction, and numerator-response checks. certificates/random-n6-h3-absolute.json was separately verified using exact Fraction arithmetic."
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -129,7 +130,8 @@
     "At a stationary squared-hinge score, each nonzero numerator direction lies in the kernel of the Hessian of the residual logarithmic master function at its denominator. This forces degenerate critical points, not vanishing Hessians. Generic arrangement theorems do not give the needed critical-point bound.",
     "An affine array with a fixed value multiset at every Boolean vertex has mutually orthogonal nonzero slope columns perpendicular to the all-ones vector. An exact five-coordinate affine square disproves the shortcut that its permutation parity must be affine. Generic tomography directions are not the prescribed Boolean directions (1,x).",
     "For a single log-slope column, an explicit squared-hinge quadratic majorizer bounds finite parameter changes. Sorting the old column against a gradient step exactly minimizes its isotropic quadratic model over permutations. Under the stated majorizer and displacement conditions a nonzero move decreases loss. The discrete proposal may still be stationary at positive loss.",
-    "An independent scalar-memory decoder whose affine coefficients each depend affinely on at most one memory and whose bias is fixed satisfies sum_j m_j <= 2*(n+1)*H. The proof counts one-parameter sign changes and memory-head incidences. Its independence assumptions are stronger than general target-dependent sign representation."
+    "An independent scalar-memory decoder whose affine coefficients each depend affinely on at most one memory and whose bias is fixed satisfies sum_j m_j <= 2*(n+1)*H. The proof counts one-parameter sign changes and memory-head incidences. Its independence assumptions are stronger than general target-dependent sign representation.",
+    "For positive slope coordinates b=exp(ell), the reduced gradient and Hessian transform by G_b=diag(1/b)*G_ell and H_b=diag(1/b)*(H_ell-diag(G_ell))*diag(1/b). The direct-coordinate implementation passes independent small finite-difference checks and found one exactly verified six-bit three-head example. Neither the change of coordinates nor the example establishes global convergence or the universal target."
   ],
   "blocked_routes": [
     {
