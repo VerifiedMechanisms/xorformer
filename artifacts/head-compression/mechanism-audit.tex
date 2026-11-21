@@ -6108,4 +6108,45 @@ The coordinate-square argument is kernel-checked in
 The partition and sign-count consequences in this section are manual
 arguments, not claims of formalized universal head bounds.
 
+
+\section{A convex numerator refit within a protected sign region}
+
+Fix the denominator parameters in the protected-sign objective above.
+Let $Q$ have orthonormal columns spanning the affine numerator feature
+space and write the score as $S=Qz$. The protected domain
+$y_x(Qz)_x>0$ is convex. At points away from the target hinge boundary,
+\[
+ \nabla_z F=Q^{\mathsf T}g,\qquad
+ \nabla_z^2F=Q^{\mathsf T}WQ
+       \succeq\frac\lambda N I.
+\]
+The bound follows from $W\succeq(\lambda/N)I$ and $Q^{\mathsf T}Q=I$.
+Thus the subproblem is strictly convex. It does not determine whether
+its target vertex can be made correct, and it does not make the problem
+convex in the denominator parameters.
+
+The script \texttt{refit\_protected\_numerators.py} tests a damped
+Newton step in this subproblem. For a score increment $dS$, it first
+restricts the step by
+\[
+ \alpha\le\min\left(1,
+ 0.99\min_{x\in P:\ y_xdS_x<0}
+             \frac{-y_xS_x}{y_xdS_x}\right),
+\]
+with the inner minimum omitted if its index set is empty.
+The bound keeps the linear score update inside the protected region.
+The implementation additionally checks the actual score and objective
+in double and extended precision, and backtracks if either check fails.
+The original denominator arrays remain fixed throughout this routine.
+No convergence or feasibility conclusion is inferred from its inexact
+linear solves.
+
+A five-bit diagnostic has directional-gradient error below
+$1.7\cdot10^{-9}$ and Hessian-direction error below $2.0\cdot10^{-10}$.
+One accepted step moves its selected margin from $-0.144382$ to
+$0.998217$ and leaves all protected margins above $0.497896$.
+A separate fourteen-bit diagnostic starts from a saved continuation
+checkpoint. Only a full independent rational sign audit could turn such
+an experiment into a certificate for its finite truth table.
+
 \end{document}

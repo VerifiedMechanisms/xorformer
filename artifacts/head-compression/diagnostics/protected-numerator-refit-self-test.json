@@ -1,0 +1,30 @@
+{
+  "n": 5,
+  "units": 2,
+  "gradient_error": 1.6277024172950405e-09,
+  "hessian_direction_error": 1.971480756424171e-10,
+  "initial_target_margin": -0.14438208507023176,
+  "final_target_margin": 0.9982174436995632,
+  "events": [
+    {
+      "iteration": 0,
+      "seconds": 0.0011112180072814226,
+      "value": 0.6090338298887512,
+      "target": 29,
+      "target_margin": -0.14438208507023176,
+      "minimum_protected_margin": 0.2613138681439202,
+      "model_derivative": -1.4072946369933355,
+      "lsmr_stop": 2,
+      "lsmr_iterations": 23,
+      "gradient_norm": 0.9713767091969934,
+      "accepted": true,
+      "alpha": 1.0,
+      "value_after": -0.11465515284477588,
+      "extended_value_after": -0.11465515284477588,
+      "target_margin_after": 0.9982174436995642,
+      "minimum_protected_margin_after": 0.49789627898758143,
+      "score_discrepancy": 1.106753577673203e-15
+    }
+  ],
+  "scope": "Finite numerical check only; no target theorem or global convergence assertion."
+}

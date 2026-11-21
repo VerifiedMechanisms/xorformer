@@ -1344,5 +1344,13 @@
       "replacement_directory": "/out/head-compression/protected-barrier-box-n14-h336",
       "scope": "Neither run establishes the requested universal theorem."
     }
+  },
+  "protected_numerator_refit": {
+    "script": "artifacts/head-compression/refit_protected_numerators.py",
+    "self_test": "artifacts/head-compression/diagnostics/protected-numerator-refit-self-test.json",
+    "large_diagnostic": "/out/head-compression/protected-refit-n14",
+    "seconds_budget": 2400,
+    "certificate": null,
+    "scope": "Denominators fixed; numerical barrier Newton refit of all affine coefficients with every protected sign checked after each accepted step. No global head-class guarantee."
   }
 }
