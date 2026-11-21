@@ -481,6 +481,24 @@
       "mechanism": "Logarithmic master functions have rational gradient equations. Generic weights give nondegenerate critical points; unbalanced weights give isolated points counted with Milnor numbers by the arrangement complement Euler characteristic.",
       "application": "At an interior stationary head score, the fixed residual defines Phi(b)=sum_x g_x log(1+b.x). Each nonzero numerator gives grad(Phi)(b_h)=0 and Hess(Phi)(b_h)u_h=0.",
       "gap": "These residuals force degenerate points, so generic nondegeneracy cannot be assumed. A Hessian kernel vector does not make the Hessian zero. The paper gives no target-order count for these residuals in the admissible chamber."
+    },
+    {
+      "title": "Algebraic aspects of discrete tomography",
+      "authors": "L. Hajdu and R. Tijdeman",
+      "url": "https://math.unideb.hu/sites/default/files/inline-files/disctom8.pdf",
+      "checked_location": "Theorem 1 and Corollary 1, pages 4-5; generating-function formulation on page 2",
+      "mechanism": "Zero-line-sum switching components on a finite lattice rectangle form the span of shifts of a product of direction binomials.",
+      "application": "This supplies an exact model for cancellation of projection data and motivates testing affine permutation-valued cubes.",
+      "gap": "Preserving line sums does not construct a strict sign sum of affine fractions. The product of binomials and reconstruction operations are not free heads, and no target-order compiler is established."
+    },
+    {
+      "title": "How many sorted projections determine any n points in k dimensions?",
+      "authors": "Christopher Gorham Lester and Raymond Hau S\u00f8rensen",
+      "url": "https://arxiv.org/html/2611.06470v3",
+      "checked_location": "Theorems 1.1 and 1.4; Sections 1.2-1.4, version 3 dated 19 November 2026",
+      "mechanism": "Generic directions separate finite multisets through coloured-matching graph rigidity, with O(k log n log log n) directions.",
+      "application": "A fixed-multiset affine denominator array is equivalently equality of projections of two coefficient multisets along directions (1,x).",
+      "gap": "The Boolean directions (1,x) are a prescribed nongeneric family. Generic separation is neither a construction of numerator signs nor a compressed realization theorem. No genericity assertion for these directions is used."
     }
   ]
 }
