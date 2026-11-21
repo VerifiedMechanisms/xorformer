@@ -2873,4 +2873,108 @@ The all-head problem remains nonconvex. In particular, the explicit
 parity examples above prohibit interpreting this local descent statement
 as a global zero-loss or universal-capacity theorem.
 
+
+\section{An alternating-sum invariant in every dimension}
+
+The two-dimensional range bound above extends to every Boolean face.
+The following identity makes the extension explicit. It gives a necessary
+cancellation budget, not a lower bound on the number of unrestricted heads.
+
+\begin{proposition}[Full-cube alternation is bounded by the range]
+Let $n\geq1$, let $A,B$ be real affine forms, and suppose $B>0$ on
+$\{0,1\}^n$. Put $q=A/B$ and
+\[
+ \mathcal D(q)=\sum_{x\in\{0,1\}^n}(-1)^{|x|}q(x),\qquad
+ \operatorname{range}(q)=\max_xq(x)-\min_xq(x).
+\]
+Then
+\[
+ |\mathcal D(q)|\leq\operatorname{range}(q).
+\]
+The constant one is sharp for every $n$. No same-sign restriction on the
+coefficients of $B$ is needed for this auxiliary inequality.
+\end{proposition}
+
+\begin{proof}
+Complementing any input coordinate preserves the range and changes
+$\mathcal D$ only by a sign. Thus we may write
+\[
+ B(x)=b_0+\sum_{i=1}^n b_ix_i,\qquad b_0>0,\quad b_i\geq0,
+ \qquad A(x)=a_0+\sum_{i=1}^n a_ix_i.
+\]
+For $t\geq0$, set $u_i(t)=e^{-b_it}$ and define
+\[
+ I_0=\int_0^\infty e^{-b_0t}\prod_i(1-u_i(t))\,dt,\qquad
+ I_i=\int_0^\infty e^{-b_0t}u_i(t)
+                    \prod_{j\neq i}(1-u_j(t))\,dt.
+\]
+All integrals are finite and nonnegative, since their integrands lie
+between zero and $e^{-b_0t}$. The elementary Laplace identity
+$1/c=\int_0^\infty e^{-ct}\,dt$ and finite expansion give
+\[
+ \mathcal D(q)=a_0I_0-\sum_i a_iI_i.
+\]
+Integrating the derivative of
+$e^{-b_0t}\prod_i(1-u_i(t))$ gives
+\[
+ b_0I_0=\sum_i b_iI_i.
+\]
+Both boundary terms vanish: at zero the product vanishes because
+$n\geq1$, and at infinity the exponential factor tends to zero.
+Put $q_0=q(0)$, $q_i=q(e_i)$, and $w_i=(b_0+b_i)I_i$. Then
+\[
+ \mathcal D(q)=\sum_iw_i(q_0-q_i),\qquad w_i\geq0.
+\]
+Moreover,
+\[
+ \sum_iw_i=b_0\left(I_0+\sum_iI_i\right)\leq1.
+\]
+For the inequality, at every $t$ the expression
+\[
+ \prod_i(1-u_i(t))+\sum_i u_i(t)\prod_{j\neq i}(1-u_j(t))
+\]
+is the probability of zero or one successes in independent Bernoulli
+trials with success probabilities $u_i(t)$, hence is at most one.
+Multiplying by $b_0e^{-b_0t}$ and integrating proves the bound.
+The asserted range inequality now follows from the displayed positive
+weighted combination of differences of actual cube values.
+
+For sharpness use
+$q_\varepsilon(x)=\varepsilon/(\varepsilon+|x|)$ with $\varepsilon>0$.
+Its range tends to one, and its alternating sum tends to one, as
+$\varepsilon\downarrow0$.
+\end{proof}
+
+\begin{corollary}[Parity requires exponential cancellation amplitude]
+Suppose
+\[
+ S(x)=c_0+\sum_{h=1}^Hq_h(x),\qquad
+ (-1)^{|x|}S(x)\geq\mu>0
+\]
+on $\{0,1\}^n$, where every $q_h$ is an affine fraction with a
+positive affine denominator. Then
+\[
+ \sum_{h=1}^H\operatorname{range}(q_h)\geq2^n\mu.
+\]
+In particular, some head has range at least $2^n\mu/H$.
+\end{corollary}
+
+\begin{proof}
+The alternating sum of the constant term is zero. Summing the strict
+margin inequalities and applying the proposition term by term gives
+\[
+ 2^n\mu\leq\mathcal D(S)
+     \leq\sum_h|\mathcal D(q_h)|
+     \leq\sum_h\operatorname{range}(q_h).
+\]
+The final assertion follows by averaging.
+\end{proof}
+
+The manuscript already represents parity with $n$ heads. The corollary
+therefore concerns parameter amplitude and cancellation, not head count.
+In particular, no universal argument may bound the sum of individual
+head ranges by a polynomial in $n$ times the achieved strict margin.
+Unrestricted large parameters and exponential cancellation remain allowed
+in the problem considered here.
+
 \end{document}

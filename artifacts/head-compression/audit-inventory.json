@@ -96,7 +96,8 @@
     "For r=2^k, k>=3, an unconditional binary-addressed scalar decoder uses at most 2^(r+1)/r+4*r-3 positive affine-pole fractions. It follows from a full self-dual necklace enumeration with few track transitions. The scalar encoder is not supplied.",
     "Every scalar-code decoder with r output bits and H affine fractions per bit satisfies r*H>=2^r-1 if it realizes all words. Thus the new scalar decoder has optimal order on the stated sequence of r.",
     "The explicit composition 1/(1+1/(1+x+2*y)+1/(1+2*x+y)) has an irreducible quadratic pole, so no finite sum of affine fractions equals it as a rational identity. This is not a Boolean sign lower bound.",
-    "A convex piecewise-linear surrogate for a single-head rational hinge update gives an explicit positive step with strict actual loss decrease whenever the surrogate improves. The proof includes hinge kinks and preserves denominator admissibility. No global progress or head-count theorem follows."
+    "A convex piecewise-linear surrogate for a single-head rational hinge update gives an explicit positive step with strict actual loss decrease whenever the surrogate improves. The proof includes hinge kinks and preserves denominator admissibility. No global progress or head-count theorem follows.",
+    "For every positive affine denominator, in any dimension, the absolute full-cube alternating sum of A/B is at most its range. A positive weighted edge-difference identity proves the sharp constant one. Consequently every unit-margin parity representation has total head range at least 2^n, independently of head count."
   ],
   "blocked_routes": [
     {
