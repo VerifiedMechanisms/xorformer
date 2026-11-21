@@ -240,9 +240,10 @@
       "title": "The VC Dimension and Pseudodimension of Two-Layer Neural Networks with Discrete Inputs",
       "authors": "Peter L. Bartlett and Robert C. Williamson",
       "url": "https://ieeexplore.ieee.org/document/6796931/",
-      "checked_location": "Publisher abstract; related searchable textbook excerpt, Theorem 8.11, audited separately",
+      "checked_location": "Publisher abstract; complete searchable textbook PDF, Anthony and Bartlett Theorem 8.11 and proof on printed pages 122-123, inspected separately on 2026-11-21.",
       "mechanism": "Transforms sigmoid outputs on discrete inputs into rational functions and bounds sign patterns. The original abstract reports O(W log(WD)).",
-      "gap": "This is a capacity upper bound, not a universal construction. An apparently stronger textbook excerpt was not used: the available extraction appeared to omit the number of rational summands in a degree estimate, while the original full article and page image were unavailable. The independent pole example in the audit shows why a head-independent clearing degree cannot be assumed."
+      "gap": "The original abstract gives O(W log(WD)). The textbook PDF extraction asserts degree 3ND+2 after combining k rational outputs. Independent partial fractions force degree at least k-1 in general, so this head-independent clearing step cannot be transferred. Screenshot calls returned no viewable image and a local download failed DNS; the textbook theorem itself is not declared false.",
+      "related_textbook_url": "https://openeclass.panteion.gr/modules/document/file.php/PMS152/LEARNING/Anthony%20Martin%2C%20Bartlett%20Peter%20L.%20%282009%29%20--%20Neural%20Network%20Learning_%20Theoretical%20Foundations.pdf"
     },
     {
       "title": "Nearest neighbor representations of Boolean functions",
@@ -372,6 +373,38 @@
       "mechanism": "Patched covers and a semidirect sum give downward radius-R covers of size O_R(2^n/n^R) for every dimension.",
       "application": "Radius one gives the explicit positive-slope Mobius-basis initialization in mechanism-audit.tex.",
       "gap": "Radius two provides the desired number of cells but requires quadratic local numerators. A constant-head compiler for arbitrary labels on one radius-two ball is excluded by a local Warren count. No global interacting replacement is established."
+    },
+    {
+      "title": "The Entropic Discriminant",
+      "authors": "Raman Sanyal, Bernd Sturmfels, Cynthia Vinzant",
+      "url": "https://arxiv.org/pdf/1108.2925",
+      "checked_location": "Introduction, equations (1)-(2), and the real analytic-center description",
+      "mechanism": "Reciprocal row-space equations describe analytic centers, one for each bounded region of an affine coordinate-hyperplane arrangement. Generic solutions are all real.",
+      "gap": "Realness of these particular intersections does not guarantee arbitrary signs in a sum of admissible affine fractions. Positivity selects a particular branch. No bound on the required number of summands follows."
+    },
+    {
+      "title": "The Chow form of a reciprocal linear space",
+      "authors": "Mario Kummer and Cynthia Vinzant",
+      "url": "https://arxiv.org/pdf/1610.04584",
+      "checked_location": "Definition 1.1, Propositions 1.3-1.4, Definition 5.1, Theorem 5.2 and Lemma 5.3",
+      "mechanism": "Hyperbolicity under coordinatewise inversion and explicit determinantal equations for reciprocal-space intersections and Hadamard products.",
+      "gap": "The all-real intersections use prescribed complementary linear spaces. The Hadamard-product theorem is over generic complex linear spaces and concerns a defining equation, not every real orthant or a positive denominator branch. A universal low-head sign-covering assertion remains unproved."
+    },
+    {
+      "title": "Which n-Venn diagrams can be drawn with convex k-gons?",
+      "authors": "Jeremy Carroll, Frank Ruskey, Mark Weston",
+      "url": "https://webhome.cs.uvic.ca/~ruskey/Publications/VennConvex/VennKgons.pdf",
+      "checked_location": "Theorem 2.3, Table 1, and Section 5",
+      "mechanism": "Counts intersections of convex polygon curves and constructs a sharp seven-curve example.",
+      "gap": "The order 2^n/n^2 expression in Theorem 2.3 is a lower bound on polygon sides. It is not a general construction. Polygon membership predicates and arbitrary planar code locations have no supplied affine-fraction compiler or cube encoder."
+    },
+    {
+      "title": "The Z4-Linearity of Kerdock, Preparata, Goethals and Related Codes",
+      "authors": "A. Roger Hammons Jr., P. Vijay Kumar, A. R. Calderbank, N. J. A. Sloane, Patrick Sole",
+      "url": "https://arxiv.org/pdf/math/0207208",
+      "checked_location": "Theorems 13-15 and Section 5.3",
+      "mechanism": "Quaternary linear duality explains the weight distributions. For binary length l=2^(m+1), odd m>=3, the Preparata image has 2^l/l^2 codewords, minimum distance six, and covering radius at most four via the Gray isometry.",
+      "gap": "The count is a code size, not a representation of arbitrary labels. The finite-ring syndrome decoder uses operations not supplied by a one-layer affine-ratio score. Global cancellation across cells and an admissible low-head decoder are not proved."
     }
   ]
 }

@@ -1965,11 +1965,13 @@ $(7,-168,1260,-4200,6930,-5544,1716)$.
 The original abstract of Bartlett and Williamson (1996),
 \emph{The VC Dimension and Pseudodimension of Two-Layer Neural
 Networks with Discrete Inputs}, reports an $O(W\log(WD))$
-bound. A searchable excerpt of Anthony and Bartlett's textbook,
-Theorem 8.11 and its proof, instead returned an apparent degree
+bound. The complete searchable PDF of Anthony and Bartlett's textbook,
+Theorem 8.11 and its proof on printed pages 122--123, was inspected
+on 21 November 2026. Its extraction returns an apparent degree
 bound $3ND+2$ after combining an arbitrary number of rational
-hidden-unit outputs. The page image and the original article's
-full proof were not available for verification in this environment.
+hidden-unit outputs. Screenshot calls returned no viewable image,
+and a local download failed DNS resolution. The original article's
+full proof remains unavailable in this environment.
 The preceding direct calculation excludes an inference which simply
 drops the number of summands when clearing denominators. No
 stronger bound from that excerpt is used anywhere in this audit,
@@ -3271,5 +3273,121 @@ Jacobian terms. Eigensolver convergence, apparent semidefiniteness,
 and floating-point descent are numerical diagnostics only. Strict
 classification, if reached, still requires the independent rational
 certificate checker.
+
+
+\section{Conditional strict completion is a linear program}
+
+Fix a finite input set $E$, labels $f_x\in\{-1,1\}$, an arbitrary
+residual score $F_x$, and one denominator orientation. For cube inputs
+let $z_x=(1,x_1,\ldots,x_n)$ for positive slopes, and
+$z_x=(1,1-x_1,\ldots,1-x_n)$ for negative slopes.
+Consider the linear program in $a,b\in\mathbb R^{n+1}$ and
+$\rho\in\mathbb R$:
+\[
+ \text{maximize }\rho,\qquad
+ \sum_{j=0}^n b_j=1,\qquad b_j\geq\rho\geq0,
+ \qquad f_x\bigl(F_x(b\cdot z_x)+a\cdot z_x\bigr)\geq\rho
+ \quad(x\in E).
+\]
+
+\begin{proposition}
+There is an admissible head of the prescribed orientation such that
+$F_x+(a\cdot z_x)/(b\cdot z_x)$ has all strict prescribed signs if
+and only if the displayed linear program has a feasible point with
+$\rho>0$.
+\end{proposition}
+\begin{proof}
+At a feasible point with $\rho>0$, every $b_j$ is positive, so
+$b\cdot z_x\geq b_0>0$ on the entire cube. Dividing the last
+inequality by this denominator gives strict signs on $E$.
+For the converse, scale all numerator and denominator coefficients
+by the same positive number so that $\sum_jb_j=1$. The head value
+is unchanged. Every $b_j$ and every cleared signed score is
+strictly positive. Their finite minimum can be used as $\rho$.
+For the negative orientation, positivity in the coordinates
+$1-x_j$ gives strictly negative variable coefficients in the original
+coordinates and a positive denominator everywhere. These are
+exactly the required admissibility conditions.
+\end{proof}
+
+For a prescribed non-strict margin $\mu$, the last inequalities instead
+read
+\[
+ f_x(a\cdot z_x)+(f_xF_x-\mu)(b\cdot z_x)\geq0.
+\]
+They are again linear. In particular, the minimum signed margin is
+quasiconcave in the parameters of a single head with positive
+denominators. Indeed, for $A_\theta=(1-\theta)A_0+\theta A_1$ and
+$B_\theta=(1-\theta)B_0+\theta B_1$, direct algebra gives
+\[
+ F+\frac{A_\theta}{B_\theta}
+ =\frac{(1-\theta)B_0}{B_\theta}
+       \left(F+\frac{A_0}{B_0}\right)
+  +\frac{\theta B_1}{B_\theta}
+       \left(F+\frac{A_1}{B_1}\right).
+\]
+The two coefficients are nonnegative and sum to one at every input.
+Thus a common signed lower bound at the endpoints persists along
+the parameter segment. This statement concerns one fixed orientation;
+the union of the two orientation classes need not be convex.
+
+\texttt{search\_maximum\_margin\_blocks.py} uses these programs to try
+conditional replacements and evaluates the resulting rational margins
+before accepting an update. The margin-bisection phase restricts the
+normalized denominator coefficients to be at least a fixed positive
+$\varepsilon$; the strict-completion phase uses the variable $\rho$.
+Floating-point solver feasibility and infeasibility are not exact
+certificates. All claimed strict representations still require the
+independent rational checker. Conditional solvability does not imply
+that cyclic updates reach a solution, and supplies no universal bound
+on the number of heads.
+
+\section{Reciprocal geometry and quaternary coding audit}
+
+For a real linear space $L\subseteq\mathbb R^E$ with a positive vector,
+coordinatewise division by a positive vector in $L$ does not enlarge
+its set of strict sign patterns:
+\[
+ \{\operatorname{sgn}(a/b):a\in L,\ b\in L\cap\mathbb R_{>0}^E,
+                 \ a_x\ne0\text{ for all }x\}
+ =\{\operatorname{sgn}(a):a\in L,\ a_x\ne0\text{ for all }x\}.
+\]
+The equality follows coordinate by coordinate, and its reverse
+inclusion uses any one fixed positive vector of $L$. For the space
+of affine evaluations on the cube, this explains why the all-real
+intersection theorems for reciprocal linear spaces do not by
+themselves enlarge the one-head sign class. The results of
+Sanyal--Sturmfels--Vinzant and Kummer--Vinzant concern specified
+complementary intersections and Hadamard-product equations. A theorem
+covering every orthant by a sum of few positive-branch ratios would
+be additional, and has not been derived here.
+
+The quaternary construction of Hammons, Kumar, Calderbank, Sloane and
+Sol\'e gives a binary Preparata image of length
+$\ell=2^{m+1}$, for odd $m\geq3$, with
+\[
+ |P|=2^{\ell-2m-2}=\frac{2^\ell}{\ell^2}.
+\]
+This is the desired numerical order for a cell count, but it is a
+code cardinality rather than a representation of arbitrary Boolean
+labels. Its Gray inverse, in the convention
+$00\mapsto0$, $01\mapsto1$, $11\mapsto2$, $10\mapsto3$, is
+\[
+ a(u,v)=3u+v-2uv.
+\]
+It is not a real affine function: its values satisfy
+$a(0,0)+a(1,1)=2\ne4=a(0,1)+a(1,0)$.
+There is nevertheless a useful exact complex-affine phase identity,
+\[
+ i^{a(u,v)}=\frac{1+i}{2}(1-2u)+\frac{1-i}{2}(1-2v).
+\]
+Checking the four pairs proves this identity. A character of a
+quaternary linear syndrome is a product of such phases, not their
+sum. Neither complex multiplication nor the subsequent finite-ring
+decoding is an available head operation. No flattening construction
+for the required products with the asserted head budget has been
+proved. The radius-two local compiler obstruction recorded earlier
+also prevents replacing this missing global step by arbitrary local
+labels in a constant number of heads.
 
 \end{document}

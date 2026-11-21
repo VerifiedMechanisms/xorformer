@@ -252,6 +252,30 @@
       "matvecs": 6700,
       "seconds": 430.8958995100111
     },
-    "scope": "Numerical diagnostics only. No local-optimum certificate or universal progress theorem."
+    "scope": "Numerical diagnostics only. No local-optimum certificate or universal progress theorem.",
+    "second_joint_audit": {
+      "n": 14,
+      "heads": 251,
+      "loss": 0.2055752070773326,
+      "errors": 2326,
+      "minimum_distance_to_hinge_kink": 4.703719832832576e-05,
+      "normalized_gradient_norm": 0.0032819957954912968,
+      "scope": "Numerical diagnostic only; no local or global optimality certificate.",
+      "eigensolver": "finite-iteration LOBPCG approximation",
+      "last_residual_norms": [
+        0.0016628608557554376,
+        0.00129762942607185,
+        0.0010893480383436362
+      ],
+      "eigenvalues": [
+        1.0573968616618532e-05,
+        2.149855170755339e-05,
+        2.4231549329153372e-05
+      ],
+      "trials": [],
+      "matvecs": 3009,
+      "seconds": 197.39942587108817,
+      "interpretation": "The residual norms exceed the reported Ritz values. These approximations establish neither semidefiniteness nor a local minimum."
+    }
   }
 }
