@@ -62,6 +62,12 @@
       "file": "star-level-n10-h2.json",
       "sha256": "c22da50418441c4ffd1a663e7761b36d820a5e3a5be46e9b9f6cecf4fcbb3142",
       "scope": "All 1024 vertices of the explicit star/complement affine level set. Independently verified two-head signs; a separate theorem bounds numerical indicator approximation error below by 1/85 for all two-head scores. No universal upper bound."
+    },
+    {
+      "file": "random-n14-shared-affine-h336.json",
+      "sha256": "38bdc230b4197087b5a45eb39499055663e4e8c8db06c9567e5c69ad1965109a",
+      "verifier": "../audit_rational_score.py CERTIFICATE --bits 224 --out REPORT --require-correct",
+      "scope": "All 16384 original labels of this one fourteen-bit truth table. All 336 denominators satisfy the manuscript restriction; independent exact integer interval verification. No universal bound."
     }
   ],
   "optimization_audit_certificates": [

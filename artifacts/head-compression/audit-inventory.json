@@ -346,7 +346,18 @@
     "script": "artifacts/head-compression/search_shared_affine_gauss_newton.py",
     "diagnostic": "artifacts/head-compression/diagnostics/shared-affine-gn-self-test.json",
     "scope": "Joint damped Gauss-Newton response and actual-step checks. Small derivative and descent diagnostic passed. No universal convergence or capacity theorem.",
-    "target_proved": false
+    "target_proved": false,
+    "finished_full_n14_run": {
+      "n": 14,
+      "units": 335,
+      "lifted_heads": 336,
+      "seconds": 6860.255164776929,
+      "termination": "budget or stop file",
+      "final_loss": 0.07754147292972202,
+      "certificate": null,
+      "scope": "Finite numerical experiment; no universal or convergence theorem.",
+      "failure_is_not_a_lower_bound": true
+    }
   },
   "protected_barrier_audit": {
     "script": "artifacts/head-compression/search_protected_barrier.py",
@@ -412,9 +423,20 @@
       "logs": [
         "/out/head-compression/lean-affine-sidon-build.log",
         "/out/head-compression/lean-affine-sidon-all-build.log",
-        "/out/head-compression/lean-affine-sidon-axioms.log"
-      ]
+        "/out/head-compression/lean-affine-sidon-axioms.log",
+        "/out/head-compression/lean-sidon-full-build.log"
+      ],
+      "full_lake_build": "passed, 9206 jobs"
     },
     "scope": "Non-Sidon pole sets and general adaptive denominators are not excluded. The universal target remains unproved."
+  },
+  "shared_affine_full_n14_certificate": {
+    "certificate": "artifacts/head-compression/certificates/random-n14-shared-affine-h336.json",
+    "audit": "diagnostics/random-n14-shared-affine-h336-exact-audit.json",
+    "vertices_certified": 16384,
+    "heads": 336,
+    "minimum_margin_lower_bound": 0.9995,
+    "target_proved": false,
+    "scope": "One finite target only. Original exporter hit integer-string digit limit after saving strict checkpoint; patched recovery and independent audit passed."
   }
 }

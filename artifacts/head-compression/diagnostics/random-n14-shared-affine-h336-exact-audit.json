@@ -1,0 +1,25 @@
+{
+  "input_file": "/out/head-compression/shared-affine-n14-h336/certificate.json",
+  "input_sha256": "38bdc230b4197087b5a45eb39499055663e4e8c8db06c9567e5c69ad1965109a",
+  "n": 14,
+  "heads": 336,
+  "vertices_checked": 16384,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 16384,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    26948625896800650306040109515579323759502977302597447784830792882417,
+    26948625896800650306040109515579323759502977302597447784830792882754
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 0.999580089289873,
+  "all_target_signs_certified": true,
+  "seconds": 9.257991439895704,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true,
+  "repository_certificate": "artifacts/head-compression/certificates/random-n14-shared-affine-h336.json"
+}
