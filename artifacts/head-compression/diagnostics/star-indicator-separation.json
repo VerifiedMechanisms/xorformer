@@ -1,0 +1,106 @@
+{
+  "q": 5,
+  "n": 10,
+  "selected_vertices": [
+    0,
+    15,
+    113,
+    183,
+    347,
+    402,
+    621,
+    676,
+    840,
+    910,
+    1008,
+    1023
+  ],
+  "size": 12,
+  "minimum_distance": 4,
+  "covering_strength_checked": 2,
+  "all_cube_zero_set_checked": true,
+  "integer_normal": [
+    30927,
+    28575,
+    -28731,
+    -30771,
+    -30941,
+    1,
+    13,
+    169,
+    2197,
+    28561
+  ],
+  "normal_basis": [
+    [
+      0,
+      1,
+      -1,
+      0,
+      -1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      -1,
+      -1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      -1,
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "encoding_base": 13,
+  "two_head_margin_lower_bound": [
+    1,
+    130890918702
+  ],
+  "two_head_indicator_error_lower_bound": [
+    1,
+    85
+  ],
+  "scope": "Exact construction and finite combinatorial hypotheses; the approximation lower bound uses the separately proved covering-set theorem."
+}

@@ -541,6 +541,15 @@
       "checked_location": "Section 3.1, Definitions 1 and 2, Proposition 1, and Examples 1-5",
       "mechanism": "Tensor sign-rank can be smaller than exact tensor rank; structured high-rank tensors admit low-rank threshold slices.",
       "gap": "The results do not give the required rank bound for every Boolean tensor, and a rank-one tensor factor is a product rather than an affine-fraction head. Their sign convention permits zero entries on the positive side, unlike the requested strict signs."
+    },
+    {
+      "title": "Handelman's hierarchy for the maximum stable set problem",
+      "authors": "Monique Laurent and Zhao Sun",
+      "url": "https://arxiv.org/pdf/1305.7319",
+      "checked_location": "Sections 1.1-1.2, Theorem 1, and the hypercube literal-product cone",
+      "mechanism": "Nonnegative combinations of products of the linear inequalities defining a polytope give Handelman positivity certificates.",
+      "application": "A product of positive affine cube denominators has a direct nonnegative expansion in coordinate-face indicators of codimension at most the head count; the indicator approximation obstruction uses that elementary expansion.",
+      "gap": "The positivity hierarchy does not enforce factorization into admissible denominators with affine residues and does not construct all strict Boolean sign tables at the target head budget."
     }
   ]
 }

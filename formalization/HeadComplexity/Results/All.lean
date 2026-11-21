@@ -23,6 +23,7 @@ import HeadComplexity.Results.ClearedNormalForm
 import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.ConditionalFractionCompletion
 import HeadComplexity.Results.BooleanMomentIndefiniteness
+import HeadComplexity.Results.IndicatorApproximationBarrier
 import HeadComplexity.Results.MaxNormalizedReciprocal
 import HeadComplexity.Results.ConfluentFractionLift
 import HeadComplexity.Results.CountingLowerBound

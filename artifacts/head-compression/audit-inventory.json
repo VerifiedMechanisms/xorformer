@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -109,11 +109,20 @@
         "HeadComplexity.confluentPairScore_error_identity"
       ],
       "scope": "Exact two-fraction error identity and a pointwise bound for lifting a strict adaptive confluent score. Existence of such scores at the target budget is not asserted."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/IndicatorApproximationBarrier.lean",
+      "main_declaration": "HeadComplexity.indicator_error_of_cleared_isolations",
+      "companion_declarations": [
+        "HeadComplexity.covering_mixture_mass",
+        "HeadComplexity.covering_mixture_bounds"
+      ],
+      "scope": "A quantitative lower bound on numerical indicator approximation from explicit normalized-denominator mass and isolation identities. The positive-affine denominator expansion, covering-set geometry, and random construction are proved manually. This is not a lower bound on strict sign complexity."
     }
   ],
   "validation": {
-    "build": "lake build HeadComplexity.Results.BooleanMomentIndefiniteness HeadComplexity.Results.All succeeded; fifteen new audit modules are imported.",
-    "build_log": "/out/head-compression/lean-boolean-moment-all-build.log",
+    "build": "lake build HeadComplexity.Results.IndicatorApproximationBarrier and HeadComplexity.Results.All succeeded; eighteen new audit modules are imported.",
+    "build_log": "/out/head-compression/lean-indicator-all-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",
@@ -134,8 +143,9 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "Twenty listed main and companion declaration names were matched to their fifteen Lean source modules. No original formalization source changed except adding the fifteen imports to Results/All.lean.",
-    "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators."
+    "inventory_references": "31 listed main and companion declaration names matched to 18 Lean source modules; all are imported in Results/All.lean. No target declaration was added.",
+    "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
+    "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound."
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -169,7 +179,8 @@
     "An independent scalar-memory decoder whose affine coefficients each depend affinely on at most one memory and whose bias is fixed satisfies sum_j m_j <= 2*(n+1)*H. The proof counts one-parameter sign changes and memory-head incidences. To obtain a full-cube obstruction the assigned vertex sets must cover the cube. Its independence assumptions are stronger than general target-dependent sign representation.",
     "For positive slope coordinates b=exp(ell), the reduced gradient and Hessian transform by G_b=diag(1/b)*G_ell and H_b=diag(1/b)*(H_ell-diag(G_ell))*diag(1/b). The direct-coordinate implementation passes independent small finite-difference checks and found one exactly verified six-bit three-head example. Neither the change of coordinates nor the example establishes global convergence or the universal target.",
     "Largest-active-term normalization yields a condition-free counting obstruction: for fixed C>0 and 0<alpha<1/(2C), the fraction of functions with H<=C*2^n/n^2 and total head half-range divided by margin at most exp(2^(alpha*n)) is at most 2^(-(1-2*C*alpha-o(1))*2^n). This permits unrestricted denominator conditioning and does not contradict the unrestricted-real target.",
-    "Weighted-degree grouping bounds all-order affine-fraction Taylor constructions: with total H heads in L adaptive positive-base confluent clusters, m=2*(n+1)*H+1<=2^n parameters and b=1+floor(log2(H)), the strict sign count is at most (4096*L*(b+1)^5*2^n/m)^m. Thus polynomially many clusters with H<=C*2^n/n^2 are insufficient, even at exponentially high orders. General exponentially many-base scores remain unexcluded."
+    "Weighted-degree grouping bounds all-order affine-fraction Taylor constructions: with total H heads in L adaptive positive-base confluent clusters, m=2*(n+1)*H+1<=2^n parameters and b=1+floor(log2(H)), the strict sign count is at most (4096*L*(b+1)^5*2^n/m)^m. Thus polynomially many clusters with H<=C*2^n/n^2 are insufficient, even at exponentially high orders. General exponentially many-base scores remain unexcluded.",
+    "An H-covering set S with an isolating (H+1)-face through each point has uniform numerical indicator error at least 1/(1+|S|*(2^(H+1)-1)) for every H-head score, even allowing arbitrary positive affine denominators. The proof uses a nonnegative subcube expansion of the denominator product. Sparse affine level sets with this property exist for H=floor(log2(n)/2), although their strict sign complexity is at most two. An exact ten-bit example has strict sign complexity two and numerical two-head approximation error at least 1/85."
   ],
   "blocked_routes": [
     {
@@ -248,5 +259,14 @@
       "VerifiedMechanisms/xorformer-runs"
     ],
     "result": "Both fetches completed without changes."
+  },
+  "indicator_approximation_audit": {
+    "core_build": "passed, 3137 jobs",
+    "all_module_build": "passed, 9194 jobs",
+    "diagnostic": "diagnostics/star-indicator-separation.json",
+    "certificate": "certificates/star-level-n10-h2.json",
+    "exact_sign_check": "Independent Fraction check passed on all 1024 vertices.",
+    "manual_scope": "Universal indicator-error inequality and asymptotic sign/approximation separation. Not the requested universal upper bound.",
+    "target_proved": false
   }
 }

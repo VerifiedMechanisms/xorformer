@@ -5164,4 +5164,239 @@ close the many-base stable-pair construction: there $L$ itself is
 of exponential order, and the displayed bound does not give
 $2^{o(N)}$ sign patterns.
 
+\section{Sign tests do not provide fixed-cost numerical indicators}
+
+The affine-level-set theorem already in the repository gives a
+two-head sign test for every affine equality. A possible repair of
+the rectangle construction was to choose row and column sets whose
+affine hulls contain no other cube vertices. Such sets have cheap
+sign tests. The following obstruction shows why arbitrary-accuracy
+numerical indicators cannot be inserted at the same fixed cost.
+It applies even if the denominator slope restriction is relaxed to
+arbitrary affine denominators positive on the whole cube.
+
+Call $S\subseteq\{0,1\}^n$ an $H$-covering set if it meets every
+subcube obtained by fixing at most $H$ coordinates.
+
+\begin{proposition}[Indicator error from a covering set]
+Let $0\le H<n$, and let $S$ be an $H$-covering set. Suppose that
+for each $s\in S$ there is an $(H+1)$-dimensional coordinate face
+$F_s$ with $F_s\cap S=\{s\}$. Every score
+$T=c+\sum_{h=1}^H A_h/B_h$, with affine numerators and affine
+denominators positive on the cube, satisfies
+\[
+ \|T-\mathbf1_S\|_\infty
+ \ge\frac1{1+|S|(2^{H+1}-1)}.
+\]
+In particular, no sequence of $H$-head scores converges uniformly
+to $\mathbf1_S$.
+\end{proposition}
+\begin{proof}
+Every positive affine denominator can be written
+\[
+ B_h(x)=b_{h0}+\sum_{i=1}^n b_{hi}z_{hi}(x),
+ \qquad b_{h0}>0,\quad b_{hi}\ge0,
+\]
+where each $z_{hi}$ is either $x_i$ or $1-x_i$. Indeed, complement
+each variable whose original coefficient is negative; the remaining
+constant is the minimum of $B_h$ on the cube. Expand
+$D=\prod_hB_h$. Every term is a nonnegative multiple of a product
+of at most $H$ literals. On the Boolean cube, inconsistent products
+vanish and consistent products are indicators of coordinate
+subcubes of codimension at most $H$. The constant product has
+positive coefficient. Dividing by the sum of the coefficients of
+all consistent terms therefore gives a normalization
+\[
+ \widetilde D=\sum_Q w_Q\mathbf1_Q,
+ \qquad w_Q\ge0,\quad\sum_Qw_Q=1.
+\]
+Consequently $0<\widetilde D(x)\le1$ and, by the covering property,
+\[
+ \sum_{s\in S}\widetilde D(s)
+ =\sum_Qw_Q|S\cap Q|\ge1.
+\]
+This is a nonnegative literal-product, or Handelman-type,
+denominator representation. No positivity representation theorem
+is needed; the expansion just given proves it directly.
+
+Let $P=T\widetilde D$. Clearing denominators shows that $P$ is
+the restriction of a polynomial of total degree at most $H$.
+Write $\varepsilon=\|T-\mathbf1_S\|_\infty$. If
+$\varepsilon\ge1$ the result is immediate. Otherwise, on $S$,
+\[
+ P(s)\ge(1-\varepsilon)\widetilde D(s),
+ \qquad \sum_{s\in S}P(s)\ge1-\varepsilon.
+\]
+The alternating sum of a degree-at-most-$H$ polynomial over
+$F_s$ is zero. To see this, reduce each monomial using $x_i^2=x_i$;
+it misses at least one of the $H+1$ free coordinates, so summation
+over that coordinate cancels the monomial. Solving the alternating
+identity for $P(s)$ and using $F_s\setminus\{s\}\subseteq S^c$ gives
+\[
+ |P(s)|\le\sum_{x\in F_s\setminus\{s\}}|T(x)|\widetilde D(x)
+ \le(2^{H+1}-1)\varepsilon.
+\]
+Summing this inequality and comparing with the preceding lower bound
+gives $1-\varepsilon\le|S|(2^{H+1}-1)\varepsilon$, as required.
+\end{proof}
+
+The final finite-mixture and isolation inequalities are checked in
+\texttt{IndicatorApproximationBarrier.lean}. Its hypotheses state
+the covering mass, denominator bounds, and signed isolation
+identities explicitly. The head-model expansion and polynomial-face
+argument above are manual proofs, not hidden Lean assumptions about
+the target theorem.
+
+\begin{proposition}[Two-head signs with unbounded indicator cost]
+For all sufficiently large $n$, there is an affine level set
+$S\subseteq\{0,1\}^n$ whose strict sign complexity is at most two,
+but whose numerical indicator cannot be approximated arbitrarily
+closely with $H=\lfloor\tfrac12\log_2n\rfloor$ heads.
+\end{proposition}
+\begin{proof}
+We give explicit finite sufficient inequalities for the probabilistic
+construction. Put $h=\lfloor\tfrac12\log_2n\rfloor$ and
+\[
+ m=\left\lceil2^h\big((h+1)\log n+(h+2)\log2\big)\right\rceil.
+\]
+Assume $h\ge1$, $2m<n$, and
+\[
+ \frac1{4n}+2^{-m}
+ +2^{m-1}(3/4)^{n-2m}
+ +\binom m2 2^{-n}\sum_{j=0}^{h+1}\binom nj<1. \tag{*}
+\]
+All three conditions hold for sufficiently large $n$: here
+$m=O(\sqrt n(\log n)^2)=o(n)$, and the last binomial sum is at
+most $(h+2)n^{h+1}=2^{O((\log n)^2)}$.
+Choose $m$ independent uniform cube vertices as rows of a binary
+matrix with $n$ columns.
+
+The probability of failing to meet some codimension-$h$ subcube is
+at most
+\[
+ \binom nh2^h(1-2^{-h})^m
+ \le n^h2^h e^{-m/2^h}\le\frac1{4n}.
+\]
+Meeting all these subcubes implies the covering condition for every
+smaller codimension as well.
+
+The rows restricted to their first $2m$ coordinates are affinely
+independent with failure probability less than $2^{-m}$. In fact,
+a $d$-dimensional affine subspace meets a Boolean cube in at most
+$2^d$ points: select $d$ coordinate functionals which are independent
+on its direction space, so their coordinate projection is injective.
+Expose the rows successively and sum the bounds
+$2^{j-1-2m}$ for membership in the affine span of the first $j$ rows.
+
+Condition on the first $2m$ columns and their affine independence.
+Their affine span contains at most $2^{m-1}$ Boolean vectors, each
+corresponding to a unique affine coefficient vector
+$\lambda=(\lambda_1,\ldots,\lambda_m)$ with $\sum_i\lambda_i=1$.
+For any coefficient vector other than a unit vector, at least two
+coefficients are nonzero. In a fresh random column,
+\[
+ \Pr\left\{\sum_i\lambda_iX_i\in\{0,1\}\right\}\le\frac34.
+\]
+Indeed, condition on all but two nonzero-coefficient bits. The four
+remaining values are $u,u+a,u+b,u+a+b$, with $ab\ne0$.
+They cannot all lie in $\{0,1\}$: that would force
+$a,b\in\{-1,1\}$ and give range two. Thus at most three of the
+four equally probable assignments work. Independence across the
+remaining $n-2m$ columns gives total failure probability at most
+$2^{m-1}(3/4)^{n-2m}$ for having any additional cube point in the
+affine hull of the full rows.
+
+Finally, the probability that two rows have Hamming distance at
+most $h+1$ is at most the last term of (*). By the union bound,
+(*) supplies a set $S$ of $m$ distinct, affinely independent rows
+which is $h$-covering, has minimum distance at least $h+2$, and
+whose affine hull meets the cube exactly in $S$.
+Every $(h+1)$-dimensional face through a point of $S$ then isolates
+it from the other points of $S$.
+
+Since $m<n$, that affine hull is proper. There is an affine form
+$L$ vanishing on $S$ and on no other cube point: for each outside
+point, the affine forms vanishing on the hull but also on that point
+make a proper linear subspace, and finitely many proper subspaces
+cannot cover a real vector space. This also follows by choosing a
+rational vector outside those finitely many rational hyperplanes.
+
+For completeness, choose affine $B$ such that both $B$ and $B+L$
+have positive constant and variable coefficients. This is possible
+by making each coefficient of $B$ larger than the absolute value
+of the corresponding coefficient of $L$. The exact score
+\[
+ R(x)=\delta-\frac{L(x)}{B(x)}+\frac{L(x)}{B(x)+L(x)}
+     =\delta-\frac{L(x)^2}{B(x)(B(x)+L(x))}
+\]
+has positive sign exactly on $S$ if
+\[
+ 0<\delta<\min_{x\notin S}
+ \frac{L(x)^2}{B(x)(B(x)+L(x))}.
+\]
+It uses two admissible heads and has a strict margin on the finite
+cube. This is consistent with the pre-existing theorem
+\texttt{HStar\_affineLevelSet\_le\_two} in
+\texttt{AffineSlab.lean}; the two-head fact is not claimed as a new
+formalization result. The preceding indicator-error proposition
+with $H=h$ proves the claimed failure of arbitrary-accuracy
+numerical approximation.
+\end{proof}
+
+\paragraph{An explicit ten-bit instance.}
+There is also a direct finite construction without random choices.
+For $q\ge5$, index the $n=\binom q2$ coordinates by the edges of
+$K_q$. Let $v_i$ be the incidence vector of the star at vertex $i$,
+and take
+\[
+ S=\{\mathbf0,\mathbf1,v_1,\ldots,v_q,
+                         \mathbf1-v_1,\ldots,\mathbf1-v_q\}.
+\]
+This set has $2q+2$ points, is $2$-covering, and has minimum
+Hamming distance at least four. For the covering assertion,
+$\mathbf0,\mathbf1$ supply patterns $00,11$ on two distinct
+edges; a vertex belonging to the first edge but not the second,
+and one belonging to the second but not the first, supply $10,01$.
+The possible nontrivial distances are
+$q-1$, $n-q+1$, $2(q-2)$, $n-2(q-2)$, and $n$; all are at least
+four for $q\ge5$.
+
+The affine hull of $S$ is the linear span of the stars, since it
+contains zero and $\mathbf1=\tfrac12\sum_i v_i$. A vector in
+this span has edge values $a_i+a_j$. If all these values are
+Boolean, then for distinct $i,j,k$,
+$a_i-a_j=(a_i+a_k)-(a_j+a_k)\in\{-1,0,1\}$.
+Thus the coefficients are all equal, or take two levels separated
+by one. If both levels occur at least twice, edge sums take three
+successive values, which is impossible. One exceptional high
+coefficient gives a star; one exceptional low coefficient gives
+its complement; equal coefficients give a constant vector.
+Therefore the affine hull meets the cube exactly in $S$.
+The previous two-head construction applies, while the indicator
+error of every two-head score is at least
+$1/(1+7(2q+2))=1/(14q+15)$.
+
+For $q=5$, \texttt{build\_star\_indicator\_separation.py} constructs
+an integer affine form by computing the kernel of the vertex-edge
+incidence matrix and combining a primitive integer basis with base
+$13$. Its normal vector, in lexicographic edge order, is
+\[
+ (30927,28575,-28731,-30771,-30941,1,13,169,2197,28561).
+\]
+Exhaustive exact checking confirms its twelve cube zeros, the
+strength-two covering property, and minimum distance four.
+The separate Fraction checker verifies the two-head sign certificate
+on all $1024$ vertices, with margin
+$1/130890918702$. The uniform numerical-indicator error of every
+two-head score is nevertheless at least $1/85$ by the proposition.
+In fact the strict sign complexity is exactly two: $S$ and its
+complement are both nonempty and closed under taking antipodes.
+An affine sign score would have the same sum on every antipodal
+pair, whereas one such pair requires a positive sum and another a
+negative sum. This contradicts one-head linear-threshold behavior.
+
+Thus a cheap affine-equality sign compiler cannot be promoted to a
+flat numerical indicator compiler. The result is an obstruction to
+that composition method, not to the requested universal sign bound.
+
 \end{document}
