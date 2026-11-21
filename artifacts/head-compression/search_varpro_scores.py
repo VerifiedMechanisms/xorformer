@@ -41,7 +41,7 @@ def convex_hinge_fit(yq, initial, method, score_penalty):
                             options={"gtol": 1e-9, "ftol": 1e-14, "maxiter": 2000,
                                      "maxls": 40, "maxcor": 30})
     z = initial.copy()
-    for iteration in range(100):
+    for iteration in range(500):
         residual = np.maximum(1-yq @ z, 0)
         value, gradient = inner(z)
         if np.max(np.abs(gradient)) < 1e-9:
@@ -64,6 +64,15 @@ def convex_hinge_fit(yq, initial, method, score_penalty):
             alpha *= .5
         z += alpha*direction
     value, gradient = inner(z)
+    if np.max(np.abs(gradient)) > 1e-8:
+        # A time-limited Newton loop is not a stationary inner solution.
+        # Polish before using the envelope derivative in the outer search.
+        polish = opt.minimize(inner, z, jac=True, method="L-BFGS-B",
+                              options={"gtol": 1e-10, "ftol": 1e-15,
+                                       "maxiter": 10000, "maxls": 50,
+                                       "maxcor": 60})
+        z = polish.x
+        value, gradient = inner(z)
     return opt.OptimizeResult(x=z, fun=value, jac=gradient, nit=iteration+1)
 
 

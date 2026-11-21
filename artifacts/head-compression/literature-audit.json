@@ -267,6 +267,30 @@
       "checked_location": "Theorem 1.5 and Lemmas 3.1 and 3.2",
       "mechanism": "Constructs a logarithmic number of permutations that between-satisfy every ternary constraint, using separating orders and half-order rotations.",
       "gap": "Ternary betweenness coverage is distinct from a large disjoint matching in every prescribed orthant. The deterministic rank-distance argument in the audit excludes the earlier full-rate matching criterion even for structured dictionaries."
+    },
+    {
+      "title": "Neural Networks with Quadratic VC Dimension",
+      "authors": "Pascal Koiran and Eduardo D. Sontag",
+      "url": "https://sontaglab.org/FTPDIR/quadratic-vc.pdf",
+      "checked_location": "Proposition 1, Theorems 2, 4, and 6, Lemmas 1 and 2",
+      "mechanism": "Whole Boolean-cube shattering through scalar memory lookup and sequential bit extraction; an arithmetic variant uses iterates of the logistic map.",
+      "gap": "The construction uses depth, intermediate multiplication, and interpolation. It does not supply a one-layer sum of admissible affine fractions, and flattening with the requested head count has not been proved."
+    },
+    {
+      "title": "MultivariateApart: Generalized Partial Fractions",
+      "authors": "Matthias Heller and Andreas von Manteuffel",
+      "url": "https://arxiv.org/pdf/2101.08283",
+      "checked_location": "Section 2.1, Definition 1 and Algorithm 1 in Section 2.2",
+      "mechanism": "Leinartas decomposition separates denominator factors with no common zero or algebraic dependence.",
+      "gap": "Terms retain products of up to the number of variables in algebraically independent denominator factors. Iterated univariate partial fractions can introduce extra poles. Neither operation gives affine numerators over single admissible affine denominators."
+    },
+    {
+      "title": "Extremal and approximative properties of simple partial fractions",
+      "authors": "V. I. Danchenko, M. A. Komarov and P. V. Chunaev",
+      "url": "https://arxiv.org/pdf/1506.08208",
+      "checked_location": "Definition (1), Sections 6.1 and 6.2",
+      "mechanism": "Interpolation by logarithmic derivatives of complex univariate polynomials; reduction to polynomial interpolation.",
+      "gap": "The model permits complex poles and concerns univariate interpolation. The universal simple-node result uses degree at least twice the number of nodes minus one, and does not provide constrained multivariate Boolean sign compression."
     }
   ]
 }
