@@ -750,5 +750,28 @@
     "seconds": 0.0028920149197801948,
     "single_head_residual_moment_00": "[-1.0847915375828654183985601e-5 +/- 1.08e-31]",
     "single_head_residual_moment_nonzero": true
+  },
+  "extension_affine_schur_n14": {
+    "status": "Stopped after the log-coordinate search had lower loss; its compute slot was reassigned to a larger constant-C search.",
+    "last_logged_state": {
+      "phase": "refit",
+      "iteration": 46,
+      "seconds": 4738.606367336935,
+      "denominator_chart": "affine",
+      "loss": 0.1957570467084811,
+      "errors": 2184,
+      "minimum_margin": -2.0409000698320856,
+      "inner_gradient": 2.8250839168020292e-14,
+      "minimum_eigenvalue": -2.6365452437156407e-05,
+      "reduced_gradient_norm": 0.00024321703625978966,
+      "inner_gram_regularizer": 1e-12,
+      "scale_floor": 0.005475293625037605,
+      "cheap_trial_evaluations": 38,
+      "accepted_direction": "newton-10.0",
+      "step": 1.0,
+      "trial_loss": 0.19567137659275596
+    },
+    "certificate": null,
+    "failure_is_not_a_lower_bound": true
   }
 }
