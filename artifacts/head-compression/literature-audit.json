@@ -291,6 +291,30 @@
       "checked_location": "Definition (1), Sections 6.1 and 6.2",
       "mechanism": "Interpolation by logarithmic derivatives of complex univariate polynomials; reduction to polynomial interpolation.",
       "gap": "The model permits complex poles and concerns univariate interpolation. The universal simple-node result uses degree at least twice the number of nodes minus one, and does not provide constrained multivariate Boolean sign compression."
+    },
+    {
+      "title": "On Explicit Super-Expressive Approximation for Neural Networks",
+      "authors": "Feng-Lei Fan, Ze-Yu Li, Chen-Yu Wang and Jian-Jun Wang",
+      "url": "https://arxiv.org/pdf/2607.06781",
+      "checked_location": "Definitions 5-7; Section 3.1; Lemmas 8 and 9; equations (19)-(23)",
+      "mechanism": "Pairwise coprime affine moduli 1+i c with factorial c encode arbitrary quantized labels by the Chinese Remainder Theorem.",
+      "gap": "The decoder explicitly applies floor after a reciprocal and multiplies two hidden-channel values. These operations and the five-layer architecture are absent from the stipulated affine-fraction sum. A low-head compiler has not been established."
+    },
+    {
+      "title": "Algebraic Geometry of Rational Neural Networks",
+      "authors": "Alexandros Grosdos, Elina Robeva and Maksym Zubkov",
+      "url": "https://arxiv.org/pdf/2509.11088",
+      "checked_location": "Section 4.3, Lemma 4.9; Proposition 4.4",
+      "mechanism": "Relates reciprocal-network numerators to projections of Chow varieties by expanding a product of affine forms with auxiliary variables.",
+      "gap": "Complex Zariski closures and exact rational-function parameterizations do not establish strict Boolean sign coverage with positive same-sign-slope denominators."
+    },
+    {
+      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
+      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams and Tony Wu",
+      "url": "https://arxiv.org/pdf/2611.21910",
+      "checked_location": "Theorems 1.1-1.9; Section 4.2; Section 6.3",
+      "mechanism": "Rational approximation, algebraic parameter bounds, and sequential bit extraction give bounds and simulations for sigmoid circuits.",
+      "gap": "The activation and architectures differ from the manuscript. The small inner-product circuit uses growing depth; the universal simulations incur polynomial overhead and do not imply the target head bound."
     }
   ]
 }

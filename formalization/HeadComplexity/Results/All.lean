@@ -16,6 +16,7 @@ import HeadComplexity.Results.SixFractionGate
 import HeadComplexity.Results.EightFractionGate
 import HeadComplexity.Results.TropicalChainObstruction
 import HeadComplexity.Results.OrthantRankDistance
+import HeadComplexity.Results.SpanPairDominance
 import HeadComplexity.Results.ClearedNormalForm
 import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.CountingLowerBound

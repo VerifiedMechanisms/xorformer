@@ -2103,4 +2103,86 @@ $k\leq9$ do not extend that criterion asymptotically. This is an
 obstruction to the stated sufficient criterion, not to other
 rational decoders, and not a lower bound for $W(n)$.
 
+\begin{corollary}[Dictionary size at a prescribed matching fraction]
+If $0<\rho\leq1/2$ and $\nu_\sigma\geq\rho M$ for every
+$\sigma\in\{-1,1\}^k$, then
+\[
+ M\geq \frac{\rho\sqrt{2k}}{16\sqrt{\log(4/\rho)}}\,2^k.
+\]
+\end{corollary}
+\begin{proof}
+Use $r=\sqrt{(k/2)\log(4/\rho)}$ in the first inequality of
+the proposition. Its exponential term equals $\rho/2$.
+Thus $\rho/2\leq8rM/(k2^k)$, which rearranges to the claim.
+\end{proof}
+
+\section{Free amplitudes do not repair a bounded sign-orbit dictionary}
+
+Allowing two independently chosen real amplitudes changes the routing
+condition. A pair $v,w$ can now serve orthant $\sigma$ if
+$\operatorname{span}(v,w)$ meets its interior. The fixed-difference
+obstruction above does not by itself apply to this condition.
+The following separate argument excludes a natural symmetric family.
+
+\begin{proposition}
+Let $a_1,\ldots,a_c\in(0,\infty)^k$. Form the indexed dictionary
+\[
+ V=\{\tau\mathbin{\odot}a_j:
+       \tau\in\{-1,1\}^k,\ 1\leq j\leq c\},\qquad M=c2^k,
+\]
+where $\odot$ is coordinatewise multiplication. Repeated vectors, if
+any, retain separate indices. Join two indices when their real span
+contains a vector all of whose coordinates are positive. Its matching
+number satisfies
+\[
+ \nu\leq 2c^2 2^{\lfloor k/2\rfloor},\qquad
+ \frac\nu M\leq 2c\,2^{-\lceil k/2\rceil}.
+\]
+The same bound holds in every other strict orthant.
+\end{proposition}
+\begin{proof}
+For each ordered pair $(j,\ell)$, fix a set $J_{j\ell}$ of
+$\lceil k/2\rceil$ coordinates with largest ratios
+$a_{j,i}/a_{\ell,i}$, resolving ties by a fixed ordering.
+Call an indexed vector $\tau\odot a_j$ exceptional if, for some
+$\ell$, its signs $\tau_i$ are constant on $J_{j\ell}$.
+There are at most
+\[
+ c\cdot c\cdot2\cdot2^{k-\lceil k/2\rceil}
+   =2c^2 2^{\lfloor k/2\rfloor}
+\]
+exceptional indices.
+
+Suppose
+$z=\alpha(\tau\odot a_j)+\beta(\eta\odot a_\ell)$
+has all coordinates positive. At each coordinate, at least one
+of $|\alpha|a_{j,i}$ and $|\beta|a_{\ell,i}$ is at least the
+other. Thus one endpoint has weakly larger magnitude on at least
+$\lceil k/2\rceil$ coordinates. Assume it is the first endpoint;
+the other case is symmetric. Its coefficient $\alpha$ is nonzero,
+since otherwise $\beta\ne0$ and the second endpoint dominates
+every coordinate. Its dominance set is
+\[
+ I=\{i:a_{j,i}/a_{\ell,i}\geq|\beta/\alpha|\}.
+\]
+Since $|I|\geq\lceil k/2\rceil$, it contains $J_{j\ell}$.
+For each $i\in I$, strict positivity of $z_i$ forces
+$\alpha\tau_i>0$: a negative first summand has magnitude at
+least that of the second, so their sum could not be positive.
+Consequently $\tau$ is constant on $J_{j\ell}$. The first
+endpoint is exceptional.
+
+Every edge therefore meets the exceptional set. Disjointness of
+matching edges proves the bound. Reflecting any chosen coordinates
+permutes the indexed dictionary and transfers any strict orthant
+to the positive one.
+\end{proof}
+
+\paragraph{Scope.}
+This obstruction permits arbitrary real amplitudes and all pairs,
+not just a bipartite subgraph. It applies to the specified sign-orbit
+family. It is not a theorem about general deterministic dictionaries,
+and gives no lower bound for the full head model. The independent
+binary-address and full-cube compilation problems remain.
+
 \end{document}
