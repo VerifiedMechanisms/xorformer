@@ -363,6 +363,15 @@
       "checked_location": "Definitions 3-5 and Theorems 1-4, including the self-dual construction and equally spaced reading positions",
       "mechanism": "Describes cyclic column shifts and the relation to full-order self-dual necklaces; separates full enumerations from the stricter Gray adjacency condition.",
       "gap": "The binary full-period Gray obstruction does not prohibit our enumeration, which permits several bits to change at block boundaries. Neither type of enumeration supplies the missing full-cube encoder."
+    },
+    {
+      "title": "Asymmetric Binary Covering Codes",
+      "authors": "Joshua N. Cooper, Robert B. Ellis, Andrew B. Kahng",
+      "url": "https://vlsicad.ucsd.edu/Publications/Journals/j57.pdf",
+      "checked_location": "Propositions 6 and 7, Corollary 8, Theorem 9, printed pages 237-240",
+      "mechanism": "Patched covers and a semidirect sum give downward radius-R covers of size O_R(2^n/n^R) for every dimension.",
+      "application": "Radius one gives the explicit positive-slope Mobius-basis initialization in mechanism-audit.tex.",
+      "gap": "Radius two provides the desired number of cells but requires quadratic local numerators. A constant-head compiler for arbitrary labels on one radius-two ball is excluded by a local Warren count. No global interacting replacement is established."
     }
   ]
 }

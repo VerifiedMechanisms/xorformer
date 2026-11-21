@@ -2977,4 +2977,104 @@ head ranges by a polynomial in $n$ times the achieved strict margin.
 Unrestricted large parameters and exponential cancellation remain allowed
 in the problem considered here.
 
+\section{An explicit downward-cover initialization and its limit}
+
+The following construction supplies a rigorously controlled starting point
+for finite head-removal experiments. It does not achieve the requested
+quadratic saving.
+
+\begin{proposition}[A positive-slope score from a downward star cover]
+Let $n\geq1$, and let $\mathcal C\subseteq2^{[n]}$ satisfy
+\[
+ 2^{[n]}=\bigcup_{S\in\mathcal C}
+       \left(\{S\}\cup\{S\setminus\{i\}:i\in S\}\right).
+\]
+For every $f:\{0,1\}^n\longrightarrow\{-1,1\}$ there is a sum
+of $|\mathcal C|$ admissible affine fractions $Q$ with
+$f(x)Q(x)\geq3/4$ on the entire cube. All denominator slopes
+can be chosen strictly positive and independently of $f$.
+\end{proposition}
+
+\begin{proof}
+Identify a vertex with its support. Set
+\[
+ g_T(x)=\prod_{i\notin T}(1-x_i),\qquad
+ c_T=\sum_{U\supseteq T}(-1)^{|U\setminus T|}f(U).
+\]
+Boolean-lattice inversion gives $f=\sum_Tc_Tg_T$, and
+\[
+ \sum_T|c_T|\leq\sum_T2^{n-|T|}=3^n.
+\]
+Assign each $T$ to one covering star centered at $S$. At a given
+center write $d_0=c_S$ if $S$ was assigned to that center, and zero
+otherwise. Similarly let $d_i=c_{S\setminus\{i\}}$ when that child
+was assigned to $S$, and zero otherwise. Define
+\[
+ A_S(x)=d_0+\sum_{i\in S}d_i(1-x_i),\qquad
+ M_S=|d_0|+\sum_{i\in S}|d_i|.
+\]
+Then $|A_S(x)|\leq M_S$, $\sum_SM_S\leq3^n$, and
+\[
+ f(x)=\sum_{S\in\mathcal C} A_S(x)g_S(x).
+\]
+Choose $\varepsilon=(4n3^n)^{-1}$ and put
+\[
+ q_S(x)=\frac{\varepsilon A_S(x)}
+ {\varepsilon+\sum_{j\notin S}x_j+
+                     \varepsilon^2\sum_{i\in S}x_i}.
+\]
+The denominator has positive constant term and every variable slope
+is either $1$ or $\varepsilon^2$. If $x\subseteq S$, then
+\[
+ |q_S(x)-A_S(x)|
+ =|A_S(x)|\frac{\varepsilon|x|}{1+\varepsilon|x|}
+ \leq n\varepsilon M_S.
+\]
+If $x\not\subseteq S$, its denominator is at least one and
+$g_S(x)=0$, so $|q_S(x)|\leq\varepsilon M_S$.
+Consequently
+\[
+ \left|\sum_Sq_S(x)-f(x)\right|
+ \leq n\varepsilon\sum_SM_S\leq\frac14.
+\]
+This proves the assertion.
+\end{proof}
+
+Cooper, Ellis, and Kahng, \emph{Asymmetric Binary Covering Codes}
+(2002), Proposition 7, Corollary 8, and Theorem 9, prove
+$K^+(n,R)=\Theta_R(2^n/n^R)$ for fixed radius $R$.
+Their code is exactly a cover by sets obtained by deleting at most
+$R$ elements from a center. Radius one therefore supplies the
+initialization above with $O(2^n/n)$ heads. Radius two supplies
+$O(2^n/n^2)$ centers, but the corresponding polynomial $A_S$ is
+quadratic, not affine. Substituting it into the displayed formula
+would violate the model.
+
+There is a rigorous local obstruction to repairing that substitution
+with a constant number of heads. Let
+$m=1+n+\binom n2$ and consider arbitrary signs on a radius-two
+Hamming ball. For fixed $H$, use the unnormalized coefficients of
+all $A_h,B_h$ and the bias as
+$p=1+2H(n+1)$ real parameters. At each of the $m$ vertices,
+clearing positive denominators gives a polynomial of degree at most
+$H+1$. For sufficiently large $n$ we have $m\geq p$, so Warren's
+bound gives at most
+\[
+ \left(\frac{4e(H+1)m}{p}\right)^p
+ =2^{O_H(n\log n)}
+\]
+strict labelings. This is smaller than $2^m=2^{\Theta(n^2)}$.
+Allowing all denominator orientations only enlarges the polynomial
+parameter space already counted. Thus no fixed number of admissible
+heads realizes every labeling even on this single local ball.
+This does not exclude a globally interacting construction; it excludes
+the proposed independent constant-cost cell compiler.
+
+The script \texttt{search\_constructive\_pruning.py} first verifies
+its finite starting score with exact integer arithmetic, then removes
+heads and allows the remaining denominators to move. Every accepted
+removal is independently checked on the entire finite cube. There is
+no theorem that this process reaches $O(2^n/n^2)$ heads, and it is not
+used as an asymptotic argument.
+
 \end{document}
