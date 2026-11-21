@@ -125,7 +125,11 @@
     "If affine input denominators form, at each pair of input blocks, a permuted common translated and scaled pole list, then summing the denominators across two distinct addresses forces the scale to be constant and the code to be affine. Thus input-dependent pole permutations do not supply an arbitrary scalar encoder under these hypotheses.",
     "For a full-rank fixed-denominator feature matrix F=QR and an optimal numerator fit, head deletion increases squared-hinge loss by at most ||Z^T theta||^2/(2N), where Z spans the deleted coefficient constraints in Q coordinates. A replacement head decreases loss by at least ||P_V g||^2/(2N). This gives an explicit sufficient descent inequality, with no universal gain guarantee.",
     "A ranking vote on two one-hot blocks has a one-head positive-slope compiler with error below 3/R. Erdos-Moser majority rankings therefore give O((r+s)/log(r+s)) heads for every promised r by s sign table. Encoding the alternatives in binary introduces nonlinear rank tables and no target-cost full-cube compiler is established.",
-    "For fixed polynomial slope curves with one adaptive scalar node per head and degree at most D_n, universality at H=floor(C*2^n/n^2) requires log2(D_n)>=n^2/C-O_C(n*log(n)). This excludes even degree 2^O(n), but not degree 2^Theta(n^2) or target-dependent polynomial coefficients."
+    "For fixed polynomial slope curves with one adaptive scalar node per head and degree at most D_n, universality at H=floor(C*2^n/n^2) requires log2(D_n)>=n^2/C-O_C(n*log(n)). This excludes even degree 2^O(n), but not degree 2^Theta(n^2) or target-dependent polynomial coefficients.",
+    "At a stationary squared-hinge score, each nonzero numerator direction lies in the kernel of the Hessian of the residual logarithmic master function at its denominator. This forces degenerate critical points, not vanishing Hessians. Generic arrangement theorems do not give the needed critical-point bound.",
+    "An affine array with a fixed value multiset at every Boolean vertex has mutually orthogonal nonzero slope columns perpendicular to the all-ones vector. An exact five-coordinate affine square disproves the shortcut that its permutation parity must be affine. Generic tomography directions are not the prescribed Boolean directions (1,x).",
+    "For a single log-slope column, an explicit squared-hinge quadratic majorizer bounds finite parameter changes. Sorting the old column against a gradient step exactly minimizes its isotropic quadratic model over permutations. Under the stated majorizer and displacement conditions a nonzero move decreases loss. The discrete proposal may still be stationary at positive loss.",
+    "An independent scalar-memory decoder whose affine coefficients each depend affinely on at most one memory and whose bias is fixed satisfies sum_j m_j <= 2*(n+1)*H. The proof counts one-parameter sign changes and memory-head incidences. Its independence assumptions are stronger than general target-dependent sign representation."
   ],
   "blocked_routes": [
     {
@@ -163,6 +167,10 @@
     {
       "route": "Majority rankings",
       "gap": "The combinatorial ranking decomposition has a valid fraction compiler on two one-hot blocks only. Arbitrary rankings of binary cube points are not affine coefficient tables, and replacing the one-hot coordinates by a free nonlinear encoder would change the model."
+    },
+    {
+      "route": "Affine permutation cubes and tomography",
+      "gap": "Power-sum constraints and a projection reformulation are proved, but neither generic multiset reconstruction nor the affine permutation example constructs arbitrary Boolean signs. The genericity hypothesis is not available for directions (1,x). Column-permutation searches remain finite experiments."
     }
   ],
   "remaining_target": "Prove, without modifying the manuscript model, that a single absolute C gives W(n)<=C*2^n/n^2 for every positive integer n. No complete construction or existence proof is claimed."
