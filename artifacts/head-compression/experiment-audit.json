@@ -1,0 +1,165 @@
+{
+  "status": "Finite experiments and counterexamples to proposed proof steps only. The universal upper bound is not proved.",
+  "finite_head_certificates": "certificates/manifest.json",
+  "promised_domain_certificates": {
+    "count": 23,
+    "verification_logs": [
+      "/out/head-compression/promised-independent-check-0256.jsonl",
+      "/out/head-compression/promised-independent-check-new.jsonl"
+    ],
+    "scope": "The listed promised subsets only; each denominator was checked on the entire corresponding cube."
+  },
+  "fixed_denominator_refits": [
+    {
+      "directory": "/out/head-compression/bent-n14-fixed-refit",
+      "result": {
+        "n": 14,
+        "heads": 251,
+        "seconds": 77.79680667398497,
+        "evaluations": 7,
+        "best_errors": 0,
+        "certificate": "/out/head-compression/bent-n14-fixed-refit/certificate.json",
+        "scope": "This fixed denominator list and truth table only.",
+        "failure_is_not_a_lower_bound": true
+      }
+    },
+    {
+      "directory": "/out/head-compression/random-n13-fixed-refit",
+      "result": {
+        "n": 13,
+        "heads": 146,
+        "seconds": 3.296222036005929,
+        "evaluations": 33,
+        "best_errors": 420,
+        "certificate": null,
+        "scope": "This fixed denominator list and truth table only.",
+        "failure_is_not_a_lower_bound": true
+      }
+    },
+    {
+      "directory": "/out/head-compression/random-n14-fixed-refit",
+      "result": {
+        "n": 14,
+        "heads": 251,
+        "seconds": 82.13001520710532,
+        "evaluations": 257,
+        "best_errors": 2325,
+        "certificate": null,
+        "scope": "This fixed denominator list and truth table only.",
+        "failure_is_not_a_lower_bound": true
+      }
+    }
+  ],
+  "restricted_solver_outcomes": [
+    {
+      "route": "Symmetric weight switching",
+      "outcome": "UNSAT for the saved n=6 ansatz with six terms per list; saved larger n=6 and n=7 trials timed out.",
+      "scope": "Not an impossibility statement for general heads."
+    },
+    {
+      "route": "Affine switching",
+      "outcome": "Saved n=5 trials with ten through thirteen terms timed out.",
+      "scope": "UNKNOWN is not UNSAT."
+    },
+    {
+      "route": "Mixed-orientation dominant powers",
+      "outcome": "Saved bounded-exponent trials timed out.",
+      "scope": "No full-model impossibility result."
+    }
+  ],
+  "correlated_span_dictionaries": {
+    "definition": "Enumerate all sign words tau in each block; set exponent vector to M*tau for a shared integer matrix M. Coordinate values are tau_i*2^(M*tau)_i. Linear, skew-symmetric, and symmetric matrix variants are tested.",
+    "status": "Completed under the stated per-variant deadlines. No asymptotic or universal conclusion is claimed.",
+    "log": "/out/head-compression/correlated-span-large.log",
+    "independent_verifier": "verify_multiscale_span_matching.py",
+    "scope": "All listed disjoint witnesses were independently checked. Neither maximality, all-orthant coverage, an asymptotic bound, nor an admissible head construction is certified.",
+    "independently_verified_matching_count": 42,
+    "independent_verification_log": "/out/head-compression/correlated-large-independent-audit.jsonl",
+    "finite_summary": [
+      {
+        "model": "correlated-linear",
+        "dimension": 8,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.283203125,
+        "maximum_matched_fraction": 0.3359375
+      },
+      {
+        "model": "correlated-linear",
+        "dimension": 10,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.2001953125,
+        "maximum_matched_fraction": 0.21533203125
+      },
+      {
+        "model": "correlated-linear",
+        "dimension": 12,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.1500244140625,
+        "maximum_matched_fraction": 0.153076171875
+      },
+      {
+        "model": "correlated-linear",
+        "dimension": 14,
+        "orthants_checked": 2,
+        "minimum_matched_fraction": 0.110198974609375,
+        "maximum_matched_fraction": 0.122100830078125
+      },
+      {
+        "model": "correlated-skew",
+        "dimension": 8,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.27734375,
+        "maximum_matched_fraction": 0.33203125
+      },
+      {
+        "model": "correlated-skew",
+        "dimension": 10,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.1982421875,
+        "maximum_matched_fraction": 0.2373046875
+      },
+      {
+        "model": "correlated-skew",
+        "dimension": 12,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.152099609375,
+        "maximum_matched_fraction": 0.1639404296875
+      },
+      {
+        "model": "correlated-skew",
+        "dimension": 14,
+        "orthants_checked": 2,
+        "minimum_matched_fraction": 0.110626220703125,
+        "maximum_matched_fraction": 0.117584228515625
+      },
+      {
+        "model": "correlated-symmetric",
+        "dimension": 8,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.263671875,
+        "maximum_matched_fraction": 0.31640625
+      },
+      {
+        "model": "correlated-symmetric",
+        "dimension": 10,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.1875,
+        "maximum_matched_fraction": 0.2265625
+      },
+      {
+        "model": "correlated-symmetric",
+        "dimension": 12,
+        "orthants_checked": 4,
+        "minimum_matched_fraction": 0.1380615234375,
+        "maximum_matched_fraction": 0.14501953125
+      },
+      {
+        "model": "correlated-symmetric",
+        "dimension": 14,
+        "orthants_checked": 2,
+        "minimum_matched_fraction": 0.110809326171875,
+        "maximum_matched_fraction": 0.139129638671875
+      }
+    ]
+  }
+}

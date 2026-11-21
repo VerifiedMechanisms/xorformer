@@ -1,0 +1,2629 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\newcommand{\Qn}{\{0,1\}^n}
+\begin{document}
+\title{Audit of Mechanisms for Universal Head Compression}
+\author{}
+\date{Research begun 20 November 2026}
+\maketitle
+
+\paragraph{Status.}
+This is a research audit, not a proof of the requested bound.
+The target is an unconditional absolute constant $C$ such that
+$W(n)\le C2^n/n^2$ for every positive integer $n$.
+The definitions of the attention model, admissible denominators, and
+head complexity in the attached \texttt{version-5.tex} are unchanged.
+The results below test particular mechanisms; none is a lower bound
+contradicting the target.
+
+\section{Exact interpolation has the wrong parameter budget}
+
+\begin{lemma}[Normalized chart]
+Every score $c+\sum_{h=1}^H A_h/B_h$ with affine $A_h,B_h$ and
+$B_h(0)>0$ can be written
+\[
+ F(c',u,b)(x)=c'+\sum_{h=1}^H
+       \frac{\sum_{i=1}^n u_{h,i}x_i}{1+\sum_{i=1}^n b_{h,i}x_i}.
+\]
+The chart has $p=1+2nH$ real parameters.
+\end{lemma}
+\begin{proof}
+Write $A_h=a_{h,0}+a_h\cdot x$ and $B_h=d_{h,0}+d_h\cdot x$.
+Set $b_h=d_h/d_{h,0}$, $\alpha_h=a_{h,0}/d_{h,0}$,
+$u_h=a_h/d_{h,0}-\alpha_h b_h$, and $c'=c+\sum_h\alpha_h$.
+Then $A_h/B_h=\alpha_h+(u_h\cdot x)/(1+b_h\cdot x)$.
+This is an equality of scores, without a sign approximation.
+\end{proof}
+
+\begin{proposition}[Adaptive exact-table obstruction]
+If every real table on $\Qn$ has an exact $H$-head affine-ratio
+representation, even allowing arbitrary positive affine denominators,
+then $2^n\le 1+2nH$.
+Every full-row-rank Jacobian argument for the normalized evaluation map
+has the same necessary inequality.
+\end{proposition}
+\begin{proof}
+Put $N=2^n$ and suppose $p=1+2nH<N$.
+All $N$ coordinates of the normalized evaluation map are rational
+functions in $p$ variables. We give the algebraic-dependence argument
+explicitly. Write these functions over a common nonzero polynomial
+denominator $Q$ as $P_1/Q,\ldots,P_N/Q$, and choose an integer
+$D\ge1$ bounding the degrees of $Q,P_1,\ldots,P_N$.
+For every multi-index $\alpha\in\mathbb N^N$ with $|\alpha|\le k$,
+the polynomial $P^\alpha Q^{k-|\alpha|}$ has degree at most $Dk$.
+There are $\binom{N+k}{N}$ such polynomials, while the vector space
+containing them has dimension $\binom{p+Dk}{p}$.
+For sufficiently large $k$ the former number is larger, since $N>p$.
+Thus a nontrivial linear relation between these polynomials gives a
+nonzero polynomial $R\in\mathbb R[Y_1,\ldots,Y_N]$ that vanishes on
+the rational image wherever $Q\ne0$.
+For this map take $Q$ to be the product of all evaluated denominators;
+it is nonzero at every allowed representation.
+A nonzero real polynomial cannot vanish on all of $\mathbb R^N$:
+induction on the number of variables reduces this to the finite-root
+property for univariate polynomials. Hence some real table is missing.
+The Jacobian assertion follows because an $N\times p$ matrix has
+rank at most $p$.
+\end{proof}
+
+For $H\le C2^n/n^2$, the inequality $1+2nH<2^n$ holds for all
+sufficiently large $n$. Thus neither a regular-zero construction nor
+any other exact representation of every real table can prove the target
+at that head count. This does not apply to sign representation: the
+image need only meet every open orthant, not contain every real vector.
+
+\section{Fixed lists do not gain anything from signs}
+
+\begin{lemma}[Orthant universality of a linear space]
+A real linear subspace $U\subseteq\mathbb R^N$ meets every open
+orthant if and only if $U=\mathbb R^N$.
+\end{lemma}
+\begin{proof}
+The reverse implication is immediate. If $U$ is proper, choose
+$v\ne0$ in its orthogonal complement. Assign sign $\operatorname{sgn}(v_i)$
+in every coordinate where $v_i\ne0$, and any sign where $v_i=0$.
+Every vector $z$ in this open orthant satisfies
+$v\cdot z=\sum_{i:v_i\ne0}|v_i||z_i|>0$, so none belongs to $U$.
+\end{proof}
+
+\begin{proposition}[Fixed-list sign obstruction]
+If one list $B_1,\ldots,B_H$ of nonvanishing affine denominators
+sign-represents every Boolean function using affine numerators and
+a free constant, then
+\[
+ H\ge\left\lceil\frac{2^n-1}{n}\right\rceil.
+\]
+\end{proposition}
+\begin{proof}
+The score space is linear. Each space of fractions with denominator
+$B_h$ has dimension at most $n+1$ and contains the constants, so their
+sum, with the constant, has dimension at most $1+nH$ (also for $H=0$).
+Sign universality means it meets all $2^{2^n}$ open orthants. Apply
+the preceding lemma.
+\end{proof}
+
+\begin{proposition}[Size of a library of denominator lists]
+Let $N=2^n$, $d=1+nH\le N$, and let $\mathcal L$ be a finite library
+of $K$ lists of $H$ nonvanishing affine denominators. The number of
+Boolean functions sign-representable by some list in the library is
+at most
+\[
+ K\,2\sum_{j=0}^{d-1}\binom{N-1}{j}.
+\]
+Consequently, if $H\le C2^n/n^2$ for an absolute $C$, a universal
+library must have $\log_2 K\ge(1-o(1))2^n$.
+\end{proposition}
+\begin{proof}
+On each score space, the coordinate zero sets form an arrangement
+of $N$ central hyperplanes in dimension at most $d$. Such an
+arrangement has at most $2\sum_{j=0}^{d-1}\binom{N-1}{j}$ chambers.
+For completeness, adding its last hyperplane splits at most as many
+old chambers as the restricted arrangement has chambers in dimension
+$d-1$. This gives the recurrence $r(N,d)\le r(N-1,d)+r(N-1,d-1)$,
+with $r(1,d)\le2$ and $r(N,1)\le2$; Pascal's identity gives the bound.
+Degenerate arrangements have no more chambers, by an arbitrarily small
+generic perturbation preserving a representative of each strict pattern.
+Each chamber gives only one sign pattern. Sum over the $K$ lists.
+Finally $d-1=nH=O(N/n)$, so the logarithm of the binomial sum is
+$O((N/n)\log n)=o(N)$, for example by the usual entropy bound for a
+binomial tail. Covering all $2^N$ patterns forces the stated inequality.
+\end{proof}
+
+This also identifies a numerical-resolution requirement for a discrete
+dictionary route. If denominators are selected from a dictionary of
+$M_n$ entries, at most $M_n^H$ ordered lists are available. Universality
+at $H\le C2^n/n^2$ therefore forces
+$\log_2 M_n\ge(1-o(1))n^2/C$.
+In particular dictionaries specified by $n+1$ coefficients each from
+a set of $2^{o(n)}$ values cannot suffice at the requested head count.
+Arbitrary real denominators are not subject to this restriction.
+
+The linear-space assertion and its normalized fixed-denominator consequence
+are kernel checked in
+\texttt{formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean}.
+The principal declarations are
+\texttt{meetsEveryStrictOrthant\_iff\_eq\_top} and
+\texttt{two\_pow\_le\_one\_add\_heads\_mul\_dimension\_of\_fixed\_denominators}.
+They impose no restriction on a target-dependent list.
+
+\section{Low-degree parameterizations cannot supply the missing factor}
+
+\begin{proposition}[Polynomial-template obstruction]
+Fix constants $a,b,C>0$. Suppose a proposed construction represents its
+scores on the $N=2^n$ vertices by polynomials in at most $p\le anH$
+real parameters, each of degree at most $n^b$, where
+$H\le C2^n/n^2$. Then this single polynomial template cannot strictly
+represent every Boolean function for all sufficiently large $n$.
+The assertion also holds for a union of $2^{o(2^n)}$ such templates.
+\end{proposition}
+\begin{proof}
+For large $n$, $p<N$. Warren's strict sign-pattern bound gives at most
+$(4en^bN/p)^p$ patterns. The function
+$t\mapsto t\log_2(4en^bN/t)$ is increasing for $1\le t\le aCN/n$
+when $n$ is sufficiently large. Its value at this upper endpoint is
+$O(N\log n/n)=o(N)$. Thus the template realizes at most $2^{o(N)}$
+patterns. Multiplication by $2^{o(N)}$ still yields $2^{o(N)}<2^N$.
+Zero parameter templates realize at most one pattern and cause no exception.
+\end{proof}
+
+For example, a sum of $H$ completely factorized multilinear terms has
+$O(nH)$ parameters and parameter degree $n+1$. A universal construction
+with $O(2^n/n^2)$ such terms is therefore impossible. This is a restriction
+on that proposed intermediate representation, not on attention heads:
+clearing $H$ independently parameterized head denominators gives parameter
+degree $H$, which is exponentially large in the relevant regime.
+
+\begin{proposition}[A scalar algebraic decoder needs many oscillations]
+Let $N$ target bits be the strict signs of rational functions
+$p_i(t)/q_i(t)$ of one real encoding parameter, with
+$\deg p_i,\deg q_i\le D$, and omit parameters where any denominator or
+numerator vanishes. At most $2ND+1$ different strict sign vectors occur.
+Consequently universal decoding of $N$ independently chosen bits requires
+$D\ge(2^N-1)/(2N)$.
+\end{proposition}
+\begin{proof}
+If some numerator is identically zero there are no strict sign vectors.
+Otherwise the union of the real zeros of all numerators and denominators
+has at most $2ND$ elements. On every component of its complement all
+rational functions are continuous and nonzero, so every sign is constant.
+There are at most $2ND+1$ components.
+\end{proof}
+
+Thus encoding a table in a large integer, a residue, or an irrational
+parameter is insufficient without an admissible decoder. Periodic
+activations used in number-theoretic superexpressiveness arguments are
+absent from this model. Yarotsky's
+\href{https://proceedings.mlr.press/v139/yarotsky21a.html}{Elementary
+superexpressive activations} explicitly uses periodic functions in its
+positive construction; it does not supply a reciprocal-affine decoder.
+
+\section{A pole deformation does not preserve sign universality}
+
+\begin{proposition}[Explicit continuation counterexample]
+On $\{0,1\}^2$ the ratio
+\[
+ R(x_1,x_2)=\frac{x_1+x_2-1/2}{x_1+x_2-3/2}
+\]
+strictly represents equality of the two bits. Nevertheless equality
+cannot be strictly represented by $c+A/B$ for any affine $A,B$ with
+$B>0$ at all four vertices.
+\end{proposition}
+\begin{proof}
+At Hamming weights $0,1,2$, the displayed ratio has values $1/3,-1,3$.
+For a positive denominator, the sign of $c+A/B$ is that of the affine
+function $L=cB+A$. Every affine $L$ satisfies
+$L(0,0)+L(1,1)=L(1,0)+L(0,1)$.
+The equality pattern would make the left side positive and the right
+side negative, a contradiction.
+\end{proof}
+
+For example, replacing the denominator by
+$x_1+x_2-3/2+s(2+x_1+x_2)$ makes all its coefficients positive for
+$s\ge1$. No choice of affine numerator and free constant at such an
+$s$ can retain this pattern. Thus the manuscript's rational
+nonvanishing-minor continuation is valid for spanning, but it has no
+automatic analogue for sign-only constructions with fewer parameters.
+
+\section{A direct obstruction to bounded-atom boosting}
+
+\begin{proposition}[Sharp parity correlation bound for one head]
+Let $n\ge1$, let $A,B$ be affine, and suppose $B$ is positive on the
+cube. No restriction on the signs of its variable coefficients is needed.
+Write $R=A/B$ and $\chi(x)=(-1)^{|x|}$. Then
+\[
+ \left|\sum_{x\in\Qn}\chi(x)R(x)\right|
+ \le \max_{x\in\Qn}R(x)-\min_{x\in\Qn}R(x)
+ \le 2\|R\|_\infty.
+\]
+The constant $2$ in the last bound cannot be decreased uniformly.
+\end{proposition}
+\begin{proof}
+Complement every coordinate whose denominator coefficient is negative.
+Each complement multiplies the alternating sum by $-1$ and preserves
+its absolute value and the range. The resulting constant coefficient is
+the minimum value of $B$ on the cube, so it is positive. Thus assume
+$B(x)=b_0+\sum_i b_ix_i$ with $b_0>0$ and $b_i\ge0$.
+Define the convergent integrals
+\[
+ I_0=\int_0^\infty e^{-b_0t}\prod_j(1-e^{-b_jt})\,dt,
+ \qquad
+ J_i=\int_0^\infty e^{-(b_0+b_i)t}
+                \prod_{j\ne i}(1-e^{-b_jt})\,dt.
+\]
+Expanding the finite products and using
+$\int_0^\infty e^{-ct}\,dt=1/c$ for $c>0$ gives
+$I_0=\sum_x\chi(x)/B(x)$ and
+$-J_i=\sum_x\chi(x)x_i/B(x)$.
+In particular $b_0I_0-\sum_i b_iJ_i=\sum_x\chi(x)=0$.
+Write $R_0=R(0)$ and $R_i=R(e_i)$. The numerator coefficients satisfy
+$a_0=b_0R_0$ and $a_i=(b_0+b_i)R_i-b_0R_0$. Consequently
+\[
+ \sum_x\chi(x)R(x)
+ =L R_0-\sum_i\lambda_iR_i,
+ \qquad
+ \lambda_i=(b_0+b_i)J_i\ge0,
+ \quad L=\sum_i\lambda_i=b_0\left(I_0+\sum_iJ_i\right).
+\]
+For fixed $t\ge0$ put $q_i=e^{-b_it}\in[0,1]$. The quantity
+\[
+ \prod_i(1-q_i)+\sum_i q_i\prod_{j\ne i}(1-q_j)
+\]
+lies in $[0,1]$: it is the sum of the zero-success and one-success
+terms in the expansion of $\prod_i((1-q_i)+q_i)=1$.
+It follows that $0\le L\le b_0\int_0^\infty e^{-b_0t}\,dt=1$.
+The displayed alternating sum is therefore a nonnegative combination,
+of total mass at most one, of differences $R_0-R_i$. This proves the
+range bound.
+
+For sharpness take $B(x)=\varepsilon+\sum_i x_i$ and
+$R(x)=2\varepsilon/B(x)-1$. Its sup norm equals one, while
+$\sum_x\chi(x)R(x)\to2$ as $\varepsilon\downarrow0$: the term
+$2\varepsilon/B(0)$ equals two and all other such terms tend to zero.
+These denominators have strictly positive slopes.
+\end{proof}
+
+There is also an independent algebraic proof. For $S\subseteq[n]$ set
+$\Delta_S v=\sum_{T\subseteq S}(-1)^{|T|}v(1_T)$.
+Expansion gives the exact product rule
+\[
+ \Delta_S(Bv)=\left(b_0+\sum_{i\in S}b_i\right)\Delta_Sv
+              -\sum_{i\in S}b_i\Delta_{S\setminus\{i\}}v.
+\]
+Indeed $\Delta_S(x_iv)=\Delta_Sv-\Delta_{S\setminus\{i\}}v$ for
+$i\in S$, by separating subsets containing $i$ from those avoiding it.
+For $v=A/B$ and $|S|\ge2$, the left side is $\Delta_SA=0$. Hence
+\[
+ \Delta_Sv=\sum_{i\in S}
+ \frac{b_i}{b_0+\sum_{j\in S}b_j}\Delta_{S\setminus\{i\}}v.
+\]
+The coefficients are nonnegative and their sum is less than one.
+For a singleton $S=\{i\}$ the alternating sum is $v(0)-v(e_i)$,
+whose absolute value is at most the range of $v$. Induction on $|S|$
+proves the bound for every nonempty face, including $S=[n]$.
+This proof is kernel checked in
+\texttt{formalization/HeadComplexity/Results/AffineFractionAlternation.lean},
+especially \texttt{faceAlternation\_affine\_mul},
+\texttt{faceAlternation\_range\_of\_affine\_product}, and
+\texttt{abs\_faceAlternation\_affineFraction\_le\_range}.
+The Lean statement is in coordinates where $b_0>0$ and $b_i\ge0$;
+the coordinate-complement reduction above is not part of that statement.
+
+\begin{proposition}[Parity requires exponential atomic amplitude]
+If $S=c+\sum_hR_h$ is an admissible score with
+$\chi(x)S(x)\ge\delta>0$ at every vertex, then
+\[
+ \sum_h\bigl(\max R_h-\min R_h\bigr)\ge 2^n\delta,
+ \qquad
+ \sum_h\|R_h\|_\infty\ge2^{n-1}\delta.
+\]
+\end{proposition}
+\begin{proof}
+Sum $\chi(x)S(x)\ge\delta$ over the cube. The free constant has zero
+alternating sum, and apply the preceding proposition term by term.
+\end{proof}
+
+Thus a proposed boosting theorem whose atoms have sup norm at most one
+cannot uniformly guarantee correlation $cn/\sqrt{2^n}$ with every
+labeling, even under the uniform input distribution: parity has
+correlation at most $2^{1-n}$ with every atom. This rules out that
+specific mechanism without placing any new restriction on unbounded
+real parameters or proving an exponential head lower bound. Parity's
+known $n$-head representation is consistent with the amplitude bound.
+
+\section{Literature mechanisms and their exact limits}
+
+\paragraph{Exact hyperplane covers.}
+Aaronson, Groenland, Grzesik, Johnston, and Kielak,
+\emph{Exact hyperplane covers for subsets of the hypercube},
+\href{https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf}{Discrete Mathematics 344 (2021), 112490},
+Theorem 2, give bounds $2^{n-2}/n^2\le\operatorname{ec}(n)\le2^{n+1}/n$.
+Their subsequent counting observation improves the lower bound to
+$2^n/n^2$. The upper construction uses radius-one Hamming spheres,
+every subset of which is an exact hyperplane intersection pattern.
+Thus that construction retains the same factor-$n$ gap.
+There is an additional conversion issue: a two-head sign representation
+of a thin affine slab does not give an approximate indicator with small
+values outside the slab. Adding such scores therefore does not implement
+the union of an exact cover without a separate amplitude argument.
+
+\paragraph{Local receptive fields.}
+Schmitt's \emph{Neural Networks with Local Receptive Fields and
+Superlinear VC Dimension},
+\href{https://eccc.weizmann.ac.il/report/2001/045/download/}{ECCC TR01-045},
+constructs shattered sets of real inputs. The discussion on page 30
+explicitly leaves Boolean inputs as a further question. Neither the
+input set nor the activation family is the one required here.
+
+\paragraph{Connected domination and codes.}
+Griggs proves $\gamma_c(Q_n)=(1+o(1))2^n/n$ in
+\emph{Spanning trees and domination in hypercubes}, Integers 21A (2021),
+\href{https://math.colgate.edu/~integers/graham13/graham13.pdf}{Paper A13}.
+This supplies the graph theorem used by the manuscript's derivative
+construction. Increasing the covering radius reduces the number of
+centres, but it does not provide local sign interpolation. In particular,
+a product of two radius-one stars contains a two-by-two checkerboard,
+which one positive-denominator affine ratio cannot classify.
+
+\paragraph{Threshold circuits.}
+Sherstov's \emph{Optimal bounds for sign-representing the intersection
+of two halfspaces by polynomials},
+\href{https://web.cs.ucla.edu/~sherstov/pdf/opthshs.pdf}{Combinatorica 33 (2013)},
+provides intersections of two halfspaces with threshold degree
+$\Omega(n)$. Since threshold degree is a head lower bound, there is
+no constant-overhead conversion of arbitrary threshold-gate votes to
+these heads. This obstruction is already recorded in repository
+Theorems 105 and 106 and is not a new result of this run.
+
+\paragraph{Nearest-neighbour representations.}
+Hajnal, Liu, and Tur\'an obtain a universal $O(2^n/n)$ prototype bound in
+\href{https://arxiv.org/abs/2004.01741}{Nearest neighbor representations
+of Boolean functions}. Anthony's
+\href{https://arxiv.org/abs/2609.23094}{Counting and Covering in
+Nearest-Neighbour Representations of Boolean Functions} records a
+remaining factor-$O(n)$ gap between unrestricted-prototype upper and
+counting lower bounds. Neither result supplies the missing head
+construction, and a prototype-to-head conversion would itself need proof.
+
+\paragraph{Rational networks and information encoding.}
+The rational-network parameter analysis of Pardo and Sebasti\'an,
+\href{https://arxiv.org/abs/2504.11345}{Erzeugungsgrad, VC-Dimension and
+Neural Networks with rational activation function}, concerns complexity
+bounds for parameterized families. A VC upper bound is not a construction
+shattering the entire prescribed Boolean cube. Chinese-remainder or
+fractional-part encoding likewise needs an admissible decoding operation;
+neither residues nor a floor operation is present in the head model.
+
+\paragraph{Moment cancellation from number theory.}
+Coppersmith, Mossinghoff, Scheinerman, and VanderKam study ideal
+Prouhet--Tarry--Escott solutions in
+\href{https://arxiv.org/abs/2304.11254}{their 2023 paper}.
+Croot, Mao, and Yip prove moment-matching constructions in small-doubling
+sets in \href{https://arxiv.org/abs/2609.05061}{their 2026 paper},
+including sets of size $2^k$ matching the first $k$ moments.
+Here is the precise reciprocal identity relevant to this route.
+If finite multisets $E,F$ have equal power sums through order $k$
+(including order zero), then, for fixed real $z$ and small $t$,
+\[
+ \sum_{a\in E}\frac{1}{1+taz}-\sum_{a\in F}\frac{1}{1+taz}
+ =(-tz)^{k+1}\left(\sum_{a\in E}a^{k+1}
+                 -\sum_{a\in F}a^{k+1}\right)+O(t^{k+2}).
+\]
+This follows by the finite geometric expansion with remainder of each
+reciprocal. On a finite cube the remainder is uniform when $z=L(x)$.
+If $L$ has positive slopes, shifting both multisets far enough makes all
+the slopes of the denominators positive, and sufficiently small $t>0$
+makes every denominator positive on the cube. However, this construction
+has a common linear statistic: its first nonzero term is a constant
+multiple of $L^{k+1}$. Its sign is constant away from zeros when $k+1$ is
+even, and the sign of one affine form when $k+1$ is odd. The cancellation
+identity therefore does not encode an arbitrary Boolean table. A claim
+that independent directions can be substituted while keeping all the
+needed cancellations would require a separate, presently absent theorem.
+
+\paragraph{Reciprocal linear spaces.}
+Kummer and Vinzant's
+\href{https://arxiv.org/abs/1610.04584}{The Chow form of a reciprocal linear space}
+gives definite determinantal representations and a real-fibered projection
+property for coordinatewise reciprocals of linear spaces. Bocci, Carlini,
+and Kileel's
+\href{https://web.ma.utexas.edu/users/jkileel/HadamardPublished.pdf}{Hadamard products of linear spaces}
+studies dimensions and degrees of Hadamard products, including reciprocal
+factors. These are relevant to the algebraic geometry of the head family,
+but the statements do not assert that a small sum meets every real orthant
+using denominators in the prescribed positive cone.
+For example, the one-head counterexample above already excludes such an
+inference from real-fiberedness alone.
+
+\paragraph{Permutation encoding.}
+Maass's
+\href{https://igi-web.tugraz.at/people/maass/psfiles/66a.pdf}{Neural Nets with Superlinear VC-Dimension}
+constructs Boolean-input networks of depth three that store logarithmically
+many program bits per weight. Its construction explicitly tests equality
+of a selected permutation value, extracts a bit, and combines the tests
+in a second hidden layer. This is a concrete encoding mechanism, but it
+does not give an affine-ratio implementation of the decoder in one layer.
+Neither its shattered set nor its architecture is the one required here.
+
+\section{A precise dual formulation, with its unresolved step exposed}
+
+Fix a sign table $f_x\in\{-1,1\}$ and a list of positive normalized
+denominators $B_h(x)=1+b_h\cdot x$. Define
+\[
+ v_x=f_x\left(1,\left(\frac{x_i}{B_h(x)}\right)_{h,i}\right)
+       \in\mathbb R^{1+nH}.
+\]
+Exactly one of the following holds:
+\begin{enumerate}
+\item Some $\theta$ satisfies $\theta\cdot v_x>0$ for every $x$.
+\item There are $\lambda_x\ge0$ with $\sum_x\lambda_x=1$ and
+      $\sum_x\lambda_xv_x=0$.
+\end{enumerate}
+Here is an elementary proof. The two assertions are incompatible by
+taking the weighted sum of the strict inequalities. If the origin is not
+in the convex hull of the finitely many $v_x$, choose its nearest point
+$q$ in that compact convex hull. Then $q\ne0$, and minimizing squared
+distance along the segment from $q$ to $v_x$ gives
+$q\cdot(v_x-q)\ge0$. Thus $\theta=q$ gives
+$\theta\cdot v_x\ge\|q\|^2>0$. If the origin is in the convex hull,
+its convex-combination coefficients give the second assertion.
+
+Writing $w_x=\lambda_x f_x$, the obstruction in the second assertion is
+\[
+ \sum_xw_x=0,\qquad
+ \sum_x\frac{w_xx_i}{1+b_h\cdot x}=0\quad\hbox{for every }h,i.
+\]
+On the open domain where all denominators are positive, put
+\[
+ \Phi_w(b)=\sum_xw_x\log(1+b\cdot x).
+\]
+The last equations say $\nabla\Phi_w(b_h)=0$ for every chosen head.
+This identifies the connection to critical points of logarithmic
+potentials exactly. To obtain the requested theorem one must choose
+$O(2^n/n^2)$ admissible points $b_h$, depending on $f$, for which there
+is no such signed measure $w$. No result establishing this assertion
+has been obtained. It is an equivalent feasibility problem, not a new
+proof or a lemma that can be assumed. This route is blocked unless a
+new construction excludes all these measures simultaneously.
+
+\section{Second-order splitting: a real mechanism with a definite limit}
+
+The next construction makes the quadratic scale appear in a precise way.
+It spans tables by curvature features, not by the scores of the original
+heads. These two assertions must not be conflated.
+
+\begin{proposition}[A quadratic curvature-feature spanning list]
+For every $n\ge1$ there are $H\le 16\cdot 2^n/n^2$ affine forms
+$B_h$ with strictly positive constant and variable coefficients such that
+\[
+ \operatorname{span}\left(\{1\}\cup
+ \{x_i/B_h^2:1\le i\le n,\ h\le H\}\cup
+ \{x_ix_j/B_h^2:1\le i<j\le n,\ h\le H\}\right)
+ =\mathbb R^{\Qn}.
+\]
+\end{proposition}
+\begin{proof}
+For $n=1$ one form $B=1+x_1$ suffices. Suppose $n\ge2$, and
+write $n=m+\ell$ with $m=\lfloor n/2\rfloor$ and $\ell=n-m$.
+In dimension $s\ge1$, the Hamming-code construction in the manuscript
+gives a radius-one covering set $C_s$ of size
+$2^{s-\lfloor\log_2(s+1)\rfloor}<2^{s+1}/(s+1)$.
+Hence $D=C_m\times C_\ell$ covers the cube by radius-two balls and
+\[
+ |D|<\frac{4\cdot2^n}{(m+1)(\ell+1)}
+       \le\frac{16\cdot2^n}{n^2}.
+\]
+For each factor $C_s$, the graph joining centers at distance at most
+three is connected: assign cube vertices centers at distance at most
+one, assign centers to themselves, and map cube paths to walks of assigned
+centers. Moving along one factor at a time therefore connects $D$ by
+steps of distance at most three. Radius-two balls about centers at
+distance at most three intersect. Thus their intersection graph is
+connected, without adding any centers.
+
+For $v\in D$, set $a_v=\mathbf1+v$. Consider multilinear polynomials
+$q$ and their first and mixed second derivatives at these points.
+If all these derivatives vanish, put $r(z)=q(\mathbf1+z)$.
+Multilinear Taylor expansion on at most two flipped coordinates shows
+that $r$ is constant on each radius-two ball about $v$. Connectivity
+and coverage imply that $r$ is constant on the cube. Cube evaluation
+is an isomorphism for multilinear polynomials, so $q$ is constant.
+Thus these derivative evaluations have rank $2^n-1$ on the nonconstant
+monomials.
+
+Set $B_{v,\varepsilon}(x)=1+\varepsilon a_v\cdot x$.
+For $i\in S$ the leading multilinear coefficient is
+\[
+ [x_S]\frac{x_i}{B_{v,\varepsilon}^2}
+ =(-\varepsilon)^{|S|-1}|S|!
+       \prod_{k\in S\setminus\{i\}}a_{v,k}
+   +O(\varepsilon^{|S|}),
+\]
+and it is zero if $i\notin S$. For $i<j$ with $\{i,j\}\subseteq S$,
+\[
+ [x_S]\frac{x_ix_j}{B_{v,\varepsilon}^2}
+ =(-\varepsilon)^{|S|-2}(|S|-1)!
+       \prod_{k\in S\setminus\{i,j\}}a_{v,k}
+   +O(\varepsilon^{|S|-1}).
+\]
+These follow from $(1+z)^{-2}=\sum_{k\ge0}(k+1)(-z)^k$
+and finite multilinear reduction. Multiply each second-degree column
+by $-\varepsilon$, and divide nonempty row $S$ by
+$(-\varepsilon)^{|S|-1}(|S|-1)!$.
+The limit matrix has columns corresponding to the functionals
+$\partial_i(Eq)(a_v)$ and $\partial_i\partial_jq(a_v)$, where
+$E=\sum_k a_k\partial_k$ is the Euler operator.
+Indeed $E a_S=|S|a_S$. Since $q$ is multilinear,
+\[
+ \partial_i(Eq)=\partial_iq+\sum_{j\ne i}a_j\partial_i\partial_jq.
+\]
+Its kernel therefore equals the kernel of the first and second derivative
+evaluations already considered. A nonzero minor persists for sufficiently
+small positive $\varepsilon$. All displayed features vanish at $x=0$,
+so the constant function completes the span. The denominators are
+admissible for every positive $\varepsilon$.
+\end{proof}
+
+\begin{proposition}[A necessary condition for a minimum at duplicated heads]
+Let $\mathcal L(S)$ be a differentiable real loss on the finite score
+vector $S\in\mathbb R^{\Qn}$, with gradient $g_x$.
+Suppose a parameter configuration contains, for each $h$, two heads
+with the same affine numerator $A_h$ and the same denominator $B_h$.
+Assume each $B_h$ has strictly positive slopes and is positive on the
+cube. If this configuration is a local minimum in the unrestricted
+parameter space of all $2H$ heads and the bias, then
+\[
+ \sum_x g_x=0,\qquad
+ \sum_x\frac{g_x U(x)V(x)}{B_h(x)^2}=0
+ \quad\text{for every pair of affine forms }U,V\text{ and every }h.
+\]
+For the spanning list of the preceding proposition this forces $g=0$.
+In particular, for squared hinge loss on strict labels $y_x\in\{-1,1\}$,
+every such local minimum satisfies $y_xS_x\ge1$ at all vertices.
+\end{proposition}
+\begin{proof}
+Bias variation gives the first identity. Fix $h,U,V$ and replace its
+duplicated heads by $(A_h+tU)/(B_h+tV)$ and
+$(A_h-tU)/(B_h-tV)$. For sufficiently small $|t|$, both denominator
+slopes remain strictly positive and both denominators remain positive
+on the finite cube. Their sum differs from $2A_h/B_h$ by
+\[
+ 2t^2\left(\frac{A_h V^2}{B_h^3}-\frac{UV}{B_h^2}\right)+O(t^4).
+\]
+Differentiability of $\mathcal L$ and local minimality imply
+\[
+ \sum_x g_x\left(\frac{A_h(x)V(x)^2}{B_h(x)^3}
+                    -\frac{U(x)V(x)}{B_h(x)^2}\right)\ge0.
+\]
+Replace $U$ by an arbitrary real multiple of itself, holding $V$ fixed.
+The coefficient of that multiple must vanish. Products of affine forms
+include the monomials $x_i$ and $x_ix_j$, and the bias supplies the
+constant feature. The spanning proposition therefore gives $g=0$.
+For squared hinge loss $\mathcal L(S)=\frac12\sum_x(1-y_xS_x)_+^2$,
+the derivative is $g_x=-y_x(1-y_xS_x)_+$, proving the last assertion.
+\end{proof}
+
+\paragraph{The exact gap.}
+There is no reason for a local minimum of the full $2H$-head problem
+to have paired denominators. A descent direction in the last proof
+splits the pairs and leaves that set of configurations. In fact, with
+the denominator list fixed and pairs identical, the scores form a
+linear space of dimension at most $1+nH$. When this is below $2^n$,
+some strict orthants are absent by the fixed-denominator theorem.
+For those labels no successful local minimum can lie at the specified
+duplicated configurations. Thus the propositions give a concrete
+curvature mechanism and a negative-curvature test, but do not prove
+that a feasible $O(2^n/n^2)$-head representation exists. Replacing this
+missing global step by an assertion about optimization convergence
+would be invalid.
+
+\section{A common scalar statistic cannot decode arbitrary labels cheaply}
+
+\begin{proposition}[Uniform alternation over all affine projection orders]
+For every $n\ge1$, there is a labeling $f:\Qn\to\{-1,1\}$ with the
+following property. If a strict sign representation of $f$ has the form
+\[
+ S(x)=c+\sum_{h=1}^H
+       \frac{\alpha_h+\beta_h L(x)}{\gamma_h+\delta_h L(x)},
+ \qquad L(x)=a_0+a\cdot x,
+\]
+and every denominator is positive on the cube, then
+\[
+ H\ge \frac{2^n-1}{2}-n\sqrt{2^n}.
+\]
+In particular, allowing $L$ and every coefficient to depend on $f$
+does not make this scalar decoding mechanism sufficient for the target.
+The assertion does not restrict representations whose numerators depend
+on coordinates independently of $L$.
+\end{proposition}
+\begin{proof}
+Write $N=2^n$. The strict orders of the numbers $a\cdot x$, as $a$
+varies and the projections remain distinct, are constant on the chambers
+of the hyperplanes $a\cdot(x-y)=0$ for distinct cube vertices $x,y$.
+There are at most $M=(3^n-1)/2$ distinct such hyperplanes, since
+$x-y\in\{-1,0,1\}^n\setminus\{0\}$ and opposite differences give
+the same hyperplane. An arrangement of $M$ hyperplanes in $\mathbb R^n$
+has at most $\sum_{j=0}^n\binom Mj\le(M+1)^n\le3^{n^2}$ chambers.
+The first inequality follows by induction, adding one hyperplane at a
+time and counting regions of the induced arrangement on it. For the
+second, use $\binom Mj\le M^j$ and compare with the expansion of
+$(M+1)^n$.
+
+Choose all $f(x)$ independently and uniformly. Along any fixed order,
+the $N-1$ indicators of consecutive sign changes are independent fair
+bits: the initial sign and those indicators determine the full sequence
+bijectively. If $X$ is their sum, then for $t>0$,
+\[
+ \Pr\{X\le(N-1)/2-t\}\le
+             \exp\left(-\frac{2t^2}{N-1}\right).
+\]
+For completeness, apply Markov's inequality to
+$\exp(-s(X-(N-1)/2))$, use
+$\cosh(s/2)^{N-1}\le\exp((N-1)s^2/8)$, and minimize at
+$s=4t/(N-1)$. With $t=n\sqrt N$, the union bound over all orders
+is at most
+\[
+ \exp\left(n^2\log3-\frac{2n^2N}{N-1}\right)<1.
+\]
+Thus there is a labeling having more than $(N-1)/2-n\sqrt N$
+changes along every strict affine projection order.
+
+For a representation through $L$, labels must be constant on each
+fiber of $L$. A sufficiently small generic perturbation of $a$ refines
+the order of its fibers without interleaving distinct fibers, so the
+number of changes between fibers has the same lower bound.
+Each affine denominator is positive throughout the interval from the
+smallest to the largest value of $L$, since it is positive at both
+endpoints. Clearing their product gives a univariate numerator of
+degree at most $H$. It is nonzero, and every sign change between
+consecutive fibers requires a distinct real zero in the intervening
+open interval. Its number of zeros is at most $H$, proving the bound.
+The case $H=0$ is a constant score and is immediate.
+\end{proof}
+
+\section{Using separate numerator and denominator degrees}
+
+The following consequence uses Theorems 12 and 13 of Basu and Rizzie,
+\emph{Multi-degree bounds on the Betti numbers of real varieties and
+semi-algebraic sets and applications}, Discrete Comput. Geom. 59
+(2018), 553--620; the audited version is
+\url{https://arxiv.org/pdf/1507.03958v7}, page 11.
+It strengthens a lower bound and does not establish the upper-bound target.
+
+\begin{lemma}[Two-block sign count]
+Let $P_1,\ldots,P_s$ be real polynomials in two blocks of $k_1,k_2$
+variables, with block degrees at most $d_1,d_2$, where $k_i\ge1$,
+$d_i\ge2$, and $k=k_1+k_2\le s$. The number of realized strict sign
+vectors is at most
+\[
+ \left(\frac{32768s}{k}\right)^k d_1^{k_1}d_2^{k_2}.
+\]
+\end{lemma}
+\begin{proof}
+The cited theorems bound the number by
+$\sum_{j=1}^k\binom sj4^jG_{\min}(d,k,j)$.
+Their explicit formula gives, with two blocks,
+\[
+ G_{\min}(d,k,j)\le \tfrac12G_{\rm gen}(2d,k,1)
+ \le 1+4(k+1)^2 54^k d_1^{k_1}d_2^{k_2}
+ \le 1728^k d_1^{k_1}d_2^{k_2}.
+\]
+Here the reciprocal multinomial coefficient in $G_{\rm gen}$ is at
+most one, and $4(k+1)^2\le16^k$ for $k\ge2$.
+For $t=k/s\le1$,
+\[
+ \sum_{j=0}^k\binom sj\le t^{-k}(1+t)^s\le(es/k)^k.
+\]
+Now $4e\cdot1728<32768$. Each nonempty strict sign realization has
+at least one connected component, so the bound on the sum of zeroth
+Betti numbers bounds the number of sign vectors. No genericity of
+coefficients is required.
+\end{proof}
+
+\begin{proposition}[Sharper asymptotic counting lower bound]
+For the manuscript's exact model,
+\[
+ \liminf_{n\to\infty}\frac{n^2W(n)}{2^n}\ge1.
+\]
+More precisely, for $H\ge2$, $N=2^n$, and $k=1+2nH\le N$, the number
+$M(n,H)$ of Boolean functions representable with at most $H$ heads obeys
+\[
+ M(n,H)\le \left(\frac{65536N}{k}\right)^k H^{nH}.
+\]
+\end{proposition}
+\begin{proof}
+Use the normalized chart from the first lemma, and put
+$B_h(x)=1+b_h\cdot x$. Multiplication by the positive product of all
+$B_h(x)$ preserves every sign on the cube. The resulting polynomial is
+\[
+ P_x=c\prod_{h=1}^H B_h(x)+
+       \sum_{h=1}^H(u_h\cdot x)\prod_{\ell\ne h}B_\ell(x).
+\]
+Its degree in the $nH$ denominator parameters is at most $H$, and its
+degree in the $1+nH$ numerator and bias parameters is at most one.
+Apply the two-block lemma with $(d_1,d_2)=(H,2)$, and absorb
+$2^{1+nH}\le2^k$ into the constant. Enlarging the parameter domain
+from admissible denominators to all real parameters can only increase
+the count. A representation with fewer heads can be padded by heads
+with zero numerator and denominator one.
+
+For fixed $0<\alpha<1$, take $H=\lfloor\alpha N/n^2\rfloor$.
+For all sufficiently large $n$ the preceding hypotheses hold, and
+\[
+ \log_2 M(n,H)
+ \le nH\log_2 H+k\log_2(N/k)+16k
+ \le (\alpha+o(1))N<N.
+\]
+Indeed $nH\log_2H=(\alpha+o(1))N$, whereas
+$k\log_2(N/k)=O(N\log n/n)=o(N)$ and $k=o(N)$.
+Hence some Boolean function requires more than $H$ heads. Since this
+holds for every fixed $\alpha<1$, the asserted lower limit follows.
+\end{proof}
+
+\begin{proposition}[Common denominators' statistic, with arbitrary numerators]
+For every fixed $C>0$, representations using at most $C2^n/n^2$ heads
+and denominators of the form
+$B_h(x)=\gamma_h+\delta_hL(x)$ for a single target-dependent affine
+form $L$ realize only $2^{o(2^n)}$ Boolean functions as $n\to\infty$.
+This remains true with unrestricted affine numerators.
+Consequently this mechanism cannot prove the requested universal bound.
+\end{proposition}
+\begin{proof}
+Absorb the constant of $L$ into each $\gamma_h$, so $L(x)=a\cdot x$.
+After clearing the positive denominators, every score has the sign of
+\[
+ P_0(a\cdot x)+\sum_{i=1}^n x_iP_i(a\cdot x),
+ \qquad \deg P_i\le H.
+\]
+Allowing the coefficients of all $P_i$ to vary independently enlarges
+the family. Its two parameter blocks have sizes $n$ and
+$d=(n+1)(H+1)$, with respective degrees at most $H$ and one.
+For $H\ge2$ and $k=n+d\le N$, the two-block lemma bounds its number
+of sign vectors by
+\[
+ \left(\frac{65536N}{k}\right)^k H^n.
+\]
+If $H=\lfloor CN/n^2\rfloor$, then $k=(C+o(1))N/n$ and
+\[
+ k\log_2(65536N/k)+n\log_2H
+ =O_C(N\log n/n)+O(n^2)=o(N).
+\]
+Padding with constant denominators covers smaller head counts.
+The estimate is uniform in every target-dependent choice of $L$.
+\end{proof}
+
+\section{An exact lift of a dominant-power construction}
+
+\begin{lemma}[Dominant-power lift]
+For $h\in\{1,\ldots,H\}$ and $i\in\{0,\ldots,n\}$, choose integers
+$a_{h,i},b_{h,i}$ and signs $\sigma_{h,i}\in\{-1,1\}$.
+Also choose integer bias exponents $p_+,p_-$. For a cube vertex $x$,
+put $I(x)=\{0\}\cup\{i:x_i=1\}$ and
+\[
+ d_h(x)=\max_{i\in I(x)} b_{h,i},\qquad
+ E_\pm(x)=\max\left(\{p_\pm\}\cup
+ \{a_{h,i}-d_h(x):i\in I(x),\ \sigma_{h,i}=\pm1\}\right).
+\]
+Suppose a target labeling $f:\Qn\to\{-1,1\}$ satisfies
+$f(x)(E_+(x)-E_-(x))\ge1$ for every $x$.
+For every integer $T>(n+1)(H(n+1)+1)$, the following admissible
+$H$-head score strictly represents $f$:
+\[
+ S_T(x)=T^{p_+}-T^{p_-}+\sum_{h=1}^H
+ \frac{\sigma_{h,0}T^{a_{h,0}}+
+          \sum_{i=1}^n\sigma_{h,i}T^{a_{h,i}}x_i}
+      {T^{b_{h,0}}+\sum_{i=1}^nT^{b_{h,i}}x_i}.
+\]
+\end{lemma}
+\begin{proof}
+All denominator coefficients are strictly positive. At $x$, the
+$h$th denominator lies between $T^{d_h(x)}$ and
+$(n+1)T^{d_h(x)}$. Separate the score into its positive and negative
+summands, including the two bias terms. Suppose $f(x)=1$ and write
+$E=E_+(x)$. One positive summand is at least $T^E/(n+1)$.
+Every negative summand is at most $T^{E_-(x)}\le T^{E-1}$,
+and there are at most $H(n+1)+1$ such summands. Consequently
+\[
+ S_T(x)\ge \frac{T^E}{n+1}-(H(n+1)+1)T^{E-1}>0.
+\]
+The same reasoning with signs reversed proves the negative-label case.
+This proof allows repeated exponents and arbitrary cancellation among
+summands of the same magnitude below the winning level.
+\end{proof}
+
+The script \texttt{search\_tropical\_scores.py} searches the hypotheses
+using linear inequalities, Boolean sign choices, and maxima encoded by
+if-then-else expressions. Rational exponent solutions are multiplied by
+a common positive integer to obtain the integral hypotheses above.
+Every emitted ordinary rational score is checked exactly at every cube
+vertex. A failure or an unsatisfiability result concerns only this
+restricted ansatz. No universal bound on its required number of heads
+has been proved.
+
+The inequalities bounding sums of powers, individual fractional terms,
+and the winning contribution are kernel checked in
+\texttt{formalization/HeadComplexity/Results/DominantPowerLift.lean}.
+The declarations are \texttt{sum\_zpow\_bounds},
+\texttt{zpow\_div\_bounds}, \texttt{zpow\_winner\_dominates\_sum}, and
+\texttt{positive\_of\_dominant\_power}. These are the lifting inequalities,
+not a formalized existence theorem for exponent assignments.
+
+\begin{lemma}[One-head affine parameter paths have no bit decoder]
+Fix the bias and all heads except one. Allow the numerator and the
+denominator of that head to depend affinely on a real scalar $t$,
+and restrict $t$ to an interval on which its denominator is positive
+at every cube vertex. At any fixed vertex, the score has at most one
+sign change as a function of $t$. On $m$ fixed vertices, the number of
+strict sign vectors seen along this interval is at most $m+1$.
+\end{lemma}
+\begin{proof}
+At a fixed vertex the score is
+$r+(a+tu)/(b+tv)$ with $b+tv>0$. Its sign is that of the affine
+polynomial $rb+a+t(rv+u)$. Each nonconstant polynomial has one root;
+a constant nonzero polynomial has none. If any polynomial vanishes
+identically, no strict sign vector on all $m$ vertices is realized.
+Otherwise the at most $m$ distinct roots partition the interval into
+at most $m+1$ intervals of constant strict sign vector.
+\end{proof}
+
+\section{A denominator-direction rank obstruction}
+
+\begin{proposition}[Rank-sensitive sign count]
+In the normalized chart, suppose the $n\times H$ matrix of denominator
+slopes has rank at most $r$, where $1\le r\le n$ and $H\ge2$.
+Put $q=nr+rH$, $k=q+1+nH$, and $N=2^n$. If $k\le N$, the number
+$M_r(n,H)$ of strict sign vectors in this family satisfies
+\[
+ M_r(n,H)\le \left(\frac{65536N}{k}\right)^k(2H)^q.
+\]
+In particular, for fixed $C>0$, $H=\lfloor CN/n^2\rfloor$, and any
+sequence $1\le r=r_n\le n$,
+\[
+ \log_2 M_r(n,H)\le\left(C\frac r n+o(1)\right)N.
+\]
+The error tends to zero uniformly over $1\le r\le n$.
+Thus $r=o(n)$ gives only $2^{o(N)}$ functions. More generally, for any
+fixed $\epsilon>0$, the fraction of all Boolean functions having such
+representations with $r\le(1-\epsilon)n/C$ tends to zero exponentially
+in $N$.
+\end{proposition}
+\begin{proof}
+Factor the slope matrix as $UV$, where $U$ is $n\times r$ and $V$ is
+$r\times H$. Every matrix of rank at most $r$ admits such a real
+factorization; no positivity condition on these factors is imposed.
+Thus
+\[
+ B_h(x)=1+\sum_{i=1}^n\sum_{j=1}^r U_{ij}V_{jh}x_i.
+\]
+After clearing denominators, $P_x$ from the earlier counting proof has
+degree at most $2H$ in the $q$ entries of $U,V$ together, and degree
+at most one in the $1+nH$ numerator and bias parameters. The two-block
+lemma gives the displayed bound, again enlarging the domain to all
+real parameters after using positivity to preserve signs.
+
+Uniformly for $r\le n$, one has $k=O_C(N/n)+O(n^2)$ and hence
+$k\log_2(65536N/k)=o(N)$. Also
+\[
+ q\log_2(2H)
+ =(rH+nr)(n-2\log_2n+O_C(1))
+ =\left(C\frac r n+o(1)\right)N.
+\]
+The terms involving $nr$ are $O(n^3)=o(N)$, and the other error
+terms are $O_C(N\log n/n)=o(N)$. Subtracting $N$ from the logarithm
+of the count proves the assertion about the fraction of all functions.
+\end{proof}
+
+This is a constraint on a universal construction, not a claim that
+every individual Boolean function needs many denominator directions.
+It leaves the full-rank, target-dependent case open.
+
+\begin{proposition}[Adaptive moment-curve nodes still have insufficient sign capacity]
+Consider scores with arbitrary affine numerators and target-dependent positive
+nodes $t_1,\ldots,t_H$, with denominators
+\[
+ B_h(x)=1+\sum_{i=1}^n t_h^i x_i.
+\]
+For every fixed $C>0$, the family with at most $C2^n/n^2$ heads realizes
+only $2^{o(2^n)}$ Boolean functions as $n\to\infty$.
+\end{proposition}
+\begin{proof}
+Normalize the numerators as before. Clearing the positive denominators
+gives degree at most $nH$ in the $H$ nodes and degree at most one in
+the $1+nH$ numerator and bias parameters. For $H\ge2$ and
+$k=1+(n+1)H\le N=2^n$, the two-block sign-count lemma therefore gives
+\[
+ M_{\mathrm{node}}(n,H)
+ \le\left(\frac{65536N}{k}\right)^k(nH)^H.
+\]
+At $H=\lfloor CN/n^2\rfloor$, its base-two logarithm is
+$O_C(N\log n/n)+O_C(N/n)=o(N)$. Padding by zero numerators covers
+all smaller head counts. Every positive node produces an admissible
+denominator, but allowing every real node when applying the count
+only enlarges the family.
+\end{proof}
+
+Thus the manuscript's integer-node determinant construction cannot
+reach the requested head budget merely by making its nodes depend on
+the target. This obstruction allows continuous adaptive nodes and
+arbitrary real numerator coefficients; it does not rely on a finite
+precision or bounded-node assumption.
+
+\section{Conditioning and margin required by a universal construction}
+
+\begin{proposition}[A quantitative restriction on compressed representations]
+Let $K,R\ge1$ and $H\ge2$, and put
+\[
+ D=\lceil K\log(2KR)\rceil+1,\qquad
+ k=1+(2n+1)H,\qquad N=2^n.
+\]
+Consider strict representations on the cube, written in coordinates
+$z_i=2x_i-1$ and scaled per head as
+\[
+ S(z)=c+\sum_{h=1}^H\frac{a_{h,0}+\sum_i a_{h,i}z_i}
+                                  {1+\sum_i b_{h,i}z_i}.
+\]
+Assume that each denominator's maximum divided by its minimum on the
+cube is at most $K$. Put
+\[
+ M=\sum_{h=1}^H\sum_{i=0}^n|a_{h,i}|,\qquad
+ \gamma=\min_z f(z)S(z)>0,
+\]
+and assume $M/\gamma\le R$. If $k\le N$, the number of Boolean
+functions having such representations is at most
+\[
+ \left(\frac{65536N}{k}\right)^k D^{nH}.
+\]
+In particular, if $H=\lfloor C2^n/n^2\rfloor$ for fixed $C>0$ and
+$\log_2(K\log(2KR))=o(n)$, this is $2^{o(2^n)}$.
+No bound on $K$ or $R$ is imposed by the manuscript's model, so this
+proposition does not rule out the requested universal construction.
+\end{proposition}
+\begin{proof}
+Every positive affine denominator can be divided by its value at the
+center of the cube to obtain the displayed form. If
+$\rho_h=\sum_i|b_{h,i}|$, its extrema are $1-\rho_h$ and
+$1+\rho_h$. Hence
+\[
+ 0\le\rho_h\le\rho:=\frac{K-1}{K+1}<1.
+\]
+Replace each reciprocal by its first $D$ geometric-series terms,
+obtaining
+\[
+ T_D(z)=c+\sum_{h=1}^H
+       \left(a_{h,0}+\sum_i a_{h,i}z_i\right)
+       \sum_{j=0}^{D-1}\left(-\sum_i b_{h,i}z_i\right)^j.
+\]
+The geometric-series remainder gives
+$\max_z|S(z)-T_D(z)|\le M\rho^D/(1-\rho)$.
+When $K=1$, the replacement is exact. When $K>1$, one has
+$-\log\rho=\log((K+1)/(K-1))\ge2/K$ and $1-\rho\ge1/K$.
+Therefore
+\[
+ \frac{\rho^D}{1-\rho}
+ \le K\exp(-2D/K)
+ <\frac{1}{4KR^2}<\frac1R.
+\]
+Thus the error is less than $\gamma$, unless $M=0$, in which case
+it is zero. In both cases $T_D$ strictly represents the same function.
+
+As a polynomial in parameters, $T_D(z)$ has degree at most $D-1$ in
+the $nH$ denominator parameters, and degree one in the
+$1+(n+1)H$ numerator and bias parameters. The two-block lemma with
+degrees $(D,2)$ gives the stated count, since $D\ge2$.
+At the proposed head count, $k=O_C(N/n)$, so
+$k\log_2(65536N/k)=o(N)$. The remaining term is
+$nH\log_2D=o(N)$ under the stated assumption.
+\end{proof}
+
+\section{Piecewise-linear loss and nonattainment}
+
+\begin{proposition}[Smooth hinge minima impose quadratic equations]
+For a finite input set $E$, fix labels $f_x\in\{-1,1\}$ and consider
+\[
+ S(x)=c+\sum_{h=1}^H A_h(x)/B_h(x),\qquad
+ L=\sum_{x\in E}\max(0,1-f_xS(x)).
+\]
+Suppose the coefficients are at an interior local minimum of $L$, all
+$B_h$ are positive on $E$, and no margin $f_xS(x)$ equals one.
+Put $w_x=-f_x$ when $f_xS(x)<1$ and $w_x=0$ otherwise.
+For every head $h$ and every pair of affine forms $U,V$,
+\[
+ \sum_{x\in E}w_x=0,\qquad
+ \sum_{x\in E} w_x\frac{U(x)V(x)}{B_h(x)^2}=0.
+\]
+Consequently, if the constant and these quadratic-over-square features
+span $\mathbb R^E$, this local minimum has zero loss.
+\end{proposition}
+\begin{proof}
+In a neighbourhood of the given parameters, every hinge keeps the same
+active status. Thus the loss is an affine function of the score table
+there, with gradient $w$. Variation of $c$ gives the first equality.
+For one head vary $A_h$ to $A_h+sU$ and $B_h$ to $B_h+tV$.
+The second derivative of the loss in the $s$ direction is zero, and
+its mixed derivative is
+\[
+ -\sum_{x\in E}w_x U(x)V(x)/B_h(x)^2.
+\]
+The Hessian at an interior smooth local minimum is positive semidefinite.
+A positive semidefinite two-by-two matrix whose first diagonal entry
+is zero has zero off-diagonal entry: otherwise its quadratic form
+at $(s,1)$ has both signs as $s$ varies. This proves the second
+equality. The spanning assumption then gives $w=0$, so no hinge is
+active and the loss is zero.
+\end{proof}
+
+This differs from the paired-head calculation: no duplicated head is
+needed, because the loss is locally affine in the score. It nevertheless
+does not establish the target. Hinge minima may occur at margins equal
+to one, and the parameter domain is noncompact. The next exact example
+shows that nonattainment cannot be omitted from such an argument.
+
+\begin{proposition}[Positive unattained hinge infimum in the exact model]
+On $\{0,1\}^2$, give $00,11$ label $+1$ and $10,01$ label $-1$.
+The infimum of the unnormalized hinge loss over admissible one-head
+scores is $2$, and no such score attains it.
+For a fixed positive affine denominator $B$, its minimum over all
+affine numerators and biases is exactly
+\[
+ \frac{\sum_x B(x)}{\max_x B(x)}.
+\]
+\end{proposition}
+\begin{proof}
+Absorb the bias into the affine numerator, so $S=A/B$.
+The affine identity on the square gives
+\[
+ 0=A(00)+A(11)-A(10)-A(01)=\sum_x f_x A(x).
+\]
+Writing $m_x=f_xA(x)/B(x)$ and $M=\max_xB(x)$, one obtains
+\[
+ \sum_x B(x)
+ =\sum_xB(x)(1-m_x)
+ \le\sum_xB(x)\max(0,1-m_x)
+ \le M L.
+\]
+Choose a vertex $v$ with $B(v)=M$. Set $m_x=1$ for $x\ne v$ and
+$m_v=-\sum_{x\ne v}B(x)/B(v)$. The values $A(x)=f_xB(x)m_x$
+satisfy the affine identity, which is the only linear condition for
+four values on a square to be affine. They therefore define an
+affine numerator, and their loss equals $\sum_xB(x)/M$.
+
+For any positive affine form on a square,
+$\sum_xB(x)=2(\min_xB(x)+\max_xB(x))$. Hence the displayed minimum
+is strictly greater than $2$. The admissible denominators
+$B_t(x)=1+t(x_1+x_2)$ for $t>0$ have minimum loss
+$2+2/(1+2t)$, tending to $2$. This proves both the infimum and its
+nonattainment, including constant and negative-slope admissible
+denominators.
+\end{proof}
+
+\begin{proposition}[A denominator penalty does not remove hinge kinks]
+For two-bit parity with positive labels at $00,11$, write
+$S=A/B$ with $A$ affine and $B=1+px_1+qx_2$, where $p,q>0$.
+Let $L$ be the unnormalized hinge loss. Then
+\[
+ \min_{A,\ p,q>0}\left(L+\frac{p^2+q^2}{2}\right)=\frac{13}{4}.
+\]
+The minimum is attained at $p=q=1/2$ and
+$A=1-(5/2)(x_1+x_2)$. Three margins equal one and the fourth
+equals minus two. In particular, an attained interior denominator
+minimum need not be a smooth hinge minimum or have zero hinge loss.
+\end{proposition}
+\begin{proof}
+Put $s=p+q$. The preceding fixed-denominator formula gives
+\[
+ \min_A L=2+\frac{2}{1+s}.
+\]
+Direct factorization yields
+\[
+ 2+\frac{2}{1+p+q}+\frac{p^2+q^2}{2}-\frac{13}{4}
+ =\frac{(p+q-1)^2(p+q+3)+(p-q)^2(1+p+q)}{4(1+p+q)}
+ \geq0.
+\]
+Equality requires $p=q=1/2$, and the displayed numerator attains
+the fixed-denominator loss there. The four margins are
+$(1,1,1,-2)$, giving hinge loss three and penalty one quarter.
+\end{proof}
+
+For a twice differentiable penalty depending only on denominators,
+the smooth-minimum mixed-derivative calculation above remains valid:
+under $A_h\mapsto A_h+sU$ and $B_h\mapsto B_h+tV$, both
+$\partial_s^2 R$ and $\partial_s\partial_t R$ vanish. The new
+example shows why preserving that calculation and ensuring attainment
+do not supply its missing no-kink hypothesis. No conclusion about the
+full asymptotic head bound follows from this two-bit counterexample.
+
+\section{A positive-denominator permutation decoder}
+
+The following construction supplies an explicit selection mechanism, but
+only on a promised one-hot domain. It does not establish a universal
+bound on the full cube.
+
+\begin{proposition}[Cauchy bump decoding]
+Let $m,d,\ell$ be positive integers, let $\pi_q$ be a permutation of
+$\{0,\ldots,m-1\}$ for every $q\in\{1,\ldots,d\}$, and fix signs
+$\sigma_{h,j}\in\{-1,1\}$ for $0\le h<m$ and $1\le j\le\ell$.
+There is a score using $2m$ admissible heads on $m+d+\ell$ Boolean
+variables $(y,x,z)$ such that
+\[
+ \operatorname{sgn} S(e_p,e_q,e_j)
+   =\sigma_{\pi_q^{-1}(p),j}.
+\]
+All its denominators have strictly positive variable coefficients.
+One explicit choice has margin at least $13/(279\cdot32^p)$ at each
+of these promised inputs.
+\end{proposition}
+\begin{proof}
+Set $R=32$, $\delta=1/16$, $\varepsilon=1/32$, and define affine forms
+\[
+ P(y)=\sum_{p=0}^{m-1} R^p y_p,\qquad
+ B_h(x)=\sum_{q=1}^d R^{\pi_q(h)}x_q,\qquad
+ J_h(z)=\sum_{j=1}^{\ell}\sigma_{h,j}z_j,
+\]
+\[
+ D_h=P+B_h+\delta\left(1+\sum_p y_p+\sum_q x_q+\sum_jz_j\right).
+\]
+Use the $2m$-head score
+\[
+ S=\sum_{h=0}^{m-1}\left(
+       \frac{B_h/\varepsilon}{D_h}
+       -\frac{B_h/\varepsilon}{D_h+\varepsilon J_h}\right).
+\]
+Both denominators have positive constant term $\delta$. Their $y$ and
+$x$ coefficients are positive, and their $z$ coefficients are either
+$\delta$ or $\delta+\varepsilon\sigma_{h,j}\ge1/32$. Thus they are
+admissible on the entire Boolean cube, not only on the promised domain.
+The numerators are affine.
+
+Fix $(y,x,z)=(e_p,e_q,e_j)$ and write $P=R^p$.
+The summand belonging to $h$ is exactly
+\[
+ \frac{R^{\pi_q(h)}\sigma_{h,j}}
+ {(P+R^{\pi_q(h)}+4\delta)
+  (P+R^{\pi_q(h)}+4\delta+\varepsilon\sigma_{h,j})}.
+\]
+There is a unique $h_0=\pi_q^{-1}(p)$ with $R^{\pi_q(h_0)}=P$.
+Since $P\ge1$, both factors in its denominator are less than $3P$.
+Its absolute value is therefore greater than $1/(9P)$, and its sign
+is $\sigma_{h_0,j}$.
+
+For every other $h$, both denominator factors are greater than
+$P+R^{\pi_q(h)}$, because $4\delta-\varepsilon>0$.
+As $\pi_q$ is a permutation, the sum of all competing absolute values
+is less than
+\[
+ \sum_{s<p}\frac{R^s}{P^2}+\sum_{s>p}R^{-s}
+ <\frac{2}{P(R-1)}=\frac{2}{31P}.
+\]
+Here an empty sum is zero; each nonempty finite sum is bounded by its
+corresponding geometric series. Consequently the signed margin is
+greater than
+\[
+ \frac1P\left(\frac19-\frac2{31}\right)=\frac{13}{279P}>0.
+\]
+\end{proof}
+
+\paragraph{Compatibility audit.}
+For $m=2^{\ell}$ one may take the rows $\sigma_{h,\cdot}$ to encode
+all $\ell$-bit strings. This decodes a separately programmable
+permutation for every one-hot selector $q$. An arbitrary map from
+addresses to bit strings need not be a permutation. The four-permutation
+decomposition in Maass, \emph{Neural Nets with Superlinear VC-Dimension}
+(1994), uses bitwise exclusive OR, followed by additional threshold
+processing. Exclusive OR of two decoded signs is not obtained by a
+linear readout. Multiplying two sums of fractions also produces products
+of denominators and numerators, which are not themselves affine.
+Partial fraction decomposition in the common address scalar does not
+remove this problem: its coefficients can depend jointly on $q$ and
+$j$, whereas an affine numerator restricted to $(e_q,e_j)$ has only
+the form $a_q+c_j+c_0$.
+
+The address values $R^p$ are affine in one-hot $y$. Replacing $y$ by
+the binary digits of $p$ does not preserve that fact. Thus neither an
+arbitrary-table compiler nor an extension to all Boolean cube vertices
+has been proved. The present proposition is a mechanism test, not a
+claimed proof of the target.
+
+\begin{proposition}[Column-bias assignment obstruction]
+Fix a real $m$-by-$m$ matrix $K$. Suppose real numbers $\theta_h$
+make the unique minimum of $K_{p,h}+\theta_h$ in each row $p$ occur
+at column $\pi(p)$, where $\pi$ is a permutation. Then $\pi$ is the
+unique minimum-cost permutation of $K$. In particular, varying only
+the column biases cannot strictly select two different permutations.
+\end{proposition}
+\begin{proof}
+For a different permutation $\tau$, every row satisfies
+$K_{p,\pi(p)}+\theta_{\pi(p)}\le
+K_{p,\tau(p)}+\theta_{\tau(p)}$, and at least one inequality is strict.
+Sum the inequalities. Both bias sums equal $\sum_h\theta_h$, so they
+cancel and leave
+$\sum_pK_{p,\pi(p)}<\sum_pK_{p,\tau(p)}$.
+Two different permutations cannot both be the unique minimizer of the
+same cost matrix.
+\end{proof}
+
+\begin{proposition}[A repeated-code obstruction for four Cauchy poles]
+Let $0<p_1<p_2<p_3$, let $b_0,b_1,b_2,b_3>0$, and let
+$a_0,a_1,a_2,a_3$ be arbitrary real numbers. Set
+\[
+ K_h(p)=\frac{a_hb_h}{(p+b_h)^2},\qquad
+ F_1=-K_0+K_1-K_2+K_3,\qquad
+ F_2=-K_0-K_1+K_2+K_3.
+\]
+It is impossible for both $F_1$ and $F_2$ to have strict signs
+$+,-,+$ at $p_1,p_2,p_3$.
+\end{proposition}
+\begin{proof}
+Their sum is $2(K_3-K_0)$ and would have those same three strict
+signs. For any $b,c>0$ and real $u,v$, the function
+$g(p)=u/(p+b)^2+v/(p+c)^2$ is either identically zero or has at most
+one zero on $p>0$. If one coefficient is zero or both nonzero
+coefficients have the same sign, the assertion is immediate. Otherwise
+the equation $g(p)=0$ is equivalent to
+\[
+ \frac{p+c}{p+b}=\sqrt{-v/u},
+\]
+since both sides of the ratio are positive. If $b\ne c$ the left side
+is strictly monotone, because its derivative is $(b-c)/(p+b)^2$.
+If $b=c$, the original function is a single constant multiple of
+$(p+b)^{-2}$. The intermediate value theorem would give two distinct
+zeros between the three asserted signs, a contradiction.
+\end{proof}
+
+This excludes arbitrary-table universality for the four-pole,
+two-bit codebook mechanism, even with arbitrary signed amplitudes.
+It does not exclude a different codebook, more poles, or the full
+attention model. A numerical failure on a permutation table is not
+covered by this particular obstruction.
+
+\begin{proposition}[A permutation obstruction at four consecutive addresses]
+The same four-pole codebook cannot have the successive strict output
+sign pairs $(+,+),(-,-),(-,+),(+,-)$ at addresses $1,2,3,4$.
+\end{proposition}
+\begin{proof}
+We first quantify the variation of two kernels. If
+$g(p)=u/(p+b)^2+v/(p+c)^2$, with $b,c>0$, is nonzero and has a
+positive zero $r$, then $b\ne c$, $u\ne0$, and
+$v=-u(r+c)^2/(r+b)^2$. Factoring the resulting numerator gives
+\[
+ g(p)=\frac{u(b-c)}{(r+b)^2}(p-r)L_r(p),\qquad
+ L_r(p)=\frac{r+b}{(p+b)^2(p+c)}+
+        \frac{r+c}{(p+b)(p+c)^2}.
+\]
+For $0<p<q$, each term of $L_r$ is a positive constant divided by
+three positive shifted factors. Every shifted-factor ratio satisfies
+$p/q<(p+d)/(q+d)<1$ when $d>0$. Therefore
+\[
+ (p/q)^3< L_r(q)/L_r(p)<1.
+\]
+
+Suppose the asserted output signs hold. Put $U=F_1+F_2$ and
+$V=F_1-F_2$. The function $U=2(K_3-K_0)$ has a unique positive
+zero $\alpha\in(1,2)$ and $V=2(K_1-K_2)$ has a unique positive
+zero $\beta\in(3,4)$, by continuity and the preceding proposition's
+two-kernel zero argument. In particular, $U,V$ are both negative
+at $2$ and $3$. The signs of $F_1,F_2$ imply
+\[
+ |U(2)|>|V(2)|,\qquad |V(3)|>|U(3)|.
+\]
+On the other hand, the factorizations and the ratio bound give
+\[
+ \frac{|U(3)|}{|U(2)|}
+ =\frac{3-\alpha}{2-\alpha}
+   \frac{L_\alpha(3)}{L_\alpha(2)}
+ >2(2/3)^3=\frac{16}{27},
+ \qquad
+ \frac{|V(3)|}{|V(2)|}
+ =\frac{\beta-3}{\beta-2}
+   \frac{L_\beta(3)}{L_\beta(2)}<\frac12.
+\]
+The two occurrences of $L$ may have different pole pairs; the uniform
+ratio bounds apply to both. Since $16/27>1/2$ and
+$|U(2)|>|V(2)|$, these inequalities imply
+$|U(3)|>|V(3)|$, a contradiction.
+\end{proof}
+
+The obstructed sign pairs are a permutation of the complete two-bit
+codebook. Thus the one-hot decoder cannot be converted to the tested
+binary-address decoder merely by replacing geometric address values
+by consecutive integers. This obstruction allows arbitrary real
+amplitudes and arbitrary positive poles, not just a bounded numerical
+search range.
+
+\section{Real cancellation versus roots of unity}
+
+\begin{proposition}[Second-order cancellation of real linear factors]
+Let $\ell_1,\ldots,\ell_m$ be real linear forms on $\mathbb R^d$.
+If the coefficients of $t$ and $t^2$ in
+$\prod_{h=1}^m(1+t\ell_h)$ both vanish identically, then every
+$\ell_h$ is zero.
+\end{proposition}
+\begin{proof}
+The two hypotheses say $\sum_h\ell_h=0$ and
+$\sum_{h<k}\ell_h\ell_k=0$. The polynomial identity
+\[
+ \left(\sum_h\ell_h\right)^2
+ =\sum_h\ell_h^2+2\sum_{h<k}\ell_h\ell_k
+\]
+therefore gives $\sum_h\ell_h(x)^2=0$ for every real $x$.
+Every summand is nonnegative, so each $\ell_h(x)=0$ for every $x$.
+\end{proof}
+
+The proposition concerns cancellation as real polynomials, not merely
+identities after restriction to the Boolean cube. It explains one
+specific obstruction to importing roots-of-unity product constructions
+over $\mathbb C$. It makes no assertion about all possible real border
+constructions or about the requested head-complexity bound.
+
+\section{Boolean switching identities}
+
+\begin{proposition}[A noncollinear cancellation on a Boolean coordinate]
+Let $B$ be affine with strictly positive constant and variable
+coefficients, fix a coordinate $i$, and let $t>0$ be smaller than
+the coefficient of $x_i$ in $B$. Then all four denominators below
+are admissible and, on the entire Boolean cube,
+\[
+ \frac1{B+t x_i}+\frac1{B+t(1-x_i)}
+ -\frac1B-\frac1{B+t}=0.
+\]
+The four perturbing affine forms $x_i$, $1-x_i$, $0$, and $1$
+are not collinear in affine-coefficient space. Moreover, for every
+nonnegative integer $j$,
+\[
+ x_i^j+(1-x_i)^j-0^j-1^j=0
+\]
+on the cube, with the usual polynomial convention $0^0=1$.
+\end{proposition}
+\begin{proof}
+If $x_i=0$ the first two denominator values are $B$ and $B+t$;
+if $x_i=1$ their order is reversed. This proves the fraction identity
+and the power identities. In coefficient coordinates consisting of
+constant and $x_i$ coefficients, the four forms are
+$(0,1),(1,-1),(0,0),(1,0)$; the last three are not collinear.
+For admissibility, the only decreasing variable coefficient is the
+$x_i$ coefficient of $B+t(1-x_i)$, and the assumption on $t$ keeps
+it strictly positive. All constants and other slopes stay positive.
+\end{proof}
+
+Consequently, a bound on the geometry of points annihilating all real
+polynomials of a given degree cannot be applied merely from moment
+identities on the Boolean cube. The example has identities of every
+order and still has noncollinear coefficient vectors.
+
+The switching-component framework in Hajdu and Tijdeman,
+\emph{Algebraic aspects of discrete tomography}, Theorem~1 and its
+proof, describes zero line sums on an integer rectangle by translates
+of a product of binomials associated with the projection directions.
+It supplies exact cancellation identities. It does not assert sparse
+strict-sign representations for arbitrary tables, and its support
+size and direction constraints must be accounted for in any transfer
+to heads. The four-head identity above does not itself resolve that
+transfer.
+
+\section{A zero-count obstruction at every codebook size}
+
+\begin{lemma}[Positive-shift reciprocal powers]
+Let $r>0$, let $b_1,\ldots,b_H$ be distinct positive reals, and let
+$c_1,\ldots,c_H$ be nonzero real coefficients. Then
+\[
+ g(p)=\sum_{h=1}^H \frac{c_h}{(p+b_h)^r},\qquad p>0,
+\]
+has at most $H-1$ distinct zeros on $(0,\infty)$.
+\end{lemma}
+\begin{proof}
+We prove the assertion simultaneously for all $r>0$ by induction on
+$H$. For $H=1$ the function never vanishes. Suppose $H\geq2$ and
+multiply $g$ by the strictly positive factor $(p+b_1)^r$. Its
+derivative is
+\[
+ \frac{d}{dp}\big((p+b_1)^r g(p)\big)
+ =r(p+b_1)^{r-1}
+   \sum_{h=2}^H\frac{c_h(b_h-b_1)}{(p+b_h)^{r+1}}.
+\]
+All $H-1$ coefficients in the sum are nonzero. By the induction
+hypothesis that sum has at most $H-2$ distinct positive zeros.
+If $g$ had $H$ distinct positive zeros, multiplication by the positive
+factor would preserve them and Rolle's theorem on the $H-1$ disjoint
+intervening open intervals would give $H-1$ distinct derivative zeros,
+a contradiction. Repeated shifts in an arbitrary sum may first be
+combined, and zero resulting coefficients may be discarded.
+\end{proof}
+
+\begin{proposition}[Failure of a single complete binary codebook]
+Let $k\geq2$, $m=2^k$, and enumerate the $m$ vectors
+$\sigma_h\in\{-1,1\}^k$, using each exactly once. For arbitrary
+$a_h\in\mathbb R$ and $b_h>0$, put
+\[
+ F_j(p)=\sum_{h=1}^m
+       \frac{a_h b_h\sigma_{h,j}}{(p+b_h)^2}.
+\]
+For any increasing positive addresses $p_1<\cdots<p_m$, these
+functions cannot have the strict signs
+\[
+ \operatorname{sign}F_j(p_s)=(-1)^s
+ \qquad(1\leq j\leq k,\ 1\leq s\leq m).
+\]
+\end{proposition}
+\begin{proof}
+The sum $F_1+F_2$ has the same prescribed alternating strict signs.
+Exactly $m/2$ code vectors have $\sigma_{h,1}+\sigma_{h,2}\neq0$.
+Thus $F_1+F_2$ is a sum of at most $m/2$ reciprocal-square kernels,
+after combining any repeated shifts. It is not identically zero
+because its values at the addresses are nonzero. The lemma bounds
+its positive zeros by $m/2-1$. Continuity and the alternating signs
+give at least $m-1$ distinct positive zeros, one in each intervening
+open interval. Since $m-1>m/2-1$, this is impossible.
+\end{proof}
+
+The proposition concerns arbitrary label tables on the promised grid;
+its alternating table repeats output codes. The separate four-address
+permutation obstruction above concerns a table without repetitions.
+Duplicating the whole codebook changes the zero-count budget, so this
+argument does not exclude the replicated-codebook experiment. No
+universal theorem for that experiment is asserted.
+
+\section{Independently programmable small gadgets cannot give the target}
+
+\begin{proposition}[A shattering bound on an arbitrary subset]
+Let $n,H\geq1$, and let $X\subseteq\{0,1\}^n$. If every strict
+sign labeling of $X$ is realized by an admissible score with at most
+$H$ heads, then
+\[
+ |X|<16nH\log_2(8H).
+\]
+\end{proposition}
+\begin{proof}
+Put $m=|X|$ and $p=2nH$. For any score strict on $X$, a sufficiently
+small constant perturbation preserves all those signs and makes its
+value at the zero vertex nonzero, whether or not zero belongs to $X$.
+Normalize the denominators at zero and absorb numerator constants as
+in the manuscript's counting proof. After positive rescaling the score
+has the form
+\[
+ \sigma+\sum_{h=1}^H\frac{u_h\cdot x}{1+b_h\cdot x},
+ \qquad \sigma\in\{-1,1\}.
+\]
+For fixed $\sigma$, clearing the positive denominators gives $m$
+polynomials of degree at most $H$ in $p$ parameters. If $m\geq p$,
+Warren's strict-sign bound, allowing the two choices of $\sigma$,
+bounds the number of labelings by
+\[
+ 2\left(\frac{4eHm}{p}\right)^p.
+\]
+Suppose for a contradiction that $m\geq8pL$, where
+$L=\log_2(8H)\geq3$, and put $q=m/p$. Shattering and the last
+display imply
+\[
+ q\leq\frac1p+\log_2(4eH)+\log_2 q
+       <L+2+\log_2 q.
+\]
+Here $q\geq8L\geq24$. The elementary inequality
+$\log_2 q\leq q/2$ for $q\geq4$ and the bound
+$L+2\leq2L\leq q/4$ imply $q<3q/4$, a contradiction.
+Since $8pL=16nH\log_2(8H)$, the result follows.
+\end{proof}
+
+\begin{corollary}[Fixed independent blocks]
+Suppose a fixed partition of the Boolean cube into blocks $X_i$ is
+used, and each block can be independently given every strict labeling
+using a gadget of $H_i\geq1$ heads. If $H_i\leq h$ for every block,
+then the total gadget budget satisfies
+\[
+ \sum_i H_i>\frac{2^n}{16n\log_2(8h)}.
+\]
+In particular, gadgets with $\log h=o(n)$ cannot establish the
+requested $O(2^n/n^2)$ bound by this fixed independent-block scheme.
+\end{corollary}
+\begin{proof}
+Apply the proposition to each block, sum, and use
+$\sum_i|X_i|=2^n$ and $\log_2(8H_i)\leq\log_2(8h)$.
+\end{proof}
+
+This statement requires the blocks to be fixed and individually
+programmable. It does not cover function-dependent partitions or
+constructions in which heads interact globally across blocks. It
+also grants the gadgets arbitrary behavior outside their blocks, so
+adding a separate localization requirement cannot invalidate the
+obstruction under its stated assumptions.
+
+\section{Short affine switching gates}
+
+The following identities are exact auxiliary constructions. They do not
+give independent programming of large blocks or the requested universal
+bound. The parameter $p$ may itself be a nonnegative affine function
+with strictly positive coefficients on any additional Boolean variables.
+
+\begin{proposition}[Six fractions for a three-bit corner]
+For $p\geq0$ and $w=x_1+x_2+x_3$, define
+\[
+ G(w,p)=\frac1{p+5+4w}+\frac1{p+7+w}+\frac1{p+3+4w}
+       -\frac1{p+5+2w}-\frac1{p+3+5w}-\frac1{p+7+2w}.
+\]
+Every denominator has strictly positive coefficients in the three
+displayed Boolean coordinates. On their Boolean cube,
+\[
+ G(w,p)=x_1x_2x_3
+ \frac{72p^2+2016p+13800}
+ {(p+10)(p+11)(p+13)(p+15)(p+17)(p+18)}.
+\]
+\end{proposition}
+\begin{proof}
+For $w=0,1,2$ the three denominators on either side agree as multisets,
+so the reciprocal sums cancel. For $w=3$, bringing the six fractions
+to their common denominator and expanding gives the displayed formula.
+Its numerator and denominator are positive for $p\geq0$.
+All of these equalities and the positivity statement are checked in
+\texttt{SixFractionGate.lean}.
+\end{proof}
+
+\begin{proposition}[Eight fractions for a four-bit corner]
+Put $y=x_2$, $s=x_1+x_3+x_4$, and $B=p+5+5s+5y$. Let the two lists
+of affine offsets be
+\[
+ C=(0,-2+s+4y,-2+2s+y,15/4-s-3y/4),
+\]
+\[
+ D=(3y,-2+2s+2y,-2+s+y,15/4-s-7y/4).
+\]
+For $p\geq0$ every $B+C_i$ and $B+D_i$ has positive constant term
+and strictly positive coefficients in all four Boolean variables.
+The eight-head score
+\[
+ E(s,y,p)=\sum_{i=1}^4\frac1{B+D_i}
+         -\sum_{i=1}^4\frac1{B+C_i}
+\]
+satisfies the exact Boolean-cube identity
+\[
+ E(s,y,p)=x_1x_2x_3x_4
+ \frac{72(2p+55)}
+ {(p+25)(p+30)(p+24)(p+27)(p+28)(p+31)}.
+\]
+\end{proposition}
+\begin{proof}
+When $y=0$ the offset lists agree by permutation for every $s$.
+When $y=1$ they become
+\[
+ C=(0,s+2,2s-1,3-s),\qquad
+ D=(3,2s,s-1,2-s).
+\]
+These multisets agree for $s=0,1,2$. For $s=3$ put $T=p+25$.
+The two denominator products are
+\[
+ P_C=T^2(T+5)^2,\qquad
+ P_D=(T-1)(T+2)(T+3)(T+6)=P_C-36.
+\]
+Their reciprocal sums are their logarithmic derivatives. Consequently
+\[
+ E(3,1,p)=\frac{P_D'}{P_D}-\frac{P_C'}{P_C}
+ =\frac{36P_C'}{P_CP_D}
+ =\frac{72(2T+5)}{T(T+5)(T-1)(T+2)(T+3)(T+6)}.
+\]
+Substitution gives the formula, which is positive for $p\geq0$.
+The identities and positivity are checked in
+\texttt{EightFractionGate.lean}.
+\end{proof}
+
+The eight-term construction was found by searching exact rational
+affine lists, with a separately checked multiset equality at every
+non-corner vertex. The proofs above no longer depend on that search.
+Products of these gates have not been compiled at additive head cost;
+nor has arbitrary labeling of blocks been established from them.
+Those missing properties are not inferred from the corner identities.
+
+\section{Vector-pair routing and its address limitation}
+
+\begin{lemma}[Disjoint routing from orthant matchings]
+Let $v_1,\ldots,v_K\in\mathbb R^k$ and let $m\geq1$.
+For each $\eta\in\{-1,1\}^k$, form a graph on $[K]$ by joining
+$a\neq b$ if some $\alpha,\beta\in\mathbb R$ satisfy
+\[
+ \eta_j(\alpha v_{a,j}+\beta v_{b,j})>0\quad(1\leq j\leq k).
+\]
+Suppose each graph has a matching with at least $2m-1$ edges.
+Then for any sequence $\eta^{(1)},\ldots,\eta^{(m)}$ there are
+pairwise disjoint pairs $\{a_p,b_p\}$ and coefficients
+$\alpha_p,\beta_p$ whose vector sums have the corresponding strict
+signs $\eta^{(p)}$.
+\end{lemma}
+\begin{proof}
+Choose the pairs successively. Before step $p$, exactly $2(p-1)$
+dictionary vertices have been used. They meet at most $2(p-1)$ edges
+of the specified matching for $\eta^{(p)}$, since its edges are
+disjoint. This number is less than $2m-1$, so an unused edge remains.
+Choose it and its defining coefficients. The induction proves the claim.
+\end{proof}
+
+An integer-vector search and a separate exact rational verifier produced
+such dictionaries with $K=8\cdot2^k$ and matching size $2\cdot2^k$
+for $3\leq k\leq9$. The certificates establish only those finite
+dictionary statements. They do not establish an asymptotic dictionary
+theorem or a Boolean-cube representation theorem.
+
+The routing lemma is compatible with the earlier kernel decoder on
+geometrically separated one-hot addresses: two kernel terms assigned to an
+address may have arbitrary real residue directions and coefficients.
+The head parameters can vary with a one-hot memory coordinate. This
+observation does not supply geometrically separated binary addresses.
+The following obstruction applies to every affine address map, including
+ones with unrestricted signs of their variable coefficients.
+
+\begin{proposition}[Affine binary addresses cannot all be geometrically separated]
+Let $k\geq2$ and let $P:\{0,1\}^k\longrightarrow(0,\infty)$ be
+affine and injective. Write its $N=2^k$ distinct values as
+$0<p_1<\cdots<p_N$. If $R>1$ and
+$p_{i+1}\geq Rp_i$ for all $1\leq i<N$, then
+\[
+ R^{N/2-1}<2.
+\]
+\end{proposition}
+\begin{proof}
+Affineness gives a positive constant $S$ such that
+$P(x)+P(\boldsymbol 1-x)=S$ for every $x$.
+The map $t\mapsto S-t$ reverses the ordered value set, hence
+$p_i+p_{N+1-i}=S$. In particular $p_{N/2+1}>S/2$, while
+$p_N<S$ because its complementary value is positive. Iterating the
+assumed ratio inequality through the upper half of the list yields
+\[
+ R^{N/2-1}\leq\frac{p_N}{p_{N/2+1}}<2.
+\]
+\end{proof}
+
+Thus a fixed separation factor such as $R=32$ cannot be realized by
+an affine address on all binary inputs even when $k=2$. Replacing
+one-hot addresses by binary coordinates is a substantive missing
+construction in the vector-pair route. The matching result alone does
+not remove it. The earlier equally spaced Cauchy experiment is a
+different decoder and is not excluded by this address proposition.
+
+\section{A real reciprocal construction from regular polygons}
+
+This construction uses real affine denominators throughout. Complex
+notation is used only to prove a polynomial identity.
+
+\begin{proposition}[Harmonic powers with positive affine denominators]
+Let $m\geq2$, and let $u,v$ be any real affine functions of $n$ Boolean
+variables. There exists a sum of $2m$ admissible affine fractions whose
+sign agrees, including its zero set, with
+\[
+ \operatorname{Re}((u(x)+iv(x))^m).
+\]
+In particular, whenever the latter expression is nonzero at every cube
+vertex, its Boolean sign function has at most $2m$ heads.
+\end{proposition}
+\begin{proof}
+Write $z=u+iv$, $\zeta=\exp(2\pi i/m)$, and
+$\eta=\exp(\pi i/m)$. Define real affine forms
+\[
+ L_j=\operatorname{Re}(\zeta^jz),\qquad
+ M_j=\operatorname{Re}(\eta\zeta^jz),\quad 0\leq j<m.
+\]
+For each $1\leq r<m$, expand the $r$th powers using
+$L_j=(\zeta^jz+\zeta^{-j}\bar z)/2$. Summation over $j$ kills every
+Fourier exponent except zero: the exponents lie between $-r$ and $r$,
+and $m$ divides only zero in this interval. The surviving term, present
+only when $r$ is even, is unchanged by $\eta$. Hence
+\[
+ \sum_j L_j^r=\sum_j M_j^r\qquad(1\leq r<m).
+\]
+For $r=m$, the two additional exponents $m$ and $-m$ survive.
+They change sign under multiplication by $\eta$, so
+\[
+ \sum_j L_j^m-\sum_j M_j^m
+   =m2^{2-m}\operatorname{Re}(z^m).
+\]
+Newton's identities therefore give the polynomial identity, in an
+independent variable $p$,
+\[
+ P(p)-Q(p)=\kappa\operatorname{Re}(z^m),\qquad
+ P(p)=\prod_j(p+L_j),\quad Q(p)=\prod_j(p+M_j),\quad
+ \kappa=(-1)^{m-1}2^{2-m}.
+\]
+Indeed the elementary symmetric coefficients through degree $m-1$
+agree, and the difference of the degree-$m$ coefficients is
+$(-1)^{m-1}/m$ times the displayed power-sum difference.
+Consequently $P'=Q'$, and wherever all factors are positive,
+\[
+ \kappa^{-1}\left(\sum_j\frac1{p+M_j}
+                    -\sum_j\frac1{p+L_j}\right)
+ =\operatorname{Re}(z^m)\frac{P'(p)}{P(p)Q(p)}.
+\]
+The factor on the right is strictly positive: $P,Q>0$, and $P'$ is
+the sum of the $m$ positive products obtained by deleting one factor
+from $P$.
+
+It remains to make every denominator admissible on the original cube.
+Write $L_j=\ell_{j,0}+\sum_i\ell_{j,i}x_i$ and
+$M_j=q_{j,0}+\sum_iq_{j,i}x_i$. Choose
+\[
+ p(x)=a_0+\sum_i a_i x_i,\qquad
+ a_i=1+\max_j\{ |\ell_{j,i}|,|q_{j,i}|\}\quad(0\leq i\leq n).
+\]
+All constants and all variable coefficients of $p+L_j$ and $p+M_j$
+are at least one. Substituting this affine $p(x)$ into the identity
+therefore gives admissible denominators and preserves the sign equality.
+The numerator constants $\pm\kappa^{-1}$ are unrestricted real
+parameters, as required by the model.
+\end{proof}
+
+The proposition is an explicit real implementation of a roots-of-unity
+cancellation. It is restricted to harmonic powers of two affine forms.
+No decomposition of every Boolean labeling into these scores at the
+requested total head cost has been proved. Such a decomposition is not
+inferred from the cancellation identity.
+
+
+\section{Weighted switching gives a uniform Hamming-layer gate}
+
+The direction-binomial method also gives an explicit family in every
+block dimension, without an assumption about unweighted switching sets.
+This family is useful for auditing composition proposals, but its cost
+is not the requested universal cost.
+
+\begin{proposition}[A polynomial-size weighted switching identity]
+For an integer $r\geq1$, let $w=x_1+\cdots+x_r$ and
+$c=1+r(r-1)/2$. For $0\leq k\leq r$ and integers $s$, let
+\[
+ a_{r,k,s}=\bigl|\{S\subseteq\{0,\ldots,r-1\}:|S|=k,
+                                  \ \sum_{j\in S}j=s\}\bigr|.
+\]
+For every real $p\geq0$, define
+\[
+ G_r(w,p)=\sum_{k,s:a_{r,k,s}>0}
+          \frac{(-1)^k a_{r,k,s}}{p+c+kw-s}.
+\]
+Every denominator is positive for $w\geq0$. On the Boolean cube,
+$G_r(w,p)=0$ when $w<r$, and $G_r(r,p)>0$.
+The number of displayed fractions is exactly
+\[
+ (r+1)+\sum_{k=0}^r k(r-k)
+       =\frac{(r+1)(r(r-1)+6)}6.
+\]
+The constant-denominator term is allowed by the normal form. All other
+terms have strictly positive coefficients in the $r$ input variables.
+The identity remains valid if $p$ is replaced by any affine function
+nonnegative on the cube; admissibility additionally requires that the
+resulting variable coefficients have an allowed common sign, as they
+do when all coefficients of $p$ are strictly positive.
+\end{proposition}
+\begin{proof}
+Before grouping equal denominators, the sum is
+\[
+ \sum_{S\subseteq\{0,\ldots,r-1\}}
+ \frac{(-1)^{|S|}}{p+c+\sum_{j\in S}(w-j)}.
+\]
+Its denominator is at least $p+c-\sum_{j=0}^{r-1}j\geq1$.
+At any integer $w\in\{0,\ldots,r-1\}$, pair $S$ with
+$S\mathbin{\triangle}\{w\}$. These two terms have the same
+denominator and opposite coefficients, proving exact cancellation.
+At $w=r$, the elementary integral formula for a reciprocal gives
+\[
+ G_r(r,p)=\int_0^\infty e^{-(p+c)t}
+                    \prod_{j=1}^r(1-e^{-jt})\,dt>0.
+\]
+The integrand is positive for $t>0$ and is bounded by
+$e^{-(p+c)t}$, which is integrable.
+For a fixed $k$, the sums of $k$ distinct members of
+$\{0,\ldots,r-1\}$ fill the entire integer interval
+$[k(k-1)/2,k(2r-k-1)/2]$.
+Indeed, subtract $0,1,\ldots,k-1$ from the increasing selected
+indices. The resulting nondecreasing $k$ numbers range from zero to
+$r-k$, and realize every sum from zero to $k(r-k)$: write the
+sum as $qk+t$ with $0\leq t<k$, and use $k-t$ copies of $q$ and
+$t$ copies of $q+1$. At the endpoint $q=r-k$, necessarily $t=0$.
+There are therefore $k(r-k)+1$ distinct denominators for this $k$.
+Denominators from different $k$ have different coefficients of $w$,
+so summing these counts proves the claimed head count.
+\end{proof}
+
+\paragraph{Composition audit.}
+A point gate with an additional affine argument is not a free
+multiplication operation. Replacing $p$ by each denominator $B_h$
+in an arbitrary score produces $\sum_h A_h G_r(w,B_h)$.
+At the retained layer this weights the different heads by different
+positive factors $B_hG_r(r,B_h)$, and hence need not preserve the
+sign of $\sum_h A_h/B_h$. A uniform composition theorem or a
+construction avoiding this head-dependent reweighting is still needed.
+For example, $G_1(1,p)=1/((p+1)(p+2))$. The constant score
+$11/10-1/1=1/10$ is positive, whereas applying this substitution
+term by term gives $11G_1(1,10)-G_1(1,1)=-1/12$. Thus even
+strict positivity can be reversed by the proposed composition.
+This proposition alone gives no improvement to the universal bound.
+
+\section{Outside-option choice models and their exact margin radius}
+
+\begin{proposition}
+Let a random ranking of $\{0,1,\ldots,n\}$ select the highest ranked
+item of each offered set $\{0\}\cup S$, and write $p(S)$ for the
+probability that item zero wins. In the $2^n-1$ coordinates indexed
+by nonempty $S\subseteq[n]$, the largest axis-parallel cube contained
+in the set of possible vectors $p$ has radius
+\[
+ r_n=\frac1{3^n-1}.
+\]
+One center attaining this radius is
+$p_*(S)=3^{n-|S|}/(3^n-1)$ for nonempty $S$.
+\end{proposition}
+\begin{proof}
+For each ranking let $T$ be the set of ordinary items ranked below
+item zero. Every subset $T$ can occur, and item zero wins precisely
+when $S\subseteq T$. Consequently the choice vectors are exactly
+\[
+ p(S)=\sum_{T\supseteq S}q_T,\qquad
+ q_T\geq0,\qquad \sum_Tq_T=1.
+\]
+Include the fixed coordinate $p(\varnothing)=1$. Boolean lattice
+inversion gives
+\[
+ q_T=\sum_{S\supseteq T}(-1)^{|S\setminus T|}p(S).
+\]
+On an axis-parallel cube of radius $r$ about a center $p_*$, the
+minimum of this affine expression is $q_{*,T}-r a_T$, where
+$a_T=2^{n-|T|}$ for nonempty $T$ and
+$a_{\varnothing}=2^n-1$. The subtraction of one in the latter
+case accounts for the fixed empty coordinate. Thus containment of
+the cube is equivalent to $q_{*,T}\geq r a_T$ for every $T$.
+Summing yields $1\geq r\sum_Ta_T=r(3^n-1)$.
+Conversely, set $q_{*,T}=a_T/(3^n-1)$. These numbers are
+nonnegative and sum to one, and all the containment inequalities
+hold with equality at $r=r_n$. For nonempty $S$, summing over
+$T\supseteq S$ gives the displayed formula for $p_*(S)$.
+\end{proof}
+
+\paragraph{Transfer audit.}
+The uniform approximation theorem of Chierichetti, Kumar and Tomkins,
+\emph{Light RUMs} (ICML 2021, Theorem 1 and Corollary 9), uses
+$O(n/\varepsilon^2)$ permutations or multinomial-logit components
+at additive error $\varepsilon$. The preceding proposition shows
+that the natural construction which encodes all sign tables by
+a fixed center plus uniform signed perturbations has radius at
+most $(3^n-1)^{-1}$. Substituting half this radius into that
+approximation theorem gives only an $O(n9^n)$ guarantee, even if
+the center could be subtracted at no head cost. This is a failure
+of that particular transfer argument, not a lower bound on the
+number of components actually needed. It does not constrain the
+full manuscript model with arbitrary signed affine numerators,
+target-dependent centers, and unbounded coefficients.
+
+\section{A chain obstruction for constant-numerator dominant powers}
+
+\begin{proposition}
+Let $v_h(S)=\min(c_h,\min_{i\in S}w_{hi})$, with $v_h(\varnothing)=c_h$,
+and let $Q$ be any antitone real function of subsets of $[n]$.
+Suppose that for every $k$-element subset $S$ some $h\in[H]$ satisfies
+$v_h(S)>Q(S)$, whereas for every $(k+1)$-element subset $T$ every
+$h\in[H]$ satisfies $v_h(T)\leq Q(T)$. Then
+\[
+ H\geq\binom nk.
+\]
+\end{proposition}
+\begin{proof}
+Choose a winning head $h$ for $S$, and put $t=v_h(S)$. If an
+outside coordinate $j\notin S$ had $w_{hj}\geq t$, then
+$v_h(S\cup\{j\})=t>Q(S)\geq Q(S\cup\{j\})$, contradicting
+the next-layer hypothesis. Therefore $w_{hj}<t$ outside $S$,
+while $w_{hi}\geq t$ inside $S$. Thus every set on which $h$
+can win is a strict upper level set of its fixed coefficient list.
+Such sets are linearly ordered by inclusion, so at most one has
+cardinality $k$. Assigning a winning head to each $k$-element set
+is therefore injective.
+\end{proof}
+
+This proof is checked in Lean as
+\texttt{HeadComplexity.choose\_le\_heads\_of\_tropical\_layer\_flip}
+in \texttt{Results/TropicalChainObstruction.lean}.
+For constant numerators with increasing denominators and a unique
+dominant power, the exponent of one head is exactly
+\[
+ a_h-\max(d_{h0},\max_{i\in S}d_{hi})
+ =\min(a_h-d_{h0},\min_{i\in S}(a_h-d_{hi})).
+\]
+The maxima over positive and negative heads are antitone. Applying
+the proposition to alternating parity layers therefore requires
+at least $\binom nk$ positive components for an even layer $k$,
+and the analogous bound for negative components on an odd layer.
+A constant bias can be counted as one additional component of its
+sign. Central layers already give order $2^n/\sqrt n$ components.
+
+\paragraph{Scope audit.}
+This obstruction concerns only unique dominant powers with constant
+numerators and one denominator orientation. It is not a head lower
+bound in the manuscript model. In particular, general affine
+numerators destroy the antitone-head property, and cancellations
+between equal leading powers are excluded from this argument.
+The ongoing mixed-orientation affine-numerator search is not
+covered by this proposition.
+
+\section{Denominator clearing retains the number of heads}
+
+\begin{proposition}
+For every $H\geq2$, there are real constants $a_1,\ldots,a_H$
+such that $\sum_{i=1}^H a_i/(t+i)$ has exactly $H-1$ distinct
+positive zeros, all simple. In particular, no bound on the degree
+of a sign-equivalent polynomial on $(0,\infty)$ can be independent
+of $H$.
+\end{proposition}
+\begin{proof}
+Put $q(t)=\prod_{j=1}^{H-1}(t-j)$ and
+$d(t)=\prod_{i=1}^H(t+i)$. Partial fractions give
+\[
+ \frac{q(t)}{d(t)}=\sum_{i=1}^H\frac{a_i}{t+i},\qquad
+ a_i=\frac{q(-i)}{\prod_{j\ne i}(j-i)}.
+\]
+For completeness, multiplication by $d$ makes both sides
+polynomials of degree at most $H-1$. They agree at each of the
+$H$ distinct points $-1,\ldots,-H$, proving the identity.
+The denominator is strictly positive for $t>0$, and $q$ changes
+sign at $1,\ldots,H-1$. Any polynomial with the same strict signs
+on the complementary open intervals must vanish at all these
+points by continuity, so has degree at least $H-1$.
+For $H=7$ the residue list is explicitly
+$(7,-168,1260,-4200,6930,-5544,1716)$.
+\end{proof}
+
+\paragraph{Literature audit.}
+The original abstract of Bartlett and Williamson (1996),
+\emph{The VC Dimension and Pseudodimension of Two-Layer Neural
+Networks with Discrete Inputs}, reports an $O(W\log(WD))$
+bound. A searchable excerpt of Anthony and Bartlett's textbook,
+Theorem 8.11 and its proof, instead returned an apparent degree
+bound $3ND+2$ after combining an arbitrary number of rational
+hidden-unit outputs. The page image and the original article's
+full proof were not available for verification in this environment.
+The preceding direct calculation excludes an inference which simply
+drops the number of summands when clearing denominators. No
+stronger bound from that excerpt is used anywhere in this audit,
+and no claim that the textbook theorem is false is made.
+
+\section{Independent random clouds do not provide uniform orthant matchings}
+
+This addresses a specific proposed construction of a residue dictionary.
+Large expected numbers of pairs in an orthant do not imply a large
+matching in that orthant. In fact, independently sampled product clouds
+fail asymptotically, even when the constant relating dimension and
+logarithmic dictionary size is made arbitrarily small.
+
+\begin{proposition}
+Fix $c>0$. For each positive integer $k$, let $M\leq e^{ck}$ and
+sample $X_1,\ldots,X_M$ independently and uniformly from $[0,1]^k$.
+Join two sampled points when one is coordinatewise smaller than the
+other, and let $\nu$ be the matching number of this graph. Put
+$\delta=e^{-c}/(4e)$. Then
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq 2\exp(-2\delta^2 k)+2^{-k}.
+\]
+In particular, $\nu/M$ tends to zero in probability as $k$ tends
+to infinity. The same assertion holds for any fixed orthant after
+reflecting the relevant coordinates.
+\end{proposition}
+\begin{proof}
+Call a point central if its coordinate sum belongs to
+$[k/2-\delta k,k/2+\delta k]$, and write $V_{\rm out}$ for the
+number of noncentral sampled points. The bounded independent
+summand inequality gives
+\[
+ \mathbb E V_{\rm out}\leq 2M\exp(-2\delta^2 k).
+\]
+For completeness, this inequality follows by applying the exponential
+Markov inequality and the estimate
+$\mathbb E\exp(t(U-1/2))\leq\exp(t^2/8)$ for
+$0\leq U\leq1$ with mean $1/2$, separately to the two tails,
+and minimizing over $t>0$.
+
+If independent uniform points $X,Y$ are both central and $X\leq Y$
+coordinatewise, their difference $d=Y-X$ satisfies $d_i\geq0$ and
+$\sum_i d_i\leq2\delta k$. For a fixed $d$, the allowed region
+for $X$ has volume at most one. Hence
+\[
+ \Pr(X,Y\hbox{ central and }X\leq Y)
+ \leq \frac{(2\delta k)^k}{k!}
+ \leq (2e\delta)^k.
+\]
+The first bound is the volume of a simplex, and the second uses
+$k!\geq(k/e)^k$. If $E_{\rm mid}$ counts comparable unordered
+pairs with both endpoints central, it follows that
+\[
+ \mathbb E E_{\rm mid}
+ \leq 2\binom{M}{2}(2e\delta)^k
+ \leq M^2(2e\delta)^k.
+\]
+Every matching has at most $V_{\rm out}$ edges incident to
+noncentral points and at most $E_{\rm mid}$ remaining edges.
+Consequently
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq2e^{-2\delta^2k}+M(2e\delta)^k
+ \leq2e^{-2\delta^2k}+2^{-k}.
+\]
+Markov's inequality proves convergence in probability. Coordinate
+reflections preserve the sampling distribution and reduce each fixed
+orthant to the one considered above.
+\end{proof}
+
+\paragraph{Scope.}
+This excludes an independently sampled uniform product dictionary
+as an asymptotic proof of the earlier orthant-matching condition.
+It does not exclude correlated or deterministic dictionaries, and
+it does not imply any lower bound for the manuscript's full model.
+The separate binary-address compilation gap also remains unresolved.
+
+\section{A deterministic obstruction to full-rate orthant pair routing}
+
+The following bound is stronger than the preceding product-cloud
+calculation in the regime $M=O(2^k)$. It applies to every dictionary,
+not only to independent samples.
+
+\begin{proposition}
+Let $v_1,\ldots,v_M\in\mathbb R^k$, where $M,k\geq1$.
+For $\sigma\in\{-1,1\}^k$, join $a,b$ in $G_\sigma$ if either
+$\sigma_i(v_{b,i}-v_{a,i})>0$ for every $i$, or the reverse
+inequalities all hold. Write $\nu_\sigma$ for the matching number.
+For every $r>0$,
+\[
+ \frac{1}{2^k}\sum_\sigma\frac{\nu_\sigma}{M}
+ \leq 2\exp(-2r^2/k)+\frac{8rM}{k2^k}.
+\]
+Consequently, for $k\geq2$,
+\[
+ \min_\sigma\frac{\nu_\sigma}{M}
+ \leq\frac{2}{k^2}
+       +8\frac{M}{2^k}\sqrt{\frac{\log k}{k}}.
+\]
+Thus a family with $M=O(2^k)$ cannot have a matching of size
+$\rho M$ in every orthant for a fixed $\rho>0$ in all dimensions.
+\end{proposition}
+\begin{proof}
+First suppose that each coordinate takes distinct values. Replace
+the values in coordinate $i$ by their ranks $R_i(a)\in\{1,\ldots,M\}$.
+This preserves all the graphs. Set
+\[
+ q_i(a)=\frac{R_i(a)-(M+1)/2}{M},\qquad
+ T_\sigma(a)=\sum_{i=1}^k\sigma_iq_i(a).
+\]
+For uniformly random independent signs $\sigma_i$, the summands
+are centered and belong to intervals of lengths at most one.
+The exponential moment estimate gives
+\[
+ \Pr_\sigma(|T_\sigma(a)|>r)\leq2e^{-2r^2/k}.
+\]
+Let $V_\sigma$ count the vertices violating $|T_\sigma(a)|\leq r$.
+Then $2^{-k}\sum_\sigma V_\sigma\leq2Me^{-2r^2/k}$.
+
+Call an unordered pair short if
+\[
+ D(a,b):=\sum_{i=1}^k|R_i(a)-R_i(b)|\leq2rM.
+\]
+An edge of $G_\sigma$ with both endpoints outside $V_\sigma$
+must be short: orient it in the increasing $\sigma$ direction
+and use $D(a,b)/M=T_\sigma(b)-T_\sigma(a)\leq2r$.
+
+Fix $a$, and let $S$ be the set consisting of $a$ and all its
+short neighbors; write $d=|S|$. For each $i$, the $d$ distinct
+integer ranks have total distance from $R_i(a)$ at least
+$\lfloor d^2/4\rfloor\geq(d^2-1)/4$. This follows by placing
+the other $d-1$ ranks as close to $R_i(a)$ as possible, alternately
+on its two sides. Therefore
+\[
+ \frac{k(d^2-1)}4
+ \leq\sum_{b\in S}D(a,b)\leq2drM.
+\]
+As $d\geq1$, this implies $d-1\leq8rM/k$. The number of short
+unordered pairs is consequently at most $4rM^2/k$.
+
+Each unordered pair belongs to exactly two of the graphs
+$G_\sigma$, for opposite sign vectors. In a matching, at most
+$V_\sigma$ edges meet the exceptional vertices. The remaining
+edges are short. Sum this inequality over all $\sigma$ and use
+the preceding bound on short pairs to obtain
+\[
+ \sum_\sigma\nu_\sigma
+ \leq 2^{k+1}Me^{-2r^2/k}+\frac{8rM^2}{k}.
+\]
+Division by $2^kM$ proves the first assertion. Taking
+$r=\sqrt{k\log k}$ proves the second one.
+
+If a coordinate has ties, perturb those ties while preserving
+all strict comparisons already present. Every original graph
+is a subgraph of the perturbed graph, so the same upper bound
+holds for the original matching numbers.
+\end{proof}
+
+\paragraph{Consequence for the proposed dictionary.}
+The earlier sufficient routing criterion asked for a dictionary
+of $8m$ vectors in $\mathbb R^k$, where $m=2^k$, having a
+matching of size at least $2m-1$ in every orthant. The proposition
+shows that this criterion fails in sufficiently large dimensions:
+its required matching fraction tends to $1/4$, whereas the
+displayed upper bound tends to zero. Finite certificates for
+$k\leq9$ do not extend that criterion asymptotically. This is an
+obstruction to the stated sufficient criterion, not to other
+rational decoders, and not a lower bound for $W(n)$.
+
+\begin{corollary}[Dictionary size at a prescribed matching fraction]
+If $0<\rho\leq1/2$ and $\nu_\sigma\geq\rho M$ for every
+$\sigma\in\{-1,1\}^k$, then
+\[
+ M\geq \frac{\rho\sqrt{2k}}{16\sqrt{\log(4/\rho)}}\,2^k.
+\]
+\end{corollary}
+\begin{proof}
+Use $r=\sqrt{(k/2)\log(4/\rho)}$ in the first inequality of
+the proposition. Its exponential term equals $\rho/2$.
+Thus $\rho/2\leq8rM/(k2^k)$, which rearranges to the claim.
+\end{proof}
+
+\section{Free amplitudes do not repair a bounded sign-orbit dictionary}
+
+Allowing two independently chosen real amplitudes changes the routing
+condition. A pair $v,w$ can now serve orthant $\sigma$ if
+$\operatorname{span}(v,w)$ meets its interior. The fixed-difference
+obstruction above does not by itself apply to this condition.
+The following separate argument excludes a natural symmetric family.
+
+\begin{proposition}
+Let $c,k\geq1$ be integers and let $a_1,\ldots,a_c\in(0,\infty)^k$.
+Form the indexed dictionary
+\[
+ V=\{\tau\mathbin{\odot}a_j:
+       \tau\in\{-1,1\}^k,\ 1\leq j\leq c\},\qquad M=c2^k,
+\]
+where $\odot$ is coordinatewise multiplication. Repeated vectors, if
+any, retain separate indices. Join two indices when their real span
+contains a vector all of whose coordinates are positive. Its matching
+number satisfies
+\[
+ \nu\leq 2c^2 2^{\lfloor k/2\rfloor},\qquad
+ \frac\nu M\leq 2c\,2^{-\lceil k/2\rceil}.
+\]
+The same bound holds in every other strict orthant.
+\end{proposition}
+\begin{proof}
+For each ordered pair $(j,\ell)$, fix a set $J_{j\ell}$ of
+$\lceil k/2\rceil$ coordinates with largest ratios
+$a_{j,i}/a_{\ell,i}$, resolving ties by a fixed ordering.
+Call an indexed vector $\tau\odot a_j$ exceptional if, for some
+$\ell$, its signs $\tau_i$ are constant on $J_{j\ell}$.
+There are at most
+\[
+ c\cdot c\cdot2\cdot2^{k-\lceil k/2\rceil}
+   =2c^2 2^{\lfloor k/2\rfloor}
+\]
+exceptional indices.
+
+Suppose
+$z=\alpha(\tau\odot a_j)+\beta(\eta\odot a_\ell)$
+has all coordinates positive. At each coordinate, at least one
+of $|\alpha|a_{j,i}$ and $|\beta|a_{\ell,i}$ is at least the
+other. Thus one endpoint has weakly larger magnitude on at least
+$\lceil k/2\rceil$ coordinates. Assume it is the first endpoint;
+the other case is symmetric. Its coefficient $\alpha$ is nonzero,
+since otherwise $\beta\ne0$ and the second endpoint dominates
+every coordinate. Its dominance set is
+\[
+ I=\{i:a_{j,i}/a_{\ell,i}\geq|\beta/\alpha|\}.
+\]
+Since $|I|\geq\lceil k/2\rceil$, it contains $J_{j\ell}$.
+For each $i\in I$, strict positivity of $z_i$ forces
+$\alpha\tau_i>0$: a negative first summand has magnitude at
+least that of the second, so their sum could not be positive.
+Consequently $\tau$ is constant on $J_{j\ell}$. The first
+endpoint is exceptional.
+
+Every edge therefore meets the exceptional set. Disjointness of
+matching edges proves the bound. Reflecting any chosen coordinates
+permutes the indexed dictionary and transfers any strict orthant
+to the positive one.
+\end{proof}
+
+\paragraph{Scope.}
+This obstruction permits arbitrary real amplitudes and all pairs,
+not just a bipartite subgraph. It applies to the specified sign-orbit
+family. It is not a theorem about general deterministic dictionaries,
+and gives no lower bound for the full head model. The independent
+binary-address and full-cube compilation problems remain.
+
+\section{Random spherical dictionaries also lose a constant matching fraction}
+
+The preceding sign-orbit argument does not cover independent random vectors.
+Here is a separate obstruction that allows arbitrary amplitudes and does cover
+the Gaussian dictionaries used in the span-matching experiment.
+
+\begin{proposition}
+Fix $c>0$. For each integer $k\geq3$, choose an integer
+$1\leq M=M(k)\leq e^{ck}$ and let $v_1,\ldots,v_M$ be independent
+uniform unit vectors in $\mathbb R^k$.
+Join two indices when their real span meets the positive orthant, and
+write $\nu$ for the matching number. Then
+\[
+ \lim_{k\to\infty}\frac{\mathbb E\nu}{M}=0.
+\]
+The assertion is unchanged if the vectors are independent standard
+Gaussians, since nonzero rescaling does not change a two-vector span.
+\end{proposition}
+\begin{proof}
+All constants in this proof depend only on $c$. Set
+\[
+ L=4\sqrt{c+2},\quad a=\frac{e^{-8(c+2)}}{16L},\quad
+ \varepsilon=e^{-16(c+2)},\quad
+ \eta=\sqrt{\varepsilon/2},\quad \delta=a\eta/2.
+\]
+We first exclude two exceptional events involving pairs of vectors.
+
+For two independent uniform unit vectors $v,w$, the inner product
+has density $C_k(1-t^2)^{(k-3)/2}$ on $(-1,1)$, with $C_k\leq\sqrt{k}$.
+For completeness, the normalizing integral is at least $1/\sqrt{k}$:
+on $|t|\leq1/\sqrt{k}$ its integrand is at least $1/2$.
+For $k=3,4$ this is immediate; for $k\geq5$ Bernoulli's inequality
+gives $(1-1/k)^{(k-3)/2}\geq1-(k-3)/(2k)>1/2$.
+It follows that
+\[
+ \Pr(|v\cdot w|>1-\varepsilon)
+ \leq\sqrt{k}(2\varepsilon)^{(k-1)/2}.
+\]
+Outside an event of probability at most
+$M^2\sqrt{k}(2\varepsilon)^{(k-1)/2}$, every pair therefore satisfies
+\[
+ \|\alpha v+\beta w\|_2
+ \geq\eta(|\alpha|+|\beta|)
+ \qquad(\alpha,\beta\in\mathbb R).
+\]
+Indeed its squared norm is at least
+$\varepsilon(\alpha^2+\beta^2)$, which is at least
+$\varepsilon(|\alpha|+|\beta|)^2/2$.
+
+Next, a uniformly random two-dimensional subspace $E$ obeys
+\[
+ \Pr\bigl(\exists z\in E:\|z\|_1<a\sqrt{k}\|z\|_2\bigr)
+ \leq \frac{14}{a}
+ \left[2^{k/2}e^{-L^2k/4}+(4aL)^k\right].
+\]
+To prove this estimate, take an $a/2$-net of the unit circle in $E$
+with at most $14/a$ points, constructed from a uniform orthonormal
+frame. Each net point is uniformly distributed on the ambient sphere.
+The map $z\mapsto\|z\|_1$ is $\sqrt{k}$-Lipschitz for Euclidean
+distance. A unit vector violating the claimed lower bound therefore
+gives a net point $U$ with $\|U\|_1<3a\sqrt{k}/2$.
+Write $U=G/\|G\|_2$ for a standard Gaussian vector $G$.
+The probability of the latter event is at most
+\[
+ \Pr(\|G\|_2>L\sqrt{k})+
+ \Pr\left(\sum_i|G_i|<3aLk/2\right).
+\]
+Exponential Markov with parameter $1/4$ bounds the first term by
+$2^{k/2}e^{-L^2k/4}$. For $s>0$,
+$\mathbb E e^{-s|G_i|}\leq\sqrt{2/\pi}/s$.
+Taking $s=1/(3aL/2)$ bounds the second term by
+$(e\sqrt{2/\pi}\,3aL/2)^k\leq(4aL)^k$.
+The union bound over the net proves the estimate.
+
+The plane spanned by each independent pair is uniformly distributed;
+linear dependence has probability zero. A union bound over all pairs
+shows that, outside an event of probability at most
+\[
+ \frac{28}{a}e^{-(2c+7)k},
+\]
+every pair span satisfies $\|z\|_1\geq a\sqrt{k}\|z\|_2$.
+Here we used $M^2\leq e^{2ck}$ and
+$2^{k/2}e^{-L^2k/4}\leq e^{-(4c+7)k}$,
+$(4aL)^k\leq e^{-8(c+2)k}$.
+
+Call a vertex exceptional when
+$|\sum_i v_i|>\delta\sqrt{k}$. Rotational invariance and
+$U=G/\|G\|_2$ give the bound
+\[
+ p:=\Pr(\text{a vertex is exceptional})
+ \leq e^{-k/12}+2e^{-\delta^2k/4}.
+\]
+In detail, $\sum_i U_i/\sqrt{k}$ has the distribution of $U_1$.
+If $\|G\|_2\geq\sqrt{k/2}$, the event $|U_1|>\delta$ forces
+$|G_1|>\delta\sqrt{k/2}$, whose probability is at most
+$2e^{-\delta^2k/4}$. Exponential Markov with parameter $1/2$
+gives
+$\Pr(\|G\|_2^2<k/2)\leq e^{k/4}2^{-k/2}\leq e^{-k/12}$.
+
+On the good event for pairs, suppose both $v,w$ are nonexceptional
+and $z=\alpha v+\beta w$ has all coordinates positive. Then
+\[
+ a\eta\sqrt{k}(|\alpha|+|\beta|)
+ \leq\|z\|_1=\sum_i z_i
+ \leq\delta\sqrt{k}(|\alpha|+|\beta|),
+\]
+a contradiction since $\delta=a\eta/2$ and $z\ne0$.
+Thus every edge meets the exceptional vertices. If their number is
+$V$, disjointness implies $\nu\leq V$. Consequently
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq e^{-k/12}+2e^{-\delta^2k/4}
+ +e^{2ck}\sqrt{k}(2\varepsilon)^{(k-1)/2}
+ +\frac{28}{a}e^{-(2c+7)k}.
+\]
+All four terms tend to zero. In particular,
+$2c+\tfrac12\log(2\varepsilon)<0$ by the definition of
+$\varepsilon$.
+\end{proof}
+
+\paragraph{Scope and finite experiments.}
+This is an asymptotic statement about an independent random dictionary,
+not a bound for all deterministic dictionaries. The explicit constants
+are deliberately conservative. The observed finite matchings and the
+failure of their constant-density extrapolation are compatible. The
+experiment rounds Gaussian coordinates to integers, so its exact
+certificates are statements about those rounded dictionaries only;
+the proposition is not silently asserted for fixed-precision rounding.
+
+\section{Independent logarithmic scales do not remove the matching obstruction}
+
+The preceding spherical argument uses Euclidean flatness. The following
+different argument permits coordinates separated by arbitrarily many
+orders of magnitude. Its key step is an odd increasing transformation
+that preserves the sign of a sum of two numbers.
+
+\begin{proposition}[Independent signed logarithmic scales]
+Fix $c>0$. For each positive integer $k$, choose
+$1\leq M=M(k)\leq e^{ck}$ and $R=R(k)>1$.
+Independently choose signs $\tau_{vi}\in\{-1,1\}$ uniformly and
+$U_{vi}$ uniformly on $[0,1]$, for $1\leq v\leq M$ and
+$1\leq i\leq k$. Put
+\[
+ x_{vi}=\tau_{vi}R^{U_{vi}}.
+\]
+For a fixed strict orthant, form the graph on these $M$ vectors in
+which two vertices are adjacent when their real linear span meets
+the orthant. If $\nu$ is its maximum matching size, then
+$\mathbb E\nu/M\longrightarrow0$ as $k\longrightarrow\infty$,
+uniformly in the choices of $R(k)>1$. For every fixed $\rho>0$,
+$\Pr(\nu\geq\rho M)\longrightarrow0$. In particular, taking an
+arbitrarily large range of logarithmic scales does not give a
+constant matching fraction with probability bounded away from zero.
+\end{proposition}
+
+\begin{proof}
+Coordinate sign symmetry reduces to the positive orthant. Set
+\[
+ a=\frac{e^{-2c-4}}{4e},\qquad
+ P_v=\sum_i\tau_{vi},\qquad
+ Q_v=\sum_i\tau_{vi}(2+U_{vi}).
+\]
+Call a vertex exceptional if $|P_v|>ak/4$ or $|Q_v|>ak/4$.
+The summands have mean zero, and lie in $[-1,1]$ and $[-3,3]$,
+respectively. Hoeffding's inequality gives
+\[
+ \Pr(v\text{ exceptional})
+ \leq2e^{-a^2k/32}+2e^{-a^2k/288}
+ \leq4e^{-a^2k/288}.
+\]
+
+For distinct $v,w$, signs $s,t\in\{-1,1\}$, and $r\in[-1,1]$,
+write
+\[
+ Z_i(r)=s\tau_{vi}(2+U_{vi})+
+ t\tau_{wi}(2+U_{wi}+r),\qquad
+ F(r)=\sum_i|Z_i(r)|.
+\]
+For fixed $r,s,t$, condition on all the signs. Each $Z_i(r)$
+is a translate of a sum or difference of two independent uniform
+variables on $[0,1]$. It therefore has a density bounded by one,
+and the $Z_i(r)$ are independent over $i$. Consequently, for
+$\lambda>0$,
+\[
+ \mathbb E e^{-\lambda|Z_i(r)|}\leq\frac{2}{\lambda},
+ \qquad
+ \Pr(F(r)\leq2ak)\leq(4ea)^k,
+\]
+where the second inequality uses exponential Markov with
+$\lambda=1/(2a)$.
+
+The function $F$ is $k$-Lipschitz on $[-1,1]$. Choose a net
+with covering radius $a$ and at most $4/a$ points. If
+$F(r)<ak$ anywhere, one net point satisfies $F\leq2ak$.
+A union bound over the net, the four sign pairs, and fewer than
+$M^2$ ordered vector pairs shows that, with probability at least
+\[
+ 1-\frac{16}{a}M^2(4ea)^k
+ \geq1-\frac{16}{a}e^{-4k},
+\]
+every such pair obeys $F(r)\geq ak$ for every $r\in[-1,1]$.
+No independence between different vector pairs is used here.
+
+On this good event, suppose a pair spans a positive vector. If one
+coefficient is zero, one of the endpoints, after sign reversal,
+is positive in every coordinate and is exceptional because
+$|P_v|=k$. Otherwise, divide by the absolute value of the first
+coefficient and write the positive vector as
+\[
+ s x_v+t R^r x_w,
+ \qquad s,t\in\{-1,1\},\quad r\in\mathbb R.
+\]
+If $r>1$, the second summand has strictly greater magnitude in
+every coordinate, so $t x_w$ must be positive in every coordinate.
+If $r<-1$, the same statement holds for $s x_v$. Either case
+has an exceptional endpoint. It remains to consider $-1\leq r\leq1$.
+
+On the positive magnitude interval $[R^{-1},R^2]$, the function
+$z\mapsto2+\log_R z$ is positive and strictly increasing.
+Its odd extension therefore has the following property on the
+signed version of this interval: if $u+v>0$, the sum of the
+transformed values is positive. For equal signs this follows
+from positivity; for opposite signs it follows from strict
+monotonicity and $|u|>|v|$ for the positive summand.
+Applying this fact in every coordinate to
+$s x_{vi}+tR^r x_{wi}>0$ gives $Z_i(r)>0$.
+If both endpoints were nonexceptional, then
+\[
+ ak\leq F(r)=\sum_i Z_i(r)
+ =sQ_v+tQ_w+trP_w
+ \leq |Q_v|+|Q_w|+|P_w|
+ \leq\frac{3ak}{4},
+\]
+a contradiction. Thus every edge meets the exceptional vertices.
+Since matching edges are disjoint, their number is at most the
+number of exceptional vertices. Taking expectations, and using
+$\nu\leq M$ on the bad event, yields the explicit bound
+\[
+ \frac{\mathbb E\nu}{M}
+ \leq4e^{-a^2k/288}+\frac{16}{a}e^{-4k}
+ \longrightarrow0.
+\]
+The probability assertion follows from Markov's inequality.
+\end{proof}
+
+\paragraph{Scope.}
+This proposition concerns independent continuously distributed
+logarithmic magnitudes. It does not rule out a correlated deterministic
+dictionary. The companion finite experiment stores integer exponents
+and verifies edges by exact exponent comparisons. Its certificates
+are valid finite statements; fixed-precision integer exponents are
+not silently identified with the continuous distribution in this
+proposition. Vanishing probability is not an assertion that the
+event is empty for every sufficiently large dimension.
+
+\begin{proposition}[Expected edge count does not certify the required matching]
+For either the spherical or the continuous logarithmic-scale dictionary
+above, let $E$ be the number of edges in its graph for a fixed strict
+orthant. Then
+\[
+ \mathbb E E=\binom M2\frac{2k}{2^k}.
+\]
+In particular, if $M/2^k\longrightarrow C>0$, its expected average
+degree is asymptotic to $2Ck$, while its expected maximum matching
+size divided by $M$ tends to zero.
+\end{proposition}
+\begin{proof}
+For a pair of sampled vectors $v,w$, the coordinate maps on their
+coefficient plane are $(\alpha,\beta)\mapsto\alpha v_i+\beta w_i$.
+Almost surely, these $k$ forms have distinct kernel lines. For the
+spherical case, use independent unnormalized Gaussian vectors;
+normalization does not change equality of kernel lines. For the
+logarithmic case, the joint coordinate distribution is absolutely
+continuous on a finite union of open boxes. In either case, equality
+of two kernel lines is the nonzero polynomial equation
+$v_iw_j-v_jw_i=0$ and has probability zero. They cut the plane
+into $2k$ sectors. Every sector has a constant strict sign vector,
+and distinct sectors have distinct sign vectors. Indeed, the inverse
+image of a prescribed strict orthant is an intersection of open
+half-planes and is convex, so it cannot occupy disconnected sectors.
+Thus the pair span meets exactly $2k$ strict orthants.
+
+The joint distribution of the pair is invariant under reflecting any
+selected coordinate in both vectors. The probability that its span
+meets a specified strict orthant is therefore the same for all $2^k$
+orthants. Summing these probabilities gives $2k$, so each equals
+$2k/2^k$. Sum over the $\binom M2$ pairs and use linearity of
+expectation. Expected average degree is $2\mathbb E E/M$.
+The matching conclusion is given by the preceding propositions.
+\end{proof}
+
+This calculation identifies why the large finite edge counts cannot
+be substituted for the uniform matching guarantee required by the
+routing lemma. It does not rule out a different, correlated deterministic
+construction.
+
+\section{Grouping heads along few denominator directions loses universality}
+
+Low linear rank of the denominator directions was considered earlier.
+A different restriction is to allow full ambient rank, but require
+many heads to share one projective direction. This includes a sum of
+univariate rational functions of a small number of affine statistics,
+even when all those statistics depend on the target.
+
+\begin{proposition}[Few projective denominator directions]
+Fix an absolute constant $C>0$. Let $H=H(n)$ and $K=K(n)$ be positive
+integer sequences with
+\[
+ 1\leq K\leq H\leq C\frac{2^n}{n^2},\qquad \frac KH\longrightarrow0.
+\]
+Consider all scores with at most $H$ heads for which the normalized
+denominators can be written
+\[
+ B_h(x)=1+t_h v_{g(h)}\cdot x,
+ \qquad v_1,\ldots,v_K\in\mathbb R^n,
+ \quad t_h\in\mathbb R,
+ \quad g:[H]\longrightarrow[K].
+\]
+Allow arbitrary affine numerators and a bias, and require the
+denominators to be positive on the cube. The number of strict Boolean
+labelings represented by this family is $2^{o(2^n)}$. Consequently
+the family is not universal for all sufficiently large $n$.
+This conclusion also holds with the manuscript's stronger admissibility
+condition. The vectors $v_j$, scalars $t_h$, and assignment $g$ are
+all allowed to depend on the labeling.
+More generally, if only $1\leq K\leq H\leq C2^n/n^2$ is assumed,
+the number of patterns is at most
+\[
+ 2^{\,n^2K+O_C(2^n\log n/n)}.
+\]
+Thus a universal family at this head budget must use at least
+$(1-o(1))2^n/n^2$ distinct projective directions.
+\end{proposition}
+
+\begin{proof}
+Write $N=2^n$ and normalize numerator constants into the bias as before.
+For a fixed assignment $g$, use the two parameter blocks
+\[
+ (c,u_1,\ldots,u_H),\qquad
+ (v_1,\ldots,v_K,t_1,\ldots,t_H).
+\]
+Their dimensions are $k_1=1+nH$ and $k_2=nK+H$.
+At any cube vertex, the cleared numerator is
+\[
+ P_x=c\prod_{h=1}^H(1+t_hv_{g(h)}\cdot x)
+ +\sum_{h=1}^H(u_h\cdot x)
+       \prod_{r\ne h}(1+t_rv_{g(r)}\cdot x).
+\]
+It has degree at most one in the first block and at most $2H$ in
+the second block. For all sufficiently large $n$,
+$k=k_1+k_2\leq N$, since $K\leq H$ and
+$k\leq1+(2n+1)CN/n^2$.
+The two-block sign-count lemma, followed by a union bound over the
+$K^H$ possible assignments, bounds the number of patterns by
+\[
+ K^H\left(\frac{32768N}{k}\right)^k
+       2^{k_1}(2H)^{k_2}.
+\]
+This is an upper bound on the whole parameter space, so imposing
+positivity, uniform signs of slopes, or any further parameter
+restrictions cannot increase it.
+
+We check each term in its base-two logarithm. Since
+$H\leq CN/n^2$, we have $\log_2 H=O(n)$ and therefore
+\[
+ H\log_2 K\leq H\log_2 H=O(N/n),\qquad
+ k_1=O(N/n).
+\]
+Also $k=O(N/n)$, which implies
+\[
+ k\log_2(32768N/k)=O(N\log n/n).
+\]
+For clarity this last estimate is uniform even if $k$ is much
+smaller than $N/n$: the function
+$z\mapsto z\log_2(32768N/z)$ is increasing throughout
+$1\leq z\leq D N/n$ for every fixed $D$ and all sufficiently
+large $n$, and may be bounded at that upper endpoint.
+Finally,
+\[
+ k_2\log_2(2H)=O(n^2K+nH)=o(N),
+\]
+because $n^2K=(K/H)n^2H\leq CN(K/H)=o(N)$.
+The total logarithm is $o(N)$, strictly below $N$ for all
+sufficiently large $n$. There are $2^N$ Boolean labelings, proving
+nonuniversality. Fewer than $H$ heads may be padded with zero
+numerators without introducing new directions.
+
+For the more precise estimate, use
+$\log_2(2H)\leq n+O_C(1)$ to obtain, without the assumption
+$K/H\to0$,
+\[
+ k_2\log_2(2H)\leq n^2K+O_C(N/n).
+\]
+Combine this with the preceding uniform bounds for all the other
+logarithmic terms. If every labeling occurs, their total must be at
+least $N$, so
+$n^2K\geq N-O_C(N\log n/n)$, as asserted.
+\end{proof}
+
+This restriction is absent from the full problem, which permits
+$K=H$ independent directions. Thus the proposition excludes a grouped
+univariate shortcut and does not contradict the requested bound.
+
+\end{document}

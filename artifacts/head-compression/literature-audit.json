@@ -1,0 +1,336 @@
+{
+  "status": "None of these sources supplies the requested universal upper bound or a proved transfer to it.",
+  "source_policy": "Technical conclusions below are based on primary papers, not search-result summaries alone.",
+  "entries": [
+    {
+      "title": "Betti numbers of semi-algebraic sets defined by multi-degree constraints",
+      "authors": "Saugata Basu and Anthony Rizzie",
+      "url": "https://arxiv.org/pdf/1507.03958v7",
+      "checked_location": "Theorems 12 and 13, printed page 11",
+      "mechanism": "Bounds on components of sign conditions using separate parameter blocks and their separate degrees.",
+      "application": "The two-block estimate in mechanism-audit.tex gives a full-model lower bound with asymptotic constant one. It also excludes low-rank denominator directions, adaptive moment-curve nodes, and uniformly mild conditioning/margin as universal compressed constructions.",
+      "gap": "A sign-pattern upper count is a lower-bound method for head complexity. It provides no universal existence construction."
+    },
+    {
+      "title": "The capacity of feedforward neural networks",
+      "authors": "Pierre Baldi and Roman Vershynin",
+      "url": "https://arxiv.org/pdf/1901.00434",
+      "checked_location": "Theorem 3.1 and its dimensional assumptions",
+      "mechanism": "Capacity estimates for layered threshold networks.",
+      "gap": "The dimensional hypotheses used for the relevant asymptotics do not cover exponentially many hidden units relative to input dimension. Counting many functions is also weaker than representing every function, and a threshold activation is not an admissible head value."
+    },
+    {
+      "title": "Exact hyperplane covers for subsets of the hypercube",
+      "authors": "Scott Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, Dawid Kielak",
+      "url": "https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf",
+      "checked_location": "Theorem 2, Lemmas 9 and 10, and their proofs",
+      "mechanism": "Hamming-neighborhood covers and a count of hyperplane intersection patterns.",
+      "gap": "The universal upper bound has order 2^n/n. The lower bound has order 2^n/n^2. Moreover a hyperplane equality predicate cannot simply be inserted as a flat-valued head and combined by an assumed free OR operation."
+    },
+    {
+      "title": "Explicit exponential lower bounds for exact hyperplane covers",
+      "authors": "Benjamin E. Diamond and Amir Yehudayoff",
+      "url": "https://eccc.weizmann.ac.il/report/2021/148/revision/1/download/",
+      "checked_location": "Introduction and main lower-bound theorem",
+      "mechanism": "Communication complexity gives explicit subsets with exponentially large exact cover number.",
+      "gap": "This is a lower bound for a different covering resource, not a universal construction at the requested scale."
+    },
+    {
+      "title": "Dimension of projections in Boolean functions",
+      "authors": "Ramamohan Paturi and Francis Zane",
+      "url": "https://cseweb.ucsd.edu/~paturi/myPapers/pubs/PaturiZane_1998_jdm.pdf",
+      "checked_location": "Theorem 2 and definition of a projection",
+      "mechanism": "Find monochromatic projections defined by fixed coordinates and equal or complementary coordinate identifications.",
+      "gap": "The guaranteed dimension is around log_2(n), not 2 log_2(n). This does not provide arbitrary-label cells of quadratic size or an admissible-head compiler."
+    },
+    {
+      "title": "Stability for hyperplane covers",
+      "authors": "Shagnik Das, Valjakas Djaljapayan, Yen-Chi Roger Lin, Wei-Hsuan Yu",
+      "url": "https://arxiv.org/pdf/2306.07574",
+      "checked_location": "Weighted hyperplane inequality and its equality and stability conditions",
+      "mechanism": "The vertex weight 1/(|x| binomial(n,|x|)) bounds the weight of a hyperplane avoiding the origin.",
+      "gap": "Almost covers and multiplicity covers do not supply target-dependent monochromatic exact covers of arbitrary subsets. No head-count upper bound follows."
+    },
+    {
+      "title": "Polynomial threshold functions and Boolean threshold circuits",
+      "authors": "Kristoffer Arnsfelt Hansen and Vladimir V. Podolskii",
+      "url": "https://eccc.weizmann.ac.il/report/2013/021/download/",
+      "checked_location": "Section 5, especially Lemmas 19 and 20",
+      "mechanism": "Compare maxima of affine input statistics, then lift a strict exponent winner to a signed exponential sum.",
+      "gap": "An exponential of an affine input statistic is a product over input coordinates. It is not an affine numerator or denominator. The dominant-power head construction instead takes maxima over active coefficient exponents and has a different feasibility problem."
+    },
+    {
+      "title": "Sign conditions for injectivity of generalized polynomial maps with applications to chemical reaction networks and real algebraic geometry",
+      "authors": "Stefan Mueller, Elisenda Feliu, Georg Regensburger, Carsten Conradi, Anne Shiu, Alicia Dickenstein",
+      "url": "https://arxiv.org/pdf/1311.5493",
+      "checked_location": "Theorems 1.4 and 1.5, especially the existence clause of Theorem 1.5",
+      "mechanism": "Oriented-matroid conditions on maximal minors give injectivity and, with additional hypotheses, positive solutions in a specified cone.",
+      "gap": "Arbitrary Boolean label cones do not automatically satisfy the required matching-minor signs. Establishing the relevant compatibility at the requested head count remains a theorem-strength gap."
+    },
+    {
+      "title": "Unit signatures in real biquadratic and multiquadratic number fields",
+      "authors": "David S. Dummit and Hershy Kisilevsky",
+      "url": "https://arxiv.org/pdf/1904.04411",
+      "checked_location": "Definitions of signature and deficiency, Proposition 1, and the introductory statements of the main constructions",
+      "mechanism": "Real embeddings of a multiquadratic field are indexed by Boolean sign choices, so algebraic signatures form Boolean tables.",
+      "gap": "The constructions concern multiplicative unit groups and extraction of square roots. These operations have no established small-head compilation. Signature rank can also be deficient; unrestricted signature universality must not be assumed for units."
+    },
+    {
+      "title": "Erzeugungsgrad, VC-dimension and neural networks with rational activation function",
+      "authors": "Luis Miguel Pardo and Daniel Sebastian",
+      "url": "https://arxiv.org/pdf/2504.11345",
+      "checked_location": "Introduction and scope of constructible families",
+      "mechanism": "Intersection theory relates algebraic dimension and classification capacity through generation degree.",
+      "gap": "A capacity bound or dimension comparison does not prove that the fixed Boolean cube is shattered by the manuscript's constrained rational family."
+    },
+    {
+      "title": "Network size and weights size for memorization with two-layers neural networks",
+      "authors": "Sebastien Bubeck, Ronen Eldan, Yin Tat Lee, Dan Mikulincer",
+      "url": "https://proceedings.neurips.cc/paper/2020/file/34609bdc08a07ace4e1526bbb1777673-Paper.pdf",
+      "checked_location": "Introduction, general-position condition, and stated memorization bounds",
+      "mechanism": "Threshold and ReLU memorization at the number-of-points divided by input-dimension scale; complex recombination controls weights in approximation.",
+      "gap": "The scale is 2^n/n, the cube fails the stated general-position condition, and the activations differ from admissible affine ratios."
+    },
+    {
+      "title": "The real tropical geometry of neural networks",
+      "authors": "Marie-Charlotte Brandenburg, Georg Loho, Guido Montufar",
+      "url": "https://openreview.net/pdf?id=I7JWf8XA2w",
+      "checked_location": "Classification regions and the distinction between real and tropical parameter geometry",
+      "mechanism": "Tropical inequalities organize classification regions and reveal nonconvexity.",
+      "gap": "The geometry alone does not assert a solution for every labeling or provide positive affine denominators with the required head count."
+    },
+    {
+      "title": "Neural Nets with Superlinear VC-Dimension",
+      "authors": "Wolfgang Maass",
+      "url": "https://eccc.weizmann.ac.il/report/1994/017/download/",
+      "checked_location": "Permutation encoding construction and its two hidden layers",
+      "mechanism": "A small collection of permutations encodes arbitrary bit tables on specially chosen one-hot input triples.",
+      "gap": "The decoding uses exclusive OR and additional threshold processing. The positive-denominator decoder in mechanism-audit.tex establishes only promised-grid permutation decoding; it does not compile the extra nonlinear operations or cover the full cube."
+    },
+    {
+      "title": "Counting and Covering in Nearest-Neighbour Representations of Boolean Functions",
+      "authors": "Martin Anthony",
+      "url": "https://arxiv.org/pdf/2609.23094",
+      "checked_location": "Introduction and Section 3 counting and VC-dimension estimates",
+      "mechanism": "Counting prototype systems and comparison with unions of halfspaces.",
+      "gap": "The full-cube universal upper bound described in the paper remains at order 2^n/n. A matching capacity order on some point set is not shattering of the fixed Boolean cube, and nearest-neighbour evaluation is not an affine-ratio score."
+    },
+    {
+      "title": "VC Dimension and Expressivity of Real-Valued Transformers",
+      "authors": "Gavin Dooley, Andy Yang, Yijia Jessica Zhu, David Chiang, Peter Cholak, Anand Pillay",
+      "url": "https://arxiv.org/pdf/2609.31999",
+      "checked_location": "Architecture-dependent VC statements and Proposition 6.3 indexing construction",
+      "mechanism": "Definability bounds and a one-layer indexing example.",
+      "gap": "The indexing query contains the requested index k. The manuscript fixes the query token, so that example is not a decoder in the present model. Architecture-dependent VC bounds also do not give the requested universal head-count construction."
+    },
+    {
+      "title": "Geometric complexity theory for product-plus-power",
+      "authors": "Pranjal Dutta, Fulvio Gesmundo, Christian Ikenmeyer, Gorav Jindal, Vladimir Lysikov",
+      "url": "https://goravjindal.github.io/assets/pdf/gctppp.pdf",
+      "checked_location": "Introduction, Theorem 1.1, and the Newton-identity argument",
+      "mechanism": "Relates border product-plus-power complexity to border Waring rank over the complex numbers.",
+      "gap": "Complex roots-of-unity cancellation has no established real positive-affine-denominator compiler. The elementary second-order real cancellation obstruction is recorded separately in mechanism-audit.tex."
+    },
+    {
+      "title": "Extremal properties of polynomial threshold functions",
+      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
+      "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
+      "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
+      "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
+      "gap": "Weak representations may vanish at most inputs, whereas the requested representation must have a strict sign everywhere. Polynomial products and parity constraints also lack a proved small-head compiler."
+    },
+    {
+      "title": "Algebraic aspects of discrete tomography",
+      "authors": "Lajos Hajdu and Robert Tijdeman",
+      "url": "https://math.unideb.hu/sites/default/files/inline-files/disctom8.pdf",
+      "checked_location": "Theorem 1, the divisibility lemma, and their proofs on pages 5-7",
+      "mechanism": "Functions with zero line sums on an integer rectangle are generated by translates of a product of binomials for the projection directions.",
+      "gap": "These are cancellation identities, not strict-sign interpolation of arbitrary Boolean labels. Neither a small support with the necessary directions nor a universal admissible-head perturbation follows from the theorem."
+    },
+    {
+      "title": "Orthogonal Vector-Valued Rational Functions with Applications in Rational Approximation",
+      "authors": "Robbe Vermeiren",
+      "url": "https://arxiv.org/html/2601.11317v3",
+      "checked_location": "Introduction, Definition 2.1, Definition 2.3, and Problem 2.4",
+      "mechanism": "Construct orthonormal bases with prescribed poles and prescribed residue directions, including an inverse-eigenvalue formulation and tangential rational Krylov algorithms.",
+      "application": "Informs numerical conditioning audits of the Cauchy codebook experiment.",
+      "gap": "The paper fixes pole and direction data and assumes a nondegenerate discrete inner product. It does not assert arbitrary strict-sign realizability by target-dependent positive shifts."
+    },
+    {
+      "title": "Almost every Boolean function has central threshold degree",
+      "authors": "Martin Anthony",
+      "url": "https://arxiv.org/pdf/2610.15057",
+      "checked_location": "Theorem 1 and the proof of Lemma 2",
+      "mechanism": "Relate the fraction of polynomial sign patterns to real evaluation ranks and then to Reed-Muller erasure recovery over the binary field.",
+      "gap": "The theorem concerns almost all functions and polynomial degree. It supplies neither every-function coverage nor a compiler into the admissible affine-fraction model at the requested head count."
+    },
+    {
+      "title": "Old and new examples of k-nets in P^2",
+      "authors": "Janis Stipins",
+      "url": "https://arxiv.org/pdf/math/0701046",
+      "checked_location": "Definition 1.1, Propositions 2.2 and 2.10, and Sections 4.2-4.5",
+      "mechanism": "Products of line equations in a pencil, including constructions from finite elliptic-curve subgroups and explicit real low-degree nets.",
+      "gap": "Incidence and factorization identities do not supply arbitrary Boolean signs or Boolean-compatible affine embeddings. Some configurations, including the displayed Hesse four-net, are intrinsically complex."
+    },
+    {
+      "title": "Completely reducible hypersurfaces in a pencil",
+      "authors": "J. V. Pereira and S. Yuzvinsky",
+      "url": "https://arxiv.org/pdf/math/0701312",
+      "checked_location": "Theorem 2.1, its stated irreducible-generic-fiber hypothesis, and Section 6.2",
+      "mechanism": "Bound the essential dimension of pencils with several completely split fibers and give reflection-group examples of product identities.",
+      "gap": "Theorems concern full polynomial identities over the complex field. They cannot be applied directly to identities modulo the Boolean ideal, nor without checking the generic-fiber hypothesis. No arbitrary-sign head construction follows."
+    },
+    {
+      "title": "Small Boolean Sections in Alon-Furedi Covers",
+      "authors": "Zoltan Lorant Nagy",
+      "url": "https://arxiv.org/pdf/2607.26301",
+      "checked_location": "Theorems 1.3 and 3.2, Proposition 3.3, and the complete control-slice proof in Section 3",
+      "mechanism": "Explicit integer hyperplanes permute Hamming layers between binary control slices; a roots-of-unity estimate balances their intersection sizes at (1+o(1))*2^n/n.",
+      "gap": "This is a balanced cover of all vertices except one. It is not a cover of an arbitrary target-dependent subset, and no additive implementation of its product polynomial by the requested number of admissible heads is supplied."
+    },
+    {
+      "title": "Understanding the Loss Surface of Neural Networks for Binary Classification",
+      "authors": "Shiyu Liang, Ruoyu Sun, Yixuan Li, R. Srikant",
+      "url": "https://proceedings.mlr.press/v80/liang18a/liang18a.pdf",
+      "checked_location": "Theorems 1 and 2 and their data assumptions",
+      "mechanism": "Exclude bad local minima under label-dependent subspace separation or linear separability assumptions, with suitable smooth activations and losses.",
+      "gap": "Arbitrary Boolean labelings do not satisfy these assumptions. The theorem does not prove attainment or a zero-loss configuration for the requested rational model."
+    },
+    {
+      "title": "Spurious Valleys in One-hidden-layer Neural Network Optimization Landscapes",
+      "authors": "Luca Venturi, Afonso S. Bandeira, Joan Bruna",
+      "url": "https://jmlr.org/papers/volume20/18-674/18-674.pdf",
+      "checked_location": "Theorem 8 and its proof in Appendix A.1",
+      "mechanism": "At width at least the upper intrinsic dimension, redundant units can be exchanged until the feature matrix spans the relevant space, after which the readout is optimized convexly.",
+      "gap": "The width condition uses the dimension of the full feature span. It does not provide every-label sign coverage with width smaller by the requested factor."
+    },
+    {
+      "title": "The smallest sets of points not determined by their X-rays",
+      "authors": "Andreas Alpers and David G. Larman",
+      "url": "https://arxiv.org/pdf/1406.0781v3",
+      "checked_location": "Theorems 2.1, 2.2, 3.3 and the complete pigeonhole proof in Section 3",
+      "mechanism": "Choose many short primitive lattice directions; count projection data of half-sized subsets of a lattice box to produce two distinct subsets with equal projections and polynomial support size.",
+      "gap": "The directions are selected as part of the construction. The result does not provide polynomial-size unweighted switching components for prescribed directions, arbitrary Boolean sign tables, or an admissible-head compiler at the target count."
+    },
+    {
+      "title": "On the reconstruction of static and dynamic discrete structures",
+      "authors": "Andreas Alpers and Peter Gritzmann",
+      "url": "https://arxiv.org/pdf/1809.06141",
+      "checked_location": "Theorems 3-5 and Section 8, especially Theorems 24 and 25",
+      "mechanism": "Switching components in several directions yield multivariate equal-power-sum identities and Prouhet-Tarry-Escott solutions.",
+      "gap": "Equal moments are cancellation constraints. They do not by themselves interpolate arbitrary strict signs, and the planar direction-selection hypothesis is not a Boolean-cube embedding theorem."
+    },
+    {
+      "title": "Two applications of number theory to discrete tomography",
+      "authors": "Rob Tijdeman",
+      "url": "https://hrj.episciences.org/5111/pdf",
+      "checked_location": "Sections 2-4, including the direct substitution proof of Theorem 3.2",
+      "mechanism": "Encode weighted point sets by bivariate polynomials; zero line sums imply divisibility by direction binomials, hence by their product in a unique factorization domain.",
+      "gap": "This gives switching identities rather than arbitrary sign interpolation. The general Chinese-remainder assertion as printed in Theorem 3.1 must not be used without a comaximality hypothesis: the coprime polynomials x,y with remainders 0,1 are already incompatible at (0,0). The product-divisibility implication used here is valid independently of that assertion."
+    },
+    {
+      "title": "Light RUMs",
+      "authors": "Flavio Chierichetti, Ravi Kumar, Andrew Tomkins",
+      "url": "https://proceedings.mlr.press/v139/chierichetti21a/chierichetti21a.pdf",
+      "checked_location": "Theorem 1, Observation 8, Corollary 9, Theorems 10 and 12",
+      "mechanism": "Sampling gives O(n/epsilon^2) permutations or multinomial-logit components with uniform additive approximation over all slates.",
+      "gap": "A Boolean sign transfer needs quantitative margins. The exact outside-option choice polytope has maximum axis-parallel cube radius 1/(3^n-1); the fixed-center uniform-perturbation transfer therefore gives no target bound. Arbitrary signed affine payoffs remain outside this obstruction."
+    },
+    {
+      "title": "The VC Dimension and Pseudodimension of Two-Layer Neural Networks with Discrete Inputs",
+      "authors": "Peter L. Bartlett and Robert C. Williamson",
+      "url": "https://ieeexplore.ieee.org/document/6796931/",
+      "checked_location": "Publisher abstract; related searchable textbook excerpt, Theorem 8.11, audited separately",
+      "mechanism": "Transforms sigmoid outputs on discrete inputs into rational functions and bounds sign patterns. The original abstract reports O(W log(WD)).",
+      "gap": "This is a capacity upper bound, not a universal construction. An apparently stronger textbook excerpt was not used: the available extraction appeared to omit the number of rational summands in a degree estimate, while the original full article and page image were unavailable. The independent pole example in the audit shows why a head-independent clearing degree cannot be assumed."
+    },
+    {
+      "title": "Nearest neighbor representations of Boolean functions",
+      "authors": "Peter Hajnal, Zhihao Liu, Gyorgy Turan",
+      "url": "https://arxiv.org/pdf/2004.01741",
+      "checked_location": "Sections 5 and 8; universal bound and discussion of the threshold-circuit gap",
+      "mechanism": "Covers the Boolean cube by radius-one neighborhoods and uses geometric prototypes to represent local labels.",
+      "gap": "The universal bound has order 2^n/n. Nearest-prototype comparisons are not affine fractions with the manuscript's coefficient restrictions, and the paper does not supply a sharper universal construction."
+    },
+    {
+      "title": "Provable Tempered Overfitting of Minimal Nets and Typical Nets",
+      "authors": "Itamar Harel, William M. Hoza, Gal Vardi, Itay Evron, Nathan Srebro, Daniel Soudry",
+      "url": "https://arxiv.org/pdf/2410.19092",
+      "checked_location": "Theorem 3.1; Appendix D, especially the hitting-set generator outline and finite-field generator construction",
+      "mechanism": "Uses hitting-set generators and finite-field independence to encode arbitrary partial Boolean tables with nearly optimal binary description length.",
+      "gap": "The construction uses a depth-14 threshold network. No one-layer affine-fraction compilation preserving the required head count is established."
+    },
+    {
+      "title": "Betweenness and Nonbetweenness",
+      "authors": "Ross Atkins",
+      "url": "https://arxiv.org/pdf/1602.05798",
+      "checked_location": "Theorem 1.5 and Lemmas 3.1 and 3.2",
+      "mechanism": "Constructs a logarithmic number of permutations that between-satisfy every ternary constraint, using separating orders and half-order rotations.",
+      "gap": "Ternary betweenness coverage is distinct from a large disjoint matching in every prescribed orthant. The deterministic rank-distance argument in the audit excludes the earlier full-rate matching criterion even for structured dictionaries."
+    },
+    {
+      "title": "Neural Networks with Quadratic VC Dimension",
+      "authors": "Pascal Koiran and Eduardo D. Sontag",
+      "url": "https://sontaglab.org/FTPDIR/quadratic-vc.pdf",
+      "checked_location": "Proposition 1, Theorems 2, 4, and 6, Lemmas 1 and 2",
+      "mechanism": "Whole Boolean-cube shattering through scalar memory lookup and sequential bit extraction; an arithmetic variant uses iterates of the logistic map.",
+      "gap": "The construction uses depth, intermediate multiplication, and interpolation. It does not supply a one-layer sum of admissible affine fractions, and flattening with the requested head count has not been proved."
+    },
+    {
+      "title": "MultivariateApart: Generalized Partial Fractions",
+      "authors": "Matthias Heller and Andreas von Manteuffel",
+      "url": "https://arxiv.org/pdf/2101.08283",
+      "checked_location": "Section 2.1, Definition 1 and Algorithm 1 in Section 2.2",
+      "mechanism": "Leinartas decomposition separates denominator factors with no common zero or algebraic dependence.",
+      "gap": "Terms retain products of up to the number of variables in algebraically independent denominator factors. Iterated univariate partial fractions can introduce extra poles. Neither operation gives affine numerators over single admissible affine denominators."
+    },
+    {
+      "title": "Extremal and approximative properties of simple partial fractions",
+      "authors": "V. I. Danchenko, M. A. Komarov and P. V. Chunaev",
+      "url": "https://arxiv.org/pdf/1506.08208",
+      "checked_location": "Definition (1), Sections 6.1 and 6.2",
+      "mechanism": "Interpolation by logarithmic derivatives of complex univariate polynomials; reduction to polynomial interpolation.",
+      "gap": "The model permits complex poles and concerns univariate interpolation. The universal simple-node result uses degree at least twice the number of nodes minus one, and does not provide constrained multivariate Boolean sign compression."
+    },
+    {
+      "title": "On Explicit Super-Expressive Approximation for Neural Networks",
+      "authors": "Feng-Lei Fan, Ze-Yu Li, Chen-Yu Wang and Jian-Jun Wang",
+      "url": "https://arxiv.org/pdf/2607.06781",
+      "checked_location": "Definitions 5-7; Section 3.1; Lemmas 8 and 9; equations (19)-(23)",
+      "mechanism": "Pairwise coprime affine moduli 1+i c with factorial c encode arbitrary quantized labels by the Chinese Remainder Theorem.",
+      "gap": "The decoder explicitly applies floor after a reciprocal and multiplies two hidden-channel values. These operations and the five-layer architecture are absent from the stipulated affine-fraction sum. A low-head compiler has not been established."
+    },
+    {
+      "title": "Algebraic Geometry of Rational Neural Networks",
+      "authors": "Alexandros Grosdos, Elina Robeva and Maksym Zubkov",
+      "url": "https://arxiv.org/pdf/2509.11088",
+      "checked_location": "Section 4.3, Lemma 4.9; Proposition 4.4",
+      "mechanism": "Relates reciprocal-network numerators to projections of Chow varieties by expanding a product of affine forms with auxiliary variables.",
+      "gap": "Complex Zariski closures and exact rational-function parameterizations do not establish strict Boolean sign coverage with positive same-sign-slope denominators."
+    },
+    {
+      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
+      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams and Tony Wu",
+      "url": "https://arxiv.org/pdf/2611.21910",
+      "checked_location": "Theorems 1.1-1.9; Section 4.2; Section 6.3",
+      "mechanism": "Rational approximation, algebraic parameter bounds, and sequential bit extraction give bounds and simulations for sigmoid circuits.",
+      "gap": "The activation and architectures differ from the manuscript. The small inner-product circuit uses growing depth; the universal simulations incur polynomial overhead and do not imply the target head bound."
+    },
+    {
+      "title": "Boolean threshold functions, neuron capacity, and memory retrieval",
+      "authors": "Xinyuan Xie",
+      "url": "https://arxiv.org/pdf/2609.29756",
+      "checked_location": "Theorem 1, Corollary 2, Theorem 3, and the chamber-count argument in Section 2.1",
+      "mechanism": "Sharp asymptotic enumeration of linear threshold functions, via random sign-vector spans and hyperplane-arrangement chambers.",
+      "gap": "Counting about 2^(n^2) single-neuron functions does not prove that O(2^n/n^2) neurons cover every Boolean labeling. This paper supplies neither an admissible affine-ratio decoder nor the required universal covering theorem."
+    },
+    {
+      "title": "On Non-Deterministic Representation of Boolean Functions",
+      "authors": "Sudharshan Rajagopalan and Nitin Saurabh",
+      "url": "https://arxiv.org/pdf/2611.11966",
+      "checked_location": "Theorem 3, Lemma 4, Theorems 6-8, Proposition 26 and Lemma 27",
+      "mechanism": "Random Hadamard submatrices give almost-everywhere rational-degree bounds. Separate examples obstruct low-degree partitions of unity on the Boolean cube.",
+      "gap": "The results concern polynomial degree and polynomial quotients, not sums of admissible affine fractions. Almost-everywhere coverage does not give the requested worst-case theorem. No head-efficient transfer has been proved."
+    }
+  ]
+}
