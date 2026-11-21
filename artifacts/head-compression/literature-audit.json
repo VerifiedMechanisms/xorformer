@@ -79,9 +79,9 @@
       "title": "Erzeugungsgrad, VC-dimension and neural networks with rational activation function",
       "authors": "Luis Miguel Pardo and Daniel Sebastian",
       "url": "https://arxiv.org/pdf/2504.11345",
-      "checked_location": "Introduction and scope of constructible families",
-      "mechanism": "Intersection theory relates algebraic dimension and classification capacity through generation degree.",
-      "gap": "A capacity bound or dimension comparison does not prove that the fixed Boolean cube is shattered by the manuscript's constrained rational family."
+      "checked_location": "Introduction; Section 5.5, especially Lemma 5.12, Corollary 5.13 and Definition 25 (rechecked in the HTML version).",
+      "mechanism": "Intersection theory bounds the growth function of classifiers given by distinguished Zariski-open sets D(f/g)={x:f(x)g(x)!=0} over an algebraically closed field; it also bounds the size and density of identity-testing sequences.",
+      "gap": "These classifiers test nonvanishing, not the positive versus negative real sign required here. The results give upper growth bounds and identity tests, not shattering of the fixed Boolean cube or a construction with positive same-sign-slope affine denominators."
     },
     {
       "title": "Network size and weights size for memorization with two-layers neural networks",
