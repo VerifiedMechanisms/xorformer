@@ -98,7 +98,8 @@
     "The explicit composition 1/(1+1/(1+x+2*y)+1/(1+2*x+y)) has an irreducible quadratic pole, so no finite sum of affine fractions equals it as a rational identity. This is not a Boolean sign lower bound.",
     "A convex piecewise-linear surrogate for a single-head rational hinge update gives an explicit positive step with strict actual loss decrease whenever the surrogate improves. The proof includes hinge kinks and preserves denominator admissibility. No global progress or head-count theorem follows.",
     "For every positive affine denominator, in any dimension, the absolute full-cube alternating sum of A/B is at most its range. A positive weighted edge-difference identity proves the sharp constant one. Consequently every unit-margin parity representation has total head range at least 2^n, independently of head count.",
-    "A downward radius-one covering code gives an explicit positive-slope full-cube representation with margin at least 3/4, using Mobius coefficients and epsilon=1/(4*n*3^n). This is an O(2^n/n) initialization only. A fixed number of heads cannot shatter all labelings of a radius-two Hamming ball, by a local Warren count."
+    "A downward radius-one covering code gives an explicit positive-slope full-cube representation with margin at least 3/4, using Mobius coefficients and epsilon=1/(4*n*3^n). This is an O(2^n/n) initialization only. A fixed number of heads cannot shatter all labelings of a radius-two Hamming ball, by a local Warren count.",
+    "Two positive-slope representations on opposite cube faces can be glued with the sum of their head counts, using explicit scale separation. Thus W_+(n)<=2^(n-m)*W_+(m). A target-rate positive-slope bound on power-of-two dimensions would extend to all positive dimensions with a factor four; that antecedent remains unproved. This statement does not assume that mixed-orientation scores can be glued at the same cost."
   ],
   "blocked_routes": [
     {

@@ -3137,4 +3137,79 @@ all $256$ vertices. The committed certificate has SHA-256
 \texttt{92dd28fccf37b4449493a182f45d3962d56a416f48074eac43f9a46de77b1848}.
 This single example is not a universal bound.
 
+\section{Gluing positive-slope scores on opposite faces}
+
+The following operation supplies a rigorous dimension-padding step for a
+positive-slope construction. It supplies no compressed construction in the
+initial dimensions, and it is not asserted for mixed denominator orientations.
+
+\begin{proposition}[Positive-slope face gluing]
+Let $f_0,f_1:\{0,1\}^m\to\{-1,1\}$. For $i\in\{0,1\}$ suppose
+that $f_i$ has a strict sign score with $H_i\geq1$ heads whose
+denominators have strictly positive variable coefficients. Then the
+function $f(x,y)=f_y(x)$ has such a score with $H_0+H_1$ heads in
+$m+1$ variables.
+\end{proposition}
+\begin{proof}
+Absorb each score's constant term into the numerator of its first head.
+Positive rescaling, using the minimum strict margin on the finite cube,
+then gives scores
+\[
+ S_i(x)=\sum_{h=1}^{H_i}\frac{A_{ih}(x)}{B_{ih}(x)},
+ \qquad f_i(x)S_i(x)\geq1.
+\]
+Choose a real $L\geq1$ that bounds, for every $x$, all three quantities
+\[
+ |S_1(x)|,\qquad
+ \sum_h|A_{0h}(x)|,\qquad
+ \sum_h\frac{|A_{1h}(x)|}{B_{1h}(x)^2}.
+\]
+Such an $L$ exists because the cube and both head lists are finite and
+all denominators are positive. Set
+\[
+ K=L+1,\qquad \delta=\frac1{4(L+1)},\qquad
+ M=4K(L+1).
+\]
+Define
+\[
+ R(x,y)=\sum_{h=1}^{H_1}\frac{A_{1h}(x)}{B_{1h}(x)+\delta y}
+       +K\sum_{h=1}^{H_0}\frac{A_{0h}(x)}{B_{0h}(x)+My}.
+\]
+Every denominator is positive on the enlarged cube, and every variable
+coefficient is strictly positive. At $y=0$,
+\[
+ f_0(x)R(x,0)=f_0(x)S_1(x)+K f_0(x)S_0(x)
+ \geq-L+K=1.
+\]
+At $y=1$, subtraction of $S_1$ and the triangle inequality give
+\[
+ |R(x,1)-S_1(x)|
+ \leq\delta\sum_h\frac{|A_{1h}(x)|}{B_{1h}(x)^2}
+      +\frac K M\sum_h|A_{0h}(x)|
+ \leq\frac{L}{2(L+1)}<\frac12.
+\]
+The first bound uses $B_{1h}+\delta\geq B_{1h}>0$ and
+$B_{0h}+M\geq M>0$. Therefore $f_1(x)R(x,1)>1/2$.
+Both faces have the required strict signs.
+\end{proof}
+
+Let $W_+(m)$ denote the largest, over Boolean functions on the $m$-cube,
+of the minimum positive-slope head count, with at least one head allowed
+for constant functions. This auxiliary notation does not replace the
+manuscript's $W$. Iterating the proposition proves
+\[
+ W_+(n)\leq2^{n-m}W_+(m)\qquad(1\leq m\leq n).
+\]
+Consequently, if one were to prove
+$W_+(2^k)\leq C2^{2^k}/(2^k)^2$ for every $k\geq0$, then taking
+the largest power of two $m\leq n$ would give
+\[
+ W(n)\leq W_+(n)\leq C\frac{2^n}{m^2}
+ \leq4C\frac{2^n}{n^2}.
+\]
+This implication makes the all-dimensions step explicit. Its antecedent
+is unproved; it is not an affirmative result for the requested target.
+The positive-slope hypothesis matters: adding $My$ to a negative-slope
+denominator would violate the normal form's common-sign restriction.
+
 \end{document}

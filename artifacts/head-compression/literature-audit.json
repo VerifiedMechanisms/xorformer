@@ -372,6 +372,14 @@
       "mechanism": "Patched covers and a semidirect sum give downward radius-R covers of size O_R(2^n/n^R) for every dimension.",
       "application": "Radius one gives the explicit positive-slope Mobius-basis initialization in mechanism-audit.tex.",
       "gap": "Radius two provides the desired number of cells but requires quadratic local numerators. A constant-head compiler for arbitrary labels on one radius-two ball is excluded by a local Warren count. No global interacting replacement is established."
+    },
+    {
+      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
+      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams, Tony Wu",
+      "url": "https://arxiv.org/pdf/2611.21910",
+      "checked_location": "Theorem 6.1, Lemma 6.6, Corollary 6.7, Lemma 6.8, Corollary 6.9, proof of Theorem 1.7 in Section 6.3, and statement of Lemma 7.1",
+      "mechanism": "Approximate multiplication through second differences, carry-free packed products, and sequential bit decoding give a small circuit for inner product modulo two.",
+      "gap": "The decoder uses growing depth. A sigmoid denominator on Boolean inputs is 1+B*product_j(W_j^x_j), which is not an affine input denominator. Parameter compression preserves a pre-existing circuit and does not reduce gate count. The construction does not transfer to the manuscript model or prove the universal bound."
     }
   ]
 }
