@@ -51,7 +51,7 @@ def verify_promised(data):
 
 
 class Decoder:
-    def __init__(self, k, selectors, heads, seed, seconds, out):
+    def __init__(self, k, selectors, heads, seed, seconds, out, resume=False):
         self.k, self.d, self.h = k, selectors, heads
         self.n, self.seed, self.out = k + selectors, seed, out
         self.rng = np.random.default_rng(seed)
@@ -68,6 +68,7 @@ class Decoder:
         self.evaluations = 0
         self.last_log = self.start
         self.certificate = None
+        self.resume = resume
 
     def objective(self, logs, certify=True):
         if time.monotonic() >= self.deadline:
@@ -124,6 +125,14 @@ class Decoder:
                 if restarts and self.best_errors < len(self.x) // 4:
                     logs = self.best_logs + self.rng.normal(0, .5, logs.shape)
                 self.previous = None
+                checkpoint = self.out / "checkpoint.npz"
+                if restarts == 0 and self.resume and checkpoint.exists():
+                    saved = np.load(checkpoint)
+                    assert np.array_equal(saved["vertices"], self.vertices)
+                    assert np.array_equal(saved["labels"], self.y)
+                    assert saved["logs"].shape == logs.shape
+                    logs = saved["logs"].copy()
+                    self.previous = saved["coefficients"].copy()
                 opt.minimize(self.objective, logs, jac=True, method="L-BFGS-B",
                              bounds=[(-20, 20)] * len(logs),
                              options={"maxiter": 100000, "gtol": 1e-10,
@@ -146,17 +155,20 @@ def main():
     p.add_argument("--seconds", type=float, default=7200)
     p.add_argument("--trial-seconds", type=float, default=900)
     p.add_argument("--seed", type=int, default=310000)
+    p.add_argument("--dimensions", type=int, nargs="+", default=[5, 6, 7, 8])
+    p.add_argument("--resume", action="store_true")
     args = p.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     deadline = time.monotonic() + args.seconds
     index = 0
     while time.monotonic() < deadline:
-        k = (5, 6, 7, 8)[index % 4]
+        k = args.dimensions[index % len(args.dimensions)]
         heads = math.ceil((1 << k) / k)
         out = args.out / f"k{k}-d{k}-h{heads}-seed{args.seed + index}"
         out.mkdir(exist_ok=True)
         problem = Decoder(k, k, heads, args.seed + index,
-                          min(args.trial_seconds, deadline - time.monotonic()), out)
+                          min(args.trial_seconds, deadline - time.monotonic()), out,
+                          args.resume)
         result = problem.run()
         (out / "result.json").write_text(json.dumps(result, indent=2) + "\n")
         print(json.dumps(result), flush=True)
