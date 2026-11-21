@@ -413,5 +413,244 @@
       }
     ],
     "scope": "Both checkpoints still have errors. These are numerical search audits, not strict sign certificates and not a universal theorem."
+  },
+  "affine_denominator_schur_derivative_check": {
+    "n": 5,
+    "heads": 2,
+    "seed": 510005,
+    "analytic_first": 0.040938705378731705,
+    "analytic_second": -0.015595885544050635,
+    "inner_gradient": 1.4259426972529354e-14,
+    "kink_distance": 0.012616827518746376,
+    "checks": [
+      {
+        "epsilon": 0.002,
+        "first_difference": 0.040938590578395995,
+        "second_difference": -0.01559583714949575
+      },
+      {
+        "epsilon": 0.001,
+        "first_difference": 0.040938676679203034,
+        "second_difference": -0.015595873370521929
+      },
+      {
+        "epsilon": 0.0005,
+        "first_difference": 0.04093869820148699,
+        "second_difference": -0.01559587614607949
+      }
+    ],
+    "scope": "Numerical derivative check only."
+  },
+  "extension_projected_newton_n14": {
+    "n": 14,
+    "heads": 251,
+    "seconds": 14424.186377794947,
+    "best_loss": 0.2055752049597941,
+    "certificate": null,
+    "events": [
+      {
+        "iteration": 0,
+        "evaluations": 1,
+        "seconds": 102.91473168693483,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20578458619839127,
+        "errors": 2325,
+        "minimum_margin": -2.1698211030503436,
+        "damping": 0.001,
+        "inner_gradient": 2.7918639622370733e-14
+      },
+      {
+        "iteration": 1,
+        "evaluations": 3,
+        "seconds": 316.0774185699411,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20560294770761514,
+        "errors": 2325,
+        "minimum_margin": -2.1691809221699696,
+        "damping": 0.0007,
+        "inner_gradient": 2.5895952049381776e-14
+      },
+      {
+        "iteration": 2,
+        "evaluations": 5,
+        "seconds": 496.44040246191435,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557903998448113,
+        "errors": 2326,
+        "minimum_margin": -2.169171592009346,
+        "damping": 0.00049,
+        "inner_gradient": 1.9886869928598117e-14
+      },
+      {
+        "iteration": 3,
+        "evaluations": 7,
+        "seconds": 659.8383968259441,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557573397893017,
+        "errors": 2326,
+        "minimum_margin": -2.1691713647230424,
+        "damping": 0.000343,
+        "inner_gradient": 1.6719264861464467e-14
+      },
+      {
+        "iteration": 4,
+        "evaluations": 9,
+        "seconds": 836.6048258389346,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.2055752783695526,
+        "errors": 2326,
+        "minimum_margin": -2.16917143458294,
+        "damping": 0.00024009999999999998,
+        "inner_gradient": 2.5757174171303632e-14
+      },
+      {
+        "iteration": 5,
+        "evaluations": 11,
+        "seconds": 1025.8623069869354,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557521568310666,
+        "errors": 2326,
+        "minimum_margin": -2.1691714575955308,
+        "damping": 0.00016806999999999998,
+        "inner_gradient": 2.992918413102785e-14
+      },
+      {
+        "iteration": 6,
+        "evaluations": 13,
+        "seconds": 1223.0755846609827,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557520707722426,
+        "errors": 2326,
+        "minimum_margin": -2.1691714625734204,
+        "damping": 0.00011764899999999998,
+        "inner_gradient": 6.011816513357138e-10
+      },
+      {
+        "iteration": 7,
+        "evaluations": 34,
+        "seconds": 4831.083241228946,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557520707722432,
+        "errors": 2326,
+        "minimum_margin": -2.1691714625809286,
+        "damping": 0.0011764899999999999,
+        "inner_gradient": 1.8582357874663558e-14
+      },
+      {
+        "iteration": 8,
+        "evaluations": 55,
+        "seconds": 6487.42611282994,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557520707722426,
+        "errors": 2326,
+        "minimum_margin": -2.16917146258093,
+        "damping": 0.011764899999999998,
+        "inner_gradient": 2.4777055407376736e-14
+      },
+      {
+        "iteration": 9,
+        "evaluations": 76,
+        "seconds": 7604.021203885903,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557520707722432,
+        "errors": 2326,
+        "minimum_margin": -2.1691714625809313,
+        "damping": 0.11764899999999998,
+        "inner_gradient": 2.6012178522272222e-14
+      },
+      {
+        "iteration": 10,
+        "evaluations": 97,
+        "seconds": 11591.962369643967,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.20557520707722432,
+        "errors": 2326,
+        "minimum_margin": -2.1691714625809304,
+        "damping": 1.1764899999999998,
+        "inner_gradient": 2.878426663688316e-14
+      },
+      {
+        "iteration": 11,
+        "evaluations": 99,
+        "seconds": 11717.411823338945,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.2055752049597941,
+        "errors": 2326,
+        "minimum_margin": -2.1691714629560384,
+        "damping": 0.8235429999999998,
+        "inner_gradient": 2.4993895841873837e-14
+      },
+      {
+        "iteration": 12,
+        "evaluations": 120,
+        "seconds": 13720.842655254994,
+        "n": 14,
+        "heads": 251,
+        "loss": 0.2055752049597941,
+        "errors": 2326,
+        "minimum_margin": -2.169171462956038,
+        "damping": 8.235429999999997,
+        "inner_gradient": 2.1475876632592872e-14
+      }
+    ],
+    "failure_is_not_a_lower_bound": true
+  },
+  "extension_block_curvature_n14": {
+    "status": "Stopped after a materially different coupled method gave lower loss.",
+    "last_logged_state": {
+      "sweep": 6413,
+      "seconds": 9427.50728594698,
+      "loss": 0.20207640918787706,
+      "errors": 2279,
+      "minimum_margin": -2.108447578094683,
+      "accepted": 251,
+      "negative_curvature_seen": 0,
+      "negative_curvature_used": 0
+    },
+    "certificate": null,
+    "failure_is_not_a_lower_bound": true
+  },
+  "extension_reduced_curvature_n14": {
+    "status": "Stopped after a materially different coupled method gave lower loss.",
+    "last_logged_state": {
+      "iteration": 3,
+      "seconds": 3877.169821316027,
+      "loss": 0.20487981064173943,
+      "errors": 2319,
+      "minimum_margin": -2.1796797491905924,
+      "inner_gradient": 5.133827390979562e-14,
+      "minimum_eigenvalue": -0.0021034606975136177,
+      "reduced_gradient_norm": 0.0027722567530049477,
+      "inner_gram_regularizer": 1e-12,
+      "trial_evaluations": 16,
+      "accepted_direction": "newton-2.0",
+      "step": 1.0
+    },
+    "certificate": null,
+    "failure_is_not_a_lower_bound": true
+  },
+  "extension_block_lp_n13_audited": {
+    "n": 13,
+    "heads": 146,
+    "sweeps": 94,
+    "seconds": 14400.127927837078,
+    "lp_calls": 13702,
+    "hinge_loss": 0.17988341678623546,
+    "errors": 446,
+    "minimum_margin": -2.7479129033685012,
+    "certificate": null,
+    "scope": "This checkpoint and target only. Failure is not a lower bound."
   }
 }

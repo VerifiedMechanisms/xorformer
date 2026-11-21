@@ -3753,4 +3753,77 @@ Those additional mechanisms must themselves be supplied and counted.
 It also does not supply a lower bound for the unrestricted global
 head model, since the whole cube has exponential size.
 
+
+\section{A Boolean moment invariant and its precise limitation}
+
+\begin{proposition}[Positive kernel and Boolean diagonal relations]
+Let $M$ be a real symmetric matrix indexed by a finite set $J$, let
+$o\in J$, and let $b_i>0$ for all $i\in J$. Suppose
+\[
+ M_{ii}=M_{oi}\quad(i\in J),\qquad
+ \sum_i M_{oi}b_i=0.
+\]
+If $M\ne0$, its quadratic form has both strictly positive and strictly
+negative values.
+\end{proposition}
+\begin{proof}
+Suppose first that $M$ is positive semidefinite. Its diagonal entries
+are nonnegative, whereas
+\[
+ \sum_i b_i M_{ii}=\sum_i b_i M_{oi}=0.
+\]
+Strict positivity of every $b_i$ forces every diagonal entry to vanish.
+A positive semidefinite matrix with zero trace is zero. Applying the
+same argument to $-M$ excludes negative semidefiniteness as well.
+\end{proof}
+
+For the attention application use oriented Boolean coordinates
+$z_0(x)=1$ and $z_i(x)\in\{0,1\}$. Write
+$B(x)=\sum_i b_i z_i(x)$ with all $b_i>0$, and suppose a signed
+residual $w$ is orthogonal to all numerator directions:
+\[
+ \sum_x w_x\frac{z_i(x)}{B(x)}=0\quad(i\in J).
+\]
+The residual moment matrix
+\[
+ M_{ij}=\sum_x w_x\frac{z_i(x)z_j(x)}{B(x)^2}
+\]
+is symmetric, satisfies $M_{ii}=M_{0i}$, and has $Mb=0$. The last
+identity follows by summing $\sum_j b_jz_j(x)=B(x)$ inside each
+matrix row. Thus a nonzero such matrix is necessarily indefinite.
+The matrix statement and both signs of its quadratic form are checked
+in \texttt{BooleanMomentIndefiniteness.lean}.
+
+This is not a strict-saddle theorem for squared hinge loss. Its full
+Hessian contains the additional positive semidefinite term
+$J_{\mathrm{act}}^{\top}J_{\mathrm{act}}/N$, which can dominate an
+indefinite residual term. For example, for $0<\varepsilon<1$ the sum
+$I_2+\operatorname{diag}(-\varepsilon,\varepsilon)$ is positive definite.
+A quantitative argument controlling this positive term, or a direction
+in its kernel with nonzero residual curvature, is still required.
+No such universal argument is asserted here.
+
+\section{Affine denominator paths in the coupled search}
+
+The second coupled search uses the positive path
+$b(\tau)=b\mathbin{\odot}(1+\tau d)$ instead of exponentiating a
+linear path in the log coefficients. If $g_v,H_v$ denote the reduced
+gradient and Hessian in $v=\log b$, the chain rule gives
+\[
+ \frac{d^2}{d\tau^2}L(b(\tau))\bigg|_{\tau=0}
+ =d^{\top}\bigl(H_v-\operatorname{diag}(g_v)\bigr)d.
+\]
+The first-order numerator response is unchanged, because both paths
+have log-coordinate velocity $d$ at zero. Trial directions obey
+$d_i\ge-0.9$ and $\tau\in[0,1]$, so positivity is explicit.
+The search still accepts only a decrease of the actual evaluated loss.
+
+A five-bit, two-head check with seed 510005 gave analytic first and
+second derivatives $0.0409387053787$ and $-0.0155958855441$.
+Central differences at step $0.0005$ gave $0.0409386982015$ and
+$-0.0155958761461$. The closest hinge kink was more than $0.0126$
+away, and the inner numerator gradient was below $1.5\cdot10^{-14}$.
+These validate the numerical coordinate conversion on that instance;
+they are not interval certificates or a convergence proof.
+
 \end{document}

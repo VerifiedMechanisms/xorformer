@@ -28,7 +28,7 @@ def quick_evaluate(t, labels, logs, coefficient):
     return float(residual@residual/(2*len(labels))), score
 
 
-def run(checkpoint, out, seconds, max_step, floor_ratio):
+def run(checkpoint, out, seconds, max_step, floor_ratio, chart="log"):
     saved = np.load(checkpoint)
     labels = saved["labels"].astype(float)
     orientation = saved["orientation"].astype(int)
@@ -47,6 +47,7 @@ def run(checkpoint, out, seconds, max_step, floor_ratio):
         np.savez(out/"checkpoint.npz", labels=labels, orientation=orientation,
                  logs=logs, coefficients=state["coefficient"])
         event = dict(iteration=iteration, seconds=time.monotonic()-start,
+                     denominator_chart=chart,
                      loss=state["loss"], errors=int((margin <= 0).sum()),
                      minimum_margin=float(margin.min()),
                      inner_gradient=state["inner_gradient"])
@@ -63,6 +64,10 @@ def run(checkpoint, out, seconds, max_step, floor_ratio):
                 break
         gradient, hessian, scale, regularizer, lift = reduced_hessian(
             state, labels, logs, return_lift=True)
+        if chart == "affine":
+            # For b(t)=b*(1+t*d), log(b(t)) has second derivative -d^2.
+            # Convert the reduced log Hessian to relative affine coordinates.
+            hessian.flat[::len(hessian)+1] -= gradient/scale
         safer_scale = np.maximum(scale, np.median(scale)*floor_ratio)
         rescale = scale/safer_scale
         gradient *= rescale
@@ -87,15 +92,21 @@ def run(checkpoint, out, seconds, max_step, floor_ratio):
         trials = 0
         for name, raw in directions:
             d = raw.reshape(heads, n)
-            d *= min(1., max_step/max(float(np.max(np.abs(d))), 1e-30))
-            # Clipping at the box is included before computing the response.
-            d = np.clip(logs+d, -35, 35)-logs
+            if chart == "affine":
+                d *= min(1., .9/max(float(-d.min()), 1e-30),
+                         max_step/max(float(d.max()), 1e-30))
+                # Include box clipping in the relative coefficient change.
+                d = np.expm1(np.clip(logs+np.log1p(d), -35, 35)-logs)
+            else:
+                d *= min(1., max_step/max(float(np.max(np.abs(d))), 1e-30))
+                d = np.clip(logs+d, -35, 35)-logs
             response = lift@d.ravel()
             for backtrack in range(30):
                 if time.monotonic() >= deadline:
                     break
                 alpha = 2.**(-backtrack)
-                trial_logs = logs+alpha*d
+                trial_logs = (logs+np.log1p(alpha*d) if chart == "affine"
+                              else logs+alpha*d)
                 trial_coefficient = state["coefficient"]+alpha*response
                 loss, score = quick_evaluate(t, labels, trial_logs, trial_coefficient)
                 trials += 1
@@ -125,6 +136,7 @@ def run(checkpoint, out, seconds, max_step, floor_ratio):
     np.savez(out/"checkpoint.npz", labels=labels, orientation=orientation,
              logs=logs, coefficients=state["coefficient"])
     result = dict(n=n, heads=heads, seconds=time.monotonic()-start, events=events,
+                  denominator_chart=chart,
                   final_loss=state["loss"], certificate=certificate,
                   scope="Finite numerical search. No universal or convergence theorem.",
                   failure_is_not_a_lower_bound=True)
@@ -139,6 +151,8 @@ if __name__ == "__main__":
     parser.add_argument("--seconds", type=float, default=3600)
     parser.add_argument("--max-step", type=float, default=2.)
     parser.add_argument("--floor-ratio", type=float, default=1e-3)
+    parser.add_argument("--chart", choices=("log", "affine"), default="log")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
-    run(args.checkpoint, args.out, args.seconds, args.max_step, args.floor_ratio)
+    run(args.checkpoint, args.out, args.seconds, args.max_step, args.floor_ratio,
+        args.chart)

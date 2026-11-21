@@ -84,15 +84,21 @@
       "companion_declarations": [
         "HeadComplexity.not_strictFractionCompletion_of_moment_witness"
       ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/BooleanMomentIndefiniteness.lean",
+      "main_declaration": "HeadComplexity.booleanMoment_has_opposite_quadratic_signs",
+      "scope": "A nonzero symmetric Boolean moment matrix whose distinguished row annihilates a strictly positive vector is indefinite. This does not imply that the full squared-loss Hessian is indefinite."
     }
   ],
   "validation": {
-    "build": "lake build HeadComplexity.Results.ConditionalFractionCompletion HeadComplexity.Results.All succeeded; fourteen new audit modules are imported.",
-    "build_log": "/out/head-compression/lean-conditional-all-build.log",
+    "build": "lake build HeadComplexity.Results.BooleanMomentIndefiniteness HeadComplexity.Results.All succeeded; fifteen new audit modules are imported.",
+    "build_log": "/out/head-compression/lean-boolean-moment-all-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",
-    "scalar_root_axioms": "/out/head-compression/lean-scalar-root-axioms.log; all six declarations use only the allowed standard axioms."
+    "scalar_root_axioms": "/out/head-compression/lean-scalar-root-axioms.log; all six declarations use only the allowed standard axioms.",
+    "boolean_moment_extension": "All 9191 build jobs succeeded; the three new declarations use only propext, Classical.choice, and Quot.sound. No target declaration was added."
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",

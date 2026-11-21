@@ -22,6 +22,7 @@ import HeadComplexity.Results.OrthantSignEnergy
 import HeadComplexity.Results.ClearedNormalForm
 import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.ConditionalFractionCompletion
+import HeadComplexity.Results.BooleanMomentIndefiniteness
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
