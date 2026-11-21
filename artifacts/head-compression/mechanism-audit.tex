@@ -4614,4 +4614,34 @@ than the unrestricted assertion that each complete truth table has
 some parameter setting. No such independence is inferred from that
 assertion.
 
+
+\section{Direct positive-slope coordinates in the coupled search}
+
+Write $b_i=e^{\ell_i}$ for all slope coordinates, and let $G_\ell,H_\ell$
+be the gradient and Hessian of the numerator-minimized loss in log
+coordinates, at a point where the inner solution is smooth. The chain
+rule gives
+\[
+ (G_b)_i=(G_\ell)_i/b_i,\qquad
+ (H_b)_{ij}=\frac{(H_\ell)_{ij}-\delta_{ij}(G_\ell)_i}{b_i b_j}.
+\]
+If $U_\ell$ is the first-order numerator response, then
+$U_b=U_\ell\operatorname{diag}(1/b_i)$.
+The direct-coordinate search normalizes using the corresponding
+Jacobian column norms, projects each trial displacement to be at least
+$-0.9b_i$, and evaluates the actual score along $b+\alpha\Delta b$.
+It can therefore increase a very small slope by an absolute amount;
+this is a different finite search from imposing a bounded relative
+or logarithmic step. The denominator lower bound remains strictly
+positive. No global convergence assertion is made.
+
+A six-bit three-head check gave gradient, Hessian-direction, and
+relative numerator-response errors below $4\cdot10^{-12}$,
+$3\cdot10^{-11}$, and $8\cdot10^{-10}$, respectively.
+The same diagnostic search produced
+\texttt{certificates/random-n6-h3-absolute.json}.
+The independent Fraction checker verifies all $64$ strict signs and
+all denominator conditions, with minimum margin approximately
+$0.9948901633$. This is only one finite truth table.
+
 \end{document}

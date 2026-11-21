@@ -1,0 +1,6 @@
+{
+  "gradient_error": 3.544266009153363e-12,
+  "hessian_direction_error": 2.5407294757667787e-11,
+  "numerator_response_relative_error": 7.886763467067623e-10,
+  "scope": "Finite numerical derivative check, not a universal convergence result."
+}

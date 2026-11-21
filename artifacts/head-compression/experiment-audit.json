@@ -967,5 +967,31 @@
     "certificate": null,
     "reason": "Replaced pair swaps by simultaneous sorted-column proposals.",
     "log": "/out/head-compression/extension-column-permutations-n14.log"
+  },
+  "absolute_coefficient_chart_small_check": {
+    "gradient_error": 3.544266009153363e-12,
+    "hessian_direction_error": 2.5407294757667787e-11,
+    "numerator_response_relative_error": 7.886763467067623e-10,
+    "scope": "Finite numerical derivative check, not a universal convergence result.",
+    "n": 6,
+    "heads": 3,
+    "final_loss": 6.695058447513964e-07,
+    "exact_margin_approximation": 0.9948901633427782,
+    "certificate": "artifacts/head-compression/certificates/random-n6-h3-absolute.json",
+    "sha256": "0a6e0b2b0c842670844af1e036e4255d31425ecedc4d3727a5561521d0de8fd6"
+  },
+  "positive_face0_log_chart_stopped": {
+    "last_checkpoint": {
+      "phase": "start",
+      "iteration": 898,
+      "seconds": 11283.827752763988,
+      "denominator_chart": "log",
+      "loss": 0.2228648720416683,
+      "errors": 1292,
+      "minimum_margin": -1.5076605938277505,
+      "inner_gradient": 1.0881053003064522e-13
+    },
+    "reason": "Switched to direct positive-slope coordinates with coordinatewise feasibility projection.",
+    "certificate": null
   }
 }

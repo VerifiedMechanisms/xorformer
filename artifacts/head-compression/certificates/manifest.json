@@ -50,6 +50,11 @@
       "file": "random-n13-h146-coupled.json",
       "sha256": "0e353e7b90f68f7c1b7a2ddc1558de5b3371745328893a584656563a524e47b9",
       "scope": "All 8192 vertices of a second thirteen-bit truth table. Found by coupled numerator-denominator Newton steps after block linear programming; independently checked with exact rational arithmetic. No universal bound."
+    },
+    {
+      "file": "random-n6-h3-absolute.json",
+      "sha256": "0a6e0b2b0c842670844af1e036e4255d31425ecedc4d3727a5561521d0de8fd6",
+      "scope": "All 64 vertices of one six-bit Boolean function. Independent exact Fraction verification; no universal bound."
     }
   ],
   "optimization_audit_certificates": [

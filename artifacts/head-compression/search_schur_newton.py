@@ -64,19 +64,21 @@ def run(checkpoint, out, seconds, max_step, floor_ratio, chart="log"):
                 break
         gradient, hessian, scale, regularizer, lift = reduced_hessian(
             state, labels, logs, return_lift=True)
-        if chart == "affine":
+        if chart in ("affine", "absolute"):
             # For b(t)=b*(1+t*d), log(b(t)) has second derivative -d^2.
             # Convert the reduced log Hessian to relative affine coordinates.
             hessian.flat[::len(hessian)+1] -= gradient/scale
-        safer_scale = np.maximum(scale, np.median(scale)*floor_ratio)
-        rescale = scale/safer_scale
+        slopes = np.exp(logs).ravel()
+        metric_scale = scale/slopes if chart == "absolute" else scale
+        safer_scale = np.maximum(metric_scale, np.median(metric_scale)*floor_ratio)
+        rescale = metric_scale/safer_scale
         gradient *= rescale
         hessian *= rescale[:, None]*rescale[None, :]
         eig, vectors = la.eigh(hessian, subset_by_index=[0, 0], check_finite=False)
         event.update(minimum_eigenvalue=float(eig[0]),
                      reduced_gradient_norm=float(la.norm(gradient)),
                      inner_gram_regularizer=regularizer,
-                     scale_floor=float(np.median(scale)*floor_ratio))
+                     scale_floor=float(np.median(metric_scale)*floor_ratio))
         directions = []
         for relative in (1.01, 2., 10.):
             damping = max(1e-5, -float(eig[0])*relative+1e-6)
@@ -92,7 +94,14 @@ def run(checkpoint, out, seconds, max_step, floor_ratio, chart="log"):
         trials = 0
         for name, raw in directions:
             d = raw.reshape(heads, n)
-            if chart == "affine":
+            if chart == "absolute":
+                # Project each coefficient separately. Tiny positive slopes
+                # can now grow by an absolute amount, without constraining
+                # every other coordinate to their relative step size.
+                b = slopes.reshape(heads, n)
+                d = np.minimum(np.maximum(d, -.9*b), max_step*(1+b))
+                d = np.clip(b+d, np.exp(-35), np.exp(35))-b
+            elif chart == "affine":
                 d *= min(1., .9/max(float(-d.min()), 1e-30),
                          max_step/max(float(d.max()), 1e-30))
                 # Include box clipping in the relative coefficient change.
@@ -100,12 +109,14 @@ def run(checkpoint, out, seconds, max_step, floor_ratio, chart="log"):
             else:
                 d *= min(1., max_step/max(float(np.max(np.abs(d))), 1e-30))
                 d = np.clip(logs+d, -35, 35)-logs
-            response = lift@d.ravel()
+            response = lift@(d.ravel()/slopes if chart == "absolute" else d.ravel())
             for backtrack in range(30):
                 if time.monotonic() >= deadline:
                     break
                 alpha = 2.**(-backtrack)
-                trial_logs = (logs+np.log1p(alpha*d) if chart == "affine"
+                trial_logs = (np.log(slopes.reshape(heads, n)+alpha*d)
+                              if chart == "absolute" else
+                              logs+np.log1p(alpha*d) if chart == "affine"
                               else logs+alpha*d)
                 trial_coefficient = state["coefficient"]+alpha*response
                 loss, score = quick_evaluate(t, labels, trial_logs, trial_coefficient)
@@ -151,7 +162,7 @@ if __name__ == "__main__":
     parser.add_argument("--seconds", type=float, default=3600)
     parser.add_argument("--max-step", type=float, default=2.)
     parser.add_argument("--floor-ratio", type=float, default=1e-3)
-    parser.add_argument("--chart", choices=("log", "affine"), default="log")
+    parser.add_argument("--chart", choices=("log", "affine", "absolute"), default="log")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     run(args.checkpoint, args.out, args.seconds, args.max_step, args.floor_ratio,
