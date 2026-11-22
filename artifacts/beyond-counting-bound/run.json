@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T21:16:54.682121+00:00",
+  "last_audit_utc": "2026-11-22T21:43:12.793044+00:00",
   "elapsed_seconds_at_last_audit": 76833,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -275,12 +275,17 @@
     {
       "task": "four-parameter ten-test finite threshold-vote search",
       "output": "/out/mobius-evolved/n4-m10-step-sat.json",
-      "status": "running; finite step model only"
+      "status": "completed UNKNOWN after 7200 seconds; finite step model only; no impossibility inference"
     },
     {
       "task": "positive full-parameter Boolean coordinate-score fibers",
       "output": "/out/coordinate-score-fibers/n6-h3",
-      "status": "running; one branch independently certified; numerical candidates alone UNKNOWN"
+      "status": "stopped after 3795 trials and about 1050 seconds by numerical SVD nonconvergence; one exact branch independently certified; other candidates UNKNOWN"
+    },
+    {
+      "task": "binary active score fibers and signed norm-minimization multipliers",
+      "output": "/out/binary-active-fibers",
+      "status": "running; all numerical candidates require exact certification"
     }
   ],
   "stabilized_critical_point_audit": {
