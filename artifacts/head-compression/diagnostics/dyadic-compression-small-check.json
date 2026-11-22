@@ -1,0 +1,9 @@
+{
+  "vertices": 16,
+  "heads": 3,
+  "fraction_arithmetic": true,
+  "actual_maximum_error_approximation": 4.417678344088214e-20,
+  "proved_uniform_bound_approximation": 1.6263032587282567e-18,
+  "actual_error_below_uniform_bound": true,
+  "independent_final_integer_audit": true
+}

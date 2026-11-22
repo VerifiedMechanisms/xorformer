@@ -6700,4 +6700,41 @@ positive-loss diagnostics. Both independent exact checkers validate its
 five-head four-bit diagnostic. The thirteen-bit lower-face trial uses
 $73$ pairs and one correction, hence $147$ heads, not $146$.
 
+
+\section{A compact 292-head certificate for the same full target}
+
+Anchored normalization followed by six denominator evaluations produced
+an ordinary $292$-head certificate for all $16384$ unchanged labels of
+the original fourteen-bit target. The independent integer audit checks
+every denominator on the whole cube and certifies every strict sign.
+This improves the earlier $316$-head finite example. It is not a bound
+for all functions in dimension fourteen or in general dimensions.
+
+The original rational export has $30{,}173{,}585$ bytes. It can be
+shortened without changing its head count by the following explicit
+rounding bound. Normalize each head so $\min_x B_h(x)=1$, and put
+$M_h=\lceil\|A_h\|_1\rceil$. Round all normalized coefficients to
+multiples of $2^{-k}$, preserving strict slope signs. With
+$e=(n+1)2^{-k-1}<1$, both affine-form errors are at most $e$ and
+$B'_h\ge1-e$. Therefore
+\[
+ \left|\frac{A'_h}{B'_h}-\frac{A_h}{B_h}\right|
+ \le\frac{e(1+M_h)}{1-e},\qquad
+ |S'-S|\le\frac{e}{1-e}\left(H+\sum_hM_h\right).
+\]
+The bias is kept exactly. Choosing the displayed bound below one
+quarter of an independently certified margin preserves every sign.
+Increasing $k$ also preserves every nonzero denominator slope, because
+there are only finitely many such slopes.
+
+For this certificate $k=64$ suffices, with uniform score error at most
+$1.883\cdot10^{-6}$. The compact certificate has $286{,}213$ bytes.
+A second independent exact audit, applied to these rounded integers,
+certifies a minimum margin greater than $0.999999$. The file is
+\texttt{random-n14-anchored-h292.json}, with SHA-256
+\texttt{760c8d7ebaa057c5a04d464ff9e98403526a1056f39dc79e87fc5f9b83240448}.
+The compression script is \texttt{compress\_rational\_certificate.py}.
+No universal precision bound or universal head bound is inferred from
+this finite rounding result.
+
 \end{document}

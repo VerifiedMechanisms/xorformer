@@ -89,6 +89,13 @@
       "verifier": "../audit_rational_score.py",
       "verifier_arguments": "--bits 224 --require-correct",
       "scope": "All 8192 labels on the x_13=1 face of the original fourteen-bit target. Independent exact audit; lower face not included. No universal bound."
+    },
+    {
+      "file": "random-n14-anchored-h292.json",
+      "sha256": "760c8d7ebaa057c5a04d464ff9e98403526a1056f39dc79e87fc5f9b83240448",
+      "verifier": "../audit_rational_score.py",
+      "verifier_arguments": "--bits 224 --require-correct",
+      "scope": "All 16384 original labels of the same fourteen-bit target. Dyadically compressed with a uniform error bound and independently audited again. No universal bound."
     }
   ],
   "optimization_audit_certificates": [

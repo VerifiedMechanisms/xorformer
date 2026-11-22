@@ -202,7 +202,17 @@
       "axioms": "/out/head-compression/lean-denominator-product-axioms.log",
       "axiom_scope": "All inspected declarations use only propext, Classical.choice, and Quot.sound. No target theorem or original definition was changed."
     },
-    "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter."
+    "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
+    "all_current_research_axioms": {
+      "declarations": 51,
+      "modules": 23,
+      "only": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "log": "/out/head-compression/lean-research-axioms.log"
+    }
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -709,7 +719,24 @@
       "seconds": 969.0096230769996,
       "scope": "Only the upper face of one fourteen-bit target. Full target not yet represented by gluing."
     },
-    "full292_import": "diagnostics/anchored-full292-import.json"
+    "full292_import": "diagnostics/anchored-full292-import.json",
+    "full_target_certificate": {
+      "certificate": "certificates/random-n14-anchored-h292.json",
+      "audit": "diagnostics/random-n14-anchored-h292-exact-audit.json",
+      "heads": 292,
+      "vertices": 16384,
+      "labels_equal_original": true,
+      "source_seconds": 2188.0009403128643,
+      "compact_bytes": 286213,
+      "sha256": "760c8d7ebaa057c5a04d464ff9e98403526a1056f39dc79e87fc5f9b83240448",
+      "margin_lower_approximation": 0.9999992449239085,
+      "scope": "One fixed fourteen-bit target only; no universal upper bound."
+    },
+    "full_project_build": {
+      "passed": true,
+      "jobs": 9207,
+      "log": "/out/head-compression/lean-anchored-full-build.log"
+    }
   },
   "finite_permutation_parity_degree": {
     "manual_proof": "permutation-parity-degree.tex",
@@ -723,5 +750,18 @@
       "exact_lower_moments_checked": 4600,
       "arithmetic": "integers"
     }
+  },
+  "dyadic_certificate_compression": {
+    "implementation": "compress_rational_certificate.py",
+    "uniform_bound": "After denominator minima are normalized to one and coefficients are rounded to k fractional bits, error <= e/(1-e)*(H+sum ceil(||A_h||_1)), e=(n+1)/2^(k+1). The chosen bound is below one quarter of the audited margin.",
+    "small_exact_check": "diagnostics/dyadic-compression-small-check.json",
+    "large_exact_check": "diagnostics/random-n14-anchored-h292-exact-audit.json",
+    "heads_unchanged": true,
+    "scope": "Finite certificate shortening only."
+  },
+  "private_repository_refresh_2026_11_22_1528": {
+    "method": "Read-only explicit refs/heads fetch for both authorized run repositories.",
+    "new_updates": false,
+    "target_proof_found": false
   }
 }

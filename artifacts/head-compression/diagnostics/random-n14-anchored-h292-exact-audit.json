@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/anchored-full-n14-h292/compact-certificate.json",
+  "input_sha256": "760c8d7ebaa057c5a04d464ff9e98403526a1056f39dc79e87fc5f9b83240448",
+  "n": 14,
+  "heads": 292,
+  "vertices_checked": 16384,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 16384,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    26959926310339483354017814492842675765982727667643376896740420601508,
+    26959926310339483354017814492842675765982727667643376896740420601801
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 0.9999992449239085,
+  "all_target_signs_certified": true,
+  "seconds": 1.6740669168066233,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}
