@@ -1,0 +1,23 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/reciprocal-mean-value.md",
+    "spans": 45,
+    "rendered_math_count": 45,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/reciprocal-saddle-grid.md",
+    "spans": 85,
+    "rendered_math_count": 85,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "spans": 51,
+    "rendered_math_count": 51,
+    "findings": [],
+    "notes": []
+  }
+]

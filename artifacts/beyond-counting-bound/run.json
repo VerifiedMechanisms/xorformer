@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T05:44:52.716769+00:00",
-  "elapsed_seconds_at_last_audit": 15424,
+  "last_audit_utc": "2026-11-22T06:33:11.535708+00:00",
+  "elapsed_seconds_at_last_audit": 18323,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -42,9 +42,10 @@
     "HeadComplexity.PositiveFunctionalGrid.exists_nonnegative_reciprocal_with_zeros",
     "HeadComplexity.PositiveFunctionalGrid.sum_reciprocal_zero_iff",
     "HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_equiv",
-    "HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_card"
+    "HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_card",
+    "HeadComplexity.ReciprocalMeanValue.reciprocal_mean_value"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound.",
+  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }

@@ -1,0 +1,3 @@
+import HeadComplexity.Atoms.ReciprocalMeanValue
+
+#print axioms HeadComplexity.ReciprocalMeanValue.reciprocal_mean_value

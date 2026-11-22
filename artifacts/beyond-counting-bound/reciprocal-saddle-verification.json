@@ -1,0 +1,32 @@
+{
+  "d": 5,
+  "k": 4,
+  "n": 9,
+  "q": 3,
+  "grid_points_checked": 81,
+  "expected_grid_points": 81,
+  "roots": [
+    "2",
+    "7/3",
+    "8/3"
+  ],
+  "residues": [
+    "1568/1215",
+    "-3025/54",
+    "132496/243",
+    "-462400/243",
+    "72200/27",
+    "-3136441/2430"
+  ],
+  "backbone": [
+    "-10",
+    "64",
+    "-54"
+  ],
+  "all_values_zero": true,
+  "all_gradients_zero": true,
+  "all_hessian_formulas_checked": true,
+  "hessian_negative_eigenvalues": 1,
+  "all_head_denominators_positive": true,
+  "scope": "one positive head; one Boolean sign pattern; no head lower bound"
+}

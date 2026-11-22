@@ -1,0 +1,1 @@
+'HeadComplexity.ReciprocalMeanValue.reciprocal_mean_value' depends on axioms: [propext, Classical.choice, Quot.sound]
