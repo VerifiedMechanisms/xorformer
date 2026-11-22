@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-22T19:52:23.783032+00:00",
+  "file": "artifacts/beyond-counting-bound/projective-critical-points.md",
+  "sha256": "d029f97e3fba0d5b745529ef783827e100b3441eabe049fac58af055ff5ef750",
+  "source_math_spans": 108,
+  "github_math_nodes": 108,
+  "errors": [],
+  "notes": [],
+  "katex": "passed separately",
+  "gitlab": "not run; no configured authentication"
+}

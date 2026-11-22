@@ -1,0 +1,46 @@
+[
+  {
+    "utc": "2026-11-22T19:52:23.783032+00:00",
+    "file": "artifacts/beyond-counting-bound/projective-critical-points.md",
+    "sha256": "d029f97e3fba0d5b745529ef783827e100b3441eabe049fac58af055ff5ef750",
+    "source_math_spans": 108,
+    "github_math_nodes": 108,
+    "errors": [],
+    "notes": [],
+    "katex": "passed separately",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "utc": "2026-11-22T19:52:23.612713+00:00",
+    "file": "artifacts/beyond-counting-bound/four-parameter-shattering.md",
+    "sha256": "d01df856c8ddead4c6cc8c7d3fd6eddea6f5920e41460d523fb0973dbf493b94",
+    "source_math_spans": 33,
+    "github_math_nodes": 33,
+    "errors": [],
+    "notes": [],
+    "katex": "passed separately",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "utc": "2026-11-22T19:52:23.776121+00:00",
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "sha256": "5bf160b1e5c616443eb488df1b88fee0293502c811439aea7875a034d21e60f6",
+    "source_math_spans": 79,
+    "github_math_nodes": 79,
+    "errors": [],
+    "notes": [],
+    "katex": "passed separately",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "utc": "2026-11-22T19:52:23.613727+00:00",
+    "file": "artifacts/beyond-counting-bound/recent-counting-audit.md",
+    "sha256": "3b2eb74ba84b3d32b188f74ca3487bf2b91be641d31238b7765f9424374c72e6",
+    "source_math_spans": 36,
+    "github_math_nodes": 36,
+    "errors": [],
+    "notes": [],
+    "katex": "passed separately",
+    "gitlab": "not run; no configured authentication"
+  }
+]

@@ -1,0 +1,8 @@
+'HeadComplexity.ProjectiveCriticalPoints.transverse_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveCriticalPoints.selected_pair_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveCriticalPoints.schur_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveCriticalPoints.projection_term_vanishes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
