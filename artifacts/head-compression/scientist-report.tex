@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Adaptive Rational Head Compression: Audited Research Record}
+\author{}
+\date{November 22, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Target status.}
+This run has not proved that an absolute constant $C>0$ satisfies
+$W(n)\le C2^n/n^2$ for every positive integer $n$. No Lean declaration
+of that statement was added. No construction in the record should be
+read as establishing it.
+
+\paragraph{Formal results.}
+The inventory lists $55$ principal and companion declarations across
+$24$ new Lean modules. The full project build passed with $9208$ jobs.
+The inspected declarations use only \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
+Among the construction results are
+\texttt{HeadComplexity.computableWithSharedHeadsN\_of\_sharedAffineScore}
+in \texttt{Results/SharedAffineScoreLift.lean}, which transfers an
+already strictly separating shared-affine score to $M+1$ actual heads;
+\texttt{HeadComplexity.anchoredFractionFeature\_decomposition}
+in \texttt{Results/AnchoredFractionLift.lean}, an exact normalization
+identity; and
+\texttt{HeadComplexity.affineFraction\_pair\_merge\_error\_le}
+in \texttt{Results/AffineFractionRange.lean}, a sufficient merging
+error bound. None asserts universal existence of a small score.
+
+\paragraph{Finite certificate.}
+The file \texttt{certificates/random-n14-anchored-h292.json} gives
+$292$ heads for one fixed fourteen-bit Boolean function. All $16384$
+labels agree with the original trial target. An independent integer
+audit verifies every strict sign and every denominator's whole-cube
+admissibility. Its minimum margin exceeds $0.999999$.
+Separate certificates for its original lower and upper faces use
+$146$ and $147$ heads; their audited gluing uses $293$ heads.
+These examples do not bound the maximum over fourteen-bit functions.
+
+\paragraph{Unsuccessful routes.}
+Fixed-denominator spanning, bounded-cancellation constructions,
+local-cell packing, arithmetic memory decoding, dominant-term
+constructions, and restricted confluent-jet constructions did not
+produce the target bound. The writeup distinguishes proved obstructions
+to specified subclasses from theorem-strength gaps in proposed general
+constructions. Numerical failures and solver timeouts are never used
+as lower bounds. The later pruning and denominator-coalescence outcomes
+are recorded separately in the final continuation diagnostics.
+
+\paragraph{Definitions and assumptions.}
+The original attention model, head resource, and target statement are
+unchanged. Auxiliary definitions include shared-affine and confluent
+scores, anchored features, losses, gates, and explicit conditional
+completion predicates. In particular, no conditional completion
+predicate is asserted to hold universally. The manuscript file in
+\texttt{/out/attachments/version-5.tex} remains unchanged.
+
+\paragraph{Review material.}
+\texttt{audit-inventory.json} maps declarations, scope restrictions,
+and validation logs. \texttt{mechanism-audit.tex} contains the manual
+arguments, with separate notes for the full-box and permutation-orbit
+parity obstructions. \texttt{literature-audit.json} records $92$
+sources, the passages inspected, and the unresolved transfer steps.
+The remaining open deliverable is exactly the universal affirmative
+bound stated at the start of this report.
+
+\end{document}

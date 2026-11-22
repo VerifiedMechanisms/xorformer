@@ -2,7 +2,7 @@
   "run": "Adaptive Rational Head Compression",
   "status": "Research ongoing. The universal target is unproved in this run.",
   "original_model_or_target_changed": false,
-  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit. SharedAffineFractionLift adds orientationCrossingFeature, whose strict finite scores compile to the original model with one shared affine head. SharedAffineScoreLift adds sharedAffineScore and proves its conditional transfer, including the limiting units, to the literal shared-embedding attention model with M+1 heads.",
+  "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit. SharedAffineFractionLift adds orientationCrossingFeature, whose strict finite scores compile to the original model with one shared affine head. SharedAffineScoreLift adds sharedAffineScore and proves its conditional transfer, including the limiting units, to the literal shared-embedding attention model with M+1 heads. AffineSidonRows adds HasUniquePairSums. AnchoredFractionLift adds anchoredFractionFeature, an exact normalized coordinate feature. AffineFractionRange introduces no new model definition and proves only explicit range and merging implications.",
   "lean_results": [
     {
       "file": "formalization/HeadComplexity/Results/FixedDenominatorSignBarrier.lean",
@@ -228,7 +228,18 @@
       "scope": "The prior 51 declarations were unchanged; all four declarations in AffineFractionRange.lean were checked separately."
     },
     "lean": "Full project lake build succeeded, including all 24 new research modules and the results aggregator.",
-    "build_jobs": 9208
+    "build_jobs": 9208,
+    "repository_integrity_2026_11_22_1821": {
+      "lean_modules": 24,
+      "listed_declarations": 55,
+      "all_imported": true,
+      "certificate_manifest_hashes_checked": 22,
+      "all_research_json_parsed": true,
+      "tex_environments_balanced": true,
+      "no_em_dashes_in_tex": true,
+      "research_diff_whitespace_check_passed": true,
+      "manuscript_unchanged": true
+    }
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -853,5 +864,6 @@
     "finished_288": "diagnostics/anchored-prune288-n14-result.json",
     "status": "288-head trial ended without a certificate. The 291-head deletion and coalescence trials and the 280-head deletion trial are still running.",
     "scope": "Finite searches only; failed searches are not lower bounds."
-  }
+  },
+  "scientist_report": "artifacts/head-compression/scientist-report.tex"
 }
