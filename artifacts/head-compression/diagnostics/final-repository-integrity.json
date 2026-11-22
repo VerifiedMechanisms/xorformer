@@ -10,11 +10,14 @@
   ],
   "certificate_manifest_hashes_checked": 22,
   "checkpoint_manifest_hashes_checked": 5,
-  "research_json_files_parsed": 104,
+  "research_json_files_parsed": 105,
   "all_research_json_parsed": true,
   "tex_environments_balanced": true,
   "no_em_dashes_in_tex": true,
   "original_model_files_unchanged": true,
   "manuscript_unchanged": true,
-  "target_proved": false
+  "target_proved": false,
+  "original_fourteen_bit_label_sha256": "722d0b23906e62105954a4c91abf6aefb5a78bce75403b12030c57bdc1505f36",
+  "full_and_concatenated_original_face_labels_equal": true,
+  "hash_matched_large_certificate_audit_reports": 8
 }

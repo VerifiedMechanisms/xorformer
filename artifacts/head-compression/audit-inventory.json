@@ -186,7 +186,7 @@
     "build_log": "/out/head-compression/lean-final-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
-    "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",
+    "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
     "scalar_root_axioms": "/out/head-compression/lean-scalar-root-axioms.log; all six declarations use only the allowed standard axioms.",
     "boolean_moment_extension": "All 9191 build jobs succeeded; the three new declarations use only propext, Classical.choice, and Quot.sound. No target declaration was added.",
     "absolute_coordinate_chart": "diagnostics/absolute-chart-small-check.json records gradient, Hessian-direction, and numerator-response checks. certificates/random-n6-h3-absolute.json was separately verified using exact Fraction arithmetic.",
