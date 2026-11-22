@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T03:10:46.552426+00:00",
-  "elapsed_seconds_at_last_audit": 9932,
+  "last_audit_utc": "2026-11-22T03:40:07.879377+00:00",
+  "elapsed_seconds_at_last_audit": 13426,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [

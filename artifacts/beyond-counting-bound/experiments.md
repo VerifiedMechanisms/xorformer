@@ -39,3 +39,9 @@ python3 artifacts/beyond-counting-bound/verify_representation.py artifacts/beyon
 ```
 
 The search script includes an analytic-gradient check. Sustained optimizer searches must be run through the shared machine's `heavy` wrapper. Bounds imposed for numerical stability constrain only the search, never the mathematical model or a lower-bound claim.
+
+## Projected hinge-loss search
+
+The later `search_projected_hinge.py` solves a convex squared-hinge readout problem inside each denominator update. Its gradient check had maximum absolute error below $4\cdot10^{-12}$. Across 28 completed trials it produced six exact certificates, all independently checked by `verify_representation.py`. The remaining 22 results are `UNKNOWN`.
+
+The smallest new certificates for the three fixed random targets use eight heads on eight bits, eighteen heads on nine bits, and twenty-four heads on ten bits. These are upper bounds for those particular targets, not worst-case bounds or minimality claims. The exact certificates, verification output, and trial records are retained under `experiments/` with `projected-hinge` in their names. Total recorded optimizer time was about five minutes; the two-hour command limit was only a maximum and was not counted as elapsed work.

@@ -92,3 +92,9 @@ The audit distinguishes branch counts from sign counts. Every score in this matc
 ## Code-supported candidates are inexpensive
 
 The construction in [code-supported-upper-bound.md](code-supported-upper-bound.md) proves that a function supported on a binary affine code of rank $r$ has head complexity at most $W(n-r)$ plus the sum of the parity-check row weights. It uses information coordinates, exact rational interpolation of parity penalties, and a finite strict-margin perturbation to recover admissible denominators. In particular, arbitrary subsets of a Hamming-code coset at length $n=2^r-1$ have complexity at most $(1+o(1))2^n/n^2$. This rules out that entire proposed hard family. It does not prove the target lower bound and does not imply a universal upper bound for all Boolean functions.
+
+## Separate affinity is insufficient
+
+The new [multiaffine shattering construction](multiaffine-shattering.md) proves that separate affinity in every parameter, even on the positive orthant, permits $\Omega(p\log p)$ independent sign tests in $p$ parameters. It uses Hall matchings and permutation interpolation. An explicit variant uses affine planes over finite fields, with a direct pair-intersection proof of the matching condition. Thus a linear VC bound cannot follow from separate affinity alone. The special coefficient structure of the head evaluations is not covered by this counterexample, and a bound exploiting that structure remains unproved.
+
+The primary [Goldberg and Jerrum theorem](https://www.cs.ox.ac.uk/people/paul.goldberg/papers/goldbergjerrum.pdf), Theorem 2.2, uses the total degree of the parameter predicates. In this application that degree grows with the number of heads after denominators are cleared. Treating the reciprocal activation as degree one does not turn the network's final predicate into degree one. The theorem therefore retains the logarithm that prevents the selected improvement.

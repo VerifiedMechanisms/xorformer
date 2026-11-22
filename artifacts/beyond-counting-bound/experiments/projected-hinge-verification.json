@@ -1,0 +1,50 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/experiments/n10-h24-projected-hinge-r0.json",
+    "n": 10,
+    "heads": 24,
+    "checked_inputs": 1024,
+    "status": "exact verification passed",
+    "minimum_scaled_margin_lower_bound": "2080156951199144732622984966284792571"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/experiments/n10-h32-projected-hinge-r0.json",
+    "n": 10,
+    "heads": 32,
+    "checked_inputs": 1024,
+    "status": "exact verification passed",
+    "minimum_scaled_margin_lower_bound": "3313919750291413038569134354364658573"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/experiments/n8-h10-projected-hinge-r0.json",
+    "n": 8,
+    "heads": 10,
+    "checked_inputs": 256,
+    "status": "exact verification passed",
+    "minimum_scaled_margin_lower_bound": "3468751734274604899623753844017499746"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/experiments/n8-h12-projected-hinge-r0.json",
+    "n": 8,
+    "heads": 12,
+    "checked_inputs": 256,
+    "status": "exact verification passed",
+    "minimum_scaled_margin_lower_bound": "1104751708269644028042074451555197989"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/experiments/n8-h8-projected-hinge-r1.json",
+    "n": 8,
+    "heads": 8,
+    "checked_inputs": 256,
+    "status": "exact verification passed",
+    "minimum_scaled_margin_lower_bound": "230174687920806975130086609123286548465"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/experiments/n9-h18-projected-hinge-r0.json",
+    "n": 9,
+    "heads": 18,
+    "checked_inputs": 512,
+    "status": "exact verification passed",
+    "minimum_scaled_margin_lower_bound": "1310926544513074148971781343554164232"
+  }
+]
