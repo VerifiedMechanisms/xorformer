@@ -1,0 +1,3 @@
+'HeadComplexity.PositiveReciprocalBoxGap.reciprocal_inside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalBoxGap.reciprocal_outside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalBoxGap.separated_box_sum' depends on axioms: [propext, Classical.choice, Quot.sound]

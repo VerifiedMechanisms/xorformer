@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "arithmetic": "fractions.Fraction",
+  "scope": "finite audit supplementing the written general proof",
+  "cases": [
+    {
+      "r": 3,
+      "heads": 4,
+      "queries": 4,
+      "assignments": 16,
+      "exact_scores": 64
+    },
+    {
+      "r": 4,
+      "heads": 8,
+      "queries": 12,
+      "assignments": 4096,
+      "exact_scores": 49152
+    },
+    {
+      "r": 5,
+      "heads": 16,
+      "queries": 32,
+      "assignments": 34,
+      "exact_scores": 1088
+    },
+    {
+      "r": 6,
+      "heads": 32,
+      "queries": 80,
+      "assignments": 34,
+      "exact_scores": 2720
+    }
+  ]
+}

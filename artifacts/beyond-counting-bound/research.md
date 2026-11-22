@@ -31,6 +31,12 @@ The repository file `formalization/HeadComplexity/Results/CountingLowerBound.lea
 
 No theorem establishing the target has been proved at this checkpoint.
 
+## Fixed-dimensional positive reciprocal obstruction
+
+The [four-dimensional construction](positive-four-dimensional-shattering.md) turns the binary switching rectangle construction into strictly positive reciprocal heads. For $H=2^{r-1}$ it shatters $(r-1)H/2$ fixed positive rational points in four real dimensions, with margin greater than $1/4$, constant numerator one, and denominator constant one. A direct triangular recursion proves the required rectangle incidences. A geometric coordinate transformation then makes every head's value at least $4/5$ on an incidence and less than $1/(16H)$ otherwise. This independently disproves a linear parameter-count bound for positive real-input heads, even with fixed input dimension. It does not shatter a Boolean cube.
+
+The finite-sum compiler is Lean checked as `HeadComplexity.PositiveReciprocalBoxGap.separated_box_sum`. Independent exact arithmetic verifies 53,024 scores, including every labeling in the two smallest instances. The binary switching construction and its general geometric encoding have complete written proofs; they are not claimed as Lean formalizations. The earlier affine scale bound excludes a literal encoding of the many geometric levels by a small affine Boolean table. The remaining problem is a sign-sensitive bound using the Boolean input structure, with unrestricted cancellation.
+
 ## First adversarial audit
 
 **Counting refinements.** The two-block multidegree estimate recorded in the earlier `autoresearch-runs` commit `cc640ff`, theorem 217, has the form below, with an absolute constant $C$:
