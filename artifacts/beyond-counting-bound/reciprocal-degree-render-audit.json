@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/reciprocal-boolean-degree.md",
+  "sha256": "b8c1febcaa49b77d9d3f98188c7c99ad10ede0468190ee6ddcc6e3128f53bb1e",
+  "utc": "2026-11-22T23:27:53.319065+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 74,
+  "notes": []
+}

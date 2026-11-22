@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/research.md",
+  "sha256": "0e939f431632c6c28a5f2a299953667fa5117355e257379318ad781141a01524",
+  "utc": "2026-11-22T23:30:35.755933+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 89,
+  "notes": []
+}

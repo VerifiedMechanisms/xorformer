@@ -1,0 +1,2 @@
+'HeadComplexity.BrokenCircuitWeakening.erase_least_subset' depends on axioms: [propext]
+'HeadComplexity.BrokenCircuitWeakening.noBrokenCircuit_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
