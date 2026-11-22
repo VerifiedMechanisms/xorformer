@@ -11,6 +11,12 @@ from fractions import Fraction as Q
 import json
 from math import lcm
 from pathlib import Path
+import sys
+
+if hasattr(sys, "set_int_max_str_digits"):
+    # Input certificates and the exact shared margin bounds are local
+    # generated integers, and may exceed Python's display-size default.
+    sys.set_int_max_str_digits(0)
 
 
 def margin_bound(data, threshold=Q(0)):
