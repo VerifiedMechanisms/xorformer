@@ -1,0 +1,22 @@
+{
+  "audited_utc": "2026-11-22T13:19:59.745636+00:00",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/fourier-compression-obstruction.md",
+      "sha256": "51734b96ed947aebf473df43e41b81cf266da9fa80c30bfc6ccafda6fd3a5e5c",
+      "math_spans": 47,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "sha256": "1dfa5b6bb744811ca82b85a47ecbab10256dc82a45c8a9253156d46c443d302a",
+      "math_spans": 72,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    }
+  ],
+  "katex": "passed independently on the same two files"
+}

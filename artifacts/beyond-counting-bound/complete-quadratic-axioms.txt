@@ -1,0 +1,3 @@
+'HeadComplexity.CompleteQuadraticProfile.profile_change' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CompleteQuadraticProfile.signChanges_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CompleteQuadraticProfile.HStar_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
