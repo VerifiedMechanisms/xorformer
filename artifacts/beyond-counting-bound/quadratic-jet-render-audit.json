@@ -1,0 +1,30 @@
+{
+  "audited_utc": "2026-11-22T13:13:35.518965+00:00",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/quadratic-jet-compiler-obstruction.md",
+      "sha256": "5241d9a5433d437405c5adbdff4c94a12feb1fc7b56b32db9ee4c6c61785d155",
+      "math_spans": 90,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "sha256": "4d734f30c0cacaf13a6472defe8d89c19ade66b840bd1c10a3e416b6d56ac5c1",
+      "math_spans": 69,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/additive-combinatorics-audit.md",
+      "sha256": "e2ba0787e8541bb1eecfcba6ae5f1c43509e97b9ec1f4811fd3c0a16045cf757",
+      "math_spans": 22,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    }
+  ],
+  "katex": "passed independently on the same three files"
+}

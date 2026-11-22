@@ -34,6 +34,53 @@ theorem score_units {k : ℕ} (T : Parameters k) (x : Bits k) (j l : Fin k) :
 noncomputable def family {k : ℕ} (T : Parameters k) (input : Input k) : Bool :=
   decide (0 < score T input.1 input.2.1 input.2.2)
 
+abbrev Coordinate (k : ℕ) := Fin k ⊕ (Fin k ⊕ Fin k)
+
+noncomputable def polynomial {k : ℕ} (T : Parameters k) :
+    MvPolynomial (Coordinate k) ℝ :=
+  (∑ i, MvPolynomial.C ((2 : ℝ) ^ i.val) * MvPolynomial.X (Sum.inl i)) *
+    (∑ l, MvPolynomial.X (Sum.inr (Sum.inr l))) -
+  ∑ j, ∑ l, MvPolynomial.C (address (T (j, l))) *
+    MvPolynomial.X (Sum.inr (Sum.inl j)) * MvPolynomial.X (Sum.inr (Sum.inr l))
+
+noncomputable def evaluationPoint {k : ℕ} (x y z : Bits k) : Coordinate k → ℝ :=
+  Sum.elim (fun i ↦ boolToReal (x i))
+    (Sum.elim (fun j ↦ boolToReal (y j)) (fun l ↦ boolToReal (z l)))
+
+theorem polynomial_eval {k : ℕ} (T : Parameters k) (x y z : Bits k) :
+    MvPolynomial.eval (evaluationPoint x y z) (polynomial T) = score T x y z := by
+  simp [polynomial, evaluationPoint, score, address, wT, boolToReal, mul_ite]
+
+theorem polynomial_totalDegree_le {k : ℕ} (T : Parameters k) :
+    (polynomial T).totalDegree ≤ 2 := by
+  classical
+  apply (MvPolynomial.totalDegree_sub _ _).trans
+  apply max_le
+  · apply (MvPolynomial.totalDegree_mul _ _).trans
+    have hleft : (∑ i : Fin k, MvPolynomial.C ((2 : ℝ) ^ i.val) *
+        MvPolynomial.X (Sum.inl i : Coordinate k)).totalDegree ≤ 1 := by
+      apply MvPolynomial.totalDegree_finsetSum_le
+      intro i _
+      simpa only [MvPolynomial.totalDegree_C, MvPolynomial.totalDegree_X, zero_add]
+        using MvPolynomial.totalDegree_mul
+        (MvPolynomial.C ((2 : ℝ) ^ i.val)) (MvPolynomial.X (Sum.inl i : Coordinate k))
+    have hright : (∑ l : Fin k,
+        MvPolynomial.X (Sum.inr (Sum.inr l) : Coordinate k) :
+          MvPolynomial (Coordinate k) ℝ).totalDegree ≤ 1 := by
+      apply MvPolynomial.totalDegree_finsetSum_le
+      intro l _
+      simp
+    omega
+  · apply MvPolynomial.totalDegree_finsetSum_le
+    intro j _
+    apply MvPolynomial.totalDegree_finsetSum_le
+    intro l _
+    apply (MvPolynomial.totalDegree_mul _ _).trans
+    have h := MvPolynomial.totalDegree_mul (MvPolynomial.C (address (T (j, l))))
+      (MvPolynomial.X (Sum.inr (Sum.inl j) : Coordinate k))
+    simp only [MvPolynomial.totalDegree_C, MvPolynomial.totalDegree_X, zero_add] at h ⊢
+    omega
+
 theorem family_injective (k : ℕ) : Function.Injective (family (k := k)) := by
   classical
   intro T U h

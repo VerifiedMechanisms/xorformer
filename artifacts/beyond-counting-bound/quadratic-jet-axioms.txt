@@ -1,0 +1,22 @@
+'HeadComplexity.QuadraticThresholdEncoding.score_units' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.polynomial_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.polynomial_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.family_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.parameters_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.family_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.input_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.exists_outside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.head_count_exponent_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.QuadraticJetApproximation.secondDifference_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.QuadraticJetApproximation.error_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticJetApproximation.perturbations_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.QuadraticJetApproximation.error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticJetApproximation.sign_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
