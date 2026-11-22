@@ -1,0 +1,21 @@
+'HeadComplexity.HyperbolicBooleanTangents.indicator_boolean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.interpolate_boolean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.indicator_homogeneous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.interpolate_homogeneous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.indicator_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.interpolate_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.perturbation_same_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.root_in_open_interval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HyperbolicBooleanTangents.splits_of_disjoint_brackets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

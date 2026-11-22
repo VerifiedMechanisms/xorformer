@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/hyperbolic-boolean-tangents.md",
+  "sha256": "d6bf9ba6ac19f5abf275fcd57d804208a18b296df57a254e76c3203f83e17a4d",
+  "utc": "2026-11-22T23:58:13.414745+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 118,
+  "notes": []
+}
