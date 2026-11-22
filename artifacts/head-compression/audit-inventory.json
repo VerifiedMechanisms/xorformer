@@ -495,7 +495,19 @@
       "scope": "One finite truth table only.",
       "refit_seconds": 2297.3839009329677
     },
-    "sixteen_unit_schedule": "/out/head-compression/shared-affine-prune16-n14"
+    "sixteen_unit_schedule": "/out/head-compression/shared-affine-prune16-n14",
+    "certified_316_heads": {
+      "certificate": "certificates/random-n14-shared-affine-h316.json",
+      "sha256": "e47710505b5427ef6239bd65f8b4859ce0a1cff98aa6e14b450d4e8fd11795be",
+      "audit": "diagnostics/random-n14-shared-affine-h316-exact-audit.json",
+      "original_labels_unchanged": true,
+      "refit_seconds": 1110.975274717901,
+      "scope": "One finite truth table only."
+    },
+    "followup_searches": [
+      "/out/head-compression/shared-affine-prune24-n14",
+      "/out/head-compression/shared-affine-prune66-n14"
+    ]
   },
   "head_dropout_continuation": {
     "script": "artifacts/head-compression/continue_head_dropout.py",

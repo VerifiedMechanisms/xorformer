@@ -75,6 +75,13 @@
       "verifier": "../audit_rational_score.py",
       "verifier_arguments": "--bits 224 --require-correct",
       "scope": "All 16384 original labels of the same fourteen-bit target as the 336-head example. Independent integer-interval verification, with all denominator conditions. No universal bound."
+    },
+    {
+      "file": "random-n14-shared-affine-h316.json",
+      "sha256": "e47710505b5427ef6239bd65f8b4859ce0a1cff98aa6e14b450d4e8fd11795be",
+      "verifier": "../audit_rational_score.py",
+      "verifier_arguments": "--bits 224 --require-correct",
+      "scope": "All 16384 original labels of the same fourteen-bit target as the 336- and 332-head examples. Independent exact interval audit. No universal bound."
     }
   ],
   "optimization_audit_certificates": [
