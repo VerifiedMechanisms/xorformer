@@ -78,7 +78,7 @@ def features_and_geometry(t, logs, w, eps):
     return features, (b1, b2, v, l1, l2, v2)
 
 
-def score_gradient(t, labels, logs, w, eps, coefficient):
+def score_gradient(t, labels, logs, w, eps, coefficient, affine=None, x=None):
     _, (b1, b2, v, l1, l2, v2) = features_and_geometry(t, logs, w, eps)
     units, n = logs.shape
     cc, uu = coefficient[1:].reshape(2, units, n)
@@ -86,6 +86,9 @@ def score_gradient(t, labels, logs, w, eps, coefficient):
     u1, u2 = [np.einsum("xhi,hi->xh", local, uu) for local in (l1, l2)]
     quadratic = u1*v2
     score = coefficient[0]+(linear+quadratic).sum(axis=1)
+    if affine is not None:
+        assert x is not None
+        score = score+x@affine
     residual = np.maximum(1-labels*score, 0.)
     weight = -labels*residual/len(t)
     jlog = (-linear[:, :, None]*b1[None]*l1+u2[:, :, None]*v[None]*l1
@@ -99,7 +102,7 @@ def score_gradient(t, labels, logs, w, eps, coefficient):
     return float(residual@residual/(2*len(t))), score, grad
 
 
-def exact_lift(labels, orientation, logs, w, eps, coefficient, precision=224):
+def exact_lift(labels, orientation, logs, w, eps, coefficient, precision=224, affine=None):
     units, n = logs.shape
     cc, uu = coefficient[1:].reshape(2, units, n)
     data = []
@@ -123,15 +126,19 @@ def exact_lift(labels, orientation, logs, w, eps, coefficient, precision=224):
                              for a in (c, u, v, b1, b2)])
     scale = 1 << precision
     bias = Fraction(float(coefficient[0]))
+    affine_rational = None if affine is None else [Fraction(float(z)) for z in affine]
     minimum = None
     for vertex, label in enumerate(labels):
         lo = scale*bias.numerator//bias.denominator
+        if affine_rational is not None:
+            av = sum((z for i, z in enumerate(affine_rational) if (vertex >> i) & 1), Fraction(0))
+            lo += scale*av.numerator//av.denominator
         for rows, ori in zip(integer_rows, orientation):
             indices = [i+1 for i in range(n) if ((vertex >> i) & 1) == (ori > 0)]
             c, u, v, b1, b2 = [a[0]+sum(a[i] for i in indices) for a in rows]
             assert b1 > 0 and b2 > 0
             lo += scale*(c*b2+u*v)//(b1*b2)
-        hi = lo+units+1
+        hi = lo+units+1+(affine_rational is not None)
         signed = lo if label > 0 else -hi
         if signed <= 0:
             return None, {"certified": False, "reason": "stable-pair interval", "vertex": vertex}
@@ -154,10 +161,14 @@ def exact_lift(labels, orientation, logs, w, eps, coefficient, precision=224):
             b2 = [b+e*value for b, value in zip(b1, v)]
         a1, a2 = [a+value/e for a, value in zip(c, u)], [-value/e for value in u]
         heads.extend((rational_head(a1, b1, ori), rational_head(a2, b2, ori)))
+    if affine_rational is not None:
+        heads.append(rational_head([Fraction(0)]+affine_rational,
+                                   [Fraction(1)]+[Fraction(0)]*n, 1))
     cert = {"n": n, "labels": labels.astype(int).tolist(), "heads": heads,
             "bias": [bias.numerator, bias.denominator],
             "scope": "This finite truth table only; no universal bound.",
             "stable_pair_lift": {"units": units, "zero_epsilon_units": int((eps == 0).sum()),
+                                 "affine_correction_heads": int(affine is not None),
                                  "zero_epsilon_perturbation": [delta.numerator, delta.denominator],
                                  "prelift_margin_lower_bound": [gamma.numerator, gamma.denominator]}}
     check = exact_check(cert, precision=precision)
@@ -169,10 +180,15 @@ def exact_lift(labels, orientation, logs, w, eps, coefficient, precision=224):
 
 class Problem:
     def __init__(self, labels, orientation, logs, w, eps, coefficient, out, seconds,
-                 scaled_direction=False):
+                 scaled_direction=False, affine_correction=False):
         self.labels, self.orientation = labels, orientation
         self.units, self.n = logs.shape
         x = ((np.arange(len(labels))[:, None] >> np.arange(self.n)) & 1).astype(float)
+        self.x, self.affine_correction = x, affine_correction
+        self.pair_coefficient_count = 1+2*self.units*self.n
+        if affine_correction and len(coefficient) == self.pair_coefficient_count:
+            coefficient = np.r_[coefficient, np.zeros(self.n)]
+        assert len(coefficient) == self.pair_coefficient_count+int(affine_correction)*self.n
         self.t = np.where(orientation[None, :, None] > 0, x[:, None], 1-x[:, None])
         self.scaled_direction = scaled_direction
         if scaled_direction:
@@ -196,12 +212,17 @@ class Problem:
         else:
             w = direction
         features, _ = features_and_geometry(self.t, logs, w, eps)
+        if self.affine_correction:
+            features = np.column_stack((features, self.x))
         q, r = la.qr(features, mode="economic", check_finite=False)
         initial = q.T@(features@self.previous) if self.previous is not None else q.T@self.labels
         fit = convex_hinge_fit(self.labels[:, None]*q, initial, "newton", 0.)
         coefficient = la.solve_triangular(r, fit.x, check_finite=False)
         self.previous = coefficient
-        loss, score, gradient = score_gradient(self.t, self.labels, logs, w, eps, coefficient)
+        pair_coefficient = coefficient[:self.pair_coefficient_count]
+        affine = coefficient[self.pair_coefficient_count:] if self.affine_correction else None
+        loss, score, gradient = score_gradient(self.t, self.labels, logs, w, eps,
+                                               pair_coefficient, affine, self.x)
         if self.scaled_direction:
             gl, gw, ge = unpack(gradient, self.units, self.n)
             gradient = np.r_[(gl+gw*dlog).ravel(), (gw*ddirection).ravel(), ge]
@@ -212,15 +233,18 @@ class Problem:
                  "direct_qr_score_discrepancy": float(np.max(np.abs(score-q@fit.x))),
                  "outer_gradient_norm": float(la.norm(gradient)),
                  "scaled_direction": self.scaled_direction,
+                 "affine_correction_heads": int(self.affine_correction),
                  "minimum_absolute_epsilon": float(np.min(np.abs(eps)))}
         self.events.append(event)
         print(json.dumps(event), flush=True)
         if self.best is None or loss < self.best[0]:
             self.best = (loss, parameters.copy(), coefficient.copy())
             np.savez(self.out/"checkpoint.npz", labels=self.labels, orientation=self.orientation,
-                     logs=logs, w=w, epsilon=eps, coefficients=coefficient, kind="stable-pair")
+                     logs=logs, w=w, epsilon=eps, coefficients=coefficient,
+                     kind="stable-pair-affine" if self.affine_correction else "stable-pair")
         if event["minimum_margin"] > 1e-5:
-            cert, result = exact_lift(self.labels, self.orientation, logs, w, eps, coefficient)
+            cert, result = exact_lift(self.labels, self.orientation, logs, w, eps,
+                                      pair_coefficient, affine=affine)
             event["exact_check"] = result
             if cert is not None:
                 (self.out/"certificate.json").write_text(json.dumps(cert)+"\n")
@@ -240,11 +264,13 @@ class Problem:
             termination = str(result.message)
         except EndSearch:
             termination = "certificate" if self.certificate else "budget or stop file"
-        result = {"n": self.n, "units": self.units, "lifted_heads": 2*self.units,
+        result = {"n": self.n, "units": self.units,
+                  "lifted_heads": 2*self.units+int(self.affine_correction),
                   "seconds": time.monotonic()-self.start, "termination": termination,
                   "best_loss": None if self.best is None else self.best[0],
                   "certificate": self.certificate, "events": self.events,
                   "scaled_direction": self.scaled_direction,
+                  "affine_correction_heads": int(self.affine_correction),
                   "scope": "Finite stable-pair search; no global or universal theorem.",
                   "failure_is_not_a_lower_bound": True}
         (self.out/"result.json").write_text(json.dumps(result)+"\n")
@@ -305,6 +331,7 @@ def self_test():
     coef = rng.normal(0, .2, 1+2*units*n)
     labels = rng.choice([-1., 1.], len(x))
     records = []
+    affine_records = []
     last = None
     for eps in (np.ones(units), np.zeros(units), np.array([1e-9, -1e-7])):
         params = np.r_[logs.ravel(), w.ravel(), eps]
@@ -324,6 +351,24 @@ def self_test():
         assert cert is not None, check
         records.append({"epsilon": eps.tolist(), "gradient_max_error": error, "exact_check": check})
         last = cert
+        affine = rng.normal(0, .2, n)
+        _, affine_score, affine_gradient = score_gradient(t, labels, logs, w, eps, coef, affine, x)
+        affine_numerical = []
+        for i in range(len(params)):
+            step = np.zeros_like(params)
+            step[i] = 1e-5
+            plus = score_gradient(t, labels, *unpack(params+step, units, n), coef, affine, x)[0]
+            minus = score_gradient(t, labels, *unpack(params-step, units, n), coef, affine, x)[0]
+            affine_numerical.append((plus-minus)/2e-5)
+        affine_error = float(np.max(np.abs(affine_gradient-affine_numerical)))
+        assert affine_error < 1e-8, affine_error
+        affine_labels = np.where(affine_score > 0, 1., -1.)
+        affine_cert, affine_check = exact_lift(affine_labels, ori, logs, w, eps, coef, affine=affine)
+        assert affine_cert is not None, affine_check
+        assert len(affine_cert["heads"]) == 2*units+1
+        affine_records.append({"epsilon": eps.tolist(), "gradient_max_error": affine_error,
+                               "exact_check": affine_check, "heads": 2*units+1})
+        last = affine_cert
     # Test the envelope derivative after an independent convex refit at every
     # perturbed point. One pair cannot sign-represent four-bit parity, so this
     # diagnostic has positive loss and does not pass because all derivatives
@@ -352,6 +397,28 @@ def self_test():
         assert value > 0 and error < 1e-6, (epsilon, value, error)
         reduced_records.append({"epsilon": epsilon, "positive_loss": value,
                                 "refitted_gradient_max_error": error})
+    def reduced_affine(parameters):
+        ll, ww, ee = unpack(parameters, 1, n)
+        feature = np.column_stack((features_and_geometry(one_t, ll, ww, ee)[0], x))
+        q, r = la.qr(feature, mode="economic")
+        fit = convex_hinge_fit(parity[:, None]*q, q.T@parity, "newton", 0.)
+        coefficient = la.solve_triangular(r, fit.x)
+        assert np.max(np.abs(fit.jac)) < 1e-8
+        return score_gradient(one_t, parity, ll, ww, ee, coefficient[:-n], coefficient[-n:], x)
+    affine_reduced_records = []
+    for epsilon in (0., .7, -1e-7):
+        parameters = np.r_[one_logs.ravel(), one_w.ravel(), epsilon]
+        value, _, gradient = reduced_affine(parameters)
+        numerical = []
+        for i in range(len(parameters)):
+            step = np.zeros_like(parameters)
+            step[i] = 1e-5
+            numerical.append((reduced_affine(parameters+step)[0]-
+                              reduced_affine(parameters-step)[0])/2e-5)
+        error = float(np.max(np.abs(gradient-numerical)))
+        assert value > 0 and error < 1e-6, (epsilon, value, error)
+        affine_reduced_records.append({"epsilon": epsilon, "positive_loss": value,
+                                       "refitted_gradient_max_error": error})
     # A small denominator slope makes the unscaled import exceed the
     # optimizer's w bounds. Check that the rescaled import preserves values.
     imported_logs = logs.copy()
@@ -388,7 +455,9 @@ def self_test():
     coordinate_gradient_error = float(np.max(np.abs(transformed_gradient-numerical)))
     assert coordinate_error < 1e-12
     assert coordinate_gradient_error < 1e-8, coordinate_gradient_error
-    return {"tests": records, "refitted_gradient_tests": reduced_records,
+    return {"tests": records, "affine_correction_tests": affine_records,
+            "refitted_gradient_tests": reduced_records,
+            "affine_refitted_gradient_tests": affine_reduced_records,
             "rescaled_confluent_import": {
                 "original_maximum_absolute_w": float(np.max(np.abs(direction/np.exp(imported_logs)))),
                 "imported_maximum_absolute_w": float(np.max(np.abs(ww))),
@@ -405,6 +474,8 @@ if __name__ == "__main__":
     parser.add_argument("--seconds", type=float, default=3600)
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--scaled-direction", action="store_true")
+    parser.add_argument("--affine-correction", action="store_true",
+                        help="Add and explicitly charge one shared affine head.")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.self_test:
@@ -415,4 +486,5 @@ if __name__ == "__main__":
     else:
         assert args.checkpoint is not None
         Problem(*initialize(args.checkpoint), args.out, args.seconds,
-                scaled_direction=args.scaled_direction).run()
+                scaled_direction=args.scaled_direction,
+                affine_correction=args.affine_correction).run()

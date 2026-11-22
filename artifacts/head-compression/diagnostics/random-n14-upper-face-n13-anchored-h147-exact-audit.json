@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/anchored-face1-n13-h147/certificate.json",
+  "input_sha256": "384b173aee0b2c08237109a494815b0d98deaf10610870a35972560817e800ed",
+  "n": 13,
+  "heads": 147,
+  "vertices_checked": 8192,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 8192,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    23572060422325897086655230919668444894408424422031078831290676691808,
+    23572060422325897086655230919668444894408424422031078831290676691956
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 0.8743363150286675,
+  "all_target_signs_certified": true,
+  "seconds": 8.988840642850846,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}

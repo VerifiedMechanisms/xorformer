@@ -1,0 +1,18 @@
+{
+  "source": "/out/head-compression/shared-affine-prune292-resumed/checkpoint.npz",
+  "n": 14,
+  "units": 291,
+  "heads": 292,
+  "old_loss": 0.050827049274665526,
+  "new_loss": 0.0508270492488132,
+  "old_errors": 371,
+  "new_errors": 371,
+  "maximum_score_discrepancy": 4.805624485015869e-07,
+  "old_maximum_coefficient": 263793590476.3216,
+  "new_maximum_coefficient": 4086203.8574052034,
+  "log_bounds": [
+    -16.650556030277066,
+    9.833312985525192
+  ],
+  "scope": "Finite import only. No new certificate."
+}

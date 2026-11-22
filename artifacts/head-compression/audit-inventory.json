@@ -320,6 +320,15 @@
       "best_loss": 0.1233176956236296,
       "certificate": null,
       "conclusion": "No feasibility or infeasibility theorem follows."
+    },
+    "shared_affine_variant": {
+      "heads": "2M+1, including the explicitly charged affine correction",
+      "implementation": "search_stable_pair_varpro.py --affine-correction",
+      "diagnostic": "diagnostics/stable-pair-affine-self-test.json",
+      "maximum_fixed_gradient_error": 9.398563741505606e-12,
+      "maximum_refitted_gradient_error": 1.2331735979587144e-10,
+      "independent_exact_checkers_passed": true,
+      "scope": "A finite search variant, not a universal construction."
     }
   },
   "private_repository_refresh_2026_11_21_1809_utc": {
@@ -675,7 +684,32 @@
       "log": "/out/head-compression/lean-anchored-fraction-build.log",
       "jobs": 3137,
       "passed": true
-    }
+    },
+    "lean_results_build": {
+      "log": "/out/head-compression/lean-anchored-all-build.log",
+      "jobs": 9199,
+      "passed": true
+    },
+    "axioms": {
+      "log": "/out/head-compression/lean-anchored-axioms.log",
+      "declarations": 4,
+      "only": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "upper_face_certificate": {
+      "certificate": "certificates/random-n14-upper-face-n13-anchored-h147.json",
+      "audit": "diagnostics/random-n14-upper-face-n13-anchored-h147-exact-audit.json",
+      "heads": 147,
+      "vertices": 8192,
+      "labels_equal_original_upper_face": true,
+      "margin_lower_approximation": 0.8743363150286675,
+      "seconds": 969.0096230769996,
+      "scope": "Only the upper face of one fourteen-bit target. Full target not yet represented by gluing."
+    },
+    "full292_import": "diagnostics/anchored-full292-import.json"
   },
   "finite_permutation_parity_degree": {
     "manual_proof": "permutation-parity-degree.tex",

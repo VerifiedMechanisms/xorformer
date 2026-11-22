@@ -82,6 +82,13 @@
       "verifier": "../audit_rational_score.py",
       "verifier_arguments": "--bits 224 --require-correct",
       "scope": "All 16384 original labels of the same fourteen-bit target as the 336- and 332-head examples. Independent exact interval audit. No universal bound."
+    },
+    {
+      "file": "random-n14-upper-face-n13-anchored-h147.json",
+      "sha256": "384b173aee0b2c08237109a494815b0d98deaf10610870a35972560817e800ed",
+      "verifier": "../audit_rational_score.py",
+      "verifier_arguments": "--bits 224 --require-correct",
+      "scope": "All 8192 labels on the x_13=1 face of the original fourteen-bit target. Independent exact audit; lower face not included. No universal bound."
     }
   ],
   "optimization_audit_certificates": [
