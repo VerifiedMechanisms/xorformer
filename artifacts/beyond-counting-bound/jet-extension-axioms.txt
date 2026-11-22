@@ -1,0 +1,31 @@
+'HeadComplexity.PairCoverExtension.pair_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PairCoverExtension.target_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PairCoverExtension.center_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.pair_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.target_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.exists_positive_full_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.card_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.center_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.center_budget_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.block_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.every_dimension_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AllDimensionsJetInterpolation.every_dimension_full_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.score_units' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.family_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.parameters_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.family_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.input_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.exists_outside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.QuadraticThresholdEncoding.head_count_exponent_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

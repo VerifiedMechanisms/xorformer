@@ -1,0 +1,27 @@
+{
+  "audited_utc": "2026-11-22T12:57:05.127375+00:00",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/quadratic-jet-compiler-obstruction.md",
+      "math_spans": 52,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/open-code-pole-interpolation.md",
+      "math_spans": 113,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "math_spans": 67,
+      "static_errors": 0,
+      "github_errors": 0,
+      "notes": []
+    }
+  ],
+  "katex": "passed independently on the same three files"
+}
