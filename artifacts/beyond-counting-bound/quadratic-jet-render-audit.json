@@ -1,10 +1,10 @@
 {
-  "audited_utc": "2026-11-22T13:13:35.518965+00:00",
+  "audited_utc": "2026-11-22T13:24:51.617170+00:00",
   "files": [
     {
       "file": "artifacts/beyond-counting-bound/quadratic-jet-compiler-obstruction.md",
-      "sha256": "5241d9a5433d437405c5adbdff4c94a12feb1fc7b56b32db9ee4c6c61785d155",
-      "math_spans": 90,
+      "sha256": "f53e07f7a3453c7da789f62ccf4b1366c5eaa8bc8bd2491b3d27a907a74fe579",
+      "math_spans": 92,
       "static_errors": 0,
       "github_errors": 0,
       "notes": []

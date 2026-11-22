@@ -60,6 +60,8 @@ This does not prove a direct-sum theorem across the centers in the open-code int
 
 ## A matching linear upper bound
 
+The earlier [research branch, quadratic-threshold corollary](https://github.com/VerifiedMechanisms/autoresearch-runs/blob/045a8fb/proof/head_complexity_upper_bound.tex) already gives an upper bound of $2n+1$ for quadratic predicates. The finite-difference proof here additionally controls approximation of the real jet values $Q/B^3$, so its errors can be summed across multiple jet centers. The linear order of the predicate upper bound is not claimed as new.
+
 Let $B=b_0+\sum_{i=1}^n b_i x_i$, where every $b_i\gt0$, and let $Q$ be any real quadratic polynomial. Set $u=(1,x_1,\ldots,x_n)$. Write $Q=u^{\top}Mu$ for a real symmetric matrix $M$. The real spectral theorem gives
 
 $$ Q(x)=\sum_{j=1}^r\lambda_j L_j(x)^2,\qquad r\leq n+1,\qquad L_j(x)=\sum_{i=0}^n\ell_{ji}u_i. $$
