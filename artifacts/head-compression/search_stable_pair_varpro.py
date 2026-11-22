@@ -44,6 +44,26 @@ def unpack(parameters, units, n):
             parameters[split:2*split].reshape(units, n), parameters[2*split:])
 
 
+def direction_coordinates(logs, w):
+    """Rescale bounded w to coordinates with moderate initial magnitudes."""
+    assert np.max(np.abs(w)) < 70.
+    raw = 70*np.exp(logs)*np.arctanh(w/70)
+    magnitude = np.max(np.abs(raw), axis=1)
+    scale = np.ones(len(logs))
+    nonzero = magnitude > 0
+    scale[nonzero] = np.exp2(np.floor(np.log2(32/magnitude[nonzero])))
+    return scale, raw*scale[:, None]
+
+
+def bounded_direction(logs, direction, scale):
+    """Return w and its diagonal derivatives at fixed direction or logs."""
+    denominator = scale[:, None]*np.exp(logs)
+    z = direction/(70*denominator)
+    value = np.tanh(z)
+    slope = 1-value*value
+    return 70*value, -70*z*slope, slope/denominator
+
+
 def features_and_geometry(t, logs, w, eps):
     b1 = np.exp(logs)
     z = eps[:, None]*w
@@ -148,12 +168,18 @@ def exact_lift(labels, orientation, logs, w, eps, coefficient, precision=224):
 
 
 class Problem:
-    def __init__(self, labels, orientation, logs, w, eps, coefficient, out, seconds):
+    def __init__(self, labels, orientation, logs, w, eps, coefficient, out, seconds,
+                 scaled_direction=False):
         self.labels, self.orientation = labels, orientation
         self.units, self.n = logs.shape
         x = ((np.arange(len(labels))[:, None] >> np.arange(self.n)) & 1).astype(float)
         self.t = np.where(orientation[None, :, None] > 0, x[:, None], 1-x[:, None])
-        self.initial = np.r_[logs.ravel(), w.ravel(), eps]
+        self.scaled_direction = scaled_direction
+        if scaled_direction:
+            self.direction_scale, direction = direction_coordinates(logs, w)
+        else:
+            self.direction_scale, direction = None, w
+        self.initial = np.r_[logs.ravel(), direction.ravel(), eps]
         self.previous = coefficient
         self.best = None
         self.out = out
@@ -164,7 +190,11 @@ class Problem:
     def objective(self, parameters):
         if time.monotonic() >= self.deadline or (self.out/"STOP").exists():
             raise EndSearch
-        logs, w, eps = unpack(parameters, self.units, self.n)
+        logs, direction, eps = unpack(parameters, self.units, self.n)
+        if self.scaled_direction:
+            w, dlog, ddirection = bounded_direction(logs, direction, self.direction_scale)
+        else:
+            w = direction
         features, _ = features_and_geometry(self.t, logs, w, eps)
         q, r = la.qr(features, mode="economic", check_finite=False)
         initial = q.T@(features@self.previous) if self.previous is not None else q.T@self.labels
@@ -172,12 +202,16 @@ class Problem:
         coefficient = la.solve_triangular(r, fit.x, check_finite=False)
         self.previous = coefficient
         loss, score, gradient = score_gradient(self.t, self.labels, logs, w, eps, coefficient)
+        if self.scaled_direction:
+            gl, gw, ge = unpack(gradient, self.units, self.n)
+            gradient = np.r_[(gl+gw*dlog).ravel(), (gw*ddirection).ravel(), ge]
         event = {"evaluation": len(self.events), "seconds": time.monotonic()-self.start,
                  "loss": loss, "errors": int((self.labels*score <= 0).sum()),
                  "minimum_margin": float((self.labels*score).min()),
                  "inner_gradient": float(np.max(np.abs(fit.jac))),
                  "direct_qr_score_discrepancy": float(np.max(np.abs(score-q@fit.x))),
                  "outer_gradient_norm": float(la.norm(gradient)),
+                 "scaled_direction": self.scaled_direction,
                  "minimum_absolute_epsilon": float(np.min(np.abs(eps)))}
         self.events.append(event)
         print(json.dumps(event), flush=True)
@@ -198,7 +232,8 @@ class Problem:
         try:
             result = opt.minimize(self.objective, self.initial, jac=True, method="L-BFGS-B",
                                   bounds=[(-35, 35)]*(self.units*self.n)+
-                                         [(-70, 70)]*(self.units*self.n)+[(-1, 1)]*self.units,
+                                         ([(-100, 100)] if self.scaled_direction else
+                                          [(-70, 70)])*(self.units*self.n)+[(-1, 1)]*self.units,
                                   options={"maxiter": 100000, "maxfun": 100000,
                                            "ftol": 1e-15, "gtol": 1e-10,
                                            "maxls": 35, "maxcor": 50})
@@ -209,6 +244,7 @@ class Problem:
                   "seconds": time.monotonic()-self.start, "termination": termination,
                   "best_loss": None if self.best is None else self.best[0],
                   "certificate": self.certificate, "events": self.events,
+                  "scaled_direction": self.scaled_direction,
                   "scope": "Finite stable-pair search; no global or universal theorem.",
                   "failure_is_not_a_lower_bound": True}
         (self.out/"result.json").write_text(json.dumps(result)+"\n")
@@ -332,11 +368,33 @@ def self_test():
     assert np.max(np.abs(ww)) <= 35.
     assert np.all(ee == 0.)
     assert discrepancy < 1e-12, discrepancy
+    coordinate_scale, coordinates = direction_coordinates(logs, w)
+    parameters = np.r_[logs.ravel(), coordinates.ravel(), [.4, -.3]]
+    def transformed(parameters):
+        ll, vv, ee = unpack(parameters, units, n)
+        ww, jl, jv = bounded_direction(ll, vv, coordinate_scale)
+        loss, score, gradient = score_gradient(t, labels, ll, ww, ee, coef)
+        gl, gw, ge = unpack(gradient, units, n)
+        return loss, score, np.r_[(gl+gw*jl).ravel(), (gw*jv).ravel(), ge]
+    transformed_loss, transformed_score, transformed_gradient = transformed(parameters)
+    original_score = score_gradient(t, labels, logs, w, np.array([.4, -.3]), coef)[1]
+    coordinate_error = float(np.max(np.abs(transformed_score-original_score)))
+    numerical = []
+    for i in range(len(parameters)):
+        step = np.zeros_like(parameters)
+        step[i] = 1e-5
+        numerical.append((transformed(parameters+step)[0]-
+                          transformed(parameters-step)[0])/2e-5)
+    coordinate_gradient_error = float(np.max(np.abs(transformed_gradient-numerical)))
+    assert coordinate_error < 1e-12
+    assert coordinate_gradient_error < 1e-8, coordinate_gradient_error
     return {"tests": records, "refitted_gradient_tests": reduced_records,
             "rescaled_confluent_import": {
                 "original_maximum_absolute_w": float(np.max(np.abs(direction/np.exp(imported_logs)))),
                 "imported_maximum_absolute_w": float(np.max(np.abs(ww))),
                 "maximum_score_discrepancy": discrepancy},
+            "scaled_direction_coordinates": {"score_discrepancy": coordinate_error,
+                "fixed_coefficient_gradient_error": coordinate_gradient_error},
             "scope": "Finite derivative and exact-export diagnostics only."}, last
 
 
@@ -346,6 +404,7 @@ if __name__ == "__main__":
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--seconds", type=float, default=3600)
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--scaled-direction", action="store_true")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.self_test:
@@ -355,4 +414,5 @@ if __name__ == "__main__":
         print(json.dumps(result), flush=True)
     else:
         assert args.checkpoint is not None
-        Problem(*initialize(args.checkpoint), args.out, args.seconds).run()
+        Problem(*initialize(args.checkpoint), args.out, args.seconds,
+                scaled_direction=args.scaled_direction).run()

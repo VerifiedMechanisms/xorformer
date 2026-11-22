@@ -6582,4 +6582,28 @@ The rescaled import changes no label or error count and has maximum
 score discrepancy below $4.7\cdot10^{-10}$. This permits a separate
 stable-pair continuation; it does not prove that continuation succeeds.
 
+
+The imported stable coordinates can still have poorly scaled numerical
+derivatives. The optional search coordinates use, with a fixed positive
+scale $s_h$ per pair,
+\[
+ z_{h,i}=\frac{d_{h,i}}{70s_h e^{\ell_{h,i}}},\qquad
+ w_{h,i}=70\tanh z_{h,i}.
+\]
+Initialization uses the inverse map
+$d_{h,i}=70s_h e^{\ell_{h,i}}\operatorname{arctanh}(w_{h,i}/70)$;
+a power-of-two choice of $s_h$ keeps the initial $d$ coordinates below
+32 in magnitude. The exact derivatives used by the outer solver are
+\[
+ \frac{\partial w_{h,i}}{\partial d_{h,i}}
+ =\frac{1-\tanh^2 z_{h,i}}{s_h e^{\ell_{h,i}}},\qquad
+ \frac{\partial w_{h,i}}{\partial\ell_{h,i}}
+ =-70z_{h,i}(1-\tanh^2 z_{h,i}).
+\]
+The finite-difference gradient discrepancy is below $8.4\cdot10^{-12}$.
+For the imported lower-face checkpoint the numerical gradient norm
+changes from about $5.13\cdot10^{13}$ to $0.158$, while reconstructing
+$w$ within $7.2\cdot10^{-15}$. This is a change of optimization
+coordinates only; it supplies no new existence theorem.
+
 \end{document}

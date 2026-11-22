@@ -1,0 +1,1 @@
+{"loss": 0.04056643892937752, "errors": 175, "raw_gradient_norm": 51315065485863.89, "transformed_gradient_norm": 0.15781420230327892, "maximum_w_reconstruction_error": 7.105427357601002e-15, "initial_direction_max": 31.834410725175513, "scope": "Numerical coordinate diagnostic only."}

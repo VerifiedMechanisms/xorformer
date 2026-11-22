@@ -607,7 +607,14 @@
     "scope": "Numerical search acceleration only. No universal existence claim.",
     "large_case_limitation": "The first resumed fit finished in 84 seconds with gradient 3.20e-13. Later fits needed 80 Newton iterations and one retained gradient 6.56e-7. A diagnostic found maximum score 7535.67 and score norm 10887.27. The run was stopped and a separate score-regularized search started; no claim of exact inner optimization is made for the incomplete unregularized iterations.",
     "score_penalty_diagnostic": "diagnostics/shared-affine-regularized-self-test.json",
-    "regularized_search_penalty": 1e-06
+    "regularized_search_penalty": 1e-06,
+    "regularized_run_end": {
+      "seconds": 13980.177935578162,
+      "best_penalized_loss": 0.18236247790493865,
+      "final_errors": 2023,
+      "certificate": null,
+      "reason": "Stopped deliberately to reallocate computation to the stable lower-face continuation; not an infeasibility result."
+    }
   },
   "full_box_parity_obstruction": {
     "file": "full-box-parity-obstruction.tex",
@@ -637,6 +644,14 @@
     "large_case": "diagnostics/stable-positive-face0-import.json",
     "large_case_error": 4.656612873077393e-10,
     "large_case_errors_unchanged": 175,
-    "scope": "An algebraic chart identity and checked numerical warm start only; no new target certificate."
+    "scope": "An algebraic chart identity and checked numerical warm start only; no new target certificate.",
+    "coordinate_fix": {
+      "identity": "w=70*tanh(direction/(70*scale*exp(logs))); initialized by the inverse arctanh map and differentiated by the chain rule.",
+      "small_case": "diagnostics/stable-pair-scaled-direction-self-test.json",
+      "large_case": "diagnostics/stable-positive-face0-scaled-gradient.json",
+      "raw_gradient_norm": 51315065485863.89,
+      "transformed_gradient_norm": 0.15781420230327892,
+      "scope": "A numerical coordinate change. The admissible family and exact checks are unchanged."
+    }
   }
 }
