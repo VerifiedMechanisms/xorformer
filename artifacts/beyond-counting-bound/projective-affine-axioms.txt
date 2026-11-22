@@ -1,0 +1,20 @@
+'HeadComplexity.computableWithHeadsN_affineStatisticPolynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.computableWithHeadsN_of_univariateAffine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HStar_le_of_univariateAffine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineStatisticProfile.computableWithHeadsN_alternations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineStatisticProfile.HStar_le_alternations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.distance_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.distance_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.parity_xor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.puncturedProfile_signChanges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.punctured_as_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.distance_profile_computable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.punctured_computable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PuncturedParity.proper_subset_parity_feasible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PuncturedParity.full_parity_infeasible' depends on axioms: [propext, Classical.choice, Quot.sound]
