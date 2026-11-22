@@ -581,5 +581,22 @@
     "explicit_all_head_refspec": true,
     "new_branches_or_commits": false,
     "latest_autoresearch_commit_utc": "2026-11-21T06:16:49+00:00"
+  },
+  "interruption_2026_11_22": {
+    "last_observed_old_log_utc": "2026-11-22 05:28:24 UTC",
+    "resume_utc": "2026-11-22 07:06 UTC",
+    "old_exec_sessions": "No longer available after the interrupted turn; resumed from retained best checkpoints.",
+    "resumed_jobs": [
+      "shared-affine-prune292-resumed",
+      "shared-affine-prune250-resumed",
+      "shared-face1-n13-h147-resumed",
+      "confluent-positive-face0-n13-h146-resumed"
+    ],
+    "original_labels_unchanged": true,
+    "superseded_jobs_not_restarted": [
+      "confluent-n14-h336",
+      "stable-pair-mixed-face1-n13-h146"
+    ],
+    "no_infeasibility_claim": true
   }
 }
