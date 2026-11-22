@@ -1,0 +1,5 @@
+{
+  "qr_reconstruction_error": 3.1086244689504383e-15,
+  "identical_denominator_merge_error": 1.7763568394002505e-15,
+  "scope": "Implementation identities only; no universal theorem."
+}

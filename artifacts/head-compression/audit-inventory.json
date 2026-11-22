@@ -830,5 +830,12 @@
       "glued293": 8.331934603286591e+55
     },
     "scope": "Only these supplied scores. No lower bound on the minimum cancellation for their target."
+  },
+  "denominator_coalescence_trial": {
+    "script": "merge_anchored_affine_scores.py",
+    "small_check": "diagnostics/anchored-merge-self-test.json",
+    "mechanism": "Replace two same-orientation denominators by their geometric midpoint; rank candidates by projected score error, refit, then adapt the remaining denominators. Identical-denominator merging is exact, but an arbitrary pair need not preserve signs.",
+    "status": "One 291-head trial running on the original fourteen-bit labels.",
+    "target_proved": false
   }
 }
