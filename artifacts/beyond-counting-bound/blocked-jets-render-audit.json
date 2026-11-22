@@ -1,0 +1,18 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/reciprocal-jet-ranks.md",
+    "static": "PASS",
+    "katex": "PASS",
+    "github": "PASS",
+    "rendered_math_spans": 37,
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "static": "PASS",
+    "katex": "PASS",
+    "github": "PASS",
+    "rendered_math_spans": 54,
+    "notes": []
+  }
+]

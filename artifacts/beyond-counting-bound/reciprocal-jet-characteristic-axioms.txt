@@ -1,0 +1,8 @@
+'HeadComplexity.ReciprocalJetCharacteristic.cube_char_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ReciprocalJetCharacteristic.cube_char_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ReciprocalJetCharacteristic.constant_identity_char_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ReciprocalJetCharacteristic.constant_identity_char_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

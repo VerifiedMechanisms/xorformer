@@ -1,0 +1,5 @@
+import HeadComplexity.Atoms.ReciprocalJetCharacteristic
+#print axioms HeadComplexity.ReciprocalJetCharacteristic.cube_char_two
+#print axioms HeadComplexity.ReciprocalJetCharacteristic.cube_char_three
+#print axioms HeadComplexity.ReciprocalJetCharacteristic.constant_identity_char_two
+#print axioms HeadComplexity.ReciprocalJetCharacteristic.constant_identity_char_three

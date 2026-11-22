@@ -136,3 +136,9 @@ The [priority-list obstruction](priority-list-obstruction.md) supplies a separat
 ## A different stability invariant also fails
 
 The [product-table example](product-table-stability.md) addresses a different proposed invariant from Boolean reduction of a polynomial: stability of the generating polynomial whose coefficients are the denominator-product values on the cube. Each individual positive affine denominator has a stable value-table generator, by an explicit upper-half-plane calculation. Four such denominators on four bits nevertheless have a product-table generator with an exact upper-half-plane zero and a negative Rayleigh difference. The associated measure with a positive external field has a positive covariance. Both the complex zero and the covariance have been checked in Lean and independently with rational arithmetic. Thus this stronger-looking value-table formulation does not repair the earlier stability approach. The sign-counting target remains unproved.
+
+## Further interpolation audit
+
+The [reciprocal-jet calculations](reciprocal-jet-ranks.md) now include completed matrices with 16324 rows in dimension fourteen and 32670 rows in dimension fifteen. Both have full row rank modulo 65521, with nonzero selected-minor determinants. The blocked elimination records its exact-integer arithmetic bounds and independent small-matrix checks. These finite ranks do not establish an asymptotic interpolation theorem or a head lower bound.
+
+A separate symbolic calculation proves that the same full-rank assertion cannot hold in characteristic two or three once there are at least two pole blocks: each block contains the constant function in its row span, yielding one independent relation per additional block. The normalized identities are kernel checked in `ReciprocalJetCharacteristic.lean`. This identifies a specific obstruction to a small-characteristic coding approach, without drawing a conclusion about the real model.
