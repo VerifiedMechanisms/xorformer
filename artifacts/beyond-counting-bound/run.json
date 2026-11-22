@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T07:59:57.776333+00:00",
-  "elapsed_seconds_at_last_audit": 23529,
+  "last_audit_utc": "2026-11-22T09:12:00.171315+00:00",
+  "elapsed_seconds_at_last_audit": 27852,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -43,9 +43,24 @@
     "HeadComplexity.PositiveFunctionalGrid.sum_reciprocal_zero_iff",
     "HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_equiv",
     "HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_card",
-    "HeadComplexity.ReciprocalMeanValue.reciprocal_mean_value"
+    "HeadComplexity.ReciprocalMeanValue.reciprocal_mean_value",
+    "HeadComplexity.CoordinateZeroFiber.slopes_positive",
+    "HeadComplexity.CoordinateZeroFiber.indices_injective",
+    "HeadComplexity.CoordinateZeroFiber.indices_range",
+    "HeadComplexity.CoordinateZeroFiber.sample_denominators_positive",
+    "HeadComplexity.CoordinateZeroFiber.cleared_sample_scores_zero",
+    "HeadComplexity.CoordinateZeroFiber.sample_scores_zero",
+    "HeadComplexity.CoordinateZeroFiber.jacobian_mod_eq",
+    "HeadComplexity.CoordinateZeroFiber.inverse_mul_mod",
+    "HeadComplexity.CoordinateZeroFiber.clearedJacobian_det_ne_zero",
+    "HeadComplexity.CoordinateZeroFiber.clearedJacobian_eq",
+    "HeadComplexity.CoordinateZeroFiber.jacobian_det_ne_zero",
+    "HeadComplexity.CoordinateZeroFiber.clone_samples_have_one",
+    "HeadComplexity.CoordinateZeroFiber.clone_inverse_mul",
+    "HeadComplexity.CoordinateZeroFiber.clearedClone_det_ne_zero",
+    "HeadComplexity.CoordinateZeroFiber.clone_jacobian_det_ne_zero"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound.",
+  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound. CoordinateZeroFiber checks all 96 zero evaluations and invertibility of the 96 by 96 rational matrix and its six by six cloning block. The analytic derivative interpretation, arbitrary-dimension extension and local shattering remain written proofs.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }

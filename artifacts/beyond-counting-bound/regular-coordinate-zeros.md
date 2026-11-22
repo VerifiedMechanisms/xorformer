@@ -58,6 +58,10 @@ This proves the construction for every $n\geq16$. By the inverse function theore
 
 ## Audit scope
 
-The two modular nonvanishing computations and all base zero evaluations have been independently checked. The extension and local shattering argument are the written proof above. No Lean declaration for this theorem is asserted.
+The two modular nonvanishing computations and all base zero evaluations have been independently checked. A separate Lean certificate now checks the same base over the prime 101. `CoordinateZeroData.lean` encodes the explicit matrices; `CoordinateZeroFinite.lean` checks all 96 zero scores and a modular inverse of the cleared matrix using kernel reduction; `CoordinateZeroFiber.lean` proves nonvanishing of the rational Jacobian matrix and its six by six cloning block.
+
+The principal declarations in namespace `HeadComplexity.CoordinateZeroFiber` are `sample_scores_zero`, `jacobian_det_ne_zero`, and `clone_jacobian_det_ne_zero`. Their axiom audit is retained in `coordinate-zero-lean-audit.txt`. The data generator is `generate_zero_fiber_lean.py`. No `native_decide`, additional axiom, or unproved placeholder is used.
+
+The interpretation of the rational matrix as an analytic derivative, the extension to every larger dimension, and the inverse-function-theorem shattering argument remain the written proofs above. The Lean declarations do not themselves assert this entire analytic theorem or the requested asymptotic lower bound.
 
 The construction supplies $6n$ sign tests for three heads, not all $2^n$ sign tests. It neither establishes nor refutes an upper bound of order $2^n/n^2$ for arbitrary Boolean functions. The selected research target remains open in this run.

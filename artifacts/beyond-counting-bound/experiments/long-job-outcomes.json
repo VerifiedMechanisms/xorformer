@@ -1,0 +1,32 @@
+{
+  "recorded_utc": "2026-11-22T09:04:00Z",
+  "jobs": [
+    {
+      "task": "larger random tables on 11 to 13 bits",
+      "exit_code": 0,
+      "new_certificates": 4,
+      "status": "completed global time limit; unsuccessful trials UNKNOWN"
+    },
+    {
+      "task": "14-bit and 15-bit random table search",
+      "exit_code": 137,
+      "completed_trials": 1,
+      "completed_trial_status": "UNKNOWN",
+      "interrupted_trial": {
+        "n": 14,
+        "heads": 251,
+        "restart": 1,
+        "last_reported_iteration": 100,
+        "last_reported_elapsed_seconds": 2942.1251299330033
+      },
+      "new_certificates": 0,
+      "status": "process killed; interruption provides no infeasibility conclusion"
+    },
+    {
+      "task": "14-bit reciprocal-jet rank at 154 centers",
+      "exit_code": 137,
+      "completed_rank_records": 0,
+      "status": "process killed; no rank conclusion"
+    }
+  ]
+}

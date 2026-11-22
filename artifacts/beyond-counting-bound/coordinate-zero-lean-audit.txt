@@ -1,0 +1,23 @@
+'HeadComplexity.CoordinateZeroFiber.slopes_positive' depends on axioms: [propext]
+'HeadComplexity.CoordinateZeroFiber.indices_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.indices_range' depends on axioms: [propext]
+'HeadComplexity.CoordinateZeroFiber.sample_denominators_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.cleared_sample_scores_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.sample_scores_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.jacobian_mod_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.inverse_mul_mod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.clearedJacobian_det_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.clearedJacobian_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.jacobian_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.clone_samples_have_one' depends on axioms: [propext]
+'HeadComplexity.CoordinateZeroFiber.clone_inverse_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.clearedClone_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.clone_jacobian_det_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

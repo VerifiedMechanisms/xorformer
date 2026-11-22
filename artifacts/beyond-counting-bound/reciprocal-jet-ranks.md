@@ -16,6 +16,8 @@ The retained file `reciprocal-jet-rank-results.jsonl` contains 64 completed elim
 
 Some randomly chosen positive integer weights give deficient rank. For example, the recorded thirteen-bit case with 8188 rows has rank 7158. Repeated weights and repeated subset sums occur in that example. The observations do not justify asserting full rank for arbitrary positive weights.
 
+A later fourteen-bit elimination was killed with exit code 137 before returning a rank. Its interruption is recorded in `experiments/long-job-outcomes.json`; it supplies no rank conclusion.
+
 ## Scope
 
 These rows arise in value, gradient, and Hessian interpolation for fixed linear functionals of reciprocal evaluations. Full rank could help construct additional parameter-space critical points. Such points are not Boolean sign patterns. No asymptotic rank theorem or head-complexity lower bound follows from this finite table.

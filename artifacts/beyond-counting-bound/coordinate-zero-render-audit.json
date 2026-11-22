@@ -1,23 +1,23 @@
-[
-  {
-    "file": "artifacts/beyond-counting-bound/zero-score-minor.md",
-    "status": "PASS",
-    "math_spans": 20,
-    "rendered": 20,
-    "notes": []
-  },
-  {
-    "file": "artifacts/beyond-counting-bound/regular-coordinate-zeros.md",
-    "status": "PASS",
-    "math_spans": 32,
-    "rendered": 32,
-    "notes": []
-  },
-  {
-    "file": "artifacts/beyond-counting-bound/research.md",
-    "status": "PASS",
-    "math_spans": 51,
-    "rendered": 51,
-    "notes": []
-  }
-]
+{
+  "utc": "2026-11-22T09:15:07.409548+00:00",
+  "reports": [
+    {
+      "file": "artifacts/beyond-counting-bound/regular-coordinate-zeros.md",
+      "math_spans": 32,
+      "findings": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/experiments.md",
+      "math_spans": 15,
+      "findings": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/reciprocal-jet-ranks.md",
+      "math_spans": 17,
+      "findings": [],
+      "notes": []
+    }
+  ]
+}

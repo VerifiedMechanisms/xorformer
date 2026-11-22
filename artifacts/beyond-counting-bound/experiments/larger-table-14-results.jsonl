@@ -1,0 +1,1 @@
+{"n": 14, "heads": 251, "family": "random", "seed": 271828, "restart": 0, "iterations": 148, "stages": [{"ridge": 1e-05, "message": "global deadline"}], "elapsed_seconds": 3600.6069374659564, "floating_min_margin": -1.5715170446561064, "loss": 0.45977923751289723, "status": "UNKNOWN", "label_sha256": "66144446974191d20b2271ee8c7828a82cdd2645c546296a2f234729b4df1c0a"}
