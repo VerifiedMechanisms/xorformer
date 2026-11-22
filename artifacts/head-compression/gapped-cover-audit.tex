@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Gapped Reciprocal Covers and the Fixed Cube Obstruction}
+\author{}
+\date{November 22, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note proves a transfer of a geometric shattering construction to
+positive affine reciprocals on a specially chosen finite point set.
+It also proves that an affine or common-positive-denominator projective
+embedding of the entire Boolean cube cannot provide the required
+halfspace cover. It does not prove an upper bound on $W(n)$.
+
+\paragraph{A gapped cover transfer.}
+Let $P$ be a finite set, let $T\subseteq P$, and let $B_1,\ldots,B_k$
+be strictly positive functions on $P$. Suppose every $p\in T$ has
+some $B_h(p)\le s$, while $B_h(p)\ge L$ for every $p\notin T$ and
+all $h$. If
+\[
+ 0<s,\qquad 0<L,\qquad \frac{k}{L}<\tau<\frac1s,
+\]
+then
+\[
+ F(p)=\sum_{h=1}^k\frac1{B_h(p)}-\tau
+\]
+is strictly positive on $T$ and strictly negative on $P\setminus T$.
+For a covered point one summand is at least $1/s$ and all others
+are positive; for an uncovered point the sum is at most $k/L$.
+This implication is formalized as
+\texttt{HeadComplexity.reciprocal\_sum\_separates\_gapped\_cover}.
+
+\paragraph{Application to geometric shattering.}
+Theorem 1 and Proposition 5 of Csik\'os, Kupavskii, and Mustafa,
+\emph{Tight Lower Bounds on the VC-dimension of Geometric Set Systems}
+(JMLR 20, 2019), construct, for $d\ge4$ and $k\ge2$, a positive
+point set of size $\Omega(dk\log k)$ such that each of its subsets is
+a union of at most $k$ origin-anchored boxes. Their proof permits
+coordinatewise order-preserving stretching so that consecutive
+positive coordinate values have ratio greater than any prescribed
+$R>1$. The combinatorial box construction comes from Lemma 2 and
+Section 4 of Kupavskii, Mustafa, and Pach, \emph{New Lower Bounds for
+$\epsilon$-Nets} (SoCG 2016).
+
+Here is a direct inference for reciprocal scores. Stretch with
+$R=4k(d+1)$. Each selected box can be written
+$[0,b_{h1}]\times\cdots\times[0,b_{hd}]$, with each endpoint a
+coordinate value of the stretched point set. Set
+\[
+ B_h(p)=1+\sum_{i=1}^d p_i/b_{hi},\qquad
+ s=d+1,\qquad L=R,\qquad \tau=1/(2(d+1)).
+\]
+For a point inside a selected box, $B_h(p)\le d+1$.
+For a point outside that box, some coordinate ratio exceeds $R$,
+so $B_h(p)>R$. The preceding transfer applies. All denominator
+constants and slopes are strictly positive and all numerators are
+one. If fewer than $k$ boxes are used, the same inequalities hold
+with their actual number. The empty target is represented by a
+negative constant, without any heads.
+
+Consequently there exist point sets of size $\Omega(dk\log k)$ in
+$\mathbb R_{>0}^d$ shattered by at most $k$ positive affine reciprocal
+terms and a constant readout. This concerns an existentially chosen
+point set, not the prescribed $2^n$ Boolean vertices.
+
+\paragraph{Parity prevents an affine transfer.}
+Let $n\ge1$, and let $E$ be the even parity class of $\{0,1\}^n$.
+Every strict halfspace whose intersection with the cube is contained
+in $E$ contains at most one cube vertex. Indeed, suppose it contains
+distinct $u,v\in E$, and write its affine defining function as $L$,
+with $L(u),L(v)>0$. Choose a coordinate where $u$ and $v$ differ,
+and swap that coordinate between them, producing $w,z$.
+Both new vertices have odd parity, and $u+v=w+z$. Hence
+\[
+ 0<L(u)+L(v)=L(w)+L(z)\le0,
+\]
+a contradiction. Toggling one fixed coordinate gives a bijection
+between the two parity classes, so $|E|=2^{n-1}$.
+Any union of strict halfspaces representing $E$ therefore has at
+least $2^{n-1}$ members.
+
+This lower bound persists after any affine feature map, since the
+preimage of a halfspace is a halfspace. It also persists for a map
+\[
+ p_i(x)=A_i(x)/D(x),\qquad D(x)>0,
+\]
+with affine $A_i,D$ and a common denominator: multiplying a halfspace
+inequality by $D$ gives an affine inequality in $x$. The scalar
+identity is formalized as
+\texttt{HeadComplexity.projective\_halfspace\_sign\_iff}.
+This excludes those direct transfers of the geometric construction.
+It is not a lower bound for sums of general affine fractions, which
+can represent parity much more efficiently.
+
+\paragraph{What is missing.}
+The geometric construction uses non-affine stretching and a special
+point set. No admissible one-layer compilation of a suitable
+cube-compatible replacement is established. Merely asking for such
+a replacement at the target count would be a theorem-strength gap,
+not a proof mechanism.
+
+\paragraph{Primary sources.}
+\url{https://www.jmlr.org/papers/volume20/18-719/18-719.pdf}
+
+\url{https://lipn.univ-paris13.fr/~mustafa/Research/Papers/epsnetslowerbounds.pdf}
+
+\end{document}

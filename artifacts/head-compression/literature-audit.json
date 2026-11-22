@@ -766,6 +766,22 @@
       "checked_location": "Section 2; Section 3.1, Lemma 1 and Theorem 3; Supplement A, first two pages.",
       "mechanism": "Zolotarev sign functions compose type (3,2) rational units to obtain high degree with few parameters, yielding efficient ReLU approximation.",
       "gap": "The construction uses depth and quadratic denominators. The manual pole argument shows that t/(t^2+c), c>0, has no finite exact real-affine-fraction expansion on an open interval. This does not exclude finite-cube sign representations or approximation. A head-efficient transfer remains unproved."
+    },
+    {
+      "title": "Tight Lower Bounds on the VC-dimension of Geometric Set Systems",
+      "authors": "Monika Csikos, Andrey Kupavskii, Nabil H. Mustafa",
+      "url": "https://www.jmlr.org/papers/volume20/18-719/18-719.pdf",
+      "checked_location": "Theorem 1, Lemma 3, Proposition 5 and the coordinate stretching argument in Section 3.",
+      "mechanism": "A specially constructed finite positive point set admits arbitrary k-box covers with size Omega(d*k*log k). Stronger stretching gives a reciprocal-sum classifier with k positive affine denominators; see gapped-cover-audit.tex.",
+      "gap": "The input set is existentially selected. An affine or common-denominator projective transfer from the full cube is excluded by the parity halfspace-cover obstruction. Nonlinear flat compilation is not established."
+    },
+    {
+      "title": "New Lower Bounds for epsilon-Nets",
+      "authors": "Andrey Kupavskii, Nabil H. Mustafa, Janos Pach",
+      "url": "https://lipn.univ-paris13.fr/~mustafa/Research/Papers/epsnetslowerbounds.pdf",
+      "checked_location": "Lemma 2 and Section 4, including the binary-prefix boxes and the inductive hitting-box construction in Lemma 7.",
+      "mechanism": "Parity-controlled local choices of dyadic boxes route 2^(k-1) hitting points through arbitrary selected subsets of d*(k+1)*2^(k-2) boxes.",
+      "gap": "Binary prefix routing and coordinate stretching do not give affine functions of all Boolean inputs. The exact scalar reciprocal transfer on the constructed point set is recorded separately; universal cube coverage is missing."
     }
   ]
 }

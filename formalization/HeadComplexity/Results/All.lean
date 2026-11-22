@@ -1,3 +1,4 @@
+import HeadComplexity.Results.GappedReciprocalCover
 import HeadComplexity.Results.AffineCylinderCofactorRecursion
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.AffineFreeSparsity

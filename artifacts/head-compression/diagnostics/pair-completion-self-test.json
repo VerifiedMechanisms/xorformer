@@ -1,0 +1,44 @@
+{
+  "records": [
+    {
+      "fixture": 0,
+      "fraction_audit": {
+        "file": "/out/head-compression/pair-completion-self-test/0/certificate.json",
+        "sha256": "fc0f7b606409290c3f23891491c59d1ed64a21702635f5b66ff4f0e56198a5b8",
+        "n": 4,
+        "heads": 1,
+        "vertices_checked": 16,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 4.071416142894378,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    },
+    {
+      "fixture": 1,
+      "fraction_audit": {
+        "file": "/out/head-compression/pair-completion-self-test/1/certificate.json",
+        "sha256": "fc0f7b606409290c3f23891491c59d1ed64a21702635f5b66ff4f0e56198a5b8",
+        "n": 4,
+        "heads": 1,
+        "vertices_checked": 16,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 4.071416142894378,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    },
+    {
+      "fixture": 1000,
+      "fraction_audit": {
+        "file": "/out/head-compression/pair-completion-self-test/1000/certificate.json",
+        "sha256": "fc0f7b606409290c3f23891491c59d1ed64a21702635f5b66ff4f0e56198a5b8",
+        "n": 4,
+        "heads": 1,
+        "vertices_checked": 16,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 4.071416142894378,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    }
+  ],
+  "scope": "Implementation checks only, not a universal result."
+}
