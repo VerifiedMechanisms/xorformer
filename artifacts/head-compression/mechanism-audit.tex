@@ -7024,4 +7024,43 @@ Boolean function. In particular, changing the other heads is outside
 the statement. Failed numerical programs elsewhere in the pair
 search do not inherit this certificate.
 
+
+\paragraph{Dual-guided feasible reconfiguration experiment.}
+The fixed-residual witness motivates changing the retained heads.
+For one retained head, write $B=\sum_j b_jz_j$ with $b_0=1$,
+$F=r+A/B$, $t_j=b_jz_j/B$, and
+$J_j=s_jz_j/B$, where $s_0=1$ and $s_j=1+b_j$ for $j>0$.
+Then $0\le J_j\le1$ on the cube. For $S>0$, define
+\[
+ B'=B+\sum_jb_j\delta_jz_j,\qquad
+ A'=A+S\sum_js_ju_jz_j.
+\]
+If $|\delta_j|<1$ then $B'>0$. Direct expansion gives
+\[
+ \frac{B'}{SB}\left(y\left(r+\frac{A'}{B'}\right)-\gamma\right)
+ =\frac{yF-\gamma}{S}
+  +\frac{yr-\gamma}{S}\sum_jt_j\delta_j
+  +y\sum_jJ_ju_j.
+\]
+Thus a required margin $\gamma$ becomes linear inequalities in
+$(\delta,u)$ while the other heads are fixed. The first variation
+of the changed head is
+\[
+ S\sum_jJ_ju_j-\frac{A}{B}\sum_jt_j\delta_j.
+\]
+The numerical experiment optimizes its pairing with weights obtained
+from the pair-completion LP, checks all current signs, and accepts
+only a measured improvement in the pair-completion objective.
+This changes the residual, so the earlier pair witness does not
+apply to the new state without being rechecked.
+
+The script \texttt{search\_dual\_guided\_reconfiguration.py} implements
+these proposals. The displayed constraint identity was checked with
+exact fractions in $640$ cases across both orientations; a small
+end-to-end pair replacement passed the independent sign checker.
+All large-case moves remain numerical proposals until separately
+audited. Neither a monotone numerical objective nor the local dual
+formula proves convergence to a replacement, a universal move,
+or the requested asymptotic upper bound.
+
 \end{document}

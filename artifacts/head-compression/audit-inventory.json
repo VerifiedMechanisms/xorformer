@@ -939,5 +939,12 @@
     "new_updates": false,
     "target_proof_found": false,
     "method": "Read-only fetch of all authorized run branches."
+  },
+  "dual_guided_reconfiguration": {
+    "script": "search_dual_guided_reconfiguration.py",
+    "self_test": "diagnostics/dual-reconfiguration-self-test.json",
+    "mechanism": "Use a pair-completion dual to select a margin-constrained affine-fraction update to a retained head; accept only measured pair-objective improvement.",
+    "status": "Six-hour fourteen-bit experiment running.",
+    "scope": "Changes the previously fixed residual. No convergence, universal progress, or upper-bound theorem is asserted."
   }
 }

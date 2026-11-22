@@ -1,0 +1,10 @@
+{
+  "exact_conditional_constraint_identities": 640,
+  "orientations": [
+    1,
+    -1
+  ],
+  "small_pair_certificate": "/out/head-compression/dual-reconfiguration-small-v3/certificate.json",
+  "small_pair_independent_fraction_audit": true,
+  "scope": "Algebra and implementation checks only; no universal progress theorem."
+}
