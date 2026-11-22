@@ -1,0 +1,9 @@
+{
+  "status": "VERIFIED",
+  "heads": 4,
+  "selectors": 3,
+  "distinct_regular_branches": 576,
+  "sample_size": 24,
+  "maximum_slope_bits": 362,
+  "boolean_sign_patterns_in_this_family": 1
+}

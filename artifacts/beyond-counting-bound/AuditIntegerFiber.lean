@@ -1,0 +1,9 @@
+import HeadComplexity.Atoms.IntegerFiber
+
+#print axioms HeadComplexity.IntegerFiber.slopes_positive
+#print axioms HeadComplexity.IntegerFiber.denominators_positive
+#print axioms HeadComplexity.IntegerFiber.sampled_scores_equal
+#print axioms HeadComplexity.IntegerFiber.held_out_difference
+#print axioms HeadComplexity.IntegerFiber.inverse_mul_mod
+#print axioms HeadComplexity.IntegerFiber.jacobian_det_ne_zero
+#print axioms HeadComplexity.IntegerFiber.extension_jacobian_det_ne_zero

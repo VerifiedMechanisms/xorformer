@@ -80,3 +80,11 @@ A new test concerned a possible way to remove the degree factor in sign counting
 [Grosdos, Robeva, and Zubkov](https://arxiv.org/html/2509.11088v1) study rational-function identities and coefficient varieties for reciprocal-activation networks. Their ambient space is a space of polynomial fractions, rather than Boolean sign tables. Their dimension and defining-equation results do not imply the selected lower bound.
 
 [Zhang and Kileel](https://arxiv.org/html/2311.05116v3), Theorem 2.6, bound metric entropy using intrinsic dimension, section-component counts, and a logarithmic ambient-dimension term. Their rational-network application controls continuous outputs and Lipschitz losses. The resulting ambient-size logarithm and the absence of a uniform margin prevent a direct improvement of the unrestricted Boolean counting bound.
+
+## A discrete matching mechanism and its limitation
+
+The new [integer construction](integer-fiber-family.md) strengthens the finite ambiguity example: for every $n\geq5$, a two-head evaluation map on $4n$ cube vertices has at least $2^{n-4}$ distinct regular positive preimages. A five-bit integer certificate and a block triangular Jacobian argument prove this statement. It does not contradict an exponential upper bound in the number of parameters.
+
+A different [pole-matching construction](pole-matching-fibers.md) uses the Chinese remainder theorem to distinguish independent permutations of poles in different selector coordinates. In an affine parameter slice with $2Hk$ free parameters on $n=k+\lceil\log_2(2H)\rceil$ input bits, it produces $(H!)^{k-1}$ regular positive interpolation branches. This rules out a bound $C^{nH}H!$, for fixed $C$, uniformly over such parameter slices, including sequences with $H=\Theta(2^n/n^2)$.
+
+The audit distinguishes branch counts from sign counts. Every score in this matching construction has the same Boolean sign pattern. Consequently, the factorial branch count cannot be interpreted as a large family of Boolean functions, and it does not refute an estimate that counts signs directly. At the critical head scale its logarithm is only of order $2^n\log n/n$. A sign-sensitive argument, or a sharper estimate that accommodates these branches, remains necessary. No sufficient estimate of either kind has been proved here.
