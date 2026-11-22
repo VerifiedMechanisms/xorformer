@@ -1,0 +1,5 @@
+'HeadComplexity.CoordinateZeroFiber.normDual_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.normDual_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.normDualLabel_mul_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+EXIT 0

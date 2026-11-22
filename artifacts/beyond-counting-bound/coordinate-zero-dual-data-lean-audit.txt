@@ -1,0 +1,4 @@
+'HeadComplexity.CoordinateZeroFiber.cleared_dual_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateZeroFiber.dualNumerator_ne_zero' depends on axioms: [propext]
+
+EXIT 0

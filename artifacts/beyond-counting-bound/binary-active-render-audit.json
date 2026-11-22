@@ -1,0 +1,22 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/binary-active-minima.md",
+    "sha256": "6fbdf7e4493673623148f75d8266c64b5ce5e8f4ca4d2169a2ed03d56d2990e3",
+    "source_spans": 70,
+    "rendered_math": 70,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:23:03.501907+00:00",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "sha256": "fbf05c462ddee3fb59983d8eaaa05e4751381de51d1b236d3195a8973da71b23",
+    "source_spans": 88,
+    "rendered_math": 88,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:23:04.073211+00:00",
+    "gitlab": "not run; no configured authentication"
+  }
+]

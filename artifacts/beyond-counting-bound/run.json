@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T22:13:06.846201+00:00",
+  "last_audit_utc": "2026-11-22T22:23:02.725524+00:00",
   "elapsed_seconds_at_last_audit": 76833,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -239,7 +239,12 @@
     "HeadComplexity.BooleanZeroProduct.threeBitJacobian_det_ne_zero",
     "HeadComplexity.BooleanZeroProduct.positive_factor_exchange_boolean",
     "HeadComplexity.BooleanZeroProduct.exchange_slopes_positive",
-    "HeadComplexity.BooleanZeroProduct.firstSlopes_injective"
+    "HeadComplexity.BooleanZeroProduct.firstSlopes_injective",
+    "HeadComplexity.CoordinateZeroFiber.cleared_dual_equation",
+    "HeadComplexity.CoordinateZeroFiber.dualNumerator_ne_zero",
+    "HeadComplexity.CoordinateZeroFiber.normDual_ne_zero",
+    "HeadComplexity.CoordinateZeroFiber.normDual_equation",
+    "HeadComplexity.CoordinateZeroFiber.normDualLabel_mul_pos"
   ],
   "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound. CoordinateZeroFiber checks all 96 zero evaluations and invertibility of the 96 by 96 rational matrix and its six by six cloning block. The analytic derivative interpretation, arbitrary-dimension extension and local shattering remain written proofs. PriorityRestriction proves the restriction lemma and the majority-agreement lower bound for priority lists plus arbitrary additive block scores. AffineProductTwoHeads proves that the positive sign of a product of two affine forms is computable by two exact-model heads. No target lower bound follows. ProductTableStability proves an explicit upper-half-plane zero and positive covariance for the value-table generator of four positive affine denominators; it refutes a proposed stability invariant, not the target. ReciprocalJetCharacteristic proves the characteristic-two and characteristic-three identities placing the constant function in each reciprocal-cube jet block. The resulting rank bound is a written proof; these identities do not apply in characteristic zero. AffineStatisticPolynomial and AffineStatisticProjective prove the projective affine-statistic polynomial compiler and its sign-change bound. PuncturedParity proves feasibility with n-1 heads on every proper subset of the parity truth table and infeasibility on the full table. These auxiliary results do not imply the main target. DenominatorOrder proves that two strictly positive denominator pairs with the same strict cube orders have different feasible sign patterns, with an exact annihilator and a two-head feasible witness. This refutes order-only compression, not the target. ConvexPerspective proves the quadratic-over-linear convexity identities and an arbitrary finite incidence construction by convex cones in three dimensions. It rules out convexity-only counting; the special shared arrow-matrix counting problem remains open. OpenCodeJetInterpolation proves an end-to-end positive-affine reciprocal-cube interpolation theorem for two power-of-two blocks, with exactly q*n^2=4*2^n centers. Its numerators are products of two literals. This is an auxiliary jet theorem, not an actual-head lower bound or upper bound. The positive pole witness, finite root-avoidance transfer, and complete code bridge are kernel checked. AllDimensionsJetInterpolation.every_dimension_full_rank extends the auxiliary positive quadratic-jet matrix and its strict q*n^2<16*2^n budget to every n>=2. QuadraticThresholdEncoding proves an injective family of 2^(k^3) quadratic predicates on 3k bits and the exponent comparison. The written Warren application gives a linear head lower bound for some one-center jet predicates, disproving constant-cost compilation; no direct-sum theorem or target lower bound follows. QuadraticThresholdEncoding.polynomial_eval and polynomial_totalDegree_le verify the explicit degree-two realization. QuadraticJetApproximation proves exact reciprocal finite differences, coefficient positivity, a quadratic error bound, and sign preservation including zero labels. The written spectral and finite-margin assembly yields at most 2*n+3 heads for any single quadratic jet predicate. This matches the auxiliary linear lower bound in order, not the main exponential target. The additive-combinatorics audit records explicit failures of unproved concentration and restriction transfers. CompleteQuadraticProfile proves the modulo-four symmetric profile has exactly m heads on 2*m bits. The written bent-function autocorrelation and Bruck norm argument give Fourier threshold density at least 2^m, refuting polynomial Fourier-support compression. This is basis-specific and is not an asymptotic head lower bound. MobiusParameterShattering and MobiusThreeParameterShattering check three tests on two positive parameters and six tests on three positive parameters in a separable reciprocal relaxation. They refute parameter-count and 2H-1 test bounds for that relaxation, not any asymptotic attention-head statement. QuadraticCharacterTransfer proves that one positive affine numerator, parametrized only by its integer bias, realizes all 256 quadratic-character patterns on eight inputs modulo 1367 while remaining strictly positive over the reals. This is an obstruction to a finite-field sign-counting relaxation, not a real-head lower bound. The general Dirichlet transfer and Peralta pattern argument are written proofs. PositiveMobiusFiberShattering verifies six separable reciprocal tests on three positive parameters with positive poles and residues and all 64 strict sign witnesses. This is a freely chosen query relaxation and supplies no asymptotic head lower bound. ProjectiveCriticalPoints checks the transverse kernel, selected-pair reconstruction kernel, Schur-complement kernel and projection identity. The written analytic proof gives many distinct regular critical image points under singleton normalization. All constructed scores have the same sign; no target lower bound follows. MobiusFourParameterShattering proves nine freely chosen reciprocal queries on four positive parameters realize all 512 patterns. This refutes a twice-the-parameters bound for that relaxation, not an asymptotic head bound. ReciprocalMatchingShattering proves a general finite-field Hall-selector construction with unboundedly many independent reciprocal sign queries per positive parameter. PositiveReciprocalShattering proves the same conclusion with strictly positive poles and residues, via a general reciprocal-inversion completion. These free-query theorems refute every uniform linear parameter bound for the relaxation, not the requested full Boolean-cube head lower bound. PositiveSubsetScales proves the dominant-summand packing bounds for positive subset sums and ratios. These exclude a literal affine embedding of the geometric-pole construction, but give no asymptotic sign count.",
   "resumed_utc": "2026-11-22T01:27:48Z",
@@ -379,5 +384,23 @@
     "lean_scope": "classification, exchange identity, positivity, injectivity, one Jacobian nonvanishing certificate",
     "independent_verification": "four exact product tables and Jacobians passed",
     "main_target_proved": false
+  },
+  "binary_active_minima": {
+    "n": 16,
+    "heads": 3,
+    "active_selected_constraints": 96,
+    "labels": {
+      "positive": 44,
+      "negative": 52
+    },
+    "exact_dual": "all 96 rational coordinates nonzero; direct and two modular checks passed",
+    "written_conclusion": "for every sufficiently small positive margin, a full-cube regular strict local numerator-norm minimum with 96 positive active multipliers",
+    "lean_scope": "cleared dual equation, rational dual equation, nonzero coordinates and label positivity; not the analytic inverse-function theorem",
+    "scope_limit": "one explicit sixteen-bit label table; score constant fixed at one; no asymptotic count",
+    "main_target_proved": false,
+    "full_cube_arithmetic": "65536 vertices checked with exact integers; 106 base zeros; extra ten tangent magnitudes exceed 14",
+    "full_cube_positive_labels": 54004,
+    "minimum_nonzero_base_score_abs": "1/31671",
+    "truth_table_sha256": "8d93df0ef3f91635d7eb63fccc5feb4e90c83e3a8ccf6967582c615c4e36536c"
   }
 }

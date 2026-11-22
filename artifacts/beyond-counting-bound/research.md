@@ -37,6 +37,12 @@ The [two-factor audit](boolean-product-base-locus.md) classifies every pair of n
 
 These results invalidate an automatic division by head permutations in a proposed product-degree argument. They do not estimate the coordinate signs of the many-head tangent family. Recent matroid fiber and polar-degree formulas, together with hyperplane-covering results, were checked against this distinction. The required many-head sign bound remains a theorem-strength gap. No denominator exponent between one and two has been obtained.
 
+## Binary active margins and positive multipliers
+
+The [active-margin construction](binary-active-minima.md) starts from the regular sixteen-bit, three-head zero fiber. An exact rational dual calculation gives 96 nonzero coordinates, with 44 positive and 52 negative signs. An independent full-cube enumeration finds just ten additional zero scores, and exact tangent calculations give signed derivatives greater than fourteen at all ten. The inverse function theorem then gives, for every sufficiently small positive common margin, a regular strict local minimum of the squared numerator norm subject to all 65,536 cube inequalities. Exactly 96 constraints are active and have strictly positive multipliers. The rational dual equation and sign certificate are Lean checked in `CoordinateZeroDual.lean`; the full-cube arithmetic and analytic argument have their separately stated audit scope.
+
+This disproves the proposed blanket exclusion of regular full-cube constrained minima by a maximum principle. It does not bound their total number or the number of full-cube sign patterns. The asymptotic target remains unproved.
+
 ## Fixed-dimensional positive reciprocal obstruction
 
 The [four-dimensional construction](positive-four-dimensional-shattering.md) turns the binary switching rectangle construction into strictly positive reciprocal heads. For $H=2^{r-1}$ it shatters $(r-1)H/2$ fixed positive rational points in four real dimensions, with margin greater than $1/4$, constant numerator one, and denominator constant one. A direct triangular recursion proves the required rectangle incidences. A geometric coordinate transformation then makes every head's value at least $4/5$ on an incidence and less than $1/(16H)$ otherwise. This independently disproves a linear parameter-count bound for positive real-input heads, even with fixed input dimension. It does not shatter a Boolean cube.
