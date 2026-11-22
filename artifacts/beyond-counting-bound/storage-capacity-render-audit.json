@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/storage-capacity-transfer-audit.md",
+  "sha256": "890cf85d6b9554c68a86f1c12463adf428b0123c1f932d128914e7a845931f58",
+  "math_spans": 37,
+  "github_rendered_math_spans": 37,
+  "errors": [],
+  "notes": [],
+  "checked_utc": "2026-11-22T17:18:49.720652+00:00",
+  "gitlab": "not checked: no configured authentication"
+}

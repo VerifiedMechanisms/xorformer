@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T17:07:08.556616+00:00",
+  "last_audit_utc": "2026-11-22T17:21:00.769348+00:00",
   "elapsed_seconds_at_last_audit": 42784,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -215,6 +215,12 @@
       "started_utc": "2026-11-22T17:03:00Z",
       "seconds_limit": 14400,
       "status": "running; failures UNKNOWN"
+    },
+    {
+      "task": "joint optimization of three-parameter seven-test separable reciprocal shattering",
+      "output": "/out/mobius-evolved/n3-m7-joint.json",
+      "seconds_limit": 3600,
+      "status": "running; numerical failure UNKNOWN"
     }
   ]
 }

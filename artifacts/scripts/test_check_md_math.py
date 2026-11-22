@@ -48,6 +48,11 @@ expect("angle", r"Bad $a \lt b$ and $c < d$.", ["angle"])
 expect("rowsep", r"Bad $$\begin{cases} 1 & x \\ 2 & y \end{cases}$$ inline.",
        ["rowsep"])
 expect("entity", r"Bad $\mathrm{OR}&#95;n$ here.", ["entity"])
+expect("coefficient-parsed-as-link", r"$$ [z^m](2e^z-1)^N $$", ["math-link"])
+expect("coefficient-macro", r"$$ \mathrm{coeff}_{z^m}\bigl((2e^z-1)^N\bigr) $$",
+       must_not_have=["math-link"])
+expect("link-outside-math", "See [source](https://example.org) and $x$.",
+       must_not_have=["math-link"])
 expect("multiline-display", "Text\n\n$$\nx = 1\n$$\n", ["multiline-display"])
 expect("heading-math", "# Heading with $n$ math\n", ["heading-math"])
 expect("list-display", "- item $$E = mc^2$$ inline\n", ["list-display"])

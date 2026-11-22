@@ -30,6 +30,7 @@ Use LaTeX math delimiters, not backticks.
 - Row separators in a single-line `$$...$$` block (`aligned`, `cases`, `array`, `substack`) are `\cr`, never `\\`; GitHub eats one backslash of `\\` on a single source line and the row break silently vanishes.
 - Group short related equations with `\qquad` spacing on one display line rather than stacking many tiny blocks.
 - Never use plain ASCII like `!=`, `>=`, `^T`, `sum`, `alpha` in math; always use the LaTeX command.
+- Avoid `[expression](...)` inside math: GitHub parses it as a Markdown link. For coefficient extraction use `\mathrm{coeff}_{z^m}\bigl(F(z)\bigr)`.
 - Never wrap math in backticks. Backticks are reserved for code identifiers and file paths.
 
 ## Structure

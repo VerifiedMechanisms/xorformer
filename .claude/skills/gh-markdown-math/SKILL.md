@@ -39,6 +39,8 @@ error in VS Code. Prefer the dual-safe fixes.
   survives (re-verified broken via the render API, July 2026).
 - After substituting a **letter-command** (`\lbrace`, `\rbrace`, …) that is immediately followed by a letter, insert a space: `\{f` → `\lbrace f`, never `\lbracef` (one undefined token).
 
+- `[z^m](F(z))` is parsed as a Markdown link even in standalone display math. Use `\mathrm{coeff}_{z^m}\bigl(F(z)\bigr)` or explicit TeX bracket commands. Verified against the GitHub Markdown API in November 2026.
+
 ### Underscores (subscripts)
 - Intraword `_` (`a_i`, `x_i` — alnum on both sides) is always inert; any number of them is fine. The hazard comes from three shapes (classified by the characters adjacent to the `_`):
   - **opener-shaped**: punctuation before, letter/digit after — `}_n`, `)_n` (e.g. `$\mathrm{OR}_n$`); can only open.

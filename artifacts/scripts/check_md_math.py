@@ -51,6 +51,8 @@ IN_MATH_RULES = [
      r"\\ row separators lose a backslash on GitHub; use \cr"),
     ("entity", re.compile(r"&#\w+;|&[A-Za-z]+;"),
      "HTML entity inside math breaks KaTeX previews; use the character or a TeX macro"),
+    ("math-link", re.compile(r"(?<!\\)\[[^\]\n]+\]\("),
+     r"Markdown reads [expression](...) as a link inside math; use \mathrm{coeff} or explicit TeX delimiters"),
 ]
 
 FENCE_RULES = [
