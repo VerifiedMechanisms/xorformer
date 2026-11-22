@@ -1,0 +1,21 @@
+[
+  {
+    "source": "/out/head-compression/shared-face1-n13-h147-resumed/checkpoint.npz",
+    "old_loss": 0.04019609903130653,
+    "new_loss": 0.0401961003603148,
+    "old_errors": 142,
+    "new_errors": 142,
+    "score_discrepancy": 7.551908493041992e-05,
+    "extended_precision_import_discrepancy": 1.4626129996031523e-07,
+    "new_double_vs_extended_discrepancy": 2.282089553773403e-06,
+    "old_double_vs_extended_discrepancy": 7.44155840948224e-05,
+    "old_maximum_coefficient": 2428965634456.51,
+    "new_maximum_coefficient": 402200718.02892125,
+    "log_bounds": [
+      -25.20079508361525,
+      11.377779226707764
+    ],
+    "gradient_norm": 204.4831080630364,
+    "scope": "Finite import diagnostic only; no sign certificate."
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "fixed_coefficient_gradient_error": 5.107438126941699e-12,
+  "refitted_gradient_error": 4.160638847339193e-12,
+  "positive_refitted_loss": 0.48970970758207716,
+  "extreme_feature_minimum": 0.0,
+  "extreme_feature_maximum": 1.0,
+  "exact_check": {
+    "certified": true,
+    "margin_numerator": 35829883984050744798265838956920113065800351542532676693393688278,
+    "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+    "vertices_checked": 16
+  },
+  "shared_import_checks": [
+    {
+      "separation": [
+        -0.8,
+        0.6
+      ],
+      "score_discrepancy": 1.1102230246251565e-16
+    },
+    {
+      "separation": [
+        -1e-05,
+        2e-05
+      ],
+      "score_discrepancy": 1.1102230246251565e-16
+    },
+    {
+      "separation": [
+        -12.0,
+        10.0
+      ],
+      "score_discrepancy": 1.1102230246251565e-16
+    }
+  ],
+  "scope": "Implementation diagnostics only."
+}

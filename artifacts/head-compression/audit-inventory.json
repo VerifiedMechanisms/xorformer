@@ -158,6 +158,16 @@
         "HeadComplexity.affine_sidon_row_pair_zero"
       ],
       "scope": "An affine row whose Boolean values belong to a Sidon set depends on at most one coordinate. Auxiliary restriction on a proposed permutation-pole construction; no bound on the full head model."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/AnchoredFractionLift.lean",
+      "main_declaration": "HeadComplexity.anchoredFractionFeature_decomposition",
+      "companion_declarations": [
+        "HeadComplexity.anchoredFractionFeature_mem_Icc",
+        "HeadComplexity.anchoredFractionFeature_at_full",
+        "HeadComplexity.coordinateFraction_from_anchored"
+      ],
+      "scope": "Exact Boolean-coordinate affine-fraction identities and a uniform [0,1] feature bound. A normalization mechanism only; no universal sign representation is asserted."
     }
   ],
   "validation": {
@@ -652,6 +662,32 @@
       "raw_gradient_norm": 51315065485863.89,
       "transformed_gradient_norm": 0.15781420230327892,
       "scope": "A numerical coordinate change. The admissible family and exact checks are unchanged."
+    }
+  },
+  "anchored_affine_audit": {
+    "identity": "Subtract coordinate anchor interpolation and normalize the remaining features to [0,1]; a shared affine term plus M units still costs M+1 heads.",
+    "implementation": "search_anchored_affine_varpro.py",
+    "small_check": "diagnostics/anchored-affine-self-test.json",
+    "upper_face_import": "diagnostics/anchored-face1-import.json",
+    "upper_face_errors_unchanged": 142,
+    "scope": "Exact chart algebra and finite numerical checks only. No new target certificate.",
+    "lean_module_build": {
+      "log": "/out/head-compression/lean-anchored-fraction-build.log",
+      "jobs": 3137,
+      "passed": true
+    }
+  },
+  "finite_permutation_parity_degree": {
+    "manual_proof": "permutation-parity-degree.tex",
+    "theorem": "On every complete permutation orbit of distinct real values, the strict polynomial threshold degree of sign(product over E of (z_j-z_i)) equals |E|.",
+    "decoder_corollary": "A constant plus H affine fractions with denominators positive on the complete orbit requires H>=|E|; a free affine correction gives H+1>=|E|.",
+    "limitations": "Does not cover selected representative subsets or nonlinear parameter assignments. Not a Boolean head lower bound or the requested upper bound.",
+    "formalization": "Manual proof; not a Lean declaration.",
+    "finite_audit": {
+      "path": "diagnostics/permutation-parity-degree-check.json",
+      "instances": 82,
+      "exact_lower_moments_checked": 4600,
+      "arithmetic": "integers"
     }
   }
 }

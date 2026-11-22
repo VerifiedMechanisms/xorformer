@@ -6606,4 +6606,73 @@ changes from about $5.13\cdot10^{13}$ to $0.158$, while reconstructing
 $w$ within $7.2\cdot10^{-15}$. This is a change of optimization
 coordinates only; it supplies no new existence theorem.
 
+
+\section{Anchored normalization with the same head count}
+
+For an ordinary positive-coordinate denominator write
+$B=1+\sum_i b_it_i$, where $b_i>0$ and either $t=x$ or $t=1-x$.
+Let $P=\sum_i b_i$, $P_i=\sum_{j\ne i}b_j$, and
+$V_i(t)=\sum_{j\ne i}b_jt_j$. For $n\ge2$ define
+\[
+ g_i(t)=\frac{(1+P)t_iV_i(t)}{P_iB(t)}.
+\]
+Every feature is between zero and one on the Boolean cube, and its
+value at $t=(1,\ldots,1)$ is one. Indeed, if $t_i=0$ the value is zero.
+Otherwise $B=1+b_i+V_i$ and $0\le V_i\le P_i$, so
+\[
+ (1+b_i+P_i)V_i\le P_i(1+b_i+V_i).
+\]
+The exact identities
+\[
+ g_i=\frac{1+P}{P_i}t_i-
+       \frac{(1+P)(1+b_i)}{P_i}\frac{t_i}{B},
+ \qquad
+ \frac{t_i}{B}=\frac{t_i}{1+b_i}
+       -\frac{P_i}{(1+b_i)(1+P)}g_i
+\]
+show that a shared affine term plus $M$ units of these features uses
+at most $M+1$ heads. This is a change of basis for a fixed orientation
+choice, not an increase in the available universal sign capacity.
+
+The script \texttt{search\_anchored\_affine\_varpro.py} evaluates excluded
+sums by prefix and suffix sums, avoiding subtraction of nearly equal
+positive numbers. It imports the earlier orientation-crossing chart by
+high-precision algebra and retains all input labels. On its small
+checks, fixed-coefficient and refitted derivative errors are below
+$5.2\cdot10^{-12}$; ordinary, near-zero-separation, and large-separation
+imports agree within $1.2\cdot10^{-16}$. Both independent exact
+certificate checkers validate its three-head four-bit diagnostic.
+
+For the saved thirteen-bit upper-face target, the import preserves
+all $142$ floating-point classification errors and reduces the largest
+coefficient from $2.429\cdot10^{12}$ to $4.022\cdot10^8$. Comparison
+in extended precision gives an import discrepancy below
+$1.5\cdot10^{-7}$. These conditioning diagnostics do not certify its
+signs or imply convergence. The new search still charges $147$ heads.
+
+\section{Finite permutation decoding has an exact degree obstruction}
+
+The separate manual proof \texttt{permutation-parity-degree.tex}
+applies graph divided symmetrization to a complete permutation orbit
+of any fixed distinct real values. If
+$Q_E(z)=\prod_{(i,j)\in E}(z_j-z_i)$, then
+\[
+ \sum_{\pi\in S_p}\frac{P(a_{\pi(1)},\ldots,a_{\pi(p)})}
+ {Q_E(a_{\pi(1)},\ldots,a_{\pi(p)})}=0
+ \quad\hbox{whenever }\deg P<|E|.
+\]
+The weights have exactly the signs of $Q_E$. Thus the strict polynomial
+threshold degree of graph inversion parity on this orbit is exactly
+$|E|$. Clearing positive affine denominators proves that a uniform
+constant-plus-$H$-fraction decoder requires $H\ge|E|$.
+
+This is stronger than merely observing the degree of the displayed
+product: it excludes every alternative lower-degree polynomial on the
+same finite domain. It follows from the cancellation argument in
+Petrov's graph divided symmetrization, with the sign consequence proved
+explicitly in the separate note. It does not apply to a decoder required
+only on a selected representative for each hash output, or to nonlinear
+assignment of head parameters from the stored scalars. No such
+restricted decoder at the target head count has been constructed.
+
 \end{document}

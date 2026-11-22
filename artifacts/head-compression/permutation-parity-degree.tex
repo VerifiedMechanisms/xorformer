@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{The exact threshold degree of graph parity on a permutation orbit}
+\author{}
+\date{November 22, 2026}
+\begin{document}
+\maketitle
+
+This is an obstruction to a specific uniform permutation decoder, not
+a lower bound for the manuscript's Boolean head complexity. In particular,
+it does not settle the requested universal upper bound.
+
+Let $p\ge1$, let $a_1<\cdots<a_p$ be real numbers, and let
+\[
+ \Omega_a=\{(a_{\pi(1)},\ldots,a_{\pi(p)}):\pi\in S_p\}.
+\]
+Let $E\subseteq\{(i,j):1\le i<j\le p\}$, set $m=|E|$, and put
+\[
+ Q_E(z)=\prod_{(i,j)\in E}(z_j-z_i),\qquad
+ f_E(z)=\operatorname{sign}Q_E(z)\quad(z\in\Omega_a).
+\]
+The empty product is one. Threshold degree here means the least total
+degree of a real polynomial with the specified strict signs on
+\emph{every} point of $\Omega_a$.
+
+\begin{lemma}[Divided symmetrization]
+For every real polynomial $P$ of total degree less than $m$,
+\[
+ \sum_{\pi\in S_p}\frac{P(a_{\pi(1)},\ldots,a_{\pi(p)})}
+ {Q_E(a_{\pi(1)},\ldots,a_{\pi(p)})}=0.
+\]
+\end{lemma}
+\begin{proof}
+Write $\Delta(z)=\prod_{i<j}(z_j-z_i)$ and $D=\binom p2$.
+The quotient $R=P\Delta/Q_E$ is a polynomial of degree less than $D$.
+For distinct coordinates $z$, the rational sum in the assertion is
+\[
+ \frac{1}{\Delta(z)}
+ \sum_{\pi\in S_p}\operatorname{sign}(\pi)
+             R(z_{\pi(1)},\ldots,z_{\pi(p)}).
+\]
+Its numerator is alternating under every coordinate transposition.
+It therefore vanishes on each hyperplane $z_i=z_j$. Each linear
+polynomial $z_j-z_i$ divides the numerator. These factors are distinct
+nonassociate primes in the real polynomial ring, so their product
+$\Delta$ divides it. Its degree is less than $D$, hence the numerator
+is zero. Evaluate at $z=a$.
+\end{proof}
+
+This cancellation is the graph divided-symmetrization identity discussed
+in Petrov, Section~1, pp.~1--2,
+\url{https://arxiv.org/pdf/1512.07136}.
+Postnikov, Proposition~3.4, gives the path version and the alternating
+polynomial argument in
+\url{https://math.mit.edu/~apost/papers/permutohedron_full.pdf}.
+The proof above includes the identity needed here.
+
+\begin{theorem}[Exact degree on every fixed permutation orbit]
+The threshold degree of $f_E$ on $\Omega_a$ is exactly $m$.
+More explicitly, an annihilating signed measure for all degrees below
+$m$ is
+\[
+ \mu(z)=\frac1{Q_E(z)}\quad(z\in\Omega_a).
+\]
+Every weight is nonzero and its sign is $f_E(z)$.
+\end{theorem}
+\begin{proof}
+The polynomial $Q_E$ proves the upper bound. If a polynomial $P$ of
+degree less than $m$ has the strict sign $f_E$, then $P(z)/Q_E(z)>0$
+at every $z\in\Omega_a$. The sum of these finitely many positive
+numbers is positive, contradicting the lemma. When $m=0$, the constant
+polynomial one gives degree zero, and no negative degree is needed.
+\end{proof}
+
+\begin{corollary}[Cost of a uniform affine-fraction decoder]
+Suppose
+\[
+ S(z)=c+\sum_{h=1}^H\frac{A_h(z)}{B_h(z)},
+\]
+where $c$ is constant, all $A_h,B_h$ are affine, and every $B_h$ is
+positive on $\Omega_a$. If $S$ has sign $f_E$ on every point of
+$\Omega_a$, then $H\ge m$.
+If an arbitrary free affine term replaces $c$, the conclusion is
+$H+1\ge m$.
+\end{corollary}
+\begin{proof}
+Multiply by the positive product of all $B_h$. With a constant term,
+the resulting polynomial has degree at most $H$, and its strict
+signs are unchanged. Apply the theorem. A free affine term increases
+the degree bound to $H+1$.
+\end{proof}
+
+\paragraph{Examples.}
+A full star has $m=p-1$, so decoding parity of the rank of its center
+already requires $p-1$ heads under these hypotheses. The complete graph
+has $m=\binom p2$, and its sign is permutation parity. A matching with
+$m$ edges gives the usual degree-$m$ parity obstruction, but the theorem
+does not require its edges to be disjoint.
+
+\paragraph{Application and exact limitation.}
+An affine binary hash of inversion vectors has output bits given, up
+to a fixed sign, by $f_E$ for its row edge sets $E$. Thus a proposed
+decoder that works uniformly on all permutations of a fixed set of
+stored scalar values pays at least $|E|$ affine fractions for that
+output bit. Storing many bits by the existence of a surjective hash
+does not supply this decoder.
+
+The theorem does not cover a decoder required only on one specially
+chosen representative permutation for each hash output. That subset
+need not support the annihilating measure. It also does not cover
+nonlinear assignment of head coefficients from the stored scalars,
+because its affine hypothesis is in $z$. These are concrete limits of
+the obstruction, not assumed constructions beyond it.
+
+\paragraph{Audit status.}
+This note is a manual proof. It is not a Lean declaration. The script
+\texttt{check\_permutation\_parity\_degree.py} independently checks the
+signed annihilator on specified finite integer orbits using integer
+arithmetic. Those diagnostics are not a substitute for the proof or
+evidence for the universal head bound.
+\end{document}
