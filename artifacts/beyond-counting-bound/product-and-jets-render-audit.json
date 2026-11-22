@@ -1,0 +1,26 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/experiments.md",
+    "static_lint": "passed",
+    "katex": "passed",
+    "github_render": "passed",
+    "recognized_math_spans": 15,
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/reciprocal-jet-ranks.md",
+    "static_lint": "passed",
+    "katex": "passed",
+    "github_render": "passed",
+    "recognized_math_spans": 17,
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/product-tangent-audit.md",
+    "static_lint": "passed",
+    "katex": "passed",
+    "github_render": "passed",
+    "recognized_math_spans": 37,
+    "notes": []
+  }
+]

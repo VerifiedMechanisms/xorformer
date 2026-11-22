@@ -45,3 +45,9 @@ The search script includes an analytic-gradient check. Sustained optimizer searc
 The later `search_projected_hinge.py` solves a convex squared-hinge readout problem inside each denominator update. Its gradient check had maximum absolute error below $4\cdot10^{-12}$. Across 28 completed trials it produced six exact certificates, all independently checked by `verify_representation.py`. The remaining 22 results are `UNKNOWN`.
 
 The smallest new certificates for the three fixed random targets use eight heads on eight bits, eighteen heads on nine bits, and twenty-four heads on ten bits. These are upper bounds for those particular targets, not worst-case bounds or minimality claims. The exact certificates, verification output, and trial records are retained under `experiments/` with `projected-hinge` in their names. Total recorded optimizer time was about five minutes; the two-hour command limit was only a maximum and was not counted as elapsed work.
+
+## Larger full-cube certificates
+
+Four further certificates have passed the same independent integer verifier. The eleven-bit target has certificates with 51 and 68 heads. The twelve-bit target has certificates with 86 and 114 heads. The smaller certificates prove only the respective upper bounds for these two fixed truth tables. Their labels, dyadic parameters, and strict integer margin bounds are retained in the `larger-table` files under `experiments/`.
+
+The runner `run_larger_tables.py` accepts explicit dimension and width lists and enforces both a global time limit and a per-trial time limit. An incomplete or unsuccessful optimization remains `UNKNOWN`. These computations neither exclude an admissible representation nor prove asymptotic universality.
