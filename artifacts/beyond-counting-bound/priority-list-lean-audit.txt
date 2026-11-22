@@ -1,0 +1,11 @@
+'HeadComplexity.PriorityRestriction.freeze_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityRestriction.freeze_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityRestriction.freeze_sum_from_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityRestriction.completion_agreement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityRestriction.majority_agreement_list_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PriorityRestriction.two_ratio_product_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.computableWithHeadsN_affineProduct' depends on axioms: [propext, Classical.choice, Quot.sound]

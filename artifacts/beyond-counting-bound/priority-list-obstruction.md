@@ -63,3 +63,11 @@ $$ \frac{\sum_{i\in A}w_iv_i+\sum_{i\notin A}w_iT}{\sum_iw_i}=T. $$
 The sampling rule supplies positive weights summing to one on the finite set of permutations, so this is also a finite convex-combination identity. $\blacksquare$
 
 Taking $w_0=b_0$, $w_i=b_i$, $v_0=a_0/b_0$, and $v_i=a_i/b_i$ gives every affine ratio with positive denominator coefficients. The separation proved above shows exactly why this averaging identity does not imply a bounded-list representation with the same signs: even two such expectations can require arbitrarily many individual lists in a strict sign representation.
+
+## Formal audit
+
+`formalization/HeadComplexity/Results/PriorityRestriction.lean` proves `freeze_one`, `freeze_sum`, and `majority_agreement_list_lower_bound` in the namespace `HeadComplexity.PriorityRestriction`. The lower bound allows arbitrary additive functions of the two blocks in the free score, so it includes an arbitrary affine score. It also permits zero scores on negative examples. The formal domain uses a Boolean block index and a finite coordinate index; its identification with the usual cube is the coordinate relabeling in the written argument.
+
+`formalization/HeadComplexity/Results/AffineProductTwoHeads.lean` proves `HeadComplexity.computableWithHeadsN_affineProduct` for the manuscript's head definition. This establishes a two-head upper bound for the positive sign of the product of any two affine forms. Its denominators use coefficients $1+|a_i|$ and $1+|a_i|+a_i$, which are strictly positive. The identification of the displayed majority-agreement family with those affine products and its exact one-head exclusion are the written arguments above.
+
+The axiom report is `priority-list-lean-audit.txt`. No new axiom, `native_decide`, or unproved placeholder is used. The random-permutation averaging identity remains a written proof.
