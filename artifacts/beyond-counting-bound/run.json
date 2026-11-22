@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T03:40:07.879377+00:00",
-  "elapsed_seconds_at_last_audit": 13426,
+  "last_audit_utc": "2026-11-22T04:07:46.703422+00:00",
+  "elapsed_seconds_at_last_audit": 9598,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -22,9 +22,13 @@
     "HeadComplexity.IntegerFiber.jacobian_det_ne_zero",
     "HeadComplexity.IntegerFiber.extension_jacobian_det_ne_zero",
     "HeadComplexity.computableWithHeadsN_parityGate",
-    "HeadComplexity.HStar_parityGate_le"
+    "HeadComplexity.HStar_parityGate_le",
+    "HeadComplexity.MultiaffinePermutation.decoder_eval_permutation",
+    "HeadComplexity.MultiaffinePermutation.decoder_degreeOf_le_one",
+    "HeadComplexity.MultiaffinePermutation.exists_color_representatives",
+    "HeadComplexity.MultiaffinePermutation.exists_positive_multiaffine_shattering"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation obstruction, finite arithmetic for regular positive interpolation ambiguity, and parity-gating upper bounds; no target asymptotic lower bound.",
+  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, and multiaffine permutation interpolation and conditional shattering; no target asymptotic lower bound.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }

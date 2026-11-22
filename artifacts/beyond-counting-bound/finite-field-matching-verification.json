@@ -1,0 +1,26 @@
+[
+  {
+    "q": 4,
+    "parameters": 64,
+    "directions": 21,
+    "distinct_planes": 84,
+    "plane_size": 16,
+    "maximum_pair_intersection": 4,
+    "repeated_maps": 21,
+    "shattered_tests": 42,
+    "checked_matchings": 22,
+    "exact_checks_passed": true
+  },
+  {
+    "q": 8,
+    "parameters": 512,
+    "directions": 73,
+    "distinct_planes": 584,
+    "plane_size": 64,
+    "maximum_pair_intersection": 8,
+    "repeated_maps": 219,
+    "shattered_tests": 657,
+    "checked_matchings": 22,
+    "exact_checks_passed": true
+  }
+]

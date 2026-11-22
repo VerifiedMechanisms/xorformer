@@ -1,0 +1,17 @@
+'HeadComplexity.MultiaffinePermutation.denominator_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MultiaffinePermutation.basis_eval_permutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MultiaffinePermutation.decoder_eval_permutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MultiaffinePermutation.basis_degreeOf_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MultiaffinePermutation.decoder_degreeOf_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MultiaffinePermutation.exists_color_representatives' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MultiaffinePermutation.exists_positive_multiaffine_shattering' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

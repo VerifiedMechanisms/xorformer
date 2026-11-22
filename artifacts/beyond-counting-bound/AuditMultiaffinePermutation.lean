@@ -1,0 +1,9 @@
+import HeadComplexity.Results.MultiaffinePermutation
+
+#print axioms HeadComplexity.MultiaffinePermutation.denominator_ne_zero
+#print axioms HeadComplexity.MultiaffinePermutation.basis_eval_permutation
+#print axioms HeadComplexity.MultiaffinePermutation.decoder_eval_permutation
+#print axioms HeadComplexity.MultiaffinePermutation.basis_degreeOf_le_one
+#print axioms HeadComplexity.MultiaffinePermutation.decoder_degreeOf_le_one
+#print axioms HeadComplexity.MultiaffinePermutation.exists_color_representatives
+#print axioms HeadComplexity.MultiaffinePermutation.exists_positive_multiaffine_shattering

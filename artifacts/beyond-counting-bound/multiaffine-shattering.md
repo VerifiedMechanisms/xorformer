@@ -42,23 +42,11 @@ $$ P(z_1,\ldots,z_p)=v(z_i) $$
 
 whenever $(z_1,\ldots,z_p)$ is a permutation of $(1,\ldots,p)$.
 
-**Proof.** Let $E_k$ be the elementary symmetric function of degree $k$ of the fixed numbers $1,\ldots,p$, with $E_0=1$. Put
+**Proof.** Use the explicit polynomial
 
-$$ h_k(t)=\sum_{r=0}^k(-t)^r E_{k-r}\qquad(0\leq k\lt p). $$
+$$ P(z)=\sum_{r=1}^p v(r)\frac{\prod_{j\neq i}(r-z_j)}{\prod_{s\neq r}(r-s)}. $$
 
-The leading coefficient of $h_k$ is $(-1)^k$, so these polynomials form a basis of the polynomials of degree at most $p-1$. Let $v_0(t)$ be the Lagrange interpolation polynomial for the values $v(1),\ldots,v(p)$, and write
-
-$$ v_0(t)=\sum_{k=0}^{p-1}\alpha_k h_k(t). $$
-
-For a permutation $z$, comparison of coefficients in
-
-$$ \prod_{r\neq i}(1+z_r u)=\frac{\prod_{r=1}^p(1+ru)}{1+z_i u} $$
-
-gives $e_k(z_1,\ldots,\widehat{z_i},\ldots,z_p)=h_k(z_i)$. Therefore the required polynomial is
-
-$$ P(z)=\sum_{k=0}^{p-1}\alpha_k e_k(z_1,\ldots,\widehat{z_i},\ldots,z_p). $$
-
-Each elementary symmetric polynomial is multiaffine. $\blacksquare$
+All denominators are fixed nonzero integers. Each summand is affine in each variable separately and does not depend on $z_i$. If $z_i=r$, the numerator and denominator in the corresponding summand are equal. If $z_i\neq r$, some other position $j\neq i$ contains $r$, so that summand's numerator is zero. Thus precisely the summand with $r=z_i$ remains, giving $P(z)=v(z_i)$. $\blacksquare$
 
 ### Completion of the construction
 
@@ -86,7 +74,13 @@ Apply Lemma 2 after fixing any bijection between $\mathbb F_q^3$ and $[p]$. This
 
 $$ ms=\left(\frac16-o(1)\right)p\log_2p. $$
 
-The tests are given by finite interpolation formulas and elementary symmetric functions, without a search for color maps. For example, $q=8$ gives $p=512$, $D=73$, $r=3$, and $m=219$, hence $657$ independent sign tests in $512$ parameters. All labels are attained at positive integer permutations, so restricting the parameter domain to the positive orthant does not repair the proposed generic linear bound.
+The tests are given by the finite product interpolation formula in Lemma 2, without a search for color maps. For example, $q=8$ gives $p=512$, $D=73$, $r=3$, and $m=219$, hence $657$ independent sign tests in $512$ parameters. All labels are attained at positive integer permutations, so restricting the parameter domain to the positive orthant does not repair the proposed generic linear bound.
+
+## Formalization and finite checks
+
+`formalization/HeadComplexity/Results/MultiaffinePermutation.lean` proves the product interpolation identity, the degree bound in every variable, Hall selection from the stated small-set condition, and positive-parameter shattering conditional on that condition. The main declarations are `decoder_eval_permutation`, `decoder_degreeOf_le_one`, `exists_color_representatives`, and `exists_positive_multiaffine_shattering`, all in the namespace `HeadComplexity.MultiaffinePermutation`. The axiom audit in `multiaffine-axioms.txt` reports only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The probabilistic estimate, finite-field verification of the Hall condition for general field size, and asymptotic statements above are written proofs, not Lean declarations. The independent exact script `verify_finite_field_matchings.py` checks the field arithmetic, plane sizes and intersections, integer Hall estimates, and selected matchings for field sizes four and eight. Those finite examples supplement the general proof; checking selected matchings alone would not establish the Hall condition.
 
 ## Tensor interpretation and literature check
 
