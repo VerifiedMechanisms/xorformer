@@ -1,0 +1,11 @@
+{
+  "file": "artifacts/beyond-counting-bound/separable-mobius-audit.md",
+  "sha256": "fc9fbf8f728382727ebecf5980275a3d9bffb5cf092ddc774e42e18a52a3c898",
+  "source_spans": 44,
+  "rendered_spans": 44,
+  "errors": [],
+  "notes": [],
+  "render": "GitHub Markdown API",
+  "checked_utc": "2026-11-22T15:47:49.827737+00:00",
+  "gitlab": "not checked; no GitLab authentication configured"
+}
