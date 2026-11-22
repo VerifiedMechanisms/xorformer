@@ -1,0 +1,26 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/priority-list-obstruction.md",
+    "static": "PASS",
+    "katex": "PASS",
+    "github": "PASS",
+    "math_spans": 52,
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/pseudoproduct-literature-audit.md",
+    "static": "PASS",
+    "katex": "PASS",
+    "github": "PASS",
+    "math_spans": 13,
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "static": "PASS",
+    "katex": "PASS",
+    "github": "PASS",
+    "math_spans": 54,
+    "notes": []
+  }
+]
