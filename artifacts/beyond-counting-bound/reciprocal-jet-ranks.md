@@ -63,3 +63,9 @@ Using $y_i^2=y_i$ and collecting the two orders of each distinct pair, the right
 For each block after the first, subtract its representation of one from the first block's representation. This gives $q-1$ row relations. They are independent because each relation has a nonzero coefficient on the constant-numerator row of its own block, and all other relations have coefficient zero on that row. Rank-nullity proves the bound. $\blacksquare$
 
 The cube expansions and the normalized identities are proved in `formalization/HeadComplexity/Atoms/ReciprocalJetCharacteristic.lean`, notably `HeadComplexity.ReciprocalJetCharacteristic.constant_identity_char_two` and `HeadComplexity.ReciprocalJetCharacteristic.constant_identity_char_three`. The row-rank consequence is the written argument above. This prevents importing a characteristic-two coding construction directly as a full-rank certificate for this particular jet matrix.
+
+## A separate varying-slope theorem
+
+[The open-code pole construction](open-code-pole-interpolation.md) supplies a new, proved interpolation mechanism over the reals. It uses a binary code only to partition the cube, constructs a nonsingular rational pole matrix in characteristic zero, and transfers that witness to positive affine forms by a one-parameter polynomial argument. For $n=2^{r+1}$, exactly $4\cdot2^n/n^2$ forms suffice for full column span of their reciprocal second-order jets. The forms vary in all coefficients. This conclusion is formalized in `OpenCodeJetInterpolation.lean`.
+
+This theorem does not assert full row rank for the common-slope binary-weight matrices above. It also does not turn independent quadratic jet coefficients into affine-ratio head parameters. The latter realization and counting gap remains open; no head lower bound follows from the new interpolation theorem.

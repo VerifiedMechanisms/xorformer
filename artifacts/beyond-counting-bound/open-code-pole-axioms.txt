@@ -1,0 +1,62 @@
+'HeadComplexity.OpenCodePartition.syndrome_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.syndrome_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.syndrome_flip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.flip_flip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.repaired_syndrome' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.repair_flip_code' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.flip_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.card_code_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodePartition.card_product_code_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFlipIsolation.pair_isolates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFlipIsolation.numerator_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFlipIsolation.target_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFlipIsolation.off_target_vanishes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFlipIsolation.numerator_pair_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PoleIsolation.shifted_int_abs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PoleIsolation.kernel_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PoleIsolation.kernel_offdiag_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PoleIsolation.kernel_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PoleIsolation.explicit_kernel_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.grid_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.grid_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.grid_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.exists_grid_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.homotopy_constant_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.homotopy_slope_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialPositiveGrid.natDegree_det_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveRationalTransfer.cleared_entry_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveRationalTransfer.cleared_det_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveRationalTransfer.cleared_det_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveRationalTransfer.exists_positive_nonsingular' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositivePairCover.epsilon_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.denominator_at_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.denominator_at_one_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.denominator_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.pole_matrix_nonsingular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.exists_positive_pair_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositivePairCover.card_symmDiff_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.denominator_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositivePairCover.exists_positive_affine_pair_matrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.pair_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.target_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.selectedNumerator_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.exists_positive_full_rank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.exists_positive_interpolation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.card_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OpenCodeJetInterpolation.center_budget' depends on axioms: [propext, Classical.choice, Quot.sound]

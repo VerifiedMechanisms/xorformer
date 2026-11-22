@@ -1,0 +1,30 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/open-code-pole-interpolation.md",
+    "math_spans": 108,
+    "github_rendered": 108,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/recent-counting-audit.md",
+    "math_spans": 35,
+    "github_rendered": 35,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/reciprocal-jet-ranks.md",
+    "math_spans": 39,
+    "github_rendered": 39,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "math_spans": 64,
+    "github_rendered": 64,
+    "findings": [],
+    "notes": []
+  }
+]

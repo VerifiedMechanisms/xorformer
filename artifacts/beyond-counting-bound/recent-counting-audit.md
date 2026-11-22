@@ -31,3 +31,9 @@ There is also a concrete obstruction to applying a bound based only on a small e
 $$ \sigma\prod_{h=1}^H\left(1+\sum_{i=1}^n b_{hi}\right). $$
 
 It contains exactly $(n+1)^H$ distinct monomials in the denominator variables. The remaining terms contain numerator variables and cannot cancel these monomials as a polynomial identity. Thus this direct expansion does not have a small monomial excess over its $2nH$ variables. A useful application of Bihan's stronger chamber-sensitive bound would require a new estimate exploiting the head system's special coefficient matrices; none is proved here.
+
+## Uniform polynomial threshold counts
+
+[Anthony, Theorem A](https://arxiv.org/html/2610.34378v1), posted October 25, 2026, proves logarithmic asymptotics for polynomial threshold counts uniformly over all degrees. With $m=\sum_{j=0}^d\binom nj$, the comparison is to the fixed-space arrangement count $Q_{n,d}=2\sum_{j=0}^{m-1}\binom{2^n-1}{j}$, with relative logarithmic error $O((\log n)^2/n)$.
+
+This does not improve the head count. Clearing $H$ affine denominators and multilinearizing gives degree at most $\min(H,n)$. At the critical exponential value of $H$, this is $n$, where $Q_{n,n}=2^{2^n}$ and the bound permits every Boolean function. A universal improvement of this degree cutoff below $n$ for all $H\geq n$ is false: parity has threshold degree $n$ and is realizable with $n$ exact-model heads. Thus a head-specific counting invariant is still required. The fixed coefficient-space theorem does not supply a count for the union over target-dependent denominators.
