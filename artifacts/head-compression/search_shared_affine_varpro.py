@@ -156,7 +156,7 @@ def initialize(checkpoint):
 
 class Problem:
     def __init__(self, labels, logs, separation, coefficient, out, seconds,
-                 positive_only=False):
+                 positive_only=False, inner_method="newton"):
         self.labels = labels
         self.units, self.n = logs.shape
         self.x = ((np.arange(len(labels))[:, None] >> np.arange(self.n)) & 1).astype(float)
@@ -166,6 +166,7 @@ class Problem:
         self.deadline = self.start+seconds
         self.events, self.certificate = [], None
         self.positive_only = positive_only
+        self.inner_method = inner_method
         if positive_only:
             assert np.all(separation > 0)
 
@@ -176,7 +177,7 @@ class Problem:
         feature = features(self.x, logs, separation)
         q, r = la.qr(feature, mode="economic", check_finite=False)
         initial = q.T@(feature@self.previous) if self.previous is not None else q.T@self.labels
-        fit = convex_hinge_fit(self.labels[:, None]*q, initial, "newton", 0.)
+        fit = convex_hinge_fit(self.labels[:, None]*q, initial, self.inner_method, 0.)
         coefficient = la.solve_triangular(r, fit.x, check_finite=False)
         self.previous = coefficient
         loss, score, gradient = score_gradient(self.x, self.labels, logs, separation, coefficient)
@@ -184,6 +185,8 @@ class Problem:
                  "loss": loss, "errors": int((self.labels*score <= 0).sum()),
                  "minimum_margin": float((self.labels*score).min()),
                  "inner_gradient": float(np.max(np.abs(fit.jac))),
+                 "inner_iterations": int(fit.nit),
+                 "inner_method": self.inner_method,
                  "direct_qr_score_discrepancy": float(np.max(np.abs(score-q@fit.x))),
                  "outer_gradient_norm": float(la.norm(gradient)),
                  "negative_units": int((separation < 0).sum()),
@@ -221,11 +224,12 @@ class Problem:
                   "scope": "Finite orientation-crossing search; no universal theorem.",
                   "failure_is_not_a_lower_bound": True}
         result["positive_orientation_only"] = self.positive_only
+        result["inner_method"] = self.inner_method
         (self.out/"result.json").write_text(json.dumps(result)+"\n")
         print(json.dumps({k: v for k, v in result.items() if k != "events"}), flush=True)
 
 
-def self_test():
+def self_test(inner_method="newton"):
     rng = np.random.default_rng(2026112201)
     n, units = 5, 2
     x = ((np.arange(1 << n)[:, None] >> np.arange(n)) & 1).astype(float)
@@ -257,7 +261,7 @@ def self_test():
         ll, ss = unpack(parameters, units, n)
         feature = features(x, ll, ss)
         q, r = la.qr(feature, mode="economic")
-        fit = convex_hinge_fit(labels[:, None]*q, q.T@labels, "newton", 0.)
+        fit = convex_hinge_fit(labels[:, None]*q, q.T@labels, inner_method, 0.)
         cc = la.solve_triangular(r, fit.x)
         return score_gradient(x, labels, ll, ss, cc)
     params = np.r_[logs.ravel(), separation]
@@ -289,6 +293,7 @@ def self_test():
              "heads": [{"numerator": [1, 0, 0], "denominator": [2, 1, 0]}]}
     assert not exact_check(mixed)["certified"]
     return {"tests": records, "refitted_gradient_error": refit_error,
+            "inner_method": inner_method,
             "ordinary_import_score_error": import_error,
             "constant_denominator_regression": "passed",
             "mixed_zero_slope_rejection": "passed",
@@ -302,14 +307,16 @@ if __name__ == "__main__":
     parser.add_argument("--seconds", type=float, default=3600)
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--positive-only", action="store_true")
+    parser.add_argument("--inner-method", choices=("newton", "newton_cg", "lbfgs"),
+                        default="newton")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.self_test:
-        result, cert = self_test()
+        result, cert = self_test(args.inner_method)
         (args.out/"diagnostic.json").write_text(json.dumps(result, indent=2)+"\n")
         (args.out/"certificate.json").write_text(json.dumps(cert)+"\n")
         print(json.dumps(result), flush=True)
     else:
         assert args.checkpoint is not None
         Problem(*initialize(args.checkpoint), args.out, args.seconds,
-                positive_only=args.positive_only).run()
+                positive_only=args.positive_only, inner_method=args.inner_method).run()

@@ -1,0 +1,41 @@
+{
+  "cases": [
+    {
+      "separable": false,
+      "penalty": 0.0,
+      "objective_gap": 0.0,
+      "gradient_max": 5.911368616828838e-10,
+      "dense_iterations": 5,
+      "matrix_free_iterations": 5,
+      "cg_steps": 51
+    },
+    {
+      "separable": false,
+      "penalty": 0.001,
+      "objective_gap": 0.0,
+      "gradient_max": 2.3221067505917875e-10,
+      "dense_iterations": 5,
+      "matrix_free_iterations": 5,
+      "cg_steps": 52
+    },
+    {
+      "separable": true,
+      "penalty": 0.0,
+      "objective_gap": 1.3770916034049285e-17,
+      "gradient_max": 9.403863686861938e-10,
+      "dense_iterations": 12,
+      "matrix_free_iterations": 36,
+      "cg_steps": 524
+    },
+    {
+      "separable": true,
+      "penalty": 0.001,
+      "objective_gap": 1.1102230246251565e-16,
+      "gradient_max": 1.490011591756893e-14,
+      "dense_iterations": 13,
+      "matrix_free_iterations": 13,
+      "cg_steps": 353
+    }
+  ],
+  "scope": "Numerical optimizer checks only, not a feasibility proof."
+}

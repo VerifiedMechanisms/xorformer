@@ -6469,4 +6469,33 @@ The independent integer enumeration in
 examples at dimensions two through five. The displayed induction is
 separate from the solver and works in all dimensions.
 
+
+\section{Matrix-free convex numerator fitting}
+
+For a signed orthonormal feature matrix $YQ$, the numerical inner
+objective remains
+\[
+ \phi(z)=\frac12\|(\mathbf1-YQz)_+\|_2^2+\frac\lambda2\|z\|_2^2.
+\]
+At an active set $I=\{x:1-(YQz)_x>0\}$, a generalized Hessian acts by
+\[
+ v\longmapsto (YQ)_I^\top((YQ)_Iv)+\lambda v.
+\]
+The optional \texttt{newton\_cg} implementation uses this action in
+conjugate gradient instead of forming the dense Gram matrix. A small
+positive diagonal regularizes the direction solve; the objective and
+reported final gradient still use the specified $\lambda$. A line
+search and, when needed, a separate L-BFGS polish check the inner fit.
+This is a numerical change of solver, not a new class of scores or a
+convergence theorem for the nonconvex outer problem.
+
+The independent finite comparisons in
+\texttt{diagnostics/matrix-free-hinge.json} cover separable and
+nonseparable data, both with and without a quadratic penalty.
+The largest objective discrepancy from the dense implementation is
+below $1.2\cdot10^{-16}$, and all achieved gradient maxima are below
+$10^{-9}$. The shared-chart finite-difference check has refitted
+outer-gradient error below $2.0\cdot10^{-10}$. Any eventual sign
+certificate still requires the separate integer audit.
+
 \end{document}

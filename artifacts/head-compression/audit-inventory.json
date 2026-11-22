@@ -598,5 +598,12 @@
       "stable-pair-mixed-face1-n13-h146"
     ],
     "no_infeasibility_claim": true
+  },
+  "matrix_free_convex_fit": {
+    "method": "Active-set Newton with Hessian-vector conjugate gradient and a reported stationarity residual. Score space and target labels unchanged.",
+    "dense_comparison": "diagnostics/matrix-free-hinge.json",
+    "refitted_gradient_and_exact_export_check": "diagnostics/shared-affine-cg-self-test.json",
+    "reason": "The resumed 250-head dense Newton fit made no outer evaluation for more than 40 minutes; a profiled restart placed the delay in forming the active Gram matrix. Both stalled runs were interrupted.",
+    "scope": "Numerical search acceleration only. No universal existence claim."
   }
 }

@@ -17,6 +17,7 @@ for key in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
 import numpy as np
 import scipy.linalg as la
 import scipy.optimize as opt
+import scipy.sparse.linalg as spla
 from search_newton_scores import export
 from search_sign_scores import exact_check
 
@@ -29,8 +30,72 @@ class Certified(Exception):
     pass
 
 
+def matrix_free_hinge_fit(yq, initial, score_penalty):
+    """Convex squared hinge fit using active-set Hessian products.
+
+    This only changes the numerical solver, not the represented score space.
+    The returned gradient records the achieved inner stationarity.
+    """
+    def inner(z):
+        residual = np.maximum(1-yq @ z, 0)
+        return (.5*residual @ residual + .5*score_penalty*(z @ z),
+                -(yq.T @ residual) + score_penalty*z)
+
+    z = initial.copy()
+    cg_steps = 0
+    for iteration in range(80):
+        value, gradient = inner(z)
+        if np.max(np.abs(gradient)) < 1e-9:
+            break
+        qa = yq[(1-yq @ z) > 0]
+        ridge = max(score_penalty, 1e-12)
+        operator = spla.LinearOperator((len(z), len(z)),
+                    matvec=lambda v: qa.T @ (qa @ v)+ridge*v)
+        diagonal = np.einsum("ij,ij->j", qa, qa)+ridge
+        preconditioner = spla.LinearOperator((len(z), len(z)),
+                    matvec=lambda v: v/diagonal)
+        def count_step(_):
+            nonlocal cg_steps
+            cg_steps += 1
+        direction, info = spla.cg(operator, -gradient, M=preconditioner,
+                                 rtol=1e-8, atol=1e-12, maxiter=250,
+                                 callback=count_step)
+        slope = gradient @ direction
+        if info < 0 or not np.isfinite(slope) or slope >= 0:
+            direction, slope = -gradient, -(gradient @ gradient)
+        alpha = 1.
+        accepted = False
+        for _ in range(30):
+            trial_value, trial_gradient = inner(z+alpha*direction)
+            armijo = trial_value <= value+1e-4*alpha*slope
+            # Near stationarity the loss decrease can be below one ulp.
+            # A large gradient reduction still justifies the Newton step.
+            roundoff = (trial_value <= value+16*np.finfo(float).eps*(1+abs(value))
+                        and la.norm(trial_gradient) < .5*la.norm(gradient))
+            if armijo or roundoff:
+                accepted = True
+                break
+            alpha *= .5
+        if not accepted:
+            break
+        z += alpha*direction
+    value, gradient = inner(z)
+    if np.max(np.abs(gradient)) > 1e-8:
+        polish = opt.minimize(inner, z, jac=True, method="L-BFGS-B",
+                              options={"gtol": 1e-10, "ftol": 1e-15,
+                                       "maxiter": 2000, "maxls": 50,
+                                       "maxcor": 60})
+        z = polish.x
+        value, gradient = inner(z)
+    return opt.OptimizeResult(x=z, fun=value, jac=gradient, nit=iteration+1,
+                              cg_steps=cg_steps,
+                              success=np.max(np.abs(gradient)) <= 1e-7)
+
+
 def convex_hinge_fit(yq, initial, method, score_penalty):
     """Numerator optimization in orthonormal coordinates."""
+    if method == "newton_cg":
+        return matrix_free_hinge_fit(yq, initial, score_penalty)
     def inner(z):
         residual = np.maximum(1-yq @ z, 0)
         return (.5*residual @ residual + .5*score_penalty*(z @ z),
