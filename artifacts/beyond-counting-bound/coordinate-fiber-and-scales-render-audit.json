@@ -1,0 +1,26 @@
+{
+  "utc": "2026-11-22T21:01:09.450575+00:00",
+  "results": [
+    {
+      "file": "artifacts/beyond-counting-bound/coordinate-score-fiber.md",
+      "sha256": "5a0ce7138b0c4da8dfbc1d81b2b35a298702e99bbec7103fb4850ac2315bea5c",
+      "math_spans": 47,
+      "errors": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/positive-subset-scales.md",
+      "sha256": "31013934b2243a1e0412aec98c40d72b97a61a1f38a05e84db6abe8aedcb99ed",
+      "math_spans": 37,
+      "errors": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "sha256": "41e873185d6f6042cb837f0f27c52b0a2bce9e8e4316e0b0931d5c0d7a1a8fac",
+      "math_spans": 81,
+      "errors": [],
+      "notes": []
+    }
+  ]
+}

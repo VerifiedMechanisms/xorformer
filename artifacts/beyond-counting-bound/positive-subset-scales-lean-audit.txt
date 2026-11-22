@@ -1,0 +1,3 @@
+'HeadComplexity.PositiveSubsetScales.separated_subset_sums' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveSubsetScales.ratio_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveSubsetScales.separated_ratios' depends on axioms: [propext, Classical.choice, Quot.sound]
