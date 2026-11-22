@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T04:53:10.642680+00:00",
+  "last_audit_utc": "2026-11-22T05:17:14.531776+00:00",
   "elapsed_seconds_at_last_audit": 12322,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -35,9 +35,12 @@
     "HeadComplexity.FiniteFieldLines.color_hall",
     "HeadComplexity.FiniteFieldLines.exists_positive_multiaffine_tests_fin",
     "HeadComplexity.FiniteFieldLines.exists_108_tests_on_64_positive_parameters",
-    "HeadComplexity.FiniteFieldLines.unbounded_multiaffine_tests_per_positive_parameter"
+    "HeadComplexity.FiniteFieldLines.unbounded_multiaffine_tests_per_positive_parameter",
+    "HeadComplexity.ParameterLineOscillation.exists_alternating_parameter_line",
+    "HeadComplexity.ParameterLineOscillation.exists_parameter_line_forcing_degree",
+    "HeadComplexity.ParameterLineOscillation.admissible_heads_force_parameter_degree"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound.",
+  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }

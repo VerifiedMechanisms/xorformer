@@ -1,0 +1,5 @@
+import HeadComplexity.Atoms.ParameterLineOscillation
+
+#print axioms HeadComplexity.ParameterLineOscillation.exists_alternating_parameter_line
+#print axioms HeadComplexity.ParameterLineOscillation.exists_parameter_line_forcing_degree
+#print axioms HeadComplexity.ParameterLineOscillation.admissible_heads_force_parameter_degree

@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/parameter-line-degree.md",
+    "math_spans": 36,
+    "github_rendered_spans": 36,
+    "notes": [],
+    "status": "PASS"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "math_spans": 42,
+    "github_rendered_spans": 42,
+    "notes": [],
+    "status": "PASS"
+  }
+]

@@ -1,0 +1,9 @@
+'HeadComplexity.ParameterLineOscillation.exists_alternating_parameter_line' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ParameterLineOscillation.exists_parameter_line_forcing_degree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ParameterLineOscillation.admissible_heads_force_parameter_degree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
