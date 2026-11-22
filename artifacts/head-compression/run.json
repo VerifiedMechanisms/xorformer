@@ -1,12 +1,12 @@
 {
   "run": "Adaptive Rational Head Compression",
   "started_utc": "2026-11-20 15:48:46 UTC",
-  "minimum_research_end_utc": "2026-11-22 19:05:05 UTC",
+  "minimum_research_end_utc": "2026-11-23 07:30:54 UTC",
   "source": "/out/attachments/version-5.tex",
   "source_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "target": "There exists an absolute C>0 such that W(n)<=C*2^n/n^2 for every positive integer n.",
   "model": "Exactly the shared-token, one-layer attention model of version-5.tex; target-dependent affine ratios with positive same-sign-slope denominators.",
-  "status": "Research in progress. No proof of the target is claimed.",
+  "status": "Research continuing under the latest twelve-hour extension. No proof of the target is claimed.",
   "definitions_changed": false,
   "initial_routes": [
     "Target-dependent sign interpolation rather than exact real-table interpolation",
@@ -33,6 +33,12 @@
       "started_utc": "2026-11-22 07:05:05 UTC",
       "minimum_research_end_utc": "2026-11-22 19:05:05 UTC",
       "instruction": "Keep going for 12 more hours (clarified by follow-up message)"
+    },
+    {
+      "requested_additional_hours": 12,
+      "started_utc": "2026-11-22 19:30:54 UTC",
+      "minimum_research_end_utc": "2026-11-23 07:30:54 UTC",
+      "instruction": "Keep going for 12 more hours"
     }
   ]
 }
