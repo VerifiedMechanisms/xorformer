@@ -6766,4 +6766,63 @@ $(6,8),(7,10),(8,16)$. The latter outcomes are not infeasibility results.
 The full numerical outcomes and both exact audits of each witness are
 retained in the diagnostics directory.
 
+\section{Exact head ranges and the cost of cancellation}
+
+Let $A=a_0+\sum_i a_ix_i$ and $B=b_0+\sum_i b_ix_i>0$
+on the Boolean cube. A proposed upper bound $t$ is valid exactly when
+\[
+ a_0-tb_0+\sum_i\max(0,a_i-tb_i)\le0.
+\]
+Indeed, multiplication by $B>0$ reduces the assertion to
+$A-tB\le0$, and the displayed expression is the maximum of that
+affine function on the cube. The lower-bound criterion is
+\[
+ a_0-tb_0+\sum_i\min(0,a_i-tb_i)\ge0.
+\]
+The corresponding pointwise implications are kernel checked in
+\texttt{AffineFractionRange.lean}, under explicit positivity and
+Boolean-coordinate hypotheses.
+
+These certificates can be found in $O(n\log n)$ arithmetic operations
+per head. First complement every coordinate with $b_i<0$; this changes
+neither the set of values nor its extrema. When $b_i=0$, maximizing
+requires $x_i=1$ for $a_i>0$ and $x_i=0$ for $a_i<0$. Absorb those
+choices into the constant term. Sort the remaining ratios $a_i/b_i$
+in decreasing order and evaluate $A/B$ on every prefix, including the
+empty prefix. At a maximizer with value $t$, every ratio greater than
+$t$ must be included and every ratio less than $t$ must be excluded:
+adding or removing a violating coordinate would improve the ratio.
+Coordinates with ratio exactly $t$ may all be included without changing
+the value. Hence a prefix attains the maximum. Reverse the order for
+the minimum. No generic-position assumption is used.
+
+The independent script \texttt{audit\_head\_ranges.py} additionally
+checks both affine certificates and explicit attaining vertices using
+integer arithmetic. Its $900$ small checks agree with exhaustive exact
+evaluation, including mixed and zero slopes. Applied to the compact
+full-target certificates, it encloses the total head half-range divided
+by the strict margin. The approximate values are
+\[
+ \mathcal R(S_{292})\simeq1.144522783\cdot10^9,
+ \qquad
+ \mathcal R(S_{293,\mathrm{glued}})\simeq8.331934603\cdot10^{55}.
+\]
+The diagnostic files retain rational bounds for these numbers. They
+measure these two scores only. In particular, they do not claim a
+lower bound on the cancellation required by this truth table.
+
+\paragraph{Literature identification of the affine permutation cube.}
+The earlier construction $L_0=\sum_i x_i$ and
+$L_k=k(1-x_k)+\sum_{i>k}x_i$ is, after adding one to all rows,
+the rectangular parallelotope of permutations avoiding $132$ and $312$
+in Davis--Sagan, \emph{Pattern-Avoiding Polytopes}, Proposition~3.4
+and the generators in the proof of Proposition~3.9:
+\url{https://arxiv.org/pdf/1609.01782}.
+Its generators are $\sum_{i=1}^k(e_i-e_{k+1})$.
+Thus the permutation construction has an established combinatorial
+antecedent; its use here is not asserted to be a new polytope theorem.
+Neither the parallelotope nor its lattice-point enumeration supplies
+the target-dependent rational sign interpolation needed for the
+universal head bound.
+
 \end{document}

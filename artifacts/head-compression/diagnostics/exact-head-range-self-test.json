@@ -1,0 +1,16 @@
+{
+  "exact_random_checks": 900,
+  "dimensions": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "mixed_and_zero_slopes_allowed": true,
+  "independent_affine_optimality_certificates_checked": true
+}

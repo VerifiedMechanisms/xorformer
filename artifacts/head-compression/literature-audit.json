@@ -22,7 +22,7 @@
     },
     {
       "title": "Exact hyperplane covers for subsets of the hypercube",
-      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bartłomiej Kielak",
+      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bart\u0142omiej Kielak",
       "url": "https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf",
       "checked_location": "Theorem 2, Lemmas 9 and 10, and their proofs",
       "mechanism": "Hamming-neighborhood covers and a count of hyperplane intersection patterns.",
@@ -135,7 +135,7 @@
     },
     {
       "title": "Extremal properties of polynomial threshold functions",
-      "authors": "Ryan O’Donnell and Rocco A. Servedio",
+      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
       "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
       "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
       "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
@@ -441,7 +441,7 @@
       "authors": "Kordag Mehmet Kilic, Jin Sima, and Jehoshua Bruck",
       "url": "https://www.paradise.caltech.edu/papers/etr153.pdf",
       "checked_location": "Theorem 1, Lemma 2, Section IV, and the decoding appendix",
-      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel’s lemma bounds the achievable rate.",
+      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel\u2019s lemma bounds the achievable rate.",
       "application": "This supplies a concrete number-theoretic and coding-theoretic compression mechanism for integer equality tests. With m_0=n_0=1 the rate is k/2+1. It was checked as a possible address encoder for the head problem.",
       "gap": "The decoder explicitly uses reduction modulo two and recursive arithmetic. The circuit consequences concern EQUALITY and COMPARISON with extra threshold/equality gates, not arbitrary Boolean tables in a flat sum of admissible affine fractions. No head compiler with the requested cost is supplied."
     },
@@ -490,7 +490,7 @@
     },
     {
       "title": "How many sorted projections determine any n points in k dimensions?",
-      "authors": "Christopher Gorham Lester and Raymond Hau Sørensen",
+      "authors": "Christopher Gorham Lester and Raymond Hau S\u00f8rensen",
       "url": "https://arxiv.org/html/2611.06470v3",
       "checked_location": "Theorems 1.1 and 1.4; Sections 1.2-1.4, version 3 dated 19 November 2026",
       "mechanism": "Generic directions separate finite multisets through coloured-matching graph rigidity, with O(k log n log log n) directions.",
@@ -740,6 +740,23 @@
       "mechanism": "Divided symmetrization on a path vanishes below degree p-1; a Vandermonde denominator turns the symmetrized numerator into an alternating polynomial.",
       "application": "Supports the self-contained graph cancellation proof in permutation-parity-degree.tex.",
       "gap": "The cancellation identity supplies a decoder obstruction, not a universal admissible-head construction."
+    },
+    {
+      "title": "Nearly-tight VC-dimension and Pseudodimension Bounds for Piecewise Linear Neural Networks",
+      "authors": "Peter L. Bartlett, Nick Harvey, Christopher Liaw, Abbas Mehrabian",
+      "url": "https://jmlr.csail.mit.edu/papers/volume20/17-612/17-612.pdf",
+      "checked_location": "Theorem 3, Remark 5, and the bit-extraction construction in Section 2.",
+      "mechanism": "Block bit extraction yields large shattering sets for networks with several layers. Remark 5 explicitly states that this construction gives a positive lower bound starting at eight layers.",
+      "gap": "An existential shattering set and a multilayer bit extractor do not give the fixed Boolean cube with one admissible attention layer. A secondary search result incorrectly suggested applying this construction directly at depth two; the primary text does not justify that transfer."
+    },
+    {
+      "title": "Pattern-Avoiding Polytopes",
+      "authors": "Robert Davis and Bruce Sagan",
+      "url": "https://arxiv.org/pdf/1609.01782",
+      "checked_location": "Proposition 3.4 and its proof, printed pages 6-8; generators in Proposition 3.9, printed page 10.",
+      "mechanism": "Permutations avoiding 132 and 312 form a rectangular parallelotope with generators sum_{i=1}^j(e_i-e_{j+1}).",
+      "application": "Identifies the previously derived affine permutation cube as a known construction after a common shift by one. Its all-vertex permutation property is therefore not claimed as a new combinatorial theorem.",
+      "gap": "The polytope and Ehrhart enumeration do not provide target-dependent affine-fraction sign interpolation at the requested head count."
     }
   ]
 }
