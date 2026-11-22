@@ -79,7 +79,7 @@ for all sufficiently small positive $\epsilon$. At every nonzero base-score vert
 
 Thus every full-cube constraint is satisfied and exactly the selected 96 are active. The strict local minimum already proved on the larger selected-constraint feasible set remains a strict local minimum on the full-cube feasible set. The same multipliers, extended by zero on inactive constraints, give its stationarity equation. This completes the proof. $\blacksquare$
 
-The full-cube enumeration and rational tangent checks use independent exact Python arithmetic. The Lean declarations certify the zero-fiber data and norm dual, but do not claim to formalize the complete cube enumeration, analytic continuation, or local-minimum theorem.
+The full-cube enumeration and rational tangent checks use independent exact Python arithmetic. In addition, `HeadComplexity.CoordinateZeroFiber.all_base_zeros` and `zeroVertexList_decomposition` in `CoordinateZeroCube.lean` kernel check the complete 106-point zero set and its decomposition into the selected 96 vertices and the ten listed extras. The proof uses an exact packed half-cube cache and checks all 65,536 cases. The analytic continuation and local-minimum theorem remain written proofs.
 
 For each fixed $\epsilon$, dividing the entire score by $\epsilon$ gives selected margins equal to one and all other margins greater than one. This changes the fixed constant to $1/\epsilon$ and scales the numerator-norm objective by $1/\epsilon^2$. It preserves the local-minimum statement on that fixed-constant slice. It does not prove a unit-margin statement on the slice whose constant is fixed at one.
 

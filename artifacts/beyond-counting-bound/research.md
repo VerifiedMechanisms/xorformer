@@ -31,6 +31,12 @@ The repository file `formalization/HeadComplexity/Results/CountingLowerBound.lea
 
 No theorem establishing the target has been proved at this checkpoint.
 
+## Complete monotonicity and Boolean tangents
+
+The [positive exponential interpolation theorem](complete-monotonicity-tangent.md) gives every Boolean tangent direction at a table equal to a single reciprocal head. One baseline extension works for every direction, and every mixed derivative has the strict sign required by complete monotonicity. The construction has explicit rational coefficients and a uniform positive perturbation interval. Independent exact arithmetic checks the coefficients through dimension ten and all binary directions through dimension three.
+
+The extension uses exponentially many exponential terms. It therefore disproves an order-only tangent restriction, without controlling the permitted number of affine-ratio heads. The remaining sign-counting step must retain that factorization structure. No asymptotic lower bound follows.
+
 ## Boolean product base loci
 
 The [two-factor audit](boolean-product-base-locus.md) classifies every pair of nonzero affine forms whose product vanishes on the Boolean cube. The resulting ordered base locus has exactly $n(n+1)$ reduced points. On three bits, the product map has eight generic ordered complex factorizations. An explicit positive exchange identity gives $n+1$ distinct unordered positive factorizations in every dimension; on three bits, four regular positive branches persist on an open set. The classification and exchange identities are Lean checked in `BooleanZeroProduct.lean`, and an independent rational verifier checks the three-bit Jacobians and tables.
@@ -39,7 +45,7 @@ These results invalidate an automatic division by head permutations in a propose
 
 ## Binary active margins and positive multipliers
 
-The [active-margin construction](binary-active-minima.md) starts from the regular sixteen-bit, three-head zero fiber. An exact rational dual calculation gives 96 nonzero coordinates, with 44 positive and 52 negative signs. An independent full-cube enumeration finds just ten additional zero scores, and exact tangent calculations give signed derivatives greater than fourteen at all ten. The inverse function theorem then gives, for every sufficiently small positive common margin, a regular strict local minimum of the squared numerator norm subject to all 65,536 cube inequalities. Exactly 96 constraints are active and have strictly positive multipliers. The rational dual equation and sign certificate are Lean checked in `CoordinateZeroDual.lean`; the full-cube arithmetic and analytic argument have their separately stated audit scope.
+The [active-margin construction](binary-active-minima.md) starts from the regular sixteen-bit, three-head zero fiber. An exact rational dual calculation gives 96 nonzero coordinates, with 44 positive and 52 negative signs. An independent full-cube enumeration finds just ten additional zero scores, and exact tangent calculations give signed derivatives greater than fourteen at all ten. The inverse function theorem then gives, for every sufficiently small positive common margin, a regular strict local minimum of the squared numerator norm subject to all 65,536 cube inequalities. Exactly 96 constraints are active and have strictly positive multipliers. The rational dual equation and sign certificate are Lean checked in `CoordinateZeroDual.lean`. The complete zero set and its selected-plus-extra decomposition are also kernel checked in `CoordinateZeroCube.lean`; the rational tangent check and analytic argument have their separately stated audit scope.
 
 This disproves the proposed blanket exclusion of regular full-cube constrained minima by a maximum principle. It does not bound their total number or the number of full-cube sign patterns. The asymptotic target remains unproved.
 

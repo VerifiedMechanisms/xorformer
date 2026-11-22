@@ -395,12 +395,20 @@
     },
     "exact_dual": "all 96 rational coordinates nonzero; direct and two modular checks passed",
     "written_conclusion": "for every sufficiently small positive margin, a full-cube regular strict local numerator-norm minimum with 96 positive active multipliers",
-    "lean_scope": "cleared dual equation, rational dual equation, nonzero coordinates and label positivity; not the analytic inverse-function theorem",
+    "lean_scope": "cleared and rational dual equations, nonzero coordinates, label positivity, complete 106-point Boolean zero set, and selected-plus-extra decomposition; analytic inverse-function and minimum theorem written only",
     "scope_limit": "one explicit sixteen-bit label table; score constant fixed at one; no asymptotic count",
     "main_target_proved": false,
     "full_cube_arithmetic": "65536 vertices checked with exact integers; 106 base zeros; extra ten tangent magnitudes exceed 14",
     "full_cube_positive_labels": 54004,
     "minimum_nonzero_base_score_abs": "1/31671",
     "truth_table_sha256": "8d93df0ef3f91635d7eb63fccc5feb4e90c83e3a8ccf6967582c615c4e36536c"
+  },
+  "complete_monotonicity_tangent": {
+    "result": "all Boolean directions at one fixed completely monotone extension of a single reciprocal table",
+    "terms": "2^n positive exponentials",
+    "explicit_radius": "1/(4*(n+1)*4^n)",
+    "verification": "exact coefficient bounds for n=1..10 and 4240 vertex values for every direction through n=3",
+    "lean_scope": "none claimed",
+    "main_target_proved": false
   }
 }

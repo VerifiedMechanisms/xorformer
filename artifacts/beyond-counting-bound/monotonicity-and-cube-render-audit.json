@@ -1,0 +1,32 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/complete-monotonicity-tangent.md",
+    "sha256": "0e367a423bb02dfb7f154c1d5e700b9d0d9d0f7304872a6b7f51fc7530715346",
+    "source_spans": 45,
+    "rendered_math": 45,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:44:36.819802+00:00",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/binary-active-minima.md",
+    "sha256": "8a2d0dfa6ea25bc6912f556aa48da3e7611f77bb57944c2dc151d8ef82d31ceb",
+    "source_spans": 70,
+    "rendered_math": 70,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:44:37.219992+00:00",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "sha256": "ce3c03f6ab6e46fa8171b4c9e79a135adb90059a829a5ec4bfcf739c247c0907",
+    "source_spans": 88,
+    "rendered_math": 88,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:44:37.675959+00:00",
+    "gitlab": "not run; no configured authentication"
+  }
+]
