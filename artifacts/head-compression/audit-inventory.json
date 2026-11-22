@@ -623,5 +623,11 @@
     "solver": "Quantifier-free mixed linear integer/real arithmetic, using finite branches for reciprocal values. Every SAT witness is exported and checked independently with both exact checkers.",
     "smoke": "diagnostics/permutation-denominator-smoke.json",
     "scope": "A possible discrete alternative to full-box decoding, tested only on finite targets. No universal coverage theorem and no unrestricted infeasibility conclusion."
+  },
+  "private_repository_refresh_2026_11_22_1030": {
+    "method": "Fetched all refs/heads into both existing bare mirrors.",
+    "xorformer_runs_latest": "ar/1bfc2d7fde2f c45f40a, 2026-11-05 11:26:38 UTC",
+    "autoresearch_runs_latest": "ar/1dc3df1f7016 045a8fb, 2026-11-21 06:16:49 UTC",
+    "change_since_previous_refresh": false
   }
 }
