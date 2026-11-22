@@ -5,6 +5,15 @@
   "target": "For every C>0 and n0 there exist n>=n0 and a Boolean f on n bits with HStar(f)>C*2^n/n^2.",
   "attachment": "/out/attachments/version-5.tex",
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
-  "status": "research; no claimed solution",
-  "model_changes": []
+  "status": "incomplete: requested asymptotic refutation not proved",
+  "model_changes": [],
+  "last_audit_utc": "2026-11-22T00:48:00.799216Z",
+  "elapsed_seconds_at_last_audit": 3099,
+  "minimum_duration_met": false,
+  "target_theorem_proved": false,
+  "checked_lean_declarations": [
+    "HeadComplexity.exists_reciprocal_prescribed_roots_identity",
+    "HeadComplexity.exists_reciprocal_prescribed_positive_zeros"
+  ],
+  "lean_declarations_scope": "Obstruction to a proposed positivity-based oscillation shortcut, not the target lower bound."
 }

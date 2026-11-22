@@ -1,5 +1,11 @@
 [
   {
+    "file": "artifacts/beyond-counting-bound/experiments.md",
+    "rendered_math_spans": 14,
+    "findings": [],
+    "notes": []
+  },
+  {
     "file": "artifacts/beyond-counting-bound/newton-volume-obstruction.md",
     "rendered_math_spans": 23,
     "findings": [],
@@ -13,7 +19,7 @@
   },
   {
     "file": "artifacts/beyond-counting-bound/research.md",
-    "rendered_math_spans": 19,
+    "rendered_math_spans": 25,
     "findings": [],
     "notes": []
   }
