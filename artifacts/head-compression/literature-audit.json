@@ -317,9 +317,11 @@
       "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
       "authors": "Jiatu Li, Daniel Reichman, Ryan Williams and Tony Wu",
       "url": "https://arxiv.org/pdf/2611.21910",
-      "checked_location": "Theorems 1.1-1.9; Section 4.2; Section 6.3; detailed rereading: Theorem 6.1, Lemma 6.6, Corollary 6.7, Lemma 6.8, Corollary 6.9, proof of Theorem 1.7 in Section 6.3, and statement of Lemma 7.1; Theorem 4.4 and Lemma 4.5",
+      "checked_location": "Theorems 1.1-1.9; Section 4.2; Section 6.3; detailed rereading: Theorem 6.1, Lemma 6.6, Corollary 6.7, Lemma 6.8, Corollary 6.9, proof of Theorem 1.7 in Section 6.3, and statement of Lemma 7.1; Theorem 4.4 and Lemma 4.5; Appendix B.3, Proposition B.4 and proof (HTML reread)",
       "mechanism": "Rational approximation, algebraic parameter bounds, and sequential bit extraction give bounds and simulations for sigmoid circuits. Approximate multiplication through second differences, carry-free packed products, and sequential bit decoding give a small circuit for inner product modulo two.",
-      "gap": "The decoder uses growing depth. A sigmoid denominator on Boolean inputs is 1+B*product_j(W_j^x_j), which is not an affine input denominator. Parameter compression preserves a pre-existing circuit and does not reduce gate count. The construction does not transfer to the manuscript model or prove the universal bound."
+      "gap": "The decoder uses growing depth. A sigmoid denominator on Boolean inputs is 1+B*product_j(W_j^x_j), which is not an affine input denominator. Parameter compression preserves a pre-existing circuit and does not reduce gate count. The construction does not transfer to the manuscript model or prove the universal bound.",
+      "html_url": "https://arxiv.org/html/2611.21910v1",
+      "rational_approximation_gap": "A rational approximant with no pole on an interval can have higher-degree or non-real-pole denominator; neither property supplies a same-cost sum of admissible affine fractions."
     },
     {
       "title": "Boolean threshold functions, neuron capacity, and memory retrieval",
@@ -697,12 +699,12 @@
       "gap": "Two mixtures do not mean two logit components. The grouping proof retains all original components and supplies no O(2^n/n^2) component bound. Arbitrary utility feature lifting also cannot be identified with affine Boolean input denominators."
     },
     {
-      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
-      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams, and Tony Wu",
-      "url": "https://arxiv.org/html/2611.21910v1",
-      "checked_location": "Theorem 6.1 and change-of-variables proof; Theorems 1.7-1.9; Appendix B.3, Proposition B.4 and proof",
-      "mechanism": "Strict Boolean classification is expressed by polynomial inequalities after exponentiating sigmoid parameters. Newman approximation supplies rational approximate sign functions.",
-      "gap": "The sigmoid denominator 1+B*product_j(W_j^x_j) is not an affine denominator in the input. The rational approximate sign has unrestricted higher-degree denominator. The sublinear inner-product construction uses growing depth. No head-count-preserving transfer or all-function construction is supplied."
+      "title": "Tight Bounds for the VC-Dimension of Piecewise Polynomial Networks",
+      "authors": "Akito Sakurai",
+      "url": "https://papers.nips.cc/paper_files/paper/1998/file/f18a6d1cde4b205199de8729a6637b42-Paper.pdf",
+      "checked_location": "Theorem 4.1, Lemmas 4.2-4.7, Theorem 4.8 and its encoder-decoder proof; Theorem 5.1",
+      "mechanism": "Iterates of a quadratic map store and extract bits. A separate interpolation subnetwork loads codes, and the decoder uses additional layers.",
+      "gap": "The construction uses iterated polynomial activations and a separately computed encoder on selected input points. It does not flatten to the manuscript model, shatter its entire prescribed cube, or provide an admissible rational decoder with a charged head count."
     }
   ]
 }
