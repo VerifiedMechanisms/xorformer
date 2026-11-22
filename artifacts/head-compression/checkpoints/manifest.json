@@ -1,0 +1,41 @@
+{
+  "status": "Numerical restart data, not proofs.",
+  "checkpoints": [
+    {
+      "file": "anchored-full-n14-h292.npz",
+      "sha256": "5ee92355bdf67691af2f6f7398d1a40a4a7f2c8294cb07d5a0c2b30ce0c489f3",
+      "heads": 292,
+      "labels_equal_original": true,
+      "scope": "Floating-point restart data only. Certificates are separate exact rational files."
+    },
+    {
+      "file": "anchored-prune288-n14.npz",
+      "sha256": "9189b86d322dfd83cc0e6d8c16376a3688a8999bad0ecf49740ba358b13bb2a4",
+      "heads": 288,
+      "labels_equal_original": true,
+      "scope": "Floating-point restart data only. Certificates are separate exact rational files."
+    },
+    {
+      "file": "anchored-prune291-n14.npz",
+      "sha256": "1be72c79d6978211c46e68ef138d434caf2751006c0e5ae4e42e3ee58785359f",
+      "heads": 291,
+      "labels_equal_original": true,
+      "scope": "Floating-point restart data only. Certificates are separate exact rational files."
+    },
+    {
+      "file": "anchored-prune280-n14.npz",
+      "sha256": "2b725c7938787456e42295f91b3ffe7a93cec5e37978cd220416b92470bbbeed",
+      "heads": 280,
+      "labels_equal_original": true,
+      "scope": "Floating-point restart data only. Certificates are separate exact rational files."
+    },
+    {
+      "file": "anchored-merge291-n14.npz",
+      "sha256": "bbeb13b61373e22f9929f1c3ea3a750b52922433e009a6a8d1a40fc4c4640834",
+      "heads": 291,
+      "labels_equal_original": true,
+      "scope": "Floating-point restart data only. Certificates are separate exact rational files."
+    }
+  ],
+  "resume_command_template": "heavy python3 artifacts/head-compression/search_anchored_affine_varpro.py CHECKPOINT --out NEW_OUTPUT_DIRECTORY --seconds SECONDS"
+}

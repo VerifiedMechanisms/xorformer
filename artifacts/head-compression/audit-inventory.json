@@ -175,14 +175,15 @@
       "companion_declarations": [
         "HeadComplexity.affineFraction_ge_of_coordinate_certificate",
         "HeadComplexity.affineFraction_pair_merge_error_identity",
-        "HeadComplexity.affineFraction_pair_merge_error_le"
+        "HeadComplexity.affineFraction_pair_merge_error_le",
+        "HeadComplexity.exists_projective_merge_scale"
       ],
       "scope": "Exact coordinate certificates bound an affine fraction above and below on the Boolean cube when its denominator is positive. The standalone range algorithm and concrete rational range reports are separately checked Python artifacts."
     }
   ],
   "validation": {
     "build": "lake build HeadComplexity.Results.IndicatorApproximationBarrier and HeadComplexity.Results.All succeeded; eighteen new audit modules are imported.",
-    "build_log": "/out/head-compression/lean-pair-merge-full-build.log",
+    "build_log": "/out/head-compression/lean-final-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent Fraction-based verification checks strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples.",
@@ -203,7 +204,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "55 listed main and companion declarations in 24 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "56 listed main and companion declarations in 24 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -214,7 +215,7 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 55,
+      "declarations": 56,
       "modules": 24,
       "only": [
         "propext",
@@ -223,9 +224,9 @@
       ],
       "logs": [
         "/out/head-compression/lean-research-axioms.log",
-        "/out/head-compression/lean-range-axioms.log"
+        "/out/head-compression/lean-range-final-axioms.log"
       ],
-      "scope": "The prior 51 declarations were unchanged; all four declarations in AffineFractionRange.lean were checked separately."
+      "scope": "The prior 51 declarations were unchanged; all five declarations in AffineFractionRange.lean were checked separately."
     },
     "lean": "Full project lake build succeeded, including all 24 new research modules and the results aggregator.",
     "build_jobs": 9208,
@@ -848,7 +849,7 @@
     "script": "merge_anchored_affine_scores.py",
     "small_check": "diagnostics/anchored-merge-self-test.json",
     "mechanism": "Replace two same-orientation denominators by their geometric midpoint; rank candidates by projected score error, refit, then adapt the remaining denominators. Identical-denominator merging is exact, but an arbitrary pair need not preserve signs.",
-    "status": "One 291-head trial running on the original fourteen-bit labels.",
+    "status": "Finished without a certificate; final iterate has 749 incorrect signs. This is not an infeasibility result.",
     "target_proved": false
   },
   "projective_pair_merging": {
@@ -858,12 +859,21 @@
     "compatible_pairs_checked": 21328,
     "certified_merges": 0,
     "best_sufficient_bound_approximation": 160058.07943981103,
-    "scope": "A sufficient, range-based construction only. Failure is not an impossibility result; no universal merging hypothesis is asserted."
+    "scope": "A sufficient, range-based construction only. Failure is not an impossibility result; no universal merging hypothesis is asserted.",
+    "rational_construction": "The accepted scaling is an explicit rational midpoint of strict feasible interval endpoints. The proportional case uses exact equalization. No square-root approximation is required.",
+    "end_to_end_checks": "diagnostics/pair-merge-rational-end-to-end.json"
   },
   "anchored_pruning_trials": {
-    "finished_288": "diagnostics/anchored-prune288-n14-result.json",
-    "status": "288-head trial ended without a certificate. The 291-head deletion and coalescence trials and the 280-head deletion trial are still running.",
-    "scope": "Finite searches only; failed searches are not lower bounds."
+    "results": "diagnostics/final-anchored-continuations.json",
+    "status": "All four final deletion/coalescence trials finished without a certificate.",
+    "final_iterate_errors": {
+      "anchored-prune288-n14": 920,
+      "anchored-prune291-n14": 576,
+      "anchored-prune280-n14": 1241,
+      "anchored-merge291-n14": 749
+    },
+    "scope": "One finite target only. Failed searches are not lower bounds."
   },
-  "scientist_report": "artifacts/head-compression/scientist-report.tex"
+  "scientist_report": "artifacts/head-compression/scientist-report.tex",
+  "preserved_numerical_checkpoints": "checkpoints/manifest.json"
 }

@@ -74,4 +74,45 @@ theorem affineFraction_pair_merge_error_le (A B C D ρ R : ℝ)
   rw [affineFraction_pair_merge_error_identity A B C D hB hD hBD, abs_mul]
   exact mul_le_mul hρ hR (abs_nonneg _) (le_trans (abs_nonneg _) hρ)
 
+/-- A rational interval gives a valid positive rescaling whenever the
+strict projective merging criterion holds. The construction is the
+midpoint of the two displayed rational endpoint bounds. -/
+theorem exists_projective_merge_scale (m M R γ : ℝ)
+    (hm : 0 < m) (hM : 0 < M) (hγ : 0 < γ) (hR : γ < R)
+    (hcrit : M * (R - γ) ^ 2 < m * (R + γ) ^ 2) :
+    ∃ κ : ℝ, 0 < κ ∧ ∀ u : ℝ, m ≤ u → u ≤ M →
+      |(κ * u - 1) / (κ * u + 1)| * R < γ := by
+  have hd : 0 < R - γ := sub_pos.mpr hR
+  have hs : 0 < R + γ := by linarith
+  have hRp : 0 < R := lt_trans hγ hR
+  have hlp : 0 < m * (R + γ) := mul_pos hm hs
+  have hup : 0 < M * (R - γ) := mul_pos hM hd
+  let l := (R - γ) / (m * (R + γ))
+  let v := (R + γ) / (M * (R - γ))
+  have hl : 0 < l := div_pos hd hlp
+  have hlv : l < v := by
+    apply (div_lt_div_iff₀ hlp hup).2
+    convert hcrit using 1 <;> ring
+  let κ := (l + v) / 2
+  have hlk : l < κ := by dsimp [κ]; linarith
+  have hkv : κ < v := by dsimp [κ]; linarith
+  have hk : 0 < κ := lt_trans hl hlk
+  refine ⟨κ, hk, ?_⟩
+  intro u hmu huM
+  have hu : 0 < u := lt_of_lt_of_le hm hmu
+  have hden : 0 < κ * u + 1 := by positivity
+  have hlo := (div_lt_iff₀ hlp).mp hlk
+  have hhi := (lt_div_iff₀ hup).mp hkv
+  have hmullo := mul_le_mul_of_nonneg_left hmu (le_of_lt (mul_pos hk hs))
+  have hmulhi := mul_le_mul_of_nonneg_left huM (le_of_lt (mul_pos hk hd))
+  have hleft : -(γ * (κ * u + 1)) < (κ * u - 1) * R := by
+    nlinarith
+  have hright : (κ * u - 1) * R < γ * (κ * u + 1) := by
+    nlinarith
+  have habs : |(κ * u - 1) * R| < γ * (κ * u + 1) :=
+    abs_lt.mpr ⟨hleft, hright⟩
+  rw [abs_div, abs_of_pos hden, div_mul_eq_mul_div]
+  apply (div_lt_iff₀ hden).2
+  simpa only [abs_mul, abs_of_pos hRp] using habs
+
 end HeadComplexity

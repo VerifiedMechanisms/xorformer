@@ -1,0 +1,53 @@
+{
+  "input_sha256": "fa8e034641b0ed62c37fdd699e95ea5d8f70b5af51a77f11cb8d6e0a01b9b5c4",
+  "n": 4,
+  "heads": 2,
+  "compatible_pairs_checked": 1,
+  "certified_merges": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "certificate": "merged-0-1.json",
+      "error_upper_bound": [
+        1833226180713662263205301538524610353730253163162617487170912649499393155735928370816115780537743500959886242132806968004372193490377810960646526124565816324826893,
+        56725203809543966322899523735020226838671917938870025180287850613714722525103353960295764414798974913120430368005752253421946866885199068955724923539813863161677040
+      ]
+    }
+  ],
+  "best_sufficient_bounds": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "optimal_bound_approximation": 3.396915412617021e-08,
+      "ratio_minimum": [
+        1000000,
+        1
+      ],
+      "ratio_maximum": [
+        11000001,
+        11
+      ],
+      "sum_half_ranges": [
+        558000037,
+        373333360
+      ],
+      "exact_sufficient_test_passed": true
+    }
+  ],
+  "scope": "A sufficient bound for these pairs only; failure is not an impossibility result.",
+  "independent_fraction_audit": {
+    "file": "/out/head-compression/pair-merge-end-to-end/merged-0-1.json",
+    "sha256": "e7685a797b61b2fe465b2ca16bbefb276d586628d36b4b5f5c9af9abe7d2e580",
+    "n": 4,
+    "heads": 1,
+    "vertices_checked": 16,
+    "strict_signs_and_admissibility": true,
+    "margin_approximation": 0.22003858806881033,
+    "scope": "This finite truth table only; not a universal bound."
+  },
+  "purpose": "End-to-end implementation check on a nonconstant four-bit target, not an improvement to a universal bound."
+}

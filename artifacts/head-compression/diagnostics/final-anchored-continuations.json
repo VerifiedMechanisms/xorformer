@@ -1,0 +1,320 @@
+{
+  "anchored-prune288-n14": {
+    "n": 14,
+    "units": 287,
+    "lifted_heads": 288,
+    "seconds": 7452.97191805183,
+    "termination": "budget or stop file",
+    "best_loss": 0.09386044901902273,
+    "certificate": null,
+    "scope": "Finite anchored-affine search; no universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 42,
+      "seconds": 7452.909253032878,
+      "loss": 0.09386044901902273,
+      "errors": 920,
+      "minimum_margin": -3.461199279030552,
+      "inner_gradient": 2.7511604105967535e-12,
+      "direct_qr_score_discrepancy": 3.577574716473464e-07,
+      "outer_gradient_norm": 0.03766363811785428,
+      "maximum_absolute_coefficient": 58104.494975401234
+    },
+    "best_loss_event": {
+      "evaluation": 42,
+      "seconds": 7452.909253032878,
+      "loss": 0.09386044901902273,
+      "errors": 920,
+      "minimum_margin": -3.461199279030552,
+      "inner_gradient": 2.7511604105967535e-12,
+      "direct_qr_score_discrepancy": 3.577574716473464e-07,
+      "outer_gradient_norm": 0.03766363811785428,
+      "maximum_absolute_coefficient": 58104.494975401234
+    },
+    "minimum_observed_error_count": 920,
+    "labels_equal_original": true,
+    "deletion": {
+      "stage": "ranked",
+      "initial_heads": 292,
+      "trial_heads": 288,
+      "removed": [
+        56,
+        163,
+        176,
+        251
+      ],
+      "projection_costs": [
+        1417407051.4787254,
+        1132459723.29728,
+        1892604033.182468,
+        1908884342.6756642
+      ],
+      "seconds": 119.12201057118364
+    },
+    "initial-refit": {
+      "stage": "refitted",
+      "loss": 0.18110182965146676,
+      "errors": 2124,
+      "minimum_margin": -4.13129867405587,
+      "inner_gradient": 4.475898818245838e-13,
+      "direct_qr_discrepancy": 8.357733349839691e-08,
+      "seconds": 209.6621700450778
+    }
+  },
+  "anchored-prune291-n14": {
+    "n": 14,
+    "units": 290,
+    "lifted_heads": 291,
+    "seconds": 6487.277701534098,
+    "termination": "budget or stop file",
+    "best_loss": 0.06798906996577755,
+    "certificate": null,
+    "scope": "Finite anchored-affine search; no universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 24,
+      "seconds": 6487.218124867184,
+      "loss": 0.06798906996577755,
+      "errors": 576,
+      "minimum_margin": -3.5875492295017466,
+      "inner_gradient": 7.131132490068026e-12,
+      "direct_qr_score_discrepancy": 1.2012242223136127e-06,
+      "outer_gradient_norm": 0.1428106623871665,
+      "maximum_absolute_coefficient": 272595.1506944926
+    },
+    "best_loss_event": {
+      "evaluation": 24,
+      "seconds": 6487.218124867184,
+      "loss": 0.06798906996577755,
+      "errors": 576,
+      "minimum_margin": -3.5875492295017466,
+      "inner_gradient": 7.131132490068026e-12,
+      "direct_qr_score_discrepancy": 1.2012242223136127e-06,
+      "outer_gradient_norm": 0.1428106623871665,
+      "maximum_absolute_coefficient": 272595.1506944926
+    },
+    "minimum_observed_error_count": 576,
+    "labels_equal_original": true,
+    "deletion": {
+      "stage": "ranked",
+      "initial_heads": 292,
+      "trial_heads": 291,
+      "removed": [
+        163
+      ],
+      "projection_costs": [
+        1132459723.29728
+      ],
+      "seconds": 113.56475865608081
+    },
+    "initial-refit": {
+      "stage": "refitted",
+      "loss": 0.12947807510566434,
+      "errors": 1422,
+      "minimum_margin": -2.538426778068242,
+      "inner_gradient": 8.731314282695024e-13,
+      "direct_qr_discrepancy": 2.0089896679564845e-07,
+      "seconds": 207.24482998112217
+    }
+  },
+  "anchored-prune280-n14": {
+    "n": 14,
+    "units": 279,
+    "lifted_heads": 280,
+    "seconds": 10995.173320270143,
+    "termination": "budget or stop file",
+    "best_loss": 0.11961779854333052,
+    "certificate": null,
+    "scope": "Finite anchored-affine search; no universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 73,
+      "seconds": 10995.117511568125,
+      "loss": 0.11961779854333052,
+      "errors": 1241,
+      "minimum_margin": -2.691672689441475,
+      "inner_gradient": 1.2753791078790044e-12,
+      "direct_qr_score_discrepancy": 1.240740488128722e-07,
+      "outer_gradient_norm": 0.01636134483328998,
+      "maximum_absolute_coefficient": 25890.87810185596
+    },
+    "best_loss_event": {
+      "evaluation": 73,
+      "seconds": 10995.117511568125,
+      "loss": 0.11961779854333052,
+      "errors": 1241,
+      "minimum_margin": -2.691672689441475,
+      "inner_gradient": 1.2753791078790044e-12,
+      "direct_qr_score_discrepancy": 1.240740488128722e-07,
+      "outer_gradient_norm": 0.01636134483328998,
+      "maximum_absolute_coefficient": 25890.87810185596
+    },
+    "minimum_observed_error_count": 1240,
+    "labels_equal_original": true,
+    "deletion": {
+      "stage": "ranked",
+      "initial_heads": 292,
+      "trial_heads": 280,
+      "removed": [
+        2,
+        38,
+        56,
+        83,
+        163,
+        176,
+        218,
+        223,
+        250,
+        251,
+        276,
+        289
+      ],
+      "projection_costs": [
+        2172613001.7477074,
+        2134669944.7085087,
+        1417407051.4787254,
+        1985328753.3855686,
+        1132459723.29728,
+        1892604033.182468,
+        1923837874.854786,
+        2010469752.917826,
+        2004874503.1429563,
+        1908884342.6756642,
+        2228996843.09996,
+        2270809292.3549647
+      ],
+      "seconds": 103.94759136298671
+    },
+    "initial-refit": {
+      "stage": "refitted",
+      "loss": 0.23521099121124975,
+      "errors": 2817,
+      "minimum_margin": -3.048610369067319,
+      "inner_gradient": 3.2823743723042753e-13,
+      "direct_qr_discrepancy": 4.833060529563227e-08,
+      "seconds": 209.89664108213037
+    }
+  },
+  "anchored-merge291-n14": {
+    "n": 14,
+    "units": 290,
+    "lifted_heads": 291,
+    "seconds": 5830.482816191856,
+    "termination": "budget or stop file",
+    "best_loss": 0.0813110540243179,
+    "certificate": null,
+    "scope": "Finite anchored-affine search; no universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 29,
+      "seconds": 5830.42724496196,
+      "loss": 0.0813110540243179,
+      "errors": 749,
+      "minimum_margin": -3.2061138528224546,
+      "inner_gradient": 2.426586709347589e-12,
+      "direct_qr_score_discrepancy": 5.240817699814215e-07,
+      "outer_gradient_norm": 0.07759608904680895,
+      "maximum_absolute_coefficient": 111892.14848360127
+    },
+    "best_loss_event": {
+      "evaluation": 29,
+      "seconds": 5830.42724496196,
+      "loss": 0.0813110540243179,
+      "errors": 749,
+      "minimum_margin": -3.2061138528224546,
+      "inner_gradient": 2.426586709347589e-12,
+      "direct_qr_score_discrepancy": 5.240817699814215e-07,
+      "outer_gradient_norm": 0.07759608904680895,
+      "maximum_absolute_coefficient": 111892.14848360127
+    },
+    "minimum_observed_error_count": 749,
+    "labels_equal_original": true,
+    "initial-refit": {
+      "stage": "merged_refit",
+      "pair": [
+        99,
+        254
+      ],
+      "trial_heads": 291,
+      "loss": 0.1489501644226031,
+      "errors": 1678,
+      "seconds": 298.6247288901359,
+      "loss_sum": 2440.399493899929,
+      "record_correction": "The first console line reported the unnormalized loss sum. This record distinguishes the sum from the mean."
+    },
+    "merge-candidates": [
+      {
+        "pair": [
+          174,
+          267
+        ],
+        "log_distance": 1.59156135620764,
+        "score_projection_cost": 2883586396.5228796,
+        "seconds": 110.5799949420616
+      },
+      {
+        "pair": [
+          197,
+          288
+        ],
+        "log_distance": 2.823120577178505,
+        "score_projection_cost": 3271124197.071149,
+        "seconds": 114.61741771711968
+      },
+      {
+        "pair": [
+          73,
+          244
+        ],
+        "log_distance": 3.332008307878592,
+        "score_projection_cost": 5955261142.501131,
+        "seconds": 118.83884302806109
+      },
+      {
+        "pair": [
+          99,
+          254
+        ],
+        "log_distance": 3.382902463946707,
+        "score_projection_cost": 2815140738.820239,
+        "seconds": 123.08798152999952
+      },
+      {
+        "pair": [
+          101,
+          255
+        ],
+        "log_distance": 3.6496005947417247,
+        "score_projection_cost": 5302580580.8588295,
+        "seconds": 127.34289165399969
+      },
+      {
+        "pair": [
+          242,
+          264
+        ],
+        "log_distance": 3.7072796420064273,
+        "score_projection_cost": 3719872508.804592,
+        "seconds": 131.56711179111153
+      },
+      {
+        "pair": [
+          97,
+          280
+        ],
+        "log_distance": 4.714255083188005,
+        "score_projection_cost": 3637993549.0833817,
+        "seconds": 135.78953034011647
+      },
+      {
+        "pair": [
+          128,
+          273
+        ],
+        "log_distance": 4.799729902649697,
+        "score_projection_cost": 4110976281.0617466,
+        "seconds": 140.01709702401422
+      }
+    ]
+  }
+}

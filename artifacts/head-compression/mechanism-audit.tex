@@ -6870,9 +6870,20 @@ inequality
 \[
  M(R-\gamma)^2<m(R+\gamma)^2.
 \]
-A sufficiently accurate positive rational approximation to the optimal
-$\kappa$ retains the strict inequality and gives an ordinary rational
-certificate. This is a complete sufficient merging construction;
+The construction needs no square-root approximation. When $R>\gamma$,
+choose the rational midpoint
+\[
+ \kappa=\frac12\left(
+ \frac{R-\gamma}{m(R+\gamma)}+
+ \frac{R+\gamma}{M(R-\gamma)}\right).
+\]
+The strict criterion says exactly that the first endpoint is smaller
+than the second. For every $u\in[m,M]$, this choice gives
+$|(\kappa u-1)/(\kappa u+1)|R<\gamma$.
+This implication is kernel checked as
+\texttt{HeadComplexity.exists\_projective\_merge\_scale}.
+When $R\le\gamma$, choose $\kappa=1$.
+This is a complete sufficient merging construction;
 there is no assertion that a large score must contain such a pair.
 
 The standalone script \texttt{audit\_pair\_merges.py} checks this
@@ -6890,5 +6901,15 @@ remaining numerators, and then adapts the remaining denominators.
 Its QR update and identical-denominator checks have errors below
 $3.2\cdot10^{-15}$ on the small diagnostic. Those numerical checks
 do not certify signs of the large trial or establish universal merging.
+
+\paragraph{Final continuation outcomes.}
+All four final deletion or coalescence trials ended without an exact
+certificate. The final iterates have $920$ incorrect signs at $288$
+heads, $576$ at $291$ heads after deletion, $1241$ at $280$ heads,
+and $749$ at $291$ heads after coalescence. Their labels remain exactly
+the original fourteen-bit labels. The results, candidate-selection
+records, and numerical restart checkpoints are retained. None of these
+failed trials is an infeasibility result, and the best certified
+full-target example remains the separate $292$-head score.
 
 \end{document}

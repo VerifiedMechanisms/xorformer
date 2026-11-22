@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "perturbation": 0,
+      "integer_audit_passed": true,
+      "independent_fraction_audit": {
+        "file": "/out/head-compression/pair-merge-rational-self-test-final/0/merged-0-1.json",
+        "sha256": "cbc12a4e54765dd3cfc9c0f04a1539ef0b95e27fe8e79b3244835a9b78991504",
+        "n": 4,
+        "heads": 1,
+        "vertices_checked": 16,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 0.21978021978021978,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    },
+    {
+      "perturbation": 1,
+      "integer_audit_passed": true,
+      "independent_fraction_audit": {
+        "file": "/out/head-compression/pair-merge-rational-self-test-final/1/merged-0-1.json",
+        "sha256": "e7685a797b61b2fe465b2ca16bbefb276d586628d36b4b5f5c9af9abe7d2e580",
+        "n": 4,
+        "heads": 1,
+        "vertices_checked": 16,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 0.22003858806881033,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    },
+    {
+      "perturbation": 1000,
+      "integer_audit_passed": true,
+      "independent_fraction_audit": {
+        "file": "/out/head-compression/pair-merge-rational-self-test-final/1000/merged-0-1.json",
+        "sha256": "db9a97844ad9e7c52ea5d01a50faeb6aed7a03b1be94dfe05bf01cfbb953c3d4",
+        "n": 4,
+        "heads": 1,
+        "vertices_checked": 16,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 0.2200082725268198,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    }
+  ],
+  "scope": "End-to-end implementation checks only."
+}
