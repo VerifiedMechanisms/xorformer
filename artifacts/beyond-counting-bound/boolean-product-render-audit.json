@@ -1,0 +1,22 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/boolean-product-base-locus.md",
+    "sha256": "eec48606094146f8d3b7a72c8dd1d9d40b2590bdd1db6cd085ac5c758cd722cd",
+    "source_spans": 87,
+    "rendered_math": 87,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:13:08.737254+00:00",
+    "gitlab": "not run; no configured authentication"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "sha256": "51152ca985dcd99b7887a85c83635828fa71b391a4c714574c396b7738e64326",
+    "source_spans": 88,
+    "rendered_math": 88,
+    "errors": [],
+    "notes": [],
+    "utc": "2026-11-22T22:13:09.145950+00:00",
+    "gitlab": "not run; no configured authentication"
+  }
+]

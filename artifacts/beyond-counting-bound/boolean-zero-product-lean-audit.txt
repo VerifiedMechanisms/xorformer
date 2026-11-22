@@ -1,0 +1,11 @@
+'HeadComplexity.BooleanZeroProduct.normalized_classification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanZeroProduct.nonzero_constant_needed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanZeroProduct.threeBitJacobian_det_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanZeroProduct.positive_factor_exchange_boolean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanZeroProduct.firstSlopes_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+EXIT 0

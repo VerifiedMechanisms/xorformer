@@ -31,6 +31,12 @@ The repository file `formalization/HeadComplexity/Results/CountingLowerBound.lea
 
 No theorem establishing the target has been proved at this checkpoint.
 
+## Boolean product base loci
+
+The [two-factor audit](boolean-product-base-locus.md) classifies every pair of nonzero affine forms whose product vanishes on the Boolean cube. The resulting ordered base locus has exactly $n(n+1)$ reduced points. On three bits, the product map has eight generic ordered complex factorizations. An explicit positive exchange identity gives $n+1$ distinct unordered positive factorizations in every dimension; on three bits, four regular positive branches persist on an open set. The classification and exchange identities are Lean checked in `BooleanZeroProduct.lean`, and an independent rational verifier checks the three-bit Jacobians and tables.
+
+These results invalidate an automatic division by head permutations in a proposed product-degree argument. They do not estimate the coordinate signs of the many-head tangent family. Recent matroid fiber and polar-degree formulas, together with hyperplane-covering results, were checked against this distinction. The required many-head sign bound remains a theorem-strength gap. No denominator exponent between one and two has been obtained.
+
 ## Fixed-dimensional positive reciprocal obstruction
 
 The [four-dimensional construction](positive-four-dimensional-shattering.md) turns the binary switching rectangle construction into strictly positive reciprocal heads. For $H=2^{r-1}$ it shatters $(r-1)H/2$ fixed positive rational points in four real dimensions, with margin greater than $1/4$, constant numerator one, and denominator constant one. A direct triangular recursion proves the required rectangle incidences. A geometric coordinate transformation then makes every head's value at least $4/5$ on an incidence and less than $1/(16H)$ otherwise. This independently disproves a linear parameter-count bound for positive real-input heads, even with fixed input dimension. It does not shatter a Boolean cube.
