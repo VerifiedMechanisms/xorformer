@@ -1,0 +1,15 @@
+'HeadComplexity.BlockDesignHall.uniform_union_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockDesignHall.contained_lines_weight_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFieldLines.card_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFieldLines.intersection_card_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFieldLines.line_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFieldLines.color_hall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFieldLines.exists_positive_multiaffine_tests_fin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteFieldLines.exists_108_tests_on_64_positive_parameters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteFieldLines.unbounded_multiaffine_tests_per_positive_parameter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

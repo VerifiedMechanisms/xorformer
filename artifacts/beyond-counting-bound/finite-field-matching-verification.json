@@ -1,26 +1,28 @@
 [
   {
     "q": 4,
-    "parameters": 64,
-    "directions": 21,
-    "distinct_planes": 84,
-    "plane_size": 16,
-    "maximum_pair_intersection": 4,
-    "repeated_maps": 21,
-    "shattered_tests": 42,
+    "parameters": 16,
+    "directions": 5,
+    "distinct_lines": 20,
+    "line_size": 4,
+    "maximum_pair_intersection": 1,
+    "repeated_maps": 10,
+    "shattered_tests": 20,
     "checked_matchings": 22,
+    "checked_small_sets": 50643,
     "exact_checks_passed": true
   },
   {
     "q": 8,
-    "parameters": 512,
-    "directions": 73,
-    "distinct_planes": 584,
-    "plane_size": 64,
-    "maximum_pair_intersection": 8,
-    "repeated_maps": 219,
-    "shattered_tests": 657,
+    "parameters": 64,
+    "directions": 9,
+    "distinct_lines": 72,
+    "line_size": 8,
+    "maximum_pair_intersection": 1,
+    "repeated_maps": 36,
+    "shattered_tests": 108,
     "checked_matchings": 22,
+    "checked_small_sets": 0,
     "exact_checks_passed": true
   }
 ]

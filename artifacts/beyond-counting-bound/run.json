@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T04:07:46.703422+00:00",
-  "elapsed_seconds_at_last_audit": 9598,
+  "last_audit_utc": "2026-11-22T04:53:10.642680+00:00",
+  "elapsed_seconds_at_last_audit": 12322,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -26,9 +26,18 @@
     "HeadComplexity.MultiaffinePermutation.decoder_eval_permutation",
     "HeadComplexity.MultiaffinePermutation.decoder_degreeOf_le_one",
     "HeadComplexity.MultiaffinePermutation.exists_color_representatives",
-    "HeadComplexity.MultiaffinePermutation.exists_positive_multiaffine_shattering"
+    "HeadComplexity.MultiaffinePermutation.exists_positive_multiaffine_shattering",
+    "HeadComplexity.BlockDesignHall.uniform_union_bound",
+    "HeadComplexity.BlockDesignHall.contained_lines_weight_bound",
+    "HeadComplexity.FiniteFieldLines.card_line",
+    "HeadComplexity.FiniteFieldLines.intersection_card_le_one",
+    "HeadComplexity.FiniteFieldLines.line_injective",
+    "HeadComplexity.FiniteFieldLines.color_hall",
+    "HeadComplexity.FiniteFieldLines.exists_positive_multiaffine_tests_fin",
+    "HeadComplexity.FiniteFieldLines.exists_108_tests_on_64_positive_parameters",
+    "HeadComplexity.FiniteFieldLines.unbounded_multiaffine_tests_per_positive_parameter"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, and multiaffine permutation interpolation and conditional shattering; no target asymptotic lower bound.",
+  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }

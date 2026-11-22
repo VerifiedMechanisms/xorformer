@@ -31,34 +31,46 @@ def check(q, modulus):
         assert table[table[a][b]][c] == table[a][table[b][c]]
         assert table[a][b ^ c] == table[a][b] ^ table[a][c]
 
-    points = list(itertools.product(range(q), repeat=3))
-    directions = [a for a in points if a != (0, 0, 0)
+    points = list(itertools.product(range(q), repeat=2))
+    directions = [a for a in points if a != (0, 0)
                   and next(t for t in a if t) == 1]
-    assert len(directions) == q*q + q + 1
+    assert len(directions) == q + 1
     partitions = []
-    planes = []
+    lines = []
     for a in directions:
         fibers = [[] for _ in range(q)]
         for index, point in enumerate(points):
-            color = table[a[0]][point[0]] ^ table[a[1]][point[1]] ^ table[a[2]][point[2]]
+            color = table[a[0]][point[0]] ^ table[a[1]][point[1]]
             fibers[color].append(index)
-        assert all(len(fiber) == q*q for fiber in fibers)
+        assert all(len(fiber) == q for fiber in fibers)
         partitions.append(fibers)
-        planes.extend(sum(1 << point for point in fiber) for fiber in fibers)
-    assert len(set(planes)) == len(planes)
+        lines.extend(sum(1 << point for point in fiber) for fiber in fibers)
+    assert len(set(lines)) == len(lines)
     maximum_intersection = 0
-    for i, a in enumerate(planes):
-        for b in planes[:i]:
+    for i, a in enumerate(lines):
+        for b in lines[:i]:
             size = (a & b).bit_count()
-            assert size <= q
+            assert size <= 1
             maximum_intersection = max(maximum_intersection, size)
 
-    repetitions = q//2 - 1
+    repetitions = q//2
     maps = [part for part in partitions for _ in range(repetitions)]
     p, m = len(points), len(maps)
-    assert 2*m < p
-    assert 2*((q+1)*q*q - (q+1)*q//2*q) > p
-    assert repetitions*q < q*q
+    assert m <= p
+    assert (q+1)*q - (q+1)*q//2 == m
+    assert all(k*q - k*(k-1)//2 >= k*repetitions for k in range(q+1))
+    checked_small_sets = 0
+    if q == 4:
+        partition_masks = [[sum(1 << point for point in fiber) for fiber in part]
+                           for part in partitions]
+        for subset in range(1 << p):
+            size = subset.bit_count()
+            if size >= m:
+                continue
+            bad = repetitions*sum(any(line & subset == line for line in part)
+                                  for part in partition_masks)
+            assert bad <= size
+            checked_small_sets += 1
 
     rng = random.Random(281828 + q)
     assignments = [[0]*m, [q-1]*m]
@@ -88,10 +100,11 @@ def check(q, modulus):
         assert sorted(permutation) == list(range(p))
 
     return dict(q=q, parameters=p, directions=len(directions),
-                distinct_planes=len(planes), plane_size=q*q,
+                distinct_lines=len(lines), line_size=q,
                 maximum_pair_intersection=maximum_intersection,
                 repeated_maps=m, shattered_tests=m*(q.bit_length()-1),
-                checked_matchings=len(assignments), exact_checks_passed=True)
+                checked_matchings=len(assignments), checked_small_sets=checked_small_sets,
+                exact_checks_passed=True)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,11 @@
+import HeadComplexity.Results.FiniteFieldLines
+
+#print axioms HeadComplexity.BlockDesignHall.uniform_union_bound
+#print axioms HeadComplexity.BlockDesignHall.contained_lines_weight_bound
+#print axioms HeadComplexity.FiniteFieldLines.card_line
+#print axioms HeadComplexity.FiniteFieldLines.intersection_card_le_one
+#print axioms HeadComplexity.FiniteFieldLines.line_injective
+#print axioms HeadComplexity.FiniteFieldLines.color_hall
+#print axioms HeadComplexity.FiniteFieldLines.exists_positive_multiaffine_tests_fin
+#print axioms HeadComplexity.FiniteFieldLines.exists_108_tests_on_64_positive_parameters
+#print axioms HeadComplexity.FiniteFieldLines.unbounded_multiaffine_tests_per_positive_parameter
