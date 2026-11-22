@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/polynomial-monotonicity-rigidity.md",
+  "sha256": "49595e20a766bb58c3f1b15d5ddb45a4cb8ffba85d595088a967f4642640d5c9",
+  "utc": "2026-11-22T23:46:46.001039+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 120,
+  "notes": []
+}
