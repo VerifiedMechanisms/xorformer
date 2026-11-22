@@ -1,0 +1,3 @@
+'HeadComplexity.QuadraticCharacterTransfer.eight_character_tests_shattered' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

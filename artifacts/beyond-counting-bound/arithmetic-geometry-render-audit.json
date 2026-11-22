@@ -1,0 +1,22 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/quadratic-character-transfer-audit.md",
+    "sha256": "ac0f0889c2836905cf317b4fae22f15490ac146217f670867c95cf1ac89b3faa",
+    "math_spans": 31,
+    "github_rendered_math_spans": 31,
+    "errors": [],
+    "notes": [],
+    "checked_utc": "2026-11-22T17:05:01.421857+00:00",
+    "gitlab": "not checked: no configured authentication"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/hadamard-tangent-audit.md",
+    "sha256": "62958f68fe034c179d3f92c4fc783923db44f324a0bb06241b85c9d44961c56f",
+    "math_spans": 25,
+    "github_rendered_math_spans": 25,
+    "errors": [],
+    "notes": [],
+    "checked_utc": "2026-11-22T17:05:01.377477+00:00",
+    "gitlab": "not checked: no configured authentication"
+  }
+]
