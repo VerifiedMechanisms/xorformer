@@ -1,0 +1,4 @@
+import HeadComplexity.Atoms.ReciprocalOscillation
+
+#print axioms HeadComplexity.exists_reciprocal_prescribed_roots_identity
+#print axioms HeadComplexity.exists_reciprocal_prescribed_positive_zeros
