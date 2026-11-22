@@ -26,9 +26,14 @@ class StageEnd(Exception):
     pass
 
 
-def residual_fit(yq, base, tolerance=1e-9):
+def residual_fit(yq, base, tolerance=1e-9, deadline=None):
     """Fit a score increment; base is 1 minus the current signed score."""
+    # An absolute sub-nanoscopic gradient target is inappropriate when the
+    # residual coordinates contain a large cancelling frozen contribution.
+    tolerance = max(tolerance, 128*np.finfo(float).eps*la.norm(base))
     def objective(z):
+        if deadline is not None and time.monotonic() >= deadline:
+            raise StageEnd
         residual = np.maximum(base-yq@z, 0.)
         return .5*residual@residual, -yq.T@residual
     z = np.zeros(yq.shape[1])
@@ -53,10 +58,10 @@ def residual_fit(yq, base, tolerance=1e-9):
             alpha *= .5
         z += alpha*direction
     value, gradient = objective(z)
-    if np.max(np.abs(gradient)) > 1e-8:
+    if np.max(np.abs(gradient)) > max(1e-8,tolerance):
         polished = opt.minimize(objective, z, jac=True, method="L-BFGS-B",
                                options={"maxiter":10000,"maxls":50,
-                                        "ftol":1e-15,"gtol":1e-10,"maxcor":60})
+                                        "ftol":1e-15,"gtol":tolerance,"maxcor":60})
         z = polished.x
         value, gradient = objective(z)
     return opt.OptimizeResult(x=z, fun=value, jac=gradient, nit=iteration+1)
@@ -93,7 +98,8 @@ class Stage:
         q, r = la.qr(matrix, mode="economic", check_finite=False)
         base_score = fixed_gradient(self.x, self.labels, logs, separation,
                                     self.previous, self.offset)[1]
-        fit = residual_fit(self.labels[:,None]*q, 1-self.labels*base_score)
+        fit = residual_fit(self.labels[:,None]*q, 1-self.labels*base_score,
+                           deadline=self.deadline)
         coefficient = self.previous+la.solve_triangular(r, fit.x, check_finite=False)
         loss, score, gradient = fixed_gradient(self.x, self.labels, logs, separation,
                                                coefficient, self.offset)

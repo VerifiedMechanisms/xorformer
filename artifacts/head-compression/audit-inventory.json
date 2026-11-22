@@ -479,15 +479,23 @@
     "diagnostic": "diagnostics/shared-affine-prune-self-test.json",
     "large_run": "/out/head-compression/shared-affine-prune-n14",
     "mechanism": "Rank candidate deletions by lost score-space projection, refit all remaining numerators, then optionally optimize surviving denominators. Every accepted deletion requires an exact full-cube audit.",
-    "target_proved": false
+    "target_proved": false,
+    "initial_schedule_result": {
+      "final_heads": 336,
+      "accepted_deletions": 0,
+      "seconds": 2566.8755327798426,
+      "conclusion": "No lower bound follows. The 332-head candidate was retained for a longer refit."
+    },
+    "long_refit": "/out/head-compression/shared-affine-prune332-refit"
   },
   "head_dropout_continuation": {
     "script": "artifacts/head-compression/continue_head_dropout.py",
     "diagnostic": "diagnostics/head-dropout-self-test.json",
-    "large_run": "/out/head-compression/head-dropout-n14-h335",
+    "large_run": "/out/head-compression/head-dropout-scaled-n14-h335",
     "initial_certificate": "certificates/random-n14-shared-affine-h336.json",
     "unit": 270,
     "mechanism": "Fade a fixed head through a scalar offset while refitting the remaining numerators and denominators. The inner optimization uses score increments in QR coordinates. Every accepted stage is exactly audited. A positive frozen scale still counts the frozen head.",
-    "target_proved": false
+    "target_proved": false,
+    "initial_attempt": "Interrupted before its first objective evaluation completed. The refit now scales its gradient tolerance to floating-point residual size and checks its deadline inside the inner solver. Initial scale decrement reduced from 0.01 to 0.0001."
   }
 }
