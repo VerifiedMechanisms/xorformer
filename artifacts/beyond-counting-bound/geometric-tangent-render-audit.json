@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/homogeneous-geometric-tangents.md",
+  "sha256": "b20a3119fc5a80ca32d364307660e4fb83c493114919c7e9756f45f52f7c5d68",
+  "utc": "2026-11-22T23:04:58.317113+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 108,
+  "notes": []
+}

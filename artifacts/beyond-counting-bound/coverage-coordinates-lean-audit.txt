@@ -1,0 +1,7 @@
+'HeadComplexity.CoverageCoordinates.coverage_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoverageCoordinates.complemented_coverage_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoverageCoordinates.scale_identities' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+EXIT 0

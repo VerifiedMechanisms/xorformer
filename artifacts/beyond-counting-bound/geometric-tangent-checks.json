@@ -1,0 +1,231 @@
+{
+  "status": "PASS",
+  "arithmetic": "integer matrices and rational logarithm enclosures",
+  "inverse_entries_checked": 86368,
+  "matrix_checks": [
+    {
+      "n": 1,
+      "N": 2,
+      "inverse_entries_checked": 1,
+      "inverse_max_row_sum": 1,
+      "rho_bound": "1/512",
+      "epsilon_radius": "1/1024",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 2,
+      "N": 4,
+      "inverse_entries_checked": 9,
+      "inverse_max_row_sum": 3,
+      "rho_bound": "1/4096",
+      "epsilon_radius": "1/8192",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 3,
+      "N": 8,
+      "inverse_entries_checked": 49,
+      "inverse_max_row_sum": 7,
+      "rho_bound": "1/24576",
+      "epsilon_radius": "1/65536",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 4,
+      "N": 16,
+      "inverse_entries_checked": 225,
+      "inverse_max_row_sum": 15,
+      "rho_bound": "1/131072",
+      "epsilon_radius": "1/524288",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 5,
+      "N": 32,
+      "inverse_entries_checked": 961,
+      "inverse_max_row_sum": 31,
+      "rho_bound": "1/655360",
+      "epsilon_radius": "1/4194304",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 6,
+      "N": 64,
+      "inverse_entries_checked": 3969,
+      "inverse_max_row_sum": 63,
+      "rho_bound": "1/3145728",
+      "epsilon_radius": "1/33554432",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 7,
+      "N": 128,
+      "inverse_entries_checked": 16129,
+      "inverse_max_row_sum": 127,
+      "rho_bound": "1/14680064",
+      "epsilon_radius": "1/268435456",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    },
+    {
+      "n": 8,
+      "N": 256,
+      "inverse_entries_checked": 65025,
+      "inverse_max_row_sum": 255,
+      "rho_bound": "1/67108864",
+      "epsilon_radius": "1/2147483648",
+      "all_budget_checks": "PASS",
+      "entry_bound_checks": "PASS"
+    }
+  ],
+  "coefficient_checks": [
+    {
+      "n": 1,
+      "coefficients_checked": 1,
+      "minimum_lower_bound": "1/32",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 2,
+      "coefficients_checked": 2,
+      "minimum_lower_bound": "1/128",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 3,
+      "coefficients_checked": 3,
+      "minimum_lower_bound": "1/512",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 4,
+      "coefficients_checked": 4,
+      "minimum_lower_bound": "1/2048",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 5,
+      "coefficients_checked": 5,
+      "minimum_lower_bound": "1/8192",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 6,
+      "coefficients_checked": 6,
+      "minimum_lower_bound": "1/32768",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 7,
+      "coefficients_checked": 7,
+      "minimum_lower_bound": "1/131072",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 8,
+      "coefficients_checked": 8,
+      "minimum_lower_bound": "1/524288",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 9,
+      "coefficients_checked": 9,
+      "minimum_lower_bound": "1/2097152",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 10,
+      "coefficients_checked": 10,
+      "minimum_lower_bound": "1/8388608",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 11,
+      "coefficients_checked": 11,
+      "minimum_lower_bound": "1/33554432",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 12,
+      "coefficients_checked": 12,
+      "minimum_lower_bound": "1/134217728",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 13,
+      "coefficients_checked": 13,
+      "minimum_lower_bound": "1/536870912",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 14,
+      "coefficients_checked": 14,
+      "minimum_lower_bound": "1/2147483648",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 15,
+      "coefficients_checked": 15,
+      "minimum_lower_bound": "1/8589934592",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 16,
+      "coefficients_checked": 16,
+      "minimum_lower_bound": "1/34359738368",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 17,
+      "coefficients_checked": 17,
+      "minimum_lower_bound": "1/137438953472",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 18,
+      "coefficients_checked": 18,
+      "minimum_lower_bound": "1/549755813888",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 19,
+      "coefficients_checked": 19,
+      "minimum_lower_bound": "1/2199023255552",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    },
+    {
+      "n": 20,
+      "coefficients_checked": 20,
+      "minimum_lower_bound": "1/8796093022208",
+      "positive_integral_lower_bound": "PASS",
+      "coverage_total": "PASS"
+    }
+  ],
+  "head_complexity_conclusion": null,
+  "scope": "finite ingredient checks; general theorem is the written proof"
+}
