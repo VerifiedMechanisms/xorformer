@@ -1,0 +1,16 @@
+{
+  "status": "VERIFIED",
+  "n": 5,
+  "heads": 2,
+  "matched_vertices": 21,
+  "contraction_below": "1/2",
+  "displacement_plus_contraction_radius_below_radius": true,
+  "source_inverse_error_below": "1/2",
+  "all_slopes_strictly_positive": true,
+  "heldout_separation_exceeds": "1/10",
+  "heldout_vertices": [
+    4,
+    8
+  ],
+  "arithmetic": "exact fractions; no floating point in verification"
+}
