@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-22T19:05:57.284529+00:00",
+  "file": "artifacts/beyond-counting-bound/permutation-fiber-shattering.md",
+  "sha256": "986d54443827a7098e72d0c2b2412c9d250651974fff67e280dff90da7fe6b60",
+  "source_math_spans": 73,
+  "github_math_nodes": 73,
+  "errors": [],
+  "katex": "passed separately",
+  "gitlab": "not run; no configured GitLab authentication"
+}
