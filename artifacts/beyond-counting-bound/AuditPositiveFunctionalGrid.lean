@@ -1,0 +1,6 @@
+import HeadComplexity.Atoms.PositiveFunctionalGrid
+
+#print axioms HeadComplexity.PositiveFunctionalGrid.exists_nonnegative_reciprocal_with_zeros
+#print axioms HeadComplexity.PositiveFunctionalGrid.sum_reciprocal_zero_iff
+#print axioms HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_equiv
+#print axioms HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_card

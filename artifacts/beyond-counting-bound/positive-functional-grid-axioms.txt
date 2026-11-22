@@ -1,0 +1,12 @@
+'HeadComplexity.PositiveFunctionalGrid.exists_nonnegative_reciprocal_with_zeros' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveFunctionalGrid.sum_reciprocal_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_equiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveFunctionalGrid.exists_positive_zero_grid_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

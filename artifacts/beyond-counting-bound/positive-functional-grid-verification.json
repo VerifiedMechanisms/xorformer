@@ -1,0 +1,27 @@
+{
+  "q": 3,
+  "address_bits": 3,
+  "selector_bits": 3,
+  "input_bits": 6,
+  "heads": 2,
+  "grid_points": 729,
+  "head_permutation_orbits": 378,
+  "residues": [
+    "4/5",
+    "-30",
+    "300",
+    "-1225",
+    "2352",
+    "-10584/5",
+    "720"
+  ],
+  "second_derivatives_at_roots": [
+    "1/5040",
+    "1/90720",
+    "1/75600"
+  ],
+  "polynomial_identity": "PASS",
+  "full_grid_functional_identity": "PASS",
+  "boolean_pattern": "constant true",
+  "scope": "Auxiliary linear-section obstruction, not a lower bound on W(n)."
+}
