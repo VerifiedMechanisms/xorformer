@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/confluent-positive-face0-n13-h146-resumed/compact-certificate.json",
+  "input_sha256": "14c3802ddb7c49a92e2eb0247b88cfc694a0a54b8e1d53c9939a34707eaa92a0",
+  "n": 13,
+  "heads": 146,
+  "vertices_checked": 8192,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 8192,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    19653330397730405201625599932869317046937260895177108705771202134167,
+    19653330397730405201625599932869317046937260895177108705771202134314
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 0.7289825399275368,
+  "all_target_signs_certified": true,
+  "seconds": 0.4796019340865314,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}

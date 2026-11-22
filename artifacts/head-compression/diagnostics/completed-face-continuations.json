@@ -1,0 +1,127 @@
+{
+  "stable-positive-face0-scaled": {
+    "n": 13,
+    "units": 73,
+    "lifted_heads": 146,
+    "seconds": 8384.755229999078,
+    "termination": "budget or stop file",
+    "best_loss": 0.039584591243413986,
+    "certificate": null,
+    "scaled_direction": true,
+    "scope": "Finite stable-pair search; no global or universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 104,
+      "seconds": 8384.707385224989,
+      "loss": 0.039584591243413986,
+      "errors": 173,
+      "minimum_margin": -2.197018730221316,
+      "inner_gradient": 1.9921349118934284e-10,
+      "direct_qr_score_discrepancy": 6.137997843325138e-07,
+      "outer_gradient_norm": 0.06164114056163086,
+      "scaled_direction": true,
+      "minimum_absolute_epsilon": 1.4577447257177294e-05
+    }
+  },
+  "stable-affine-positive-face0-n13-h147": {
+    "n": 13,
+    "units": 73,
+    "lifted_heads": 147,
+    "seconds": 6189.194229817018,
+    "termination": "budget or stop file",
+    "best_loss": 0.02175549125677389,
+    "certificate": null,
+    "scaled_direction": true,
+    "affine_correction_heads": 1,
+    "scope": "Finite stable-pair search; no global or universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 56,
+      "seconds": 6189.139079202898,
+      "loss": 0.02175549125677389,
+      "errors": 76,
+      "minimum_margin": -3.5000843465686557,
+      "inner_gradient": 9.48672163178163e-10,
+      "direct_qr_score_discrepancy": 2.057495294138789e-06,
+      "outer_gradient_norm": 0.380817903422031,
+      "scaled_direction": true,
+      "affine_correction_heads": 1,
+      "minimum_absolute_epsilon": 1.0639664655203775e-05
+    }
+  },
+  "shared-affine-prune292-resumed": {
+    "n": 14,
+    "units": 291,
+    "lifted_heads": 292,
+    "seconds": 30948.45268136915,
+    "termination": "budget or stop file",
+    "best_loss": 0.04670495218622324,
+    "certificate": null,
+    "scope": "Finite orientation-crossing search; no universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "positive_orientation_only": false,
+    "last_event": {
+      "evaluation": 111,
+      "seconds": 30944.709508926142,
+      "loss": 0.04799001422486604,
+      "errors": 340,
+      "minimum_margin": -4.431609891355038,
+      "inner_gradient": 7.420341497896971e-06,
+      "direct_qr_score_discrepancy": 0.0014661476016044617,
+      "outer_gradient_norm": 1011.7763301463672,
+      "negative_units": 142,
+      "minimum_absolute_separation": 1.3926626820795749
+    }
+  },
+  "shared-face1-n13-h147-resumed": {
+    "n": 13,
+    "units": 146,
+    "lifted_heads": 147,
+    "seconds": 24014.17922464502,
+    "termination": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "best_loss": 0.04019609903130653,
+    "certificate": null,
+    "scope": "Finite orientation-crossing search; no universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "positive_orientation_only": false,
+    "last_event": {
+      "evaluation": 645,
+      "seconds": 24014.172925671097,
+      "loss": 0.0405559644021099,
+      "errors": 143,
+      "minimum_margin": -4.204265058040619,
+      "inner_gradient": 4.341110642486212e-08,
+      "direct_qr_score_discrepancy": 0.0006101788021624088,
+      "outer_gradient_norm": 282.9836058549712,
+      "negative_units": 70,
+      "minimum_absolute_separation": 1.4275455063343565
+    }
+  },
+  "confluent-positive-face0-n13-h146-resumed": {
+    "n": 13,
+    "confluent_units": 73,
+    "lifted_heads": 146,
+    "seconds": 33718.500085423,
+    "termination": "certificate",
+    "best_loss": 4.2873111421564704e-05,
+    "certificate": "certificate.json",
+    "scope": "Finite adaptive confluent search; no global or universal theorem.",
+    "failure_is_not_a_lower_bound": true,
+    "last_event": {
+      "evaluation": 276,
+      "seconds": 33709.63293959899,
+      "loss": 4.2873111421564704e-05,
+      "errors": 0,
+      "minimum_margin": 0.7289825454354286,
+      "inner_gradient": 3.9286307473867686e-08,
+      "direct_qr_score_discrepancy": 1.1316966265439987e-05,
+      "outer_gradient_norm": 0.33794008500359574,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 4575897566444682088707822195173729454012018357704105725552,
+        "margin_denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "vertices_checked": 8192
+      }
+    }
+  }
+}

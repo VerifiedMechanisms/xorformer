@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/permutation-denominator-scores/n5-h6/certificate.json",
+  "input_sha256": "349ee1eef5f6427cc9a638c8d0b2706426b1b22a336fc7a412d9f0c91ac2bad0",
+  "n": 5,
+  "heads": 6,
+  "vertices_checked": 32,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 32,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    26959946667150639794667015087019630673637144422540572481103610249210,
+    26959946667150639794667015087019630673637144422540572481103610249217
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 1.0,
+  "all_target_signs_certified": true,
+  "seconds": 0.00014336802996695042,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}

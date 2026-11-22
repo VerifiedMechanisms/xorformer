@@ -658,7 +658,9 @@
     "family": "At every Boolean vertex the integer affine forms L_h=h+1+sum b_hi*x_i permute 1,...,H. Denominators B_h=(H+1)(1+sum x_i)+L_h have positive constant and variable coefficients. Numerators and bias are refitted to fixed labels on the entire cube.",
     "solver": "Quantifier-free mixed linear integer/real arithmetic, using finite branches for reciprocal values. Every SAT witness is exported and checked independently with both exact checkers.",
     "smoke": "diagnostics/permutation-denominator-smoke.json",
-    "scope": "A possible discrete alternative to full-box decoding, tested only on finite targets. No universal coverage theorem and no unrestricted infeasibility conclusion."
+    "scope": "A possible discrete alternative to full-box decoding, tested only on finite targets. No universal coverage theorem and no unrestricted infeasibility conclusion.",
+    "completed_results": "diagnostics/permutation-denominator-search-results.json",
+    "outcomes": "SAT and independently audited at (n,H)=(4,5),(5,6); timeout UNKNOWN at (6,8),(7,10),(8,16). No unrestricted infeasibility claim."
   },
   "private_repository_refresh_2026_11_22_1030": {
     "method": "Fetched all refs/heads into both existing bare mirrors.",
@@ -689,7 +691,7 @@
     "small_check": "diagnostics/anchored-affine-self-test.json",
     "upper_face_import": "diagnostics/anchored-face1-import.json",
     "upper_face_errors_unchanged": 142,
-    "scope": "Exact chart algebra and finite numerical checks only. No new target certificate.",
+    "scope": "Exact chart algebra, checked derivatives, and finite certificates only. No universal upper bound.",
     "lean_module_build": {
       "log": "/out/head-compression/lean-anchored-fraction-build.log",
       "jobs": 3137,
@@ -717,7 +719,7 @@
       "labels_equal_original_upper_face": true,
       "margin_lower_approximation": 0.8743363150286675,
       "seconds": 969.0096230769996,
-      "scope": "Only the upper face of one fourteen-bit target. Full target not yet represented by gluing."
+      "scope": "Upper face of one fourteen-bit target; subsequently combined with its 146-head positive lower face into a certified 293-head score."
     },
     "full292_import": "diagnostics/anchored-full292-import.json",
     "full_target_certificate": {
@@ -763,5 +765,42 @@
     "method": "Read-only explicit refs/heads fetch for both authorized run repositories.",
     "new_updates": false,
     "target_proof_found": false
-  }
+  },
+  "certified_original_faces_and_gluing": {
+    "records": [
+      {
+        "file": "random-n14-lower-face-n13-confluent-h146.json",
+        "sha256": "14c3802ddb7c49a92e2eb0247b88cfc694a0a54b8e1d53c9939a34707eaa92a0",
+        "verifier": "../audit_rational_score.py",
+        "audit": "../diagnostics/random-n14-lower-face-n13-confluent-h146-exact-audit.json",
+        "scope": "Original lower face of the fixed fourteen-bit target; 8192 vertices, all-positive denominator slopes.",
+        "heads": 146,
+        "vertices": 8192
+      },
+      {
+        "file": "random-n14-upper-face-n13-anchored-h147-compact.json",
+        "sha256": "8f21817c18a5ad4ba701055d028804169a0e8004acfd82e6f60fd1e6d7af5eb1",
+        "verifier": "../audit_rational_score.py",
+        "audit": "../diagnostics/random-n14-upper-face-n13-anchored-h147-compact-exact-audit.json",
+        "scope": "Original upper face of the fixed fourteen-bit target; compact version, 8192 vertices.",
+        "heads": 147,
+        "vertices": 8192
+      },
+      {
+        "file": "random-n14-glued-h293.json",
+        "sha256": "fda8dae6976f7db698953600c4cd9f04176da4969933eb2839ae5f7178301b4b",
+        "verifier": "../audit_rational_score.py",
+        "audit": "../diagnostics/random-n14-glued-h293-exact-audit.json",
+        "scope": "All 16384 original labels of one fourteen-bit target, glued from its certified faces. No universal bound.",
+        "heads": 293,
+        "vertices": 16384
+      }
+    ],
+    "labels_checked_against": "certificates/random-n14-anchored-h292.json",
+    "glue_heads": 293,
+    "best_existing_full_target_heads": 292,
+    "target_proved": false,
+    "notes": "Both input faces and the glued score passed independent integer audits. Compact input certificates are retained so the gluing can be reproduced."
+  },
+  "completed_face_continuations": "diagnostics/completed-face-continuations.json"
 }

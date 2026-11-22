@@ -6688,8 +6688,8 @@ The certificate is
 \texttt{random-n14-upper-face-n13-anchored-h147.json}, with SHA-256
 \texttt{384b173aee0b2c08237109a494815b0d98deaf10610870a35972560817e800ed}.
 Its label list is exactly the upper half of the original fourteen-bit
-label list. This result by itself does not reduce the full-target head
-count, because the lower-face continuation still needs a strict score.
+label list. The later lower-face certificate and the resulting gluing
+are recorded below.
 
 The stable-pair search also permits one explicitly charged shared
 linear correction. Its cost is $2M+1$, with the additional affine term
@@ -6736,5 +6736,34 @@ certifies a minimum margin greater than $0.999999$. The file is
 The compression script is \texttt{compress\_rational\_certificate.py}.
 No universal precision bound or universal head bound is inferred from
 this finite rounding result.
+
+\section{Certified original faces and their 293-head gluing}
+
+The positive confluent continuation subsequently certified the original
+lower thirteen-bit face with $146$ ordinary heads, after approximately
+$33719$ seconds of the resumed run. Every denominator slope is strictly
+positive. The independent checker verifies all $8192$ original labels
+and a strict margin exceeding $0.7289$. The compact certificate is
+\texttt{random-n14-lower-face-n13-confluent-h146.json}.
+
+Applying the previously proved positive-lower-face gluing construction
+to that certificate and the certified $147$-head upper face gives
+$293$ heads for all $16384$ original labels. The label lists were
+compared exactly against the separate $292$-head full-target certificate.
+Independent integer audits validate both the original glued score and
+its dyadic compression. The compact file is
+\texttt{random-n14-glued-h293.json}, with SHA-256
+\texttt{fda8dae6976f7db698953600c4cd9f04176da4969933eb2839ae5f7178301b4b}.
+It has $732{,}076$ bytes and uses $208$ fractional bits in the
+per-head normalization. This checks the gluing at a nontrivial scale;
+it does not improve the separate $292$-head certificate and proves
+no universal family-existence statement.
+
+The discrete affine-permutation search has also finished its five
+specified cases. It returned independently audited witnesses for
+$(n,H)=(4,5),(5,6)$ and timeout status \texttt{UNKNOWN} for
+$(6,8),(7,10),(8,16)$. The latter outcomes are not infeasibility results.
+The full numerical outcomes and both exact audits of each witness are
+retained in the diagnostics directory.
 
 \end{document}

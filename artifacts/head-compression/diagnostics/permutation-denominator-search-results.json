@@ -1,0 +1,63 @@
+[
+  {
+    "n": 4,
+    "heads": 5,
+    "seed": 2026112204,
+    "status": "sat",
+    "seconds": 0.07536764605902135,
+    "scope": "One fixed full-cube target in the affine permutation family.",
+    "unrestricted_lower_bound": false,
+    "target_proved": false,
+    "certificate": "certificate.json",
+    "all_vertices_permutation_checked": true,
+    "exact_signs_checked": true,
+    "certificate_sha256": "f988cd0dc81607604dcf276906f497a29c06cf0342ee87adcdee8133180adc38"
+  },
+  {
+    "n": 5,
+    "heads": 6,
+    "seed": 2026112205,
+    "status": "sat",
+    "seconds": 34.92934787995182,
+    "scope": "One fixed full-cube target in the affine permutation family.",
+    "unrestricted_lower_bound": false,
+    "target_proved": false,
+    "certificate": "certificate.json",
+    "all_vertices_permutation_checked": true,
+    "exact_signs_checked": true,
+    "certificate_sha256": "349ee1eef5f6427cc9a638c8d0b2706426b1b22a336fc7a412d9f0c91ac2bad0"
+  },
+  {
+    "n": 6,
+    "heads": 8,
+    "seed": 2026112206,
+    "status": "unknown",
+    "seconds": 3600.6726682919543,
+    "scope": "One fixed full-cube target in the affine permutation family.",
+    "unrestricted_lower_bound": false,
+    "target_proved": false,
+    "reason_unknown": "timeout"
+  },
+  {
+    "n": 7,
+    "heads": 10,
+    "seed": 2026112207,
+    "status": "unknown",
+    "seconds": 7283.296754712006,
+    "scope": "One fixed full-cube target in the affine permutation family.",
+    "unrestricted_lower_bound": false,
+    "target_proved": false,
+    "reason_unknown": "timeout"
+  },
+  {
+    "n": 8,
+    "heads": 16,
+    "seed": 2026112208,
+    "status": "unknown",
+    "seconds": 10811.437372031156,
+    "scope": "One fixed full-cube target in the affine permutation family.",
+    "unrestricted_lower_bound": false,
+    "target_proved": false,
+    "reason_unknown": "timeout"
+  }
+]

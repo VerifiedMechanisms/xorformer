@@ -1,0 +1,10 @@
+{
+  "file": "/out/head-compression/permutation-denominator-scores/n5-h6/certificate.json",
+  "sha256": "349ee1eef5f6427cc9a638c8d0b2706426b1b22a336fc7a412d9f0c91ac2bad0",
+  "n": 5,
+  "heads": 6,
+  "vertices_checked": 32,
+  "strict_signs_and_admissibility": true,
+  "margin_approximation": 1.0,
+  "scope": "This finite truth table only; not a universal bound."
+}

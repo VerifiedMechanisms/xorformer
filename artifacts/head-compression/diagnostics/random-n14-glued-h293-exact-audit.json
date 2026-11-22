@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/glued-original-n14-h293-compact.json",
+  "input_sha256": "fda8dae6976f7db698953600c4cd9f04176da4969933eb2839ae5f7178301b4b",
+  "n": 14,
+  "heads": 293,
+  "vertices_checked": 16384,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 16384,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    26959946667150639794486146629108972924503773408945669364831628334222,
+    26959946667150639794486146629108972924503773408945669364831628334516
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 1.0,
+  "all_target_signs_certified": true,
+  "seconds": 2.249581082025543,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}

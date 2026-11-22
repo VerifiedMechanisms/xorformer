@@ -96,6 +96,37 @@
       "verifier": "../audit_rational_score.py",
       "verifier_arguments": "--bits 224 --require-correct",
       "scope": "All 16384 original labels of the same fourteen-bit target. Dyadically compressed with a uniform error bound and independently audited again. No universal bound."
+    },
+    {
+      "file": "random-n14-lower-face-n13-confluent-h146.json",
+      "sha256": "14c3802ddb7c49a92e2eb0247b88cfc694a0a54b8e1d53c9939a34707eaa92a0",
+      "verifier": "../audit_rational_score.py",
+      "audit": "../diagnostics/random-n14-lower-face-n13-confluent-h146-exact-audit.json",
+      "scope": "Original lower face of the fixed fourteen-bit target; 8192 vertices, all-positive denominator slopes."
+    },
+    {
+      "file": "random-n14-upper-face-n13-anchored-h147-compact.json",
+      "sha256": "8f21817c18a5ad4ba701055d028804169a0e8004acfd82e6f60fd1e6d7af5eb1",
+      "verifier": "../audit_rational_score.py",
+      "audit": "../diagnostics/random-n14-upper-face-n13-anchored-h147-compact-exact-audit.json",
+      "scope": "Original upper face of the fixed fourteen-bit target; compact version, 8192 vertices."
+    },
+    {
+      "file": "random-n14-glued-h293.json",
+      "sha256": "fda8dae6976f7db698953600c4cd9f04176da4969933eb2839ae5f7178301b4b",
+      "verifier": "../audit_rational_score.py",
+      "audit": "../diagnostics/random-n14-glued-h293-exact-audit.json",
+      "scope": "All 16384 original labels of one fourteen-bit target, glued from its certified faces. No universal bound."
+    },
+    {
+      "file": "random-n4-permutation-h5.json",
+      "sha256": "f988cd0dc81607604dcf276906f497a29c06cf0342ee87adcdee8133180adc38",
+      "scope": "One fixed full-cube target in the affine permutation family; both exact checkers passed. No universal bound."
+    },
+    {
+      "file": "random-n5-permutation-h6.json",
+      "sha256": "349ee1eef5f6427cc9a638c8d0b2706426b1b22a336fc7a412d9f0c91ac2bad0",
+      "scope": "One fixed full-cube target in the affine permutation family; both exact checkers passed. No universal bound."
     }
   ],
   "optimization_audit_certificates": [
