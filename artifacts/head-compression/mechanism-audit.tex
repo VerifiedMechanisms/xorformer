@@ -6429,4 +6429,44 @@ checkers on all eight inputs, with two heads in the resulting score.
 This extension addresses denominator admissibility, not compression of
 arbitrary face labels.
 
+
+\section{Full coordinate dependence does not force many permutation poles}
+
+An attempted obstruction to coupled permutation encodings would require
+exponentially many poles whenever one affine row depends on all input
+coordinates. The following construction disproves that obstruction.
+For $x\in\{0,1\}^n$, define $n+1$ affine forms by
+\[
+ L_0(x)=\sum_{i=1}^n x_i,\qquad
+ L_k(x)=k(1-x_k)+\sum_{i=k+1}^n x_i\quad(1\le k\le n).
+\]
+Their values are a permutation of $0,1,\ldots,n$ at every vertex.
+Indeed the assertion holds at $n=0$. When the last bit is zero, the
+first $n$ values are the preceding permutation and the last value is
+$n$. When the last bit is one, the first $n$ values are the preceding
+permutation shifted by one and the last value is zero. Both lists are
+permutations of the required set. This proves the assertion by induction.
+In particular $L_0$ depends on every input coordinate although there
+are only $n+1$ rows.
+
+Adding the common affine form
+\[
+ C(x)=(n+1)\left(1+\sum_{i=1}^n x_i\right)
+\]
+makes every denominator $C+L_k$ positive with strictly positive variable
+coefficients: the most negative coefficient of $L_k$ is $-k\ge-n$.
+Their multiset is $\{C,C+1,\ldots,C+n\}$. This is an admissible
+family with globally dependent rows, but no arbitrary-label decoder
+has been supplied. In fact its list is fixed independently of the
+labels, so its affine-numerator score space has dimension at most
+$1+n(n+1)$, below $2^n$ for $n\ge5$. The fixed-denominator sign
+obstruction therefore rules out universal classification by this one
+list. Its role is to reject a proposed structural shortcut, not to
+establish the requested head bound.
+
+The independent integer enumeration in
+\texttt{diagnostics/isospectral-cubes.json} verifies the solver's small
+examples at dimensions two through five. The displayed induction is
+separate from the solver and works in all dimensions.
+
 \end{document}

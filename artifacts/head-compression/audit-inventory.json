@@ -569,5 +569,17 @@
     "diagnostic": "diagnostics/constant-face-glue-self-test.json",
     "bound": "Replacing each constant B=b by b+epsilon*sum(x) changes the whole score by at most epsilon*K <= gamma/4, where K=sum n*sum(abs(a_i))/b^2. No extra heads.",
     "target_proved": false
+  },
+  "permutation_row_support_counterexample": {
+    "statement": "The n+1 affine forms L0=sum x_i and Lk=k(1-x_k)+sum_(i>k) x_i permute {0,...,n} on every Boolean input. L0 depends on every coordinate. A common positive affine shift makes all denominators admissible.",
+    "proof": "Induction by the final bit: append n, or shift every preceding value by one and append zero.",
+    "diagnostic": "diagnostics/isospectral-cubes.json",
+    "scope": "Refutes an exponential-pole inference from row support alone. The fixed family is not universal for n>=5.",
+    "target_proved": false
+  },
+  "private_repository_refresh_2026_11_22_0425_utc": {
+    "explicit_all_head_refspec": true,
+    "new_branches_or_commits": false,
+    "latest_autoresearch_commit_utc": "2026-11-21T06:16:49+00:00"
   }
 }
