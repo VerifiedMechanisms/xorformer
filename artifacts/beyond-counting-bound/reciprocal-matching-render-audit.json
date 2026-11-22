@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-22T20:35:50.497067+00:00",
+  "results": [
+    {
+      "file": "artifacts/beyond-counting-bound/reciprocal-matching-shattering.md",
+      "sha256": "3f84c6d49790a86cdeed8b20d5570901b5dc156f60fad8fbd50989aa06be8652",
+      "math_spans": 96,
+      "errors": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "sha256": "dff26de2ab866c714b491e65b070affbad1b77ac8324ef90ec0f9e0031de852d",
+      "math_spans": 81,
+      "errors": [],
+      "notes": []
+    }
+  ]
+}

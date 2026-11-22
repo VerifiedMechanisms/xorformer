@@ -1,0 +1,11 @@
+'HeadComplexity.ReciprocalMatchingShattering.of_independent_choices' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ReciprocalMatchingShattering.finite_field_queries_fin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ReciprocalMatchingShattering.unbounded_tests_per_positive_parameter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+EXIT 0
