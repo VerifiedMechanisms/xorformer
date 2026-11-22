@@ -6275,4 +6275,24 @@ integer checker verify its three-head, 32-vertex score. Redundancy was
 part of that diagnostic construction. No theorem that an arbitrary
 strict representation can shed a head is asserted.
 
+
+\section{A certified reduction from 336 to 332 heads}
+
+Deleting four shared-chart units and then refitting the surviving units
+produces \texttt{certificates/random-n14-shared-affine-h332.json}, with
+SHA-256
+\texttt{92e4704413762fdea7144d760a74d06c712386fc779273acc93d00742325047c}.
+Its target labels are byte-identical to those of the 336-head certificate.
+A separate 224-bit integer-interval audit verifies all denominator
+conditions and all 16384 strict target signs. Its exact margin bound is
+\[
+ y_xS(x)\ge
+ \frac{26957212912099474708209193434011320698353461990317302761443283082636}
+ {2^{224}}>0.
+\]
+The initial short deletion schedule did not certify the candidate;
+the subsequent longer refit did. Consequently the failure of that
+short schedule is explicitly not an infeasibility certificate.
+The reduced score remains a result about this single truth table.
+
 \end{document}

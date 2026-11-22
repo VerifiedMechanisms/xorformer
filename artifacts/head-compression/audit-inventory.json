@@ -486,7 +486,16 @@
       "seconds": 2566.8755327798426,
       "conclusion": "No lower bound follows. The 332-head candidate was retained for a longer refit."
     },
-    "long_refit": "/out/head-compression/shared-affine-prune332-refit"
+    "long_refit": "/out/head-compression/shared-affine-prune332-refit",
+    "certified_332_heads": {
+      "certificate": "certificates/random-n14-shared-affine-h332.json",
+      "sha256": "92e4704413762fdea7144d760a74d06c712386fc779273acc93d00742325047c",
+      "audit": "diagnostics/random-n14-shared-affine-h332-exact-audit.json",
+      "original_labels_unchanged": true,
+      "scope": "One finite truth table only.",
+      "refit_seconds": 2297.3839009329677
+    },
+    "sixteen_unit_schedule": "/out/head-compression/shared-affine-prune16-n14"
   },
   "head_dropout_continuation": {
     "script": "artifacts/head-compression/continue_head_dropout.py",
@@ -497,5 +506,11 @@
     "mechanism": "Fade a fixed head through a scalar offset while refitting the remaining numerators and denominators. The inner optimization uses score increments in QR coordinates. Every accepted stage is exactly audited. A positive frozen scale still counts the frozen head.",
     "target_proved": false,
     "initial_attempt": "Interrupted before its first objective evaluation completed. The refit now scales its gradient tolerance to floating-point residual size and checks its deadline inside the inner solver. Initial scale decrement reduced from 0.01 to 0.0001."
+  },
+  "private_repository_refresh_2026_11_22_0016_utc": {
+    "autoresearch_latest": "ar/1dc3df1f7016, 2026-11-21 06:16:49 UTC",
+    "xorformer_runs_latest": "ar/1bfc2d7fde2f, 2026-11-05 11:26:38 UTC",
+    "fetch": "Explicit +refs/heads/*:refs/heads/* for both bare clones",
+    "newer_run_branches_found": false
   }
 }

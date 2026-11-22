@@ -68,6 +68,13 @@
       "sha256": "38bdc230b4197087b5a45eb39499055663e4e8c8db06c9567e5c69ad1965109a",
       "verifier": "../audit_rational_score.py CERTIFICATE --bits 224 --out REPORT --require-correct",
       "scope": "All 16384 original labels of this one fourteen-bit truth table. All 336 denominators satisfy the manuscript restriction; independent exact integer interval verification. No universal bound."
+    },
+    {
+      "file": "random-n14-shared-affine-h332.json",
+      "sha256": "92e4704413762fdea7144d760a74d06c712386fc779273acc93d00742325047c",
+      "verifier": "../audit_rational_score.py",
+      "verifier_arguments": "--bits 224 --require-correct",
+      "scope": "All 16384 original labels of the same fourteen-bit target as the 336-head example. Independent integer-interval verification, with all denominator conditions. No universal bound."
     }
   ],
   "optimization_audit_certificates": [

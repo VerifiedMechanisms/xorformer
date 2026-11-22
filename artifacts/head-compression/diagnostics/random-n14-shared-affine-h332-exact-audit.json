@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/shared-affine-prune332-refit/certificate.json",
+  "input_sha256": "92e4704413762fdea7144d760a74d06c712386fc779273acc93d00742325047c",
+  "n": 14,
+  "heads": 332,
+  "vertices_checked": 16384,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 16384,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    26957212912099474708209193434011320698353461990317302761443283082636,
+    26957212912099474708209193434011320698353461990317302761443283082969
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 0.9998985993894974,
+  "all_target_signs_certified": true,
+  "seconds": 8.446610865183175,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}
