@@ -6295,4 +6295,98 @@ the subsequent longer refit did. Consequently the failure of that
 short schedule is explicitly not an infeasibility certificate.
 The reduced score remains a result about this single truth table.
 
+
+\section{Permutation hashing gives storage, with a separate decoder cost}
+
+The following construction allows globally coupled scalar storage,
+without assigning one independent scalar to each block of target bits.
+It is not yet a construction of attention heads.
+
+\begin{proposition}[An affine hash with full finite coverage]
+Let $S\subseteq\mathbb F_2^d$ have cardinality $M$, and suppose
+$M>4^r$. There exist a linear map $L:\mathbb F_2^d\to\mathbb F_2^r$
+and $b\in\mathbb F_2^r$ such that $L(S)+b=\mathbb F_2^r$.
+\end{proposition}
+\begin{proof}
+Choose every entry of $L$ and $b$ independently and uniformly.
+For distinct $v,w$, the pair $(Lv+b,Lw+b)$ is uniform on
+$\mathbb F_2^r\times\mathbb F_2^r$: the difference is the image
+of the nonzero vector $v-w$, and the independent translation supplies
+an independent first value. For $z\in\mathbb F_2^r$, let
+$X_z=|\{v\in S:Lv+b=z\}|$. Pairwise independence gives
+\[
+ \mathbb E X_z=M2^{-r},\qquad
+ \operatorname{Var}(X_z)=M2^{-r}(1-2^{-r}).
+\]
+Chebyshev's inequality implies
+$\Pr(X_z=0)\le(2^r-1)/M$.
+Hence the expected number of uncovered values is at most
+$2^r(2^r-1)/M<1$. Since that number is a nonnegative integer,
+some hash covers every value.
+\end{proof}
+
+Take $S$ to be the $p!$ distinct inversion vectors of permutations
+of $p$ elements, with $d=\binom p2$. Whenever $p!>4^r$, the proposition
+encodes every $r$-bit word by one ordering of $p$ distinct real scalars
+$\theta_1,\ldots,\theta_p$. This is a concrete globally coupled
+encoding. Its direct polynomial decoders are
+\[
+ P_k(\theta)=(-1)^{b_k}
+       \prod_{\substack{i<j\\ L_{k,ij}=1}}(\theta_j-\theta_i),
+ \qquad 1\le k\le r.
+\]
+Indeed the negative factors are precisely the selected inversions.
+The coefficient or pole complexity of these decoders has not disappeared.
+
+For an explicit storage count, if $r\ge16$, take
+$p=2\lceil4r/\log_2 r\rceil$. Then $p\le8r/\log_2r+2$.
+The inequality $\log_2r\le\sqrt r$ holds for $r\ge16$: it is an
+equality at 16, and the derivative of $\sqrt r-\log_2r$ is
+nonnegative there and thereafter. Thus $p/2\ge4\sqrt r$ and
+\[
+ \log_2(p!)>\frac p2\log_2\frac p2
+ \ge\frac{4r}{\log_2r}\left(2+\tfrac12\log_2r\right)>2r.
+\]
+The strict factorial inequality follows by multiplying the last $p/2$
+factors. Hence $p!>4^r$, as required. With $r=2^n$, the storage
+uses at most $8\cdot2^n/n+2$ scalars. This count concerns storage,
+not a head count or the complexity of evaluating the decoders.
+
+\begin{proposition}[Degree required by a full order-parity decoder]
+Let $E$ be a set of distinct unordered pairs from $\{1,\ldots,p\}$.
+Suppose a nonzero real polynomial $Q(\theta)$ has the strict sign of
+$\prod_{\{i,j\}\in E,\ i<j}(\theta_j-\theta_i)$ whenever the
+coordinates of $\theta$ are distinct in an open box $I^p$, where
+$I$ is a nonempty open real interval. Then
+\[
+ \prod_{\{i,j\}\in E,\ i<j}(\theta_j-\theta_i)\mid Q,
+ \qquad \deg Q\ge |E|.
+\]
+\end{proposition}
+\begin{proof}
+Fix one selected pair. On a relatively open part of its equality
+hyperplane inside $I^p$, all other coordinates and all other selected
+pair differences can be kept distinct. Crossing that hyperplane changes
+exactly the selected factor's sign. Continuity and the strict sign
+hypothesis force $Q$ to vanish on this relatively open part. Restriction
+to the hyperplane is a polynomial vanishing on an open set, hence is
+identically zero. Its defining linear factor therefore divides $Q$.
+Distinct pair differences are nonassociate irreducible polynomials.
+Their product divides $Q$, proving the degree bound.
+\end{proof}
+
+In particular, consider a proposed decoder with $H$ affine fractions
+whose numerator, denominator, and bias coefficients depend affinely on
+$\theta$, and whose denominators are positive throughout $I^p$.
+At any fixed input, clearing denominators gives a numerator of degree
+at most $H+1$ in $\theta$. If it decodes the stated order parity on
+\emph{every} distinct-coordinate point of the box, the proposition
+requires $H+1\ge |E|$. A fixed bias improves this to $H\ge |E|$.
+The hash coverage theorem puts no bound of the required size on
+$|E|$. Decoding only specially selected order representatives, or using
+a nonlinear parameter assignment, is outside this obstruction; neither
+extension is supplied by the hash theorem. This route is therefore
+blocked at the decoder construction, not recorded as a proof of the
+universal head bound.
+
 \end{document}

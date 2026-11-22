@@ -512,5 +512,13 @@
     "xorformer_runs_latest": "ar/1bfc2d7fde2f, 2026-11-05 11:26:38 UTC",
     "fetch": "Explicit +refs/heads/*:refs/heads/* for both bare clones",
     "newer_run_branches_found": false
+  },
+  "permutation_hash_audit": {
+    "manual_propositions": "Full coverage by a random affine hash when |S|>4^r; degree at least |E| for a polynomial decoding the parity of E comparisons on every strict ordering in an open box.",
+    "explicit_storage_bound": "At most 8*r/log2(r)+2 ordered scalars for r>=16, using p=2*ceil(4*r/log2(r)).",
+    "diagnostic": "diagnostics/permutation-hash-self-test.json",
+    "diagnostic_scope": "All 720 permutations of six elements: all 16 four-bit words covered, with direct polynomial decoder degrees 6, 5, 8, 9.",
+    "blocked_at": "The direct hash decoder is a product of pair comparisons. For affine parameter assignments to H positive-denominator heads, its full-box implementation needs H+1 >= the number of selected comparisons. Special representatives or nonlinear parameter assignments require a new construction.",
+    "target_proved": false
   }
 }
