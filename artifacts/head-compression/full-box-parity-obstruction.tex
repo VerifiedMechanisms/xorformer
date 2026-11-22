@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{A pole obstruction to parity decoders on an open box}
+\author{}
+\date{November 22, 2026}
+\begin{document}
+\maketitle
+
+This note concerns a proposed decoder in its real parameter variables.
+It is not a lower bound for Boolean head complexity: its sign requirement
+holds throughout an open box, not just at Boolean vertices or at one
+chosen representative of each permutation. No proof of the requested
+universal upper bound is claimed here.
+
+\begin{lemma}[Edges along coordinate fibers]
+Let $T$ be a finite nonempty subset of $\mathbb R^r$, with $N=|T|$.
+In each line parallel to a coordinate axis, join consecutive points of
+$T$ on that line. The resulting simple graph has at most
+$N\log_2 N/2$ edges. A vertex having another point of $T$ in each of
+$d$ distinct coordinate directions has degree at least $d$.
+\end{lemma}
+\begin{proof}
+The degree assertion follows by taking a neighbor in each of the stated
+fibers. These neighbors are distinct. For the edge bound, induct on $N$.
+For $N=1$ it is immediate. Otherwise some coordinate is nonconstant on
+$T$. Cut between two consecutive values of this coordinate, partitioning
+$T$ into nonempty sets of sizes $a,b$. Edges crossing the cut form a
+matching: only edges in the cut direction can cross, and each fiber
+has at most one such edge. There are therefore at most $\min(a,b)$
+crossing edges. Within each part the edges are precisely those of its
+own consecutive-point graph. Induction gives
+\[
+ |E(T)|\le\frac{a\log_2a+b\log_2b}{2}+\min(a,b).
+\]
+For $p=a/(a+b)$, the binary entropy
+$h(p)=-p\log_2p-(1-p)\log_2(1-p)$ satisfies
+$h(p)\ge2\min(p,1-p)$. This follows from concavity on $[0,1/2]$
+with endpoint values $0,1$, followed by symmetry. Substitution gives
+the required upper bound.
+\end{proof}
+
+\begin{theorem}[An exponential obstruction for continuous parity]
+Let $r\ge2$ and let $U$ be an open box containing the origin in
+$\mathbb R^r$. Suppose
+\[
+ S(z)=P_0(z)+\sum_{h=1}^H\frac{A_h(z)}{B_h(z)},
+\]
+where $P_0$ and all $A_h,B_h$ are real affine forms and every $B_h$ is positive
+on $U$. Suppose that, whenever every coordinate of $z\in U$ is nonzero,
+\[
+ \operatorname{sign}S(z)=\operatorname{sign}\prod_{i=1}^r z_i.
+\]
+Then $H\ge2^{r-2}$. More precisely, after the reductions in the proof,
+the number $K$ of distinct nonconstant genuine poles satisfies
+\[
+ K\ge r-1,\qquad K(r-1)\le(K+1)\log_2(K+1).
+\]
+\end{theorem}
+\begin{proof}
+Normalize every denominator to have constant term one, which is possible
+because $B_h(0)>0$. Combine equal normalized denominators. Absorb
+constant-denominator terms into an affine polynomial $P$, and absorb any
+numerator proportional to its denominator into the constant part of $P$.
+After deleting zero terms, write
+\[
+ S=P+\sum_{h=1}^K\frac{A_h}{1+b_h\cdot z}.
+\]
+Here the $b_h$ are distinct and nonzero, and $A_h$ is not a scalar
+multiple of $1+b_h\cdot z$. We have $K\le H$.
+
+Continuity and the two opposite signs on the sides of each coordinate
+hyperplane imply $S=0$ on a relatively open part of that hyperplane.
+Clearing denominators turns this into a polynomial identity on the
+whole hyperplane. The cleared numerator is a nonzero polynomial of
+degree at most $K+1$. Each coordinate variable divides it, and the
+variables are distinct prime factors. Thus their product divides it,
+so $K+1\ge r$. In particular $K\ge1$.
+
+Put $T=\{0,b_1,\ldots,b_K\}$. Fix $h$ and a coordinate $i$ for which
+there is no other point of $T$ differing from $b_h$ only in coordinate
+$i$. The restriction of $1+b_h\cdot z$ to $z_i=0$ is nonconstant;
+otherwise $b_h$ and $0$ would be such neighbors. This restriction is
+also different from every other normalized restricted denominator;
+equality would give the forbidden neighbor $b_j$.
+
+In the polynomial ring of the remaining $r-1$ variables, this
+nonconstant affine denominator is irreducible and prime. In the cleared
+identity $S|_{z_i=0}=0$, every summand except the $h$th is divisible by
+it. None of the other denominator factors is divisible by it, since
+all have constant term one and none is equal to it. Consequently it
+divides $A_h|_{z_i=0}$. Since this numerator is affine, there are scalars
+$\lambda_i,\mu_i$ with
+\[
+ A_h(z)=\lambda_i(1+b_h\cdot z)+\mu_i z_i.
+\]
+The same conclusion for a different coordinate $j$ gives
+$\lambda_j=\lambda_i=A_h(0)$ by evaluating at zero, and then
+$\mu_i z_i=\mu_j z_j$ as polynomial identities. Since $i\ne j$, both
+coefficients vanish. This would make $A_h$ proportional to its
+denominator, contrary to the reduction. Thus each $b_h$ can lack a
+neighbor in at most one coordinate direction.
+
+Apply the preceding graph lemma to $T$. Each of its $K$ nonzero vertices
+has degree at least $r-1$; no degree condition is imposed on the extra
+vertex $0$. The degree sum and edge bound give
+\[
+ K(r-1)\le2|E(T)|\le(K+1)\log_2(K+1).
+\]
+Set $N=K+1$. We already proved $N\ge r$. Therefore
+\[
+ \log_2N\ge\frac{N-1}{N}(r-1)
+ \ge\frac{(r-1)^2}{r}=r-2+\frac1r>r-2.
+\]
+Since $N$ is an integer and $2^{r-2}$ is an integer, this implies
+$K=N-1\ge2^{r-2}$ and hence the asserted bound on $H$.
+\end{proof}
+
+\begin{proposition}[A construction within a factor two]
+On any sufficiently small box about zero, continuous parity in $r$
+variables has a representation by $2^{r-1}$ positive affine fractions.
+\end{proposition}
+\begin{proof}
+Choose $t>0$ and a box on which $t\sum_{i<r}|z_i|<1$. Set
+\[
+ S(z)=z_r\sum_{\epsilon\in\{-1,1\}^{r-1}}
+       \frac{\prod_{i<r}\epsilon_i}
+       {1-t\sum_{i<r}\epsilon_i z_i}.
+\]
+All denominators are positive. Using the convergent Laplace integral for
+each reciprocal and summing the finitely many terms gives
+\[
+ S(z)=z_r\int_0^\infty e^{-s}
+                \prod_{i<r}2\sinh(stz_i)\,ds.
+\]
+When all coordinates are nonzero, the integrand for $s>0$ has the
+constant strict sign $\prod_{i<r}z_i$. The integral converges, since the
+exponential growth rate of the product is less than one. Its product
+with $z_r$ has exactly the required strict sign.
+\end{proof}
+
+\begin{corollary}[Order parity and matchings]
+Let $E$ be a set of pairs of $p$ indices with a matching of size $m\ge2$.
+Suppose a decoder formed from $H$ affine fractions in
+$\theta\in I^p$, with all denominators positive on this open box, has
+the sign of
+\[
+ \prod_{\{i,j\}\in E,\ i<j}(\theta_j-\theta_i)
+\]
+whenever the coordinates are distinct. Then $H\ge2^{m-2}$.
+\end{corollary}
+\begin{proof}
+Assign a distinct center in $I$ to each matched pair and to every
+unmatched index. For the two indices in the $k$th matched pair use
+$\theta_i=c_k-z_k/2$ and $\theta_j=c_k+z_k/2$, in their increasing index
+order. On a sufficiently small box in $z$, all factors outside the
+matching stay nonzero with constant signs, and the matched factors are
+exactly $z_1,\ldots,z_m$. All coordinates of $\theta$ are distinct
+whenever the $z_k$ are nonzero. Restriction of the decoder gives affine
+numerators and positive affine denominators on this small box. Multiply
+its score by the fixed sign of the other factors and apply the theorem.
+\end{proof}
+
+\paragraph{Scope of the obstruction.}
+The order-parity decoder must work on every distinct-coordinate point
+of the open box, and its coefficients must depend affinely on the
+stored scalars so that restriction still gives affine forms. A decoder
+that works only at specially chosen representatives of the permutation
+orders, or assigns its head parameters nonlinearly from the stored
+scalars, is outside this result. The bound therefore blocks the stated
+continuous decoder construction, not the full conjecture about $W(n)$.
+
+\end{document}

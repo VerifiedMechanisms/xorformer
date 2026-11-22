@@ -6511,4 +6511,23 @@ check with the larger test penalty $0.03$ gives refitted gradient error
 below $1.9\cdot10^{-11}$. This penalty changes the search objective only;
 it does not change denominator admissibility or the exact sign audit.
 
+
+\section{An exponential obstruction for continuous order-parity decoding}
+
+The separate note \texttt{full-box-parity-obstruction.tex} strengthens
+the earlier polynomial-degree audit for decoders required to work
+throughout an open box of stored real parameters. A free affine term
+plus $H$ positive affine fractions having the strict sign of
+$z_1\cdots z_r$ on that box requires $H\ge2^{r-2}$. The proof uses
+pole cancellation on the coordinate hyperplanes and an explicit graph
+on normalized denominator coefficients. It includes a construction with
+$2^{r-1}$ fractions and handles repeated and constant denominators.
+
+As a consequence, an order-parity decoder for a comparison graph with
+a matching of size $m$ requires at least $2^{m-2}$ heads under the
+stated open-box and affine-parameter hypotheses. This is a materially
+new obstruction to that decoder mechanism. It does not cover specially
+chosen order representatives or nonlinear assignments of head parameters,
+and supplies no lower or upper bound for the full Boolean-cube problem.
+
 \end{document}

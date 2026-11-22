@@ -705,6 +705,15 @@
       "checked_location": "Theorem 4.1, Lemmas 4.2-4.7, Theorem 4.8 and its encoder-decoder proof; Theorem 5.1",
       "mechanism": "Iterates of a quadratic map store and extract bits. A separate interpolation subnetwork loads codes, and the decoder uses additional layers.",
       "gap": "The construction uses iterated polynomial activations and a separately computed encoder on selected input points. It does not flatten to the manuscript model, shatter its entire prescribed cube, or provide an admissible rational decoder with a charged head count."
+    },
+    {
+      "title": "Edge-isoperimetric inequalities in the grid",
+      "authors": "Bela Bollobas and Imre Leader",
+      "url": "https://digitalcommons.memphis.edu/facpubs/4558/",
+      "checked_location": "Author institutional publication page and abstract, including the induced-edge upper bound; the full paper proof is not invoked.",
+      "mechanism": "Sharp bounds on the edges spanned by finite subsets of Cartesian grids.",
+      "application": "A related consecutive-coordinate-fiber graph is used in full-box-parity-obstruction.tex. Its edge bound is proved there directly by induction and the binary entropy inequality, rather than inferred from the abstract.",
+      "gap": "This gives an obstruction to a continuous permutation decoder, not a universal head construction."
     }
   ]
 }

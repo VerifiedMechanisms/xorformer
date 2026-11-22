@@ -608,5 +608,13 @@
     "large_case_limitation": "The first resumed fit finished in 84 seconds with gradient 3.20e-13. Later fits needed 80 Newton iterations and one retained gradient 6.56e-7. A diagnostic found maximum score 7535.67 and score norm 10887.27. The run was stopped and a separate score-regularized search started; no claim of exact inner optimization is made for the incomplete unregularized iterations.",
     "score_penalty_diagnostic": "diagnostics/shared-affine-regularized-self-test.json",
     "regularized_search_penalty": 1e-06
+  },
+  "full_box_parity_obstruction": {
+    "file": "full-box-parity-obstruction.tex",
+    "statement": "A score consisting of a free affine polynomial and H affine fractions positive on an open box, with the strict sign of the product of r real coordinates throughout that box, requires H>=2^(r-2) for r>=2. A 2^(r-1)-fraction construction is given.",
+    "mechanism": "Coordinate-hyperplane vanishing forces all genuine pole coefficient vectors to have neighbors in at least r-1 coordinate directions, after adjoining zero. A consecutive-point graph and an inductive edge bound give K(r-1)<=(K+1)log2(K+1).",
+    "decoder_consequence": "An affine-parameter order-parity decoder valid on every distinct-coordinate point of an open box requires H>=2^(m-2) when the selected comparison graph has a matching of size m>=2.",
+    "audit": "Self-contained mathematical proof; duplicates, constant denominators, affine polynomial terms, and the added zero vector are handled explicitly. Not Lean formalized; no TeX engine was available.",
+    "scope": "A continuous decoder restriction, not a Boolean-cube lower bound or the requested universal upper bound. Specially selected order representatives and nonlinear parameter assignments are not excluded."
   }
 }
