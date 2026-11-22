@@ -6978,4 +6978,50 @@ this claim nor the reciprocal-algebra dimension formula proves a
 bound on the Boolean worst-case head count. A finite-cube flattening
 with the desired cost remains an unsupported step in this route.
 
+
+\paragraph{An exact fixed-residual replacement obstruction.}
+Write $z(x)=(1,x_1,\ldots,x_n)$ for the positive orientation and
+$z(x)=(1,1-x_1,\ldots,1-x_n)$ for the negative orientation.
+Let $r(x)$ be a fixed residual and $y(x)\in\{-1,1\}$ the target labels.
+Suppose nonnegative weights $\lambda_x$, not all zero, satisfy
+\[
+ \sum_x\lambda_xy(x)z_j(x)=0,\qquad
+ \sum_x\lambda_xy(x)r(x)z_j(x)\le0
+ \quad(0\le j\le n).
+\]
+Then there are no affine coefficients $a_j$ and nonnegative $b_j$
+with $B(x)=\sum_jb_jz_j(x)>0$ on the cube for which
+\[
+ y(x)\left(r(x)+\frac{\sum_ja_jz_j(x)}{B(x)}\right)>0
+ \quad\hbox{at every vertex.}
+\]
+Indeed, multiply each strict inequality by $\lambda_xB(x)$ and sum.
+The result is strictly positive, whereas its expansion is
+\[
+ \sum_j a_j\sum_x\lambda_xy(x)z_j(x)
+ +\sum_j b_j\sum_x\lambda_xy(x)r(x)z_j(x)\le0.
+\]
+Constant denominators are included by taking $b_j=0$ for $j>0$.
+The earlier Lean theorem
+\texttt{HeadComplexity.not\_strictFractionCompletion\_of\_moment\_witness}
+formalizes the strictly positive coefficient case.
+
+For the archived $292$-head fourteen-bit certificate, remove heads
+with zero-based indices $7$ and $276$ and hold all other heads fixed.
+The two rational witness files in
+\texttt{diagnostics/pair-7-276-noncompletion/} have support sizes
+$15$ and $29$, respectively. The independent verifier
+\texttt{verify\_completion\_witness.py} confirms the zero moments by
+exact rational arithmetic and bounds each residual moment above by
+a nonpositive rational number using $224$-bit dyadic intervals.
+The source hash is checked. Thus these two heads cannot be replaced
+by one admissible head with the remaining $290$ heads fixed.
+A change in output bias can be absorbed into the replacement affine
+numerator and does not avoid the obstruction.
+
+This is not a lower bound on the unrestricted complexity of that
+Boolean function. In particular, changing the other heads is outside
+the statement. Failed numerical programs elsewhere in the pair
+search do not inherit this certificate.
+
 \end{document}

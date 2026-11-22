@@ -1,0 +1,17 @@
+{
+  "dual_checks": [
+    {
+      "orientation": 1,
+      "valid_witness_accepted": true,
+      "tampered_weight_rejected": true
+    },
+    {
+      "orientation": -1,
+      "valid_witness_accepted": true,
+      "tampered_weight_rejected": true
+    }
+  ],
+  "direct_fraction_interval_checks": 64,
+  "scope": "Verifier tests only; no universal bound.",
+  "feasible_constant_target_no_witness": true
+}
