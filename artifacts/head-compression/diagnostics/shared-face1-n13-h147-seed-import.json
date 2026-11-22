@@ -1,0 +1,28 @@
+{
+  "source": "/out/head-compression/stable-pair-mixed-face1-n13-h146/checkpoint.npz",
+  "output": "/out/head-compression/shared-face1-n13-h147-seed.npz",
+  "n": 13,
+  "original_pair_units": 73,
+  "shared_units": 146,
+  "lifted_heads": 147,
+  "selected": {
+    "mechanism": "exact nonzero stable-pair identity",
+    "maximum_score_discrepancy": 2.475098881404847e-08,
+    "original_errors": 770,
+    "imported_errors": 770,
+    "positive_units": 76,
+    "negative_units": 70
+  },
+  "trials": [
+    {
+      "mechanism": "exact nonzero stable-pair identity",
+      "maximum_score_discrepancy": 2.475098881404847e-08,
+      "original_errors": 770,
+      "imported_errors": 770,
+      "positive_units": 76,
+      "negative_units": 70
+    }
+  ],
+  "labels_unchanged": true,
+  "scope": "Warm start only. No target signs are certified by this import."
+}

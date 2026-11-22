@@ -1,0 +1,60 @@
+{
+  "source": "/out/head-compression/confluent-positive-face0-n13-h146/checkpoint.npz",
+  "output": "/out/head-compression/shared-positive-face0-n13-h147-seed.npz",
+  "n": 13,
+  "original_pair_units": 73,
+  "shared_units": 146,
+  "lifted_heads": 147,
+  "selected": {
+    "mechanism": "confluent warm start, relative separation 0.01",
+    "maximum_score_discrepancy": 1526311832.188828,
+    "original_errors": 295,
+    "imported_errors": 4270,
+    "positive_units": 146,
+    "negative_units": 0
+  },
+  "trials": [
+    {
+      "mechanism": "confluent warm start, relative separation 0.01",
+      "maximum_score_discrepancy": 1526311832.188828,
+      "original_errors": 295,
+      "imported_errors": 4270,
+      "positive_units": 146,
+      "negative_units": 0
+    },
+    {
+      "mechanism": "confluent warm start, relative separation 0.001",
+      "maximum_score_discrepancy": 13421773122.037462,
+      "original_errors": 295,
+      "imported_errors": 4232,
+      "positive_units": 146,
+      "negative_units": 0
+    },
+    {
+      "mechanism": "confluent warm start, relative separation 0.0001",
+      "maximum_score_discrepancy": 120259084287.00127,
+      "original_errors": 295,
+      "imported_errors": 4366,
+      "positive_units": 146,
+      "negative_units": 0
+    },
+    {
+      "mechanism": "confluent warm start, relative separation 1e-05",
+      "maximum_score_discrepancy": 824633720010.0553,
+      "original_errors": 295,
+      "imported_errors": 4422,
+      "positive_units": 146,
+      "negative_units": 0
+    },
+    {
+      "mechanism": "confluent warm start, relative separation 1e-06",
+      "maximum_score_discrepancy": 15393162788863.0,
+      "original_errors": 295,
+      "imported_errors": 4241,
+      "positive_units": 146,
+      "negative_units": 0
+    }
+  ],
+  "labels_unchanged": true,
+  "scope": "Warm start only. No target signs are certified by this import."
+}

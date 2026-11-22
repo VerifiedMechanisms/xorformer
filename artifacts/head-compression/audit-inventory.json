@@ -527,6 +527,14 @@
     "stable_identity": "C/B1 + U*(B2-B1)/(epsilon*B1*B2) = (C+U/epsilon)/B1 - (U/epsilon)/B2 for epsilon != 0.",
     "confluent_scope": "A finite separated-pole approximation is selected only as a numerical warm start; its measured discrepancy is recorded, and original target labels are retained.",
     "new_search_bounds": "An optional positive-only separation bound keeps the lower-face chart on positive denominator slopes. The eventual affine correction still costs one head.",
-    "target_proved": false
+    "target_proved": false,
+    "upper_face_search": "/out/head-compression/shared-face1-n13-h147",
+    "upper_face_actual_discrepancy": 2.475098881404847e-08,
+    "lower_face_import_rejected": {
+      "maximum_score_discrepancy": 1526311832.188828,
+      "original_errors": 295,
+      "imported_errors": 4270,
+      "reason": "Severe numerical cancellation in ordinary-head conversion. This import is not used as a sign-preserving transfer or as a search initialization."
+    }
   }
 }
