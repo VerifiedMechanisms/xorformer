@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-22T18:47:06.414756+00:00",
+  "provider": "GitHub Markdown API",
+  "katex": "passed separately",
+  "gitlab": "not run; no configured GitLab authentication",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/stabilized-reciprocal-saddles.md",
+      "sha256": "f9b94d4157c8ede5dff023b52bb89627522dc12c31ad55e6c042e8a131820879",
+      "source_spans": 149,
+      "github_math_nodes": 149,
+      "errors": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "sha256": "aa6033659adb858cdff1c21fbaada35b883ecc252dbafb8457c3f91aa6b4e9c0",
+      "source_spans": 79,
+      "github_math_nodes": 79,
+      "errors": [],
+      "notes": []
+    }
+  ]
+}

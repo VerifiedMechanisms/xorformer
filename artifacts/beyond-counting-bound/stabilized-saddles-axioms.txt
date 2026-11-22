@@ -1,0 +1,13 @@
+'HeadComplexity.StabilizedReciprocalSaddles.hessian_kernel_trivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.StabilizedReciprocalSaddles.radius_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.StabilizedReciprocalSaddles.perturbation_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.StabilizedReciprocalSaddles.total_contraction_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.StabilizedReciprocalSaddles.cross_hessian_kernel_trivial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
