@@ -6912,4 +6912,35 @@ records, and numerical restart checkpoints are retained. None of these
 failed trials is an infeasibility result, and the best certified
 full-target example remains the separate $292$-head score.
 
+\paragraph{Zolotarev composition and exact flattening.}
+Boull\'e, Nakatsukasa, and Townsend, \emph{Rational neural networks}
+(NeurIPS 2020), Section 3.1 and Supplement A, use compositions of
+type $(3,2)$ rational functions. Their low parameter count measures
+this compositional representation. The displayed Zolotarev formula
+has quadratic factors $t^2+c_j$ with $c_j>0$; these are not affine
+denominators in the present model. The following elementary pole audit
+excludes a direct exact scalar partial-fraction replacement.
+
+\textbf{Claim.} Let $c>0$ and let $I$ be a nonempty open real interval.
+There are no finite real affine functions $A_h,B_h$, with every $B_h$
+nonzero throughout $I$, and no real constant $a$, such that
+\[
+ \frac{t}{t^2+c}=a+\sum_{h=1}^H\frac{A_h(t)}{B_h(t)}
+ \qquad(t\in I).
+\]
+\textbf{Proof.} Put $D=\prod_h B_h$ and
+$N=aD+\sum_h A_h\prod_{j\ne h}B_j$.
+The claimed equality implies the polynomial identity
+$tD(t)=(t^2+c)N(t)$, because it holds on the infinite set $I$.
+At $z=i\sqrt c$, the right side vanishes. The left side does not:
+$z\ne0$, and a nonzero real affine polynomial cannot vanish at a
+nonreal point. This is a contradiction. The empty-product case is
+included. $\square$
+
+This audit excludes exact equality on an interval only. It does not
+exclude approximation there, equality on a finite set, or Boolean
+sign representations with adaptive multivariate denominators. Thus
+the cited approximation theorem still lacks a transfer with the
+required head count; it supplies no proof of the universal target.
+
 \end{document}

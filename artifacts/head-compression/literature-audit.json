@@ -757,6 +757,15 @@
       "mechanism": "Permutations avoiding 132 and 312 form a rectangular parallelotope with generators sum_{i=1}^j(e_i-e_{j+1}).",
       "application": "Identifies the previously derived affine permutation cube as a known construction after a common shift by one. Its all-vertex permutation property is therefore not claimed as a new combinatorial theorem.",
       "gap": "The polytope and Ehrhart enumeration do not provide target-dependent affine-fraction sign interpolation at the requested head count."
+    },
+    {
+      "title": "Rational neural networks",
+      "authors": "Nicolas Boulle, Yuji Nakatsukasa, Alex Townsend",
+      "url": "https://papers.nips.cc/paper/2020/file/a3f390d88e4c41f2747bfa2f1b5f87db-Paper.pdf",
+      "supplement_url": "https://proceedings.neurips.cc/paper/2020/file/a3f390d88e4c41f2747bfa2f1b5f87db-Supplemental.pdf",
+      "checked_location": "Section 2; Section 3.1, Lemma 1 and Theorem 3; Supplement A, first two pages.",
+      "mechanism": "Zolotarev sign functions compose type (3,2) rational units to obtain high degree with few parameters, yielding efficient ReLU approximation.",
+      "gap": "The construction uses depth and quadratic denominators. The manual pole argument shows that t/(t^2+c), c>0, has no finite exact real-affine-fraction expansion on an open interval. This does not exclude finite-cube sign representations or approximation. A head-efficient transfer remains unproved."
     }
   ]
 }

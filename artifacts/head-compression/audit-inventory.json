@@ -178,11 +178,11 @@
         "HeadComplexity.affineFraction_pair_merge_error_le",
         "HeadComplexity.exists_projective_merge_scale"
       ],
-      "scope": "Exact coordinate certificates bound an affine fraction above and below on the Boolean cube when its denominator is positive. The standalone range algorithm and concrete rational range reports are separately checked Python artifacts."
+      "scope": "Exact coordinate range certificates and pair-merging error bounds for positive affine fractions, plus an explicit positive rescaling under a strict projective sufficient criterion. No assertion that a suitable pair exists universally."
     }
   ],
   "validation": {
-    "build": "lake build HeadComplexity.Results.IndicatorApproximationBarrier and HeadComplexity.Results.All succeeded; eighteen new audit modules are imported.",
+    "build": "Full project lake build succeeded with 9208 jobs, including all 24 new research modules and the results aggregator.",
     "build_log": "/out/head-compression/lean-final-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
@@ -240,7 +240,13 @@
       "no_em_dashes_in_tex": true,
       "research_diff_whitespace_check_passed": true,
       "manuscript_unchanged": true
-    }
+    },
+    "final_repository_integrity": "diagnostics/final-repository-integrity.json",
+    "preserved_lean_logs": [
+      "validation/lean-research-axioms.log",
+      "validation/lean-range-final-axioms.log",
+      "validation/lean-final-full-build.log"
+    ]
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -875,5 +881,12 @@
     "scope": "One finite target only. Failed searches are not lower bounds."
   },
   "scientist_report": "artifacts/head-compression/scientist-report.tex",
-  "preserved_numerical_checkpoints": "checkpoints/manifest.json"
+  "preserved_numerical_checkpoints": "checkpoints/manifest.json",
+  "zolotarev_flattening_audit": {
+    "manual_proof": "mechanism-audit.tex, final paragraph",
+    "statement": "For c>0, t/(t^2+c) cannot equal a finite sum of real affine fractions plus a constant on a nonempty open interval where every denominator is nonzero.",
+    "proof": "Clear denominators and evaluate the polynomial identity at i*sqrt(c).",
+    "scope": "Exact scalar interval equality only. No Boolean-cube lower bound and no exclusion of approximation. Not Lean formalized.",
+    "literature_entry": 92
+  }
 }

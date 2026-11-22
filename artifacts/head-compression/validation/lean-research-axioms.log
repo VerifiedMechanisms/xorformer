@@ -1,0 +1,63 @@
+'HeadComplexity.two_pow_le_one_add_heads_mul_dimension_of_fixed_denominators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.abs_faceAlternation_affineFraction_le_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.positive_of_dominant_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.isGLB_positiveAffineSquareParityLosses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.four_cauchy_codebook_no_repeated_valley' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.sixFractionGate_boolean_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.eightFractionGate_boolean_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.choose_le_heads_of_tropical_layer_flip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.rank_ball_card_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.dominant_span_signs_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.orthant_exception_second_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.isLeast_regularizedPositiveAffineSquareParityLosses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.regularized_squareParityHinge_ge_thirteen_quarters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.regularized_squareParityHinge_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.scalar_decoder_all_words_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.polynomial_sign_sequence_degree_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.scalar_decoder_distinct_sign_words_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.strictFractionCompletion_iff_positiveSlack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.not_strictFractionCompletion_of_moment_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.booleanMoment_has_opposite_quadratic_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.sum_largestTerm_affineFraction_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.normalizedReciprocalSum_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.affineFraction_geometric_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.affineFraction_geometric_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.largestTerm_normalization_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.largestTerm_affineFraction_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.confluentPairScore_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.confluentPairScore_error_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.indicator_error_of_cleared_isolations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.covering_mixture_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.covering_mixture_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.orientationCrossingFeature_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.orientationCrossingFeature_at_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.orientationCrossingFeature_error_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.orientationCrossingFeature_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.computableWithSharedHeadsN_of_sharedAffineScore' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.computableWithHeadsN_of_sharedAffineScore_nonzero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.computableWithHeadsN_of_sharedAffineScore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.atomDenProduct_constant_forces_alpha_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FracAtom.denPoly_square_defect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FracAtom.denPoly_square_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FracAtom.denPoly_square_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.atomDenProduct_eval_square_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.atomDenProduct_eval_square_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.atomDenProduct_square_eq_forces_alpha_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.affine_sidon_row_one_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.affine_sidon_row_pair_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.anchoredFractionFeature_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.anchoredFractionFeature_mem_Icc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.anchoredFractionFeature_at_full' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.coordinateFraction_from_anchored' depends on axioms: [propext, Classical.choice, Quot.sound]

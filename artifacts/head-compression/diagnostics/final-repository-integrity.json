@@ -1,0 +1,20 @@
+{
+  "lean_modules": 24,
+  "listed_declarations": 56,
+  "all_imported": true,
+  "all_listed_axiom_audits_checked": true,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "certificate_manifest_hashes_checked": 22,
+  "checkpoint_manifest_hashes_checked": 5,
+  "research_json_files_parsed": 104,
+  "all_research_json_parsed": true,
+  "tex_environments_balanced": true,
+  "no_em_dashes_in_tex": true,
+  "original_model_files_unchanged": true,
+  "manuscript_unchanged": true,
+  "target_proved": false
+}
