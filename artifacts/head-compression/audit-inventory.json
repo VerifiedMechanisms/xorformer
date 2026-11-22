@@ -848,5 +848,10 @@
     "certified_merges": 0,
     "best_sufficient_bound_approximation": 160058.07943981103,
     "scope": "A sufficient, range-based construction only. Failure is not an impossibility result; no universal merging hypothesis is asserted."
+  },
+  "anchored_pruning_trials": {
+    "finished_288": "diagnostics/anchored-prune288-n14-result.json",
+    "status": "288-head trial ended without a certificate. The 291-head deletion and coalescence trials and the 280-head deletion trial are still running.",
+    "scope": "Finite searches only; failed searches are not lower bounds."
   }
 }

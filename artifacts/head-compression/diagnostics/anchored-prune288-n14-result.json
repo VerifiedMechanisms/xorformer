@@ -1,0 +1,49 @@
+{
+  "n": 14,
+  "units": 287,
+  "lifted_heads": 288,
+  "seconds": 7452.97191805183,
+  "termination": "budget or stop file",
+  "best_loss": 0.09386044901902273,
+  "certificate": null,
+  "scope": "Finite anchored-affine search; no universal theorem.",
+  "failure_is_not_a_lower_bound": true,
+  "last_event": {
+    "evaluation": 42,
+    "seconds": 7452.909253032878,
+    "loss": 0.09386044901902273,
+    "errors": 920,
+    "minimum_margin": -3.461199279030552,
+    "inner_gradient": 2.7511604105967535e-12,
+    "direct_qr_score_discrepancy": 3.577574716473464e-07,
+    "outer_gradient_norm": 0.03766363811785428,
+    "maximum_absolute_coefficient": 58104.494975401234
+  },
+  "deletion": {
+    "stage": "ranked",
+    "initial_heads": 292,
+    "trial_heads": 288,
+    "removed": [
+      56,
+      163,
+      176,
+      251
+    ],
+    "projection_costs": [
+      1417407051.4787254,
+      1132459723.29728,
+      1892604033.182468,
+      1908884342.6756642
+    ],
+    "seconds": 119.12201057118364
+  },
+  "initial_refit": {
+    "stage": "refitted",
+    "loss": 0.18110182965146676,
+    "errors": 2124,
+    "minimum_margin": -4.13129867405587,
+    "inner_gradient": 4.475898818245838e-13,
+    "direct_qr_discrepancy": 8.357733349839691e-08,
+    "seconds": 209.6621700450778
+  }
+}
