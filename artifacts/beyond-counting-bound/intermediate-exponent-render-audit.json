@@ -1,0 +1,8 @@
+{
+  "file": "artifacts/beyond-counting-bound/intermediate-exponent-audit.md",
+  "sha256": "305cc8d923d3d8e56efda3882e18a48d518101d6829db789ad70f280d53b137e",
+  "expected_math_spans": 19,
+  "github_recognized_spans": 19,
+  "errors": [],
+  "notes": []
+}
