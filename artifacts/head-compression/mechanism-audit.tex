@@ -6498,4 +6498,17 @@ $10^{-9}$. The shared-chart finite-difference check has refitted
 outer-gradient error below $2.0\cdot10^{-10}$. Any eventual sign
 certificate still requires the separate integer audit.
 
+
+A large 250-head search exposed a limitation absent from the small
+checks: later unregularized inner fits retained gradient maxima as large
+as $6.6\cdot10^{-7}$ after the iteration limit. A separate diagnostic
+found score norm above 10887 and maximum absolute score above 7535.
+These iterations are not asserted to be exact inner optima. A subsequent
+search uses the optional penalty $\lambda=10^{-6}$. Its outer derivative
+includes the additional score weight $\lambda S(x)$, so it differentiates
+the same penalized objective as the inner solve. A finite-difference
+check with the larger test penalty $0.03$ gives refitted gradient error
+below $1.9\cdot10^{-11}$. This penalty changes the search objective only;
+it does not change denominator admissibility or the exact sign audit.
+
 \end{document}

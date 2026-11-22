@@ -604,6 +604,9 @@
     "dense_comparison": "diagnostics/matrix-free-hinge.json",
     "refitted_gradient_and_exact_export_check": "diagnostics/shared-affine-cg-self-test.json",
     "reason": "The resumed 250-head dense Newton fit made no outer evaluation for more than 40 minutes; a profiled restart placed the delay in forming the active Gram matrix. Both stalled runs were interrupted.",
-    "scope": "Numerical search acceleration only. No universal existence claim."
+    "scope": "Numerical search acceleration only. No universal existence claim.",
+    "large_case_limitation": "The first resumed fit finished in 84 seconds with gradient 3.20e-13. Later fits needed 80 Newton iterations and one retained gradient 6.56e-7. A diagnostic found maximum score 7535.67 and score norm 10887.27. The run was stopped and a separate score-regularized search started; no claim of exact inner optimization is made for the incomplete unregularized iterations.",
+    "score_penalty_diagnostic": "diagnostics/shared-affine-regularized-self-test.json",
+    "regularized_search_penalty": 1e-06
   }
 }

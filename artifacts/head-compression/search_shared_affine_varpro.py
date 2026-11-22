@@ -52,18 +52,19 @@ def features(x, logs, separation):
                             (r[:, :, None]*x[:, None, :]).reshape(len(x), -1)))
 
 
-def score_gradient(x, labels, logs, separation, coefficient):
+def score_gradient(x, labels, logs, separation, coefficient, score_penalty=0.):
     units, n = logs.shape
     p, q, t1, t0, b, r = geometry(x, logs, separation)
     aa = coefficient[n+1:].reshape(units, n)
     ax = x@aa.T
     score = coefficient[0]+x@coefficient[1:n+1]+(ax*r).sum(axis=1)
     residual = np.maximum(1-labels*score, 0.)
-    weight = -labels*residual/len(x)
+    weight = (-labels*residual+score_penalty*score)/len(x)
     z = weight[:, None]*ax*q/(b*b)
     glog = p*(p.sum(axis=1)[:, None]*(x.T@z).T-(z*t1).sum(axis=0)[:, None])
     gs = (weight[:, None]*ax*r*(2/(q+1)-2*q*t1/b)).sum(axis=0)
-    return float(residual@residual/(2*len(x))), score, np.r_[glog.ravel(), gs]
+    loss = (residual@residual+score_penalty*(score@score))/(2*len(x))
+    return float(loss), score, np.r_[glog.ravel(), gs]
 
 
 def exact_lift(labels, logs, separation, coefficient, precision=224):
@@ -156,7 +157,7 @@ def initialize(checkpoint):
 
 class Problem:
     def __init__(self, labels, logs, separation, coefficient, out, seconds,
-                 positive_only=False, inner_method="newton"):
+                 positive_only=False, inner_method="newton", score_penalty=0.):
         self.labels = labels
         self.units, self.n = logs.shape
         self.x = ((np.arange(len(labels))[:, None] >> np.arange(self.n)) & 1).astype(float)
@@ -167,6 +168,8 @@ class Problem:
         self.events, self.certificate = [], None
         self.positive_only = positive_only
         self.inner_method = inner_method
+        assert score_penalty >= 0
+        self.score_penalty = score_penalty
         if positive_only:
             assert np.all(separation > 0)
 
@@ -177,16 +180,22 @@ class Problem:
         feature = features(self.x, logs, separation)
         q, r = la.qr(feature, mode="economic", check_finite=False)
         initial = q.T@(feature@self.previous) if self.previous is not None else q.T@self.labels
-        fit = convex_hinge_fit(self.labels[:, None]*q, initial, self.inner_method, 0.)
+        fit = convex_hinge_fit(self.labels[:, None]*q, initial, self.inner_method,
+                              self.score_penalty)
         coefficient = la.solve_triangular(r, fit.x, check_finite=False)
         self.previous = coefficient
-        loss, score, gradient = score_gradient(self.x, self.labels, logs, separation, coefficient)
+        loss, score, gradient = score_gradient(self.x, self.labels, logs, separation,
+                                                coefficient, self.score_penalty)
         event = {"evaluation": len(self.events), "seconds": time.monotonic()-self.start,
                  "loss": loss, "errors": int((self.labels*score <= 0).sum()),
                  "minimum_margin": float((self.labels*score).min()),
                  "inner_gradient": float(np.max(np.abs(fit.jac))),
                  "inner_iterations": int(fit.nit),
                  "inner_method": self.inner_method,
+                 "score_penalty": self.score_penalty,
+                 "maximum_absolute_score": float(np.abs(score).max()),
+                 "hinge_loss": float(np.maximum(1-self.labels*score, 0.)@np.maximum(
+                                      1-self.labels*score, 0.)/(2*len(score))),
                  "direct_qr_score_discrepancy": float(np.max(np.abs(score-q@fit.x))),
                  "outer_gradient_norm": float(la.norm(gradient)),
                  "negative_units": int((separation < 0).sum()),
@@ -225,11 +234,12 @@ class Problem:
                   "failure_is_not_a_lower_bound": True}
         result["positive_orientation_only"] = self.positive_only
         result["inner_method"] = self.inner_method
+        result["score_penalty"] = self.score_penalty
         (self.out/"result.json").write_text(json.dumps(result)+"\n")
         print(json.dumps({k: v for k, v in result.items() if k != "events"}), flush=True)
 
 
-def self_test(inner_method="newton"):
+def self_test(inner_method="newton", score_penalty=0.):
     rng = np.random.default_rng(2026112201)
     n, units = 5, 2
     x = ((np.arange(1 << n)[:, None] >> np.arange(n)) & 1).astype(float)
@@ -239,13 +249,15 @@ def self_test(inner_method="newton"):
     records, last = [], None
     for separation in (np.array([.6, -.8]), np.zeros(units), np.array([0., -.8])):
         params = np.r_[logs.ravel(), separation]
-        loss, score, grad = score_gradient(x, labels, logs, separation, coef)
+        loss, score, grad = score_gradient(x, labels, logs, separation, coef, score_penalty)
         numeric = []
         for i in range(len(params)):
             step = np.zeros_like(params)
             step[i] = 1e-5
-            plus = score_gradient(x, labels, *unpack(params+step, units, n), coef)[0]
-            minus = score_gradient(x, labels, *unpack(params-step, units, n), coef)[0]
+            plus = score_gradient(x, labels, *unpack(params+step, units, n), coef,
+                                  score_penalty)[0]
+            minus = score_gradient(x, labels, *unpack(params-step, units, n), coef,
+                                   score_penalty)[0]
             numeric.append((plus-minus)/2e-5)
         error = float(np.max(np.abs(grad-numeric)))
         assert error < 1e-8, error
@@ -261,9 +273,9 @@ def self_test(inner_method="newton"):
         ll, ss = unpack(parameters, units, n)
         feature = features(x, ll, ss)
         q, r = la.qr(feature, mode="economic")
-        fit = convex_hinge_fit(labels[:, None]*q, q.T@labels, inner_method, 0.)
+        fit = convex_hinge_fit(labels[:, None]*q, q.T@labels, inner_method, score_penalty)
         cc = la.solve_triangular(r, fit.x)
-        return score_gradient(x, labels, ll, ss, cc)
+        return score_gradient(x, labels, ll, ss, cc, score_penalty)
     params = np.r_[logs.ravel(), separation]
     _, _, grad = refit(params)
     numeric = []
@@ -294,6 +306,7 @@ def self_test(inner_method="newton"):
     assert not exact_check(mixed)["certified"]
     return {"tests": records, "refitted_gradient_error": refit_error,
             "inner_method": inner_method,
+            "score_penalty": score_penalty,
             "ordinary_import_score_error": import_error,
             "constant_denominator_regression": "passed",
             "mixed_zero_slope_rejection": "passed",
@@ -309,14 +322,16 @@ if __name__ == "__main__":
     parser.add_argument("--positive-only", action="store_true")
     parser.add_argument("--inner-method", choices=("newton", "newton_cg", "lbfgs"),
                         default="newton")
+    parser.add_argument("--score-penalty", type=float, default=0.)
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.self_test:
-        result, cert = self_test(args.inner_method)
+        result, cert = self_test(args.inner_method, args.score_penalty)
         (args.out/"diagnostic.json").write_text(json.dumps(result, indent=2)+"\n")
         (args.out/"certificate.json").write_text(json.dumps(cert)+"\n")
         print(json.dumps(result), flush=True)
     else:
         assert args.checkpoint is not None
         Problem(*initialize(args.checkpoint), args.out, args.seconds,
-                positive_only=args.positive_only, inner_method=args.inner_method).run()
+                positive_only=args.positive_only, inner_method=args.inner_method,
+                score_penalty=args.score_penalty).run()

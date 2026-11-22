@@ -1,0 +1,50 @@
+{
+  "tests": [
+    {
+      "separation": [
+        0.6,
+        -0.8
+      ],
+      "fixed_gradient_error": 9.110525268224423e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 30447084765056486127850169765397957982194452185009058506604793167,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 32
+      }
+    },
+    {
+      "separation": [
+        0.0,
+        0.0
+      ],
+      "fixed_gradient_error": 4.922670561111064e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 16726348911278023801489643932521701753909664574933662777988752872,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 32
+      }
+    },
+    {
+      "separation": [
+        0.0,
+        -0.8
+      ],
+      "fixed_gradient_error": 6.677758389653232e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 19475162500137502926903930433506142539551266933613306589949909362,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 32
+      }
+    }
+  ],
+  "refitted_gradient_error": 1.837346247368643e-11,
+  "inner_method": "newton_cg",
+  "score_penalty": 0.03,
+  "ordinary_import_score_error": 3.885780586188048e-16,
+  "constant_denominator_regression": "passed",
+  "mixed_zero_slope_rejection": "passed",
+  "scope": "Finite derivative and exact-export diagnostics only."
+}
