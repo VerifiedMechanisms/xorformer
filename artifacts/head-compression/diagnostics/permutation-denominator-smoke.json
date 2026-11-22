@@ -1,0 +1,50 @@
+{
+  "result": {
+    "n": 3,
+    "heads": 4,
+    "seed": 2026112203,
+    "status": "sat",
+    "seconds": 0.024645894998684525,
+    "scope": "One fixed full-cube target in the affine permutation family.",
+    "unrestricted_lower_bound": false,
+    "target_proved": false,
+    "certificate": "certificate.json",
+    "all_vertices_permutation_checked": true,
+    "exact_signs_checked": true,
+    "certificate_sha256": "0ca471054dea43e8b9d219abe281c862287aa8b1dc483305b4afffb00c2bd383"
+  },
+  "integer_audit": {
+    "input_file": "/out/head-compression/permutation-denominator-smoke/n3-h4/certificate.json",
+    "input_sha256": "0ca471054dea43e8b9d219abe281c862287aa8b1dc483305b4afffb00c2bd383",
+    "n": 3,
+    "heads": 4,
+    "vertices_checked": 8,
+    "precision_bits": 224,
+    "whole_cube_denominator_admissibility": true,
+    "positive_margins_certified": 8,
+    "negative_margins_certified": 0,
+    "unseparated_margins": 0,
+    "negative_vertices": [],
+    "unseparated_vertices": [],
+    "minimum_margin_interval_numerators": [
+      26959946667150639794667015087019630673637144422540572481103610249211,
+      26959946667150639794667015087019630673637144422540572481103610249216
+    ],
+    "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+    "minimum_margin_approximation": 1.0,
+    "all_target_signs_certified": true,
+    "seconds": 6.939982995390892e-05,
+    "scope": "This supplied rational score and truth table only. No universal bound.",
+    "failure_is_not_a_lower_bound": true
+  },
+  "fraction_audit": {
+    "file": "/out/head-compression/permutation-denominator-smoke/n3-h4/certificate.json",
+    "sha256": "0ca471054dea43e8b9d219abe281c862287aa8b1dc483305b4afffb00c2bd383",
+    "n": 3,
+    "heads": 4,
+    "vertices_checked": 8,
+    "strict_signs_and_admissibility": true,
+    "margin_approximation": 1.0,
+    "scope": "This finite truth table only; not a universal bound."
+  }
+}

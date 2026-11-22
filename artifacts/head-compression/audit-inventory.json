@@ -616,5 +616,12 @@
     "decoder_consequence": "An affine-parameter order-parity decoder valid on every distinct-coordinate point of an open box requires H>=2^(m-2) when the selected comparison graph has a matching of size m>=2.",
     "audit": "Self-contained mathematical proof; duplicates, constant denominators, affine polynomial terms, and the added zero vector are handled explicitly. Not Lean formalized; no TeX engine was available.",
     "scope": "A continuous decoder restriction, not a Boolean-cube lower bound or the requested universal upper bound. Specially selected order representatives and nonlinear parameter assignments are not excluded."
+  },
+  "permutation_denominator_score_search": {
+    "script": "search_permutation_denominator_scores.py",
+    "family": "At every Boolean vertex the integer affine forms L_h=h+1+sum b_hi*x_i permute 1,...,H. Denominators B_h=(H+1)(1+sum x_i)+L_h have positive constant and variable coefficients. Numerators and bias are refitted to fixed labels on the entire cube.",
+    "solver": "Quantifier-free mixed linear integer/real arithmetic, using finite branches for reciprocal values. Every SAT witness is exported and checked independently with both exact checkers.",
+    "smoke": "diagnostics/permutation-denominator-smoke.json",
+    "scope": "A possible discrete alternative to full-box decoding, tested only on finite targets. No universal coverage theorem and no unrestricted infeasibility conclusion."
   }
 }

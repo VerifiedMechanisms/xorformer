@@ -6530,4 +6530,35 @@ new obstruction to that decoder mechanism. It does not cover specially
 chosen order representatives or nonlinear assignments of head parameters,
 and supplies no lower or upper bound for the full Boolean-cube problem.
 
+
+\section{Discrete permutation denominators as a separate construction probe}
+
+The open-box parity obstruction leaves discrete parameter choices open.
+A separate exact search chooses integer affine forms
+$L_h(x)=h+\sum_i b_{h,i}x_i$ whose values permute $1,\ldots,H$ at
+every Boolean vertex. It uses the admissible denominators
+\[
+ B_h(x)=(H+1)(1+\sum_i x_i)+L_h(x).
+\]
+The bounds $1-H\le b_{h,i}\le H-1$ make all their variable
+coefficients at least two. At a vertex of weight $k$, the possible
+reciprocal values are the fixed rational numbers
+$1/((H+1)(1+k)+j)$, for $1\le j\le H$.
+
+Thus simultaneous selection of the integer forms and fitting of affine
+numerators can be expressed in mixed linear integer/real arithmetic:
+for each possible $j$, the branch $L_h(x)=j$ imposes
+$((H+1)(1+k)+j)v_{x,h}=A_h(x)$. The sign constraint is
+$y_x(c+\sum_h v_{x,h})\ge1$. A finite strict solution may always be
+scaled to this margin. Homogeneous numerators suffice, since the
+constant part of any numerator can be removed using its denominator
+and absorbed into the shared bias.
+
+The three-bit diagnostic yields an exact four-head score; both
+independent checkers verify all eight vertices. This tests the encoding
+and export only. Larger searches retain their labels throughout and
+make no universal-coverage claim. The additional permutation condition
+is a restriction imposed by this probe, not a change to the manuscript's
+model.
+
 \end{document}
