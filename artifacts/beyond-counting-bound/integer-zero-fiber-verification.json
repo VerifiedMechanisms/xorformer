@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "prime": 65521,
+  "jacobian_size": 96,
+  "determinant_mod_prime": 47539,
+  "clone_coordinate": 0,
+  "clone_sample_vertices": [
+    305,
+    3479,
+    997,
+    1359,
+    1429,
+    1445
+  ],
+  "clone_determinant_mod_prime": 20987,
+  "rational_zero_scores_checked": 96,
+  "scope": "regular coordinate zero fiber; no asymptotic head lower bound"
+}

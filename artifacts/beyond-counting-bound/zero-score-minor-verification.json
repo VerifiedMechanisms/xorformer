@@ -1,0 +1,36 @@
+{
+  "exact": {
+    "status": "PASS",
+    "input_bits": 4,
+    "heads": 2,
+    "sample_indices": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      13
+    ],
+    "parameter_columns": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ],
+    "minor_determinant": "10401023166874151/15516104491008000000",
+    "conclusion": "zero-score Jacobian rank is at least 9, exceeding nH=8"
+  },
+  "numerical_derivative": {
+    "status": "PASS",
+    "maximum_absolute_error": 1.2539813631917696e-10,
+    "scope": "finite-difference audit only; not part of the exact theorem"
+  }
+}
