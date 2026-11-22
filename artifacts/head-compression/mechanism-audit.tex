@@ -6825,4 +6825,70 @@ Neither the parallelotope nor its lattice-point enumeration supplies
 the target-dependent rational sign interpolation needed for the
 universal head bound.
 
+\section{A projective sufficient condition for merging heads}
+
+There is a concrete error certificate for reducing two same-orientation
+heads to one. Center their ranges, absorbing the two midpoints into
+the bias, so their values $A/B$ and $C/D$ have absolute bounds $r_1$
+and $r_2$. Positive rescaling of a numerator and its denominator does
+not change the head. After any such rescaling, the exact identity is
+\[
+ \frac AB+\frac CD-\frac{2(A+C)}{B+D}
+ =\frac{D-B}{B+D}\left(\frac AB-\frac CD\right).
+\]
+Consequently the uniform error is at most
+$(r_1+r_2)\max_x |(D-B)/(D+B)|$. The sum denominator is positive
+and has the same admissible orientation. A constant denominator can
+also be combined with a denominator of either orientation.
+The scalar identity and product bound are kernel checked as
+\texttt{affineFraction\_pair\_merge\_error\_identity} and
+\texttt{affineFraction\_pair\_merge\_error\_le}.
+
+Let $m=\min_xD/B$ and $M=\max_xD/B$. Both are positive. Replacing
+$D,C$ by $\kappa D,\kappa C$ gives the bound
+\[
+ \rho(\kappa)=\max\left\{
+ \frac{|\kappa m-1|}{\kappa m+1},
+ \frac{|\kappa M-1|}{\kappa M+1}\right\}.
+\]
+This follows because $u\mapsto(u-1)/(u+1)$ is increasing on
+positive reals. The optimum occurs at
+$\kappa=1/\sqrt{mM}$, which balances the endpoint magnitudes, and is
+\[
+ \rho_* = \frac{\sqrt M-\sqrt m}{\sqrt M+\sqrt m}
+ =\tanh\left(\frac14\log(M/m)\right).
+\]
+For completeness, writing $v=\log\kappa$ makes the two endpoint
+logarithms $v+\log m,v+\log M$. Their largest absolute value is
+minimized when their midpoint is zero; applying the increasing function
+$s\mapsto\tanh(s/2)$ proves the asserted optimum.
+
+Put $R=r_1+r_2$ and let $\gamma>0$ be a certified score margin.
+If $R\le\gamma$, the bound is strictly below $\gamma$ because
+$\rho_*<1$. If $R>\gamma$, the sufficient condition is the rational
+inequality
+\[
+ M(R-\gamma)^2<m(R+\gamma)^2.
+\]
+A sufficiently accurate positive rational approximation to the optimal
+$\kappa$ retains the strict inequality and gives an ordinary rational
+certificate. This is a complete sufficient merging construction;
+there is no assertion that a large score must contain such a pair.
+
+The standalone script \texttt{audit\_pair\_merges.py} checks this
+criterion and separately audits any resulting score. Forty-eight
+exact small pointwise checks validate its error formula and include
+an exact proportional-denominator merge. Among the $21328$
+orientation-compatible pairs of the compact $292$-head score, none
+passes the sufficient criterion. The smallest bound is approximately
+$160058.0794$, whereas the independently certified margin is close
+to one. This failure does not establish irreducibility of the score.
+
+The separate numerical coalescence trial instead replaces two
+same-orientation log-slope vectors by their midpoint, refits the
+remaining numerators, and then adapts the remaining denominators.
+Its QR update and identical-denominator checks have errors below
+$3.2\cdot10^{-15}$ on the small diagnostic. Those numerical checks
+do not certify signs of the large trial or establish universal merging.
+
 \end{document}

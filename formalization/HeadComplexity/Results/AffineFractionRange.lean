@@ -54,4 +54,24 @@ theorem affineFraction_ge_of_coordinate_certificate
   apply (le_div_iff₀ hB).2
   linarith
 
+/-- Exact error when two affine fractions are replaced by one fraction
+with the sum denominator. Positive rescalings of either original head
+may be chosen before applying the identity. -/
+theorem affineFraction_pair_merge_error_identity (A B C D : ℝ)
+    (hB : B ≠ 0) (hD : D ≠ 0) (hBD : B + D ≠ 0) :
+    A / B + C / D - 2 * (A + C) / (B + D) =
+      (D - B) / (B + D) * (A / B - C / D) := by
+  field_simp
+  ring
+
+/-- A sufficient quantitative merging certificate. No claim is made
+that an arbitrary large collection contains a pair meeting the bound. -/
+theorem affineFraction_pair_merge_error_le (A B C D ρ R : ℝ)
+    (hB : B ≠ 0) (hD : D ≠ 0) (hBD : B + D ≠ 0)
+    (hρ : |(D - B) / (B + D)| ≤ ρ)
+    (hR : |A / B - C / D| ≤ R) :
+    |A / B + C / D - 2 * (A + C) / (B + D)| ≤ ρ * R := by
+  rw [affineFraction_pair_merge_error_identity A B C D hB hD hBD, abs_mul]
+  exact mul_le_mul hρ hR (abs_nonneg _) (le_trans (abs_nonneg _) hρ)
+
 end HeadComplexity

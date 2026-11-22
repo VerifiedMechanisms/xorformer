@@ -1,0 +1,10 @@
+{
+  "exact_pointwise_checks": 48,
+  "perturbation_numerators": [
+    0,
+    1,
+    1000
+  ],
+  "proportional_case_error_zero": true,
+  "all_errors_below_exact_bound": true
+}

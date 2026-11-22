@@ -119,7 +119,8 @@ def run(checkpoint, out, candidates, seconds):
     fit = convex_hinge_fit(labels[:, None]*qq, qq.T @ score, 'newton', 0.)
     cc = la.solve_triangular(rr, fit.x, check_finite=False)
     record = {'stage': 'merged_refit', 'pair': [i, j],
-              'trial_heads': len(ll)+1, 'loss': float(fit.fun),
+              'trial_heads': len(ll)+1, 'loss': float(fit.fun)/len(labels),
+              'loss_sum': float(fit.fun),
               'errors': int((labels*(qq@fit.x) <= 0).sum()),
               'seconds': time.monotonic()-start}
     print(json.dumps(record), flush=True)
