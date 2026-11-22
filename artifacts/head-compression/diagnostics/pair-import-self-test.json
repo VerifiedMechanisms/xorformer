@@ -1,0 +1,90 @@
+{
+  "stable": {
+    "source": "/out/head-compression/pair-import-self-test/stable.npz",
+    "output": "/out/head-compression/pair-import-self-test/shared-stable.npz",
+    "n": 5,
+    "original_pair_units": 2,
+    "shared_units": 4,
+    "lifted_heads": 5,
+    "selected": {
+      "mechanism": "exact nonzero stable-pair identity",
+      "maximum_score_discrepancy": 1.0547118733938987e-15,
+      "original_errors": 14,
+      "imported_errors": 14,
+      "positive_units": 2,
+      "negative_units": 2
+    },
+    "trials": [
+      {
+        "mechanism": "exact nonzero stable-pair identity",
+        "maximum_score_discrepancy": 1.0547118733938987e-15,
+        "original_errors": 14,
+        "imported_errors": 14,
+        "positive_units": 2,
+        "negative_units": 2
+      }
+    ],
+    "labels_unchanged": true,
+    "scope": "Warm start only. No target signs are certified by this import."
+  },
+  "confluent": {
+    "source": "/out/head-compression/pair-import-self-test/confluent.npz",
+    "output": "/out/head-compression/pair-import-self-test/shared-confluent.npz",
+    "n": 5,
+    "original_pair_units": 2,
+    "shared_units": 4,
+    "lifted_heads": 5,
+    "selected": {
+      "mechanism": "confluent warm start, relative separation 1e-06",
+      "maximum_score_discrepancy": 3.528318313628098e-07,
+      "original_errors": 14,
+      "imported_errors": 14,
+      "positive_units": 4,
+      "negative_units": 0
+    },
+    "trials": [
+      {
+        "mechanism": "confluent warm start, relative separation 0.01",
+        "maximum_score_discrepancy": 0.003512115112511316,
+        "original_errors": 14,
+        "imported_errors": 14,
+        "positive_units": 4,
+        "negative_units": 0
+      },
+      {
+        "mechanism": "confluent warm start, relative separation 0.001",
+        "maximum_score_discrepancy": 0.0003524920989033675,
+        "original_errors": 14,
+        "imported_errors": 14,
+        "positive_units": 4,
+        "negative_units": 0
+      },
+      {
+        "mechanism": "confluent warm start, relative separation 0.0001",
+        "maximum_score_discrepancy": 3.526206792342501e-05,
+        "original_errors": 14,
+        "imported_errors": 14,
+        "positive_units": 4,
+        "negative_units": 0
+      },
+      {
+        "mechanism": "confluent warm start, relative separation 1e-05",
+        "maximum_score_discrepancy": 3.526322826685746e-06,
+        "original_errors": 14,
+        "imported_errors": 14,
+        "positive_units": 4,
+        "negative_units": 0
+      },
+      {
+        "mechanism": "confluent warm start, relative separation 1e-06",
+        "maximum_score_discrepancy": 3.528318313628098e-07,
+        "original_errors": 14,
+        "imported_errors": 14,
+        "positive_units": 4,
+        "negative_units": 0
+      }
+    ],
+    "labels_unchanged": true,
+    "scope": "Warm start only. No target signs are certified by this import."
+  }
+}

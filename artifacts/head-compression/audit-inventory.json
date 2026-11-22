@@ -520,5 +520,13 @@
     "diagnostic_scope": "All 720 permutations of six elements: all 16 four-bit words covered, with direct polynomial decoder degrees 6, 5, 8, 9.",
     "blocked_at": "The direct hash decoder is a product of pair comparisons. For affine parameter assignments to H positive-denominator heads, its full-box implementation needs H+1 >= the number of selected comparisons. Special representatives or nonlinear parameter assignments require a new construction.",
     "target_proved": false
+  },
+  "shared_face_import_audit": {
+    "script": "artifacts/head-compression/import_pair_chart.py",
+    "diagnostic": "diagnostics/pair-import-self-test.json",
+    "stable_identity": "C/B1 + U*(B2-B1)/(epsilon*B1*B2) = (C+U/epsilon)/B1 - (U/epsilon)/B2 for epsilon != 0.",
+    "confluent_scope": "A finite separated-pole approximation is selected only as a numerical warm start; its measured discrepancy is recorded, and original target labels are retained.",
+    "new_search_bounds": "An optional positive-only separation bound keeps the lower-face chart on positive denominator slopes. The eventual affine correction still costs one head.",
+    "target_proved": false
   }
 }

@@ -155,7 +155,8 @@ def initialize(checkpoint):
 
 
 class Problem:
-    def __init__(self, labels, logs, separation, coefficient, out, seconds):
+    def __init__(self, labels, logs, separation, coefficient, out, seconds,
+                 positive_only=False):
         self.labels = labels
         self.units, self.n = logs.shape
         self.x = ((np.arange(len(labels))[:, None] >> np.arange(self.n)) & 1).astype(float)
@@ -164,6 +165,9 @@ class Problem:
         self.out, self.start = out, time.monotonic()
         self.deadline = self.start+seconds
         self.events, self.certificate = [], None
+        self.positive_only = positive_only
+        if positive_only:
+            assert np.all(separation > 0)
 
     def objective(self, parameters):
         if time.monotonic() >= self.deadline or (self.out/"STOP").exists():
@@ -202,7 +206,8 @@ class Problem:
     def run(self):
         try:
             result = opt.minimize(self.objective, self.initial, jac=True, method="L-BFGS-B",
-                                  bounds=[(-70, 70)]*(self.units*self.n)+[(-35, 35)]*self.units,
+                                  bounds=[(-70, 70)]*(self.units*self.n)+
+                                  ([(1e-8, 35)] if self.positive_only else [(-35, 35)])*self.units,
                                   options={"maxiter": 100000, "maxfun": 100000,
                                            "ftol": 1e-15, "gtol": 1e-10,
                                            "maxls": 35, "maxcor": 50})
@@ -215,6 +220,7 @@ class Problem:
                   "certificate": self.certificate, "events": self.events,
                   "scope": "Finite orientation-crossing search; no universal theorem.",
                   "failure_is_not_a_lower_bound": True}
+        result["positive_orientation_only"] = self.positive_only
         (self.out/"result.json").write_text(json.dumps(result)+"\n")
         print(json.dumps({k: v for k, v in result.items() if k != "events"}), flush=True)
 
@@ -295,6 +301,7 @@ if __name__ == "__main__":
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--seconds", type=float, default=3600)
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--positive-only", action="store_true")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     if args.self_test:
@@ -304,4 +311,5 @@ if __name__ == "__main__":
         print(json.dumps(result), flush=True)
     else:
         assert args.checkpoint is not None
-        Problem(*initialize(args.checkpoint), args.out, args.seconds).run()
+        Problem(*initialize(args.checkpoint), args.out, args.seconds,
+                positive_only=args.positive_only).run()
