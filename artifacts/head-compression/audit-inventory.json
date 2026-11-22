@@ -915,5 +915,11 @@
     "self_test": "diagnostics/pair-completion-self-test.json",
     "scope": "Numerical LP proposals for replacing two heads by one while fixing the residual; successful scores require independent exact audit. No universal feasibility or impossibility claim.",
     "status": "Six-hour search of the original fourteen-bit target is running."
+  },
+  "reciprocal_algebra_audit": {
+    "literature_entry": 95,
+    "manual_proof": "mechanism-audit.tex, final paragraph",
+    "statement": "The function 1/((1+x)(1+y)) is not a finite sum of affine fractions plus a constant on any nonempty open real set where the fractions are defined.",
+    "scope": "Exact open-set closure only; no obstruction to finite-cube interpolation or signs."
   }
 }
