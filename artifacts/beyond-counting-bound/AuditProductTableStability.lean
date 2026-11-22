@@ -1,0 +1,4 @@
+import HeadComplexity.Atoms.ProductTableStability
+#print axioms HeadComplexity.ProductTableStability.exists_upper_half_plane_zero
+#print axioms HeadComplexity.ProductTableStability.covariance_positive
+#print axioms HeadComplexity.ProductTableStability.denominators_positive

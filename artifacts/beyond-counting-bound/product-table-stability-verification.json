@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "table": [
+    1,
+    484,
+    484,
+    9072,
+    484,
+    9072,
+    20736,
+    81796,
+    484,
+    20736,
+    9072,
+    81796,
+    9072,
+    81796,
+    81796,
+    279841
+  ],
+  "complex_zero_exact": true,
+  "all_imaginary_parts_positive": true,
+  "covariance": "2462234378000/176190607289761",
+  "rayleigh_difference": "-1231117189/500"
+}

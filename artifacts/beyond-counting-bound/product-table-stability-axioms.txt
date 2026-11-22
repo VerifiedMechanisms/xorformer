@@ -1,0 +1,5 @@
+'HeadComplexity.ProductTableStability.exists_upper_half_plane_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProductTableStability.covariance_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProductTableStability.denominators_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
