@@ -14,6 +14,7 @@ import math
 import os
 from pathlib import Path
 import time
+from tempfile import TemporaryDirectory
 
 for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ[name] = "1"
@@ -22,7 +23,8 @@ import numpy as np
 import scipy.linalg as la
 import scipy.optimize as opt
 from scipy.special import exprel
-from search_confluent_varpro import dyadic_below, rational_head, EndSearch
+from search_confluent_varpro import (dyadic_below, rational_head, EndSearch,
+                                    score_gradient as confluent_score)
 from search_sign_scores import exact_check
 from search_varpro_scores import convex_hinge_fit
 
@@ -219,7 +221,17 @@ def initialize(checkpoint):
     if "epsilon" in saved:
         return labels, ori, logs, saved["w"], saved["epsilon"], coef
     if "v" in saved:
-        return labels, ori, logs, saved["v"]/np.exp(logs), np.zeros(len(logs)), coef
+        raw_w = saved["v"]/np.exp(logs)
+        # At epsilon=0, (U,V) -> (scale*U,V/scale) preserves U*V/B^2.
+        # Without this rescaling, L-BFGS-B can clip the imported w to its
+        # bounds and silently destroy the warm-start score. Powers of two
+        # avoid unnecessary floating-point error in the scale operations.
+        exponent = np.maximum(0., np.ceil(np.log2(
+                     np.maximum(np.max(np.abs(raw_w), axis=1)/35., 1.))))
+        scale = np.exp2(exponent)
+        adjusted = coef.copy()
+        adjusted[1:].reshape(2, len(logs), logs.shape[1])[1] *= scale[:, None]
+        return labels, ori, logs, raw_w/scale[:, None], np.zeros(len(logs)), adjusted
     heads, n = logs.shape
     a = coef[1:].reshape(heads, n)
     result = []
@@ -304,7 +316,27 @@ def self_test():
         assert value > 0 and error < 1e-6, (epsilon, value, error)
         reduced_records.append({"epsilon": epsilon, "positive_loss": value,
                                 "refitted_gradient_max_error": error})
+    # A small denominator slope makes the unscaled import exceed the
+    # optimizer's w bounds. Check that the rescaled import preserves values.
+    imported_logs = logs.copy()
+    imported_logs[:, 0] = -30.
+    direction = rng.normal(size=(units, n))
+    old_score = confluent_score(t, labels, imported_logs, direction, coef)[1]
+    with TemporaryDirectory() as directory:
+        path = Path(directory)/"confluent.npz"
+        np.savez(path, labels=labels, orientation=ori, logs=imported_logs,
+                 v=direction, coefficients=coef)
+        _, _, ll, ww, ee, cc = initialize(path)
+        imported_score = score_gradient(t, labels, ll, ww, ee, cc)[1]
+    discrepancy = float(np.max(np.abs(imported_score-old_score)))
+    assert np.max(np.abs(ww)) <= 35.
+    assert np.all(ee == 0.)
+    assert discrepancy < 1e-12, discrepancy
     return {"tests": records, "refitted_gradient_tests": reduced_records,
+            "rescaled_confluent_import": {
+                "original_maximum_absolute_w": float(np.max(np.abs(direction/np.exp(imported_logs)))),
+                "imported_maximum_absolute_w": float(np.max(np.abs(ww))),
+                "maximum_score_discrepancy": discrepancy},
             "scope": "Finite derivative and exact-export diagnostics only."}, last
 
 

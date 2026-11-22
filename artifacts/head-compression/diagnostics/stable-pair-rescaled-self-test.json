@@ -1,0 +1,66 @@
+{
+  "tests": [
+    {
+      "epsilon": [
+        1.0,
+        1.0
+      ],
+      "gradient_max_error": 5.613187865904923e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 219314192691853458000595972965802949656839274310472039086635184116,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 16
+      }
+    },
+    {
+      "epsilon": [
+        0.0,
+        0.0
+      ],
+      "gradient_max_error": 7.61957684447534e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 222636135254488494241527377892083994141241204152244845731759532954,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 16
+      }
+    },
+    {
+      "epsilon": [
+        1e-09,
+        -1e-07
+      ],
+      "gradient_max_error": 6.793765203183533e-12,
+      "exact_check": {
+        "certified": true,
+        "margin_numerator": 222633145228213951117106371197164655022183213541824510590206819555,
+        "margin_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+        "vertices_checked": 16
+      }
+    }
+  ],
+  "refitted_gradient_tests": [
+    {
+      "epsilon": 0.0,
+      "positive_loss": 0.440102875206163,
+      "refitted_gradient_max_error": 1.3494889233856e-11
+    },
+    {
+      "epsilon": 0.7,
+      "positive_loss": 0.4346919389847416,
+      "refitted_gradient_max_error": 6.458111823093304e-12
+    },
+    {
+      "epsilon": -1e-07,
+      "positive_loss": 0.44010287441735596,
+      "refitted_gradient_max_error": 1.5296264255226788e-11
+    }
+  ],
+  "rescaled_confluent_import": {
+    "original_maximum_absolute_w": 9212639534018.422,
+    "imported_maximum_absolute_w": 33.51538738213429,
+    "maximum_score_discrepancy": 2.7755575615628914e-17
+  },
+  "scope": "Finite derivative and exact-export diagnostics only."
+}

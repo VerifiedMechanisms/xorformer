@@ -1,0 +1,17 @@
+{
+  "n": 13,
+  "heads": 146,
+  "source": "/out/head-compression/confluent-positive-face0-n13-h146-resumed/checkpoint.npz",
+  "snapshot": "/out/head-compression/stable-positive-face0-source.npz",
+  "output": "/out/head-compression/stable-positive-face0-initial.npz",
+  "old_loss": 0.04056643892876852,
+  "new_loss": 0.04056643892883125,
+  "maximum_score_discrepancy": 4.656612873077393e-10,
+  "old_errors": 175,
+  "new_errors": 175,
+  "maximum_absolute_w": 34.83473533859156,
+  "maximum_raw_w": 3146787434857327.0,
+  "all_orientations_positive": true,
+  "labels_unchanged": true,
+  "scope": "Stable chart import only, not a certificate or universal theorem."
+}

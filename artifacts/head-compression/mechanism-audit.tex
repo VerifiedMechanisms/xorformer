@@ -6561,4 +6561,25 @@ make no universal-coverage claim. The additional permutation condition
 is a restriction imposed by this probe, not a change to the manuscript's
 model.
 
+
+\section{A bounded import from confluent to stable pair coordinates}
+
+At zero pair separation, the stable chart has $V_i=b_iw_i$ and term
+$UV/B^2$. For any positive scalar $s$, the replacement
+\[
+ w_i\longmapsto\frac{V_i}{s b_i},\qquad U\longmapsto sU
+\]
+preserves that term identically. Choose a power of two $s\ge1$ for
+each pair so that $\max_i|V_i/(s b_i)|\le35$. This fits the stable
+search's parameter bounds without clipping the starting value. The
+previous direct import $w_i=V_i/b_i$ did not ensure this condition.
+
+The small regression has an unscaled coordinate above $9\cdot10^{12}$
+and an imported maximum below 34; its score discrepancy is below
+$3\cdot10^{-17}$. On the current thirteen-bit positive lower-face
+checkpoint, the largest unscaled coordinate exceeds $3\cdot10^{15}$.
+The rescaled import changes no label or error count and has maximum
+score discrepancy below $4.7\cdot10^{-10}$. This permits a separate
+stable-pair continuation; it does not prove that continuation succeeds.
+
 \end{document}

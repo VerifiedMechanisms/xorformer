@@ -629,5 +629,14 @@
     "xorformer_runs_latest": "ar/1bfc2d7fde2f c45f40a, 2026-11-05 11:26:38 UTC",
     "autoresearch_runs_latest": "ar/1dc3df1f7016 045a8fb, 2026-11-21 06:16:49 UTC",
     "change_since_previous_refresh": false
+  },
+  "rescaled_confluent_stable_import": {
+    "identity": "At zero separation, U*V/B^2 is unchanged by U -> scale*U and V -> V/scale. Per-unit powers of two keep w=V/B_slopes inside optimizer bounds.",
+    "fix": "The previous confluent initializer could return w outside the optimizer bounds, causing silent clipping at optimization start. The new initializer preserves the score while fitting those bounds.",
+    "small_case": "diagnostics/stable-pair-rescaled-self-test.json",
+    "large_case": "diagnostics/stable-positive-face0-import.json",
+    "large_case_error": 4.656612873077393e-10,
+    "large_case_errors_unchanged": 175,
+    "scope": "An algebraic chart identity and checked numerical warm start only; no new target certificate."
   }
 }
