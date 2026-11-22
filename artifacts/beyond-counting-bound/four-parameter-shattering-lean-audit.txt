@@ -1,0 +1,9 @@
+HeadComplexity.MobiusFourParameterShattering.witness (i : Fin 512) (h : Fin 4) : ℤ
+HeadComplexity.MobiusFourParameterShattering.poles_positive (q : Fin 9) (h : Fin 4) : 0 < poles q h
+HeadComplexity.MobiusFourParameterShattering.witnesses_positive (i : Fin 512) (h : Fin 4) : 0 < witness i h
+HeadComplexity.MobiusFourParameterShattering.labels_surjective : Function.Surjective labels
+HeadComplexity.MobiusFourParameterShattering.cleared_signs (i : Fin 512) (q : Fin 9) :
+  cleared (witness i) q ≠ 0 ∧ (0 < cleared (witness i) q ↔ labels i q = true)
+'HeadComplexity.MobiusFourParameterShattering.nine_tests_shattered' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

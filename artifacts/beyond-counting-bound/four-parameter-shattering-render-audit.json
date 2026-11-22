@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-22T20:00:00.986366+00:00",
+  "results": [
+    {
+      "file": "artifacts/beyond-counting-bound/four-parameter-shattering.md",
+      "sha256": "c74c988feda0667b7c8d4edc27b6c2a33676c1996ad46b5e825180dc2225346f",
+      "math_spans": 33,
+      "errors": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "sha256": "a4647190998ffc750eb8efc0b53c51ba2e8b8d685fcf2396167936a0d2220a98",
+      "math_spans": 79,
+      "errors": [],
+      "notes": []
+    }
+  ]
+}

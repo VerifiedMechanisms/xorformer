@@ -1,0 +1,7 @@
+{
+  "solver_result": "unsat",
+  "queries": 7,
+  "elapsed_seconds": 3667.7638444900513,
+  "scope": "FINITE_STEP_MODEL_ONLY",
+  "proof_status": "SOLVER_DIAGNOSTIC"
+}
