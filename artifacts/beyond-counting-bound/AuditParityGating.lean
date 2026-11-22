@@ -1,0 +1,5 @@
+import HeadComplexity.Results.ParityGating
+
+#print axioms HeadComplexity.walshCharacter_eq_one_or_neg_one
+#print axioms HeadComplexity.computableWithHeadsN_parityGate
+#print axioms HeadComplexity.HStar_parityGate_le

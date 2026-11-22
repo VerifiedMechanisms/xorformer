@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T02:41:53.045548Z",
+  "last_audit_utc": "2026-11-22T03:10:46.552426+00:00",
   "elapsed_seconds_at_last_audit": 9932,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -20,9 +20,11 @@
     "HeadComplexity.IntegerFiber.held_out_difference",
     "HeadComplexity.IntegerFiber.inverse_mul_mod",
     "HeadComplexity.IntegerFiber.jacobian_det_ne_zero",
-    "HeadComplexity.IntegerFiber.extension_jacobian_det_ne_zero"
+    "HeadComplexity.IntegerFiber.extension_jacobian_det_ne_zero",
+    "HeadComplexity.computableWithHeadsN_parityGate",
+    "HeadComplexity.HStar_parityGate_le"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation obstruction and finite arithmetic for regular positive interpolation ambiguity; no target asymptotic lower bound.",
+  "lean_declarations_scope": "Auxiliary oscillation obstruction, finite arithmetic for regular positive interpolation ambiguity, and parity-gating upper bounds; no target asymptotic lower bound.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }

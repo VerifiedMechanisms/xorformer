@@ -1,0 +1,8 @@
+{
+  "trials": 39,
+  "status_counts": {
+    "UNKNOWN": 39
+  },
+  "gradient_check_max_error": 7.110007027577581e-12,
+  "claim": "Optimizer failures are UNKNOWN, not infeasibility certificates or lower bounds."
+}
