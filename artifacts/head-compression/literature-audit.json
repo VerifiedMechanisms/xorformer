@@ -695,6 +695,14 @@
       "checked_location": "Definitions 1--5, Propositions 1--2, Corollary 6 and its displayed proof, Appendix C argument for Proposition 2.",
       "mechanism": "The affine hull of random utility functions contains every random choice function; grouping the positive and negative coefficients yields two mixtures. General position and polynomial utility lifting characterize interior mixed-logit representability.",
       "gap": "Two mixtures do not mean two logit components. The grouping proof retains all original components and supplies no O(2^n/n^2) component bound. Arbitrary utility feature lifting also cannot be identified with affine Boolean input denominators."
+    },
+    {
+      "title": "New Gate, Weight and Wire Complexity Bounds for Sigmoid Neural Networks",
+      "authors": "Jiatu Li, Daniel Reichman, Ryan Williams, and Tony Wu",
+      "url": "https://arxiv.org/html/2611.21910v1",
+      "checked_location": "Theorem 6.1 and change-of-variables proof; Theorems 1.7-1.9; Appendix B.3, Proposition B.4 and proof",
+      "mechanism": "Strict Boolean classification is expressed by polynomial inequalities after exponentiating sigmoid parameters. Newman approximation supplies rational approximate sign functions.",
+      "gap": "The sigmoid denominator 1+B*product_j(W_j^x_j) is not an affine denominator in the input. The rational approximate sign has unrestricted higher-degree denominator. The sublinear inner-product construction uses growing depth. No head-count-preserving transfer or all-function construction is supplied."
     }
   ]
 }

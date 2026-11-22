@@ -507,7 +507,15 @@
     "followup_searches": [
       "/out/head-compression/shared-affine-prune24-n14",
       "/out/head-compression/shared-affine-prune66-n14"
-    ]
+    ],
+    "sixteen_unit_schedule_result": {
+      "initial_heads": 332,
+      "final_heads": 332,
+      "removed_units": 0,
+      "seconds": 11444.77298253309,
+      "scope": "One finite target only; failed deletion is not a lower bound.",
+      "target_proved": false
+    }
   },
   "head_dropout_continuation": {
     "script": "artifacts/head-compression/continue_head_dropout.py",
@@ -517,7 +525,14 @@
     "unit": 270,
     "mechanism": "Fade a fixed head through a scalar offset while refitting the remaining numerators and denominators. The inner optimization uses score increments in QR coordinates. Every accepted stage is exactly audited. A positive frozen scale still counts the frozen head.",
     "target_proved": false,
-    "initial_attempt": "Interrupted before its first objective evaluation completed. The refit now scales its gradient tolerance to floating-point residual size and checks its deadline inside the inner solver. Initial scale decrement reduced from 0.01 to 0.0001."
+    "initial_attempt": "Interrupted before its first objective evaluation completed. The refit now scales its gradient tolerance to floating-point residual size and checks its deadline inside the inner solver. Initial scale decrement reduced from 0.01 to 0.0001.",
+    "final_result": {
+      "seconds": 14172.273747080937,
+      "frozen_scale": 0.9973000000000002,
+      "reduced_head_certificate": false,
+      "scope": "One finite truth table. Positive frozen scale does not reduce the head count.",
+      "target_proved": false
+    }
   },
   "private_repository_refresh_2026_11_22_0016_utc": {
     "autoresearch_latest": "ar/1dc3df1f7016, 2026-11-21 06:16:49 UTC",
@@ -548,5 +563,11 @@
       "imported_errors": 4270,
       "reason": "Severe numerical cancellation in ordinary-head conversion. This import is not used as a sign-preserving transfer or as a search initialization."
     }
+  },
+  "constant_denominator_face_gluing": {
+    "script": "artifacts/head-compression/glue_faces.py",
+    "diagnostic": "diagnostics/constant-face-glue-self-test.json",
+    "bound": "Replacing each constant B=b by b+epsilon*sum(x) changes the whole score by at most epsilon*K <= gamma/4, where K=sum n*sum(abs(a_i))/b^2. No extra heads.",
+    "target_proved": false
   }
 }

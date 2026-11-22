@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Glue a positive-slope lower-face score to a mixed-slope upper-face score.
 
-All arithmetic and margin tests are rational or integer. The input scores
-must be strict certificates with nonconstant, strictly oriented denominators.
+All arithmetic and margin tests are rational or integer. Constant denominators
+are first perturbed to positive slopes using an explicit margin bound.
 This operation preserves a finite truth table; it is not a compressed
 construction for arbitrary dimensions. Use heavy for large certificates.
 """
@@ -27,7 +27,8 @@ def margin_bound(data, threshold=Q(0)):
         a, b = head['numerator'], head['denominator']
         assert len(a) == len(b) == n + 1
         assert all(isinstance(v, int) for v in a + b)
-        assert all(v > 0 for v in b[1:]) or all(v < 0 for v in b[1:])
+        assert (all(v > 0 for v in b[1:]) or all(v < 0 for v in b[1:])
+                or all(v == 0 for v in b[1:]))
         assert b[0] + sum(min(v, 0) for v in b[1:]) > 0
     bias = Q(*data['bias'])
     precision = 160
@@ -79,8 +80,41 @@ def integral_head(a, b):
             'denominator': [int(v * scale) for v in b]}
 
 
+def positive_slopes_for_constant_heads(data):
+    """Preserve strict signs and the head count, with a checked perturbation.
+
+    Replacing A/b0 by A/(b0+epsilon*sum(x)) changes its value by at
+    most epsilon*n*sum(abs(a))/b0**2 on the Boolean cube.
+    """
+    constant = [i for i,h in enumerate(data['heads'])
+                if all(v == 0 for v in h['denominator'][1:])]
+    if not constant:
+        return data
+    gamma = margin_bound(data)
+    n = data['n']
+    amplitude = sum((Q(n*sum(abs(v) for v in data['heads'][i]['numerator']),
+                       data['heads'][i]['denominator'][0]**2)
+                     for i in constant), Q(0))
+    epsilon = min(Q(1), gamma/(4*amplitude)) if amplitude else Q(1)
+    heads = []
+    for i,h in enumerate(data['heads']):
+        a, b = list(map(Q,h['numerator'])), list(map(Q,h['denominator']))
+        if i in constant:
+            b[1:] = [epsilon]*n
+        heads.append(integral_head(a,b))
+    result = {**data,'heads':heads,
+              'constant_head_perturbation':{'heads':constant,'epsilon':str(epsilon),
+                                           'input_margin':str(gamma),
+                                           'proved_error_upper_bound':str(epsilon*amplitude)}}
+    assert len(result['heads']) == len(data['heads'])
+    assert margin_bound(result,gamma/2) > gamma/2
+    return result
+
+
 def glue(lower, upper):
     assert lower['n'] == upper['n']
+    lower = positive_slopes_for_constant_heads(lower)
+    upper = positive_slopes_for_constant_heads(upper)
     assert all(all(v > 0 for v in h['denominator'][1:]) for h in lower['heads'])
     m0, m1 = margin_bound(lower), margin_bound(upper)
     h0, h1 = normalized_heads(lower, m0), normalized_heads(upper, m1)

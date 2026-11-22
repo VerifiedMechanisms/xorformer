@@ -1,0 +1,45 @@
+{
+  "constant_perturbation": {
+    "heads": [
+      0
+    ],
+    "epsilon": "730750818665451459101842416358141509827966271487/17538019647970835018444217992595396235871190515712",
+    "input_margin": "730750818665451459101842416358141509827966271487/730750818665451459101842416358141509827966271488",
+    "proved_error_upper_bound": "730750818665451459101842416358141509827966271487/2923003274661805836407369665432566039311865085952"
+  },
+  "fraction_audit": {
+    "file": "/out/head-compression/constant-face-glue-self-test.json",
+    "sha256": "2bcc13e6d9d6c65e84f6791576812c79a7feabb2775c2d8d3d544324e38a2684",
+    "n": 3,
+    "heads": 2,
+    "vertices_checked": 8,
+    "strict_signs_and_admissibility": true,
+    "margin_approximation": 0.9218575701811103,
+    "scope": "This finite truth table only; not a universal bound."
+  },
+  "integer_audit": {
+    "input_file": "/out/head-compression/constant-face-glue-self-test.json",
+    "input_sha256": "2bcc13e6d9d6c65e84f6791576812c79a7feabb2775c2d8d3d544324e38a2684",
+    "n": 3,
+    "heads": 2,
+    "vertices_checked": 8,
+    "precision_bits": 224,
+    "whole_cube_denominator_admissibility": true,
+    "positive_margins_certified": 8,
+    "negative_margins_certified": 0,
+    "unseparated_margins": 0,
+    "negative_vertices": [],
+    "unseparated_vertices": [],
+    "minimum_margin_interval_numerators": [
+      24853230926791810322069814288919249850799338532699077851878967742984,
+      24853230926791810322069814288919249850799338532699077851878967742987
+    ],
+    "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+    "minimum_margin_approximation": 0.9218575701811103,
+    "all_target_signs_certified": true,
+    "seconds": 3.306218422949314e-05,
+    "scope": "This supplied rational score and truth table only. No universal bound.",
+    "failure_is_not_a_lower_bound": true
+  },
+  "scope": "Eight vertices of one constructed test; the generic perturbation error bound is explicit in the implementation."
+}

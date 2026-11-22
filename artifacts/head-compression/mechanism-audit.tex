@@ -6348,7 +6348,7 @@ nonnegative there and thereafter. Thus $p/2\ge4\sqrt r$ and
  \ge\frac{4r}{\log_2r}\left(2+\tfrac12\log_2r\right)>2r.
 \]
 The strict factorial inequality follows by multiplying the last $p/2$
-factors. Hence $p!>4^r$, as required. With $r=2^n$, the storage
+factors. Hence $p!>4^r$, as required. With $r=2^n$ and $n\ge4$, the storage
 uses at most $8\cdot2^n/n+2$ scalars. This count concerns storage,
 not a head count or the complexity of evaluating the decoders.
 
@@ -6402,5 +6402,31 @@ checks every denominator and every strict sign, and proves
  y_xS(x)\ge \frac{26959714817884336048905560234305581553547447887152232014012160467611}{2^{224}}>0.
 \]
 This remains one explicit Boolean function, not a worst-case theorem.
+
+
+\section{Constant denominators in exact face gluing}
+
+Constant denominators do not require an additional head in the face-gluing
+construction. Suppose a strict score on $\{0,1\}^n$ has certified margin
+$\gamma>0$. For each constant-denominator head write it as $A_h/b_h$,
+where $b_h>0$, and put
+\[
+ K=\sum_{h:\,B_h\text{ constant}}\frac{n\sum_{i=0}^n|a_{h,i}|}{b_h^2}.
+\]
+Choose $\epsilon=\min(1,\gamma/(4K))$ when $K>0$, and $\epsilon=1$
+when $K=0$. Replace each such denominator by
+$b_h+\epsilon\sum_i x_i$. At every Boolean input,
+\[
+ \left|\frac{A_h(x)}{b_h}-\frac{A_h(x)}{b_h+\epsilon\sum_i x_i}\right|
+ \le\frac{\epsilon n\sum_{i=0}^n|a_{h,i}|}{b_h^2}.
+\]
+The total score changes by at most $\gamma/4$. All target signs remain
+strict, the formerly constant denominators have strictly positive slopes,
+and the number of heads is unchanged. The implementation uses rational
+arithmetic and separately rechecks the perturbed margin before gluing.
+The diagnostic containing a constant upper-face head passes both exact
+checkers on all eight inputs, with two heads in the resulting score.
+This extension addresses denominator admissibility, not compression of
+arbitrary face labels.
 
 \end{document}
