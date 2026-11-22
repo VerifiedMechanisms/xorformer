@@ -1,0 +1,21 @@
+{
+  "status": "PASS_EXACT_FRACTION_CONTRACTION",
+  "equations": 36,
+  "n": 6,
+  "heads": 3,
+  "eta_strict_upper_power_of_two": -200,
+  "contraction_strict_upper_power_of_two": -80,
+  "invariant_ball_checked": true,
+  "base_jacobian_prime": 65537,
+  "base_jacobian_determinant_mod": 51334,
+  "common_threshold": [
+    283,
+    1024
+  ],
+  "all_labels_strict": true,
+  "differing_vertices": [
+    39
+  ],
+  "arithmetic": "fractions.Fraction; no interval code imported",
+  "scope": "certificate inequalities; analytic implication in written proof"
+}

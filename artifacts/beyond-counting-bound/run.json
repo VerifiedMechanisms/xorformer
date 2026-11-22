@@ -339,7 +339,8 @@
     "different_labels": "exactly vertex 39 after common threshold 283/1024",
     "scope": "generic uniqueness counterexample for the specified coordinate projection",
     "lean_status": "no complete Lean theorem claimed",
-    "target_implication": "none"
+    "target_implication": "none",
+    "independent_exact_rational_audit": "PASS; Fraction verifier imports no interval code; second modular determinant 51334 modulo 65537"
   },
   "root_lake_build": {
     "status": "PASS",
@@ -356,5 +357,7 @@
     "lean_scope": "scalar estimates and general finite-sum margin theorem",
     "exact_scores_checked": 53024,
     "target_implication": "none; real query points with many geometric scales"
-  }
+  },
+  "shared_branch_refresh_utc": "2026-11-22T21:28:45.221425+00:00",
+  "shared_branch_refresh_result": "no new branch tips"
 }

@@ -46,7 +46,7 @@ The exact integer interval audit proves
 
 $$ \eta:=\|AF(z_0)\|_\infty\lt2^{-200},\qquad q:=\|I-ADF(z_0)\|_\infty+\|A\|_\infty V\lt2^{-80}. $$
 
-In particular, $eta\lt r/4$ and $q\lt1/4$. Define $G(z)=z-AF(z)$. The derivative bound and the fundamental theorem of calculus along segments in the convex ball give
+In particular, $\eta\lt r/4$ and $q\lt1/4$. Define $G(z)=z-AF(z)$. The derivative bound and the fundamental theorem of calculus along segments in the convex ball give
 
 $$ \|G(z)-G(w)\|_\infty\leq q\|z-w\|_\infty\qquad(z,w\in K). $$
 
@@ -67,3 +67,5 @@ The original Jacobian determinant reduces to 51843 modulo 65521. Every denominat
 [The independent verifier](verify_coordinate_score_fiber.py) uses integers only. It represents each interval by integer endpoints divided by $2^{256}$. Addition is exact at this scale. Multiplication rounds the minimum endpoint product down and the maximum endpoint product up. Division uses an outward enclosure of the reciprocal of a strictly positive interval, followed by multiplication. These rules enclose the corresponding real operations. The verifier then checks the derivative estimates, both contraction budgets, positivity on the entire ball, the original modular Jacobian determinant, and every final sign.
 
 The numerical search and high-precision refinement only discover the certificate data. Their residuals are not premises of the existence proof. The contraction theorem and analytic assembly here are written proofs; no Lean declaration for this complete fiber theorem is claimed. This result rules out uniqueness for the specified coordinate projection. A sharper asymptotic bound on the total number of relevant coordinate branches remains a separate, unresolved theorem-strength gap.
+
+[A second verifier](verify_coordinate_score_fiber_fraction.py) independently uses exact rational numbers and imports none of the interval code. It recomputes the residual, inverse defect, Jacobian variation, invariant-ball inequality, positivity, and every label. It obtains the same strict bounds $\eta\lt2^{-200}$ and $q\lt2^{-80}$, and the same unique label disagreement. It also checks the original Jacobian at a different prime: its determinant is 51334 modulo 65537. The results are recorded in [the rational checks](coordinate-score-fiber-fraction-checks.json).

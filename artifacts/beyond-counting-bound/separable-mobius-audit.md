@@ -45,7 +45,7 @@ is constant. If $D\geq0$, prescribe the sign of each form with nonzero coefficie
 
 `HeadComplexity.MobiusParameterShattering.three_tests_shattered`, in `formalization/HeadComplexity/Atoms/MobiusParameterShattering.lean`, checks the explicit lower bound over the real numbers. The upper bound is the written linear-algebra proof above. The finite search files in `separable-mobius/` motivated the example; their unsuccessful searches do not prove upper bounds.
 
-The example disproves a bound equating the number of independently realizable sign tests with the number of positive scalar parameters. It does not disprove a uniform constant-factor bound. Such a bound for arbitrary sums of positive affine ratios, if strong enough to improve the manuscript's counting theorem, remains unproved here. No transfer from this two-parameter relaxation to the full attention model is claimed.
+The example disproves a bound equating the number of independently realizable sign tests with the number of positive scalar parameters. This finite example alone does not disprove every constant-factor bound. The subsequent [reciprocal Hall construction](reciprocal-matching-shattering.md) does: its tests-per-parameter ratio is unbounded, even with positive residues. No transfer from the free-query relaxation to a small-dimensional full Boolean cube is claimed.
 
 ## Three-parameter adversarial extension
 
@@ -72,4 +72,4 @@ $$ K\bigl(R_1D_2D_3+R_2D_1D_3+R_3D_1D_2\bigr)-CD_1D_2D_3,\qquad D_h=X_h+P_h. $$
 
 The declarations `cleared_signs` and `labels_surjective` check all 384 integer inequalities and all 64 binary labelings. `test_cleared` proves the rational identity, and `six_tests_shattered` proves the real-valued existence statement. Its axiom audit contains only `propext`, `Classical.choice`, and `Quot.sound`.
 
-This example concerns the same relaxation, whose pole and residue data vary freely between tests. No construction of these six tests as the complete Boolean evaluation table of the manuscript's heads is asserted. It rules out the specific $2H-1$ relaxation bound. It does not rule out a larger uniform constant, and it proves no asymptotic head lower bound.
+This example concerns the same relaxation, whose pole and residue data vary freely between tests. No construction of these six tests as the complete Boolean evaluation table of the manuscript's heads is asserted. It rules out the specific $2H-1$ relaxation bound. The later Hall construction rules out every uniform linear bound for the relaxation. Neither result proves an asymptotic head lower bound.
