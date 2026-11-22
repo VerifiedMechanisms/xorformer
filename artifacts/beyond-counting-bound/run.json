@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: resumed after premature termination; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-22T11:36:37.922954+00:00",
-  "elapsed_seconds_at_last_audit": 31382,
+  "last_audit_utc": "2026-11-22T11:54:34.728578+00:00",
+  "elapsed_seconds_at_last_audit": 37606,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -104,9 +104,22 @@
     "HeadComplexity.DenominatorOrder.right_feasible",
     "HeadComplexity.DenominatorOrder.matrices_are_evaluations",
     "HeadComplexity.DenominatorOrder.full_tables_are_evaluations",
-    "HeadComplexity.DenominatorOrder.exampleFunction_computable"
+    "HeadComplexity.DenominatorOrder.exampleFunction_computable",
+    "HeadComplexity.ConvexPerspective.perspective_gap",
+    "HeadComplexity.ConvexPerspective.perspective_convex",
+    "HeadComplexity.ConvexPerspective.weighted_perspective_convex",
+    "HeadComplexity.ConvexPerspective.square_shift",
+    "HeadComplexity.ConvexPerspective.shift_ratio",
+    "HeadComplexity.ConvexPerspective.separatingForm_parabola",
+    "HeadComplexity.ConvexPerspective.separatingForm_self",
+    "HeadComplexity.ConvexPerspective.separatingForm_other",
+    "HeadComplexity.ConvexPerspective.patternCone_convex",
+    "HeadComplexity.ConvexPerspective.patternCone_smul",
+    "HeadComplexity.ConvexPerspective.parabola_mem_iff",
+    "HeadComplexity.ConvexPerspective.common_strict_point",
+    "HeadComplexity.ConvexPerspective.arbitrary_incidence"
   ],
-  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound. CoordinateZeroFiber checks all 96 zero evaluations and invertibility of the 96 by 96 rational matrix and its six by six cloning block. The analytic derivative interpretation, arbitrary-dimension extension and local shattering remain written proofs. PriorityRestriction proves the restriction lemma and the majority-agreement lower bound for priority lists plus arbitrary additive block scores. AffineProductTwoHeads proves that the positive sign of a product of two affine forms is computable by two exact-model heads. No target lower bound follows. ProductTableStability proves an explicit upper-half-plane zero and positive covariance for the value-table generator of four positive affine denominators; it refutes a proposed stability invariant, not the target. ReciprocalJetCharacteristic proves the characteristic-two and characteristic-three identities placing the constant function in each reciprocal-cube jet block. The resulting rank bound is a written proof; these identities do not apply in characteristic zero. AffineStatisticPolynomial and AffineStatisticProjective prove the projective affine-statistic polynomial compiler and its sign-change bound. PuncturedParity proves feasibility with n-1 heads on every proper subset of the parity truth table and infeasibility on the full table. These auxiliary results do not imply the main target. DenominatorOrder proves that two strictly positive denominator pairs with the same strict cube orders have different feasible sign patterns, with an exact annihilator and a two-head feasible witness. This refutes order-only compression, not the target.",
+  "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound. CoordinateZeroFiber checks all 96 zero evaluations and invertibility of the 96 by 96 rational matrix and its six by six cloning block. The analytic derivative interpretation, arbitrary-dimension extension and local shattering remain written proofs. PriorityRestriction proves the restriction lemma and the majority-agreement lower bound for priority lists plus arbitrary additive block scores. AffineProductTwoHeads proves that the positive sign of a product of two affine forms is computable by two exact-model heads. No target lower bound follows. ProductTableStability proves an explicit upper-half-plane zero and positive covariance for the value-table generator of four positive affine denominators; it refutes a proposed stability invariant, not the target. ReciprocalJetCharacteristic proves the characteristic-two and characteristic-three identities placing the constant function in each reciprocal-cube jet block. The resulting rank bound is a written proof; these identities do not apply in characteristic zero. AffineStatisticPolynomial and AffineStatisticProjective prove the projective affine-statistic polynomial compiler and its sign-change bound. PuncturedParity proves feasibility with n-1 heads on every proper subset of the parity truth table and infeasibility on the full table. These auxiliary results do not imply the main target. DenominatorOrder proves that two strictly positive denominator pairs with the same strict cube orders have different feasible sign patterns, with an exact annihilator and a two-head feasible witness. This refutes order-only compression, not the target. ConvexPerspective proves the quadratic-over-linear convexity identities and an arbitrary finite incidence construction by convex cones in three dimensions. It rules out convexity-only counting; the special shared arrow-matrix counting problem remains open.",
   "resumed_utc": "2026-11-22T01:27:48Z",
   "minimum_duration_note": "Conservatively count a fresh twelve hours from the resumed research turn, excluding the earlier unattended gap."
 }
