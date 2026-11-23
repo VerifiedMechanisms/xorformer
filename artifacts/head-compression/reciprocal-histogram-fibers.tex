@@ -1,0 +1,253 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Large exact fibers of positive reciprocal heads on the Boolean cube}
+\author{}\date{}\maketitle
+
+\paragraph{Status.}
+The results below are complete elementary written proofs, accompanied by
+exact finite checks. They have not been formalized in Lean. They concern
+the number of distinct representations of one real function, not the
+number of sign functions that a head budget represents. In particular
+they establish neither accepted asymptotic target. No model definition
+or admissibility condition is changed.
+
+\begin{theorem}[Histogram fibers]\label{thm:fibers}
+Let $k\geq1$, $H\geq1$, and $n\geq3k$ be integers. There is a real
+function $F$ on the Boolean $n$-cube having at least
+\[
+ \frac{(H!)^k}{[e(2k+1)]^{H7^k}}
+\]
+distinct unordered representations as a sum of $H$ reciprocals of
+affine forms with constant coefficient one and strictly positive slopes.
+Every such reciprocal is an original-model atom with constant numerator
+one. A lower bound smaller than one is interpreted literally and is
+uninformative.
+\end{theorem}
+
+\begin{proof}
+Index the heads by $h\in\{0,\ldots,H-1\}$. For each $1\leq\ell\leq k$
+choose a permutation $\pi_\ell$ of this set, independently. Put
+\[
+ a_\ell(x)=x_{3\ell-2}-x_{3\ell-1},\qquad
+ b_\ell(x)=x_{3\ell-1}-x_{3\ell},\qquad
+ D(x)=1+(H+1)\sum_{i=1}^{3k}x_i
+       +(H+1)\sum_{j=1}^{n-3k}2^{j-1}x_{3k+j},
+\]
+and define
+\[
+ B_h^\pi(x)=D(x)+
+       \sum_{\ell=1}^k\bigl(h a_\ell(x)+\pi_\ell(h)b_\ell(x)\bigr).
+\]
+The three slopes contributed within triple $\ell$, in addition to
+the common slope $H+1$, are $h$, $\pi_\ell(h)-h$, and
+$-\pi_\ell(h)$. Each final slope is at least two. Every unused
+coordinate has a strictly positive slope. The constant is one, so all denominators
+are positive on the whole cube. The existing conversion
+\texttt{FracAtom.ofPositiveAffineRatio} realizes their reciprocals
+as original-model atoms.
+
+For a Boolean triple the pair $(a_\ell,b_\ell)$ belongs to
+\[
+ \mathcal V=\{(0,0),(1,0),(-1,0),(0,1),(0,-1),(1,-1),(-1,1)\}.
+\]
+For $v=((a_1,b_1),\ldots,(a_k,b_k))\in\mathcal V^k$, associate to
+$\pi$ the multiset
+\[
+ M_v(\pi)=
+ \left\{\sum_{\ell=1}^k[h a_\ell+\pi_\ell(h)b_\ell]:
+                                  0\leq h<H\right\}.
+\]
+Its entries are integers in $[-k(H-1),k(H-1)]$. There are at most
+\[
+ \binom{H+2k(H-1)}{H}
+ \leq\binom{(2k+1)H}{H}
+ \leq[e(2k+1)]^H
+\]
+possible multisets. The last inequality follows from
+$\binom{M}{H}\leq M^H/H!$ and $H!\geq(H/e)^H$.
+Consequently the joint signature $(M_v)_{v\in\mathcal V^k}$ has at
+most $[e(2k+1)]^{H7^k}$ possibilities. Among the $(H!)^k$ permutation
+tuples, one signature has at least the asserted number of preimages.
+
+For any two tuples in that fiber and any Boolean point $x$, the
+corresponding multisets $\{B_h^\pi(x):h<H\}$ agree: they are
+$M_{v(x)}(\pi)$ translated by the common number $D(x)$.
+Therefore the reciprocal sums agree exactly at every Boolean point.
+
+Finally distinct tuples give distinct unordered multisets of affine
+forms. Indeed the coefficient of $x_1$ in $B_h^\pi$ is $H+1+h$,
+so it uniquely identifies $h$. The coefficient of $x_{3\ell}$ then
+recovers $\pi_\ell(h)$. Thus head relabeling does not divide the
+fiber count by an additional factorial.
+\end{proof}
+
+\begin{lemma}[One triple]\label{lem:one}
+For $k=1$, the joint signature is determined by the difference
+multiset $\{h-\pi(h):h<H\}$. Hence the bound in
+Theorem~\ref{thm:fibers} improves to $H!/2^{3H}$.
+\end{lemma}
+\begin{proof}
+The seven multisets are zero, the fixed positive and negative index
+sets, the same index sets permuted, and the difference multiset
+and its negative. There are
+$\binom{3H-2}{H}\leq2^{3H}$ possible difference multisets, since
+each consists of $H$ entries in $\{-(H-1),\ldots,H-1\}$.
+The same pigeonhole and distinctness arguments apply.
+\end{proof}
+
+\begin{theorem}[Superfactorial fibers in growing dimension]
+Fix $\alpha>0$. Let $H=H(n)$ be any integer sequence with
+$\log H\geq\alpha n$ for all sufficiently large $n$. There are
+constants $c_\alpha>0$ and $N_\alpha$ such that for $n\geq N_\alpha$
+one real function on the $n$-cube has at least
+\[
+ \exp(c_\alpha n H\log n)
+\]
+distinct unordered positive reciprocal representations of length $H$.
+\end{theorem}
+\begin{proof}
+Take $k=\lfloor(\log n)/(2\log7)\rfloor$. For all sufficiently
+large $n$, we have $3k\leq n$, $k\geq(\log n)/(3\log7)$, and
+$7^k\leq\sqrt n$. The logarithm of the bound in
+Theorem~\ref{thm:fibers} is at least
+\[
+ kH(\log H-1)-H7^k\log(e(2k+1)).
+\]
+The first term is at least
+$\alpha nH\log n/(6\log7)$ eventually. The second is
+$O(H\sqrt n\log\log n)=o(nH\log n)$. Increasing the threshold
+therefore gives, for example,
+$c_\alpha=\alpha/(12\log7)$.
+\end{proof}
+
+\begin{lemma}[Cauchy powers]\label{lem:cauchy}
+Let $p\geq1$ be an integer and let $\lambda_1,\ldots,\lambda_H$
+be distinct real numbers. On any interval where every
+$t+\lambda_h>0$, a nonzero linear combination
+$\sum_h c_h/(t+\lambda_h)^p$ has at most $H-1$ distinct zeros.
+In particular its evaluations at any $H$ distinct points form an
+invertible square matrix.
+\end{lemma}
+\begin{proof}
+Induct on $H$, simultaneously for all positive integer exponents.
+The assertion for one term is immediate. Multiply a putative
+combination with $H$ distinct zeros by $(t+\lambda_1)^p$ and
+differentiate. The derivative is
+\[
+ p(t+\lambda_1)^{p-1}
+       \sum_{h=2}^H
+       \frac{c_h(\lambda_h-\lambda_1)}{(t+\lambda_h)^{p+1}}.
+\]
+If some $c_h$ for $h>1$ is nonzero, the induction hypothesis bounds
+the number of derivative zeros by $H-2$, contradicting Rolle's
+theorem. If all those coefficients vanish, the original function
+has no zero. The same induction also proves that no nonzero
+coefficient vector represents the zero function. Singularity of
+the evaluation matrix would supply exactly the forbidden linear
+combination.
+\end{proof}
+
+\begin{theorem}[Regularity in a specified affine family]\label{thm:regular}
+Suppose additionally that $2^{n-3k}\geq H$. All representations in
+the fiber of Theorem~\ref{thm:fibers} lie in one common
+$(k+1)H$-parameter affine family of denominator coefficients.
+There is a fixed selection of $(k+1)H$ cube outputs such that the
+Jacobian from those parameters to the selected reciprocal-sum
+outputs is invertible at every permutation point. In particular
+every displayed representation is locally isolated in the value
+fiber within this specified parameter family.
+\end{theorem}
+\begin{proof}
+The parameters are $d_h$ and $p_{h\ell}$, and the denominators are
+\[
+ B_h(x;d,p)=D(x)+d_h+
+     \sum_{\ell=1}^k[h a_\ell(x)+p_{h\ell}b_\ell(x)].
+\]
+At a permutation point, $d_h=0$ and $p_{h\ell}=\pi_\ell(h)$.
+Every such point has an open parameter neighborhood retaining
+positive denominator constants, positive slopes, and positivity
+on the cube.
+
+Choose $H$ distinct filler vectors $y$; their contributions to $D$
+are distinct by the binary filler weights. For each chosen $y$
+use $k+1$ core patterns. The first has
+$(a_1,b_1)=(1,0)$ and all other pairs zero. For each
+$1\leq\ell\leq k$, the additional pattern has
+$(a_\ell,b_\ell)=(0,1)$ and all other pairs zero. These are
+actual Boolean patterns: use $100$ for $(1,0)$, $110$ for
+$(0,1)$, and $000$ for zero. The first group of $H$ outputs
+has derivative zero in every $p$ coordinate, and its derivative
+in the $d$ coordinates is
+\[
+ -\frac{1}{(T_y+h)^2},
+\]
+where $T_y=D(100,000,\ldots,000,y)$ takes $H$ distinct positive
+values. This block is invertible by Lemma~\ref{lem:cauchy}.
+
+For the additional pattern indexed by $\ell$, the only nonzero
+$p$ derivative block is the one for $p_{h\ell}$, and it equals
+\[
+ -\frac{1}{(T'_y+\pi_\ell(h))^2}.
+\]
+The $d$ block has the same entries, but lies strictly below the
+first diagonal block. Every displayed diagonal block is
+invertible by Lemma~\ref{lem:cauchy}. Ordering parameter blocks
+as $d,p_1,\ldots,p_k$ and output groups in the corresponding
+order makes the full Jacobian block lower triangular and
+invertible. The inverse function theorem supplies local
+isolation in this affine family, both for the selected-output
+fiber and hence for the full-cube value fiber restricted to it.
+\end{proof}
+
+\paragraph{Scope for lower-bound counting.}
+When also $\log H=O(n)$, these fibers eventually exceed
+$H!C^{nH}$ for every fixed $C>0$, even though the representations
+are counted as unordered. Thus such a universal bound on the
+\emph{total} number of representations of one table is false.
+When $2^{n-3k}\geq H$, the same cardinality counts isolated
+regular solutions of the fixed selected-output constraints in
+the specific $(k+1)H$-dimensional slice in
+Theorem~\ref{thm:regular}. For example the growing-dimension
+choice of $k$ satisfies this condition for
+$H=\lfloor2^n/n\rfloor$ and all sufficiently large $n$, since
+$2^{3k}\leq n^{3\log2/(2\log7)}$ and
+$3\log2/(2\log7)<1$.
+This still does not establish local isolation or full Jacobian
+rank when all affine coefficients of every head vary independently.
+Nor does it bound components after quotienting a larger continuous
+fiber. It also does not lower bound the number of distinct
+strict sign tables, since all the displayed representations compute
+exactly the same real table.
+
+\paragraph{The missing sign step.}
+At any displayed representation, perturbing numerator and denominator
+coefficients gives first-order directions in the span of
+\[
+ \frac{1}{B_h^\pi(x)},\quad
+ \frac{x_i}{B_h^\pi(x)},\quad
+ \frac{1}{(B_h^\pi(x))^2},\quad
+ \frac{x_i}{(B_h^\pi(x))^2}.
+\]
+Subtracting one fixed representation in the fiber makes all the
+centers identical to zero at a cost of another $H$ heads. A strict
+sign vector attained by a tangent direction is attained by a small
+actual perturbation, because the cube is finite and all denominator
+slopes and values are strictly positive. However no statement that
+these tangent spaces jointly meet all orthants is established.
+The cardinality of the fiber by itself implies no such coverage.
+
+\paragraph{Exact checks.}
+The companion script enumerates all one-triple permutations for
+$3\leq H\leq8$. The largest fibers have cardinalities
+$2,3,6,12,28,76$, respectively. For two triples and $H\leq5$,
+the complete joint signatures are injective. Thus separate
+one-triple collisions cannot simply be combined independently:
+mixed projection data can distinguish them. The script checks
+the full-cube reciprocal identities with rational arithmetic
+and checks all affine slopes directly. These finite results
+test the construction and illustrate a constraint; the growing
+fiber theorem uses the counting proof above.
+\end{document}
