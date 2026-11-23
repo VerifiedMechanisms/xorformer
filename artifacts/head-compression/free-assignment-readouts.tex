@@ -119,6 +119,52 @@ Choose a shattered coordinate subset and retain just those matrices
 and thresholds. This proves the theorem with strict signs.
 \end{proof}
 
+\begin{theorem}[Rank-one costs already suffice]
+For every $H\geq64$ there are $d\geq H\log H/96$ fixed pairs
+$a_i,b_i\in\mathbb R^H$ such that every $s\in\{-1,1\}^d$ is realized
+by a permutation $\pi$ with
+\[
+ s_i\sum_{h=1}^H a_{ih}b_{i,\pi(h)}>0\qquad(1\leq i\leq d).
+\]
+Thus each separating assignment matrix may be rank one, with just
+$2H$ parameters per query. Its token vector $b_i$ is still unrestricted.
+\end{theorem}
+\begin{proof}
+Use the Hamming packing $\mathcal P$ above. Draw independent standard
+Gaussian vectors $a,b\in\mathbb R^H$, and use the query
+$a^\top P_\pi b$. Conditional on $b\ne0$, the disagreement probability
+for $\pi,\tau$ equals $\theta(b)/\pi$, where $\theta(b)$ is the angle
+between $P_\pi b$ and $P_\tau b$. Their norms both equal $\|b\|$.
+For $0\leq\theta\leq\pi$ one has $\theta\geq1-\cos\theta$:
+the difference has value zero at zero and derivative
+$1-\sin\theta\geq0$. By spherical symmetry,
+$\mathbb E[b_ib_j/\|b\|^2]=\delta_{ij}/H$. Therefore
+\[
+ \mathbb E\cos\theta(b)
+ =\mathbb E\frac{b^\top P_\pi^\top P_\tau b}{\|b\|^2}
+ =\frac{\operatorname{tr}(P_\pi^\top P_\tau)}H
+ =1-\frac{\operatorname{dist}(\pi,\tau)}H.
+\]
+It follows that
+\[
+ \Pr\bigl(\operatorname{sgn}(a^\top P_\pi b)
+       \ne\operatorname{sgn}(a^\top P_\tau b)\bigr)
+ \geq\frac{\operatorname{dist}(\pi,\tau)}{\pi H}
+ >\frac1{4\pi}>\frac1{16}.
+\]
+All finitely many query values are nonzero almost surely, by first
+conditioning on $b$ and then using the continuous Gaussian law of $a$.
+Taking $q=\lceil48\log N\rceil$ independent pairs gives collision
+probability at most $N^2e^{-q/16}\leq N^{-1}<1$. Thus some $q$ rank-one
+queries distinguish the $N$ codewords. Since $q\leq49\log N$, the same
+Sauer argument gives $d\geq\log N/12$: otherwise
+\[
+ \log N\leq\frac{\log N}{12}\log(588e)<\log N,
+\]
+where $588<2^{10}<e^{10}$ implies $\log(588e)<11<12$.
+The packing estimate completes the proof.
+\end{proof}
+
 \paragraph{Connection to regular sheets.}
 At the regular reciprocal sheets of
 \texttt{reverse-joint-full-sheets.tex}, the slot parameters satisfy
@@ -129,8 +175,11 @@ A permitted extra reciprocal query has sheet values
 \]
 These are free assignment costs only with the restricted matrices
 $C_{hj}=(A_h+\mu_j)/(d_h-\lambda_j)$.
-The theorem above permits arbitrary $C_{hj}$ and does not establish
-that this restricted family contains its separating queries.
+The rank-one strengthening needs only $C_{hj}=a_hb_j$, but it allows
+an arbitrary token vector $b$. A common-pole reciprocal query restricts
+that vector to $b_j=1/(d-\lambda_j)$, a single Cauchy curve. Neither
+theorem establishes separation by this curve, or by the more general
+permitted matrices above. Matching the parameter count is insufficient.
 For any genuinely permitted strict readouts, regularity would let the
 original $2H$ continuous query signs vary in a sufficiently small
 neighborhood while preserving all extra signs. The unresolved transfer
