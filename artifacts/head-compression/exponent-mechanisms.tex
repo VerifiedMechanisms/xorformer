@@ -34,8 +34,9 @@ when no individual cell is universally programmable.
 Fix $n,H\geq1$, put $N=2^n$ and $p=1+2H(n+1)$, and let
 $\mathcal M$ be a family of $K\geq1$ subsets of $\Qn$.
 For an ordered mask list $M_1,\ldots,M_H\in\mathcal M$, define
-$I_x=\{h:x\in M_h\}$. Its overlap is
-$\max_x|I_x|$. A masked affine-fraction score has the form
+$I_x=\{h:x\in M_h\}$. Its active-head overlap is
+$\max_x|I_x|$. All references to overlap below count individual heads,
+not the number of cells containing an input. A masked affine-fraction score has the form
 \[
  S(x)=c+\sum_{h\in I_x}\frac{A_h(x)}{B_h(x)},
 \]
@@ -177,7 +178,7 @@ satisfy
  \liminf_{n\to\infty}
  \frac{\log_2(L_n+1)}{g(n)}\geq\frac1{2C}.
 \]
-In particular bounded-overlap assembly from such a mask dictionary
+In particular assembly with bounded active-head overlap from such a mask dictionary
 cannot give \emph{any} superconstant saving over $2^n/n$.
 \end{corollary}
 \begin{proof}
@@ -196,11 +197,13 @@ Indeed $g/(C(2+3/n))=g/(2C)-O_C(g/n)$ and
 $\log_2q_0=\log_2g-O_C(1)$.
 For $g(n)=\log_2 n$ this forces
 $L_n+1\geq n^{1/(2C)}/O_{C,b}(\log n)$.
-A bounded number of overlapping local ranking cells therefore cannot
-preserve the logarithmic local gain. Polynomially growing overlap
-remains compatible with this necessary condition.
+This excludes bounded active-head overlap. It does not exclude bounded
+cell overlap when each cell carries many heads: even one local cell
+with $O(n/\log n)$ ranking heads can have $O(n/\log n)$ active heads
+at a vertex. Such a local majority construction remains compatible with
+the necessary logarithmic-saving condition, depending on constants.
 
-\begin{corollary}[Quantitative lower bound for bounded overlap]
+\begin{corollary}[Quantitative lower bound for bounded active-head overlap]
 Fix $b>0$ and a nonnegative integer $L$, and put
 \[
  Q=\max\{4,\;2\log_2(4e(L+1))+b\}.
