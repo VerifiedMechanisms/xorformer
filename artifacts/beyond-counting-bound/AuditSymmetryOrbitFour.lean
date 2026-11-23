@@ -1,0 +1,14 @@
+import HeadComplexity.Atoms.SymmetryOrbitFour
+#print axioms HeadComplexity.SymmetryOrbitFour.denominators_positive
+#print axioms HeadComplexity.SymmetryOrbitFour.functional_invariant
+#print axioms HeadComplexity.SymmetryOrbitFour.action_bijective
+#print axioms HeadComplexity.SymmetryOrbitFour.tables_distinct
+#print axioms HeadComplexity.SymmetryOrbitFour.orbit_equal_norm
+#print axioms HeadComplexity.SymmetryOrbitFour.stationarity
+#print axioms HeadComplexity.SymmetryOrbitFour.hessian_factorization
+#print axioms HeadComplexity.SymmetryOrbitFour.lower_inverse_mul
+#print axioms HeadComplexity.SymmetryOrbitFour.pivots_positive
+#print axioms HeadComplexity.SymmetryOrbitFour.realHessian_posDef
+#print axioms HeadComplexity.SymmetryOrbitFour.reconstruction_det
+#print axioms HeadComplexity.SymmetryOrbitFour.radial_identity
+#print axioms HeadComplexity.SymmetryOrbitFour.positive_translation

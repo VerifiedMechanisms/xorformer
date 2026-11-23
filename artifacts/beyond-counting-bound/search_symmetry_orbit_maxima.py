@@ -49,6 +49,9 @@ def main():
                 z=rng.normal(size=len(keys))*scale
             else:
                 z=np.exp(rng.normal(size=len(keys))*min(scale,3))
+            # The family contains constants. Remove the target mean before
+            # normalizing, so near-constant targets do not mask residuals.
+            z=z-np.mean(O@z)
             mu=O@z
             mu/=np.linalg.norm(mu)
             def obj(logb,ret=False):
