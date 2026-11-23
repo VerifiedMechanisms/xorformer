@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T00:44:42.555893+00:00",
+  "last_audit_utc": "2026-11-23T00:52:22.475870+00:00",
   "elapsed_seconds_at_last_audit": 89301,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -550,5 +550,16 @@
     "interval_certified": false,
     "impossibility_claim": false,
     "writeup": "continuation-diagnostics.md"
+  },
+  "optimizer_replay_audit": {
+    "script": "audit_unit_minimum_curvature.py",
+    "initial_relative_stationarity_residual": 0.07416576170792163,
+    "original_solver_success_rejected": true,
+    "refined_point_feasible": false,
+    "restarted_searches": [
+      "/out/full-cube-unit-mixed-refined",
+      "/out/variable-constant-minima-refined"
+    ],
+    "target_proved": false
   }
 }

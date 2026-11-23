@@ -1,10 +1,10 @@
 {
   "file": "artifacts/beyond-counting-bound/continuation-diagnostics.md",
-  "sha256": "5b785302440098bb49c8b3ecfb9bb668648a2d26ec0d749f674e805e68a021ce",
-  "utc": "2026-11-23T00:46:45.148730+00:00",
+  "sha256": "ae0c364ec83341cefbe2a94afd55f917c7206448636dd1a97c42283fa45dec36",
+  "utc": "2026-11-23T01:04:06.514707+00:00",
   "static_lint": "PASS",
   "katex": "PASS",
   "github_render": "PASS",
-  "math_spans": 13,
+  "math_spans": 25,
   "notes": []
 }

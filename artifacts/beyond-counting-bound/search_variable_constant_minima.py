@@ -14,6 +14,7 @@ from search_full_cube_unit_minima import mixed_score_jac,check_mixed_gradient
 def main():
  p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
  p.add_argument('--seconds',type=float,default=7200);p.add_argument('--seed',type=int,default=710295)
+ p.add_argument('--log-bound',type=float,default=12.)
  args=p.parse_args();args.output.mkdir(parents=True,exist_ok=True)
  rng=np.random.default_rng(args.seed);start=time.monotonic();trial=0
  print(json.dumps({'mixed_gradient_check':check_mixed_gradient()}),flush=True)
@@ -47,7 +48,7 @@ def main():
    def gradient(t):return np.r_[2*t[:1+k]/norm_scale,np.zeros(k)]
    try:
     result=minimize(objective,theta,jac=gradient,method='SLSQP',
-      bounds=[(None,None)]*(1+k)+[(-12.,12.)]*k,
+      bounds=[(None,None)]*(1+k)+[(-args.log_bound,args.log_bound)]*k,
       constraints=[dict(type='ineq',fun=lambda t:y*evaluate(t)['value']-1,
        jac=lambda t:y[:,None]*evaluate(t)['jac'])],
       options=dict(maxiter=3000,ftol=1e-11,disp=False))
@@ -55,14 +56,14 @@ def main():
     for stage in range(3):
      theta=result.x.copy();norm_scale=max(1.,np.dot(theta[:1+k],theta[:1+k]))
      result=minimize(objective,theta,jac=gradient,method='SLSQP',
-       bounds=[(None,None)]*(1+k)+[(-12.,12.)]*k,
+       bounds=[(None,None)]*(1+k)+[(-args.log_bound,args.log_bound)]*k,
        constraints=[dict(type='ineq',fun=lambda t:y*evaluate(t)['value']-1,
          jac=lambda t:y[:,None]*evaluate(t)['jac'])],
        options=dict(maxiter=5000,ftol=1e-13,disp=False))
      refinement_log.append(dict(stage=stage,norm_scale=float(norm_scale),
        solver_status=int(result.status),iterations=int(result.nit)))
     value,jac=score_jac(result.x);slack=y*value-1;active=np.flatnonzero(slack<1e-6)
-    boundary=float(12-np.max(abs(result.x[1+k:])))
+    boundary=float(args.log_bound-np.max(abs(result.x[1+k:])))
     record=dict(trial=trial,n=n,heads=h,status='UNKNOWN',solver_status=int(result.status),
       nit=int(result.nit),min_slack=float(slack.min()),active_count=len(active),
       parameter_count=pcount,log_bound_distance=boundary,

@@ -1,5 +1,5 @@
 {
-  "recorded_utc": "2026-11-23T00:45:59.950930+00:00",
+  "recorded_utc": "2026-11-23T01:03:43.353289+00:00",
   "main_target_proved": false,
   "numerical_failures_do_not_imply_infeasibility": true,
   "binary-active-fibers": {
@@ -89,5 +89,130 @@
       "elapsed_seconds": 1437.2546304049902
     },
     "termination": "stopped to repair objective conditioning after a replay exposed a 7.4 percent stationarity residual"
+  },
+  "full-cube-unit-mixed-refined": {
+    "records": 293,
+    "sha256": "9ed1c5c72bdcebdce2b87eae97df6b68e835f1cf4d5971ab1f095bee4abdeaad",
+    "states": {
+      "UNKNOWN": 293
+    },
+    "last": {
+      "trial": 298,
+      "n": 7,
+      "heads": 4,
+      "mode": "mixed",
+      "status": "UNKNOWN",
+      "solver_status": 0,
+      "nit": 1,
+      "min_slack": -2.3092638912203256e-14,
+      "active_count": 17,
+      "parameter_count": 56,
+      "log_bound_distance": 0.0,
+      "numerator_norm": 8.162258290778673e-09,
+      "refinements": [
+        {
+          "stage": 0,
+          "norm_scale": 2.6666935349618397,
+          "solver_status": 0,
+          "iterations": 432
+        },
+        {
+          "stage": 1,
+          "norm_scale": 1.0,
+          "solver_status": 0,
+          "iterations": 1
+        },
+        {
+          "stage": 2,
+          "norm_scale": 1.0,
+          "solver_status": 0,
+          "iterations": 1
+        }
+      ],
+      "elapsed_seconds": 1037.6795436691027
+    },
+    "termination": "restarted with stable positive-sum negative-orientation denominators and wider parameter boxes"
+  },
+  "variable-constant-minima-refined": {
+    "records": 237,
+    "sha256": "cf45b4fdd8c8d6783473af3898ca31d82c1f319c1cac1fb24d9c4876a76813cb",
+    "states": {
+      "UNKNOWN": 237
+    },
+    "last": {
+      "trial": 238,
+      "n": 8,
+      "heads": 4,
+      "status": "UNKNOWN",
+      "solver_status": 8,
+      "nit": 507,
+      "min_slack": -1.5338952330523625e-11,
+      "active_count": 32,
+      "parameter_count": 65,
+      "log_bound_distance": 0.0,
+      "numerator_norm": 4.965160898782637,
+      "constant": 0.9999999999999994,
+      "elapsed_seconds": 1031.824998256052,
+      "refinements": [
+        {
+          "stage": 0,
+          "norm_scale": 5.181410686559086,
+          "solver_status": 9,
+          "iterations": 5000
+        },
+        {
+          "stage": 1,
+          "norm_scale": 4.9651608987829725,
+          "solver_status": 8,
+          "iterations": 1948
+        },
+        {
+          "stage": 2,
+          "norm_scale": 4.965160898782656,
+          "solver_status": 8,
+          "iterations": 507
+        }
+      ]
+    },
+    "termination": "restarted with stable positive-sum negative-orientation denominators and wider parameter boxes"
+  },
+  "head-energy-minima": {
+    "records": 77,
+    "sha256": "c337a9357cde24f33621087f4a84d04687393c07f8d80597ff29ae71f21f022a",
+    "states": {
+      "UNKNOWN": 77
+    },
+    "last": {
+      "status": "UNKNOWN",
+      "trial": 98,
+      "n": 7,
+      "heads": 4,
+      "parameter_count": 57,
+      "active_count": 23,
+      "min_slack": -1.948744870361452e-06,
+      "log_bound_distance": 2.0961010704922955e-13,
+      "energy": 2.188402098833806,
+      "stages": [
+        {
+          "stage": 0,
+          "status": 8,
+          "nit": 1086
+        },
+        {
+          "stage": 1,
+          "status": 8,
+          "nit": 6
+        },
+        {
+          "stage": 2,
+          "status": 8,
+          "nit": 5
+        }
+      ],
+      "linear_label_skips": 22,
+      "elapsed_seconds": 176.3610601008404,
+      "main_target_proved": false
+    },
+    "termination": "restarted with stable positive-sum negative-orientation denominators and wider parameter boxes"
   }
 }

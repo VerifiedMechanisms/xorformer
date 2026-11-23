@@ -47,3 +47,17 @@ The first fixed-constant search used the squared numerator norm at the initial f
 `audit_unit_minimum_curvature.py` exposes this discrepancy. Three subsequent optimization passes, each rescaled by its current numerator norm, reduce the norm from approximately $245.43$ to $229.93$. The resulting point reaches the imposed parameter bound and violates a margin constraint by approximately $5.24\cdot10^{-6}$. It is not an interior feasible minimum either. The two complete floating-point replay records are retained in `experiments/unit-minimum-curvature-495.json` and `experiments/unit-minimum-curvature-495-refined.json`.
 
 Both searches were restarted with these rescaling passes. Earlier records remain unresolved diagnostics, not local-minimum certificates. The optimization boxes, finite tolerances, and finite sample of starting points preclude any conclusion about all unrestricted real parameters.
+
+## Stable denominators and an independent objective
+
+For a negative-orientation head, write $p_i\gt0$, $C=1+\sum_i p_i$, and $b_i=-p_i/C$. The stable evaluation and derivative formulas are
+
+$$ B(x)=\frac{1+\sum_i p_i(1-x_i)}{C},\qquad \frac{\partial B(x)}{\partial\log p_i}=\frac{p_i}{C^2}\left((1-x_i)\sum_jp_jx_j-x_i\left(1+\sum_jp_j(1-x_j)\right)\right). $$
+
+These formulas avoid cancellation in the equivalent expression $1+b\cdot x$. They change no mathematical parameter domain. Finite-difference checks at a fixed mixed-orientation test point give a maximum score-Jacobian error below $1.6\cdot10^{-9}$ after this change. The new searches also use the wider log-parameter box with endpoints $-20$ and $20$. This is still a bounded numerical search.
+
+`search_head_energy_minima.py` supplies an independent objective. For the normalized head contributions $r_h(x)$ and free constant $c$, it minimizes
+
+$$ E(c,r)=c^2+2^{-n}\sum_x\sum_h r_h(x)^2 $$
+
+subject to every signed cube margin being at least one. Its objective measures actual head-table values rather than numerator coefficients. The independent objective-gradient check has maximum error below $1.2\cdot10^{-9}$. A numerical linear-programming screen discards starting labelings reported to be linear thresholds; this screen is not a certified lower bound on any labeling. Candidate minima still require separate exact or interval verification.

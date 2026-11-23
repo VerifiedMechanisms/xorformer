@@ -13,11 +13,12 @@ from search_coordinate_score_fibers import check_gradient
 
 def mixed_score_jac(theta,x,n,h,orientation):
  u=theta[:n*h].reshape(n,h);p=np.exp(theta[n*h:].reshape(n,h))
- c=1+p.sum(axis=0);b=np.where(orientation[None,:]>0,p,-p/c[None,:])
- den=1+x@b;num=x@u;value=1+(num/den).sum(axis=1)
+ c=1+p.sum(axis=0);xp=x@p;complement=1+(1-x)@p
+ den=np.where(orientation[None,:]>0,1+xp,complement/c[None,:])
+ num=x@u;value=1+(num/den).sum(axis=1)
  ju=(x[:,:,None]/den[:,None,:]).reshape(len(x),n*h)
  dp=x[:,:,None]*p[None,:,:]
- negative_dp=-dp/c[None,None,:]+(x@p)[:,None,:]*p[None,:,:]/c[None,None,:]**2
+ negative_dp=p[None,:,:]/c[None,None,:]**2*((1-x)[:,:,None]*xp[:,None,:]-x[:,:,None]*complement[:,None,:])
  dd=np.where(orientation[None,None,:]>0,dp,negative_dp)
  jb=(-dd*(num/den**2)[:,None,:]).reshape(len(x),n*h)
  return value,np.c_[ju,jb]
@@ -39,6 +40,7 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
  p.add_argument('--seconds',type=float,default=7200);p.add_argument('--seed',type=int,default=119084)
  p.add_argument('--mode',choices=['independent','cancellation','mixed'],default='independent')
+ p.add_argument('--log-bound',type=float,default=12.)
  args=p.parse_args();args.output.mkdir(parents=True,exist_ok=True)
  rng=np.random.default_rng(args.seed);start=time.monotonic();trial=0
  print(json.dumps({'gradient_check':check_gradient(),'mixed_gradient_check':check_mixed_gradient()}),flush=True)
@@ -73,7 +75,7 @@ def main():
    def gradient(t):return np.r_[2*t[:n*h]/norm_scale,np.zeros(n*h)]
    try:
     result=minimize(objective,theta,jac=gradient,method='SLSQP',
-      bounds=[(None,None)]*(n*h)+[(-12.,12.)]*(n*h),
+      bounds=[(None,None)]*(n*h)+[(-args.log_bound,args.log_bound)]*(n*h),
       constraints=[dict(type='ineq',fun=lambda t:y*evaluate(t)['value']-1,
        jac=lambda t:y[:,None]*evaluate(t)['jac'])],
       options=dict(maxiter=3000,ftol=1e-11,disp=False))
@@ -81,7 +83,7 @@ def main():
     for stage in range(3):
      theta=result.x.copy();norm_scale=max(1.,np.dot(theta[:n*h],theta[:n*h]))
      result=minimize(objective,theta,jac=gradient,method='SLSQP',
-       bounds=[(None,None)]*(n*h)+[(-12.,12.)]*(n*h),
+       bounds=[(None,None)]*(n*h)+[(-args.log_bound,args.log_bound)]*(n*h),
        constraints=[dict(type='ineq',fun=lambda t:y*evaluate(t)['value']-1,
          jac=lambda t:y[:,None]*evaluate(t)['jac'])],
        options=dict(maxiter=5000,ftol=1e-13,disp=False))
@@ -89,7 +91,7 @@ def main():
        solver_status=int(result.status),iterations=int(result.nit)))
     value,jac=score_jac(result.x,x,n,h);slack=y*value-1
     active=np.flatnonzero(slack<1e-6)
-    near_boundary=float(12-np.max(abs(result.x[n*h:])))
+    near_boundary=float(args.log_bound-np.max(abs(result.x[n*h:])))
     record=dict(trial=trial,n=n,heads=h,mode=args.mode,status='UNKNOWN',solver_status=int(result.status),
       nit=int(result.nit),min_slack=float(slack.min()),active_count=len(active),
       parameter_count=pcount,log_bound_distance=near_boundary,
