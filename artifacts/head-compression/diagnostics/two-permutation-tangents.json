@@ -1,0 +1,18 @@
+{
+  "prime": 2147483647,
+  "seed": 2026112312,
+  "trials": 2304,
+  "seconds": 2943.3515238030814,
+  "maxima": {
+    "4": 6,
+    "5": 2,
+    "6": 1,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0
+  },
+  "scope": "Finite-field tangent ranks for specified pairs only. No real sign or universal head theorem."
+}

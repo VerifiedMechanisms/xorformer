@@ -1082,5 +1082,25 @@
     "scope": "No small-support theorem is asserted. An ideal generating set does not bound the support of a representation or preserve nonnegative multiplicities.",
     "target_proved": false,
     "lean_file": "formalization/HeadComplexity/Results/BooleanProjectionIdeal.lean"
+  },
+  "ordered_root_audit": {
+    "file": "artifacts/head-compression/ordered-root-audit.tex",
+    "status": "Manual algebraic proof, not Lean formalized.",
+    "result": "A strict finite martingale-coupling comparison of affine root lists with nonnegative affine weights compiles to admissible heads but also has a strict polynomial separator of degree at most three, or two for constant weights. Pointwise coordinatewise matching has an affine separator.",
+    "limitation": "These sufficient comparison certificates cannot handle parity above their respective degrees. The claim does not exclude unrestricted reciprocal comparisons or the target bound.",
+    "target_proved": false
+  },
+  "two_permutation_tangent_diagnostic": {
+    "script": "artifacts/head-compression/probe_two_permutation_tangents.py",
+    "result": "artifacts/head-compression/diagnostics/two-permutation-tangents.json",
+    "events": "artifacts/head-compression/diagnostics/two-permutation-tangents-events.jsonl",
+    "scope": "2304 specified pairs in dimensions 4 through 12, finite-field rank diagnostics only. Zero output dimension modulo a prime does not alone imply zero output over the reals.",
+    "exact_followup": {
+      "script": "artifacts/head-compression/certify_two_permutation_tangent.py",
+      "certificate": "artifacts/head-compression/diagnostics/two-permutation-tangent-exact-n12.json",
+      "scope": "One specified twelve-bit pair. An integer basis satisfies all full-cube matching equations exactly and has dimension 15; a 323 by 323 constraint minor is nonzero modulo 2147483647. Together these certify zero output over the reals for this pair. No universal assertion.",
+      "proof_note": "artifacts/head-compression/two-permutation-tangent-certificate.tex",
+      "audit": "artifacts/head-compression/diagnostics/two-permutation-tangent-exact-n12-audit.json"
+    }
   }
 }

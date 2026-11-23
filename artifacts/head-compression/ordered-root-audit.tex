@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Qn}{\{0,1\}^n}
+\begin{document}
+\title{Ordered Root Lists: A Transfer and Its Degree Limitation}
+\author{}
+\date{November 23, 2026}
+\maketitle
+
+This note tests a sufficient inequality mechanism, as opposed to exact
+moment cancellation. It does not prove the requested universal head bound.
+The obstruction below applies to the stated coupling certificate, not
+to arbitrary admissible rational scores.
+
+\section{A reciprocal identity with a positive remainder}
+
+\begin{theorem}[Finite martingale coupling]
+Let $u_1,\ldots,u_p,v_1,\ldots,v_q$ be real numbers and let
+$\pi_{ij}\ge0$. Write $a_i=\sum_j\pi_{ij}$ and
+$b_j=\sum_i\pi_{ij}$, and assume
+\[
+                  \sum_j\pi_{ij}(v_j-u_i)=0
+                  \quad\hbox{for every }i.
+\]
+If $C+u_i>0$ and $C+v_j>0$ for all indices, then
+\[
+ \sum_j\frac{b_j}{C+v_j}-\sum_i\frac{a_i}{C+u_i}
+ =\sum_{i,j}\frac{\pi_{ij}(v_j-u_i)^2}
+                         {(C+u_i)^2(C+v_j)}.
+ \tag{1}
+\]
+Also
+\[
+ \sum_j b_jv_j^2-\sum_i a_iu_i^2
+             =\sum_{i,j}\pi_{ij}(v_j-u_i)^2.
+ \tag{2}
+\]
+Both differences are strictly positive if and only if at least one
+$\pi_{ij}>0$ has $u_i\ne v_j$.
+\end{theorem}
+
+\begin{proof}
+For positive $s,t$, direct multiplication gives
+\[
+                 \frac1t-\frac1s+\frac{t-s}{s^2}
+                         =\frac{(t-s)^2}{s^2t}.
+\]
+Substitute $s=C+u_i$, $t=C+v_j$, multiply by $\pi_{ij}$,
+and sum. The row mean hypothesis cancels the linear term and gives
+(1). Expanding the square and using the same hypothesis gives
+\[
+ \sum_{i,j}\pi_{ij}(v_j-u_i)^2
+  =\sum_jb_jv_j^2-2\sum_i a_iu_i^2+\sum_i a_iu_i^2,
+\]
+which is (2). Every summand on each right side is nonnegative,
+and the denominators in (1) are positive. Thus the strictness
+conditions are identical.
+\end{proof}
+
+\section{The head compiler and the limitation}
+
+Let $u_i(x),v_j(x),a_i(x),b_j(x)$ be affine functions on $\Qn$,
+with all $a_i,b_j$ nonnegative there. Suppose that at each vertex
+there is a coupling as above, or a coupling in the reverse direction.
+The couplings can depend arbitrarily on the vertex and are not required
+to be affine. Require strictness at every vertex. Assign label $+1$
+to the displayed direction and $-1$ to the reverse direction.
+
+\begin{theorem}[All such labels have threshold degree at most three]
+Under these hypotheses, the labels are strictly sign represented by
+the polynomial
+\[
+               Q(x)=\sum_j b_j(x)v_j(x)^2
+                            -\sum_i a_i(x)u_i(x)^2,
+\]
+whose total degree is at most three. If the weights $a_i,b_j$ are
+constant, the degree is at most two.
+
+The same labels admit a score with at most $p+q$ admissible heads,
+using the affine numerators $b_j$ and $-a_i$ and a common affine
+offset in all denominators.
+\end{theorem}
+
+\begin{proof}
+Apply (2) at each vertex in the stated direction, or in the reverse
+direction. Strictness gives $y(x)Q(x)>0$. Each term in $Q$ has
+degree at most three, or at most two for constant weights.
+
+To verify the architectural claim explicitly, write all root forms
+as $\ell(x)=\ell_0+\sum_k\ell_kx_k$. Choose
+\[
+ c_k=1+\max_\ell|\ell_k| \quad(0\le k\le n),
+             \qquad C(x)=c_0+\sum_{k=1}^n c_kx_k.
+\]
+Then every $C+\ell$ has a positive constant coefficient and all
+variable coefficients strictly positive. It is therefore positive
+on the whole cube and admissible in the manuscript model. Formula
+(1) shows that
+\[
+          \sum_j\frac{b_j(x)}{C(x)+v_j(x)}
+                -\sum_i\frac{a_i(x)}{C(x)+u_i(x)}
+\]
+has exactly the prescribed strict signs. The normal-form theorem
+implements its $p+q$ fractions as $p+q$ actual heads.
+\end{proof}
+
+\begin{corollary}[Majorization does not give a universal construction]
+No matter how long the root lists are, the preceding affine-weight
+coupling criterion cannot represent parity on $n\ge4$ variables.
+For constant weights it cannot represent parity on $n\ge3$ variables.
+In particular, replacing moment equalities by these majorization
+inequalities does not supply the missing universal construction.
+\end{corollary}
+
+\begin{proof}
+Put $\chi(x)=(-1)^{x_1+\cdots+x_n}$. For every polynomial $P$ of
+degree less than $n$,
+\[
+                         \sum_{x\in\Qn}\chi(x)P(x)=0.
+\]
+Indeed every monomial of such a polynomial omits some coordinate;
+pairing its values across that coordinate cancels its contribution.
+If $\chi(x)P(x)>0$ at every vertex, the displayed sum would be
+strictly positive. Thus a polynomial of degree at most three, or
+at most two, cannot represent the indicated parity functions.
+\end{proof}
+
+For ordinary equal-weight majorization, the coupling is a doubly
+stochastic matrix taking the more spread out list to the less spread
+out list. The hypothesis is satisfied by that matrix. The preceding
+proof uses only its row sums, column sums, and row means, so it does
+not rely on a classification theorem for such matrices.
+
+\section{An even stronger ordering requirement}
+
+If two equal-length root lists can instead be matched pointwise with
+$u_i(x)\le v_{\sigma(i)}(x)$, with at least one strict inequality,
+then
+\[
+                        L(x)=\sum_jv_j(x)-\sum_i u_i(x)>0.
+\]
+Reversing the inequalities reverses the sign of $L$. Hence a labeling
+certified by one of these two coordinatewise matching directions at
+each vertex already has an affine separator. The matching may depend
+on the vertex. This stronger ordering condition cannot even certify
+two-bit parity.
+
+The analysis does not exclude comparisons valid for the single
+reciprocal test function without a convex-order coupling. Establishing
+a small-head construction in that unrestricted setting remains the
+original unresolved task; no universal feasibility assertion is made
+here.
+\end{document}

@@ -1,0 +1,22 @@
+{
+  "verified": true,
+  "n": 12,
+  "real_constraint_rank": 323,
+  "real_kernel_dimension": 15,
+  "real_output_dimension": 0,
+  "scope": "This specified pair has zero real first-order output. No universal head bound.",
+  "negative_controls": [
+    {
+      "mutation": "basis_entry",
+      "rejected": true
+    },
+    {
+      "mutation": "minor_column",
+      "rejected": true
+    },
+    {
+      "mutation": "determinant",
+      "rejected": true
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{An Exact Audit of One Two-List Tangent Calculation}
+\author{}
+\date{November 23, 2026}
+\maketitle
+
+\paragraph{Scope.}
+This is a finite linear-algebra certificate for one specified pair of
+Boolean permutation lists. It is not a universal head upper bound,
+a lower bound for the full attention model, or a Lean declaration.
+The earlier modular survey remains a diagnostic: equality of two ranks
+modulo one prime alone would not justify equality of their real ranks.
+
+\paragraph{The lists.}
+Use coordinates $x_0,\ldots,x_{11}\in\{0,1\}$ and define
+\[
+ u_0(x)=\sum_{i=0}^{11}x_i,\qquad
+ u_k(x)=k(1-x_{k-1})+\sum_{i=k}^{11}x_i
+                      \quad(1\le k\le12).
+\]
+At every vertex these are a permutation of $0,\ldots,12$.
+Let $v(x)=u(y)$, where
+\[
+ \pi=(6,0,11,8,9,1,4,10,5,2,3,7),\qquad
+ y_i=x_{\pi_i}\mathbin{\mathrm{xor}}\operatorname{bit}_i(1540).
+\]
+Each $y_i$ is either an input coordinate or its complement, so the
+$v_k$ are also affine.
+
+Let $a_0,\ldots,a_{12},b_0,\ldots,b_{12}$ be arbitrary real affine
+functions of $x$. There are $2\cdot13^2=338$ real coefficients.
+Define the first variation
+\[
+ T_x(s)=\left.\frac{d}{d\epsilon}\right|_{\epsilon=0}
+ \left[\prod_{h=0}^{12}(s+u_h(x)+\epsilon a_h(x))
+       -\prod_{h=0}^{12}(s+v_h(x)+\epsilon b_h(x))\right].
+\]
+
+\begin{proposition}
+If $T_x(s)$ is independent of $s$ at every Boolean vertex, then
+$T_x(s)=0$ at every Boolean vertex.
+\end{proposition}
+
+\begin{proof}[Certificate proof]
+Write $h(x,j)$ and $\ell(x,j)$ for the unique rows with
+$u_h(x)=v_\ell(x)=j$. Put
+\[
+ K_{x,j}(a,b)=a_{h(x,j)}(x)-b_{\ell(x,j)}(x),\qquad
+ d_j=(-1)^j j!(12-j)!.
+\]
+The matrix $K$ has $53248$ rows and $338$ columns, with integer
+entries in $\{0,1,-1\}$. Evaluation at the distinct roots gives
+\[
+                         T_x(-j)=d_jK_{x,j}(a,b).
+\]
+Since $T_x$ has degree at most $12$, it is constant exactly when
+all its $13$ displayed values agree. Define the integer matrix $C$
+with $49152$ rows by
+\[
+ C_{x,j}=d_jK_{x,j}-d_0K_{x,0},\qquad 1\le j\le12.
+\]
+The hypothesis is therefore $C(a,b)=0$.
+
+The file
+\texttt{diagnostics/two-permutation-tangent-exact-n12.json}
+specifies an integer matrix $V$ with $338$ rows and $15$ columns,
+and a square minor of $C$ with $323$ rows. Its verifier checks:
+\begin{enumerate}
+\item $KV=0$ on all $4096$ Boolean vertices and all $13$ roots;
+\item $V$ has column rank $15$ modulo $2147483647$;
+\item the specified $323$ by $323$ integer minor of $C$ has
+nonzero determinant modulo $2147483647$.
+\end{enumerate}
+The first check uses exact integer arithmetic. The explicit size bound
+in the verifier ensures that the integer dot products cannot overflow.
+The last two checks imply real independence: a nonzero determinant
+modulo an integer is the residue of a nonzero integer determinant.
+Consequently
+\[
+ \operatorname{rank}_{\mathbb R}C\ge323,\qquad
+ \dim_{\mathbb R}\operatorname{span}(V)=15,
+ \qquad \operatorname{span}(V)\subseteq\ker C.
+\]
+Rank-nullity now forces $\ker C=\operatorname{span}(V)$. Hence
+$C(a,b)=0$ implies $K(a,b)=0$, so all $T_x(-j)$ vanish and
+$T_x=0$.
+\end{proof}
+
+\paragraph{Reproduction.}
+Run \texttt{certify\_two\_permutation\_tangent.py} with
+\texttt{--verify} and the certificate path. The implementation
+requires \texttt{python-flint} and \texttt{numpy}; it must be run
+through the repository's \texttt{heavy} wrapper. The verifier
+reconstructs the two lists and all matching equations from the
+specified permutation and mask. It recomputes the minor determinant
+instead of trusting the determinant value stored in the file.
+
+The zero-output conclusion concerns first-order perturbations at
+this pair. It makes no claim about another pair, a higher-order
+leading term, or a general rational score away from this base.
+\end{document}
