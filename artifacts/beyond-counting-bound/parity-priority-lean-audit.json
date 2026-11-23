@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "command": "lake env lean HeadComplexity/Results/SubcubeConjunctionCover.lean",
+  "source_sha256": "a120e004d2ae227b8b864bbe2be38148dca200700800181916c301a579447da9",
+  "checked_declarations": [
+    "HeadComplexity.SubcubeConjunctionCover.indicator_nonneg",
+    "HeadComplexity.SubcubeConjunctionCover.alternatingSum_conjunction",
+    "HeadComplexity.SubcubeConjunctionCover.coordinate_sum_zero_of_not_cover",
+    "HeadComplexity.SubcubeConjunctionCover.alternatingSum_zero_of_not_covers",
+    "HeadComplexity.SubcubeConjunctionCover.alternatingSum_pos",
+    "HeadComplexity.SubcubeConjunctionCover.representation_covers",
+    "HeadComplexity.SubcubeConjunctionCover.covers_has_code",
+    "HeadComplexity.SubcubeConjunctionCover.parity_conjunction_count"
+  ],
+  "main_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "priority_expansion": "written proof; not claimed formalized",
+  "main_target_proved": false
+}

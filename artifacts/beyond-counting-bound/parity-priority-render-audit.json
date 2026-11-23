@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-23T10:15:46.598289+00:00",
+  "github": [
+    {
+      "path": "artifacts/beyond-counting-bound/parity-priority-separation.md",
+      "sha256": "d67371d55e0a28f9e247f11bbd14cf0f88dcf91532af449c1f4605e3f42e6079",
+      "math_spans": 46,
+      "findings": [],
+      "notes": []
+    },
+    {
+      "path": "artifacts/beyond-counting-bound/audit-index.md",
+      "sha256": "ec9108079fd8cdd971d6023cff7881c3e738cfd1dd8de9714b27464d44334f07",
+      "math_spans": 1,
+      "findings": [],
+      "notes": []
+    }
+  ],
+  "katex": "PASS: 47 spans",
+  "gitlab": "not run: glab unavailable"
+}
