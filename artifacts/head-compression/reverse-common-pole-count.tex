@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{A Linear Bound for a Common Moving Pole}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This note gives a complete written argument for a restricted readout
+family. It is not Lean checked. It does not bound the original model,
+in which different heads have independent denominator parameters.
+In particular it proves neither accepted global target. The purpose
+is to decide whether a proposed one-parameter Cauchy-plane sweep can
+supply the missing superconstant local saving. It cannot.
+
+Fix $H\geq1$, an interval $I\subset\mathbb R$, and, for each query
+index $i$, real numbers $p_{ih},A_{ih},c_i$. Assume
+$p_{ih}-t>0$ for every $t\in I$ and every $i,h$. Consider the score
+family, with parameters $t\in I$ and $a\in\mathbb R^H$,
+\[
+ F_i(t,a)=c_i+\sum_{h=1}^H\frac{A_{ih}+a_h}{p_{ih}-t}.
+ \tag{1}
+\]
+The query poles and numerator offsets may vary independently with
+both $i$ and $h$. Only the moving pole parameter $t$ is common.
+
+\begin{theorem}
+The strict-sign class in (1) cannot shatter $64(H+1)$ query indices.
+Consequently its VC dimension is less than $64(H+1)$, uniformly over
+all choices of query data and of the positive-pole interval $I$.
+\end{theorem}
+
+We use two elementary finite-dimensional facts, with their needed
+justifications recorded here.
+
+\begin{lemma}[Minor signs determine strict feasibility]
+Let $v_1,\ldots,v_m\in\mathbb R^d$. The set of sign vectors
+$s\in\{-1,1\}^m$ for which some $w\in\mathbb R^d$ satisfies
+$s_i\langle v_i,w\rangle>0$ for every $i$ is determined by the signs
+of all square minors of the matrix with rows $v_i$.
+\end{lemma}
+\begin{proof}
+For a fixed $s$, the strict theorem of alternatives says that such
+$w$ exists exactly when there is no nonzero vector $q\geq0$ with
+$\sum_iq_i s_iv_i=0$. This alternative follows, for example, by
+strictly separating zero from the compact convex hull of the
+$s_iv_i$: a nonnegative dependence can be normalized to a convex
+combination, and strict separation gives the required $w$.
+
+Any nonnegative dependence has a support-minimal one. Its support
+is a minimally dependent set: if the kernel on that support had
+dimension at least two, one could perturb the strictly positive
+coefficients within the kernel until one coefficient became zero,
+contradicting minimality. A minimally dependent support of size
+$k+1$ has rank $k\leq d$. Choose $k$ independent coordinate columns
+on its rows. Its one-dimensional dependence has coefficients given,
+up to a common nonzero scalar, by the alternating $k$-row minors.
+Their signs determine whether multiplication by $s_i$ makes every
+nonzero coefficient have the same sign. A zero row, the case $k=0$,
+is also detected by the one-entry minors. Thus all possible positive
+minimal dependencies, and hence strict feasibility, are determined
+by the signs of the square minors.
+\end{proof}
+
+\begin{lemma}[Hyperplane sign count]
+For $m$ vectors in $\mathbb R^d$, at most
+$2\sum_{j=0}^{d-1}\binom{m-1}{j}$ strict sign vectors are possible.
+\end{lemma}
+\begin{proof}
+The complement of the $m$ homogeneous hyperplanes has one convex
+open chamber for each realized strict sign vector. Adding the last
+hyperplane creates at most as many new chambers as the preceding
+hyperplanes induce on that hyperplane, a space of dimension $d-1$.
+Thus the maximal chamber counts obey
+$R(m,d)\leq R(m-1,d)+R(m-1,d-1)$, with $R(1,d)\leq2$ and
+$R(m,1)\leq2$. Induction and Pascal's identity give the bound.
+Zero or repeated hyperplanes can only decrease the count.
+\end{proof}
+
+\begin{proof}[Proof of the theorem]
+Put $d=H+1$ and consider any $r$ query indices. Define the $r+1$
+row vectors
+\[
+ v_i(t)=\left(\frac1{p_{i1}-t},\ldots,
+          \frac1{p_{iH}-t},\ c_i+\sum_h\frac{A_{ih}}{p_{ih}-t}\right),
+ \qquad v_{r+1}(t)=(0,\ldots,0,1).
+\]
+A strict sign vector $s$ of (1) is feasible exactly when the
+augmented homogeneous sign vector $(s,+1)$ is feasible for these
+rows. Indeed, the final inequality makes the last coordinate of
+the separating vector positive; division by that coordinate
+normalizes it to $(a,1)$.
+
+There are at most
+\[
+ K=\sum_{k=0}^{d}\binom{r+1}{k}\binom{d}{k}
+   =\binom{r+d+1}{d}
+\]
+square minors, counting also the empty minor. In a minor using $k$
+ordinary query rows, multiply by the product of their $kH$
+positive affine denominators. Each resulting matrix row has
+polynomial entries of degree at most $H$. Multilinearity of the
+determinant therefore gives a numerator of degree at most
+$kH\leq d^2$. The normalization row introduces no denominator.
+Identically zero numerators have constant zero sign and are omitted.
+The remaining minor numerators have at most $d^2K$ distinct real
+zeros altogether. These zeros split $I$ into at most $2d^2K+1$
+pieces, counting singleton zeros as pieces. All minor signs are
+constant on each open piece. By the first lemma the feasible sign
+vectors are constant there as well. Singleton pieces are handled
+by their actual matrices, including any rank drops.
+
+The second lemma now bounds the total number of strict sign
+vectors in (1) by
+\[
+ (2d^2K+1)\,2\sum_{j=0}^{d-1}\binom rj.
+ \tag{2}
+\]
+There is no genericity assumption in this count.
+
+Set $r=64d$. The elementary binomial bounds
+$\binom Nk\leq(eN/k)^k$ and
+$\sum_{j=0}^k\binom Nj\leq(eN/k)^k$ for $1\leq k\leq N/2$
+give, using $e<3$ and $d\geq2$,
+\[
+ K\leq(66e)^d<2^{8d},\qquad
+ \sum_{j=0}^{d-1}\binom rj\leq(128e)^{d-1}<2^{9d}.
+\]
+For clarity, the sum inequality follows by taking $x=k/N\leq1$:
+$x^k\sum_{j=0}^k\binom Nj\leq(1+x)^N\leq e^k$.
+Also $d^2\leq2^{2d}$ and $2d^2K+1\leq4d^2K$. Therefore (2) is
+less than $2^{19d+3}$, which is less than $2^{64d}$. These $r$
+queries are not shattered. Any larger shattered set would contain
+a shattered subset of this size, proving the assertion.
+\end{proof}
+
+\paragraph{What remains available.}
+The argument allows arbitrary row poles, numerator offsets, row
+biases, and residue sizes. It also allows all cancellations and
+all singular parameter values. It does not apply to independently
+moving poles $u_h$, nor to the arbitrary-permutation planes with
+independent token assignments. The degree factor here contributes
+only a polynomial factor to the number of parameter intervals;
+it cannot be raised to $H$ merely because there are $H$ residue
+parameters. Several moving pole parameters require a separate
+multivariate count and do not fall under the theorem as stated.
+\end{document}
