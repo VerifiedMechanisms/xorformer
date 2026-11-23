@@ -10,12 +10,15 @@
 \maketitle
 
 \paragraph{Status.}
-The statements here are complete written arguments. They are not Lean
-declarations and do not establish a new asymptotic bound for unrestricted
-\texttt{HeadComplexity.worstCaseHeadComplexity}. The attention model,
+The statements here are complete written arguments. The pair-vertex
+denominator obstruction and the abstract permutation-rigidity step in the
+final section are additionally checked in
+\texttt{Results/ReverseColumnRigidity.lean}, as specified there. The other
+arguments remain written only. None establishes a new asymptotic bound
+for unrestricted \texttt{HeadComplexity.worstCaseHeadComplexity}. The attention model,
 head count, and denominator admissibility remain unchanged. The purpose
-is to delimit two concrete counting mechanisms before using them in a
-claimed lower bound. Neither statement excludes arbitrary target-dependent
+is to delimit concrete counting and interpolation mechanisms before using
+them in a claimed asymptotic bound. These results do not exclude arbitrary target-dependent
 denominators, numerator cancellation, or asymmetric reciprocal queries.
 
 \section{A full-cube obstruction to compressing symmetric Cauchy sheets}
@@ -779,6 +782,31 @@ head and repeat the same argument for rank $2$, then rank $3$, up
 to rank $H$. Every head's rank is fixed across all columns, which
 is exactly the claimed equality of permutations.
 \end{proof}
+
+\paragraph{Lean-checked portion.}
+The module \texttt{HeadComplexity.Results.ReverseColumnRigidity}
+formalizes the essential whole-cube argument directly against the
+repository's unchanged \texttt{affineValue}. The theorem
+\texttt{reverseAffine\_two\_outliers\_lt} says that a positive affine
+denominator with a nonpositive minimum-column slope and singleton
+values $D-u_0,D-u_1,D-u_2$ must satisfy
+$u_1+u_2<D+u_0$, provided the last two coordinates differ. It evaluates
+the denominator at their two-hot union. The theorem
+\texttt{reverseAffine\_not\_positive\_of\_geometric\_outliers}
+checks the geometric margin calculation above, already for $L\geq4$.
+The purely combinatorial
+\texttt{permutations\_eq\_of\_no\_two\_larger} proves rigidity for
+arbitrary finite permutation columns by strong induction on rank.
+Finally \texttt{reverseAffine\_permutation\_columns\_frozen} and
+its positive-headwise-scaling variant
+\texttt{reverseAffine\_scaled\_permutation\_columns\_frozen}
+combine these arguments under the explicit separation condition
+$D+\lambda_k\leq\lambda_a+\lambda_b$ whenever $k<a,b$.
+All these declarations were checked with Lean, without \texttt{sorry}
+or new axioms. Instantiating the displayed geometric pole sequence
+and restricting the row block to the smallest root probe remain
+the elementary written steps above; no asymptotic head-complexity
+claim is attached to these declarations.
 
 This obstruction concerns preservation of the individual denominator
 tables. It does not apply to collective resynthesis using different
