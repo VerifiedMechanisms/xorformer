@@ -341,7 +341,8 @@ Choose the unique vector $c$ with $Cc=\sigma$ and put
  U(t)=\sum_{j=0}^m\frac{c_j}{t+\lambda_j}.
 \]
 On the Boolean cube the score
-$U(|x|)+U(|y|)-1$ equals $1$ when both majorities are positive,+$-1$ when exactly one is positive, and $-3$ otherwise. It has strict
+$U(|x|)+U(|y|)-1$ equals $1$ when both majorities are positive,
+$-1$ when exactly one is positive, and $-3$ otherwise. It has strict
 margin at least one. The denominators in its $2m+2$ displayed terms
 have positive slopes in the active block and zero slopes in the
 other block. Replace them, respectively, by
@@ -373,6 +374,145 @@ lower bound in this theorem is an application of the cited published
 result, not a new proof or a Lean formalization. Its role here is to
 reject a concrete proposed invariant; a restricted-class upper bound
 does not resolve the worst-case asymptotic question.
+
+\section{Equal moments limit exterior Stieltjes readout}
+
+The next theorem addresses a proposed way to keep the first several
+terms of a compact-pole expansion fixed while encoding information in
+higher moments. It permits arbitrary correlated choices of a pole
+multiset inside one queried slot block. It does not require independent
+pair choices or a fixed finite library of poles.
+
+\begin{proposition}[A zero-count criterion from prefix Wronskians]
+Let $f_0,\ldots,f_s$ be smooth real functions on an open interval $I$.
+Suppose that every prefix Wronskian
+$W(f_0,\ldots,f_j)$, $0\leq j\leq s$, is everywhere nonzero on $I$.
+Then each nonzero linear combination of the $f_j$ has at most $s$
+distinct zeros in $I$.
+\end{proposition}
+\begin{proof}
+We use induction on $s$. For $s=0$ the assertion is exactly the
+nonvanishing of $f_0$. For the inductive step divide a proposed
+combination by the nowhere-zero function $f_0$ and differentiate.
+The derivative is a linear combination of
+\[
+ g_j=(f_{j+1}/f_0)',\qquad 0\leq j<s.
+\]
+The elementary Wronskian identities for a common factor and a constant
+first column give
+\[
+ W(g_0,\ldots,g_j)
+ =\frac{W(f_0,\ldots,f_{j+1})}{f_0^{j+2}}\ne0.
+\]
+For completeness, multiplying all columns of a Wronskian of length
+$m$ by a smooth function $a$ multiplies its determinant by $a^m$.
+This follows from the product rule by expressing the transformed
+derivative rows as a triangular linear combination of the old rows,
+with diagonal entries $a$. Apply this with $a=f_0$ to
+$1,f_1/f_0,\ldots,f_{j+1}/f_0$, and expand along the initial
+constant column, to obtain the displayed identity.
+
+If all coefficients other than that of $f_0$ vanish, the original
+combination has no zeros. Otherwise the derivative combination is
+nonzero, because a nonzero full Wronskian implies linear independence.
+By induction this derivative has at most $s-1$ distinct zeros. If the
+original combination had $s+1$ distinct zeros, so would its quotient
+by $f_0$, and Rolle's theorem would give at least $s$ distinct derivative
+zeros, a contradiction. The argument also excludes an infinite set of
+zeros, since it would contain $s+1$ distinct zeros.
+\end{proof}
+
+\begin{theorem}[Equal-moment Stieltjes capacity]
+Fix integers $k\geq1$ and $0\leq\ell\leq k-1$, and a real number
+$\beta$. Let $\mathcal S$ be any family of multisets of exactly $k$
+real poles, all at most $\beta$. Suppose all members of $\mathcal S$
+have the same power sums through degree $\ell$:
+\[
+ \sum_{\lambda\in S}\lambda^j
+ =\sum_{\lambda\in T}\lambda^j
+ \quad(S,T\in\mathcal S,\ 1\leq j\leq\ell).
+\]
+Multiplicity is included in every sum. Put
+$F_S(D)=\sum_{\lambda\in S}(D-\lambda)^{-1}$ for $D>\beta$.
+For fixed query points $D_1,\ldots,D_r>\beta$ and fixed arbitrary
+thresholds $\theta_1,\ldots,\theta_r$, suppose that
+\[
+ \bigl(\operatorname{sgn}(F_S(D_i)-\theta_i)\bigr)_{i=1}^r,
+ \qquad S\in\mathcal S,
+\]
+realizes every element of $\{-1,1\}^r$ with strict signs. Then
+\[
+ r\leq k-\ell.
+\]
+In particular, without any moment conditions the bound is $r\leq k$.
+If all first $k-1$ power sums are fixed, at most one query can be
+shattered.
+\end{theorem}
+\begin{proof}
+Two equal query locations cannot be shattered: whichever of their two
+thresholds is smaller forbids one of the two opposite strict sign
+patterns. Thus the query locations are distinct, and we may order them
+as $D_1<\cdots<D_r$.
+
+For $S,T\in\mathcal S$ define the monic degree-$k$ polynomials
+\[
+ p(D)=\prod_{\lambda\in S}(D-\lambda),\qquad
+ q(D)=\prod_{\lambda\in T}(D-\lambda).
+\]
+Newton's identities show that matching power sums through degree
+$\ell$ implies matching elementary symmetric sums through degree
+$\ell$. Hence $u=q-p$ has degree at most
+$s=k-\ell-1$. Both $p$ and $q$ are strictly positive on
+$(\beta,\infty)$, and logarithmic differentiation gives
+\[
+ F_S-F_T=\frac{p'}p-\frac{q'}q
+ =-\frac{(u/p)'}{1+u/p}.
+\]
+The denominator $1+u/p=q/p$ is strictly positive. We claim that a
+nonzero numerator $(u/p)'$ has at most $s$ distinct zeros on this
+interval.
+
+For $0\leq j\leq s$ put $f_j=(D^j/p)'$. Every prefix Wronskian is
+\[
+ \begin{aligned}
+ W(f_0,\ldots,f_j)
+ &=W(1,1/p,D/p,\ldots,D^j/p)\\
+ &=p^{-j-2}W(p,1,D,\ldots,D^j)\\
+ &=(-1)^{j+1}\left(\prod_{a=0}^j a!\right)
+       \frac{p^{(j+1)}}{p^{j+2}}.
+ \end{aligned}
+\]
+The first equality expands along a constant first column. The second
+is the common-factor identity proved above. For the last equality,
+move the first column to the last position, then expand the resulting
+Wronskian of $1,D,\ldots,D^j,p$ along its final derivative row.
+Here $p^{(j+1)}$ denotes a derivative. It is strictly positive for
+$D>\beta$: differentiating a product of $k$ strictly positive linear
+factors $j+1\leq s+1\leq k$ times gives a sum of positive products,
+with positive integer coefficients. Thus all these prefix Wronskians
+are nonzero, including in the presence of repeated poles. The
+preceding proposition proves the claim for every polynomial $u$ of
+degree at most $s$.
+
+Now choose $S$ giving the alternating strict sign pattern
+$((-1)^i)_{i=1}^r$ relative to the thresholds, and $T$ giving its
+negative. Their difference $F_S-F_T$ has the same alternating signs
+at the $D_i$. It is nonzero and has at least $r-1$ distinct zeros,
+one in each intervening open interval. The claim gives
+$r-1\leq s=k-\ell-1$, as required.
+\end{proof}
+
+The theorem concerns unweighted Stieltjes sums on a single slot block.
+It allows the poles to move continuously and correlatedly, but it does
+not sum over several overlapping slot blocks. Applying the theorem
+separately to disjoint blocks with a total of $H$ poles bounds their
+total number of independently readable strict bits by $H$. Applying
+it separately to nested blocks can instead give an $H\log H$ sum,
+because the same poles are counted at multiple levels. Whether a
+hereditary family of correlated equal-moment partitions can make those
+bits simultaneously readable remains a separate unresolved question.
+The present theorem supplies no asymptotic bound on unrestricted head
+complexity.
 
 \section{Primary-source transfer checks}
 
