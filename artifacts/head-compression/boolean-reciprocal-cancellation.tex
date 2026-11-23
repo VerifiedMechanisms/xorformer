@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Boolean Reciprocal Cancellation Beyond Root Permutations}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+The identities in this note are zero scores, not representations of
+arbitrary signs. They describe a construction space outside ideal
+product differences. The universal bound remains unproved.
+
+\section{A genuinely Boolean identity}
+
+\begin{proposition}
+Put $B_1=1+11x+3y$, $B_2=3+39x+13y$, and
+$B_3=3+25x+5y$. Then
+\[
+ \frac1{B_1}-\frac2{B_2}-\frac1{B_3}
+ =\frac{-4(x^2-x+y^2-y)}{B_1B_2B_3}.
+ \tag{1}
+\]
+Every denominator has strictly positive coefficients. Thus the score
+vanishes on the Boolean square but equals $1/2088$ at its center.
+Its three denominators are pairwise nonproportional.
+\end{proposition}
+\begin{proof}
+Expansion gives $B_2B_3-2B_1B_3-B_1B_2=-4(x^2-x+y^2-y)$.
+At the center the three denominator values are $8,29,18$.
+The coefficients verify the remaining claims directly.
+\end{proof}
+
+This example is not a root-multiset identity after absorbing the
+constant numerators into the denominators: one side has one term and
+the other has two. Nor is it an identity of rational functions on an
+open set. It prevents importing pole-uniqueness arguments from an
+open domain to the Boolean cube without an additional argument.
+It does not imply a same-cost extension to further input coordinates.
+
+\section{One sign class cannot stay small independently of dimension}
+
+\begin{theorem}[A one-positive-term obstruction]
+Let $n\ge2$ and let $B_1,\ldots,B_H$ be real affine forms positive
+on the whole Boolean cube. Suppose every input coordinate occurs
+with a nonzero coefficient in at least one of the forms. Let
+$c,d_2,\ldots,d_H>0$, and suppose
+\[
+             \frac{c}{B_1(x)}=\sum_{h=2}^H\frac{d_h}{B_h(x)}
+                    \qquad(x\in\{0,1\}^n).
+ \tag{2}
+\]
+Then either all the forms are proportional or $H\ge n+1$.
+In particular the conclusion applies to strictly positive-slope
+admissible denominators. No assertion is made when both sign classes
+have two or more members.
+\end{theorem}
+\begin{proof}
+Write the vector of denominator values as
+$z(x)=v_0+\sum_{i=1}^n x_i v_i\in\mathbb R^H$.
+Every $z(x)$ is coordinatewise positive, and $v_i\ne0$ for $i\ge1$.
+For a positive vector $z$, let
+$q(z)=(z_2/z_1,\ldots,z_H/z_1)$ and
+\[
+                   \phi(q)=\sum_{h=2}^H d_h/q_h.
+\]
+Its Hessian is diagonal with entries $2d_h/q_h^3>0$, so it is
+strictly convex on the positive orthant. Equation (2) says
+$\phi(q(z(x)))=c$ at every vertex.
+If a positive multiple of one vertex vector is a positive linear
+combination of other vertex vectors, division by the first
+coordinate expresses its $q$ value as a convex combination of
+their $q$ values. Strict convexity and equality of all the $\phi$
+values then force all those $q$ values to coincide.
+
+First suppose $v_1,\ldots,v_n$ are linearly dependent. Choose a
+nonzero relation $\sum_i a_i v_i=0$, with support $I$. Choose a
+vertex with $x_i=1$ for $a_i>0$ and $x_i=0$ for $a_i<0$; the
+coordinates outside $I$ are arbitrary. Let $x^{(i)}$ flip coordinate
+$i$, and set $A=\sum_{i\in I}|a_i|>0$. Then
+\[
+                 \sum_{i\in I}|a_i|z(x^{(i)})=A z(x).
+\]
+The preceding strict-convexity argument makes every $z(x^{(i)})$
+proportional to $z(x)$. Subtracting shows that each $v_i$, $i\in I$,
+is proportional to $z(x)$. Fix one such nonzero $v_i$. Since the
+coordinates outside $I$ were arbitrary, taking them all zero and
+then turning on each in turn shows that $v_0$ and all the remaining
+$v_j$ are proportional to that same vector. Consequently the
+$B_h$ are proportional as affine forms.
+
+If they are not proportional, the variable vectors are therefore
+linearly independent and $n\le H$. It remains to exclude $n=H$.
+In that case the matrix $V$ with columns $v_i$ is invertible. Put
+$t_0=-V^{-1}v_0$, and choose a cube vertex $x$ so that every
+$t_{0i}-x_i$ is nonzero and points inward: take $x_i=0$ when
+$t_{0i}>0$, and $x_i=1$ otherwise. Set
+$a_i=|t_{0i}-x_i|>0$ and $A=\sum_i a_i$. The flipped neighbors obey
+\[
+             \sum_i a_i z(x^{(i)})=(A-1)z(x),
+\]
+because $V(t_0-x)=-z(x)$. Positivity of the first coordinates on
+the left forces $A-1>0$. The strict-convexity argument again makes
+all neighboring vectors proportional to $z(x)$; hence all $v_i$
+are proportional. This contradicts invertibility when $n\ge2$.
+Thus $n<H$ in the nonproportional case.
+\end{proof}
+
+The example (1) attains $H=n+1$ for $n=2$. The theorem does not
+exclude balanced reciprocal cancellations with a bounded number of
+terms in arbitrarily many variables. For example, a common large
+positive affine shift added to the two lists $(0,1)$ and
+$(x_1,1-x_1)$ makes a four-head root-permutation identity admissible
+in every dimension. Both sign classes then have two members.
+
+\section{Weighted base relations and a finite compiler}
+
+Suppose positive-coefficient affine forms $B_h$ and nonzero real
+weights $w_h$ satisfy $\sum_h w_h/B_h=0$ at every cube input.
+For affine $D_h$, consider
+\[
+                  L(x)=c+\sum_h D_h(x)/B_h(x)^2.
+\]
+If this has strict target margin, perturb denominator $h$ by
+$B_h-\epsilon D_h/w_h$ and use numerator $w_h/\epsilon$.
+The limiting score is $L$ because
+\[
+ \frac{w}{\epsilon}\left(\frac1{B-\epsilon D/w}-\frac1B\right)
+ =\frac{D}{B^2}+\frac{\epsilon D^2/w}{B^2(B-\epsilon D/w)}.
+\]
+The absolute remainder is bounded by replacing $w$ by $|w|$ in
+its numerator coefficient. The finite cube and strictly positive
+base coefficients permit a small rational $\epsilon$ preserving
+all denominator coefficients and all target signs. This uses exactly
+one head per nonzero base weight.
+
+The implementation \texttt{search\_weighted\_reciprocal\_variation.py}
+absorbs $|w_h|$ into each denominator and invokes the exact compiler
+in \texttt{search\_nonideal\_root\_variation.py}. It independently
+checks cancellation at every vertex and verifies the resulting
+ordinary-head certificate. It excludes proportional denominator pairs
+and tests a nonzero reciprocal sum at the point with every coordinate
+$1/(n+1)$, so a successful search is outside open-set pole identities.
+A finite witness, bounded UNSAT report, or timeout gives no universal
+upper or lower bound.
+
+\section{Arithmetic literature and the missing compatibility}
+
+Howe, Huffman, Kohlmeyer, and Kruer,
+\emph{The sharp deficit in primitive signed reciprocal relations},
+\url{https://hexagonmath.org/pdf/2611.00753v1},
+Lemma 4.1 and Lemma 4.2, construct primitive scalar relations by
+connecting divisor blocks along a prime path and completing a
+rational sum while avoiding those primes. These are scalar
+identities. They do not supply the affine dependence of every
+individual denominator on a common Boolean input.
+
+The September 25, 2026 preprint \emph{Short Egyptian fractions},
+\url{https://github.com/openai/math/tree/main/preprints/Short-Egyptian-fractions-September-25-2026},
+uses prime-product residue distribution, a uniform shifted divisor
+moment, and propagation of a small exceptional set. A dense family
+of representable numerators gives every numerator by a two-summand
+argument. Its residue step uses
+$z=\lceil Qt/u\rceil$ and $h=uz-Qt$, and multiplies denominators
+recursively by $z$. These operations do not preserve affine
+input-dependence. No same-cost compiler for them has been established.
+The scalar result is not an affirmative head-complexity theorem.
+
+\end{document}

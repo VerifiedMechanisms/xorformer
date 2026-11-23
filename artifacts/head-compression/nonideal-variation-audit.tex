@@ -21,8 +21,12 @@ These are manual proofs. The universal head bound remains unproved.
 
 Let $U_h,V_h,a_h,b_h$ be affine forms, $1\le h\le m$.
 Assume that all coefficients of every $U_h,V_h$ are strictly positive,
-and that at every Boolean vertex the two base lists $U,V$ have equal
-multisets of values. The root values may vary with the input. Define
+and that at every Boolean vertex
+\[
+                         \sum_h 1/U_h(x)=\sum_h 1/V_h(x).
+\]
+Equality of the two root multisets is sufficient but is not required.
+Define
 \[
  L(x)=c-\sum_h\frac{a_h(x)}{U_h(x)^2}
           +\sum_h\frac{b_h(x)}{V_h(x)^2}.
@@ -56,7 +60,7 @@ For $D,D+\epsilon a>0$, direct multiplication gives
                     +\frac{\epsilon a^2}{D^2(D+\epsilon a)}.
  \tag{4}
 \]
-The base reciprocal sums in (2) cancel exactly, by the multiset
+The base reciprocal sums in (2) cancel exactly, by the stated
 hypothesis. Apply (4) to each summand. The triangle inequality bounds
 $|S_\epsilon-L|$ by the expression in (3). It tends uniformly to zero
 on the finite cube. Positivity of the finitely many base coefficients

@@ -984,6 +984,22 @@
       "mechanism": "Approximates inverse powers on positive intervals by exponential sums; exponentials of sums factor into products. Relative-error bounds depend on the interval ratio, with improved bounds from variable-angle complex cones and Zolotarev approximation.",
       "gap": "A head-by-head relative error epsilon controls a signed score only through the sufficient bound epsilon times the sum of head magnitudes. That sum relative to the margin is unrestricted and may be enormous. No uniform constant-term replacement or construction of arbitrary Boolean signs follows. The separate Boolean exponential count rules out universally preserving all signs with o(n/log n) common quadrature times at the requested head budget.",
       "scope": "No lower bound on best scalar approximation length is inferred from the paper\u2019s upper error estimates; correlated approximation errors are not assumed impossible."
+    },
+    {
+      "title": "The sharp deficit in primitive signed reciprocal relations",
+      "authors": "Will Howe, Grant Huffman, Jensen Kohlmeyer, and Liam Kruer",
+      "url": "https://hexagonmath.org/pdf/2611.00753v1",
+      "checked_location": "Theorem 1.1; Lemmas 2.2, 3.1, 4.1 and 4.2, including the prime-path and rational-completion proofs; Proposition 4.3 and its proof. The full converse was not audited.",
+      "mechanism": "Connects divisor blocks by prime-indexed paths using Chinese remainder constraints, then completes a scalar reciprocal sum while avoiding marked primes.",
+      "gap": "The denominators are scalar integers selected for one identity. No construction makes every individual denominator affine in a common Boolean input while prescribing an arbitrary strict sign table. Rescaling a scalar relation by one common affine form gives only a proportional-denominator identity."
+    },
+    {
+      "title": "Short Egyptian fractions",
+      "authors": "OpenAI preprint, September 25, 2026",
+      "url": "https://github.com/openai/math/tree/main/preprints/Short-Egyptian-fractions-September-25-2026",
+      "checked_location": "Primary TeX obtained with git at 4eaee87548250b2682affda7d05d947c05554bae: introduction.tex, elementary.tex, divisors.tex, residues.tex, random.tex, descent.tex. Read the dense-family transfer, residue construction, shifted divisor moment, and exceptional-set recurrence. Counting and prescribed-denominator corollaries were not independently audited.",
+      "mechanism": "Prime-product residue distributions supply many reductions; a shifted divisor moment limits propagation of exceptional numerators. A dense set then covers every numerator by two summands, proving a scalar O(log log b) unit-fraction length bound.",
+      "gap": "The reduction uses ceilings, residues, selected divisors, and recursively multiplied denominators. These are not affine functions of the original Boolean input. Scalar short expansions and a dense-family argument do not imply a flat affine-fraction head construction."
     }
   ]
 }

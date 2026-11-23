@@ -1,0 +1,51 @@
+{
+  "file": "artifacts/head-compression/certificates/weighted-reciprocal-compiler-parity-n2-h3.json",
+  "sha256": "77c43e3e676377c552ef86ae934c391c3985459e7eb948b1d58c3e97461aabc7",
+  "n": 2,
+  "heads": 3,
+  "vertices_checked": 4,
+  "strict_signs_and_admissibility": true,
+  "margin_approximation": 0.9356757527348327,
+  "scope": "Compiler smoke test only; two-bit parity already has a two-head representation.",
+  "base_rows": [
+    [
+      1,
+      11,
+      3
+    ],
+    [
+      3,
+      39,
+      13
+    ],
+    [
+      3,
+      25,
+      5
+    ]
+  ],
+  "base_weights": [
+    1,
+    -2,
+    -1
+  ],
+  "directions": [
+    [
+      "-36582193/35311",
+      "4594753/35311",
+      "15419871/35311"
+    ],
+    [
+      "329557536/35311",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "off_cube_center": "1/2088",
+  "target_proved": false
+}

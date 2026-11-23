@@ -1206,7 +1206,19 @@
     ],
     "script": "artifacts/head-compression/search_nonideal_root_variation.py",
     "smoke": "artifacts/head-compression/diagnostics/nonideal-compiler-smoke.json",
-    "running_diagnostic": "Six-bit fixed random target, four roots per list, integer root slopes bounded by three, with connected root matching and nonaffine minimum. Run through heavy; pending at the time of this record.",
+    "running_diagnostic": "Completed: diagnostics/nonideal-variation-n6-m4.json reports unknown after 1805.34 seconds, reason timeout. No unrestricted impossibility follows.",
     "target_proved": false
+  },
+  "boolean_reciprocal_cancellation": {
+    "file": "artifacts/head-compression/boolean-reciprocal-cancellation.tex",
+    "status": "Manual complete proofs; not Lean formalized. Target unproved.",
+    "new_mechanism": "Weighted reciprocal identities holding only on the cube, without root-multiset equality.",
+    "explicit_identity": "Three positive-slope denominators give -4(x^2-x+y^2-y)/(B1 B2 B3), zero at all four vertices and 1/2088 at the center.",
+    "obstruction": "For n>=2, a nonproportional identity with one positive constant-numerator term and H-1 negative terms requires H>=n+1, provided every coordinate occurs in some denominator. Proof uses strict convexity after projective normalization.",
+    "compiler": "Any weighted exactly cancelling base and strict affine-over-square variation compile with one actual head per nonzero weight and an explicit rational remainder bound.",
+    "generalized_compiler_audit": "artifacts/head-compression/diagnostics/nonideal-compiler-generalized-audit.json",
+    "side_searches": "Unweighted n6/h8 Boolean-only reciprocal identity search and weighted n6/h8 search pending. Both are bounded diagnostics, not universal claims.",
+    "target_proved": false,
+    "weighted_compiler_smoke": "artifacts/head-compression/diagnostics/weighted-reciprocal-compiler-audit.json"
   }
 }

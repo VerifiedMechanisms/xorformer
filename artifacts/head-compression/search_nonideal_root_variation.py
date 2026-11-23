@@ -26,8 +26,22 @@ def compile_score(u, v, a, b, bias, bound, labels):
     common = [bound+1]*(n+1)
     ub = [[c+d for c,d in zip(common,row)] for row in u]
     vb = [[c+d for c,d in zip(common,row)] for row in v]
+    return compile_affine_variation(ub,vb,a,b,bias,labels)
+
+
+def compile_affine_variation(ub, vb, a, b, bias, labels):
+    """Compile any exactly cancelling base lists, not only root permutations."""
+    ub, vb, a, b = [[[Fraction(t) for t in row] for row in rows]
+                    for rows in (ub, vb, a, b)]
+    bias = Fraction(bias)
+    n = len(ub[0])-1
+    assert all(len(row)==n+1 for row in ub+vb+a+b)
     assert all(min(row)>0 for row in ub+vb)
     points = list(itertools.product((0,1),repeat=n))
+    assert len(labels)==len(points)
+    assert len(ub)==len(a) and len(vb)==len(b)
+    assert all(sum(Fraction(1,affine(d,x)) for d in ub)==
+               sum(Fraction(1,affine(d,x)) for d in vb) for x in points)
     values = [bias-sum(affine(r,x)/affine(d,x)**2 for r,d in zip(a,ub))
                   +sum(affine(r,x)/affine(d,x)**2 for r,d in zip(b,vb)) for x in points]
     margin = min(y*s for y,s in zip(labels,values))
