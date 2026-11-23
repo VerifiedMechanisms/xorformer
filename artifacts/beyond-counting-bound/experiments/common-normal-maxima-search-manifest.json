@@ -1,0 +1,9 @@
+{
+  "status": "three numerical candidates; the positive candidate subsequently rationalized and kernel checked",
+  "source_sha256": "2e5d1eb1cf4110ceca80442a00d8caaa8b0a084fa99bb11ec7364253dcef0759",
+  "source_records": 3,
+  "archive": "common-normal-full-maxima-candidates.jsonl.gz",
+  "certificate": "../common-normal-maxima-certificate.json",
+  "scope": "numerical search is not used as proof",
+  "main_target_proved": false
+}

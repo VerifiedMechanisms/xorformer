@@ -1,0 +1,14 @@
+import HeadComplexity.Atoms.CommonNormalMaxima
+
+#print axioms HeadComplexity.CommonNormalMaxima.denominators_positive
+#print axioms HeadComplexity.CommonNormalMaxima.functional_positive
+#print axioms HeadComplexity.CommonNormalMaxima.functional_swap_invariant
+#print axioms HeadComplexity.CommonNormalMaxima.swap_involutive
+#print axioms HeadComplexity.CommonNormalMaxima.tables_distinct
+#print axioms HeadComplexity.CommonNormalMaxima.stationarity
+#print axioms HeadComplexity.CommonNormalMaxima.hessian_factorization
+#print axioms HeadComplexity.CommonNormalMaxima.lower_inverse_mul
+#print axioms HeadComplexity.CommonNormalMaxima.pivots_positive
+#print axioms HeadComplexity.CommonNormalMaxima.realHessian_posDef
+#print axioms HeadComplexity.CommonNormalMaxima.reconstruction_det
+#print axioms HeadComplexity.CommonNormalMaxima.radial_identity

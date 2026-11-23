@@ -35,6 +35,12 @@ The repository file `formalization/HeadComplexity/Results/CountingLowerBound.lea
 
 No theorem establishing the target has been proved at this checkpoint.
 
+## Positive functionals can have two strict normalized maxima
+
+The [common-normal certificate](common-normal-maxima.md) gives two distinct nondegenerate strict local maxima of one positive linear functional on the entire normalized affine-head table image. It uses four input bits, strictly positive denominator slopes, and strictly positive table entries. A swap-invariant common normal solves the stationarity equations at both points, and an exact rational Hessian factorization proves positive definiteness of the corresponding least-squares Hessians. A rational inverse from origin, singleton, and pair entries verifies that these are distinct regular image points. The finite identities and real positive definiteness are Lean checked; the sphere restriction and local calculus deduction are written explicitly.
+
+This closes the uniqueness shortcut left open by the earlier family of saddles. It does not supply many Boolean labels, classification complementarity, or an asymptotic maximum count. Both tables classify every cube input positively. No inference toward the requested lower bound is drawn from this finite obstruction.
+
 ## Complete monotonicity and Boolean tangents
 
 The [positive exponential interpolation theorem](complete-monotonicity-tangent.md) gives every Boolean tangent direction at a table equal to a single reciprocal head. One baseline extension works for every direction, and every mixed derivative has the strict sign required by complete monotonicity. The construction has explicit rational coefficients and a uniform positive perturbation interval. Independent exact arithmetic checks the coefficients through dimension ten and all binary directions through dimension three.

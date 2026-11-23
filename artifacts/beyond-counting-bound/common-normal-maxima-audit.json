@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T16:17:47.907601+00:00",
+  "declarations": [
+    "HeadComplexity.CommonNormalMaxima.denominators_positive",
+    "HeadComplexity.CommonNormalMaxima.functional_positive",
+    "HeadComplexity.CommonNormalMaxima.functional_swap_invariant",
+    "HeadComplexity.CommonNormalMaxima.swap_involutive",
+    "HeadComplexity.CommonNormalMaxima.tables_distinct",
+    "HeadComplexity.CommonNormalMaxima.stationarity",
+    "HeadComplexity.CommonNormalMaxima.hessian_factorization",
+    "HeadComplexity.CommonNormalMaxima.lower_inverse_mul",
+    "HeadComplexity.CommonNormalMaxima.pivots_positive",
+    "HeadComplexity.CommonNormalMaxima.realHessian_posDef",
+    "HeadComplexity.CommonNormalMaxima.reconstruction_det",
+    "HeadComplexity.CommonNormalMaxima.radial_identity"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "files": [
+    {
+      "file": "formalization/HeadComplexity/Atoms/CommonNormalMaxima.lean",
+      "sha256": "3565f31a62e189642d36a0c3ab9b6c6552c834354972ded50fb9f6d500d8fed6"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/certify_common_normal_maxima.py",
+      "sha256": "03453a593dea7fedb288047bb151abda8f16a91754f838550849f34f5e093fca"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/generate_common_normal_lean.py",
+      "sha256": "ac13ed7905a6546d631de6b5d4fe69005dbad9266de11197d767c9d67ecc147d"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/common-normal-maxima-certificate.json",
+      "sha256": "0f9661c53ed4642e07166881263658d7844c0d040720d2a2fb1ffabe616fcef0"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/common-normal-maxima-rational-audit.json",
+      "sha256": "bf6897250cf1162b82c52007596d85882cee0acd8d8b0b017148699a59de9733"
+    }
+  ],
+  "build_jobs": 3147,
+  "scope": "Finite exact identities, rational Hessian factorization, and real positive definiteness in Lean; full local-maxima theorem is a written analytic deduction.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/common-normal-maxima.md",
+      "source_math_spans": 55,
+      "rendered_math_spans": 55,
+      "findings": 0,
+      "sha256": "c48125ce91597bec45c87345acb95f8a2e2b0ef735f09b89be3700ca5619fd33"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 108,
+      "rendered_math_spans": 108,
+      "findings": 0,
+      "sha256": "2176d88a5674bb1fb8b8b1ec57c0ea09be7ed373250431b6c39c24a4b0a1f393"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "5f99130eed15d977b0f9b800f2288820a5563304b18eb827c7d483133e9bb5c7"
+    }
+  ],
+  "katex": "PASS, three files, 164 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "strict_local_maxima": 2,
+  "input_bits": 4,
+  "positive_functional_coefficients": true,
+  "all_table_entries_positive": true,
+  "distinct_boolean_labels": false,
+  "model_changes": [],
+  "main_target_proved": false
+}

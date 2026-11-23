@@ -1,0 +1,12 @@
+'HeadComplexity.CommonNormalMaxima.denominators_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.functional_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.functional_swap_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.swap_involutive' does not depend on any axioms
+'HeadComplexity.CommonNormalMaxima.tables_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.stationarity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.hessian_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.lower_inverse_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.pivots_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.realHessian_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.reconstruction_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CommonNormalMaxima.radial_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
