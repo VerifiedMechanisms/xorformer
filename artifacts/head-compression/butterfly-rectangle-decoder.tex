@@ -114,4 +114,108 @@ interior poles without checking denominator positivity changes the
 model. The independent rectangle theorem supplies a concrete decoder
 target; it does not close that analytic gap.
 
+\section{A bound for literal exterior-kernel switch readouts}
+The following restriction concerns a specific attempted implementation,
+not the full admissible-head model. Fix positive integer $p$, token
+positions $0\leq\xi_x\leq a$, and arbitrary signed residues $c_x$.
+The tokens and residues are the same for every butterfly permutation.
+A query may choose $t\geq b>a$, any profile $V$ on the output wires,
+and any bias $\beta$, and reads
+\[
+ Q(\eta)=\beta+\sum_{x=0}^{H-1}
+       \frac{c_x V(\pi_\eta(x))}{(t-\xi_x)^p}.
+ \tag{2}\label{eq:literal}
+\]
+Say that this query reads a switch if its strict sign is that switch's
+binary value, with positive sign for one, for every setting of all the
+other switches. Different switches may use different queries.
+
+\begin{theorem}\label{thm:firstlayer}
+The number $R$ of first-layer switches readable by queries
+\eqref{eq:literal} satisfies
+\[
+ R<(p+1)\left(1+\left(\frac b{b-a}\right)^{4p}\right).
+ \tag{3}\label{eq:bound}
+\]
+The same bound holds if each queried switch may independently reverse
+the sign convention. In particular it is independent of $H$ when
+$a/b$ is bounded away from one.
+\end{theorem}
+\begin{proof}
+Put $G=H/2$, and identify first-layer switches with pairs
+$(2g,2g+1)$, $0\leq g<G$. Set
+\[
+ w_x(t)=\frac{c_x}{(t-\xi_x)^p},\qquad
+ \Delta_g(t)=w_{2g}(t)-w_{2g+1}(t).
+\]
+Fix the first-layer settings and average the score over independent
+uniform settings of every later switch. For any fixed input, its
+output bit zero is unchanged by those layers. Each successive upper
+bit becomes uniform when its own layer is applied, conditionally on
+the preceding trajectory, and is never changed later. Consequently
+the upper output bits are uniform conditional on output bit zero.
+Let $v_0,v_1$ be the averages of $V$ on the two output parity classes.
+The averaged score is therefore a constant plus
+\[
+ (v_1-v_0)\sum_{g=0}^{G-1}\Delta_g(t)\eta_{0,g}.
+\]
+If the original score strictly reads switch $g$, so does this finite
+average, for every setting of the other first-layer switches. A
+linear expression in independent bits can strictly read one bit
+only if the magnitude of that bit's coefficient exceeds the sum of
+the magnitudes of all its other coefficients: compare its minimum
+when the target bit is one with its maximum when it is zero. Hence
+\[
+ |\Delta_g(t)|>\sum_{j\ne g}|\Delta_j(t)|.
+ \tag{4}\label{eq:dominance}
+\]
+In particular $v_1-v_0$ and $\Delta_g(t)$ cannot vanish.
+
+Select $R$ readable switches and their witness values $t_i$. For each
+selected switch $j$ write
+\[
+ D_j(t)=(t-\xi_{2j})^p(t-\xi_{2j+1})^p,
+ \qquad P_j(t)=D_j(t)\Delta_j(t).
+\]
+Every $P_j$ is a polynomial of degree at most $p$. The $R$ by $R$
+matrix
+\[
+ L_{ij}=\frac{P_j(t_i)}{P_i(t_i)}
+\]
+therefore has rank at most $p+1$ and diagonal entries one. Moreover
+\[
+ \frac{D_j(t_i)}{D_i(t_i)}
+ \leq\left(\frac{t_i}{t_i-a}\right)^{2p}
+ \leq M:=\left(\frac b{b-a}\right)^{2p}.
+\]
+Using \eqref{eq:dominance}, even after omitting nonselected switches,
+gives $\sum_{j\ne i}|L_{ij}|<M$. It follows that the squared
+Frobenius norm satisfies $\|L\|_F^2<R(1+M^2)$.
+For completeness, if $P$ is the orthogonal projection onto the
+column space of $L$, then $PL=L$, and Frobenius Cauchy--Schwarz gives
+\[
+ |\operatorname{tr}L|=|\operatorname{tr}(PL)|
+ \leq\|P\|_F\|L\|_F
+ =\sqrt{\operatorname{rank}L}\,\|L\|_F.
+\]
+Since $\operatorname{tr}L=R$, these inequalities give
+$R<(p+1)(1+M^2)$, as asserted.
+\end{proof}
+
+\paragraph{Scope.}
+For the compact grouped transfer, $p=2$, $a<1/s$ and
+$t_i=1-p_i$, with $\sum_i p_i<1$. At most one query has $t_i<1/2$.
+Applying the theorem to all other queries yields
+\[
+ R<1+3\left(1+(1-2/s)^{-8}\right)\qquad(s>2).
+\]
+For instance, $s\geq100$ permits at most seven first-layer switch
+queries. Thus the most literal realization of the full butterfly
+rectangle decoder by one fixed-residue exterior kernel per query
+cannot work at arbitrary size. This conclusion does not apply if
+residues are allowed to depend on the complete switch setting, if
+only a selected subfamily of butterfly permutations is used, if a
+different code is used, or if additional admissible heads implement
+new filters. It is not a lower bound for HeadComplexity.
+
 \end{document}
