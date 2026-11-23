@@ -133,6 +133,74 @@ theorem two_pow_le_bits_mul_affine_parameters_of_finiteAlphabet_universal
         rw [hfx] at hs
         exact mul_pos (atomDenProduct_eval_pos φ x) hs
 
+/-- Intrinsic raw atom parameters: the bias and, per head, `η`, `δ`, `γ`,
+`α`, the `n` entries of `ρ`, and the `n` entries of `m`. This is not the
+possibly redundant attention-matrix parameterization. -/
+abbrev RawFracParameter (n H : ℕ) :=
+  Unit ⊕ (Fin H × (Fin 4 ⊕ (Bool × Fin n)))
+
+theorem card_rawFracParameter (n H : ℕ) :
+    Fintype.card (RawFracParameter n H) = 1 + H * (4 + 2 * n) := by
+  simp [RawFracParameter]
+
+/-- The raw scalar chart of an actual admissible atom family. -/
+noncomputable def rawFracParameterPoint {n H : ℕ}
+    (φ : Fin H → FracAtom n) (c : ℝ) : RawFracParameter n H → ℝ
+  | Sum.inl _ => c
+  | Sum.inr (h, Sum.inl j) =>
+      if j = 0 then (φ h).η else if j = 1 then (φ h).δ
+      else if j = 2 then (φ h).γ else (φ h).α
+  | Sum.inr (h, Sum.inr (false, i)) => (φ h).ρ i
+  | Sum.inr (h, Sum.inr (true, i)) => (φ h).m i
+
+/-- A deterministic decoder on every raw parameter vector. Positivity is
+not needed to define this decoder; actual certificates below still use
+`FracAtom` and retain all of its positivity requirements. -/
+noncomputable def rawFracParameterScore {n H : ℕ}
+    (θ : RawFracParameter n H → ℝ) (x : Fin n → Bool) : ℝ :=
+  θ (Sum.inl ()) + ∑ h,
+    (θ (Sum.inr (h, Sum.inl 0)) +
+      ∑ i, θ (Sum.inr (h, Sum.inr (false, i))) *
+        (if x i then θ (Sum.inr (h, Sum.inl 3)) else 1) *
+        (θ (Sum.inr (h, Sum.inr (true, i))) +
+          (if x i then θ (Sum.inr (h, Sum.inl 1)) else 0))) /
+    (θ (Sum.inr (h, Sum.inl 2)) +
+      ∑ i, θ (Sum.inr (h, Sum.inr (false, i))) *
+        (if x i then θ (Sum.inr (h, Sum.inl 3)) else 1))
+
+theorem rawFracParameterScore_point {n H : ℕ}
+    (φ : Fin H → FracAtom n) (c : ℝ) (x : Fin n → Bool) :
+    rawFracParameterScore (rawFracParameterPoint φ c) x =
+      c + ∑ h, (φ h).eval x := by
+  simp [rawFracParameterScore, rawFracParameterPoint, FracAtom.eval, FracAtom.wt]
+
+/-- Finite alphabets on the actual raw atom scalars, with every strict sign
+and every whole-cube admissibility condition retained. -/
+def FiniteAlphabetRawStrictFracComputable (n H : ℕ)
+    (alphabet : Finset ℝ) (f : (Fin n → Bool) → Bool) : Prop :=
+  ∃ (φ : Fin H → FracAtom n) (c : ℝ),
+    (∀ k, rawFracParameterPoint φ c k ∈ alphabet) ∧
+      ∀ x, if f x then 0 < c + ∑ h, (φ h).eval x
+        else c + ∑ h, (φ h).eval x < 0
+
+/-- Raw atom alphabets obey the same information law with their exact
+parameter count. No preservation of finite precision through affine
+normalization or exponentiation is assumed. -/
+theorem two_pow_le_bits_mul_raw_parameters_of_finiteAlphabet_universal
+    {n H b : ℕ} (alphabet : Finset ℝ)
+    (halphabet : alphabet.card ≤ 2 ^ b)
+    (huniversal : ∀ f : (Fin n → Bool) → Bool,
+      FiniteAlphabetRawStrictFracComputable n H alphabet f) :
+    2 ^ n ≤ b * (1 + H * (4 + 2 * n)) := by
+  have h := card_le_bits_mul_parameters_of_strict_universal alphabet
+    (@rawFracParameterScore n H) b halphabet ?_
+  · rw [card_rawFracParameter] at h
+    simpa [Fintype.card_bool] using h
+  · intro f
+    obtain ⟨φ, c, halphabet', hsign⟩ := huniversal f
+    refine ⟨rawFracParameterPoint φ c, halphabet', fun x ↦ ?_⟩
+    simpa only [rawFracParameterScore_point] using hsign x
+
 /-- The requested eventual bound, stated against the original worst-case
 complexity. This proposition is deliberately not asserted as a theorem. -/
 def WorstCaseExponentImprovement : Prop :=

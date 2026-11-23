@@ -10,8 +10,11 @@
 \maketitle
 
 \paragraph{Status.}
-This note verifies the finite-information interpretation of the precision
-claim in the task and strengthens it to denominator information alone.
+This note verifies the finite-information precision claim for the
+intrinsic atom chart and strengthens it to denominator information alone.
+It also disproves the analogous raw-entry alphabet claim when width
+is unrestricted, while distinguishing that claim from finite binary
+rational precision.
 It proves no improvement of unrestricted worst-case head complexity,
 no superconstant saving, and no matching lower bound.
 The original attention model, its head resource, and its admissibility
@@ -94,7 +97,19 @@ remove codes and do not invalidate the bound. The number of matrix
 entries in a redundant attention parameterization is a different
 resource; the claim is about the intrinsic scalar chart or a specified
 code of comparable length, not an unrestricted redundant parameter
-description.
+description. In fact, \texttt{computableWithHeadsN} existentially
+quantifies an unrestricted width $d$. In the literal head-local
+matrix chart, the three $d\times d$ matrices and the $(n+4)$
+embedding vectors give $3d^2+(n+4)d$ scalars per head, plus $d$
+readout scalars and the threshold for the family. Direct finite-code
+counting therefore gives $bP\ge2^n$ with
+$P=H(3d^2+(n+4)d)+d+1$, not with $P=1+H(2n+4)$.
+The encoding theorem applies despite the exponential in softmax,
+since it places no regularity restriction on the decoder. However,
+passing from a finite matrix alphabet to the atom normal form does
+not preserve its alphabet size. Accordingly the unchecked claim,
+if read as a width-independent lower bound on the precision of
+individual matrix or embedding entries, has not been established.
 
 For completeness, the normalized affine chart has $1+2nH$ parameters.
 Write a head as $A/B$, where
@@ -216,6 +231,123 @@ so all of these bounds apply to the original model. No proposed
 denominator is being declared admissible merely because it is positive
 on a subset of inputs. Every counted output pattern is strict.
 
+\section{Unrestricted raw width changes the information claim}
+
+There is a stronger reason not to identify the intrinsic coefficient
+precision bound with a bound on individual raw matrix entries.
+
+\begin{theorem}[Same-head simulation by a fixed raw alphabet]
+Let $A=\{0,1,-1,\sqrt2,-\sqrt2\}$. Fix $n$ and $H\ge1$.
+Every Boolean function strictly computable with $H$ heads in the
+repository model has a strict $H$-head representation in which every
+entry of every token embedding, positional embedding, query matrix,
+key matrix, value matrix, and the common readout vector belongs to
+$A$, and the threshold is zero. The width is finite and unrestricted;
+it may depend on the target function and its original representation.
+\end{theorem}
+\begin{proof}
+First, the additive subgroup $D=\mathbb Z+\mathbb Z\sqrt2$ is dense
+in $\mathbb R$. To see this explicitly, for any integer $M\ge1$
+place the $M+1$ fractional parts of $j\sqrt2$, $0\le j\le M$,
+in $M$ half-open intervals of length $1/M$. Two lie in one interval.
+Their difference is a nonzero member of $D$ with absolute value less
+than $1/M$, since $\sqrt2$ is irrational. Its absolute value is a
+positive $a\in D$. For any $r\in\mathbb R$ an integer multiple
+of $a$ lies within $a/2$ of $r$. Thus elements of $D$ approximate
+any specified real arbitrarily closely. Every element of $D$ is a
+finite sum of entries of $A$, by expanding the integer coefficients
+as repeated copies of $1,-1,\sqrt2$, or $-\sqrt2$.
+
+Use the exact atom normal form to write the original strict score as
+$c+\sum_h\phi_h(x)$. Define
+\[
+ a_h=\log\alpha_h,\quad q_h=\log\gamma_h,\quad
+ r_{h,i}=\log\rho_{h,i},\quad t_h=\delta_h.
+\]
+Select one head $h_0$ and put
+\[
+ v_{h,q}=\eta_h/\gamma_h+\mathbf1_{h=h_0}c,
+ \qquad v_{h,i}=m_{h,i}+\mathbf1_{h=h_0}c.
+\]
+Since the attention weights in each head sum to one, absorbing $c$
+in all position values of head $h_0$ gives the exact score
+\[
+ S(x)=\sum_{h=1}^H
+ \frac{e^{q_h}v_{h,q}
+ +\sum_{i=1}^n e^{r_{h,i}+a_hx_i}(v_{h,i}+t_hx_i)}
+ {e^{q_h}+\sum_{i=1}^n e^{r_{h,i}+a_hx_i}}.
+\]
+This expression is continuous in all displayed real parameters for
+every input, since its denominators are sums of positive exponentials.
+Let $\mu>0$ be the minimum absolute score over the finite Boolean
+cube. By continuity at the original parameter vector, there is an
+open neighborhood on which all $2^n$ scores differ from their
+original values by less than $\mu/2$. Density of $D$ supplies a
+parameter vector in that neighborhood with every displayed parameter
+in $D$. Denote these approximations by the same letters. Their
+scores retain every strict sign, and their denominators remain
+positive on the entire cube.
+
+It remains to realize these $D$-valued logits and position values
+with raw entries in $A$. For each head reserve coordinates $0$ and
+$1$. For each scalar among $a_h,q_h,r_{h,i},t_h,v_{h,q},v_{h,i}$,
+choose a finite sequence of elements of $A$ summing to it, and
+allocate a separate block of coordinates for that sequence.
+Call the blocks for $a_h,q_h,r_{h,i}$ key blocks and the remaining
+ones value blocks. Choose a common finite width large enough for
+the blocks of every head, padding unused coordinates by zero.
+
+For head $h$, set the embedding of token $0$ to zero. In the token
+$1$ embedding, place the sequence for $a_h$ in its key block and
+the sequence for $t_h$ in its value block. In the query-token
+embedding, put $1$ in coordinate $0$, the sequence for $q_h$ in
+its key block, and the sequence for $v_{h,q}$ in its value block.
+At input position $i$, put the sequence for $r_{h,i}$ and the
+sequence for $v_{h,i}$ in their respective positional-embedding
+blocks. The query positional embedding is zero. All unspecified
+entries are zero. Every raw embedding entry therefore lies in $A$.
+
+Let $W_Q$ project coordinate $0$ to coordinate $0$. Let $W_K$ sum
+all key-block coordinates into coordinate $0$, with all other output
+coordinates zero. Let $W_V$ sum all value-block coordinates into
+coordinate $1$, with all other output coordinates zero. Every
+matrix entry is either zero or one. The query vector is the unit
+vector $e_0$. At position $i$, the key vector is
+$(r_{h,i}+a_hx_i)e_0$ and the value vector is
+$(v_{h,i}+t_hx_i)e_1$. At the query position the key vector is
+$q_he_0$ and the value vector is $v_{h,q}e_1$. Thus the inner
+products used by softmax are exactly the logits in the displayed
+formula for $S$. The common readout $w=e_1$ and threshold zero
+give exactly $S(x)$. Its signs are strict, and its denominators are
+positive for every cube input. No heads were added.
+\end{proof}
+
+This theorem is a written proof, not a Lean theorem in this run.
+For a fixed $n,H$, there are only finitely many target functions, so
+the finitely many widths needed for all representable targets have
+a finite maximum. Padding by zeros therefore even gives one common
+width for that whole class. The target information is stored in the
+number, placement, and signs of the raw entries, whose count is not
+a resource in the definition of $H^\ast$.
+
+The alphabet has five elements, so each raw entry has a fixed
+three-bit index in this alphabet. Consequently, under the finite
+alphabet information interpretation, a lower bound growing with
+$n$ on the bits per raw matrix or embedding entry is false when
+width is unrestricted. This does not contradict the proved bounds
+for the $O(nH)$ intrinsic scalar chart: combining an unbounded
+number of raw coordinates produces many possible effective logits,
+denominator coefficients, and values.
+
+There is a necessary semantic qualification. The constant $\sqrt2$
+is not exactly representable by a finite binary rational. This
+construction therefore does not refute a separately specified claim
+that every raw entry must be a rational from a standard $b$-bit
+binary format. Under that format, one must count its actual raw
+parameter description and any width restriction; neither the
+finite-alphabet obstruction for the intrinsic chart nor this
+five-symbol simulation settles a sharper rational-precision claim.
+
 \section{Formal status and the remaining target}
 
 The Lean file
@@ -227,6 +359,8 @@ contains unconditional proofs of the following declarations:
 \item \texttt{card\_le\_bits\_mul\_parameters\_of\_strict\_universal};
 \item \texttt{computableWithHeadsN\_of\_finiteAlphabetStrictFracComputable};
 \item \texttt{two\_pow\_le\_bits\_mul\_affine\_parameters\_of\_finiteAlphabet\_universal}.
+\item \texttt{rawFracParameterScore\_point};
+\item \texttt{two\_pow\_le\_bits\_mul\_raw\_parameters\_of\_finiteAlphabet\_universal}.
 \end{itemize}
 All names are in namespace \texttt{HeadComplexity}. The first three
 prove the finite encoding argument. The fourth verifies the connection
@@ -234,8 +368,34 @@ of the auxiliary finite-alphabet predicate to the unchanged attention
 model. The fifth proves the exact original-model inequality
 $2^n\le b(1+2H(n+1))$ for strict representations whose effective affine
 coefficients lie in a fixed alphabet of size at most $2^b$.
-The asymptotic corollaries and the denominator-only theorem are written
-proofs in this note, not Lean theorems.
+The last two declarations prove that the raw scalar decoder agrees
+with actual atom evaluation and prove the corresponding exact bound
+$2^n\le b(1+H(4+2n))$ for alphabets on the raw \texttt{FracAtom}
+parameters, without assuming precision preservation through any
+normalization or exponential.
+
+The additional Lean file
+\texttt{formalization/HeadComplexity/Results/FixedDenominatorLibrary.lean}
+proves the following declarations:
+\begin{itemize}
+\item \texttt{card\_le\_finrank\_of\_linearStrictSignSets\_shatters};
+\item \texttt{linearStrictSignSets\_vcDim\_le};
+\item \texttt{card\_linearStrictSignSets\_le\_sum\_choose};
+\item \texttt{two\_pow\_card\_le\_library\_card\_mul\_sum\_choose};
+\item \texttt{two\_pow\_two\_pow\_le\_denominator\_library\_capacity};
+\item \texttt{two\_pow\_two\_pow\_le\_bits\_denominator\_capacity}.
+\end{itemize}
+The proof restricts a linear score map to a shattered coordinate set,
+applies the existing strict-orthant surjectivity theorem to bound its
+cardinality by the parameter dimension, and then uses mathlib's
+Sauer theorem. The final declaration is the exact finite inequality
+\[
+ 2^{2^n}\le 2^{bnH}\sum_{j=0}^{1+nH}\binom{2^n}{j}
+\]
+for normalized denominator alphabets of size at most $2^b$, with
+arbitrary real numerator coefficients and bias. The logarithmic
+estimates and all asymptotic corollaries remain written proofs in
+this note, not Lean theorems.
 
 The same Lean file defines
 \texttt{HeadComplexity.WorstCaseExponentImprovement} to be exactly
