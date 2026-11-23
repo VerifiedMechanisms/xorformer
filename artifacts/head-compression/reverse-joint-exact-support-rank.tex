@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\begin{document}
+\title{Exact Paired-Order Support Still Costs Logarithmically Many Heads}
+\author{}
+\date{November 23, 2026}
+\maketitle
+
+\paragraph{Status and scope.}
+The following complete written proof rules out one proposed joint
+replacement for an Erd\H{o}s--Moser pair of orders. It allows arbitrary
+nonzero amplitudes on the pair's support and exact cancellation outside
+that support. It is not a lower bound for an arbitrary sign table or for
+worst-case head complexity. It neither proves target (A) nor target (B).
+It is not Lean formalized. The original definitions are unchanged.
+
+\begin{theorem}[Cleared separation rank]
+Let $H\geq1$ and let a matrix of grid scores be
+\[
+ F_{ij}=c+\sum_{h=1}^H
+       \frac{a_{hi}+b_{hj}}{p_{hi}+q_{hj}},
+ \qquad p_{hi}+q_{hj}\ne0.
+\]
+Put $D_{ij}=\prod_{h=1}^H(p_{hi}+q_{hj})$ and $P_{ij}=D_{ij}F_{ij}$.
+Then
+\[
+ \operatorname{rank}P\leq 2^{H+1}-2.
+\]
+If an arbitrary rank-at-most-$L$ matrix $R$ is added to the displayed
+score, the corresponding cleared matrix has rank at most
+$(L+2)2^H-2$.
+\end{theorem}
+\begin{proof}
+Absorb $c$ into the first numerator by replacing
+$a_{1i}$ by $a_{1i}+cp_{1i}$ and
+$b_{1j}$ by $b_{1j}+cq_{1j}$. Thus
+\[
+ P_{ij}=\sum_{h=1}^H (a_{hi}+b_{hj})
+                         \prod_{g\ne h}(p_{gi}+q_{gj}).
+\]
+For $S\subseteq[H]$, define
+\[
+ \begin{split}
+ r_S(i)&=\prod_{g\in S}p_{gi},&
+ u_S(i)&=\sum_{h\in S}a_{hi}\prod_{g\in S\setminus\{h\}}p_{gi},\\
+ t_S(j)&=\prod_{g\in S}q_{gj},&
+ v_S(j)&=\sum_{h\in S}b_{hj}\prod_{g\in S\setminus\{h\}}q_{gj}.
+ \end{split}
+\]
+The empty products are one and $u_\varnothing=v_\varnothing=0$.
+Expansion, grouped according to the slots contributing row factors,
+gives the exact identity
+\[
+ P_{ij}=\sum_{S\subseteq[H]}
+       \bigl(u_S(i)t_{S^c}(j)+r_S(i)v_{S^c}(j)\bigr).
+\]
+For a term whose numerator contributes $a_{hi}$, its row-factor set
+contains $h$ and it occurs exactly once in the first sum. For a term
+whose numerator contributes $b_{hj}$, the row-factor set does not
+contain $h$ and it occurs exactly once in the second sum. This also
+checks the identity when a row or column factor is zero.
+Each summand is an outer product. The first family has $2^H-1$
+possibly nonzero members, and so does the second family. Rank
+subadditivity proves the first conclusion.
+
+Also $D_{ij}=\sum_{S\subseteq[H]}r_S(i)t_{S^c}(j)$, so
+$\operatorname{rank}D\leq2^H$. Decomposing $R$ into at most $L$
+outer products shows directly that the entrywise product $D\circ R$
+is a sum of at most $L2^H$ outer products. Adding this contribution
+proves the second conclusion.
+\end{proof}
+
+\begin{corollary}[Disjoint support components]
+Suppose an affine-ratio grid score has nonzero values on each of $k$
+disjoint nonempty rectangles $I_\ell\times J_\ell$, and is exactly zero
+on $I_\ell\times J_{\ell'}$ whenever $\ell\ne\ell'$. Here the row sets
+$I_\ell$ are pairwise disjoint, and so are the column sets $J_\ell$.
+Every representation by $H\geq1$ affine-ratio heads with nonzero grid
+denominators satisfies
+\[
+ k\leq2^{H+1}-2,\qquad H\geq\log_2(k+2)-1.
+\]
+With a separately permitted rank-$L$ correction, the necessary inequality
+is $k\leq(L+2)2^H-2$.
+\end{corollary}
+\begin{proof}
+Choose one row from each $I_\ell$ and one column from each $J_\ell$.
+The selected score submatrix is diagonal with nonzero diagonal entries.
+Entrywise multiplication by its nonzero denominator product preserves
+that property, so the resulting $k$ by $k$ matrix has rank $k$.
+Apply the theorem. No normalization of its diagonal values is needed.
+\end{proof}
+
+\paragraph{Application to the proposed paired-order compiler.}
+Erd\H{o}s and Moser's Lemma 2 represents a bilevel graph, a vertex-disjoint
+union of directed complete bipartite components, by a pair of linear
+orders. The two numerical votes cancel on all other pairs.
+See Section 2 of
+\href{https://www.renyi.hu/~p_erdos/1964-22.pdf}{their original paper}.
+A module intended to preserve exactly this support must obey the
+corollary on a table containing one source row and one target column
+from each component. Thus a universal constant-head exact-support
+replacement is impossible when the number of components is unbounded.
+Allowing unequal magnitudes, unbounded numerator coefficients, either
+denominator orientation, or arbitrary cancellation among the heads
+does not change this conclusion. Fixed-rank row/column corrections do
+not change its logarithmic order either.
+
+This does not rule out summing modules with nonzero off-support tails
+that interact, choosing a different decomposition, or compiling all
+order pairs jointly. Such a method would need a quantitative argument
+controlling those interactions. Exact pairwise cancellation alone
+cannot supply the missing saving.
+
+\paragraph{Relation to the earlier approximate mask bound.}
+The diagonal-dominance argument in
+\texttt{reverse-joint-equality-mask.tex} discards fewer than $4H^2$
+indices and proves that a cleared submatrix has full rank. Replacing
+its older rank estimate $H2^H$ by the theorem above strengthens its
+conclusion to
+\[
+ k-4H^2\leq2^{H+1}-2.
+\]
+Under its same hypotheses, $k\geq1024$ then implies
+$H\geq\log_2k-2$: if $H\geq\log_2k$ there is nothing to show;
+otherwise $4H^2\leq k/2$ and $k/2\leq2^{H+1}-2$.
+This remains a restriction on accurate equality masks, not on arbitrary
+strict sign computation.
+
+\paragraph{Exact finite checks.}
+The companion script checks the subset identity and tests original
+strict reverse denominators on the full cube through their all-one
+minimum. It obtains cleared ranks $2,6,14$ for $H=1,2,3$ respectively,
+attaining the displayed bound in those cases. It also constructs the
+paired orders of Lemma 2 on small disjoint block families and verifies
+their exact support. These finite computations test the formulas and
+show that a rank bound $2^H$ would already be false for $H=2$.
+\end{document}
