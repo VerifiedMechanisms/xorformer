@@ -76,6 +76,21 @@ for n in range(1, 5):
         assert determinant(jacobian) == (-1)**n * determinant(c) * determinant(c2)
         assert determinant(jacobian) != 0
 
+        # With rank-n row/column correction, residues may be prescribed
+        # independently at every permutation; this is not a numerical IFT test.
+        prescribed = [F((h+2)*(p[h]+3)-sum((k+1)*(p[k]+1) for k in range(n)))
+                      for h in range(n)]
+        memories = [-sum((e[i][h]+prescribed[h])*cp[i][h] for h in range(n))
+                    for i in range(n)]
+        for i in range(n):
+            assert sum((e[i][h]+prescribed[h])*cp[i][h] for h in range(n))+memories[i] == 0
+            assert sum((e[i][h]+prescribed[h]+1)*cp[i][h] for h in range(n))+memories[i]-sum(c[i]) == 0
+        prescribed_jacobian = [
+            [(e[i][h]+prescribed[h])*cp[i][h]**2 for h in range(n)] + cp[i]
+            for i in range(n)
+        ] + [[cp[i][h]**2 for h in range(n)] + [F(0)]*n for i in range(n)]
+        assert determinant(prescribed_jacobian) == (-1)**n * determinant(c) * determinant(c2)
+
         # Coefficient of eta in the cleared readout numerator. Since its
         # constant term is zero, dividing by the denominator at eta=0
         # gives the exact derivative without any finite-difference test.
@@ -131,4 +146,4 @@ for n in range(1, 5):
         assert nonuniform_left == target + leakage
         checked += 1
 
-print(f"Verified {checked} exact sheets, full Jacobians, derivatives, preconditioning formulas, and readout decompositions.")
+print(f"Verified {checked} exact sheets, full Jacobians, derivatives, preconditioning formulas, readout decompositions, and prescribed-residue corrected sheets.")
