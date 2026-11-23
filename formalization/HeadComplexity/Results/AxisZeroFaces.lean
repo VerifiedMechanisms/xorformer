@@ -208,5 +208,17 @@ theorem repair_two_positive_faces {n H a b : ℕ}
     simp [Fintype.card_sigma, sizes, Fin.sum_univ_three]
   rwa [hcard] at hcomp
 
+/-- The exceptional-face correction budget in the unchanged `HStar` invariant. -/
+theorem HStar_le_repair_two_positive_faces {n H a b : ℕ}
+    (rho : CoordFace a n) (tau : CoordFace b n)
+    (hrho : ∀ i, rho.base i = true) (htau : ∀ i, tau.base i = true)
+    (φ : Fin H → FracAtom n) (bias : ℝ) (f : (Fin n → Bool) → Bool)
+    (houtside : ∀ bits, ¬OnPositiveFace rho bits → ¬OnPositiveFace tau bits →
+      (0 < bias + ∑ h, (φ h).eval bits ↔ f bits = true) ∧
+        bias + ∑ h, (φ h).eval bits ≠ 0) :
+    HStar n f ≤ H + 2 ^ a + 2 ^ b :=
+  HStar_le_of_computableWithHeadsN
+    (repair_two_positive_faces rho tau hrho htau φ bias f houtside)
+
 end AxisZeroGluing
 end HeadComplexity
