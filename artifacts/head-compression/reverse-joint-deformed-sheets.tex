@@ -214,6 +214,87 @@ It would therefore be unjustified to discard that second line as
 a small numerical error. Its possible joint sign capacity remains
 part of the unresolved problem.
 
+\paragraph{Exact removal of polynomial residue corrections on a large fiber.}
+There is a useful structured version of the preceding construction.
+Let $P_h$ be polynomials of degree at most $L$, and set
+$E_{ih}=P_h(d_i)$. Define
+\[
+ q_\pi(t)=\sum_h\frac{P_h(t)-P_h(\lambda_{\pi(h)})}
+                         {t-\lambda_{\pi(h)}}.
+\]
+This is a polynomial of degree at most $L-1$. Write the Euclidean
+quotient and remainder as
+\[
+ q_\pi(t)P_\lambda(t)=P_d(t)S_\pi(t)+N_\pi(t),
+ \qquad \deg N_\pi<H.
+ \tag{6}
+\]
+The exact residues on the regular sheet are
+\[
+ a_h^\pi=-P_h(\lambda_{\pi(h)})
+                 +V_{\pi(h)}S_\pi(\lambda_{\pi(h)}).
+ \tag{7}
+\]
+Indeed, the rational function $N_\pi/P_\lambda$ interpolates $q_\pi$
+at every $d_i$, and its residue at $\lambda_j$ is
+$-V_jS_\pi(\lambda_j)$. The defining equations for $a^\pi$ are
+therefore exactly (7).
+
+On a fiber where $q_\pi=q_*$, the quotient $S_\pi=S_*$ is fixed.
+Subtract the common token profile $g_j=V_jS_*(\lambda_j)$ from
+all residues and add the row bias
+$\sum_jg_j/(d_i-\lambda_j)$ to both paired queries. Their common
+zeros now have
+\[
+ u_h^\pi=\lambda_{\pi(h)},\qquad
+ \widetilde a_h^\pi=-P_h(\lambda_{\pi(h)}).
+ \tag{8}
+\]
+Their full Jacobian remains nonsingular: the upper-left block changes,
+but subtraction of paired rows again gives the lower blocks
+$(C_\pi\circ C_\pi,0)$. Thus the entire potentially large barycentric
+correction in (7) is removed with row biases, without adding head
+layers. Only the previously described single bias head is needed.
+
+There is an elementary quantitative lower bound on a fiber's size.
+Take the distinct integer tokens $\lambda_j=j$, and suppose all
+coefficients of all $P_h$ are integers of absolute value at most
+$B\geq1$. Write $P_h(t)=\sum_{\ell=0}^Lp_{h\ell}t^\ell$.
+For $0\leq k<L$ the coefficient of $t^k$ in $q_\pi$ is
+\[
+ \sum_h\sum_{\ell=k+1}^L
+                  p_{h\ell}\pi(h)^{\ell-1-k}.
+ \tag{9}
+\]
+It is an integer of absolute value at most $LBH^L$; the leading
+coefficient $k=L-1$ is independent of $\pi$. Hence some fiber has
+cardinality at least
+\[
+ \frac{H!}{(2LBH^L+1)^{L-1}}.
+ \tag{10}
+\]
+For fixed $B$ and $L=o(\sqrt H)$, its logarithm is
+$(1-o(1))H\log H$. These integer tokens still allow full-cube
+admissibility: choose a very large common intercept $C$, keep all row
+poles in $(C-1,C-1/2)$, and use column slopes in small neighborhoods
+of $1,\ldots,H$. For any finite requested numbers of rows and columns,
+$C>2(r+s(H+1)+1)$ is sufficient. The polynomial values and numerator
+coefficients may be large; the model places no size bound on them.
+
+This construction retains a factorial-size family of regular sheets
+while replacing jointly determined residues by slot-dependent
+polynomial token values. It does not establish that those sheets have
+superlinearly many independently readable signs. In particular,
+setting an additional row numerator to $P_h(t_h)$ only produces
+\[
+ \sum_h\frac{P_h(t_h)-P_h(\lambda_{\pi(h)})}
+                    {t_h-\lambda_{\pi(h)}}.
+\]
+Although this is a high-degree divided difference, a single summand's
+sign still compares two values of the same polynomial when the
+denominator is positive. High polynomial degree alone is not a bit
+extraction proof.
+
 \paragraph{Unresolved quantitative issue.}
 As the poles and tokens enter a very compact far-pole regime, the
 inverse Cauchy matrix is ill conditioned. Generic unscaled choices
