@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T14:29:04.650176+00:00",
+  "declarations": [
+    "HeadComplexity.HeadParityAmplitude.moment_integral",
+    "HeadComplexity.HeadParityAmplitude.moment_bounds",
+    "HeadComplexity.HeadParityAmplitude.moment_le_erase",
+    "HeadComplexity.HeadParityAmplitude.alternatingRatio_eq",
+    "HeadComplexity.HeadParityAmplitude.moment_balance",
+    "HeadComplexity.HeadParityAmplitude.moment_lt_one",
+    "HeadComplexity.HeadParityAmplitude.meanPoint_bounds",
+    "HeadComplexity.HeadParityAmplitude.alternatingRatio_mean_value",
+    "HeadComplexity.HeadParityAmplitude.alternatingRatio_upper",
+    "HeadComplexity.HeadParityAmplitude.alternatingRatio_centered_bound",
+    "HeadComplexity.HeadParityAmplitude.alternatingRatio_abs_le_two",
+    "HeadComplexity.HeadParityAmplitude.positive_affine_ratio_bound",
+    "HeadComplexity.HeadParityAmplitude.atom_subset_affine",
+    "HeadComplexity.HeadParityAmplitude.atom_unit_parity_bound",
+    "HeadComplexity.HeadParityAmplitude.atom_parity_amplitude_bound",
+    "HeadComplexity.HeadParityAmplitude.parity_margin_sum_bound",
+    "HeadComplexity.HeadParityAmplitude.parity_relative_margin_bound"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_files": [
+    {
+      "file": "formalization/HeadComplexity/Atoms/HeadParityAmplitude.lean",
+      "sha256": "0844b90fbcf6bf1b4e932d98d43ba3cf1c4aa4ce863ec0a57f2c0479453ca472"
+    },
+    {
+      "file": "formalization/HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean",
+      "sha256": "7df7e58472f62dcd2c9441eceb626df8aad70ebf13e66a25e4c00ac5f78b3340"
+    }
+  ],
+  "build_jobs": 3837,
+  "scope": "Complete normalized positive-denominator identity and parity amplitude theorem for actual FracAtom scores, both orientations and every finite head count. General mixed-slope extension and sharpness limit are written deductions.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/head-parity-amplitude.md",
+      "source_math_spans": 64,
+      "rendered_math_spans": 64,
+      "findings": 0,
+      "sha256": "a4c238851cb82c4d7dd4e6b956a32331ac25595510da51238e6b6f244a5828b9"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/luce-covering.md",
+      "source_math_spans": 138,
+      "rendered_math_spans": 138,
+      "findings": 0,
+      "sha256": "741b69d3693e9ad263fc566d06562a7c0e1cb4e83f516e6039ffe84cefcc870f"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 103,
+      "rendered_math_spans": 103,
+      "findings": 0,
+      "sha256": "4fd50ba44fe4b5f2edb07caf65d52b9a658f6cde5a0fcf5c1e23ba93244dc65e"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "00d83220f7eb1798c625322e392f9285941ca516a9b2f86d4b5b489e19d2a238"
+    }
+  ],
+  "katex": "PASS, four files, 306 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "rational_audit": "head-parity-rational-audit.json",
+  "model_changes": [],
+  "main_target_proved": false
+}

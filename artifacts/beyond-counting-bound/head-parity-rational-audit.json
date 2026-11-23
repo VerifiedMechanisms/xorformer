@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "rational_tables": 280,
+  "cube_vertices": 17850,
+  "exact_mean_value_checks": 280,
+  "sharpness_families_and_atom_checks": 24,
+  "arithmetic": "exact fractions only",
+  "scope": "finite independent diagnostic; universal theorem is kernel checked separately",
+  "script_sha256": "236c18b8d9ba9e244ef6cd359fbaafb868178f5722d7b315ccceed889301d0fc",
+  "main_target_proved": false
+}

@@ -114,13 +114,17 @@ Here the first inequality uses $|f_i(x)|\leq1$. Every original coordinate has ma
 
 For a fixed positive relative amplitude margin, universal representation would therefore require $\Omega(2^n/(n\log n))$ heads. For a guarantee $\gamma\geq\exp(-n^\beta)$ with $0\lt\beta\lt1$, it would require $\Omega(2^n/n^{1+\beta})$ heads. Both conclusions retain the displayed margin hypothesis.
 
+## A subsequently proved obstruction
+
+The [exact parity amplitude theorem](head-parity-amplitude.md) now shows that parity has relative head-amplitude margin at most $2^{1-n}$ in every representation, regardless of head count. Thus a universal repair to margin $\exp(-n^\beta)$ with $0\lt\beta\lt1$ is false even with arbitrary overhead. The covering and conditional counting theorems above remain correct; their claims conditional on universality are vacuous once the required margin exceeds this parity bound. This is stronger than the one-head repair-cost obstruction below.
+
 ## Exact gap to the requested theorem
 
-The unrestricted model does not supply a positive lower bound on this ratio as a function of $n$ and the head count. Dividing the score by its minimum margin does not help: it scales $M$ by the same factor. Very large cancelling heads remain allowed. No transformation producing the needed relative amplitude margin at a sufficiently small head overhead has been proved.
+The unrestricted model does not supply a positive lower bound on this ratio as a function of $n$ and the head count. Dividing the score by its minimum margin does not help: it scales $M$ by the same factor. Very large cancelling heads remain allowed. The parity theorem rules out a transformation producing the needed relative amplitude margin at any head overhead.
 
 In particular, the theorem only shows that if every Boolean function had $O(2^n/n^2)$ heads, then some of those functions would require relative amplitude margins exponentially small in $n$ in all representations with that head budget. Such conditioning is permitted. This implication does not refute the hypothesized head bound.
 
-The [bounded amplitude obstruction](bounded-amplitude-obstruction.md) separately rules out a constant-overhead repair for fixed amplitude ratios, even for certain one-head functions. It does not settle possible repairs with larger overhead or weaker margins. The present route is blocked at that unconditional transfer step.
+The [bounded amplitude obstruction](bounded-amplitude-obstruction.md) separately rules out a constant-overhead repair for fixed amplitude ratios, even for certain one-head functions. It does not settle possible repairs with larger overhead or weaker margins. The present route is blocked by the explicit parity counterexample to that unconditional transfer step.
 
 ## Quantitative obstruction to a uniform repair
 

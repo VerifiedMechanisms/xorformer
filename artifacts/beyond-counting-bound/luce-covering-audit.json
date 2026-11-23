@@ -18,29 +18,31 @@
   "github_render": [
     {
       "file": "artifacts/beyond-counting-bound/luce-covering.md",
-      "source_math_spans": 135,
-      "rendered_math_spans": 135,
+      "source_math_spans": 138,
+      "rendered_math_spans": 138,
       "findings": 0,
-      "sha256": "458522b2cc5f0ed435a847a301bf9460db683101b2fc9fb21a996a51d096bad4"
+      "sha256": "741b69d3693e9ad263fc566d06562a7c0e1cb4e83f516e6039ffe84cefcc870f"
     },
     {
       "file": "artifacts/beyond-counting-bound/research.md",
-      "source_math_spans": 99,
-      "rendered_math_spans": 99,
+      "source_math_spans": 103,
+      "rendered_math_spans": 103,
       "findings": 0,
-      "sha256": "77883455868d4bf7b2cdbe19ff7fffeae2941dca88e210a54d66e4b5e8ffa441"
+      "sha256": "4fd50ba44fe4b5f2edb07caf65d52b9a658f6cde5a0fcf5c1e23ba93244dc65e"
     },
     {
       "file": "artifacts/beyond-counting-bound/audit-index.md",
       "source_math_spans": 1,
       "rendered_math_spans": 1,
       "findings": 0,
-      "sha256": "c4d57b60885675d1d39a6011c54c121e76da2bba6f1a63061155f7be15150e85"
+      "sha256": "00d83220f7eb1798c625322e392f9285941ca516a9b2f86d4b5b489e19d2a238"
     }
   ],
-  "katex": "PASS, three files, 235 spans",
+  "katex": "PASS, included in four-file 306-span check",
   "gitlab": "NOT RUN: glab unavailable",
   "rational_audit": "luce-covering-rational-audit.json",
   "model_changes": [],
-  "main_target_proved": false
+  "main_target_proved": false,
+  "last_render_audit_utc": "2026-11-23T14:29:04.650176+00:00",
+  "unconditional_transfer": "REFUTED: parity_relative_margin_bound forbids any universal subexponential relative-amplitude margin, regardless of head overhead."
 }
