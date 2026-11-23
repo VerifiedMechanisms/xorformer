@@ -514,6 +514,198 @@ bits simultaneously readable remains a separate unresolved question.
 The present theorem supplies no asymptotic bound on unrestricted head
 complexity.
 
+\begin{theorem}[Overlapping compact probes shatter $2H-1$ bits]
+Let $H\geq1$, let $I$ be any nonempty open interval whose closure is
+bounded above by $\beta$, and choose any $H$ distinct probe points
+$D_1,\ldots,D_H>\beta$. For continuously variable poles
+$x=(x_1,\ldots,x_H)\in I^H$, consider the full-block queries
+\[
+ \Phi_j(x)=\sum_{h=1}^H\frac1{D_j-x_h},\qquad 1\leq j\leq H.
+\]
+There are fixed thresholds for these $H$ queries and for $H-1$
+singleton queries $x_i>t_i$ such that all $2^{2H-1}$ strict sign
+patterns are realized. Each singleton comparison can itself be
+written as an exterior Stieltjes query
+$(D_*-x_i)^{-1}>(D_*-t_i)^{-1}$ with any fixed $D_*>\beta$.
+Thus even compact overlapping unweighted Stieltjes readout does not
+have a universal capacity bound of $H$ for $H$ continuous poles.
+\end{theorem}
+\begin{proof}
+Choose $H$ distinct numbers
+$a_0<\cdots<a_{H-1}$ in $I$, and thresholds
+$a_{i-1}<t_i<a_i$ for $1\leq i<H$.
+First, every desired pattern of the $H-1$ singleton comparisons is
+realized by a permutation of these fixed poles. To see this, let the
+negative slots be $i_1<\cdots<i_k$ and the positive slots be
+$p_1<\cdots<p_m$, where $m=H-1-k$. Assign $a_{j-1}$ to negative
+slot $i_j$, assign $a_{k+j}$ to positive slot $p_j$, and assign
+the unused pole $a_k$ to slot $H$. Since $i_j\geq j$,
+$a_{j-1}<t_{i_j}$. Since $p_j\leq k+j$, we have
+$a_{k+j}>t_{p_j}$. These are all the required strict signs.
+
+The vector $y^0=\Phi(x)$ is identical at every permutation of the
+fixed poles. At every such point, the derivative matrix of $\Phi$ is
+\[
+ \left(\frac1{(D_j-a_h)^2}\right)_{j,h}.
+\]
+This square matrix is nonsingular. Here is a direct verification.
+For distinct $a_0,\ldots,a_{H-1}$ define
+$g_h(D)=(D-a_h)^{-2}$ on $(\beta,\infty)$. For every prefix of
+length $r+1$, factor $(D-a_h)^{-2}$ from column $h$ and
+$(-1)^q(q+1)!$ from derivative row $q$ of its Wronskian.
+What remains is the Vandermonde determinant in the distinct numbers
+$(D-a_h)^{-1}$. Hence all prefix Wronskians are nonzero.
+The preceding zero-count proposition says that a nonzero combination
+of the $H$ functions $g_h$ has at most $H-1$ distinct zeros. A
+nonzero vector in the kernel of the displayed matrix would give $H$
+distinct zeros, so no such vector exists.
+
+For each singleton pattern select the permutation constructed above.
+By the inverse function theorem, a neighborhood of that permutation,
+small enough to preserve all its strict singleton signs and remain
+in $I^H$, maps onto an open neighborhood of $y^0$. Intersect these
+finitely many image neighborhoods. The intersection is still an
+open neighborhood of $y^0$, so it contains a cube
+$y^0+[-\varepsilon,\varepsilon]^H$ for some $\varepsilon>0$.
+Use thresholds $y^0_j$ for the full-block queries. For an arbitrary
+singleton pattern and arbitrary full-block signs
+$\eta\in\{-1,1\}^H$, take a preimage of
+$y^0+\varepsilon\eta$ in the corresponding neighborhood. It has
+both sets of strict signs. All poles and all query points remain in
+the specified intervals. Finally, the singleton Stieltjes expression
+has the sign of $x_i-t_i$, since both of its denominators are
+positive.
+\end{proof}
+
+This construction uses target-dependent continuous poles together with
+permutation components. It is not a shattering result for permutations
+of one fixed pole library, and the factor $2H-1$ is only linear.
+Amplifying the surviving permutation freedom to superlinear readable
+bits would require a further mechanism; the inverse function theorem
+alone supplies no such amplification.
+
+\section{A hereditary permutation decoder with exterior probes}
+
+The following construction supplies such an amplification when probes
+may approach the pole interval at arbitrarily different relative
+scales. This qualification is essential: the construction is a grid
+decoder, not a compilation into full-cube admissible heads.
+
+\begin{theorem}[Hierarchical signed Cauchy permutation decoder]
+Let $H=2^d$ with $d\geq1$, put $L=4H$, and fix the rational poles
+\[
+ \varepsilon_j=L^{-2j},\qquad \lambda_j=1-\varepsilon_j,
+ \qquad 1\leq j\leq H.
+\]
+There are $r=(H/2)d$ fixed signed Cauchy queries of the form
+\[
+ Q_q(\pi)=\sum_{h=1}^H\frac{A_{q,h}}{D_q-\lambda_{\pi(h)}},
+ \qquad A_{q,h}\in\{-1,0,1\},\quad D_q>1,
+\]
+such that their strict sign vectors, as $\pi$ ranges over permutations
+of $\{1,\ldots,H\}$, include every element of $\{-1,1\}^r$.
+All poles, probes, coefficients, and the zero thresholds are fixed
+independently of the desired sign vector. The construction uses only
+$H-1$ distinct probe locations, shared by some queries.
+\end{theorem}
+\begin{proof}
+Use a complete binary tree whose $H$ leaves are the head slots. At
+depth $\ell$, each node has $K=H/2^\ell$ leaves. For
+$0\leq\ell\leq d$, partition the ordered pole ranks into consecutive
+blocks
+\[
+ B_{\ell,t}=\{(t-1)2^\ell+1,\ldots,t2^\ell\},
+ \qquad 1\leq t\leq H/2^\ell.
+\]
+We maintain this invariant: the multiset assigned to each node at
+depth $\ell$ contains exactly one pole from each block
+$B_{\ell,t}$. It holds at the root, where the blocks are singletons.
+
+At a node $v$ of depth $\ell<d$, pair the two assigned poles whose
+ranks belong to $B_{\ell,2i-1}$ and $B_{\ell,2i}$, for
+$1\leq i\leq K/2$. Write these poles as $\alpha_i<\beta_i$.
+For each desired bit $s_{v,i}\in\{-1,1\}$, send $\beta_i$ to the
+left child and $\alpha_i$ to the right child if $s_{v,i}=1$;
+reverse these assignments if $s_{v,i}=-1$. Each child now contains
+one pole from every union
+$B_{\ell,2i-1}\cup B_{\ell,2i}=B_{\ell+1,i}$, proving the
+invariant inductively. At depth $d$ every leaf has one pole, so this
+procedure produces a permutation for every assignment of all bits.
+
+The query corresponding to $(v,i)$ has coefficient $+1$ on leaves
+of the left child of $v$, coefficient $-1$ on leaves of its right
+child, and coefficient zero elsewhere. Define its probe by
+\[
+ m=(2i-1)2^\ell,\qquad
+ \delta=L^{-(2m+1)},\qquad D_{v,i}=1+\delta.
+\]
+In the final permutation, its value is
+\[
+ Q_{v,i}=\sum_{t=1}^{K/2}s_{v,t}w_t,\qquad
+ w_t=\frac1{D_{v,i}-\beta_t}
+       -\frac1{D_{v,i}-\alpha_t}>0.
+\]
+Later permutations within either child do not change this sum. Thus
+the query is unaffected by all bits at deeper levels.
+
+We prove that $w_i>\sum_{t\ne i}w_t$, uniformly over every inherited
+choice of poles satisfying the invariant. The rank of $\alpha_i$
+is at most $m$, and the rank of $\beta_i$ is at least $m+1$.
+Consequently
+\[
+ 1-\alpha_i\geq L^{-2m}=L\delta,\qquad
+ 1-\beta_i\leq L^{-2m-2}=\delta/L,
+\]
+and therefore
+\[
+ w_i\geq\frac1{\delta+\delta/L}
+          -\frac1{\delta+L\delta}
+ =\frac{L-1}{L+1}\frac1\delta.
+\]
+If $t<i$, the rank of $\beta_t$ is at most $m$, so
+$w_t\leq (D_{v,i}-\beta_t)^{-1}\leq1/(L\delta)$.
+If $t>i$, the rank of $\alpha_t$ is at least $m+1$. Writing
+$a=1-\alpha_t$ and $b=1-\beta_t$, we have
+$0<b<a\leq\delta/L$ and
+\[
+ w_t=\frac{a-b}{(\delta+a)(\delta+b)}
+ \leq\frac{a}{\delta^2}\leq\frac1{L\delta}.
+\]
+There are at most $H/2-1$ other pairs. Since $L=4H\geq8$,
+\[
+ \sum_{t\ne i}w_t\leq\frac{H/2-1}{L\delta}
+ <\frac1{8\delta}
+ <\frac{L-1}{L+1}\frac1\delta\leq w_i.
+\]
+Thus $Q_{v,i}$ has the strict sign $s_{v,i}$ for every choice of all
+other bits. At depth $\ell$ there are $2^\ell$ nodes and
+$H/2^{\ell+1}$ bits per node, hence $H/2$ bits. Summing over
+$d$ depths gives $r=(H/2)d$. Finally, every integer
+$1\leq m<H$ has a unique representation
+$m=(2i-1)2^\ell$, so exactly $H-1$ distinct probe formulas occur.
+All denominators are positive because $D_{v,i}>1>\lambda_j$.
+\end{proof}
+
+\paragraph{Relation to blocked mechanisms.}
+The proof is a dominant-pole mechanism with a hereditary invariant:
+every inherited node multiset has one pole in each prescribed rank
+block, and the same fixed probes work for every such multiset. It
+therefore proves actual simultaneous readability rather than merely
+counting factorially many parameter components. Its separation scales
+are not compact relative to the pole-probe clearance. In particular,
+although all numerical probe values are close to $1$, the ratio of
+the largest to the smallest clearance grows rapidly with $H$.
+The theorem supplies no repair of the known full-cube admissibility
+obstruction for reverse one-hot gluing. It does not establish a
+superconstant saving for \texttt{worstCaseHeadComplexity}.
+
+The companion script \texttt{check-hierarchical-cauchy.py} constructs
+the permutation for every input pattern and evaluates every query
+with exact rational arithmetic. At $H=8$ it verifies all $4096$
+strict patterns of the $12$ fixed queries. This finite computation
+checks the construction's indexing and signs; the preceding written
+argument proves the theorem for every $H=2^d$.
+
 \section{Primary-source transfer checks}
 
 Pardo and Sebasti\'an, \emph{Erzeugungsgrad, VC-Dimension and Neural
