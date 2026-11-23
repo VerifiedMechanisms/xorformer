@@ -40,6 +40,7 @@ import HeadComplexity.Results.AffineSidonRows
 import HeadComplexity.Results.AnchoredFractionLift
 import HeadComplexity.Results.AffineFractionRange
 import HeadComplexity.Results.CountingLowerBound
+import HeadComplexity.Results.ReciprocalHistogram
 import HeadComplexity.Results.ExponentMechanisms
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan

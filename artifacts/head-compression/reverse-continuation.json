@@ -3,7 +3,7 @@
   "resumed_utc": "2026-11-23 18:21:46 UTC",
   "minimum_research_end_utc": "2026-11-23 20:21:46 UTC",
   "target": "Unconditional worstCaseHeadComplexity n = O(2^n/(n log log n)); natural logarithms; unchanged model",
-  "status": "Active continuation beyond the requested two-hour minimum; continue substantive research until an accepted resolution or an enforced runtime/resource limit. Neither accepted target is proved.",
+  "status": "Active substantive research after capacity recovery; neither accepted asymptotic target is proved.",
   "definitions_changed": false,
   "parallel_targets": [
     "Scalable joint reverse-orientation compiler or another unconditional upper-bound mechanism",
@@ -14,5 +14,7 @@
     "Unconditional W(n)=O(2^n/(n log log n)), with stronger log n saving welcome",
     "Unconditional W(n)>=c*2^n/n for every sufficiently large n, covering all admissible original-model representations"
   ],
-  "minimum_is_not_deadline": true
+  "minimum_is_not_deadline": true,
+  "capacity_recovery_utc": "2026-11-23 22:54:02 UTC",
+  "last_checkpoint_utc": "2026-11-23 23:22:53 UTC"
 }

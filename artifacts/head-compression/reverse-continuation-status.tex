@@ -29,6 +29,25 @@ The existing upper-bound declaration is
 in \texttt{Results/UniversalLinearSaving.lean}. The factor of $n$
 between these estimates remains open in this run.
 
+\paragraph{A written improvement of the upper constant.}
+\texttt{reciprocal-segre-degeneration.tex} proves the exact-value bound
+\[
+ W(n)\leq2\left\lceil\frac{2^n}{n+1}\right\rceil\qquad(n\geq1).
+\]
+This is a complete written deduction, not a Lean theorem. It uses the
+established generic secant-dimension theorem for products of projective
+lines by Catalisano, Geramita, and Gimigliano
+(\texttt{arXiv:0809.1701}, Theorem 4.1), together with the inverse function
+theorem. The exceptional third secant of the four-factor Segre variety
+does not occur at the rank used here. A rescaled Boolean finite-difference
+transform makes positive reciprocal features converge in first derivative
+to Segre features. Full Jacobian rank then gives an open set of exact
+tables; subtracting two tables in that set realizes every real table.
+The primary theorem and this transfer were independently audited.
+Exact modular Jacobian checks for dimensions one through six are only
+finite checks of the formulas. This constant-factor improvement is not
+either accepted asymptotic resolution.
+
 \paragraph{The concrete gluing gap has been closed.}
 \texttt{Results/AxisZeroTransfer.lean} proves the descending order of
 cells, exact affine center substitutions, preservation of earlier strict
@@ -69,6 +88,39 @@ and a row-flip plus column-mask construction with $4H+6$ heads.
 Its density-to-compiler implication records a precise sufficient
 condition; an efficient dense family is not proved to exist.
 
+\paragraph{A checked exact Cauchy platform.}
+\texttt{Results/ReverseBalancedRows.lean} constructs strictly admissible
+axis-zero modules with balanced row numerators. Its declarations
+\texttt{exists\_balancedRows\_atoms},
+\texttt{exists\_pairedCauchy\_reverseAxisData}, and
+\texttt{exists\_permutationCauchy\_reverseAxisData} establish exact paired
+Cauchy readouts, with arbitrary row biases and an explicit full-cube
+exterior margin. This verifies the analytic platform, not a growing
+ratio of programmable rows to heads.
+
+\paragraph{New full-cube identities and tangent spaces.}
+\texttt{reciprocal-histogram-fibers.tex} gives complete elementary
+written proofs of positive reciprocal representations with common
+full-cube values. In a growing dimension, one fiber contains
+$\exp(\Omega(nH\log n))$ distinct unordered representations and equally
+many distinct tangent spaces in a specified parameter slice. The slice
+has an invertible selected-output Jacobian at each permutation point.
+This does not assert isolation when all atom coefficients vary, and
+neither representation counts nor distinct tangent spaces imply
+independent sign labels.
+
+The basic one-triple invariance and its exact original-atom realization
+are now Lean checked in \texttt{Results/ReciprocalHistogram.lean}, by
+\texttt{reciprocal\_sum\_eq}, \texttt{atoms\_sum\_eq}, and the unconditional
+concrete example \texttt{adjacent\_swaps\_atoms\_sum\_eq}.
+The large fiber count is not Lean formalized.
+\texttt{reciprocal-histogram-tangents.tex} supplies a complete finite
+seven-point strict interpolation proof from two branches, with exact
+rational certificates. Its enlarged first-order family on a fixed
+$d$-dimensional filler face has the necessary condition
+$2Hd+1\geq2^d$. Both statements have precisely restricted scope and
+settle neither global target.
+
 \paragraph{Written constructions with no superconstant saving.}
 \texttt{reverse-joint-axis-sheets.tex} gives a complete written
 constant-factor compiler using at most
@@ -94,6 +146,17 @@ dimensions. It also exhibits a positive-pole nongraded limit, so
 gradedness cannot be assumed. Exact small arrangement enumerations
 in \texttt{reverse-joint-affine-planes.tex} show extra signs from
 deformed sheets but do not establish a growing row/head ratio.
+
+\texttt{reverse-joint-balanced-codebook.tex} proves that a common
+relabeling and zero-residue padding resolve color multiplicities at
+linear cost. Cross-block interference remains unproved.
+\texttt{reverse-joint-exact-support-rank.tex} proves that clearing
+$H$ affine grid denominators gives separation rank at most
+$2^{H+1}-2$. Consequently exact support on $k$ disjoint bipartite
+components needs $H\geq\log_2(k+2)-1$, even with arbitrary nonzero
+amplitudes. This rules out a constant-cost exact-support replacement
+for each Erd\H{o}s--Moser order pair. It does not rule out a joint
+construction with interacting nonzero tails.
 
 \paragraph{Lower-bound mechanisms that did not close the gap.}
 The checked polynomial sign count yields the inverse-square estimate
