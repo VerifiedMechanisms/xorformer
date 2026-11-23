@@ -279,11 +279,21 @@
         "HeadComplexity.fixed_card_pair_sum_zero"
       ],
       "scope": "Injectivity of fixed-cardinality sums of singleton and pair coefficients in the stated middle-cardinality ranges. Supports the manual exchange-rigidity argument; no head upper bound is asserted."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/MergedRefinementRigidity.lean",
+      "main_declaration": "HeadComplexity.merged_refinement_boundary_rigidity",
+      "companion_declarations": [
+        "HeadComplexity.two_branch_boundary_rigidity",
+        "HeadComplexity.two_rate_boundary_rigidity",
+        "HeadComplexity.constant_branch_reaches_terminal"
+      ],
+      "scope": "Boundary data determine all step variations in a fixed acyclic refinement graph. Distinct branch rates and invariant constant branches support the manual extension to coordinate flips. Dimension, terminal-count, and sign-count consequences remain manual; no universal head bound is asserted."
     }
   ],
   "validation": {
-    "build": "Full lake build passed (9218 jobs) after adding SubsetMomentRigidity.",
-    "build_log": "artifacts/head-compression/validation/lean-subset-moment-full-build.log",
+    "build": "Full lake build passed (9220 jobs) after adding MergedRefinementRigidity.",
+    "build_log": "artifacts/head-compression/validation/lean-merged-refinement-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -304,7 +314,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "87 listed main and companion declarations in 34 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "93 listed main and companion declarations in 36 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -315,8 +325,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 89,
-      "modules": 35,
+      "declarations": 93,
+      "modules": 36,
       "only": [
         "propext",
         "Classical.choice",
@@ -336,12 +346,13 @@
         "validation/lean-positive-pair-axioms.log",
         "validation/lean-permutation-average-axioms.log",
         "validation/lean-subset-moment-axioms.log",
-        "validation/lean-subset-inclusion-axioms.log"
+        "validation/lean-subset-inclusion-axioms.log",
+        "validation/lean-all-research-final-axioms.log"
       ],
-      "scope": "The previous 87 declarations were unchanged; the two SubsetInclusionRigidity declarations were checked separately."
+      "scope": "All 93 listed research declarations are checked together after the merged-refinement extension."
     },
-    "lean": "Full project lake build succeeded with 9219 jobs, including all 35 new research modules and the results aggregator.",
-    "build_jobs": 9219,
+    "lean": "Full project lake build succeeded with 9220 jobs, including all 36 new research modules and the results aggregator.",
+    "build_jobs": 9220,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -373,7 +384,9 @@
       "validation/lean-subset-moment-full-build.log",
       "validation/lean-subset-moment-axioms.log",
       "validation/lean-subset-inclusion-full-build.log",
-      "validation/lean-subset-inclusion-axioms.log"
+      "validation/lean-subset-inclusion-axioms.log",
+      "validation/lean-merged-refinement-full-build.log",
+      "validation/lean-all-research-final-axioms.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -414,7 +427,8 @@
     "A product of admissible denominators satisfies D00*D11<=D10*D01 on every coordinate square, strictly if any denominator is nonconstant. For n>=2 it therefore cannot be a constant or positive multiplicatively separable table unless all factors are constant. This obstructs a proposed norm-one implementation of arithmetic unit signatures, not the general head model.",
     "Affine-fraction extrema on a Boolean cube are attained at sorted coefficient-ratio prefixes after complementing negative denominator slopes and handling zero slopes. Independent affine certificates verify the extrema without exhaustive evaluation. No universal head bound follows.",
     "Split-product logarithmic derivative cancellations have denominator factor rank at most 26 after removing common factors, by the real depth-three identity rank theorem. A sum of K=o(H) fixed-rank groups cannot be universal at H<=C*2^n/n^2. This applies only to the audited polynomial-identity construction.",
-    "Ideal affine Prouhet-Tarry-Escott cancellations have denominator slope rank at most three: signed moment annihilation on at most 2m coefficient vectors implies a real affine Cayley-Bacharach planarity constraint. No split-difference assumption is needed. This is a restriction on the audited polynomial-identity construction only."
+    "Ideal affine Prouhet-Tarry-Escott cancellations have denominator slope rank at most three: signed moment annihilation on at most 2m coefficient vectors implies a real affine Cayley-Bacharach planarity constraint. No split-difference assumption is needed. This is a restriction on the audited polynomial-identity construction only.",
+    "For a fixed merged coordinate-refinement DAG, including variable flips, the continuous realization dimension is at most L+n*c < 2*(R+L) when positive steps exist. This excludes universality of first variations for a subexponential number of graph choices at the target head rate, but does not control arbitrary graph incidence choices."
   ],
   "blocked_routes": [
     {
@@ -1347,5 +1361,14 @@
   "private_repository_refresh_2026_11_23_1733": {
     "method": "Read-only fetch of both mirrors and inspection of latest branch dates and the latest autoresearch report.",
     "result": "No newer xorformer-run branch was present. The newest autoresearch branch concerned usage reporting and supplied no mathematical construction."
+  },
+  "merged_refinement_graphs": {
+    "file": "artifacts/head-compression/merged-polya-graph-audit.tex",
+    "result": "For each fixed finite coordinate-refinement DAG, including independently flipped variable selectors, realization dimension q <= L+n*c. Positive steps force at least n+1 terminals per nontrivial weak component, so q < 2*(R+L).",
+    "mechanism": "A fixed terminal covector annihilates every step variation by descending induction; following constant-coordinate branches produces affinely independent terminal projections.",
+    "sign_scope": "First variations over any fixed graph, or over 2^o(2^n) graphs, cannot be universal at O(2^n/n^2) charged heads. Arbitrarily many target-dependent graphs and higher-order variations are not excluded.",
+    "diagnostic": "artifacts/head-compression/diagnostics/merged-polya-dimension.json",
+    "diagnostic_scope": "126839 unflipped integer graphs. No dimension exceeding R+L was found; that stronger inequality remains unproved.",
+    "target_proved": false
   }
 }

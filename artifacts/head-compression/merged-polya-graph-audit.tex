@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Continuous Parameters in Merged Refinement Graphs}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note treats a fixed finite graph of coordinate refinements, allowing
+arbitrary merging of equal states. It proves a parameter-dimension bound,
+not the universal head conjecture. The graph itself may contain discrete
+information that is not counted by its continuous dimension.
+
+\section{The graph and its linear realization space}
+
+Fix $d\ge2$. A finite directed acyclic graph has internal vertices and
+terminal vertices. Each internal vertex $v$ has one specified child
+$c_i(v)$ for each $i\in\{0,\ldots,d-1\}$; repeated appearances of a
+vertex are shared, not counted as separate copies. There are $L$ terminal
+vertices, $R$ roots, and $c$ weakly connected components. No component
+consists of an isolated unrefined vertex.
+
+A realization assigns $p_v\in\mathbb R^d$ and a scalar $s_v$ at each
+internal vertex, satisfying
+\[
+                      p_{c_i(v)}=p_v+s_v e_i.
+ \tag{1}
+\]
+These equations define a real linear space $\mathcal V$. Let
+$q=\dim\mathcal V$. An admissible positive-step realization additionally
+has positive state coordinates and $s_v>0$. The inequalities do not
+increase $q$. Only the root and terminal denominators are charged for
+the telescoped reciprocal identity, giving at most $J=R+L$ heads.
+
+\begin{theorem}[Merged-graph dimension bound]
+For every such fixed graph,
+\[
+                         q\le L+(d-1)c.
+ \tag{2}
+\]
+If it admits a positive-step realization, then each component has at
+least $d$ terminals. Consequently
+\[
+                     q\le(2-1/d)L<2J.
+ \tag{3}
+\]
+\end{theorem}
+\begin{proof}
+Map a realization linearly to the $L$ terminal numbers
+\[
+                       p_{v,0}-p_{v,1}.
+ \tag{4}
+\]
+We calculate the kernel of this map. For a realization in the kernel,
+write $g_v=p_{v,0}-p_{v,1}$. Equation (1) gives
+\[
+                    g_{c_0(v)}=g_v+s_v,\qquad
+                    g_{c_1(v)}=g_v-s_v.
+ \tag{5}
+\]
+Backward induction in the acyclic graph proves $g_v=0$ at every
+vertex: it holds at the terminals; if it holds at both indicated
+children, adding (5) gives $2g_v=0$. Equation (5) then gives
+$s_v=0$ at every internal vertex. Equation (1) now says that $p$
+is constant across every edge, hence constant on each weak component.
+The component's translation vector has its first two coordinates equal.
+Conversely, any such independent translations, with all $s_v=0$,
+belong to the kernel. Its dimension is exactly $(d-1)c$.
+Rank-nullity and the $L$-dimensional codomain give (2).
+
+For the second assertion, choose one internal vertex in a component
+of a positive-step realization. For each coordinate $i$, repeatedly
+follow the child of color $i$ until reaching a terminal. Acyclicity
+and finiteness guarantee termination. Along that path all coordinates
+except $i$ stay fixed, while coordinate $i$ increases strictly.
+Thus the $d$ endpoints have respective positions $p_v+t_i e_i$
+with $t_i>0$, which are pairwise distinct. They are therefore distinct
+terminal vertices. Summing over components gives $dc\le L$.
+Substituting in (2) proves (3).
+\end{proof}
+
+The backward-induction argument and its consequence that all edge
+variations vanish are kernel checked as
+\texttt{HeadComplexity.two\_branch\_boundary\_rigidity} and
+\texttt{HeadComplexity.merged\_refinement\_boundary\_rigidity}
+in \texttt{Results/MergedRefinementRigidity.lean}. The graph dimension
+and terminal-count arguments above are manual.
+
+\section{Coordinate flips do not evade the dimension bound}
+
+The argument extends to graphs in which every internal vertex chooses
+its own orientation for each variable. Write $d=n+1$ and replace (1) by
+\[
+ p_{c_0(v)}=p_v+s_v e_0,\qquad
+ p_{c_i(v)}=p_v+s_v d_{v,i}\quad(1\le i\le n),
+ \tag{10}
+\]
+where $d_{v,i}$ is either $e_i$ or $e_0-e_i$. The choice is fixed as
+part of the graph. Positive-step realizations require $s_v>0$; if a
+reciprocal construction is intended, all resulting denominators must
+also remain positive with an allowed coefficient orientation.
+
+\begin{theorem}[Flipped refinements]
+For the linear realization space of (10),
+\[
+ q\le L+nc.
+ \tag{11}
+\]
+If a positive-step realization exists and each component has an
+internal vertex, then $L\ge(n+1)c$ and $q<2J$.
+\end{theorem}
+\begin{proof}
+Use the fixed covector $\ell=(2,1,\ldots,1)$ and map a realization
+to the $L$ numbers $g_v=\ell(p_v)$ at its terminals. Both choices
+of $d_{v,i}$ satisfy $\ell(d_{v,i})=1$, whereas $\ell(e_0)=2$.
+For a realization in the kernel, backward induction uses
+\[
+ g_{c_0(v)}=g_v+2s_v,\qquad g_{c_1(v)}=g_v+s_v.
+\]
+Zero values at the two children force $s_v=g_v=0$. Every state
+is then constant on its weak component. The kernel consists exactly
+of the independent component translations in $\ker\ell$ and has
+dimension $nc$. This proves (11) by rank-nullity.
+
+For the terminal count, project states to their last $n$ coordinates.
+Following only color-zero children reaches a terminal with the same
+projection. Fix an internal vertex $v$. Apply this observation to
+$v$ and separately to each $c_i(v)$ for $1\le i\le n$. The resulting
+terminal projections are $\pi(p_v)$ and
+$\pi(p_v)\mathbin{\pm}s_v e_i$, respectively. They are affinely
+independent because $s_v>0$, so there are at least $n+1$ distinct
+terminals in that component. This proves the remaining inequalities.
+\end{proof}
+
+The distinct-rate boundary induction and the existence of a terminal
+with an invariant branch value are kernel checked as
+\texttt{HeadComplexity.two\_rate\_boundary\_rigidity} and
+\texttt{HeadComplexity.constant\_branch\_reaches\_terminal}.
+The covector calculation, affine independence, and dimension argument
+remain manual. No positivity of telescoping weights is asserted for
+flipped refinements. The sign-count argument below depends only on
+the realization dimension and denominator admissibility, and therefore
+applies to fixed flipped graphs as well.
+
+\section{The reciprocal identity and the sign-count scope}
+
+Take $d=n+1$, $z_0=1$, $z_i=x_i\in\{0,1\}$, and define
+\[
+                B_v(x)=\sum_{i=0}^n p_{v,i}z_i,
+                \qquad K_v(x)=p_{v,0}/B_v(x).
+\]
+At every internal state, the P\'olya identity gives
+\[
+            K_v=\sum_{i=0}^n\frac{p_{v,i}}{\sum_j p_{v,j}}K_{c_i(v)}.
+ \tag{6}
+\]
+Iterating over a finite acyclic graph expresses each root feature as
+a positive weighted sum of terminal features. All repeated terminals
+merge. The common positive denominator orientation is preserved.
+The dimension bound does not count unmerged occurrences.
+
+For a fixed graph, all root and terminal affine coefficients are
+linear functions of $q<2J$ coordinates on $\mathcal V$. Consider the
+enlarged first-variation family
+\[
+ P_0(x)+\sum_{h=1}^J\left(\frac{D_h(x)}{B_h(x)}
+                         +\frac{U_h(x)V_h(x)}{B_h(x)^2}\right),
+ \tag{7}
+\]
+with arbitrary affine $P_0,D_h,U_h,V_h$, and positive denominators
+from the graph. This enlargement includes every affine-numerator
+first variation, even when the variation leaves the graph's own
+linear realization space.
+
+Set $k_1=(3J+1)(n+1)$ and $p=k_1+q$. Clearing the squared
+denominators gives degree at most two in the numerator block and
+at most $2J$ in the realization block. The two-block sign bound
+already proved and sourced in \texttt{mechanism-audit.tex} therefore
+gives, when $p\le N=2^n$,
+\[
+                 \left(\frac{32768N}{p}\right)^p
+                           2^{k_1}(2J)^q.
+ \tag{8}
+\]
+For $J\le C N/n^2$ its base-two logarithm is
+\[
+                 O_C(N\log n/n)+O_C(N/n)=o(N).
+ \tag{9}
+\]
+Thus each fixed graph realizes only $2^{o(N)}$ strict sign tables
+at the requested head rate. A family of $2^{o(N)}$ graph choices
+has the same obstruction. A universal construction within this
+first-variation scheme would need at least $2^{N-o(N)}$ graph
+choices, or would have to leave the stated family in another way.
+
+\paragraph{What remains unproved.}
+There is no uniform bound here on the number of realizable graph
+incidence patterns, nor on the number of uncharged internal states.
+In particular, (2) alone does not exclude target-dependent graphs.
+Low continuous dimension for each member of an arbitrarily large
+discrete family is not a sign-count bound for their union. No
+universal labeling construction from those graph choices is supplied.
+
+\section{Finite structural probe}
+
+The script \texttt{probe\_merged\_polya\_dimension.py} generates
+finite positive-step graphs by merging equal integer states. Coordinate
+equalities are first contracted, after which the remaining realization
+equations have integer coefficients. Rank over the recorded prime gives
+an upper bound on the real kernel dimension. Any potential excess over
+$J$ is scheduled for rational rank and boundary-projection verification.
+
+The recorded run examined $126839$ graphs and found no excess over
+the stronger, unproved bound $q\le J$. That finite outcome is not
+used in the proof of (2), does not establish $q\le J$, and does not
+prove any unrestricted head upper or lower bound. The search was
+stopped after the independent proof of (2) supplied the needed
+linear-order parameter estimate for each fixed graph.
+
+\end{document}

@@ -506,7 +506,9 @@
       "checked_location": "Theorems 1.5, 1.7, 6.1 and 6.2; Section 6.1 proof",
       "mechanism": "Strict semialgebraic feasibility yields architecture-preserving parameter bounds after exponentiating sigmoid parameters. Other constructions use additional depth.",
       "gap": "The sigmoid denominator is 1+B times a product of coordinate factors, not an affine input form. Parameter bounds assume an existing representation and do not construct every truth table with the requested number of admissible heads.",
-      "rechecked_2026_11_23": "Re-read the stated model distinctions and principal bounds; no stronger transfer found."
+      "rechecked_2026_11_23": "Re-read the stated model distinctions and principal bounds; no stronger transfer found.",
+      "additional_checked_location_2026_11_23_1840": "Section 6.3: Lemmas 6.6 and 6.8, Corollary 6.9, and the carry-separated product construction. Lemma 4.5 and its no-poles interval approximation statement.",
+      "additional_transfer_audit": "The bit decoder explicitly feeds earlier decoded bits into later gates. Its growing depth is essential to that construction. A general rational approximation with no interval poles does not supply a sum of positive affine-denominator heads. No target transfer follows."
     },
     {
       "title": "Nondegenerate hyperplane covers of the hypercube",
