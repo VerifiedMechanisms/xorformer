@@ -1,0 +1,11 @@
+import HeadComplexity.Atoms.BooleanProjectionCancellation
+
+#print axioms HeadComplexity.BooleanProjectionCancellation.moment_zero
+#print axioms HeadComplexity.BooleanProjectionCancellation.moment_one
+#print axioms HeadComplexity.BooleanProjectionCancellation.moment_two
+#print axioms HeadComplexity.BooleanProjectionCancellation.moment_three
+#print axioms HeadComplexity.BooleanProjectionCancellation.switch_expansion
+#print axioms HeadComplexity.BooleanProjectionCancellation.generator_boolean_line
+#print axioms HeadComplexity.BooleanProjectionCancellation.score_boolean
+#print axioms HeadComplexity.BooleanProjectionCancellation.score_nonformal
+#print axioms HeadComplexity.BooleanProjectionCancellation.coherent_perturbation_positive

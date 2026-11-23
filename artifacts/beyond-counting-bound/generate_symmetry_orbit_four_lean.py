@@ -4,6 +4,7 @@ from fractions import Fraction as F
 from itertools import permutations
 from pathlib import Path
 import json,sys
+from verify_full_table_critical_points import inverse
 sys.set_int_max_str_digits(0)
 
 BASE=Path(__file__).parent
@@ -50,6 +51,8 @@ actions=[]
 for p in perms:
     actions.append([(x&~15)+sum(((x>>p[i])&1)<<i for i in range(4)) for x in range(128)])
 text+='\ndef action : Fin 24 → Fin 128 → Fin 128 := '+mat(actions)+'\n'
+inverses=[[row.index(x) for x in range(128)] for row in actions]
+text+='\ndef inverseAction : Fin 24 → Fin 128 → Fin 128 := '+mat(inverses)+'\n'
 text+='''
 def orbitTable (j : Fin 24) (x : Fin 128) : ℚ := table (action j x)
 def jacobian : Matrix (Fin 128) (Fin 15) ℚ := fun x i ↦
@@ -71,12 +74,20 @@ text+='\ndef pivots : Fin 15 → ℚ := '+vec(c['positive_pivots'])+'\n'
 text+='''
 theorem denominators_positive : ∀ x, 0 < den x := by decide +kernel
 theorem functional_invariant : ∀ j x, mu (action j x) = mu x := by decide +kernel
-theorem action_bijective : ∀ j : Fin 24, Function.Bijective (action j) := by decide +kernel
+theorem action_inverse : ∀ j x, inverseAction j (action j x) = x ∧
+    action j (inverseAction j x) = x := by decide +kernel
+
+theorem action_bijective : ∀ j : Fin 24, Function.Bijective (action j) := by
+  intro j
+  exact ⟨Function.LeftInverse.injective (fun x ↦ (action_inverse j x).1),
+    Function.RightInverse.surjective (fun x ↦ (action_inverse j x).2)⟩
 theorem tables_distinct : ∀ i j : Fin 24, i ≠ j → ∃ x, orbitTable i x ≠ orbitTable j x := by
   decide +kernel
 theorem orbit_equal_norm : ∀ j : Fin 24,
     (∑ x : Fin 128, (orbitTable j x)^2) = ∑ x : Fin 128, (table x)^2 := by
-  decide +kernel
+  intro j
+  exact Equiv.sum_comp (Equiv.ofBijective (action j) (action_bijective j))
+    (fun x ↦ (table x)^2)
 theorem stationarity : ∀ i : Fin 15,
     ∑ x : Fin 128, (mu x - table x) * jacobian x i = 0 := by decide +kernel
 theorem hessian_factorization :
@@ -120,7 +131,18 @@ def reconstruction : Matrix (Fin 7) (Fin 7) ℚ := fun r i ↦
   (if i.val = j then t - table (vertex (2^j)) else 0) +
   (if i.val = k then t - table (vertex (2^k)) else 0)
 '''
-text+='\ntheorem reconstruction_det : reconstruction.det = '+rat(c['reconstruction_determinant'])+' := by decide +kernel\n'
+a,b=list(map(F,c['a'])),list(map(F,c['b']))
+def tab(v):
+    bits=[(v>>i)&1 for i in range(7)]
+    return (a[0]+sum(a[i+1]*bits[i] for i in range(7)))/(F(c['denominator_constant'])+sum(b[i]*bits[i] for i in range(7)))
+reconstruction=[]
+for i,j in pairs:
+    row=[F(0)]*7;t=tab((1<<i)+(1<<j))
+    row[i]=t-tab(1<<i);row[j]=t-tab(1<<j)
+    reconstruction.append(row)
+text+='\ndef reconstructionInverse : Matrix (Fin 7) (Fin 7) ℚ := '+mat(inverse(reconstruction))+'\n'
+text+='\ntheorem reconstruction_inverse_mul : reconstructionInverse * reconstruction = 1 := by decide +kernel\n'
+text+='\ntheorem reconstruction_det_ne_zero : reconstruction.det ≠ 0 := by\n  exact isUnit_iff_ne_zero.mp (Matrix.isUnit_det_of_left_inverse reconstruction_inverse_mul)\n' 
 text+='''
 theorem radial_identity :
     (∑ x : Fin 128, mu x * table x) = ∑ x : Fin 128, (table x)^2 := by decide +kernel

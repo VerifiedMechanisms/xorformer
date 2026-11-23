@@ -5,11 +5,11 @@
   "target": "For every C>0 and n0 there exist n>=n0 and a Boolean f on n bits with HStar(f)>C*2^n/n^2.",
   "attachment": "/out/attachments/version-5.tex",
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
-  "status": "active: second twelve-hour extension; target not proved",
+  "status": "active: explicit continuation; original lower-bound target and stronger order target remain unproved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T17:55:32.879913+00:00",
-  "elapsed_seconds_at_last_audit": 143384.159811,
-  "minimum_duration_met": false,
+  "last_audit_utc": "2026-11-23T21:41:20.217798+00:00",
+  "elapsed_seconds_at_last_audit": 164699.232478,
+  "minimum_duration_met": true,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
     "HeadComplexity.exists_reciprocal_prescribed_roots_identity",
@@ -458,7 +458,37 @@
     "HeadComplexity.TypicalAmplitude.approximation_transfer",
     "HeadComplexity.TypicalAmplitude.dyadic_chain_bound",
     "HeadComplexity.TypicalAmplitude.margin_le_correlation",
-    "HeadComplexity.TypicalAmplitude.relative_margin_bound"
+    "HeadComplexity.TypicalAmplitude.relative_margin_bound",
+    "HeadComplexity.AmplitudePolytope.clip_decomposition",
+    "HeadComplexity.AmplitudePolytope.budget_weights",
+    "HeadComplexity.AmplitudePolytope.vertex_branch_amplitude",
+    "HeadComplexity.AmplitudePolytope.choice_product_cancellation",
+    "HeadComplexity.AmplitudePolytope.metric_positive",
+    "HeadComplexity.AmplitudePolytope.harmonic_positive_chamber_bounded",
+    "HeadComplexity.SymmetryOrbitFour.denominators_positive",
+    "HeadComplexity.SymmetryOrbitFour.functional_invariant",
+    "HeadComplexity.SymmetryOrbitFour.action_inverse",
+    "HeadComplexity.SymmetryOrbitFour.action_bijective",
+    "HeadComplexity.SymmetryOrbitFour.tables_distinct",
+    "HeadComplexity.SymmetryOrbitFour.orbit_equal_norm",
+    "HeadComplexity.SymmetryOrbitFour.stationarity",
+    "HeadComplexity.SymmetryOrbitFour.hessian_factorization",
+    "HeadComplexity.SymmetryOrbitFour.lower_inverse_mul",
+    "HeadComplexity.SymmetryOrbitFour.pivots_positive",
+    "HeadComplexity.SymmetryOrbitFour.realHessian_posDef",
+    "HeadComplexity.SymmetryOrbitFour.reconstruction_inverse_mul",
+    "HeadComplexity.SymmetryOrbitFour.reconstruction_det_ne_zero",
+    "HeadComplexity.SymmetryOrbitFour.radial_identity",
+    "HeadComplexity.SymmetryOrbitFour.positive_translation",
+    "HeadComplexity.BooleanProjectionCancellation.moment_zero",
+    "HeadComplexity.BooleanProjectionCancellation.moment_one",
+    "HeadComplexity.BooleanProjectionCancellation.moment_two",
+    "HeadComplexity.BooleanProjectionCancellation.moment_three",
+    "HeadComplexity.BooleanProjectionCancellation.switch_expansion",
+    "HeadComplexity.BooleanProjectionCancellation.generator_boolean_line",
+    "HeadComplexity.BooleanProjectionCancellation.score_boolean",
+    "HeadComplexity.BooleanProjectionCancellation.score_nonformal",
+    "HeadComplexity.BooleanProjectionCancellation.coherent_perturbation_positive"
   ],
   "lean_declarations_scope": "Auxiliary oscillation, regular positive interpolation ambiguity, parity gating, multiaffine permutation interpolation, and the complete finite-field multiaffine shattering construction with unbounded tests-to-parameters ratio; no target asymptotic head lower bound. The parameter-line obstruction rules out head-independent polynomial sign predicates in original parameters. PositiveFunctionalGrid proves the nonnegative reciprocal zero-grid identity and exact grid cardinality, not a head lower bound. ReciprocalMeanValue proves the exact positive averaging identity. The no-extrema theorem and full-domain saddle construction are written auxiliary proofs, not a head lower bound. CoordinateZeroFiber checks all 96 zero evaluations and invertibility of the 96 by 96 rational matrix and its six by six cloning block. The analytic derivative interpretation, arbitrary-dimension extension and local shattering remain written proofs. PriorityRestriction proves the restriction lemma and the majority-agreement lower bound for priority lists plus arbitrary additive block scores. AffineProductTwoHeads proves that the positive sign of a product of two affine forms is computable by two exact-model heads. No target lower bound follows. ProductTableStability proves an explicit upper-half-plane zero and positive covariance for the value-table generator of four positive affine denominators; it refutes a proposed stability invariant, not the target. ReciprocalJetCharacteristic proves the characteristic-two and characteristic-three identities placing the constant function in each reciprocal-cube jet block. The resulting rank bound is a written proof; these identities do not apply in characteristic zero. AffineStatisticPolynomial and AffineStatisticProjective prove the projective affine-statistic polynomial compiler and its sign-change bound. PuncturedParity proves feasibility with n-1 heads on every proper subset of the parity truth table and infeasibility on the full table. These auxiliary results do not imply the main target. DenominatorOrder proves that two strictly positive denominator pairs with the same strict cube orders have different feasible sign patterns, with an exact annihilator and a two-head feasible witness. This refutes order-only compression, not the target. ConvexPerspective proves the quadratic-over-linear convexity identities and an arbitrary finite incidence construction by convex cones in three dimensions. It rules out convexity-only counting; the special shared arrow-matrix counting problem remains open. OpenCodeJetInterpolation proves an end-to-end positive-affine reciprocal-cube interpolation theorem for two power-of-two blocks, with exactly q*n^2=4*2^n centers. Its numerators are products of two literals. This is an auxiliary jet theorem, not an actual-head lower bound or upper bound. The positive pole witness, finite root-avoidance transfer, and complete code bridge are kernel checked. AllDimensionsJetInterpolation.every_dimension_full_rank extends the auxiliary positive quadratic-jet matrix and its strict q*n^2<16*2^n budget to every n>=2. QuadraticThresholdEncoding proves an injective family of 2^(k^3) quadratic predicates on 3k bits and the exponent comparison. The written Warren application gives a linear head lower bound for some one-center jet predicates, disproving constant-cost compilation; no direct-sum theorem or target lower bound follows. QuadraticThresholdEncoding.polynomial_eval and polynomial_totalDegree_le verify the explicit degree-two realization. QuadraticJetApproximation proves exact reciprocal finite differences, coefficient positivity, a quadratic error bound, and sign preservation including zero labels. The written spectral and finite-margin assembly yields at most 2*n+3 heads for any single quadratic jet predicate. This matches the auxiliary linear lower bound in order, not the main exponential target. The additive-combinatorics audit records explicit failures of unproved concentration and restriction transfers. CompleteQuadraticProfile proves the modulo-four symmetric profile has exactly m heads on 2*m bits. The written bent-function autocorrelation and Bruck norm argument give Fourier threshold density at least 2^m, refuting polynomial Fourier-support compression. This is basis-specific and is not an asymptotic head lower bound. MobiusParameterShattering and MobiusThreeParameterShattering check three tests on two positive parameters and six tests on three positive parameters in a separable reciprocal relaxation. They refute parameter-count and 2H-1 test bounds for that relaxation, not any asymptotic attention-head statement. QuadraticCharacterTransfer proves that one positive affine numerator, parametrized only by its integer bias, realizes all 256 quadratic-character patterns on eight inputs modulo 1367 while remaining strictly positive over the reals. This is an obstruction to a finite-field sign-counting relaxation, not a real-head lower bound. The general Dirichlet transfer and Peralta pattern argument are written proofs. PositiveMobiusFiberShattering verifies six separable reciprocal tests on three positive parameters with positive poles and residues and all 64 strict sign witnesses. This is a freely chosen query relaxation and supplies no asymptotic head lower bound. ProjectiveCriticalPoints checks the transverse kernel, selected-pair reconstruction kernel, Schur-complement kernel and projection identity. The written analytic proof gives many distinct regular critical image points under singleton normalization. All constructed scores have the same sign; no target lower bound follows. MobiusFourParameterShattering proves nine freely chosen reciprocal queries on four positive parameters realize all 512 patterns. This refutes a twice-the-parameters bound for that relaxation, not an asymptotic head bound. ReciprocalMatchingShattering proves a general finite-field Hall-selector construction with unboundedly many independent reciprocal sign queries per positive parameter. PositiveReciprocalShattering proves the same conclusion with strictly positive poles and residues, via a general reciprocal-inversion completion. These free-query theorems refute every uniform linear parameter bound for the relaxation, not the requested full Boolean-cube head lower bound. PositiveSubsetScales proves the dominant-summand packing bounds for positive subset sums and ratios. These exclude a literal affine embedding of the geometric-pole construction, but give no asymptotic sign count. UnitMinimumAnalytic now proves the full concrete three-head eighteen-bit strict local numerator-norm minimum with all cube unit margins and 108 independent active constraints. UnitMinimumAttention realizes the score in the literal shared-embedding architecture. No global optimality or target lower bound is asserted.",
   "resumed_utc": "2026-11-23T08:06:08.867115+00:00",
@@ -930,6 +960,32 @@
     "audit": "typical-amplitude-audit.json",
     "status": "Complete written probability theorem with twelve kernel-checked deterministic ingredients",
     "scope": "Almost all labels require exponentially small relative amplitude margin, at every finite head count. No head-count lower bound.",
+    "main_target_proved": false
+  },
+  "stronger_target_considered": "There exist c>0 and N such that W(n)>=c*2^n/n for every n>=N.",
+  "continuation_instructions": [
+    {
+      "received_utc": "2026-11-23T21:24:44.128157+00:00",
+      "instruction": "Continue substantive research until an audited resolution or an enforced runtime/resource limit. Prior phase timeout is not a reason to terminate. Recheck relevant Lean builds and axioms. Preserve exact model and original target."
+    }
+  ],
+  "previous_minimum_work_until_utc": "2026-11-23T20:06:08.867115+00:00",
+  "termination_condition": "Complete audited resolution or enforced runtime/resource limit; earlier minimum-work timestamp is not a termination deadline.",
+  "stronger_target_proved": false,
+  "continuation_verification": "continuation-verification-audit.json",
+  "symmetry_orbit_four": {
+    "status": "PASS: fifteen kernel-checked declarations; complete written local calculus deduction",
+    "writeup": "symmetry-orbit-four.md",
+    "main_target_proved": false
+  },
+  "amplitude_polytope": {
+    "status": "Complete written geometric statements; six kernel-checked ingredients",
+    "writeup": "amplitude-polytope-maximum.md",
+    "main_target_proved": false
+  },
+  "boolean_projection_cancellation": {
+    "status": "Complete written ideal and contact theorems; nine kernel-checked six-switch declarations",
+    "writeup": "boolean-projection-cancellation.md",
     "main_target_proved": false
   }
 }

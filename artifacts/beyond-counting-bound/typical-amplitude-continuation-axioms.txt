@@ -1,0 +1,14 @@
+'HeadComplexity.TypicalAmplitude.card_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.correlation_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.correlation_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.correlation_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.abs_correlation_le_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TypicalAmplitude.finite_chain_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.approximation_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.dyadic_chain_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.margin_le_correlation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TypicalAmplitude.relative_margin_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

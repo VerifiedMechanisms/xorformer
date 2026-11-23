@@ -1,0 +1,17 @@
+'HeadComplexity.BooleanProjectionCancellation.moment_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.moment_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.moment_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.moment_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.switch_expansion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.generator_boolean_line' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.score_boolean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.score_nonformal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionCancellation.coherent_perturbation_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

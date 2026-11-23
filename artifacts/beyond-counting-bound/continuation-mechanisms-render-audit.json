@@ -1,0 +1,37 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/amplitude-polytope-maximum.md",
+    "source_math_spans": 126,
+    "rendered_math_spans": 126,
+    "findings": 0,
+    "sha256": "bf6e1c117303211dbf9dd901f92f5061d9c73d4d36025e73ca63c1c0e701916d"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/symmetry-orbit-four.md",
+    "source_math_spans": 46,
+    "rendered_math_spans": 46,
+    "findings": 0,
+    "sha256": "63f2e929d000edb34175f5181df74b64ad5475fc87f4e94f1c66977b5e740116"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/boolean-projection-cancellation.md",
+    "source_math_spans": 96,
+    "rendered_math_spans": 96,
+    "findings": 0,
+    "sha256": "36cb4e93674778915d5396ec4fbfb4ec68780d722a17d489948afa82de944ce5"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "source_math_spans": 110,
+    "rendered_math_spans": 110,
+    "findings": 0,
+    "sha256": "faa1d1cebfd476d1681006d868c34ac3252e27dfd2fe4044a91f7ebf62222a1e"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/audit-index.md",
+    "source_math_spans": 1,
+    "rendered_math_spans": 1,
+    "findings": 0,
+    "sha256": "eab81de84144319da9bfe1b553abc22df05910d51eda1b1fc124831724e5a288"
+  }
+]

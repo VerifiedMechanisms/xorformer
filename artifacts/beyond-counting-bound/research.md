@@ -362,3 +362,21 @@ The subsequent Hessian audit sharpens this limitation. Completing the square in 
 The [typical-label amplitude theorem](typical-label-amplitude.md) applies dyadic chaining to the previously proved conditioning-independent cover of bounded head tables. With probability at least one minus the reciprocal of the input dimension, a random label table has absolute normalized correlation at most a constant times the square root of the input dimension times its logarithm divided by the cube size, simultaneously with every amplitude-one head. A single such event controls every finite signed sum of heads by linearity, including all target-dependent denominators and both coherent orientations.
 
 Consequently almost every Boolean function requires exponentially small relative amplitude margin in every finite representation. This closes a possible repair that would have excluded parity as exceptional: restricting the proposed subexponential margin guarantee to typical targets does not make it true. Twelve deterministic Lean declarations check the constant in the chaining sum, the limit transfer, and the finite-head correlation argument. The probability and covering deductions are complete written proofs. This is an amplitude obstruction, not a head-count lower bound; the selected target remains unproved.
+
+## Continuation and the stronger target
+
+The resumed run retains the original unrestricted model and also considers an eventual lower bound of constant times the cube size divided by the input dimension. Neither that stronger conclusion nor the original unbounded improvement over the counting bound has been proved. The previous phase's unfinished verification is not treated as a pass or a reason to terminate research.
+
+The [24-point symmetry certificate](symmetry-orbit-four.md) now proves distinct strict local maxima for one positive functional on normalized seven-bit head tables. Its Lean check replaces expensive determinant permutation enumeration with an exact inverse. This finite result still supplies no asymptotic maximum count and all translated tables have the same Boolean labels.
+
+## The bounded numerator polytope supplies harmonic feasible families
+
+The [amplitude-polytope theorem](amplitude-polytope-maximum.md) gives an explicit Minkowski decomposition of every fixed-denominator amplitude ball. Its extreme numerator branches solve one elliptic equation with no zeroth-order term. A direct analytic maximum principle proves that nonconstant positive-slope tables cannot be strict local maxima of linear functionals on the bounded table image. A stronger statement excludes even nonstrict maxima when the functional is nonzero at all singleton and pair vertices.
+
+This does not justify deforming a classification representation to the parameter boundary. Four displayed harmonic inequalities enclose a bounded common positive chamber, and classification multipliers need not satisfy the genericity condition. The simultaneous-inequality transfer remains blocked. Six Lean declarations check the algebraic ingredients; the full geometric statements have written proofs.
+
+## Boolean projection cancellation and high contact
+
+The [Boolean-line ideal theorem](boolean-projection-cancellation.md) classifies all integer-velocity, constant-residue reciprocal identities that persist throughout a denominator deformation. It gives explicit six-point switching generators and a monomial reduction proof, informed by algebraic discrete tomography. An independent finite-difference construction has arbitrarily high contact while its denominator velocity vectors have full affine span.
+
+These results address actual cube cancellation rather than substituting formal polynomial identities. They still do not bound the number of translated switching generators needed, handle arbitrary affine residues at one target-dependent parameter point, or count classification chambers. Those steps remain missing; no intermediate exponent or matching lower order is claimed. Nine Lean declarations verify the six-point mechanism, while the general ideal and moment-curve theorems are complete written proofs.

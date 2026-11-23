@@ -1,0 +1,8 @@
+import HeadComplexity.Atoms.AmplitudePolytope
+
+#print axioms HeadComplexity.AmplitudePolytope.clip_decomposition
+#print axioms HeadComplexity.AmplitudePolytope.budget_weights
+#print axioms HeadComplexity.AmplitudePolytope.vertex_branch_amplitude
+#print axioms HeadComplexity.AmplitudePolytope.choice_product_cancellation
+#print axioms HeadComplexity.AmplitudePolytope.metric_positive
+#print axioms HeadComplexity.AmplitudePolytope.harmonic_positive_chamber_bounded

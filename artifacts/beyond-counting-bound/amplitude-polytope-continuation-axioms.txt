@@ -1,0 +1,10 @@
+'HeadComplexity.AmplitudePolytope.clip_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AmplitudePolytope.budget_weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AmplitudePolytope.vertex_branch_amplitude' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AmplitudePolytope.choice_product_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AmplitudePolytope.metric_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AmplitudePolytope.harmonic_positive_chamber_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

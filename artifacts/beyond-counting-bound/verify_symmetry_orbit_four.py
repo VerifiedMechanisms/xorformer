@@ -58,7 +58,8 @@ assert det==F(c['reconstruction_determinant']) and det!=0
 assert all(m+100>0 and t+100>0 for m,t in zip(mu,T))
 assert sum(t==0 for t in T)==1
 report=dict(status='PASS',samples=128,parameters=15,orbit_size=24,
-    orbit_distinct_label_count=4,positive_translation=100,
+    distinct_positive_supports_before_translation=4,untranslated_has_zero=True,
+    positive_translation=100,
     stationarity='exact rational',hessian='exact positive LDL and exact inverse',
     reconstruction_determinant=str(det),squared_table_norm=str(dot(T,T)),
     source_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),

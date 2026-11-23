@@ -1,0 +1,136 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T21:41:20.217798+00:00",
+  "build": "continuation-four-module-build.log",
+  "build_jobs": 3151,
+  "checked_declarations": 42,
+  "modules": [
+    {
+      "module": "HeadComplexity.Atoms.TypicalAmplitude",
+      "declarations": [
+        "HeadComplexity.TypicalAmplitude.card_pos",
+        "HeadComplexity.TypicalAmplitude.correlation_add",
+        "HeadComplexity.TypicalAmplitude.correlation_sub",
+        "HeadComplexity.TypicalAmplitude.correlation_smul",
+        "HeadComplexity.TypicalAmplitude.abs_correlation_le_uniform",
+        "HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum",
+        "HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum_le",
+        "HeadComplexity.TypicalAmplitude.finite_chain_bound",
+        "HeadComplexity.TypicalAmplitude.approximation_transfer",
+        "HeadComplexity.TypicalAmplitude.dyadic_chain_bound",
+        "HeadComplexity.TypicalAmplitude.margin_le_correlation",
+        "HeadComplexity.TypicalAmplitude.relative_margin_bound"
+      ],
+      "axiom_audit": "artifacts/beyond-counting-bound/typical-amplitude-continuation-axioms.txt",
+      "lean_sha256": "22285c6057f2a5260b6a21bd5d3aa853c16458f4aa02d55a031cfa0a0fc98ea5",
+      "writeup": "typical-label-amplitude.md",
+      "writeup_sha256": "021bd8fd6837208969df7ca8a6e25779fb69522ffd7480e0db5964fa8b4f9c1f"
+    },
+    {
+      "module": "HeadComplexity.Atoms.AmplitudePolytope",
+      "declarations": [
+        "HeadComplexity.AmplitudePolytope.clip_decomposition",
+        "HeadComplexity.AmplitudePolytope.budget_weights",
+        "HeadComplexity.AmplitudePolytope.vertex_branch_amplitude",
+        "HeadComplexity.AmplitudePolytope.choice_product_cancellation",
+        "HeadComplexity.AmplitudePolytope.metric_positive",
+        "HeadComplexity.AmplitudePolytope.harmonic_positive_chamber_bounded"
+      ],
+      "axiom_audit": "artifacts/beyond-counting-bound/amplitude-polytope-continuation-axioms.txt",
+      "lean_sha256": "633b13989efc4ff57207add44ed9d3e9fd59fc0c4a28a2114dd38a05cd2a8923",
+      "writeup": "amplitude-polytope-maximum.md",
+      "writeup_sha256": "bf6e1c117303211dbf9dd901f92f5061d9c73d4d36025e73ca63c1c0e701916d"
+    },
+    {
+      "module": "HeadComplexity.Atoms.SymmetryOrbitFour",
+      "declarations": [
+        "HeadComplexity.SymmetryOrbitFour.denominators_positive",
+        "HeadComplexity.SymmetryOrbitFour.functional_invariant",
+        "HeadComplexity.SymmetryOrbitFour.action_inverse",
+        "HeadComplexity.SymmetryOrbitFour.action_bijective",
+        "HeadComplexity.SymmetryOrbitFour.tables_distinct",
+        "HeadComplexity.SymmetryOrbitFour.orbit_equal_norm",
+        "HeadComplexity.SymmetryOrbitFour.stationarity",
+        "HeadComplexity.SymmetryOrbitFour.hessian_factorization",
+        "HeadComplexity.SymmetryOrbitFour.lower_inverse_mul",
+        "HeadComplexity.SymmetryOrbitFour.pivots_positive",
+        "HeadComplexity.SymmetryOrbitFour.realHessian_posDef",
+        "HeadComplexity.SymmetryOrbitFour.reconstruction_inverse_mul",
+        "HeadComplexity.SymmetryOrbitFour.reconstruction_det_ne_zero",
+        "HeadComplexity.SymmetryOrbitFour.radial_identity",
+        "HeadComplexity.SymmetryOrbitFour.positive_translation"
+      ],
+      "axiom_audit": "artifacts/beyond-counting-bound/symmetry-orbit-four-continuation-axioms.txt",
+      "lean_sha256": "4bb25edbcc2116619ead7c597ccc70d23d2ba54e59dbd75e6153c465fec83172",
+      "writeup": "symmetry-orbit-four.md",
+      "writeup_sha256": "63f2e929d000edb34175f5181df74b64ad5475fc87f4e94f1c66977b5e740116"
+    },
+    {
+      "module": "HeadComplexity.Atoms.BooleanProjectionCancellation",
+      "declarations": [
+        "HeadComplexity.BooleanProjectionCancellation.moment_zero",
+        "HeadComplexity.BooleanProjectionCancellation.moment_one",
+        "HeadComplexity.BooleanProjectionCancellation.moment_two",
+        "HeadComplexity.BooleanProjectionCancellation.moment_three",
+        "HeadComplexity.BooleanProjectionCancellation.switch_expansion",
+        "HeadComplexity.BooleanProjectionCancellation.generator_boolean_line",
+        "HeadComplexity.BooleanProjectionCancellation.score_boolean",
+        "HeadComplexity.BooleanProjectionCancellation.score_nonformal",
+        "HeadComplexity.BooleanProjectionCancellation.coherent_perturbation_positive"
+      ],
+      "axiom_audit": "artifacts/beyond-counting-bound/boolean-projection-continuation-axioms.txt",
+      "lean_sha256": "2cda127efe158b11eb4efc53991441698e3c5e1647adb3acbb769befacff4aee",
+      "writeup": "boolean-projection-cancellation.md",
+      "writeup_sha256": "36cb4e93674778915d5396ec4fbfb4ec68780d722a17d489948afa82de944ce5"
+    }
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "scope": "Exact declarations listed only. General analytic, probability, ideal and moment-curve arguments have separate written proofs; the target lower bound is not proved.",
+  "previous_timeout": "The old 24-point module did not finish. Direct determinant enumeration was replaced by an exact inverse. The revised module built in 77 seconds and the four-module build then passed.",
+  "model_changes": [],
+  "main_target_proved": false,
+  "stronger_target_proved": false,
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/amplitude-polytope-maximum.md",
+      "source_math_spans": 126,
+      "rendered_math_spans": 126,
+      "findings": 0,
+      "sha256": "bf6e1c117303211dbf9dd901f92f5061d9c73d4d36025e73ca63c1c0e701916d"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/symmetry-orbit-four.md",
+      "source_math_spans": 46,
+      "rendered_math_spans": 46,
+      "findings": 0,
+      "sha256": "63f2e929d000edb34175f5181df74b64ad5475fc87f4e94f1c66977b5e740116"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/boolean-projection-cancellation.md",
+      "source_math_spans": 96,
+      "rendered_math_spans": 96,
+      "findings": 0,
+      "sha256": "36cb4e93674778915d5396ec4fbfb4ec68780d722a17d489948afa82de944ce5"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "sha256": "faa1d1cebfd476d1681006d868c34ac3252e27dfd2fe4044a91f7ebf62222a1e"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "eab81de84144319da9bfe1b553abc22df05910d51eda1b1fc124831724e5a288"
+    }
+  ],
+  "katex": "PASS: five files, 379 math spans",
+  "gitlab": "NOT RUN: glab unavailable"
+}

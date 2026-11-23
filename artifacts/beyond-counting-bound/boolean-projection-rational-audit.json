@@ -1,0 +1,685 @@
+{
+  "status": "PASS",
+  "normal_form_monomials": 5004,
+  "explicit_generator_transfers": 11212,
+  "hilbert_dimension_checks": 54,
+  "six_term_reciprocal_checks": 48,
+  "moment_curve_cases": 96,
+  "moment_curve_checks": [
+    {
+      "n": 1,
+      "k": 1,
+      "heads": 3,
+      "first_nonzero_moment": "2",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 2,
+      "heads": 4,
+      "first_nonzero_moment": "6",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 3,
+      "heads": 5,
+      "first_nonzero_moment": "24",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 4,
+      "heads": 6,
+      "first_nonzero_moment": "120",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 5,
+      "heads": 7,
+      "first_nonzero_moment": "720",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 6,
+      "heads": 8,
+      "first_nonzero_moment": "5040",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 7,
+      "heads": 9,
+      "first_nonzero_moment": "40320",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 8,
+      "heads": 10,
+      "first_nonzero_moment": "362880",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 9,
+      "heads": 11,
+      "first_nonzero_moment": "3628800",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 10,
+      "heads": 12,
+      "first_nonzero_moment": "39916800",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 11,
+      "heads": 13,
+      "first_nonzero_moment": "479001600",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 1,
+      "k": 12,
+      "heads": 14,
+      "first_nonzero_moment": "6227020800",
+      "vandermonde_determinant": "1"
+    },
+    {
+      "n": 2,
+      "k": 1,
+      "heads": 4,
+      "first_nonzero_moment": "36",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 2,
+      "heads": 6,
+      "first_nonzero_moment": "1800",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 3,
+      "heads": 8,
+      "first_nonzero_moment": "141120",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 4,
+      "heads": 10,
+      "first_nonzero_moment": "16329600",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 5,
+      "heads": 12,
+      "first_nonzero_moment": "2634508800",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 6,
+      "heads": 14,
+      "first_nonzero_moment": "566658892800",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 7,
+      "heads": 16,
+      "first_nonzero_moment": "156920924160000",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 8,
+      "heads": 18,
+      "first_nonzero_moment": "54420176498688000",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 9,
+      "heads": 20,
+      "first_nonzero_moment": "23112569077678080000",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 10,
+      "heads": 22,
+      "first_nonzero_moment": "11802007641664880640000",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 11,
+      "heads": 24,
+      "first_nonzero_moment": "7135156619932253552640000",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 2,
+      "k": 12,
+      "heads": 26,
+      "first_nonzero_moment": "5041143264082570444800000000",
+      "vandermonde_determinant": "2"
+    },
+    {
+      "n": 3,
+      "k": 1,
+      "heads": 5,
+      "first_nonzero_moment": "1560",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 2,
+      "heads": 8,
+      "first_nonzero_moment": "2328480",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 3,
+      "heads": 11,
+      "first_nonzero_moment": "6187104000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 4,
+      "heads": 14,
+      "first_nonzero_moment": "28332944640000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 5,
+      "heads": 17,
+      "first_nonzero_moment": "209144207720448000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 6,
+      "heads": 20,
+      "first_nonzero_moment": "2345925761384325120000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 7,
+      "heads": 23,
+      "first_nonzero_moment": "38105872673116455567360000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 8,
+      "heads": 26,
+      "first_nonzero_moment": "862035498158119546060800000000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 9,
+      "heads": 29,
+      "first_nonzero_moment": "26304241931375613314767257600000000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 10,
+      "heads": 32,
+      "first_nonzero_moment": "1054299480884076551997500770222080000000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 11,
+      "heads": 35,
+      "first_nonzero_moment": "54280026267426419315538919476009369600000000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 3,
+      "k": 12,
+      "heads": 38,
+      "first_nonzero_moment": "3522034306020091886591888647089900276940800000000",
+      "vandermonde_determinant": "12"
+    },
+    {
+      "n": 4,
+      "k": 1,
+      "heads": 6,
+      "first_nonzero_moment": "126000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 2,
+      "heads": 10,
+      "first_nonzero_moment": "8083152000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 3,
+      "heads": 14,
+      "first_nonzero_moment": "1031319184896000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 4,
+      "heads": 18,
+      "first_nonzero_moment": "263665755136143360000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 5,
+      "heads": 22,
+      "first_nonzero_moment": "125408133200331021680640000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 6,
+      "heads": 26,
+      "first_nonzero_moment": "103217408332090629857280000000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 7,
+      "heads": 30,
+      "first_nonzero_moment": "138308146163272661794143967641600000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 8,
+      "heads": 34,
+      "first_nonzero_moment": "286946352452560051624378074317350502400000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 9,
+      "heads": 38,
+      "first_nonzero_moment": "884282184690044498669320613894357105246208000000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 10,
+      "heads": 42,
+      "first_nonzero_moment": "3909985202566959581696168114776123147673898319872000000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 11,
+      "heads": 46,
+      "first_nonzero_moment": "24090754946765316026892129682558955934130759457046528000000000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 4,
+      "k": 12,
+      "heads": 50,
+      "first_nonzero_moment": "201729456859829429635997071971068171362156356837042447974400000000000000",
+      "vandermonde_determinant": "288"
+    },
+    {
+      "n": 5,
+      "k": 1,
+      "heads": 7,
+      "first_nonzero_moment": "16435440",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 2,
+      "heads": 12,
+      "first_nonzero_moment": "59056027430400",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 3,
+      "heads": 17,
+      "first_nonzero_moment": "467644314338353152000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 4,
+      "heads": 22,
+      "first_nonzero_moment": "8609820284760099832627200000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 5,
+      "heads": 27,
+      "first_nonzero_moment": "340096901462198679064527765504000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 6,
+      "heads": 32,
+      "first_nonzero_moment": "26463062777565337338064673242255196160000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 7,
+      "heads": 37,
+      "first_nonzero_moment": "3767988568508157125703146724262692762786201600000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 8,
+      "heads": 42,
+      "first_nonzero_moment": "923383195329558838077361959872111758547182858272768000000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 9,
+      "heads": 47,
+      "first_nonzero_moment": "370103650979951457099155681513879085462813569258566031769600000000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 10,
+      "heads": 52,
+      "first_nonzero_moment": "232481831544972361253325350478822960681689991888924157059878879232000000000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 11,
+      "heads": 57,
+      "first_nonzero_moment": "220739446606893780075340211109758804469693773691117473449344943843159572480000000000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 5,
+      "k": 12,
+      "heads": 62,
+      "first_nonzero_moment": "307161305819458995593165435450349429041624376299719033712705817196955174555143372800000000000000",
+      "vandermonde_determinant": "34560"
+    },
+    {
+      "n": 6,
+      "k": 1,
+      "heads": 8,
+      "first_nonzero_moment": "3162075840",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 2,
+      "heads": 14,
+      "first_nonzero_moment": "783699448602470400",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 3,
+      "heads": 20,
+      "first_nonzero_moment": "472072905995137356349440000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 4,
+      "heads": 26,
+      "first_nonzero_moment": "766286039457440836060446720000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 5,
+      "heads": 32,
+      "first_nonzero_moment": "3076362079626957018941510169574464552960000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 6,
+      "heads": 38,
+      "first_nonzero_moment": "27688378482359266328984166266075941372337691033600000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 7,
+      "heads": 44,
+      "first_nonzero_moment": "512512789762886128569408921763626833303827720526981234688000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 8,
+      "heads": 50,
+      "first_nonzero_moment": "18148025743915347114799495788075629045716582605045380113162567680000000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 9,
+      "heads": 56,
+      "first_nonzero_moment": "1157271041790363430259150916138104401480164946888664420015116013531037696000000000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 10,
+      "heads": 62,
+      "first_nonzero_moment": "126322745622646961621850982709394687789380241205621420843171618603258551020731288780800000000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 11,
+      "heads": 68,
+      "first_nonzero_moment": "22608811140609271155836465022590961336625262970453601269024234831368997730848928059408456351744000000000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 6,
+      "k": 12,
+      "heads": 74,
+      "first_nonzero_moment": "6394612805627041509872097243980623992612540952476018500090488321637763630215159896613918049477921551155200000000000000000",
+      "vandermonde_determinant": "24883200"
+    },
+    {
+      "n": 7,
+      "k": 1,
+      "heads": 9,
+      "first_nonzero_moment": "843184742400",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 2,
+      "heads": 16,
+      "first_nonzero_moment": "17114139358025149440000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 3,
+      "heads": 23,
+      "first_nonzero_moment": "928319151847066730526788812800000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 4,
+      "heads": 30,
+      "first_nonzero_moment": "157167828440708934622649960229010145280000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 5,
+      "heads": 37,
+      "first_nonzero_moment": "75843591614748085135458944122562384361088981401600000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 6,
+      "heads": 44,
+      "first_nonzero_moment": "93372628477472583188342723454024903283212843470359143383040000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 7,
+      "heads": 51,
+      "first_nonzero_moment": "265676592514124986838972226373719451003052811172284346535552797900800000000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 8,
+      "heads": 58,
+      "first_nonzero_moment": "1607316131592149691250849912112161304580593309543375800270441814002916758199992320000000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 9,
+      "heads": 65,
+      "first_nonzero_moment": "19281052764004071796202334564264512345701691993797478686467709394002574706473258845577674752000000000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 10,
+      "heads": 72,
+      "first_nonzero_moment": "432423708302300299077303256444521958152626881935598117056963619582329632764685812734396689325321564979200000000000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 11,
+      "heads": 79,
+      "first_nonzero_moment": "17248710927138594443915980217829059572677029084527529390575438873612655539141496038310390745384329230793363895091200000000000000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 7,
+      "k": 12,
+      "heads": 86,
+      "first_nonzero_moment": "1172423839250544774133189747695588788052424339866224414232087220383349217766362722231863061336176067751356136396318817877229568000000000000000000000",
+      "vandermonde_determinant": "125411328000"
+    },
+    {
+      "n": 8,
+      "k": 1,
+      "heads": 10,
+      "first_nonzero_moment": "297846188640000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 2,
+      "heads": 18,
+      "first_nonzero_moment": "572994639852709798563840000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 3,
+      "heads": 26,
+      "first_nonzero_moment": "3232871286402345552360407531520000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 4,
+      "heads": 34,
+      "first_nonzero_moment": "65911428214977304950718879086768295295267635200000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 5,
+      "heads": 42,
+      "first_nonzero_moment": "4413416061175052588433793298637387266964848630510269759488000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 6,
+      "heads": 50,
+      "first_nonzero_moment": "857891785822226787313349947195999413417569922647230437788611510272000000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 7,
+      "heads": 58,
+      "first_nonzero_moment": "433102221515145619065929449461209472724022843946145046386575625079791331192497766400000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 8,
+      "heads": 66,
+      "first_nonzero_moment": "516711464423113011324776744537786236199997104711773886850230660460198143816581728245738844979200000000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 9,
+      "heads": 74,
+      "first_nonzero_moment": "1345799122173935103732529022673578722754285175432854102334430256076366857265930252724542950323109622089515008000000000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 10,
+      "heads": 82,
+      "first_nonzero_moment": "7157562866124755881140978355659790699752258464158996432639909259306159221483879242585370264047193289656636937523338107944960000000000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 11,
+      "heads": 90,
+      "first_nonzero_moment": "73440150771258983243295231688417574701571961375841322767053058436985121783233316475082209254320436571613259502905081907266623618259353600000000000000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    },
+    {
+      "n": 8,
+      "k": 12,
+      "heads": 98,
+      "first_nonzero_moment": "1384588129203010287794198091132144302485465481519721734114329277739989739300078260566391651373744183340960202277796871748855270077632566402639596617728000000000000000000000000",
+      "vandermonde_determinant": "5056584744960000"
+    }
+  ],
+  "verifier_sha256": "6e61c3ff60c18d0e5715bf24a6436294bc6ded11c9b701e9cad3cf3eb2d1a948",
+  "scope": "Finite exact arithmetic checks; general theorems have separate written proofs.",
+  "main_target_proved": false
+}
