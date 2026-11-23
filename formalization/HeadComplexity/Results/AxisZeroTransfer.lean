@@ -72,8 +72,8 @@ theorem enumerate_descending {X : Type*} [Inhabited X] (P : Finset X) (rank : X 
       (∀ i < P.card, ∀ j < i, rank (center i) ≤ rank (center j)) := by
   classical
   let r : X → X → Prop := fun x y ↦ rank y ≤ rank x
-  letI : Std.Total r := ⟨fun x y ↦ le_total (rank y) (rank x)⟩
-  letI : IsTrans X r := ⟨fun _ _ _ hxy hyz ↦ le_trans hyz hxy⟩
+  let : Std.Total r := ⟨fun x y ↦ le_total (rank y) (rank x)⟩
+  let : IsTrans X r := ⟨fun _ _ _ hxy hyz ↦ le_trans hyz hxy⟩
   let L := P.toList.mergeSort (fun x y ↦ decide (r x y))
   have hlen : L.length = P.card := by simp [L]
   have hmem (x : X) : x ∈ L ↔ x ∈ P := by
@@ -399,6 +399,142 @@ theorem glue_reverse_axis_modules {a b : ℕ} (N : ℕ) (H : ℕ → ℕ)
     apply hbits
     exact Finset.mem_filter.mpr ⟨Finset.mem_univ _,
       (center_downset_iff (S i) (T i) bits).mp h⟩
+
+/-- The exceptional face on which the left block is entirely one. -/
+def leftFullFace (a b : ℕ) : CoordFace b (a + b) :=
+  ⟨Fin.natAddEmb a, fun _ ↦ true⟩
+
+/-- The exceptional face on which the right block is entirely one. -/
+def rightFullFace (a b : ℕ) : CoordFace a (a + b) :=
+  ⟨Fin.castAddEmb b, fun _ ↦ true⟩
+
+theorem on_leftFullFace_of_leftOnes {a b : ℕ} (bits : Fin (a + b) → Bool)
+    (h : leftOnes bits = Finset.univ) : OnPositiveFace (leftFullFace a b) bits := by
+  intro k
+  refine Fin.addCases ?_ ?_ k
+  · intro i _
+    have hi : i ∈ leftOnes bits := by rw [h]; exact Finset.mem_univ _
+    simpa [leftOnes] using hi
+  · intro j hj
+    have hm : Fin.natAdd a j ∈ (leftFullFace a b).freeSet :=
+      ((leftFullFace a b).mem_freeSet _).mpr ⟨j, rfl⟩
+    exact False.elim ((Finset.mem_sdiff.mp hj).2 hm)
+
+theorem on_rightFullFace_of_rightOnes {a b : ℕ} (bits : Fin (a + b) → Bool)
+    (h : rightOnes bits = Finset.univ) : OnPositiveFace (rightFullFace a b) bits := by
+  intro k
+  refine Fin.addCases ?_ ?_ k
+  · intro i hi
+    have hm : Fin.castAdd b i ∈ (rightFullFace a b).freeSet :=
+      ((rightFullFace a b).mem_freeSet _).mpr ⟨i, rfl⟩
+    exact False.elim ((Finset.mem_sdiff.mp hi).2 hm)
+  · intro j _
+    have hj : j ∈ rightOnes bits := by rw [h]; exact Finset.mem_univ _
+    simpa [rightOnes] using hj
+
+theorem strict_of_outputSign {v : Bool} {x : ℝ} (h : 0 < outputSign v * x) :
+    (0 < x ↔ v = true) ∧ x ≠ 0 := by
+  cases v with
+  | false =>
+    have hx : x < 0 := by simpa [outputSign] using h
+    exact ⟨by simp [not_lt_of_ge hx.le], ne_of_lt hx⟩
+  | true =>
+    have hx : 0 < x := by simpa [outputSign] using h
+    exact ⟨by simp [hx], ne_of_gt hx⟩
+
+/-- Complete finite cover transfer, including both exceptional faces, in the
+unchanged `HStar` invariant. The only unproved input is the explicitly stated
+local compiler hypothesis. -/
+theorem HStar_le_product_cover_of_compiler {a b M : ℕ}
+    (hcompiler : HasReverseAxisCompiler a b M)
+    (D : Finset (Finset (Fin a))) (E : Finset (Finset (Fin b)))
+    (hD : OpenDownwardCovers D) (hE : OpenDownwardCovers E)
+    (f : (Fin (a + b) → Bool) → Bool) :
+    HStar (a + b) f ≤ (D ×ˢ E).card * M + 2 ^ a + 2 ^ b := by
+  classical
+  let P := D ×ˢ E
+  obtain ⟨center, _hmem, hcover, horder⟩ :=
+    enumerate_descending P (fun ST ↦ ST.1.card + ST.2.card)
+  let S (i : ℕ) := (center i).1
+  let T (i : ℕ) := (center i).2
+  have hex (i : ℕ) : ∃ H ≤ M, ∃ L : ReverseAxisData a b H,
+      ∀ k l, 0 < outputSign (f (centerBits ((S i).erase k) ((T i).erase l))) *
+        L.score (localGrid k l) :=
+    hcompiler (fun k l ↦ f (centerBits ((S i).erase k) ((T i).erase l)))
+  choose H hH L hsign using hex
+  obtain ⟨φ, hφ⟩ := glue_reverse_axis_modules P.card H S T L f horder
+    (fun i _ ↦ hsign i)
+  let I := ((i : Fin P.card) × Fin (H i.val))
+  let equiv : Fin (Fintype.card I) ≃ I := (Fintype.equivFin I).symm
+  let ψ : Fin (Fintype.card I) → FracAtom (a + b) := fun h ↦ φ (equiv h)
+  have hsum (bits : Fin (a + b) → Bool) :
+      (∑ h, (ψ h).eval bits) = ∑ h, (φ h).eval bits :=
+    equiv.sum_comp (fun h ↦ (φ h).eval bits)
+  have houtside (bits : Fin (a + b) → Bool)
+      (hleft : ¬OnPositiveFace (leftFullFace a b) bits)
+      (hright : ¬OnPositiveFace (rightFullFace a b) bits) :
+      (0 < 0 + ∑ h, (ψ h).eval bits ↔ f bits = true) ∧
+        0 + ∑ h, (ψ h).eval bits ≠ 0 := by
+    have hX : leftOnes bits ≠ Finset.univ :=
+      fun h ↦ hleft (on_leftFullFace_of_leftOnes bits h)
+    have hY : rightOnes bits ≠ Finset.univ :=
+      fun h ↦ hright (on_rightFullFace_of_rightOnes bits h)
+    obtain ⟨ST, hST, hS, hT⟩ :=
+      product_openDownwardCover D E hD hE (leftOnes bits) (rightOnes bits) hX hY
+    obtain ⟨i, hi, hcenter⟩ := hcover ST hST
+    have hcell : bits ∈ starCell (S i) (T i) := by
+      simp only [starCell, Finset.mem_filter, Finset.mem_univ, true_and]
+      dsimp [S, T]
+      rw [hcenter]
+      exact ⟨hS, hT⟩
+    have hpos := hφ bits ⟨i, hi, hcell⟩
+    simpa only [zero_add, hsum] using strict_of_outputSign hpos
+  have hrepair := HStar_le_repair_two_positive_faces
+    (leftFullFace a b) (rightFullFace a b) (fun _ ↦ rfl) (fun _ ↦ rfl)
+    ψ 0 f houtside
+  have hcount : Fintype.card I ≤ P.card * M := by
+    rw [show Fintype.card I = ∑ i ∈ Finset.range P.card, H i from glued_head_count _ _]
+    calc
+      ∑ i ∈ Finset.range P.card, H i ≤ ∑ _i ∈ Finset.range P.card, M :=
+        Finset.sum_le_sum (fun i _ ↦ hH i)
+      _ = P.card * M := by simp
+  dsimp [P] at hrepair hcount ⊢
+  omega
+
+/-- Explicit full head budget from a local reverse compiler: the audited
+product cover contributes at most `484 * 2^(a+b)/(a*b)` modules, and the
+exceptional faces cost exactly `2^a + 2^b` additional heads. -/
+theorem HStar_real_le_of_reverse_axis_compiler {a b M : ℕ}
+    (ha : 0 < a) (hb : 0 < b) (hcompiler : HasReverseAxisCompiler a b M)
+    (f : (Fin (a + b) → Bool) → Bool) :
+    (HStar (a + b) f : ℝ) ≤
+      484 * (2 : ℝ) ^ (a + b) * M / ((a : ℝ) * b) + 2 ^ a + 2 ^ b := by
+  obtain ⟨D, E, hD, hE, hcount⟩ := exists_product_openDownwardCover a b ha hb
+  have hfinite := HStar_le_product_cover_of_compiler hcompiler D E hD hE f
+  have hcast : (HStar (a + b) f : ℝ) ≤
+      ((D ×ˢ E).card : ℝ) * M + (2 : ℝ) ^ a + (2 : ℝ) ^ b := by
+    exact_mod_cast hfinite
+  calc
+    (HStar (a + b) f : ℝ) ≤
+        ((D ×ˢ E).card : ℝ) * M + (2 : ℝ) ^ a + (2 : ℝ) ^ b := hcast
+    _ ≤ (484 * (2 : ℝ) ^ (a + b) / ((a : ℝ) * b)) * M + 2 ^ a + 2 ^ b := by
+      gcongr
+    _ = 484 * (2 : ℝ) ^ (a + b) * M / ((a : ℝ) * b) + 2 ^ a + 2 ^ b := by ring
+
+/-- Worst-case form of the complete conditional transfer, using the original
+definition of `worstCaseHeadComplexity`. A saving requires a proved sublinear
+instance of `HasReverseAxisCompiler`. -/
+theorem worstCaseHeadComplexity_real_le_of_reverse_axis_compiler {a b M : ℕ}
+    (ha : 0 < a) (hb : 0 < b) (hcompiler : HasReverseAxisCompiler a b M) :
+    (worstCaseHeadComplexity (a + b) : ℝ) ≤
+      484 * (2 : ℝ) ^ (a + b) * M / ((a : ℝ) * b) + 2 ^ a + 2 ^ b := by
+  let B : ℝ := 484 * (2 : ℝ) ^ (a + b) * M / ((a : ℝ) * b) + 2 ^ a + 2 ^ b
+  have hnat : worstCaseHeadComplexity (a + b) ≤ ⌊B⌋₊ := by
+    apply Finset.sup_le
+    intro f _
+    exact Nat.le_floor (HStar_real_le_of_reverse_axis_compiler ha hb hcompiler f)
+  exact (by exact_mod_cast hnat : (worstCaseHeadComplexity (a + b) : ℝ) ≤ (⌊B⌋₊ : ℝ)).trans
+    (Nat.floor_le (by dsimp [B]; positivity))
 
 end AxisZeroGluing
 end HeadComplexity
