@@ -106,6 +106,27 @@ possible. A forest has at most $H-1$ edges. This is an elementary
 obstruction to using pairwise comparisons as the missing
 $\Theta(H\log H)$ decoder.
 
+More generally, suppose a query differs from a symmetric reciprocal sum
+at only one slot $g$. On the permutation sheets it has the form
+\[
+ Q(\pi)=c+\sum_{h\ne g}\frac{a}{d-\lambda_{\pi(h)}}
+                 +\frac{a_g}{e-\lambda_{\pi(g)}}
+ =c+a\sum_{j=1}^H\frac1{d-\lambda_j}
+       -\frac{a}{d-t}+\frac{a_g}{e-t},
+ \quad t=\lambda_{\pi(g)},
+\]
+where $d,e>\varepsilon$. Multiplication by the strictly positive
+$(d-t)(e-t)$ gives a polynomial of degree at most two. Unless it is
+identically zero, the query has at most two zero locations on
+$(0,\varepsilon)$. Consequently, $r$ such queries attached to the same
+slot have at most $2r+1$ strict sign vectors as $t$ varies. If they are
+shattered, $2^r\le2r+1$, which forces $r\le2$. Partitioning a set of
+one-slot queries by their slot proves that this restricted query class
+cannot shatter more than $2H$ rows. This argument allows the symmetric
+baseline, both coefficients, both poles, and the bias to vary from
+query to query. It is a statement about the exact permutation sheets;
+it does not control arbitrary neighborhoods of them.
+
 The open step for this local route is to construct sufficiently many
 asymmetric reciprocal queries whose strict sign vectors on, or near,
 these sheets cover all binary words of length $cH\log H$ for some
