@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\title{What a Periodic Reciprocal Chain Can Decode}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The statements below are complete written proofs, not Lean declarations.
+They concern complete periodic chains with positive poles. They do not
+supply a universal head upper bound or restrict arbitrary sums of
+admissible affine ratios.
+
+\begin{theorem}[Length-independent zero bound]
+Let $K\ge2$, let $H=mK$ with $m\ge1$, and let
+$a_1,\ldots,a_K$ be a nonzero real vector with
+$\sum_{j=1}^K a_j=0$. Extend the residues periodically. For $\delta>0$
+put
+\[
+ F(z)=\sum_{h=1}^{H}\frac{a_h}{z+h\delta},\qquad z>0.
+\]
+Then $F$ has at most $K-2$ distinct positive zeros, independently of $H$.
+Without the zero-mean assumption, the corresponding bound is $K-1$.
+\end{theorem}
+
+\begin{proof}
+Write $s=z/\delta$ and
+$P(q)=\sum_{j=1}^K a_j q^{j-1}$. Integrating each reciprocal and
+summing the finite geometric series gives
+\[
+ F(z)=\frac1\delta\int_0^1 q^s P(q) w(q)\,dq,
+ \qquad
+ w(q)=\frac{1-q^H}{1-q^K}=\sum_{\ell=0}^{m-1}q^{\ell K}.
+\]
+The weight is strictly positive on $(0,1)$ and bounded by $m$.
+Since $P$ is nonzero, has degree at most $K-1$, and satisfies $P(1)=0$,
+it has at most $K-2$ sign changes in $(0,1)$.
+
+We give the required variation-diminishing argument explicitly.
+For a function $v(q)$ equal to $w(q)P(q)$ times finitely many factors
+$\log q-c$, its Mellin transform
+\[
+ T_v(s)=\int_0^1q^s v(q)\,dq
+\]
+is continuously differentiable for $s>0$. Indeed, on every compact
+subinterval of $(0,\infty)$, the integrands and their derivatives are
+bounded by a constant times $q^{s_0}(1+|\log q|^d)$ for some
+$s_0>0$ and finite $d$, an integrable function. Differentiation under
+the integral is therefore justified by dominated convergence.
+
+Induct on the number $r$ of sign changes of $v$ in $(0,1)$.
+If $r=0$, $v$ has one strict sign except at finitely many points,
+so $T_v$ has that sign and has no zeros. If $r>0$, choose a
+sign-change point $q_0$. The function
+\[
+ \widetilde v(q)=(\log q-\log q_0)v(q)
+\]
+has exactly $r-1$ sign changes: the extra factor changes sign only
+at $q_0$ and cancels the sign change there. Moreover,
+\[
+ \frac{d}{ds}\bigl(q_0^{-s}T_v(s)\bigr)
+ =q_0^{-s}T_{\widetilde v}(s).
+\]
+If $T_v$ had $r+1$ distinct zeros, Rolle's theorem would give at
+least $r$ distinct zeros of $T_{\widetilde v}$, contrary to induction.
+Thus $T_v$ has at most $r$ zeros. Applying this to $v=wP$ proves
+the claim. If the mean is not assumed zero, use the degree bound
+$K-1$ instead.
+\end{proof}
+
+\begin{corollary}[One scalar shift or step has only period-sized decoding power]
+Fix $r$ probes, each with its own nonzero zero-mean $K$-periodic
+residue vector $(a_{i,h})_h$. Let $I$ be an interval, and let
+$z_i(t)$ and $\delta(t)$ be affine functions of $t$, with
+$z_i(t)>0$ and $\delta(t)>0$ on $I$. Suppose no probe is identically
+zero. Define
+\[
+ S_i(t)=\sum_{h=1}^{H}\frac{a_{i,h}}{z_i(t)+h\delta(t)}.
+\]
+As $t$ varies over points of $I$ at which every $S_i(t)$ is nonzero,
+the number of distinct strict sign vectors is at most
+$r(K-2)+1$. Consequently, shattering the $r$ probes requires
+\[
+ 2^r\le r(K-2)+1.
+\]
+In particular, for $K\ge3$ one has $r=O(\log K)$, independently
+of the number $H$ of chain terms.
+\end{corollary}
+
+\begin{proof}
+Scaling gives
+\[
+ S_i(t)=\frac1{\delta(t)}G_i\!\left(\frac{z_i(t)}{\delta(t)}\right),
+ \qquad G_i(s)=\sum_{h=1}^H\frac{a_{i,h}}{s+h}.
+\]
+The ratio of two affine functions with positive denominator is
+constant or strictly monotone on $I$, since its derivative has a
+constant numerator and a positive squared denominator. The theorem
+therefore bounds the zeros of each nonconstant probe by $K-2$;
+a nonzero constant probe has none. Removing at most $r(K-2)$
+points from an interval leaves at most $r(K-2)+1$ components.
+Every strict sign vector is constant on each component. At a removed
+point at least one output is zero, so it does not contribute a strict
+sign vector.
+
+For completeness, $r=O(\log K)$ follows directly from the displayed
+inequality. For $r\ge4$, $r\le2^{r/2}$, and hence
+$2^r\le r(K-1)$ implies $2^{r/2}\le K-1$.
+\end{proof}
+
+\paragraph{Sinusoidal residues.}
+For $a_h=\cos(h\theta+\phi)$ with
+$\theta=2\pi j/K$, $j\not\equiv0\pmod K$, the exact integral
+simplifies further:
+\[
+ F(z)=\frac1\delta\int_0^1q^{z/\delta}(1-q^H)
+ \frac{\cos(\theta+\phi)-q\cos\phi}
+      {1-2q\cos\theta+q^2}\,dq.
+\]
+The denominator is positive on $(0,1)$, and the numerator has at
+most one sign change. The same proof therefore gives at most one
+positive zero, even if $K$ grows. This also follows by writing
+$F=U(s)(a-bR(s))$, where $U>0$ and $R$ is a weighted mean of $q$;
+$R'(s)$ is the strictly positive covariance of $q$ and $\log q$.
+
+If only the phase $\phi$ is coded, with all poles and $\theta$
+fixed, every probe has the form
+$u_i\cos\phi+v_i\sin\phi$. On one full phase circle these
+$r$ functions have at most $2r$ distinct zero locations, and hence
+at most $2r$ strict sign vectors. No three probes can be shattered.
+An identically zero probe only makes strict shattering impossible.
+
+\paragraph{Scope and the remaining possibility.}
+The scalar corollary allows arbitrary fixed row-dependent residue
+vectors; they need only be zero-mean and $K$-periodic at each row.
+Thus merely assigning different periodic residues to different probes
+does not defeat the scalar shift/step bound. It does not address
+several independently varying pole parameters, or residues that vary
+jointly with the encoded parameters. At fixed poles, arbitrary periodic
+affine numerators form a linear family with at most
+$(K-1)(n+1)$ numerator parameters, regardless of the chain length.
+A new construction would have to exploit simultaneous nonlinear
+variation of poles and residues, rather than the number of repeated
+periods or a single sinusoidal phase. No such construction is asserted
+here.
+
+\end{document}
