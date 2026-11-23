@@ -1,14 +1,14 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \newtheorem{proposition}{Proposition}
-\title{Joint Reverse Compiler: Two Exact Transfer Tests}
+\title{Joint Reverse Compiler: Exact Transfer Tests}
 \author{}
 \date{November 23, 2026}
 \begin{document}
 \maketitle
 
 \paragraph{Scope and status.}
-This note audits two attempted assembly mechanisms for the requested
+This note audits three attempted assembly mechanisms for the requested
 reverse-orientation, axis-zero local compiler. Neither result is an
 obstruction to that compiler itself. In particular, freely and jointly
 programmed row and column coefficients in different denominators are
@@ -180,7 +180,7 @@ remain outside this result.
 \paragraph{Remaining construction problem.}
 The requested $O((r+s)/\log\log(r+s))$ compiler remains open after these
 tests. A successful joint construction must avoid the particular
-common-factor or common-selector restrictions above, or quantitatively
+common-factor, common-selector, or one-slot restrictions above, or quantitatively
 account for the cost of abandoning exact cancellation. These tests do
 not replace the main universal construction requirement.
 \end{document}
