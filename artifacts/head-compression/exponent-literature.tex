@@ -1,0 +1,411 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\newcommand{\cube}{\{0,1\}^n}
+\title{Logarithmic Storage Gains and the Missing Global Compiler}
+\author{}
+\date{23 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This note does not prove an improvement in the worst-case function
+$W(n)=\texttt{HeadComplexity.worstCaseHeadComplexity}\ n$.
+In particular, it proves neither a positive exponent improvement,
+a superconstant saving, nor a matching lower bound for $W$.
+It records the strongest applicable literature construction found,
+checks its exact transfer, and gives two additional counterexamples
+to proposed ways of extending that transfer. The new propositions in
+this note are written proofs only. The definitions of heads,
+admissibility, and $W$ are unchanged.
+
+The supplied \texttt{scientist-report.tex} and the relevant mechanisms
+in \texttt{mechanism-audit.tex} were read first. Several statements
+below explicitly identify facts already established there; they are
+not claimed as new results.
+
+\section{The exact model transfer}
+
+An admissible score is a constant plus a sum of the repository's
+\texttt{FracAtom} evaluations. A sufficient condition for one affine
+ratio $A/B$ to be an atom is
+\[
+ A=a_0+\sum_{i=1}^n a_ix_i,\qquad
+ B=b_0+\sum_{i=1}^n b_ix_i,\qquad b_0,b_1,\ldots,b_n>0.
+\]
+This is an exact, one-head transfer, proved in the existing file
+\texttt{Atoms/PositiveAffineRatio.lean}, by
+\texttt{FracAtom.ofPositiveAffineRatio} and
+\texttt{FracAtom.ofPositiveAffineRatio\_eval}.
+In particular, positivity of this $B$ holds on the entire cube.
+Positivity only on a promised sample is insufficient. The converse
+description of every atom allows either a common positive slope
+orientation, a common negative slope orientation, or a constant
+denominator. Arbitrary mixtures of positive and negative slopes
+cannot silently be substituted for the actual atom class.
+
+All strict comparisons below have a positive uniform margin on the
+finite set on which they are claimed. No zero score is treated as a
+strict negative sign.
+
+\section{A real logarithmic gain on a promised set}
+
+Erd\H{o}s and Moser, \emph{On the representation of directed graphs
+as unions of orderings}, Sections 2 and 3,
+\url{https://www.renyi.hu/~p_erdos/1964-22.pdf}, prove that every
+oriented graph on $m$ vertices is the majority relation of
+$O(m/\log m)$ linear orders. Their proof uses pairs of orders whose
+votes cancel away from prescribed unions of disjoint directed
+complete bipartite graphs. This is a genuine way to store
+$\Theta(m\log m)$ bits of a majority representation per ordering.
+
+The following transfer was already proved in the supplied audit under
+``Majority rankings have a promised-domain fraction compiler.'' It is
+repeated here because its rate is sufficient for a \emph{local}
+logarithmic gain, even though it did not meet that run's quadratic
+target.
+
+\begin{proposition}[Existing promised-grid compiler]
+For positive integers $r,s$, every strict sign table on
+\[
+ X_{r,s}=\{(e_i,e_j):1\leq i\leq r,\ 1\leq j\leq s\}
+ \subseteq\{0,1\}^{r+s}
+\]
+is represented there by $O((r+s)/\log(r+s))$ admissible heads.
+Every denominator is admissible on the whole ambient cube.
+\end{proposition}
+\begin{proof}
+Complete the desired directed edges from $r$ row candidates to $s$
+column candidates to a tournament on their disjoint union. Let
+$\pi_1,\ldots,\pi_H$ be orders whose strict majority relation is
+that tournament. Reverse all orders if required to make positive
+rank differences correspond to the desired positive labels.
+For an integer $R>6H$, put
+\[
+ A_h(z,w)=\sum_{i=1}^r R^{\pi_h(i)}z_i
+                -\sum_{j=1}^s R^{\pi_h(r+j)}w_j,
+ \qquad
+ B_h(z,w)=1+\sum_{i=1}^r R^{\pi_h(i)}z_i
+                +\sum_{j=1}^s R^{\pi_h(r+j)}w_j.
+\]
+These are admissible positive-slope ratios by the preceding transfer.
+If $a>b\geq1$, then
+\[
+ 0<1-\frac{R^a-R^b}{1+R^a+R^b}
+   =\frac{1+2R^b}{1+R^a+R^b}<\frac3R.
+\]
+The reverse comparison has the symmetric error bound. At each
+promised pair, the sum of the fractions is consequently within
+$3H/R<1/2$ of the integer majority margin, whose absolute value is
+at least one. This proves every desired strict sign.
+\end{proof}
+
+For balanced $r,s$ this assigns $\Theta(n^2)$ independently chosen
+signs with $O(n/\log n)$ heads. Ordinary sign rank does not give this
+statement: its factors would be products of functions of the two
+blocks, rather than affine numerators divided by affine denominators.
+The rankings above supply the missing local transfer explicitly.
+
+\paragraph{Why this is not a full-cube bound.}
+The promised set has only $rs$ points among $2^{r+s}$ cube vertices.
+All the other inputs have defined scores but unconstrained signs.
+Replacing one-hot vectors by binary addresses is invalid: even the
+natural rank $i=\sum_{k=0}^{d-1}2^kx_k$ gives
+\[
+ R^i=\prod_{k=0}^{d-1}(1+(R^{2^k}-1)x_k),
+\]
+which has nonzero mixed difference $(R-1)(R^2-1)$ in its first two
+coordinates. Hence it is not affine when $d\geq2$.
+Likewise, a sign test for membership in $X_{r,s}$ is not a free
+numerical mask for multiplying this score.
+
+\section{Exact masks destroy this particular gain}
+
+The following obstruction does not use the common-slope restriction;
+it is valid even for arbitrary affine denominators positive everywhere.
+
+\begin{proposition}[Exact Hamming-ball localization]
+Let $0\leq r\leq n$. Suppose a nonzero score
+\[
+ F(x)=c+\sum_{h=1}^H\frac{A_h(x)}{B_h(x)}
+\]
+has affine numerators and denominators, with $B_h(x)>0$ on the
+whole cube. If $F(x)=0$ outside a Hamming ball of radius $r$, then
+$H\geq n-r$.
+\end{proposition}
+\begin{proof}
+Complement coordinates so that the ball is centered at zero. This
+preserves affinity, positivity on the cube, and degree; no assertion
+that it preserves individual atom admissibility is needed in this
+relaxed lower-bound proof. Choose a support set $T$ of largest
+cardinality at which $F(\mathbf1_T)\ne0$, and write $t=|T|\leq r$.
+Every strict superset of $T$ has zero score by the choice of $T$.
+
+Clear denominators:
+\[
+ D=\prod_{h=1}^H B_h,\qquad
+ P=cD+\sum_{h=1}^H A_h\prod_{k\ne h}B_k.
+\]
+Then $D>0$ on the cube and $\deg P\leq H$.
+Fix the coordinates in $T$ to one and vary the remaining $n-t$
+coordinates. The restriction of $P$ is nonzero only at the zero
+vertex of this face. Its full alternating sum is therefore the
+nonzero value $P(\mathbf1_T)$. Any polynomial of degree less than
+$n-t$ has zero full alternating sum: each monomial misses one of
+the free variables, and the two terms differing in that variable
+cancel. Thus $H\geq n-t\geq n-r$.
+\end{proof}
+
+\begin{corollary}[Exact product-star masks]
+A nonzero score supported exactly inside a product of two
+radius-one Hamming balls in disjoint coordinate blocks requires
+at least $n-2$ heads. The same lower bound holds for a score
+supported inside $X_{r,s}$, with $n=r+s$.
+\end{corollary}
+\begin{proof}
+Both supports are contained in a radius-two Hamming ball in the
+ambient $n$ coordinates. Apply the proposition.
+\end{proof}
+
+Consequently an independent-module construction which extends each
+promised table by exact zeros cannot retain its $O(n/\log n)$
+cost. This excludes that specific gluing step. It does \emph{not}
+exclude approximating zero, allowing cross-module cancellation, or
+assigning only strict output signs globally. Those distinctions matter:
+the target permits all three.
+
+\section{Direct dominant-rank extension also has an obstruction}
+
+One possible way to avoid masks is to evaluate the ranking ratios on
+all inputs and use their limiting majority votes. On a nonempty set
+of active coordinates, a dominant-rank ratio returns the label of the
+first active coordinate in a fixed order. Such a rule is a decision
+list with a common literal orientation. The following exact lower
+bound rules out this direct extension.
+
+\begin{proposition}[Common-orientation decision lists and parity]
+Let each $g_h:\cube\to\mathbb R$ choose a real output associated
+with the first coordinate with $x_i=1$ in its own ordering, and
+choose a default real output if all coordinates are zero.
+If $c+\sum_{h=1}^H g_h$ strictly sign-represents parity, then
+\[
+ H\geq\binom{n}{\lfloor n/2\rfloor}\qquad(n\geq2).
+\]
+The same result holds if every list instead uses $x_i=0$ as its
+active literal.
+\end{proposition}
+\begin{proof}
+Set $y_i=1-x_i$. For a list ordered as
+$\pi(1),\ldots,\pi(n)$, with outputs $a_1,\ldots,a_n$ and default
+$a_0$, its exact multilinear polynomial is
+\[
+ a_1+\sum_{k=1}^{n-1}(a_{k+1}-a_k)
+       \prod_{j=1}^k y_{\pi(j)}
+       +(a_0-a_n)\prod_{j=1}^n y_{\pi(j)}.
+\]
+Indeed, if the first active coordinate has position $k$, exactly
+the prefixes of lengths less than $k$ equal one, and the sum
+telescopes to $a_k$. If none is active, it telescopes to $a_0$.
+Thus each list has monomial support in one chain of subsets.
+
+Write the unique multilinear polynomial of the total score as
+$P(y)=\sum_{S\subseteq[n]}d_S\prod_{i\in S}y_i$. Strict parity
+signs imply, for one fixed $\sigma\in\{-1,1\}$,
+$\sigma(-1)^{|T|}P(\mathbf1_T)>0$ for every $T$. Boolean
+inversion gives
+\[
+ \sigma(-1)^{|S|}d_S
+ =\sum_{T\subseteq S}\sigma(-1)^{|T|}P(\mathbf1_T)>0.
+\]
+Every coefficient is therefore nonzero. In particular all
+$\binom{n}{\lfloor n/2\rfloor}$ monomials of the middle degree
+must occur. Each chain supplies at most one of them, and the bias
+supplies none when $n\geq2$. This proves the bound. Complementing
+all coordinates proves the other common orientation.
+\end{proof}
+
+For clarity, this proposition does not cover a mixture of the two
+literal orientations. Nor does it cover a rational score whose leading
+ranking votes tie and whose smaller terms decide the sign. The
+promised-grid transfer above works precisely by a nonzero integer vote
+margin; extending \emph{that} transfer directly to all subsets falls
+under the proposition. Rational cancellation beyond this margin
+argument would be a new mechanism.
+
+\section{Other literature routes and their exact gaps}
+
+\paragraph{Depth-dependent memorization.}
+Park, Lee, Yun, and Shin, \emph{Provable Memorization via Deep Neural
+Networks using Sub-linear Parameters}, COLT 2021,
+\url{https://proceedings.mlr.press/v134/park21a/park21a.pdf},
+state in Theorem 1 a depth-parameter tradeoff for separated inputs.
+Their gains use depth growing with sample count. Vardi, Yehudai,
+and Shamir, \emph{On the Optimal Memorization Power of ReLU Neural
+Networks}, \url{https://arxiv.org/abs/2110.03187}, obtain nearly
+square-root parameter counts using depth and high bit complexity.
+The Boolean cube satisfies a separation requirement, so this is not
+an input-geometry obstruction. The missing transfer is a flattening
+of their successive nonlinear decoding operations into a sum of
+admissible affine ratios with a quantitatively adequate head count.
+No such flattening is established. A claim of its existence with
+the desired bound would be a theorem-strength replacement for the
+original target, so this route is blocked here.
+
+\paragraph{Shallow threshold circuits.}
+Kane and Williams, \emph{Super-Linear Gate and Super-Quadratic Wire
+Lower Bounds for Depth-Two and Depth-Three Threshold Circuits},
+\url{https://cseweb.ucsd.edu/~dakane/depth2LTF.pdf},
+Theorem 2.3 and Corollary 2.1, give the relevant counting mechanism
+and a random-function $\Omega(2^n/n^2)$ lower bound.
+This is not a universal upper construction. More decisively, a
+constant-cost replacement of arbitrary hidden threshold gates by
+numerical head outputs is already excluded in the supplied audit
+using Sherstov's intersection-of-two-halfspaces theorem. I do not
+reuse the excluded replacement. The majority-order construction is
+different: it has a proved approximation to the numerical votes on
+the stated promised set.
+
+\paragraph{Sign rank.}
+Alon, Moran, and Yehudayoff, \emph{Sign rank versus VC dimension},
+COLT 2016, \url{https://proceedings.mlr.press/v49/alon16.html},
+study low-rank sign matrices and obtain an $O(N/\log N)$
+\emph{approximation factor} for computing sign rank. This factor
+must not be mistaken for a universal rank bound of that order.
+A decomposition $M_{ij}=\sum_k u_k(i)v_k(j)$ does not itself yield
+one head per summand: arbitrary functions of a binary block are not
+affine coordinate functions, and their product is not an affine
+numerator. On the one-hot grid, arbitrary factors are affine within
+their own blocks, but multiplication still requires a separate
+compiler. The explicit ranking ratios above avoid this product
+issue locally; the exact-mask obstruction prevents one proposed
+global extension.
+
+\paragraph{Rational-network dimension estimates.}
+Pardo and Sebasti\'an, \emph{Erzeugungsgrad, VC-Dimension and Neural
+Networks with rational activation function},
+\url{https://arxiv.org/html/2504.11345v1}, bound the complexity of
+parameterized families using intersection theory. These are upper
+bounds on capacity, not constructions that shatter the prescribed
+Boolean cube. The required transfer would be an explicit strict
+orthant-surjectivity theorem for the admissible reciprocal family.
+Such a theorem at the desired parameter count is at least as strong
+as the target and is not supplied by a dimension estimate.
+
+\paragraph{A November 2026 sigmoid result.}
+Li, Reichman, Williams, and Wu, \emph{New Gate, Weight and Wire
+Complexity Bounds for Sigmoid Neural Networks},
+\url{https://arxiv.org/html/2611.21910v1}, Section 6.1, rationalize
+Boolean-input sigmoid networks by exponentiating their parameters.
+The resulting hidden output has the form
+\[
+ \frac1{1+B\prod_j W_j^{x_j}},\qquad B,W_j>0.
+\]
+Its denominator is generally not affine: its mixed difference in
+coordinates $i,j$, with all other coordinates zero, is
+$B(W_i-1)(W_j-1)$, which need not vanish. Thus its rationalization
+does not transfer a gate to one atom. Lemma 4.5 supplies a general
+rational approximation without poles on a real interval, but not
+a decomposition into admissible affine ratios with a controlled
+head count. The paper's improvement for inner product modulo two
+uses growing depth, as stated after Theorem 1.7. Neither mechanism
+therefore closes the current one-layer gap. Its bounded-parameter
+existence theorem also supplies no universal low-head construction.
+
+\section{A precise remaining lemma for the logarithmic route}
+
+Here is a concrete cover to which the missing composition theorem
+could apply. Write $n=a+b$, where $a=\lfloor n/2\rfloor$ and
+$b=\lceil n/2\rceil$. Complementing the existing upward-star
+covers gives downward closed-star covers $\mathcal C_m$ with
+$|\mathcal C_m|=O(2^m/m)$ for $m=a,b$. This uses the existing
+\texttt{monomialStarCoverNumber\_spec} and
+\texttt{monomialStarCoverNumber\_real\_le\_eleven}.
+For each center $S\ne[m]$, select $i_S\notin S$ and add the
+center $S\cup\{i_S\}$. The resulting family $\mathcal D_m$ has
+size at most $2|\mathcal C_m|$. Its \emph{open} downward stars
+\[
+ \partial^- S=\{S\setminus\{i\}:i\in S\}
+\]
+cover every vertex except $[m]$: a vertex already covered as a child
+remains covered, and a vertex covered only as a center is now the
+child of its selected added center.
+
+The products $\partial^-S\times\partial^-T$, with
+$S\in\mathcal D_a$ and $T\in\mathcal D_b$, therefore cover
+\[
+ U=(\{0,1\}^a\setminus\{\mathbf1\})
+       \times(\{0,1\}^b\setminus\{\mathbf1\})
+\]
+using $O(2^n/n^2)$ cells. On one such cell the coordinates
+$y_i=1-x_i$ indexed by $S$ and $T$ are two one-hot blocks.
+The local ranking formula uses these $y_i$; give every unused
+coordinate an additional denominator slope $\varepsilon$ in $y_i$,
+with $0<\varepsilon\leq1/n$. The baseline on the promised cell is
+then between one and two. Taking $R>8H$ gives the same strict
+comparison proof with error $4H/R<1/2$. On the whole cube the
+denominator is one plus a sum of strictly positive multiples of
+$1-x_i$, so it is a valid negative-orientation atom, using
+\texttt{FracAtom.ofNegativeAffineRatio\_eval}.
+Thus each cell really has a local $O(n/\log n)$-head compiler,
+including cells whose centers have mixed zero and one coordinates.
+
+The following is the \emph{unproved} missing lemma:
+
+\begin{quote}
+For the covers just defined, there is an absolute constant $K$ such
+that every strict labeling $f$ of $U$ admits one admissible score
+$F_{S,T}$ for each cell, each with at most $Kn/\log n$ heads,
+which has the prescribed signs on its own cell, and for which
+$\sum_{S,T}F_{S,T}$ has the prescribed strict signs on all of $U$.
+\end{quote}
+
+\begin{proposition}[The stated lemma would finish the logarithmic route]
+If the missing lemma holds eventually in $n$, then
+$W(n)=O(2^n/(n\log n))$.
+\end{proposition}
+\begin{proof}
+The total head count supplied on $U$ is the product
+$O(2^n/n^2)O(n/\log n)=O(2^n/(n\log n))$.
+It remains to justify, rather than assume, the negligible cost of
+the two excluded faces. On the face with first block all ones,
+interpolate the difference between the desired values $f\in\{-1,1\}$
+and the existing score by a multilinear polynomial in the other
+$b$ coordinates. It has at most $2^b$ monomials. Multiplying by
+the monomial in all first-block coordinates extends this correction
+by zero outside the face. Correct the second exceptional face
+in the same way with at most $2^a$ monomials. Its prescribed
+correction at the intersection is zero because that point was
+already corrected. The resulting formal sum has the correct
+strict signs everywhere.
+
+Every Boolean monomial $x_V=\prod_{i\in V}x_i$ can be approximated
+uniformly by one admissible head:
+\[
+ q_{V,\eta}(x)=
+ \frac{\eta}{\eta+\sum_{i\in V}(1-x_i)
+                 +\eta^2\sum_{i\notin V}(1-x_i)},
+ \qquad\eta>0.
+\]
+Every variable slope is strictly negative and the denominator's
+minimum on the cube is $\eta>0$. As $\eta\to0$, the ratio tends
+to one where all coordinates in $V$ are one and to zero otherwise.
+The convergence is uniform because the cube is finite. Apply this
+to the finitely many correction monomials, absorbing their real
+coefficients into their affine numerators. Sufficiently small
+$\eta$ makes the total error smaller than half the minimum strict
+margin. At most $2^a+2^b$ additional heads suffice.
+Finally $2^a+2^b=o(2^n/(n\log n))$ for the balanced split.
+\end{proof}
+
+This conditional proposition is not a claimed asymptotic result.
+The missing lemma has comparable strength to the logarithmic target,
+so the route is blocked there. Its exact-zero interpretation is
+false by the localization proposition. Its direct common-orientation
+dominant-vote interpretation is false by the parity proposition.
+Approximate masking with controlled interference or genuinely global
+cancellation would have to supply the new part. No such construction
+was obtained.
+
+\end{document}
