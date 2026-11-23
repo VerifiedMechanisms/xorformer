@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Permutation Sheet Readers: Two Exact Capacity Obstructions}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+These are complete written auxiliary results from the resumed global
+construction search. They are not Lean declarations and prove no new
+asymptotic upper or lower bound for unrestricted head complexity.
+The original model and denominator conditions are unchanged.
+Their purpose is to close two specific attempted decoders for the regular
+permutation sheets constructed in \texttt{compact-cauchy-sheets.tex}.
+Factorially many regular parameter solutions do not imply factorially
+many independently readable sign patterns.
+
+\begin{theorem}[A bounded row-pole library is a linear feature map]
+Let $\lambda_1,\ldots,\lambda_H$ be distinct real numbers. For each
+slot $h$, fix a finite set $D_h$ of real numbers strictly larger than
+$\max_j\lambda_j$. Suppose every query on a permutation $\pi$ is of
+the form
+\[
+ Q_i(\pi)=c_i+\sum_{h=1}^H
+ \frac{\alpha_{ih}+\beta_{ih}\lambda_{\pi(h)}}
+      {d_{ih}-\lambda_{\pi(h)}},\qquad d_{ih}\in D_h.
+\]
+If $r$ fixed queries realize all $2^r$ strict sign vectors as $\pi$
+varies, then $r\le\sum_h|D_h|$.
+If all $D_h$ are the same singleton, then $r\le H-1$.
+\end{theorem}
+
+\begin{proof}
+The identity
+\[
+ \frac{\alpha+\beta t}{d-t}
+ =-\beta+\frac{\alpha+\beta d}{d-t}
+\]
+makes every query an affine functional of the
+$q=\sum_h|D_h|$ coordinates
+\[
+ z_{h,d}(\pi)=\frac1{d-\lambda_{\pi(h)}}.
+\]
+The image of all permutations is a subset of $\mathbb R^q$.
+An arrangement of $r$ affine hyperplanes in affine dimension $q$
+has at most $\sum_{j=0}^{q}\binom rj$ open regions. This follows by
+induction on $r$: inserting the last hyperplane creates at most as
+many additional regions as the preceding hyperplanes induce on that
+hyperplane, whose dimension is at most $q-1$. The initial cases are
+one region for $r=0$ and at most one region for $q=0$.
+Consequently $r>q$ leaves strictly fewer than $2^r$ strict sign
+vectors even in the whole ambient space.
+
+For one common pole $d$, the feature points satisfy the additional
+affine identity
+\[
+ \sum_{h=1}^H z_{h,d}(\pi)=\sum_{j=1}^H\frac1{d-\lambda_j}.
+\]
+Their affine dimension is therefore at most $H-1$, and the same
+argument gives the sharper assertion.
+\end{proof}
+
+\begin{theorem}[Subset Stieltjes readers have linear capacity]
+Fix distinct real numbers $\lambda_1,\ldots,\lambda_L$, an integer
+$1\le k\le L$, and a family $\mathcal S$ of $k$-element subsets of
+$\{1,\ldots,L\}$. For $S\in\mathcal S$ put
+\[
+ F_S(d)=\sum_{j\in S}\frac1{d-\lambda_j},
+ \qquad d>\max_j\lambda_j.
+\]
+For fixed probe pairs $(d_i,\theta_i)$ with $d_i>\max_j\lambda_j$,
+if the signs of $F_S(d_i)-\theta_i$, as $S$ varies, realize all
+$2^r$ strict patterns, then $r\le2k-1$.
+\end{theorem}
+
+\begin{proof}
+First, repeated probe locations cannot occur in a shattered list.
+Indeed, at one fixed $d$, two unequal thresholds have one impossible
+strict labeling, and two equal thresholds have both mixed labelings
+impossible. Thus order the locations as $d_1<\cdots<d_r$.
+
+Suppose $r\ge2k$. Choose witnesses $S,T$ for the two complementary
+alternating labelings. At every probe, $F_S(d_i)-F_T(d_i)$ has the
+prescribed alternating strict sign, independently of the values of
+the thresholds. In particular $S\ne T$.
+
+Let $A=S\setminus T$, $B=T\setminus S$, and $q=|A|=|B|$, so
+$1\le q\le k$. Then
+\[
+ F_S(d)-F_T(d)=\sum_{j\in A}\frac1{d-\lambda_j}
+                 -\sum_{j\in B}\frac1{d-\lambda_j}.
+\]
+Multiplying by the positive polynomial
+$R(d)=\prod_{j\in A\cup B}(d-\lambda_j)$ gives a polynomial $P$.
+The potential coefficient of $d^{2q-1}$ is $q-q=0$, so
+$\deg P\le2q-2$. The polynomial is nonzero: at $d=\lambda_a$ for
+any $a\in A$, its value is
+$\prod_{j\in(A\cup B)\setminus\{a\}}(\lambda_a-\lambda_j)\ne0$.
+The alternating strict signs at the ordered probes, together with
+continuity, give at least $r-1\ge2k-1>2q-2$ distinct real roots.
+This contradicts the polynomial root bound.
+\end{proof}
+
+\begin{corollary}[Independent block moment decoding does not amplify]
+Partition $H$ permutation slots into blocks of sizes $k_1,\ldots,k_b$.
+Suppose each query probes the unweighted Stieltjes sum of the values
+assigned to one specified block, with its own pole and threshold.
+Then a shattered query family has at most
+$\sum_{a=1}^b(2k_a-1)=2H-b$ members.
+\end{corollary}
+
+\begin{proof}
+Every subfamily associated with one block must itself be shattered.
+Its possible values are some family of $k_a$-subsets of the fixed
+permutation values, so the preceding theorem applies to it. Sum the
+resulting bounds over the blocks. Requiring the blocks to be disjoint
+can only restrict the possible simultaneous patterns; the argument
+does not presume their independent realizability.
+\end{proof}
+
+\paragraph{Exact transfer boundary.}
+The second theorem permits the poles to vary freely between probes
+and permits any fixed threshold at each probe. It therefore also
+covers proposals which first constrain low power sums of each block
+and then use higher moments of its resolvent to read extra bits:
+restricting the allowed subsets does not evade the bound. It does
+not cover arbitrary slot-dependent weights or independently varying
+row-and-slot poles. Those freedoms are the remaining multivariate
+decoder question, not a consequence of the sheet count.
+
+These obstructions concern readers on an already admissible compact
+parameter family. They do not claim that an arbitrary $H$-head score
+has either reader form, and hence do not imply an unrestricted lower
+bound for $W(n)$.
+\end{document}
