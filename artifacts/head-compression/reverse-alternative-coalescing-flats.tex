@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Coalescing Reciprocal Columns and Graded Flags}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written audit of one proposed decoder, not a proof of
+either global asymptotic target. The statements have not been formalized
+in Lean. The exact companion checker verifies the identities and the
+nongraded four-column example. The sign-count ingredient is the
+unconditional theorem
+\texttt{HeadComplexity.strictPolynomialSignPatterns\_card\_le} in
+\texttt{Results/WarrenBound.lean}.
+
+\paragraph{The proposed decoder.}
+For each slot $h$ one hoped that coalescing columns would supply a feature
+$v_h W^{k_h}$, with the orders $k_h$ permuted freely among the slots.
+Rows indexed by a token address and a binary digit of the slot would then
+have profile dimension only $d=O(\log H)$. Positive residues proportional
+to $2^{-Mk^2}$ and addresses $W=2^{2Mk_0}$ would select the term $k=k_0$.
+The missing issue is whether the proposed feature space is an actual
+limit of the reciprocal columns. The following constraint rules out a
+graded first-order version of that step.
+
+\begin{lemma}[A finite-dimensional limit invariant]
+Fix vectors $v_1,\ldots,v_J\in\mathbb R^d$ and real poles
+$\lambda_h(t)\to0$ as $t\to0$. Consider the vector-valued columns
+\[
+                 \frac{v_h}{1-\lambda_h(t)W}.
+\]
+Multiply their span by
+$D_t(W)=\prod_h(1-\lambda_h(t)W)$, so it is a subspace $E_t$ of
+$\mathbb R^d\otimes\mathbb R[W]_{<J}$.
+Suppose $E_t$ has constant dimension $L$ and a Grassmann limit $E_0$.
+Then $E_0$ is invariant under the backward shift
+\[
+                 T p(W)=\frac{p(W)-p(0)}{W}.
+\]
+The same $E_0$ is the limit of the original rational-function spans:
+their common multiplier $D_t$ tends coefficientwise to $1$.
+\end{lemma}
+\begin{proof}
+On the fixed finite-dimensional polynomial space define
+\[
+          T_t p(W)=\frac{p(W)-p(0)D_t(W)}{W}.
+\]
+The quotient is polynomial of degree less than $J$. Its matrix tends
+to that of $T$. For the $h$th numerator
+$p_h=v_hD_t/(1-\lambda_hW)$, direct substitution gives
+$T_t p_h=\lambda_h p_h$. Thus $T_tE_t\subseteq E_t$.
+Choose bases for $E_t$ converging to a basis for $E_0$, which is a
+standard local coordinate description of a Grassmann limit. Passing
+to the limit gives $TE_0\subseteq E_0$.
+\end{proof}
+
+\paragraph{Reciprocal powers.}
+The analogous statement for $v_h/(1-\lambda_hW)^q$, with a fixed positive
+integer $q$, uses the weighted shift
+\[
+       T_q(W^k)=\frac{k}{k+q-1}W^{k-1}\quad(k\geq1),
+       \qquad T_q(1)=0.
+\]
+Indeed, the coefficient multiplier
+$J_q(W^k)=\binom{k+q-1}{k}W^k$ carries a simple reciprocal to its
+$q$th power and conjugates $T$ to $T_q$. For integral $q$, $J_q$ is
+a polynomial in the Euler derivative $W\,d/dW$, so passage to a
+finite polynomial limit commutes with $J_q$. In particular the
+first-order profile terms from a reciprocal perturbation use $q=2$.
+
+\begin{theorem}[Graded limits have nested profile spaces]
+Suppose an $L$-dimensional invariant limit is graded:
+\[
+                  E_0=\bigoplus_{k\geq0} S_k W^k,
+                  \qquad S_k\subseteq\mathbb R^d.
+\]
+Then $S_{k+1}\subseteq S_k$. There are a basis $u_1,\ldots,u_d$ of
+$\mathbb R^d$ and integers
+$\ell_1\geq\cdots\geq\ell_d\geq0$, with $\sum_j\ell_j=L$, such that
+every element of $E_0$ has the form
+\[
+                  p(W)=\sum_{j=1}^d u_j P_j(W),
+                  \qquad \deg P_j<\ell_j.
+                  \tag{1}
+\]
+The same conclusions hold with $T_q$ in place of $T$.
+\end{theorem}
+\begin{proof}
+Applying the shift to $vW^{k+1}$ gives a nonzero scalar multiple of
+$vW^k$, proving the inclusion. Choose a basis adapted to the finite
+nested chain of spaces $S_k$. Let $\ell_j$ be the number of levels
+containing its $j$th basis vector. This gives (1), and the dimension
+identity gives $\sum_j\ell_j=L$.
+\end{proof}
+
+\begin{theorem}[Uniform sign count for all graded flags]
+Fix any $M$ rows $(W_i,a_i)\in\mathbb R\times\mathbb R^d$.
+For fixed $L,d\geq1$, let $\mathcal F_{L,d}$ contain all scalar row
+functions $a_i\cdot p(W_i)$ from every graded, shift-invariant
+$L$-dimensional space. Put $p=L+d^2$.
+For $M\geq p$, the number of strict sign patterns is at most
+\[
+           (L+1)^d\left(\frac{8eM}{p}\right)^p.
+           \tag{2}
+\]
+Consequently, the number of rows that can be shattered is
+\[
+                O\bigl(L+d^2+d\log(L+1)\bigr),
+                \tag{3}
+\]
+with an absolute implied constant, uniformly over the rows.
+In particular $d=O(\log L)$ gives only $O(L)$ shattering.
+\end{theorem}
+\begin{proof}
+There are at most $(L+1)^d$ choices of the ordered length tuple
+$(\ell_j)$; allowing all tuples with entries between $0$ and $L$
+only enlarges the count. For a fixed tuple summing to $L$, allow
+arbitrary coordinates for the $d$ vectors $u_j$, using $d^2$ real
+parameters, and arbitrary coefficients for the polynomials $P_j$,
+using $L$ more. Each row evaluation
+\[
+       \sum_{j=1}^d\sum_{k=0}^{\ell_j-1}
+              (a_i\cdot u_j)c_{jk}W_i^k
+\]
+is polynomial of total parameter degree at most two. Dropping basis
+independence constraints enlarges the family. Warren's strict
+sign-pattern estimate, with degree two and $p$ parameters, gives
+$(8eM/p)^p$. Summing over tuples proves (2).
+
+For completeness, (2) implies (3) without an extra logarithm in $L$.
+Set $b=d\log(L+1)$ and $x=M/p$. If all patterns occur, then
+$M\log2\leq b+p\log(8ex)$.
+For all sufficiently large absolute $x$, one has
+$\log(8ex)\leq x\log2/2$. Thus either $M\leq Cp$, or
+$M\leq2b/\log2$. The case $M<p$ is already covered.
+\end{proof}
+
+\paragraph{Binary profile powers do not automatically escape.}
+For a profile $V_h$ taking only values $\{-1,1\}$, the exact identity
+\[
+ \frac1{1-\varepsilon W-\delta_h-\eta_hV_h}
+ =\frac{1+V_h}{2(1-\varepsilon W-\delta_h-\eta_h)}
+  +\frac{1-V_h}{2(1-\varepsilon W-\delta_h+\eta_h)}
+ \tag{4}
+\]
+expresses each column inside the span of two simple reciprocal
+columns. After absorbing a scalar, each denominator is
+$1-\lambda W$, with
+$\lambda=\varepsilon/(1-\delta_h\mp\eta_h)\to0$.
+If the profiles $V_h$ span $d$ row profiles, the new profiles
+$1\pm V_h$ span at most $d+1$. Thus, if the enlarged $2H$-column
+limit is graded, (2)--(3) still give only $O(H)$ shattering when
+$d=O(\log H)$. This observation includes all powers of binary
+profiles, but it does not establish gradedness.
+
+\paragraph{Gradedness is a real restriction.}
+It must not be silently inferred from positivity or coalescence.
+Here is an explicit nongraded limit with all poles positive. Take
+\[
+ v_1=e_1,\quad v_2=e_2,\quad v_3=e_1+e_2,\quad v_4=e_1-e_2,
+ \qquad
+ (\lambda_1,\lambda_2,\lambda_3,\lambda_4)
+ =\left(t,2t,3t,\frac53t+t^2\right).
+ \tag{5}
+\]
+Write $f_h=v_h/(1-\lambda_hW)$,
+$g_3=f_3-f_1-f_2$, and $g_4=f_4-f_1+f_2$.
+With $u=2e_1+e_2$, four independent column combinations converge to
+\[
+ \begin{split}
+       f_1&\longrightarrow e_1,\qquad
+       f_2\longrightarrow e_2,\qquad
+       t^{-1}g_3\longrightarrow uW,\\
+       t^{-2}(3g_4-g_3)
+           &\longrightarrow3(e_1-e_2)W-\frac43uW^2.
+ \end{split}
+ \tag{6}
+\]
+This four-dimensional limit is invariant under $T$, as the lemma
+requires. It is not graded: the quadratic component $uW^2$ cannot
+be separated from the linear component $3(e_1-e_2)W$ using the
+other three basis elements. In particular the two coefficient
+directions $u$ and $e_1-e_2$ are independent. All denominators in
+(5) are positive on every fixed bounded set of $W$ for sufficiently
+small positive $t$.
+
+\paragraph{What remains.}
+The proposed independently assigned monomial features have not been
+constructed. The graded version with binary slot profiles is ruled
+out by (2), even if arbitrary graded flags are granted for free.
+Nongraded limits, nonbinary profiles of larger span, and correction
+families outside the enlarged span in (4) are not covered by that
+conclusion. Example (6) shows that investigating nongraded limits
+is mathematically substantive. None of these statements supplies
+the requested global upper or lower bound.
+\end{document}
