@@ -27,7 +27,8 @@ strict signs, on
  \{(e_i,e_j):1\leq i\leq m,\ 1\leq j\leq s\}\subseteq\{0,1\}^{m+s}
 \]
 by at most $Cm/\log m$ admissible affine-ratio heads and a constant.
-Every denominator has positive constant and strictly positive slopes on all
+The resulting score can also be chosen nonzero at every vertex of the full
+Boolean cube. Every denominator has positive constant and strictly positive slopes on all
 $m+s$ original input variables. The same fixed row coefficients work for
 all columns and all sign tables; the column coefficients depend on $f$.
 \end{theorem}
@@ -164,7 +165,12 @@ Thus $F_h^+-F_h^-$ differs from its interval indicator by at most $4/R$,
 and the full sum differs from the integer number of intervals containing
 $i$ by at most $4d/R<1/8$. If $f(i,j)=-1$ that integer is zero, and
 $S(e_i,e_j)<-3/8$. If $f(i,j)=1$ the integer is at least one, and
-$S(e_i,e_j)>3/8$. All signs are strict.
+$S(e_i,e_j)>3/8$. All prescribed signs are strict. To make every output on the full cube
+strict as well, choose $\delta\in(-1/16,1/16)$ avoiding the finitely many
+values $-S(u,v)$ and replace $S$ by $S+\delta$. Such a choice exists because
+a finite set cannot contain a nonempty real interval. This preserves the
+prescribed signs and all denominator properties. It merely chooses the
+labels of the extension outside the prescribed one-hot product.
 
 For an arbitrary sufficiently large row count $m$, choose
 $d=\lceil A m/\log_2 m\rceil$ with a sufficiently large absolute $A$.
