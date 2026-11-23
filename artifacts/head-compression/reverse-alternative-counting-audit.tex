@@ -134,6 +134,45 @@ $H\,\operatorname{poly}(n)$ monomials cannot be used here.
 This literature-based consequence is not Lean-formalized and is not
 used by the imported counting theorem.
 
+\section{Positive poles are not uniquely recoverable from the cube}
+There is a nontrivial exact equality between two sums of three positive
+reciprocal heads. Let $a=x_1-x_2$, $b=x_2-x_3$, and let $D$ be any
+affine form with positive constant and all slopes strictly greater than
+two. Then on the entire Boolean cube
+\[
+ \frac1{D+2a+2b}+\frac1{D+a}+\frac1{D+b}
+ =\frac1{D+2a+b}+\frac1{D+a+2b}+\frac1D.
+\]
+Indeed at every Boolean point one of $a=0$, $b=0$, or $a+b=0$ holds,
+since among three bits two are equal. In each case the two denominator
+triples coincide as multisets. Every displayed denominator retains
+positive constant and strictly positive slopes. The triples are
+different affine-form multisets, and every numerator is the constant one.
+
+The ambiguity is not explained merely by a continuous redundant fiber.
+For dimension five, take
+$D=100+4x_1+5x_2+6x_3+7x_4+8x_5$ and view each triple as a map from
+its eighteen independent affine denominator coefficients to cube values.
+Both Jacobians have column rank eighteen. An exact certificate uses
+the eighteen lexicographic vertex indices
+\[
+ 0,16,8,4,3,5,6,17,9,12,10,11,2,18,14,15,7,13.
+\]
+The two square minors have determinants congruent to $2363$ and
+$997640$, respectively, modulo the prime $1000003$. Every denominator
+in the Jacobian is invertible modulo that prime. Thus both rational
+determinants are nonzero. The reproducible exact calculation is
+\texttt{reverse-alternative-pole-check.py}. The inverse function theorem
+applied to those selected coordinates shows that each representation is
+locally isolated in its full-cube value fiber. This regularity consequence
+is written, not Lean-formalized.
+
+The example refutes uniqueness of positive-pole representations even
+with constant positive numerators and local isolation. It yields only
+two distinct unordered representations. It does not refute the much
+weaker quantitative bound $H!C^{Hn}$ discussed above and does not give
+an asymptotic lower bound or an improved compiler.
+
 \paragraph{Open work.}
 The exact recurrence, convex sections, shared-direction observations,
 and standard rational-network counting results have not supplied the
