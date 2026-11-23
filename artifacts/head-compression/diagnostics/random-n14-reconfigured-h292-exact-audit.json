@@ -1,0 +1,24 @@
+{
+  "input_file": "artifacts/head-compression/certificates/random-n14-reconfigured-h292.json",
+  "input_sha256": "3947c2f8c0e9e935d778d6d53ac0ae5386d0676a5a701c30a215f5ad49f90870",
+  "n": 14,
+  "heads": 292,
+  "vertices_checked": 16384,
+  "precision_bits": 224,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 16384,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    6732842422120902190696206878165058430455767667102764688487057326099,
+    6732842422120902190696206878165058430455767667102764688487057326392
+  ],
+  "interval_denominator": 26959946667150639794667015087019630673637144422540572481103610249216,
+  "minimum_margin_approximation": 0.24973500523740047,
+  "all_target_signs_certified": true,
+  "seconds": 1.6028981779236346,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}

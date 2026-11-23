@@ -132,6 +132,13 @@
       "file": "random-n5-permutation-h6.json",
       "sha256": "349ee1eef5f6427cc9a638c8d0b2706426b1b22a336fc7a412d9f0c91ac2bad0",
       "scope": "One fixed full-cube target in the affine permutation family; both exact checkers passed. No universal bound."
+    },
+    {
+      "file": "random-n14-reconfigured-h292.json",
+      "sha256": "3947c2f8c0e9e935d778d6d53ac0ae5386d0676a5a701c30a215f5ad49f90870",
+      "verifier": "../audit_rational_score.py",
+      "audit": "../diagnostics/random-n14-reconfigured-h292-exact-audit.json",
+      "scope": "An audited reconfiguration of the original fourteen-bit target, with 292 heads and minimum margin above 0.2497. No head saving and no universal bound."
     }
   ],
   "optimization_audit_certificates": [

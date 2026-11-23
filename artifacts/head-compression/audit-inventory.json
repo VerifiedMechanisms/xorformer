@@ -914,7 +914,7 @@
     "script": "search_pair_completion.py",
     "self_test": "diagnostics/pair-completion-self-test.json",
     "scope": "Numerical LP proposals for replacing two heads by one while fixing the residual; successful scores require independent exact audit. No universal feasibility or impossibility claim.",
-    "status": "Six-hour search of the original fourteen-bit target is running.",
+    "status": "Interrupted after 20769 distinct pair indices were reached; no smaller certificate. See diagnostics/interrupted-completion-searches.json.",
     "exact_restricted_obstruction": {
       "pair": [
         7,
@@ -944,7 +944,19 @@
     "script": "search_dual_guided_reconfiguration.py",
     "self_test": "diagnostics/dual-reconfiguration-self-test.json",
     "mechanism": "Use a pair-completion dual to select a margin-constrained affine-fraction update to a retained head; accept only measured pair-objective improvement.",
-    "status": "Six-hour fourteen-bit experiment running.",
-    "scope": "Changes the previously fixed residual. No convergence, universal progress, or upper-bound theorem is asserted."
+    "status": "Interrupted after 21793 proposals; no head reduction. Saved 292-head state independently audited with margin above 0.2497.",
+    "scope": "Changes the previously fixed residual. No convergence, universal progress, or upper-bound theorem is asserted.",
+    "checkpoint_certificate": "certificates/random-n14-reconfigured-h292.json",
+    "checkpoint_pair_obstruction": "diagnostics/reconfigured-pair-7-276-noncompletion: exact witnesses in both orientations, with the other 290 reconfigured heads fixed."
+  },
+  "arithmetic_decoder_audit": {
+    "manual_proof": "arithmetic-decoder-audit.tex",
+    "construction": "For every Boolean table, one positive affine integer T+t(x) encodes membership through gcd(T+t(x),M)>1 for fixed M.",
+    "obstruction": "A fixed H-term affine-fraction decoder with affine dependence on one stored real parameter realizes all 2^N labels only if NH >= 2^N-1.",
+    "scope": "No gcd operation is allowed in the head model. The decoder restriction is additional; this is not a lower bound on target-dependent W(n).",
+    "literature_entries": [
+      96,
+      97
+    ]
   }
 }

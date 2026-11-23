@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "orientation": 1,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "witness": "witness-1.json",
+      "numerical_cleared_slack": -0.002001487376872495,
+      "support": 15
+    },
+    {
+      "orientation": -1,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "witness": "witness--1.json",
+      "numerical_cleared_slack": -9.50815973326835e-06,
+      "support": 29
+    }
+  ],
+  "scope": "A restricted fixed-residual obstruction only."
+}

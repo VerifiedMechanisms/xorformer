@@ -1,0 +1,38 @@
+{
+  "pair_completion": {
+    "status": "Interrupted before final result; previous process session is no longer available.",
+    "events": 83075,
+    "last_event": {
+      "pair": [
+        97,
+        124
+      ],
+      "order": 20768,
+      "orientation": -1,
+      "floor": 1e-06,
+      "seconds": 16326.766358620953,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "scale": 5148104.266244294,
+      "cleared_slack": -0.028469480405328523,
+      "errors": 8136,
+      "minimum_margin": -108159724027.52518
+    },
+    "source_events_sha256": "bf4817a3949e064b62552296f1b040e93c8ccbe9d6c5c6a58f9d256574178281",
+    "certificate_produced": false
+  },
+  "dual_reconfiguration": {
+    "status": "Interrupted before final result; previous process session is no longer available.",
+    "events": 21793,
+    "last_event": {
+      "attempt": 21793,
+      "head": 78,
+      "accepted": false,
+      "slack": -9.508057691729653e-06,
+      "seconds": 7564.794906322844
+    },
+    "source_events_sha256": "a85bbcc3068f0f2e5e74ebcd595ae5556e807a5eec3b3c1ff5eed515cba58488",
+    "certificate_produced": false,
+    "accepted_moves": 151
+  }
+}

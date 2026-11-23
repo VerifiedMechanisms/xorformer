@@ -790,6 +790,22 @@
       "checked_location": "Theorems 1.3 and 1.4; Proposition 2.2 and their proofs.",
       "mechanism": "The reciprocal algebra is decomposed as a differential module; its Hilbert series is expressed by the arrangement Poincare polynomial.",
       "gap": "Products and derivatives of reciprocal generators exceed the flat affine-fraction head class. An exact open-set flattening obstruction is proved in mechanism-audit.tex. No finite-cube sign-compression construction follows."
+    },
+    {
+      "title": "Symbolic Listings as Computation",
+      "authors": "Hamilton Sawczuk and Edinah Gnang",
+      "url": "https://arxiv.org/pdf/2402.15885",
+      "checked_location": "Definition 2.1, differential-computer definitions in Section 2, and Lemma 2.14",
+      "mechanism": "Stores YES instances in polynomial coefficients; input-selected differential operators retrieve them. Chow decompositions concern sums of products of affine factors.",
+      "gap": "Coefficient retrieval is not a head operation, and low Chow rank has no proved conversion to a small sum of admissible affine fractions. No transfer to the target is claimed."
+    },
+    {
+      "title": "On Partial Differential Encodings of Boolean Functions",
+      "authors": "Edinah K. Gnang and Rongyu Xu",
+      "url": "https://arxiv.org/pdf/2008.06801",
+      "checked_location": "Proposition 1 and Definition 2; equations (2.4), (2.5), and the input-selected derivative formula",
+      "mechanism": "Boolean interpolation can be written as a complex product of affine factors; differential encodings extract selected monomial coefficients.",
+      "gap": "The displayed universal complex product can use 2^n-1 factors. Differentiation, coefficient extraction, and complex factorization are not free operations in the manuscript model. The construction does not prove the requested bound."
     }
   ]
 }

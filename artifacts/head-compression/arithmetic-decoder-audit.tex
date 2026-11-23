@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Arithmetic Storage and the Cost of a Flat Decoder}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+The statements below audit an arithmetic construction, not the requested
+upper bound. In particular, a fixed decoder is an additional restriction.
+The manuscript allows all head parameters to depend on the target.
+
+\begin{proposition}[One positive affine integer stores every table]
+Let $n\ge1$, $N=2^n$, and
+$t(x)=\sum_{i=0}^{n-1}2^i x_i$ on $\{0,1\}^n$.
+There is a positive integer $M$, depending only on $n$, such that every
+subset $S$ of the cube has an integer $T$ with $1\le T\le M$ satisfying
+\[
+ x\in S\quad\Longleftrightarrow\quad\gcd(T+t(x),M)>1.
+\]
+The affine form $T+t(x)$ is positive and all its variable coefficients
+are strictly positive.
+\end{proposition}
+
+\begin{proof}
+Choose distinct primes $p_v>2N$ for the $N$ vertices $v$ and put
+$M=\prod_v p_v$. By the Chinese remainder theorem, choose the unique
+representative $T\in\{1,\ldots,M\}$ satisfying
+\[
+ T\equiv
+ \begin{cases}
+ -t(v)&v\in S,\\
+ N-t(v)&v\notin S
+ \end{cases}
+ \pmod {p_v}.
+\]
+If $v\in S$, then $T+t(x)\equiv t(x)-t(v)\pmod {p_v}$.
+The difference lies between $-(N-1)$ and $N-1$, so divisibility occurs
+exactly when $x=v$. If $v\notin S$, the corresponding residue is
+$N+t(x)-t(v)$, an integer between $1$ and $2N-1$, and divisibility
+never occurs. A common prime divisor with $M$ therefore exists exactly
+at the vertices of $S$. Positivity of $T$ proves the remaining claims.
+\end{proof}
+
+The greatest-common-divisor test in this proposition is a decoding
+operation. It is not an attention head or a linear readout. The next
+statement quantifies one attempted replacement for that operation.
+
+\begin{proposition}[Affine dependence on one stored real parameter]
+Let $X$ have $N$ elements. Fix a family
+\[
+ F_T(x)=c+\sum_{h=1}^H
+ \frac{a_{h,x}T+b_{h,x}}{u_{h,x}T+v_{h,x}},
+\]
+where all displayed coefficients are independent of $T$.
+Suppose there is a set $E\subset\mathbb R$ such that every denominator
+is positive for every $(T,x)\in E\times X$, all scores are nonzero
+there, and the vectors $\bigl(\operatorname{sgn}F_T(x)\bigr)_{x\in X}$,
+as $T$ ranges over $E$, include all $2^N$ sign vectors. Then
+\[
+ NH\ge 2^N-1.
+\]
+If the common bias is affine in $T$, the same proof gives
+$N(H+1)\ge2^N-1$.
+\end{proposition}
+
+\begin{proof}
+Choose one parameter for each distinct sign vector and sort these
+$2^N$ real numbers. They are distinct because a fixed parameter has
+only one sign vector. For each $x$, clear the $H$ denominators to obtain
+a polynomial $P_x(T)$ of degree at most $H$. It is not identically
+zero, since every selected score is nonzero. At each selected
+parameter its sign equals the sign of $F_T(x)$.
+
+Every consecutive pair in the sorted list has different sign vectors.
+For at least one $x$, the corresponding values of $P_x$ have opposite
+signs. The intermediate value theorem gives a root in that open
+parameter interval. The intervals are disjoint. Charging each
+interval to one such polynomial gives at least $2^N-1$ distinct
+polynomial roots counted with their polynomial labels. On the other
+hand, the $N$ nonzero polynomials have at most $NH$ real roots in
+total. This proves the inequality. An affine bias increases the
+degree bound by at most one.
+\end{proof}
+
+The coefficients in the second proposition need not be affine in
+$x$, so its obstruction also applies to that more generous decoder.
+It excludes a fixed small affine-fraction device that reads the
+Chinese-remainder code merely by inserting $T$ affinely into its
+coefficients. It does not exclude target-dependent denominators with
+arbitrary dependence on the target, as required in the problem.
+
+\paragraph{Differential encodings.}
+Sawczuk and Gnang's \emph{Symbolic Listings as Computation},
+\href{https://arxiv.org/pdf/2402.15885}{arXiv:2402.15885},
+Definition 2.1 and Section 2, store a Boolean table in polynomial
+coefficients and retrieve entries with input-selected differential
+operators. Gnang and Xu's
+\emph{On Partial Differential Encodings of Boolean Functions},
+\href{https://arxiv.org/pdf/2008.06801}{arXiv:2008.06801},
+Proposition 1 and Definition 2, similarly distinguish a polynomial
+encoding from coefficient retrieval. The complex factorization in
+Proposition 1 has up to $2^n-1$ affine factors. Neither the
+differentiation operation nor the complex factors are admissible
+affine fractions in the manuscript. A small Chow rank therefore
+does not itself supply a head-count bound.
+
+\paragraph{Status of the mechanism.}
+Arithmetic storage is explicit, but no decoder with the required
+head count has been constructed. Replacing the decoder by an
+unproved universal sign-realization lemma would restate the target
+gap. This route remains blocked until an admissible decoding
+construction supplies the missing quantitative bound.
+
+\end{document}
