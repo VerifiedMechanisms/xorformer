@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\title{The Exact Affine Span of Butterfly Permutations}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The affine span and the resulting independent diagonal readouts below have
+complete written proofs and exhaustive exact checks through eight wires.
+They do not give an admissible head decoder or an asymptotic complexity
+bound. None of this note is Lean formalized. The final obstruction concerns
+exact single-kernel readouts with fixed residues only.
+
+Put $H=2^d$, and label the wires by $d$ bits numbered from $0$ to $d-1$.
+At layer $k$, the network independently switches the two wires differing
+in bit $k$, for every fixed lower tuple $s$ and higher tuple $g$.
+Write $\mathcal P_d$ for the resulting permutation matrices, with
+$P_\pi(h,y)=\mathbf1_{\{\pi(h)=y\}}$.
+There are $Hd/2$ switch bits. Their independent rectangle readouts and the
+injectivity of the network parametrization are proved in
+\texttt{butterfly-rectangle-decoder.tex}.
+
+Define input and output Haar vectors by
+\[
+ u_{k,g}(h)=\mathbf1_{\{h>>(k+1)=g\}}(-1)^{h_k},
+ \qquad
+ v_{k,s}(y)=\mathbf1_{\{y\bmod 2^k=s\}}(-1)^{y_k}.
+\]
+Let $U_k$ and $V_k$ be their spans as $g$ and $s$ vary.
+Together with the constant vector, the $U_k$ form an orthogonal
+ decomposition of $\mathbb R^H$, and the $V_k$ do likewise in the reverse
+bit order. Their dimensions are
+\[
+ \dim U_k=H/2^{k+1},\qquad \dim V_k=2^k.
+\]
+All inner products are unnormalized coordinate sums.
+
+\begin{theorem}[Exact affine difference space]
+For any $P_0\in\mathcal P_d$, the linear span of
+$\{P-P_0:P\in\mathcal P_d\}$ is
+\[
+ \mathcal S_d=\bigoplus_{0\leq a\leq b<d}U_a\otimes V_b.
+\]
+In particular its dimension is $H^2-H-Hd/2$.
+\end{theorem}
+\begin{proof}
+Every permutation matrix has row and column sums one, so difference
+matrices have zero constant tensor components. Consider $a>b$.
+For an input block of size $2^{a+1}$ defining $u_{a,g}$, each of its
+halves has fixed bits at positions at least $a$. The first $a$ layers
+biject its lower $a$ bits, and all remaining layers preserve those
+output bits. Each half therefore contains exactly one image with each
+prescribed lower $a$ tuple. Since $v_{b,s}$ depends only on these lower
+bits, its sum over either half is the same, in fact zero. Hence
+$\langle u_{a,g}\otimes v_{b,s},P\rangle=0$ for every $P$.
+This proves the inclusion in the asserted upper triangular tensor sum.
+
+For the reverse inclusion, change just one layer-$k$ switch, leaving
+all other switches fixed. Its two incoming original wires $h,h'$ have
+highest differing bit $k$, and its two final outputs $y,y'$ have lowest
+differing bit $k$. The difference of the two permutation matrices is,
+up to sign,
+\[
+ (e_h-e_{h'})\otimes(e_y-e_{y'}).
+\]
+Every pair of this form is realizable. Earlier layers can independently
+route the two chosen inputs to any common lower tuple, because they
+lie in distinct fixed-bit-$k$ halves. To see the routing assertion,
+follow the input and set its switch at each earlier layer to assign
+the desired next bit. Later layers can likewise independently assign
+the two desired higher output tuples, because the two wires have
+different bit $k$ and later switches preserve it.
+
+Differences between all pairs with highest differing bit $k$ span the
+space of vectors with zero sum on each dyadic block of size $2^{k+1}$.
+Indeed, within each such block the cross-half pairs form a connected
+complete bipartite graph; its edge differences span all zero-sum
+vectors on that block. This space is $U_0\oplus\cdots\oplus U_k$.
+The analogous output differences span $V_k\oplus\cdots\oplus V_{d-1}$.
+Since the input and output pairs above can be selected independently,
+$\mathcal S_d$ contains
+\[
+ (U_0\oplus\cdots\oplus U_k)\otimes
+ (V_k\oplus\cdots\oplus V_{d-1})
+\]
+for every $k$. These spaces together contain every tensor block $a\leq b$.
+Finally,
+\[
+ \sum_{a=0}^{d-1}\frac{H}{2^{a+1}}
+       \sum_{b=a}^{d-1}2^b
+ =\sum_{a=0}^{d-1}\frac{H}{2^{a+1}}(H-2^a)
+ =H^2-H-Hd/2.
+\]
+\end{proof}
+
+\begin{proposition}[Independent diagonal Haar signs]
+If $\theta_{k,s,g}\in\{0,1\}$ is the setting of a switch, then
+\[
+ \langle u_{k,g}\otimes v_{k,s},P_\pi\rangle
+       =2-4\theta_{k,s,g}.
+\]
+Thus all $Hd/2$ diagonal Haar tensor signs are independently realized.
+\end{proposition}
+\begin{proof}
+Let $A$ be the bit-$k$ zero half of input block $g$, and let $B$ be
+the bit-$k$ one half of output residue class $s$. Write
+\[
+ \mathbf1_A=(\mathbf1_{\text{input block }g}+u_{k,g})/2,
+ \qquad
+ \mathbf1_B=(\mathbf1_{\text{output residue }s}-v_{k,s})/2.
+\]
+The input block indicator has only a constant component and input
+levels strictly above $k$; the output residue indicator has only a
+constant component and output levels strictly below $k$.
+Consequently the projection of
+$\mathbf1_A\otimes\mathbf1_B$ onto $\mathcal S_d$ is
+$-u_{k,g}\otimes v_{k,s}/4$.
+The rectangle identity gives
+$\langle\mathbf1_A\otimes\mathbf1_B,P_\pi\rangle=\theta_{k,s,g}$.
+For the all-zero switch configuration the permutation is the identity,
+the rectangle count is zero, and the Haar tensor inner product is two:
+its two nonzero diagonal contributions both equal one. Subtracting this
+base configuration proves the formula.
+\end{proof}
+
+\paragraph{What quotienting by the invariants permits.}
+Let $a,b\in\mathbb R^H$ and consider the assignment cost
+$\sum_h a_h b_{\pi(h)}$.
+Its nonconstant restriction to butterfly permutations is completely
+specified by the tensor blocks
+\[
+ \operatorname{proj}_{U_i}(a)\otimes
+ \operatorname{proj}_{V_j}(b),\qquad i\leq j.
+\]
+Therefore an exact scalar multiple of one diagonal Haar readout, up to
+an assignment-independent constant, requires these blocks to vanish
+except at the prescribed pair $(k,k)$; at that pair they must be the
+prescribed nonzero multiple of $u_{k,g}\otimes v_{k,s}$.
+This is an equality criterion, not a necessary criterion for merely
+matching signs on the finite permutation family.
+
+\begin{proposition}[A restricted exterior-kernel obstruction]
+Fix distinct real poles $\xi_h$, take $t>\max_h\xi_h$, and put
+$a_h=(t-\xi_h)^{-p}$ for any positive integer $p$.
+If $H\geq4$, no choice of $b$, nonzero scalar, and additive constant
+makes the cost $\sum_h a_h b_{\pi(h)}$ exactly equal to any single
+switch readout on all butterfly permutations.
+\end{proposition}
+\begin{proof}
+The projection of $a$ onto $U_0$ has a nonzero coefficient on every
+adjacent-pair Haar vector: the two distinct poles give unequal kernel
+values. To obtain a diagonal level-$k$ readout for $k>0$, the output
+level-$k$ component of $b$ must be nonzero; its tensor with the nonzero
+input level-zero component then gives a forbidden $(0,k)$ block.
+For $k=0$, the output level-zero space has dimension one, so the input
+level-zero component would have to be supported on one input pair.
+There are at least two pairs, and all its pair coefficients are nonzero.
+\end{proof}
+
+This obstruction does not apply to target-dependent residues, sums of
+several exterior kernels, approximate or sign-only readouts, or the full
+admissible head model. Hierarchically separated pole digits can suppress
+some lower input levels, but do not by themselves isolate one location
+within the desired level. Producing simultaneous strict sign readouts
+with a superconstant row-to-head ratio remains open.
+
+\paragraph{Verification.}
+The companion exact checker exhausts the networks on $H=2,4,8$ wires.
+It checks every diagonal identity and every vanishing lower tensor
+block using integers. The affine span ranks are $1,8,44$, certified
+by row reduction modulo the prime $1000003$; the written upper bound
+then makes these modular lower bounds exact over the rationals.
+No numerical feasibility result is promoted to a universal theorem.
+\end{document}
