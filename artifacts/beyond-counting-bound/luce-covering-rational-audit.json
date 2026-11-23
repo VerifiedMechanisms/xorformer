@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "choice_menu_checks": 1716,
+  "head_identity_and_error_checks": 56,
+  "largest_observed_choice_error_over_epsilon_upper_decimal": 0.05993608637255141,
+  "arithmetic": "exact fractions for every assertion; decimal is report only",
+  "scope": "finite diagnostic, not a substitute for the universal proof",
+  "script_sha256": "739aef20ef851a1e07136fa76e792294fba2367c1ebf6aec400b1950988525fd",
+  "main_target_proved": false
+}

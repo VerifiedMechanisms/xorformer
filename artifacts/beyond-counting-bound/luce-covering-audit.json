@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T14:03:09.326216+00:00",
+  "lean_file": "formalization/HeadComplexity/Atoms/LuceCovering.lean",
+  "lean_sha256": "2ee4ec826dc71d92c37f68f3ce7b694d1896861dd46b8429cceaa45c35ad4224",
+  "declarations": [
+    "HeadComplexity.LuceCovering.normalized_l1_bound",
+    "HeadComplexity.LuceCovering.split_relative_error",
+    "HeadComplexity.LuceCovering.choice_table_identity",
+    "HeadComplexity.LuceCovering.convex_combination_error"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "formalization_scope": "Four algebraic ingredients only; cover and counts are written proofs.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/luce-covering.md",
+      "source_math_spans": 135,
+      "rendered_math_spans": 135,
+      "findings": 0,
+      "sha256": "458522b2cc5f0ed435a847a301bf9460db683101b2fc9fb21a996a51d096bad4"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 99,
+      "rendered_math_spans": 99,
+      "findings": 0,
+      "sha256": "77883455868d4bf7b2cdbe19ff7fffeae2941dca88e210a54d66e4b5e8ffa441"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "c4d57b60885675d1d39a6011c54c121e76da2bba6f1a63061155f7be15150e85"
+    }
+  ],
+  "katex": "PASS, three files, 235 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "rational_audit": "luce-covering-rational-audit.json",
+  "model_changes": [],
+  "main_target_proved": false
+}
