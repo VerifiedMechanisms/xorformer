@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{theorem}{Theorem}
+\title{Star Covers for Unbalanced Exceptional Faces}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The face approximation and concrete compiler transfer below are Lean
+checked in \texttt{AxisZeroStarFaces.lean} and
+\texttt{AxisZeroUnbalancedTransfer.lean}. They use the unchanged original
+atoms and invariants. The unbalanced asymptotic calculation is a complete
+written implication, but its local compiler premise is unproved. This
+note does not establish either accepted asymptotic target.
+
+Write $K(m)$ for the existing \texttt{monomialStarCoverNumber m}. Its
+checked bound is $K(m)\leq 11\,2^m/m$ for $m\geq1$.
+An upward monomial star with center $U\subseteq[m]$ consists of $U$ and
+some of its one-element extensions. Thus $K(m)$ stars cover all subsets
+of $[m]$.
+
+\begin{theorem}[Real-valued face correction]
+Fix disjoint coordinate sets $S$ and $J$ in the original $n$-cube, with
+$|J|=m$. Every function
+\[
+ x\longmapsto x_S g(x_J),\qquad x_S=\prod_{i\in S}x_i,
+ \qquad g:\{0,1\}^J\longrightarrow\mathbb R,
+\]
+is uniformly approximable, to arbitrary positive accuracy on the whole
+cube, by a bias plus $K(m)$ original admissible atoms.
+\end{theorem}
+\begin{proof}
+Expand $g$ in squarefree monomials,
+$g(x_J)=\sum_{U\subseteq J}c_Ux_U$. Assign every $U$ to a covering
+upward star with center $V$. The terms assigned to $V$ sum to
+$x_V L_V(x_J)$ for an affine $L_V$. Multiplying by $x_S$ gives
+$x_{S\cup V}L_V(x_J)$, since $S$ and $J$ are disjoint. The existing
+one-atom approximation theorem for a monomial times an affine function
+applies to each such term. Approximate each of the $K(m)$ terms closely
+enough that their total error is less than the prescribed accuracy.
+Constants are included in this grouping; no subtraction of a constant
+outside the face is used.
+\end{proof}
+
+\begin{theorem}[Two faces]
+Suppose a score $G$ with $H$ original heads has the correct nonzero
+strict signs outside the union of two positive coordinate faces of
+free dimensions $a,b$. Then the whole Boolean function has an original
+representation with at most $H+K(a)+K(b)$ heads.
+\end{theorem}
+\begin{proof}
+Let $T(x)$ equal $1$ or $-1$ according to the desired Boolean value.
+For the first face, let $P$ be its fixed-coordinate monomial and let
+$\rho(x)$ set its fixed coordinates to one. The correction
+$R(x)=P(x)(T(\rho(x))-G(\rho(x)))$ replaces $G$ by $T$ on that face
+and vanishes elsewhere. Write $G_1=G+R$. For the second face use
+$S(x)=Q(x)(T(\tau(x))-G_1(\tau(x)))$.
+Then $G_1+S$ has correct strict signs everywhere. On the intersection,
+$G_1=T$, so the second correction is zero. The first theorem approximates
+$R$ and $S$ with $K(a)$ and $K(b)$ heads. The finite cube has a positive
+minimum strict margin for $G_1+S$. Choose the total approximation error
+smaller than this margin. This also preserves every previously obtained
+sign away from the faces.
+\end{proof}
+
+\begin{theorem}[Unbalanced concrete transfer]
+Let $a,b\geq1$. Suppose every $a$ by $b$ sign table admits a reverse
+axis-zero local compiler with at most $M$ heads, positive denominators
+on the full $(a+b)$-cube, and strictly negative slopes, as required by
+\texttt{HasReverseAxisCompiler a b M}. Then
+\[
+ W(a+b)\leq 484\frac{2^{a+b}M}{ab}
+       +K(a)+K(b)
+ \leq484\frac{2^{a+b}M}{ab}
+       +11\frac{2^a}{a}+11\frac{2^b}{b}.
+\]
+\end{theorem}
+\begin{proof}
+Use the checked open upper-star covers of the two coordinate blocks,
+with at most $22\,2^a/a$ and $22\,2^b/b$ centers. The checked descending
+cell enumeration and reverse gluing theorem use one $M$-head module per
+pair of centers, and give strict correct signs outside the two positive
+exceptional faces. Apply the preceding theorem. All biases are absorbed
+by the existing gluing construction before this correction; this argument
+introduces no extra head for them. The exact integer statement is
+$H^*(f)\leq |D\times E|M+K(a)+K(b)$. Maximizing over the unchanged
+Boolean-function domain yields the displayed bound.
+\end{proof}
+
+\paragraph{Why the unbalanced split is now viable.}
+Put $b=\lfloor\log_2 n\rfloor$ and $a=n-b$. For all sufficiently large
+$n$, we have $a\geq n/2$ and $n/2<2^b\leq n$. Consequently
+\[
+ \frac{2^a}{a}\leq\frac{4\,2^n}{n^2},\qquad
+ \frac{2^b}{b}\leq\frac{n}{b}.
+\]
+If the missing compiler could be proved with
+$M(a,b)\leq Cb/\log(b+1)$ along these splits, the main term would be
+at most $968C\,2^n/(n\log(b+1))$, while both face terms are smaller
+asymptotically. Since $\log(b+1)\sim\log\log n$, this would prove
+target (A), with natural logarithms. This is a strictly identified
+unproved hypothesis, not a claimed compiler theorem. In particular,
+a VC lower bound without the compact full-cube denominator condition
+would not by itself discharge the hypothesis.
+
+\paragraph{Checked declarations.}
+In namespace \texttt{HeadComplexity.AxisZeroGluing}, the central new
+results are
+\texttt{positive\_face\_uniformlyAtomsApproximable\_star},
+\texttt{repair\_two\_positive\_faces\_star},
+\texttt{HStar\_le\_product\_cover\_of\_compiler\_star\_faces}, and
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_reverse\_axis\_compiler\_star\_faces\_eleven}.
+The original definitions and earlier transfer results are unchanged.
+\end{document}
