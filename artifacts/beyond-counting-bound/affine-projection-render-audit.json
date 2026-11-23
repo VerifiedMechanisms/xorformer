@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T22:39:40.718227+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/affine-projection-module.md",
+      "source_math_spans": 172,
+      "rendered_math_spans": 172,
+      "findings": 0,
+      "notes": [
+        "artifacts/beyond-counting-bound/affine-projection-module.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ K=\\\\left\\\\lbrace Q=(Q_0,\\\\ldots,Q_n):Q_0(tx)+\\\\sum_{i=1}^n x_iQ_i(tx)=0\\\\text{ for'",
+        "artifacts/beyond-counting-bound/affine-projection-module.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ \\\\sum_{\\\\varnothing\\\\neq T\\\\subseteq U}c_T=0\\\\qquad(\\\\varnothing\\\\neq U\\\\subseteq[n],'"
+      ],
+      "sha256": "40fb357ed75c15d55aa84e53cde1f234f5b140bdb7c55aaef0641ee8a95a1e4f"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "17bbf0a382d620cfd886a7601ca345146f10c7582de284a0fb2c72b98d6be76d"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "0fbf19262e1bcd5139576303cfd92addd2029b5086a17b426374dd9974b6bc9a"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

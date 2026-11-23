@@ -1,0 +1,133 @@
+{
+  "status": "PASS",
+  "normal_forms": {
+    "tagged_monomials": 10697,
+    "generator_multiples": 68828,
+    "quotient_dimensions": 36,
+    "boolean_evaluations": 521740
+  },
+  "graphs": {
+    "graphs": 84,
+    "cycles": [
+      {
+        "n": 3,
+        "heads": 6,
+        "square_rank": 5,
+        "cube_rank": 6,
+        "affine_dimension": 2
+      },
+      {
+        "n": 4,
+        "heads": 8,
+        "square_rank": 7,
+        "cube_rank": 8,
+        "affine_dimension": 3
+      },
+      {
+        "n": 5,
+        "heads": 10,
+        "square_rank": 9,
+        "cube_rank": 10,
+        "affine_dimension": 4
+      },
+      {
+        "n": 6,
+        "heads": 12,
+        "square_rank": 11,
+        "cube_rank": 12,
+        "affine_dimension": 5
+      },
+      {
+        "n": 7,
+        "heads": 14,
+        "square_rank": 13,
+        "cube_rank": 14,
+        "affine_dimension": 6
+      },
+      {
+        "n": 8,
+        "heads": 16,
+        "square_rank": 15,
+        "cube_rank": 16,
+        "affine_dimension": 7
+      }
+    ],
+    "reciprocal_checks": 1512
+  },
+  "contact_circuits": [
+    {
+      "m": 3,
+      "heads": 8,
+      "moment_rank": 7,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 384
+    },
+    {
+      "m": 4,
+      "heads": 9,
+      "moment_rank": 8,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 6144
+    },
+    {
+      "m": 5,
+      "heads": 10,
+      "moment_rank": 9,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 122880
+    },
+    {
+      "m": 6,
+      "heads": 11,
+      "moment_rank": 10,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 2949120
+    },
+    {
+      "m": 7,
+      "heads": 12,
+      "moment_rank": 11,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 82575360
+    },
+    {
+      "m": 8,
+      "heads": 13,
+      "moment_rank": 12,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 2642411520
+    },
+    {
+      "m": 9,
+      "heads": 14,
+      "moment_rank": 13,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 95126814720
+    },
+    {
+      "m": 10,
+      "heads": 15,
+      "moment_rank": 14,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 3805072588800
+    },
+    {
+      "m": 11,
+      "heads": 16,
+      "moment_rank": 15,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 167423193907200
+    },
+    {
+      "m": 12,
+      "heads": 17,
+      "moment_rank": 16,
+      "affine_dimension": 3,
+      "first_nonzero_moment": 8036313307545600
+    }
+  ],
+  "arithmetic": "Integer polynomial coefficients, rational reciprocals, exact SymPy ranks",
+  "script_sha256": "d2faac8483eedc9a06b0bea4b3eed3c6cab59378ee278a39d208334e9b2c68ee",
+  "scope": "Finite exact replay, not proof of arbitrary-dimension assertions or main target",
+  "main_target_proved": false
+}

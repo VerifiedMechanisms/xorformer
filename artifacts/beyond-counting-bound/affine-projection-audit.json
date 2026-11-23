@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T22:44:37.678726+00:00",
+  "build": "affine-projection-build.txt",
+  "build_jobs": 3137,
+  "declarations": [
+    "HeadComplexity.AffineProjectionModule.transfer_identity",
+    "HeadComplexity.AffineProjectionModule.first_generator_boolean",
+    "HeadComplexity.AffineProjectionModule.second_generator_boolean",
+    "HeadComplexity.AffineProjectionModule.two_head_identity",
+    "HeadComplexity.AffineProjectionModule.three_head_identity",
+    "HeadComplexity.AffineProjectionModule.graph_edge_identity",
+    "HeadComplexity.AffineProjectionModule.cycle_identity",
+    "HeadComplexity.AffineProjectionModule.square_edge_difference",
+    "HeadComplexity.AffineProjectionModule.cube_edge_difference",
+    "HeadComplexity.AffineProjectionModule.cube_pair_independent"
+  ],
+  "axiom_audit": "affine-projection-axioms.txt",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_sha256": "fe77bb5e4a8a62ea37027d7e361a03af2386f7ba892e6f3661daac04f16baf89",
+  "writeup_sha256": "40fb357ed75c15d55aa84e53cde1f234f5b140bdb7c55aaef0641ee8a95a1e4f",
+  "rational_audit": "affine-projection-rational-audit.json",
+  "render_audit": "affine-projection-render-audit.json",
+  "scope": "Ten Lean algebraic declarations including general finite-permutation cycle identity. Four general theorems have complete written proofs; no complete Lean module or contact-circuit theorem claimed.",
+  "model_changes": [],
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}

@@ -993,5 +993,11 @@
     "audit": "priority-convex-audit.json",
     "status": "Complete written equality and maximal support; thirteen kernel-checked declarations including finite elimination induction",
     "main_target_proved": false
+  },
+  "affine_projection_module": {
+    "writeup": "affine-projection-module.md",
+    "audit": "affine-projection-audit.json",
+    "status": "Complete written module classification, graph circuits and three-dimensional contact circuit; ten kernel-checked ingredients",
+    "main_target_proved": false
   }
 }

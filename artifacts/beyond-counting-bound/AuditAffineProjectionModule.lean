@@ -1,0 +1,12 @@
+import HeadComplexity.Atoms.AffineProjectionModule
+
+#print axioms HeadComplexity.AffineProjectionModule.transfer_identity
+#print axioms HeadComplexity.AffineProjectionModule.first_generator_boolean
+#print axioms HeadComplexity.AffineProjectionModule.second_generator_boolean
+#print axioms HeadComplexity.AffineProjectionModule.two_head_identity
+#print axioms HeadComplexity.AffineProjectionModule.three_head_identity
+#print axioms HeadComplexity.AffineProjectionModule.graph_edge_identity
+#print axioms HeadComplexity.AffineProjectionModule.cycle_identity
+#print axioms HeadComplexity.AffineProjectionModule.square_edge_difference
+#print axioms HeadComplexity.AffineProjectionModule.cube_edge_difference
+#print axioms HeadComplexity.AffineProjectionModule.cube_pair_independent

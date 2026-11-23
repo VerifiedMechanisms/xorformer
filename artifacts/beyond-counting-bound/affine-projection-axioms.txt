@@ -1,0 +1,16 @@
+'HeadComplexity.AffineProjectionModule.transfer_identity' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.AffineProjectionModule.first_generator_boolean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProjectionModule.second_generator_boolean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProjectionModule.two_head_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProjectionModule.three_head_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProjectionModule.graph_edge_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProjectionModule.cycle_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProjectionModule.square_edge_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProjectionModule.cube_edge_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProjectionModule.cube_pair_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
