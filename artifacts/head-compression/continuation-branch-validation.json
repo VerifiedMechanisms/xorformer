@@ -57,10 +57,55 @@
     "formalization/HeadComplexity/Results/AxisZeroCover.lean": "f7e0224a83509a1db163d1db8ed16988b721038c06ebe584d186de0056d9275b",
     "formalization/HeadComplexity/Results/AxisZeroFaces.lean": "e77eee5d5fa013dc82fd41f817b5b1172be8603f8dac284865ba3517df9c5077",
     "formalization/HeadComplexity/Results/ReverseAxisCompiler.lean": "b7d64cef2fa83b4f2c3d02f417eb1ca09867f5ffabd6759eae4c56dd153057b4",
-    "artifacts/head-compression/continuation-branch-audit.tex": "207ea26f23f2db15c74a2efe994c9ee3893206e1cddc1d371a8f6af64a098f8d",
-    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "f442efbcb7fe7737bbfbdc2aa4f5e45c5d49a280e41cd3e751354843d01de305"
+    "artifacts/head-compression/continuation-branch-audit.tex": "4ca03a5f6f29ccbdfec7444669280bb1d80f1803dc0a22ce80dd30ae51b36558",
+    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "f442efbcb7fe7737bbfbdc2aa4f5e45c5d49a280e41cd3e751354843d01de305",
+    "formalization/HeadComplexity/Polynomial/AlgebraicRegularValues.lean": "73d2d905041e895352803eafbaf2fd2ca7270be6bfce093eee0944031ed096f6",
+    "formalization/HeadComplexity/Polynomial/ConstrainedMinimaBound.lean": "d7423dde5106356a5fe766cf98e21c61e9ec8fe18fb279352fbe54b2d6fdebca",
+    "formalization/HeadComplexity/Polynomial/DiagonalRootBound.lean": "49f5fbc9c3cbcd22377b3cd0d859f693735ab0583a011cad7e21ced1c0e0d5d5",
+    "formalization/HeadComplexity/Polynomial/EvaluationDerivative.lean": "69bbf61ce047f1a7309226803cef699293de1ae0f1d2eb865a82369191535539",
+    "formalization/HeadComplexity/Polynomial/GenericClosestPoint.lean": "a7c1d08876d66e1a770eb2c13e4ddddd9b26d0572569d1d67540baac869b2fe9",
+    "formalization/HeadComplexity/Polynomial/GenericFiberBound.lean": "427f4b7e40ded87aabb3e4b0dc73b48dff2a3d8a393b18dd9ded1678a01808b3",
+    "formalization/HeadComplexity/Polynomial/GenericPolynomialValues.lean": "b20f96eb42412c607d8c79561861dcbaeb1986a6f4d6b52900717415c151e6aa",
+    "formalization/HeadComplexity/Polynomial/PenaltyMinimization.lean": "f8e7e842d935362771d37a6bd1988fbcea2c3a1cc20cd905358ab6eb7646d315",
+    "formalization/HeadComplexity/Polynomial/PolynomialSignCount.lean": "c759c9ebccc6893a068aa2cbfeda32aa7ad8136d5b9e4d1a488b1fe7ba6726cb",
+    "formalization/HeadComplexity/Polynomial/RegularRootBound.lean": "1358ae254b790e9a382aa43b0691b652cbcddd658f2431c037e113f9e4b63da5",
+    "formalization/HeadComplexity/Polynomial/SignRegionMinima.lean": "b714d00102bab971d92a48aa887a36ded7e56e695852cef56ccfbadf508564cd",
+    "formalization/HeadComplexity/Polynomial/SignedSubsetCount.lean": "8e540f5fa39bf45e76d57dd9f2a94d29386fb6b4d469d27a6c43326c0a3e9d98",
+    "formalization/HeadComplexity/Results/AxisZeroAsymptotics.lean": "bd417605c24d678f874eb34cd60f2e74d42d5febb0490bb385cdde3b56780a1f",
+    "formalization/HeadComplexity/Results/AxisZeroBaselineTransfer.lean": "4d58133b501797535eedb515990b86f3757247d9288300febdffbd4be9d6e713",
+    "formalization/HeadComplexity/Results/AxisZeroTransfer.lean": "f2d9c2417148a9b2a2cc2e12172ee43d4889e9d4b59b4ba97404355b2e84e605",
+    "formalization/HeadComplexity/Results/ReverseBalancedRows.lean": "a6927fea27fbb690cdeb83e0714ae499482ee100a7df08244dbfd1942d4ae467",
+    "formalization/HeadComplexity/Results/ReverseGridAxisRepair.lean": "2717b0865ae89e9d380fdd5d3c06588c54d457d92c51401eaecdb31857d7e7fc",
+    "formalization/HeadComplexity/Results/ReverseRankCorrection.lean": "8de3238cb288977a16fec36671f8c2bbfb3f42b04225f52b6b90b587fd9eacfd",
+    "formalization/HeadComplexity/Results/ReverseRowFlip.lean": "c01dfd19f7270387835b882a2120243c2ce16ab95d0b6bd74383b9e9eb4dc993",
+    "formalization/HeadComplexity/Results/WarrenAsymptotics.lean": "b88e0246e9fa0f0b080621ac617ea18c74f1cec98328a8efd004735384f60631",
+    "formalization/HeadComplexity/Results/WarrenBound.lean": "35ae40221e758272f17dc5b2d4bd0ddf3a02cd0998255d8f535332874142997e"
   },
   "new_written_audits": {
     "compact_decoder": "Exact axis and Mobius identities; whole-cube cross-ratio counterexample; signed erasure, mixed-moment, and exact butterfly obstructions; sign-only compact independent-bit readers require growing Cauchy degree. No asymptotic conclusion."
+  },
+  "second_audit": {
+    "source_commit": "2672bc2f68e854622722d26b91a86e42e1ccab31",
+    "verified_utc": "2026-11-23T22:29:27.598419+00:00",
+    "imported_modules": 21,
+    "lean_build": {
+      "command": "lake build HeadComplexity",
+      "cwd": "formalization",
+      "exit_code": 0,
+      "jobs": 9242
+    },
+    "axiom_audit": {
+      "compiled_theorems": 306,
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "exit_code": 0
+    },
+    "model_definitions_changed": false,
+    "asymptotic_resolution_proved": false,
+    "unconditional_new_bound": "For n >= 16, 2^n/(70*n^2) <= worstCaseHeadComplexity n.",
+    "conditional_loglog_bound": "Exact IsBigO conclusion requires an eventual HasReverseAxisCompiler budget; that hypothesis is not discharged."
   }
 }

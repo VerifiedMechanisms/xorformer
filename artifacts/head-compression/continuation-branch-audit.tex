@@ -55,8 +55,9 @@ after the complete finite construction, when intermediate axis zeros
 are no longer needed. Complementation sends an everywhere-positive
 negative-slope local denominator to a positive constant coefficient and
 nonnegative ambient slopes. These steps do not change the head count.
-The concrete ordered-center instantiation and final asymptotic
-combination remain written proofs, rather than additional Lean theorems.
+At the first audited commit, the concrete ordered-center instantiation
+and final asymptotic combination remained written proofs. The second
+audit below supersedes this limitation.
 
 \paragraph{Independent exact computations.}
 The rational-arithmetic script independently passed all 602 listed local
@@ -114,6 +115,70 @@ many regular sheets proves this: one must give fixed queries that read
 all the required independent signs. The five-row result supplies no
 recurrence increasing $r/H$. This formulation is recorded as an explicit
 open construction problem, not a claimed theorem or completion.
+
+\paragraph{Second audit: complete assembly and unconditional counting.}
+The source branch advanced to commit
+\texttt{2672bc2f68e854622722d26b91a86e42e1ccab31}. This continuation
+copied its 21 new Lean modules unchanged: twelve polynomial-counting
+modules and nine result modules. Existing local artifacts and model
+definitions were preserved. The aggregate module gained nine imports.
+The independent complete build succeeded with 9242 jobs. The repository
+axiom checker audited 306 compiled theorem declarations across these
+21 modules, using only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. No \texttt{sorry}, new axiom, or unsafe declaration
+occurs in the imported source.
+
+The former written gluing instantiation is now checked in
+\texttt{AxisZeroTransfer}. Its main quantitative theorem,
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_reverse\_axis\_compiler},
+states, for positive $a,b$ and an explicit universal local compiler
+with budget $M$,
+\[
+ W(a+b)\leq 484\,2^{a+b}M/(ab)+2^a+2^b.
+\]
+\texttt{AxisZeroAsymptotics} proves the exact requested logarithmic
+and double-logarithmic asymptotic conclusions \emph{conditionally} on
+the corresponding eventual local compiler budgets. In particular,
+\texttt{worstCaseHeadComplexity\_isBigO\_loglog\_of\_compiler}
+does not prove existence of its compiler. The missing hypothesis still
+requires a universal strict-sign local construction with a
+superconstant saving. These declarations are not an unconditional
+resolution of the research question.
+
+\texttt{ReverseGridAxisRepair} proves a $3H+3$-head exact-axis repair
+and a head-preserving strictification of weak reverse slopes.
+\texttt{ReverseRankCorrection} realizes rank-$L$ corrections with $L+1$
+strict reverse heads. \texttt{ReverseRowFlip} verifies row-sign changes,
+column masks, and a conditional transfer from sufficiently dense local
+families. These are actual finite constructions with positivity on the
+whole Boolean cube.
+
+\texttt{ReverseBalancedRows} gives an exact compact exterior Cauchy
+platform. For positive $\varepsilon_i,\xi_h$, bounds $\xi_h\leq M$ and
+$\sum_i\varepsilon_i+sM<C$, any array of maps $\pi_j$ has an exact
+$2G$-head reverse-axis realization of
+\[
+ b_i+\sum_{h=1}^G\frac{a_{ih}}{C-\varepsilon_i-\xi_{\pi_j(h)}}.
+\]
+Two distinct library poles suffice to adjust both the numerator balance
+and arbitrary row bias. The maps need not be permutations.
+The principal declaration is
+\texttt{exists\_permutationCauchy\_reverseAxisData}. It supplies neither
+the fixed row queries nor independent sign patterns needed for
+superlinear shattering.
+
+Finally, \texttt{HeadComplexity.warrenStrictSignPatternBound} in
+\texttt{WarrenBound} discharges the previous polynomial-sign-counting
+hypothesis by an unconditional proof.
+The companion
+\texttt{worstCaseHeadComplexity\_real\_ge\_two\_pow\_div\_seventy\_square}
+in \texttt{WarrenAsymptotics} establishes
+\[
+ \frac{2^n}{70n^2}\leq W(n)\qquad(n\geq16).
+\]
+This makes the inverse-square baseline unconditional; it does not
+improve its exponent and is not the requested opposite-direction
+resolution.
 
 \paragraph{Outcome.}
 All imported finite claims survived the independent checks above.
