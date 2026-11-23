@@ -1,0 +1,310 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Boolean Projection Identities and Algebraic Switching}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note gives an exact algebraic description of simultaneous
+integer-affine multiset cancellations on the Boolean cube. It also
+identifies the compatibility conditions for prescribed polynomial
+projections. These are manual results. They do not assert that the
+required cancellations have small support, or that arbitrary Boolean
+signs admit the requested head count.
+
+\section{The projection kernel}
+
+Let $R$ be an integral domain, let $n\geq 0$, and set
+\[
+ \mathcal A=R[t,z_1,\ldots,z_n],\qquad
+ J=((z_i-1)(z_i-t):1\leq i\leq n).
+\]
+For $T\subseteq[n]$, define the $R[t]$-algebra map
+\[
+ \phi_T:\mathcal A\longrightarrow R[t],\qquad
+ \phi_T(z_i)=\begin{cases}t&i\in T,\\1&i\notin T.\end{cases}
+\]
+Write $z_S=\prod_{i\in S}z_i$ and
+$w_S=\prod_{i\in S}(z_i-1)$, with empty products equal to one.
+
+\begin{theorem}[Kernel and canonical remainder]
+Every $F\in\mathcal A$ has a unique remainder modulo $J$ of the form
+\[
+ \overline F=\sum_{S\subseteq[n]}a_S(t)z_S
+            =\sum_{S\subseteq[n]}c_S(t)w_S.
+\]
+Moreover,
+\[
+ J=\bigcap_{T\subseteq[n]}\ker\phi_T.
+\]
+In particular $J$ is radical, and $\mathcal A/J$ is a free
+$R[t]$-module of rank $2^n$.
+\end{theorem}
+\begin{proof}
+Divide successively in each variable by the monic polynomial
+$z_i^2-(1+t)z_i+t$. The resulting remainder has degree at most one
+in each $z_i$; each division changes the polynomial by an element
+of $J$. The change from the basis $z_S$ to the basis $w_S$ is
+triangular with diagonal entries one, so either displayed form
+exists over $R[t]$.
+
+For a remainder in the second form, evaluation gives
+\[
+ \phi_T(\overline F)=\sum_{S\subseteq T}(t-1)^{|S|}c_S(t).
+\]
+M\"obius inversion on subsets therefore gives
+\[
+ (t-1)^{|S|}c_S(t)
+ =\sum_{T\subseteq S}(-1)^{|S|-|T|}\phi_T(\overline F).
+\]
+If all evaluations vanish, the right side is zero. Since $R[t]$
+is an integral domain and $t-1\neq0$, every $c_S$ is zero.
+This proves both uniqueness and the asserted kernel equality:
+each generator of $J$ vanishes under every $\phi_T$, and a
+polynomial with all evaluations zero has zero remainder.
+The remainder monomials consequently give the asserted free basis.
+Each $\ker\phi_T$ is prime because its quotient is the integral
+domain $R[t]$. Their intersection is radical.
+\end{proof}
+
+\begin{theorem}[Exact compatibility conditions]
+Given polynomials $G_T(t)\in R[t]$ for all $T\subseteq[n]$, there
+exists $F\in\mathcal A$ such that $\phi_T(F)=G_T$ for every $T$
+if and only if, for every $S\subseteq[n]$,
+\[
+ (t-1)^{|S|}\ \bigm|\
+ D_S(t):=\sum_{T\subseteq S}(-1)^{|S|-|T|}G_T(t).
+\]
+When these conditions hold, its unique remainder is
+\[
+ \overline F=\sum_{S\subseteq[n]}
+       \frac{D_S(t)}{(t-1)^{|S|}}w_S.
+\]
+\end{theorem}
+\begin{proof}
+The preceding inversion formula proves necessity. Conversely the
+divisibility assumptions make every displayed coefficient a polynomial.
+For a subset $U$, its evaluation is $\sum_{S\subseteq U}D_S$.
+Substitute the definition of $D_S$ and interchange the finite sums.
+The coefficient of $G_T$ is
+$\sum_{T\subseteq S\subseteq U}(-1)^{|S|-|T|}$, which is one
+if $T=U$ and zero otherwise. Thus the evaluation equals $G_U$.
+\end{proof}
+
+\paragraph{Compatibility is not automatic.}
+Already for $n=1$, the prescriptions $G_\varnothing=0$ and
+$G_{\{1\}}=1$ are impossible: their difference is not divisible
+by $t-1$. At $t=1$ all projection maps coincide. More generally
+the theorem specifies higher-order constraints at that collision.
+After adjoining $(t-1)^{-1}$, the displayed formulas interpolate
+arbitrary prescriptions, but their coefficients need not be
+polynomials before that localization.
+
+\section{Integer-affine lists}
+
+For an integer vector $a=(a_0,\ldots,a_n)$ let
+\[
+ L_a(x)=a_0+\sum_{i=1}^n a_ix_i,\qquad
+ Z^a=t^{a_0}\prod_{i=1}^n z_i^{a_i}.
+\]
+Negative exponents are permitted in the Laurent polynomial ring
+$R[t^{\pm1},z_1^{\pm1},\ldots,z_n^{\pm1}]$.
+Every $\phi_T$ extends to this ring, with values in $R[t^{\pm1}]$.
+
+\begin{corollary}[Multiset cancellation]
+For two finite lists of integer-affine forms $L_{a_h}$ and
+$L_{b_\ell}$, the multisets
+\[
+ \{L_{a_h}(1_T):h\}\quad\hbox{and}\quad
+ \{L_{b_\ell}(1_T):\ell\}
+\]
+agree for every $T\subseteq[n]$ if and only if
+\[
+ \sum_h Z^{a_h}-\sum_\ell Z^{b_\ell}
+\]
+belongs to the Laurent extension of $J$, where the coefficients
+are taken in $\mathbb Z$.
+\end{corollary}
+\begin{proof}
+Each projected Laurent polynomial is the difference of the generating
+polynomials for the two integer multisets. Its coefficient at an
+integer power is the difference of the corresponding multiplicities,
+so it vanishes exactly when the multisets agree.
+For the kernel assertion, multiply the Laurent polynomial by a
+monomial with sufficiently large nonnegative exponents to obtain an
+ordinary polynomial. Every projected multiplier is a nonzero power
+of $t$. The ordinary polynomial has zero projections exactly when
+the Laurent polynomial does. Apply the kernel theorem and then
+invert the multiplier.
+\end{proof}
+
+The generator $(z_i-1)(z_i-t)$ describes the four-term identity
+\[
+ \{2x_i,1\}=\{x_i,1+x_i\}
+ \qquad(x_i\in\{0,1\}).
+\]
+Multiplying by a Laurent monomial adds the same affine form to
+all four entries. An ideal expression is a finite signed combination
+of these translations. It need not preserve distinct entries or
+positivity of intermediate multiplicities, and expanding its
+coefficient polynomials can increase support. Therefore this algebraic
+generation statement is not a bounded-head compilation theorem.
+
+\section{A dense construction and its cost}
+
+Let $r:2^{[n]}\to R$ be arbitrary and define its subset coefficients
+\[
+ \widehat r(S)=\sum_{T\subseteq S}(-1)^{|S|-|T|}r(T).
+\]
+For an integer $k\geq n$, set
+\[
+ F_r(t,z)=\sum_{S\subseteq[n]}\widehat r(S)
+       (t-1)^{k-|S|}w_S.
+\]
+The compatibility theorem, or direct subset inversion, proves
+\[
+ \phi_T(F_r)=(t-1)^k r(T).
+\]
+This is an explicit construction for every table. It contains up to
+$2^n$ subset terms before expansion. Each factor $(t-1)^{k-|S|}$
+has at most $k-|S|+1$ monomials and $w_S$ has $2^{|S|}$ monomials.
+Consequently the expansion has at most
+\[
+ \sum_{S\subseteq[n]}(k-|S|+1)2^{|S|}
+  =(k+1)3^n-2n3^{n-1}
+\]
+monomial occurrences for $n\geq1$. Cancellations can reduce this
+number. After collecting terms, the total degree is at most $k$
+and each $z_i$ has degree at most one. The number of possible
+distinct monomials is consequently at most
+\[
+ \sum_{S\subseteq[n]}(k-|S|+1)
+       =(k+1)2^n-n2^{n-1}.
+\]
+Even this improved count does not have order $2^n/n^2$. The
+unexpanded factorization cannot be charged as one attention head.
+
+For $k=n$, an equivalent expression is
+\[
+ F_r(t,z)=\sum_{T\subseteq[n]}r(T)
+        \prod_{i\in T}(z_i-1)\prod_{i\notin T}(t-z_i).
+\]
+Only the summand with $T=U$ survives under $\phi_U$, and its
+value is $(t-1)^nr(U)$. Both expressions are multilinear in
+the $z_i$, so the uniqueness theorem proves their equality.
+
+\begin{proposition}[A positive-integral head compiler]
+Work over $\mathbb R$. Suppose a finite Laurent polynomial
+\[
+ F(t,z)=\sum_{h=1}^H c_h t^{a_{h0}}\prod_i z_i^{a_{hi}}
+\]
+has integer exponents and satisfies
+$y(x)F(t,t^{x_1},\ldots,t^{x_n})>0$ for every Boolean $x$ and
+every $0<t<1$, where $y(x)\in\{-1,1\}$.
+There is an admissible score with $H$ heads and strict signs $y$.
+\end{proposition}
+\begin{proof}
+Choose an affine function $C(x)=c_0+\sum_i c_ix_i$ such that
+every coefficient of every
+$B_h(x)=C(x)+a_{h0}+\sum_i a_{hi}x_i$ is strictly positive.
+This is possible because the list is finite: for each coordinate,
+choose the corresponding coefficient of $C$ larger than one plus
+the largest absolute exponent in that coordinate.
+Termwise integration of the finite sum gives
+\[
+ \sum_{h=1}^H\frac{c_h}{B_h(x)}
+   =\int_0^1 t^{C(x)-1}F(t,t^{x_1},\ldots,t^{x_n})\,dt.
+\]
+Each term is integrable because $B_h(x)>0$. The weight
+$t^{C(x)-1}$ is positive. The assumed strict sign of the integrand
+therefore gives the required strict sign of the integral.
+All numerator constants and all denominator coefficients satisfy
+the manuscript normal form.
+\end{proof}
+
+Applying the proposition to $(-1)^nF_r$ for a nonzero table gives
+its signs, with at most $(n+2)2^{n-1}$ terms when $n\geq1$.
+The integral can also be evaluated exactly:
+\[
+ \int_0^1t^{C(x)-1}(1-t)^n\,dt
+   =\frac{n!}{C(x)(C(x)+1)\cdots(C(x)+n)}.
+\]
+For completeness this follows by integration by parts: the value
+for $n=0$ is $1/C(x)$, and for $n\geq1$ the integral equals
+$n/C(x)$ times the corresponding integral with exponent $C(x)$
+and power $n-1$. Iterating gives the formula. This construction
+is weaker than the manuscript's already established universal
+bound and is recorded only to charge the algebraic support cost
+correctly. No compression theorem is hidden in the integral.
+
+\section{The first variation of an ideal product identity}
+
+Let $m\geq1$. Suppose that the affine lists
+$u_1(x),\ldots,u_m(x)$ and $v_1(x),\ldots,v_m(x)$ both permute
+$0,\ldots,m-1$ at every Boolean input. Let $a_h,b_\ell$ be
+arbitrary affine perturbations, and define
+\[
+ F_\epsilon(s,x)=\prod_{h=1}^m(s+u_h(x)+\epsilon a_h(x)),\qquad
+ G_\epsilon(s,x)=\prod_{\ell=1}^m(s+v_\ell(x)+\epsilon b_\ell(x)).
+\]
+Write $d_j=(-1)^j j!(m-1-j)!$. Then the condition
+\[
+ \left.\frac{\partial}{\partial\epsilon}
+        (F_\epsilon-G_\epsilon)\right|_{\epsilon=0}=r(x),
+ \quad\hbox{independently of }s,
+\]
+is equivalent, separately at every cube input, to
+\[
+ \sum_h a_h(x)t^{u_h(x)}-\sum_\ell b_\ell(x)t^{v_\ell(x)}
+       =\frac{r(x)}{(m-1)!}(1-t)^{m-1}.
+\]
+Indeed, evaluating the product variation at $s=-j$ gives
+$d_j(a_{u^{-1}(j)}-b_{v^{-1}(j)})=r$. Conversely these $m$
+values determine the degree-at-most-$m-1$ variation polynomial.
+Finally $1/d_j=(-1)^j\binom{m-1}{j}/(m-1)!$, so the binomial
+theorem gives the generating-polynomial equation.
+
+The factors $a_h(x)$ and $b_\ell(x)$ are functions of the input.
+They are not coefficients independent of $x$ in the preceding
+projection ring. To encode them there, one may replace $x_i$ by
+$(z_i-1)/(t-1)$, at the price of a localization, and then clear
+the factor $t-1$. This observation does not establish sparse
+representations with the required affine supports.
+
+\section{Literature check and a Chinese-remainder pitfall}
+
+Hajdu and Tijdeman, \emph{Algebraic aspects of discrete tomography},
+Theorem 1 and its proof, describe planar switching components by
+divisibility by products of direction binomials. Their argument uses
+prime factors in a unique factorization domain to characterize zero
+projections. It does not claim that arbitrary projection values are
+compatible.
+\url{https://math.unideb.hu/sites/default/files/inline-files/disctom8.pdf}
+
+Tijdeman, \emph{Two applications of number theory to discrete tomography},
+Theorem 3.1 as displayed, states a polynomial Chinese-remainder
+assertion using pairwise relatively prime bivariate polynomials.
+Gcd-one is insufficient for arbitrary residues. For instance,
+$P_1=x$, $P_2=y$, $Q_1=0$, and $Q_2=1$ have no simultaneous
+solution in $\mathbb R[x,y]$: evaluating the two congruences at
+$(0,0)$ would give both $R(0,0)=0$ and $R(0,0)=1$.
+Pairwise comaximal ideals, a stronger condition, give the usual CRT.
+No arbitrary-residue conclusion from the displayed version is used
+in this note. This counterexample does not contradict the earlier
+zero-projection divisibility theorem.
+\url{https://hrj.episciences.org/5111/pdf}
+
+Davis and Sagan, \emph{Pattern-avoiding polytopes}, Proposition 3.4,
+give the rectangular parallelotope of permutations avoiding
+$132$ and $312$. Its orthogonal edge directions are the same
+nested directions used by the triangular Boolean permutation
+construction, up to coordinate conventions. The polytope result
+does not provide arbitrary signs for a reciprocal readout.
+\url{https://arxiv.org/pdf/1609.01782}
+
+\end{document}

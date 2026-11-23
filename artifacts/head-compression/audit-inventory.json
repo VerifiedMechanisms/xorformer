@@ -1062,5 +1062,15 @@
       "For arbitrary distinct constant reference roots and arbitrary affine permutation lists, ideal first-order differences fall in that level-set class; M=O(2^n/n^2) is not universal for this mechanism."
     ],
     "second_order_diagnostic": "artifacts/head-compression/diagnostics/boolean-moment-second-order.json"
+  },
+  "toric_switching_audit": {
+    "file": "artifacts/head-compression/toric-switching-audit.tex",
+    "status": "Complete manual algebraic proofs, not Lean formalized.",
+    "kernel": "For an integral domain R, the kernel of all substitutions z_i=t^x_i is generated in R[t,z] by (z_i-1)*(z_i-t). The quotient is free of rank 2^n over R[t].",
+    "compatibility": "A cube-indexed list G_T(t) is in the image exactly when every subset difference D_S is divisible by (t-1)^|S|. The unique multilinear remainder is explicit.",
+    "compiler": "A Laurent polynomial with a prescribed strict sign along every curve (t,t^x), for 0<t<1, integrates against t^(C(x)-1) to the same number of admissible constant-numerator heads.",
+    "construction_cost": "The explicit lift of any table has at most (n+2)*2^(n-1) monomials for n>=1. This is weaker than the manuscript bound and does not meet the requested rate.",
+    "scope": "No small-support theorem is asserted. An ideal generating set does not bound the support of a representation or preserve nonnegative multiplicities.",
+    "target_proved": false
   }
 }
