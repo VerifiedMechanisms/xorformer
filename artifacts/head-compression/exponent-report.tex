@@ -52,7 +52,7 @@ The separately supplied branch
 \texttt{VerifiedMechanisms/autoresearch-runs} was inspected at
 \texttt{045a8fb}. Its declaration
 \texttt{HeadBound.HStar\_le\_all}, in
-\texttt{HeadBound/SubCube.lean}, bounds every function by
+\texttt{HeadBound/SubCube.lean}, bounds every function, for $n\geq1$, by
 $2^n/2^{\lfloor\log_2 n\rfloor}$, using natural-number division.
 The branch's compiler first proves full linear spanning and then
 interpolates the truth table exactly. That mechanism does not transfer
@@ -160,7 +160,7 @@ on arbitrary attention representations with large cancellations.
  \frac{u-v}{p+u+v}-\frac{u}{p+u}+\frac{v}{p+v}
  =\frac{(u-v)uv}{(p+u+v)(p+u)(p+v)}.
 \]
-It cancels exactly when either local block is absent.
+It is zero whenever either local block is absent.
 \texttt{partialRankingMask\_strictAnti\_parameter} and
 \texttt{not\_partialRankingMask\_scalar\_repair} certify a concrete
 failure of scalar layer repair. The actual three-head realization,
@@ -195,10 +195,12 @@ $(m+s)$-cube, not merely on the promised inputs. The score has a
 strict uniform margin on the grid. A finite bias perturbation makes
 every other output strict without prescribing its label.
 The proof uses a finite Hall-matching extraction array and differences
-of rational suffix kernels. A related zero-bias decoder vanishes
-exactly on both coordinate axes, is nonnegative everywhere, and
-approximates every binary or ternary grid table with arbitrary
-specified error at the same head order. Its denominator orientation
+of rational suffix kernels. A related zero-bias decoder is identically
+zero on both coordinate axes, is nonnegative everywhere, and
+approximates every binary grid table with arbitrary specified error.
+Taking differences also approximates every ternary grid table at the
+same head order and preserves the axis zeros, but need not preserve
+nonnegativity. Its denominator orientation
 is opposite to the one required by the gluing theorem below.
 
 \texttt{TorusPrismDecoder.lean} proves the nine public kernel lemmas,
@@ -236,11 +238,13 @@ These are exact whole-cube identities and therefore preserve any
 existing strict signs. Their periodic residue and arithmetic pole
 requirements are substantive.
 
-\texttt{periodic-chain-decoding.tex} proves that repeating a complete
-zero-mean period of length $K$ produces at most $K-2$ scalar zeros,
-regardless of the number of periods. Even when residues, shift, and
-step depend jointly and affinely on one memory scalar, the zero count
-is at most $4K-1$. Thus that decoder can shatter only $O(\log K)$
+\texttt{periodic-chain-decoding.tex} proves that a nonzero scalar score
+obtained by repeating a complete zero-mean period of length $K$ has
+at most $K-2$ scalar zeros, regardless of the number of periods.
+Even when residues, shift, and step depend jointly and affinely on one
+memory scalar, a score that is not identically zero has at most
+$4K-1$ zeros. An incomplete final period changes these bounds to
+$2K-1$ and $4K$, respectively. Thus that decoder can shatter only $O(\log K)$
 scalar probes by this mechanism. These bounds do not constrain a
 general system with several independent nonlinear memory parameters.
 
@@ -251,7 +255,8 @@ priority lists, allowing both orientations. Each list is sparse in
 the fixed dictionary of positive and negative literal monomials;
 counting dictionary supports and linear sign patterns proves the
 bound. This is a subclass lower bound, not item 3 of the original task.
-The same note gives a grid-routing local compiler, exact three-head
+The same note gives a grid-routing local compiler with exact
+simultaneous cancellation on all three axes, exact three-head
 single-slope reversal, and the support cost of weak affine-flat
 certificates. None yields an unrestricted asymptotic saving.
 \texttt{product-tangent-counterexample.tex} supplies explicit positive
@@ -260,11 +265,40 @@ the logarithmic derivative agree in sign with the product comparison
 on even the two inputs of a one-bit cube. Pointwise mean-value
 arguments therefore do not supply the proposed common tangent.
 
+\paragraph{A genuinely multivariate reciprocal construction, written only.}
+\texttt{compact-cauchy-sheets.tex} constructs $H$ reciprocal equations
+with $H!$ distinct regular isolated common zeros in an arbitrarily
+small positive parameter box. All cube denominators can be kept above
+$3/4$. The proof uses Cauchy's determinant formula and Borchardt's
+identity, with a checked primary reference. The zeros correspond to
+permutations of fixed distinct numbers. This supplies many regular
+solutions whose selected outputs are zero, not strict Boolean
+representations or independent readable truth-table bits. Pairwise
+comparison queries shatter at most $H-1$ rows, and queries differing
+from a symmetric sum at only one slot shatter at most $2H$ rows.
+An elementary multi-affine cancellation also shows that, for $H\ge3$,
+the stated separable reciprocal query class cannot read permutation
+parity on all sheets. No superlinear shattering theorem is inferred
+from the factorial count. A simultaneous decoder mixing several slots
+remains unproved and is not counted as an asymptotic advance.
+
+The same note proves that unrestricted assignment-cost queries can
+read $\Theta(H\log H)$ independent bits from permutations, by an
+explicit Hall-matching existence argument. Those costs are not
+realized by the admissible reciprocal queries. Exact conditional
+means and variances, a limitation of untuned random queries in a
+shrinking parameter box, and the precise positivity budget for
+affine row/column offset repairs are proved in
+\texttt{exponent-literature.tex}. They identify the missing transfer
+without asserting it. Near-pole rank thresholds also obey an explicit
+whole-cube baseline budget, so their scalar decoding identity alone
+does not supply a grid compiler.
+
 \paragraph{A valid global composition theorem, written only.}
 The finite gluing theorem in \texttt{exponent-mechanisms.tex}
 composes product downward-star modules without extra heads, when
 their denominators have positive slopes in the original coordinates
-and their scores vanish exactly on both local axes. The proof orders
+and their scores are identically zero on both local axes. The proof orders
 centers by cardinality, rescales each module to correct its cell,
 and adds a large positive outside-coordinate penalty to its
 denominators to preserve all previously fixed strict signs. It
@@ -331,7 +365,7 @@ and the two exceptional faces cost only
 $O(2^{\lceil n/2\rceil})$ additional heads. Therefore this one lemma
 would establish the revised exact target
 $W(n)=O(2^n/(n\log\log n))$. Full quantifiers and the face
-correction are in the last section of
+correction are in the conditional synthesis discussion of
 \texttt{exponent-literature.tex}. The lemma remains a substantial
 unresolved local universality problem; this implication is not
 counted as a successful asymptotic result.

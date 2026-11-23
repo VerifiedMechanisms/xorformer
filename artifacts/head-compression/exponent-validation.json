@@ -484,13 +484,13 @@
   "tex": [
     {
       "file": "artifacts/head-compression/exponent-literature.tex",
-      "sha256": "c69f880d5c6ff225c9d22361c232a197b0e58160cf7f6518607ed9f47f343aca",
+      "sha256": "4cd1427049cd44cba084c009487cde3060a835fe62b66d143a4ee94219efb0a3",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
     },
     {
       "file": "artifacts/head-compression/exponent-mechanisms.tex",
-      "sha256": "01f2c09b24fa4278ef2b174f7432537e3b09dbacbfa891f83f404023c2e57188",
+      "sha256": "c1f3faadfcfb4b793d7d1c89fa56de64a9378c1eccacb3392b4170452148f48c",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
     },
@@ -502,7 +502,7 @@
     },
     {
       "file": "artifacts/head-compression/exponent-report.tex",
-      "sha256": "f7aa132fbc387bcd06be06d9e6cc15a96532e8b3fa74ff33f27f1c5d60733146",
+      "sha256": "1538d319d5b8d85c3944fd5d2b83588f22d4ed879ab892dad7457e09aebc70a4",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
     },
@@ -520,9 +520,15 @@
     },
     {
       "file": "artifacts/head-compression/periodic-chain-decoding.tex",
-      "sha256": "ce4167e4297bbd1f9c7e3989b46528b5110dc400cbf50cac0db9494f18bd100d",
+      "sha256": "71ca6ae0ec8d1a7497fe63746e4c3bd93aedf660a7915445338e6d834d285393",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/compact-cauchy-sheets.tex",
+      "pdf_rendered": false,
+      "sha256": "6f767e8b1d717bc5ffbdae18385905030dbf9230d89f3dc60b1b13a397605216",
+      "static_braces_environments_and_no_em_dash": "passed"
     }
   ],
   "notes": [
@@ -530,7 +536,8 @@
     "active_strictPatterns_card_le_warren retains the explicit WarrenStrictSignPatternBound hypothesis.",
     "The torus-grid extraction, periodic-chain transformations, scalar decoding bounds, and global conditional gluing remain written proofs.",
     "DualRailLift proves an exact one-atom transfer only on complementary-rail inputs; it is not a universal head bound.",
-    "No TeX compiler was available; TeX checks were static only."
+    "No TeX compiler was available; TeX checks were static only.",
+    "Compact Cauchy sheets and unrestricted assignment-cost shattering are written only; no reciprocal query transfer is proved."
   ],
   "exact_target": "W(n) = O(2^n / (n * log(log(n))))",
   "loglog_target_achieved": false,
