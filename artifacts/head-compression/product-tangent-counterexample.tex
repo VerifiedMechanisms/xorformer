@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{A Product Comparison Need Not Have a Common Tangent Decoder}
+\author{Research checkpoint, 23 November 2026}
+\date{}
+\begin{document}
+\maketitle
+
+This note gives a counterexample to one proposed transfer into attention
+heads. It proves no lower bound for unrestricted head complexity. The
+counterexample has only one input bit, so its target Boolean function itself
+has a trivial one-head representation.
+
+For $x\in[0,1]$, define the positive affine functions
+\[
+ a_1(x)=100-\frac{9999}{100}x,
+ \qquad
+ a_2(x)=a_3(x)=\frac19+\frac{80}{9}x.
+\]
+Let
+\[
+ P_t(x)=\prod_{h=1}^3\bigl(1+t(a_h(x)-1)\bigr),
+ \qquad
+ G_t(x)=\frac{\partial_t P_t(x)}{P_t(x)}
+ =\sum_{h=1}^3\frac{a_h(x)-1}{1+t(a_h(x)-1)}.
+\]
+Every factor is positive for $0\leq t,x\leq1$, since it is a convex
+combination of $1$ and a positive affine function. For $0<t\leq1$,
+each of the three displayed denominators has strictly positive or strictly
+negative slope in the original bit, and is positive throughout the interval.
+Thus each summand is an admissible affine-ratio head under the repository's
+positive- and negative-orientation realizations. At $t=0$ the fractions
+reduce to affine functions; the argument below does not rely on treating
+constant denominators as exact heads.
+
+\begin{proposition}
+The comparison $P_1(x)-P_0(x)$ is strictly positive at $x=0$ and
+strictly negative at $x=1$. There is no common $t\in[0,1]$ for which
+$G_t$ has these two strict signs.
+\end{proposition}
+\begin{proof}
+At the two Boolean inputs,
+\[
+ (a_1(0),a_2(0),a_3(0))=(100,1/9,1/9),\qquad
+ (a_1(1),a_2(1),a_3(1))=(1/100,9,9).
+\]
+Consequently
+\[
+ P_1(0)=100/81>1=P_0(0),\qquad
+ P_1(1)=81/100<1=P_0(1).
+\]
+Subtracting fractions over positive denominators gives
+\[
+ G_t(0)=\frac{99}{1+99t}-\frac{16}{9-8t}
+       =\frac{875-2376t}{(1+99t)(9-8t)},
+\]
+\[
+ G_t(1)=-\frac{99}{100-99t}+\frac{16}{1+8t}
+       =\frac{1501-2376t}{(100-99t)(1+8t)}.
+\]
+The denominators are positive on $[0,1]$. Hence $G_t(0)>0$ requires
+$t<875/2376$, whereas $G_t(1)<0$ requires $t>1501/2376$.
+These inequalities are incompatible.
+\end{proof}
+
+Pointwise, the fundamental theorem of calculus still gives
+\[
+ \log P_1(x)-\log P_0(x)=\int_0^1G_t(x)\,dt.
+\]
+The example shows that the pointwise mean-value parameter cannot be
+chosen independently of the input. Therefore comparison of two products
+of positive affine forms does not automatically compile to the logarithmic
+derivative of their straight-line factor homotopy at one common parameter.
+It does not exclude another construction, a quadrature with several
+parameters, or a direct sign representation with different denominators.
+
+All formulas above are a written proof. The two rational transition points
+and their evaluations were additionally checked with Python's exact
+\texttt{fractions.Fraction} arithmetic. No Lean theorem is asserted here.
+\end{document}
