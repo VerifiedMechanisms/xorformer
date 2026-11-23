@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}[proposition]{Theorem}
+\begin{document}
+\title{Signed Logarithmic Potentials in the Positive Denominator Chamber}
+\author{Head-compression research audit}
+\maketitle
+
+\paragraph{Status and scope.}
+This note gives a complete written construction and a small exact arithmetic
+check. It is not formalized in Lean. It is not an upper or lower bound for
+\texttt{worstCaseHeadComplexity}. Its purpose is to test a proposed route to
+the global lower bound: positivity of denominators does not, by itself,
+make the associated signed logarithmic master functions have only
+$C^n$ critical points. The actual interpolation-fiber and strict-sign
+counting questions remain unresolved.
+
+For weights $\lambda_x\in\mathbb R$ indexed by $x\in\{0,1\}^n$, put
+\[
+ \Phi_\lambda(c)=\sum_x\lambda_x\log(1+c\cdot x),
+ \qquad c\in(0,\infty)^n.
+\]
+All logarithms are natural. Every affine form appearing here has positive
+constant coefficient and strictly positive slopes in the coordinates
+where the corresponding $x_i$ is one. The parameter $c$ ranges inside
+the strict positive-slope chamber of the original affine denominator.
+
+\begin{proposition}[Elliptic identity]
+Set $Q(c)=\operatorname{diag}(c)+cc^{\mathsf T}$. Then $Q(c)$ is positive
+definite and
+\[
+ \operatorname{tr}\bigl(Q(c)\nabla^2\Phi_\lambda(c)\bigr)
+       +c\cdot\nabla\Phi_\lambda(c)=0.
+\]
+Consequently every nondegenerate critical point is a saddle.
+\end{proposition}
+\begin{proof}
+For a nonzero vector $v$, one has
+$v^{\mathsf T}Q(c)v=\sum_i c_i v_i^2+(c\cdot v)^2>0$.
+For $B_x=1+c\cdot x$,
+\[
+ \nabla\log B_x=x/B_x,\qquad
+ \nabla^2\log B_x=-xx^{\mathsf T}/B_x^2.
+\]
+The Boolean identity $x_i^2=x_i$ gives
+$x^{\mathsf T}Q(c)x=c\cdot x+(c\cdot x)^2=(c\cdot x)B_x$.
+The asserted differential identity follows term by term. At a critical
+point, a positive or negative definite Hessian would have a nonzero trace
+against $Q(c)$ of the corresponding sign. A nonsingular symmetric Hessian
+with zero such trace therefore has eigenvalues of both signs.
+\end{proof}
+
+\begin{theorem}[Many critical points in one positive chamber]
+Let $d\geq2$ be even and let $k\geq1$. For $n=d+k$ there are real weights
+$\lambda_x$ such that $\Phi_\lambda$ has at least
+\[
+                  (2^d-1)^k
+\]
+distinct nondegenerate critical points in $(0,\infty)^n$.
+In particular there is an absolute $c>0$ such that, for every sufficiently
+large $n$, some such potential has at least $2^{c n^2}$ nondegenerate
+critical points in the positive chamber.
+\end{theorem}
+\begin{proof}
+Write the parameters as $(b_1,\ldots,b_k,c_1,\ldots,c_d)$.
+Choose $c^0_j=2^{j-1}$, so the numbers
+\[
+       \beta_y=1+c^0\cdot y,\qquad y\in\{0,1\}^d,
+\]
+are the $L=2^d$ distinct integers $1,\ldots,L$.
+Let $P(t)=\prod_{r=1}^{L-1}(t-r)$ and
+$Q_0(t)=\prod_y(t+\beta_y)$. Partial fractions give
+\[
+ \frac{P(t)}{Q_0(t)}=\sum_y\frac{a_y}{t+\beta_y},
+ \qquad
+ a_y=\frac{P(-\beta_y)}{Q_0'(-\beta_y)}.
+\]
+Define
+\[
+ f_i(b_i,c)=\sum_y a_y\log(1+b_i+c\cdot y).
+\]
+At $c=c^0$, its derivative in $b_i$ is $P(b_i)/Q_0(b_i)$.
+It has the simple positive roots $1,\ldots,L-1$; the second derivative at
+root $r$ is $P'(r)/Q_0(r)\neq0$.
+
+We next pin the address parameters near $c^0$ by a nondegenerate saddle.
+Partition their indices into pairs. For a pair $(u,v)$ set
+$U=1+c^0_u$, $V=1+c^0_v$, and $B=1+c^0_u+c^0_v$, and put
+\[
+ \psi_{u,v}(c_u,c_v)=\log(1+c_u+c_v)
+       -\frac{U}{B}\log(1+c_u)-\frac{V}{B}\log(1+c_v).
+\]
+Its gradient vanishes at $(c^0_u,c^0_v)$. Its Hessian there is
+\[
+ \frac1{B^2}
+ \begin{pmatrix}c^0_v/U&-1\\-1&c^0_u/V\end{pmatrix},
+ \qquad
+ \det\nabla^2\psi_{u,v}=-\frac1{B^3UV}\neq0.
+\]
+The sum $\psi$ of these pair potentials therefore has a nondegenerate
+critical point at $c^0$.
+
+For $\varepsilon>0$ consider
+\[
+ \Phi_\varepsilon(b,c)=\varepsilon^{-1}\psi(c)
+                       +\sum_{i=1}^k f_i(b_i,c).
+\]
+This is a potential of the required form. The $f_i$ terms use cube
+vertices with signal block $e_i$; the $\psi$ terms use vertices with
+signal block zero. Repeated terms may simply have their weights added.
+
+Consider the smooth system
+\[
+ G_\varepsilon(b,c)=
+ \left(\partial_{b_1}f_1,\ldots,\partial_{b_k}f_k,
+       \nabla\psi(c)+\varepsilon\sum_i\nabla_c f_i(b_i,c)\right)=0.
+\]
+For $\varepsilon>0$ this is exactly the critical-point system for
+$\Phi_\varepsilon$, after multiplying its last $d$ equations by
+$\varepsilon$. At $\varepsilon=0$, every point
+\[
+       (r_1,\ldots,r_k,c^0),\qquad r_i\in\{1,\ldots,L-1\},
+\]
+is a solution. The Jacobian in $(b,c)$ is block upper triangular.
+Its diagonal blocks are the diagonal matrix with entries
+$P'(r_i)/Q_0(r_i)$ and the invertible Hessian $\nabla^2\psi(c^0)$.
+Thus every such solution is nonsingular.
+
+The ordinary real implicit function theorem gives a nearby nonsingular
+solution for all sufficiently small positive $\varepsilon$. Choose
+disjoint neighborhoods of the finitely many initial points, all inside
+the positive orthant, and then one common sufficiently small
+$\varepsilon>0$. This gives $(L-1)^k$ distinct solutions. Nonsingularity
+of $G_\varepsilon$ is equivalent to nonsingularity of the Hessian of
+$\Phi_\varepsilon$, because their Jacobians differ by an invertible
+diagonal scaling of the last $d$ rows.
+
+Finally take the largest even $d\leq n/2$ and $k=n-d$. For sufficiently
+large $n$, both are at least $n/3$, and $2^d-1\geq2^{d-1}$.
+The count is at least $2^{(d-1)k}\geq2^{n^2/12}$ eventually.
+\end{proof}
+
+\paragraph{Small exact check.}
+The script \texttt{reverse-alternative-master-check.py} verifies the
+$d=2$, $k=2$ limiting system using rational arithmetic. It takes
+$c^0=(1,2)$, $\beta=(1,2,3,4)$, and residues
+$a=(-4,30,-60,35)$. The three signal second derivatives are
+$1/60,-1/360,1/420$. The address Hessian determinant is $-1/384$.
+The script checks all nine nonsingular limiting points. It does not
+replace the implicit-function argument or assert a numerical universal
+compiler.
+
+\paragraph{Relation to head counting.}
+For the one-head evaluation vector $x\mapsto A(x)/B(x)$, a linear
+functional with coefficients $\lambda_x$ has derivative in the numerator
+parameters $\sum_x\lambda_x(1,x)/B(x)$. Its derivative in denominator
+parameters is $-\sum_x\lambda_x A(x)(1,x)/B(x)^2$.
+In homogeneous notation these are the gradient of the logarithmic
+potential and its Hessian applied to the numerator coefficient vector.
+At a nonconstant normal contact, the Hessian must have a kernel beyond
+the scaling direction. The theorem above concerns nondegenerate
+critical points after normalization. It therefore does not directly
+construct many nonconstant normal contacts or interpolation fibers.
+It only refutes a bound on all positive-chamber signed master-function
+critical points of the form $C^n$. No claim about the desired
+$H!C^{Hn}$ interpolation or sign-region bound follows in either direction.
+\end{document}
