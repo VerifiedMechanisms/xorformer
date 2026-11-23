@@ -86,6 +86,23 @@ and $ce^{-t}$ is simply a new bias. Thus even a target-dependent
 choice of $t$ gives a table in (1). Apply the theorem.
 \end{proof}
 
+\begin{corollary}[The cost of replacing the integral by a short sum]
+Suppose a proposed universal construction at $H=O(2^n/n^2)$ heads
+replaces each rational score's Laplace integral by a sum at $J(n)$
+common times, retaining all strict signs. The times and weights may
+depend on the target and may be arbitrary real numbers. Then this
+strategy cannot have $J(n)=o(n/\log n)$.
+\end{corollary}
+\begin{proof}
+The quadrature score is an affine-weighted exponential sum with at
+most $HJ(n)$ terms; its constant part is absorbed into the bias.
+The theorem also shows that $K=o(2^n/(n\log n))$ exponential terms
+give only $2^{o(2^n)}$ strict sign tables. Indeed $p=O(nK)$ and
+$p\log(4e(n+1)2^n/p)=o(2^n)$ in that range, by the same monotonicity
+argument used above. Apply this with $K=HJ(n)$. Allowing completely
+independent exponents and weights only enlarges the quadrature family.
+\end{proof}
+
 \begin{lemma}[A positive divided exponential sum]
 For distinct real numbers $b_1,\ldots,b_m$ and every $t>0$,
 \[

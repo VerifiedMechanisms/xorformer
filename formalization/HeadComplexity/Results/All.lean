@@ -1,6 +1,7 @@
 import HeadComplexity.Results.AffinePartialFractionDegree
 import HeadComplexity.Results.BooleanProjectionIdeal
 import HeadComplexity.Results.WeightedRootCompletion
+import HeadComplexity.Results.LowRootFibers
 import HeadComplexity.Results.ReciprocalExchange
 import HeadComplexity.Results.GappedReciprocalCover
 import HeadComplexity.Results.AffineCylinderCofactorRecursion

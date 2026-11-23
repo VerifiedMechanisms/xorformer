@@ -228,11 +228,20 @@
         "HeadComplexity.weightedRootPolynomials_eval_prod"
       ],
       "scope": "An explicit weighted interval completion by affine integer polynomials, with exact root permutation and product identities at every Boolean vertex. This is not a universal head construction."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/LowRootFibers.lean",
+      "main_declaration": "HeadComplexity.card_add_one_le_affineLevelInterval_card",
+      "companion_declarations": [
+        "HeadComplexity.activeCoordinates_lt_prefixRootCount"
+      ],
+      "statement": "If all affine subset sums with positive increments lie in a finite root set, an active coordinate set S forces at least |S|+1 distinct roots between the minimum and the reached value.",
+      "scope": "Auxiliary finite-root invariant. Does not prove the head bound or formalize the manual sign-pattern count."
     }
   ],
   "validation": {
-    "build": "Full project lake build succeeded with 9212 jobs, including all 28 new research modules and the results aggregator.",
-    "build_log": "validation/lean-boolean-projection-full-build.log",
+    "build": "Full lake build passed (9214 jobs) after adding LowRootFibers.",
+    "build_log": "artifacts/head-compression/validation/lean-low-root-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -284,7 +293,7 @@
       "scope": "The prior 68 declarations were unchanged; all seven WeightedRootCompletion declarations were checked separately."
     },
     "lean": "Full project lake build succeeded with 9213 jobs, including all 29 new research modules and the results aggregator.",
-    "build_jobs": 9213,
+    "build_jobs": 9214,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -307,7 +316,8 @@
       "validation/lean-reciprocal-exchange-axioms.log",
       "validation/lean-weighted-root-full-build.log",
       "validation/lean-weighted-root-axioms.log"
-    ]
+    ],
+    "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
   "manual_results": [
     "Parameter and fixed-denominator barriers distinguish exact real-table interpolation from target-dependent Boolean sign interpolation.",
@@ -1176,10 +1186,27 @@
     "literature_entry": 118,
     "diagnostic": "artifacts/head-compression/diagnostics/moving-root-identity-audit.json",
     "diagnostic_scope": "72 SAT moving-root identities rechecked exactly, and every stored SAT tangent witness independently recomputed with Fractions. The three-variable five-root example realizes parity; no asymptotic consequence. Solver UNSAT outputs are not imported proofs.",
-    "target_proved": false
+    "target_proved": false,
+    "short_quadrature": "Universal sign-preserving common-time quadrature at H=O(2^n/n^2) cannot use o(n/log n) times. This follows from the exponential sign count, without an assumed bound on denominators or cancellation."
   },
   "private_repository_refresh_2026_11_23_1402": {
     "command": "git fetch origin '+refs/heads/*:refs/heads/*' in the two existing bare mirrors",
     "result": "Both completed without updates. No new target proof found."
+  },
+  "nonideal_variation_audit": {
+    "file": "artifacts/head-compression/nonideal-variation-audit.tex",
+    "compiler": "Explicit 2m-head positive-slope realization of any strictly separating nonideal first variation, with a rational error bound and exact finite checker. No universal existence is asserted.",
+    "oscillation": "If a leading product difference has auxiliary degree d<m, its leading logarithmic-derivative Laplace integrand has at most d positive zeros, including repeated base rates.",
+    "fixed_root_obstruction": "An affine form taking values in a fixed ordered root set reaches its first q levels within q-1 active-coordinate steps of its minimum face. The resulting fiber-pattern count excludes all fixed-distinct-root variations of auxiliary degree o(n) at m=O(2^n/n^2), including arbitrary finite analytic leading orders. Roots may depend on the target.",
+    "proof_status": "Low-coordinate-path invariant Lean checked. Compiler, oscillation theorem, fiber-pattern count, and asymptotic sign bound are complete manual proofs.",
+    "not_excluded": [
+      "Moving root multisets with nonideal leading terms.",
+      "Auxiliary degree comparable to n or larger.",
+      "General admissible rational scores."
+    ],
+    "script": "artifacts/head-compression/search_nonideal_root_variation.py",
+    "smoke": "artifacts/head-compression/diagnostics/nonideal-compiler-smoke.json",
+    "running_diagnostic": "Six-bit fixed random target, four roots per list, integer root slopes bounded by three, with connected root matching and nonaffine minimum. Run through heavy; pending at the time of this record.",
+    "target_proved": false
   }
 }

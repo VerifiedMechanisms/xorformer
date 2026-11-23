@@ -975,6 +975,15 @@
       "checked_location": "Theorem 2.1, printed page 137 (PDF page 6), restating Warren\u2019s strict polynomial sign-pattern theorem.",
       "mechanism": "For m degree-at-most-d real polynomials in p variables with m >= p, the number of strict sign patterns is at most (4 e d m / p)^p. Affine-weighted exponential scores on Boolean inputs become degree-at-most-n+1 polynomials in (2n+1)H+1 parameters.",
       "gap": "This proves an obstruction to common-Laplace-time constructions and ideal moment variations, not a lower bound for unrestricted sums of positive affine reciprocals. Cancellation across integration times is permitted in the original model."
+    },
+    {
+      "title": "On the Approximation of Stieltjes Functions by Exponential Sums and Rational Functions with Applications to Partial Differential Equations",
+      "authors": "Dietrich Braess and Wolfgang Hackbusch",
+      "url": "https://files-www.mis.mpg.de/mpi-typo3/preprints/2024/preprint2024_10.pdf",
+      "checked_location": "Revised August 2026 version: Sections 1.3-1.4 and 2.2-2.3, Theorem 4.5 and its proof, and Addendum B Theorem B.1.",
+      "mechanism": "Approximates inverse powers on positive intervals by exponential sums; exponentials of sums factor into products. Relative-error bounds depend on the interval ratio, with improved bounds from variable-angle complex cones and Zolotarev approximation.",
+      "gap": "A head-by-head relative error epsilon controls a signed score only through the sufficient bound epsilon times the sum of head magnitudes. That sum relative to the margin is unrestricted and may be enormous. No uniform constant-term replacement or construction of arbitrary Boolean signs follows. The separate Boolean exponential count rules out universally preserving all signs with o(n/log n) common quadrature times at the requested head budget.",
+      "scope": "No lower bound on best scalar approximation length is inferred from the paper\u2019s upper error estimates; correlated approximation errors are not assumed impossible."
     }
   ]
 }

@@ -1,0 +1,2 @@
+'HeadComplexity.card_add_one_le_affineLevelInterval_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.activeCoordinates_lt_prefixRootCount' depends on axioms: [propext, Classical.choice, Quot.sound]

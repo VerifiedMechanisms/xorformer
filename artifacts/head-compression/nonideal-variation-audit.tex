@@ -1,0 +1,353 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Nonideal Root Variations: Compilation, Oscillation, and Low-Level Fibers}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+Nonconstant dependence on the auxiliary variable can escape the common
+Laplace-sign obstruction. This note gives an exact compiler and an
+example of that escape. A different low-level-fiber invariant still
+excludes fixed-root constructions of sublinear auxiliary degree.
+These are manual proofs. The universal head bound remains unproved.
+
+\section{An explicit compiler without an ideal-difference hypothesis}
+
+Let $U_h,V_h,a_h,b_h$ be affine forms, $1\le h\le m$.
+Assume that all coefficients of every $U_h,V_h$ are strictly positive,
+and that at every Boolean vertex the two base lists $U,V$ have equal
+multisets of values. The root values may vary with the input. Define
+\[
+ L(x)=c-\sum_h\frac{a_h(x)}{U_h(x)^2}
+          +\sum_h\frac{b_h(x)}{V_h(x)^2}.
+ \tag{1}
+\]
+
+\begin{proposition}[Finite positive-slope realization]
+Suppose $y(x)L(x)\ge\gamma>0$ at every cube vertex. Then, for every
+sufficiently small positive rational $\epsilon$, the score
+\[
+ S_\epsilon(x)=c+\frac1\epsilon
+       \left(\sum_h\frac1{U_h(x)+\epsilon a_h(x)}
+                  -\sum_h\frac1{V_h(x)+\epsilon b_h(x)}\right)
+ \tag{2}
+\]
+strictly represents $y$ using $2m$ admissible heads. More explicitly,
+it suffices to make every perturbed coefficient positive and to have
+\[
+ \max_x\sum_h\left(
+ \frac{\epsilon a_h(x)^2}{U_h(x)^2(U_h(x)+\epsilon a_h(x))}
+ +\frac{\epsilon b_h(x)^2}{V_h(x)^2(V_h(x)+\epsilon b_h(x))}
+                  \right)<\gamma.
+ \tag{3}
+\]
+\end{proposition}
+\begin{proof}
+For $D,D+\epsilon a>0$, direct multiplication gives
+\[
+ \frac1\epsilon\left(\frac1{D+\epsilon a}-\frac1D\right)
+       =-\frac a{D^2}
+                    +\frac{\epsilon a^2}{D^2(D+\epsilon a)}.
+ \tag{4}
+\]
+The base reciprocal sums in (2) cancel exactly, by the multiset
+hypothesis. Apply (4) to each summand. The triangle inequality bounds
+$|S_\epsilon-L|$ by the expression in (3). It tends uniformly to zero
+on the finite cube. Positivity of the finitely many base coefficients
+persists for sufficiently small $\epsilon$. Choosing a rational
+$\epsilon$ in that interval proves all assertions. The numerators in
+(2) are constants $\epsilon^{-1}$ and $-\epsilon^{-1}$, and the free
+bias is allowed by the normal form.
+\end{proof}
+
+The script \texttt{search\_nonideal\_root\_variation.py} implements
+(3) using exact rational arithmetic after a candidate is found. It
+halves $\epsilon$ until the perturbed coefficients are positive and
+the bound is less than half the leading margin. An independent checker
+then evaluates every actual fraction at every Boolean vertex.
+Solver timeouts or failures are not lower bounds.
+
+\begin{proposition}[A nonideal variation with no common aligned time]
+Put $B(x)=2+2x$ and $d(x)=1-2x$ on the one-bit cube. The score
+\[
+ L(x)=d(x)\left(\frac1{B(x)^2}
+                          -\frac2{(B(x)+1)^2}\right)
+ \tag{5}
+\]
+is positive at both inputs, but its Laplace integrands have no common
+strictly positive time. It is a special case of (1), with $m=2$.
+\end{proposition}
+\begin{proof}
+The two values are $L(0)=1/36$ and $L(1)=7/400$.
+Its integrand is
+\[
+ t d(x)e^{-tB(x)}(1-2e^{-t}).
+\]
+At $x=0$ this is positive exactly when $t>\log 2$; at $x=1$ it is
+positive exactly when $0<t<\log 2$. At $t=\log 2$ both vanish.
+Take $U=V=(B,B+1)$, $a=(-d,2d)$, and $b=(0,0)$ in (1).
+The common base product is $P(s)=(s+B)(s+B+1)$, and its first
+product difference is $d(x)(s+B(x)-1)$, which has degree one in $s$.
+Thus the example escapes precisely the ideal, degree-zero hypothesis.
+It is a boundary example, not an efficient universal representation.
+\end{proof}
+
+\section{Auxiliary degree controls Laplace oscillation}
+
+\begin{lemma}[Zeros of exponential polynomials]
+Let $b_1,\ldots,b_r$ be distinct real numbers and let $p_j$ be real
+polynomials of degree at most $m_j-1$, with $m_j\ge1$ and
+$M=\sum_jm_j$. A nonzero function
+$g(t)=\sum_jp_j(t)e^{-b_jt}$ has at most $M-1$ real zeros, counted
+with multiplicity, on every finite interval.
+\end{lemma}
+\begin{proof}
+Induct on $M$. Multiply by $e^{b_1t}$, which does not change zeros,
+and differentiate. The block at $b_1$ loses one dimension, while
+each other polynomial block retains its degree bound. The derivative
+therefore belongs to a space of the stated form with total dimension
+$M-1$. If it is nonzero, Rolle's theorem with multiplicities and the
+induction hypothesis give the result. If it is zero, the original
+function is a constant multiple of $e^{-b_1t}$ and has no zeros.
+The case $M=1$ is immediate. Zero polynomial blocks can be removed
+whenever they arise in the induction.
+\end{proof}
+
+\begin{theorem}[A numerator-degree oscillation bound]
+Let $P(s)=\prod_{h=1}^m(s+b_h)$ with every $b_h>0$, permitting
+repetitions. Let $R$ be nonzero of degree $d<m$. The inverse Laplace
+transform $K_R$ of $R/P$, in the class of exponential polynomials,
+has at most $d$ zeros on $(0,\infty)$, counted with multiplicity.
+Consequently the inverse transform of $(R/P)'$ has at most $d$
+positive zeros as well.
+\end{theorem}
+\begin{proof}
+Partial fractions express $K_R$ as an exponential polynomial of total
+dimension at most $m$. If the leading coefficient of $R$ is $r_d$,
+expansion at infinity gives
+\[
+       \frac{R(s)}{P(s)}=r_ds^{-(m-d)}+O(s^{-(m-d+1)}).
+\]
+Repeated integration by parts in the Laplace transform gives
+\[
+ K_R^{(j)}(0)=0\quad(0\le j<m-d-1),\qquad
+ K_R^{(m-d-1)}(0)=r_d\ne0.
+\]
+For completeness, each remainder after integration by parts is
+$O(s^{-k-1})$ because every derivative of the finite exponential
+polynomial is bounded near zero and decays at infinity. Comparing
+successive powers of $1/s$ justifies the displayed equalities.
+The zero at zero has multiplicity $m-d-1$. The preceding lemma leaves
+at most $d$ zeros on the positive axis. If there were more, a finite
+interval containing zero and those zeros would contradict that lemma.
+Finally the transform of $-tK_R(t)$ is $(R/P)'$, by differentiating
+under the absolutely convergent integral. Multiplication by $-t$
+does not change the positive zeros.
+\end{proof}
+
+If $F_\epsilon-G_\epsilon=\epsilon^kR+O(\epsilon^{k+1})$ and
+$F_0=G_0=P$, then
+\[
+ \frac{(F_\epsilon)_s}{F_\epsilon}
+       -\frac{(G_\epsilon)_s}{G_\epsilon}
+       =\epsilon^k(R/P)'+O(\epsilon^{k+1}).
+ \tag{6}
+\]
+Thus at each input, a leading product difference of auxiliary degree
+at most $d$ has a leading exponential integrand with at most $d$
+positive zeros. This bound does not assert a common aligned time:
+(5) already shows why that assertion fails for $d=1$.
+
+\section{Low root levels have short coordinate paths}
+
+\begin{lemma}[Low-level fibers of an affine form]
+Suppose a real affine form $u$ takes values in a fixed ordered set
+$\lambda_1<\cdots<\lambda_m$ on the Boolean cube. Complement its
+negative-slope coordinates and discard its zero-slope coordinates,
+so that
+\[
+              u(x)=\lambda_r+\sum_{i\in I}w_i z_i,
+              \qquad w_i>0.
+\]
+If $u(x)=\lambda_j$, then at most $j-r$ of the active coordinates
+$z_i$ equal one. In particular the first $q$ level fibers can be
+nonempty only within $q-1$ coordinate steps of the minimum face.
+\end{lemma}
+\begin{proof}
+If $k$ active coordinates equal one, turn on those coordinates one at
+a time from a point of the minimum face. The $k+1$ successive values
+are strictly increasing members of the ordered root set, beginning
+at $\lambda_r$ and ending at $\lambda_j$. Hence $k+1\le j-r+1$.
+\end{proof}
+
+The interval-cardinality version of this argument is kernel checked in
+\texttt{Results/LowRootFibers.lean}, as
+\texttt{HeadComplexity.card\_add\_one\_le\_affineLevelInterval\_card}
+and \texttt{HeadComplexity.activeCoordinates\_lt\_prefixRootCount}.
+The counting arguments below are manual, not Lean declarations.
+
+\begin{lemma}[Counting all first-level-fiber patterns]
+For $1\le q\le m$, put
+\[
+ M_q=q\sum_{i=0}^{\min(q-1,n)}\binom ni,
+ \qquad
+ T_q=(q+1)3^n(1+2M_q)^{n+q+1}.
+ \tag{7}
+\]
+As both the affine form and the ordered root set vary, there are at
+most $T_q$ different ordered lists of its fibers at
+$\lambda_1,\ldots,\lambda_q$, provided its entire cube image lies
+in that root set.
+\end{lemma}
+\begin{proof}
+The signs and zero status of the slopes have at most $3^n$ choices.
+There are $q$ possible minimum indices $r\le q$ and one further
+case in which all the first $q$ fibers are empty. By the preceding
+lemma, only active-coordinate subsets of size at most $q-1$ need
+be considered. For these subsets and each $j\le q$, the equalities
+\[
+                   a+\sum_{i\in S}w_i-\lambda_j=0
+\]
+are $M_q$ linear tests in at most $n+q+1$ real parameters.
+Their complete sign patterns, including zeros, determine all the
+fibers; ignoring positivity and all other root constraints only
+enlarges this count.
+
+An arrangement of $M$ affine hyperplanes in dimension $k$ has at
+most $\sum_{i=0}^k2^i\binom Mi\le(1+2M)^k$ sign patterns when
+zeros are retained. To see the first bound, add a hyperplane. Each
+face of the induced arrangement on it contributes at most one new
+face there and one additional split face, giving the recurrence
+$F(M,k)\le F(M-1,k)+2F(M-1,k-1)$. The binomial expression satisfies
+that recurrence and the boundary cases. This proves (7).
+\end{proof}
+
+\section{Sublinear auxiliary degree is insufficient with fixed roots}
+
+Let each of two affine lists $u_1,\ldots,u_m$ and $v_1,\ldots,v_m$
+permute the same fixed distinct roots $\lambda_1<\cdots<\lambda_m$
+at every input. The list and roots may depend on the target. Let
+$a_h,b_h$ be arbitrary affine perturbations, and suppose
+\[
+ R(s,x)=\left.\partial_\epsilon\right|_0
+   \left[\prod_h(s+u_h(x)+\epsilon a_h(x))
+         -\prod_h(s+v_h(x)+\epsilon b_h(x))\right]
+ \tag{8}
+\]
+has degree at most $q-1$ in $s$, at every cube input, where
+$1\le q\le m$. Write $P(s)=\prod_{j=1}^m(s+\lambda_j)$.
+Allow an arbitrary affine common shift $C(x)$ with
+$C(x)+\lambda_j>0$, and an arbitrary bias $c$. Consider the strict
+signs of
+\[
+                   c+\left.(R/P)'\right|_{s=C(x)}.
+ \tag{9}
+\]
+An actual head realization additionally requires the slope-sign
+condition for $C+u_h$ and $C+v_h$. We omit that restriction when
+counting, thereby enlarging the family. No change of $C$ after
+fixing a sign table is assumed to preserve that table.
+
+\begin{theorem}[Fixed-root low-degree sign count]
+Put $N=2^n$, $k_1=2m(n+1)+1$, $k_2=m+n+1$, and $p=k_1+k_2$.
+When $p\le N$, the number of strict sign tables in (9) is at most
+\[
+ T_q^{2m}\left(\frac{32768N}{p}\right)^p
+                  2^{k_1}(2m)^{k_2}.
+ \tag{10}
+\]
+For any fixed $C_0>0$ and any positive integer sequence $q(n)=o(n)$, the union
+over $m\le C_0 2^n/n^2$ and auxiliary degrees at most $q(n)-1$
+has only $2^{o(2^n)}$ strict sign tables. It therefore cannot be a
+universal construction at that head budget.
+\end{theorem}
+\begin{proof}
+At a vertex let
+\[
+ D_j(x)=\sum_{h:u_h(x)=\lambda_j}a_h(x)
+                   -\sum_{h:v_h(x)=\lambda_j}b_h(x).
+\]
+Evaluation of (8) at $s=-\lambda_j$ gives
+$R(-\lambda_j,x)=D_j(x)\prod_{\ell\ne j}(\lambda_\ell-\lambda_j)$.
+Interpolation at the first $q$ roots therefore yields the polynomial
+identity in $s$
+\[
+ R(s,x)=\sum_{j=1}^q D_j(x)
+       \prod_{\ell=q+1}^m(\lambda_\ell-\lambda_j)
+       \prod_{\substack{1\le\ell\le q\\\ell\ne j}}(s+\lambda_\ell).
+ \tag{11}
+\]
+The interpolation denominators have canceled exactly. No rational
+dependence on the root parameters is left in (11).
+
+The first $q$ fibers of the $2m$ affine forms have at most $T_q^{2m}$
+possibilities. Fix them. Then every $D_j(x)$ is linear in the
+$2m(n+1)$ numerator parameters. After multiplying (9) by the positive
+$P(C(x))^2$, its numerator is
+\[
+       cP(C(x))^2+R'(C(x),x)P(C(x))-R(C(x),x)P'(C(x)).
+\]
+For each input this is a polynomial, of degree at most one in the
+$k_1$ numerator-and-bias parameters and at most $2m$ in the $k_2$
+root-and-shift parameters. Apply the two-block polynomial sign bound
+already stated and sourced in \texttt{mechanism-audit.tex}, the
+largest-term and shifted-Sidon counting arguments. Enlarging the
+parameter domain by dropping the root ordering and admissibility
+restrictions only increases the count. This proves (10).
+
+For $q=o(n)$, eventually $q\le n/2$. The elementary binomial bound
+gives
+\[
+ \log M_q=O\bigl(q\log(en/q)+\log n\bigr)=o(n),
+ \qquad \log T_q=o(n^2).
+\]
+This includes $q=1$ directly. Thus $2m\log T_q=o(N)$ at the
+stated budget. The other terms in the logarithm of (10) are
+$O_{C_0}(N\log n/n+n^2)=o(N)$, as in the earlier two-block count.
+For sufficiently large $n$, $p\le N$ throughout the budget.
+Taking the union over at most $C_0N/n^2$ possible $m$ adds only
+$O_{C_0}(n)$ to the logarithm. If $m<q(n)$, replace $q(n)$ by $m$;
+this does not worsen any bound.
+\end{proof}
+
+\begin{corollary}[Analytic parameter order does not remove this restriction]
+The same fixed-root count applies if (8) is replaced by the first
+nonzero product difference at any finite order of analytic affine
+root perturbations, provided the base roots are distinct and fixed
+across the cube and its auxiliary degree is at most $q-1$.
+\end{corollary}
+\begin{proof}
+Suppose $F_\epsilon-G_\epsilon=\epsilon^kR+O(\epsilon^{k+1})$.
+Fix an input and match base roots, writing $u_h(0)=v_{\pi(h)}(0)$.
+Evaluate the product difference at $s=-u_h(\epsilon)$. The resulting
+value of $G_\epsilon$ is $O(\epsilon^k)$. All its factors except
+$v_{\pi(h)}(\epsilon)-u_h(\epsilon)$ stay bounded away from zero,
+because the base roots are distinct. Thus the matched roots have
+equal Taylor coefficients through order $k-1$.
+
+Let $a_h,b_h$ be their coefficients at order $k$. They are affine in
+the input: the constant and linear coefficients of an affine form
+can be recovered from its values at zero and at the unit vectors,
+so their Taylor coefficients are affine as well. The coefficient at
+order $k$ of the product difference is exactly (8), since all
+lower matched root coefficients agree. The preceding theorem applies.
+This argument concerns a common finite order $k$; it does not assert
+that every arbitrary head representation has such a description.
+\end{proof}
+
+\paragraph{Boundary of the result.}
+The theorem fixes the base root multiset across inputs; it does not
+assume that the roots are fixed across targets. Moving root multisets,
+auxiliary degree comparable to $n$ or larger, and general admissible
+head scores remain outside this low-fiber count. No universal existence
+lemma for those remaining classes is asserted. The side computation
+examines moving-root nonideal variations and is not evidence for an
+asymptotic theorem.
+
+\end{document}

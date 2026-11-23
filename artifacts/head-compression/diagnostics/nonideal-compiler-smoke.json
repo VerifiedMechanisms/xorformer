@@ -1,0 +1,15 @@
+{
+  "file": "artifacts/head-compression/certificates/nonideal-compiler-positive-n1-h4.json",
+  "sha256": "cc8513db7a63981fabca54b1ffaf5361798a1165f0e35b1148a740fe3b8d5a16",
+  "n": 1,
+  "heads": 4,
+  "vertices_checked": 2,
+  "strict_signs_and_admissibility": true,
+  "margin_approximation": 1.8668110179879167,
+  "scope": "This finite truth table only; not a universal bound.",
+  "negative_control_wrong_label_rejected": true,
+  "epsilon": "1/4096",
+  "leading_margin": "7/4",
+  "error_bound": "385625/580023",
+  "target_proved": false
+}
