@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{An Extreme-Root Obstruction to Ideal Permutation Variations}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note closes the fixed-root, ideal-first-variation construction as
+a route to the universal target. It permits arbitrary distinct real
+roots, chosen separately for each target, and arbitrary affine
+permutation lists. The result is not a lower bound for general head
+complexity. In particular, it does not apply when the common root
+multiset itself varies with the Boolean input. The proofs below are
+manual, not Lean formalizations.
+
+\begin{lemma}[Minimum fibers are faces]
+Let $L(x)=a_0+\sum_i a_i x_i$ on $\{0,1\}^n$, and suppose
+$L(x)\ge\lambda$ everywhere. Then $\{x:L(x)=\lambda\}$ is
+either empty or a coordinate subcube.
+\end{lemma}
+\begin{proof}
+The minimum is $a_0+\sum_{a_i<0}a_i$. If this is larger than
+$\lambda$, the fiber is empty. Otherwise it equals $\lambda$, and
+\[
+ L(x)-\lambda=\sum_{a_i>0}a_i x_i+
+                    \sum_{a_i<0}(-a_i)(1-x_i).
+\]
+Every summand is nonnegative. Their sum vanishes exactly when
+$x_i=0$ for $a_i>0$ and $x_i=1$ for $a_i<0$; coordinates with
+zero coefficient are free.
+\end{proof}
+
+\begin{theorem}[Two face partitions determine every ideal variation]
+Let $\lambda_1<\cdots<\lambda_m$ be real numbers. Let
+$u_1,\ldots,u_m$ and $v_1,\ldots,v_m$ be affine forms such that
+each of their value lists is a permutation of these numbers at every
+Boolean input. Let $a_h,b_h$ be affine forms, and suppose
+\[
+ \left.\partial_\epsilon\right|_0
+ \left[\prod_h(s+u_h(x)+\epsilon a_h(x))-
+       \prod_h(s+v_h(x)+\epsilon b_h(x))\right]=r(x)
+\tag{1}
+\]
+is independent of $s$. There are two partitions of the cube into
+at most $m$ coordinate subcubes such that, on each cell of their
+common refinement, $r$ is affine. More precisely, if
+$U_h=\{x:u_h(x)=\lambda_1\}$ and
+$V_h=\{x:v_h(x)=\lambda_1\}$, then
+\[
+ r(x)=d\left(\sum_h\mathbf1_{U_h}(x)a_h(x)
+                   -\sum_h\mathbf1_{V_h}(x)b_h(x)\right),
+ \qquad d=\prod_{j=2}^m(\lambda_j-\lambda_1)>0.
+\tag{2}
+\]
+The empty product for $m=1$ is one.
+\end{theorem}
+\begin{proof}
+Every $u_h$ and $v_h$ is at least $\lambda_1$ on the cube, so
+the lemma applies. Exactly one form in each list attains
+$\lambda_1$ at each vertex. Thus the nonempty fibers are disjoint
+partitions. Evaluate (1) at $s=-\lambda_1$. In each product
+derivative, all terms vanish except the term differentiating its
+unique zero factor. The remaining product is $d$, independently of
+the input. This gives (2). An intersection of two coordinate subcubes
+is empty or a coordinate subcube, and on that intersection (2) is a
+fixed difference of two affine forms.
+\end{proof}
+
+\begin{corollary}[Uniform counting obstruction]
+Write $N=2^n$ and $p=2m(n+1)\le N$. Even allowing the roots,
+the two lists, and all perturbations to depend on the target, the
+number of strict sign tables obtainable as $\operatorname{sgn}r$
+in (1) is at most
+\[
+ (3^n+1)^{2m}\left(\frac{eN}{p}\right)^p.
+\tag{3}
+\]
+Consequently, for every fixed $C>0$, the union over
+$m\le C2^n/n^2$ gives only $2^{o(2^n)}$ sign tables as
+$n\to\infty$. This is insufficient for the requested universal bound.
+\end{corollary}
+\begin{proof}
+There are $3^n$ nonempty coordinate subcubes, specified by making
+each coordinate free, zero, or one. Allowing an empty fiber gives
+at most $(3^n+1)^{2m}$ ordered pairs of fiber lists. We may
+overcount lists that do not form partitions.
+
+For each pair that does form partitions, (2) is linear in the
+$p=2m(n+1)$ affine coefficients. Its strict sign tables are the
+regions of an arrangement of $N$ linear hyperplanes in
+$\mathbb R^p$. The usual deletion-restriction induction gives at
+most $\sum_{j=0}^p\binom Nj$ regions, even for affine hyperplanes:
+adding a hyperplane can split no more regions than the induced
+arrangement of the preceding hyperplanes on it. This recurrence
+and the initial cases prove the stated sum bound.
+For $t=p/N\in(0,1]$, positivity of binomial coefficients gives
+\[
+ \sum_{j=0}^p\binom Nj\le t^{-p}(1+t)^N
+                         \le(eN/p)^p.
+\]
+The positive factor $d$ in (2) has no effect on signs. In particular,
+varying the real root values contributes no extra sign patterns once
+the face lists have been specified. This proves (3).
+
+At $m\le C N/n^2$, the base-two logarithm of the first factor is
+$O_C(N/n)$. The logarithm of the second is
+$O_C(N\log n/n)$, uniformly over these $m$, by the monotonicity
+of $p\log(eN/p)$ for $0<p\le N$. Summing over the at most
+$C N/n^2$ permitted integers $m$ adds only $O_C(n)$ to the
+logarithm. The result is $o(N)$.
+\end{proof}
+
+\begin{corollary}[Parity forces many roots]
+If the output in (1) has the strict signs of $n$-bit parity, or its
+complement, then $m^2\ge2^{n-1}$.
+\end{corollary}
+\begin{proof}
+An affine function cannot strictly represent parity on a coordinate
+subcube of dimension at least two. Indeed, its signed sum against
+the parity character is zero, since that character is orthogonal to
+the constant and every coordinate, whereas strict representation
+would make every summand positive after possibly reversing a fixed
+sign. Therefore every nonempty cell of the common refinement in the
+theorem has at most two vertices. There are at most $m^2$ cells,
+so $2^n\le2m^2$.
+\end{proof}
+
+\begin{theorem}[Higher parameter order at simple roots does not evade the obstruction]
+Replace each perturbed factor in (1) by
+\[
+ s+u_h(x)+\sum_{q\ge1}\epsilon^q a_{h,q}(x),
+ \qquad
+ s+v_h(x)+\sum_{q\ge1}\epsilon^q b_{h,q}(x),
+\]
+where every coefficient is affine in $x$. Finite polynomials or
+formal power series in $\epsilon$ are both allowed. Suppose all
+coefficients of the product difference of orders less than $k$ vanish
+as polynomials in $s$ at every Boolean input, and the coefficient of
+order $k$ is $r(x)$, independent of $s$. Then (2) holds with
+$a_h=a_{h,k}$ and $b_h=b_{h,k}$. In particular (3) and the parity
+bound still apply, independently of $k$.
+\end{theorem}
+\begin{proof}
+Fix a Boolean input and match the two initial factor lists by their
+distinct root values. We show inductively that the coefficients of
+the matched factors agree at every order $q<k$. If agreement holds
+at all smaller orders, then the coefficient of order $q$ in the
+product difference is
+\[
+ \sum_h(a_{h,q}(x)-b_{\pi(h),q}(x))
+                  \prod_{\ell\ne h}(s+u_\ell(x)).
+\]
+All terms involving only lower coefficients cancel in matched pairs.
+Evaluation at $s=-u_h(x)$ and distinctness of the roots force
+$a_{h,q}(x)=b_{\pi(h),q}(x)$. The induction starts at $q=1$.
+The same displayed formula consequently holds at order $k$, whether
+or not its coefficient vanishes. It is exactly the first variation
+in (1), using the affine order-$k$ coefficient forms. Apply the
+theorem.
+\end{proof}
+
+\paragraph{Repeated roots.}
+A nonzero ideal first variation cannot start from a repeated root:
+evaluating its product derivative at that root gives zero. Higher
+orders at repeated roots are outside the final theorem. So are
+input-dependent common root multisets and variations that are not
+constant in the auxiliary variable $s$. No universal construction
+in any of these larger classes is asserted here.
+
+\paragraph{Research consequence.}
+The four-bit weighted example remains a correct nonaffine identity.
+Its root lists and perturbations were independently checked exactly.
+However, the extreme-root invariant proves that extending that
+fixed-root ideal-variation strategy cannot settle the universal target.
+The family is therefore closed as a universal approach, rather than
+being left behind an unproved existence lemma.
+\end{document}

@@ -1,0 +1,7 @@
+'HeadComplexity.weightedRootValues_perm_range' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.weightedRootValues_length' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.weightedRootValues_prod' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.weightedRootPolynomials_totalDegree_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.weightedRootPolynomials_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.weightedRootPolynomials_eval_perm_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.weightedRootPolynomials_eval_prod' depends on axioms: [propext, Classical.choice, Quot.sound]

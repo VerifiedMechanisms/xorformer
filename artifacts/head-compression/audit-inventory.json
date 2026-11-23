@@ -215,6 +215,19 @@
         "HeadComplexity.booleanProjection_multilinear_ext"
       ],
       "scope": "Over an integral domain R, a polynomial over R[t] vanishes on every Boolean projection z_i=t^x_i exactly when it is a polynomial linear combination of (z_i-1)*(z_i-t), with degree control in the z variables. Multilinear polynomials are uniquely determined by these curve values. No coefficient-support or head bound follows."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/WeightedRootCompletion.lean",
+      "main_declaration": "HeadComplexity.weightedRootPolynomials_eval_perm_range",
+      "companion_declarations": [
+        "HeadComplexity.weightedRootValues_perm_range",
+        "HeadComplexity.weightedRootValues_length",
+        "HeadComplexity.weightedRootValues_prod",
+        "HeadComplexity.weightedRootPolynomials_totalDegree_le_one",
+        "HeadComplexity.weightedRootPolynomials_eval",
+        "HeadComplexity.weightedRootPolynomials_eval_prod"
+      ],
+      "scope": "An explicit weighted interval completion by affine integer polynomials, with exact root permutation and product identities at every Boolean vertex. This is not a universal head construction."
     }
   ],
   "validation": {
@@ -240,7 +253,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "66 listed main and companion declarations in 27 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "75 listed main and companion declarations in 29 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -251,8 +264,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 68,
-      "modules": 28,
+      "declarations": 75,
+      "modules": 29,
       "only": [
         "propext",
         "Classical.choice",
@@ -265,12 +278,13 @@
         "validation/lean-reciprocal-exchange-axioms.log",
         "validation/lean-reciprocal-three-cycle-axioms.log",
         "validation/lean-affine-partial-fraction-axioms.log",
-        "validation/lean-boolean-projection-axioms.log"
+        "validation/lean-boolean-projection-axioms.log",
+        "validation/lean-weighted-root-axioms.log"
       ],
-      "scope": "The prior 66 declarations were unchanged; both BooleanProjectionIdeal declarations were checked separately."
+      "scope": "The prior 68 declarations were unchanged; all seven WeightedRootCompletion declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9212 jobs, including all 28 new research modules and the results aggregator.",
-    "build_jobs": 9212,
+    "lean": "Full project lake build succeeded with 9213 jobs, including all 29 new research modules and the results aggregator.",
+    "build_jobs": 9213,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -290,7 +304,9 @@
       "validation/lean-gapped-cover-full-build.log",
       "validation/lean-gapped-cover-axioms.log",
       "validation/lean-reciprocal-exchange-full-build.log",
-      "validation/lean-reciprocal-exchange-axioms.log"
+      "validation/lean-reciprocal-exchange-axioms.log",
+      "validation/lean-weighted-root-full-build.log",
+      "validation/lean-weighted-root-axioms.log"
     ]
   },
   "manual_results": [
@@ -1124,6 +1140,23 @@
     "score_audit": "artifacts/head-compression/diagnostics/permutation-tangent-parity-n4-h12-audit.json",
     "witness_scope": "Four-bit parity only, using more heads than its known optimum. Establishes a non-affine first variation for two nonconstant root lists.",
     "formalization": "Manual proof and exact certificate checks, not Lean formalized.",
-    "target_proved": false
+    "target_proved": false,
+    "lean": "formalization/HeadComplexity/Results/WeightedRootCompletion.lean",
+    "lean_scope": "The affine root completion, permutation identity, exact length, and commutative product identity. The perturbation compiler and face obstruction are manual proofs."
+  },
+  "fixed_root_face_obstruction": {
+    "file": "artifacts/head-compression/fixed-root-face-obstruction.tex",
+    "status": "Manually proved obstruction to the entire fixed-simple-root ideal-variation construction, not to general heads.",
+    "invariant": "The unique minimum-root fibers form coordinate-subcube partitions. Every ideal variation is a difference of selected affine forms.",
+    "sign_count": "(3^n+1)^(2m) * (e*2^n/(2m(n+1)))^(2m(n+1)) when 2m(n+1)<=2^n.",
+    "asymptotic": "Only 2^{o(2^n)} strict tables for m<=C*2^n/n^2, including target-dependent distinct real root sets.",
+    "parity": "m^2>=2^(n-1).",
+    "higher_orders": "The same barrier holds for the first nonzero ideal coefficient at any formal perturbation order, with a fixed simple base root set.",
+    "not_covered": [
+      "Input-dependent common root multisets",
+      "Higher-order collisions at repeated roots",
+      "Variations depending nontrivially on the auxiliary variable s"
+    ],
+    "universal_route_status": "Closed by the extreme-root invariant; do not resume on the basis of the four-bit example alone."
   }
 }

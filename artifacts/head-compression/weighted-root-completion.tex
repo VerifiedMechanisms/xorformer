@@ -12,7 +12,10 @@
 The constructions below supply exact cancellation identities, with all
 factors and all heads counted. They do not assert a universal small-head
 representation. The missing universal choice of root lists and
-perturbations remains a theorem-strength gap. The numerical search
+perturbations was initially a theorem-strength gap. The subsequent
+extreme-root argument in \texttt{fixed-root-face-obstruction.tex}
+proves that this fixed-root ideal-variation family is not universal
+at the requested rate. The numerical search
 described at the end tests a genuinely larger family of second lists
 than coordinate permutations of the unweighted construction.
 
@@ -48,6 +51,7 @@ Subsequent steps translate every old entry by the same amount;
 the resulting formulas are precisely the ones displayed.
 Taking products proves (1).
 \end{proof}
+
 
 This includes the unweighted triangular list when every $c_i=1$.
 For integer affine forms with nonzero coefficients of either sign,
@@ -130,6 +134,18 @@ Every minimum, maximum, polynomial expansion, and comparison above
 is finite; rational input coefficients give rational outputs.
 \end{proof}
 
+\paragraph{Direct affine-numerator version.}
+Under the same hypotheses, affine numerators give the simpler exact
+score
+\[
+ \sum_h\frac{a_h(x)}{C(x)+u_h(x)}-
+ \sum_h\frac{b_h(x)}{C(x)+v_h(x)}
+             =\frac{R_x}{P(C(x))}.
+\]
+This follows directly from the product rule at $\epsilon=0$ and
+uses $2m$ admissible heads. The preceding perturbation compiler is
+needed only for its stronger conclusion of constant numerators.
+
 \begin{proposition}[Root-value test for an ideal first variation]
 At a fixed vertex, let $h_j$ and $k_j$ be the unique indices with
 $u_{h_j}(x)=v_{k_j}(x)=j$, and put
@@ -197,10 +213,19 @@ for an unweighted list against constant roots does not extend to
 this enlarged family. Parity already has a four-head construction;
 the example is not a head-complexity improvement.
 
-\paragraph{Universal gap.}
-No theorem here constructs such lists for every Boolean function
-with $m=O(2^n/n^2)$. Giving that missing assertion another name would
-not be progress on the target. The compiler is used only to assess
-actual new identities when they are produced, not as an assumed
-existence principle.
+\paragraph{Universal obstruction.}
+The later extreme-root proof in
+\texttt{fixed-root-face-obstruction.tex} excludes this entire
+fixed-root ideal-variation family at $m=O(2^n/n^2)$, even with
+target-dependent distinct real roots and arbitrary affine lists.
+It also excludes increasing the parameter order while keeping a
+fixed simple base root set. The construction remains an exact
+identity, but is closed as a route to the universal target.
+
+\paragraph{Lean boundary.}
+\texttt{WeightedRootCompletion.lean} proves the affine integer
+completion, its root permutation, its exact length, and its product
+identity. Its recursive list reads the coordinates in the reverse
+order from the displayed formula. The general perturbation compiler
+and the extreme-root obstruction are manual proofs.
 \end{document}

@@ -1,0 +1,18 @@
+{
+  "n": 6,
+  "weights": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "roots": 7,
+  "status": "unsat",
+  "seconds": 1532.235541277798,
+  "seed": 2026112313,
+  "scope": "Fixed weighted first list; variable integer affine second list; parity signs for the ideal first variation.",
+  "target_proved": false,
+  "audit_scope": "Solver-reported UNSAT for this ansatz only. No proof object was independently checked. The analytical universal obstruction does not depend on this result."
+}
