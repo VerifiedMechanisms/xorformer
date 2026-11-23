@@ -9,7 +9,7 @@ set_option linter.style.header false
 These are finite counting obstructions, not bounds on unrestricted real heads.
 The alphabet must be fixed independently of the target truth table. In
 particular, the results do not assign a bit length to an arbitrary real number.
-The eventual exponent-improvement proposition at the end is a definition only.
+The eventual asymptotic propositions at the end are definitions only.
 -/
 
 namespace HeadComplexity
@@ -207,5 +207,12 @@ def WorstCaseExponentImprovement : Prop :=
   ∃ δ : ℝ, 0 < δ ∧ ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ n ≥ n₀,
     (worstCaseHeadComplexity n : ℝ) ≤
       C * (2 : ℝ) ^ n / (n : ℝ) ^ (1 + δ)
+
+/-- The revised task's exact eventual target, with natural logarithms.
+This is an unproved proposition definition, not an upper-bound theorem. -/
+def WorstCaseLogLogSaving : Prop :=
+  ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ n ≥ n₀,
+    (worstCaseHeadComplexity n : ℝ) ≤
+      C * (2 : ℝ) ^ n / ((n : ℝ) * Real.log (Real.log (n : ℝ)))
 
 end HeadComplexity

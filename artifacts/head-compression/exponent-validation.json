@@ -6,11 +6,11 @@
   "model_definitions_changed": false,
   "build_command": "lake build HeadComplexity",
   "build_result": "passed",
-  "proved_declaration_count": 37,
+  "proved_declaration_count": 53,
   "modules": [
     {
       "file": "formalization/HeadComplexity/Results/PrecisionBarrier.lean",
-      "sha256": "4642412010531e931cb9133cda78f021a04f5af4767686a5d744a6bfbbff320f",
+      "sha256": "dec30d6dff59dafab0a2184bda2cf32380f096ceab9067f50b221b3a9504255a",
       "proved_declarations": [
         {
           "name": "HeadComplexity.two_pow_card_le_card_of_strict_universal",
@@ -339,18 +339,158 @@
           ]
         }
       ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/TorusPrismDecoder.lean",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.rationalPrefixKernel_error",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.rational_interval_difference",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.rational_interval_difference_nonneg",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.rational_interval_difference_le_of_no_rows",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.rationalSuffixKernel_error",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.gatedRationalInterval_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.gatedRationalInterval_nonneg",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.gatedRationalInterval_zero_row",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.gatedRationalInterval_equal_endpoints",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ],
+      "sha256": "33805608de22bb9a0a379b6c00accbc46734dfe32af7878ac977c41fa4eafa11"
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/DualRailLift.lean",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.affineValue_dualRail",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.dualRailSlopes_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.dualRailConstant_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.affineValue_dualRail_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.affineValue_negativeCorner",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.exists_positive_dualRail_lift",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.exists_fracAtom_dualRail_affineRatio",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ],
+      "sha256": "f31aae7338c6fec721a0ec468a1315e35cfb6849fda2f554a4889879bfff63eb"
     }
   ],
   "tex": [
     {
       "file": "artifacts/head-compression/exponent-literature.tex",
-      "sha256": "78730c17fa7efcba5fb3bc8331fce2824dbe31b869996ba5198bf4df9aa1ee4e",
+      "sha256": "c69f880d5c6ff225c9d22361c232a197b0e58160cf7f6518607ed9f47f343aca",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
     },
     {
       "file": "artifacts/head-compression/exponent-mechanisms.tex",
-      "sha256": "4803bfe79e0ed772599ab5822843666b7c1e55455a3d50f2721434a051a3800d",
+      "sha256": "01f2c09b24fa4278ef2b174f7432537e3b09dbacbfa891f83f404023c2e57188",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
     },
@@ -362,15 +502,39 @@
     },
     {
       "file": "artifacts/head-compression/exponent-report.tex",
-      "sha256": "bcd2283e391cd42d67ccb332872b41b3bdde254ad1dbb2f6985cf3ae8bc71799",
+      "sha256": "f7aa132fbc387bcd06be06d9e6cc15a96532e8b3fa74ff33f27f1c5d60733146",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/torus-prism-decoder.tex",
+      "sha256": "42e973ee82f066d4fc36a1f803f3762ec960688d97dff261f52d228784e74a27",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/product-tangent-counterexample.tex",
+      "sha256": "8557f3c21d6cd3a59f62b302865905ae8ddadf58c5fd6a24e306171c5709635e",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/periodic-chain-decoding.tex",
+      "sha256": "ce4167e4297bbd1f9c7e3989b46528b5110dc400cbf50cac0db9494f18bd100d",
       "static_braces_environments_and_no_em_dash": "passed",
       "pdf_rendered": false
     }
   ],
   "notes": [
-    "WorstCaseExponentImprovement is a proposition definition, not a proved theorem.",
+    "WorstCaseExponentImprovement and WorstCaseLogLogSaving are proposition definitions, not proved upper bounds.",
     "active_strictPatterns_card_le_warren retains the explicit WarrenStrictSignPatternBound hypothesis.",
-    "Full raw attention alphabet simulation, finite gluing, comparator bounds, and asymptotic corollaries remain written proofs.",
+    "The torus-grid extraction, periodic-chain transformations, scalar decoding bounds, and global conditional gluing remain written proofs.",
+    "DualRailLift proves an exact one-atom transfer only on complementary-rail inputs; it is not a universal head bound.",
     "No TeX compiler was available; TeX checks were static only."
-  ]
+  ],
+  "exact_target": "W(n) = O(2^n / (n * log(log(n))))",
+  "loglog_target_achieved": false,
+  "lean_version": "Lean 4.35.0",
+  "build_job_count": 9217,
+  "axiom_audit_result": "all 53 public theorems use only standard logical axioms"
 }

@@ -1,20 +1,26 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,hyperref}
 \usepackage[margin=1in]{geometry}
-\title{Beyond Linear Head Savings: Research Report}
+\title{Beyond Linear Head Savings: Logarithmic-Saving Audit}
 \author{}
 \date{November 23, 2026}
 \begin{document}
 \maketitle
 
 \paragraph{Outcome.}
-The requested asymptotic improvement was not proved. Neither fallback
-was reached: this run proves no bound
+The revised exact target
+$W(n)=O(2^n/(n\log\log n))$ was not proved, either in Lean or in the
+written arguments. The earlier positive-exponent target and both
+fallbacks were also not reached: this run proves no bound
 $W(n)=O(2^n/(n g(n)))$ with $g(n)\to\infty$, and no unrestricted
 lower bound $W(n)\geq c2^n/n$ on infinitely many dimensions.
 The new results concern necessary information, a specified class of
 localized constructions, and exact failures of proposed transfer steps.
 They do not close the exponent gap.
+
+The instruction to assume an affirmative result exists was treated as
+a research direction, not as an axiom or a premise of a claimed proof.
+No restricted-domain construction below is asserted to meet the target.
 
 \section{Verified baseline and unchanged scope}
 
@@ -180,6 +186,80 @@ lower bound for sign computation of the singleton indicator. The
 radius-$r$ extension by restriction to a maximal support vertex is
 written in \texttt{exponent-literature.tex}.
 
+\paragraph{A sign-only interval decoder, written construction and Lean kernels.}
+\texttt{torus-prism-decoder.tex} gives a complete extraction construction:
+for all sufficiently large $m$, every $m$ by $s$ Boolean table on
+the two-one-hot inputs has an $O(m/\log m)$-head representation,
+uniformly in $s$. All denominators are admissible on the entire
+$(m+s)$-cube, not merely on the promised inputs. The score has a
+strict uniform margin on the grid. A finite bias perturbation makes
+every other output strict without prescribing its label.
+The proof uses a finite Hall-matching extraction array and differences
+of rational suffix kernels. A related zero-bias decoder vanishes
+exactly on both coordinate axes, is nonnegative everywhere, and
+approximates every binary or ternary grid table with arbitrary
+specified error at the same head order. Its denominator orientation
+is opposite to the one required by the gluing theorem below.
+
+\texttt{TorusPrismDecoder.lean} proves the nine public kernel lemmas,
+including \texttt{rationalPrefixKernel\_error},
+\texttt{rationalSuffixKernel\_error},
+\texttt{gatedRationalInterval\_eq},
+\texttt{gatedRationalInterval\_nonneg}, and the two exact zero lemmas.
+The combinatorial extraction construction and its complete compiler
+are written only. The note also computes the decoder's limit on every
+cube input, so its uncontrolled labels outside the grid are explicit.
+
+\paragraph{Complementary rails, Lean-checked exact transfer.}
+\texttt{DualRailLift.lean} proves seven public theorems. In particular,
+\texttt{exists\_fracAtom\_dualRail\_affineRatio} realizes every logical
+affine ratio with positive denominator on an $n$-cube by one actual
+\texttt{FracAtom} on $2n$ physical coordinates, exactly on inputs
+$(x,1-x)$. The lifted denominator is positive throughout the entire
+physical cube and has strictly positive slopes. The proof includes
+the exact positivity margin and all intermediate identities.
+This is not a compiler on the original $n$-cube, nor a representation
+of arbitrary labels on the entire $2n$-cube. No head bound for $W$
+is inferred by changing dimensions or restricting the input promise.
+
+\paragraph{Periodic-chain orientation repair, written only.}
+\texttt{exponent-literature.tex}, Proposition~\texttt{prop:periodic-chain},
+proves that an $H$-term arithmetic pole chain with $k$ negative slopes,
+sinusoidal residues of period $k+1$, and the specified positivity
+buffer can be rewritten exactly using at most
+$H+k(k+1)(k+2)/3$ ratios with all slopes positive.
+\texttt{exponent-mechanisms.tex}, Theorem~\texttt{thm:hook-repair},
+extends this via explicit Laurent interpolation to zero-mean periodic
+affine numerators, with $H+O(k^2L+k^3)$ heads and buffer
+$\min D>\delta[kL+k(k-1)/2]$, where $b_i<L\delta$.
+These are exact whole-cube identities and therefore preserve any
+existing strict signs. Their periodic residue and arithmetic pole
+requirements are substantive.
+
+\texttt{periodic-chain-decoding.tex} proves that repeating a complete
+zero-mean period of length $K$ produces at most $K-2$ scalar zeros,
+regardless of the number of periods. Even when residues, shift, and
+step depend jointly and affinely on one memory scalar, the zero count
+is at most $4K-1$. Thus that decoder can shatter only $O(\log K)$
+scalar probes by this mechanism. These bounds do not constrain a
+general system with several independent nonlinear memory parameters.
+
+\paragraph{Further explicit failed transfers, written only.}
+The mixed-priority-list theorem in \texttt{exponent-mechanisms.tex}
+proves a worst-case $\Omega(2^n/n)$ lower bound for sums of real
+priority lists, allowing both orientations. Each list is sparse in
+the fixed dictionary of positive and negative literal monomials;
+counting dictionary supports and linear sign patterns proves the
+bound. This is a subclass lower bound, not item 3 of the original task.
+The same note gives a grid-routing local compiler, exact three-head
+single-slope reversal, and the support cost of weak affine-flat
+certificates. None yields an unrestricted asymptotic saving.
+\texttt{product-tangent-counterexample.tex} supplies explicit positive
+affine factors for which no common interpolation parameter makes
+the logarithmic derivative agree in sign with the product comparison
+on even the two inputs of a one-bit cube. Pointwise mean-value
+arguments therefore do not supply the proposed common tangent.
+
 \paragraph{A valid global composition theorem, written only.}
 The finite gluing theorem in \texttt{exponent-mechanisms.tex}
 composes product downward-star modules without extra heads, when
@@ -215,10 +295,11 @@ for sign-only computation of that comparator, which is affine.
 The literature transfer audit is in \texttt{exponent-literature.tex}.
 It includes depth-two thresholds, deep memorization, sign rank,
 rational networks, covering codes, and number-theoretic encodings.
-Every successful transfer is stated on its exact domain. The strongest
-local transfer is the Erd\H{o}s--Moser majority-order representation:
-an arbitrary two-one-hot table on $\Theta(n^2)$ inputs has an actual
-admissible $O(n/\log n)$-head sign representation.
+Every successful transfer is stated on its exact domain. Both the
+Erd\H{o}s--Moser majority-order representation and the new extraction
+decoder give actual admissible $O(n/\log n)$-head sign representations
+of arbitrary two-one-hot tables on $\Theta(n^2)$ inputs. Neither
+prescribes arbitrary strict labels on the rest of the cube.
 
 The failed extensions have explicit endpoints. Exact zero localization
 to a radius-$r$ Hamming ball requires at least $n-r$ heads. Sums of
@@ -248,7 +329,7 @@ variables to original coordinates. Existing star covers provide
 $O(2^n/n^2)$ cells, the local cost is uniformly $O(n/\log\log n)$,
 and the two exceptional faces cost only
 $O(2^{\lceil n/2\rceil})$ additional heads. Therefore this one lemma
-would finish fallback 2 with
+would establish the revised exact target
 $W(n)=O(2^n/(n\log\log n))$. Full quantifiers and the face
 correction are in the last section of
 \texttt{exponent-literature.tex}. The lemma remains a substantial
@@ -259,15 +340,18 @@ counted as a successful asymptotic result.
 
 No original definition or theorem statement was weakened or altered.
 New auxiliary predicates, parameterizations, and score functions were
-added in the new modules. \texttt{WorstCaseExponentImprovement} in
-\texttt{PrecisionBarrier.lean} is only a proposition definition of
-the requested eventual bound against \texttt{worstCaseHeadComplexity};
-there is no theorem claiming it. The results aggregate imports the
+added in the new modules. \texttt{WorstCaseExponentImprovement} and
+\texttt{WorstCaseLogLogSaving} in \texttt{PrecisionBarrier.lean} are
+only proposition definitions of the respective eventual bounds
+against \texttt{worstCaseHeadComplexity}; neither is asserted as a
+theorem. The latter uses $n\log(\log n)$ with natural logarithms,
+positive existential constant, and an arbitrary eventual threshold.
+The results aggregate imports the
 new modules. The previous \texttt{mechanism-audit.tex} and
 \texttt{scientist-report.tex} are unchanged.
 
 The complete \texttt{HeadComplexity} target was built with
-\texttt{lake}. Axiom audits of all 37 new proved declarations use only
+\texttt{lake}. Axiom audits of all 53 new public proved declarations use only
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 The Warren consequence retains its explicit theorem hypothesis.
 There are no new axioms or admitted proofs. TeX sources were checked

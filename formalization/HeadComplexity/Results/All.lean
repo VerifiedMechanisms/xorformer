@@ -40,6 +40,7 @@ import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
 import HeadComplexity.Results.DominantPowerLift
 import HeadComplexity.Results.DummyVariables
+import HeadComplexity.Results.DualRailLift
 import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.ExactFamilies
 import HeadComplexity.Results.ExactMaskDegree
@@ -82,6 +83,7 @@ import HeadComplexity.Results.SymmetricFaceLowerBound
 import HeadComplexity.Results.ThresholdDegree
 import HeadComplexity.Results.ThresholdDegreeSpan
 import HeadComplexity.Results.TopThresholdDegree
+import HeadComplexity.Results.TorusPrismDecoder
 import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.UniversalLinearSaving
 import HeadComplexity.Results.WeightedFaceExact
