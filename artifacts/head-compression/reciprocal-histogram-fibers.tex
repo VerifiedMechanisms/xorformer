@@ -202,6 +202,47 @@ isolation in this affine family, both for the selected-output
 fiber and hence for the full-cube value fiber restricted to it.
 \end{proof}
 
+\begin{theorem}[Distinct restricted tangent spaces]\label{thm:tangents}
+Under the hypotheses of Theorem~\ref{thm:regular}, different permutation
+tuples have different full-cube tangent spaces for the specified
+$(k+1)H$-parameter family. Thus the histogram fiber supplies as many
+distinct tangent spaces at its common value table as representations.
+\end{theorem}
+\begin{proof}
+Write a parameter direction as $(d,p_1,\ldots,p_k)$; its tangent
+score at $\pi$ is
+\[
+ -\sum_h\frac{d_h+\sum_\ell p_{h\ell}b_\ell(x)}
+                  {(B_h^\pi(x))^2}.
+\]
+Suppose two full-cube tangent spaces for $\pi$ and $\tau$ agree.
+The injectivity proved in Theorem~\ref{thm:regular} makes the
+correspondence between parameter directions unique. The first
+pure-$a$ output group forces $d'=d$ by Cauchy-power invertibility.
+For the pure-$b_\ell$ output group set
+$\sigma=\pi_\ell^{-1}\circ\tau_\ell$. Equality of the two
+Cauchy expansions at the $H$ chosen filler values then forces
+\[
+ d_h+p'_{h\ell}=d_{\sigma(h)}+p_{\sigma(h),\ell}
+ \quad\text{for all }h.
+\]
+
+Take $d=0$, let $p_{j\ell}=1$ for one index $j$, and set every other
+parameter direction to zero. The preceding identities force
+$d'=0$, $p'_{\sigma^{-1}(j),\ell}=1$, and all other $p'$ coordinates
+zero. Now evaluate at a Boolean core with
+$(a_\ell,b_\ell)=(1,-1)$, all other pairs zero, and any fixed filler
+vector. Such a core is obtained from the triple $101$. If its common
+$D$ value is $T$, the tangent identity reduces to
+\[
+ \frac1{(T+j-\pi_\ell(j))^2}
+ =\frac1{(T+\sigma^{-1}(j)-\pi_\ell(j))^2}.
+\]
+Both unsquared denominators are positive by admissibility. Hence
+$j=\sigma^{-1}(j)$. This holds for every $j$ and every $\ell$, so
+every $\sigma$ is the identity and $\pi=\tau$.
+\end{proof}
+
 \paragraph{Scope for lower-bound counting.}
 When also $\log H=O(n)$, these fibers eventually exceed
 $H!C^{nH}$ for every fixed $C>0$, even though the representations
@@ -210,7 +251,8 @@ are counted as unordered. Thus such a universal bound on the
 When $2^{n-3k}\geq H$, the same cardinality counts isolated
 regular solutions of the fixed selected-output constraints in
 the specific $(k+1)H$-dimensional slice in
-Theorem~\ref{thm:regular}. For example the growing-dimension
+Theorem~\ref{thm:regular}, and distinct full-cube tangent spaces by
+Theorem~\ref{thm:tangents}. For example the growing-dimension
 choice of $k$ satisfies this condition for
 $H=\lfloor2^n/n\rfloor$ and all sufficiently large $n$, since
 $2^{3k}\leq n^{3\log2/(2\log7)}$ and
