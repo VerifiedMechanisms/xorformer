@@ -1232,6 +1232,19 @@ $c_\ast=v_0+\frac12\sum_i v_i$, one then has
 independent of the Boolean vertex. This is the required sphere.
 \end{proof}
 
+There is a second obstruction for an unchanged ambient dimension.
+Definition~2(1) requires every $m+1$ points in $\mathbb R^m$ to be
+affinely independent. Each coordinate hyperplane $x_i=0$ or $x_i=1$
+can then contain at most $m$ points, so any Boolean set satisfying
+this condition has at most $2m$ points. The required $h(m+1)$
+points fail this test as soon as $h\ge2$. An injective affine change
+of coordinates preserves all these affine dependencies. A
+projection to lower dimension can evade a general-position test
+involving more points than that new dimension allows; the argument
+does not assert otherwise. Such a projection generally makes its
+squared distance quadratic in the original bits, which restores the
+separate affine-input transfer problem.
+
 For the original cube, the exact Gaussian input identity is
 \[
  \|x-c\|^2=\sum_i c_i^2+\sum_i(1-2c_i)x_i.
