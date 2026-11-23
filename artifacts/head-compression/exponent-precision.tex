@@ -225,6 +225,45 @@ Allowing lists of any length at most $H$ adds at most a factor $H+1$
 to this library count. The same $O(n)=o(2^n)$ logarithmic correction
 therefore preserves the denominator-only asymptotic conclusion.
 
+\begin{theorem}[Every superconstant saving needs denominator information]
+Let $g(n)>0$ eventually and $g(n)\to\infty$. Suppose a universal
+construction has
+\[
+ H(n)\le \frac{C2^n}{n g(n)}
+\]
+eventually, for some $C>0$. Its library of normalized denominator
+lists must have
+\[
+ \log_2 K(n)\ge(1-o(1))2^n.
+\]
+If each normalized denominator coefficient is drawn from a fixed
+alphabet of at most $2^{b(n)}$ values, then
+\[
+ b(n)\ge\left(\frac1C-o(1)\right)g(n).
+\]
+Both conclusions remain valid for representations with at most
+$H(n)$ heads.
+\end{theorem}
+\begin{proof}
+With $N=2^n$ and $d=1+nH$, the ratio $r=d/N$ is at most
+$2^{-n}+C/g(n)$ and tends to zero. Thus the same finite library
+bound gives
+$\log_2 K\ge N-Nr\log_2(e/r)=(1-o(1))N$.
+For fixed-length normalized coefficient codes, $\log_2 K\le bnH$,
+so
+$bnH\ge(1-o(1))N$; combining this with
+$nH\le CN/g(n)$ yields the displayed bound on $b$.
+For lengths at most $H$, add $\log_2(H+1)$ to the code upper
+bound. Eventually $g(n)\ge1$, so $H(n)\le C2^n/n$ and this
+correction is $O(n)=o(N)$, which does not change either conclusion.
+\end{proof}
+
+This applies to the second requested outcome as well as the first:
+for example, a factor $\log n$ or $\log\log n$ beyond the known
+linear denominator saving requires the same order of information
+per intrinsic denominator coefficient. It supplies a necessary
+resource condition, not such a construction.
+
 Admissibility has only been relaxed when counting sign spaces. Every
 admissible attention denominator is nonvanishing on the entire cube,
 so all of these bounds apply to the original model. No proposed
@@ -244,6 +283,7 @@ entry of every token embedding, positional embedding, query matrix,
 key matrix, value matrix, and the common readout vector belongs to
 $A$, and the threshold is zero. The width is finite and unrestricted;
 it may depend on the target function and its original representation.
+The token and positional embeddings can be shared by all heads.
 \end{theorem}
 \begin{proof}
 First, the additive subgroup $D=\mathbb Z+\mathbb Z\sqrt2$ is dense
@@ -289,27 +329,32 @@ scores retain every strict sign, and their denominators remain
 positive on the entire cube.
 
 It remains to realize these $D$-valued logits and position values
-with raw entries in $A$. For each head reserve coordinates $0$ and
-$1$. For each scalar among $a_h,q_h,r_{h,i},t_h,v_{h,q},v_{h,i}$,
+with raw entries in $A$. Reserve common coordinates $0$ and $1$.
+For each scalar among $a_h,q_h,r_{h,i},t_h,v_{h,q},v_{h,i}$,
 choose a finite sequence of elements of $A$ summing to it, and
-allocate a separate block of coordinates for that sequence.
+allocate a separate block of coordinates for that sequence. All
+blocks, including blocks belonging to different heads, are disjoint.
 Call the blocks for $a_h,q_h,r_{h,i}$ key blocks and the remaining
-ones value blocks. Choose a common finite width large enough for
-the blocks of every head, padding unused coordinates by zero.
+ones value blocks. The common width is two plus the sum of the
+lengths of all these finitely many blocks.
 
-For head $h$, set the embedding of token $0$ to zero. In the token
-$1$ embedding, place the sequence for $a_h$ in its key block and
-the sequence for $t_h$ in its value block. In the query-token
-embedding, put $1$ in coordinate $0$, the sequence for $q_h$ in
-its key block, and the sequence for $v_{h,q}$ in its value block.
-At input position $i$, put the sequence for $r_{h,i}$ and the
-sequence for $v_{h,i}$ in their respective positional-embedding
-blocks. The query positional embedding is zero. All unspecified
-entries are zero. Every raw embedding entry therefore lies in $A$.
+Use one common token embedding and one common positional embedding.
+Set the embedding of token $0$ to zero. In the token $1$ embedding,
+for every head $h$, place the sequence for $a_h$ in its key block
+and the sequence for $t_h$ in its value block. In the query-token
+embedding, put $1$ in coordinate $0$ and, for every head $h$,
+put the sequence for $q_h$ in its key block and the sequence for
+$v_{h,q}$ in its value block. At input position $i$, for every
+head $h$, put the sequences for $r_{h,i}$ and $v_{h,i}$ in their
+respective positional-embedding blocks. The query positional
+embedding is zero. All unspecified entries are zero. Every raw
+embedding entry therefore lies in $A$.
 
-Let $W_Q$ project coordinate $0$ to coordinate $0$. Let $W_K$ sum
-all key-block coordinates into coordinate $0$, with all other output
-coordinates zero. Let $W_V$ sum all value-block coordinates into
+For each head $h$, let $W_Q$ project coordinate $0$ to coordinate
+$0$. Let $W_K$ sum the key-block coordinates belonging to head
+$h$ into coordinate $0$, ignoring the other heads' blocks and
+setting all other output coordinates to zero. Let $W_V$ similarly
+sum the value-block coordinates belonging to head $h$ into
 coordinate $1$, with all other output coordinates zero. Every
 matrix entry is either zero or one. The query vector is the unit
 vector $e_0$. At position $i$, the key vector is
@@ -322,7 +367,13 @@ give exactly $S(x)$. Its signs are strict, and its denominators are
 positive for every cube input. No heads were added.
 \end{proof}
 
-This theorem is a written proof, not a Lean theorem in this run.
+The full simulation theorem is a written proof. Its density and
+finite strict-sign approximation lemmas are Lean-checked as described
+below; the raw matrix construction itself is not formalized here.
+The assumption $H\ge1$ is used only to absorb the bias into one
+head's position values. At $H=0$ only constant functions are
+computable; they already have raw finite-alphabet descriptions with
+threshold $1$ or $-1$, so no precision issue arises there.
 For a fixed $n,H$, there are only finitely many target functions, so
 the finitely many widths needed for all representable targets have
 a finite maximum. Padding by zeros therefore even gives one common
@@ -397,7 +448,21 @@ arbitrary real numerator coefficients and bias. The logarithmic
 estimates and all asymptotic corollaries remain written proofs in
 this note, not Lean theorems.
 
-The same Lean file defines
+Finally,
+\texttt{formalization/HeadComplexity/Results/RawAlphabetSimulation.lean}
+proves \texttt{dense\_rawAlphabetSum},
+\texttt{dense\_rawAlphabetSum\_vectors}, and
+\texttt{exists\_rawAlphabetSum\_strict\_certificate}.
+The last declaration states that any finite strict-sign certificate
+whose input scores depend continuously on a scalar parameter vector
+has a strict certificate in which every scalar is a finite sum of
+entries from the five-element alphabet. Auxiliary declarations
+\texttt{neg\_mem\_rawScalarAlphabet} and
+\texttt{rawAlphabetSum\_of\_mem\_pair\_closure} formalize the
+finite-sum encoding and closure argument. No head complexity bound
+is asserted by any of these declarations.
+
+The file \texttt{PrecisionBarrier.lean} defines
 \texttt{HeadComplexity.WorstCaseExponentImprovement} to be exactly
 the eventual assertion
 \[
