@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\title{Balancing a Shared Cauchy Codebook}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This note removes a multiplicity issue in a proposed joint Cauchy decoder.
+It does not remove the decoder's cross-block interference, prove a
+superconstant local saving, or prove either requested asymptotic bound.
+The statements below are complete written proofs and have not been
+formalized in Lean. No model definition is changed.
+
+\begin{lemma}[A common relabeling balances every target column]
+Let $B,D,s\geq1$ be integers and let
+$a_{bj}\in\mathbb Z/D\mathbb Z$ for $1\leq b\leq B$, $1\leq j\leq s$.
+There exist shifts $\rho_1,\ldots,\rho_B\in\mathbb Z/D\mathbb Z$ such that
+for every column $j$ and every color $d$,
+\[
+ \#\{b:a_{bj}+\rho_b=d\}\leq
+ L:=\left\lceil\frac{2B}{D}+\log(sD)+1\right\rceil.
+\]
+The shifts are chosen once for the complete table, not separately for
+each column.
+\end{lemma}
+\begin{proof}
+Choose the shifts independently and uniformly. For fixed $(j,d)$ the
+occupancy $X$ is a sum of $B$ independent Bernoulli variables of mean
+$1/D$. Therefore
+\[
+ \mathbb E e^X=\left(1+\frac{e-1}{D}\right)^B
+ \leq \exp\left((e-1)B/D\right)<\exp(2B/D).
+\]
+Markov's inequality gives
+\[
+ \Pr(X\geq L)<\exp(2B/D-L)\leq\frac1{e sD}.
+\]
+The union bound over the $sD$ pairs gives probability less than $1/e$
+that any occupancy is at least $L$. Hence some shifts have every
+occupancy less than $L$, which is stronger than the claimed inequality.
+\end{proof}
+
+\begin{proposition}[Balanced assignments with linear overhead]
+In the lemma, put $G=DL$. There are $G$ anchor slots and $G$ color slots,
+exactly $L$ of each color. Each of the $B$ original anchors in column $j$
+can be assigned its prescribed shifted color $a_{bj}+\rho_b$, and the
+remaining $G-B$ anchors can be assigned so that the full assignment is
+balanced. If $D(\log(sD)+2)\leq B$, then $G\leq3B$.
+\end{proposition}
+\begin{proof}
+The number of occupied slots of each color is at most $L$. Fill its
+remaining slots with unused dummy anchors. The total number of vacancies
+is $DL-B=G-B$, so this exhausts precisely the dummy anchors. The ceiling
+bound gives
+\[
+ G=DL\leq 2B+D\log(sD)+2D\leq3B.
+\]
+Also $G\geq2B$, so no negative number of dummy anchors occurs.
+In the grouped Cauchy transfer, give each dummy anchor residue zero.
+It contributes zero to every grid query. The existing paired construction
+then uses $2G\leq6B$ heads before the established constant-cost axis
+repair. This statement concerns assignment multiplicities only.
+\end{proof}
+
+\paragraph{What the codebook proposal does establish.}
+Fix an invertible $k$ by $k$ exterior Cauchy matrix $C$. For $q$ target
+bit columns, an exact block interpolant has coefficient array
+$W=C^{-1}S$ with $S\in\{-1,1\}^{k\times q}$. Consequently every row
+of every such $W$ belongs to a fixed finite codebook of at most
+$k2^{kq}$ vectors in $\mathbb R^q$. This is an exact cardinality bound;
+it is independent of the condition number of $C$. It does not bound
+the magnitudes or numerical stability of these coefficients. The
+balancing lemma permits a shared alphabet to be reused across many
+blocks without allocating one copy of the full alphabet to each block.
+A block's fixed shift can be undone in that block's query profile.
+
+\paragraph{The missing assembly step.}
+The grouped family evaluates a query by
+\[
+ f_i=\sum_{g=1}^G\frac{c_g v_{i,\ell(g)}}{(t_i-\xi_g)^2}.
+\]
+Undoing the shift for block $b$ also changes the interpretation of every
+other block's colors at a row in block $b$. Those contributions remain
+present. Inverting the small matrix $C$ controls only the intended
+block's terms and supplies no cancellation of the other terms. The
+balancing lemma does not claim such cancellation. Thus it cannot be
+composed with the block interpolation statement to assert a universal
+decoder. Establishing the required simultaneous cancellation, or a
+strict-sign estimate that makes it unnecessary, remains open.
+
+\paragraph{Two restricted readout choices cannot resolve that gap.}
+If all query poles are one fixed $t$, every assignment and choice of
+residues produces a vector $R\in\mathbb R^D$, with query value $v^\top R$.
+Thus no query set of size more than $D$ can be shattered: it is contained
+in the class of homogeneous linear halfspaces in $\mathbb R^D$.
+
+If instead every query profile is a nonzero multiple of a single
+coordinate vector, group the query points by that coordinate. Suppose
+each color has $k=G/D$ assigned simple poles. On one color, the readout
+\[
+ R_d(t)=\sum_{g:\ell(g)=d}\frac{c_g}{t-\xi_g}
+\]
+has, after multiplication by its positive denominator, a polynomial
+numerator of degree at most $k-1$. Distinct sorted exterior query poles
+therefore cannot carry more than $k-1$ sign changes. In particular a
+shattered set has at most $k$ queries of each color and at most $G$
+queries in total. A zero residue or a coincident query cannot increase
+this bound. For squared kernels the common denominator has degree $2k$
+and the numerator has degree at most $2k-2$, giving at most $2k-1$
+queries per color and at most $2G-D$ overall. Nonzero scalar multiples
+of coordinate vectors only predetermine sign flips and do not change
+the argument. These restrictions leave mixed color profiles with
+variable query poles entirely open.
+
+\paragraph{Finite check.}
+The companion exact-arithmetic script verifies the shared relabeling,
+balanced dummy filling, zero dummy residues, and a small rational Cauchy
+block codebook. These tests check the stated constructions, not the
+unproved cross-block cancellation or asymptotic universality.
+\end{document}
