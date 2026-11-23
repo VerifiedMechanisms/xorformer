@@ -122,7 +122,8 @@ simplifies further:
 \]
 The denominator is positive on $(0,1)$, and the numerator has at
 most one sign change. The same proof therefore gives at most one
-positive zero, even if $K$ grows. This also follows by writing
+positive zero, even if $K$ grows, unless the residue vector is zero
+and hence the chain is identically zero. This also follows by writing
 $F=U(s)(a-bR(s))$, where $U>0$ and $R$ is a weighted mean of $q$;
 $R'(s)$ is the strictly positive covariance of $q$ and $\log q$.
 
@@ -214,6 +215,94 @@ most $r(4K-1)+1$ strict sign vectors on an interval of admissibility.
 Thus they can shatter only $O(\log K)$ probes by that scalar mechanism,
 independently of $H$. This assertion permits different coefficients
 at every probe; it only requires affine dependence on the one scalar.
+
+
+\begin{theorem}[Incomplete periods]
+Let $H\ge1$ be arbitrary and let the residues be $K$-periodic.
+A nonzero chain with fixed scalar residues has at most $2K-1$
+distinct positive zeros. A nonidentically-zero chain with residues
+affine in the scalar argument has at most $4K$ distinct positive
+zeros. These statements do not require zero-mean residues.
+The same $4K$ bound applies to joint affine variation of residues,
+common shift, and step on an interval where shift and step are positive.
+\end{theorem}
+
+\begin{proof}
+Define
+\[
+ P_a(q)=\sum_{j=1}^K a_jq^{j-1},\qquad
+ Q_a(q)=\sum_{j=1}^K a_{H+j}q^{j-1}.
+\]
+The finite generating polynomial is exactly
+\[
+ V_a(q)=\sum_{h=1}^H a_hq^{h-1}
+       =\frac{P_a(q)-q^H Q_a(q)}{1-q^K}.
+\]
+Indeed, multiplying the finite sum by $1-q^K$ cancels all interior
+terms by periodicity, leaving the first $K$ terms and the last $K$
+terms, with overlap cancellation when $H<K$.
+The numerator has at most $2K$ monomials. Its sign changes on $(0,1)$
+are therefore at most $2K-1$, by the sparse-polynomial argument above.
+Since $1-q^K>0$, the same holds for $V_a$. The Mellin integral
+$\sum a_h/(s+h)=\int_0^1q^sV_a(q)\,dq$ proves the first assertion.
+
+For affine residues $a_h+s b_h$, define $P_b,Q_b,V_b$ similarly.
+Integration by parts now has a possibly nonzero boundary term:
+\[
+ G(s)=c+\int_0^1q^s v(q)\,dq,\qquad
+ c=V_b(1)=\sum_{h=1}^H b_h,\qquad
+ v=V_a-(qV_b)'.
+\]
+The rational expression for $v$ has numerator
+\[
+ \begin{split}
+ R(q)={}&C(q)+q^K\bigl(-C(q)-KP_b(q)\bigr)\\
+       &+q^H E(q)+q^{H+K}\bigl(-E(q)+KQ_b(q)\bigr),
+ \end{split}
+\]
+where
+\[
+ C=P_a-P_b-qP_b',\qquad
+ E=-Q_a+(H+1)Q_b+qQ_b',\qquad
+ v=\frac{R}{(1-q^K)^2}.
+\]
+Each block has degree at most $K-1$, so a nonzero $v$ has at most
+$4K-1$ sign changes on $(0,1)$. Differentiating the Mellin formula
+removes the constant boundary term and multiplies the integrand by
+$\log q$, which is strictly negative on $(0,1)$ and creates no sign
+change. The variation-diminishing argument therefore bounds the zeros
+of $G'$ by $4K-1$. Rolle's theorem bounds the zeros of $G$ by $4K$.
+If $v=0$, then $G=c$ is constant and the assertion is immediate.
+All integrands and derivatives are integrable because $V_a,V_b,v$
+are actual polynomials; the displayed rational expressions merely
+exhibit their sparse numerators.
+
+Finally, the fractional-linear parameter conversion in the preceding
+proof turns joint affine shift, step, and residue variation into affine
+residues over the argument $s$. It preserves periodicity and does not
+need zero mean.
+\end{proof}
+
+\paragraph{The boundary qualification matters.}
+For incomplete periods, zero mean over a full period does not imply
+$\sum_{h=1}^H b_h=0$. Thus the joint-affine proof needs the extra
+Rolle step and yields $4K$, rather than $4K-1$, without an additional
+assumption. On $r$ probes this gives at most $4Kr+1$ strict sign vectors
+from one affine coupled scalar, still only $O(\log K)$ shattering.
+
+For sinusoidal residues and arbitrary $H$, the generating numerator
+is even sparser:
+\[
+ \sum_{h=1}^H\cos(h\theta+\phi)q^{h-1}
+ =\frac{\cos(\theta+\phi)-q\cos\phi
+        -q^H\cos((H+1)\theta+\phi)
+        +q^{H+1}\cos(H\theta+\phi)}
+       {1-2q\cos\theta+q^2}.
+\]
+Its four-monomial numerator has at most three positive zeros.
+Therefore any nonzero sinusoidal reciprocal chain has at most three
+positive zeros, even with an incomplete last period and without
+assuming that $\theta$ is a rational multiple of $2\pi$.
 
 \paragraph{Scope and the remaining possibility.}
 The scalar corollary allows arbitrary fixed row-dependent residue
