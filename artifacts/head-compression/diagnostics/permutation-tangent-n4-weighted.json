@@ -1,0 +1,199 @@
+{
+  "n": 4,
+  "weights": [
+    1,
+    1,
+    1,
+    2
+  ],
+  "roots": 6,
+  "status": "sat",
+  "seconds": 190.29979215492494,
+  "seed": 2026112313,
+  "scope": "Fixed weighted first list; variable integer affine second list; parity signs for the ideal first variation.",
+  "target_proved": false,
+  "u": [
+    [
+      0,
+      1,
+      1,
+      1,
+      2
+    ],
+    [
+      1,
+      -1,
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      0,
+      -2,
+      1,
+      2
+    ],
+    [
+      3,
+      0,
+      0,
+      -3,
+      2
+    ],
+    [
+      4,
+      0,
+      0,
+      0,
+      -4
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      -4
+    ]
+  ],
+  "v": [
+    [
+      0,
+      4,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      -1,
+      0,
+      3
+    ],
+    [
+      2,
+      -2,
+      3,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      -1,
+      2,
+      -2
+    ],
+    [
+      4,
+      -3,
+      -1,
+      0,
+      1
+    ],
+    [
+      5,
+      0,
+      -1,
+      -2,
+      -2
+    ]
+  ],
+  "a": [
+    [
+      "-227/120",
+      "-29/24",
+      "157/30",
+      "43/120",
+      "7/60"
+    ],
+    [
+      "0",
+      "289/120",
+      "19/30",
+      "-101/120",
+      "-89/60"
+    ],
+    [
+      "211/24",
+      "-11/2",
+      "-767/120",
+      "73/120",
+      "-67/12"
+    ],
+    [
+      "-19/5",
+      "11/2",
+      "-109/120",
+      "31/40",
+      "59/20"
+    ],
+    [
+      "-59/24",
+      "0",
+      "5/2",
+      "0",
+      "0"
+    ],
+    [
+      "27/40",
+      "0",
+      "5/2",
+      "0",
+      "0"
+    ]
+  ],
+  "b": [
+    [
+      "-19/8",
+      "0",
+      "169/30",
+      "-1/6",
+      "0"
+    ],
+    [
+      "29/12",
+      "25/24",
+      "0",
+      "-191/30",
+      "29/24"
+    ],
+    [
+      "95/24",
+      "-23/15",
+      "-4/5",
+      "1/30",
+      "-49/10"
+    ],
+    [
+      "31/30",
+      "1/2",
+      "-7/30",
+      "-101/120",
+      "-31/40"
+    ],
+    [
+      "-39/8",
+      "203/120",
+      "0",
+      "29/6",
+      "473/120"
+    ],
+    [
+      "139/120",
+      "-1/2",
+      "-31/30",
+      "409/120",
+      "-139/40"
+    ]
+  ],
+  "audit": {
+    "all_vertices_checked": 16,
+    "all_root_values_checked": 96,
+    "minimum_parity_margin": "2",
+    "arithmetic": "Python arbitrary-precision integers and Fraction",
+    "scope": "One ideal first variation, not the universal head bound."
+  },
+  "simplification": "Fixed root lists, numerical L1 proposal, reconstructed rational coefficients, complete independent equation and margin verification."
+}

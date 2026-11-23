@@ -1,0 +1,42 @@
+{
+  "n": 14,
+  "initial_heads": 292,
+  "candidate_heads": 291,
+  "start_pair": 20768,
+  "ranked_pairs": 42486,
+  "seed": 2026112219,
+  "seconds": 16831.905862498796,
+  "lp_calls": 86872,
+  "certificate": null,
+  "scope": "Fixed residual pair completion, numerical proposals followed by exact audit.",
+  "failure_is_not_a_lower_bound": true,
+  "orders_checked": [
+    20768,
+    42485
+  ],
+  "distinct_pair_orders": 21718,
+  "calls_per_order": 4,
+  "statuses": {
+    "0": 86872
+  },
+  "best_cleared_slack_event": {
+    "pair": [
+      119,
+      253
+    ],
+    "order": 31391,
+    "orientation": -1,
+    "floor": 1e-10,
+    "seconds": 8201.559494787827,
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "scale": 221640357.3084425,
+    "cleared_slack": -5.269159108513056e-05,
+    "errors": 7482,
+    "minimum_margin": -100493349697629.2
+  },
+  "events_sha256": "b08db8f6c7d5de5c32c460886cd3c3ca961d73566c1cc16c078733ae9f11b22c",
+  "events_path": "/out/head-compression/pair-completion-n14-h291-resumed/events.jsonl",
+  "qualification": "Numerical search failure only. This does not prove infeasibility, including for untested positivity limits or jointly changing retained heads.",
+  "result_file_mtime_utc": "2026-11-23T13:14:28.399918+00:00"
+}

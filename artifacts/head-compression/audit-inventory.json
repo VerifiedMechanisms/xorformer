@@ -968,7 +968,10 @@
       "start_pair": 20768,
       "seconds_budget": 25200,
       "output": "/out/head-compression/pair-completion-n14-h291-resumed",
-      "status": "Running; no smaller certificate found as of the current audit."
+      "status": "Finished without a smaller certificate.",
+      "diagnostic": "artifacts/head-compression/diagnostics/resumed-pair-completion.json",
+      "distinct_pair_orders": 21718,
+      "lp_calls": 86872
     }
   },
   "reciprocal_algebra_audit": {
@@ -1108,6 +1111,19 @@
     "status": "Manual proof; uses the elementary denominator product square inequality also present in the existing Lean library.",
     "result": "A product of admissible positive real affine factors, thresholded against a positive constant, cannot represent parity or its complement in dimension at least three. Strict limits of that construction have the same limitation.",
     "scope": "Blocks a direct real replacement of the complex one-product-minus-constant border construction. Does not exclude differences of two nonconstant products or arbitrary affine-fraction scores.",
+    "target_proved": false
+  },
+  "weighted_root_completion": {
+    "manual_proof": "artifacts/head-compression/weighted-root-completion.tex",
+    "construction": "An integer affine form with coefficient absolute sum M is part of an explicit affine permutation list of roots 0 through M, using M+1 forms.",
+    "compiler": "A supplied ideal first variation with strict target signs yields 2m admissible constant-numerator heads with an explicit finite rational epsilon choice.",
+    "gap": "No universal small-root-list existence theorem. This conditional compiler does not prove the target.",
+    "diagnostic": "artifacts/head-compression/diagnostics/permutation-tangent-smt-initial.json",
+    "new_exact_witness": "artifacts/head-compression/diagnostics/permutation-tangent-n4-weighted.json",
+    "new_score": "artifacts/head-compression/certificates/permutation-tangent-parity-n4-h12.json",
+    "score_audit": "artifacts/head-compression/diagnostics/permutation-tangent-parity-n4-h12-audit.json",
+    "witness_scope": "Four-bit parity only, using more heads than its known optimum. Establishes a non-affine first variation for two nonconstant root lists.",
+    "formalization": "Manual proof and exact certificate checks, not Lean formalized.",
     "target_proved": false
   }
 }

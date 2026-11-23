@@ -1,0 +1,10 @@
+{
+  "weighted_completion_vertex_checks": 9330,
+  "altered_witnesses_rejected": [
+    "root",
+    "perturbation",
+    "opposite_sign"
+  ],
+  "opposite_score_negative_margins_certified": 16,
+  "scope": "Finite construction and verifier controls only."
+}

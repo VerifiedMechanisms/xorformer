@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Weighted Affine Root Completions and Their First Variations}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+The constructions below supply exact cancellation identities, with all
+factors and all heads counted. They do not assert a universal small-head
+representation. The missing universal choice of root lists and
+perturbations remains a theorem-strength gap. The numerical search
+described at the end tests a genuinely larger family of second lists
+than coordinate permutations of the unweighted construction.
+
+\begin{theorem}[Weighted interval completion]
+Let $c_1,\ldots,c_n$ be positive integers, set
+$s_i=c_1+\cdots+c_i$, $s_0=0$, and $M=s_n$.
+Define $M+1$ affine forms by
+\[
+ u_0(x)=\sum_{i=1}^n c_i x_i,
+ \qquad
+ u_{i,j}(x)=j+(s_{i-1}+1)(1-x_i)+\sum_{k=i+1}^n c_kx_k,
+ \quad 0\le j<c_i.
+\]
+For every $x\in\{0,1\}^n$, these values are a permutation of
+$0,1,\ldots,M$. Consequently, as a polynomial in $s$,
+\[
+ (s+u_0(x))\prod_{i=1}^n\prod_{j=0}^{c_i-1}(s+u_{i,j}(x))
+                         =\prod_{j=0}^{M}(s+j).
+\tag{1}
+\]
+\end{theorem}
+\begin{proof}
+Induct on the number of coordinates. For no coordinates the list is
+the singleton $0$. On appending coordinate $i$, the old list, which
+has values $0,\ldots,s_{i-1}$, is translated by $c_ix_i$.
+The new list consists of
+$j+(s_{i-1}+1)(1-x_i)$ for $0\le j<c_i$.
+If $x_i=0$, these two disjoint intervals are
+$[0,s_{i-1}]$ and $[s_{i-1}+1,s_i]$.
+If $x_i=1$, they are $[c_i,s_i]$ and $[0,c_i-1]$.
+In both cases their union is $[0,s_i]$, with no repetition.
+Subsequent steps translate every old entry by the same amount;
+the resulting formulas are precisely the ones displayed.
+Taking products proves (1).
+\end{proof}
+
+This includes the unweighted triangular list when every $c_i=1$.
+For integer affine forms with nonzero coefficients of either sign,
+complement each coordinate with a negative coefficient and subtract
+the minimum value. The normalized form is then $u_0$ above, with
+$c_i$ the absolute coefficient. Undoing the complements gives a
+completion by affine forms. Coordinates with coefficient zero can be
+omitted. The number of forms is one plus the sum of absolute
+coefficients, not one plus the number of variables.
+
+\begin{theorem}[An explicit first-variation compiler]
+Let $u_0,\ldots,u_{m-1}$ and $v_0,\ldots,v_{m-1}$ be real affine
+forms whose values are permutations of $0,\ldots,m-1$ at every
+Boolean vertex. Let $a_h,b_h$ be real affine forms. Suppose the first
+variation
+\[
+ R_x(s)=\left.\frac{\partial}{\partial\epsilon}\right|_{\epsilon=0}
+ \left(\prod_h(s+u_h(x)+\epsilon a_h(x))
+       -\prod_h(s+v_h(x)+\epsilon b_h(x))\right)
+\]
+is independent of $s$ and has strict prescribed signs $y(x)$.
+Then these signs have a representation by $2m$ admissible heads with
+constant numerators. If all supplied coefficients are rational, the
+construction below chooses rational head parameters by finite exact
+operations.
+\end{theorem}
+\begin{proof}
+Put $P(s)=\prod_{j=0}^{m-1}(s+j)$ and
+$C(x)=1+m\sum_i x_i$. Every constant coefficient of $u_h,v_h$
+lies in $[0,m-1]$ and every variable coefficient in
+$[-(m-1),m-1]$, by comparing the zero vertex to a unit vertex.
+Thus every coefficient of $C+u_h,C+v_h$ is at least one.
+
+Write $F_\epsilon(s,x)$ and $G_\epsilon(s,x)$ for the two products
+in the hypothesis. A prime denotes differentiation with respect
+to $s$, with $x$ held fixed. Define
+\[
+ Q_x(\epsilon)=
+ (F_\epsilon G'_\epsilon-F'_\epsilon G_\epsilon)(C(x),x).
+\]
+At $\epsilon=0$ the two factors are $P$, so $Q_x(0)=0$.
+Since $R_x$ is independent of $s$, product differentiation gives
+\[
+ Q'_x(0)=R_x P'(C(x)).
+\tag{2}
+\]
+Here the prime on $Q_x$ means differentiation in $\epsilon$.
+The number $C(x)$ is positive, and so is $P'(C(x))$.
+In particular (2) has strict sign $y(x)$.
+
+For complete quantitative choices, let $L\ge1$ bound the absolute
+values of every coefficient of $a_h,b_h$. Expand
+$Q_x(\epsilon)=\sum_{k=1}^{2m-1}q_{x,k}\epsilon^k$,
+allowing zero coefficients. Set
+\[
+ \mu=\min_x|q_{x,1}|>0,
+ \qquad T=\max_x\sum_{k=2}^{2m-1}|q_{x,k}|,
+ \qquad
+ \epsilon=\min\left\{\frac12,\frac1{2L},
+                             \frac{\mu}{4(T+1)}\right\}>0.
+\]
+Each coefficient of every perturbed denominator is at least
+$1-\epsilon L\ge1/2$, ensuring strict admissibility.
+Also
+\[
+ \left|\frac{Q_x(\epsilon)}\epsilon-q_{x,1}\right|
+       \le\epsilon\sum_{k=2}^{2m-1}|q_{x,k}|
+       \le\frac{\mu T}{4(T+1)}<\mu.
+\]
+Consequently $Q_x(\epsilon)$ has sign $y(x)$ at all vertices.
+Finally, logarithmic differentiation and positivity show that
+\[
+ -\sum_h\frac1{C(x)+u_h(x)+\epsilon a_h(x)}
+ +\sum_h\frac1{C(x)+v_h(x)+\epsilon b_h(x)}
+   =\frac{Q_x(\epsilon)}
+           {F_\epsilon(C(x),x)G_\epsilon(C(x),x)}
+\]
+has precisely those signs. This is the stated $2m$-head score.
+Every minimum, maximum, polynomial expansion, and comparison above
+is finite; rational input coefficients give rational outputs.
+\end{proof}
+
+\begin{proposition}[Root-value test for an ideal first variation]
+At a fixed vertex, let $h_j$ and $k_j$ be the unique indices with
+$u_{h_j}(x)=v_{k_j}(x)=j$, and put
+$d_j=(-1)^j j!(m-1-j)!$. Then $R_x(s)$ is the constant $r(x)$
+if and only if
+\[
+ d_j\big(a_{h_j}(x)-b_{k_j}(x)\big)=r(x)
+                   \quad(0\le j<m).
+\tag{3}
+\]
+\end{proposition}
+\begin{proof}
+The degree of $R_x$ is at most $m-1$. Evaluation at $s=-j$
+annihilates every summand of the product derivative except the
+one corresponding to the unique root $j$. Its surviving product is
+$\prod_{\ell\ne j}(\ell-j)=d_j$. Thus (3) is exactly the
+statement that $R_x-r(x)$ vanishes at $m$ distinct points.
+The degree bound proves the equivalence.
+\end{proof}
+
+\paragraph{Search and verification.}
+The script \texttt{search\_permutation\_tangent\_smt.py} fixes the
+first list to a weighted completion and lets the second list have
+arbitrary integer slopes, with its constant terms fixed to
+$0,\ldots,m-1$. This fixes only the row order at the zero vertex.
+The integrality of the slopes follows already from the prescribed
+integer root values at zero and at the unit vertices. It therefore
+places no further restriction on affine second lists with this root set.
+All cube vertices must evaluate to permutations. The perturbations
+are arbitrary rational affine forms, and (3) is imposed with strict
+parity signs and margin at least one. The solver's conditions use
+linear arithmetic and conditional expressions. A returned witness
+is checked independently using exact rational arithmetic at every
+root and every vertex. A timeout is not an obstruction, and an
+unsatisfiability claim would concern only this specified ansatz.
+
+\paragraph{An explicit non-affine output.}
+For four coordinates, take the weighted first list with
+$(c_1,c_2,c_3,c_4)=(1,1,1,2)$ and the second list
+\[
+ \begin{aligned}
+ v_0&=4x_1+x_2,&v_1&=1+x_1-x_2+3x_4,\\
+ v_2&=2-2x_1+3x_2,&v_3&=3-x_2+2x_3-2x_4,\\
+ v_4&=4-3x_1-x_2+x_4,&v_5&=5-x_2-2x_3-2x_4.
+ \end{aligned}
+\]
+The complete rational perturbation coefficients are recorded in
+\texttt{diagnostics/permutation-tangent-n4-weighted.json}.
+Checking (3) gives, with $t_i=1-2x_i$,
+\[
+ R(x)=2t_3(9t_1t_2t_4+6t_1+6t_2+8t_4).
+\]
+It has the strict signs of four-bit parity. Indeed,
+\[
+ \left(\prod_{i=1}^4t_i\right)R(x)
+       =2(9+6t_2t_4+6t_1t_4+8t_1t_2)\ge2.
+\]
+If $t_1=-t_2$, the expression inside parentheses is one.
+If $t_1=t_2$, it is $17+12t_1t_4\ge5$.
+The arithmetic verifier checks the root permutations and all 96
+equalities in (3), and the compiler produces a twelve-head score
+checked independently on all sixteen vertices.
+This example only shows that the earlier affine-output obstruction
+for an unweighted list against constant roots does not extend to
+this enlarged family. Parity already has a four-head construction;
+the example is not a head-complexity improvement.
+
+\paragraph{Universal gap.}
+No theorem here constructs such lists for every Boolean function
+with $m=O(2^n/n^2)$. Giving that missing assertion another name would
+not be progress on the target. The compiler is used only to assess
+actual new identities when they are produced, not as an assumed
+existence principle.
+\end{document}

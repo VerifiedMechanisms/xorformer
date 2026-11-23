@@ -1,0 +1,78 @@
+{
+  "records": [
+    {
+      "n": 2,
+      "weights": [
+        1,
+        1
+      ],
+      "roots": 3,
+      "status": "sat",
+      "seconds": 0.01537838694639504,
+      "seed": 2026112313,
+      "scope": "Fixed weighted first list; variable integer affine second list; parity signs for the ideal first variation.",
+      "target_proved": false,
+      "audit": {
+        "all_vertices_checked": 4,
+        "all_root_values_checked": 12,
+        "minimum_parity_margin": "1",
+        "arithmetic": "Python arbitrary-precision integers and Fraction",
+        "scope": "One ideal first variation, not the universal head bound."
+      }
+    },
+    {
+      "n": 3,
+      "weights": [
+        1,
+        1,
+        1
+      ],
+      "roots": 4,
+      "status": "sat",
+      "seconds": 0.05233195493929088,
+      "seed": 2026112313,
+      "scope": "Fixed weighted first list; variable integer affine second list; parity signs for the ideal first variation.",
+      "target_proved": false,
+      "audit": {
+        "all_vertices_checked": 8,
+        "all_root_values_checked": 32,
+        "minimum_parity_margin": "1",
+        "arithmetic": "Python arbitrary-precision integers and Fraction",
+        "scope": "One ideal first variation, not the universal head bound."
+      }
+    },
+    {
+      "n": 4,
+      "weights": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "roots": 5,
+      "status": "unsat",
+      "seconds": 6.5930361279752105,
+      "seed": 2026112313,
+      "scope": "Fixed weighted first list; variable integer affine second list; parity signs for the ideal first variation.",
+      "target_proved": false
+    },
+    {
+      "n": 5,
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "roots": 6,
+      "status": "unsat",
+      "seconds": 145.54929387313314,
+      "seed": 2026112313,
+      "scope": "Fixed weighted first list; variable integer affine second list; parity signs for the ideal first variation.",
+      "target_proved": false
+    }
+  ],
+  "unsat_scope": "Solver-reported only; no independently checked unsatisfiability proof has been imported. All statements are restricted to the specified first list and arithmetic roots.",
+  "target_proved": false
+}

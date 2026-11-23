@@ -1,0 +1,24 @@
+{
+  "input_file": "/out/head-compression/permutation-tangent-n4-score.json",
+  "input_sha256": "3b6f4289c6b67d76e1ab8325553b44ab973b2419b07291e2f88ac395ce949276",
+  "n": 4,
+  "heads": 12,
+  "vertices_checked": 16,
+  "precision_bits": 256,
+  "whole_cube_denominator_admissibility": true,
+  "positive_margins_certified": 16,
+  "negative_margins_certified": 0,
+  "unseparated_margins": 0,
+  "negative_vertices": [],
+  "unseparated_vertices": [],
+  "minimum_margin_interval_numerators": [
+    24817570560768452890210596877603965796531894352974885105815,
+    24817570560768452890210596877603965796531894352974885105828
+  ],
+  "interval_denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+  "minimum_margin_approximation": 2.143287224907461e-19,
+  "all_target_signs_certified": true,
+  "seconds": 9.894510731101036e-05,
+  "scope": "This supplied rational score and truth table only. No universal bound.",
+  "failure_is_not_a_lower_bound": true
+}
