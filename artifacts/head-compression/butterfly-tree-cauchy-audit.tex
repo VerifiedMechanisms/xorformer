@@ -1,0 +1,186 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{proposition}{Proposition}
+\title{An Audit of Recursive Exterior Cauchy Interpolation}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This note tests a specific attempted implementation of the butterfly
+rectangle decoder with label-dependent signed residues. It gives a
+complete finite exact audit and a written obstruction for four
+coalescing poles. Neither is a lower bound for unrestricted
+HeadComplexity. They do not prove either accepted asymptotic target.
+The original model is unchanged, and these results are not Lean checked.
+
+\section{The recursive interpolation proposal}
+At each right child in an output-prefix binary tree, take as query
+profile the indicator of that child's leaves. If the child has $M$
+leaves, give it $M$ exterior Cauchy queries. A permutation assigns
+the poles to leaves, and all signed residues may depend on the entire
+desired sign table. A subtree in isolation is a square Cauchy
+interpolation problem, but the same residues must satisfy all its
+descendant constraints.
+
+The first useful augmented test has four poles, four root queries,
+two queries for one two-leaf child, and two singleton queries. It
+therefore asks for eight independent signs from four residues and
+one of $24$ pole permutations. The exact results below show that the
+most direct compact symmetric choice misses some tables.
+
+\section{Complete finite exact test}
+Put
+\[
+ \xi_j=10^{-5}+10^{-7}a_j,\qquad
+ (a_0,a_1,a_2,a_3)=(-3,-1,1,3).
+\]
+For each $\alpha\in\{1/2,2,4\}$, the eight query times are
+\[
+ t_i=99/100+10^{-3}u_i,
+ \qquad
+ (u_0,\ldots,u_7)=(-3,-1,1,3,-\alpha,\alpha,0,0).
+\]
+The output leaf sets are
+\[
+ S_0=S_1=S_2=S_3=\{0,1,2,3\},\quad
+ S_4=S_5=\{1,3\},\quad S_6=\{2\},\quad S_7=\{3\}.
+\]
+For a permutation $\pi$ and arbitrary real residues $c_j$, evaluate
+\[
+ f_i=\sum_{j:\pi(j)\in S_i}\frac{c_j}{(t_i-\xi_j)^2}.
+ \tag{1}\label{eq:test}
+\]
+The companion checker proves that, for each of the three choices of
+$\alpha$, the union over all $24$ permutations realizes exactly
+$240$ of the $256$ strict sign tables. Each single permutation
+realizes $116$ tables. Encode a positive sign in row $i$ by bit $i$
+of an integer. The missing integers are exactly
+\[
+ 21,26,37,42,85,90,101,106,
+ 149,154,165,170,213,218,229,234.
+\]
+Equivalently, the root's four signs alternate and the two-leaf
+child's two signs alternate; the singleton signs are arbitrary.
+
+This is complete exact verification despite degeneracies in the
+central hyperplane arrangements. For every permutation and every
+claimed realized table, the checker evaluates a rational residue
+witness in the original matrix and checks all eight strict signs.
+For every other table it checks a nonzero row dependence whose
+coefficients have the requested signs on its support. The weighted
+sum of hypothetical scores with those strict signs would be nonzero,
+contradicting that dependence. Thus both presence and absence are
+certified by rational arithmetic. No floating-point infeasibility
+report is used.
+
+\section{A uniform obstruction for four coalescing poles}
+The following written statement explains the finite test and allows
+the residues to vary arbitrarily with the pole separation.
+
+\begin{proposition}\label{prop:uniform}
+Let $p\geq1$ be an integer and $J=[a,b]\subset(0,\infty)$ satisfy
+\[
+ \frac{pb}{p+2}<a.
+ \tag{2}\label{eq:interval}
+\]
+Fix four distinct ordered points $q_0<q_1<q_2<q_3$ in $J$ and
+the four numbers $a_j=(-3,-1,1,3)_j$. There exists $\epsilon_0>0$
+such that, whenever $0<\epsilon<\epsilon_0$ and
+\[
+ F_\epsilon(t)=\sum_{j=0}^3\frac{c_j}{(t-\epsilon a_j)^p}
+\]
+has strictly alternating signs at the four $q_i$, every two-term
+partial sum of $F_\epsilon$ is nonzero and has constant sign on $J$.
+\end{proposition}
+\begin{proof}
+Suppose the assertion fails along a sequence $\epsilon\downarrow0$.
+Pass to a subsequence on which the same pair of terms fails, and
+normalize the residues by a common positive factor so that their
+first four scaled moments
+\[
+ m_k=\sum_j c_j(\epsilon a_j)^k,\quad 0\leq k\leq3,
+ \qquad \max_k|m_k|=1
+\]
+have this normalization. The moments are not all zero because the
+four-node Vandermonde matrix is invertible. Passing to a further
+subsequence makes the moment vector converge to a vector of maximum
+norm one. Denote its limiting coordinates again by $m_k$.
+
+Vandermonde inversion gives $c_j=O(\epsilon^{-3})$. Taylor expansion
+on the compact positive interval $J$ therefore yields uniform
+convergence
+\[
+ F_\epsilon(t)\longrightarrow
+ \sum_{k=0}^3\binom{p+k-1}{k}\frac{m_k}{t^{p+k}}
+ =\frac{P(t)}{t^{p+3}},
+\]
+where $P$ is a nonzero polynomial of degree at most three.
+The strict alternation supplies three real zeros between consecutive
+$q_i$. It follows that $P$ has three roots $r_1,r_2,r_3$ in $J$,
+counted with multiplicity. One elementary justification also handles
+zeros tending to a common endpoint: multiply $F_\epsilon$ by its
+positive common denominator $\prod_j(t-\epsilon a_j)^p$.
+The resulting polynomials converge coefficientwise to
+$t^{3p-3}P(t)$. Divide each by the three linear factors furnished
+by the three zeros, pass to convergent subsequences of those zeros,
+and use continuity of monic polynomial division. Their limiting
+product divides $t^{3p-3}P(t)$, hence divides $P$ since $J$ excludes
+zero.
+
+Consequently
+\[
+ P(t)=A(t-r_1)(t-r_2)(t-r_3),\qquad A\ne0.
+\]
+In particular $m_2,m_3$ are nonzero, and comparison of coefficients
+gives
+\[
+ -\frac{p m_3}{m_2}
+ =\frac{3p}{p+2}\frac{r_1r_2r_3}
+ {r_1r_2+r_1r_3+r_2r_3}.
+ \tag{3}\label{eq:root}
+\]
+The right side is $p/(p+2)$ times the harmonic mean of the three
+roots, and is therefore at most $pb/(p+2)<a$.
+
+For clarity, the two relevant columns of the inverse Vandermonde
+matrix are
+\[
+ w=\frac1{48}(-1,3,-3,1),\qquad
+ u=\frac1{16}(1,-1,-1,1).
+\]
+They have moments $\sum_j w_j a_j^k=\mathbf1_{k=3}$ and
+$\sum_j u_j a_j^k=\mathbf1_{k=2}$ for $0\leq k\leq3$.
+Thus the leading residue terms are
+$\epsilon^{-3}m_3w+\epsilon^{-2}m_2u$.
+For any nonsymmetric pair of nodes, the sum of its two $w$
+coordinates is nonzero. Multiplying that pair's partial score by
+$\epsilon^3$ gives uniform convergence to a nonzero constant
+multiple of $m_3/t^p$. Its sign is therefore constant on $J$ for
+all sufficiently small $\epsilon$.
+
+For the outer symmetric pair, the two $w$ coordinates sum to zero,
+while both $\sum u_j$ and $\sum a_jw_j$ on that pair equal $1/8$.
+For the inner symmetric pair both sums equal $-1/8$. Multiplication
+of either partial score by $\epsilon^2$ therefore gives the uniform
+limit
+\[
+ \pm\frac18\left(\frac{m_2}{t^p}
+                  +\frac{p m_3}{t^{p+1}}\right).
+\]
+Its sole positive candidate zero is \eqref{eq:root}, which lies
+strictly below $J$ by \eqref{eq:interval}. This limit is again
+bounded away from zero on $J$. Every pair consequently has constant
+nonzero sign for all sufficiently late terms of the supposed
+counterexample sequence, a contradiction.
+\end{proof}
+
+For $p=2$ and three coalescing root zeros at $T$, the symmetric-pair
+zero is $T/2$. For $p=1$ it is $T/3$. The same proof applies after
+adding a common positive offset to all poles and query times.
+This identifies the failure of the plain subtree-indicator proposal.
+It does not address other color profiles, label-dependent query
+designs, anchor cancellation rules, or arbitrary original-model heads.
+
+\end{document}
