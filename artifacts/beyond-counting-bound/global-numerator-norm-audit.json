@@ -1,0 +1,53 @@
+{
+  "checked_utc": "2026-11-23T13:28:55.909508+00:00",
+  "passed": true,
+  "lean_build": "lake build HeadComplexity.Atoms.NegativePoleEscape HeadComplexity.Atoms.VanishingNumeratorNorm",
+  "build_jobs": 3229,
+  "modules": {
+    "NegativePoleEscape": "6b7a4ac9329595997e433c1c8d06f8d66a18df72ed8c63eb07af8023421a87da",
+    "VanishingNumeratorNorm": "c5579f9e8506ae9df45beedb9ab69775f2a51298549e6cd036c2038aa4578cbc"
+  },
+  "principal_declarations": [
+    "HeadComplexity.NegativePoleEscape.unbounded_normalized_functional",
+    "HeadComplexity.NegativePoleEscape.unbounded_atom_functional",
+    "HeadComplexity.NegativePoleEscape.lagrangian_unbounded_below",
+    "HeadComplexity.VanishingNumeratorNorm.arbitrarily_small_norm",
+    "HeadComplexity.VanishingNumeratorNorm.atoms_score",
+    "HeadComplexity.VanishingNumeratorNorm.no_numerator_norm_minimum"
+  ],
+  "foundational_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "independent_rational_margin_checks": 352,
+  "github_render": [
+    {
+      "file": "global-numerator-norm-obstructions.md",
+      "sha256": "7785ab444797991710b6d9a523ebea426ada33a02a80e7f0ec8ce1b3ede4e4e2",
+      "rendered_math_spans": 61,
+      "source_math_spans": 61,
+      "findings": [],
+      "notes": []
+    },
+    {
+      "file": "research.md",
+      "sha256": "0793053d0498d221857c2ab78dae5db9d00c54f408f77ba5528d1e6b9773cc8c",
+      "rendered_math_spans": 94,
+      "source_math_spans": 94,
+      "findings": [],
+      "notes": []
+    },
+    {
+      "file": "audit-index.md",
+      "sha256": "07a86d12c2f90321d69a2fa6581b19383b160b6b82b85ce9c7a4e2d9f393c96a",
+      "rendered_math_spans": 1,
+      "source_math_spans": 1,
+      "findings": [],
+      "notes": []
+    }
+  ],
+  "katex": "PASS: 156 math spans across three files",
+  "gitlab_render": "Not run: glab unavailable",
+  "main_target_proved": false
+}

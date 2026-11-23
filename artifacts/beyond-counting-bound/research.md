@@ -10,6 +10,10 @@ The desired conclusion is not an assumption in any argument. Denominators may de
 
 The source and start time are recorded in `run.json`. The attachment is outside this repository and is not modified.
 
+## Global numerator norm audit
+
+The [boundary-escape theorem](global-numerator-norm-obstructions.md) constructs an admissible negative-slope head with bounded normalized numerator norm on which any nonzero linear functional away from the origin is arbitrarily large. Thus every ordinary numerator-norm Lagrangian with a nonzero constraint multiplier away from the origin has infimum negative infinity. The same note gives a two-head family with full-cube unit margins and numerator norm tending to zero, although zero norm is infeasible. Both constructions and their actual fractional atoms are Lean checked. Global norm attainment and a nontrivial ordinary global norm-duality certificate are therefore unavailable without additional hypotheses. This does not exclude the separate strict local minimum, and does not improve the worst-case head lower bound.
+
 ## Initial audit
 
 The manuscript's normalized score has a discrete sign and $2nH$ real parameters:
