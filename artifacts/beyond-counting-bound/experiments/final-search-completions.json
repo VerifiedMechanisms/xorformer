@@ -1,0 +1,17 @@
+[
+  {
+    "name": "full-cube-unit-stable",
+    "exit_code": 0,
+    "final_output": "{\"status\": \"SEARCH_FINISHED_UNKNOWN\", \"trials\": 3037, \"elapsed_seconds\": 5000.0000464289915, \"main_target_proved\": false}"
+  },
+  {
+    "name": "variable-constant-stable",
+    "exit_code": 0,
+    "final_output": "{\"status\": \"SEARCH_FINISHED_UNKNOWN\", \"trials\": 1975, \"elapsed_seconds\": 5000.0001468400005, \"main_target_proved\": false}"
+  },
+  {
+    "name": "head-energy-stable",
+    "exit_code": 0,
+    "final_output": "{\"status\": \"SEARCH_FINISHED_UNKNOWN\", \"trials\": 2673, \"elapsed_seconds\": 5000.000200032024, \"main_target_proved\": false}"
+  }
+]

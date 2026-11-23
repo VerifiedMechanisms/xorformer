@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T00:52:22.475870+00:00",
+  "last_audit_utc": "2026-11-23T02:27:36.789296+00:00",
   "elapsed_seconds_at_last_audit": 89301,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -526,7 +526,7 @@
     "main_target_proved": false
   },
   "full_cube_unit_margin_search": {
-    "status": "ongoing numerical experiment; no impossibility claim",
+    "status": "completed bounded numerical experiment; no candidate passed the numerical tests; no infeasibility claim",
     "script": "search_full_cube_unit_minima.py",
     "orientation": "both coherent slope orientations; unrestricted numerator signs",
     "main_target_proved": false
@@ -538,7 +538,7 @@
     "main_target_proved": false
   },
   "variable_constant_margin_search": {
-    "status": "ongoing numerical experiment",
+    "status": "completed bounded numerical experiment; no candidate passed the numerical tests; no infeasibility claim",
     "script": "search_variable_constant_minima.py",
     "scope": "constant and numerator coefficients optimized; both coherent denominator orientations; all cube constraints",
     "main_target_proved": false
@@ -560,6 +560,12 @@
       "/out/full-cube-unit-mixed-refined",
       "/out/variable-constant-minima-refined"
     ],
+    "target_proved": false
+  },
+  "final_numerical_searches": {
+    "manifest": "experiments/final-search-manifest.json",
+    "all_jobs_exited_normally": true,
+    "candidate_files": 0,
     "target_proved": false
   }
 }
