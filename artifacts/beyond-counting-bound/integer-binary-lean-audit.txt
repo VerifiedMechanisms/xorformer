@@ -1,0 +1,23 @@
+'HeadComplexity.IntegerBinaryFiber.slopes_positive' depends on axioms: [propext]
+'HeadComplexity.IntegerBinaryFiber.indices_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.indices_range' depends on axioms: [propext]
+'HeadComplexity.IntegerBinaryFiber.sample_denominators_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.labels_sign' depends on axioms: [propext]
+'HeadComplexity.IntegerBinaryFiber.labels_mixed' depends on axioms: [propext]
+'HeadComplexity.IntegerBinaryFiber.labels_exact' depends on axioms: [propext]
+'HeadComplexity.IntegerBinaryFiber.cleared_sample_scores' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.sample_scores' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.jacobian_mod_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.inverse_mul_mod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.clearedJacobian_det_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.jacobian_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.clone_samples_have_one' depends on axioms: [propext]
+'HeadComplexity.IntegerBinaryFiber.clone_inverse_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.clearedClone_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.IntegerBinaryFiber.clone_jacobian_det_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

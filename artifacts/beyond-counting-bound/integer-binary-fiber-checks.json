@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "source_sha256": "897913b110f6925bf2904e5b5db7ac207493418eb9d5f2769e28cca720fb8947",
+  "n": 18,
+  "heads": 3,
+  "samples": 108,
+  "positive": 107,
+  "negative": 1,
+  "modular": [
+    {
+      "prime": 101,
+      "cleared_determinant": 9
+    },
+    {
+      "prime": 65537,
+      "cleared_determinant": 5609
+    }
+  ],
+  "clone_rows": [
+    0,
+    13,
+    15,
+    25,
+    30,
+    32
+  ],
+  "clone_vertices": [
+    217097,
+    208981,
+    67975,
+    20555,
+    32287,
+    89157
+  ],
+  "clone_cleared_determinant_mod_101": 86,
+  "main_target_proved": false,
+  "scope": "exact finite mixed binary fiber and cloning block; no positive KKT multipliers or full-cube unit margin"
+}

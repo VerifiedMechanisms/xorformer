@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/integer-binary-fibers.md",
+  "sha256": "4e7e07509c35f5559d01f380a00b7ed3a2ae7990b6f3e2b2846b2b3c67a174d4",
+  "utc": "2026-11-23T00:11:55.734813+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 36,
+  "notes": []
+}
