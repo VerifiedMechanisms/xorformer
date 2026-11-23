@@ -847,6 +847,30 @@
       "checked_location": "Equation (7), Theorems 2.5, 2.7, 5.2 and 5.3 in primary HTML and extracted PDF text. PDF screenshot failed.",
       "mechanism": "Homogeneous product ideals characterize degree-controlled partial fractions via vanishing on arrangement flats.",
       "gap": "The displayed affine Theorem 5.3 omits flats at infinity while retaining a coefficient-degree bound. The explicit B1=1+x+y, B2=2+x+y, f=xy example contradicts that bounded-degree conclusion. A corrected homogeneous criterion and Lean-checked algebraic obstruction are recorded in partial-fraction-degree-audit.tex. No finite-cube sign compression follows."
+    },
+    {
+      "title": "Mixed MNL Models for Discrete Response",
+      "authors": "Daniel McFadden and Kenneth Train",
+      "url": "https://eml.berkeley.edu/~train/papers/mcfaddentrain.pdf",
+      "checked_location": "Equation (1), Theorem 1 on page 451, limitations on page 452, and its Appendix proof on pages 465-466.",
+      "mechanism": "Approximates regular random-utility choice probabilities by mixed multinomial logit models using polynomial feature approximation and random coefficients.",
+      "gap": "The theorem permits a new nonlinear feature vector and does not bound the number of discrete mixture components. Neither change is free in the fixed affine-input head model. The proof supplies no O(2^n/n^2) component construction."
+    },
+    {
+      "title": "Etudes on the methods of designing efficient circuits",
+      "authors": "Igor S. Sergeev",
+      "url": "https://igorssergeev.github.io/papers/S-book_eng_300926.pdf",
+      "checked_location": "Author-hosted September 30, 2026 English version, extracted locally from the public author repository. Theorem 11.3 and proof, pages 128-129; Theorem 12.1 and proof, pages 137-138; opening of Chapter 13, pages 153-154.",
+      "mechanism": "Lovett-type exponent-set sum decompositions for polynomial arithmetic circuits, and orthogonal Boolean systems reducing multiplicative circuit complexity.",
+      "gap": "These constructions reuse nonlinear intermediate outputs and charge multiplication or circuit gates. Their bounds are not bounds on a single sum of affine fractions. No depth-removal construction with the required head count is present in the inspected passages."
+    },
+    {
+      "title": "Fast Evaluation of Polynomials with Rational Preprocessing",
+      "authors": "Thomas D. Ahle and Jakob B. T. Knudsen",
+      "url": "https://arxiv.org/pdf/2609.06022",
+      "checked_location": "Primary PDF version displayed as v1: Section 2 cost model, Theorem 1, and construction outline through page 7. The entire 186-page paper and its Lean files were not audited.",
+      "mechanism": "Rational preprocessing gives monic degree-d polynomial evaluation using floor(d/2)+1 multiplications in characteristic zero or characteristic greater than d, with logarithmic multiplicative height.",
+      "gap": "Rational preprocessing of coefficients does not make the runtime circuit a sum of affine ratios. The circuit multiplies nonlinear intermediate quantities. No head-count-preserving flattening theorem follows from the inspected construction."
     }
   ]
 }
