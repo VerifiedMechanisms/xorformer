@@ -807,4 +807,52 @@ ranking votes at the needed uniform accuracy is excluded above.
 A joint or direct local construction remains open. No target or
 requested fallback has been obtained.
 
+\section{A finite exact repair for a bounded number of slope conflicts}
+
+The following identity was found in the subsequent research round. It
+provides an exact transfer when only a few denominator coordinates have
+the wrong orientation. Its exponential cost in their number does not
+establish a universal asymptotic saving.
+
+\begin{proposition}[Three-head reversal of one Boolean coordinate]
+Let $x\in\{0,1\}$, let $z$ denote the other Boolean coordinates, and let
+$D(z)$ be affine with strictly positive slopes. Suppose $b>0$ and
+$m=\min_z D(z)>b$. For any $0<\gamma<m-b$, one has
+\[
+ \frac1{D-bx}
+ =\frac1{D+\gamma x}
+  +\frac1{D-b-\gamma+\gamma x}
+  -\frac1{D-b-\gamma+(b+2\gamma)x}.
+\]
+Every denominator on the right has strictly positive slopes and is
+positive on the entire Boolean cube. The identity remains valid after
+multiplication by any common affine numerator $A(x,z)$, so one mixed
+affine ratio with this single negative slope is exactly the sum of three
+admissible positive-slope ratios.
+\end{proposition}
+\begin{proof}
+If $x=0$, the second and third terms cancel and the first is $1/D$.
+If $x=1$, the first and third terms cancel and the second is $1/(D-b)$.
+These are precisely the two values of the left side. The first new
+denominator has minimum at least $m>0$. The other two have minimum
+at least $m-b-\gamma>0$. Their new slopes are respectively
+$\gamma$, $\gamma$, and $b+2\gamma$, all strictly positive;
+all other slopes are unchanged. Multiplying by $A$ preserves affine
+numerators and the equality. Negating the last numerator accounts for
+its minus sign.
+\end{proof}
+
+More generally, start from an affine denominator positive on the whole
+cube with $k$ negative slopes and all remaining slopes positive.
+Apply the identity to one negative slope at a time. At each stage
+the minimum of the other-coordinate affine expression exceeds the
+magnitude of the slope being reversed, by positivity at that
+coordinate equal to one. A suitable positive $\gamma$ therefore exists.
+All three resulting denominators are positive on the whole cube and
+have one fewer negative slope. Induction gives an exact representation
+using at most $3^k$ positive-slope ratios. This argument permits
+arbitrary affine numerators and arbitrary cancellation magnitudes.
+It does not permit a denominator that was positive only on a promised
+subset in the first place.
+
 \end{document}
