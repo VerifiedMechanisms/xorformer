@@ -12,7 +12,9 @@
 Permutation averaging gives exact positive reciprocal identities with
 coefficients outside a single additive lattice. This note audits that
 construction. It does not prove or disprove the universal head bound.
-Only the permutation-sum identity stated first is Lean formalized.
+The permutation-sum identity and the abstract subset-moment support
+argument are Lean formalized. The numerical mass evaluation, finite
+separation estimate, and coefficient-pool count are manual proofs.
 
 \section{Exact averaging over arbitrary positive values}
 
@@ -71,6 +73,15 @@ Thus even this one distinguished-index version requires at least
 $2^n$ permutations in its support. It is sharp as a distributional
 statement: choose one permutation for each $S$ and give it the weight
 in (4). The moments then equal $1/(|T|+1)$ by the same integral.
+
+The upper-subset moment transform is injective, as checked by
+\texttt{HeadComplexity.subset\_moment\_zero} and
+\texttt{HeadComplexity.subset\_moment\_ext}. The declaration
+\texttt{HeadComplexity.card\_le\_of\_positive\_subset\_moments}
+in \texttt{Results/SubsetMomentRigidity.lean} proves that any finite
+signed family with these moments needs at least $2^n$ atoms once
+strict positivity of the target masses is supplied. Formula (4) is
+proved manually above; it is not assumed to have been formalized.
 
 The inclusion-exclusion method is related to the proof of Theorem 7
 in Broder, Charikar, Frieze, and Mitzenmacher,

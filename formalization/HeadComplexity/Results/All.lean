@@ -1,3 +1,4 @@
+import HeadComplexity.Results.SubsetMomentRigidity
 import HeadComplexity.Results.PermutationReciprocalAverage
 import HeadComplexity.Results.PolyaReciprocalIdentity
 import HeadComplexity.Results.PositivePairRigidity
