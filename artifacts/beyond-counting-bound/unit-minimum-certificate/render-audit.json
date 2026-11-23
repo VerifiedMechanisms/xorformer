@@ -1,14 +1,14 @@
 {
   "status": "PASS",
-  "utc": "2026-11-23T11:24:01.034024+00:00",
+  "utc": "2026-11-23T11:54:20.394808+00:00",
   "files": [
     {
       "file": "artifacts/beyond-counting-bound/unit-margin-strict-minimum.md",
-      "source_math_spans": 77,
-      "github_math_spans": 77,
+      "source_math_spans": 92,
+      "github_math_spans": 92,
       "findings": [],
       "notes": [],
-      "sha256": "80cd19b8914cccc1a5954dd6daad78756b707ecac080cd9e3c227997c45f7c4c"
+      "sha256": "73bf6efddb37d0a5d8188dc063beb098c81f2dd50b85034fd48e172bb740ddb3"
     },
     {
       "file": "artifacts/beyond-counting-bound/audit-index.md",

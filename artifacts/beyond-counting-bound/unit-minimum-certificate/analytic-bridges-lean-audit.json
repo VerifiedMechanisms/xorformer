@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-23T11:52:50.215283+00:00",
+  "module": "formalization/HeadComplexity/Atoms/CertifiedContraction.lean",
+  "file_sha256": "3530cb2bdf99b1ac64fb2a4d4b675b3c420b3c2c767680a8806c303a4bbb83cc",
+  "build_exit_code": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "declarations": [
+    "HeadComplexity.CertifiedContraction.exists_zero_of_contraction",
+    "HeadComplexity.CertifiedContraction.positiveFunctional_apply",
+    "HeadComplexity.CertifiedContraction.positiveFunctional_ge_norm",
+    "HeadComplexity.CertifiedContraction.strict_local_minimum_of_positive_multipliers"
+  ],
+  "scope": "General closed-ball contraction root theorem and first-order strict local minimum from an invertible constraint derivative and positive multipliers. Concrete 108-dimensional instantiation remains a written proof.",
+  "main_target_proved": false
+}

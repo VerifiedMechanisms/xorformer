@@ -98,8 +98,24 @@ Thus $z^\ast$ is a strict local minimum under the active inequalities. All other
 
 The normalized numerator vector in $S$ is $(2/\gamma)u$. Its squared norm is the positive constant $(2/\gamma)^2$ times the squared norm of $u$. Consequently the same strict local minimum statement holds for the normalized score's numerator norm. This completes the written proof.
 
+## Independent first-order audit of minimality
+
+The local-minimum conclusion also follows directly from differentiability, without constructing inverse coordinates. This general argument is checked in `HeadComplexity.CertifiedContraction.strict_local_minimum_of_positive_multipliers`.
+
+Let $g(z^\ast)=0$, let $J_\ast=Dg(z^\ast)$ be invertible, and suppose $D\phi(z^\ast)=\lambda^\top J_\ast$ with $\lambda_i\geq\eta\gt0$. Put $M=\max\lbrace1,\lVert J_\ast^{-1}\rVert_\infty\rbrace$ and $K(z)=\phi(z)-\lambda^\top g(z)$. Then $DK(z^\ast)=0$. Differentiability supplies a neighborhood on which, with $d=z-z^\ast$,
+
+$$ \lVert g(z)-J_\ast d\rVert_\infty\leq\frac{\lVert d\rVert_\infty}{2M},\qquad |K(z)-K(z^\ast)|\leq\frac{\eta\lVert d\rVert_\infty}{4M}. $$
+
+The inverse bound and triangle inequality give $\lVert g(z)\rVert_\infty\geq\lVert d\rVert_\infty/(2M)$. At a feasible point, $g(z)\geq0$, so $\lambda^\top g(z)\geq\eta\lVert g(z)\rVert_\infty$. Therefore
+
+$$ \phi(z)-\phi(z^\ast)\geq\frac{\eta\lVert d\rVert_\infty}{4M}\gt0\qquad(z\neq z^\ast). $$
+
+Here the application is $g=YF$, with the exact multipliers already constructed above and any $0\lt\eta\leq1/500$. This independently confirms the sign of the multiplier condition and shows that no second-order sufficient condition has been assumed.
+
 ## Audit scope and remaining question
 
-The analytic proof above uses explicit rational inequalities, the contraction mapping theorem, and the inverse function theorem. The exact verifier checks the numerical certificate without floating-point assertions. The Lean declarations `HeadComplexity.UnitMinimumCenter.unselected_score_gap` and `active_residual` check the center's entire cube gap and all selected residual bounds. `den_positive` checks denominator positivity. These declarations depend only on standard foundational axioms. The contraction and local-minimum deductions are written proofs, not claimed as Lean declarations.
+The analytic proof above uses explicit rational inequalities, the contraction mapping theorem, and the inverse function theorem; the independent first-order proof removes the last of these from the minimality deduction. The exact verifier checks the numerical certificate without floating-point assertions. The Lean declarations `HeadComplexity.UnitMinimumCenter.unselected_score_gap` and `active_residual` check the center's entire cube gap and all selected residual bounds. `den_positive` checks denominator positivity.
+
+The general analytic bridges `HeadComplexity.CertifiedContraction.exists_zero_of_contraction` and `strict_local_minimum_of_positive_multipliers` also pass Lean. The former derives an actual zero from a contractive approximate-inverse map on a closed ball. The latter proves the preceding first-order sufficient condition. These declarations depend only on standard foundational axioms. Their instantiation with all derivatives and norm estimates of this particular 108-dimensional certificate remains the written proof above; the complete concrete local-minimum theorem is not asserted as a Lean declaration.
 
 This construction rules out a universal local-minimum rank-defect shortcut. It does not show that the constructed point is a global minimum, and it does not bound the number of local or global minima. A proposed argument using those stronger properties remains blocked until it supplies a new proof mechanism. The manuscript's architecture, unrestricted parameters, and definitions of head complexity and worst-case complexity are unchanged.
