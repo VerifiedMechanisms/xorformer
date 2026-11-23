@@ -353,6 +353,122 @@ variation, use functions depending separately on the input slot, or
 encode permutations by a different architecture. In particular, it
 does not upper-bound the full compact decoder's sign capacity.
 
+\section{Uniform sign-only block readers in a compact pole interval}
+Arbitrary residue libraries are available if a one-hot row baseline is
+allowed to absorb their common interpolation values. Thus alternation
+cannot be assumed for all proposed decoders. The following obstruction
+does not assume alternation, and permits approximate cancellation of
+inactive blocks rather than exact constant outputs.
+
+\begin{proposition}[Compact independent-bit readers have bounded capacity]
+For $b=1,\ldots,m$, fix two pole-residue pairs
+$(\lambda_b^0,c_b^0)$ and $(\lambda_b^1,c_b^1)$.
+A configuration independently chooses one pair in each block.
+For $i=1,\ldots,m$, let
+\[
+ F_i(\sigma)=\delta_i+\sum_{b=1}^m\sum_{\ell=1}^K
+ \frac{A_{i\ell}+\gamma_{i\ell}c_b^{\sigma_b}}
+      {D_{i\ell}-\lambda_b^{\sigma_b}},
+ \qquad \sigma\in\{0,1\}^m,
+\]
+where $K\geq1$, all $D_{i\ell}>0$, and every pole satisfies
+$0\leq\lambda_b^s\leq\eta D_{i\ell}$ for some $0\leq\eta<1$ and
+every $i,\ell,b,s$. Suppose that, for every configuration, $F_i$ is
+strictly positive when $\sigma_i=1$ and strictly negative when
+$\sigma_i=0$. Then
+\[
+ m<\frac{3K(K+1)}2
+       \left(1+(1-\eta)^{-4K}\right).
+\]
+In particular, for one term per symbol and $\eta\leq1/16$,
+at most six independent bits can be read in this way.
+\end{proposition}
+\begin{proof}
+Write $\Delta_{ib}$ for the change in the $i$-th score when only the
+$b$-th block changes from choice zero to choice one. Each score is
+affine in the binary choices. Its largest value with $\sigma_i=0$
+and smallest value with $\sigma_i=1$ therefore differ by
+\[
+ \Delta_{ii}-\sum_{b\ne i}|\Delta_{ib}|.
+\]
+The assumed strict signs force this number to be positive. Hence
+$\Delta$ is strictly row diagonally dominant, with positive diagonal.
+
+For each query form the polynomials
+\[
+ d_i(T)=\prod_{\ell=1}^K(D_{i\ell}-T),\quad
+ P_i(T)=\sum_\ell\gamma_{i\ell}
+                \prod_{a\ne\ell}(D_{ia}-T),\quad
+ Q_i(T)=\sum_\ell A_{i\ell}
+                \prod_{a\ne\ell}(D_{ia}-T).
+\]
+Their degrees are at most $K,K-1,K-1$, respectively. Clearing the
+two positive denominators gives the matrix
+\[
+\begin{split}
+ N_{ib}:={}&\Delta_{ib}d_i(\lambda_b^1)d_i(\lambda_b^0)\\
+ ={}&c_b^1P_i(\lambda_b^1)d_i(\lambda_b^0)
+       -c_b^0P_i(\lambda_b^0)d_i(\lambda_b^1)\\
+ &+Q_i(\lambda_b^1)d_i(\lambda_b^0)
+       -Q_i(\lambda_b^0)d_i(\lambda_b^1).
+\end{split}
+\]
+The first line of polynomial products is a sum of at most $K(K+1)$
+outer products, indexed by the coefficient of $T^a$ in $P_i$ and
+the coefficient of $T^b$ in $d_i$, with $0\leq a<K$ and $0\leq b\leq K$.
+The remaining difference is antisymmetric in its two evaluation
+arguments. Expanding it in the basis
+$x^ay^b-x^by^a$, $0\leq a<b\leq K$, writes it as a sum of at most
+$K(K+1)/2$ outer products. Consequently
+\[
+ \operatorname{rank}N\leq\frac{3K(K+1)}2.
+\]
+For $K=1$ this is particularly explicit:
+\[
+ N_{ib}=\gamma_{i1}D_{i1}(c_b^1-c_b^0)
+       +A_{i1}(\lambda_b^1-\lambda_b^0)
+       +\gamma_{i1}(c_b^0\lambda_b^1-c_b^1\lambda_b^0),
+\]
+which is a sum of three rank-one matrices.
+
+Let $E_{ib}=d_i(\lambda_b^1)d_i(\lambda_b^0)$.
+The compactness assumption gives
+\[
+ (1-\eta)^{2K}\prod_\ell D_{i\ell}^{,2}
+ \leq E_{ib}\leq\prod_\ell D_{i\ell}^{,2}.
+\]
+Normalize each row of $N$ by its nonzero diagonal entry to obtain
+$M_{ii}=1$. The preceding bounds and strict diagonal dominance of
+$\Delta$ imply
+\[
+ \sum_{b\ne i}|M_{ib}|<(1-\eta)^{-2K}=:R.
+\]
+Thus $\|M\|_F^2<m(1+R^2)$, while $\operatorname{tr}M=m$.
+For every real square matrix, the trace--Frobenius inequality
+$|\operatorname{tr}M|\leq
+\sqrt{\operatorname{rank}M}\,\|M\|_F$
+follows by projecting onto its column space and applying
+Cauchy--Schwarz. Therefore
+\[
+ m^2<\operatorname{rank}M\,m(1+R^2)
+ \leq \frac{3K(K+1)}2m(1+R^2),
+\]
+which proves the claim. For $K=1$ and $\eta\leq1/16$, the right-hand
+side in the proposition is at most
+$3(1+(16/15)^4)<7$, so the integer $m$ is at most six.
+\end{proof}
+
+The hypothesis specifies the independent bits that each reader must
+recover, rather than permitting an arbitrary bijection from input
+configurations to sign patterns. It also uses the same symbol function
+at every selected input slot. Both limitations are substantive.
+For a butterfly block-sum proposal, fixing two possible outputs in each
+output block gives exactly such an independent binary subfamily. Hence
+hierarchical scales cannot make all inactive-block variations uniformly
+small enough for these readers when the number of blocks tends to
+infinity and $K$ stays bounded. Arbitrary slot-dependent rational
+functions and other encodings remain outside the proposition.
+
 \paragraph{Unresolved capacity question.}
 The finite five-row construction disproves the naive bound of $2H$
 readable signs from $2H$ column parameters. None of the statements here
