@@ -102,6 +102,37 @@ for n in range(1, 6):
             for i in range(n):
                 bias = sum(g[j]*c[i][j] for j in range(n))
                 assert sum((e[i][h]+reduced[h])*c[i][p[h]] for h in range(n))+bias == 0
+            # The quotient correction has rank at most `degree`, even when
+            # quotient coefficients vary from sheet to sheet.  Give the two
+            # regular rows at each pole their correction, and give two extra
+            # readouts zero correction.  The following affine denominators
+            # implement that matrix with degree heads and one shared reference.
+            memory = list(quotient)+[F(0)]*(degree-len(quotient))
+            features = []
+            shifts = []
+            singleton_denominators = []
+            for k in range(degree):
+                row = [sum(v[j]*lam[j]**k*c[i][j] for j in range(n))
+                       for i in range(n) for _ in range(2)]+[F(0), F(0)]
+                radius = max(abs(x) for x in row)
+                shift = (2*len(row)+1)*radius+1
+                intercept = 1/(shift-radius)
+                singles = [1/(shift+x) for x in row]
+                assert all(intercept-x >= 0 for x in singles)
+                assert intercept-sum(intercept-x for x in singles) > 0
+                features.append(row)
+                shifts.append(shift)
+                singleton_denominators.append(singles)
+            for i in range(2*n+2):
+                compiled = sum(memory[k]/singleton_denominators[k][i]
+                               for k in range(degree))-sum(
+                                   shifts[k]*memory[k] for k in range(degree))
+                intended = sum(memory[k]*features[k][i] for k in range(degree))
+                assert compiled == intended
+                if i < 2*n:
+                    assert compiled == sum(g[j]*c[i//2][j] for j in range(n))
+                else:
+                    assert compiled == 0
             assert abs(q[-1]) <= degree*2*n**degree
             assert q[-1] == sum(row[-1] for row in polynomials)
             assert all(abs(x) <= degree*2*n**degree and x.denominator == 1 for x in q)
@@ -110,7 +141,7 @@ for n in range(1, 6):
         assert len(fibers) <= bound
         assert max(fibers.values())*bound >= factorial(n)
 
-print(f"Verified {checked} exact polynomial residue formulas, corrected zeros, and fiber bounds.")
+print(f"Verified {checked} exact polynomial residue formulas, corrected zeros, fiber bounds, and unrestricted low-rank correction compilers.")
 for n in (6, 7, 8):
     degree = 2
     polynomials = [[F(0), F(0), F(1 if h % 2 else -1)] for h in range(n)]

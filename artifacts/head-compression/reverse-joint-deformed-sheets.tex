@@ -295,6 +295,104 @@ sign still compares two values of the same polynomial when the
 denominator is positive. High polynomial degree alone is not a bit
 extraction proof.
 
+\paragraph{Removing the fiber restriction with a low-rank correction.}
+The preceding fiber restriction is unnecessary if an additional
+$L+1$ heads are allowed. This is useful when $L=O(H)$, although it
+still does not prove superlinear shattering. Write
+$S_\pi(t)=\sum_{k=0}^{L-1}s_{k,\pi}t^k$ and define
+\[
+ T_k(t)=\sum_j\frac{V_j\lambda_j^k}{t-\lambda_j}.
+\]
+For every common row pole $t$,
+\[
+ \sum_h\frac{V_{\pi(h)}S_\pi(\lambda_{\pi(h)})}
+                  {t-\lambda_{\pi(h)}}
+       =\sum_{k=0}^{L-1}s_{k,\pi}T_k(t).
+ \tag{11}
+\]
+This is an exact rank-at-most-$L$ factorization as a matrix of rows
+and permutation columns. The permutation disappears from $T_k$
+because it merely reorders the tokens. At the regular pole $d_i$,
+the right side equals $-q_\pi(d_i)$ by (6).
+
+Here is an explicit whole-cube implementation of any finite
+rank-at-most-$L$ matrix $\sum_k f_k(\rho)s_k(j)$.
+Let there be $r$ rows. Put $F_k=\max_\rho|f_k(\rho)|$, choose
+$M_k>(2r-1)F_k$, and set
+\[
+ b_{k\rho}=\frac1{M_k+f_k(\rho)},\qquad
+ c_k=\frac1{M_k-F_k},\qquad
+ B_k(z)=c_k-\sum_\rho(c_k-b_{k\rho})z_\rho.
+\]
+If $F_k=0$, any $M_k>0$ works. Every slope of $B_k$ is nonpositive,
+and
+\[
+ B_k(\boldsymbol1)=\sum_\rho b_{k\rho}-(r-1)c_k
+ \geq\frac r{M_k+F_k}-\frac{r-1}{M_k-F_k}>0.
+\]
+Consequently these are positive denominators on the entire Boolean
+cube, including all column coordinates, which have zero slopes.
+On the promised grid,
+\[
+ \sum_k\frac{\sum_j s_k(j)w_j}{B_k(z)}
+       -\sum_{k,j}M_ks_k(j)w_j
+       =\sum_k f_k(\rho)s_k(j).
+ \tag{12}
+\]
+The subtraction in (12) is one constant-denominator head. Its affine
+numerator may simultaneously supply any desired row biases. For
+completeness, a weakly negative affine denominator $B$ in $r+s$
+variables, with $\delta=B(\boldsymbol1)>0$, can be replaced by
+$B+\epsilon(2-|z|-|w|)$ for
+$\epsilon=\delta/(r+s+1)$. Its value is unchanged on the grid,
+all slopes become strictly negative, and its full-cube minimum is
+at least $3\epsilon$. Thus (12) requires $L+1$ strictly admissible
+grid heads, with no limiting argument and no increase in the count.
+
+Apply (12) with column memories $s_{k,\pi}$ and with row features
+$f_k=T_k(d_i)$ on both members of every regular pair. On every
+additional readout row set $f_k=0$. Take the main column residues to
+be exactly
+\[
+ \widetilde a_h^\pi=-P_h(\lambda_{\pi(h)}).
+\]
+Equation (11) shows that all $H!$ permutation sheets are common
+zeros of the $2H$ regular queries. Keep each column's auxiliary
+memories $s_{k,\pi}$ fixed while varying its $2H$ main variables
+$(u,a)$. The auxiliary correction then contributes zero to their
+Jacobian. Subtracting the two rows at each $d_i$ again gives the
+blocks $(C_\pi\circ C_\pi,0)$, so the Jacobian is invertible by
+the same Cauchy and Borchardt argument used above. Thus each sheet
+retains $2H$ independently adjustable strict signs. Every additional
+readout with a common row pole $t$ has the uncorrected value
+\[
+ \sum_h\frac{A_h-P_h(\lambda_{\pi(h)})}
+                   {t-\lambda_{\pi(h)}}+b.
+ \tag{13}
+\]
+The head count is $H+L+1$, with the one reference head also carrying
+the biases of the regular pairs and of the additional readouts.
+The main heads satisfy the whole-cube margin conditions stated
+earlier; the auxiliary heads satisfy the explicit margin above.
+After selecting finitely many sheets, sufficiently small individual
+parameter neighborhoods preserve all margins and all previously
+strict readout signs. The independent row biases and auxiliary
+features are realized as affine coefficients on the one-hot rows.
+General axis repair may subsequently be applied at constant-factor
+head cost.
+
+This result is a complete written proof of an unrestricted polynomial
+profile platform. The companion polynomial-fiber checker also checks
+(11)--(12), all auxiliary cube minima, and the zero values, using
+exact rational arithmetic. It is not a proof of the required
+$\Omega(H\log\log H)$ independently readable signs. In particular,
+for head-dependent poles $t_h$, the analogue of the right side of
+(11) is
+$\sum_k s_{k,\pi}\sum_h V_{\pi(h)}\lambda_{\pi(h)}^k/
+(t_h-\lambda_{\pi(h)})$; its inner sum depends on the permutation.
+The low-rank correction argument does not extend to that expression
+without a further construction.
+
 \paragraph{Unresolved quantitative issue.}
 As the poles and tokens enter a very compact far-pole regime, the
 inverse Cauchy matrix is ill conditioned. Generic unscaled choices
