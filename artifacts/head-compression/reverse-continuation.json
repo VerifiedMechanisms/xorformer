@@ -3,15 +3,16 @@
   "resumed_utc": "2026-11-23 18:21:46 UTC",
   "minimum_research_end_utc": "2026-11-23 20:21:46 UTC",
   "target": "Unconditional worstCaseHeadComplexity n = O(2^n/(n log log n)); natural logarithms; unchanged model",
-  "status": "Active two-hour continuation investigating both global upper and matching lower bounds; neither is proved.",
+  "status": "Active continuation beyond the requested two-hour minimum; continue substantive research until an accepted resolution or an enforced runtime/resource limit. Neither accepted target is proved.",
   "definitions_changed": false,
   "parallel_targets": [
-    "Scalable joint reverse-orientation compiler",
-    "Concrete local-to-global transfer and worst-case budget formalization",
-    "Materially different global compression mechanism"
+    "Scalable joint reverse-orientation compiler or another unconditional upper-bound mechanism",
+    "Complete checked transfer and budgets in the original model",
+    "Unconditional matching lower bound covering every admissible representation"
   ],
   "acceptable_resolutions": [
     "Unconditional W(n)=O(2^n/(n log log n)), with stronger log n saving welcome",
     "Unconditional W(n)>=c*2^n/n for every sufficiently large n, covering all admissible original-model representations"
-  ]
+  ],
+  "minimum_is_not_deadline": true
 }

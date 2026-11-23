@@ -1,0 +1,386 @@
+[
+  {
+    "H": 4,
+    "epsilon_denominator": 100,
+    "seed": 17,
+    "permutations": 24,
+    "seconds": 0.009481470100581646,
+    "max_normalized_row_deviation": 3.0104583763088587e-05,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "mean_separation": 0.66422477050636,
+        "min_separation": 0.5854025090723107,
+        "quantiles": [
+          0.5854025090723107,
+          0.6134814203400873,
+          0.665260374629874,
+          0.7223525732689833,
+          0.7253011555463327
+        ]
+      },
+      {
+        "token_relabeling": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.7133398242731829,
+        "min_separation": 0.49317863917676774,
+        "quantiles": [
+          0.49317863917676774,
+          0.5395020632978604,
+          0.7600132678416389,
+          0.8347081173959672,
+          0.8390345682996609
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 4,
+    "epsilon_denominator": 10000,
+    "seed": 17,
+    "permutations": 24,
+    "seconds": 0.005325797013938427,
+    "max_normalized_row_deviation": 2.9800031429127788e-09,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "mean_separation": 0.662470009813683,
+        "min_separation": 0.5807260969446212,
+        "quantiles": [
+          0.5807260969446212,
+          0.6114019511120057,
+          0.6636787296567663,
+          0.7214758722819988,
+          0.7243312408790836
+        ]
+      },
+      {
+        "token_relabeling": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.7122173585931609,
+        "min_separation": 0.4904562952857219,
+        "quantiles": [
+          0.4904562952857219,
+          0.5375077922037202,
+          0.7594691463017278,
+          0.8349824040983584,
+          0.8392838675758001
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 5,
+    "epsilon_denominator": 100,
+    "seed": 17,
+    "permutations": 120,
+    "seconds": 0.038763371063396335,
+    "max_normalized_row_deviation": 3.696732334783873e-05,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2,
+          4
+        ],
+        "mean_separation": 0.5337659600610453,
+        "min_separation": 0.15023045208004215,
+        "quantiles": [
+          0.15606028570875266,
+          0.29867312328635504,
+          0.5812436366458886,
+          0.6729004579244642,
+          0.694695247661768
+        ]
+      },
+      {
+        "token_relabeling": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.4753829001275958,
+        "min_separation": 0.21972473574144993,
+        "quantiles": [
+          0.22076168968892507,
+          0.2654720119155256,
+          0.4273315767931049,
+          0.7323159370819484,
+          0.8375013978256083
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 5,
+    "epsilon_denominator": 10000,
+    "seed": 17,
+    "permutations": 120,
+    "seconds": 0.038599435007199645,
+    "max_normalized_row_deviation": 3.658767718552373e-09,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2,
+          4
+        ],
+        "mean_separation": 0.5331056458800225,
+        "min_separation": 0.15101277668682445,
+        "quantiles": [
+          0.15690168135735233,
+          0.3048890162980617,
+          0.5807705897097486,
+          0.6717984192161102,
+          0.6938792093854547
+        ]
+      },
+      {
+        "token_relabeling": [
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.4735673033119687,
+        "min_separation": 0.22070163663152492,
+        "quantiles": [
+          0.2213809626184687,
+          0.2652908852149156,
+          0.4301895795353712,
+          0.7301043276262524,
+          0.835008110863951
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 6,
+    "epsilon_denominator": 100,
+    "seed": 17,
+    "permutations": 720,
+    "seconds": 0.32346680387854576,
+    "max_normalized_row_deviation": 4.398996619208741e-05,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4
+        ],
+        "mean_separation": 0.48706674602381606,
+        "min_separation": 0.16223335180844337,
+        "quantiles": [
+          0.1820359742782343,
+          0.23323059491138184,
+          0.4762817518593048,
+          0.7993777733351705,
+          0.8713584152239869
+        ]
+      },
+      {
+        "token_relabeling": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.46131433206922934,
+        "min_separation": 0.09770033604033729,
+        "quantiles": [
+          0.10101826412642198,
+          0.15178778451948605,
+          0.4875935872327096,
+          0.7218364932799801,
+          0.8635506160061841
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 6,
+    "epsilon_denominator": 10000,
+    "seed": 17,
+    "permutations": 720,
+    "seconds": 0.3204671121202409,
+    "max_normalized_row_deviation": 4.334395778077126e-09,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4
+        ],
+        "mean_separation": 0.48720100316088993,
+        "min_separation": 0.15940099170471395,
+        "quantiles": [
+          0.182200533638768,
+          0.23758613048303145,
+          0.476204878813821,
+          0.796062887278999,
+          0.8716647035805959
+        ]
+      },
+      {
+        "token_relabeling": [
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.46006880400423555,
+        "min_separation": 0.09828059593333328,
+        "quantiles": [
+          0.10210974391315966,
+          0.15266951601222647,
+          0.48451176378697647,
+          0.7190102110122216,
+          0.8612367741958246
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 7,
+    "epsilon_denominator": 100,
+    "seed": 17,
+    "permutations": 5040,
+    "seconds": 3.0153407950419933,
+    "max_normalized_row_deviation": 5.1415240576761e-05,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4,
+          6
+        ],
+        "mean_separation": 0.6084911104477551,
+        "min_separation": 0.12267655468175057,
+        "quantiles": [
+          0.18644480251064757,
+          0.30802965126896853,
+          0.6536828589439343,
+          0.8134811739694787,
+          0.8753620052677609
+        ]
+      },
+      {
+        "token_relabeling": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.4812060775661342,
+        "min_separation": 0.031103876316036616,
+        "quantiles": [
+          0.060039811859930944,
+          0.12024068915409868,
+          0.47944249745098444,
+          0.8448009527924781,
+          0.9421087541777262
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  },
+  {
+    "H": 7,
+    "epsilon_denominator": 10000,
+    "seed": 17,
+    "permutations": 5040,
+    "seconds": 3.016576434019953,
+    "max_normalized_row_deviation": 5.000621659198076e-09,
+    "tests": [
+      {
+        "token_relabeling": [
+          1,
+          0,
+          3,
+          2,
+          5,
+          4,
+          6
+        ],
+        "mean_separation": 0.6047761567525123,
+        "min_separation": 0.12164118754346613,
+        "quantiles": [
+          0.18512309258194795,
+          0.30395892528935015,
+          0.6501109410176346,
+          0.8123475274209955,
+          0.8751876948789219
+        ]
+      },
+      {
+        "token_relabeling": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1,
+          0
+        ],
+        "mean_separation": 0.48087936721202396,
+        "min_separation": 0.031202999445486386,
+        "quantiles": [
+          0.0612858205339758,
+          0.12103274545927444,
+          0.4780425154014548,
+          0.8432222365060377,
+          0.9407085807356029
+        ]
+      }
+    ],
+    "scope": "High precision numerical geometry, not a compiler proof or an obstruction."
+  }
+]
