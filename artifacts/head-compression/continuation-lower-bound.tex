@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Full-Cube Constraints in Lower-Bound Continuations}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The statements here are complete written arguments. They are not Lean
+declarations and do not establish a new asymptotic bound for unrestricted
+\texttt{HeadComplexity.worstCaseHeadComplexity}. The attention model,
+head count, and denominator admissibility remain unchanged. The purpose
+is to delimit two concrete counting mechanisms before using them in a
+claimed lower bound. Neither statement excludes arbitrary target-dependent
+denominators, numerator cancellation, or asymmetric reciprocal queries.
+
+\section{A full-cube obstruction to compressing symmetric Cauchy sheets}
+
+The construction in \texttt{compact-cauchy-sheets.tex} gives factorially
+many regular zeros of a system of reciprocal equations. It uses one-hot
+row coordinates to supply independently chosen affine numerator values.
+Replacing those row coordinates by binary addresses does not preserve
+that freedom. The following obstruction applies to the most direct
+attempt at doing so.
+
+\begin{theorem}[Strict concavity of the reciprocal Cauchy sum]
+Let $H\geq 2$, let $w_1,\ldots,w_H>0$, and let
+$\lambda_1,\ldots,\lambda_H$ be real numbers with at least two distinct
+values. For $d>\max_h\lambda_h$, put
+\[
+ S(d)=\sum_{h=1}^H\frac{w_h}{d-\lambda_h},\qquad R(d)=\frac1{S(d)}.
+\]
+Then $R''(d)<0$ throughout its domain.
+\end{theorem}
+
+\begin{proof}
+Set $T_j(d)=\sum_h w_h/(d-\lambda_h)^j$. Direct differentiation gives
+$S'=-T_2$ and $S''=2T_3$, hence
+\[
+ R''(d)=\frac{2T_2(d)^2-2T_1(d)T_3(d)}{T_1(d)^3}.
+\]
+Apply Cauchy--Schwarz to the two vectors with coordinates
+$\sqrt{w_h/(d-\lambda_h)}$ and
+$\sqrt{w_h/(d-\lambda_h)^3}$. Equality would require the ratio
+$1/(d-\lambda_h)$ to be independent of $h$. The stated distinctness
+excludes equality, so $T_2^2<T_1T_3$. Every denominator is positive,
+and the displayed formula proves the assertion.
+\end{proof}
+
+\begin{corollary}[No two-bit affine encoding of all symmetric zero rows]
+Let $D,A$ be affine functions on a Boolean cube. Suppose that $D$
+takes values larger than $\max_h\lambda_h$ throughout that cube.
+If two coordinate slopes of $D$ are nonzero and have the same sign,
+then the score
+\[
+ F(u)=A(u)\sum_{h=1}^H\frac{w_h}{D(u)-\lambda_h}-1
+\]
+cannot vanish on every vertex of any two-dimensional face varying
+those coordinates.
+\end{corollary}
+
+\begin{proof}
+Fix all other coordinates and write the four denominator arguments as
+$d,d+a,d+b,d+a+b$, where $ab>0$. If all four scores vanished,
+their positive denominators would imply $A(u)=R(D(u))$ at all
+four vertices. The mixed finite difference of an affine function
+is zero. The corresponding difference of $R(D(u))$ is
+\[
+ R(d+a+b)-R(d+a)-R(d+b)+R(d)
+ =ab\int_0^1\int_0^1 R''(d+sa+tb)\,ds\,dt<0.
+\]
+The whole rectangle lies in the domain, since the affine argument
+has its extreme values at its vertices. This is a contradiction.
+\end{proof}
+
+This is compatible with actual attention admissibility: all slopes
+can be strictly negative and every denominator can exceed $3/4$ on
+the whole cube. The obstruction is the affine relation among row
+numerator values, not a pole or a failure of positivity. It does not
+apply once head-dependent row numerators or row denominators break
+the displayed symmetric form.
+
+\section{Why denominator clearing cannot have bounded parameter degree}
+
+\begin{theorem}[Necessary degree in the original effective coordinates]
+Fix $H\geq 1$ and define, for $b_h>0$ and arbitrary real $a_h,c$,
+\[
+ F(a,b,c)=c+\sum_{h=1}^H\frac{a_h}{1+b_h}.
+\]
+If a real polynomial $Q(a,b,c)$ satisfies
+\[
+ \operatorname{sgn} Q(a,b,c)=\operatorname{sgn} F(a,b,c)
+ \quad\hbox{whenever }b_h>0\hbox{ and }F(a,b,c)\ne0,
+\]
+then $Q$ has total degree at least $H+1$.
+\end{theorem}
+
+\begin{proof}
+Write $z_h=1+b_h$ and
+\[
+ P(a,z,c)=c\prod_hz_h+\sum_h a_h\prod_{g\ne h}z_g.
+\]
+This polynomial is irreducible in
+$\mathbb R[z_1,\ldots,z_H,a_1,\ldots,a_H,c]$.
+Indeed, view it as a polynomial in $(a,c)$ over
+$\mathbb R[z_1,\ldots,z_H]$. Its coefficients have greatest common
+divisor one, because no $z_h$ divides the coefficient of $a_h$.
+It is therefore primitive. Over the fraction field
+$\mathbb R(z_1,\ldots,z_H)$ it is a nonconstant polynomial of degree
+one in $(a,c)$, so it is irreducible there. Gauss's lemma gives the
+claimed irreducibility over the polynomial ring.
+
+For any fixed $a$ and $z_h>1$, let
+$c_0=-\sum_h a_h/z_h$. The score changes sign at $c=c_0$.
+Continuity of $Q$ and the required signs on both sides force
+$Q(a,z-1,c_0)=0$. Substitute this rational value of $c$ into $Q$.
+After clearing powers of $\prod_hz_h$, the result is a polynomial
+in $(a,z)$ vanishing on the open set $z_h>1$, so it is identically
+zero. Polynomial division in $c$ over the fraction field
+$\mathbb R(a,z)$ now shows that $c+\sum_h a_h/z_h$ divides $Q$
+in that field. Equivalently, $P$ divides $Q$ after localization by
+the nonzero polynomials in $(a,z)$. Since $P$ is irreducible and
+depends on $c$, it divides none of those inverted polynomials;
+primality in the polynomial ring therefore gives $P\mid Q$ already
+before localization. Translation $b=z-1$ preserves total degree.
+Finally $P$ has total degree $H+1$, as seen from its term
+$c\prod_hz_h$, and $Q$ is nonzero because it has both required
+strict signs. Thus $\deg Q\geq H+1$.
+\end{proof}
+
+These scores are evaluations of sums of actual admissible affine
+ratios. For example, on the one-bit cube take numerator $a_h$ and
+denominator $1+b_h x$, whose slope is strictly positive. The theorem
+does not constrain a nonlinear global reparameterization. It rules
+out replacing a sum of independently parameterized fractions by a
+sign polynomial of degree bounded independently of $H$ in those same
+effective coordinates, even when every denominator is positive.
+
+\section{Primary-source transfer checks}
+
+Pardo and Sebasti\'an, \emph{Erzeugungsgrad, VC-Dimension and Neural
+Networks with rational activation function},
+\url{https://arxiv.org/html/2504.11345v1}, Corollary 5.13, studies
+classifiers given by distinguished Zariski open sets
+$D(f/g)=\{x:f(x)g(x)\ne0\}$ over algebraically closed fields.
+Strict positivity on the real cube is a different classifier.
+The cited result therefore does not supply the needed sign-pattern
+bound; its degree factors also remain in the logarithm.
+
+Bartlett and Williamson, \emph{The VC Dimension and Pseudodimension
+of Two-Layer Neural Networks with Discrete Inputs}, Neural Computation
+8(3) (1996), 625--628,
+\url{https://doi.org/10.1162/neco.1996.8.3.625}, states a
+$W\log(WD)$ bound for the indicated sigmoid and radial-basis networks.
+This is consistent with the ordinary denominator-clearing degree
+growth and does not give a parameter-linear bound for attention.
+The frequently quoted fan-in refinement in Anthony and Bartlett's
+book, Theorem 8.11, was not used here: its printed proof asserts a
+degree bound independent of the number of summed rational units,
+and that step requires an additional argument. The preceding theorem
+shows why simply copying such a degree assertion into the affine-ratio
+model is invalid. No claim that the book's theorem itself is false
+is needed for this transfer audit.
+
+\paragraph{Remaining lower-bound gap.}
+None of these arguments controls the sign patterns of unrestricted
+sums with target-dependent denominators. A successful opposite-direction
+resolution still needs a full-cube obstruction forcing at least
+$c2^n/n$ heads for some Boolean table, uniformly in all admissible
+coefficients. Fixed-denominator dimension bounds, arbitrary-sample
+parameter bounds, and symmetric-sheet restrictions do not supply it.
+\end{document}
