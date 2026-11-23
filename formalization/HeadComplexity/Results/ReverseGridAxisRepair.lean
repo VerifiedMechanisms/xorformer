@@ -349,5 +349,118 @@ theorem worstCaseHeadComplexity_real_le_of_strictReverseGridCompiler {a b M : �
     worstCaseHeadComplexity_real_le_of_reverse_axis_compiler ha hb
       (hasReverseAxisCompiler_of_strictReverseGridCompiler h)
 
+/-- A weak reverse affine ratio, positive on the entire Boolean cube. -/
+structure WeakReverseRatio (n : ℕ) where
+  a₀ : ℝ
+  b₀ : ℝ
+  a : Fin n → ℝ
+  b : Fin n → ℝ
+  positive : ∀ bits, 0 < affineValue b₀ b bits
+  nonpositive : ∀ k, b k ≤ 0
+
+noncomputable def WeakReverseRatio.value {n : ℕ} (R : WeakReverseRatio n)
+    (bits : Fin n → Bool) : ℝ :=
+  affineValue R.a₀ R.a bits / affineValue R.b₀ R.b bits
+
+/-- A uniform weight-two gauge restores strict slopes without altering grid values. -/
+theorem weak_reverse_ratio_strictify {r s : ℕ} (R : WeakReverseRatio (r + s)) :
+    ∃ Q : StrictReverseRatio (r + s),
+      ∀ i j, Q.value (localGrid i j) = R.value (localGrid i j) := by
+  classical
+  let δ := affineValue R.b₀ R.b (fun _ ↦ true)
+  have hδ : 0 < δ := R.positive _
+  let ε := δ / (((r + s : ℕ) : ℝ) + 1)
+  have hn : 0 ≤ ((r + s : ℕ) : ℝ) := Nat.cast_nonneg _
+  have hε : 0 < ε := div_pos hδ (by positivity)
+  have hεeq : ε * (((r + s : ℕ) : ℝ) + 1) = δ :=
+    div_mul_cancel₀ _ (by positivity)
+  have hlower (bits : Fin (r + s) → Bool) : δ ≤ affineValue R.b₀ R.b bits := by
+    unfold δ affineValue
+    apply add_le_add_right
+    apply Finset.sum_le_sum
+    intro k _
+    have hk := R.nonpositive k
+    cases bits k <;> simp [boolToReal, hk]
+  have hcount (bits : Fin (r + s) → Bool) :
+      (∑ k, boolToReal (bits k)) ≤ ((r + s : ℕ) : ℝ) := by
+    calc
+      (∑ k, boolToReal (bits k)) ≤ ∑ _ : Fin (r + s), (1 : ℝ) := by
+        apply Finset.sum_le_sum
+        intro k _
+        cases bits k <;> norm_num [boolToReal]
+      _ = _ := by simp
+  have heval (bits : Fin (r + s) → Bool) :
+      affineValue (R.b₀ + 2 * ε) (fun k ↦ R.b k - ε) bits =
+        affineValue R.b₀ R.b bits + 2 * ε - ε * ∑ k, boolToReal (bits k) := by
+    simp only [affineValue, sub_mul, Finset.sum_sub_distrib, Finset.mul_sum]
+    ring
+  let Q : StrictReverseRatio (r + s) :=
+    { a₀ := R.a₀, b₀ := R.b₀ + 2 * ε, a := R.a, b := fun k ↦ R.b k - ε
+      positive := fun bits ↦ by
+        rw [heval]
+        have hl := hlower bits
+        have hc := hcount bits
+        nlinarith
+      negative := fun k ↦ by have hk := R.nonpositive k; linarith }
+  refine ⟨Q, ?_⟩
+  intro i j
+  have hc : (∑ k, boolToReal (localGrid i j k)) = 2 := by
+    change (∑ k : Fin (r + s), boolToReal ((Fin.addCases (fun k : Fin r ↦ decide (k = i))
+      (fun k : Fin s ↦ decide (k = j)) : Fin (r + s) → Bool) k)) = 2
+    rw [Fin.sum_univ_add]
+    norm_num [boolToReal]
+  change affineValue R.a₀ R.a (localGrid i j) /
+    affineValue (R.b₀ + 2 * ε) (fun k ↦ R.b k - ε) (localGrid i j) = _
+  rw [heval, hc]
+  have heq : affineValue R.b₀ R.b (localGrid i j) + 2 * ε - ε * 2 =
+      affineValue R.b₀ R.b (localGrid i j) := by ring
+  rw [heq]
+  rfl
+
+/-- Weak reverse grid data retain mandatory positivity on the entire cube. -/
+structure WeakReverseGridData (r s H : ℕ) where
+  bias : ℝ
+  head : Fin H → WeakReverseRatio (r + s)
+
+noncomputable def WeakReverseGridData.score {r s H : ℕ}
+    (L : WeakReverseGridData r s H) (bits : Fin (r + s) → Bool) : ℝ :=
+  L.bias + ∑ h, (L.head h).value bits
+
+/-- Strictification of a whole weak reverse grid score costs no heads. -/
+theorem exists_strict_reverse_grid_of_weak {r s H : ℕ} (L : WeakReverseGridData r s H) :
+    ∃ Q : StrictReverseGridData r s H,
+      ∀ i j, Q.score (localGrid i j) = L.score (localGrid i j) := by
+  classical
+  choose Q hQ using fun h ↦ weak_reverse_ratio_strictify (L.head h)
+  refine ⟨⟨L.bias, Q⟩, ?_⟩
+  intro i j
+  simp only [StrictReverseGridData.score, WeakReverseGridData.score, hQ]
+
+/-- Weak reverse input slopes suffice for exact axis repair with strictly
+admissible output heads and the same `3H + 3` budget. -/
+theorem exists_reverse_axis_repair_of_weak {r s H : ℕ} (L : WeakReverseGridData r s H) :
+    ∃ G : ReverseAxisData r s (3 * H + 3),
+      ∀ i j, G.score (localGrid i j) = L.score (localGrid i j) := by
+  obtain ⟨Q, hQ⟩ := exists_strict_reverse_grid_of_weak L
+  obtain ⟨G, hG⟩ := exists_reverse_axis_repair Q
+  exact ⟨G, fun i j ↦ (hG i j).trans (hQ i j)⟩
+
+/-- The remaining local universality hypothesis may allow nonpositive slopes. -/
+def HasWeakReverseGridCompiler (r s M : ℕ) : Prop :=
+  ∀ table : Fin r → Fin s → Bool, ∃ H ≤ M, ∃ L : WeakReverseGridData r s H,
+    ∀ i j, 0 < outputSign (table i j) * L.score (localGrid i j)
+
+/-- Weak input slopes and absent axis conditions together cost only the fixed
+factor-three exact repair. -/
+theorem hasReverseAxisCompiler_of_weakReverseGridCompiler {r s M : ℕ}
+    (h : HasWeakReverseGridCompiler r s M) : HasReverseAxisCompiler r s (3 * M + 3) := by
+  intro table
+  obtain ⟨H, hH, L, hL⟩ := h table
+  obtain ⟨G, hG⟩ := exists_reverse_axis_repair_of_weak L
+  refine ⟨3 * H + 3, by omega, G, ?_⟩
+  intro i j
+  rw [hG]
+  exact hL i j
+
 end AxisZeroGluing
 end HeadComplexity

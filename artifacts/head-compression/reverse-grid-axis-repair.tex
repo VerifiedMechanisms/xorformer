@@ -88,6 +88,25 @@ perturbation or weakly admissible atom is used. The input dimension is
 unchanged, and all identities hold exactly.
 \end{proof}
 
+\begin{lemma}[Weak reverse slopes cost no additional heads]
+The theorem remains valid when input denominator slopes are merely
+nonpositive. All output slopes are strictly negative, with the same
+$3H+3$ bound and exact preservation of every grid value.
+\end{lemma}
+\begin{proof}
+Write $n=r+s$ and let one input denominator be
+$B(x)=b_0+\sum_kb_kx_k$ with $b_k\leq0$. Its full-cube minimum is
+$\delta=B(\mathbf1)>0$. Set $\varepsilon=\delta/(n+1)$ and replace it by
+\[
+ B'(x)=B(x)+\varepsilon(2-|x|).
+\]
+Every slope is $b_k-\varepsilon<0$. Also
+$B'(x)\geq\delta+\varepsilon(2-n)=3\varepsilon>0$ throughout the cube.
+Every promised grid input has Hamming weight two, so $B'=B$ there.
+Leave the numerators and scalar bias unchanged, then apply the strict
+repair theorem. This is an exact finite gauge, not a limiting argument.
+\end{proof}
+
 \paragraph{Verification status.}
 The proof above is complete as a written algebraic construction.
 The accompanying exact-rational check enumerates 3,600 cube evaluations
@@ -103,5 +122,9 @@ exposes the exact cost transfer, and
 \texttt{worstCaseHeadComplexity\_real\_le\_of\_strictReverseGridCompiler}
 connects it to the unchanged global model. Independent axiom inspection
 reports only standard Lean foundations: propositional extensionality,
-classical choice, and quotient soundness.
+classical choice, and quotient soundness. The weak-slope extension is
+checked by \texttt{weak\_reverse\_ratio\_strictify},
+\texttt{exists\_reverse\_axis\_repair\_of\_weak}, and
+\texttt{hasReverseAxisCompiler\_of\_weakReverseGridCompiler}; an additional
+900 exact rational cube evaluations check the finite gauge.
 \end{document}
