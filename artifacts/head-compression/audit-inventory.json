@@ -1264,7 +1264,7 @@
     "obstruction": "For n>=2, a nonproportional identity with one positive constant-numerator term and H-1 negative terms requires H>=n+1, provided every coordinate occurs in some denominator. Proof uses strict convexity after projective normalization.",
     "compiler": "Any weighted exactly cancelling base and strict affine-over-square variation compile with one actual head per nonzero weight and an explicit rational remainder bound.",
     "generalized_compiler_audit": "artifacts/head-compression/diagnostics/nonideal-compiler-generalized-audit.json",
-    "side_searches": "Unweighted n6/h8 Boolean-only reciprocal identity search and weighted n6/h8 search pending. Both are bounded diagnostics, not universal claims.",
+    "side_searches": "Weighted n6/h8 search returned unknown after 7200.77 seconds, reason timeout; see diagnostics/weighted-reciprocal-n6-h8.json. Unweighted n6/h8 search remains pending. These are bounded diagnostics, not universal claims.",
     "target_proved": false,
     "weighted_compiler_smoke": "artifacts/head-compression/diagnostics/weighted-reciprocal-compiler-audit.json"
   },
