@@ -217,4 +217,17 @@ The last term is $o(2^n/(n\log\log n))$, and is also
 $o(2^n/(n\log n))$. Bias absorption, suppression, extension, and the
 final strict-slope perturbation add no heads. The local compiler is
 still an external unproved hypothesis; none of this audit supplies it.
+\paragraph{Exact removal of the axis requirement.}
+The later checked construction in \texttt{ReverseGridAxisRepair.lean}
+sharpens the remaining hypothesis. Any reverse grid score with $H$ heads,
+positive denominators on the entire Boolean cube, and weakly nonpositive
+slopes admits an exact strict-slope axis-zero replacement with $3H+3$
+heads. Every grid value is preserved. The declaration
+\texttt{hasReverseAxisCompiler\_of\_weakReverseGridCompiler} proves this
+transfer; its complete written proof is
+\texttt{reverse-grid-axis-repair.tex}. Thus the outstanding local problem
+is universal sublinear reverse grid representation. Neither axis zeros
+nor the distinction between negative and nonpositive slopes is now an
+additional asymptotic requirement. This reduces the hypotheses, but it
+does not prove that the remaining compiler exists.
 \end{document}
