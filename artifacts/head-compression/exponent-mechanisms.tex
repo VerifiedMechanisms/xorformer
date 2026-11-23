@@ -953,6 +953,70 @@ $\binom n{\lfloor n/2\rfloor}$ lists, which does exclude the target
 for that one-orientation subclass. Neither argument is a lower bound
 for arbitrary admissible affine ratios with cancellations.
 
+\section{Mixed priority lists have no universal superconstant saving}
+
+The preceding parity argument is not decisive at the requested scale.
+A support count, however, closes the route consisting solely of
+uncancelled leading priority lists, even when both orientations are
+allowed and all outputs are arbitrary real numbers.
+
+\begin{proposition}\label{prop:mixed-list-universal}
+Let $N=2^n$. If every Boolean function on $n$ bits is strictly
+sign-represented by a bias plus $H$ real-valued priority lists, each
+with an arbitrary permutation and either all $1$-literal or all
+$0$-literal queries, then $H=\Omega(2^n/n)$. Thus this subclass cannot
+prove any universal superconstant saving over $2^n/n$.
+\end{proposition}
+
+\begin{proof}
+A $1$-literal list with outputs $a_1,\ldots,a_{n+1}$ and order $\pi$
+has the exact expansion
+\[
+ a_1+\sum_{j=1}^n(a_{j+1}-a_j)
+                 \prod_{i=1}^j(1-x_{\pi(i)}).
+\]
+A $0$-literal list has the analogous expansion in products of $x_i$.
+Hence all such lists use the fixed dictionary
+\[
+ \mathcal D=\{\prod_{i\in S}x_i:S\subseteq[n]\}
+       \cup\{\prod_{i\in S}(1-x_i):S\subseteq[n]\},
+ \qquad |\mathcal D|=D\leq2N.
+\]
+A bias plus $H$ lists has support size at most $K=Hn+1$ in this
+dictionary, after merging constants and duplicate atoms.
+
+Fix an integer $1\leq K\leq N/2$. Every support of size at most $K$
+is contained in a support of size exactly $K$, so padding its coefficient
+vector by zeros loses no sign patterns. For a fixed $K$-element
+support, the score vectors lie in a linear subspace of $\mathbb R^N$
+of dimension at most $K$. The standard hyperplane-arrangement bound
+is at most $2\sum_{j=0}^{K-1}\binom{N-1}{j}$ strict sign patterns,
+including the possibility of linear dependence among the dictionary
+atoms. Using the elementary binomial-sum bound, this is at most
+$2(eN/K)^K$. Taking the union over all supports gives at most
+\[
+ \binom DK\,2(eN/K)^K
+       \leq2\left(\frac{2e^2N^2}{K^2}\right)^K
+\]
+strict sign patterns. If $K/N\longrightarrow0$, the logarithm to
+base two of this quantity is
+\[
+ 1+K\left(\log_2(2e^2)+2\log_2(N/K)\right)=o(N).
+\]
+It is therefore smaller than $N$, whereas there are exactly $2^N$
+Boolean sign patterns. More quantitatively, choosing any sufficiently
+small absolute constant $c>0$ makes the displayed count smaller than
+$2^N$ whenever $K\leq cN$ and $N$ is large. Thus universal
+representation requires $Hn+1>cN$, proving the claim.
+\end{proof}
+
+The apparent $n!$ permutation choices per list do not evade this
+count: many choices produce the same sparse dictionary support after
+all lists are added. This is a lower bound for real priority-list
+ensembles, not for the original attention model. Subleading terms
+exposed by divergent cancellation between rational heads can lie
+outside this dictionary-sparse class.
+
 \section{Weak certificates on affine binary flats}
 
 The weak-density construction in O'Donnell and Servedio,
