@@ -1,0 +1,21 @@
+{
+  "method": "GitHub Markdown API, actual rendering; CLI unavailable",
+  "katex": "47 spans in two files passed",
+  "github": [
+    {
+      "file": "artifacts/beyond-counting-bound/bounded-amplitude-obstruction.md",
+      "sha256": "000ae3e175d7d27c7fd753b9e41e804e133b9b93833a08377cefb424667d25ee",
+      "rendered_math_spans": 46,
+      "findings": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "sha256": "706f2b581b3e06c2db063b0e0ea1640352c0f7cf31a5bcb90cb4763e2ee4c93b",
+      "rendered_math_spans": 1,
+      "findings": [],
+      "notes": []
+    }
+  ],
+  "gitlab": "not run: glab unavailable"
+}

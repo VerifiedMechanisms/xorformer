@@ -1,0 +1,10 @@
+Command: lake env lean HeadComplexity/Atoms/BoundedAmplitude.lean
+Exit status: 0
+
+Checked declarations:
+HeadComplexity.BoundedAmplitude.interval_rescaling
+HeadComplexity.BoundedAmplitude.bounded_margin_rational_certificate
+HeadComplexity.BoundedAmplitude.amplitude_ratio_obstruction
+
+Each #print axioms output reports exactly propext, Classical.choice, Quot.sound.
+The approximation-hardness premise is explicit, not proved by this module.
