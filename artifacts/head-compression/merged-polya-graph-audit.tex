@@ -368,8 +368,8 @@ all templates preserves $2^{o(N)}$ sign coverage.
 \end{proof}
 
 The hypothesis excluding isolated unrefined components is essential to
-this statement: arbitrary isolated denominators would recover the full
-head model. The theorem permits arbitrary numbers of internal vertex
+this argument: each isolated state would introduce an independently
+parameterized denominator, invalidating the bound on root parameters. The theorem permits arbitrary numbers of internal vertex
 occurrences, arbitrary real positive steps, and multiple refinement
 rules at a repeated state. It imposes no integrality, bounded-depth,
 or fixed-denominator-list restriction. It concerns first variations
@@ -396,8 +396,8 @@ All state coefficients remain strictly positive.
 
 The integer potential $2k+\sum_i z_i$ increases by two on a constant
 edge and by one on every variable edge. Hence the graph is acyclic.
-Every state is reachable from $(0,0)$ by constant steps followed by
-unflipped variable steps, and this is its only root. There are
+Every state is reachable from $(0,0)$ by unflipped variable steps
+at level zero followed by constant steps, and this is its only root. There are
 \[
                     L=2^n,\qquad M=(m+1)2^n,\qquad J=2^n+1.
  \tag{18}

@@ -1,6 +1,6 @@
 {
   "run": "Adaptive Rational Head Compression",
-  "status": "Research ongoing. The universal target is unproved in this run.",
+  "status": "Run concluded without a proof of the universal target; auxiliary results and diagnostics preserved.",
   "original_model_or_target_changed": false,
   "new_auxiliary_definitions": "The new Lean modules introduce auxiliary losses, gates, tropical scores, and orthant signs. No original model definition or target statement was weakened. ConditionalFractionCompletion adds completionPairing, StrictFractionCompletion, and PositiveSlackFractionCompletion, with the residual held fixed. MaxNormalizedReciprocal adds normalizedReciprocalSum, an approximation used only for an obstruction audit; it is not declared to be a head. ConfluentFractionLift adds confluentPairScore, an auxiliary two-head expression; the target model is unchanged. IndicatorApproximationBarrier adds no model definition; its finite-mixture and isolation hypotheses are explicit. SharedAffineFractionLift adds orientationCrossingFeature, whose strict finite scores compile to the original model with one shared affine head. SharedAffineScoreLift adds sharedAffineScore and proves its conditional transfer, including the limiting units, to the literal shared-embedding attention model with M+1 heads. AffineSidonRows adds HasUniquePairSums. AnchoredFractionLift adds anchoredFractionFeature, an exact normalized coordinate feature. AffineFractionRange introduces no new model definition and proves only explicit range and merging implications. BooleanProjectionIdeal adds booleanProjectionEval and booleanProjectionGenerator over a formal polynomial coefficient ring; it changes no attention-model definition.",
   "lean_results": [
@@ -1434,5 +1434,16 @@
     "certificate": null,
     "target_proved": false,
     "unrestricted_lower_bound": false
+  },
+  "final_record": {
+    "recorded_at_utc": "2026-11-23T20:14:23.270180+00:00",
+    "target_proved": false,
+    "target_lean_declaration_added": false,
+    "principal_and_companion_lean_declarations": 97,
+    "new_lean_modules": 37,
+    "full_build_jobs": 9221,
+    "original_model_and_target_unchanged": true,
+    "finite_searches_closed": true,
+    "scope": "The first-variation graph obstruction charges all root and terminal occurrences before projective merging. The universal affirmative upper bound remains open in this run."
   }
 }
