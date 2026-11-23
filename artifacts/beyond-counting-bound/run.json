@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: second twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T10:48:30.275218+00:00",
+  "last_audit_utc": "2026-11-23T11:00:57.757795+00:00",
   "elapsed_seconds_at_last_audit": 95673.141043,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -679,5 +679,15 @@
     "start_utc": "2026-11-23T10:44:01Z",
     "duration_seconds": 7200,
     "status": "running; floating candidates require exact audit"
+  },
+  "unit_minimum_certificate": {
+    "status": "complete written analytic proof with exact integer certificate",
+    "data": "unit-minimum-certificate/data.json",
+    "audit": "unit-minimum-certificate/audit.json",
+    "writeup": "unit-margin-strict-minimum.md",
+    "claim": "Three heads on eighteen bits admit an interior strict local numerator-norm minimum with full-cube unit margins and 108 independent active constraints.",
+    "scope_exclusion": "No claim about global minima or the main asymptotic target.",
+    "center_lean_checks": "running",
+    "session_id": 75843
   }
 }
