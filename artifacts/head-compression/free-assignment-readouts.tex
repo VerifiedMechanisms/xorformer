@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Superlinear Readouts of Permutation Sheets with Free Assignment Costs}
+\author{Independent gluing audit}
+\date{November 23, 2026}
+\maketitle
+
+\paragraph{Scope and verification status.}
+The theorem below is an unconditional, complete written statement about
+\emph{free linear assignment costs}. It proves that the factorial sheet
+storage is sufficient for superlinear sign decoding in this larger query
+class. It does not represent these arbitrary costs by admissible reciprocal
+queries. Consequently it supplies neither the missing local compiler nor
+a new bound on head complexity. The proof is not formalized in Lean.
+
+\begin{theorem}
+For every integer $H\geq64$, there exist
+\[
+d\geq\frac{H\log H}{80}
+\]
+real matrices $C^1,\ldots,C^d\in\mathbb R^{H\times H}$ and thresholds
+$t_1,\ldots,t_d$ such that for every sign vector
+$s\in\{-1,1\}^d$ there is a permutation $\pi\in\mathfrak S_H$ with
+\[
+s_i\left(\sum_{h=1}^H C^i_{h,\pi(h)}-t_i\right)>0
+\quad\text{for all }i=1,\ldots,d.
+\]
+The matrices and thresholds are fixed independently of the sign vector.
+\end{theorem}
+
+\begin{proof}
+We give the packing, separation, and extraction arguments explicitly.
+
+\paragraph{Permutation packing.}
+Let $r=\lfloor H/4\rfloor$. A Hamming ball of radius $r$ in
+$\mathfrak S_H$ has at most
+\[
+\sum_{k=0}^{r}\binom Hk k!
+\leq(H+1)H^{H/4}
+\]
+elements: after selecting the $k$ changed positions there are at most
+$k!$ ways to permute their values. Greedily choose a permutation and
+delete its radius-$r$ ball until none remain. The resulting code
+$\mathcal P$ has pairwise Hamming distance greater than $r$, hence
+greater than $H/4$, and cardinality $N$ satisfying
+\[
+N\geq\frac{H!}{(H+1)H^{H/4}},\qquad
+\log N\geq\frac H4\log H-\frac H2\log2-\log(H+1)
+\geq\frac H8\log H.
+\]
+For the factorial estimate, at least $H/2$ factors of $H!$ are at least
+$H/2$. For the final inequality put
+$g(x)=x\log x/8-x\log2/2-\log(x+1)$.
+At $x=64$ one has $g(64)=\log(2^{16}/65)>0$; for $x\geq64$,
+\[
+g'(x)\geq\frac{6\log2+1}{8}-\frac{\log2}{2}-\frac1{65}>0.
+\]
+Thus the displayed inequality holds for every stated $H$.
+
+\paragraph{Geometric separation.}
+Let $P_\pi$ be the permutation matrix of $\pi$, let $J$ be the all-one
+matrix, and put $v_\pi=P_\pi-J/H$. Frobenius inner products give
+\[
+\|v_\pi\|_F^2=H-1,\qquad
+\frac{\langle v_\pi,v_\tau\rangle_F}{H-1}
+=1-\frac{\operatorname{dist}(\pi,\tau)}{H-1}<\frac34
+\quad(\pi\ne\tau\text{ in }\mathcal P).
+\]
+Their pairwise angle is therefore greater than $\pi/6$.
+If $G$ is a matrix of independent standard Gaussian entries, rotational
+invariance in the two-dimensional span of $v_\pi,v_\tau$ shows
+\[
+\Pr\bigl(\operatorname{sgn}\langle G,v_\pi\rangle_F
+\ne\operatorname{sgn}\langle G,v_\tau\rangle_F\bigr)>\frac16.
+\]
+Indeed the two opposite separating angular wedges have total angle
+$2\theta$ in a circle of angle $2\pi$, where $\theta$ is their angle.
+Each inner product is nonzero with probability one.
+
+Take $q=\lceil18\log N\rceil$ independent Gaussian matrices.
+The probability that any pair of codewords has the same $q$ signs is
+at most
+\[
+N^2(5/6)^q\leq N^2e^{-q/6}\leq N^{-1}<1.
+\]
+There is consequently a deterministic choice of these $q$ matrices
+whose sign vectors distinguish all $N$ codewords and contain no zero
+values. Each sign is a free assignment-cost query: use $C^i=G_i$ and
+$t_i=\langle G_i,J/H\rangle_F$.
+
+\paragraph{Extraction of independent bits.}
+Let $\mathcal A\subseteq\{-1,1\}^q$ be the resulting $N$ distinct
+sign vectors. If its largest shattered coordinate subset has size $d$,
+the Sauer counting inequality gives
+\[
+N\leq\sum_{j=0}^d\binom qj\leq(eq/d)^d\qquad(d\geq1).
+\]
+For completeness, the first inequality follows by induction on the
+number of coordinates: partition according to the last coordinate;
+the union of the projected families has shattering dimension at most
+$d$, and their intersection at most $d-1$. Pascal's identity completes
+the induction. The second inequality follows by multiplying the sum by
+$(d/q)^d$, bounding each term by its counterpart in
+$(1+d/q)^q$, and using $(1+d/q)^q\leq e^d$.
+
+Since $\log N\geq1$, one has $q\leq19\log N$.
+If $d<\log N/10$, monotonicity of
+$x\mapsto x\log(eq/x)$ for $0<x\leq q$ would imply
+\[
+\log N\leq d\log(eq/d)
+\leq\frac{\log N}{10}\log(190e)<\log N,
+\]
+a contradiction. Here $\log(190e)<10$ follows from $190<2^9<e^9$.
+Thus $d\geq\log N/10\geq H\log H/80$.
+Choose a shattered coordinate subset and retain just those matrices
+and thresholds. This proves the theorem with strict signs.
+\end{proof}
+
+\paragraph{Connection to regular sheets.}
+At the regular reciprocal sheets of
+\texttt{reverse-joint-full-sheets.tex}, the slot parameters satisfy
+$(u_h,a_h)=(\lambda_{\pi(h)},\mu_{\pi(h)})$.
+A permitted extra reciprocal query has sheet values
+\[
+\sum_h\frac{A_h+\mu_{\pi(h)}}{d_h-\lambda_{\pi(h)}}+c.
+\]
+These are free assignment costs only with the restricted matrices
+$C_{hj}=(A_h+\mu_j)/(d_h-\lambda_j)$.
+The theorem above permits arbitrary $C_{hj}$ and does not establish
+that this restricted family contains its separating queries.
+For any genuinely permitted strict readouts, regularity would let the
+original $2H$ continuous query signs vary in a sufficiently small
+neighborhood while preserving all extra signs. The unresolved transfer
+is therefore quantitative separation by the restricted admissible
+query family, not the existence of factorial storage or the final
+inverse-function step.
+
+\end{document}
