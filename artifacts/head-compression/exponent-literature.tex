@@ -1394,4 +1394,43 @@ such tuned queries are not covered. Nor is a fixed moderate chart
 size excluded. Thus this result closes one proposed random
 projection shortcut, not the general asymmetric Cauchy decoder.
 
+\begin{proposition}[Exact budget for affine reverse extensions]
+\label{prop:reverse-gauge}
+Let $r,s\ge1$ and prescribe an additive denominator matrix
+$D_{ij}=c-u_i-v_j$. There is an affine denominator on
+$\{0,1\}^{r+s}$ with strictly negative coefficients, positive on
+the entire cube, and taking these exact values at $(e_i,e_j)$ if
+and only if
+\[
+ c-\min_i u_i-\min_j v_j
+   -\sum_i(u_i-\min_k u_k)
+   -\sum_j(v_j-\min_\ell v_\ell)>0.
+\]
+\end{proposition}
+\begin{proof}
+Any second representation $D_{ij}=c'-u'_i-v'_j$ has
+$u'_i=u_i+\alpha$, $v'_j=v_j+\beta$, and
+$c'=c+\alpha+\beta$: subtracting two entries in a fixed column
+or row fixes every corresponding coefficient difference.
+Positive $u'_i,v'_j$ require
+$\alpha>-\min_i u_i$ and $\beta>-\min_j v_j$.
+The cube minimum of this affine denominator is
+\[
+ c'-\sum_i u'_i-\sum_jv'_j
+ =c-\sum_i u_i-\sum_jv_j-(r-1)\alpha-(s-1)\beta.
+\]
+Its supremum over the permitted shifts is exactly the displayed
+quantity. If that quantity is positive, shifts sufficiently close
+to their lower endpoints achieve a positive minimum. If it is
+nonpositive, no permitted shifts do so.
+\end{proof}
+
+Thus an affine change of the row and column offsets can remove
+their minima, but cannot remove the sum of their spreads. In
+particular it cannot generally rescue near-endpoint pole coding
+when many memory columns occupy the full pole range. The
+proposition preserves the denominator values exactly; changing the
+ratio numerators, multiplying by input-dependent factors, or using
+a nonlinear change of pole coordinates falls outside its claim.
+
 \end{document}
