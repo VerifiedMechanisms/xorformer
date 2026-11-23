@@ -993,4 +993,110 @@ such decompositions: the magnitudes outside the equal-label blocks
 also affect the final sign. No simultaneous admissible compiler for
 that decomposition was found.
 
+
+\section{Periodic pole chains admit an additive orientation repair}
+
+The following exact transformation is a new mechanism, but its residue
+constraint has not been reconciled with a universal truth-table decoder.
+In particular, it is not an asymptotic upper bound for head complexity.
+
+\begin{proposition}[Periodic arithmetic chains]\label{prop:periodic-chain}
+Let $k,H\ge1$ be integers, put $K=k+1$ and $S=k(k+1)/2$, and choose
+$\Delta>\max_i b_i>0$. Let $x\in\{0,1\}^k$ and let $z$ denote any
+remaining Boolean coordinates. Suppose $D(z)$ is affine, has strictly
+positive coefficients in all its coordinates, and satisfies
+$D(z)>S\Delta$ throughout its cube. Let $A(x,z)$ be affine and let
+$c_h=\cos(2\pi h/K+\theta)$, where $\theta$ is arbitrary. Then
+\[
+ A(x,z)\sum_{h=1}^H
+ \frac{c_h}{D(z)+h\Delta-\sum_{i=1}^k b_i x_i}
+\]
+has an exactly equal representation by at most
+\[
+ H+\frac{k(k+1)(k+2)}3
+\]
+affine ratios whose denominators have strictly positive coefficients
+in every coordinate and are positive throughout the whole cube.
+If $K$ is prime, the same conclusion holds with $A c_h$ replaced by
+any $K$-periodic sequence of affine numerators $A_h$ satisfying
+$\sum_{h=1}^K A_h=0$ as an identity of affine functions.
+\end{proposition}
+\begin{proof}
+For $1\le a\le K$, define the Laurent polynomial
+\[
+ p_a(Z)=(-1)^{a+1}Z^{-S}
+ e_{K-a}(1,Z,\ldots,Z^k),
+\]
+where $e_t$ is the elementary symmetric polynomial of degree $t$.
+Expanding $\prod_{j=0}^k(W-Z^j)$ and substituting $W=Z^s$ proves
+\[
+ 1=\sum_{a=1}^K p_a(Z)Z^{as}
+ \qquad(0\le s\le k).
+\]
+This is an identity of Laurent polynomials for each integer $s$ in
+the displayed range. Write $p_a(Z)=\sum_r p_{a,r}Z^r$ and put
+$s=\sum_i x_i$. Comparing Laurent coefficients allows each monomial
+$Z^j$ to be replaced by the value of any function at an argument
+translated by $j\Delta$. In particular, for every integer $h$,
+\[
+ \frac1{D+h\Delta-\sum_i b_i x_i}
+ =\sum_{a=1}^K\sum_r
+ \frac{p_{a,r}}
+ {D+(h+r)\Delta+\sum_i(a\Delta-b_i)x_i}.
+\]
+All displayed denominators are positive: every exponent $r$ is at
+least $-S$, every original $h$ is at least $1$, and
+$D>S\Delta$. Their coefficients in the $x$ coordinates are positive
+because $a\Delta>b_i$.
+
+Let $\omega=\exp(2\pi\mathrm{i}/K)$. Since
+$1,\omega,\ldots,\omega^k$ are all the $K$th roots of unity,
+$e_t(1,\omega,\ldots,\omega^k)=0$ for $1\le t<K$.
+Consequently $p_a(\omega^{-1})=0$ for $1\le a<K$.
+For a fixed such $a$, set $t=K-a$. Its nonzero exponents lie between
+\[
+ r_{\min}=t(t-1)/2-S,
+ \qquad r_{\max}=t(2k-t+1)/2-S,
+\]
+whose difference is $a(K-a)$. After summing over $h$, the numerator
+of the ratio with pole index $u=h+r$ is
+\[
+ A\sum_{\substack{r\in[r_{\min},r_{\max}]\\1\le u-r\le H}}
+ p_{a,r}c_{u-r}.
+\]
+If every $r$ in the support is included, this coefficient is
+\[
+ A\operatorname{Re}\left(
+ e^{\mathrm{i}\theta}\omega^u p_a(\omega^{-1})\right)=0.
+\]
+Thus only boundary indices remain. Their number is at most
+$2a(K-a)$: if $H\ge a(K-a)$, remove the full-convolution interval
+from the total interval of length $H+a(K-a)$; if $H<a(K-a)$, the
+total interval already has length below $2a(K-a)$.
+For $a=K$, the polynomial $p_K=(-1)^{K+1}Z^{-S}$ is a monomial,
+so this family contributes exactly $H$ possible ratios. Summing
+\[
+ \sum_{a=1}^{K-1}2a(K-a)=K(K^2-1)/3
+\]
+proves the count.
+
+For the final assertion, expand the periodic affine sequence in its
+finite Fourier series. Its constant Fourier coefficient is zero.
+When $K$ is prime, every other Fourier frequency is a primitive
+$K$th root, so precisely the same vanishing argument applies to
+every nonconstant component. The resulting boundary coefficients
+are real affine functions, as is also evident from the real
+convolution formula.
+\end{proof}
+
+The hypothesis $D>S\Delta$ is a real restriction. Positivity of the
+original mixed-orientation ratios alone does not imply it. Likewise,
+independently chosen head numerators or memory-dependent pole
+permutations do not generally satisfy the periodic residue identity.
+For a long chain, only one period of residues is independent; simply
+repeating the chain therefore does not establish that the same heads
+can store more truth-table bits. A construction that combines this
+additive orientation repair with an efficient independently
+programmable decoder remains open.
+
 \end{document}
