@@ -215,6 +215,35 @@ denominator slopes; positivity on a cell alone would not repair the model's
 whole-cube admissibility requirement. The global transfer remains open.
 
 
+
+\begin{proposition}[Uniform binary and ternary grid interpolation]
+For all sufficiently large $m$, every $s\geq1$, every
+$g:\{1,\ldots,m\}\times\{1,\ldots,s\}\to\{0,1\}$, and every
+$\varepsilon>0$, there is a sum $Q$ of $O(m/\log m)$ actual admissible
+heads such that
+\[
+ |Q(e_i,e_j)-g(i,j)|<\varepsilon\quad\hbox{for all }i,j,
+ \qquad Q(0,v)=Q(u,0)=0\quad\hbox{for all Boolean }u,v.
+\]
+It may be chosen nonnegative on the whole cube. The same head-count order
+and exact vanishing identities hold for arbitrary ternary tables
+$g(i,j)\in\{-1,0,1\}$, without the nonnegativity assertion.
+\end{proposition}
+\begin{proof}
+In the extraction construction, each selected interval lies entirely in its
+assigned group, and distinct selected intervals are assigned to distinct
+groups. Consequently the interval indicators sum to precisely the binary
+label, rather than merely having the same positive set. Use the same
+construction with $R>\max(1,4d/\varepsilon)$ and set
+$Q=\sum_h(F_h^- - F_h^+)$, without a bias. The total grid error is at most
+$4d/R<\varepsilon$. The cancellation proposition gives nonnegativity and
+both exact vanishing identities on the whole cube. For a ternary table,
+apply the binary construction with accuracy $\varepsilon/2$ to its positive
+and negative supports and subtract the two resulting scores. This doubles
+the head count and adds their errors. No assertion of arbitrary real-valued
+interpolation is used.
+\end{proof}
+
 \begin{proposition}[Exact dual-rail denominator lift]
 Suppose $D(z)=b+\sum_{i=1}^r a_i z_i$ is positive at every vertex of
 $\{0,1\}^r$, allowing arbitrary signs for the logical slopes $a_i$.
