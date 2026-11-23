@@ -1,0 +1,39 @@
+{
+  "utc": "2026-11-23T11:26:31.410109+00:00",
+  "status": "Stopped after exact auxiliary certificate; not an impossibility result",
+  "searches": [
+    {
+      "name": "constraint-generated-unit-search",
+      "records": 49,
+      "last_completed_elapsed_seconds": 4882.402297676075,
+      "raw_sha256": "44992aec8113c52d55f36103d7efbc466c8f0e0cc3a9dd3a3ffa7232f06a7101",
+      "archive": "experiments/constraint-generated-unit-search.jsonl.gz",
+      "candidates": [
+        "candidate-23-3.json",
+        "candidate-16-3.json"
+      ],
+      "stop_reason": "The general local-minimum rank-defect claim is now refuted by an exact certificate; further searches for that purpose are unnecessary.",
+      "main_target_proved": false
+    },
+    {
+      "name": "block-symmetric-unit-search",
+      "records": 11077,
+      "last_completed_elapsed_seconds": 3189.22371908091,
+      "raw_sha256": "87fdba3f182caed93c34920e4921256a4a5a83bcffabf1528df3db1a84c74b81",
+      "archive": "experiments/block-symmetric-unit-search.jsonl.gz",
+      "candidates": [],
+      "stop_reason": "The general local-minimum rank-defect claim is now refuted by an exact certificate; further searches for that purpose are unnecessary.",
+      "main_target_proved": false
+    },
+    {
+      "name": "parity-unit-search",
+      "records": 474,
+      "last_completed_elapsed_seconds": 2548.0622315120418,
+      "raw_sha256": "dc37ee01eb691e48803fa97672af767588b7bf6ffbc7c4a51690690d71872ab8",
+      "archive": "experiments/parity-unit-search.jsonl.gz",
+      "candidates": [],
+      "stop_reason": "The general local-minimum rank-defect claim is now refuted by an exact certificate; further searches for that purpose are unnecessary.",
+      "main_target_proved": false
+    }
+  ]
+}
