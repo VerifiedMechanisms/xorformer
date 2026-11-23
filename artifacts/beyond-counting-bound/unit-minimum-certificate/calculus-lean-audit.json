@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-23T12:35:22.333717+00:00",
+  "checked_utc": "2026-11-23T12:52:29.623383+00:00",
   "passed": true,
   "foundational_axioms": [
     "propext",
@@ -13,7 +13,12 @@
     "UnitMinimumAnalyticData": "48dec1c54ffff4014093c9a4b7bc1eb95235df3d54dc12fd2a97dfd4d41f8d05",
     "UnitMinimumAnalyticBounds": "def956c76e5506503eff555e4564a54d09fd0340b89e4454c0373a6f8643ef36",
     "UnitMinimumDerivativeMatrix": "c5bb3e0b23e3e7aec688165acc138fd772517b9bf23e474ffb3dc8939c0f8188",
-    "UnitMinimumInverseBounds": "916f6a46ba96261acc19f5c51ee0677405770d052753febb6ecb55ef4c0ffd01"
+    "UnitMinimumInverseBounds": "916f6a46ba96261acc19f5c51ee0677405770d052753febb6ecb55ef4c0ffd01",
+    "UnitMinimumDualBounds": "a7a1526fe1daa643cc50eede50147510fd500f06194d2640bd6e27d9730597a8",
+    "UnitMinimumPositiveMultipliers": "3c3e87b1bd35628da535eaa2483d5c2a8fa2d6c8d60970ade68f437f16d56db9",
+    "UnitMinimumMargins": "e130c6fe0ddf18dbda5b444ba2b5f65a44836182e0844e7b69c95ddc0b2ca5dd",
+    "UnitMinimumStrict": "d689ee7aa8a2ccfd49682396be24725770c36e476f13af52666d3b57b2b5c637",
+    "UnitMinimumAttention": "4e2b882de82d620ff7c72fa837963e2b6c4cf1d7126566b79bbeed409fa7e55d"
   },
   "principal_declarations": [
     "HeadComplexity.ApproximateInverse.inverse_norm_bound",
@@ -30,8 +35,22 @@
     "HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_F",
     "HeadComplexity.UnitMinimumAnalytic.J_center_entry",
     "HeadComplexity.UnitMinimumAnalytic.inverse_center_residual",
-    "HeadComplexity.UnitMinimumAnalytic.exists_certified_root"
+    "HeadComplexity.UnitMinimumAnalytic.exists_certified_root",
+    "HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_objective",
+    "HeadComplexity.UnitMinimumAnalytic.nearby_dual_residual",
+    "HeadComplexity.UnitMinimumAnalytic.exists_positive_multipliers",
+    "HeadComplexity.UnitMinimumAnalytic.active_slack_identity",
+    "HeadComplexity.UnitMinimumAnalytic.full_cube_unit_margin",
+    "HeadComplexity.UnitMinimumAnalytic.full_constraints_imply_active",
+    "HeadComplexity.UnitMinimumAnalytic.root_strict_minimum",
+    "HeadComplexity.UnitMinimumAnalytic.exists_full_cube_strict_minimum",
+    "HeadComplexity.UnitMinimumAnalytic.cubeIndex_bit",
+    "HeadComplexity.UnitMinimumAnalytic.attention_score",
+    "HeadComplexity.UnitMinimumAnalytic.counterexampleFunction_computable",
+    "HeadComplexity.UnitMinimumAnalytic.counterexampleFunction_shared_computable"
   ],
-  "scope": "Generic calculus, concrete center and derivatives, exact integer-to-real matrix residual transfer, and existence of an actual zero of all 108 active equations in the radius 10^-40 certification ball with injective derivative. Full cube margin and strict local-minimum assembly remain in progress.",
-  "main_target_proved": false
+  "scope": "Complete concrete certificate: root, injective derivative, strictly positive multipliers, all 262144 cube unit margins, strict local numerator-norm minimum in 108 normalized rational coefficient coordinates, and realization by three literal shared-embedding attention heads. No global minimum or asymptotic head lower bound is claimed.",
+  "main_target_proved": false,
+  "final_build": "lake build HeadComplexity.Atoms.UnitMinimumAttention",
+  "final_build_jobs": 3324
 }
