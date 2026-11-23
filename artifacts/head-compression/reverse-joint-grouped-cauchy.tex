@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{A Grouped Sparse Cauchy Family from Cube Matchings}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is an exact realization of a candidate family for the joint reverse
+compiler, followed by finite exact sign experiments. It does not prove a
+superconstant saving. In particular, the large number of discrete
+assignments below is not a shattering theorem. No result in this note is
+Lean formalized, and no model definition is changed.
+
+Let $d\geq4$, $H=2^d$, and $G=H/2$. Choose a power of two $D$ with
+\[
+ d/4\leq D\leq d/2,
+ \qquad k=\log_2D.
+\]
+Then $D\leq d-k$. Partition the vertices of the $d$-cube according to
+the first $k$ bits, obtaining $D$ subcubes. In the subcube with address
+$\ell\in\{1,\ldots,D\}$, match every vertex along coordinate $k+\ell$.
+This is a perfect matching with exactly $G/D$ edges of each of the $D$
+chosen coordinate directions.
+
+Fix distinct positive numbers $\xi_1,\ldots,\xi_G$. A balanced assignment
+is a function $\ell:\{1,\ldots,G\}\to\{1,\ldots,D\}$ taking every value
+$G/D$ times. The proposed score family, on query pairs $(v,t)$, is
+\[
+ f_{\ell,c}(v,t)=\sum_{g=1}^G
+       \frac{c_gv_{\ell(g)}}{(t-\xi_g)^2},
+ \qquad c\in\mathbb R^G.                         \tag{1}
+\]
+Here $v\in\mathbb R^D$ and $t>\max_g\xi_g$. The transfer below additionally
+requires the compact full-cube budget on the finitely many query values.
+It cannot be silently extended to arbitrary nearby query and token poles.
+
+\begin{proposition}[Exact strict-sign transfer with $H$ heads]
+Fix finitely many rows $(v_i,t_i)$, and finitely many columns
+$(\ell_j,c^{(j)})$ of (1). Suppose
+\[
+ t_i=1-p_i,
+ \quad p_i>0,
+ \quad \xi_g>0,
+ \quad \sum_i p_i+s\max_g\xi_g<1.                 \tag{2}
+\]
+Every strict sign in their score table is realized, simultaneously, by
+$H=2G$ affine-ratio heads whose denominators are positive on the entire
+Boolean $(r+s)$-cube and have strictly negative slopes.
+\end{proposition}
+\begin{proof}
+Use the fixed matching above. In each column $j$, biject its groups $g$
+to matching edges of the requested color $\ell_j(g)$; balance permits
+this. Orient each such edge as $h^-\to h^+$, where the selected bit
+increases from zero to one. Write
+\[
+ V_i(h)=\sum_{a=1}^D(v_i)_a h_{k+a}.
+\]
+Assign the same column denominator coefficient $q_{hj}=\xi_g$ to the two
+endpoints of the edge assigned group $g$. For $\alpha>0$, set
+\[
+ B_h(z,w)=1-\sum_i(p_i+\alpha V_i(h))z_i
+                   -\sum_jq_{hj}w_j.
+\]
+Give the corresponding column numerator coefficients the values
+$c_g^{(j)}/\alpha$ at $h^+$ and $-c_g^{(j)}/\alpha$ at $h^-$. Thus
+$A_h(w)=\sum_j a_{hj}w_j$ is affine. At a grid point $(e_i,e_j)$, the
+contribution of this edge is exactly
+\[
+ \frac{c_g^{(j)}}{\alpha}
+ \left(\frac1{t_i-\xi_g-\alpha V_i(h^+)}
+       -\frac1{t_i-\xi_g-\alpha V_i(h^-)}\right)
+ =\frac{c_g^{(j)}(v_i)_{\ell_j(g)}}
+ {(t_i-\xi_g-\alpha V_i(h^+))
+  (t_i-\xi_g-\alpha V_i(h^-))}.                 \tag{3}
+\]
+Consequently its limit as $\alpha\downarrow0$ is the corresponding
+summand of (1). There are finitely many entries, so all specified strict
+signs survive for sufficiently small positive $\alpha$.
+
+For completeness, let $M=\max_{i,h}|V_i(h)|$ and let
+$\delta=1-\sum_i p_i-s\max_g\xi_g>0$. Choose $\alpha$ so small that
+$\alpha M<\tfrac12\min_i p_i$ and $r\alpha M<\delta/2$; if $M=0$ these
+conditions impose no restriction. Every slope coefficient
+$p_i+\alpha V_i(h)$ is then positive, as is every $q_{hj}$. Moreover
+\[
+ B_h(\mathbf1,\mathbf1)
+ \geq1-\sum_i p_i-r\alpha M-s\max_g\xi_g>\delta/2.
+\]
+This is the minimum on the full cube. It proves both original
+orientation and positivity requirements. No numerical approximation
+claim is used to infer universality: the limiting table itself must
+already have the desired strict signs. The established general
+strict-grid axis repair can subsequently be applied at constant cost.
+\end{proof}
+
+\paragraph{Discrete assignment entropy and its limitation.}
+There are
+\[
+ N=\frac{G!}{((G/D)!)^D}
+ \geq \frac{D^G}{(G+1)^D}                       \tag{4}
+\]
+balanced assignments. Indeed the balanced multinomial coefficient is
+maximal, there are at most $(G+1)^D$ count vectors, and all multinomial
+coefficients sum to $D^G$. Since $D=\Theta(\log H)$, (4) gives
+$\log N=\Theta(H\log\log H)$.
+
+These assignments do define distinct analytic functions when every
+$c_g=1$: the coefficient vector at the double pole $\xi_g$ records its
+assigned coordinate. They also define distinct sign functions on the
+open query domain. If two vector-valued sums had the same strict
+halfspaces in the $v$ variable for every $t$, their coefficient vectors
+would be positive scalar multiples. Their coordinate sums are the
+same positive function $\sum_g(t-\xi_g)^{-2}$, so that scalar is one.
+Rational-function uniqueness then identifies every assignment.
+
+This proves only the number of distinct functions on an unrestricted
+query domain. It gives no bound on the number of queries needed to
+separate them. To obtain the desired compiler through this family one
+still needs, for example, $O(H\log\log H)$ compact queries carrying
+$\exp(\Omega(H\log\log H))$ different strict sign vectors. A Sauer
+argument would then give a shattered subset of that same order.
+
+\paragraph{Exact finite probes.}
+The companion script uses the rational chamber enumerator from
+\texttt{reverse-joint-affine-plane-search.py}. For each balanced
+assignment, (1) is a linear $G$-plane in score space. Every reported sign
+has a rational coefficient witness checked against the original
+matrix. A total is called complete only when all the enumerated central
+arrangements are simple. Degenerate totals are witness lower bounds.
+The token poles are $\xi_g=(g+1)/10000$, and the row poles are close to
+one. For $G=4$, $D=2$, seed 23, the complete results are
+\[
+\begin{array}{c|r|r|r}
+\text{row design}&r&\text{covered orthants}&\text{all orthants}\\\hline
+\text{generic mixed rows}&7&84&128\\
+\text{generic mixed rows}&9&186&512\\
+\text{two coordinate clouds}&7&108&128\\
+\text{two coordinate clouds}&9&282&512
+\end{array}
+\]
+The generic rows gave the same oriented matroid for all six assignments.
+The two-cloud construction uses
+$v_i=(1,(-1)^i+10^{-8}e_i)$ with small integer $e_i$; it exposes additional
+assignment-dependent signs, but no full shattering at these row counts.
+For $G=D=4$, the 24 balanced assignments are permutations. With ten rows,
+generic mixed profiles cover 260 of 1024 orthants, while a rank-two
+leading profile matrix with an order-$10^{-8}$ perturbation covers 650.
+These $G=D=4$ tests concern the abstract dictionary (1); they do not
+meet the $D=\Theta(\log H)$ matching parameters above and are not claimed
+to have an eight-head cube realization. The separate transfer test uses
+the valid three-bit matching with $G=4,D=2$ and checks 18 strict signs,
+72 exact pair identities, and all 512 vertices of its ambient cube.
+These are finite exact facts only. Neither establishes a growing
+row-to-head ratio, and no asymptotic conclusion is drawn.
+\end{document}
