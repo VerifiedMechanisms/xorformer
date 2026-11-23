@@ -77,6 +77,16 @@ def main():
       constraints=[dict(type='ineq',fun=lambda t:y*evaluate(t)['value']-1,
        jac=lambda t:y[:,None]*evaluate(t)['jac'])],
       options=dict(maxiter=3000,ftol=1e-11,disp=False))
+    refinement_log=[]
+    for stage in range(3):
+     theta=result.x.copy();norm_scale=max(1.,np.dot(theta[:n*h],theta[:n*h]))
+     result=minimize(objective,theta,jac=gradient,method='SLSQP',
+       bounds=[(None,None)]*(n*h)+[(-12.,12.)]*(n*h),
+       constraints=[dict(type='ineq',fun=lambda t:y*evaluate(t)['value']-1,
+         jac=lambda t:y[:,None]*evaluate(t)['jac'])],
+       options=dict(maxiter=5000,ftol=1e-13,disp=False))
+     refinement_log.append(dict(stage=stage,norm_scale=float(norm_scale),
+       solver_status=int(result.status),iterations=int(result.nit)))
     value,jac=score_jac(result.x,x,n,h);slack=y*value-1
     active=np.flatnonzero(slack<1e-6)
     near_boundary=float(12-np.max(abs(result.x[n*h:])))
@@ -84,6 +94,7 @@ def main():
       nit=int(result.nit),min_slack=float(slack.min()),active_count=len(active),
       parameter_count=pcount,log_bound_distance=near_boundary,
       numerator_norm=float(np.dot(result.x[:n*h],result.x[:n*h])),
+      refinements=refinement_log,
       elapsed_seconds=time.monotonic()-start)
     if len(active)>=pcount and slack.min()>-1e-7 and near_boundary>1e-3:
      from scipy.linalg import qr

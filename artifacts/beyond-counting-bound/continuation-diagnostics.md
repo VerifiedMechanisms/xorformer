@@ -39,3 +39,11 @@ Thus this run does not extend the small-margin minimum to margin one. It also su
 `experiments/active-minimum-continuation.jsonl` contains every accepted sample. `experiments/late-search-diagnostics.json` records its hash and the outcome of the independent binary-fiber search: 20,064 records, all unresolved, including two numerical failures. These records are deliberately marked as numerical diagnostics. They are not used as premises in any Lean theorem.
 
 The separate full-cube norm searches include mixed denominator orientations and both fixed and variable origin constants. Their outcomes must be assessed separately. The exact one-head normalization repair in `origin-margin-repair.md` does not preserve a chosen local minimum or its multiplier signs.
+
+## An independent stationarity replay rejects solver success
+
+The first fixed-constant search used the squared numerator norm at the initial feasible point to scale its objective. Replaying trial 495 reproduces a solver-reported success with 38 nearly active constraints and 64 parameters. However, nonnegative least squares for the multiplier equation has relative residual approximately $0.0742$. Consequently this point does not pass even a numerical first-order audit.
+
+`audit_unit_minimum_curvature.py` exposes this discrepancy. Three subsequent optimization passes, each rescaled by its current numerator norm, reduce the norm from approximately $245.43$ to $229.93$. The resulting point reaches the imposed parameter bound and violates a margin constraint by approximately $5.24\cdot10^{-6}$. It is not an interior feasible minimum either. The two complete floating-point replay records are retained in `experiments/unit-minimum-curvature-495.json` and `experiments/unit-minimum-curvature-495-refined.json`.
+
+Both searches were restarted with these rescaling passes. Earlier records remain unresolved diagnostics, not local-minimum certificates. The optimization boxes, finite tolerances, and finite sample of starting points preclude any conclusion about all unrestricted real parameters.

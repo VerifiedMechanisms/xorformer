@@ -1,5 +1,5 @@
 {
-  "recorded_utc": "2026-11-23T00:35:26.966271+00:00",
+  "recorded_utc": "2026-11-23T00:45:59.950930+00:00",
   "main_target_proved": false,
   "numerical_failures_do_not_imply_infeasibility": true,
   "binary-active-fibers": {
@@ -43,5 +43,51 @@
       "main_target_proved": false
     },
     "termination": "first signed multiplier became negative; numerical diagnostic only"
+  },
+  "full-cube-unit-mixed": {
+    "records": 3820,
+    "sha256": "0c55df59f95fb6de16d59f8ba49500ea680298e8f5e57e5c3980d0d596dafee0",
+    "states": {
+      "UNKNOWN": 3820
+    },
+    "last": {
+      "trial": 3898,
+      "n": 7,
+      "heads": 4,
+      "mode": "mixed",
+      "status": "UNKNOWN",
+      "solver_status": 9,
+      "nit": 3000,
+      "min_slack": -5.0685994468002704e-05,
+      "active_count": 14,
+      "parameter_count": 56,
+      "log_bound_distance": 0.0,
+      "numerator_norm": 4.414313241853533e-08,
+      "elapsed_seconds": 1917.8880259220023
+    },
+    "termination": "stopped to repair objective conditioning after a replay exposed a 7.4 percent stationarity residual"
+  },
+  "variable-constant-minima": {
+    "records": 1859,
+    "sha256": "1a0c5273e39969829df47094ab01107e9e2a0c9efef9ed2a08db411a8b255df3",
+    "states": {
+      "UNKNOWN": 1859
+    },
+    "last": {
+      "trial": 1866,
+      "n": 7,
+      "heads": 3,
+      "status": "UNKNOWN",
+      "solver_status": 0,
+      "nit": 275,
+      "min_slack": -1.3322676295501878e-15,
+      "active_count": 18,
+      "parameter_count": 43,
+      "log_bound_distance": 0.0,
+      "numerator_norm": 4.7503724384753445,
+      "constant": -1.0000327999208078,
+      "elapsed_seconds": 1437.2546304049902
+    },
+    "termination": "stopped to repair objective conditioning after a replay exposed a 7.4 percent stationarity residual"
   }
 }
