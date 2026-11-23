@@ -720,6 +720,61 @@ two ratios for each of the $K$ dictionary vertices. Finally
 $K<8m+8\leq16m$, proving $2K<32m$.
 \end{proof}
 
+\begin{corollary}[Simultaneous cancellation on all three axes]
+\label{cor:grid-axes}
+The score in Theorem~\ref{thm:grid-compiler} can instead use
+$4K<64m$ heads and vanish exactly at every Boolean input where
+any one of the three coordinate blocks is identically zero.
+Its denominators still have strictly positive constant and strictly
+positive coefficients on every coordinate of the entire cube.
+\end{corollary}
+\begin{proof}
+Keep the same routed dictionary and affine forms. For each dictionary
+vertex replace the two-head score by the four-head score
+\[
+ G_{h,\varepsilon}=
+ \frac{A_h}{2\varepsilon^2}
+ \left(\frac1{D_h}-\frac1{D_h+\varepsilon P}
+       -\frac1{D_h+\varepsilon J_h}
+       +\frac1{D_h+\varepsilon(P+J_h)}\right).
+\]
+Every numerator is affine, and every denominator has the stated
+whole-cube positivity and strict slope conditions. Direct subtraction
+gives the exact identity
+\[
+ G_{h,\varepsilon}
+ =\frac{A_h P J_h(2D_h+\varepsilon P+\varepsilon J_h)}
+ {2D_h(D_h+\varepsilon P)(D_h+\varepsilon J_h)
+       (D_h+\varepsilon(P+J_h))}.
+\]
+If the address, memory, or output block is zero, respectively,
+then $P$, every $A_h$, or every $J_h$ is zero. Thus the sum of
+these scores vanishes exactly on each of the asserted pure faces,
+for every positive $\varepsilon$.
+
+As $\varepsilon\downarrow0$, this sum tends at a promised input to
+\[
+ \widetilde F_0(e_p,e_t,e_j)
+ =\sum_{s=0}^{m-1}\sigma_{s,t,j}
+       \frac{R^{p+s}}{(R^p+R^s+4\delta)^3}.
+\]
+The summand $s=p$ is greater in magnitude than $1/(12R^p)$:
+indeed $4\delta/R^p\leq1/4$ and $(2+1/4)^3<12$.
+For $s<p$, the magnitude is at most $R^{s-2p}$, so the total
+is less than $1/[(R-1)R^p]$. For $s>p$, it is at most
+$R^{p-2s}$, whose total is less than
+$1/[(R^2-1)R^p]$, and in particular less than the same preceding
+bound. With $R=32$ this proves
+\[
+ \sigma_{p,t,j}\widetilde F_0(e_p,e_t,e_j)
+ >\frac1{R^p}\left(\frac1{12}-\frac2{31}\right)
+ =\frac7{372R^p}>0.
+\]
+Finiteness of the promised input set and continuity at zero now give
+one sufficiently small positive $\varepsilon$ preserving every
+strict sign. There are exactly four heads per dictionary vertex.
+\end{proof}
+
 \paragraph{Coding rate and exact remaining obstruction.}
 Taking $q=2k$ yields $K=(2k)^k$, $m=\lfloor K/8\rfloor$, and
 $k=\Theta(\log m/\log\log m)$. The construction stores $mdk$
@@ -740,9 +795,10 @@ The compiler has positive slopes in its one-hot variables. On
 downward-star cells these become negative slopes in the original
 cube coordinates, whereas Theorem~\ref{thm:glue} needs positive
 original slopes for localization. On upward stars the converse
-localization problem appears. The score also has no proved
-simultaneous axis-zero structure. Thus there is no valid global
-transfer at present. This route is recorded as blocked at that
+localization problem appears. Corollary~\ref{cor:grid-axes} supplies
+the simultaneous axis-zero structure at constant overhead, but does
+not change these denominator orientations. Thus there is no valid
+global transfer at present. This route is recorded as blocked at that
 transfer, and its local shattering statement is not one of the
 requested asymptotic outcomes. All results in this section are
 written proofs only.
