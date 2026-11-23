@@ -137,6 +137,34 @@ def transfer_check():
           f'{vertices} full-cube vertices, all strict slopes; alpha={alpha}.', flush=True)
 
 
+def shared_magnitude_check():
+    """Reject one precise two-bit Lupanov assembly on three groups.
+
+    Strict homogeneous feasibility A c > 0 is equivalent to A c >= 1.
+    Since A includes the three positive-coordinate constraints, this
+    polyhedron has no line and, if nonempty, has a vertex.  Every vertex
+    has three independent active constraints, all enumerated below.
+    """
+    eps = F(1, 10000)
+    kernel = [[1/(1-eps*(i+j+2))**2 for j in range(3)] for i in range(3)]
+    targets = ((1, -1, 1), (1, 1, -1))
+    cases = 0
+    for signs0 in product((-1, 1), repeat=3):
+        for signs1 in product((-1, 1), repeat=3):
+            constraints = [[F(i == j) for j in range(3)] for i in range(3)]
+            for target, signs in zip(targets, (signs0, signs1)):
+                constraints.extend([[target[i]*kernel[i][j]*signs[j] for j in range(3)]
+                                    for i in range(3)])
+            for active in combinations(range(9), 3):
+                candidate = planes.solve([constraints[i] for i in active], [F(1)]*3)
+                if candidate is not None:
+                    assert any(sum(a*b for a, b in zip(row, candidate)) < 1
+                               for row in constraints)
+            cases += 1
+    print(f'Shared-magnitude assembly: all {cases} sign-pair choices infeasible '
+          'by complete rational vertex enumeration.', flush=True)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--rows', type=int, default=7)
@@ -145,7 +173,10 @@ if __name__ == '__main__':
                         default='two_cloud')
     parser.add_argument('--seed', type=int, default=23)
     parser.add_argument('--transfer-only', action='store_true')
+    parser.add_argument('--shared-magnitude-only', action='store_true')
     args = parser.parse_args()
     transfer_check()
-    if not args.transfer_only:
+    if args.shared_magnitude_only:
+        shared_magnitude_check()
+    elif not args.transfer_only:
         probe(args.rows, args.colors, args.mode, args.seed)

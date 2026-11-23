@@ -155,4 +155,33 @@ the valid three-bit matching with $G=4,D=2$ and checks 18 strict signs,
 72 exact pair identities, and all 512 vertices of its ambient cube.
 These are finite exact facts only. Neither establishes a growing
 row-to-head ratio, and no asymptotic conclusion is drawn.
+
+\paragraph{A specific Lupanov assembly fails.}
+One attempted joint-table decoder uses a color to select a binary word
+and reuses a common residue magnitude for every bit of that word.
+For a fixed address matrix $C$, this would require, for every small
+collection of target orthants, a common vector $c>0$ and separately
+chosen sign vectors $s$ such that $C\operatorname{diag}(c)s$ has each
+requested sign. The proposed rule already fails for three addresses
+and two bit coordinates. Put
+\[
+ C_{ij}=\left(1-10^{-4}(i+j+2)\right)^{-2},
+ \qquad i,j\in\{0,1,2\}.
+\]
+There are no $c>0$ and $s,t\in\{-1,1\}^3$ with
+\[
+ \operatorname{sign}(C\operatorname{diag}(c)s)=(+,-,+),
+ \qquad
+ \operatorname{sign}(C\operatorname{diag}(c)t)=(+,+,-).
+\]
+The companion check certifies this finite assertion with rational
+arithmetic. For each of the 64 choices of $(s,t)$, form the nine strict
+homogeneous linear inequalities, including $c_j>0$. Scaling converts
+feasibility to $Ac\geq\mathbf1$. This polyhedron is pointed because it
+is contained in $c_j\geq1$; if nonempty, it has a vertex. Enumerating
+all triples of independent active constraints checks every possible
+vertex, and every candidate violates another constraint. This rejects
+only the stated shared-magnitude binary codebook. It does not rule out
+nonuniform codeword magnitudes, jointly chosen row queries, or the full
+grouped family (1).
 \end{document}
