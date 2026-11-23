@@ -1,0 +1,14 @@
+'HeadComplexity.OriginMarginRepair.weight_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.weight_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.one_le_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.spike_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.repair_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.repair_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.numerator_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.exists_origin_unit_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OriginMarginRepair.computable_origin_margin_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OriginMarginRepair.singleton_margins_force_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
