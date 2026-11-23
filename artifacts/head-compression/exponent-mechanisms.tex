@@ -373,6 +373,118 @@ mechanism audit already gives a counterexample to that latter inference.
 This route remains blocked unless a new admissible sign-gluing theorem
 is supplied; the branch's sharper constant does not supply one.
 
+\section{A partial mask and a verified scalar obstruction}
+
+The companion note \texttt{exponent-literature.tex} introduces the
+three-ratio expression
+\[
+ J_p(u,v)=\frac{u-v}{p+u+v}-\frac{u}{p+u}+\frac{v}{p+v}.
+\]
+For $p>0$ and $u,v\geq0$, direct common-denominator expansion gives
+\[
+ J_p(u,v)=\frac{(u-v)uv}{(p+u+v)(p+u)(p+v)}.
+\]
+It vanishes on either coordinate axis and has the strict sign
+of $u-v$ when $u,v>0$. For fixed $u>v>0$, its numerator is positive
+and its denominator is strictly increasing in $p>0$. Thus
+\[
+ 0<p<q\quad\Longrightarrow\quad 0<J_q(u,v)<J_p(u,v).
+\]
+This is useful axis cancellation, but it also gives a concrete
+obstruction to one proposed scalar repair order.
+
+\begin{proposition}[One-module scalar repair fails]
+If $0<p<q$ and $u>v>0$, there is no real scalar $\lambda$ such that
+\[
+ -1+\lambda J_q(u,v)>0,
+ \qquad -1+\lambda J_p(u,v)<0.
+\]
+\end{proposition}
+\begin{proof}
+The first inequality and $J_q>0$ imply $\lambda>0$.
+Consequently $\lambda J_p>\lambda J_q>1$, contradicting the
+second inequality.
+\end{proof}
+
+Here is an admissible whole-cube instance of that obstruction. Identify
+inputs with subsets of $[6]$, put $S=\{1,2\}$, $T=\{4,5\}$, and set
+\[
+ u(x)=R^2(1-x_1)+R(1-x_2),\quad
+ v(x)=R(1-x_4)+R^2(1-x_5),\quad
+ p(x)=1+\varepsilon\sum_{i=1}^6(1-x_i),
+\]
+where $R>1$ and $\varepsilon>0$. At
+$x=\{2,5\}$ and $y=\{2,3,5,6\}$, both pairs of local statistics
+equal $(R^2,R)$, but $p(y)=1+2\varepsilon<p(x)=1+4\varepsilon$.
+All three denominators $p+u+v$, $p+u$, and $p+v$ are positive
+on the entire cube and have strictly negative slopes in every
+coordinate. They therefore satisfy the original model's
+negative-orientation admissibility condition. Each numerator is
+affine, so this really is a three-head partial mask. Nevertheless,
+starting from the constant score $-1$, no scalar multiple makes
+$x$ positive while keeping $y$ negative. This disproves that scalar
+repair step, not cancellation among several independently chosen
+modules and not a general gluing theorem.
+
+\section{Why the checked count does not improve the full-cube bound}
+
+Restricting denominator slopes to a common orientation cannot justify
+a generic VC-dimension upper bound $O(nH)$. Indeed, the known
+majority-order construction reviewed in \texttt{exponent-literature.tex}
+shatters the $rs$ two-one-hot inputs in $r+s=n$ dimensions with
+$H=O(n/\log n)$ heads. The denominator of each comparison head is
+one plus a sum of strictly positive weighted input coordinates, hence
+is admissible on the full cube, even though only the promised subset
+is shattered. With $r,s$ balanced this gives
+\[
+ \operatorname{VCdim}(\mathcal F_{n,H})\geq rs=\Omega(n^2),
+ \qquad nH=O(n^2/\log n).
+\]
+Thus a universal $O(nH)$ VC estimate is false. This does not rule out
+a lower bound specifically for shattering the entire prescribed cube.
+
+Classical neural-network capacity theorems do not supply that stronger
+cube-specific statement. For example, Maass,
+\href{https://igi-web.tugraz.at/PDF/66a.pdf}
+{\emph{Neural Nets with Superlinear VC-Dimension}},
+Neural Computation 6 (1994), proves superlinear capacity for threshold
+networks of depth at least three, even on Boolean inputs. The exact
+transfer needed here would replace those internal threshold gates
+and their composition by one admissible affine-ratio layer at
+comparable head cost. Neither the depth nor that transfer is supplied
+by the VC theorem. The generic rational-network capacity bounds
+reviewed in the companion note are upper bounds and likewise do not
+provide a prescribed-cube shattering construction.
+
+Antipodal pairing gives a precise algebraic check on another possible
+shortcut. Write $t\in\{-1,1\}^n$ and one atom as
+\[
+ R(t)=\frac{a_0+a\cdot t}{b_0+b\cdot t},
+ \qquad b_0>\sum_i|b_i|.
+\]
+The last inequality follows from positivity of its affine denominator
+at every cube vertex. Direct expansion yields
+\[
+ R(t)+R(-t)=
+ \frac{2(a_0b_0-(a\cdot t)(b\cdot t))}
+      {b_0^2-(b\cdot t)^2},
+ \qquad
+ R(t)-R(-t)=
+ \frac{2(b_0(a\cdot t)-a_0(b\cdot t))}
+      {b_0^2-(b\cdot t)^2}.
+\]
+Every displayed denominator is positive. For $H$ heads, clearing the
+product of these paired denominators produces polynomials of parameter
+degree at most $2H+1$, including a free output bias, in the same
+$1+2H(n+1)$ parameters. Recovering the two original strict signs uses
+the even-plus-odd and even-minus-odd numerators. Applying the standard
+sign-pattern theorem to those polynomials therefore retains the same
+asymptotic counting loss; this algebraic pairing does not lower the
+degree to a constant. This is an explicit limitation of the standard
+paired-denominator argument, not a theorem excluding every possible
+cube-specific counting improvement. No such improvement was proved
+in this run.
+
 \section{Formal verification status}
 
 The new file
@@ -398,5 +510,19 @@ isolates Warren's analytic theorem as a hypothesis in
 has been formalized or remove its hypothesis. No \texttt{sorry}, new
 axiom, original definition change, or changed original theorem statement
 is introduced.
+
+The separate new file
+\texttt{formalization/HeadComplexity/Results/PartialRankingMask.lean}
+defines \texttt{partialRankingMask} and proves
+\texttt{partialRankingMask\_eq}, the two axis-cancellation simp lemmas,
+\texttt{partialRankingMask\_pos},
+\texttt{partialRankingMask\_strictAnti\_parameter},
+\texttt{not\_scalar\_repair\_of\_ordered\_positive\_scores}, and
+\texttt{not\_partialRankingMask\_scalar\_repair}.
+These are unconditional scalar algebra statements. The six-coordinate
+admissible realization above is written only; the file does not claim
+a formal \texttt{FracAtom} compiler. Lean checks pass, and the axiom
+audit reports only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound} for the principal declarations.
 
 \end{document}
