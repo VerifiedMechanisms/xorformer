@@ -45,7 +45,7 @@ def proposed_head(u, beta, scale, orientation):
     return integer_head(a, b)
 
 
-def run(source, out, seconds, max_pairs, seed, lp_seconds):
+def run(source, out, seconds, max_pairs, seed, lp_seconds, start_pair=0):
     data = json.loads(source.read_text())
     x, pieces, score = values(data)
     labels = np.array(data["labels"])
@@ -62,10 +62,11 @@ def run(source, out, seconds, max_pairs, seed, lp_seconds):
     pairs.sort(key=lambda pair: -abs(gram[pair]))
     # Correlation is a proposal ranking, not a merging certificate.
     pairs = pairs[:max_pairs]
+    assert 0 <= start_pair <= len(pairs)
     xa = np.column_stack((np.ones(len(x)), np.asarray(x,dtype=float)))
     started = time.monotonic()
     events, certificate = [], None
-    for order,(i,j) in enumerate(pairs):
+    for order,(i,j) in enumerate(pairs[start_pair:], start=start_pair):
         if time.monotonic()-started >= seconds or (out/"STOP").exists():
             break
         residual = score-pieces[:,i]-pieces[:,j]
@@ -122,6 +123,7 @@ def run(source, out, seconds, max_pairs, seed, lp_seconds):
         if certificate is not None:
             break
     result={"n":n,"initial_heads":heads,"candidate_heads":heads-1,
+        "start_pair":start_pair,"ranked_pairs":len(pairs),"seed":seed,
         "seconds":time.monotonic()-started,"lp_calls":len(events),"certificate":certificate,
         "scope":"Fixed residual pair completion, numerical proposals followed by exact audit.",
         "failure_is_not_a_lower_bound":True}
@@ -137,5 +139,7 @@ if __name__ == "__main__":
     p.add_argument("--pairs",type=int,default=50000)
     p.add_argument("--seed",type=int,default=2026112219)
     p.add_argument("--lp-seconds",type=float,default=30)
+    p.add_argument("--start-pair",type=int,default=0,
+                   help="Resume the deterministic ranked pair list at this index.")
     args=p.parse_args();args.out.mkdir(parents=True,exist_ok=True)
-    run(args.certificate,args.out,args.seconds,args.pairs,args.seed,args.lp_seconds)
+    run(args.certificate,args.out,args.seconds,args.pairs,args.seed,args.lp_seconds,args.start_pair)
