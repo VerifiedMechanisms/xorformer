@@ -1,0 +1,196 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{An exact-value upper bound from a reciprocal Segre degeneration}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Status.}
+This is a complete written deduction using the external secant theorem
+of Catalisano, Geramita and Gimigliano stated below. It is not a Lean
+proof: that external theorem and the analytic rank argument have not
+been imported into the formal development. The consequence improves
+the constant in the existing order $2^n/n$ upper bound. It gives
+neither a logarithmic saving nor the proposed matching lower bound.
+The original input dimension, atom admissibility, $H^*$ and
+\texttt{worstCaseHeadComplexity} are unchanged.
+
+\begin{theorem}\label{thm:exact}
+For every integer $n\geq1$, put $N=2^n$ and
+$R=\lceil N/(n+1)\rceil$. Every function
+$y:\{0,1\}^n\to\mathbb R$ is an exact sum of $2R$ fractions
+\[
+ y(x)=\sum_{h=1}^{2R}\frac{c_h}{1+\sum_{i=1}^n b_{hi}x_i},
+ \qquad b_{hi}>0.
+\]
+Consequently, in the unchanged HeadComplexity model,
+\[
+ H^*(f)\leq2\left\lceil\frac{2^n}{n+1}\right\rceil,
+ \qquad
+ \operatorname{worstCaseHeadComplexity}(n)
+ \leq2\left\lceil\frac{2^n}{n+1}\right\rceil.
+\]
+\end{theorem}
+
+\paragraph{External theorem used.}
+Let $X_n$ be the Segre image of $(\mathbb P^1_{\mathbb C})^n$ in
+$\mathbb P^{2^n-1}_{\mathbb C}$. Theorem 4.1 of Catalisano, Geramita
+and Gimigliano says that its $s$th secant variety has dimension
+\[
+ \min\{s(n+1)-1,2^n-1\},
+\]
+except that the third secant of $X_4$ has dimension $13$.
+In particular the $R$th secant fills the ambient projective space.
+The exception does not affect $R$: when $n=4$, $R=4$.
+See \emph{J. Algebraic Geometry} 20 (2011), 295--327,
+\href{https://doi.org/10.1090/S1056-3911-10-00537-0}{doi:10.1090/S1056-3911-10-00537-0},
+or the authors' \href{https://arxiv.org/abs/0809.1701}{arXiv:0809.1701}.
+The only consequence needed is that the polynomial map
+\[
+ \Psi(c,v)_S=\sum_{h=1}^R c_h\prod_{i\in S}v_{hi},
+ \qquad S\subseteq[n],
+\]
+has a Jacobian minor of size $N$ that is not the zero polynomial.
+Indeed, the affine chart $\prod_i(1,v_i)$ is Zariski dense in the
+Segre variety, so the secant theorem makes $\Psi$ dominant.
+In characteristic zero, dominance of this polynomial map implies
+that its differential has rank $N$ on a nonempty Zariski open set.
+Equivalently, this follows from the tangent-space statement of
+Terracini's lemma, Proposition 2.2 in the same paper.
+
+\begin{lemma}[Positive real parameters]\label{lem:positive}
+There are real parameters $(c^*,v^*)$ with every $c^*_h>0$ and
+every $v^*_{hi}>0$ at which $D\Psi$ has rank $N$.
+\end{lemma}
+\begin{proof}
+The nonzero Jacobian minor supplied above is a polynomial with real
+(in fact integer) coefficients. A nonzero real polynomial cannot
+vanish on a nonempty real open box. Apply this to any open box
+contained in the strictly positive orthant of all parameters.
+Complex generic rank is being used only to establish that this
+real polynomial is nonzero; no assertion about arbitrary real
+tensor decompositions is needed.
+\end{proof}
+
+\begin{lemma}[Differentiable degeneration]\label{lem:degeneration}
+For $v\in(0,\infty)^n$ and $\epsilon>0$, write
+\[
+ K_\epsilon(v)(x)=\frac1{1+\epsilon\sum_i v_i x_i}.
+\]
+There is an invertible real linear map
+$T_\epsilon:\mathbb R^{\{0,1\}^n}\to
+\mathbb R^{\mathcal P([n])}$ such that
+\[
+ T_\epsilon K_\epsilon(v)\longrightarrow
+       \left(\prod_{i\in S}v_i\right)_{S\subseteq[n]}
+\]
+in $C^1$ on every compact subset of $(0,\infty)^n$ as
+$\epsilon\downarrow0$.
+\end{lemma}
+\begin{proof}
+For a table $F$, let its Boolean Moebius coefficient be
+\[
+ (\mathcal M F)_S
+   =\sum_{T\subseteq S}(-1)^{|S|-|T|}F(\boldsymbol1_T).
+\]
+The inverse is $F(\boldsymbol1_T)=\sum_{S\subseteq T}(\mathcal M F)_S$.
+Define
+\[
+ (T_\epsilon F)_S
+   =\frac{(\mathcal M F)_S}{(-1)^{|S|}|S|!\epsilon^{|S|}}.
+\]
+Thus $T_\epsilon$ is invertible for each fixed $\epsilon>0$.
+For $k=|S|$, iterated one-variable fundamental theorems of calculus
+give the exact identity
+\[
+ (T_\epsilon K_\epsilon(v))_S
+ =\left(\prod_{i\in S}v_i\right)
+   \int_{[0,1]^S}
+      \left(1+\epsilon\sum_{i\in S}v_i t_i\right)^{-k-1}\,dt.
+\]
+For $S=\varnothing$ the product and integral are both $1$.
+For nonempty $S$, the identity follows by integrating the mixed
+derivative
+\[
+ \partial_S\frac1{1+\epsilon\sum_i v_i x_i}
+ =(-1)^k k!\epsilon^k
+     \frac{\prod_{i\in S}v_i}
+          {(1+\epsilon\sum_i v_i x_i)^{k+1}}
+\]
+over the indicated coordinate face. On a compact positive parameter
+set, the integral converges uniformly to $1$, and each of its first
+$v$-derivatives converges uniformly to $0$. This follows directly
+by differentiating the displayed integrand: the differentiated
+integrand has an explicit factor $\epsilon$ and its denominator
+is at least $1$. There are only finitely many $S$, proving the
+claimed $C^1$ convergence.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:exact}]
+Consider the smooth map on the open positive parameter orthant
+\[
+ \Phi_\epsilon(c,v)=\sum_{h=1}^R c_h K_\epsilon(v_h)
+       \in\mathbb R^N.
+\]
+By Lemma~\ref{lem:degeneration}, $T_\epsilon\Phi_\epsilon$
+converges in $C^1$ near $(c^*,v^*)$ to $\Psi$. Choose a Jacobian
+minor that is nonzero at $(c^*,v^*)$. Its determinant remains
+nonzero for all sufficiently small positive $\epsilon$.
+Fix one such $\epsilon$. Since $T_\epsilon$ is an invertible
+linear map, $D\Phi_\epsilon(c^*,v^*)$ itself has rank $N$.
+
+For completeness, this step requires no norm bound on
+$T_\epsilon$ as $\epsilon\downarrow0$. The limit is used only
+to locate one nonzero determinant at one strictly positive,
+fixed $\epsilon$; multiplication by that fixed invertible map
+then preserves rank exactly.
+
+The inverse function theorem, applied after fixing all parameters
+outside the chosen $N$ columns of the differential, shows that
+the image of $\Phi_\epsilon$ contains an open neighborhood of
+$F_0=\Phi_\epsilon(c^*,v^*)$. The parameter neighborhood can
+be chosen inside the positive orthant. For any prescribed
+$y\in\mathbb R^N$, choose a positive scalar $\delta$ sufficiently
+small that $F_0+\delta y$ belongs to this image. Hence there are
+positive $c'_h,v'_{hi}$ such that
+\[
+ y(x)=\frac1\delta
+  \left(\sum_{h=1}^R
+      \frac{c'_h}{1+\epsilon\sum_i v'_{hi}x_i}
+      -\sum_{h=1}^R
+      \frac{c^*_h}{1+\epsilon\sum_i v^*_{hi}x_i}\right).
+\]
+This is exactly the required $2R$-head representation. There is
+no limiting approximation in this final equality, no dimension
+padding, and no restriction on the size of the final numerators.
+
+Each denominator has constant coefficient $1$ and strictly positive
+slopes, so it is positive on the whole Boolean cube. Each numerator
+is constant, hence affine. The existing model conversion
+\texttt{FracAtom.ofPositiveAffineRatio} realizes each such ratio
+by one original atom; negative numerator constants are allowed.
+Apply the representation to $y(x)=1$ when $f(x)$ is true and
+$y(x)=-1$ when it is false. The signs are strict, the scalar bias
+is zero, and
+\texttt{computableWithHeadsN\_of\_positiveAffineRatios}
+gives the claimed $H^*$ bound. Taking the finite maximum over
+Boolean functions gives the bound against the unchanged
+\texttt{worstCaseHeadComplexity}.
+\end{proof}
+
+\paragraph{Checks and limitations.}
+The companion Python check computes ranks over a prime field at
+explicit positive rational reciprocal parameters for $1\leq n\leq6$.
+A full rank in this reduction certifies that the corresponding
+real rational Jacobian has full rank. These finite checks test the
+formulas; the argument for all $n$ uses the external secant theorem.
+There is no claim that a fixed $\epsilon$ works uniformly in $n$,
+or that the parameter sizes or the open image radius are controlled.
+Neither is required in the unchanged model. A logarithmic improvement
+would require a new strict-sign argument below this exact-value
+rank scale; the degeneration and the external theorem do not provide
+such an argument.
+\end{document}
