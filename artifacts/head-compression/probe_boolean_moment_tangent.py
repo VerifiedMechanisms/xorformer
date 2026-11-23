@@ -44,6 +44,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--max-n", type=int, default=10)
     p.add_argument("--prime", type=int, default=2147483647)
+    p.add_argument("--second-order", action="store_true",
+                   help="Also test specified first variations with a=0, b_j=-r/d_j.")
     p.add_argument("--out", type=Path, required=True)
     a = p.parse_args()
     rows = []
@@ -56,6 +58,25 @@ def main():
                      constraint_rank=rank_c, combined_rank=rank_cr,
                      tangent_output_dimension=rank_cr-rank_c,
                      seconds=time.monotonic()-start)
+        if a.second_order and n >= 4:
+            d = [((-1)**j * math.factorial(j) * math.factorial(n-j)) % a.prime
+                 for j in range(n+1)]
+            kappa = [sum(pow((ell-j) % a.prime,-1,a.prime)
+                         for ell in range(n+1) if ell != j)
+                     *pow(d[j],-1,a.prime) % a.prime for j in range(n+1)]
+            probes=[]
+            for coordinates in ([0],[0,1],[0,n-1],[n-2,n-1],list(range(n))):
+                rhs=[]
+                for mask in range(1 << n):
+                    value=sum((mask >> i) & 1 for i in coordinates)
+                    rhs.extend([(-(kappa[j]-kappa[0])*value*value) % a.prime
+                                for j in range(1,n+1)])
+                augmented=nmod_mat([row+[v] for row,v in zip(c,rhs)],a.prime)
+                aug_rank=augmented.rank()
+                probes.append(dict(zero_based_coordinates=coordinates,
+                    augmented_rank=aug_rank,
+                    consistent_over_finite_field=(aug_rank == rank_c)))
+            event['specified_second_order_probes']=probes
         rows.append(event)
         print(json.dumps(event), flush=True)
         a.out.write_text(json.dumps(dict(prime=a.prime, rows=rows,

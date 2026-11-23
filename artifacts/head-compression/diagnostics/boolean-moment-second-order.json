@@ -1,0 +1,303 @@
+{
+  "prime": 2147483647,
+  "rows": [
+    {
+      "n": 1,
+      "variables": 8,
+      "constraints": 2,
+      "constraint_rank": 2,
+      "combined_rank": 4,
+      "tangent_output_dimension": 2,
+      "seconds": 6.651412695646286e-05
+    },
+    {
+      "n": 2,
+      "variables": 18,
+      "constraints": 8,
+      "constraint_rank": 7,
+      "combined_rank": 11,
+      "tangent_output_dimension": 4,
+      "seconds": 0.00010581803508102894
+    },
+    {
+      "n": 3,
+      "variables": 32,
+      "constraints": 24,
+      "constraint_rank": 18,
+      "combined_rank": 24,
+      "tangent_output_dimension": 6,
+      "seconds": 0.0004455731250345707
+    },
+    {
+      "n": 4,
+      "variables": 50,
+      "constraints": 64,
+      "constraint_rank": 36,
+      "combined_rank": 41,
+      "tangent_output_dimension": 5,
+      "seconds": 0.001339541980996728,
+      "specified_second_order_probes": [
+        {
+          "zero_based_coordinates": [
+            0
+          ],
+          "augmented_rank": 36,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1
+          ],
+          "augmented_rank": 37,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            3
+          ],
+          "augmented_rank": 37,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            2,
+            3
+          ],
+          "augmented_rank": 36,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "augmented_rank": 37,
+          "consistent_over_finite_field": false
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "variables": 72,
+      "constraints": 160,
+      "constraint_rank": 56,
+      "combined_rank": 62,
+      "tangent_output_dimension": 6,
+      "seconds": 0.003641021903604269,
+      "specified_second_order_probes": [
+        {
+          "zero_based_coordinates": [
+            0
+          ],
+          "augmented_rank": 56,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1
+          ],
+          "augmented_rank": 57,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            4
+          ],
+          "augmented_rank": 57,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            3,
+            4
+          ],
+          "augmented_rank": 56,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "augmented_rank": 57,
+          "consistent_over_finite_field": false
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "variables": 98,
+      "constraints": 384,
+      "constraint_rank": 80,
+      "combined_rank": 87,
+      "tangent_output_dimension": 7,
+      "seconds": 0.01241304213181138,
+      "specified_second_order_probes": [
+        {
+          "zero_based_coordinates": [
+            0
+          ],
+          "augmented_rank": 80,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1
+          ],
+          "augmented_rank": 81,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            5
+          ],
+          "augmented_rank": 81,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            4,
+            5
+          ],
+          "augmented_rank": 81,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "augmented_rank": 81,
+          "consistent_over_finite_field": false
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "variables": 128,
+      "constraints": 896,
+      "constraint_rank": 108,
+      "combined_rank": 116,
+      "tangent_output_dimension": 8,
+      "seconds": 0.038000397151336074,
+      "specified_second_order_probes": [
+        {
+          "zero_based_coordinates": [
+            0
+          ],
+          "augmented_rank": 108,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1
+          ],
+          "augmented_rank": 109,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            6
+          ],
+          "augmented_rank": 109,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            5,
+            6
+          ],
+          "augmented_rank": 109,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "augmented_rank": 109,
+          "consistent_over_finite_field": false
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "variables": 162,
+      "constraints": 2048,
+      "constraint_rank": 140,
+      "combined_rank": 149,
+      "tangent_output_dimension": 9,
+      "seconds": 0.11367209511809051,
+      "specified_second_order_probes": [
+        {
+          "zero_based_coordinates": [
+            0
+          ],
+          "augmented_rank": 140,
+          "consistent_over_finite_field": true
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1
+          ],
+          "augmented_rank": 141,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            7
+          ],
+          "augmented_rank": 141,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            6,
+            7
+          ],
+          "augmented_rank": 141,
+          "consistent_over_finite_field": false
+        },
+        {
+          "zero_based_coordinates": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "augmented_rank": 141,
+          "consistent_over_finite_field": false
+        }
+      ]
+    }
+  ],
+  "scope": "Finite-field rank diagnostic only; no characteristic-zero rank or universal construction claimed."
+}

@@ -1052,8 +1052,15 @@
     "status": "Complete elementary manual proof, not Lean formalized.",
     "result": "For the explicit n+1-root affine permutation cube and n >= 4, a first-order product difference independent of the auxiliary variable is exactly an affine function on the cube. Every affine function occurs.",
     "mechanism": "Affine restrictions on the two last-coordinate faces, on the weight-two layer, and on one four-point parallelogram force the potential quadratic terms to vanish.",
-    "limitation": "Does not address arbitrary permutation cubes, nonconstant base differences, or higher-order deformations. No universal head bound.",
+    "limitation": "Does not address two independently nonconstant permutation lists, arbitrary higher-order leading terms, or unrestricted affine-fraction scores. No universal head bound.",
     "diagnostic": "artifacts/head-compression/diagnostics/boolean-moment-tangent.json",
-    "diagnostic_scope": "Ranks modulo 2147483647 only; not used in the real proof."
+    "diagnostic_scope": "Ranks modulo 2147483647 only; not used in the real proof.",
+    "additional_results": [
+      "All zero first variations at this base have an explicit common-affine, common-scaling, and last-two-coordinate normal form; these zero variations integrate exactly.",
+      "If the moment identity continues through second order, the affine first coefficient has at most one nonzero slope among coordinates 1 through n-2.",
+      "Affine classifiers on at most M level sets of one target-dependent affine projection have at most N^(2n)*[e*(1+N/(M*(n+1)))]^(M*(n+1)) sign patterns.",
+      "For arbitrary distinct constant reference roots and arbitrary affine permutation lists, ideal first-order differences fall in that level-set class; M=O(2^n/n^2) is not universal for this mechanism."
+    ],
+    "second_order_diagnostic": "artifacts/head-compression/diagnostics/boolean-moment-second-order.json"
   }
 }

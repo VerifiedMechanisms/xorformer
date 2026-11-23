@@ -123,6 +123,280 @@ sign construction from higher-order cancellations. Such a construction
 would require a separate argument controlling those cancellations and
 their head count.
 
+\section{All zero first variations}
+
+The following classification will distinguish a genuine second-order
+obstruction from a choice of an inconvenient first-order representative.
+Write $p=x_{n-1}$ and $q=x_n$.
+
+\begin{lemma}[Zero-variation normal form]
+Let $n\ge3$. The first variation above is identically zero on the cube
+for every $s$ if and only if, after subtracting one common affine form
+$C(x)$ and a common multiple $\lambda u_k(x)$ from each $a_k$, and
+$C(x)+\lambda j$ from each $b_j$, the remaining forms are
+\[
+ a_k=0\ (0\le k\le n-2),\quad
+ a_{n-1}=\theta(p-q),\quad
+ a_n=\theta p+(\theta+\beta+\delta)q-\theta-\delta,
+\]
+\[
+ b_j=0\ (1\le j\le n-1),\quad
+ b_0=\theta p+\beta q,\quad
+ b_n=\theta(p-1)+\delta(q-1)
+\]
+for real constants $\theta,\beta,\delta$.
+Every such zero first variation integrates to the exact identity
+$F_\varepsilon=G_\varepsilon$ on the cube for every $s,\varepsilon$.
+\end{lemma}
+\begin{proof}
+Evaluation at the roots, as before, shows that zero first variation is
+equivalent to $a_k(x)=b_j(x)$ whenever $u_k(x)=j$.
+Put $t=\sum_i x_i$. For $1\le j\le n-1$, the layer $t=j$ affinely
+spans its defining hyperplane. One proof is to use differences of
+weight-$j$ vertices differing by exchanging two coordinates: these
+differences span $\{v:\sum_i v_i=0\}$.
+The same statement holds after complementing coordinate one, for
+the layer $u_1=t+1-2x_1=j$. Hence
+\[
+ a_0-b_j=\alpha_j(t-j),\qquad
+ a_1-b_j=\eta_j(t+1-2x_1-j).
+\]
+Comparing coefficients of $x_1$ and any $x_i$ with $i>1$ shows that
+$\alpha_j$ is independent of $j$, and so is $\eta_j$.
+Comparing constants for the two distinct indices $j=1,2$ gives
+$\alpha_j=\eta_j=\lambda$. Therefore
+$C=a_0-\lambda t$ gives $a_0=C+\lambda u_0$,
+$a_1=C+\lambda u_1$ and $b_j=C+\lambda j$ for all interior $j$.
+Subtract these common contributions.
+
+For $2\le k\le n-2$, the set where $1\le u_k\le n-1$ has
+$2^n-2^k>2^{n-1}$ vertices, and the normalized $a_k$ vanishes there.
+A nonzero affine function has at most $2^{n-1}$ Boolean zeros:
+pair vertices in a coordinate with a nonzero coefficient; at most one
+endpoint of each pair can be a zero. A nonzero constant has no zeros.
+Thus these $a_k$ vanish identically as well.
+
+On the face $p=q=0$, the row with value zero has index at most $n-2$,
+so $b_0$ vanishes there. On the face $p=q=1$, the row with value $n$
+has index at most $n-2$, so $b_n$ vanishes there. It follows that
+$b_0=\alpha p+\beta q$ and
+$b_n=\gamma(p-1)+\delta(q-1)$.
+The form $a_{n-1}$ vanishes on both faces $p=q=0$ and $p=q=1$,
+since the corresponding root values $n-1$ and $1$ are interior.
+It is therefore $\theta(p-q)$. Matching the roots at $(p,q)=(1,0)$
+and $(0,1)$ gives $\alpha=\gamma=\theta$.
+Finally the row $u_n$ equals $n$ on $q=0$ and zero on $q=1$.
+Its two restrictions give the displayed formula for $a_n$.
+
+Conversely, substitution at the four choices of $(p,q)$ verifies
+$a_k=b_{u_k}$ for the last two rows. For an earlier row with value
+zero, its tail is all zero and hence $b_0=0$; for an earlier row with
+value $n$, its tail is all one and hence $b_n=0$.
+All other matches are zero after normalization. Restoring $C$ and
+$\lambda$ preserves every match. Therefore the two perturbed lists
+are still pointwise permutations of one another for every
+$\varepsilon$, proving the exact identity and the converse.
+\end{proof}
+
+\section{A second-order sparsity condition}
+
+\begin{theorem}[At most one active earlier coordinate]
+Suppose $n\ge4$ and replace the factors in the preceding construction
+by
+\[
+ u_k+\varepsilon a_k+\varepsilon^2 c_k,
+ \qquad j+\varepsilon b_j+\varepsilon^2 e_j,
+\]
+where all the displayed coefficient functions are affine in $x$.
+Assume that the coefficients of both $\varepsilon$ and
+$\varepsilon^2$ in $F_\varepsilon-G_\varepsilon$ are independent of
+$s$ on the Boolean cube. Write the first coefficient as
+$r(x)=r_0+\sum_i r_i x_i$, using the first-order theorem.
+Then
+\[
+ r_i r_\ell=0\qquad(1\le i<\ell\le n-2).
+\]
+In particular, this first coefficient depends on at most three input
+coordinates, including the last two coordinates.
+\end{theorem}
+\begin{proof}
+Adding $r/d_j$ to each $b_j$ makes the first variation zero.
+Apply the normal-form lemma to those modified forms.
+The common affine shift $C$ and scalar scaling $\lambda$ may be
+removed: subtract $\varepsilon C(x)$ from every root and divide every
+root by $1+\varepsilon\lambda$. This preserves affineness of each
+coefficient function and independence of $s$ to the orders under
+consideration. Indeed the new product difference is the old one
+evaluated at $(1+\varepsilon\lambda)s-\varepsilon C(x)$ and divided
+by $(1+\varepsilon\lambda)^{n+1}$.
+Its first coefficient remains $r$; its second coefficient changes by
+$-(n+1)\lambda r$.
+Only formal series through order two are needed here.
+
+We can consequently assume that $a_k=0$ for $k\le n-2$, both
+remaining $a_k$ depend only on $(p,q)$, and
+\[
+ b_j=t_j(p,q)-r(x)/d_j,
+\]
+where every $t_j$ depends only on $(p,q)$ and $t_j=0$ for interior
+$j$. Denote the second coefficient of the product difference by
+$r^{(2)}(x)$.
+
+At $s=-j$, the contributions from the second-order root coefficients
+are $d_j(c_{u^{-1}(j)}-e_j)$. Let $Q_j(x)$ be the remaining
+contribution, formed by pairs of first-order root coefficients.
+It has the form
+\[
+ Q_j(x)=T_{j,0}(p,q)+T_{j,1}(p,q)r(x)+\kappa_j r(x)^2,
+ \qquad
+ \kappa_j=-\sum_{\ell\ne j}\frac1{d_\ell(\ell-j)}.
+\]
+For the first product only the two last rows can contribute, and
+their root values and first coefficients depend only on $(p,q)$.
+For the second product the term indexed by $j,\ell$ at $s=-j$ is
+$d_j b_jb_\ell/(\ell-j)$. Expanding the two factors gives exactly
+the claimed constant, linear, and quadratic terms in $r$, with the
+minus sign from subtracting the second product.
+
+The elementary partial-fraction identity for $1/P(s)$ gives
+\[
+ \kappa_j=\frac1{d_j}\sum_{\ell\ne j}\frac1{\ell-j}
+          =\frac{H_{n-j}-H_j}{d_j},
+ \qquad H_a=\sum_{v=1}^a\frac1v,\quad H_0=0.
+\]
+For detail, write $P(s)=(s+j)P_j(s)$ and subtract
+$1/(d_j(s+j))$ from $1/P(s)$. Its value at $s=-j$ after cancellation
+is $-P_j'(-j)/d_j^2$. Compare this with the sum of the other
+partial fractions, and use
+$P_j'(-j)/d_j=\sum_{\ell\ne j}1/(\ell-j)$.
+In particular
+\[
+ \kappa_0-\kappa_1
+ =\frac{(n+1)H_{n-1}+1/n-n}{n!}>0,
+\]
+since $H_{n-1}\ge1$.
+
+On the face $p=q=1$, the rows $n$ and $n-1$ have root values zero
+and one, respectively. The two root evaluations of $r^{(2)}$ give
+\[
+ r^{(2)}=d_0(c_n-e_0)+Q_0
+        =d_1(c_{n-1}-e_1)+Q_1.
+\]
+Hence $Q_0-Q_1$ is affine in the first $n-2$ variables on this face.
+The displayed form of $Q_j$ shows that
+$(\kappa_0-\kappa_1)r(x)^2$ is also affine there.
+Its mixed Boolean difference in two distinct earlier coordinates
+$i,\ell$ is
+$2(\kappa_0-\kappa_1)r_i r_\ell$. It must vanish.
+The strict inequality for the scalar factor proves the assertion.
+\end{proof}
+
+\paragraph{Scope of the new obstruction.}
+This is a necessary condition for a second-order continuation of the
+specified ideal moment identity. It is not a classification of all
+higher-order branches, all permutation constructions, or ordinary
+head scores. A general affine first coefficient, although allowed
+by the linearized equations, need not extend even to second order.
+
+\section{Target-dependent level sets at arbitrary sizes}
+
+There is a different obstruction which does not require the special
+root list $0,\ldots,n$, but does require a constant reference list.
+
+\begin{theorem}[Counting affine classifiers on projection level sets]
+Let $N=2^n$, $n\ge1$ and $M\ge1$. Consider all strict Boolean sign
+labelings that are affine on each level set of some affine projection
+$L:\{0,1\}^n\to\mathbb R$ taking at most $M$ distinct values.
+Here the projection and the affine classifier on each of its level
+sets may all depend on the target labeling. The number of such
+labelings is at most
+\[
+ N^{2n}\left[e\left(1+\frac{N}{M(n+1)}\right)\right]^{M(n+1)}.
+\]
+For fixed $C>0$, if $M\le C2^n/n^2$, this is $2^{o(2^n)}$ as
+$n\to\infty$.
+\end{theorem}
+\begin{proof}
+The partition into level sets is determined by which of the at most
+$T=N(N-1)/2$ difference vectors $x-y$ are orthogonal to the slope
+vector of $L$. The span of those orthogonal difference vectors has a
+basis of at most $n$ members. Choose a canonical such basis from a
+fixed ordering of all difference vectors, and pad it to length $n$
+with a separate zero symbol. This encodes the full set of orthogonal
+differences: it consists exactly of the listed difference vectors in
+that basis span. Thus there are at most $(T+1)^n\le N^{2n}$ possible
+level-set partitions. This includes the constant projection.
+
+On a set of $m$ points, affine strict sign tests have at most
+$\sum_{k=0}^{d}\binom{m}{k}$ sign patterns, where $d=n+1$.
+To prove this elementary bound, take the $m$ hyperplanes in the
+$d$-dimensional parameter space given by zero evaluations.
+Every nonempty strict sign region is convex, so is one chamber.
+Adding the last hyperplane splits at most as many chambers as the
+previous hyperplanes cut on that hyperplane, a space of dimension
+$d-1$. Induction gives the binomial-sum bound, including degeneracies.
+When $m\ge d$, put $t=d/m\le1$ in the binomial theorem to obtain
+\[
+ \sum_{k=0}^{d}\binom{m}{k}
+ \le t^{-d}(1+t)^m\le (em/d)^d.
+\]
+For $m<d$, the bound $2^m\le e^d$ is sufficient. In either case
+the number of sign patterns is at most $[e(1+m/d)]^d$.
+
+For a partition with $q\le M$ nonempty cells of sizes $m_1,\ldots,m_q$,
+multiply these bounds and use concavity of $\log(1+t)$ to obtain
+\[
+ \prod_{j=1}^q[e(1+m_j/d)]^d
+ \le[e(1+N/(qd))]^{qd}
+ \le[e(1+N/(Md))]^{Md}.
+\]
+The last inequality follows because $z\log(e(1+N/z))$ is increasing
+for $z>0$: its derivative is
+$1+\log(1+N/z)-N/(N+z)>0$.
+Multiplying by the number of partitions proves the explicit bound.
+
+Its base-two logarithm is at most
+$2n^2+M(n+1)\log_2(e(1+N/(M(n+1))))$.
+The same monotonicity, with $M(n+1)\le2CN/n$, bounds this by
+$2n^2+O_C(N\log n/n)=o(N)$.
+\end{proof}
+
+\begin{theorem}[Constant-reference permutation perturbations do not suffice]
+Let $\lambda_1,\ldots,\lambda_M$ be distinct real numbers, and suppose
+the affine forms $u_1,\ldots,u_M$ have this value multiset at every
+Boolean vertex. Suppose affine perturbations $a_h,b_j$ satisfy
+\[
+ \left.\partial_\varepsilon
+ \left(\prod_{h=1}^M(s+u_h+\varepsilon a_h)
+ -\prod_{j=1}^M(s+\lambda_j+\varepsilon b_j)\right)
+ \right|_{\varepsilon=0}=r(x)
+\]
+on the cube, independently of $s$. If $r$ has no Boolean zero, its
+sign labeling belongs to the family in the preceding theorem.
+Consequently, such first-order constructions with
+$M\le C2^n/n^2$ do not represent every Boolean function, even when
+both the root list and the permutation forms depend on the target.
+\end{theorem}
+\begin{proof}
+Fix one row $h$. On its level set $u_h=\lambda_j$, evaluation at
+$s=-\lambda_j$ gives
+\[
+ r(x)=\left(\prod_{\ell\ne j}(\lambda_\ell-\lambda_j)\right)
+       (a_h(x)-b_j(x)).
+\]
+The prefactor is nonzero and constant on this level set, so the
+strict signs agree there with an affine classifier. The single
+projection $u_h$ takes at most $M$ values. Apply the counting theorem.
+\end{proof}
+
+\paragraph{A distinction essential to this counting argument.}
+The second factor list at the base point is constant. If it is another
+nonconstant affine permutation list, the index of its row carrying
+$\lambda_j$ can vary within the level set of the selected first row.
+Then the displayed affine-on-level-sets conclusion does not follow.
+The count is not asserted for that case, for higher-order leading
+differences, or for unrestricted sums of affine fractions.
+
 \section{Diagnostic and audit}
 
 The script \texttt{probe\_boolean\_moment\_tangent.py} independently
