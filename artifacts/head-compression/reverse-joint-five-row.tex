@@ -140,4 +140,83 @@ Nor is an axis-zero transformation with a head saving supplied. The
 ratio of five rows to two heads is fixed and is not an asymptotic
 compression theorem.
 
+\section{Joint resynthesis survives axis subtraction at six ratios}
+
+Axis subtraction cannot simply be applied to the preceding coefficients
+while assuming that their grid signs survive. However, the coefficients
+can be solved again, and the finite regular-sheet structure survives.
+This still does not give a saving: it uses six ratios for five rows.
+
+For each row, retain $d_i=1-c_i\varepsilon$ and
+$e_i=1-k_i\varepsilon$, but now define
+\[
+\begin{split}
+ Q_i(u,v,a,b)={}&\frac{A_i+a}{d_i-u}-\frac{A_i}{d_i}
+                    -\frac{a}{1-u}\\
+              &+\frac{C_i+b}{e_i-v}-\frac{C_i}{e_i}
+                    -\frac{b}{1-v}.
+\end{split}
+\]
+For the first four rows choose $A_i,C_i$ by the two linear equations
+$Q_i(x_+)=Q_i(x_-)=0$. For the fifth choose them by
+$Q_5(x_+)=1$, $Q_5(x_-)=-1$. These equations define rational functions
+of $\varepsilon$ wherever their coefficient matrices are invertible.
+Their coefficient matrices are explicitly
+\[
+ M_i=\begin{pmatrix}
+ \dfrac{\varepsilon}{d_i(d_i-\varepsilon)}&
+ \dfrac{2\varepsilon}{e_i(e_i-2\varepsilon)}\\
+ \dfrac{2\varepsilon}{d_i(d_i-2\varepsilon)}&
+ \dfrac{\varepsilon}{e_i(e_i-\varepsilon)}
+ \end{pmatrix}.
+\]
+
+The script \texttt{reverse-joint-symbolic-certificate.py} gives a
+reproducible exact certificate. It verifies all ten sheet-value
+identities symbolically in the indeterminate $\varepsilon$. At the
+exact value $\varepsilon=1/1000$, reduction of
+$(\det M_1,\ldots,\det M_5)$ modulo the prime $103$ gives
+\[
+ (92,36,64,69,13).
+\]
+All denominators in this reduction are invertible. After solving for
+the row constants, the two four by four Jacobians of
+$(Q_1,Q_2,Q_3,Q_4)$ at $x_+$ and $x_-$ reduce modulo $101$ to
+determinants $40$ and $69$, respectively; again every denominator
+used in the reduction is invertible. These nonzero residues certify
+nonzero rational determinants, not floating-point approximations.
+
+It follows that all five coefficient determinants and both Jacobian
+determinants are nonzero rational functions of $\varepsilon$. A
+nonzero univariate rational function has only finitely many zeros and
+poles. Therefore, for every $s$, one can choose
+$0<\varepsilon<1/(100(s+1))$ outside their finite exceptional set.
+The same inverse function theorem argument supplies all $32$ signs
+with $\varepsilon/2<u_j,v_j<5\varepsilon/2$.
+
+Build the two-ratio score $R(z,w)$ from these new row constants and
+the chosen column parameters as in the theorem. Then
+\[
+ Q(z,w)=R(z,w)-R(z,0)-R(0,w)
+\]
+uses six affine ratios, because $R(0,0)=0$. It is exactly zero on
+both Boolean axes. Its grid values are the displayed $Q_i$, so every
+prescribed five-row sign table is represented. Every denominator is
+positive throughout the whole cube by the previous coefficient-sum
+bound. The original two denominators have strictly negative slopes;
+the four repair denominators have weakly negative slopes, with zeros
+on the ignored block. No claim of a strict-slope axis-zero compiler
+at this same count is made here. The usual final global perturbation
+would remove zero slopes after a separate gluing construction, but
+does not supply the missing asymptotic saving.
+
+\paragraph{Verification boundary.}
+The original two-head theorem has symbolic certificates for all ten
+sheet values and both full Jacobian formulas, in addition to the
+small exact-rational checks. The six-ratio resynthesis has symbolic
+sheet-value certificates and exact modular nonvanishing certificates
+for its rational Jacobian determinants. Neither construction has been
+formalized in Lean or amplified into the required unbounded row/head
+ratio.
+
 \end{document}
