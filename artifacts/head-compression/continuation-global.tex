@@ -262,4 +262,101 @@ theorem, or an explicit decoder establishing it, remains unproved.
 The exact rational evaluations are reproducible with
 \texttt{continuation\_mixed\_fiber\_audit.py}; the sign proof above
 does not rely on the numerical approximations printed by that script.
+
+\section{An exact mixed-fiber interpolation invariant}
+
+The preceding counterexample shows genuine mixed-column variation.
+It does not allow arbitrary signs at as many row nodes as heads when
+the single-column fibers must vanish exactly. There is a precise
+interpolation obstruction, valid without distinct head poles.
+
+\begin{theorem}[A forbidden alternating pattern at the exact row budget]
+Let $d_1,\ldots,d_H$ be distinct real row nodes and let $J$ be a set
+of $k\ge2$ memory columns. Suppose $b_{hj}>0$ and $c_{hj}\in\mathbb R$
+satisfy
+\[
+ -1+\sum_{h=1}^H\frac{c_{hj}}{d_i-b_{hj}}=0
+ \quad\text{for every $i$ and $j\in J$}.
+\]
+Assume $d_i>t_h:=\sum_{j\in J}b_{hj}$ for all $i,h$. Put
+\[
+ P(d)=\prod_{i=1}^H(d-d_i),\qquad
+ Q(d)=\prod_{h=1}^H(d-t_h),\qquad
+ F_J(d)=-k+\sum_{h=1}^H
+            \frac{\sum_{j\in J}c_{hj}}{d-t_h}.
+\]
+Then the exact identity
+\[
+ \sum_{i=1}^H\frac{Q(d_i)F_J(d_i)}{P'(d_i)}
+       =(k-1)\sum_{h=1}^H t_h>0
+\]
+holds. In particular, the strict pattern
+$\operatorname{sgn}F_J(d_i)=-\operatorname{sgn}P'(d_i)$ is impossible.
+\end{theorem}
+
+\begin{proof}
+For one column $j$, clear the positive denominators in its zero
+conditions. The resulting polynomial has degree $H$, leading
+coefficient $-1$, and the $H$ distinct roots $d_i$. It is therefore
+$-P$. Comparison of the coefficients of $d^{H-1}$ gives
+\[
+ \sum_h c_{hj}=\sum_i d_i-\sum_h b_{hj}.
+\]
+This argument uses the product of all $H$ denominators, so repeated
+head poles cause no problem.
+
+The polynomial $L(d)=Q(d)F_J(d)+kP(d)$ has degree at most $H-1$.
+Its coefficient of $d^{H-1}$ is
+\[
+ k\sum_h t_h+\sum_{h,j\in J}c_{hj}-k\sum_i d_i
+      =(k-1)\sum_h t_h.
+\]
+Lagrange interpolation at the distinct row nodes says that the
+coefficient of $d^{H-1}$ in any polynomial $L$ of degree at most
+$H-1$ is $\sum_i L(d_i)/P'(d_i)$. Here $L(d_i)=Q(d_i)F_J(d_i)$,
+which proves the identity. Its right side is positive, whereas the
+forbidden sign pattern would make every summand on the left strictly
+negative, because $Q(d_i)>0$.
+\end{proof}
+
+\begin{corollary}[The original constant bias is also obstructed]
+Under the same assumptions, put
+\[
+ G_J(d)=-1+\sum_{h=1}^H
+            \frac{\sum_{j\in J}c_{hj}}{d-t_h}.
+\]
+Then
+\[
+ \sum_{i=1}^H\frac{Q(d_i)G_J(d_i)}{P'(d_i)}
+       =(k-1)\sum_{i=1}^H d_i>0.
+\]
+Thus the same strict alternating pattern is impossible with constant
+bias $-1$.
+\end{corollary}
+
+\begin{proof}
+The polynomial $QG_J+P$ has degree at most $H-1$, with coefficient
+of $d^{H-1}$ equal to
+\[
+ \sum_h t_h+\sum_{h,j\in J}c_{hj}-\sum_i d_i
+       =(k-1)\sum_i d_i.
+\]
+Apply the same Lagrange coefficient formula. Each $d_i$ is positive
+by the hypotheses $d_i>t_h>0$.
+\end{proof}
+
+\paragraph{No logarithmic row compression from a single row coordinate.}
+More generally, an $H$-head fiber depending on the row only through a
+common scalar $d$ has the form $c+\sum_h a_h/(d-t_h)$.
+Clearing nonvanishing denominators gives a numerator of degree at
+most $H$. Strictly alternating labels at $M$ ordered row nodes force
+at least $M-1$ distinct zeros by the intermediate value theorem, and
+therefore $H\ge M-1$.
+Thus tuning disjoint transpositions or spare poles in this common-row
+chart cannot by itself give $O(M/\log M)$ heads for arbitrary $M$-row
+labels. Any asymptotic gain from this chart would have to reuse heads
+across many memory fibers. The theorem above further excludes the
+exact $H$-head/$H$-row axis-zero budget for that reuse. It does not
+exclude a constant surplus of heads, fewer anchors, or general row
+affine forms which differ between heads.
 \end{document}
