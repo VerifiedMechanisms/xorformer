@@ -1,0 +1,202 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Moment Fibers and External Stieltjes Readouts}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+These are complete written arguments, with exact small checks in the
+companion Python file. They have not been formalized in Lean. They audit
+a possible mechanism for the main asymptotic target: preserving many
+moments of a positive atomic measure does not force its remaining
+Stieltjes differences to have one sign at all admissible query poles.
+The independent readout theorem below has only linear efficiency and
+does not prove either requested global bound.
+
+\begin{lemma}[Reciprocal powers]
+For distinct real $t_1,\ldots,t_q$, a nonzero linear combination of
+$(t_i-v)^{-k}$, where $k$ is a positive integer, has at most $q-1$
+distinct zeros on $v<\min_i t_i$.
+\end{lemma}
+\begin{proof}
+Replace $v$ by $-v$. It suffices to consider
+$\sum_j a_j(u-\lambda_j)^{-k}$ on $u>\max_j\lambda_j$,
+with $\lambda_1<\cdots<\lambda_q$.
+Induct on $q$, simultaneously for all $k$. If the sum had $q$ zeros,
+multiply by $(u-\lambda_q)^k$ and differentiate. Rolle's theorem
+would give $q-1$ zeros of
+\[
+ k(u-\lambda_q)^{k-1}
+ \sum_{j<q} a_j(\lambda_q-\lambda_j)(u-\lambda_j)^{-k-1}.
+\]
+The induction hypothesis allows at most $q-2$ unless all $a_j$ for
+$j<q$ vanish. In the latter case the original nonzero sum has no
+zero. The case $q=1$ is immediate.
+\end{proof}
+
+\begin{theorem}[Independent readouts while preserving moments]
+Let $K,q\geq1$ and $H=K+q$. Fix distinct positive numbers
+$\lambda_1,\ldots,\lambda_H$ and distinct query poles
+$t_1,\ldots,t_q>\max_h\lambda_h$. For every sufficiently small
+vector $b\in\mathbb R^q$, there exist distinct positive
+$v_1,\ldots,v_H$, arbitrarily close to the corresponding
+$\lambda_h$ as $b\to0$, such that
+\[
+ \sum_h v_h^j=\sum_h\lambda_h^j\quad(1\leq j\leq K),
+ \qquad
+ \sum_h\frac1{t_i-v_h}-\sum_h\frac1{t_i-\lambda_h}=b_i
+ \quad(1\leq i\leq q).
+ \tag{1}
+\]
+All $v_h$ remain below every query pole. In particular all $2^q$
+strict sign patterns of the readout differences are possible while
+these $K$ moments are fixed.
+\end{theorem}
+\begin{proof}
+Apply the inverse function theorem to the map from the $H$ atom
+positions to the $K$ power sums and $q$ Stieltjes values. Its
+Jacobian rows at $\lambda$ are
+\[
+ (j\lambda_h^{j-1})_h\quad(1\leq j\leq K),
+ \qquad ((t_i-\lambda_h)^{-2})_h\quad(1\leq i\leq q).
+ \tag{2}
+\]
+A row dependence would give a polynomial $p$ of degree at most
+$K-1$ and coefficients $c_i$ such that
+\[
+       p(v)+\sum_i c_i(t_i-v)^{-2}
+ \tag{3}
+\]
+vanishes at the $H$ distinct atom positions. Differentiating $K$
+times and applying Rolle's theorem repeatedly gives at least
+$H-K=q$ distinct zeros of
+\[
+               (K+1)!\sum_i c_i(t_i-v)^{-K-2}.
+\]
+The lemma forces every $c_i$ to vanish. Then $p$ has $H>K-1$
+zeros, so it too vanishes. Thus (2) is invertible. Positivity,
+distinctness, and the strict gaps from the query poles are open
+conditions, so the inverse function theorem can be applied inside
+their common domain. Set the moment components of its target equal
+to their original values and vary only the Stieltjes components.
+\end{proof}
+
+\paragraph{Transfer to strictly admissible cube heads.}
+Take $q=2^d$ for $d\geq1$ and choose the query poles to be the
+distinct values of
+\[
+       t(y)=C-\sum_{j=0}^{d-1}2^j y_j,
+       \qquad y\in\{0,1\}^d,
+ \tag{4}
+\]
+where $C-(q-1)>\max_h\lambda_h$.
+For a small target vector in (1), fix
+$a=\min_h\lambda_h/4$ and cyclically define
+\[
+ w_1=a,\qquad w_{h+1}=w_h+v_h-\lambda_h,
+ \qquad u_h=\lambda_h-w_h.
+ \tag{5}
+\]
+The first-moment equality ensures $w_{H+1}=w_1$. By taking the
+target vector sufficiently small, all $w_h$ and $u_h$ are positive.
+Moreover
+\[
+       u_h+w_h=\lambda_h,
+       \qquad u_h+w_{h+1}=v_h.
+ \tag{6}
+\]
+The following score uses $2H$ actual affine-ratio heads on the
+unchanged $(d+2)$-dimensional cube:
+\[
+ G(x_1,x_2,y)=
+ \sum_{h=1}^H\frac1{t(y)-u_hx_1-w_hx_2}
+ -\sum_{h=1}^H\frac1{t(y)-u_hx_1-w_{h+1}x_2}.
+ \tag{7}
+\]
+Every denominator slope is strictly negative. Its minimum on the
+whole cube is either $\min_y t(y)-\lambda_h>0$ or
+$\min_y t(y)-v_h>0$, so the original atom admissibility applies
+directly. When $x_1=0$, cyclic permutation of the $w_h$ cancels the
+two sums; when $x_2=0$, the cancellation is termwise. At
+$x_1=x_2=1$, equations (1) and (6) give
+\[
+                 G(1,1,y)=-b_y.
+ \tag{8}
+\]
+Thus arbitrary strict signs on this codimension-two face are
+possible while the score vanishes on its two coordinate axes and
+the first $K$ spectral moments agree. The budget is $2(K+2^d)$
+heads, not a superconstant improvement over the number of face
+points. No asymptotic saving is being asserted.
+
+\paragraph{An exact two-query example.}
+The spectra $A=(3,4,9)$ and $B=(1,7,8)$ have equal mass and equal
+mean. Their Stieltjes difference is
+\[
+ R(t)=\sum_{a\in A}\frac1{t-a}-\sum_{b\in B}\frac1{t-b}
+ =\frac{-4(2t^3-55t^2+416t-867)}
+ {(t-9)(t-8)(t-7)(t-4)(t-3)(t-1)}.
+ \tag{9}
+\]
+Although both query poles lie strictly above all atoms,
+\[
+                 R(10)=\frac{23}{63}>0,
+ \qquad R(20)=-\frac{1453}{2217072}<0.
+ \tag{10}
+\]
+For a direct cube realization, take
+$u=(1/2,7/2,11/2)$ and $w=(5/2,1/2,7/2)$.
+Then $u_h+w_h$ gives $A$, while $u_h+w_{h+1}$ gives $B$,
+with cyclic indexing. Set $t(y)=20-10y$ in (7). The score has
+six heads on three actual Boolean coordinates, positive cube
+denominators, strictly negative slopes, exact axis cancellation,
+and opposite strict signs at the two mixed-face query vertices.
+
+\paragraph{Crossing after almost all moments are fixed.}
+For every $K\geq1$, set $H=K+2$ and
+\[
+ P(t)=\prod_{j=1}^H(t-j),\qquad a=H+1,
+ \qquad Q(t)=P(t)+\varepsilon(t-a).
+ \tag{11}
+\]
+For sufficiently small $\varepsilon>0$, the polynomial $Q$ has
+one distinct positive real root in each interval
+$(j-1/4,j+1/4)$. This follows by preserving the opposite signs
+of $P$ at the two endpoints of each interval. Newton's identities
+show that the root multisets of $P$ and $Q$ have identical power
+sums through degree $H-2=K$, since their coefficients of degrees
+$H-1$ through $2$ coincide.
+The difference of their Stieltjes sums is
+\[
+ \frac{P'(t)}{P(t)}-\frac{Q'(t)}{Q(t)}
+ =\frac{\varepsilon((t-a)P'(t)-P(t))}{P(t)Q(t)}.
+ \tag{12}
+\]
+Both $a$ and $2a$ exceed all roots. At $a$ this expression is
+$-\varepsilon/P(a)<0$. At $2a$ its numerator is positive because
+\[
+ (2a-a)\frac{P'(2a)}{P(2a)}
+ =a\sum_{j=1}^H\frac1{2a-j}>H/2>1.
+\]
+Thus equality of the first $K$ moments does not force a common
+external-pole sign even with only $K+2$ atoms on each side.
+The independent-readout theorem proves more, but (11)--(12)
+give a particularly explicit crossing.
+
+\paragraph{What remains missing.}
+For the global target, many permutation configurations sharing
+low moments might supply many branches of the same continuous
+interpolation problem. Neither the number of configurations nor
+the independent readouts in (1) prove that those branches cover
+all required sign orthants. The present theorem provides exactly
+$H-K$ independently controlled values using $H$ moving atom
+positions. A superconstant improvement would require an additional
+argument extracting more independent information from the branches
+while preserving the original cube admissibility and total head
+budget. That argument remains open.
+
+\end{document}
