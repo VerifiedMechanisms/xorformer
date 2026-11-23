@@ -237,7 +237,121 @@ This obstruction permits exceptional permutations with $M_\pi=0$,
 parameters not in the small-pole limit, and jointly changing the
 unordered pole sets. It therefore does not refute the mixed-column
 decoder. Any attempt using this mechanism must provide the required
-moment cancellations and the resulting arbitrary strict row patterns,+rather than only the component count.
+moment cancellations and the resulting arbitrary strict row patterns,
+rather than only the component count.
+
+\section{Exact butterfly-window readers require increasing Cauchy degree}
+The number of signed interpolation sheets suggests storing a large family
+of permutations. A butterfly network does give sufficiently many
+independent binary choices. Its natural block-sum readout, however,
+encounters an explicit obstruction for alternating residues.
+
+\begin{proposition}[Constant windows of an alternating-residue reader]
+Let $\lambda_1<\cdots<\lambda_H$ and let $c_1,\ldots,c_H$ be nonzero
+with $c_jc_{j+1}<0$. For $K\geq1$, consider the symbol function
+\[
+ \phi(j)=\delta+\sum_{\ell=1}^K
+ \frac{A_\ell+\gamma_\ell c_j}{D_\ell-\lambda_j},
+ \qquad D_\ell\notin\{\lambda_1,\ldots,\lambda_H\}.
+\]
+If $\phi$ equals one constant on $L$ consecutive symbols and $L>2K$,
+then $\phi$ equals that constant on every symbol.
+\end{proposition}
+\begin{proof}
+Let $b$ be the asserted constant and multiply $\phi(j)-b$ by
+$d(\lambda_j)$, where $d(T)=\prod_{\ell=1}^K(D_\ell-T)$.
+There are polynomials $P,Q$ with
+\[
+ \deg P\leq K-1,\qquad \deg Q\leq K,
+ \qquad c_jP(\lambda_j)+Q(\lambda_j)=0
+\]
+on the $L$ consecutive symbols. Here
+\[
+ P(T)=\sum_\ell\gamma_\ell\prod_{m\ne\ell}(D_m-T),
+ \quad Q(T)=(\delta-b)d(T)
+       +\sum_\ell A_\ell\prod_{m\ne\ell}(D_m-T).
+\]
+If exactly one of $P,Q$ is zero, the other has $L>K$ distinct roots,
+which is impossible. Suppose neither is zero. At a sampled node where
+$P$ vanishes, $Q$ also vanishes, so $PQ$ has a root of multiplicity at
+least two. Let $z$ be the number of these nodes. At each remaining
+sampled node,
+\[
+ \operatorname{sgn}(P(\lambda_j)Q(\lambda_j))
+   =-\operatorname{sgn}(c_j).
+\]
+Of the $L-1$ adjacent pairs of sampled nodes, at most $2z$ have a
+vanishing endpoint. Each of the other pairs has opposite signs of
+$PQ$ at its endpoints and therefore contributes a distinct intervening
+root. Together with the nodal roots, this gives at least
+$2z+\max(0,L-1-2z)\geq L-1$ roots counted with multiplicity.
+But $\deg(PQ)\leq2K-1$, contradicting $L>2K$.
+Thus both $P,Q$ are zero, and the original rational expression equals
+$b$ at every symbol, as claimed.
+\end{proof}
+
+\begin{proposition}[Butterfly block readout obstruction]
+Let $H=2^r$. The $r$ stages of a butterfly network successively switch
+coordinate $0,1,\ldots,r-1$ of a binary word, with an independent switch
+for each pair differing only at the current coordinate. Its
+$Hr/2$ switch settings give $2^{Hr/2}$ distinct permutations.
+
+Fix a stage $k$ with $1\leq k<r$ and one switch at that stage. A
+standard block-sum readout of this switch has the form
+\[
+ \mathcal R(\pi)=\sum_{x\in S}\phi(\pi(x)),
+\]
+where $S$ consists of the $2^k$ inputs having specified coordinates
+above $k$ and coordinate $k$ equal to zero. Suppose $\mathcal R$ is
+exactly one of two distinct real values according to the specified
+switch setting, for every setting of all the other switches. Order
+the output symbols by bit reversal, and assign alternating nonzero
+residues in that order. If $\phi$ has the $K$-term form in the preceding
+proposition, then
+\[
+ K\geq 2^{r-k-1}.
+\]
+\end{proposition}
+\begin{proof}
+For an input $x$ and output $y$, the state after the first $k$ stages
+has its $k$ lower coordinates from $y$ and the remaining coordinates
+from $x$. Thus there is only one possible input-to-output path.
+A complete permutation consequently determines every switch setting,
+proving the asserted number of distinct permutations.
+
+Partition the outputs into $2^k$ blocks $R_b$ according to their lower
+$k$ coordinates $b$. Each block has $L=2^{r-k}$ outputs, and is an
+interval in bit-reversal order. The first $k$ stages map $S$ bijectively
+onto all lower-coordinate words while preserving its fixed higher
+coordinates and its zero coordinate $k$. Thus $\pi(S)$ contains
+exactly one output in each $R_b$.
+
+Moreover any transversal of these blocks is attainable. Keep the first
+$k$ stages fixed. Choose the stage-$k$ switch separately for each lower
+word $b$ to select the desired output coordinate $k$. The remaining
+stages preserve the lower $k+1$ coordinates and act independently in
+the resulting subnetworks. The unique selected path in each such
+subnetwork can be routed to any prescribed higher-coordinate word by
+choosing its successive switches. These choices for different $b$
+are disjoint, and complete settings of the unused switches give a
+permutation.
+
+The target switch controls the chosen output coordinate $k$ in one
+specific block $R_{b_*}$. Since $k\geq1$, there is an inactive block
+$R_b$ with $b\ne b_*$. Varying its chosen output while fixing every
+other member of the transversal leaves the target switch fixed.
+The assumed exact readout therefore forces $\phi$ to be constant on
+all $L$ consecutive symbols of $R_b$. It cannot be constant on all
+symbols, since then the readout would take only one value. The preceding
+proposition yields $L\leq2K$, as required.
+\end{proof}
+
+This rules out exact constant-degree Cauchy windows as readers for all
+but a bounded number of butterfly stages. It does not rule out readers
+that only separate the two settings by a strict sign, allow background
+variation, use functions depending separately on the input slot, or
+encode permutations by a different architecture. In particular, it
+does not upper-bound the full compact decoder's sign capacity.
 
 \paragraph{Unresolved capacity question.}
 The finite five-row construction disproves the naive bound of $2H$
