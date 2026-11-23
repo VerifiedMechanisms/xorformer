@@ -139,6 +139,21 @@
       "verifier": "../audit_rational_score.py",
       "audit": "../diagnostics/random-n14-reconfigured-h292-exact-audit.json",
       "scope": "An audited reconfiguration of the original fourteen-bit target, with 292 heads and minimum margin above 0.2497. No head saving and no universal bound."
+    },
+    {
+      "file": "nonideal-compiler-positive-n1-h4.json",
+      "sha256": "cc8513db7a63981fabca54b1ffaf5361798a1165f0e35b1148a740fe3b8d5a16",
+      "scope": "Compiler smoke test only; constant positive one-bit target."
+    },
+    {
+      "file": "weighted-reciprocal-compiler-parity-n2-h3.json",
+      "sha256": "77c43e3e676377c552ef86ae934c391c3985459e7eb948b1d58c3e97461aabc7",
+      "scope": "Weighted compiler smoke test; two-bit parity already has a two-head representation."
+    },
+    {
+      "file": "polya-variation-random-n6-h8.json",
+      "sha256": "bc13639f98d621fc5a2d7c1d5b6e390468f77cdb37593f549cce43bf531c8e56",
+      "scope": "All 64 vertices of one fixed seeded six-bit target; no universal statement."
     }
   ],
   "optimization_audit_certificates": [

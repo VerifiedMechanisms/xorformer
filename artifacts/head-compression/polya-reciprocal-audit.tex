@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{P\'olya Averaging for Boolean Reciprocal Heads}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This is an explicit averaging construction and an audit of its local
+variations. It does not prove the requested universal head bound.
+All input variables below are Boolean unless specified otherwise.
+
+\section{An exact admissible refinement identity}
+
+Let $b_i>0$, $\delta>0$, $B(x)=1+\sum_i b_i x_i$, and
+$T=1+\sum_i b_i$. Then
+\[
+ \frac{T}{B(x)}=\frac{1+\delta}{B(x)+\delta}
+                    +\sum_{i=1}^n\frac{b_i}{B(x)+\delta x_i}.
+ \tag{1}
+\]
+Every denominator has strictly positive constant and variable
+coefficients. Thus a single reciprocal is a positive weighted average
+of $n+1$ normalized reciprocal heads. The nodes are $b/(1+\delta)$
+and $b+\delta e_i$, with weights $1/T$ and $b_i/T$, respectively.
+They approach $b$ as $\delta$ tends to zero.
+
+\textbf{Proof.} At a fixed input put $s=\sum_i b_i x_i=B-1$.
+Grouping the summands according to $x_i=0$ or $1$ gives
+\[
+ \frac{1+\delta+s}{B+\delta}
+                   +\frac{T-1-s}{B}
+ =1+\frac{T-B}{B}=\frac TB.
+\]
+The algebraic identity is kernel checked as
+\texttt{HeadComplexity.polya\_reciprocal\_identity} in
+\texttt{Results/PolyaReciprocalIdentity.lean}.
+
+For non-Boolean real inputs at which all denominators are nonzero,
+the right side of (1) minus its left side equals
+\[
+ \frac{\delta^2}{B(B+\delta)}
+             \sum_i\frac{b_i x_i(x_i-1)}{B+\delta x_i}.
+ \tag{2}
+\]
+This follows by subtracting $\sum_i b_i/B$ and simplifying each
+term. It is strictly negative when every $0<x_i<1$.
+Consequently (1) is genuinely a Boolean-only cancellation, not a
+rational identity on an open input domain.
+
+The averaging rule is the finite conditional-expectation calculation
+for a P\'olya urn: add $\delta$ units to one of weights
+$(1,b_1,\ldots,b_n)$, selected proportionally to its weight. The
+relative share of color zero in any selected group containing that
+color is a martingale. The standard two-color calculation is in
+Durrett, \emph{Probability: Theory and Examples}, version 5,
+Section 4.3.2, page 226,
+\url{https://sites.math.duke.edu/~rtd/PTE/PTE5_011119.pdf}.
+Identity (1) is proved directly above and does not require a
+probabilistic convergence theorem.
+
+\section{The infinitesimal operator and its limit}
+
+For a fixed input $x$, put $K_x(b)=(1+b\cdot x)^{-1}$. Direct
+differentiation, using $x_i^2=x_i$, gives
+\[
+ \left[\sum_i b_i\partial_{ii}
+       +\sum_{i,j}b_i b_j\partial_{ij}
+       +2\sum_i b_i\partial_i\right]K_x=0.
+ \tag{3}
+\]
+Indeed the first two terms sum to $2(s+s^2)/(1+s)^3$ and the
+last is $-2s/(1+s)^2$, where $s=b\cdot x$. The principal matrix
+$\operatorname{diag}(b)+bb^{\mathsf T}$ is positive definite:
+its quadratic form at $v\ne0$ is
+$\sum_i b_i v_i^2+(b\cdot v)^2>0$.
+This explains why positive averaging is possible locally. The
+operator identity is a manual calculation, not a Lean declaration.
+Neither harmonicity nor averaging bounds the number of atoms needed
+to obtain an arbitrary strict sign table.
+
+\section{A selector formula and first variations}
+
+For $x_i\in\{0,1\}$,
+\[
+ \frac1{B+\delta x_i}
+   =\frac1B+x_i\left(\frac1{B+\delta}-\frac1B\right).
+ \tag{4}
+\]
+Thus, for affine $A_i$ and a constant $q$,
+\[
+ \sum_i\frac{A_i}{B+\delta x_i}
+ -\frac{\sum_i A_i+q}{B}+\frac q{B+\delta}
+ =\left(q+\sum_i x_i A_i\right)
+                \left(\frac1{B+\delta}-\frac1B\right).
+ \tag{5}
+\]
+The two identities are kernel checked as
+\texttt{HeadComplexity.boolean\_reciprocal\_selector} and
+\texttt{HeadComplexity.polya\_affine\_selector\_sum}.
+Any quadratic Boolean polynomial has the first factor on the right
+for suitable affine $A_i$ and $q$. Its negative sign is therefore
+represented by the $n+2$ admissible denominators in (5).
+This restricted-class construction is not the target theorem.
+
+A first variation of the constant-numerator identity (1), including
+an arbitrary bias, has the form
+\[
+ c+\frac{U(x)}{B(x)^2}+\frac{V(x)}{(B(x)+\delta)^2}
+       +Q(x)\left(\frac1{(B(x)+\delta)^2}-\frac1{B(x)^2}\right),
+ \tag{6}
+\]
+where $U,V$ are affine and $Q$ is quadratic. To see this, replace
+(4) by its squared-denominator version and sum the affine variation
+numerators. The linear and constant parts of $Q$ can be absorbed
+into $U,V$. Multiplication by $B^2(B+\delta)^2$ gives degree at
+most four, because $(B+\delta)^2-B^2$ is affine.
+Thus (6) cannot strictly represent parity when $n>4$.
+For completeness, a polynomial of degree less than $n$ has zero
+alternating sum on the Boolean cube, since every monomial misses
+some coordinate. A strict parity sign representation would give a
+nonzero alternating sum of one sign, a contradiction.
+
+The exact finite compiler nevertheless produced an eight-head
+certificate for the fixed seeded six-bit diagnostic target.
+This checks a concrete use of (1); it is not a statement about all
+six-bit functions or the asymptotic maximum.
+
+\section{Repeated averaging and a common polynomial denominator}
+
+After $k$ urn steps, write $\alpha=(\alpha_0,\ldots,\alpha_n)$ for
+the color counts, with $\sum_j\alpha_j=k$. The resulting affine
+forms are
+\[
+ B_\alpha(x)=B(x)+\delta\left(\alpha_0+\sum_i\alpha_i x_i\right).
+ \tag{7}
+\]
+Repeated conditional expectation gives a positive weighted identity
+for $1/B$ with these $\binom{n+k}{k}$ forms. More explicitly, put
+$w=(1,b_1,\ldots,b_n)$ and
+$(a)_{r,\delta}=\prod_{j=0}^{r-1}(a+j\delta)$. Then
+\[
+ \frac1B=\sum_{|\alpha|=k}
+ \frac{k!}{\prod_j\alpha_j!}
+ \frac{\prod_j(w_j)_{\alpha_j,\delta}}{(T)_{k,\delta}}
+ \frac{1+\delta\alpha_0}{B_\alpha}.
+ \tag{8}
+\]
+A given ordered sequence of colors has the product probability in
+(8) without its multinomial coefficient. There are exactly that
+many orderings of its counts. This proves (8) by induction from
+(1), including all real positive starting weights.
+
+\begin{lemma}[Polynomial clearing for a finite offset set]
+Let $Q(t)=\prod_{j=0}^k(t+\delta j)^2$. There is a polynomial
+$R(t,z)$ of total degree at most $2k$ such that
+\[
+       R(t,j)=Q(t)/(t+\delta j)^2\qquad(0\le j\le k).
+\]
+\end{lemma}
+\begin{proof}
+Divide $Q(t)$ by the monic polynomial $(t+\delta z)^2$, as a
+polynomial in $t$ with coefficients in $\mathbb R[z]$. The quotient
+has total degree at most $2k$: each long-division subtraction preserves
+the total-degree bound, starting from degree $2k+2$ and removing a
+monic factor of total degree two. After substituting $z=j$, the
+remainder is zero because $(t+\delta j)^2$ divides $Q(t)$.
+This quotient is the required $R$.
+\end{proof}
+
+\begin{proposition}[Degree bound for complete-layer first variations]
+Any score
+\[
+                   c+\sum_{|\alpha|=k} D_\alpha(x)/B_\alpha(x)^2,
+\]
+with affine $D_\alpha$, has threshold degree at most $2k+2$.
+This also permits a single base term with denominator $B^2$.
+\end{proposition}
+\begin{proof}
+At a Boolean input,
+$L_\alpha(x)=\alpha_0+\sum_i\alpha_i x_i$ is an integer in
+$\{0,\ldots,k\}$. Multiplication by the positive $Q(B(x))$
+replaces each summand by
+$D_\alpha(x)R(B(x),L_\alpha(x))$, of degree at most $2k+1$.
+The bias contributes degree $2k+2$. The base term uses $j=0$.
+\end{proof}
+
+Consequently a complete-layer first-variation construction with
+$\binom{n+k}{k}=O(2^n/n^2)$ cannot be universal. If it represented
+parity, it would require $k\ge(n-2)/2$. For $n\ge6$, this implies
+$k\ge n/3$. The standard factorial estimate then gives
+\[
+ \binom{n+\lceil n/3\rceil}{\lceil n/3\rceil}
+ =2^{((4/3)\log_2(4/3)+(1/3)\log_2 3+o(1))n}
+ =2^{(1.0817\ldots+o(1))n},
+\]
+which exceeds $C2^n/n^2$ for every fixed $C$. This conclusion counts
+the complete layer. It does not assume the same cost for a selected
+sparse subset, an overlapping collection of refinements, or arbitrary
+higher-order perturbations. Those possibilities need separate
+constructions or invariants; no universal existence is claimed here.
+
+\end{document}

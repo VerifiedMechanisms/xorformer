@@ -1000,6 +1000,14 @@
       "checked_location": "Primary TeX obtained with git at 4eaee87548250b2682affda7d05d947c05554bae: introduction.tex, elementary.tex, divisors.tex, residues.tex, random.tex, descent.tex. Read the dense-family transfer, residue construction, shifted divisor moment, and exceptional-set recurrence. Counting and prescribed-denominator corollaries were not independently audited.",
       "mechanism": "Prime-product residue distributions supply many reductions; a shifted divisor moment limits propagation of exceptional numerators. A dense set then covers every numerator by two summands, proving a scalar O(log log b) unit-fraction length bound.",
       "gap": "The reduction uses ceilings, residues, selected divisors, and recursively multiplied denominators. These are not affine functions of the original Boolean input. Scalar short expansions and a dense-family argument do not imply a flat affine-fraction head construction."
+    },
+    {
+      "title": "Probability: Theory and Examples, version 5",
+      "authors": "Rick Durrett",
+      "url": "https://sites.math.duke.edu/~rtd/PTE/PTE5_011119.pdf",
+      "checked_location": "Section 4.3.2, printed page 226, the one-step martingale calculation for a Polya urn. No convergence theorem is used in the new head identity.",
+      "mechanism": "Proportional reinforcement preserves the expected share of a selected color. Applying the conditional-expectation calculation to every subset containing color zero yields a simultaneous Boolean reciprocal averaging identity.",
+      "gap": "The identity replaces one head by n+1 heads. A general compression or same-cost implementation of repeated branching is not obtained. Complete-layer first variations obey the separate polynomial-degree obstruction in polya-reciprocal-audit.tex."
     }
   ]
 }

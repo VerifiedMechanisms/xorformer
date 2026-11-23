@@ -237,11 +237,20 @@
       ],
       "statement": "If all affine subset sums with positive increments lie in a finite root set, an active coordinate set S forces at least |S|+1 distinct roots between the minimum and the reached value.",
       "scope": "Auxiliary finite-root invariant. Does not prove the head bound or formalize the manual sign-pattern count."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/PolyaReciprocalIdentity.lean",
+      "main_declaration": "HeadComplexity.polya_reciprocal_identity",
+      "companion_declarations": [
+        "HeadComplexity.boolean_reciprocal_selector",
+        "HeadComplexity.polya_affine_selector_sum"
+      ],
+      "scope": "Exact positive reciprocal averaging and a Boolean selector sum identity. The algebraic identities do not assert universal compressed sign representations."
     }
   ],
   "validation": {
-    "build": "Full lake build passed (9214 jobs) after adding LowRootFibers.",
-    "build_log": "artifacts/head-compression/validation/lean-low-root-full-build.log",
+    "build": "Full lake build passed (9215 jobs) after adding PolyaReciprocalIdentity.",
+    "build_log": "artifacts/head-compression/validation/lean-polya-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -262,7 +271,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "75 listed main and companion declarations in 29 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "80 listed main and companion declarations in 31 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -273,8 +282,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 75,
-      "modules": 29,
+      "declarations": 80,
+      "modules": 31,
       "only": [
         "propext",
         "Classical.choice",
@@ -288,12 +297,14 @@
         "validation/lean-reciprocal-three-cycle-axioms.log",
         "validation/lean-affine-partial-fraction-axioms.log",
         "validation/lean-boolean-projection-axioms.log",
-        "validation/lean-weighted-root-axioms.log"
+        "validation/lean-weighted-root-axioms.log",
+        "validation/lean-low-root-axioms.log",
+        "validation/lean-polya-axioms.log"
       ],
-      "scope": "The prior 68 declarations were unchanged; all seven WeightedRootCompletion declarations were checked separately."
+      "scope": "The previous 77 declarations were unchanged; the three PolyaReciprocalIdentity declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9213 jobs, including all 29 new research modules and the results aggregator.",
-    "build_jobs": 9214,
+    "lean": "Full project lake build succeeded with 9215 jobs, including all 31 new research modules and the results aggregator.",
+    "build_jobs": 9215,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -315,7 +326,9 @@
       "validation/lean-reciprocal-exchange-full-build.log",
       "validation/lean-reciprocal-exchange-axioms.log",
       "validation/lean-weighted-root-full-build.log",
-      "validation/lean-weighted-root-axioms.log"
+      "validation/lean-weighted-root-axioms.log",
+      "validation/lean-polya-full-build.log",
+      "validation/lean-polya-axioms.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -1220,5 +1233,21 @@
     "side_searches": "Unweighted n6/h8 Boolean-only reciprocal identity search and weighted n6/h8 search pending. Both are bounded diagnostics, not universal claims.",
     "target_proved": false,
     "weighted_compiler_smoke": "artifacts/head-compression/diagnostics/weighted-reciprocal-compiler-audit.json"
+  },
+  "polya_reciprocal_audit": {
+    "file": "artifacts/head-compression/polya-reciprocal-audit.tex",
+    "identity": "T/B=(1+delta)/(B+delta)+sum_i b_i/(B+delta*x_i), with strictly positive coefficients. This is Boolean-only and holds in every dimension.",
+    "formalization": "Three algebraic identities in Results/PolyaReciprocalIdentity.lean; full build and axioms checked. Other conclusions in this note are manual proofs.",
+    "analytic_operator": "(diag(b)+b*b^T):Hessian + 2*b dot gradient annihilates every Boolean reciprocal kernel. No general cubature compression is inferred.",
+    "first_variation": "One-step constant-numerator first variations have threshold degree at most four. Complete k-step layers have first-variation threshold degree at most 2k+2 and use binomial(n+k,k) denominator forms. At the requested head budget, this complete-layer construction cannot realize parity for sufficiently large n.",
+    "finite_certificate": "artifacts/head-compression/certificates/polya-variation-random-n6-h8.json",
+    "finite_audit": "artifacts/head-compression/diagnostics/polya-variation-certificate-audit.json",
+    "scope": "All 64 vertices of one fixed six-bit random target, not all six-bit functions. Minimum exact margin exceeds 1.86.",
+    "not_excluded": [
+      "Sparse or overlapping refinements.",
+      "Arbitrary higher-order variations.",
+      "The general admissible head model."
+    ],
+    "target_proved": false
   }
 }

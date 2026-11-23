@@ -1,0 +1,245 @@
+{
+  "records": [
+    {
+      "trial": 0,
+      "b": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "status": 2
+    },
+    {
+      "trial": 1,
+      "b": [
+        1,
+        11,
+        9,
+        5,
+        10,
+        4
+      ],
+      "status": 2
+    },
+    {
+      "trial": 2,
+      "b": [
+        11,
+        4,
+        7,
+        5,
+        12,
+        4
+      ],
+      "status": 2
+    },
+    {
+      "trial": 3,
+      "b": [
+        9,
+        9,
+        6,
+        8,
+        10,
+        11
+      ],
+      "status": 2
+    },
+    {
+      "trial": 4,
+      "b": [
+        12,
+        9,
+        9,
+        3,
+        8,
+        6
+      ],
+      "status": 2
+    },
+    {
+      "trial": 5,
+      "b": [
+        7,
+        8,
+        1,
+        5,
+        10,
+        2
+      ],
+      "status": 2
+    },
+    {
+      "trial": 6,
+      "b": [
+        6,
+        1,
+        12,
+        5,
+        2,
+        10
+      ],
+      "status": 2
+    },
+    {
+      "trial": 7,
+      "b": [
+        6,
+        9,
+        9,
+        6,
+        12,
+        10
+      ],
+      "status": 2
+    },
+    {
+      "trial": 8,
+      "b": [
+        11,
+        2,
+        5,
+        7,
+        3,
+        8
+      ],
+      "status": 2
+    },
+    {
+      "trial": 9,
+      "b": [
+        11,
+        2,
+        4,
+        6,
+        8,
+        7
+      ],
+      "status": 2
+    },
+    {
+      "trial": 10,
+      "b": [
+        7,
+        7,
+        5,
+        5,
+        7,
+        9
+      ],
+      "status": 2
+    },
+    {
+      "trial": 11,
+      "b": [
+        11,
+        1,
+        8,
+        1,
+        5,
+        9
+      ],
+      "status": 2
+    },
+    {
+      "trial": 12,
+      "b": [
+        12,
+        1,
+        2,
+        8,
+        6,
+        2
+      ],
+      "status": 2
+    },
+    {
+      "trial": 13,
+      "b": [
+        2,
+        8,
+        2,
+        4,
+        9,
+        12
+      ],
+      "status": 2
+    },
+    {
+      "trial": 14,
+      "b": [
+        5,
+        7,
+        12,
+        1,
+        5,
+        6
+      ],
+      "status": 2
+    },
+    {
+      "trial": 15,
+      "b": [
+        12,
+        1,
+        6,
+        10,
+        4,
+        3
+      ],
+      "status": 2
+    },
+    {
+      "trial": 16,
+      "b": [
+        8,
+        12,
+        2,
+        6,
+        8,
+        6
+      ],
+      "status": 2
+    },
+    {
+      "trial": 17,
+      "b": [
+        11,
+        2,
+        3,
+        7,
+        5,
+        4
+      ],
+      "status": 2
+    },
+    {
+      "trial": 18,
+      "b": [
+        6,
+        9,
+        5,
+        10,
+        11,
+        1
+      ],
+      "status": 0,
+      "certificate": "/out/head-compression/polya-variation-random-n6-h8.json",
+      "audit": {
+        "file": "/out/head-compression/polya-variation-random-n6-h8.json",
+        "sha256": "bc13639f98d621fc5a2d7c1d5b6e390468f77cdb37593f549cce43bf531c8e56",
+        "n": 6,
+        "heads": 8,
+        "vertices_checked": 64,
+        "strict_signs_and_admissibility": true,
+        "margin_approximation": 1.8618722695038565,
+        "scope": "This finite truth table only; not a universal bound."
+      }
+    }
+  ],
+  "seconds": 0.6618007109500468,
+  "target_proved": false
+}
