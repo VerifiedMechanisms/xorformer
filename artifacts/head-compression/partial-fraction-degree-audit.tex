@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Degree Control in Affine Partial Fractions}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This audit concerns exact rational identities, with bounded polynomial
+degrees, on an open real domain. It does not give a lower bound for
+strict sign representations on a finite Boolean cube.
+
+\section{The degree-sensitive criterion}
+
+Let $B_1,\ldots,B_H$ be nonconstant affine polynomials in $x_1,\ldots,x_n$.
+For a polynomial $f$ of degree $q$, let
+$f^{\mathrm h}(z,x)=z^q f(x/z)$ denote its degree-$q$ homogenization,
+and let $B_i^{\mathrm h}$ denote the degree-one homogenizations.
+For $1\le k\le \min(H,q)$ put
+\[
+ J_k=\left\langle\prod_{i\in I}B_i^{\mathrm h}:|I|=k\right\rangle
+ \subseteq\mathbb R[z,x_1,\ldots,x_n].
+\]
+
+\begin{proposition}[Bounded coefficients require the homogeneous ideal]
+There are coefficient polynomials $g_I$ of degree at most $q-k$ with
+\[
+ f=\sum_{|I|=k}g_I\prod_{i\in I}B_i
+\]
+if and only if $f^{\mathrm h}\in J_k$.
+\end{proposition}
+\begin{proof}
+For the forward implication homogenize every summand to degree $q$,
+padding each $g_I$ to degree $q-k$ with powers of $z$. This gives
+membership in $J_k$. Conversely, every generator of $J_k$ is
+homogeneous of degree $k$. Take the degree-$q$ homogeneous part of an
+ideal-membership expression for $f^{\mathrm h}$. Its coefficient
+polynomials are homogeneous of degree $q-k$. Setting $z=1$ gives the
+required expression and preserves the asserted upper degree bound.
+\end{proof}
+
+The corresponding identity for $f/\prod_i B_i$ leaves $H-k$
+denominator factors in each summand. In particular, $q=H$ and $k=H-1$
+leave one affine denominator and affine numerators. Plain membership
+in the dehomogenized ideal is weaker: it can use coefficients of
+higher degree, whose leading parts cancel. Dropping flats at infinity
+is appropriate for unrestricted affine ideal membership, but does not
+by itself preserve the coefficient-degree bound in the proposition.
+
+\section{A concrete admissible-denominator counterexample}
+
+\begin{proposition}[Parallel factors]
+Put $B_1=1+x+y$, $B_2=2+x+y$, and $f=xy$.
+The affine ideal $\langle B_1,B_2\rangle$ is the whole polynomial ring.
+Nevertheless there are no affine polynomials $A_1,A_2$ and constant
+$c$ for which
+\[
+ f=cB_1B_2+A_1B_2+A_2B_1
+\]
+as a polynomial identity. Both denominator forms have positive
+constants and strictly positive slopes on the entire two-dimensional
+Boolean cube.
+\end{proposition}
+\begin{proof}
+The ideal contains $B_2-B_1=1$. For the nonexistence assertion,
+restrict the claimed identity to $(x,y)=(t,-t)$.
+Its left side is $-t^2$, whereas its right side is affine in $t$,
+since $B_1=1$ and $B_2=2$ on that line. Evaluating at $t=0,1,-1$
+gives a contradiction. The coefficient positivity is immediate.
+\end{proof}
+
+The two algebraic assertions are kernel checked as
+\texttt{HeadComplexity.parallel\_denominators\_no\_affine\_coefficients}
+and \texttt{parallel\_denominators\_quadratic\_coefficients} in
+\texttt{Results/AffinePartialFractionDegree.lean}.
+The latter verifies the unrestricted identity
+$xy=(xy)B_2-(xy)B_1$.
+The former includes the optional constant bias after denominator
+clearing. Equality of rational functions on an open set would imply
+the prohibited polynomial identity; equality only at cube vertices
+does not have that implication.
+
+Homogenizing gives $B_1^{\mathrm h}=z+x+y$ and
+$B_2^{\mathrm h}=2z+x+y$, whose ideal is
+$\langle z,x+y\rangle$. At $(z,x,y)=(0,1,-1)$ both generators vanish
+but $f^{\mathrm h}=xy=-1$. Thus the homogeneous criterion detects
+exactly the missing condition at infinity.
+
+\section{Primary-source audit}
+
+Claire de Korte and Teresa Yu,
+\emph{Partial fraction decompositions on hyperplane arrangements},
+\url{https://arxiv.org/html/2602.06531v2}, equation (7), requires
+numerator degrees at most $\deg(f)-d$. Its Theorem 5.2 treats the
+homogeneous case using vanishing on arrangement flats.
+Theorem 5.3, as displayed in both the retrieved HTML and PDF text,
+states an affine criterion omitting flats supported at infinity.
+For the preceding example, take $H=2$ and $d=1$. The only flat with
+at least two factors is supported at infinity, so the displayed
+affine vanishing condition is vacuous. The asserted bounded-degree
+conclusion would contradict the proposition above. Therefore that
+affine statement cannot be imported with equation (7)'s degree bound
+without a correction or an additional hypothesis. This observation
+does not challenge the homogeneous ideal criterion used above.
+
+The PDF screenshot tool failed, but the primary HTML independently
+displays both the degree bound and the affine theorem. No visual PDF
+inspection is claimed. This source audit supplies no universal head
+upper bound. Selecting admissible factors whose homogeneous ideal
+contains a polynomial with any prescribed cube signs remains a
+construction problem; merely restating that problem is not progress
+on the target conjecture.
+
+\end{document}

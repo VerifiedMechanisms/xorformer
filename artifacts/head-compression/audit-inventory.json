@@ -199,11 +199,19 @@
         "HeadComplexity.reciprocal_three_cycle_checkerboard"
       ],
       "scope": "Exact two-row and three-row coefficient-exchange identities. Equal-numerator transpositions give affine correction signs. An averaging-based three-cycle gives a quadratic sign and an explicit checkerboard correction on an active face, zero on the opposite face. No globally compatible universal schedule is asserted."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/AffinePartialFractionDegree.lean",
+      "main_declaration": "HeadComplexity.parallel_denominators_no_affine_coefficients",
+      "companion_declarations": [
+        "HeadComplexity.parallel_denominators_quadratic_coefficients"
+      ],
+      "scope": "An explicit polynomial-identity obstruction to dropping coefficient-degree control in affine partial fractions. It concerns exact identities on an open set, not finite-cube sign representations."
     }
   ],
   "validation": {
-    "build": "Full project lake build succeeded with 9210 jobs, including all 26 new research modules and the results aggregator.",
-    "build_log": "validation/lean-reciprocal-three-cycle-full-build.log",
+    "build": "Full project lake build succeeded with 9211 jobs, including all 27 new research modules and the results aggregator.",
+    "build_log": "validation/lean-affine-partial-fraction-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -224,7 +232,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "64 listed main and companion declarations in 26 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "66 listed main and companion declarations in 27 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -235,8 +243,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 64,
-      "modules": 26,
+      "declarations": 66,
+      "modules": 27,
       "only": [
         "propext",
         "Classical.choice",
@@ -247,12 +255,13 @@
         "/out/head-compression/lean-range-final-axioms.log",
         "validation/lean-gapped-cover-axioms.log",
         "validation/lean-reciprocal-exchange-axioms.log",
-        "validation/lean-reciprocal-three-cycle-axioms.log"
+        "validation/lean-reciprocal-three-cycle-axioms.log",
+        "validation/lean-affine-partial-fraction-axioms.log"
       ],
-      "scope": "The prior 58 declarations were unchanged; all three ReciprocalExchange declarations were checked separately."
+      "scope": "The prior 64 declarations were unchanged; both AffinePartialFractionDegree declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9210 jobs, including all 26 new research modules and the results aggregator.",
-    "build_jobs": 9210,
+    "lean": "Full project lake build succeeded with 9211 jobs, including all 27 new research modules and the results aggregator.",
+    "build_jobs": 9211,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -1005,5 +1014,12 @@
     ],
     "manual_result": "An exact open-interval rational identity with M distinct nonzero simple poles needs at least M affine-fraction terms. This does not constrain arbitrary finite-cube sign representations.",
     "target_status": "No universal construction; target unchanged and unproved."
+  },
+  "partial_fraction_degree_audit": {
+    "writeup": "partial-fraction-degree-audit.tex",
+    "source": "https://arxiv.org/html/2602.06531v2",
+    "result": "Bounded coefficient degree is equivalent to membership of the exact-degree homogenization in the homogeneous product ideal. Dehomogenized ideal membership alone is insufficient.",
+    "counterexample": "xy cannot equal c*(1+x+y)*(2+x+y)+A1*(2+x+y)+A2*(1+x+y) with affine A1,A2, although the two denominator forms generate the unit affine ideal.",
+    "scope": "No target model change and no universal head bound."
   }
 }
