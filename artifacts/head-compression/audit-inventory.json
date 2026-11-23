@@ -320,7 +320,8 @@
     "An H-covering set S with an isolating (H+1)-face through each point has uniform numerical indicator error at least 1/(1+|S|*(2^(H+1)-1)) for every H-head score, even allowing arbitrary positive affine denominators. The proof uses a nonnegative subcube expansion of the denominator product. Sparse affine level sets with this property exist for H=floor(log2(n)/2), although their strict sign complexity is at most two. An exact ten-bit example has strict sign complexity two and numerical two-head approximation error at least 1/85.",
     "A product of admissible denominators satisfies D00*D11<=D10*D01 on every coordinate square, strictly if any denominator is nonconstant. For n>=2 it therefore cannot be a constant or positive multiplicatively separable table unless all factors are constant. This obstructs a proposed norm-one implementation of arithmetic unit signatures, not the general head model.",
     "Affine-fraction extrema on a Boolean cube are attained at sorted coefficient-ratio prefixes after complementing negative denominator slopes and handling zero slopes. Independent affine certificates verify the extrema without exhaustive evaluation. No universal head bound follows.",
-    "Split-product logarithmic derivative cancellations have denominator factor rank at most 26 after removing common factors, by the real depth-three identity rank theorem. A sum of K=o(H) fixed-rank groups cannot be universal at H<=C*2^n/n^2. This applies only to the audited polynomial-identity construction."
+    "Split-product logarithmic derivative cancellations have denominator factor rank at most 26 after removing common factors, by the real depth-three identity rank theorem. A sum of K=o(H) fixed-rank groups cannot be universal at H<=C*2^n/n^2. This applies only to the audited polynomial-identity construction.",
+    "Ideal affine Prouhet-Tarry-Escott cancellations have denominator slope rank at most three: signed moment annihilation on at most 2m coefficient vectors implies a real affine Cayley-Bacharach planarity constraint. No split-difference assumption is needed. This is a restriction on the audited polynomial-identity construction only."
   ],
   "blocked_routes": [
     {
@@ -1031,5 +1032,15 @@
     "audit_limits": "Two parameter blocks are used in the count. No uncharged factor depending on a growing number of blocks is omitted. Polynomial-ring identities are distinguished from Boolean identities.",
     "formalization": "Manual application of a cited literature theorem; no new Lean declaration.",
     "target_proved": false
+  },
+  "ideal_moment_rank_audit": {
+    "writeup": "ideal-moment-rank-audit.tex",
+    "result": "A nonzero polynomial identity product_j(s+u_j(x))-product_j(s+v_j(x))=R(x), with m real affine forms on each side and R independent of s, forces the coefficient vectors of u_j,v_j into an affine plane. After any affine substitution s=C(x), denominator slope rank is at most three.",
+    "mechanism": "Newton identities turn the identity into signed moment annihilation on at most 2m coefficient vectors. An elementary separating-polynomial proof shows that a CB(m-1) point set of size at most 2m is planar.",
+    "counting_consequence": "The bounded-rank-block sign count excludes K=o(H) such blocks at H<=C*2^n/n^2, without any real factorization assumption on R.",
+    "scope": "Polynomial identities only. Arbitrary admissible scores, many small blocks, lower-order moment matching, and Boolean-cube-only identities are not excluded.",
+    "formalization": "Complete manual proof, not Lean checked.",
+    "target_proved": false,
+    "boundary_example": "For every n, the affine permutation list u0=sum xi and uk=k*(1-xk)+sum_{i>k}xi has n independent slope directions. Compare product(s+uk) on the cube with a constant real-root list obtained from product_{k=0}^n(s+k)-delta. Their cube-only difference is a nonzero constant; after a common admissible affine shift, denominator rank remains n. Thus the polynomial-identity hypothesis is essential."
   }
 }

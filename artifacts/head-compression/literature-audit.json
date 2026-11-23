@@ -880,6 +880,24 @@
       "mechanism": "Simple minimal real identities with k products of linear forms have factor span dimension less than 3*k^2. The proof combines ideal Chinese remaindering, matchings, and Sylvester-Gallai rank bounds.",
       "application": "After common-factor removal, F-G=R with three nonzero fully real-split products has factor rank at most 26. This removes the generic-fiber hypothesis from a bounded-rank audit of logarithmic derivative cancellation.",
       "gap": "Applies to polynomial identities, not just Boolean-cube identities. The resulting head-family obstruction for a sublinear number of bounded-rank groups is in split-product-rank-audit.tex. It does not exclude arbitrary admissible fractions or prove the target."
+    },
+    {
+      "title": "The gonality theorem of Noether for hypersurfaces",
+      "authors": "Francesco Bastianelli, Renza Cortini, and Pietro De Poi",
+      "url": "https://arxiv.org/pdf/1102.4550",
+      "checked_location": "Lemma 2.4 and its proof on printed page 7 in arXiv v2.",
+      "mechanism": "At most 2r+1 distinct points satisfying the degree-r Cayley-Bacharach condition must be collinear.",
+      "application": "The real affine analogue, and the planarity threshold 2r+2, are proved directly in ideal-moment-rank-audit.tex using products of separating affine forms.",
+      "gap": "This constrains exact polynomial moment identities. It is not a theorem about arbitrary Boolean-cube-only identities and supplies no universal head upper bound."
+    },
+    {
+      "title": "A Cayley-Bacharach theorem and plane configurations",
+      "authors": "Jake Levinson and Brooke Ullery",
+      "url": "https://arxiv.org/pdf/2102.08525",
+      "checked_location": "Definition of CB(r), Theorems 1.1 and 1.3, and Propositions 2.4-2.6 with the excision and elementary cardinality arguments, arXiv v2.",
+      "mechanism": "Small Cayley-Bacharach point sets lie in unions of low-dimensional linear spaces in specified proven ranges.",
+      "application": "Provides geometric context for the independent elementary planarity proof used to bound affine ideal Prouhet-Tarry-Escott cancellations by three denominator directions.",
+      "gap": "No unproved case of the general plane-configuration conjecture is used. The result excludes a proposed cancellation mechanism under explicit polynomial-identity hypotheses, not the full head model."
     }
   ]
 }

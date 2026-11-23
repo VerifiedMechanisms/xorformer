@@ -1,0 +1,256 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{An Elementary Rank Bound for Ideal Moment Cancellations}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This is an audit of a proposed number-theoretic construction, not a proof
+of the requested universal head bound. It strengthens the special
+logarithmic-derivative audit in \texttt{split-product-rank-audit.tex}:
+the difference of the products need not split into real affine factors.
+All identities in the hypothesis are polynomial identities, not identities
+only on the Boolean cube. The proofs below are manual, not Lean checked.
+
+\section{An elementary interpolation fact}
+
+For a finite set $Z\subset\mathbb R^q$, with $q\ge1$, say that $Z$ has the affine
+property $\mathrm{CB}(d)$ if every real polynomial of total degree at
+most $d$ vanishing on all but one point of $Z$ vanishes on all of $Z$.
+This is the affine form of the Cayley--Bacharach condition.
+
+\begin{lemma}[Pairing classes]
+Suppose at most $2d$ objects are partitioned into classes, each of size
+at most $d$, where $d\ge1$. The objects can be partitioned into at most
+$d$ sets, each a singleton or a pair from different classes.
+\end{lemma}
+\begin{proof}
+Add dummy objects in new singleton classes to make the total $2d$.
+For exactly $2d$ objects, choose one object from each of the two largest
+nonempty classes. There are at least two classes. After removing these
+objects, every class has size at most $d-1$: any class of size $d$ was
+among the two largest, and there can be no third such class. Induct on
+$d$, starting with $d=1$. Finally delete the dummy objects and any
+empty pairs. No real pair contains two objects of the same class.
+\end{proof}
+
+\begin{theorem}[Small Cayley--Bacharach sets]
+Let $d\ge1$ and let $Z$ be a nonempty finite set of distinct real
+points having $\mathrm{CB}(d)$.
+\begin{enumerate}
+\item If $|Z|\le2d+1$, then $Z$ is contained in an affine line.
+\item If $|Z|\le2d+2$, then its affine hull has dimension at most two.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We use the following elementary separation fact: if $p$ is outside the
+affine hull of a set $T$, an affine linear polynomial exists which
+vanishes on $T$ and is nonzero at $p$. Indeed, after translating $p$
+to the origin, the affine hull of $T$ misses zero, so a linear functional
+constant and nonzero on that hull gives such a polynomial after
+subtracting its constant value. This is finite-dimensional linear
+algebra.
+
+Assume first that $Z$ is not collinear and $|Z|\le2d+2$.
+No line contains $d+2$ points of $Z$. Otherwise choose $p\in Z$
+outside such a line. A hyperplane through the line avoiding $p$,
+together with a separate hyperplane through each other point outside
+the line and different from $p$, gives a product of at most
+$1+(2d+2-(d+2)-1)=d$ affine factors. This product vanishes on
+$Z\setminus\{p\}$ and is nonzero at $p$, a contradiction.
+
+Fix $p\in Z$. Partition $Z\setminus\{p\}$ by the lines through $p$.
+Each class has at most $d$ points. A pair from different classes has
+affine hull avoiding $p$, as does every singleton. If $|Z|\le2d+1$,
+the pairing lemma gives at most $d$ such groups. A separating affine
+factor for each group again produces a forbidden polynomial. This
+proves the first assertion.
+
+For the second assertion it remains to treat $|Z|=2d+2$. Suppose
+the affine hull of $Z$ has dimension at least three. The vectors
+$z-p$, for $z\in Z\setminus\{p\}$, then span a space of dimension
+at least three. We will choose three linearly independent such vectors
+whose corresponding points meet every class of size $d$.
+For $d=1$, all three vectors are independent and we take them all.
+For $d\ge2$, there are at most two classes of size $d$.
+If there are two, they account for $2d$ points, leaving just one point.
+That last vector must lie outside the span of their two directions.
+One vector from each large class and the last vector have the required
+property. If there is exactly one large class, extend a vector in its
+direction to three independent vectors selected from the spanning set.
+If there is none, choose any three independent vectors from that set.
+
+The affine hull of the three chosen points avoids $p$, since their
+three difference vectors are linearly independent. After removing
+them, there are $2d-2$ points and every remaining line class has size
+at most $d-1$. For $d\ge2$ pair them by the lemma; for $d=1$ there
+are no remaining points. One factor for the triple and $d-1$ factors
+for the pairs give a degree-$d$ polynomial vanishing at every point
+except $p$. This is the final contradiction.
+\end{proof}
+
+\begin{corollary}[Annihilating moments]
+Let $Z\subset\mathbb R^q$ have distinct points and let every weight
+$w_z$ be nonzero. Suppose $d\ge1$, $|Z|\le2d+2$, and
+\[
+ \sum_{z\in Z}w_z P(z)=0
+ \quad\text{for every polynomial $P$ of total degree at most $d$}.
+\]
+Then $Z$ has affine dimension at most two. If $|Z|\le2d+1$, it
+is collinear.
+\end{corollary}
+\begin{proof}
+A polynomial vanishing at every point except possibly $p$ satisfies
+$w_pP(p)=0$. Since $w_p\ne0$, it also vanishes at $p$. Apply the
+theorem.
+\end{proof}
+
+\section{Application to affine Prouhet--Tarry--Escott identities}
+
+\begin{theorem}[Three denominator directions]
+Let $m\ge1$ and let $u_1,\ldots,u_m,v_1,\ldots,v_m$ be real affine
+forms in any number $n$ of variables. Suppose
+\[
+ F(s,x)=\prod_{j=1}^m(s+u_j(x)),\qquad
+ G(s,x)=\prod_{j=1}^m(s+v_j(x)),\qquad F-G=R(x)\ne0
+\]
+as a polynomial identity. The coefficient vectors of all the $u_j,v_j$
+are contained in an affine space of dimension at most two. Consequently,
+after substituting any affine form $s=C(x)$, the coefficient vectors
+of all $C+u_j,C+v_j$ span a linear space of dimension at most three.
+In particular their slope vectors have span dimension at most three.
+\end{theorem}
+\begin{proof}
+The case $m=1$ has at most two coefficient vectors, so is immediate.
+Assume $m\ge2$ and put $d=m-1$.
+Comparing the coefficients of $s^{m-k}$ gives
+$e_k(u_1,\ldots,u_m)=e_k(v_1,\ldots,v_m)$ for $1\le k\le d$.
+Newton's identities therefore give the polynomial identities
+\[
+ \sum_{j=1}^m u_j(x)^k=\sum_{j=1}^m v_j(x)^k
+ \quad (0\le k\le d).
+\]
+For clarity, the induction uses
+$p_k-e_1p_{k-1}+e_2p_{k-2}-\cdots+(-1)^k k e_k=0$;
+the case $k=0$ simply says that both lists have length $m$.
+
+There can be no identical affine form on opposite sides. Such a form
+$u=v$ would make $s+u$ divide $R(x)$ in the polynomial ring, impossible
+for a nonzero polynomial independent of $s$.
+Let $Z\subset\mathbb R^{n+1}$ be the distinct coefficient vectors,
+including the constant coefficient. Give a vector weight equal to its
+multiplicity among the $u_j$, or the negative of its multiplicity among
+the $v_j$. Thus all weights are nonzero and $|Z|\le2m=2d+2$.
+
+Write a coefficient vector as $z=(z_0,\ldots,z_n)$.
+Homogenizing each power-sum identity gives
+\[
+ \sum_{z\in Z}w_z(z_0t_0+\cdots+z_nt_n)^k=0
+ \quad (0\le k\le d).
+\]
+The coefficient of every degree-$k$ monomial in $t$ is its nonzero
+multinomial coefficient times $\sum_z w_z z^\alpha$. Hence all
+moments of total degree at most $d$ vanish. Apply the annihilating
+moments corollary to obtain an affine plane containing $Z$.
+
+Write its points as $z_\ast+a e+b f$, allowing $e$ or $f$ to be
+zero when the affine dimension is smaller. If $c$ is the coefficient
+vector of $C$, all substituted denominator vectors lie in
+$\operatorname{span}\{c+z_\ast,e,f\}$. Projection onto slope
+coordinates cannot increase dimension.
+\end{proof}
+
+On a region where all the factors are positive, the score in question is
+\[
+ \frac{F_s}{F}-\frac{G_s}{G}
+ =\sum_j\frac1{s+u_j}-\sum_j\frac1{s+v_j}
+ =-\frac{R F_s}{FG},\qquad F_s>0.
+\]
+It has sign $-\operatorname{sgn}R$ wherever $R\ne0$. The theorem
+shows that this construction has denominator slope rank at most three,
+without any factorization hypothesis on $R$. Denominator positivity and
+the manuscript's common-sign slope restriction must still be checked
+separately in an attempted construction.
+
+Apply the bounded-rank-block theorem of
+\texttt{split-product-rank-audit.tex} with $r=3$. A sum of
+$K=o(H)$ blocks of this form cannot represent every Boolean function
+with $H\le C_0 2^n/n^2$ for any fixed $C_0$. This is an obstruction
+to a specific ideal-moment construction. It does not exclude unrestricted
+head sums, $K$ comparable to $H$, lower-order moment matching, or
+identities that hold only on the Boolean cube.
+
+\section{The polynomial-identity hypothesis cannot be dropped}
+
+Here is a concrete boundary example with admissible denominators.
+For any $n\ge1$, put $m=n+1$ and define
+\[
+ u_0(x)=\sum_{i=1}^n x_i,\qquad
+ u_k(x)=k(1-x_k)+\sum_{i=k+1}^n x_i\quad(1\le k\le n).
+\]
+On every Boolean input, these $n+1$ numbers are a permutation of
+$0,1,\ldots,n$. This follows by induction: if $x_n=0$, the last
+entry is $n$ and the others are the preceding construction; if
+$x_n=1$, the last entry is zero and every other entry is increased
+by one.
+
+Let $P(s)=\prod_{k=0}^n(s+k)$ and
+$\delta=\frac18(\frac34)^n>0$. The polynomial $P(s)-\delta$ has
+$n+1$ distinct real roots, one in each interval
+$(-k-\frac14,-k+\frac14)$. Indeed the values of $P$ at the two
+endpoints have opposite signs and absolute value at least
+\[
+ \frac14\prod_{j\ne k}\left(|j-k|-\frac14\right)
+ \ge\frac14\left(\frac34\right)^n k!(n-k)!
+ \ge2\delta.
+\]
+Subtracting $\delta$ preserves those endpoint signs. The intermediate
+value theorem supplies a root in each of the disjoint intervals, and
+the degree excludes any further roots. Write the resulting monic
+factorization as $P(s)-\delta=\prod_{k=0}^n(s+v_k)$, where each
+$v_k$ is a real constant.
+Then, on every Boolean input and for every real $s$,
+\[
+ \prod_{k=0}^n(s+u_k(x))-\prod_{k=0}^n(s+v_k)=\delta.
+\]
+Nevertheless the slope vectors of the $u_k$ span all $n$ coordinate
+directions: the rows for $k=1,\ldots,n$ form an upper triangular
+matrix with diagonal entries $-1,-2,\ldots,-n$.
+
+Substitute
+$s=C(x)=n+2+(n+2)\sum_i x_i$. Every coefficient of $C+u_k$ and
+$C+v_k$ is strictly positive. For the latter constants use
+$v_k\in(k-\frac14,k+\frac14)$; for the former slopes use
+$n+2-k\ge2$. Since $\sum_{k=0}^n u_k$ is constant as an affine
+form, the slope vector of $C$ is the average of those of the
+$C+u_k$. The substituted denominators thus still have slope span
+dimension $n$.
+
+For $n\ge4$ this contradicts any putative extension of the rank-three
+conclusion to Boolean-only identities. It does not contradict the
+theorem: off the cube, the displayed product difference need not be
+independent of $s$. The example has a constant output sign, so it is
+not a compressed construction for arbitrary Boolean labels.
+
+\section{Literature and attribution}
+
+The collinearity statement for at most $2d+1$ points is the affine
+counterpart of Bastianelli--Cortini--De Poi, Lemma 2.4,
+\emph{The gonality theorem of Noether for hypersurfaces},
+\url{https://arxiv.org/pdf/1102.4550}.
+Levinson--Ullery, \emph{A Cayley--Bacharach theorem and plane
+configurations}, \url{https://arxiv.org/pdf/2102.08525}, study broader
+bounds of this kind; see their definition of $\mathrm{CB}(r)$,
+Theorems 1.1 and 1.3, and Proposition 2.5.
+The elementary proof above establishes the precise real affine statements
+used here without importing a general plane-configuration theorem or a
+conjectural case of one. The application to ideal moment cancellation is
+proved explicitly, rather than inferred from the numerical size of a
+Prouhet--Tarry--Escott solution.
+
+\end{document}
