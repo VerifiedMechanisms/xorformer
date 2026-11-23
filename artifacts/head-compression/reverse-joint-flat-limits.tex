@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{Weighted Flat Limits of Compact Reciprocal Sheets}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This note audits one attempted amplification mechanism for the reverse
+compiler. It does not bound arbitrary admissible representations and
+does not establish either requested asymptotic bound. The identities
+and generic flat-limit statements below have written proofs; they are
+not Lean formalized. The companion checker verifies 124 exact leading
+Pl\"ucker coefficients for $H\leq5$.
+
+Let $c_h,v_i\in\mathbb R^d$, let $v_{0i},\lambda_h\in\mathbb R$, and put
+\[
+ K_{ih}(\epsilon)=
+ \frac1{1-\epsilon(v_{0i}+c_h\cdot v_i+\lambda_h)}.
+\]
+The tokens may be permuted among the columns. For any fixed finite
+configuration, sufficiently small positive $\epsilon$ makes all these
+denominators positive. Whole-cube implementation imposes the additional
+affine slope budget, as in the earlier sheet constructions.
+
+\begin{proposition}[Exact weighted expansion]
+Write $U_i=1-\epsilon v_{0i}$ and $V_h=1-\epsilon\lambda_h$.
+For sufficiently small $\epsilon$,
+\[
+ K_{ih}(\epsilon)=
+ \sum_{\alpha\in\mathbb N^d,\ b\geq0}
+ \binom{|\alpha|+b}{\alpha_1,\ldots,\alpha_d,b}
+ \epsilon^{|\alpha|+2b}
+ \frac{v_i^\alpha v_{0i}^b}{U_i^{|\alpha|+b+1}}
+ \frac{c_h^\alpha\lambda_h^b}{V_h^{|\alpha|+b+1}}.
+ \tag{1}
+\]
+The same identity holds as a formal power series.
+\end{proposition}
+\begin{proof}
+Set $X=\epsilon(c_h\cdot v_i)/(U_iV_h)$ and
+$Y=\epsilon^2v_{0i}\lambda_h/(U_iV_h)$. Then
+\[
+ U_iV_h(1-X-Y)
+       =1-\epsilon(v_{0i}+c_h\cdot v_i+\lambda_h).
+\]
+Expand $(1-X-Y)^{-1}$ by the geometric series and expand powers of
+$c_h\cdot v_i$ by the multinomial theorem. Multiplication by
+$(U_iV_h)^{-1}$ gives (1). Each coefficient involves finitely many
+indices, so the formal-series identity is equally valid.
+\end{proof}
+
+Thus parameter monomials $c^\alpha\lambda^b$ and row monomials
+$v^\alpha v_0^b$ have weight $|\alpha|+2b$. Cauchy--Binet applied to
+(1) gives an exact rule for the first possible coefficient of every
+$H\times H$ minor: sum over all sets of $H$ distinct weighted indices
+with minimum total weight, taking the product of the row evaluation
+determinant and the parameter moment determinant, including the
+multinomial coefficients. Higher-weight sets cannot contribute to
+this coefficient. If it vanishes, the first actual nonzero coefficient
+may occur later; the statements below explicitly exclude that case.
+
+\paragraph{Second-order graph and its normalization.}
+For $d=1$, $c=(0,1,2)$, and $H=3$, the leading column space is, whenever
+the corresponding evaluations are independent,
+\[
+ \operatorname{span}\left\{1,\ v,\
+ 2v^2+(\lambda_0-2\lambda_1+\lambda_2)v_0\right\}.
+ \tag{2}
+\]
+Indeed the only minimum-weight sets are
+$(1,c,c^2)$ and $(1,c,\lambda)$, with total weight $3$.
+Their parameter determinants are $2$ and
+$\lambda_0-2\lambda_1+\lambda_2$, respectively.
+More generally, if $a$ satisfies $\sum_h a_h=\sum_h a_hc_h=0$,
+the second-order quotient is
+\[
+ \sum_h a_hc_h^2v^2+(a\cdot\lambda)v_0.
+\]
+The coefficient of $v_0$ is not $2(a\cdot\lambda)$: the raw expansion
+also has an order-$\epsilon$ constant $a\cdot\lambda$, and cancelling
+that constant by an $\epsilon$-dependent column combination subtracts
+one copy of $(a\cdot\lambda)v_0$ at the next order.
+
+For $H=4$, the first possible minor coefficient has order $5$ and
+factors through the common space $\operatorname{span}\{1,v,v^2,v_0\}$.
+For $H=5$, its order is $8$; the two boundary features are $v^3$ and
+$2vv_0$, paired with moments $c^3$ and $c\lambda$. These formulas
+are included in the exact checker.
+
+\paragraph{Generic ambient dimension for one varying coordinate.}
+Let $N_1(k)$ denote the number of pairs $(a,b)$ with $a+2b\leq k$.
+Then
+\[
+ N_1(k)=\left\lfloor\frac{(k+2)^2}{4}\right\rfloor.
+\]
+Choose $k$ with $N_1(k-1)<H\leq N_1(k)$. Suppose a permutation has
+at least one nonzero minor coefficient at the first possible total
+weight. Every leading Pl\"ucker coordinate then factors through
+the fixed row-evaluation space of weighted polynomials of degree at
+most $k$. Consequently its flat column space is contained in this
+common space, whose dimension is at most
+\[
+ N_1(k)=H+O(\sqrt H).
+\]
+This holds simultaneously for every permutation satisfying the
+stated nonvanishing condition. A rank-deficient exceptional permutation
+may have a later first nonzero coefficient and is not covered.
+
+\paragraph{A bound independent of the coordinate dimension.}
+The same first-layer argument gives a useful $2H$ bound even when
+$d$ grows. Let $N_d(k)$ count weighted indices
+$|\alpha|+2b\leq k$, and take
+$N_d(k-1)<H\leq N_d(k)$. Assume again that the first possible
+Pl\"ucker coefficient is nonzero. This requires full rank of all
+lower-weight parameter moments. In particular, the pure moments
+$c^\alpha$, $|\alpha|<k$, have rank
+\[
+ P_{k-1}=\binom{d+k-1}{d}<H.
+\]
+In a leading column-space vector, the pure degree-$k$ coefficient
+is the image of a vector in the fixed kernel of those lower pure
+moments. The image has dimension at most $H-P_{k-1}$ and does not
+depend on the token permutation. Together with all lower pure row
+monomials, this gives a fixed pure-polynomial space of dimension at
+most $H$. All remaining row monomials contain $v_0$; dividing by
+$v_0$ identifies them with weighted indices of weight at most $k-2$.
+There are $N_d(k-2)<H$ of these. Therefore all such generic flat
+spaces lie in one common space of dimension less than $2H$.
+
+For clarity, the assertion about the boundary coefficient also follows
+directly from the leading wedge in (1). Every minimum-weight index set
+contains every lower-weight index. The leading column space contains
+their row evaluations. Its remaining boundary vectors come from
+parameter coefficient vectors annihilating all lower moments, hence
+annihilating the stated pure moments. Projecting boundary vectors to
+the pure degree-$k$ coordinates gives the fixed kernel image above.
+
+\paragraph{What this does and does not rule out.}
+These common ambient spaces cannot themselves realize all strict sign
+patterns on more coordinates than their dimension. This is a statement
+about the flat limits. A conclusion for small nonzero $\epsilon$ needs
+a robustly missed orthant, for example an annihilating vector with
+every coordinate nonzero. Deliberately degenerate query rows can fail
+that condition: higher-order terms may determine signs at coordinates
+that vanish in a leading vector. Likewise, exceptional permutations
+can have deficient weighted moment matrices and later leading jets.
+No recursive construction exploiting either possibility, and no
+general obstruction to such a construction, is proved here.
+\end{document}
