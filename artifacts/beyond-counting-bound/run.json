@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T02:27:36.789296+00:00",
-  "elapsed_seconds_at_last_audit": 89301,
+  "last_audit_utc": "2026-11-23T02:30:54.141025+00:00",
+  "elapsed_seconds_at_last_audit": 95673.141043,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -301,53 +301,6 @@
       "conservative_fresh_start": true
     }
   ],
-  "active_experiments": [
-    {
-      "task": "four-parameter nine-test reciprocal search",
-      "output": "/out/mobius-evolved/n4-m9.json",
-      "status": "completed 14400 seconds; 388/512 observed; failure UNKNOWN"
-    },
-    {
-      "task": "three-parameter seven-test threshold-step annealing",
-      "output": "/out/mobius-evolved/n3-m7-step.json",
-      "status": "completed 7200 seconds; 122 of 128 patterns; failure UNKNOWN"
-    },
-    {
-      "task": "three-parameter seven-test threshold-step finite SAT",
-      "output": "/out/mobius-evolved/n3-m7-step-sat.json",
-      "status": "completed UNSAT solver diagnostic; finite step model only; not a Lean impossibility theorem"
-    },
-    {
-      "task": "three-parameter seven-test permutation-fiber linear feasibility",
-      "output": "/out/mobius-evolved/n3-m7-fiber-lra.json",
-      "status": "completed UNKNOWN after 3600 seconds; local linear model only"
-    },
-    {
-      "task": "four-parameter nine-test Cauchy-fiber linear feasibility",
-      "output": "/out/mobius-evolved/n4-m9-fiber-lra.json",
-      "status": "completed UNKNOWN after 7209 seconds; local linear model only"
-    },
-    {
-      "task": "four-parameter ten-test finite threshold-vote search",
-      "output": "/out/mobius-evolved/n4-m10-step-sat.json",
-      "status": "completed UNKNOWN after 7200 seconds; finite step model only; no impossibility inference"
-    },
-    {
-      "task": "positive full-parameter Boolean coordinate-score fibers",
-      "output": "/out/coordinate-score-fibers/n6-h3",
-      "status": "stopped after 3795 trials and about 1050 seconds by numerical SVD nonconvergence; one exact branch independently certified; other candidates UNKNOWN"
-    },
-    {
-      "task": "binary active score fibers and signed norm-minimization multipliers",
-      "output": "/out/binary-active-fibers",
-      "status": "running; all numerical candidates require exact certification"
-    },
-    {
-      "task": "integer mixed binary score fibers and signed numerator-norm multipliers",
-      "output": "/out/integer-binary-fibers",
-      "status": "running; exact mixed full-rank examples in dimensions 18 and 20; floating LP has no certified positive solution"
-    }
-  ],
   "stabilized_critical_point_audit": {
     "written_theorems": [
       "reciprocal positive denominator critical points",
@@ -567,5 +520,55 @@
     "all_jobs_exited_normally": true,
     "candidate_files": 0,
     "target_proved": false
-  }
+  },
+  "experiment_history": [
+    {
+      "task": "four-parameter nine-test reciprocal search",
+      "output": "/out/mobius-evolved/n4-m9.json",
+      "status": "completed 14400 seconds; 388/512 observed; failure UNKNOWN"
+    },
+    {
+      "task": "three-parameter seven-test threshold-step annealing",
+      "output": "/out/mobius-evolved/n3-m7-step.json",
+      "status": "completed 7200 seconds; 122 of 128 patterns; failure UNKNOWN"
+    },
+    {
+      "task": "three-parameter seven-test threshold-step finite SAT",
+      "output": "/out/mobius-evolved/n3-m7-step-sat.json",
+      "status": "completed UNSAT solver diagnostic; finite step model only; not a Lean impossibility theorem"
+    },
+    {
+      "task": "three-parameter seven-test permutation-fiber linear feasibility",
+      "output": "/out/mobius-evolved/n3-m7-fiber-lra.json",
+      "status": "completed UNKNOWN after 3600 seconds; local linear model only"
+    },
+    {
+      "task": "four-parameter nine-test Cauchy-fiber linear feasibility",
+      "output": "/out/mobius-evolved/n4-m9-fiber-lra.json",
+      "status": "completed UNKNOWN after 7209 seconds; local linear model only"
+    },
+    {
+      "task": "four-parameter ten-test finite threshold-vote search",
+      "output": "/out/mobius-evolved/n4-m10-step-sat.json",
+      "status": "completed UNKNOWN after 7200 seconds; finite step model only; no impossibility inference"
+    },
+    {
+      "task": "positive full-parameter Boolean coordinate-score fibers",
+      "output": "/out/coordinate-score-fibers/n6-h3",
+      "status": "stopped after 3795 trials and about 1050 seconds by numerical SVD nonconvergence; one exact branch independently certified; other candidates UNKNOWN"
+    },
+    {
+      "task": "binary active score fibers and signed norm-minimization multipliers",
+      "output": "/out/binary-active-fibers",
+      "status": "stopped after 20064 records and 10035.6 elapsed seconds; no certified unit-margin minimum; failure UNKNOWN"
+    },
+    {
+      "task": "integer mixed binary score fibers and signed numerator-norm multipliers",
+      "output": "/out/integer-binary-fibers",
+      "status": "completed; 3967 recorded exact-rank examples through trial 48371; selected mixed binary fibers certified, but no nonnegative dual or full-cube unit-margin minimum certified"
+    }
+  ],
+  "active_experiments": [],
+  "intermediate_exponent_lower_bound_proved": false,
+  "final_audit_index": "audit-index.md"
 }
