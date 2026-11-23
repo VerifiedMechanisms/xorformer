@@ -85,4 +85,40 @@ theorem not_partialRankingMask_scalar_repair (p q u v : ℝ)
     (partialRankingMask_pos q u v (hp.trans hpq) hv huv)
     (partialRankingMask_strictAnti_parameter p q u v hp hpq hv huv).le
 
+/-- The corresponding cross difference with the opposite denominator orientation. -/
+noncomputable def reversePartialRankingMask (p u v : ℝ) : ℝ :=
+  (u - v) / (p - u - v) - u / (p - u) + v / (p - v)
+
+/-- Opposite-orientation algebra remains valid whenever the baseline exceeds
+the sum of the two nonnegative local statistics. -/
+theorem reversePartialRankingMask_eq (p u v : ℝ)
+    (hu : 0 ≤ u) (hv : 0 ≤ v) (hp : u + v < p) :
+    reversePartialRankingMask p u v =
+      (u - v) * u * v / ((p - u - v) * (p - u) * (p - v)) := by
+  unfold reversePartialRankingMask
+  have h1 : p - u - v ≠ 0 := by linarith
+  have h2 : p - u ≠ 0 := by linarith
+  have h3 : p - v ≠ 0 := by linarith
+  field_simp
+  ring
+
+@[simp] theorem reversePartialRankingMask_zero_left (p v : ℝ) :
+    reversePartialRankingMask p 0 v = 0 := by
+  simp [reversePartialRankingMask, neg_div]
+
+@[simp] theorem reversePartialRankingMask_zero_right (p u : ℝ) :
+    reversePartialRankingMask p u 0 = 0 := by
+  simp [reversePartialRankingMask]
+
+/-- The opposite-orientation mask also has a strict positive comparison sign. -/
+theorem reversePartialRankingMask_pos (p u v : ℝ)
+    (hv : 0 < v) (huv : v < u) (hp : u + v < p) :
+    0 < reversePartialRankingMask p u v := by
+  have hu : 0 < u := hv.trans huv
+  have h1 : 0 < p - u - v := by linarith
+  have h2 : 0 < p - u := by linarith
+  have h3 : 0 < p - v := by linarith
+  rw [reversePartialRankingMask_eq p u v hu.le hv.le hp]
+  exact div_pos (mul_pos (mul_pos (sub_pos.mpr huv) hu) hv) (by positivity)
+
 end HeadComplexity

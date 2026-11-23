@@ -430,6 +430,25 @@ $x$ positive while keeping $y$ negative. This disproves that scalar
 repair step, not cancellation among several independently chosen
 modules and not a general gluing theorem.
 
+There is also a useful primitive with the reverse orientation:
+\[
+ J^-_p(u,v)=\frac{u-v}{p-u-v}-\frac{u}{p-u}+\frac{v}{p-v}
+ =\frac{(u-v)uv}{(p-u-v)(p-u)(p-v)}.
+\]
+For $u,v\geq0$ and $p>u+v$, it vanishes on either coordinate
+axis and has the strict sign of $u-v$ when both statistics are
+positive. This is a valid positive-coordinate module if
+$u=\sum_{i\in S}a_i(1-x_i)$,
+$v=\sum_{j\in T}b_j(1-x_j)$ with $a_i,b_j>0$, and
+$p(x)=p_0+\varepsilon\sum_i x_i$, where
+$p_0>\sum_i a_i+\sum_j b_j$ and $\varepsilon>0$.
+Indeed each denominator is positive on the full cube and every
+coordinate slope is strictly positive. Thus an axis-zero primitive
+in the required orientation exists. What remains unproved is
+efficient combination of these or other primitives for arbitrary
+two-one-hot sign tables; their nonuniform magnitudes do not justify
+replacing the numerical majority votes of the known compiler.
+
 \section{A finite gluing theorem for the opposite local orientation}
 
 The preceding obstruction concerns a specific scalar repair with
@@ -539,10 +558,11 @@ $O(n/\log n)$ local heads would give $O(2^n/(n\log n))$ globally.
 Even $O(n/\log\log n)$ local heads would already give the weaker
 but qualifying fallback $O(2^n/(n\log\log n))$.
 The known majority-ranking compiler has the opposite denominator
-orientation. The three-head partial mask cancels its axes but retains
-that opposite orientation. Neither construction satisfies the new
-theorem's positive-slope hypothesis, and no such local compiler is
-proved here. The finite gluing theorem and its proof are written only.
+orientation, and its saturating three-head partial mask retains that
+orientation. The primitive $J^-_p$ has the required positive slopes
+and axis cancellation, but no efficient arbitrary-label compiler from
+that primitive is proved here. The finite gluing theorem and its
+proof are written only.
 
 \section{Why the checked count does not improve the full-cube bound}
 
@@ -642,5 +662,9 @@ admissible realization above is written only; the file does not claim
 a formal \texttt{FracAtom} compiler. Lean checks pass, and the axiom
 audit reports only \texttt{propext}, \texttt{Classical.choice}, and
 \texttt{Quot.sound} for the principal declarations.
+The same file defines \texttt{reversePartialRankingMask} and proves
+\texttt{reversePartialRankingMask\_eq}, its two axis-cancellation
+lemmas, and \texttt{reversePartialRankingMask\_pos}, providing the
+key algebra for the usable opposite-orientation primitive.
 
 \end{document}
