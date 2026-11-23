@@ -1,23 +1,26 @@
 {
-  "lean_modules": 24,
-  "listed_declarations": 56,
+  "lean_modules": 37,
+  "listed_declarations": 97,
   "all_imported": true,
   "all_listed_axiom_audits_checked": true,
   "allowed_axioms": [
-    "propext",
     "Classical.choice",
-    "Quot.sound"
+    "Quot.sound",
+    "propext"
   ],
-  "certificate_manifest_hashes_checked": 22,
+  "successful_full_build_jobs": 9221,
+  "certificate_manifest_hashes_checked": 26,
   "checkpoint_manifest_hashes_checked": 5,
-  "research_json_files_parsed": 105,
+  "research_json_files_parsed": 150,
   "all_research_json_parsed": true,
+  "tex_files_checked": 27,
   "tex_environments_balanced": true,
   "no_em_dashes_in_tex": true,
   "original_model_files_unchanged": true,
   "manuscript_unchanged": true,
+  "manuscript_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "target_proved": false,
-  "original_fourteen_bit_label_sha256": "722d0b23906e62105954a4c91abf6aefb5a78bce75403b12030c57bdc1505f36",
   "full_and_concatenated_original_face_labels_equal": true,
-  "hash_matched_large_certificate_audit_reports": 8
+  "hash_matched_large_certificate_audit_reports": 9,
+  "scope": "Inventory, hashes, imports, logged build/axiom checks, and static formatting only; no new mathematical theorem or certificate verification is inferred."
 }

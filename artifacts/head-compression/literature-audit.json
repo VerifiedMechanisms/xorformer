@@ -1050,8 +1050,8 @@
       "authors": "Paul Balister and Bela Bollobas",
       "url": "https://arxiv.org/pdf/0711.1151",
       "checked_location": "Sections 2 and 3: finite uniform-cover inequality (4), entropy chain rule (5), conditional monotonicity (7), and Theorem 2 (Shearer).",
-      "mechanism": "Coordinate-deleted projections of every unflipped refinement state occur among terminal states. The discrete Loomis-Whitney inequality bounds distinct states by L^((n+1)/n); a separate colored-forest encoding then controls all unflipped graphs at once.",
-      "gap": "This yields a rigorous obstruction to a specified first-variation family, not an affirmative universal construction. Node-dependent selector flips and arbitrary-order perturbations remain outside this application."
+      "mechanism": "Finite Loomis-Whitney bounds distinct unflipped states by L^((n+1)/n). Applying it in two bases and pairing opposite selector orientations gives 2*M <= L^(1/n)*(M+L) for flipped graphs. A separate colored-forest encoding then controls all positive-step graphs under the stated boundary charging.",
+      "gap": "This yields an obstruction to a specified first-variation family, not an affirmative universal construction. Higher-order perturbations, nonpositive steps, and projective boundary merging remain outside this application."
     }
   ]
 }

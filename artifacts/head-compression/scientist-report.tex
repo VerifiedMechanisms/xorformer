@@ -88,8 +88,13 @@ $L^{(n+1)/n}$. Encoding those states with colored spanning forests
 closes the entire unflipped first-variation route, including arbitrary
 target-dependent graphs and repeated state vectors. The core terminal
 projection and a weaker square cardinality bound are Lean checked; the
-entropy and forest count are manual. Arbitrary node-dependent flips and
-higher-order perturbations remain outside this obstruction.
+entropy and forest count are manual. A further paired-projection
+inequality extends the obstruction to all node-dependent selector flips
+with positive steps: below $2^n$ terminal states it bounds the number
+of distinct raw states, and a forest count controls the union of all
+graphs. Every root and terminal occurrence is charged. Higher-order
+perturbations, nonpositive steps, projective boundary merging, and general
+admissible head lists remain outside this obstruction.
 
 The equal-variable exchange extension in
 \texttt{polya-exchange-rigidity.tex} allows arbitrarily many increment
@@ -119,7 +124,10 @@ produce the target bound. The writeup distinguishes proved obstructions
 to specified subclasses from theorem-strength gaps in proposed general
 constructions. Numerical failures and solver timeouts are never used
 as lower bounds. The later pruning and denominator-coalescence outcomes
-are recorded separately in the final continuation diagnostics.
+are recorded separately in the final continuation diagnostics. The final
+exact linear-arithmetic dictionary search on one six-bit table returned
+\texttt{unknown} after its $2700$-second solver limit, with no certificate.
+This is not an infeasibility result.
 
 \paragraph{Latest analytical audit.}
 The elementary proof in \texttt{boolean-moment-tangent-audit.tex}

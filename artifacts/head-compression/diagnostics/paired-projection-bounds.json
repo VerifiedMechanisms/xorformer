@@ -1,0 +1,180 @@
+{
+  "random_graphs": 2000,
+  "seed": 2026112320,
+  "below_full_cube_threshold": 769,
+  "largest_random_state_count": 180,
+  "ladder_cases": [
+    {
+      "n": 1,
+      "states": 4,
+      "terminals": 2,
+      "below_full_cube_threshold": false,
+      "ladder_length": 1
+    },
+    {
+      "n": 1,
+      "states": 6,
+      "terminals": 2,
+      "below_full_cube_threshold": false,
+      "ladder_length": 2
+    },
+    {
+      "n": 1,
+      "states": 10,
+      "terminals": 2,
+      "below_full_cube_threshold": false,
+      "ladder_length": 4
+    },
+    {
+      "n": 1,
+      "states": 20,
+      "terminals": 2,
+      "below_full_cube_threshold": false,
+      "ladder_length": 9
+    },
+    {
+      "n": 2,
+      "states": 8,
+      "terminals": 4,
+      "below_full_cube_threshold": false,
+      "ladder_length": 1
+    },
+    {
+      "n": 2,
+      "states": 12,
+      "terminals": 4,
+      "below_full_cube_threshold": false,
+      "ladder_length": 2
+    },
+    {
+      "n": 2,
+      "states": 20,
+      "terminals": 4,
+      "below_full_cube_threshold": false,
+      "ladder_length": 4
+    },
+    {
+      "n": 2,
+      "states": 40,
+      "terminals": 4,
+      "below_full_cube_threshold": false,
+      "ladder_length": 9
+    },
+    {
+      "n": 3,
+      "states": 16,
+      "terminals": 8,
+      "below_full_cube_threshold": false,
+      "ladder_length": 1
+    },
+    {
+      "n": 3,
+      "states": 24,
+      "terminals": 8,
+      "below_full_cube_threshold": false,
+      "ladder_length": 2
+    },
+    {
+      "n": 3,
+      "states": 40,
+      "terminals": 8,
+      "below_full_cube_threshold": false,
+      "ladder_length": 4
+    },
+    {
+      "n": 3,
+      "states": 80,
+      "terminals": 8,
+      "below_full_cube_threshold": false,
+      "ladder_length": 9
+    },
+    {
+      "n": 4,
+      "states": 32,
+      "terminals": 16,
+      "below_full_cube_threshold": false,
+      "ladder_length": 1
+    },
+    {
+      "n": 4,
+      "states": 48,
+      "terminals": 16,
+      "below_full_cube_threshold": false,
+      "ladder_length": 2
+    },
+    {
+      "n": 4,
+      "states": 80,
+      "terminals": 16,
+      "below_full_cube_threshold": false,
+      "ladder_length": 4
+    },
+    {
+      "n": 4,
+      "states": 160,
+      "terminals": 16,
+      "below_full_cube_threshold": false,
+      "ladder_length": 9
+    },
+    {
+      "n": 5,
+      "states": 64,
+      "terminals": 32,
+      "below_full_cube_threshold": false,
+      "ladder_length": 1
+    },
+    {
+      "n": 5,
+      "states": 96,
+      "terminals": 32,
+      "below_full_cube_threshold": false,
+      "ladder_length": 2
+    },
+    {
+      "n": 5,
+      "states": 160,
+      "terminals": 32,
+      "below_full_cube_threshold": false,
+      "ladder_length": 4
+    },
+    {
+      "n": 5,
+      "states": 320,
+      "terminals": 32,
+      "below_full_cube_threshold": false,
+      "ladder_length": 9
+    },
+    {
+      "n": 6,
+      "states": 128,
+      "terminals": 64,
+      "below_full_cube_threshold": false,
+      "ladder_length": 1
+    },
+    {
+      "n": 6,
+      "states": 192,
+      "terminals": 64,
+      "below_full_cube_threshold": false,
+      "ladder_length": 2
+    },
+    {
+      "n": 6,
+      "states": 320,
+      "terminals": 64,
+      "below_full_cube_threshold": false,
+      "ladder_length": 4
+    },
+    {
+      "n": 6,
+      "states": 640,
+      "terminals": 64,
+      "below_full_cube_threshold": false,
+      "ladder_length": 9
+    }
+  ],
+  "exact_integer_checks_passed": true,
+  "seconds": 0.7209226689301431,
+  "scope": "Finite diagnostics only. The general inequalities are manual proofs; the universal head upper bound remains unproved.",
+  "target_proved": false
+}

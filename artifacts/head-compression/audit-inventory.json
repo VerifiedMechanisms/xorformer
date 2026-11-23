@@ -306,7 +306,7 @@
     "build_log": "artifacts/head-compression/validation/lean-terminal-projections-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
-    "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
+    "certificates": "See certificates/manifest.json. The final integrity audit checks hashes for 26 certificates and 5 checkpoints; nine large-certificate entries link hash-matched successful integer audit reports. These records do not assert a universal bound.",
     "scalar_root_axioms": "/out/head-compression/lean-scalar-root-axioms.log; all six declarations use only the allowed standard axioms.",
     "boolean_moment_extension": "All 9191 build jobs succeeded; the three new declarations use only propext, Classical.choice, and Quot.sound. No target declaration was added.",
     "absolute_coordinate_chart": "diagnostics/absolute-chart-small-check.json records gradient, Hessian-direction, and numerator-response checks. certificates/random-n6-h3-absolute.json was separately verified using exact Fraction arithmetic.",
@@ -323,7 +323,7 @@
     "related_run_refresh": "Read-only fetches of xorformer-runs and autoresearch-runs at 2026-11-21 15:13-15:14 UTC found no new branch updates.",
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
-    "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
+    "final_static_checks": "The reproducible audit_repository_integrity.py checks all research JSON, balanced TeX environments, no em dashes, declaration imports and logged axioms, build completion, certificate/checkpoint hashes, original face labels, unchanged manuscript/model files, and research diff whitespace. It does not rerun exact certificate verification or prove the target.",
     "inventory_references": "97 listed main and companion declarations in 37 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
@@ -1387,7 +1387,7 @@
     "file": "artifacts/head-compression/merged-polya-graph-audit.tex",
     "result": "For each fixed finite coordinate-refinement DAG, including independently flipped variable selectors, realization dimension q <= L+n*c. Positive steps force at least n+1 terminals per nontrivial weak component, so q < 2*(R+L).",
     "mechanism": "A fixed terminal covector annihilates every step variation by descending induction; following constant-coordinate branches produces affinely independent terminal projections.",
-    "sign_scope": "All unflipped positive-step graphs, without depth or incidence restrictions, are excluded at the target rate for first variations. Fixed flipped graphs and subexponential families of them are also excluded. Arbitrary flipped graphs and higher-order jets remain outside the result.",
+    "sign_scope": "Under the stated charging of every root and terminal occurrence, all positive-step first variations, including arbitrary target-dependent flipped graphs, have subexponential strict sign coverage at the target rate. Higher-order perturbations, nonpositive steps, and charging only projective boundary classes are outside the theorem.",
     "diagnostic": "artifacts/head-compression/diagnostics/merged-polya-dimension.json",
     "diagnostic_scope": "126839 unflipped integer graphs. No dimension exceeding R+L was found; that stronger inequality remains unproved.",
     "target_proved": false,
@@ -1395,8 +1395,24 @@
       "state_bound": "M^(n) <= L^(n+1) for distinct state vectors and terminal vectors; no bound on repeated vertex occurrences is claimed.",
       "encoding": "A colored spanning forest of the geometric state graph uses q0=M+n*c parameters. Each component has at least n+1 terminal vectors. At J=O(2^n/n^2), M=O(J), q0=O(J), and the number of forest templates and head assignments is 2^O(J*log(J*n)).",
       "conclusion": "All first variations of all target-dependent unflipped positive-step graphs have 2^o(2^n) strict sign tables at the target rate, provided every component has an internal vertex and roots plus terminals are charged.",
-      "still_open": "Arbitrary node-dependent selector flips, arbitrary-order jets, and general admissible heads are outside this obstruction.",
+      "still_open": "The later paired-projection argument handles arbitrary selector flips under the same boundary charging. Higher-order jets, projective boundary merging, and general heads remain outside the obstruction.",
       "proof_status": "Manual projection-entropy, spanning-forest, and two-block sign-count proof. The terminal projection and weaker square bound are Lean checked.",
+      "target_proved": false
+    },
+    "paired_projection_extension": {
+      "state_bound": "For distinct raw states M and distinct terminal states L<2^n: 2*M <= L^(1/n)*(M+L), hence M <= L^(1+1/n)/(2-L^(1/n)). At L<=C*2^n/n^2 this gives M=O_C(2^n/(n*log n)).",
+      "mechanism": "Apply finite Loomis-Whitney in both bases (e0,e1,...,en) and (e0,e0-e1,...,e0-en). A preserving color path stops at a terminal or an oppositely oriented state. Pair the projection counts using AM-GM, then encode geometric positions by a forest with 2n+1 possible edge directions.",
+      "sign_conclusion": "With every root and terminal occurrence charged and no isolated unrefined component, the union over all positive-step flipped graphs of the enlarged first-variation family has 2^o(2^n) strict sign patterns at O(2^n/n^2) charged heads.",
+      "counterexample_scope": "The explicit flipped ladder has L=2^n and M=(m+1)*2^n, disproving any finite state bound at the threshold L=2^n. It is consistent with the strict L<2^n condition.",
+      "proof_status": "Manual theorem, supported by the previously formalized terminal reachability. The projection and counting deductions are not Lean declarations.",
+      "diagnostic": "diagnostics/paired-projection-bounds.json",
+      "diagnostic_scope": "2000 random finite graphs and 24 exact ladder examples; checks include quotient projection cardinalities and independent spanning-forest reconstruction. Finite checks are not the proof.",
+      "limitations": [
+        "first variations only",
+        "strictly positive steps",
+        "all boundary occurrences charged, with no free projective merging",
+        "no isolated unrefined components"
+      ],
       "target_proved": false
     }
   },
@@ -1407,5 +1423,16 @@
     ],
     "method": "git fetch origin '+refs/heads/*:refs/heads/*' in existing read-only bare mirrors",
     "result": "Both fetches completed without updated heads. Latest xorformer branch remains ar/1bfc2d7fde2f, c45f40a, 2026-11-05 11:26:38; latest autoresearch branch remains ar/a3733e82430f7754604, 2026-11-23 08:01:20, previously inspected usage report only."
+  },
+  "finite_dictionary_search": {
+    "script": "search_dictionary_reciprocal_variation.py",
+    "report": "diagnostics/dictionary-reciprocal-n6-h8.json",
+    "scope": "One fixed six-bit truth table, at most eight heads, a 254-denominator dictionary, an exact weighted zero relation, and strict first-variation inequalities. Pure linear rational arithmetic with Boolean support choices.",
+    "outcome": "unknown",
+    "reason": "timeout",
+    "seconds": 2702.25299471803,
+    "certificate": null,
+    "target_proved": false,
+    "unrestricted_lower_bound": false
   }
 }

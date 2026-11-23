@@ -12,9 +12,11 @@
 This note treats finite graphs of coordinate refinements, allowing
 arbitrary merging of equal states. It proves a parameter-dimension bound
 for fixed graphs, then uses projection counting and spanning forests to
-exclude first variations of all unflipped positive-step graphs at the
-requested head rate. It does not prove or disprove the universal head
-conjecture. The extension to arbitrary flipped graphs remains open.
+exclude first variations of all positive-step graphs, including arbitrary
+node-dependent flips, at the requested rate under the stated boundary
+charging convention. It does not prove or disprove the universal head
+conjecture. Higher-order variations and other charging schemes remain
+outside the argument.
 
 \section{The graph and its linear realization space}
 
@@ -202,9 +204,9 @@ choices, or would have to leave the stated family in another way.
 The fixed-graph argument alone supplies no sufficiently small bound on
 the number of realizable graph incidence patterns. The projection and
 spanning-forest arguments below resolve this issue for all unflipped
-positive-step graphs, including repeated state vectors. The analogous
-union over arbitrary flipped graphs and higher-order perturbations
-remains outside the argument.
+positive-step graphs, including repeated state vectors. The later paired-projection argument also controls the union over
+arbitrary flipped graphs. Higher-order perturbations remain outside
+the argument.
 Low continuous dimension for each member of an arbitrarily large
 discrete family is not a sign-count bound for their union. No
 universal labeling construction from those graph choices is supplied.
@@ -373,6 +375,241 @@ rules at a repeated state. It imposes no integrality, bounded-depth,
 or fixed-denominator-list restriction. It concerns first variations
 only. The projection and forest encoding, rather than an unsupported
 enumeration of all refinement graphs, are the new counting mechanism.
+
+\section{Why the distinct-state argument does not cover arbitrary flips}
+
+The following explicit admissible family prevents an unqualified extension
+of (12) to node-dependent flips. Fix $n\ge1$, an integer $m\ge1$,
+$a>0$, $b_i>0$, and $\delta>0$. For
+$0\le k\le m$ and $z\in\{0,1\}^n$, use the state denominator
+\[
+ B_{k,z}(x)=a+k\delta+\sum_{i=1}^n(b_i+\delta z_i)x_i.
+ \tag{17}
+\]
+The states with $k=m$ are terminal. At a state with $k<m$, let the
+constant child be $(k+1,z)$. If $z_i=0$, let child $i$ be
+$(k,z+e_i)$; its coefficient increment is $\delta e_i$.
+If $z_i=1$, let child $i$ be $(k+1,z-e_i)$; its increment is
+$\delta(e_0-e_i)$. These are exactly the allowed flipped refinement
+rules in (10), with one common positive step $\delta$ at every node.
+All state coefficients remain strictly positive.
+
+The integer potential $2k+\sum_i z_i$ increases by two on a constant
+edge and by one on every variable edge. Hence the graph is acyclic.
+Every state is reachable from $(0,0)$ by constant steps followed by
+unflipped variable steps, and this is its only root. There are
+\[
+                    L=2^n,\qquad M=(m+1)2^n,\qquad J=2^n+1.
+ \tag{18}
+\]
+The states are distinct because their constant coordinates determine
+$k$ and their variable coordinates determine $z$. Thus $M$ is
+unbounded for fixed $n$ and $L$, and for $m\ge2$ it exceeds
+$L^{(n+1)/n}=2^{n+1}$.
+
+This is a counterexample to the proposed projection bound for arbitrary
+flips, not to the universal head conjecture. Its terminal count is
+$2^n$, above the requested asymptotic budget. It establishes neither
+small-budget universality nor impossibility for arbitrary flipped
+refinements. In particular, the forest count above must not be silently
+extended to this class.
+
+\section{A finite state bound for flips below the full-cube threshold}
+
+Although (12) fails with arbitrary flips, a weaker bound controls distinct
+states when the number of distinct terminal vectors is below $2^n$.
+It is not sufficient for the sign-count conclusion of the forest theorem.
+
+\begin{theorem}[Flipped state bound]
+Let $S$ and $T$ be the distinct state and terminal sets of any finite
+positive-step graph satisfying (10), put $M=|S|$, $L=|T|$, and
+$N=2^n$, and assume $1\le L<N$. Then
+\[
+                        (N-L)M\le (N-1)L^2. \tag{19}
+\]
+In particular, if $L=O(N/n^2)$, then $M\le(1+o(1))L^2$.
+\end{theorem}
+\begin{proof}
+At any state in $T$, stop even if that vector also occurs at an internal
+vertex. At every state of $S\setminus T$, choose one of its original
+outgoing refinement rules. This choice preserves all required children.
+The functional $\ell(p)=2p_0+\sum_i p_i$ increases strictly along every
+chosen edge: by $2s$ on the constant edge and by $s$ on each variable
+edge. Thus every chosen path terminates in a finite set unless it stops
+by a separately specified rule.
+
+Following only constant children preserves the slope vector
+$(p_1,\ldots,p_n)$ and reaches $T$. There are therefore at most $L$
+distinct slope vectors in $S$. Let $K$ be the largest number of states
+with one fixed slope vector. Then $M\le LK$.
+
+For each $x\in\{0,1\}^n$, write $B_x(p)=p_0+\sum_i p_ix_i$.
+A chosen rule has a unique exceptional input $x$ at which all its
+variable selectors equal one. At every other input, at least one
+variable child preserves $B_x$. Let $I_x$ be the set of nonterminal
+states whose chosen rule has exceptional input $x$. These sets partition
+$S\setminus T$, so $\sum_x|I_x|=M-L$.
+
+Starting from any state, follow a $B_x$-preserving variable child
+until reaching $T$ or $I_x$. Strict increase of $\ell$ and finiteness
+ensure termination. Hence every value of $B_x$ on $S$ already occurs
+on $T\cup I_x$, giving
+\[
+                       |B_x(S)|\le L+|I_x|.
+\]
+On a fixed slope fiber, distinct states have distinct constant
+coordinates and hence distinct values of $B_x$. Consequently
+$K\le L+|I_x|$ for every $x$. Averaging these inequalities gives
+$NK\le NL+M-L$. Combine this with $M\le LK$:
+\[
+                   NM\le LNK\le NL^2+LM-L^2.
+\]
+Rearranging proves (19). The stated asymptotic consequence follows
+because $L/N=O(n^{-2})$.
+\end{proof}
+
+The proof permits repeated vertices and different rules at one state.
+It is a manual combinatorial theorem; no Lean declaration of (19)
+is claimed. Unlike the linear-order unflipped bound, a quadratic bound
+in $L$ does not make the colored-forest union subexponential at the
+target head count. The paired-projection argument below supplies the sharper estimate
+needed for that route. The family (17) shows that a finite bound solely
+in $n,L$ is impossible once $L=2^n$.
+
+\section{Paired projections close the arbitrary-flip first-variation route}
+
+The coarse estimate (19) can be strengthened by using hyperplane
+projections in two different coordinate bases. This removes the remaining
+graph-choice gap for first variations with strictly positive steps.
+
+\begin{theorem}[Paired-projection state bound]
+Under the hypotheses of (19),
+\[
+             2M\le L^{1/n}(M+L),\qquad
+             M\le\frac{L^{1+1/n}}{2-L^{1/n}}. \tag{20}
+\]
+Consequently, for each fixed $C>0$, if $L\le C2^n/n^2$ and $n$
+is sufficiently large, then
+\[
+                       M\le \frac{2n}{\log n}L, \tag{21}
+\]
+where the logarithm in (21) is natural.
+\end{theorem}
+\begin{proof}
+Choose one outgoing rule at each state of $S\setminus T$ and stop
+at every state of $T$, as in the proof of (19). Let $\pi_0$ be the
+quotient map with kernel $\mathbb R e_0$. The constant-child argument
+gives $|\pi_0(S)|\le L$.
+
+For $1\le i\le n$, let $\pi_i^+$ and $\pi_i^-$ be quotient maps
+with respective kernels $\mathbb R e_i$ and
+$\mathbb R(e_0-e_i)$. Let $a_i$ count the nonterminal states whose
+chosen color-$i$ direction is $e_0-e_i$. Following the color-$i$
+child while its direction is $e_i$ preserves $\pi_i^+$, and stops
+at a terminal or one of these $a_i$ states. The strictly increasing
+functional $\ell$ ensures termination. Following the opposite choice
+similarly preserves $\pi_i^-$. Therefore
+\[
+       |\pi_i^+(S)|\le L+a_i,\qquad
+       |\pi_i^-(S)|\le L+(M-L-a_i)=M-a_i. \tag{22}
+\]
+
+Apply the finite Loomis--Whitney inequality in the standard basis
+$(e_0,e_1,\ldots,e_n)$ and separately in the basis
+$(e_0,e_0-e_1,\ldots,e_0-e_n)$. The latter is a basis because its
+last $n$ vectors have independent variable-coordinate projections.
+A coordinate-deleted projection is, up to an invertible map of its
+image, the quotient by the corresponding basis direction; hence its
+cardinality is precisely the relevant cardinality in (22). Multiplying
+the two projection inequalities gives
+\[
+ M^{2n}\le |\pi_0(S)|^2
+             \prod_{i=1}^n|\pi_i^+(S)|\,|\pi_i^-(S)|
+       \le L^2\prod_{i=1}^n(L+a_i)(M-a_i)
+       \le L^2\left(\frac{M+L}{2}\right)^{2n}. \tag{23}
+\]
+The last inequality is the arithmetic-geometric mean inequality for
+the two nonnegative factors whose sum is $M+L$. Taking $2n$-th
+roots proves the first inequality in (20). Since $L<2^n$, its
+coefficient $2-L^{1/n}$ is positive, giving the second inequality.
+
+For the uniform asymptotic estimate, put $u=2\log n-\log C$.
+For sufficiently large $n$, $u\ge\log n>0$ and $u/n\le1$.
+The budget assumption implies $L^{1/n}\le2e^{-u/n}$. Since
+$1-e^{-t}\ge t/2$ for $0\le t\le1$,
+\[
+ 2-L^{1/n}\ge 2(1-e^{-u/n})\ge u/n\ge(\log n)/n,
+ \qquad L^{1/n}\le2.
+\]
+Substitute these inequalities in (20) to obtain (21).
+\end{proof}
+
+\begin{theorem}[All positive-step refinement graphs]
+Fix $C>0$. The enlarged first-variation family (7), taken over all
+finite graphs (10) with arbitrary node-dependent selector flips and
+strictly positive steps, has only $2^{o(2^n)}$ strict sign tables when
+all root and terminal occurrences are charged and their total is at
+most $C2^n/n^2$. Every weak component must contain an internal vertex.
+The conclusion permits arbitrary target-dependent graphs, repeated
+state vectors, different rules at a repeated state, and unbounded
+numbers of internal occurrences.
+\end{theorem}
+\begin{proof}
+Write $K=\lfloor C2^n/n^2\rfloor$ and work in sufficiently large
+dimensions, so $K<2^n$. As before, collapse equal state vectors only
+to encode the geometric graph, and choose a spanning forest. For each
+component, following constant children from one internal vertex and
+from its $n$ variable children reaches terminals with affinely independent
+slope projections. Thus, if the geometric graph has $c'$ components,
+$(n+1)c'\le L\le K$.
+
+Every forest edge is parallel to one of the $2n+1$ directions
+\[
+                e_0,\ e_1,\ldots,e_n,\ e_0-e_1,\ldots,e_0-e_n.
+\]
+The root-vector and signed-edge-displacement encoding therefore has
+$q_0=M+nc'\le M+K$ real parameters. By (21),
+\[
+                 M=O_C(2^n/(n\log n)),\qquad
+                 q_0=O_C(2^n/(n\log n)). \tag{24}
+\]
+The number of parent maps, direction choices, and assignments of $K$
+ordered head occurrences to states has logarithm
+\[
+                  O(M\log(M+1)+M\log(n+1)+K\log(M+1))
+                       =O_C(2^n/\log n)=o(2^n). \tag{25}
+\]
+Summing over all eligible $M$ changes only the constant in this bound.
+As before, invalid parent maps are only a combinatorial overcount;
+the parameter bound is used only for valid forests. Smaller head counts
+are included by zero-numerator padding with an existing denominator.
+
+For each valid template, the numerator block of (7) has
+$k_1=(3K+1)(n+1)=O_C(2^n/n)$ parameters and degree at most two.
+The forest block has $q_0$ parameters and degree at most $2K$
+after clearing squared denominators. Thus the logarithm of the
+bound (8), with $p=k_1+q_0$ and $q_0$ in place of $q$, is at most
+\[
+        O_C(2^n\log n/n)+O(q_0\log(K+1))
+                   =O_C(2^n\log n/n+2^n/\log n)=o(2^n). \tag{26}
+\]
+Here $p<2^n$ for sufficiently large $n$, as required by (8).
+Combine (25) and (26) to obtain the asserted union bound.
+\end{proof}
+
+These are manual theorems. The kernel-checked constant-branch reachability
+lemma supports the stopping arguments, but the quotient-projection,
+entropy, forest, and sign-count deductions have not been formalized.
+The ladder (17) is consistent with (20): its $L=2^n$ makes the
+denominator in (20) zero. The exclusion of unrefined isolated components
+and the restriction to first variations remain essential. Higher-order
+perturbations, nonpositive steps, and arbitrary admissible head lists
+are not excluded by this theorem. Proportional but unequal state vectors
+are not identified in the charged boundary: for example $(1,1)$ and
+$(2,2)$ give the same normalized reciprocal feature but remain distinct
+vectors. A construction charging only projective classes after combining
+proportional fractions requires a separate argument. No affirmative
+worst-case upper bound is obtained.
 
 \section{Finite structural probe}
 
