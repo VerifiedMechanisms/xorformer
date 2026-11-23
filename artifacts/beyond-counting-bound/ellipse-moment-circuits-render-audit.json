@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T23:17:11.967013+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/ellipse-moment-circuits.md",
+      "source_math_spans": 93,
+      "rendered_math_spans": 93,
+      "findings": 0,
+      "notes": [],
+      "sha256": "c122e8a7d0c9035cf7fa7ea3181040c24f8523d212a17a7a7e2328dfbfeccf24"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "07bac12462a98838dd6f01594ca5cdf6cd277d931ddddfafc98ee9a6c81a1b2f"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "435c6768795af1ddbcc0b7a6a8ade28e9fc0be1a17fc5ad7415183505f1cc6d5"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

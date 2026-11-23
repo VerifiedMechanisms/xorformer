@@ -1,0 +1,12 @@
+import HeadComplexity.Atoms.EllipseMomentCircuits
+
+#print axioms HeadComplexity.EllipseMomentCircuits.velocities_positive
+#print axioms HeadComplexity.EllipseMomentCircuits.on_ellipse
+#print axioms HeadComplexity.EllipseMomentCircuits.residues_nonzero
+#print axioms HeadComplexity.EllipseMomentCircuits.residues_distinct
+#print axioms HeadComplexity.EllipseMomentCircuits.projections_distinct
+#print axioms HeadComplexity.EllipseMomentCircuits.moments_zero
+#print axioms HeadComplexity.EllipseMomentCircuits.fourth_moments
+#print axioms HeadComplexity.EllipseMomentCircuits.inverse6_mul
+#print axioms HeadComplexity.EllipseMomentCircuits.inverse7_mul
+#print axioms HeadComplexity.EllipseMomentCircuits.coherent_slopes_positive

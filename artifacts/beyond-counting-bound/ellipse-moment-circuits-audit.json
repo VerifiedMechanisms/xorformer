@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T23:17:02.224014+00:00",
+  "build": "ellipse-moment-circuits-build.txt",
+  "build_jobs": 3137,
+  "declarations": [
+    "HeadComplexity.EllipseMomentCircuits.velocities_positive",
+    "HeadComplexity.EllipseMomentCircuits.on_ellipse",
+    "HeadComplexity.EllipseMomentCircuits.residues_nonzero",
+    "HeadComplexity.EllipseMomentCircuits.residues_distinct",
+    "HeadComplexity.EllipseMomentCircuits.projections_distinct",
+    "HeadComplexity.EllipseMomentCircuits.moments_zero",
+    "HeadComplexity.EllipseMomentCircuits.fourth_moments",
+    "HeadComplexity.EllipseMomentCircuits.inverse6_mul",
+    "HeadComplexity.EllipseMomentCircuits.inverse7_mul",
+    "HeadComplexity.EllipseMomentCircuits.coherent_slopes_positive"
+  ],
+  "axiom_audit": "ellipse-moment-circuits-axioms.txt",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_sha256": "5462b778524b5e5e5d68f48abc28eedcadd1be82aa9bfdaf1a924d722550327c",
+  "writeup_sha256": "c122e8a7d0c9035cf7fa7ea3181040c24f8523d212a17a7a7e2328dfbfeccf24",
+  "rational_audit": "ellipse-moment-circuits-rational-audit.json",
+  "scope": "Ten kernel-checked finite declarations. Harmonic dimension and arbitrary-degree rational existence have complete written proofs. No asymptotic Boolean lower bound.",
+  "model_changes": [],
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}

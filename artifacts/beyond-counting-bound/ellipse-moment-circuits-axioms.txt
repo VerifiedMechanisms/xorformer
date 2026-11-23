@@ -1,0 +1,12 @@
+'HeadComplexity.EllipseMomentCircuits.velocities_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.on_ellipse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.residues_nonzero' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.residues_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.projections_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.moments_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.fourth_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.inverse6_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.inverse7_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.EllipseMomentCircuits.coherent_slopes_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
