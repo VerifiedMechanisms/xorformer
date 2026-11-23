@@ -159,6 +159,86 @@ prevents varying row denominators while making these three consecutive
 symbols simultaneously location-independent. It does not prohibit
 arbitrary joint multi-slot queries or another coding architecture.
 
+\section{A mixed-column decoder and its first-moment obstruction}
+The signed interpolation family supplies a materially different proposed
+readout. If column $j$ stores an ordered list of pole-residue pairs
+$(b_{hj},c_{hj})$, a multi-hot input with active column set $T$ evaluates
+\[
+ F_T(D)=-1+\sum_h\frac{\sum_{j\in T}c_{hj}}
+ {D-\sum_{j\in T}b_{hj}}.
+\]
+Although every one-column query can be constrained to zero at the fixed
+row arguments, a multi-column query depends on relative assignments of
+the pole-residue pairs to heads. Thus these queries can distinguish
+some permutation sheets without head-specific row coefficients.
+Their ability to decode arbitrary row tables, however, does not follow
+from the number of sheets. Already the first mixed moment is an
+obstruction in a generic small-pole regime.
+
+\begin{proposition}[Constant signs from a nonzero first mixed moment]
+Let $H\geq3$, let $\lambda_1,\ldots,\lambda_H$ be distinct positive
+numbers, and let $D_1,\ldots,D_H$ be distinct positive numbers. Put
+\[
+ p_0(T)=\prod_{j=1}^H(T-\lambda_j),\quad
+ w_j=\frac1{p_0'(\lambda_j)},\quad
+ q(T)=\prod_{i=1}^H(T-D_i),\quad
+ c_j(\varepsilon)=-\frac{q(\varepsilon\lambda_j)}
+ {\varepsilon^{H-1}p_0'(\lambda_j)}.
+\]
+For a permutation $\pi$, define
+\[
+ M_\pi=\sum_jw_j(\lambda_{\pi(j)}+\lambda_{\pi^{-1}(j)}),
+ \qquad
+ F_{\pi,\varepsilon}(D)=-1+
+ \sum_j\frac{c_j(\varepsilon)+c_{\pi(j)}(\varepsilon)}
+ {D-\varepsilon(\lambda_j+\lambda_{\pi(j)})}.
+\]
+For every fixed $D>0$,
+\[
+ \lim_{\varepsilon\downarrow0}
+ \varepsilon^{H-2}F_{\pi,\varepsilon}(D)
+ =-\frac{q(0)M_\pi}{D^2}.
+\]
+Consequently, if $M_\pi\ne0$, then for all sufficiently small positive
+$\varepsilon$, the values at all $D_i$ have the same strict sign.
+\end{proposition}
+\begin{proof}
+Lagrange interpolation for the polynomials one and $T$, followed by
+comparison of their $T^{H-1}$ coefficients, gives
+$\sum_jw_j=\sum_jw_j\lambda_j=0$, since $H\geq3$.
+For each fixed $j$ and $D>0$, Taylor expansion at zero gives
+\[
+ q(\varepsilon\lambda_j)
+ =q(0)+\varepsilon q'(0)\lambda_j+O(\varepsilon^2),
+ \qquad
+ \frac1{D-\varepsilon(\lambda_j+\lambda_{\pi(j)})}
+ =\frac1D+\frac{\varepsilon(\lambda_j+\lambda_{\pi(j)})}{D^2}
+  +O(\varepsilon^2).
+\]
+There are finitely many summands, so the errors can be summed. The
+constant term in their product sum is
+$q(0)\sum_j(w_j+w_{\pi(j)})/D=0$.
+The contribution involving $q'(0)$ in the linear coefficient is
+$2q'(0)\sum_jw_j\lambda_j/D=0$. The remaining linear coefficient is
+\[
+ \frac{q(0)}{D^2}
+ \sum_j(w_j+w_{\pi(j)})(\lambda_j+\lambda_{\pi(j)})
+ =\frac{q(0)M_\pi}{D^2}.
+\]
+The minus sign in the residues gives the asserted limit; the constant
+term $-1$ vanishes after multiplication by $\varepsilon^{H-2}$.
+If $M_\pi\ne0$, the limiting values are nonzero and all have the same
+sign. Finiteness of the row set then supplies one positive upper bound
+on $\varepsilon$ preserving that sign at every row. All displayed
+denominators are positive after decreasing this upper bound if needed.
+\end{proof}
+
+This obstruction permits exceptional permutations with $M_\pi=0$,
+parameters not in the small-pole limit, and jointly changing the
+unordered pole sets. It therefore does not refute the mixed-column
+decoder. Any attempt using this mechanism must provide the required
+moment cancellations and the resulting arbitrary strict row patterns,+rather than only the component count.
+
 \paragraph{Unresolved capacity question.}
 The finite five-row construction disproves the naive bound of $2H$
 readable signs from $2H$ column parameters. None of the statements here
