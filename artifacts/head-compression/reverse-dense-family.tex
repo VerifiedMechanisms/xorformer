@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Dense pattern families and exact reverse masks}
+\author{}
+\date{}
+\maketitle
+
+\begin{theorem}[Exact ternary row multipliers]
+Let $F$ be a reverse grid score with $H$ affine ratios and an arbitrary
+bias. Every denominator is positive on the entire Boolean $(r+s)$-cube
+and has strictly negative slopes. For any
+$\epsilon:[r]\to\{-1,0,1\}$ there is a reverse grid score with
+$2H+2$ ratios having grid values $\epsilon(i)F(e_i,e_j)$.
+Its denominators retain full-cube positivity and strictly negative slopes.
+The same statement holds for column multipliers.
+\end{theorem}
+
+\begin{proof}
+Write one input ratio on the grid as
+\[
+ \frac{A_i+a_j}{b_0-p_i-u_j},\qquad p_i,u_j>0,
+ \qquad b_0-\sum_i p_i-\sum_j u_j>0.
+\]
+Here the numerator intercept is included in $A_i$. Introduce two weak
+reverse denominators and their affine numerators:
+\[
+ B_\pm=b_0-\sum_{\epsilon(i)=\pm1}p_i z_i-\sum_j u_jw_j,
+\]
+\[
+ A_+=\sum_{\epsilon(i)=1}A_i z_i+\sum_j a_jw_j,
+ \qquad
+ A_-=-\sum_{\epsilon(i)=-1}A_i z_i-\sum_j a_jw_j.
+\]
+Removing negative slopes only increases the cube minimum. Directly in
+all three cases $\epsilon(i)\in\{-1,0,1\}$,
+\[
+ \frac{A_+(e_i,e_j)}{B_+(e_i,e_j)}+
+ \frac{A_-(e_i,e_j)}{B_-(e_i,e_j)}
+ =\epsilon(i)\left(\frac{A_i+a_j}{b_0-p_i-u_j}
+                         -\frac{a_j}{b_0-u_j}\right).
+\]
+Summing over the input heads leaves one column baseline $q(j)$.
+The missing matrix $\epsilon(i)q(j)$, together with the row term
+$\epsilon(i)c$ from the original bias $c$, is exactly one rank-one
+factor plus a row addition. The checked rank-correction theorem
+represents it with two further heads. Strictify each weak denominator
+$B$ by adding
+$\delta(2-|z|-|w|)/(r+s+1)$, where
+$\delta=B(\boldsymbol1)>0$. This leaves every grid value unchanged and
+gives strictly negative slopes and cube minimum $3\delta/(r+s+1)$.
+Swapping coordinate blocks proves the column statement.
+\end{proof}
+
+Thus a row sign followed by a Boolean column mask uses $4H+6$ heads.
+Every inactive column is exactly zero on the grid. This is an exact
+mask, so stacking masked scores incurs no accumulated numerical error.
+
+\begin{theorem}[One common row translation]
+Let $\mathcal G\subseteq\{-1,1\}^r$, and write
+$N=2^r$ and $b=N-|\mathcal G|$. Suppose every $r\times s$ sign table
+whose columns lie in $\mathcal G$ has a jointly admissible reverse grid
+compiler with at most $H$ heads. If $sb<N$, then every $r\times s$
+sign table has such a compiler with at most $2H+2$ heads. Exact axis
+repair gives at most $6H+9$ heads.
+\end{theorem}
+
+\begin{proof}
+Choose a common row sign uniformly from $\{-1,1\}^r$. For each fixed
+target column the translated column is uniform, so exactly $b$ row
+signs are bad. The union of the bad sets for the $s$ columns has
+cardinality at most $sb<N$. Choose a row sign outside that union,
+compile the resulting good columns, and apply the exact row multiplier
+above to recover the original table. The separately checked axis repair
+costs $3K+3$ heads for a $K$-head grid compiler.
+\end{proof}
+
+\begin{theorem}[Several row translations]
+Under the same joint family promise, suppose $r,s,k\geq1$ and
+\[
+ s b^k<N^k.
+\]
+Then every $r\times s$ sign table has a reverse grid compiler with
+at most $k(4H+6)$ heads. Exact axis repair gives at most
+$12kH+18k+3$ heads.
+\end{theorem}
+
+\begin{proof}
+Choose $k$ independent row signs. A fixed column fails all of them for
+exactly $b^k$ of the $N^k$ choices, so the union bound supplies a tuple
+under which every target column succeeds at least once. Assign each
+column to its first successful translation. The density assumption
+implies $\mathcal G\neq\varnothing$. In each batch fill its unassigned
+columns with any fixed good pattern, and apply the promised compiler
+to the full width-$s$ table. Apply the row sign and the exact column
+mask for the assigned columns, at cost $4H+6$. Summing the $k$ scores
+leaves exactly one strict signed score at each grid point.
+\end{proof}
+
+\paragraph{Quantitative sufficient promise.}
+For balanced $r,s$ of comparable size, it would suffice to construct a
+jointly admissible good family with $H=O(r/\log r)$ and bad fraction
+$b/N\leq(\log r)^{-a}$ for any fixed $a>0$. Taking
+\[
+ k=\left\lceil\frac{\log(2s)}{a\log\log r}\right\rceil
+\]
+gives $s(b/N)^k\leq1/2$ and hence an
+$O(r/\log\log r)$ universal compiler, including exact axes.
+A bad fraction at most $r^{-a}$ instead allows bounded $k$ and
+preserves the stronger $O(r/\log r)$ head bound.
+
+\paragraph{Verification and unresolved hypothesis.}
+The ternary row multiplier, block transposition, column multiplier,
+$4H+6$ masked score, exact finite one-translation union bound, and
+$6H+9$ conditional axis compiler are formalized in
+\texttt{formalization/HeadComplexity/Results/ReverseRowFlip.lean}.
+The multiple-translation argument and its asymptotic specialization
+are written proofs. The exact rational checker
+\texttt{reverse-row-flip-check.py} tests all 27 ternary row masks of
+one three-head $3\times2$ example, including every full-cube
+vertex and the strict gauge.
+
+No sufficiently efficient high-density family has been established.
+The family promise requires admissibility jointly for every choice of
+$s$ good columns. Separate realizations of each column, or success on
+most random complete tables with unrelated row designs, do not by
+themselves establish this promise. The new reduction is conditional
+and does not complete the requested unconditional global bound.
+\end{document}
