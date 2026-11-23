@@ -364,10 +364,10 @@ Jacobian. Subtracting the two rows at each $d_i$ again gives the
 blocks $(C_\pi\circ C_\pi,0)$, so the Jacobian is invertible by
 the same Cauchy and Borchardt argument used above. Thus each sheet
 retains $2H$ independently adjustable strict signs. Every additional
-readout with a common row pole $t$ has the uncorrected value
+readout may have independent head poles $t_h$ and has the uncorrected value
 \[
  \sum_h\frac{A_h-P_h(\lambda_{\pi(h)})}
-                   {t-\lambda_{\pi(h)}}+b.
+                   {t_h-\lambda_{\pi(h)}}+b.
  \tag{13}
 \]
 The head count is $H+L+1$, with the one reference head also carrying
@@ -381,17 +381,29 @@ features are realized as affine coefficients on the one-hot rows.
 General axis repair may subsequently be applied at constant-factor
 head cost.
 
+The polynomials of degree at most $H-1$ can interpolate an arbitrary
+fixed matrix $W_{hj}=P_h(\lambda_j)$. Consequently (13), with arbitrary
+fixed $W$ and independently chosen extra row poles $t_h$, is an
+$O(H)$-head platform retaining all $H!$ regular permutation sheets.
+This also permits exact cancellation of selected compact-limit
+terms: by applying (12) with memories $W_{h,\pi(h)}$, another $H+1$
+heads can subtract any row-dependent linear combination of these
+$H$ selected residues. This alone does not expose more than $H$
+independently adjustable sign coordinates.
+
 This result is a complete written proof of an unrestricted polynomial
 profile platform. The companion polynomial-fiber checker also checks
 (11)--(12), all auxiliary cube minima, and the zero values, using
 exact rational arithmetic. It is not a proof of the required
-$\Omega(H\log\log H)$ independently readable signs. In particular,
-for head-dependent poles $t_h$, the analogue of the right side of
-(11) is
+$\Omega(H\log\log H)$ independently readable signs. The rank
+factorization (11) itself does require common poles: for head-dependent
+poles $t_h$, its right side would be
 $\sum_k s_{k,\pi}\sum_h V_{\pi(h)}\lambda_{\pi(h)}^k/
 (t_h-\lambda_{\pi(h)})$; its inner sum depends on the permutation.
-The low-rank correction argument does not extend to that expression
-without a further construction.
+The low-rank correction argument does not apply to that expression.
+This causes no restriction on the extra readouts in (13), since the
+auxiliary correction is set to zero there; only the regular paired
+rows need (11).
 
 \paragraph{Unresolved quantitative issue.}
 As the poles and tokens enter a very compact far-pole regime, the
