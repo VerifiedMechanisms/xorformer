@@ -326,3 +326,11 @@ $$ R_n(t)=\frac{\prod_{r=0}^{n}(t-r)}{\prod_{j=1}^{n+1}(t+j)}=1+\sum_{j=1}^{n+1}
 The coefficients are the residues at the distinct poles $-j$, so partial fractions proves the identity. Every denominator has positive constant and positive coherent slopes, hence each summand is an admissible head. The score is zero on the entire Boolean cube, although it is nonzero at $t=1/2$. All residues are nonzero and all poles are distinct. Thus full-cube cancellation need not arise from a formal rational identity or coincident denominators. This example has one shared affine statistic; it does not refute every possible classification of cancellations.
 
 Moreover, a rank estimate polynomial in the number of summands exceeds the ambient input dimension at the exponential head counts relevant here. A stronger sign-sensitive statement would still be needed even if the Boolean-identity issue were repaired. The proposed transfer is blocked at those two precise steps, and gives no intermediate exponent.
+
+## Full table normalization does not bound all critical points
+
+The [Gram-metric construction](full-table-critical-points.md) closes a specific gap in the earlier projective critical-point audit. It normalizes the whole zero-origin head table in Euclidean norm. One fixed linear functional has exponentially many distinct nondegenerate critical image points, with logarithmic count quadratic in the input dimension. A common rational amplitude vector avoids explicitly listed linear degeneracies. A single rescaled analytic system has a displayed block diagonal invertible limiting Jacobian, so the proof does not assume independent compatibility of a grid of derivative data.
+
+Four algebraic ingredients pass Lean. Exact rational arithmetic checks 654 limiting systems. A separate directed dyadic interval verifier certifies all nine perturbed roots in the five-bit example, using a specified rational scale, invertible Jacobians, positive coefficients, and disjoint image-ratio intervals. The general family theorem has a complete written analytic proof, not an additional Lean declaration.
+
+This rules out another uniform small count of all critical points. It does not establish a large count of classification minima, and all the scores obtained after adding bias two are positive. No sign-counting theorem or asymptotic head-count improvement follows.

@@ -12,6 +12,8 @@ The normalization has an intrinsic meaning: $T_{r,b}(e_i)=r_i$, so it is precise
 
 This strengthens the earlier critical-point obstruction by producing distinct nonconstant tables at regular image points. It does not count distinct Boolean sign tables: all scores constructed here have the same sign. It also does not assert a result for normalization by the full truth-table Euclidean norm, or an independent-head product count on the summed image. Neither the requested lower bound nor an intermediate exponent follows.
 
+A [separate later construction](full-table-critical-points.md) treats the full table norm. It changes the equations to account for the varying Gram matrix and uses a single rescaled system with an explicit invertible limiting Jacobian. That result also concerns critical points rather than distinct Boolean labels.
+
 ## The scalar rational function
 
 Use anchor coordinates $a_i$ indexed by $0\leq i\lt d$, and data coordinates $t_j$ indexed by $1\leq j\leq k$. Put
