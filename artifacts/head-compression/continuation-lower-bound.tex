@@ -706,6 +706,92 @@ strict patterns of the $12$ fixed queries. This finite computation
 checks the construction's indexing and signs; the preceding written
 argument proves the theorem for every $H=2^d$.
 
+\begin{theorem}[Direct reverse extension freezes the column code]
+Use the poles of the hierarchical theorem, and let $S\geq3$.
+Assign an arbitrary permutation $\pi_j$ of the $H$ poles to each
+column $1\leq j\leq S$. Keep only the $H/2$ root queries, whose
+probe values are
+\[
+ D_i=1+L^{-(4i-1)},\qquad 1\leq i\leq H/2.
+\]
+Suppose that for every head slot $h$ there is a positive affine
+denominator on the whole $(H/2+S)$-cube, with every row and column
+slope nonpositive, whose one-hot grid values are
+\[
+ a_h\bigl(D_i-\lambda_{\pi_j(h)}\bigr),\qquad a_h>0.
+\]
+Then $\pi_1=\cdots=\pi_S$. In particular, headwise translations and
+positive rescalings of these denominator tables cannot transfer the
+hierarchical decoder to the reverse orientation for three or more
+independently specified columns.
+\end{theorem}
+\begin{proof}
+Divide the affine denominator for a fixed head by $a_h$ and write it
+as $\Gamma-\sum_i p_i u_i-\sum_jq_jv_j$, with $p_i,q_j\geq0$.
+If its grid table is $D_i-U_j$, the equations
+$\Gamma-p_i-q_j=D_i-U_j$ imply the existence of constants $C,c$
+such that
+\[
+ p_i=C-D_i,\qquad q_j=U_j-c,\qquad \Gamma=C-c.
+\]
+Nonnegative slopes give $C\geq\max_iD_i$ and
+$c\leq\min_jU_j$. Evaluating at the all-one point, and writing
+$r=H/2$, yields
+\[
+ \begin{aligned}
+ 0&<\sum_iD_i-\sum_jU_j-(r-1)C+(S-1)c\\
+ &\leq\max_iD_i-\min_jU_j
+       -\sum_i(\max_kD_k-D_i)-\sum_j(U_j-\min_kU_k)\\
+ &\leq\min_iD_i-\min_jU_j-\sum_j(U_j-\min_kU_k).
+ \end{aligned}
+\]
+The last inequality uses the single summand corresponding to a
+minimal row probe. Thus every such denominator must satisfy the
+necessary budget
+\[
+ \sum_j(U_j-\min_kU_k)<\min_iD_i-\min_jU_j.
+\]
+
+For this head put $k=\min_j\pi_j(h)$, so its minimal column pole
+is $1-\varepsilon_k$. If $k=H$, the head has the same rank in all
+columns. Otherwise $k\leq H-1$, and
+\[
+ \min_iD_i-\lambda_k
+ =L^{-(2H-1)}+\varepsilon_k
+ \leq(1+1/L)\varepsilon_k.
+\]
+Each column with rank larger than $k$ contributes at least
+$(1-L^{-2})\varepsilon_k$ to the budget's left side. There cannot
+be two such columns, since $L\geq8$ implies
+\[
+ 2(1-L^{-2})>1+1/L.
+\]
+Hence every head assumes its smallest column rank in at least
+$S-1$ of the $S$ columns.
+
+We now use only that each column is a permutation. At least one head
+has minimal rank $1$. There cannot be two such heads, because each
+would carry rank $1$ in at least $S-1$ columns, giving at least
+$2(S-1)>S$ occurrences, whereas the $S$ permutations contain exactly
+$S$ occurrences. The unique such head must carry rank $1$ in every
+column, since no other head can carry that rank. Remove this fixed
+head and repeat the same argument for rank $2$, then rank $3$, up
+to rank $H$. Every head's rank is fixed across all columns, which
+is exactly the claimed equality of permutations.
+\end{proof}
+
+This obstruction concerns preservation of the individual denominator
+tables. It does not apply to collective resynthesis using different
+denominators or additional heads. The numerators do not enter the
+argument, so modifying numerators alone while retaining these tables
+cannot repair this direct transfer. The construction's root stage
+also consists of independent pair choices, so the compact
+independent-pair obstruction in
+\texttt{continuation-compact-selectors.tex} prevents a straightforward
+replacement by compact unweighted readers. A different correlated
+code or a collective correction with a proved sublogarithmic head
+cost would be needed to exploit this local bit gain globally.
+
 \section{Primary-source transfer checks}
 
 Pardo and Sebasti\'an, \emph{Erzeugungsgrad, VC-Dimension and Neural
