@@ -197,4 +197,54 @@ families outside the enlarged span in (4) are not covered by that
 conclusion. Example (6) shows that investigating nongraded limits
 is mathematically substantive. None of these statements supplies
 the requested global upper or lower bound.
+
+\paragraph{Arbitrary nongraded invariant spaces can be much larger.}
+There is no corresponding $O(L+d^2)$ parameterization of all invariant
+spaces. The following explicit family also shows why proving
+realizability by the reciprocal columns matters. Suppose $d\geq2$ and
+$L\geq d+2$, and put $q=L-d+1$. For arbitrary real coefficients $c_{bk}$,
+define
+\[
+ p_c(W)=e_1W^{q-1}
+       +\sum_{b=2}^d\sum_{k=1}^{q-2}c_{bk}e_bW^k,
+ \qquad
+ E_c=\operatorname{span}\{e_2,\ldots,e_d,p_c,Tp_c,\ldots,T^{q-1}p_c\}.
+ \tag{7}
+\]
+The first components of the last $q$ vectors are the distinct monomials
+$W^{q-1},\ldots,1$. Thus the listed vectors are independent,
+$\dim E_c=L$, and $E_c$ contains every constant vector.
+It is $T$-invariant because the shift sends each listed vector to the
+next or to zero.
+
+These spaces are distinct for distinct coefficient arrays. If
+$E_c=E_{c'}$, express $p_{c'}$ in the displayed basis of $E_c$.
+Its first component forces coefficient one on $p_c$ and zero on the
+other shifted vectors. Its zero constant term then forces zero on
+$e_2,\ldots,e_d$. Consequently $p_{c'}=p_c$ and $c'=c$.
+Hence this family has
+$(d-1)(q-2)=(d-1)(L-d-1)$ freely recoverable real parameters.
+
+It also realizes all strict signs on that many fixed rows. Choose
+distinct positive $W_1,\ldots,W_{q-2}$ and rows
+$(W_j,a=e_b)$ for $2\leq b\leq d$.
+The matrix $(W_j^k)_{1\leq j,k\leq q-2}$ is invertible: it is a
+Vandermonde matrix times a nonsingular diagonal matrix. Independently
+for each $b$, choose the coefficients $c_{bk}$ so that
+$e_b\cdot p_c(W_j)$ equals any prescribed value $+1$ or $-1$.
+
+This is an exact shattering statement for the enlarged class of all
+invariant spaces. It is not a reciprocal-head construction. In
+particular, the fixed-profile maps
+\[
+ (\lambda_1,\ldots,\lambda_J)
+ \longmapsto
+ \operatorname{span}\left\{
+ v_h\prod_{k\ne h}(1-\lambda_kW):1\leq h\leq J\right\}
+ \tag{8}
+\]
+are highly restricted rational maps into the Grassmannian. Establishing
+which members of (7), if any, occur in their coalescing limits is an
+additional problem. Neither invariant-space dimension nor the
+shattering statement for (7) resolves that problem.
 \end{document}

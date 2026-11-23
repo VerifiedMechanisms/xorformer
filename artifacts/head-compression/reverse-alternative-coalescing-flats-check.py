@@ -43,3 +43,27 @@ for vector in expected:
 assert matrix.row_join(coeffs(u * W**2)).rank() == 5
 print("PASS: binary identity, four invariant numerator columns, four exact limits,")
 print("      rank four, backward-shift invariance, and failure of gradedness.")
+
+# The larger invariant-space family has the claimed dimension and readouts.
+for d in range(2, 5):
+    for L in range(d + 2, d + 6):
+        q = L - d + 1
+        c = {(b, k): s.Rational((b + 1) * 11 + k, k + 1)
+             for b in range(1, d) for k in range(1, q - 1)}
+        polynomial = s.Matrix([W**(q - 1)] + [
+            sum(c[b, k] * W**k for k in range(1, q - 1))
+            for b in range(1, d)])
+        generators = [s.eye(d).col(b) for b in range(1, d)]
+        shifted = polynomial
+        for k in range(q):
+            generators.append(shifted)
+            shifted = shifted.applyfunc(
+                lambda z: s.cancel((z - z.subs(W, 0)) / W))
+        flattened = s.Matrix.hstack(*(s.Matrix([
+            s.expand(g[b]).coeff(W, k)
+            for k in range(q) for b in range(d)]) for g in generators))
+        assert flattened.rank() == L
+        readout = s.Matrix([[j**k for k in range(1, q - 1)]
+                            for j in range(1, q - 1)])
+        assert readout.det() != 0
+print("PASS: 12 larger invariant-space dimensions and exact readout determinants.")
