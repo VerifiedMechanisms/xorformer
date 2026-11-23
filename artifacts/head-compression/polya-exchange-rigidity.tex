@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Exchange Refinements of Boolean Reciprocal Features}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note derives a merged, two-step averaging identity and proves
+rigidity of its common-step edge weights. It is a manual proof, not a
+new Lean result. It supplies no universal head upper bound.
+
+Let $b_0,\ldots,b_n>0$, let $z_0=1$, and let $z_i=x_i\in\{0,1\}$
+for $i>0$. Set
+\[
+ T=\sum_{i=0}^n b_i,\qquad B(x)=\sum_{i=0}^n b_i z_i,
+ \qquad K_b(x)=\frac{b_0}{B(x)}.
+\]
+For $0<|\delta|<\min_i b_i$ and $i<j$ define
+\[
+ E_{ij}(x)=K_{b+\delta(e_i-e_j)}(x)
+          +K_{b-\delta(e_i-e_j)}(x)-2K_b(x).
+ \tag{1}
+\]
+Every weight vector in (1) is strictly positive. The terms are
+admissible constant-numerator heads, and repeated occurrences of
+$K_b$ can be merged into one head.
+
+\begin{theorem}[Exact exchange averaging]
+For every Boolean input,
+\[
+                  \sum_{0\le i<j\le n} b_i b_j E_{ij}(x)=0.
+ \tag{2}
+\]
+\end{theorem}
+\begin{proof}
+The homogeneous version of the P\'olya identity is
+\[
+ K_b=\sum_{i=0}^n\frac{b_i}{T}K_{b+\delta e_i}.
+ \tag{3}
+\]
+It follows by grouping selected and unselected colors, or by the
+one-step calculation in \texttt{polya-reciprocal-audit.tex}.
+The same identity holds for a negative increment whenever all
+resulting weights remain positive. Apply (3) with increment $\delta$
+and then at each child with increment $-\delta$. The probability
+of the ordered pair $(i,j)$ is
+\[
+ \frac{b_i(b_j+\delta\mathbf1_{i=j})}{T(T+\delta)}.
+\]
+For $i=j$ the endpoint is $b$. For $i\ne j$ it is
+$b+\delta(e_i-e_j)$. Subtract $K_b$ from the resulting average,
+multiply by $T(T+\delta)$, and group the two orders of each
+unordered pair. This gives (2). All denominators and transition
+probabilities used in these two steps are positive.
+\end{proof}
+
+There are at most $n(n+1)+1$ distinct denominator forms in (2).
+The count does not assert that these forms are all different.
+
+\begin{theorem}[Rigidity of common-step edge weights]
+Suppose $n\ge1$ and let $w_{ij}\in\mathbb R$ for
+$0\le i<j\le n$. Under the same assumptions on $b$ and $\delta$,
+\[
+ \sum_{i<j} w_{ij}E_{ij}(x)=0\quad\hbox{for every Boolean }x
+ \tag{4}
+\]
+if and only if there is a real $\lambda$ such that
+$w_{ij}=\lambda b_i b_j$ for every edge. In particular, signed
+weights do not add freedom to this common-step identity.
+\end{theorem}
+\begin{proof}
+Direct subtraction gives, for $1\le i<j\le n$,
+\[
+ E_{ij}=\frac{2\delta^2 b_0(x_i-x_j)^2}
+                    {B(B^2-\delta^2)},\qquad
+ E_{0j}=\frac{2\delta^2(b_0-B)(1-x_j)}
+                    {B(B^2-\delta^2)}.
+ \tag{5}
+\]
+For example, when $x_i=x_j$ the first expression is zero; when
+they differ its two shifted denominators are $B+\delta$ and
+$B-\delta$. In the second expression, the case $x_j=1$ is zero,
+whereas the case $x_j=0$ also shifts the numerator by $\pm\delta$.
+Because $B\ge b_0>|\delta|$, the common denominator in (5) is
+strictly positive. Thus (4) is equivalent to vanishing on the cube
+of the multilinear quadratic polynomial
+\[
+ P(x)=b_0\sum_{1\le i<j\le n}w_{ij}(x_i+x_j-2x_ix_j)
+      -\left(\sum_i b_i x_i\right)\sum_j w_{0j}(1-x_j).
+ \tag{6}
+\]
+Here and below diagonal squares are reduced using $x_i^2=x_i$.
+Its coefficient of $x_ix_j$, for distinct nonzero indices, is
+\[
+                  -2b_0 w_{ij}+b_iw_{0j}+b_jw_{0i}.
+ \tag{7}
+\]
+Its coefficient of $x_i$ is
+\[
+                  b_0\sum_{j\ne i}w_{ij}
+                         -b_i\sum_{j\ne i}w_{0j}.
+ \tag{8}
+\]
+Vanishing of a multilinear quadratic on the cube forces these
+coefficients to be zero: first evaluate at singleton supports and
+then at two-element supports. Set $s=\sum_{j=1}^n b_j>0$ and
+$u=\sum_{j=1}^n w_{0j}$. Substitute (7) into twice (8). The
+result is
+\[
+                         s w_{0i}-b_i u=0.
+ \tag{9}
+\]
+Hence $w_{0i}=b_i u/s$, and (7) gives
+$w_{ij}=b_i b_j u/(b_0s)$. Taking $\lambda=u/(b_0s)$ proves
+necessity, including $n=1$, where there are no nonanchor edges.
+Sufficiency follows from (2).
+\end{proof}
+
+\paragraph{Consequences for the attempted construction.}
+The two urn steps merge their return paths and produce an exact
+Boolean cancellation, but choosing an arbitrary graph of weights
+does not generate a larger family of cancellations. A nonzero
+common-step relation uses every edge, with precisely the weights
+in (2), up to one scalar. The next result also controls a bounded
+number of increment magnitudes. Nonconstant numerator weights and
+general merged refinement graphs remain outside these statements.
+
+\begin{lemma}[Two elementary inclusion matrices]
+Let $1\le k\le n-1$. If real $a_i$ satisfy
+$\sum_{i\in S}a_i=0$ for every $k$-element subset $S$ of $[n]$,
+then every $a_i$ is zero. If $2\le k\le n-2$ and real symmetric
+edge weights $a_{ij}$ satisfy
+$\sum_{\{i,j\}\subseteq S}a_{ij}=0$ for every $k$-element
+subset $S$, then every $a_{ij}$ is zero.
+\end{lemma}
+\begin{proof}
+For the first assertion, compare subsets with the same $k-1$
+elements and with respective last elements $i$ and $j$. This makes
+all $a_i$ equal; a $k$-element sum then makes their common value
+zero. For the second, fix distinct $i,j$ and compare the sums for
+$R\cup\{i\}$ and $R\cup\{j\}$, where $R$ ranges over all
+$(k-1)$-element subsets outside $\{i,j\}$. The first assertion
+on those $n-2$ indices gives $a_{ir}=a_{jr}$ for every remaining
+$r$. Thus all incident edge weights at each vertex agree. Symmetry
+then makes all edge weights equal. A $k$-element sum, containing
+$\binom{k}{2}>0$ edges, makes their common value zero.
+\end{proof}
+
+\begin{lemma}[Separated quadratic coefficients]
+Let $B=b_0+\sum_i b_ix_i$ with every $b_i\ne0$, let $M\ge1$,
+and assume $n\ge2M+2$. Let $P_0,\ldots,P_{M-1}$ be multilinear
+polynomials of degree at most two with $P_j(0)=0$. If
+\[
+                \sum_{j=0}^{M-1} B(x)^{2j}P_j(x)=0
+                       \quad(x\in\{0,1\}^n),
+ \tag{10}
+\]
+then all $P_j$ are zero.
+\end{lemma}
+\begin{proof}
+Use descending induction on the largest index $j$ still present,
+and put $r=2j$. Write the quadratic coefficients of $P_j$ as
+$p_{ab}$. In the multilinear reduction of $B^rP_j$, the
+coefficient at a subset $S$ of size $r+2$ is
+\[
+ r!\left(\prod_{i\in S}b_i\right)
+       \sum_{\{a,b\}\subseteq S}\frac{p_{ab}}{b_ab_b}.
+ \tag{11}
+\]
+To reach that degree, all $r$ factors from $B$ must choose
+distinct coordinates outside the two from $P_j$. This proves
+(11), including its factor $r!$. Lower-index terms in (10)
+have degree at most $r$, so these coefficients vanish. We have
+$2\le r+2\le2M\le n-2$; the second inclusion assertion makes
+every $p_{ab}$ zero.
+
+Now let $p_a$ be the linear coefficients of $P_j$. At degree
+$r+1$, the analogous coefficient is
+\[
+ r!\left(\prod_{i\in S}b_i\right)
+                          \sum_{a\in S}\frac{p_a}{b_a}.
+ \tag{12}
+\]
+Again the lower-index terms have degree at most $r$. Since
+$1\le r+1\le n-1$, the first inclusion assertion makes every
+$p_a$ zero. The constant term is zero by hypothesis. Remove
+$P_j$ and repeat. Vanishing of all multilinear coefficients used
+here follows from uniqueness of the multilinear representative
+on the cube, or directly by induction on support size.
+\end{proof}
+
+\begin{theorem}[Few-magnitude exchange rigidity]
+Assign each edge a nonzero increment $\delta_{ij}$ with
+$|\delta_{ij}|<\min_i b_i$, and let $E_{ij}$ use that increment
+in (1). Suppose their absolute values belong to a set of $M$
+distinct positive numbers and $n\ge2M+2$. If
+$\sum_{i<j}w_{ij}E_{ij}=0$ on the cube, then either all $w_{ij}$
+are zero, or every edge has the same increment magnitude and
+$w_{ij}=\lambda b_i b_j$ for one nonzero scalar $\lambda$.
+\end{theorem}
+\begin{proof}
+List the distinct magnitudes as $d_1,\ldots,d_M$. For each
+magnitude, form the polynomial $P_s$ in (6), setting edge weights
+outside that class to zero. Formula (5) gives
+\[
+             \sum_{s=1}^M\frac{d_s^2 P_s(x)}{B(x)^2-d_s^2}=0.
+ \tag{13}
+\]
+Clear the positive denominators. The resulting expression is a
+linear combination of $1,B^2,\ldots,B^{2M-2}$ whose coefficients
+are quadratic polynomials vanishing at zero. The preceding lemma
+makes all of these coefficient polynomials zero. Thus, as a
+polynomial identity in a separate variable $u$,
+\[
+       \sum_{s=1}^M d_s^2 P_s(x)
+                         \prod_{t\ne s}(u-d_t^2)=0.
+ \tag{14}
+\]
+Substitute $u=d_s^2$. The magnitudes are positive and distinct,
+so $P_s=0$ for every $s$. The common-step rigidity theorem
+applied to each class says that its edge weights are
+$\lambda_s b_i b_j$ on the complete graph. If $\lambda_s\ne0$,
+all these weights are nonzero, so that class must contain every
+edge. Otherwise every class is zero. This proves the assertion.
+\end{proof}
+
+\paragraph{Small-dimensional exceptions and finite checks.}
+The dimension restriction in the last theorem cannot simply be
+discarded. For $n=3$, take $b=(3,3,3,3)$. Give the edges
+$\{0,3\}$ and $\{1,2\}$ increment magnitude $2$ and weight
+$77/320$; give the other four edges magnitude $1$ and weight $1$.
+This is a positive nonconstant-magnitude relation on all eight
+vertices. Indeed the quadratic polynomial (6) for the indicated
+matching vanishes at Hamming weights zero, one, and three.
+The complete-graph polynomial is zero, so its complement has
+the opposite polynomial. On the remaining layer $B=9$, and
+\[
+             \frac{77}{320}\frac4{81-4}=\frac1{81-1}.
+\]
+This proves the claimed relation using (13).
+
+The checker \texttt{check\_polya\_exchange.py} independently
+evaluates (1) with rational arithmetic, verifies (5) and (2), and
+checks common-step matrix ranks in dimensions one through seven.
+It also searches the two magnitudes $1,2$ for two specified positive
+weight vectors. A full-rank matrix modulo the stated prime proves
+full rank over the rationals; every deficient candidate used as an
+exception is recomputed and verified over the rationals. Exhaustion
+for those fixed choices in dimensions four and five does not prove
+rigidity for arbitrary weights or arbitrary increment magnitudes.
+
+\paragraph{Separate literature check.}
+Seshadri and Weso\l{}owski, \emph{Martingales Defined by Reciprocals
+of Sums and Related Characterizations} (2004), Theorems 2.1 and 3.1,
+classify certain inverse-sum regression identities for positive iid
+random variables. Their gamma, inverse Gaussian, Kendall, and
+Borel--Tanner identities concern conditional expectations. They do
+not give a bound on the number of affine reciprocal atoms needed
+to realize arbitrary Boolean signs. The exchange identity above
+is proved directly and does not invoke those characterization results.
+\url{https://pages.mini.pw.edu.pl/~wesolowskij/publikacje/2004SesWes.pdf}
+
+\end{document}

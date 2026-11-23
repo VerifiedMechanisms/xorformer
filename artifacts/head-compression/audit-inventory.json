@@ -1319,5 +1319,22 @@
     "literature_entry": 124,
     "target_proved": false,
     "formal_moments": "Results/SubsetMomentRigidity.lean checks injectivity of upper-subset moments and the support lower bound for matching strictly positive masses, even for signed weights. Numerical mass evaluation and finite-q estimates remain manual."
+  },
+  "polya_exchange_rigidity": {
+    "file": "artifacts/head-compression/polya-exchange-rigidity.tex",
+    "manual_theorems": [
+      "Exact two-step exchange averaging after merging return paths.",
+      "Every common-step constant edge-weight cancellation is a scalar multiple of the complete-graph weights b_i*b_j.",
+      "With M increment magnitudes and n>=2*M+2, a nonzero relation must use one magnitude."
+    ],
+    "proof_mechanism": "Singleton and pair coefficients, followed by injectivity of the one-element and two-element subset inclusion matrices.",
+    "diagnostic": "artifacts/head-compression/diagnostics/polya-exchange-rigidity.json",
+    "checker": "artifacts/head-compression/check_polya_exchange.py",
+    "scope": "Manual proofs and finite exact checks only. No new Lean declaration; no universal head bound.",
+    "finite_exceptions": "Positive mixed-magnitude relations exist in dimensions two and three. For the two specified weight vectors in dimensions four and five, the diagnostic exhausts all binary step assignments; this is not a theorem for arbitrary weights or increments."
+  },
+  "private_repository_refresh_2026_11_23_1733": {
+    "method": "Read-only fetch of both mirrors and inspection of latest branch dates and the latest autoresearch report.",
+    "result": "No newer xorformer-run branch was present. The newest autoresearch branch concerned usage reporting and supplied no mathematical construction."
   }
 }

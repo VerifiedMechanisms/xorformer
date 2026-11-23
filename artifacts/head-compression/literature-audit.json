@@ -1026,6 +1026,14 @@
       "mechanism": "Exact minimum probabilities force positive masses for prescribed predecessor sets. Uniform families also obey the least-common-multiple divisibility condition.",
       "application": "The one-anchor inclusion-exclusion invariant yields the separated-coefficient reciprocal-averaging obstruction in permutation-reciprocal-audit.tex.",
       "gap": "These are permutation-distribution constraints, not an unconditional head lower bound or a universal small-head construction."
+    },
+    {
+      "title": "Martingales Defined by Reciprocals of Sums and Related Characterizations",
+      "authors": "Vanamamalai Seshadri and Jacek Wesolowski",
+      "url": "https://pages.mini.pw.edu.pl/~wesolowskij/publikacje/2004SesWes.pdf",
+      "checked_location": "Theorem 2.1, its variance-function argument, and Theorem 3.1 with the conditional-expectation proof and gamma example.",
+      "mechanism": "Classifies affine inverse-sum regression identities and backward martingales for four positive iid distribution families.",
+      "gap": "These conditional-expectation identities supply no finite affine-head atom bound or universal sign construction. The new exchange identity is independently derived from two finite Polya steps."
     }
   ]
 }
