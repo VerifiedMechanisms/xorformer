@@ -44,6 +44,10 @@ where $A_h,B_h$ are affine and $B_h(x)>0$ throughout $\Qn$.
 In particular, all denominators admissible for the actual model are
 allowed, but the theorem relaxes their additional slope conditions.
 The mask list and all coefficients may depend arbitrarily on the target.
+The statement uses exactly $H$ slots. A construction using at most
+$H$ heads is included by adjoining the empty mask to the dictionary
+and padding with zero numerators; this changes $K$ to at most $K+1$
+and does not increase active-head overlap.
 
 \begin{theorem}[Counting with adaptive masks]\label{thm:count}
 Suppose $p\leq N$. The number of strict Boolean sign tables obtainable
