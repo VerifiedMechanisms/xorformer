@@ -1,0 +1,237 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Positive Equality Modules and Universal Matching Covers}
+\author{}
+\date{November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+The finite results below are complete written proofs, not Lean proofs.
+They give a different universal logarithmic-saving compiler on a
+two-one-hot promised set. They do not improve the worst-case head
+complexity on the whole Boolean cube. All intermediate denominators are
+positive on the entire cube and have nonnegative slopes. Perturbing
+zero slopes gives actual original-model heads with the same strict grid
+signs and the same head count. The exact Boolean-axis identities belong
+to the unperturbed intermediate modules. The missing global transfer is
+identified explicitly below.
+
+\begin{lemma}[A nonnegative equality module]
+For $t>1$ and $X,Y>0$, put
+\[
+ K_t(X,Y)=\frac{tX}{tX+Y}-\frac{X}{X+Y}
+ =\frac{(t-1)XY}{(tX+Y)(X+Y)}.
+\]
+For $\varepsilon>0$ and $Y\geq\varepsilon$, the axis-subtracted module
+$G_t(X,Y;\varepsilon)=K_t(X,Y)-K_t(X,\varepsilon)$ satisfies
+\[
+ G_t(X,Y;\varepsilon)=
+ \frac{(t-1)X(Y-\varepsilon)(tX^2-\varepsilon Y)}
+ {(tX+Y)(X+Y)(tX+\varepsilon)(X+\varepsilon)}.
+\]
+The same formula holds at $X=0$, where all four denominators are
+positive and both sides vanish.
+\end{lemma}
+\begin{proof}
+Put the two fractions in the definition of $K_t$ over a common
+denominator. For the second identity, subtract the resulting expressions.
+The numerator remaining after factoring $(t-1)X$ is
+\[
+ Y(tX+\varepsilon)(X+\varepsilon)
+ -\varepsilon(tX+Y)(X+Y)
+ =(Y-\varepsilon)(tX^2-\varepsilon Y).
+\]
+Every denominator is nonzero under the hypotheses, so the algebra is
+valid. At $X=0$ both original numerators vanish.
+\end{proof}
+
+Let $z\in\{0,1\}^r$, $w\in\{0,1\}^s$ and choose positive weights
+$x_i,y_j$. Substitute
+\[
+ X=\sum_i x_i z_i,\qquad Y=\varepsilon+\sum_j y_jw_j.
+\]
+This gives four affine ratios with positive constant coefficients and
+nonnegative slopes. It vanishes on both full Boolean axes.
+If $x_{\min}=\min_i x_i$ and
+$\varepsilon(\varepsilon+\sum_j y_j)<t x_{\min}^2$, it is nonnegative
+on the entire cube: either $X=0$ or $X\geq x_{\min}$, and the
+factorization proves the claim.
+
+For $t=2$, $K_2(x,x)=1/6$. If $x/y\geq B$ or $y/x\geq B$, with
+$B>1$, then $0<K_2(x,y)\leq1/B$, because
+\[
+ \frac{xy}{(2x+y)(x+y)}
+ \leq \min\left\{\frac{x}{y},\frac{y}{2x}\right\}.
+\]
+Thus exponentially separated labels give a sharp equality test at
+constant head cost, in the positive orientation.
+
+\begin{theorem}[Universal matching array]
+Let $M\geq64$, let $q$ be a positive integer with
+$q\leq M/(5\log M)$, and put $H=2M$. There is an array
+$a:[M]\times[H]\longrightarrow[q]$ such that, for every request vector
+$u\in[q]^M$, distinct slots $h_1,\ldots,h_M$ can be chosen with
+$a(g,h_g)=u_g$ for every $g$.
+\end{theorem}
+\begin{proof}
+Choose all entries independently and uniformly. For a fixed request
+vector, Hall's theorem fails only if some set $T$ of $t$ groups has
+fewer than $t$ available slots. Equivalently, there is a set $U$ of
+$H-t+1$ slots on which every group in $T$ misses its requested symbol.
+To handle every request vector at once, it suffices to avoid pairs
+$T,U$ for which every row in $T$ misses at least one alphabet symbol
+across $U$. Independence between rows and a union bound over the
+missing symbol give probability at most
+\[
+ \left[q(1-1/q)^{|U|}\right]^t
+ \leq \left[q e^{-M/q}\right]^t.
+\]
+For $q=1$ a missing symbol is impossible, so the assertion is immediate.
+For $q>1$, the displayed estimate uses
+$|U|=2M-t+1\geq M+1$ and $1-x\leq e^{-x}$.
+There are
+$\binom Mt\binom{2M}{t-1}\leq(2M^2)^t$
+such pairs. Hence the probability of any failure is at most
+\[
+ \sum_{t=1}^M [2M^2q e^{-M/q}]^t.
+\]
+The expression in brackets is at most
+$2/(5M^2\log M)<1/2$, by the stated bound on $q$.
+The finite geometric sum is therefore strictly less than one.
+There exists an array with no failure. For such an array, Hall's
+condition holds for every request vector, and Hall's theorem gives
+the required matching.
+\end{proof}
+
+\begin{theorem}[Universal equality cover]
+Take $q=2^k\leq M/(5\log M)$ and $r=Mk$. There are $H=2M$
+fixed partitions of the $r$ rows such that every subset of rows is
+the union of at most one block chosen from each partition.
+Consequently every $r$ by $s$ Boolean matrix, for arbitrary finite
+$s$, is a union of $H$ vertex-disjoint-biclique families.
+\end{theorem}
+\begin{proof}
+Divide the rows into $M$ groups of size $k$, and identify the alphabet
+$[q]$ with subsets of a group. In partition $h$, make the offered
+subset $a(g,h)$ one block within group $g$, and its complement another
+block, omitting empty blocks. Different groups are disjoint, so these
+are partitions.
+
+Given a target subset, let $u_g$ be its intersection with group $g$.
+Use the universal matching array to choose distinct slots $h_g$.
+At slot $h_g$ select the offered block $u_g$ if it is nonempty.
+Select no block in the remaining slots. The selected blocks have
+exactly the required union. Apply the same construction independently
+to each matrix column. For a fixed slot, columns choosing the same
+block are joined to all rows of that block. Since the row blocks
+and column classes are disjoint, this is a vertex-disjoint union
+of bicliques.
+\end{proof}
+
+\begin{theorem}[Positive-orientation grid compiler]
+In the preceding setting, every strict sign table on the $r$ by $s$
+two-one-hot grid has a representation by at most $4H+3$ positive-
+orientation affine ratios and a bias, with exact zero on both full
+Boolean axes before strict-slope perturbation. Its denominators are
+positive on the entire $(r+s)$-cube. The strict grid signs have an
+actual admissible-head realization with the same head count.
+In particular the promised-set cost is $O(r/\log r)$.
+\end{theorem}
+\begin{proof}
+Use the universal partitions. In slot $h$, assign label $g$ to the
+offered block in group $g$, and label $M+g$ to its complement.
+For column $j$, assign slot label $g$ when that slot is matched to
+the nonempty requested subset in group $g$; assign label zero to
+all unused slots. Thus a row has a matching label in some slot
+if and only if its table entry is positive. It has exactly one
+matching label when positive.
+
+Choose $B>48H$, and set $x_{ih}=B^{\text{row label}}$,
+$y_{jh}=B^{\text{slot label}}$. All these weights are at least one.
+For each slot form the four-ratio module
+$G_2(X_h,Y_h;\varepsilon)$ above.
+Choose a common positive $\varepsilon$ so small that
+\[
+ \varepsilon<\frac1{96H},
+ \qquad
+ \varepsilon\left(\varepsilon+\sum_j y_{jh}\right)<2
+ \quad\hbox{for every }h.
+\]
+This is possible because the slot and column sets are finite.
+All four-ratio modules are then nonnegative throughout the cube.
+
+On a grid point, replacing $y$ by $y+\varepsilon$ changes
+$K_2(x,y)$ by at most $3\varepsilon/(2x)$: apply the elementary
+identity $a/(a+y)-a/(a+y+\varepsilon)
+=a\varepsilon/[(a+y)(a+y+\varepsilon)]$ to the two terms.
+Also $K_2(x,\varepsilon)\leq\varepsilon/(2x)$.
+Thus the repaired grid value differs from $K_2(x,y)$ by at most
+$2\varepsilon$. The sum of all $H$ repaired modules differs by
+less than $1/48$ from the unrepaired sum.
+
+For a positive entry, the latter sum is at least $1/6$.
+For a negative entry, it is less than $H/B<1/48$.
+To implement a constant threshold without breaking axis zeros, put
+$u=\sum_i z_i$, $v=\sum_jw_j$ and use
+\[
+ T(u,v)=1-\frac1{1+u}-\frac1{1+v}+\frac1{1+u+v}.
+\]
+It vanishes on both full axes and equals $1/3$ on the grid.
+Subtract $T/4$. The final score is at least $7/48-1/12>0$ on
+positive entries and less than $1/24-1/12<0$ on negative entries.
+This uses $4H+3$ ratios and one bias.
+
+Every denominator has positive constant coefficient and nonnegative
+variable coefficients on the full cube. Add a common sufficiently
+small positive multiple of $\sum_i z_i+\sum_jw_j$ to each denominator.
+The coefficients become strictly positive, and finite-grid continuity
+preserves the strict margins. The original
+\texttt{FracAtom.ofPositiveAffineRatio} interface then gives actual
+admissible heads. This last perturbation need not retain axis zeros;
+the theorem distinguishes the two conclusions.
+
+For sufficiently large $M$, take
+$k=\lfloor\log_2(M/(5\log M))\rfloor$. Then $k=\Theta(\log M)$,
+$r=Mk$, and $H=2M=O(r/\log r)$. Rounding or adding dummy rows gives
+the same eventual order for arbitrary row counts.
+\end{proof}
+
+\paragraph{Exact remaining global obstruction.}
+This supplies the positive orientation already known to be insufficient
+for the established downward-star gluing. Substituting deletion
+coordinates $z_i=1-x_i$ changes its slopes to negative ones, while the
+outside-downset suppression penalty has positive slopes. The resulting
+mixed slopes are not admitted by either original affine-ratio interface.
+Nonnegativity of the equality modules does not repair this.
+
+Indeed, adding a common penalty $L$ to the four denominators changes
+the axis-subtracted expression to
+$K_t(X,Y+L)-K_t(X,\varepsilon+L)$, whose sign factor is
+\[
+ (Y-\varepsilon)\bigl(tX^2-(\varepsilon+L)(Y+L)\bigr).
+\]
+For fixed $X>0$ and $Y>\varepsilon$, this is negative for all sufficiently
+large $L$. Thus a claim that positive equality modules remain
+nonnegative under ordinary suppression is false.
+The known upward-star ordering has the complementary mixed-slope
+problem. A model-preserving global assembly or a compact reverse
+realization of the equality-cover mechanism has not been proved.
+
+\paragraph{Literature transfer check.}
+Erd\H{o}s and Pyber, \emph{Covering a graph by complete bipartite graphs},
+Discrete Mathematics 170 (1997), 249--251,
+\url{https://doi.org/10.1016/S0012-365X(96)00124-0},
+bound the number of bicliques incident with each vertex by
+$O(n/\log n)$. This is a local load bound, not a bound on the total
+number of bicliques or on their simultaneous disjoint-union colors.
+It cannot be substituted directly for the equality cover above.
+The relevant cover notion is a union of vertex-disjoint biclique
+families, called a bipartite $P_4$-free cover; see
+\url{https://www.cs.purdue.edu/homes/hmaji/papers/BMMM20.pdf}.
+The universal matching proof here establishes the needed finite cover
+directly and does not assume that the local-load theorem supplies it.
+
+\end{document}

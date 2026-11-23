@@ -79,10 +79,12 @@
     "formalization/HeadComplexity/Results/ReverseRankCorrection.lean": "8de3238cb288977a16fec36671f8c2bbfb3f42b04225f52b6b90b587fd9eacfd",
     "formalization/HeadComplexity/Results/ReverseRowFlip.lean": "c01dfd19f7270387835b882a2120243c2ce16ab95d0b6bd74383b9e9eb4dc993",
     "formalization/HeadComplexity/Results/WarrenAsymptotics.lean": "b88e0246e9fa0f0b080621ac617ea18c74f1cec98328a8efd004735384f60631",
-    "formalization/HeadComplexity/Results/WarrenBound.lean": "35ae40221e758272f17dc5b2d4bd0ddf3a02cd0998255d8f535332874142997e"
+    "formalization/HeadComplexity/Results/WarrenBound.lean": "35ae40221e758272f17dc5b2d4bd0ddf3a02cd0998255d8f535332874142997e",
+    "artifacts/head-compression/continuation-equality-cover.tex": "569a59a5542cc307fad461aa09f94a2bccef8f38d457b3917ac5b42dc7d84408"
   },
   "new_written_audits": {
-    "compact_decoder": "Exact axis and Mobius identities; whole-cube cross-ratio counterexample; signed erasure, mixed-moment, and butterfly obstructions. Compact common-symbol sign readers and arbitrary-slot exact flow readers admit only O(H log(K+1)) butterfly bits with HK replicated heads. The latter permits arbitrary residues and needs only nonzero denominators. No asymptotic conclusion."
+    "compact_decoder": "Exact axis and Mobius identities; whole-cube cross-ratio counterexample; signed erasure, mixed-moment, and butterfly obstructions. Compact common-symbol sign readers and arbitrary-slot exact flow readers admit only O(H log(K+1)) butterfly bits with HK replicated heads. The latter permits arbitrary residues and needs only nonzero denominators. No asymptotic conclusion.",
+    "equality_cover": "Universal Hall-matching partitions give an O(r/log r) positive-orientation grid compiler with 4H+3 ratios, exact intermediate Boolean axes, whole-cube positivity, and strict final admissible grid signs. Exact four-ratio identities checked symbolically. The global orientation obstruction remains; no bound on W follows."
   },
   "second_audit": {
     "source_commit": "2672bc2f68e854622722d26b91a86e42e1ccab31",
