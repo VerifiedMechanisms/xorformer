@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Axis-Zero Matching Jets with Strict Denominator Slopes}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a written construction of an explicit restricted family of
+joint sign tables. It has not been formalized in Lean. All axes and
+admissibility conditions are exact, and the limiting identity is
+checked symbolically in the companion Python file. The missing
+statement is a sufficiently efficient universal decoder for this
+family. A large number of matching states alone does not prove that
+statement or either requested global bound.
+
+\paragraph{Slots and states.}
+Fix $k\geq1$. Let $E$ and $O$ be the even and odd vertices of
+$\{0,1\}^k$. A state is a perfect matching $M:E\to O$ in the cube
+graph, so $M(g)$ differs from $g$ in one coordinate. There are
+$H=2^{k+1}$ slots, indexed by $(h,a)\in\{0,1\}^k\times\{0,1\}$.
+The four slots
+\[
+                  (g,0),(g,1),(M(g),0),(M(g),1)
+                  \tag{1}
+\]
+form a face for each $g\in E$. Define fixed slot signs
+$\gamma_{h,a}=(-1)^{|h|+a}$.
+
+For each $g\in E$, fix $\xi_g>0$ and $R_g>0$. To the four slots
+in (1), assign, in the displayed order, pole values
+\[
+                  \xi_g+\eta R_g(0,1,2,3).
+                  \tag{2}
+\]
+Write the resulting slot pole as $\lambda^M_{h,a}(\eta)$.
+The multiset of all slot poles is independent of $M$.
+
+\begin{theorem}[Exact full-cube transfer of strict matching readouts]
+Fix $r,s\geq1$ and arbitrary states $M_1,\ldots,M_s$.
+For each row $i$, fix an arbitrary function
+$f_i:\{0,1\}^k\to\mathbb R$, a real $c_i$, and
+$0<\varepsilon_i<1$. Choose $L$ such that all pole values in (2)
+lie in $(0,L)$ for every $0<\eta\leq\eta_0$, and choose
+$C>r+sL$. Set $t_i=C-\varepsilon_i$ and define
+\[
+ G_i(M)=\sum_{g\in E}
+    \frac{R_g\bigl(f_i(M(g))-f_i(g)+2c_i\bigr)}{(t_i-\xi_g)^2}.
+ \tag{3}
+\]
+Suppose all $G_i(M_j)$ are nonzero. Then, for sufficiently small
+positive $\eta$, there is an $H$-head affine-ratio score on the
+unchanged $(r+s)$-cube whose grid signs are those of $G_i(M_j)$,
+whose two Boolean axes are exactly zero, and whose denominator slopes
+are all strictly negative and denominators all strictly positive.
+\end{theorem}
+\begin{proof}
+For the slot $(h,a)$, use
+\[
+ \begin{split}
+ B_{h,a}(z,w)&=C-\sum_{i=1}^r\varepsilon_i z_i
+                   -\sum_{j=1}^s\lambda^{M_j}_{h,a}(\eta)w_j,\\
+ A_{h,a}(z,w)&=\eta^{-1}\gamma_{h,a}
+                   \sum_{i=1}^r\bigl(f_i(h)+a c_i\bigr)z_i.
+ \end{split}
+ \tag{4}
+\]
+Every slope of $B_{h,a}$ is strictly negative. Its minimum on the
+whole Boolean cube exceeds $C-r-sL>0$.
+On $z=0$, all numerators vanish. On $w=0$, every denominator is
+the same, and the numerator sum vanishes because
+\[
+ \sum_{h,a}\gamma_{h,a}\bigl(f_i(h)+a c_i\bigr)
+     =-c_i\sum_h(-1)^{|h|}=0.
+ \tag{5}
+\]
+Thus both axis identities hold for every Boolean point, not merely
+on the singleton grid.
+
+At $(z,w)=(e_i,e_j)$ the contribution of a matching edge $g$ is
+\[
+ \eta^{-1}\left[
+ \frac{f_i(g)}{t_i-\xi_g}
+ -\frac{f_i(g)+c_i}{t_i-\xi_g-\eta R_g}
+ -\frac{f_i(M_j(g))}{t_i-\xi_g-2\eta R_g}
+ +\frac{f_i(M_j(g))+c_i}{t_i-\xi_g-3\eta R_g}
+ \right].
+ \tag{6}
+\]
+The constant Taylor coefficient of the bracket is zero. Its first
+derivative at $\eta=0$ is
+\[
+ \frac{R_g\bigl[-(f_i(g)+c_i)-2f_i(M_j(g))
+                   +3(f_i(M_j(g))+c_i)\bigr]}{(t_i-\xi_g)^2},
+\]
+which is exactly the $g$ term of (3). Therefore the grid score
+converges to $G_i(M_j)$. There are only finitely many grid entries,
+and all their target values are nonzero, so a common sufficiently
+small positive $\eta$ preserves all strict signs.
+\end{proof}
+
+\paragraph{The readout class in simpler coordinates.}
+The odd values of $f_i$ are arbitrary. The even values only contribute
+a matching-independent row term to (3), and can realize any chosen
+row bias. Consequently the essential readouts are
+\[
+ b_i+\sum_{v\in O} a_{i,v}
+       \frac{R_{M^{-1}(v)}}{(t_i-\xi_{M^{-1}(v)})^2}.
+ \tag{7}
+\]
+The coefficient vector $(a_{i,v})_v$ is unrestricted. The query
+poles $t_i$ can vary in the common interval $(C-1,C)$, above every
+support point. Formula (7), rather than just the number of matching
+states, is the outstanding decoder problem.
+
+\paragraph{There are enough states in principle.}
+For $k\geq2$, the cube graph is $k$-regular and bipartite, with
+$H/4$ vertices in each part. Schrijver's proved permanent estimate
+gives at least
+\[
+ \left(\frac{(k-1)^{k-1}}{k^{k-2}}\right)^{H/4}
+ =\exp\bigl(\Omega(H\log k)\bigr)
+ \tag{8}
+\]
+perfect matchings. The external source for this counting statement
+is A. Schrijver, ``Counting 1-factors in regular bipartite graphs'',
+\emph{Journal of Combinatorial Theory, Series B} 72 (1998), 122--135,
+\url{https://ir.cwi.nl/pub/2154/2154D.pdf}.
+This standard theorem has not been imported into Lean here.
+
+Each matching is determined by the coordinate of $M(g)-g$ at each
+even anchor $g$. Thus $\lceil\log_2 k\rceil$ bits per anchor would
+identify a state using $O(H\log k)$ binary queries. Since
+$k=\log_2(H/2)$, this is the desired $H\log\log H$ scale.
+But no construction showing that (7) can read those bits has been
+established.
+
+\paragraph{Two limits of the immediate decoding ideas.}
+If all group poles and weights are equal, the matching contribution
+telescopes to a matching-independent sum. Distinct groups are
+therefore necessary. Taking $a_i$ to be an odd-vertex indicator does
+isolate its matched anchor, but gives only a value
+$R_g/(t_i-\xi_g)^2$. For a single isolated anchor, the signs of $q$
+such biased readouts are determined by $q$ quadratic polynomials in
+the two parameters $(\xi_g,R_g)$, hence have only $O(q^2)$ possible
+patterns. This does not supply $k$ independently assigned binary
+codes in $q=O(\log k)$ queries. General mixed-vertex readouts in (7)
+are not covered by that observation and remain under investigation.
+\end{document}
