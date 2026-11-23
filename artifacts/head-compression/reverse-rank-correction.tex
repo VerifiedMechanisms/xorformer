@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Exact reverse rank corrections}
+\author{}
+\date{}
+\maketitle
+
+\begin{theorem}
+Let $r,s,L\geq0$, let $f_h:[r]\to\mathbb R$ and
+$g_h:[s]\to\mathbb R$ for $1\leq h\leq L$, and let
+$p:[r]\to\mathbb R$, $q:[s]\to\mathbb R$ and $c\in\mathbb R$.
+There are $L+1$ affine ratios whose denominators are positive on the
+entire Boolean $(r+s)$-cube and have strictly negative slopes such that
+ their sum, with scalar bias $c$, has grid values
+\[
+ c+p(i)+q(j)+\sum_{h=1}^L f_h(i)g_h(j).
+\]
+No bound on the magnitudes of the supplied entries is required.
+The construction may instead have zero values on both Boolean axes,
+with no scalar bias, using $3(L+1)+3$ strictly admissible ratios.
+\end{theorem}
+
+\begin{proof}
+For each factor set
+\[
+ C_h=1+\sum_{i=1}^r|f_h(i)|,\qquad
+ M_h=4(r+1)C_h,\qquad u_{hi}=C_h+f_h(i).
+\]
+Then $0<u_{hi}<2C_h$. Define
+\[
+ B_h(z,w)=1-\sum_{i=1}^r
+       \frac{u_{hi}}{M_h+u_{hi}}z_i,\qquad
+ A_h(z,w)=M_h\sum_{j=1}^s g_h(j)w_j.
+\]
+Every slope of $B_h$ is nonpositive. Since
+$u_{hi}/(M_h+u_{hi})<1/(2(r+1))$, its minimum on the whole cube
+is greater than $1-r/(2(r+1))>1/2$. On the promised grid,
+\[
+ \frac{A_h(e_i,e_j)}{B_h(e_i,e_j)}
+  =(M_h+C_h+f_h(i))g_h(j).
+\]
+Put $T_h=M_h+C_h$. One further ratio with constant denominator $1$
+and affine numerator
+\[
+ \sum_i p(i)z_i+
+ \sum_j\left(q(j)-\sum_hT_hg_h(j)\right)w_j
+\]
+therefore gives exactly the stated matrix.
+
+To restore strict slopes, consider any weak denominator $B$ above
+in $m=r+s$ variables. Let $\delta=B(\boldsymbol1)>0$ and
+$\epsilon=\delta/(m+1)$. Replace it by
+\[
+ B'(x)=B(x)+\epsilon\left(2-\sum_{k=1}^m x_k\right).
+\]
+Every slope is now strictly negative, and its cube minimum equals
+$\delta+\epsilon(2-m)=3\delta/(m+1)>0$. The denominator is
+unchanged at every grid point, which has Hamming weight two.
+Thus this exact strictification costs no heads and changes no
+represented entry. The separately checked exact axis-repair theorem
+uses $3H+3$ heads for a strict grid score with $H$ heads, giving the
+last assertion with $H=L+1$.
+\end{proof}
+
+\paragraph{Verification and scope.}
+The factor construction, the shared correction, strictification and
+the axis-repair consequence are formalized in
+\texttt{formalization/HeadComplexity/Results/ReverseRankCorrection.lean}.
+The central declarations are
+\texttt{exists\_weak\_reverse\_rank\_factor},
+\texttt{exists\_weak\_reverse\_rank\_grid},
+\texttt{exists\_strict\_reverse\_rank\_grid} and
+\texttt{exists\_reverse\_axis\_rank\_grid}, in namespace
+\texttt{HeadComplexity.AxisZeroGluing}.
+They build successfully and use only the standard Lean foundations
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}.
+No original HeadComplexity definitions are changed.
+This is an exact low-rank correction theorem. It does not assert that
+arbitrary sign matrices have sublinear rank, and it does not establish
+the requested global logarithmic or double-logarithmic saving.
+\end{document}
