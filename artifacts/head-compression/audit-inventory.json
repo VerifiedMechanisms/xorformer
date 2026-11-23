@@ -1244,10 +1244,14 @@
     "finite_audit": "artifacts/head-compression/diagnostics/polya-variation-certificate-audit.json",
     "scope": "All 64 vertices of one fixed six-bit random target, not all six-bit functions. Minimum exact margin exceeds 1.86.",
     "not_excluded": [
-      "Sparse or overlapping refinements.",
+      "Sparse refinements with exponential or larger integer depth.",
+      "Overlapping refinements with independently varying starting forms.",
       "Arbitrary higher-order variations.",
       "The general admissible head model."
     ],
-    "target_proved": false
+    "target_proved": false,
+    "sparse_depth": "A two-orientation, target-dependent sparse count gives only 2^{o(2^n)} tables at H=O(2^n/n^2) when integer refinement depth K satisfies log(K+1)=o(n). Applies to first powers and affine-over-square variations, without assuming cancellation.",
+    "local_maximum_principle": "Every nonconstant linear combination of Boolean reciprocal kernels has no local extrema in the positive parameter cone. Every kernel is in the relative interior of the convex hull of each parameter neighborhood; the affine hull has dimension 2^n-1. This gives no sparse compression.",
+    "unbounded_depth": "For ordinary affine-over-affine scores, unbounded integer depth recovers the original strict sign model by rational approximation and scaling. An unrestricted depth existence lemma would only restate the target."
   }
 }

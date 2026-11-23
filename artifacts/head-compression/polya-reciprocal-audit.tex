@@ -205,4 +205,169 @@ sparse subset, an overlapping collection of refinements, or arbitrary
 higher-order perturbations. Those possibilities need separate
 constructions or invariants; no universal existence is claimed here.
 
+\section{Sparse refinements with a bounded integer depth}
+
+The complete-layer count does not charge a sparse construction for omitted
+forms. The following separate argument does apply to sparse selections.
+It also allows both denominator orientations, independent starting forms
+for the two orientations, and target-dependent selections.
+
+Fix integers $n,H,K\ge1$. Put $N=2^n$, and consider scores
+\[
+ P_0(x)+\sum_{h=1}^H D_h(x)/B_h(x)^2,
+ \tag{9}
+\]
+where $P_0,D_h$ are arbitrary affine functions. Each $B_h$ is selected
+from one of the two lists
+\[
+ 1+\sum_i b_i^\sigma y_i^\sigma+
+ \delta_\sigma\left(\alpha_0+\sum_i\alpha_i y_i^\sigma\right),
+ \quad y_i^+=x_i,\quad y_i^-=1-x_i,
+ \quad \alpha_j\in\mathbb Z_{\ge0},\quad |\alpha|\le K.
+ \tag{10}
+\]
+The real parameters $b_i^\sigma,\delta_\sigma$ are strictly positive
+and may depend on the target. Different heads may select different
+orientations and different count vectors. The coefficients in (9)
+are unrestricted. No cancellation identity is assumed.
+
+\begin{theorem}[Sparse-depth obstruction]
+Let $k_1=(H+1)(n+1)$, $k_2=2(n+1)$, and $p=k_1+k_2\le N$.
+The number of strict sign tables obtainable from (9)--(10) is at most
+\[
+ \left[2(K+1)^{n+1}\right]^H
+ \left(\frac{32768N}{p}\right)^p
+ 2^{k_1}(4K+4)^{k_2}.
+ \tag{11}
+\]
+The same upper bound holds when the exponent two in (9) is replaced
+by one. Consequently, if $\log_2(K+1)=o(n)$ and
+$H\le C2^n/n^2$ for a fixed $C$, either family realizes only
+$2^{o(2^n)}$ strict sign tables. Neither is universal.
+\end{theorem}
+\begin{proof}
+There are at most $(K+1)^{n+1}$ eligible count vectors and two
+orientations. Count ordered selections, which can only overcount.
+For a fixed selection define
+\[
+ Q_\sigma(t)=\prod_{j=0}^K(t+\delta_\sigma j)^2.
+\]
+At each Boolean input the offset in (10) is an integer from $0$ to
+$K$. Multiply (9) by the positive product
+$Q_+(1+b^+\cdot x)Q_-(1+b^-\cdot(1-x))$.
+Each cleared term is a polynomial: the selected squared denominator
+divides its orientation's product. Its degree in the $k_1$ numerator
+and affine-bias coefficients is at most one, and its degree in the
+$k_2$ starting-weight and step parameters is at most $4K+4$.
+For first powers, a selected denominator still divides this same
+product, giving the same degree bounds.
+
+Apply the two-block strict-sign bound proved in
+\texttt{mechanism-audit.tex}, using block degrees $2$ and $4K+4$,
+then multiply by the number of ordered selections. This proves (11).
+That lemma is the explicit consequence of Basu and Rizzie,
+\emph{Multi-degree bounds on the Betti numbers of real varieties
+and semi-algebraic sets and applications}, Theorems 12 and 13,
+\url{https://arxiv.org/pdf/1507.03958v7}, already audited in the
+research record. Only an upper bound on sign counts is used.
+
+For $H\le CN/n^2$ we have $p=O_C(N/n)$, so the logarithm of the
+middle factor is $O_C(N\log n/n)=o(N)$. The selection factor has
+logarithm at most $H+H(n+1)\log_2(K+1)=o(N)$. The last factors
+contribute $O_C(N/n)+O(n\log(K+1))=o(N)$. These estimates also
+cover smaller $H$, by monotonicity of $p\log_2(32768N/p)$ for
+$1\le p\le N$.
+\end{proof}
+
+\paragraph{Why unbounded depth is not a replacement conjecture.}
+For ordinary affine-over-affine heads, dropping the bound on $K$
+recovers every strict sign table of the original model. Indeed a
+finite strict representation can first be perturbed to rational
+coefficients without changing its signs or admissibility. A
+constant denominator can be replaced by one with small strictly
+positive slopes. A positive-slope denominator has positive constant
+coefficient; a negative-slope denominator becomes positive-coefficient
+after the global substitution $y_i=1-x_i$. Scale each rational
+denominator and its numerator by a positive integer until all its
+denominator coefficients are positive integers. Such a form is
+exactly (10) with all $b_i^\sigma=1$, $\delta_\sigma=1$, and
+$\alpha_j$ equal to its coefficient minus one. A finite common $K$
+then includes every selected form. Conversely every such ordinary
+score is admissible, with at most one additional head for the affine
+term $P_0$. Thus an unconstrained integer-depth existence
+lemma for all sign tables would simply restate the target within
+this parametrization. The count above does not exclude depths
+exponential in $n$ or larger.
+
+\section{A local maximum principle for the reciprocal feature map}
+
+Write $K(b)=(K_x(b))_{x\in\{0,1\}^n}$ for $b\in(0,\infty)^n$.
+For any real coefficients $w_x$ put
+\[
+                     F(b)=\sum_x w_x K_x(b).
+\]
+
+\begin{proposition}[No nonconstant local extrema]
+If $F$ has a local maximum or a local minimum at an interior point
+of $(0,\infty)^n$, then $w_x=0$ for every nonzero Boolean vector
+$x$. In particular, $F$ is constant.
+\end{proposition}
+\begin{proof}
+It suffices to treat a local maximum $M=F(b)$, with $F\le M$
+on a neighborhood $U$ of $b$. Summing (1) against $w_x$ gives
+the exact convex averaging rule
+\[
+ F(a)=\frac1{1+\sum_i a_i}F\left(\frac a{1+\delta}\right)
+       +\sum_i\frac{a_i}{1+\sum_j a_j}F(a+\delta e_i).
+ \tag{12}
+\]
+Every weight is positive and the weights sum to one.
+
+Choose $\varepsilon>0$ small enough that, whenever
+$a\in\prod_i[b_i,b_i+\varepsilon]$ and $0\le\delta\le\varepsilon$,
+all the nodes in (12) belong to $U$. Such a choice exists by
+continuity and the finiteness of the node maps at $(b,0)$.
+If $F(a)=M$, equality in the convex average forces each node to
+have value $M$. For any $v\in[0,\varepsilon]^n$, start at $b$
+and successively add $v_i e_i$. At each step apply (12) with
+$\delta=v_i$; steps with $v_i=0$ need no argument. It follows
+that $F(b+v)=M$. Thus $F$ is constant on an open box.
+
+Multiply $F-M$ by the product of its finitely many affine
+denominators. The resulting polynomial vanishes on that box,
+so it vanishes identically. Restrict the resulting rational identity
+to $b=t(1,2,\ldots,2^{n-1})$. The nonempty subset sums
+$s_x=\sum_i2^{i-1}x_i$ are distinct and nonzero, and
+\[
+                  F(t)=w_0+\sum_{x\ne0}\frac{w_x}{1+t s_x}.
+\]
+Multiplying by $\prod_{x\ne0}(1+t s_x)$ and evaluating the
+polynomial identity at $t=-1/s_x$ gives $w_x=0$, since all other
+factors there are nonzero. The minimum case follows by replacing
+$F$ with $-F$.
+\end{proof}
+
+\begin{corollary}[Every interior feature has local convex support]
+For every open neighborhood $U$ of $b$ within the positive cone,
+$K(b)$ lies in the relative interior of
+$\operatorname{conv}\{K(a):a\in U\}$ in the affine hyperplane
+$z_0=1$. This hyperplane is the affine hull.
+\end{corollary}
+\begin{proof}
+An affine relation among the feature coordinates on $U$ would
+make a linear combination $F$ constant on an open set. The
+polynomial and distinct-pole argument above proves that the only
+such relation is $z_0=1$. Thus the affine hull has dimension $N-1$.
+If $K(b)$ were not in the relative interior, finite-dimensional
+convex separation would give a nonconstant linear functional with
+a supporting maximum at $K(b)$ over $K(U)$. Its pullback $F$
+would have a local maximum at $b$, contradicting the proposition.
+\end{proof}
+
+The corollary rules out treating an admissible reciprocal feature as
+a locally exposed extreme point. It does not bound sparse signed
+mixtures: the ordinary convex representation theorem still permits
+$N$ points in this $(N-1)$-dimensional hyperplane, far above the
+requested rate. No compression conclusion is inferred from (12).
+
 \end{document}
