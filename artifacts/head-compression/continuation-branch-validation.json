@@ -58,7 +58,7 @@
     "formalization/HeadComplexity/Results/AxisZeroFaces.lean": "e77eee5d5fa013dc82fd41f817b5b1172be8603f8dac284865ba3517df9c5077",
     "formalization/HeadComplexity/Results/ReverseAxisCompiler.lean": "b7d64cef2fa83b4f2c3d02f417eb1ca09867f5ffabd6759eae4c56dd153057b4",
     "artifacts/head-compression/continuation-branch-audit.tex": "207ea26f23f2db15c74a2efe994c9ee3893206e1cddc1d371a8f6af64a098f8d",
-    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "3c0be33de2eab3f239df460f1d5149cfa7db18971c4da67290e24bdfd8e42253"
+    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "f442efbcb7fe7737bbfbdc2aa4f5e45c5d49a280e41cd3e751354843d01de305"
   },
   "new_written_audits": {
     "compact_decoder": "Exact axis and Mobius identities; whole-cube cross-ratio counterexample; signed erasure, mixed-moment, and exact butterfly obstructions; sign-only compact independent-bit readers require growing Cauchy degree. No asymptotic conclusion."

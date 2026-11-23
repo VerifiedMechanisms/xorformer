@@ -434,8 +434,8 @@ which is a sum of three rank-one matrices.
 Let $E_{ib}=d_i(\lambda_b^1)d_i(\lambda_b^0)$.
 The compactness assumption gives
 \[
- (1-\eta)^{2K}\prod_\ell D_{i\ell}^{,2}
- \leq E_{ib}\leq\prod_\ell D_{i\ell}^{,2}.
+ (1-\eta)^{2K}\prod_\ell D_{i\ell}^{2}
+ \leq E_{ib}\leq\prod_\ell D_{i\ell}^{2}.
 \]
 Normalize each row of $N$ by its nonzero diagonal entry to obtain
 $M_{ii}=1$. The preceding bounds and strict diagonal dominance of
@@ -468,6 +468,88 @@ hierarchical scales cannot make all inactive-block variations uniformly
 small enough for these readers when the number of blocks tends to
 infinity and $K$ stays bounded. Arbitrary slot-dependent rational
 functions and other encodings remain outside the proposition.
+
+\begin{proposition}[The same binary code cannot be rescued by relabeling]
+Use the same $m$ independent binary blocks and $m$ compact $K$-term
+queries, but replace the prescribed-bit requirement by the weaker
+assumption that their strict sign vectors attain all $2^m$ patterns.
+Put $r=3K(K+1)/2$ and $\varepsilon=1-(1-\eta)^{2K}$.
+If $\varepsilon<1/\sqrt3$, then
+\[
+ m\leq \frac{r}{(1/\sqrt3-\varepsilon)^2}.
+\]
+\end{proposition}
+\begin{proof}
+Identify the configurations with $x\in\{-1,1\}^m$. Each query is an
+affine function of $x$, because each block independently chooses one
+of two fixed contributions. Since there are exactly $2^m$ inputs,
+surjectivity of the sign vector makes it a bijection. Thus under
+uniform input the Boolean outputs $f_1,\ldots,f_m$ are independent
+uniform signs, and in particular are orthonormal.
+
+Write the $i$-th affine query as $a_i\cdot x+b_i$, and normalize its
+nonzero row $a_i$ to Euclidean norm one. Balance implies that its
+sign equals $\operatorname{sgn}(a_i\cdot x)$ on every input. Indeed,
+if $b_i>0$, the sum of the two output signs on each antipodal pair
+$x,-x$ is nonnegative, and is positive whenever the two signs agree.
+Balance forces every pair to have opposite signs. The argument for
+$b_i<0$ is the same with inequalities reversed; for $b_i=0$ strictness
+already gives the conclusion. Opposite signs on a pair imply that the
+bias does not change the sign of its linear part.
+
+Let $A$ have rows $a_i$, and define
+$V_{ij}=\mathbb E[f_i(x)x_j]$. Orthonormality of the $f_i$ and Bessel's
+inequality for the coordinate functions $x_j$ give $\|V\|_{\rm op}\leq1$.
+For $Z=a_i\cdot x$ one has $\mathbb E Z^2=1$ and
+\[
+ \mathbb E Z^4=3-2\sum_j a_{ij}^4\leq3.
+\]
+H\"older's inequality gives
+$\mathbb E Z^2\leq
+(\mathbb E|Z|)^{2/3}(\mathbb E Z^4)^{1/3}$, hence
+\[
+ a_i\cdot V_i=\mathbb E|Z|\geq1/\sqrt3,
+ \qquad \langle A,V\rangle_F\geq m/\sqrt3.
+\]
+
+Apply the denominator-clearing construction in the preceding proof
+to the coefficient matrix of the centered queries, which is one half
+of their difference matrix. Additionally divide each row by
+$\prod_\ell D_{i\ell}^{2}$ and
+by its original coefficient-vector norm. The resulting matrix $N$
+still has rank at most $r$, and each entry is its corresponding entry
+of $A$ multiplied by a factor in $[(1-\eta)^{2K},1]$. Consequently
+\[
+ \|N\|_F\leq\sqrt m,
+ \qquad\|N-A\|_F\leq\varepsilon\sqrt m,
+ \qquad\|V\|_F\leq\sqrt m.
+\]
+It follows that
+\[
+ m(1/\sqrt3-\varepsilon)
+ \leq\langle N,V\rangle_F
+ \leq\sqrt{\operatorname{rank}N}\,\|N\|_F\|V\|_{\rm op}
+ \leq\sqrt{rm}.
+\]
+The middle inequality is the singular-value Cauchy--Schwarz inequality.
+Squaring proves the stated bound.
+\end{proof}
+
+\paragraph{Quantitative butterfly consequence.}
+At stage $k$, a fixed input subcube supplies $2^k$ independent output
+blocks. Choose two output symbols in each block, one for each possible
+setting of its stage-$k$ switch, and fix subsequent routing so both
+choices are available. The compact independent-bit proposition then
+forces $2^k=O(K^2)$ whenever $K\eta$ is bounded sufficiently small.
+This consequence allows $K$ to grow. If a common-symbol reader scheme
+uses $K$ replicated Cauchy terms per physical slot, only
+$2\log_2K+O(1)$ stages can be decoded in this way. Its total number of
+decoded switches is $O(H\log(K+1))$, against $HK$ heads, and therefore
+this scheme yields no unbounded ratio of decoded bits to heads.
+For slot-dependent symbol functions, averaging over prefix switches
+can produce $2^kK$ different terms. The preceding count then does not
+apply. Removing that cost requires an additional invariant or
+construction, which is not asserted here.
 
 \paragraph{Unresolved capacity question.}
 The finite five-row construction disproves the naive bound of $2H$
