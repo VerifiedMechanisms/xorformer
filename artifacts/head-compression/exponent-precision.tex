@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\cube}{\{0,1\}^n}
+\begin{document}
+\title{What Precision Must Supply in an Exponent Improvement}
+\author{}
+\date{November 23, 2026}
+\maketitle
+
+\paragraph{Status.}
+This note verifies the finite-information interpretation of the precision
+claim in the task and strengthens it to denominator information alone.
+It proves no improvement of unrestricted worst-case head complexity,
+no superconstant saving, and no matching lower bound.
+The original attention model, its head resource, and its admissibility
+conditions are unchanged.
+
+\paragraph{Precise meaning of precision.}
+A coefficient alphabet is a finite set fixed before the target Boolean
+function is selected. Saying that a scalar has at most $b$ bits means
+that its alphabet has at most $2^b$ elements. The alphabet may depend
+on $n$, the coefficient position, and the construction, but not on
+the target truth table. This notion permits arbitrarily large or small
+real alphabet entries. It measures information, not approximation error,
+decimal digits after the point, numerical stability, or cancellation.
+Without an agreed encoding, a real parameter has no intrinsic finite
+bit length. The conclusions below concern the worst-case or average
+available information per coefficient; they do not require every
+coefficient in every representation to use that many bits.
+
+\section{All coefficients}
+
+\begin{theorem}[Finite encoding bound]
+Let $X$ be a set of $N$ inputs, let $\Theta$ be a finite code set,
+and let $S:\Theta\times X\to\mathbb R$ be any fixed decoder.
+If every $f:X\to\{-1,1\}$ has a code $\theta$ satisfying
+$f(x)S(\theta,x)>0$ for every $x$, then $|\Theta|\ge 2^N$.
+Consequently, if the decoder has $p$ scalar coefficients, each drawn
+from a fixed alphabet of size at most $2^b$, then $bp\ge N$.
+More generally, coefficients using at most $b_1,\ldots,b_p$ bits
+must satisfy $\sum_j b_j\ge N$.
+\end{theorem}
+\begin{proof}
+Each code has at most one strict sign vector. Choose one representing
+code for each of the $2^N$ target vectors. Two different vectors cannot
+choose the same code, since at a coordinate where their signs differ
+the same real number would be both strictly positive and strictly
+negative. The chosen codes are therefore distinct. A product of
+coefficient alphabets has cardinality at most
+$\prod_j 2^{b_j}=2^{\sum_j b_j}$, which gives the result.
+\end{proof}
+
+For $H$ affine fractions and a bias, the unnormalized affine chart
+has $p=1+2H(n+1)$ coefficients. A valid attention atom is a member of
+this chart with additional constraints, so counting the larger chart
+is a valid necessary condition. In particular, a universal construction
+with a fixed $b(n)$-bit alphabet for its effective affine coefficients
+satisfies
+\[
+  2^n\le b(n)\bigl(1+2H(n)(n+1)\bigr).
+\]
+If, for fixed $C>0$ and $\varepsilon>0$ and all sufficiently large $n$,
+\[
+  H(n)\le \frac{C2^n}{n^{1+\varepsilon}},
+\]
+then
+\[
+ b(n)\ge
+ \frac{n^\varepsilon}
+ {n^\varepsilon/2^n+2C(1+1/n)}
+ =\left(\frac{1}{2C}-o(1)\right)n^\varepsilon.
+\]
+This verifies the claimed $n^\varepsilon/2$ scale when the suppressed
+head-count constant is $C=1$. The constant $C$ cannot be omitted in a
+literal quantitative statement.
+
+The same asymptotic bound holds for alphabets on the original
+\texttt{FracAtom} parameters: there are $2n+4$ parameters per atom,
+namely $\eta,\delta,\gamma,\alpha$, the $n$ values of $\rho$, and the
+$n$ values of $m$, plus the global bias. Use
+$p=1+H(2n+4)$ in the encoding theorem. Positivity constraints only
+remove codes and do not invalidate the bound. The number of matrix
+entries in a redundant attention parameterization is a different
+resource; the claim is about the intrinsic scalar chart or a specified
+code of comparable length, not an unrestricted redundant parameter
+description.
+
+For completeness, the normalized affine chart has $1+2nH$ parameters.
+Write a head as $A/B$, where
+$A=a_0+\sum_i a_ix_i$ and $B=d_0+\sum_i d_ix_i$ with $d_0>0$.
+Set
+\[
+ b_i=d_i/d_0,\qquad
+ \alpha=a_0/d_0,\qquad
+ u_i=a_i/d_0-\alpha b_i.
+\]
+Then
+\[
+ \frac{A(x)}{B(x)}=
+ \alpha+\frac{\sum_i u_ix_i}{1+\sum_i b_ix_i}.
+\]
+Absorb the $H$ constants $\alpha$ into the bias. This is an exact
+identity; positive scaling of a denominator preserves its whole-cube
+admissibility. A finite alphabet for the original chart need not remain
+the same alphabet under this normalization. Each alphabet claim must
+specify which chart is encoded.
+
+\section{Denominators must carry almost the whole table}
+
+The next result strengthens the earlier audit's exponent-two statement
+to every positive exponent improvement. Numerators and the bias now
+have completely unrestricted real precision.
+
+\begin{lemma}[Sign patterns of a linear space]
+If $U\subseteq\mathbb R^N$ is a linear space of dimension at most
+$d$, with $1\le d\le N$, then the number of strict sign vectors
+met by $U$ is at most
+\[
+ \sum_{j=0}^d {N\choose j}\le (eN/d)^d.
+\]
+\end{lemma}
+\begin{proof}
+The family of positive-coordinate subsets of strict vectors in $U$
+cannot shatter any $d+1$ coordinates. Indeed, the image of $U$ under
+restriction to those coordinates has dimension at most $d$, so some
+nonzero real vector $a$ is orthogonal to that image. Prescribe the sign
+of coordinate $i$ to equal the sign of $a_i$ when $a_i\ne0$, and
+arbitrarily otherwise. Every vector with these strict signs has
+positive inner product with $a$, a contradiction.
+
+Here is the required finite set-family count. For a family on $m$
+coordinates, split by its last coordinate. Let $A$ be the union of
+the two trace families on the first $m-1$ coordinates, and let $B$
+be their intersection. The original size is $|A|+|B|$. If the original
+family shatters no set of size $d+1$, then $A$ shatters no such set
+and $B$ shatters no set of size $d$: a set of size $d$ shattered by
+$B$, together with the last coordinate, would be shattered by the
+original family. Induction on $m$, with the empty-coordinate case
+and the dimension-zero case both bounded by one, gives
+$\sum_{j=0}^d {m\choose j}$ by Pascal's identity. Cases $d\ge m$
+are bounded by $2^m$ directly.
+
+For the final inequality put $t=d/N\in(0,1]$. Since $t^j\ge t^d$
+for $0\le j\le d$,
+\[
+ t^d\sum_{j=0}^d {N\choose j}
+ \le \sum_{j=0}^N {N\choose j}t^j
+ =(1+t)^N\le e^{Nt}=e^d.
+\]
+Divide by $t^d$.
+\end{proof}
+
+\begin{theorem}[Information in a denominator library]
+Put $N=2^n$ and $d=1+nH\le N$. Suppose that a library of $K$
+ordered lists of $H$ nonvanishing affine denominators suffices to
+represent every Boolean function strictly by some list, arbitrary
+affine numerators, and a bias. Then
+\[
+ N\le \log_2 K+d\log_2(eN/d).
+\]
+In particular, if $H(n)\le C2^n/n^{1+\varepsilon}$ for fixed
+$C,\varepsilon>0$, a universal denominator library satisfies
+\[
+ \log_2 K(n)\ge (1-o(1))2^n.
+\]
+\end{theorem}
+\begin{proof}
+Fix one denominator list. The evaluations of affine numerators divided
+by the $h$th denominator form a linear space $U_h$ of dimension at
+most $n+1$. It contains the constant functions, because the numerator
+can equal the denominator. The sum of these spaces and the bias
+therefore has dimension at most $1+nH=d$, including when $H=0$.
+The preceding lemma bounds its strict patterns by $(eN/d)^d$.
+The union over the $K$ lists has at most $K(eN/d)^d$ patterns.
+Universality requires at least $2^N$ patterns; take base-two logarithms.
+
+For the asymptotic statement, put $r=d/N$. The head bound implies
+$0<r\le 2^{-n}+C/n^\varepsilon$, so $r\to0$. Since
+$r\log_2(e/r)\to0$, the error term
+$d\log_2(eN/d)=Nr\log_2(e/r)$ is $o(N)$. Also $d\le N$
+eventually, as required for the finite estimate.
+\end{proof}
+
+If each of the $n$ normalized coefficients of each denominator has
+a fixed alphabet of at most $2^{b(n)}$ values, then
+$K(n)\le 2^{b(n)nH(n)}$. Hence the last theorem gives
+\[
+ b(n)nH(n)\ge(1-o(1))2^n,\qquad
+ b(n)\ge\left(\frac1C-o(1)\right)n^\varepsilon.
+\]
+With unnormalized denominator coefficients there are $(n+1)H(n)$
+coordinates instead, giving the same asymptotic constant. This result
+allows unbounded information in all numerator coefficients. Thus a
+successful exponent improvement must have the adaptive denominator
+choices themselves encode almost $2^n$ bits across the worst-case
+family, when measured by the size of a fixed finite library.
+
+Admissibility has only been relaxed when counting sign spaces. Every
+admissible attention denominator is nonvanishing on the entire cube,
+so all of these bounds apply to the original model. No proposed
+denominator is being declared admissible merely because it is positive
+on a subset of inputs. Every counted output pattern is strict.
+
+\section{Formal status and the remaining target}
+
+The Lean file
+\texttt{formalization/HeadComplexity/Results/PrecisionBarrier.lean}
+contains unconditional proofs of the following declarations:
+\begin{itemize}
+\item \texttt{two\_pow\_card\_le\_card\_of\_strict\_universal};
+\item \texttt{two\_pow\_card\_le\_alphabet\_pow\_of\_strict\_universal};
+\item \texttt{card\_le\_bits\_mul\_parameters\_of\_strict\_universal};
+\item \texttt{computableWithHeadsN\_of\_finiteAlphabetStrictFracComputable};
+\item \texttt{two\_pow\_le\_bits\_mul\_affine\_parameters\_of\_finiteAlphabet\_universal}.
+\end{itemize}
+All names are in namespace \texttt{HeadComplexity}. The first three
+prove the finite encoding argument. The fourth verifies the connection
+of the auxiliary finite-alphabet predicate to the unchanged attention
+model. The fifth proves the exact original-model inequality
+$2^n\le b(1+2H(n+1))$ for strict representations whose effective affine
+coefficients lie in a fixed alphabet of size at most $2^b$.
+The asymptotic corollaries and the denominator-only theorem are written
+proofs in this note, not Lean theorems.
+
+The same Lean file defines
+\texttt{HeadComplexity.WorstCaseExponentImprovement} to be exactly
+the eventual assertion
+\[
+ \exists\delta>0\;\exists C>0\;\exists n_0\in\mathbb N\;
+ \forall n\ge n_0,\qquad
+ W(n)\le C2^n/n^{1+\delta},
+\]
+where $W(n)$ is the original
+\texttt{HeadComplexity.worstCaseHeadComplexity}. This is only a
+definition of a proposition. No proof of it is supplied or claimed.
+Finite precision is a necessary resource, not a decoder: the argument
+does not construct an admissible mechanism that extracts the encoded
+table bits. The missing mechanism remains the universal strict-sign
+construction at a sublinear fraction of $2^n/n$ heads.
+
+\end{document}
