@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\title{A Strict Axis-Zero Compiler from Reciprocal Sheets and Path Orders}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and limitation.}
+This is a complete written universal local construction with a linear
+head count and an improved leading constant. It does not yield an
+unbounded row/head ratio, and therefore does not prove the requested
+$\log\log n$ or $\log n$ saving. The original atom conditions, input
+dimension, and global complexity definitions are unchanged. The proof
+uses the ordinary real inverse function theorem and the Cauchy and
+Borchardt determinant identities. It has not been formalized in Lean.
+
+\begin{theorem}
+For every integer $k\geq1$, every $s\geq1$, and every sign table on
+$(3k-1)$ rows and $s$ columns, there is a sum of $2k+3$ affine ratios
+whose denominators are positive on the entire Boolean
+$(3k-1+s)$-cube and have strictly negative slopes in every coordinate.
+The score has the prescribed strict signs on the one-hot product
+and is exactly zero on both Boolean coordinate axes.
+Consequently, for arbitrary positive $r,s$, the same conclusions hold
+with at most
+\[
+ 2\left\lceil\frac{\min(r,s)+1}{3}\right\rceil+3
+\]
+heads. This bound is $\frac23\min(r,s)+O(1)$, not a superconstant
+compression.
+\end{theorem}
+\begin{proof}
+Put $R=3k-1$, $m=R+s$, and $\varepsilon=1/[100(m+1)]$.
+There are $2k$ regular rows indexed by $(i,t)$ with
+$1\leq i\leq k$ and $t\in\{0,1\}$, and $k-1$ comparison rows
+indexed by $\ell=1,\ldots,k-1$. Let
+\[
+ p=1-2\varepsilon,\qquad
+ \lambda_j=\frac{j\varepsilon}{k+1},\qquad
+ \kappa_{i,t}=\frac{i\varepsilon}{k+1},\qquad
+ \kappa_\ell=\frac\varepsilon2.
+\]
+Thus all $\lambda_j$ and all $\kappa_\rho$ lie strictly between
+zero and $\varepsilon$, and the $\lambda_j$ are distinct. Write
+$d_i=p-\kappa_{i,0}$ and $d_*=p-\varepsilon/2$.
+
+For parameters $(u,a)\in(0,\varepsilon)^k\times\mathbb R^k$
+define regular queries
+\[
+ G_i^t(u,a)=\sum_{h=1}^k\left(
+ \frac{t+a_h}{d_i-u_h}-\frac{t}{d_i}
+                         -\frac{a_h}{p-u_h}\right)+c_i^t,
+\]
+where
+\[
+ c_i^0=0,\qquad
+ c_i^1=-\sum_{j=1}^k\left(\frac1{d_i-\lambda_j}-\frac1{d_i}\right).
+\]
+Define the comparison queries
+\[
+ G_\ell(u,a)=\frac1{d_*-u_\ell}-\frac1{d_*-u_{\ell+1}}
+       +\sum_{h=1}^k a_h\left(\frac1{d_*-u_h}-\frac1{p-u_h}\right).
+\]
+Every displayed denominator is positive on the parameter box.
+
+For each permutation $\pi\in\mathfrak S_k$, let
+$x_\pi$ have $u_h=\lambda_{\pi(h)}$ and $a_h=0$.
+All $2k$ regular queries vanish at every $x_\pi$.
+The comparison query at that point has strict sign
+$\operatorname{sgn}(\lambda_{\pi(\ell)}-lambda_{\pi(\ell+1)})$.
+Every choice of the $k-1$ comparison signs is realized by a permutation:
+orient the corresponding edges of the path on $k$ slots so that
+an arrow points toward the slot required to have larger value.
+An orientation of a path has no directed cycle. A topological ordering
+therefore assigns the distinct increasing values $\lambda_j$ consistently.
+
+It remains to check that all $2k$ regular signs can be varied
+independently near each such sheet. At $x_\pi$, the Jacobian of the
+regular queries in row order $(G_1^0,\ldots,G_k^0,G_1^1,\ldots,G_k^1)$
+and parameter order $(u_1,\ldots,u_k,a_1,\ldots,a_k)$, after subtracting
+the first block of rows from the second, is
+\[
+ \begin{pmatrix}0&K_\pi\\E_\pi&0\end{pmatrix},\qquad
+ (K_\pi)_{ih}=\frac1{d_i-\lambda_{\pi(h)}}-
+                          \frac1{p-\lambda_{\pi(h)}},\qquad
+ (E_\pi)_{ih}=\frac1{(d_i-\lambda_{\pi(h)})^2}.
+\]
+Let $C_{ij}=1/(d_i-\lambda_j)$. The unpermuted $K$ factors as
+\[
+ K=\operatorname{diag}(p-d_i)\ C
+             \operatorname{diag}\left(\frac1{p-\lambda_j}\right).
+\]
+Its two diagonal factors are positive and invertible. Cauchy's
+identity gives $\det C\neq0$, and Borchardt's identity gives
+$\det(C\circ C)=\det C\operatorname{perm}C\neq0$.
+Hence both $K_\pi$ and $E_\pi$ are nonsingular, and so is the
+full Jacobian. A primary proof of Borchardt's identity is
+D.~Singer, \emph{A Bijective Proof of Borchardt's Identity},
+Electronic Journal of Combinatorics 11 (2004), Theorem~1.1,
+\url{https://www.combinatorics.org/ojs/index.php/eljc/article/download/v11i1r48/pdf/}.
+
+Given all $R$ desired signs, first choose $\pi$ for its comparison
+signs. Take a neighborhood of $x_\pi$ inside the parameter box on
+which those strict comparison signs persist. By the inverse function
+theorem, the regular queries map a sufficiently small neighborhood
+of $x_\pi$ onto a neighborhood of zero in $\mathbb R^{2k}$.
+This image contains a vector with any desired $2k$ strict signs.
+Thus every $R$-sign vector occurs with $0<u_h<\varepsilon$.
+For each column choose parameters $(u_{hj},a_{hj})$ producing that
+column's desired signs.
+
+We now realize these queries on the original Boolean cube, including
+exact axis cancellation. Define affine functions
+\[
+ D(z,w)=1-\varepsilon\left(\sum_\rho z_\rho+\sum_jw_j\right),
+ \quad U(z)=\sum_\rho\kappa_\rho z_\rho,
+ \quad V_h(w)=\sum_j u_{hj}w_j,
+ \quad A_h(w)=\sum_j a_{hj}w_j.
+\]
+For each head define $T_h(z)$ by giving it coefficient $t$ on regular
+row $(i,t)$ and coefficient
+$\mathbf1_{h=\ell}-\mathbf1_{h=\ell+1}$ on comparison row $\ell$.
+Let $c_\rho=c_i^t$ on regular rows and $c_\rho=0$ on comparison rows.
+Set
+\[
+ b=\frac1{p-\varepsilon}-\frac1p>0,
+ \qquad L(z)=\frac1b\sum_\rho c_\rho z_\rho.
+\]
+The desired score is
+\[
+\begin{split}
+ Q(z,w)={}&\sum_{h=1}^k\frac{T_h(z)+A_h(w)}{D(z,w)-U(z)-V_h(w)}
+       -\frac{\sum_hT_h(z)}{D(z,w)-U(z)}\\
+ &-\sum_{h=1}^k\frac{A_h(w)}{D(z,w)-V_h(w)}
+       +\frac{L(z)}{D(z,w)-\varepsilon\sum_jw_j}
+       -\frac{L(z)}{D(z,w)}.
+\end{split}
+\]
+This is exactly $k+1+k+2=2k+3$ affine ratios. Each denominator
+has strictly negative slopes in all coordinates, because the shared
+background $D$ contributes $-\varepsilon$ everywhere and every
+additional subtracted coefficient is positive. Every denominator
+is at least $1-2m\varepsilon>0$ throughout the full cube: the total
+subtracted coefficient sum is at most $m\varepsilon$ from $D$ and
+at most another $m\varepsilon$ from its additional terms.
+
+If $w=0$, then $V_h=A_h=0$, the first two terms cancel, and the
+last two terms cancel. If $z=0$, then $U=T_h=L=0$, and the first
+and third terms cancel. Thus both axis identities hold exactly.
+On a one-hot grid point, $D=p$, $U=\kappa_\rho$, and the final two
+terms contribute exactly $c_\rho$. Substitution gives precisely the
+corresponding query $G_i^t$ or $G_\ell$ above. This proves the strict
+sign claim.
+
+For arbitrary $r$, choose $k=\lceil(r+1)/3\rceil$, pad the table
+arbitrarily to $R=3k-1\geq r$ rows, and restrict the resulting
+construction by fixing its extra row bits to zero. Positivity,
+strict slopes on every retained coordinate, and both axis identities
+are preserved. Exchanging the two blocks if necessary gives the
+stated minimum of $r$ and $s$.
+\end{proof}
+
+\paragraph{Verification boundary.}
+The companion exact-arithmetic checker verifies every path orientation
+for $k\leq6$, the sheet values and Jacobian determinants for $k\leq4$,
+and all vertices and axis identities of a small full-cube instance.
+These checks validate the displayed formulas on finite examples;
+the general argument is the written proof. No claim of the requested
+superconstant saving or of Lean verification is made.
+
+\paragraph{Remaining amplification problem.}
+All comparison rows above use the same pole $d_*$ and at a sheet are
+linear functions of the permuted vector
+$(1/(d_*-\lambda_1),\ldots,1/(d_*-\lambda_k))$.
+That vector lies in a fixed affine hyperplane, so this particular
+family of extra readouts cannot shatter more than $k-1$ signs.
+Allowing each extra row its own shared pole avoids this immediate
+linear-dimensional bound, while preserving the $2k+3$ head formula.
+It remains unproved that such variable-pole readouts, or more general
+joint queries, can supply $\omega(k)$ independent signs.
+\end{document}
