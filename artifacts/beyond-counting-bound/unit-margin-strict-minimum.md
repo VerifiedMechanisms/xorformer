@@ -100,6 +100,6 @@ The normalized numerator vector in $S$ is $(2/\gamma)u$. Its squared norm is the
 
 ## Audit scope and remaining question
 
-The analytic proof above uses explicit rational inequalities, the contraction mapping theorem, and the inverse function theorem. The exact verifier checks the numerical certificate without floating-point assertions. Kernel checks of the center's cube table are supplied separately; the contraction and local-minimum deductions are written proofs, not claimed as Lean declarations.
+The analytic proof above uses explicit rational inequalities, the contraction mapping theorem, and the inverse function theorem. The exact verifier checks the numerical certificate without floating-point assertions. The Lean declarations `HeadComplexity.UnitMinimumCenter.unselected_score_gap` and `active_residual` check the center's entire cube gap and all selected residual bounds. `den_positive` checks denominator positivity. These declarations depend only on standard foundational axioms. The contraction and local-minimum deductions are written proofs, not claimed as Lean declarations.
 
 This construction rules out a universal local-minimum rank-defect shortcut. It does not show that the constructed point is a global minimum, and it does not bound the number of local or global minima. A proposed argument using those stronger properties remains blocked until it supplies a new proof mechanism. The manuscript's architecture, unrestricted parameters, and definitions of head complexity and worst-case complexity are unchanged.

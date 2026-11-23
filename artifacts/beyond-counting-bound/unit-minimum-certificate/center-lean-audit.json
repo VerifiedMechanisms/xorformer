@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-23T11:23:59.838174+00:00",
+  "modules": [
+    "UnitMinimumCenterData.lean",
+    "UnitMinimumCenterCube.lean",
+    "UnitMinimumCenter.lean"
+  ],
+  "build_exit_code": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "declarations": [
+    "HeadComplexity.UnitMinimumCenter.indices_injective",
+    "HeadComplexity.UnitMinimumCenter.indices_mem",
+    "HeadComplexity.UnitMinimumCenter.activeList_mem_iff",
+    "HeadComplexity.UnitMinimumCenter.numerator_bounds",
+    "HeadComplexity.UnitMinimumCenter.slope_bounds",
+    "HeadComplexity.UnitMinimumCenter.denominator_endpoint_bounds",
+    "HeadComplexity.UnitMinimumCenter.cached_gap",
+    "HeadComplexity.UnitMinimumCenter.den_ge_endpoint",
+    "HeadComplexity.UnitMinimumCenter.den_positive",
+    "HeadComplexity.UnitMinimumCenter.rawQ_positive",
+    "HeadComplexity.UnitMinimumCenter.integer_gap_or_selected",
+    "HeadComplexity.UnitMinimumCenter.score_fraction",
+    "HeadComplexity.UnitMinimumCenter.unselected_score_gap",
+    "HeadComplexity.UnitMinimumCenter.active_residual",
+    "HeadComplexity.UnitMinimumCenter.origin_score"
+  ],
+  "scope": "Exact rational center, all cube gaps, selected residuals, and denominator bounds. The contraction and strict local minimum are written analytic proofs.",
+  "file_sha256": {
+    "UnitMinimumCenterData.lean": "cbc42ccb5e438953d090b64c81b8a7a2a5ebdfda3f3689f288e642ef02a7e734",
+    "UnitMinimumCenterCube.lean": "bc432d70730583c40ae90db278b19b16cc5be86c8feaffdf8d0cc031bb3851c2",
+    "UnitMinimumCenter.lean": "b8c20df79d61ac1954724fc0f62ac85f141c5d3868527e0fb6383e29199ddfad"
+  },
+  "main_target_proved": false
+}
