@@ -1101,6 +1101,171 @@ applied to their support. Recursive repair or a shared cancellation
 construction across many flats would need an additional mechanism;
 neither follows from the weak-density theorem.
 
+\section{Buffered arithmetic chains admit additive orientation repair}
+
+The arithmetic-chain identity in \texttt{exponent-literature.tex} can
+be strengthened by inverse-power interpolation. This is an exact
+compiler for a structured family of mixed-slope rational scores.
+It is not a universal sign decoder.
+
+Fix $k\geq1$, $L\geq1$, and define Laurent polynomials
+\[
+ p_a(z)=(-1)^a s_{(L,1^a)}(1,z^{-1},\ldots,z^{-k}),
+ \qquad 0\leq a\leq k,
+\]
+where $s_\lambda$ is the Schur polynomial. We use its standard
+alternant and semistandard-tableau formulas, as stated for example in
+\href{https://www.cip.ifi.lmu.de/~grinberg/algebra/umn2019.pdf}{Grinberg's
+symmetric-polynomial notes, slide 10}. The needed properties and their
+application are made explicit below.
+
+\begin{proposition}\label{prop:hook-switch}
+For every integer $s\in\{0,\ldots,k\}$, one has the Laurent identity
+\[
+ 1=\sum_{a=0}^k p_a(z)z^{(L+a)s}.
+\]
+Write $p_a(z)=\sum_r c_{a,r}z^r$. Its support is contained in
+$[-R_a,-m_a]$, where
+\[
+ m_a=\frac{a(a+1)}2,\qquad
+ R_a=kL+ak-\frac{a(a+1)}2,\qquad
+ W_a=R_a-m_a=kL+ak-a(a+1).
+\]
+If $\zeta^L=1$ and the multiplicative order of $\zeta$ is greater
+than $k$, then $p_0(\zeta)=1$ and $p_a(\zeta)=0$ for $a>0$.
+\end{proposition}
+
+\begin{proof}
+Temporarily let $r_0,\ldots,r_k$ be distinct nonzero indeterminates.
+The degree-at-most-$k$ polynomial interpolating $w^{-L}$ at
+$w=1/r_j$ is
+\[
+ Q(w)=\sum_{j=0}^k r_j^L
+       \frac{\prod_{i\ne j}(w-1/r_i)}
+            {\prod_{i\ne j}(1/r_j-1/r_i)}.
+\]
+Its coefficient of $w^a$ is
+\[
+ (-1)^a\sum_{j=0}^k
+ \frac{r_j^{L+k}e_a(r_0,\ldots,\widehat r_j,\ldots,r_k)}
+      {\prod_{i\ne j}(r_j-r_i)}
+ =(-1)^a s_{(L,1^a)}(r_0,\ldots,r_k).
+\]
+The last equality is the alternant formula expanded in the column
+with exponent $L+k$: the remaining exponents are
+$k,k-1,\ldots,0$ with $k-a$ omitted, whose alternant divided by the
+smaller Vandermonde is $e_a$. Substituting $r_j=z^{-j}$ and
+$w=z^s$, then multiplying by $w^L$, proves the identity. Both sides
+are Laurent polynomials, so the identity has no exceptional nonzero
+specializations of $z$.
+
+In a semistandard tableau of hook shape $(L,1^a)$ with entries
+$0,\ldots,k$, the total entry sum is at least $0+1+\cdots+a=m_a$:
+the first column is strictly increasing. It is at most
+\[
+ k(L-1)+(k-a)+(k-a+1)+\cdots+k=R_a,
+\]
+because the arm has $L-1$ entries at most $k$, and the column has
+$a+1$ distinct entries at most $k$. Substitution of $z^{-j}$ makes
+the Laurent exponent the negative of this sum, proving the support
+bound.
+
+Finally, when $\zeta$ has order greater than $k$, the interpolation
+nodes $1,\zeta,\ldots,\zeta^k$ are distinct. If $\zeta^L=1$, the
+function $w^{-L}$ is equal to $1$ at all these nodes. Its unique
+interpolating polynomial of degree at most $k$ is the constant $1$.
+This proves the last assertion, without dividing by a vanishing
+Vandermonde.
+\end{proof}
+
+\begin{theorem}\label{thm:hook-repair}
+Let $P>k$ be prime, let $L$ be a positive multiple of $P$, and let
+$\delta>0$. Let $x_1,\ldots,x_k$ be designated cube coordinates,
+$b_i\geq0$, and suppose $b_i<L\delta$ for every $i$. Let $D$ be an
+affine function independent of these coordinates, with strictly
+positive slopes in every other coordinate. Put
+\[
+ R_\ast=kL+\frac{k(k-1)}2,
+ \qquad \min_{\{0,1\}^n}D>\delta R_\ast.
+\]
+Let $(A_h)_{h\in\mathbb Z}$ be a $P$-periodic sequence of real affine
+numerators whose sum over one period is the zero affine function.
+For every $H\geq1$, the whole-cube score
+\[
+ F(x)=\sum_{h=1}^H
+ \frac{A_h(x)}{D(x)+h\delta-\sum_{i=1}^k b_ix_i}
+\]
+is exactly a sum of at most
+\[
+ H+W_0+2\sum_{a=1}^kW_a
+ =H+k(2k+1)L+\frac{k(k+1)(k-4)}3
+ =H+O(k^2L+k^3)
+\]
+affine ratios, all with strictly positive slopes and strictly
+positive denominators on the whole cube. These ratios therefore
+compile to actual admissible heads by the positive-affine-ratio
+compiler already used in this repository.
+\end{theorem}
+
+\begin{proof}
+For a fixed input put $s=\sum_{i=1}^k x_i$. Interpret the Laurent
+identity of Proposition~\ref{prop:hook-switch} as an identity between
+finite translation operators acting on the scalar argument of the
+reciprocal function. Explicitly, matching the coefficients of each
+Laurent monomial gives
+\[
+ \frac1{D+h\delta-\sum_i b_ix_i}
+ =\sum_{a=0}^k\sum_r
+ \frac{c_{a,r}}
+ {D+(h+r)\delta+\sum_i((L+a)\delta-b_i)x_i}.
+\]
+This is exact for every Boolean input: $s$ is one of the integers
+for which the Laurent identity holds. Every displayed denominator
+is positive. Indeed $h+r\geq1-R_\ast$, while
+$(L+a)\delta-b_i>0$ and $\min D>\delta R_\ast$.
+Its slopes are strictly positive in all coordinates.
+
+Set $\widetilde A_h=A_h$ for $1\leq h\leq H$ and zero otherwise.
+After multiplying by $A_h$ and collecting equal denominators, the
+numerator for family $a$ and offset $j$ is the affine function
+\[
+ C_{a,j}=\sum_r c_{a,r}\widetilde A_{j-r}.
+\]
+For the untruncated periodic sequence, Fourier decomposition over
+$\mathbb Z/P\mathbb Z$ uses only nonzero frequencies, because its
+mean is zero. All associated roots have order $P>k$ and satisfy
+$\zeta^L=1$. Proposition~\ref{prop:hook-switch} therefore says that
+convolution with $p_0$ is the identity and convolution with $p_a$
+for $a>0$ is zero. This argument applies separately to each real
+affine coefficient; taking real and imaginary parts leaves real
+numerators.
+
+The offsets possibly present in family $a$ lie in
+$[1-R_a,H-m_a]$, an interval of at most $H+W_a$ integers. On the
+interior interval $[1-m_a,H-R_a]$, every argument $j-r$ lies between
+$1$ and $H$, so truncation has no effect. For $a>0$ all these
+interior numerators are zero. If $H\geq W_a$, removing that
+interior leaves at most $2W_a$ offsets; if $H<W_a$, the entire
+support has fewer than $2W_a$ offsets. For $a=0$ simply retain its
+at most $H+W_0$ offsets. Summation proves the head bound. Zero
+numerators may be discarded. The explicit equality follows by
+summing $W_a=kL+ak-a(a+1)$.
+\end{proof}
+
+For $b_{\max}>0$, taking $\delta$ just above $b_{\max}/L$ makes
+the buffer approach
+\[
+ b_{\max}\left(k+\frac{k(k-1)}{2L}\right).
+\]
+Thus increasing $L$ improves the required buffer toward
+$kb_{\max}$ while increasing the additive boundary count. This
+still need not be comparable to the original admissibility margin,
+which only controls $\sum_i b_i$. No arbitrary decoder is known to
+have the required arithmetic poles, periodic zero-mean affine
+residues, and buffer simultaneously. In particular, repeating a
+fixed period does not create additional scalar oscillation; the
+independent periodic Stieltjes-chain audit records that limitation.
+
 \section{Formal verification status}
 
 The new file
