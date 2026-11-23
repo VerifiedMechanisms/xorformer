@@ -58,7 +58,7 @@
     "formalization/HeadComplexity/Results/AxisZeroFaces.lean": "e77eee5d5fa013dc82fd41f817b5b1172be8603f8dac284865ba3517df9c5077",
     "formalization/HeadComplexity/Results/ReverseAxisCompiler.lean": "b7d64cef2fa83b4f2c3d02f417eb1ca09867f5ffabd6759eae4c56dd153057b4",
     "artifacts/head-compression/continuation-branch-audit.tex": "4ca03a5f6f29ccbdfec7444669280bb1d80f1803dc0a22ce80dd30ae51b36558",
-    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "f442efbcb7fe7737bbfbdc2aa4f5e45c5d49a280e41cd3e751354843d01de305",
+    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "ebec5f8665e3823211bf343370924682a85b973e6a41527bc7f33ff3883a9075",
     "formalization/HeadComplexity/Polynomial/AlgebraicRegularValues.lean": "73d2d905041e895352803eafbaf2fd2ca7270be6bfce093eee0944031ed096f6",
     "formalization/HeadComplexity/Polynomial/ConstrainedMinimaBound.lean": "d7423dde5106356a5fe766cf98e21c61e9ec8fe18fb279352fbe54b2d6fdebca",
     "formalization/HeadComplexity/Polynomial/DiagonalRootBound.lean": "49f5fbc9c3cbcd22377b3cd0d859f693735ab0583a011cad7e21ced1c0e0d5d5",
@@ -82,7 +82,7 @@
     "formalization/HeadComplexity/Results/WarrenBound.lean": "35ae40221e758272f17dc5b2d4bd0ddf3a02cd0998255d8f535332874142997e"
   },
   "new_written_audits": {
-    "compact_decoder": "Exact axis and Mobius identities; whole-cube cross-ratio counterexample; signed erasure, mixed-moment, and exact butterfly obstructions; sign-only compact independent-bit readers require growing Cauchy degree. No asymptotic conclusion."
+    "compact_decoder": "Exact axis and Mobius identities; whole-cube cross-ratio counterexample; signed erasure, mixed-moment, and butterfly obstructions. Compact common-symbol sign readers and arbitrary-slot exact flow readers admit only O(H log(K+1)) butterfly bits with HK replicated heads. The latter permits arbitrary residues and needs only nonzero denominators. No asymptotic conclusion."
   },
   "second_audit": {
     "source_commit": "2672bc2f68e854622722d26b91a86e42e1ccab31",

@@ -551,6 +551,109 @@ can produce $2^kK$ different terms. The preceding count then does not
 apply. Removing that cost requires an additional invariant or
 construction, which is not asserted here.
 
+\begin{proposition}[Exact flow readers with arbitrary slot dependence]
+Let $H=2^r$. A butterfly applies stages $0,\ldots,r-1$, where stage $k$
+independently swaps the pairs of positions differing in bit $k$.
+Write $\pi_\sigma(h)$ for the output symbol reached by input $h$ under
+the switch settings $\sigma$. Fix arbitrary real library pairs
+$(\lambda_j,c_j)$, $0\leq j<H$. For each query $q$, permit completely
+slot-dependent functions
+\[
+ \phi_{qh}(j)=\sum_{\ell=1}^K
+       \frac{A_{qh\ell}+\gamma_{qh\ell}c_j}
+            {D_{qh\ell}-\lambda_j},
+ \qquad
+ F_q(\sigma)=b_q+\sum_{h=0}^{H-1}\phi_{qh}(\pi_\sigma(h)).
+\]
+All displayed denominators must be nonzero; no common pole,
+positivity, compactness, or sign restriction on residues is needed.
+Suppose each query returns an exact nonconstant affine function
+of one specified switch bit and is independent of every other switch
+bit. In any one stage-$k$ input block of size $2^{k+1}$, the number
+$m$ of distinct switches decoded by such queries satisfies
+\[
+ m\leq 3K(2K+1).
+\]
+If every $\gamma_{qh\ell}$ is zero, the stronger bound
+$m\leq K(2K+1)$ holds.
+Consequently the number of individually decoded switches across the
+entire butterfly is $O(H\log(K+1))$. Dividing by $HK$ replicated heads
+does not give an unbounded decoding gain, even when $K$ grows.
+\end{proposition}
+\begin{proof}
+Fix the stage and input block, and fix inputs $h_0,h_1$ in its two
+halves, distinguished by bit $k$. Each earlier stage acts separately
+within those halves. For every stage-$k$ switch $\ell$ in the block,
+there are prefix settings that route $h_0,h_1$ to its two incoming
+positions. To see this, route one input to any prescribed position by
+successively setting bits $0,\ldots,k-1$ along its path. The two halves
+use disjoint switches, so both routings are possible simultaneously.
+Fix such a prefix, and set all later switches to zero. Toggling switch
+$\ell$ then exchanges just the output symbols $j_\ell^0,j_\ell^1$
+assigned to $h_0,h_1$.
+
+Let the selected switch queries and selected switches both be indexed
+by $1,\ldots,m$. Put
+$\psi_q(j)=\phi_{q h_0}(j)-\phi_{q h_1}(j)$. Exact independence from
+the other switches gives
+\[
+ \Delta_{q\ell}
+ :=\psi_q(j_\ell^1)-\psi_q(j_\ell^0)
+ =0\quad(q\ne\ell),\qquad
+ \Delta_{qq}\ne0.
+\]
+Although the chosen prefix depends on $\ell$, the two slot functions
+in this equation are always the same fixed $h_0,h_1$ functions.
+This is precisely where arbitrary slot dependence is retained without
+an averaging cost.
+
+Each $\psi_q$ has at most $L=2K$ Cauchy terms. After using the product
+of its denominators, it has the form
+\[
+ \psi_q(j)=\frac{c_jP_q(\lambda_j)+Q_q(\lambda_j)}{d_q(\lambda_j)},
+ \qquad
+ \deg d_q\leq L,\quad \deg P_q,\deg Q_q\leq L-1.
+\]
+Define $N_{q\ell}$ by multiplying $\Delta_{q\ell}$ by
+$d_q(\lambda_{j_\ell^0})d_q(\lambda_{j_\ell^1})$.
+This remains a diagonal matrix with nonzero diagonal, so
+$\operatorname{rank}N=m$.
+Expanding the $P_qd_q$ products expresses their contribution as at most
+$L(L+1)$ outer products: the fixed column features are
+\[
+ c_{j_\ell^1}(\lambda_{j_\ell^1})^a(\lambda_{j_\ell^0})^b
+ -
+ c_{j_\ell^0}(\lambda_{j_\ell^0})^a(\lambda_{j_\ell^1})^b,
+ \quad 0\leq a<L,\quad 0\leq b\leq L.
+\]
+The $Q_qd_q$ difference is antisymmetric in the two library poles.
+Its column features
+$x^ay^b-x^by^a$, $0\leq a<b\leq L$, require at most
+$L(L+1)/2$ further outer products. Thus
+\[
+ m=\operatorname{rank}N\leq\frac{3L(L+1)}2=3K(2K+1).
+\]
+When all residue coefficients vanish, $P_q=0$ and only the latter
+$L(L+1)/2=K(2K+1)$ features remain.
+
+There are $H/2^{k+1}$ input blocks at stage $k$. Writing
+$B=3K(2K+1)$, the number decoded at that stage is at most
+\[
+ \frac H2\min\{1,B/2^k\}.
+\]
+Summing first over $2^k\leq B$ and then over the geometric tail gives
+at most $\frac H2(\lfloor\log_2 B\rfloor+3)$ decoded switches. This is
+$O(H\log(K+1))$ for every integer $K\geq1$.
+\end{proof}
+
+The exact-value hypothesis cannot be weakened silently to strict signs.
+For a query that only has the correct sign, flipping a different
+switch may change its value without changing that sign. The resulting
+off-diagonal entries of $\Delta$ need not vanish. Hence this
+proposition excludes exact flow-invariant butterfly extraction, including
+the budget $K=O(\log H/\log\log H)$, but does not exclude a nonuniform
+sign-only construction with varying magnitudes.
+
 \paragraph{Unresolved capacity question.}
 The finite five-row construction disproves the naive bound of $2H$
 readable signs from $2H$ column parameters. None of the statements here
