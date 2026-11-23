@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Denominator Orders Do Not Determine Full-Cube Sign Classes}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+The results below are complete written proofs with exact rational
+certificates, not Lean formalizations. They audit a proposed shortcut
+for the global lower bound. They do not prove either requested global
+asymptotic alternative, and they do not alter atom admissibility.
+
+For fixed positive affine denominators $B,C$ on the Boolean cube,
+let $\mathcal S(B,C)$ denote the set of strict sign patterns of
+$c+A/B+D/C$, with arbitrary real affine numerators and real $c$.
+
+\begin{theorem}
+There are two pairs of strictly positive-slope affine denominators on
+the four-dimensional Boolean cube such that:
+\begin{enumerate}
+\item their induced strict orders on all sixteen vertices coincide;
+\item even the combined order of all thirty-two denominator values
+      coincides between the two pairs;
+\item their strict sign classes $\mathcal S(B,C)$ differ.
+\end{enumerate}
+The distinction persists in open neighborhoods of the two pairs within
+the same strict order region. In particular it is not caused merely by
+a rank-deficient exceptional choice of denominators.
+\end{theorem}
+\begin{proof}
+Use lexicographic vertex order $0000,0001,\ldots,1111$, indexed from
+zero. Define
+\[
+ B(x)=1+x_1+3x_2+9x_3+27x_4,
+ \qquad C_v(x)=100B(x)+v\cdot x,
+\]
+and take
+\[
+ v=(8,-9,1,4),\qquad v'=(2,-8,-6,-1).
+\]
+All slopes and constants of these denominators are strictly positive.
+Distinct vertices have distinct integer $B$ values. Since both
+$\sum_i|v_i|$ and $\sum_i|v'_i|$ are less than $100$, perturbation
+by $v\cdot x$ or $v'\cdot x$ cannot reverse any vertex order of $100B$.
+Moreover $B(x)\leq41<100\leq C_v(y),C_{v'}(y)$ for all vertices.
+This proves both order assertions.
+
+For either $v$, the sign class is precisely the strict sign class of
+the nine features
+\[
+ 1,\quad x_i/B(x),\quad x_i/C_v(x)\quad(1\leq i\leq4).
+ \tag{1}
+\]
+Indeed a constant numerator divided by an affine denominator is in
+the span of its four displayed coordinate features and $1$, using
+the positive nonzero constant coefficient of that denominator.
+Multiplication of each row by $B(x)C_v(x)>0$ gives the integer
+feature row
+\[
+ M_v(x)=\bigl(B(x)C_v(x),\ (x_iC_v(x))_{i=1}^4,
+                                  \ (x_iB(x))_{i=1}^4\bigr).
+ \tag{2}
+\]
+
+Restrict to the ten vertex indices
+\[
+                 J=(0,1,3,6,8,9,10,12,13,14).
+\]
+The two $10\times9$ matrices in (2) have rank nine and primitive
+integer left-kernel vectors respectively
+\[
+ \begin{split}
+ \lambda={}&(5759190,-584406,319176,-92718,334041,33920,\\
+             &\hspace{28mm}-259736,1076448,111568,-553363),\\
+ \lambda'={}&(143600853,-7864640,2272334,-574407,-19849030,\\
+             &\hspace{28mm}5150082,-10647419,-3965287,-413088,2893753).
+ \end{split}
+ \tag{3}
+\]
+These claims have exact certificates: the signed $9\times9$ cofactors
+of $M_v|_J$ are $5600\lambda$, and those of $M_{v'}|_J$ are
+$400\lambda'$. In particular every cofactor is nonzero. The companion
+checker verifies the cofactors and the kernel identities over the
+rationals.
+
+Set $\tau_j=\operatorname{sgn}\lambda'_j$. No member of
+$\mathcal S(B,C_{v'})$ can restrict to $\tau$ on $J$.
+If it did, its cleared numerator vector $z$ would satisfy both
+$\lambda'\cdot z=0$ and $\lambda'\cdot z>0$.
+
+Here is an explicit member of $\mathcal S(B,C_v)$ with that
+restriction. Take the score
+\[
+ \begin{split}
+ F(x)={}&726397+
+ \frac{413029720x_1+1022839140x_2+2018070760x_3+6209249130x_4}{B(x)}\\
+ &-\frac{43229541511x_1+100481986842x_2+
+              202681766582x_3+623851360053x_4}{C_v(x)}.
+ \end{split}
+ \tag{4}
+\]
+Its sixteen strict signs in the stipulated lexicographic order are
+\[
+                  (+,-,+,+,-,-,-,-,-,+,-,-,-,-,+,-).
+ \tag{5}
+\]
+Exact substitution checks (5), and its restriction to $J$ equals
+$\tau$. Thus the two sign classes differ.
+
+Finally all the margins in (4) are strict, all denominator order
+inequalities are strict, and all cofactors in (3) are nonzero.
+Continuity preserves these facts in sufficiently small neighborhoods
+of the respective denominator pairs. On the second neighborhood the
+cofactor signs remain $\tau$, so the same strict sign obstruction
+persists. On the first neighborhood the fixed score coefficients in
+(4) retain the signs in (5). This proves the robustness assertion.
+\end{proof}
+
+\begin{proposition}[Quadratic products inside one order region]
+Fix any strictly positive-slope affine $B$ with distinct Boolean
+vertex values. For any real affine $L,V$ and sufficiently small
+$\epsilon>0$, the denominator $C=B+\epsilon V$ has strictly
+positive constant and slopes and the same vertex order as $B$.
+The exact two-head identity
+\[
+ \frac{L}{B}-\frac{L}{C}
+                  =\frac{\epsilon LV}{BC}
+ \tag{6}
+\]
+therefore realizes the strict sign of any nowhere-zero product $LV$
+without leaving that fixed denominator order region.
+\end{proposition}
+\begin{proof}
+There are finitely many strict coefficient and order inequalities.
+They all hold at $\epsilon=0$, so they persist for small positive
+$\epsilon$. Identity (6) follows by cross multiplication, and $BC$
+is positive on the cube.
+\end{proof}
+
+The proposition illustrates why arbitrarily small denominator
+perturbations cannot be discarded in a sign-count argument: numerator
+cancellation can expose their exact directional information. The
+theorem goes further by distinguishing generic sign classes within
+one strict order region. Neither statement bounds the number of such
+classes asymptotically, and neither disproves the desired global lower
+bound.
+
+\end{document}
