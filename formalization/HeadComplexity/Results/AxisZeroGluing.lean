@@ -87,7 +87,7 @@ theorem glue_step {X : Type*} [DecidableEq X]
 /-- Complete finite assembly of compatible local modules. Each module is used
 once, with a positive numerator scale and a nonnegative denominator penalty.
 No margin bound or quantitative rate of convergence is assumed. -/
-theorem glue_finite {X : Type*} [DecidableEq X]
+theorem glue_finite {X : Type*}
     (C D : ℕ → Finset X) (σ : X → ℝ) (F : ℕ → X → ℝ)
     (Ft : ℕ → ℝ → X → ℝ) (N : ℕ)
     (hCD : ∀ i < N, C i ⊆ D i)
@@ -101,6 +101,7 @@ theorem glue_finite {X : Type*} [DecidableEq X]
       (∀ i < N, 0 < scale i ∧ 0 ≤ param i) ∧
       ∀ x, (∃ i < N, x ∈ C i) →
         0 < σ x * ∑ i ∈ Finset.range N, scale i * Ft i (param i) x := by
+  classical
   revert hCD hF hcompat heq hzero
   induction N with
   | zero =>
@@ -301,7 +302,8 @@ theorem weak_affine_ratios_admissible {n : ℕ} {I : Type*} [Fintype I]
         affineValue (b₀ h) (fun k ↦ b h k + delta t) x) := by
     apply (Finset.eventually_all P).mpr
     intro x hx
-    have hlim := ((tendsto_finsetSum Finset.univ (fun h _ ↦ hterm h x)).const_add bias).const_mul (σ x)
+    have hlim := ((tendsto_finsetSum Finset.univ (fun h _ ↦ hterm h x)).const_add bias).const_mul
+      (σ x)
     exact hlim.eventually (eventually_gt_nhds (hsign x hx))
   obtain ⟨t, ht, hsign'⟩ := ((eventually_ge_atTop (0 : ℝ)).and hevent).exists
   have hdpos : 0 < delta t := by dsimp [delta]; positivity

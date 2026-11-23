@@ -19,6 +19,25 @@ affine ratio with strictly negative slopes, by
 \texttt{FracAtom.ofNegativeAffineRatio\_eval}. Different heads may have
 different orientations. The proofs below use these existing interfaces.
 
+\paragraph{Lean verification.}
+The new modules \texttt{HeadComplexity.Results.AxisZeroGluing} and
+\texttt{HeadComplexity.Results.AxisZeroCover} build successfully.
+Within namespace \texttt{HeadComplexity.AxisZeroGluing},
+\texttt{glue\_finite} checks the entire finite sign-preservation induction,
+\texttt{glue\_positive\_affine\_ratios} constructs actual original-model
+atoms, \texttt{glued\_head\_count} checks their summed head budget,
+and \texttt{weak\_affine\_ratios\_admissible} checks final restoration of
+strict slopes without adding heads. Bias absorption, suppression limits,
+and deletion-count arithmetic are also checked.
+\texttt{openDownwardCover\_of\_upward} checks the complement-and-parent
+cover transfer, and \texttt{exists\_product\_openDownwardCover} proves the
+explicit product budget $484\cdot2^{a+b}/(ab)$.
+Independent \texttt{\#print axioms} checks of these central declarations
+report only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. The geometric application of the abstract gluing
+hypotheses and the exceptional-face repair below remain written proofs;
+no unconditional improved asymptotic theorem is asserted.
+
 \section{Gluing}
 Identify a Boolean input with $(X,Y)$ in two disjoint coordinate blocks
 $A,B$. For a center $(S,T)$ define
