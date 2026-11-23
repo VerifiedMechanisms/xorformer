@@ -440,4 +440,141 @@ particular mechanism. Neither supplies an asymptotic saving. Different
 column pole assignments, target-dependent permutations, or another
 nonlinear interaction are necessary for an unbounded-column extension.
 
+
+\section{The exact mixed Hessian at an all-pair zero base}
+
+The surplus-head construction also admits a nonlinear version in which
+pole positions vary and every singleton interpolation condition remains
+exact. The first nontrivial interaction has an explicit form.
+
+\begin{theorem}[Mixed interaction as a central residue difference]
+Let $H=2M$, and suppose the $H$ positive anchors
+$Z=\{d_i,d_i/2:1\le i\le M\}$ are distinct. Put
+\[
+ P(t)=\prod_{z\in Z}(t-z),\quad Q_b(t)=\prod_{h=1}^H(t-b_h),\quad
+ c_h(b)=-\frac{P(b_h)}{Q_b'(b_h)}.
+\]
+Take distinct poles $\lambda_h>0$ below all anchors. For two pole vectors
+$a,b$ sufficiently close to $\lambda$, define
+\[
+ F_i(a,b)=-1+\sum_h\frac{c_h(a)+c_h(b)}{d_i-a_h-b_h}.
+\]
+Then every singleton score $-1+\sum_hc_h(a)/(d_i-a_h)$ is zero,
+and $F_i(a,a)=0$. If $m=(a+b)/2$ and $z=d_i/2$, the exact identity
+\[
+ F_i(a,b)=\frac12\sum_h
+ \frac{c_h(a)+c_h(b)-2c_h(m)}{z-m_h}
+\]
+holds.
+
+Write $c=c(\lambda)$ and $J=Dc(\lambda)$. Define the symmetric
+bilinear form
+\[
+ \mathcal B_i(u,v)=\sum_h
+ \frac{(Ju)_h v_h+(Jv)_h u_h}{(d_i-2\lambda_h)^2}
+ +\sum_h\frac{4c_hu_hv_h}{(d_i-2\lambda_h)^3}.
+\]
+Its coefficients are explicit:
+\[
+ J_{hk}=\frac{c_h}{\lambda_h-\lambda_k}\quad(h\ne k),\qquad
+ J_{hh}=c_h\left(\frac{P'(\lambda_h)}{P(\lambda_h)}
+              -\sum_{k\ne h}\frac1{\lambda_h-\lambda_k}\right).
+\]
+The mixed derivative of $F_i$ at $(\lambda,\lambda)$ is
+$\mathcal B_i$, and
+\[
+ F_i(\lambda+\varepsilon u,\lambda+\varepsilon v)
+ =-\frac{\varepsilon^2}{2}\mathcal B_i(u-v,u-v)
+   +O(\varepsilon^3).
+\]
+\end{theorem}
+
+\begin{proof}
+Partial fractions give
+\[
+ R_b(t):=\sum_h\frac{c_h(b)}{t-b_h}=1-\frac{P(t)}{Q_b(t)}.
+\]
+At every anchor $z$, $R_b(z)=1$. This proves the singleton identities,
+$F_i(a,a)=R_a(d_i/2)-1=0$, and the central-difference identity.
+All denominators and pairwise pole differences stay nonzero in a
+sufficiently small neighborhood, so these maps are real analytic there.
+Differentiating the residue product gives the displayed formula for $J$.
+Direct differentiation of one pair summand gives the displayed
+$\mathcal B_i$.
+
+For additional verification, differentiate the identity $R_b(z)=1$
+twice in directions $u,v$. It gives
+\[
+ \sum_h\frac{D^2c_h(\lambda)[u,v]}{z-\lambda_h}
+ =-\sum_h\frac{(Ju)_hv_h+(Jv)_hu_h}{(z-\lambda_h)^2}
+   -\sum_h\frac{2c_hu_hv_h}{(z-\lambda_h)^3}.
+\]
+Thus
+\[
+ \mathcal B_i(u,v)
+ =-\frac14\sum_h\frac{D^2c_h(\lambda)[u,v]}{d_i/2-\lambda_h}.
+\]
+The central second difference of $c$ in the exact identity is
+$\varepsilon^2D^2c(\lambda)[u-v,u-v]/4+O(\varepsilon^3)$.
+Substitution gives the stated expansion and its coefficient.
+\end{proof}
+
+\paragraph{Whole-cube scope.}
+If the $d_i$ are the values of a negative-slope affine $D(u)$, take
+$S$ memory columns with poles $b_{hj}$ and denominators
+$D(u)-\sum_j b_{hj}v_j$. Choosing the initial poles with
+$S\max_h\lambda_h<\min_i d_i$ leaves a positive margin. Small
+perturbations preserve both whole-cube positivity and strictly negative
+slopes. Thus the derivative calculation does not hide a denominator
+admissibility failure.
+
+\begin{proposition}[Even the smallest mixed form is indefinite]
+For $H=2$, anchors $z,2z$, and poles $0<a<b<z$, the matrix of
+$\mathcal B$ is
+\[
+ \begin{pmatrix}
+ \dfrac{2z-b}{2(z-a)(a-b)^2}&
+ -\dfrac{2ab-3az-3bz+4z^2}{4(z-a)(a-b)^2(z-b)}\\[6pt]
+ -\dfrac{2ab-3az-3bz+4z^2}{4(z-a)(a-b)^2(z-b)}&
+ \dfrac{2z-a}{2(a-b)^2(z-b)}
+ \end{pmatrix}.
+\]
+Its determinant is
+\[
+ -\frac{z^2}{16(z-a)^2(a-b)^2(z-b)^2}<0.
+\]
+In particular, it is a nondegenerate indefinite form.
+\end{proposition}
+
+\begin{proof}
+Substitute $P(t)=(t-z)(t-2z)$ into the preceding explicit residue and
+Jacobian formulas, then expand the determinant. Every denominator factor
+in the final determinant is strictly positive.
+\end{proof}
+
+\paragraph{A quadratic-jet decoder cannot provide unbounded pair reuse.}
+Suppose a proposed decoder uses only the strict signs of the leading
+quadratic expressions
+$-\mathcal B_i(u_j-u_k,u_j-u_k)$, with $S$ vectors
+$u_j\in\mathbb R^H$. There are $p=HS$ scalar parameters and
+$m=M\binom S2$ polynomial sign queries of degree at most two.
+The classical strict polynomial sign-pattern bound used in the
+repository's Warren interface gives, for $m\ge p$,
+\[
+ \#\{\hbox{strict sign patterns}\}\le(8em/p)^p.
+\]
+If all $2^m$ patterns occur, $2^{m/p}\le8e(m/p)$, which implies
+$m/p<8$: the inequality fails at $8$, and $2^x/x$ is strictly
+increasing for $x\ge8$. Consequently
+\[
+ S<1+16H/M.
+\]
+In particular $H=O(M)$ permits only bounded $S$ in this quadratic
+mechanism. This paragraph invokes Warren's classical theorem; it is
+not a new unconditional Lean sign-pattern count. It does not exclude
+paths whose quadratic terms vanish and whose higher terms determine
+some signs, growing-order degenerations, or a mechanism using multiple
+separated pole-order components. Those possibilities require a new
+construction beyond the computed quadratic interaction.
+
 \end{document}
