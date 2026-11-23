@@ -1,0 +1,15 @@
+import HeadComplexity.Atoms.PriorityConvexHull
+
+#print axioms HeadComplexity.PriorityConvexHull.elimination_identity
+#print axioms HeadComplexity.PriorityConvexHull.binary_gate_interpolation
+#print axioms HeadComplexity.PriorityConvexHull.dominant_choice_error
+#print axioms HeadComplexity.PriorityConvexHull.affine_hyperplane_transfer
+#print axioms HeadComplexity.PriorityConvexHull.ratio_erase_of_false
+#print axioms HeadComplexity.PriorityConvexHull.ratio_elimination
+#print axioms HeadComplexity.PriorityConvexHull.ratio_mem_of_gate_closed
+#print axioms HeadComplexity.PriorityConvexHull.priority_update_of_false
+#print axioms HeadComplexity.PriorityConvexHull.priority_erase_of_false
+#print axioms HeadComplexity.PriorityConvexHull.signed_gate_mem_priority
+#print axioms HeadComplexity.PriorityConvexHull.signed_gate_mem_convexHull
+#print axioms HeadComplexity.PriorityConvexHull.bounded_gate_mem_convexHull
+#print axioms HeadComplexity.PriorityConvexHull.ratio_mem_priorityHull

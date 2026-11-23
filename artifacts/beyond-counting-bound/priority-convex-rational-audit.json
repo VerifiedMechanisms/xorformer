@@ -1,0 +1,432 @@
+{
+  "status": "PASS",
+  "decomposition_cases": 60,
+  "cases": [
+    {
+      "n": 1,
+      "trial": 0,
+      "convex_support": 4,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 1,
+      "convex_support": 3,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 2,
+      "convex_support": 3,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 3,
+      "convex_support": 4,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 4,
+      "convex_support": 3,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 5,
+      "convex_support": 4,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 6,
+      "convex_support": 4,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 7,
+      "convex_support": 4,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 8,
+      "convex_support": 4,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 9,
+      "convex_support": 2,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 10,
+      "convex_support": 3,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 1,
+      "trial": 11,
+      "convex_support": 3,
+      "positive_dictionary_size": 4,
+      "combined_dictionary_size": 4
+    },
+    {
+      "n": 2,
+      "trial": 0,
+      "convex_support": 3,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 1,
+      "convex_support": 7,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 2,
+      "convex_support": 8,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 3,
+      "convex_support": 7,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 4,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 5,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 6,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 7,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 8,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 9,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 10,
+      "convex_support": 12,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 2,
+      "trial": 11,
+      "convex_support": 7,
+      "positive_dictionary_size": 12,
+      "combined_dictionary_size": 14
+    },
+    {
+      "n": 3,
+      "trial": 0,
+      "convex_support": 23,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 1,
+      "convex_support": 9,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 2,
+      "convex_support": 32,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 3,
+      "convex_support": 32,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 4,
+      "convex_support": 15,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 5,
+      "convex_support": 32,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 6,
+      "convex_support": 32,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 7,
+      "convex_support": 52,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 8,
+      "convex_support": 52,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 9,
+      "convex_support": 52,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 10,
+      "convex_support": 8,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 3,
+      "trial": 11,
+      "convex_support": 23,
+      "positive_dictionary_size": 52,
+      "combined_dictionary_size": 84
+    },
+    {
+      "n": 4,
+      "trial": 0,
+      "convex_support": 103,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 1,
+      "convex_support": 103,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 2,
+      "convex_support": 176,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 3,
+      "convex_support": 63,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 4,
+      "convex_support": 300,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 5,
+      "convex_support": 52,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 6,
+      "convex_support": 300,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 7,
+      "convex_support": 34,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 8,
+      "convex_support": 176,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 9,
+      "convex_support": 32,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 10,
+      "convex_support": 176,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 4,
+      "trial": 11,
+      "convex_support": 300,
+      "positive_dictionary_size": 300,
+      "combined_dictionary_size": 566
+    },
+    {
+      "n": 5,
+      "trial": 0,
+      "convex_support": 599,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 1,
+      "convex_support": 2164,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 2,
+      "convex_support": 351,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 3,
+      "convex_support": 351,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 4,
+      "convex_support": 300,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 5,
+      "convex_support": 599,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 6,
+      "convex_support": 599,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 7,
+      "convex_support": 1232,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 8,
+      "convex_support": 351,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 9,
+      "convex_support": 1232,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 10,
+      "convex_support": 2164,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    },
+    {
+      "n": 5,
+      "trial": 11,
+      "convex_support": 599,
+      "positive_dictionary_size": 2164,
+      "combined_dictionary_size": 4276
+    }
+  ],
+  "two_bit_planes": 97,
+  "four_point_sets_covered": 1001,
+  "minimum_absolute_plane_evaluation": "1/24",
+  "verifier_sha256": "d2e82a15548f714cbe43aa756757d7e88ed51c21195b015b4011ec58c0fd72e4",
+  "scope": "Finite exact checks; general convex-hull and maximal-support theorems are written separately.",
+  "main_target_proved": false
+}

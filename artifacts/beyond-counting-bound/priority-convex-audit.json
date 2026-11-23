@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T22:17:18.188490+00:00",
+  "default_build": {
+    "file": "continuation-default-build.txt",
+    "jobs": 3419
+  },
+  "research_build": {
+    "file": "continuation-research-build.txt",
+    "jobs": 3888
+  },
+  "declarations": [
+    "HeadComplexity.PriorityConvexHull.elimination_identity",
+    "HeadComplexity.PriorityConvexHull.binary_gate_interpolation",
+    "HeadComplexity.PriorityConvexHull.dominant_choice_error",
+    "HeadComplexity.PriorityConvexHull.affine_hyperplane_transfer",
+    "HeadComplexity.PriorityConvexHull.ratio_erase_of_false",
+    "HeadComplexity.PriorityConvexHull.ratio_elimination",
+    "HeadComplexity.PriorityConvexHull.ratio_mem_of_gate_closed",
+    "HeadComplexity.PriorityConvexHull.priority_update_of_false",
+    "HeadComplexity.PriorityConvexHull.priority_erase_of_false",
+    "HeadComplexity.PriorityConvexHull.signed_gate_mem_priority",
+    "HeadComplexity.PriorityConvexHull.signed_gate_mem_convexHull",
+    "HeadComplexity.PriorityConvexHull.bounded_gate_mem_convexHull",
+    "HeadComplexity.PriorityConvexHull.ratio_mem_priorityHull"
+  ],
+  "axiom_audit": "priority-convex-axioms.txt",
+  "core_recheck": "continuation-core-axioms.txt",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_sha256": "d64656018ff71e5e679bc83a116ef07b63145f3f8699228e546af7a47a9f0f5a",
+  "scope": "Finite elimination induction and priority-hull closure checked in Lean. Full model convex-hull equality and maximal support have separate complete written proofs.",
+  "main_target_proved": false,
+  "stronger_target_proved": false,
+  "model_changes": []
+}

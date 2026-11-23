@@ -1,0 +1,784 @@
+⚠ [1355/1561] Replayed HeadComplexity.Atoms.IntegerBinaryData
+warning: HeadComplexity/Atoms/IntegerBinaryData.lean:6:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: HeadComplexity/Atoms/IntegerBinaryData.lean:13:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/IntegerBinaryData.lean:15:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/IntegerBinaryData.lean:29:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/IntegerBinaryData.lean:34:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [3137/3702] Replayed HeadComplexity.Atoms.IntegerBinaryFinite
+warning: HeadComplexity/Atoms/IntegerBinaryFinite.lean:7:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3138/3702] Replayed HeadComplexity.Atoms.IntegerUnitCubeSplit
+warning: HeadComplexity/Atoms/IntegerUnitCubeSplit.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+info: HeadComplexity/Atoms/IntegerUnitCubeSplit.lean:40:0: 'HeadComplexity.IntegerBinaryFiber.dot_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3139/3702] Replayed HeadComplexity.Atoms.UnitMinimumCenterData
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:14:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:16:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:18:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:20:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:22:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:33:40: This simp argument is unused:
+  List.mem_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [activeList, List.mem_cons, indices, Fin.exists_fin_succ, Matrix.cons_val_zero,
+    Matrix.cons_val_succ, Fin.val_zero, Fin.val_succ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:34:48: This simp argument is unused:
+  Fin.val_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [activeList, List.mem_cons, List.mem_singleton, indices, Fin.exists_fin_succ, Matrix.cons_val_zero,
+    Matrix.cons_val_succ, Fin.val_succ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterData.lean:34:62: This simp argument is unused:
+  Fin.val_succ
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [activeList, List.mem_cons, List.mem_singleton, indices, Fin.exists_fin_succ, Matrix.cons_val_zero,
+    Matrix.cons_val_succ, Fin.val_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3140/3702] Replayed HeadComplexity.Atoms.UnitMinimumCenterCube
+warning: HeadComplexity/Atoms/UnitMinimumCenterCube.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+warning: HeadComplexity/Atoms/UnitMinimumCenterCube.lean:11:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/UnitMinimumCenterCube.lean:2116:0: 'HeadComplexity.UnitMinimumCenter.cached_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3141/3702] Replayed HeadComplexity.Atoms.UnitMinimumCenter
+warning: HeadComplexity/Atoms/UnitMinimumCenter.lean:46:43: missing space in the source
+
+This part of the code
+  '(2^18))'
+should be written as
+  '(2 ^ 18))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/UnitMinimumCenter.lean:66:2: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/UnitMinimumCenter.lean:66:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Atoms/UnitMinimumCenter.lean:68:40: missing space in the source
+
+This part of the code
+  '(2^18))'
+should be written as
+  '(2 ^ 18))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+info: HeadComplexity/Atoms/UnitMinimumCenter.lean:94:0: 'HeadComplexity.UnitMinimumCenter.unselected_score_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumCenter.lean:95:0: 'HeadComplexity.UnitMinimumCenter.active_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3142/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianData
+info: HeadComplexity/Atoms/UnitMinimumJacobianData.lean:69:0: 'HeadComplexity.UnitMinimumCenter.rounded_jacobian_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumJacobianData.lean:70:0: 'HeadComplexity.UnitMinimumCenter.dual_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3143/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock00
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock00.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3144/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock01
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock01.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3145/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock02
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock02.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3146/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock03
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock03.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3147/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock04
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock04.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3148/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock05
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock05.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3149/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock06
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock06.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3150/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock07
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock07.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3151/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock08
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock08.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3152/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock09
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock09.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3153/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock10
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock10.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3154/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock11
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock11.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3155/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock12
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock12.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3156/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock13
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock13.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3157/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock14
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock14.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3158/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock15
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock15.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3159/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock16
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock16.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3160/3702] Replayed HeadComplexity.Atoms.UnitMinimumJacobianBlock17
+warning: HeadComplexity/Atoms/UnitMinimumJacobianBlock17.lean:4:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+ℹ [3161/3702] Replayed HeadComplexity.Atoms.UnitMinimumCenterJacobian
+info: HeadComplexity/Atoms/UnitMinimumCenterJacobian.lean:118:0: 'HeadComplexity.UnitMinimumCenter.rounded_jacobian_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumCenterJacobian.lean:119:0: 'HeadComplexity.UnitMinimumCenter.inverse_error_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumCenterJacobian.lean:120:0: 'HeadComplexity.UnitMinimumCenter.dual_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3237/3702] Replayed HeadComplexity.Atoms.CertifiedContraction
+info: HeadComplexity/Atoms/CertifiedContraction.lean:52:0: 'HeadComplexity.CertifiedContraction.exists_zero_of_contraction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/CertifiedContraction.lean:129:0: 'HeadComplexity.CertifiedContraction.positiveFunctional_ge_norm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/CertifiedContraction.lean:130:0: 'HeadComplexity.CertifiedContraction.strict_local_minimum_of_positive_multipliers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3259/3702] Replayed HeadComplexity.Atoms.FiniteRatioCalculus
+info: HeadComplexity/Atoms/FiniteRatioCalculus.lean:173:0: 'HeadComplexity.FiniteRatioCalculus.matrixMap_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/FiniteRatioCalculus.lean:174:0: 'HeadComplexity.FiniteRatioCalculus.hasFDerivAt_ratioSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/FiniteRatioCalculus.lean:175:0: 'HeadComplexity.FiniteRatioCalculus.ratio_square_difference_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3260/3702] Replayed HeadComplexity.Atoms.ApproximateInverse
+warning: HeadComplexity/Atoms/ApproximateInverse.lean:48:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/ApproximateInverse.lean:114:0: 'HeadComplexity.ApproximateInverse.inverse_norm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/ApproximateInverse.lean:115:0: 'HeadComplexity.ApproximateInverse.exists_zero_of_derivative_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3261/3702] Replayed HeadComplexity.Atoms.UnitMinimumAnalyticData
+warning: HeadComplexity/Atoms/UnitMinimumAnalyticData.lean:138:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/UnitMinimumAnalyticData.lean:161:0: 'HeadComplexity.UnitMinimumAnalytic.T_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumAnalyticData.lean:162:0: 'HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_T' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3262/3702] Replayed HeadComplexity.Atoms.UnitMinimumAnalyticBounds
+info: HeadComplexity/Atoms/UnitMinimumAnalyticBounds.lean:159:0: 'HeadComplexity.UnitMinimumAnalytic.B_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumAnalyticBounds.lean:160:0: 'HeadComplexity.UnitMinimumAnalytic.score_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumAnalyticBounds.lean:161:0: 'HeadComplexity.UnitMinimumAnalytic.derivative_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3263/3702] Replayed HeadComplexity.Atoms.UnitMinimumDerivativeMatrix
+warning: HeadComplexity/Atoms/UnitMinimumDerivativeMatrix.lean:125:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/UnitMinimumDerivativeMatrix.lean:133:0: 'HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_F' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumDerivativeMatrix.lean:134:0: 'HeadComplexity.UnitMinimumAnalytic.J_center_entry' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3264/3702] Replayed HeadComplexity.Atoms.FiniteMatrixNorm
+info: HeadComplexity/Atoms/FiniteMatrixNorm.lean:69:0: 'HeadComplexity.FiniteRatioCalculus.matrixMap_of_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/FiniteMatrixNorm.lean:70:0: 'HeadComplexity.FiniteRatioCalculus.matrixMap_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3265/3702] Replayed HeadComplexity.Atoms.UnitMinimumInverseBounds
+warning: HeadComplexity/Atoms/UnitMinimumInverseBounds.lean:91:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/UnitMinimumInverseBounds.lean:124:0: 'HeadComplexity.UnitMinimumAnalytic.inverse_center_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumInverseBounds.lean:125:0: 'HeadComplexity.UnitMinimumAnalytic.exists_certified_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3266/3702] Replayed HeadComplexity.Atoms.UnitMinimumDualBounds
+warning: HeadComplexity/Atoms/UnitMinimumDualBounds.lean:97:23: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/UnitMinimumDualBounds.lean:97:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: HeadComplexity/Atoms/UnitMinimumDualBounds.lean:154:0: 'HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_objective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumDualBounds.lean:155:0: 'HeadComplexity.UnitMinimumAnalytic.rounded_dual_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3267/3702] Replayed HeadComplexity.Atoms.UnitMinimumPositiveMultipliers
+warning: HeadComplexity/Atoms/UnitMinimumPositiveMultipliers.lean:51:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumPositiveMultipliers.lean:92:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 1000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: HeadComplexity/Atoms/UnitMinimumPositiveMultipliers.lean:102:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumPositiveMultipliers.lean:123:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/UnitMinimumPositiveMultipliers.lean:132:0: 'HeadComplexity.UnitMinimumAnalytic.nearby_dual_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumPositiveMultipliers.lean:133:0: 'HeadComplexity.UnitMinimumAnalytic.exists_positive_multipliers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3268/3702] Replayed HeadComplexity.Atoms.UnitMinimumMargins
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:74:70: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:75:2: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:74:70: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:75:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:92:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:84:37: missing space in the source
+
+This part of the code
+  '(2^18))'
+should be written as
+  '(2 ^ 18))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/UnitMinimumMargins.lean:110:15: missing space in the source
+
+This part of the code
+  '(2^18))'
+should be written as
+  '(2 ^ 18))'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+info: HeadComplexity/Atoms/UnitMinimumMargins.lean:128:0: 'HeadComplexity.UnitMinimumAnalytic.full_cube_unit_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumMargins.lean:129:0: 'HeadComplexity.UnitMinimumAnalytic.full_constraints_imply_active' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3269/3702] Replayed HeadComplexity.Atoms.UnitMinimumStrict
+warning: HeadComplexity/Atoms/UnitMinimumStrict.lean:29:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 1000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: HeadComplexity/Atoms/UnitMinimumStrict.lean:44:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+info: HeadComplexity/Atoms/UnitMinimumStrict.lean:76:0: 'HeadComplexity.UnitMinimumAnalytic.root_strict_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumStrict.lean:77:0: 'HeadComplexity.UnitMinimumAnalytic.exists_full_cube_strict_minimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3323/3702] Replayed HeadComplexity.Atoms.UnitMinimumAttention
+info: HeadComplexity/Atoms/UnitMinimumAttention.lean:94:0: 'HeadComplexity.UnitMinimumAnalytic.cubeIndex_bit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumAttention.lean:95:0: 'HeadComplexity.UnitMinimumAnalytic.counterexampleFunction_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/UnitMinimumAttention.lean:96:0: 'HeadComplexity.UnitMinimumAnalytic.counterexampleFunction_shared_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3581/3702] Replayed HeadComplexity.Atoms.HeadParityAmplitude
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:23:0: automatically included section variable(s) unused in theorem `HeadComplexity.HeadParityAmplitude.kernel_continuous`:
+  [DecidableEq I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:23:6: `kernel_continuous` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:29:0: automatically included section variable(s) unused in theorem `HeadComplexity.HeadParityAmplitude.kernel_bounds`:
+  [DecidableEq I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:29:6: `kernel_bounds` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:40:6: `kernel_expand` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:50:6: `moment_integral` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:75:6: `moment_bounds` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:182:8: `moment_lt_one` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:249:22: `if_true` has been deprecated: Use `ite_true` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:252:22: `if_false` has been deprecated: Use `ite_false` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵f̵a̵l̵s̵e̵i̲t̲e̲_̲f̲a̲l̲s̲e̲
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:233:8: `alternatingRatio_upper` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:235:23: missing space in the source
+
+This part of the code
+  '-(1+∑ i ∈'
+should be written as
+  '-(1 + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:235:42: missing space in the source
+
+This part of the code
+  'a₀+∑ i ∈'
+should be written as
+  'a₀ + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:284:8: `alternatingRatio_centered_bound` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:286:26: missing space in the source
+
+This part of the code
+  '|a₀+∑ i ∈'
+should be written as
+  '|a₀ + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:286:44: missing space in the source
+
+This part of the code
+  '1+∑ i ∈'
+should be written as
+  '1 + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:307:8: `alternatingRatio_abs_le_two` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:309:26: missing space in the source
+
+This part of the code
+  '|a₀+∑ i ∈'
+should be written as
+  '|a₀ + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:309:44: missing space in the source
+
+This part of the code
+  '1+∑ i ∈'
+should be written as
+  '1 + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:318:8: `positive_affine_ratio_bound` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:320:27: missing space in the source
+
+This part of the code
+  '|(a₀+∑ i ∈'
+should be written as
+  '|(a₀ + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:320:41: missing space in the source
+
+This part of the code
+  'i)/(c+∑'
+should be written as
+  'i) / (c'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadParityAmplitude.lean:320:44: missing space in the source
+
+This part of the code
+  'i)/(c+∑ i ∈'
+should be written as
+  '(c + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:344:0: 'HeadComplexity.HeadParityAmplitude.moment_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:345:0: 'HeadComplexity.HeadParityAmplitude.moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:346:0: 'HeadComplexity.HeadParityAmplitude.moment_le_erase' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:347:0: 'HeadComplexity.HeadParityAmplitude.alternatingRatio_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:348:0: 'HeadComplexity.HeadParityAmplitude.moment_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:349:0: 'HeadComplexity.HeadParityAmplitude.alternatingRatio_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:350:0: 'HeadComplexity.HeadParityAmplitude.alternatingRatio_centered_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:351:0: 'HeadComplexity.HeadParityAmplitude.alternatingRatio_abs_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:352:0: 'HeadComplexity.HeadParityAmplitude.positive_affine_ratio_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:353:0: 'HeadComplexity.HeadParityAmplitude.moment_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:354:0: 'HeadComplexity.HeadParityAmplitude.meanPoint_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitude.lean:355:0: 'HeadComplexity.HeadParityAmplitude.alternatingRatio_mean_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3877/3888] Replayed HeadComplexity.Atoms.HeadParityAmplitudeAtoms
+warning: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:29:63: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:34:63: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:29:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:34:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:59:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:182:19: missing space in the source
+
+This part of the code
+  '|c|+∑ h,'
+should be written as
+  '|c| + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+info: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:195:0: 'HeadComplexity.HeadParityAmplitude.atom_subset_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:196:0: 'HeadComplexity.HeadParityAmplitude.atom_unit_parity_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:197:0: 'HeadComplexity.HeadParityAmplitude.atom_parity_amplitude_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:198:0: 'HeadComplexity.HeadParityAmplitude.parity_margin_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/HeadParityAmplitudeAtoms.lean:199:0: 'HeadComplexity.HeadParityAmplitude.parity_relative_margin_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3879/3888] Replayed HeadComplexity.Atoms.ProjectiveCriticalPoints
+info: HeadComplexity/Atoms/ProjectiveCriticalPoints.lean:102:0: 'HeadComplexity.ProjectiveCriticalPoints.transverse_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/ProjectiveCriticalPoints.lean:103:0: 'HeadComplexity.ProjectiveCriticalPoints.selected_pair_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/ProjectiveCriticalPoints.lean:104:0: 'HeadComplexity.ProjectiveCriticalPoints.schur_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/ProjectiveCriticalPoints.lean:105:0: 'HeadComplexity.ProjectiveCriticalPoints.projection_term_vanishes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3880/3888] Replayed HeadComplexity.Atoms.FullTableCriticalPoints
+warning: HeadComplexity/Atoms/FullTableCriticalPoints.lean:20:8: `singleton_energy_bound` does not use the following hypothesis in its type:
+  • [DecidableEq X] (#6)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/FullTableCriticalPoints.lean:112:27: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/FullTableCriticalPoints.lean:112:27: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: HeadComplexity/Atoms/FullTableCriticalPoints.lean:131:0: 'HeadComplexity.FullTableCriticalPoints.singleton_energy_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/FullTableCriticalPoints.lean:132:0: 'HeadComplexity.FullTableCriticalPoints.energy_differential_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/FullTableCriticalPoints.lean:133:0: 'HeadComplexity.FullTableCriticalPoints.energy_second_differential_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Atoms/FullTableCriticalPoints.lean:134:0: 'HeadComplexity.FullTableCriticalPoints.weighted_pair_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Atoms/FullTableCriticalPoints.lean:135:0: 'HeadComplexity.FullTableCriticalPoints.sharp_well_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [3881/3888] Replayed HeadComplexity.Atoms.CommonNormalMaxima
+warning: HeadComplexity/Atoms/CommonNormalMaxima.lean:9:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3882/3888] Replayed HeadComplexity.Atoms.SymmetryOrbitMaxima
+warning: HeadComplexity/Atoms/SymmetryOrbitMaxima.lean:9:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3883/3888] Replayed HeadComplexity.Atoms.HeadEllipticEnergy
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:23:20: missing space in the source
+
+This part of the code
+  'i)^2 = x'
+should be written as
+  'i) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:23:48: missing space in the source
+
+This part of the code
+  'i*x i ≠'
+should be written as
+  'i * x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:117:40: missing space in the source
+
+This part of the code
+  'i*v x i)'
+should be written as
+  'i * v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [3885/3888] Replayed HeadComplexity.Atoms.AmplitudePolytope
+warning: HeadComplexity/Atoms/AmplitudePolytope.lean:22:23: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [abs_of_nonneg hb]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HeadComplexity/Atoms/AmplitudePolytope.lean:28:25: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [abs_of_nonneg hb]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3887/3888] Replayed HeadComplexity.Atoms.SymmetryOrbitFour
+warning: HeadComplexity/Atoms/SymmetryOrbitFour.lean:9:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+Build completed successfully (3888 jobs).

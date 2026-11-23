@@ -987,5 +987,11 @@
     "status": "Complete written ideal and contact theorems; nine kernel-checked six-switch declarations",
     "writeup": "boolean-projection-cancellation.md",
     "main_target_proved": false
+  },
+  "priority_convex_hull": {
+    "writeup": "priority-convex-hull.md",
+    "audit": "priority-convex-audit.json",
+    "status": "Complete written equality and maximal support; thirteen kernel-checked declarations including finite elimination induction",
+    "main_target_proved": false
   }
 }

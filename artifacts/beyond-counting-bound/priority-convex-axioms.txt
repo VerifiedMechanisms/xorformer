@@ -1,0 +1,19 @@
+'HeadComplexity.PriorityConvexHull.elimination_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.binary_gate_interpolation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.dominant_choice_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.affine_hyperplane_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PriorityConvexHull.ratio_erase_of_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.ratio_elimination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.ratio_mem_of_gate_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.priority_update_of_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.priority_erase_of_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.signed_gate_mem_priority' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PriorityConvexHull.signed_gate_mem_convexHull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PriorityConvexHull.bounded_gate_mem_convexHull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PriorityConvexHull.ratio_mem_priorityHull' depends on axioms: [propext, Classical.choice, Quot.sound]

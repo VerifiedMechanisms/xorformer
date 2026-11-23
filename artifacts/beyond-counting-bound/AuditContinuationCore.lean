@@ -1,0 +1,8 @@
+import HeadComplexity.Atoms.UnitMinimumAttention
+import HeadComplexity.Atoms.HeadParityAmplitudeAtoms
+import HeadComplexity.Atoms.CancellationEnergy
+
+#print axioms HeadComplexity.UnitMinimumAnalytic.exists_full_cube_strict_minimum
+#print axioms HeadComplexity.UnitMinimumAnalytic.counterexampleFunction_shared_computable
+#print axioms HeadComplexity.HeadParityAmplitude.parity_relative_margin_bound
+#print axioms HeadComplexity.CancellationEnergy.angularEnergy_unbounded

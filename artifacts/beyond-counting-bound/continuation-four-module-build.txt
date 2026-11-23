@@ -1,0 +1,52 @@
+⚠ [3147/3151] Replayed HeadComplexity.Atoms.SymmetryOrbitFour
+warning: HeadComplexity/Atoms/SymmetryOrbitFour.lean:9:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [3149/3151] Replayed HeadComplexity.Atoms.HeadEllipticEnergy
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:23:20: missing space in the source
+
+This part of the code
+  'i)^2 = x'
+should be written as
+  'i) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:23:48: missing space in the source
+
+This part of the code
+  'i*x i ≠'
+should be written as
+  'i * x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:117:40: missing space in the source
+
+This part of the code
+  'i*v x i)'
+should be written as
+  'i * v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [3151/3151] Replayed HeadComplexity.Atoms.AmplitudePolytope
+warning: HeadComplexity/Atoms/AmplitudePolytope.lean:22:23: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [abs_of_nonneg hb]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: HeadComplexity/Atoms/AmplitudePolytope.lean:28:25: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [abs_of_nonneg hb]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+Build completed successfully (3151 jobs).
