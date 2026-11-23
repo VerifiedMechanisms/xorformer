@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Factorially Many Reciprocal Sheets in a Compact Positive Chart}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and purpose.}
+This is a complete written construction, not a Lean declaration.
+It shows that far-away poles do not make reciprocal score hypersurfaces
+a pseudohyperplane arrangement. It does not prove superlinear
+shattering, and it supplies no universal head bound.
+
+\begin{theorem}[Regular permutation sheets]
+For every integer $H\ge1$ and every $0<\varepsilon<1/4$, there exist
+$H$ rational functions of $b=(b_1,\ldots,b_H)\in(0,\varepsilon)^H$,
+\[
+ F_i(b)=\frac1{s_i}\sum_{h=1}^H\frac1{d_i-b_h}-1,
+ \qquad 1\le i\le H,
+\]
+with $1-\varepsilon<d_i<1$ and $s_i>0$, whose common zero set
+contains at least $H!$ distinct regular isolated points. All denominators
+lie in $(1-2\varepsilon,1)$ throughout the parameter box.
+\end{theorem}
+
+\begin{proof}
+Choose distinct numbers $\lambda_1,\ldots,\lambda_H$ in
+$(0,\varepsilon)$ and distinct numbers $d_1,\ldots,d_H$ in
+$(1-\varepsilon,1)$. Set
+\[
+ s_i=\sum_{j=1}^H\frac1{d_i-\lambda_j}>0.
+\]
+For every permutation $\pi$ of $\{1,\ldots,H\}$, the point
+$b_h=\lambda_{\pi(h)}$ is a common zero, because summing over a
+permutation leaves $s_i$ unchanged. These $H!$ points are distinct.
+The Jacobian at such a point is
+\[
+ \frac{\partial F_i}{\partial b_h}
+ =\frac1{s_i(d_i-\lambda_{\pi(h)})^2}.
+\]
+Let $C_{ij}=1/(d_i-\lambda_j)$. Cauchy's determinant formula makes
+$\det C\ne0$, since the two sets of arguments are separately distinct
+and all pairwise denominators are nonzero. Every entry of $C$ is
+positive, so its permanent is strictly positive. Borchardt's identity
+is the exact formula
+\[
+ \det(C\mathbin{\circ}C)=\det(C)\operatorname{perm}(C).
+\]
+Here $\circ$ denotes entrywise multiplication. A primary proof is
+D.~Singer, \emph{A Bijective Proof of Borchardt's Identity},
+Electronic Journal of Combinatorics 11 (2004), Theorem~1.1,
+\url{https://www.kurims.kyoto-u.ac.jp/EMIS/journals/EJC/Volume_11/PDF/v11i1r48.pdf}.
+Thus the squared Cauchy matrix is nonsingular. Row scaling by
+$1/s_i$ and column permutation preserve nonsingularity, proving that
+every displayed common zero is regular. The inverse function theorem
+then makes each one isolated. Finally,
+$1-2\varepsilon<d_i-b_h<1$ throughout the box.
+\end{proof}
+
+\paragraph{Compatibility with whole-cube admissibility.}
+Fix any desired number $S$ of one-hot column variables, and choose
+$\varepsilon<1/[4(H+S)]$. For a Boolean input
+$(u,v)\in\{0,1\}^H\times\{0,1\}^S$, use the $H$ denominators
+\[
+ B_h(u,v)=1-\sum_{i=1}^H(1-d_i)u_i
+             -\sum_{j=1}^S b_{hj}v_j,
+ \qquad 0<b_{hj}<\varepsilon.
+\]
+Every coordinate slope is strictly negative, and on the entire cube
+\[
+ B_h(u,v)>1-(H+S)\varepsilon>\frac34.
+\]
+These are admissible negative-orientation affine denominators, uniformly
+for every choice of all column parameters in the indicated box.
+Choose the affine numerator
+$A_h(u,v)=\sum_i u_i/s_i$, the same in every head, and output bias
+$-1$. On the promised input $(u,v)=(e_i,e_j)$ the score is exactly
+\[
+ -1+\sum_{h=1}^H\frac{1/s_i}{d_i-b_{hj}}=F_i(b_{1j},\ldots,b_{Hj}).
+\]
+Thus the regular-sheet construction occurs inside the actual admissible
+affine-ratio chart, with poles bounded away from all Boolean inputs.
+Only the description of the selected rows uses the one-hot promise;
+positivity and denominator orientation hold on every input.
+
+\paragraph{Why this is not a shattering construction.}
+The $H$ functions $F_i$ are symmetric in the head parameters $b_h$.
+Every other query with a common row baseline and equal head coefficients
+is symmetric as well, so it has the same value at every permutation
+sheet. Factorially many parameter solutions therefore do not themselves
+provide even one extra readable bit.
+
+Asymmetric query rows can distinguish the sheets. For example,
+\[
+ \frac1{d-b_h}-\frac1{d-b_k}
+ =\frac{b_h-b_k}{(d-b_h)(d-b_k)}
+\]
+reads a pairwise comparison whenever $d>\varepsilon$. But pairwise
+comparisons of a permutation shatter at most $H-1$ fixed queries:
+if the queried undirected graph has a cycle, orient that cycle
+cyclically to obtain an impossible strict ordering; if it is a forest,
+every edge orientation extends to a total order, so every labeling is
+possible. A forest has at most $H-1$ edges. This is an elementary
+obstruction to using pairwise comparisons as the missing
+$\Theta(H\log H)$ decoder.
+
+The open step for this local route is to construct sufficiently many
+asymmetric reciprocal queries whose strict sign vectors on, or near,
+these sheets cover all binary words of length $cH\log H$ for some
+constant $c>0$. No such statement is assumed or proved here. A generic
+upper bound on the number of sign patterns would not supply it.
+
+\end{document}
