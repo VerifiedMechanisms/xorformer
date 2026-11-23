@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Independent Verification of the Later Reverse-Orientation Run}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Provenance and scope.}
+This continuation imported the four new Lean modules and ten companion
+artifacts from commit \texttt{44beb004} on
+\texttt{origin/ar/1c1556983291}. The current branch remains
+\texttt{ar/0f08fe6fb98a}. The imported files are copied unchanged;
+the aggregate result module gains four imports while preserving all
+existing imports. In particular, the copied validation manifests describe
+the source run, and \texttt{continuation-branch-validation.json} records
+the independent checks in this continuation. No model definition or
+existing theorem statement is changed.
+
+\paragraph{Lean results independently rechecked.}
+The complete \texttt{lake build HeadComplexity} succeeded with 9221 jobs.
+The repository axiom checker audited every compiled theorem declaration
+in the four modules: 16 in \texttt{AxisZeroGluing}, 6 in
+\texttt{AxisZeroCover}, 11 in \texttt{AxisZeroFaces}, and 27 in
+\texttt{ReverseAxisCompiler}. These 60 include private and generated
+declarations. There are 33 public named theorem declarations in their
+source files. Every audited theorem uses only \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+The exact arbitrary-real local compiler uses $r+1$ heads for an $r$ by
+$s$ grid, with both axes zero on their entire Boolean domains. Its
+denominators have slopes $-1$ and $-2$ and whole-cube lower bounds two
+and one, respectively. The principal declaration is
+\texttt{exists\_reverseAxis\_exact\_compiler}.
+The gluing theorem \texttt{glue\_positive\_affine\_ratios} is a finite
+theorem with explicit compatibility hypotheses. It neither supplies a
+sublinear local compiler nor hides one in an axiom. The positive-face
+repair theorem gives the actual resource conclusion
+\[
+ H^*(f)\leq H+2^a+2^b
+\]
+under its stated strict-sign hypothesis away from two positive faces.
+
+\paragraph{Audit of the written geometric transfer.}
+The descending order of total center size is essential and is used
+correctly. At an earlier protected vertex inside a new center's downset,
+the two deletion counts sum to at most two. Either one count is zero,
+where the exact axis identity applies, or both are one and the vertex
+is in the new cell. The new contribution thus has nonnegative signed
+value there. Outside the downset, fixed numerators divided by a growing
+positive denominator penalty converge to zero. The finite strict margin
+then preserves all previously established signs. Bias is absorbed into
+a numerator before applying the penalty. Weak slopes are perturbed only
+after the complete finite construction, when intermediate axis zeros
+are no longer needed. Complementation sends an everywhere-positive
+negative-slope local denominator to a positive constant coefficient and
+nonnegative ambient slopes. These steps do not change the head count.
+The concrete ordered-center instantiation and final asymptotic
+combination remain written proofs, rather than additional Lean theorems.
+
+\paragraph{Independent exact computations.}
+The rational-arithmetic script independently passed all 602 listed local
+tables and nine complete gluing instances, including face corrections.
+The wrong-order counterexample has incompatible requirements
+$\lambda>1/6$ and $\lambda<1/24$, as claimed. The transfer-check script
+passed the Cauchy covariance, simultaneous row-order obstruction, and
+one-slot clearing identities.
+
+The symbolic certificate independently verified all ten original
+five-row sheet values, both original four-by-four Jacobian determinant
+formulas, and all ten axis-subtracted sheet values. The latter coefficient
+determinants modulo 103 are $(92,36,64,69,13)$ at
+$\varepsilon=1/1000$, and its two Jacobian determinants modulo 101 are
+40 and 69. All denominators reduced in these certificates are invertible.
+These are exact algebraic certificates, not floating-point evidence.
+
+\paragraph{Five-row theorem and its exact limit.}
+The inverse function theorem argument is valid as written. Two distinct
+regular preimages of four zero queries permit four independent small
+sign perturbations. A fifth query with opposite strict signs at those
+preimages adds the fifth bit. The chosen parameter neighborhoods keep
+all column denominator coefficients between $\varepsilon/2$ and
+$5\varepsilon/2$. The displayed estimate
+\[
+ 1-37\varepsilon-\frac52s\varepsilon>0
+\]
+proves denominator positivity on the whole $(5+s)$-cube, not just on
+the grid. Thus two heads do universally represent every five-row grid
+table. This statement is a complete written theorem supported by exact
+identities, but has not been formalized in Lean.
+
+Axis subtraction requires solving the row coefficients again. The
+source run does this explicitly and obtains six ratios, four having
+zero slopes on one ignored block. The finite exceptional set in
+$\varepsilon$ is justified by nonzero rational determinants. This
+six-ratio exact-axis construction does not beat the linear compiler
+at five rows. Repetition of the two-head gadget, even if an appropriate
+isolation mechanism were supplied, gives only a fixed row-to-head ratio.
+No superconstant rate or global asymptotic improvement follows from it.
+
+\paragraph{Fresh formulation of the amplification gap.}
+The two-head construction suggests studying the class of compact-domain
+column decoders
+\[
+ F_i(a,u)=\sum_{h=1}^H\frac{A_{ih}+a_h}{d_{ih}-u_h},
+ \qquad i=1,\ldots,r.
+\]
+The row data are fixed independently of labels, whereas the $2H$ column
+parameters vary jointly. A universal strict-sign shattering construction
+with $r/H\to\infty$, together with the original whole-cube admissibility
+and a constant-factor exact-axis construction, would materially improve
+the local compiler. Neither a counting upper bound nor the existence of
+many regular sheets proves this: one must give fixed queries that read
+all the required independent signs. The five-row result supplies no
+recurrence increasing $r/H$. This formulation is recorded as an explicit
+open construction problem, not a claimed theorem or completion.
+
+\paragraph{Outcome.}
+All imported finite claims survived the independent checks above.
+The requested positive exponent improvement, any explicit superconstant
+global saving, and the matching opposite-direction lower bound remain
+unproved by these results.
+\end{document}

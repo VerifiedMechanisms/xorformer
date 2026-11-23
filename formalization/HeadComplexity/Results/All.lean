@@ -41,6 +41,10 @@ import HeadComplexity.Results.DnfCnfHybrid
 import HeadComplexity.Results.DominantPowerLift
 import HeadComplexity.Results.DummyVariables
 import HeadComplexity.Results.DualRailLift
+import HeadComplexity.Results.AxisZeroGluing
+import HeadComplexity.Results.AxisZeroCover
+import HeadComplexity.Results.AxisZeroFaces
+import HeadComplexity.Results.ReverseAxisCompiler
 import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.ExactFamilies
 import HeadComplexity.Results.ExactMaskDegree

@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[proposition]{Remark}
+\title{An Exact Linear-Cost Reverse Axis Compiler}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and status.}
+The construction below is unconditional and has actual admissible atoms in
+the original input dimension. It gives a useful baseline with exact real
+interpolation, but its linear local cost does not establish either requested
+global logarithmic saving. The central construction and its atom realization
+are formalized in
+\texttt{HeadComplexity/Results/ReverseAxisCompiler.lean}.
+No definition of the original model, \texttt{HStar}, or
+\texttt{worstCaseHeadComplexity} is changed.
+
+\begin{proposition}[Exact reverse interpolation]
+Let $r,s\geq1$, set $m=r+s$, and let
+$M\in\mathbb R^{r\times s}$. There is a sum of $r+1$ affine ratios
+with strictly negative denominator slopes, positive denominators on the
+entire Boolean $m$-cube, exact grid values $M_{ij}$, and exact zero on both
+coordinate axes. Transposing the construction gives
+$\min(r,s)+1$ ratios.
+\end{proposition}
+\begin{proof}
+For $z\in\{0,1\}^r$ and $w\in\{0,1\}^s$, put
+\[
+ D(z,w)=m+2-\sum_i z_i-\sum_j w_j,
+ \qquad L_i(w)=m(m-1)\sum_j M_{ij}w_j.
+\]
+Define
+\[
+ F(z,w)=\sum_{i=1}^r\frac{L_i(w)}{D(z,w)-z_i}
+             -\frac{\sum_{i=1}^r L_i(w)}{D(z,w)}.
+\]
+Every numerator and denominator is affine. The common denominator has
+slope $-1$ on every coordinate; the $i$-th row denominator has slope $-2$
+on $z_i$ and slope $-1$ elsewhere. On the full Boolean cube,
+$D\geq2$ and $D-z_i\geq1$. Thus all denominators satisfy the strict
+negative-orientation admissibility criterion. The exact conversion
+\texttt{FracAtom.ofNegativeAffineRatio} realizes every term with one
+original atom, without any new input coordinates or limiting argument.
+
+If $z=0$, all denominators in the first sum are $D$, so the sum cancels
+the last term. If $w=0$, every numerator is zero. At $(e_a,e_b)$,
+$D=m$. Every summand with $i\ne a$ cancels its contribution from the
+common term, leaving
+\[
+ F(e_a,e_b)=m(m-1)M_{ab}
+       \left(\frac1{m-1}-\frac1m\right)=M_{ab}.
+\]
+For a sign table $M=\sigma$, this yields
+$\sigma_{ab}F(e_a,e_b)=1>0$ exactly. Finally, exchanging the two blocks
+and using $M^{\mathsf T}$ exchanges $r+1$ and $s+1$.
+\end{proof}
+
+\paragraph{Formal declarations.}
+The public lemmas
+\texttt{reverseAxisDenom\_ge\_two},
+\texttt{reverseAxisRowDenom\_ge\_one},
+\texttt{reverseAxisScore\_zero\_left},
+\texttt{reverseAxisScore\_zero\_right}, and
+\texttt{reverseAxisScore\_oneHot}
+verify the algebra and cube margins.
+\texttt{exists\_reverseAxis\_atoms} gives the actual $r+1$-atom
+representation in dimension $r+s$.
+\texttt{exists\_reverseAxis\_exact\_compiler} packages arbitrary real
+interpolation and both exact Boolean-axis zero identities into one
+existential theorem. The transposed $\min(r,s)+1$ formulation is written
+here; the Lean theorem states the $r+1$ orientation.
+
+\begin{proposition}[Exact interpolation limit of the common-baseline grouping]
+Consider the direct grouped generalization
+\[
+ G(z,w)=\sum_{h=1}^H\frac{L_h(w)}{D(z,w)-U_h(z)}
+       -\frac{\sum_h L_h(w)}{D(z,w)},
+ \quad U_h(z)=\sum_i u_{hi}z_i,
+ \quad L_h(w)=\sum_j\ell_{hj}w_j,
+\]
+where its displayed denominators are positive on the cube.
+The grid matrix $[G(e_i,e_j)]$ has real rank at most $H$.
+\end{proposition}
+\begin{proof}
+The common baseline is $D(e_i,e_j)=m$ on the entire grid. Hence
+\[
+ G(e_i,e_j)=\sum_{h=1}^H
+       \frac{u_{hi}}{m(m-u_{hi})}\ell_{hj}.
+\]
+This is a product of an $r$ by $H$ matrix and an $H$ by $s$ matrix.
+In particular, exact interpolation of every real matrix by this grouped
+ansatz needs $H\geq\min(r,s)$. This conclusion is about exact matrix
+interpolation in the displayed ansatz. It is not a lower bound for the
+requested sign-only compiler, which may use column-dependent denominators
+or a different assembly rule.
+\end{proof}
+
+\paragraph{Other direct attempts.}
+An extraction-array construction was examined with one head assigned to
+one row group. It would need each head to select a target-dependent group
+and emit its chosen subset there, while keeping its contributions small in
+all other groups. The known positive-orientation interval kernel obtains
+this behavior from poles and exponentially separated positive offsets.
+The reverse orientation requires the whole-cube sum-of-slopes buffer,
+so that identity does not transfer. No replacement interval or group
+selector was proved.
+
+A permutation assignment of groups to heads cancels symmetric baseline
+terms, but the remaining asymmetric reciprocal queries still need to read
+many independent bits of the assignment. The cancellation alone does not
+supply that decoder. Neither the number of permutations nor numerical
+feasibility on finitely many tables establishes universality.
+These attempted assemblies do not establish a new obstruction to all
+reverse local compilers and do not settle the global target.
+
+\end{document}

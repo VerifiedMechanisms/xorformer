@@ -1,0 +1,117 @@
+{
+  "run": "Reverse Orientation Head Compression",
+  "branch": "ar/1c1556983291",
+  "base_commit": "c451c57",
+  "recorded_utc": "2026-11-23T18:14:08.217064+00:00",
+  "target": "worstCaseHeadComplexity n = O(2^n / (n log log n)) with natural logarithms",
+  "target_proved": false,
+  "stronger_log_target_proved": false,
+  "general_local_compiler_refuted": false,
+  "definitions_changed": false,
+  "original_model_files": {
+    "formalization/HeadComplexity/Atoms/FracAtom.lean": {
+      "unchanged_from_base": true,
+      "sha256": "d4dbbd20fcbbd92d0cb934749bd63afacdaaefc165a494302bbf9de8da8e746a"
+    },
+    "formalization/HeadComplexity/Atoms/PositiveAffineRatio.lean": {
+      "unchanged_from_base": true,
+      "sha256": "e7567953186ad9f5d958fb5da0f8ea8c288f90ac43618d952db552d11af948bc"
+    },
+    "formalization/HeadComplexity/Model/Head.lean": {
+      "unchanged_from_base": true,
+      "sha256": "3fa2f0586acc62b6a3b0eb99efa7440c2a68ae8b8227106bec0ea5517a3f94e0"
+    },
+    "formalization/HeadComplexity/Results/CountingLowerBound.lean": {
+      "unchanged_from_base": true,
+      "sha256": "df84af5cfd96321e2101fd92e9524a56dc339fc6d8ce717637d41b7b1843afda"
+    },
+    "formalization/HeadComplexity/Results/UniversalLinearSaving.lean": {
+      "unchanged_from_base": true,
+      "sha256": "dbe680e29388307459793a95aefe2eeb3e48f98322da3bd217c2cbcf065fb797"
+    }
+  },
+  "lean_build": {
+    "command": "lake build HeadComplexity",
+    "cwd": "formalization",
+    "exit_code": 0,
+    "jobs": 9221,
+    "warnings": "Existing warnings only, none from the four added modules."
+  },
+  "axiom_audit": {
+    "command": "lake env lean --run ../artifacts/scripts/AxiomCheck.lean HeadComplexity/Results/AxisZeroGluing.lean HeadComplexity/Results/AxisZeroCover.lean HeadComplexity/Results/AxisZeroFaces.lean HeadComplexity/Results/ReverseAxisCompiler.lean",
+    "cwd": "formalization",
+    "exit_code": 0,
+    "theorem_declarations": 60,
+    "per_module": {
+      "AxisZeroGluing": 16,
+      "AxisZeroCover": 6,
+      "AxisZeroFaces": 11,
+      "ReverseAxisCompiler": 27
+    },
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "new_axioms": false
+  },
+  "exact_checks": [
+    {
+      "command": "python3 artifacts/head-compression/reverse_exact_audit.py",
+      "exit_code": 0,
+      "sign_tables": 602,
+      "complete_gluing_cases": 9,
+      "wrong_order_counterexample_checked": true
+    },
+    {
+      "command": "python3 artifacts/head-compression/reverse-joint-transfer-check.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 artifacts/head-compression/reverse-joint-symbolic-certificate.py",
+      "exit_code": 0,
+      "symbolic_sheet_values": 20,
+      "original_full_jacobian_formulas": 2,
+      "resynthesized_jacobian_nonvanishing": "Exact rational certificates modulo 101: 40 and 69"
+    }
+  ],
+  "verification_status": {
+    "linear_r_plus_one_axis_zero_compiler": "Lean kernel checked against original FracAtom",
+    "finite_gluing_and_strict_slope_restoration": "Lean kernel checked",
+    "product_cover_budget": "Lean kernel checked: 484 * 2^(a+b) / (a*b)",
+    "exceptional_face_corrections": "Lean kernel checked: HStar <= H + 2^a + 2^b",
+    "concrete_ordered_center_instantiation": "Written audited proof, not fully instantiated in Lean",
+    "five_row_two_head_decoder": "Complete written proof using inverse function theorem, symbolic identities checked, not formalized in Lean",
+    "five_row_six_ratio_axis_resynthesis": "Written proof with weak slopes and exact symbolic/modular certificates, not formalized in Lean",
+    "asymptotic_improvement": "Unresolved: required sublinear local compiler or alternate global construction not proved"
+  },
+  "external_hypotheses": {
+    "new_lean_results": [],
+    "written_conditional_asymptotic_reduction": [
+      "Unproved universal O(m/log log m) reverse-orientation axis-zero local compiler"
+    ]
+  },
+  "tex_checks": {
+    "artifacts/head-compression/reverse-alternative-notes.tex": "environment nesting checked; no TeX renderer installed",
+    "artifacts/head-compression/reverse-compression-report.tex": "environment nesting checked; no TeX renderer installed",
+    "artifacts/head-compression/reverse-gluing-audit.tex": "environment nesting checked; no TeX renderer installed",
+    "artifacts/head-compression/reverse-joint-five-row.tex": "environment nesting checked; no TeX renderer installed",
+    "artifacts/head-compression/reverse-joint-transfer-audit.tex": "environment nesting checked; no TeX renderer installed"
+  },
+  "source_sha256": {
+    "artifacts/head-compression/reverse-alternative-notes.tex": "ef29d3027f57a1c8ec761712272d76b318401e6d8d485415ac873d77c8702da1",
+    "artifacts/head-compression/reverse-compression-report.tex": "12ae72e513669624a20243d9d4720dea0601424999948bb051c095c3838c1762",
+    "artifacts/head-compression/reverse-exact-validation.json": "7964066beead8673ff1fe3dbcefb9728cb943ad24263b7887e78e5ce6a5cddb1",
+    "artifacts/head-compression/reverse-gluing-audit.tex": "f1a9f710be616a1fa54b71b71dadd2c5bc7a93fd29383a108cb37070cd5368e2",
+    "artifacts/head-compression/reverse-joint-five-row.tex": "f8c73cf205b41324296c34b10665b3e614a965d90ef0f22d9943981f4c43b6a9",
+    "artifacts/head-compression/reverse-joint-symbolic-certificate.py": "d07d4d6131b303b3e892d0cfda08ab27752ed4dbbb8d1a762023086ddd446776",
+    "artifacts/head-compression/reverse-joint-transfer-audit.tex": "50aa91d46862ef754fa2e1d4d92c234c34bf77d96055bd974fea58b4748ace58",
+    "artifacts/head-compression/reverse-joint-transfer-check.py": "e5cf05cb38621dc778ed15ee298ddae3927d694d6eb896fa632fe71c2801cedb",
+    "artifacts/head-compression/reverse_exact_audit.py": "b68725670bb36f905abe1216806a852d3e77e54c061f8a840b45b5cbe614b4ac",
+    "formalization/HeadComplexity/Results/All.lean": "c3bc1e2344229d03f3c44135c23622cd992622106b7f0317f2a7e09f302ee4ca",
+    "formalization/HeadComplexity/Results/AxisZeroCover.lean": "f7e0224a83509a1db163d1db8ed16988b721038c06ebe584d186de0056d9275b",
+    "formalization/HeadComplexity/Results/AxisZeroFaces.lean": "e77eee5d5fa013dc82fd41f817b5b1172be8603f8dac284865ba3517df9c5077",
+    "formalization/HeadComplexity/Results/AxisZeroGluing.lean": "85680f0c03fe9558b58b51f3479d542d1de215962df091bb5e0b7d646ffb8551",
+    "formalization/HeadComplexity/Results/ReverseAxisCompiler.lean": "b7d64cef2fa83b4f2c3d02f417eb1ca09867f5ffabd6759eae4c56dd153057b4"
+  }
+}

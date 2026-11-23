@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Independent Audit of Reverse-Orientation Gluing}
+\author{Research run: Reverse Orientation Head Compression}
+\maketitle
+
+\paragraph{Status.}
+This note audits the reduction in \texttt{exponent-mechanisms.tex}
+and \texttt{exponent-literature.tex}. Its statements are unconditional
+finite implications with explicit hypotheses. They do not establish the
+missing universal local compiler or the requested new asymptotic bound.
+The unchanged model admits every affine ratio with positive constant
+coefficient and strictly positive slopes, by
+\texttt{FracAtom.ofPositiveAffineRatio\_eval}, and every everywhere-positive
+affine ratio with strictly negative slopes, by
+\texttt{FracAtom.ofNegativeAffineRatio\_eval}. Different heads may have
+different orientations. The proofs below use these existing interfaces.
+
+\paragraph{Lean verification.}
+The new modules \texttt{HeadComplexity.Results.AxisZeroGluing},
+\texttt{HeadComplexity.Results.AxisZeroCover}, and
+\texttt{HeadComplexity.Results.AxisZeroFaces} build successfully.
+Within namespace \texttt{HeadComplexity.AxisZeroGluing},
+\texttt{glue\_finite} checks the entire finite sign-preservation induction,
+\texttt{glue\_positive\_affine\_ratios} constructs actual original-model
+atoms, \texttt{glued\_head\_count} checks their summed head budget,
+and \texttt{weak\_affine\_ratios\_admissible} checks final restoration of
+strict slopes without adding heads. Bias absorption, suppression limits,
+and deletion-count arithmetic are also checked.
+\texttt{openDownwardCover\_of\_upward} checks the complement-and-parent
+cover transfer, and \texttt{exists\_product\_openDownwardCover} proves the
+explicit product budget $484\cdot2^{a+b}/(ab)$.
+Independent \texttt{\#print axioms} checks of these central declarations
+report only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. \texttt{positive\_face\_uniformlyAtomsApproximable}
+checks arbitrary real residual approximation on a positive face with $2^m$
+heads. \texttt{repair\_two\_positive\_faces} proves that an actual
+$H$-atom score strictly correct outside two positive faces with free
+dimensions $a,b$ extends to \texttt{computableWithHeadsN} with
+$H+2^a+2^b$ heads; its axiom audit reports the same standard foundations.
+The identification of the abstract gluing hypotheses with the concrete
+ordered centers remains a written proof supported by the checked
+deletion-count invariant. No unconditional improved asymptotic theorem
+is asserted.
+
+\section{Gluing}
+Identify a Boolean input with $(X,Y)$ in two disjoint coordinate blocks
+$A,B$. For a center $(S,T)$ define
+\[
+D_{S,T}=\{(X,Y):X\subseteq S,\ Y\subseteq T\},\qquad
+C_{S,T}=\{(S\setminus\{i\},T\setminus\{j\}):i\in S,\ j\in T\}.
+\]
+The centers form a finite list; repetitions are harmless. Empty cells
+are discarded. All labels are restrictions of one fixed function
+$f:\{0,1\}^n\to\{-1,1\}$, so overlapping cells have consistent labels.
+
+\begin{theorem}
+Suppose each center has a bias plus $H_{S,T}$ affine ratios with
+positive constant coefficients and nonnegative slopes in the original
+$x$ coordinates. Suppose its score $F_{S,T}$ has the required strict
+signs on $C_{S,T}$ and vanishes on all points of $D_{S,T}$ where
+$X=S$ or $Y=T$. Then a score with at most
+$\sum H_{S,T}$ admissible heads has those strict signs on the union
+of the cells.
+\end{theorem}
+\begin{proof}
+A nonempty cell and the axis-zero hypothesis force $H_{S,T}\geq1$:
+with no ratios the score is constant, zero on the axes, and cannot have
+a strict sign anywhere. Absorb its bias $c$ into the first numerator
+as $A_1\leftarrow A_1+cB_1$. This changes neither the score nor the
+number of heads. Crucially this is done before the following penalty.
+
+Process centers in nonincreasing order of $|S|+|T|$. Given the current
+score $G$ and its protected set $P$, write
+\[
+q(x)=\sum_{i\in A\setminus S}x_i+\sum_{j\in B\setminus T}x_j,
+\qquad
+F_t(x)=\sum_h\frac{A_h(x)}{B_h(x)+tq(x)},\quad t\geq0.
+\]
+Every denominator has its original positive constant coefficient and
+nonnegative slopes. On $D_{S,T}$ one has $F_t=F_{S,T}$ exactly.
+At every point outside $D_{S,T}$, $q(x)\geq1$, so $F_t(x)\to0$.
+
+Choose $\lambda>0$ so that
+$f(x)(G(x)+\lambda F_{S,T}(x))>0$ on the new cell. This is possible
+because the cell is finite and all the coefficients
+$f(x)F_{S,T}(x)$ are strictly positive.
+An earlier protected point inside $D_{S,T}$ belongs to a preceding
+cell with center rank at least $|S|+|T|$. Its vertex rank is at least
+$|S|+|T|-2$. Thus its two nonnegative deletion counts sum to at most
+two. If one count is zero, the new score is zero there. If both are
+positive, both are one, and the point lies in the new cell. Its new
+contribution has the same strict sign as its protected score. This
+argument includes ties in center rank and overlapping cells.
+
+At the remaining protected points the finite positive margin of $G$
+allows one common sufficiently large $t$ so that
+$|\lambda F_t(x)|<|G(x)|$ at every such point. Hence all earlier
+strict signs persist. Scaling each numerator by $\lambda$ uses
+exactly $H_{S,T}$ new ratios. Induction completes the weak-slope sum.
+
+Finally replace every denominator in the completed sum by
+$B(x)+\delta\sum_i x_i$ with $\delta>0$. Every slope is now strictly
+positive. Every denominator retains its positive constant coefficient.
+The finite sum converges pointwise, hence uniformly on the finite cube,
+to the unperturbed sum as $\delta\to0$. Choose a common $\delta$ that
+preserves the positive minimum margin on the covered set. This gives
+actual admissible atoms with no head-count increase. Axis zeros may
+cease to hold at this last step; they are no longer needed.
+\end{proof}
+
+\paragraph{Local-to-ambient extension.}
+For a local denominator $b_0-\sum_i p_i z_i-\sum_jq_jw_j$ with
+$p_i,q_j\geq0$, positivity on the full local cube implies
+$b_0-\sum_ip_i-\sum_jq_j>0$. Substitute $z_i=1-x_i$ and $w_j=1-x_j$.
+The resulting constant coefficient is precisely this positive number,
+and all its slopes are nonnegative. Add any nonnegative slopes on
+coordinates outside $S\cup T$. Those coordinates vanish throughout
+$D_{S,T}$, so the local scores and axis zeros are unchanged there.
+All resulting denominators are positive on the whole ambient cube.
+Thus positivity is checked globally, not merely on the promised cell.
+
+\section{Cover and head count}
+The existing declarations \texttt{monomialStarCoverNumber\_spec} and
+\texttt{monomialStarCoverNumber\_real\_le\_eleven} supply, for each
+$m\geq1$, an upward closed-star cover of size at most $11\cdot2^m/m$.
+Complementing every set gives a downward closed-star cover of the same
+size. For each of its centers $S\ne[m]$, choose one $i_S\notin S$
+and add $S\cup\{i_S\}$. Keep all original centers. This increases
+the size by at most a factor two. Every proper vertex is now in an
+open downward star: if it was already a child, use its old center;
+if it was only the center itself, use the chosen larger center.
+The full set cannot be an open downward child of any center.
+
+For $a=\lfloor n/2\rfloor$, $b=\lceil n/2\rceil$, $n\geq2$, the
+products of these open covers therefore cover exactly
+\[
+U=(\{0,1\}^a\setminus\{\mathbf1\})
+\times(\{0,1\}^b\setminus\{\mathbf1\})
+\]
+with at most
+\[
+N\leq\frac{484\cdot2^n}{ab}=O(2^n/n^2)
+\]
+nonempty modules. Repeated centers can be removed. If a local compiler
+uses at most $K(1+m/\log\log(m+4))$ heads, define
+\[
+M_n=K\max_{2\leq m\leq n}\left(1+\frac{m}{\log\log(m+4)}\right).
+\]
+The gluing budget is at most $NM_n$. For $m\leq\sqrt n$, positivity
+of $\log\log6$ gives $O(\sqrt n)$; for $m>\sqrt n$, use
+$\log\log(m+4)\geq\log\log n-\log2$. Hence
+$M_n=O(n/\log\log n)$. The same split gives $O(n/\log n)$ for a
+local $O(1+m/\log(m+4))$ compiler.
+
+\section{Exceptional faces}
+Let $G$ be the actual admissible glued score on $U$. For the first
+exceptional face $X=A$, interpolate the real function
+$Y\mapsto f(A,Y)-G(A,Y)$ by its unique multilinear polynomial $p(Y)$.
+It has at most $2^b$ monomials. Add the formal score
+$x_Ap(Y)$, where $x_A=\prod_{i\in A}x_i$. This changes only the first
+face and makes its values exactly $f$. On the second face $Y=B$,
+interpolate the residual error in $X$ by a polynomial $q(X)$, using
+at most $2^a$ monomials, and add $x_Bq(X)$. Its error at $X=A$ is
+zero because the intersection has already been corrected. The second
+correction is therefore zero on the entire first face: away from
+$Y=B$ its multiplier is zero, and at the intersection $q(A)=0$.
+The resulting target score has correct strict signs on the whole cube.
+
+For every coordinate set $V$, the single admissible ratio
+\[
+Q_{V,\eta}(x)=\frac{\eta}{\eta+\sum_{i\in V}(1-x_i)
++\eta^2\sum_{i\notin V}(1-x_i)},\qquad\eta>0,
+\]
+has strictly negative slopes and denominator at least $\eta$.
+Where $x_V=0$ it is at most $\eta$; where $x_V=1$ its difference
+from one is at most $n\eta$. Thus for $n\geq1$ the uniform error
+is at most $n\eta$. This includes $V=\varnothing$.
+If the correction coefficients are $d_V$, the total approximation
+error is at most $n\eta\sum_V|d_V|$. Choose $\eta$ small relative
+to the positive minimum strict margin of the formal target score.
+Absorb each $d_V$ in the constant numerator of its ratio. At most
+$2^a+2^b\leq2\cdot2^{\lceil n/2\rceil}$ extra admissible heads
+therefore suffice. No new input coordinates are introduced.
+
+The full conditional budget, with every term accounted for, is
+\[
+H\leq\frac{484\cdot2^n}{ab}\,M_n+2^a+2^b.
+\]
+The last term is $o(2^n/(n\log\log n))$, and is also
+$o(2^n/(n\log n))$. Bias absorption, suppression, extension, and the
+final strict-slope perturbation add no heads. The local compiler is
+still an external unproved hypothesis; none of this audit supplies it.
+\end{document}

@@ -1,0 +1,85 @@
+{
+  "arithmetic": "exact fractions",
+  "local_sign_tables": 602,
+  "gluing": [
+    {
+      "n": 2,
+      "seed": 0,
+      "modules": 1,
+      "heads": 6,
+      "correction_heads": 4,
+      "strict_signs": 4
+    },
+    {
+      "n": 2,
+      "seed": 1,
+      "modules": 1,
+      "heads": 6,
+      "correction_heads": 4,
+      "strict_signs": 4
+    },
+    {
+      "n": 2,
+      "seed": 2,
+      "modules": 1,
+      "heads": 6,
+      "correction_heads": 4,
+      "strict_signs": 4
+    },
+    {
+      "n": 3,
+      "seed": 0,
+      "modules": 2,
+      "heads": 10,
+      "correction_heads": 6,
+      "strict_signs": 8
+    },
+    {
+      "n": 3,
+      "seed": 1,
+      "modules": 2,
+      "heads": 10,
+      "correction_heads": 6,
+      "strict_signs": 8
+    },
+    {
+      "n": 3,
+      "seed": 2,
+      "modules": 2,
+      "heads": 10,
+      "correction_heads": 6,
+      "strict_signs": 8
+    },
+    {
+      "n": 4,
+      "seed": 0,
+      "modules": 4,
+      "heads": 18,
+      "correction_heads": 8,
+      "strict_signs": 16
+    },
+    {
+      "n": 4,
+      "seed": 1,
+      "modules": 4,
+      "heads": 18,
+      "correction_heads": 8,
+      "strict_signs": 16
+    },
+    {
+      "n": 4,
+      "seed": 2,
+      "modules": 4,
+      "heads": 18,
+      "correction_heads": 8,
+      "strict_signs": 16
+    }
+  ],
+  "ordering_counterexample": {
+    "wrong_order": "singleton centers before full centers",
+    "new_cell_requires_lambda_gt": "1/6",
+    "protected_zero_requires_lambda_lt": "1/24",
+    "scalar_repair_possible": false
+  },
+  "asymptotic_compiler_proved": false
+}
