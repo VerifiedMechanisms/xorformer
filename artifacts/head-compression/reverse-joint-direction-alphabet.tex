@@ -101,3 +101,22 @@ At four addresses the row pairs $(++),(+-),(-+),(--)$ give the first pair
  certificate.  A compiler saving still requires a family with growing
  address count, growing bit count, all strict patterns, compact exterior
  Cauchy poles, and quantitatively controlled balanced inventories.
+
+\paragraph{Certified four-address finite failure.}
+The complete active-set algorithm was run on $G=4$ with the same
+ $\varepsilon=10^{-4}$, for each of
+ $\delta\in\{\varepsilon^3,\varepsilon^5,\varepsilon^7,\varepsilon^9\}$.
+For the target pair
+\[
+ \sigma=(+,+,-,-),\qquad \tau=(+,-,+,-),
+\]
+none of the $6^4=1296$ label assignments is feasible.  For each assignment,
+ the first four rows form the invertible matrix $C$, so the full matrix
+ has column rank four.  The checker exhausts its $\binom84=70$ active-row
+ subsets, solves the nonsingular systems exactly over $\mathbb Q$, and
+ checks all eight inequalities $\sigma_i(Ax)_i\geq1$.  The complete
+ enumeration rule above justifies the negative result, including
+ degenerate arrangements.  This is an exact finite computational
+ obstruction to this particular six-direction alphabet at the four stated
+ scales.  It is not a theorem for all $\delta$, larger alphabets, translated
+ anchor profiles, or general admissible heads.
