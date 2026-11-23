@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,fullpage}
+\title{Reverse Head Compression: Continuation Checkpoint}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Research status.}
+Neither accepted asymptotic target has been proved. In particular, no
+unconditional $O(2^n/(n\log\log n))$ upper bound or
+$\Omega(2^n/n)$ lower bound is claimed. The original model, input
+dimension, atom admissibility, \texttt{HStar}, and
+\texttt{worstCaseHeadComplexity} are unchanged. All logarithms in the
+asymptotic statements are natural. This is a checkpoint during continuing
+research, not a completion certificate.
+
+\paragraph{Unconditional checked bounds.}
+The imported and checked Warren proof, followed by
+\texttt{Results/WarrenAsymptotics.lean}, gives for $n\geq16$
+\[
+ \frac{2^n}{70n^2}\leq W(n)\leq\frac{11\cdot2^n}{n}.
+\]
+The new lower-bound declarations are
+\texttt{worstCaseHeadComplexity\_real\_ge\_two\_pow\_div\_seventy\_square}
+and \texttt{two\_pow\_div\_square\_isBigO\_worstCaseHeadComplexity}.
+The existing upper-bound declaration is
+\texttt{worstCaseHeadComplexity\_real\_le\_eleven\_mul\_two\_pow\_div}
+in \texttt{Results/UniversalLinearSaving.lean}. The factor of $n$
+between these estimates remains open in this run.
+
+\paragraph{The concrete gluing gap has been closed.}
+\texttt{Results/AxisZeroTransfer.lean} proves the descending order of
+cells, exact affine center substitutions, preservation of earlier strict
+signs, and bias absorption. Its declaration
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_reverse\_axis\_compiler}
+gives, for a local budget $M$ in dimensions $a,b\geq1$,
+\[
+ W(a+b)\leq\frac{484\cdot2^{a+b}}{ab}M+2^a+2^b.
+\]
+The cover transfer is in \texttt{AxisZeroCover.lean}; the exceptional-face
+repairs are in \texttt{AxisZeroFaces.lean}. Thus there are
+$O(2^n/n^2)$ local modules and an $O(2^{\lceil n/2\rceil})$
+correction cost. The proof is instantiated with the checked linear
+compiler in \texttt{AxisZeroBaselineTransfer.lean}.
+\texttt{AxisZeroAsymptotics.lean} proves both desired asymptotic
+\emph{implications}, under the corresponding compiler hypotheses.
+Those hypotheses have not been discharged.
+
+\paragraph{Axis zeros and strict slopes are no longer separate obstacles.}
+\texttt{Results/ReverseGridAxisRepair.lean} turns any $H$-head reverse
+grid representation with positive full-cube denominators and weakly
+nonpositive slopes into a strictly admissible axis-zero representation
+with at most $3H+3$ heads, preserving every grid value. In particular,
+\texttt{exists\_strict\_reverse\_grid\_of\_weak} restores strict slopes
+without increasing the grid head count, and
+\texttt{exists\_reverse\_axis\_repair\_of\_weak} supplies the full repair.
+The still-missing ingredient is a universal reverse grid representation
+with a superconstant saving.
+
+\paragraph{Additional checked assembly tools.}
+\texttt{Results/ReverseRankCorrection.lean} proves exact rank-$L$
+grid correction with $L+1$ strictly admissible heads, including arbitrary
+row, column, and constant terms. The principal declaration is
+\texttt{exists\_strict\_reverse\_rank\_grid}.
+\texttt{Results/ReverseRowFlip.lean} proves exact row multipliers from
+$\{-1,0,1\}$ with $2H+2$ heads, the transposed column version,
+and a row-flip plus column-mask construction with $4H+6$ heads.
+Its density-to-compiler implication records a precise sufficient
+condition; an efficient dense family is not proved to exist.
+
+\paragraph{Written constructions with no superconstant saving.}
+\texttt{reverse-joint-axis-sheets.tex} gives a complete written
+constant-factor compiler using at most
+$2\lceil(\min(r,s)+1)/3\rceil+3$ heads. It is not Lean formalized.
+\texttt{reverse-joint-deformed-sheets.tex} and
+\texttt{reverse-alternative-permutation-fibers.tex} construct many
+regular permutation sheets. The latter uses actual Boolean cube
+coordinates and strictly admissible atoms. Their factorially many
+interpolation roots do not imply independently readable signs.
+\texttt{reverse-alternative-moment-fibers.tex} proves exact
+moment-preserving Stieltjes readouts, but at linear cost in the number of
+independent readouts. These are complete written arguments, not either
+accepted global result.
+
+\paragraph{Audited limitations of proposed decoders.}
+\texttt{reverse-common-pole-count.tex} proves a linear VC bound for a
+family with one common moving pole and independent residues. It does
+not cover independently moving poles.
+\texttt{reverse-alternative-coalescing-flats.tex} proves a
+backward-shift invariant for reciprocal-column limits and a linear
+sign-capacity bound for graded limits with $O(\log H)$ profile
+dimensions. It also exhibits a positive-pole nongraded limit, so
+gradedness cannot be assumed. Exact small arrangement enumerations
+in \texttt{reverse-joint-affine-planes.tex} show extra signs from
+deformed sheets but do not establish a growing row/head ratio.
+
+\paragraph{Lower-bound mechanisms that did not close the gap.}
+The checked polynomial sign count yields the inverse-square estimate
+above. Counting normalized interpolation roots more sharply cannot be
+justified from positivity alone: the independent permutation-fiber
+construction supplies too many regular positive-chamber roots for the
+proposed shortcut. Denominator order data do not determine all oriented
+circuits, and normalized fixed-scale metric entropy does not by itself
+control all strict orthants without a margin hypothesis. These are
+scoped failures of arguments, not a proof that the matching lower bound
+is false. No restriction to a subclass of atoms is used to claim a
+lower bound for the unrestricted model.
+
+\paragraph{Verification and external hypotheses.}
+The aggregate \texttt{lake build HeadComplexity.Results.All} completed
+successfully after importing the new assembly and Warren modules.
+Audits of the central Lean declarations report only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+There are no new axioms or \texttt{sorry} in these proofs.
+The written analytic constructions use standard finite-dimensional
+calculus, linear algebra, and stated sign-count results; they are
+explicitly distinguished from Lean proofs. The only path in this
+checkpoint to the requested upper asymptotic still assumes the
+unproved efficient local compiler (or an equivalent efficient dense
+family). No complete written proof of either accepted target is
+available.
+\end{document}
