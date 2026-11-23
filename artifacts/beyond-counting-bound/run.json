@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: second twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T10:16:18.269137+00:00",
+  "last_audit_utc": "2026-11-23T10:34:37.443144+00:00",
   "elapsed_seconds_at_last_audit": 95673.141043,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -667,5 +667,11 @@
     "lean_scope": "Complete kernel cube enumeration, unit-margin deduction, selected active values, and rational Jacobian nonsingularity.",
     "descent_scope": "Independent exact integer full-cube verification and written convex-segment argument.",
     "target_proved": false
+  },
+  "block_symmetric_experiment": {
+    "session_id": 63094,
+    "start_utc": "2026-11-23T10:33:21Z",
+    "duration_seconds": 7200,
+    "status": "running; all outcomes require exact audit"
   }
 }

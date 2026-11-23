@@ -1,0 +1,27 @@
+{
+  "status": "SMOKE_CHECKS_PASS",
+  "derivative_max_error": 5.300687888620814e-09,
+  "checks": [
+    "analytic derivative versus finite differences",
+    "block score versus expanded actual Boolean model",
+    "block Jacobian versus sums of full-model coordinate derivatives",
+    "rational checkerboard identity on every orbit",
+    "rational origin-repair margins on every orbit"
+  ],
+  "logs": [
+    {
+      "path": "/out/block-symmetric-smoke/results.jsonl",
+      "records": 97,
+      "sha256": "fcca913e32b0ed8e9b300196911ea5847082936b4ace3e12c2de69f7cbd88e39",
+      "candidates": 0
+    },
+    {
+      "path": "/out/block-symmetric-checkerboard-smoke/results.jsonl",
+      "records": 110,
+      "sha256": "bd134391a6dba4a71fcd663f16636176802608c466a5da802730e1bdca95753a",
+      "candidates": 0
+    }
+  ],
+  "minimum_certificates": 0,
+  "main_target_proved": false
+}
