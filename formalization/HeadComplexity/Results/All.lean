@@ -1,3 +1,4 @@
+import HeadComplexity.Results.PermutationReciprocalAverage
 import HeadComplexity.Results.PolyaReciprocalIdentity
 import HeadComplexity.Results.PositivePairRigidity
 import HeadComplexity.Results.AffinePartialFractionDegree

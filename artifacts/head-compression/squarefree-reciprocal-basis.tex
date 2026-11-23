@@ -1,0 +1,221 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Squarefree Reciprocal Bases and Finite-Capacity Averaging}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+These are exact algebraic constructions on the Boolean cube. They
+compress a complete reciprocal lattice and give positive cancellation
+identities, but they do not prove the requested worst-case head bound.
+The proofs here are manual, not Lean formalized.
+
+\section{A basis indexed by small subsets}
+
+Fix $0\le k\le n$, $\delta>0$, and an affine function $C$ that is
+positive on the Boolean cube. Put $z_i=1-x_i$ and
+\[
+ Q(t)=\prod_{j=0}^k(t+\delta j),\qquad
+ B_S(x)=C(x)+\delta\left(k-\sum_{i\in S}z_i\right)
+          \quad (S\subseteq[n],\ |S|\le k).
+ \tag{1}
+\]
+Every $B_S$ is positive on the cube. If $C$ has strictly positive
+variable coefficients, all the $B_S$ satisfy the manuscript's
+strictly positive slope condition as well. Let $\mathcal P_d$
+denote the space of Boolean polynomial tables of degree at most $d$,
+and put $D_d=\sum_{j=0}^{\min(d,n)}\binom nj$.
+
+\begin{theorem}[Exact squarefree basis]
+The $D_k$ tables $1/B_S$ in (1) form a basis of
+\[
+                 Q(C)^{-1}\mathcal P_k.
+ \tag{2}
+\]
+Consequently their affine-numerator span is exactly
+$Q(C)^{-1}\mathcal P_{k+1}$. In particular, $1/C$ is a unique
+constant-coefficient linear combination of the $1/B_S$.
+\end{theorem}
+\begin{proof}
+For $S$ of size $m$, take its subset difference
+\[
+ U_S=\sum_{T\subseteq S}(-1)^{m-|T|}/B_T.
+ \tag{3}
+\]
+If some $z_i=0$ with $i\in S$, terms cancel in pairs. If every
+$z_i=1$ on $S$, the elementary reciprocal difference formula gives
+\[
+ U_S=\frac{m!\delta^m z_S}
+                {\prod_{j=0}^m(C+\delta(k-j))},\qquad
+ z_S=\prod_{i\in S}z_i.
+ \tag{4}
+\]
+For completeness, the formula
+$\sum_{j=0}^m(-1)^{m-j}\binom mj/(t-\delta j)
+=m!\delta^m/\prod_{j=0}^m(t-\delta j)$ follows by induction:
+the next difference is the current expression at $t-\delta$
+minus its value at $t$, and the resulting numerator is multiplied
+by $(m+1)\delta$. Here every denominator is positive, since
+$t=C+\delta k$ and $m\le k$.
+
+Multiplying (4) by $Q(C)$ gives
+\[
+ Q(C)U_S=m!\delta^m z_S
+                 \prod_{j=0}^{k-m-1}(C+\delta j).
+ \tag{5}
+\]
+The empty product is one. Multilinear reduction has degree at most
+$k$, and every monomial contains $S$. Its coefficient of $z_S$ is
+\[
+ m!\delta^m\prod_{j=0}^{k-m-1}
+                  (C(x^{(S)})+\delta j)>0,
+ \tag{6}
+\]
+where $x^{(S)}$ is zero on $S$ and one outside $S$. To see this
+coefficient directly, set all outside $z_i$ to zero and all inside
+$z_i$ to one in the factor following $z_S$. Reduction modulo
+$z_i^2-z_i$ gives exactly (6).
+
+Order subsets by increasing size, breaking ties arbitrarily. The
+coefficient matrix of (5) in the monomials $z_T$, $|T|\le k$, is
+triangular with nonzero diagonal. Thus these tables form a basis
+of $\mathcal P_k$. The subset-difference transform (3) is invertible
+by ordinary subset inversion. This proves (2).
+
+Multiplication by any affine numerator raises degree by at most
+one. Conversely every monomial of degree at most $k+1$ is an
+affine function times a monomial of degree at most $k$ (or is
+already in that lower-degree space), proving the span equality.
+Finally, $Q(C)/C=\prod_{j=1}^k(C+\delta j)$ has degree at most $k$.
+\end{proof}
+
+The complete lattice of indices $\alpha\in\mathbb Z_{\ge0}^{n+1}$
+with $|\alpha|=k$ has $\binom{n+k}{k}$ nodes. Every reciprocal
+from that lattice lies in (2), by division of $Q(t)$ by
+$t+\delta L_\alpha(x)$ as in \texttt{polya-jet-filtration.tex}.
+Thus (1) preserves its entire constant-numerator span using only
+$D_k$ nodes. It does not preserve every particular positive
+representation: the unique coefficients of $1/C$ in this basis
+can be negative. For example, at $n=3,k=2,\delta=1$ and
+$C=1+x_1+2x_2+3x_3$, the coefficient at $S=\varnothing$ is
+$-19/140$. This value was also independently checked by exact
+rational interpolation at every vertex.
+
+\section{A generalized binomial averaging identity}
+
+The following generating-function identity includes both reinforced
+and finite-capacity positive averaging. Write
+\[
+ B(x)=b_0+\sum_{i=1}^n b_i x_i,\qquad
+ T=\sum_{i=0}^n b_i,
+ \qquad b_i>0,\quad\delta>0.
+ \tag{7}
+\]
+For real $a$ and integer $r\ge0$, use the generalized binomial
+coefficient $\binom ar=a(a-1)\cdots(a-r+1)/r!$.
+
+\begin{theorem}[Generalized binomial reciprocal identity]
+For any nonzero real $s$ and any integer $k\ge0$, at every Boolean
+input,
+\[
+ \frac{\binom{T/s}{k}}{B(x)}
+ =\sum_{\substack{\alpha\in\mathbb Z_{\ge0}^{n+1}\\|\alpha|=k}}
+ \frac{\left(1+\delta\alpha_0/b_0\right)
+                  \prod_{i=0}^n\binom{b_i/s}{\alpha_i}}
+      {B(x)+\delta\left(\alpha_0+\sum_{i=1}^n\alpha_i x_i\right)}.
+ \tag{8}
+\]
+No division by $\binom{T/s}{k}$ is required in this statement.
+Every denominator on the right is admissible with strictly positive
+slopes.
+\end{theorem}
+\begin{proof}
+Fix an input, write $B=B(x)$, and use $1/a=\int_0^1t^{a-1}dt$
+for positive $a$. For $|u|<1/2$, the generating function of the
+right-hand side coefficients is
+\[
+ \int_0^1 t^{B-1}(1+u t^\delta)^{B/s-1}
+       \left(1+(1+\delta/s)u t^\delta\right)
+                       (1+u)^{(T-B)/s}\,dt.
+ \tag{9}
+\]
+Indeed the coordinate-zero factor is
+\[
+ \sum_{r\ge0}\left(1+\frac{\delta r}{b_0}\right)
+                  \binom{b_0/s}{r}v^r
+   =(1+v)^{b_0/s-1}\left(1+(1+\delta/s)v\right).
+\]
+Each active coordinate contributes $(1+u t^\delta)^{b_i/s}$;
+each inactive coordinate contributes $(1+u)^{b_i/s}$.
+The series are absolutely convergent for the displayed range of $u$,
+and their integrands are dominated by a constant times $t^{B-1}$,
+so coefficient extraction under the integral is justified.
+
+The part of (9) depending on $t$ is $1/B$ times the derivative of
+$t^B(1+u t^\delta)^{B/s}$. Its boundary values are zero and
+$(1+u)^{B/s}$. Consequently (9) equals $(1+u)^{T/s}/B$.
+Extracting the coefficient of $u^k$ proves (8).
+\end{proof}
+
+If $s<0$, every nonzero binomial product on the right of (8) has
+sign $(-1)^k$, as does the left numerator. Normalizing therefore
+gives strictly positive weights. If $s>0$ and every $b_i/s$ is a
+positive integer $q_i$, all weights are nonnegative and supported
+on $0\le\alpha_i\le q_i$. For $0\le k\le\sum_i q_i$, the
+normalizing coefficient is positive. The number of retained
+indices is the coefficient of $u^k$ in
+$\prod_{i=0}^n(1+u+\cdots+u^{q_i})$.
+
+\paragraph{An independent finite-population proof.}
+For integer capacities $q_i=b_i/s$, give each of $q_i$ tokens color $i$.
+Choose a uniform $k$-subset of the $M=\sum_i q_i$ tokens and let
+$\alpha_i$ count selected tokens of color $i$. The probability of
+$\alpha$ is $\prod_i\binom{q_i}{\alpha_i}/\binom Mk$.
+For a fixed input, call colors $0$ and $i$ with $x_i=1$ active.
+Conditional on the number $r$ of selected active tokens, the expected
+number of selected color-zero tokens is $r b_0/B$. Therefore
+\[
+ \mathbb E\left[\left.
+      \frac{b_0+\delta\alpha_0}{B+\delta r}\right|r\right]
+      =\frac{b_0+\delta r b_0/B}{B+\delta r}
+      =\frac{b_0}{B}.
+\]
+Taking expectations gives (8) after normalization. This proves the
+finite-capacity case without using power series or integration.
+The symmetry underlying this averaging is separately kernel checked
+by \texttt{HeadComplexity.permutation\_reciprocal\_ratio\_sum}
+in \texttt{Results/PermutationReciprocalAverage.lean}. The conversion
+to the binomial count formula above remains a manual argument.
+
+\begin{corollary}[Two adjacent subset levels]
+Let $b>0$, $B=b(1+|x|)$, $1\le k\le n$, and
+$B_S=B+\delta(k-|S|+\sum_{i\in S}x_i)$. Then
+\[
+ \frac{\binom{n+1}{k}}{B}
+   =\sum_{|S|=k}\frac1{B_S}
+       +(1+\delta/b)\sum_{|S|=k-1}\frac1{B_S}.
+ \tag{10}
+\]
+This is a positive identity with exactly $\binom{n+1}{k}$ terminal
+forms. All denominators have strictly positive variable coefficients.
+\end{corollary}
+\begin{proof}
+In (8) set $b_i=s=b$ for every $i$. Then each $\alpha_i$ is zero
+or one; $\alpha_0=0$ gives subsets of size $k$, and
+$\alpha_0=1$ gives subsets of size $k-1$.
+\end{proof}
+
+At $k=n+1$ the same identity has a single terminal denominator
+proportional to $B$, so it is merely a rescaling. That endpoint
+has no encoding consequence. More generally, (8) is an exact
+cancellation identity, not an independently programmable sign gadget.
+The common-lattice filtration and its restrictions on low-order
+variations still apply. No compatibility theorem converting these
+identities into all Boolean sign tables at the desired head count
+is supplied here.
+
+\end{document}

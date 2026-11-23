@@ -254,11 +254,19 @@
         "HeadComplexity.positive_pair_relations_vanish_of_three"
       ],
       "scope": "Three positive-coefficient pair relations force three values to vanish; a complete family of such relations on at least three indices is zero. The star-identity reduction is a separate manual proof, and no head upper bound follows."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/PermutationReciprocalAverage.lean",
+      "main_declaration": "HeadComplexity.permutation_reciprocal_ratio_sum",
+      "companion_declarations": [
+        "HeadComplexity.permutation_reciprocal_ratio_sums_eq"
+      ],
+      "scope": "Exact finite permutation averaging for a positive coordinate divided by a subset sum. No sparse family, head upper bound, or min-wise lower bound is asserted in Lean."
     }
   ],
   "validation": {
-    "build": "Full lake build passed (9216 jobs) after adding PositivePairRigidity.",
-    "build_log": "artifacts/head-compression/validation/lean-positive-pair-full-build.log",
+    "build": "Full lake build passed (9217 jobs) after adding PermutationReciprocalAverage.",
+    "build_log": "artifacts/head-compression/validation/lean-permutation-average-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -279,7 +287,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "82 listed main and companion declarations in 32 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "84 listed main and companion declarations in 33 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -290,8 +298,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 82,
-      "modules": 32,
+      "declarations": 84,
+      "modules": 33,
       "only": [
         "propext",
         "Classical.choice",
@@ -308,12 +316,13 @@
         "validation/lean-weighted-root-axioms.log",
         "validation/lean-low-root-axioms.log",
         "validation/lean-polya-axioms.log",
-        "validation/lean-positive-pair-axioms.log"
+        "validation/lean-positive-pair-axioms.log",
+        "validation/lean-permutation-average-axioms.log"
       ],
-      "scope": "The previous 80 declarations were unchanged; the two PositivePairRigidity declarations were checked separately."
+      "scope": "The previous 82 declarations were unchanged; the two PermutationReciprocalAverage declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9216 jobs, including all 32 new research modules and the results aggregator.",
-    "build_jobs": 9216,
+    "lean": "Full project lake build succeeded with 9217 jobs, including all 33 new research modules and the results aggregator.",
+    "build_jobs": 9217,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -339,7 +348,9 @@
       "validation/lean-polya-full-build.log",
       "validation/lean-polya-axioms.log",
       "validation/lean-positive-pair-full-build.log",
-      "validation/lean-positive-pair-axioms.log"
+      "validation/lean-positive-pair-axioms.log",
+      "validation/lean-permutation-average-full-build.log",
+      "validation/lean-permutation-average-axioms.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -1274,6 +1285,26 @@
     "uniform_obstruction": "For any fixed eta>0, k+r+1 <= (1/2-eta)*n gives only 2^{o(2^n)} target-dependent sign tables, even allowing all lattice nodes and arbitrary analytic affine numerator and denominator paths.",
     "complete_layer_consequence": "Charging binomial(n+k,k) terminal heads at O(2^n/n^2) forces k/n <= 0.29381537+o(1); universal stable jets cannot have first nonzero order uniformly <= beta*n for any beta<0.20618463.",
     "limitation": "Higher orders and general base configurations are not excluded. Independent polynomial factors in the enclosing space are not asserted to be realizable by one set of head paths.",
+    "target_proved": false
+  },
+  "squarefree_reciprocal_basis": {
+    "file": "artifacts/head-compression/squarefree-reciprocal-basis.tex",
+    "status": "Manual proofs; exact finite diagnostics independently verify identities.",
+    "basis": "For C positive and 0<=k<=n, the D_k=sum_{j<=k} binomial(n,j) reciprocal forms 1/[C+delta*(k-sum_{i in S}(1-x_i))], |S|<=k, form a basis of P_{<=k}/prod_{j=0}^k(C+delta*j). Their affine-numerator span is exactly P_{<=k+1}/Q(C).",
+    "averaging": "A generalized-binomial coefficient identity gives both reinforced positive weights and finite-capacity sampling without replacement. At equal coefficients, only two adjacent subset sizes are needed, giving binomial(n+1,k) terminal forms.",
+    "limitation": "A compressed basis does not automatically preserve positive weights; an explicit three-bit example has coefficient -19/140. Exact cancellation identities do not imply arbitrary strict sign representation. The lattice jet restrictions still apply.",
+    "diagnostic": "artifacts/head-compression/diagnostics/squarefree-reciprocal-basis.json",
+    "diagnostic_scope": "12 exact rational basis solves, checked on every Boolean input, and 160 exact generalized-binomial identities. Not a universal head certificate.",
+    "target_proved": false
+  },
+  "permutation_reciprocal_audit": {
+    "file": "artifacts/head-compression/permutation-reciprocal-audit.tex",
+    "formal_identity": "Positive coordinate-to-subset ratios average uniformly over all permutations; the sum identity is Lean checked.",
+    "new_invariant": "One distinguished-index subset moments 1/(|T|+1) force every predecessor set S to have mass 1/[(n+1)*binomial(n,|S|)].",
+    "separated_coefficients": "For v_j=q^j and q>n*2^n*(n+1)*binomial(n,floor(n/2)), a positive exact permutation average requires exactly 2^n terminal forms. Signed averages with fewer terms require total variation at least q divided by this threshold. Manual proof.",
+    "pool_count": "Even with arbitrary affine numerators and target-dependent values, denominators drawn after positive normalization from a common coefficient pool of size M=2^{o(n)} have only 2^{o(2^n)} strict sign tables at H=O(2^n/n^2).",
+    "not_excluded": "General independently adaptive denominators, or perturbations leaving the common-pool family.",
+    "literature_entry": 124,
     "target_proved": false
   }
 }

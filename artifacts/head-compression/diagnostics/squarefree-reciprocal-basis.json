@@ -1,0 +1,2850 @@
+{
+  "scope": "Finite exact diagnostics only; universal target unproved.",
+  "basis": [
+    {
+      "n": 3,
+      "k": 2,
+      "mode": "equal",
+      "heads": 7,
+      "weights": [
+        "0",
+        "1/3",
+        "1/3",
+        "1/3",
+        "1/6",
+        "1/6",
+        "1/6"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 0,
+      "zero_weights": 1
+    },
+    {
+      "n": 3,
+      "k": 2,
+      "mode": "distinct",
+      "heads": 7,
+      "weights": [
+        "-19/140",
+        "1/20",
+        "41/210",
+        "71/140",
+        "11/105",
+        "5/28",
+        "27/70"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 1,
+      "zero_weights": 0
+    },
+    {
+      "n": 4,
+      "k": 2,
+      "mode": "equal",
+      "heads": 11,
+      "weights": [
+        "0",
+        "1/5",
+        "1/5",
+        "1/5",
+        "1/5",
+        "1/10",
+        "1/10",
+        "1/10",
+        "1/10",
+        "1/10",
+        "1/10"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 0,
+      "zero_weights": 1
+    },
+    {
+      "n": 4,
+      "k": 2,
+      "mode": "distinct",
+      "heads": 11,
+      "weights": [
+        "-677/9240",
+        "331/27720",
+        "241/4620",
+        "1213/9240",
+        "1843/6930",
+        "19/495",
+        "27/440",
+        "34/385",
+        "17/132",
+        "128/693",
+        "45/154"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 1,
+      "zero_weights": 0
+    },
+    {
+      "n": 5,
+      "k": 2,
+      "mode": "equal",
+      "heads": 16,
+      "weights": [
+        "0",
+        "2/15",
+        "2/15",
+        "2/15",
+        "2/15",
+        "2/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15",
+        "1/15"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 0,
+      "zero_weights": 1
+    },
+    {
+      "n": 5,
+      "k": 2,
+      "mode": "distinct",
+      "heads": 16,
+      "weights": [
+        "-1713/40040",
+        "289/120120",
+        "1291/80080",
+        "219/5005",
+        "21331/240240",
+        "1249/8008",
+        "29/1680",
+        "7/260",
+        "3/80",
+        "13/264",
+        "81/1456",
+        "13/168",
+        "125/1232",
+        "25/208",
+        "45/286",
+        "115/528"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 1,
+      "zero_weights": 0
+    },
+    {
+      "n": 6,
+      "k": 2,
+      "mode": "equal",
+      "heads": 22,
+      "weights": [
+        "0",
+        "2/21",
+        "2/21",
+        "2/21",
+        "2/21",
+        "2/21",
+        "2/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21",
+        "1/21"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 0,
+      "zero_weights": 1
+    },
+    {
+      "n": 6,
+      "k": 2,
+      "mode": "distinct",
+      "heads": 22,
+      "weights": [
+        "-160231/5969040",
+        "-5191/17907120",
+        "43259/8953560",
+        "96809/5969040",
+        "52103/1492260",
+        "222809/3581424",
+        "54113/542640",
+        "41/4620",
+        "20/1463",
+        "13/693",
+        "95/3927",
+        "37/1232",
+        "117/4180",
+        "19/495",
+        "37/748",
+        "27/440",
+        "37/627",
+        "270/3553",
+        "315/3344",
+        "175/1683",
+        "17/132",
+        "45/272"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 2,
+      "zero_weights": 0
+    },
+    {
+      "n": 6,
+      "k": 3,
+      "mode": "equal",
+      "heads": 42,
+      "weights": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "2/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35",
+        "1/35"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 0,
+      "zero_weights": 7
+    },
+    {
+      "n": 6,
+      "k": 3,
+      "mode": "distinct",
+      "heads": 42,
+      "weights": [
+        "356887/19399380",
+        "-76991/25865840",
+        "-365341/38798760",
+        "-365147/19399380",
+        "-131287/4476780",
+        "-397399/11085360",
+        "-742993/29099070",
+        "-377/131670",
+        "-42857/13693680",
+        "-12191/5819814",
+        "16721/16628040",
+        "443473/58198140",
+        "-49261/12932920",
+        "-343/978120",
+        "31949/4157010",
+        "388381/16628040",
+        "23069/3423420",
+        "82109/3695120",
+        "1951571/38798760",
+        "1396777/29099070",
+        "2169833/23279256",
+        "9300491/58198140",
+        "269/58905",
+        "7729/1193808",
+        "3691/426360",
+        "3929/351120",
+        "548/53295",
+        "49285/3581424",
+        "20323/1141140",
+        "235/12012",
+        "2173/85680",
+        "134/3927",
+        "55387/2558160",
+        "212/7315",
+        "88227/2351440",
+        "6553/159120",
+        "37/693",
+        "7517/104720",
+        "190244/2909907",
+        "18429/217360",
+        "73665/646646",
+        "56645/350064"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 11,
+      "zero_weights": 0
+    },
+    {
+      "n": 8,
+      "k": 2,
+      "mode": "equal",
+      "heads": 37,
+      "weights": [
+        "0",
+        "1/18",
+        "1/18",
+        "1/18",
+        "1/18",
+        "1/18",
+        "1/18",
+        "1/18",
+        "1/18",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36",
+        "1/36"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 0,
+      "zero_weights": 1
+    },
+    {
+      "n": 8,
+      "k": 2,
+      "mode": "distinct",
+      "heads": 37,
+      "weights": [
+        "-259883759/20899808160",
+        "-23865733/20899808160",
+        "-17801039/31349712240",
+        "39159601/20899808160",
+        "99572401/15674856120",
+        "4425973/338915808",
+        "232090801/10449904080",
+        "304975921/8957060640",
+        "382887601/7837428060",
+        "71/23310",
+        "35/7548",
+        "23/3663",
+        "85/10656",
+        "67/6882",
+        "77/6660",
+        "130/9657",
+        "207/22015",
+        "544/42735",
+        "67/4144",
+        "792/40145",
+        "13/555",
+        "1024/37555",
+        "134/6919",
+        "495/20128",
+        "585/19499",
+        "112/3145",
+        "756/18241",
+        "325/9768",
+        "512/12617",
+        "98/2035",
+        "1984/35409",
+        "945/18352",
+        "217/3552",
+        "305/4292",
+        "427/5735",
+        "2880/33263",
+        "1652/16095"
+      ],
+      "exact_cube_identity": true,
+      "negative_weights": 3,
+      "zero_weights": 0
+    }
+  ],
+  "generalized_binomial": [
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 6,
+      "normalizer": "6",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 4,
+      "normalizer": "4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "10",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-20",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "35",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "6",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "20",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-8/3",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "44/9",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-616/81",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "2618/243",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 6,
+      "normalizer": "6",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 4,
+      "normalizer": "4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "10",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-20",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "35",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "6",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "20",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-8/3",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "44/9",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-616/81",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "2618/243",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 9,
+      "normalizer": "28",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 14,
+      "normalizer": "56",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 16,
+      "normalizer": "70",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "36",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-120",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "330",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "12",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "66",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "220",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 33,
+      "normalizer": "495",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-16/3",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "152/9",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-3344/81",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "20900/243",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 9,
+      "normalizer": "28",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 14,
+      "normalizer": "56",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 16,
+      "normalizer": "70",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "36",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-120",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "330",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "12",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "66",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "220",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 33,
+      "normalizer": "495",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-16/3",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "152/9",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-3344/81",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "2",
+        "1",
+        "3",
+        "2"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "20900/243",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "19/4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "285/32",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "1045/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "7315/2048",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-19/4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "437/32",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-3933/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "121923/2048",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "57/8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 9,
+      "normalizer": "2793/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 16,
+      "normalizer": "38171/1024",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 25,
+      "normalizer": "1259643/32768",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-19/6",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "475/72",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-14725/1296",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "544825/31104",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "19/4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "285/32",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "1045/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "7315/2048",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-19/4",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "437/32",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-3933/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "121923/2048",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "57/8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 9,
+      "normalizer": "2793/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 16,
+      "normalizer": "38171/1024",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 25,
+      "normalizer": "1259643/32768",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 4,
+      "normalizer": "-19/6",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 10,
+      "normalizer": "475/72",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 20,
+      "normalizer": "-14725/1296",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "3/2",
+        "2/3",
+        "7/4",
+        "5/6"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 35,
+      "normalizer": "544825/31104",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 14,
+      "normalizer": "105",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 29,
+      "normalizer": "455",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 49,
+      "normalizer": "1365",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "-15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 15,
+      "normalizer": "120",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 35,
+      "normalizer": "-680",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 70,
+      "normalizer": "3060",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "45/2",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 15,
+      "normalizer": "1935/8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 35,
+      "normalizer": "26445/16",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 69,
+      "normalizer": "1031355/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "-10",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 15,
+      "normalizer": "55",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 35,
+      "normalizer": "-220",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "1",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 70,
+      "normalizer": "715",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 2,
+      "nonzero_terms": 14,
+      "normalizer": "105",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 3,
+      "nonzero_terms": 29,
+      "normalizer": "455",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "1",
+      "k": 4,
+      "nonzero_terms": 49,
+      "normalizer": "1365",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "-15",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 2,
+      "nonzero_terms": 15,
+      "normalizer": "120",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 3,
+      "nonzero_terms": 35,
+      "normalizer": "-680",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-1",
+      "k": 4,
+      "nonzero_terms": 70,
+      "normalizer": "3060",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "45/2",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 2,
+      "nonzero_terms": 15,
+      "normalizer": "1935/8",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 3,
+      "nonzero_terms": 35,
+      "normalizer": "26445/16",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "2/3",
+      "k": 4,
+      "nonzero_terms": 69,
+      "normalizer": "1031355/128",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 0,
+      "nonzero_terms": 1,
+      "normalizer": "1",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 1,
+      "nonzero_terms": 5,
+      "normalizer": "-10",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 2,
+      "nonzero_terms": 15,
+      "normalizer": "55",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 3,
+      "nonzero_terms": 35,
+      "normalizer": "-220",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    },
+    {
+      "b": [
+        "1",
+        "2",
+        "4",
+        "3",
+        "5"
+      ],
+      "step": "3/2",
+      "scale": "-3/2",
+      "k": 4,
+      "nonzero_terms": 70,
+      "normalizer": "715",
+      "exact_cube_identity": true,
+      "normalized_weights_sum_checked": true
+    }
+  ],
+  "seconds": 0.27844456606544554
+}

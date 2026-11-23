@@ -1017,6 +1017,15 @@
       "checked_location": "Definition 2.1, Proposition 2.6, Theorem 2.7, Proposition 2.10, Theorem 2.12, Example 2.13 and Lemma 2.15, including their proofs.",
       "mechanism": "Unit-fraction decompositions in localizations of rings, including rings with zero divisors; a regular Jacobson-radical element gives a two-term construction, and decompositions pass through products and quotients.",
       "gap": "The admissible affine denominator family is not multiplicatively closed, including modulo the Boolean ideal. For example (1+x+y)(1+2x+3y) reduces to 1+5x+7y+5xy. The Boolean coordinate ring is a finite product of fields with zero Jacobson radical. Arbitrary units or power-series denominators can already contain the full target table and are not heads; the theorems provide no affine or head-count control."
+    },
+    {
+      "title": "Min-Wise Independent Permutations",
+      "authors": "Andrei Z. Broder, Moses Charikar, Alan M. Frieze, Michael Mitzenmacher",
+      "url": "https://www.cse.iitb.ac.in/~soumen/readings/papers/BroderCFM2000minwise.pdf",
+      "checked_location": "Theorem 1 and its divisibility proof; Theorem 3 and its basic-feasible-solution proof; Theorem 7, Corollary 1, and the full inclusion-exclusion proof in Section 3.4, printed pages 642-643.",
+      "mechanism": "Exact minimum probabilities force positive masses for prescribed predecessor sets. Uniform families also obey the least-common-multiple divisibility condition.",
+      "application": "The one-anchor inclusion-exclusion invariant yields the separated-coefficient reciprocal-averaging obstruction in permutation-reciprocal-audit.tex.",
+      "gap": "These are permutation-distribution constraints, not an unconditional head lower bound or a universal small-head construction."
     }
   ]
 }

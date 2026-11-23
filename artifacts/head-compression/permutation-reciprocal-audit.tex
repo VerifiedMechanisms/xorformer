@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Permutation Averaging and the Cost of Separated Coefficients}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+Permutation averaging gives exact positive reciprocal identities with
+coefficients outside a single additive lattice. This note audits that
+construction. It does not prove or disprove the universal head bound.
+Only the permutation-sum identity stated first is Lean formalized.
+
+\section{Exact averaging over arbitrary positive values}
+
+Let $v_0,\ldots,v_n>0$ and, for a permutation $\sigma$ of
+$\{0,\ldots,n\}$, put
+\[
+ K_\sigma(x)=\frac{v_{\sigma(0)}}
+                  {v_{\sigma(0)}+\sum_{i=1}^n v_{\sigma(i)}x_i}.
+ \tag{1}
+\]
+The denominators have strictly positive slopes. For every Boolean input,
+\[
+        \frac1{(n+1)!}\sum_\sigma K_\sigma(x)
+                            =\frac1{1+|x|}.
+ \tag{2}
+\]
+Indeed let $A=\{0\}\cup\{i:x_i=1\}$. For each $i\in A$, the
+sum over permutations of $v_{\sigma(i)}/\sum_{j\in A}v_{\sigma(j)}$
+is the same, by composing permutations with a transposition inside $A$.
+Summing these equal quantities over $i\in A$ gives $(n+1)!$,
+which proves (2). This argument is kernel checked by
+\texttt{HeadComplexity.permutation\_reciprocal\_ratio\_sums\_eq}
+and \texttt{HeadComplexity.permutation\_reciprocal\_ratio\_sum}
+in \texttt{Results/PermutationReciprocalAverage.lean}.
+
+If several $v_i$ are equal, permutations with identical coefficient
+vectors can be merged. The finite-capacity identities in
+\texttt{squarefree-reciprocal-basis.tex} result by using two distinct
+values and, more generally, grouping tokens into input colors.
+Merging arbitrary widely separated values behaves differently.
+
+\section{The anchored subset-distribution invariant}
+
+Let a random permutation have an arbitrary probability distribution,
+not necessarily uniform, and write
+\[
+ R=\{i\in[n]:\sigma(i)<\sigma(0)\},\qquad
+ m_T=\Pr(T\subseteq R),\quad T\subseteq[n].
+\]
+For each $S\subseteq[n]$, inclusion-exclusion gives
+\[
+ \Pr(R=S)=\sum_{U\subseteq[n]\setminus S}(-1)^{|U|}m_{S\cup U}.
+ \tag{3}
+\]
+If $m_T=1/(|T|+1)$ for every $T$, then
+\[
+ \Pr(R=S)=\int_0^1t^{|S|}(1-t)^{n-|S|}\,dt
+                 =\frac1{(n+1)\binom n{|S|}}>0.
+ \tag{4}
+\]
+The first equality follows by expanding $(1-t)^{n-|S|}$ and
+integrating each monomial. The second follows by repeated integration
+by parts, or directly by counting the permutations whose indices
+before the distinguished index are exactly $S$.
+Thus even this one distinguished-index version requires at least
+$2^n$ permutations in its support. It is sharp as a distributional
+statement: choose one permutation for each $S$ and give it the weight
+in (4). The moments then equal $1/(|T|+1)$ by the same integral.
+
+The inclusion-exclusion method is related to the proof of Theorem 7
+in Broder, Charikar, Frieze, and Mitzenmacher,
+\emph{Min-Wise Independent Permutations}, JCSS 60 (2000),
+\href{https://www.cse.iitb.ac.in/~soumen/readings/papers/BroderCFM2000minwise.pdf}
+{Section 3.4}. Their stronger requirement treats every distinguished
+index and gives a larger support lower bound. The following application
+to positive reciprocal kernels needs only (3)--(4), which were proved
+above.
+
+\begin{theorem}[Separated permutation averages need a full cube of terms]
+Let $n\ge1$ and $q>1$. Set $v_j=q^j$ for $0\le j\le n$ and
+\[
+             M_n=(n+1)\binom n{\lfloor n/2\rfloor}.
+\]
+Suppose permutations $\sigma_1,\ldots,\sigma_H$ and nonnegative
+weights $p_1,\ldots,p_H$ satisfy the exact identity
+\[
+           \sum_{h=1}^H p_h K_{\sigma_h}(x)=\frac1{1+|x|}
+                   \quad(x\in\{0,1\}^n).
+ \tag{5}
+\]
+If $q>n2^n M_n$, then $H\ge2^n$. Repeated permutations count as
+separate occurrences and cannot improve this lower bound.
+\end{theorem}
+\begin{proof}
+The input zero in (5) gives $\sum_h p_h=1$. For an input with
+support $T$, the kernel in (1) differs by at most $n/q$ from
+$\mathbf1_{\{T\subseteq R_\sigma\}}$. If the indicator is one,
+all other active powers are at most $q^{\sigma(0)-1}$, giving a
+kernel value at least $1/(1+n/q)\ge1-n/q$. If it is zero,
+one active power is at least $q^{\sigma(0)+1}$, giving a kernel
+value at most $1/q$.
+
+Averaging and using (5) proves
+$|m_T-1/(|T|+1)|\le n/q$ for every $T$. In (3) this gives
+\[
+ \left|\Pr(R=S)-\frac1{(n+1)\binom n{|S|}}\right|
+                 \le\frac{n2^{n-|S|}}q\le\frac{n2^n}q.
+ \tag{6}
+\]
+The prescribed inequality makes the right side smaller than $1/M_n$,
+which is no larger than the positive central value in (6). Hence every
+$S$ has positive probability. Each permutation has only one set $R$,
+so at least $2^n$ permutations are required.
+\end{proof}
+
+The support bound is sharp for positive exact averaging at these
+separated values. The full permutation average (2) is feasible, and
+all its feature vectors have coordinate one at $x=0$. If a positive
+representation uses more than $2^n$ vectors, they are linearly
+dependent. A dependence has coefficient sum zero by the anchor
+coordinate. Move the weights along it until at least one reaches
+zero, preserving the table and nonnegativity. Repeating gives a
+representation with at most $2^n$ terms. Thus the minimum is exactly
+$2^n$ under the theorem's separation hypothesis. For rational $q$,
+the elimination can be performed over the rationals.
+
+The same computation gives a cancellation requirement for signed
+weights. Put $V=\sum_h|p_h|$. The error in (6) is then at most
+$n2^n V/q$. If $H<2^n$, some subset has no supporting permutation,
+so its total signed mass is zero. Therefore every signed identity
+(5) with $H<2^n$ must satisfy
+\[
+                         V\ge\frac{q}{n2^n M_n}.
+ \tag{7}
+\]
+This is a bound for the specified permutation construction. The
+manuscript permits unrestricted signed weights, so (7) is not a
+lower bound for general head complexity.
+
+\section{A common small coefficient pool cannot be universal}
+
+There is a separate obstruction that does not require an averaging
+identity, separated values, or positive numerator weights. Suppose
+each denominator, after a positive scalar normalization absorbed into
+its numerator, has all $n+1$ affine coefficients in a common pool
+$v_1,\ldots,v_M$. The pool values, assignments, numerators, and bias
+may all depend on the target. Only positivity of the denominators
+on the cube is imposed; allowing mixed slopes enlarges the family.
+
+\begin{theorem}[Coefficient-pool count]
+Put $N=2^n$, $p_1=H(n+1)+1$, and $p=p_1+M\le N$.
+The number of strict sign tables in this family is at most
+\[
+ M^{H(n+1)}
+ \left(\frac{32768N}{p}\right)^p
+                     2^{p_1}\max\{2,H\}^{M}.
+ \tag{8}
+\]
+In particular, for fixed $C>0$, the family is not universal if
+$H\le C2^n/n^2$ and $\log_2 M=o(n)$.
+\end{theorem}
+\begin{proof}
+There are at most $M^{H(n+1)}$ coefficient assignments. For one
+assignment clear the positive product of the $H$ denominators.
+At each vertex the resulting polynomial is of degree one in the
+$p_1$ numerator and bias parameters and of degree at most $H$
+in the $M$ pool values. The two-block sign bound recorded in
+\texttt{mechanism-audit.tex} proves (8). Any restrictions on signs,
+coincidences, or assignments can only reduce the count.
+
+At the stated budget, $p_1=O_C(N/n)$ and $M=2^{o(n)}$.
+The logarithm of the assignment factor is at most
+$O_C((N/n)\log M)=o(N)$. The sign-bound contribution from $p_1$
+is $O_C(N\log n/n)$, and the additional contributions from the
+pool parameters are at most $O(Mn)=o(N)$. Thus the total is $o(N)$.
+There are $2^N$ Boolean sign tables, proving nonuniversality.
+\end{proof}
+
+All permutations of a single target-dependent vector of $n+1$
+coefficients belong to this pool family. Thus varying their signed
+numerator weights does not remove this particular obstruction. An
+unrestricted collection of independently adaptive denominators is
+not included in it.
+
+\end{document}
