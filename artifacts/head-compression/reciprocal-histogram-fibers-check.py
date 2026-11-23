@@ -103,6 +103,40 @@ def check_restricted_regular(perms, h):
     return determinant
 
 
+def tangent_space_mod(perms, h):
+    """Canonical row basis of the transpose of the full-cube Jacobian."""
+    k = len(perms)
+    n = 3 * k + (h - 1).bit_length()
+    outputs = []
+    for x in product((0, 1), repeat=n):
+        inverse_squares = [(-pow(denominator(perms, h, i, x), -2, PRIME)) % PRIME
+                           for i in range(h)]
+        row = inverse_squares[:]
+        for ell in range(k):
+            b = x[3 * ell + 1] - x[3 * ell + 2]
+            row += [(b * v) % PRIME for v in inverse_squares]
+        outputs.append(row)
+    matrix = [list(col) for col in zip(*outputs)]
+    rank = 0
+    for column in range(len(outputs)):
+        pivot = next((j for j in range(rank, len(matrix)) if matrix[j][column]), None)
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        inverse = pow(matrix[rank][column], -1, PRIME)
+        matrix[rank] = [(v * inverse) % PRIME for v in matrix[rank]]
+        for j in range(len(matrix)):
+            if j != rank:
+                factor = matrix[j][column]
+                matrix[j] = [(v - factor * w) % PRIME
+                             for v, w in zip(matrix[j], matrix[rank])]
+        rank += 1
+        if rank == len(matrix):
+            break
+    assert rank == (k + 1) * h
+    return tuple(tuple(row) for row in matrix)
+
+
 def main():
     expected = {(3, 1): 2, (4, 1): 3, (5, 1): 6, (6, 1): 12,
                 (7, 1): 28, (8, 1): 76, (3, 2): 1, (4, 2): 1, (5, 2): 1}
@@ -115,12 +149,15 @@ def main():
         assert len(fiber) == size
         check_fiber(fiber, h, max(5, 3 * k))
         determinants = [check_restricted_regular(p, h) for p in fiber]
+        tangent_spaces = {tangent_space_mod(p, h) for p in fiber}
+        assert len(tangent_spaces) == len(fiber)
         print(json.dumps({"H": h, "k": k, "representations": len(ps) ** k,
                           "fibers": len(groups), "largest_fiber": len(fiber),
                           "full_cube_exact_check": True,
                           "strict_positive_slopes": True,
                           "restricted_regular_dimension": (k + 1) * h,
                           "nonzero_modular_determinants": len(determinants),
+                          "distinct_full_cube_tangent_spaces": len(tangent_spaces),
                           "asymptotic_sign_bound_proved": False}), flush=True)
 
 
