@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{Unbalanced coalescence and exact low-rank head masks}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+The proposed token-address decoder would require an actual flat limit
+with columns comparable to $V_hW^{k_h(\pi)}$, with sufficiently many
+independently varying exponents $k_h(\pi)$. No such flat is proved here.
+The exact finite-field probes below did not produce it. The mask
+proposition is an unconditional written construction, but it does not
+establish either requested asymptotic bound.
+
+Consider the columns
+\[
+ K_h(\epsilon)_i=
+ \frac1{D_i(\epsilon)-\alpha_h(\epsilon)V_{ih}
+                      -\beta_{\pi(h)}(\epsilon)},
+ \qquad D_i(\epsilon)=1-\epsilon^w W_i.
+\]
+All exponents in $\alpha_h=\pm\epsilon^{a_h}$ and
+$\beta_j=\epsilon^{b_j}$ are positive. Since the query and memory
+sets are finite, these grid denominators admit a strict reverse
+whole-cube realization for all sufficiently small positive
+$\epsilon$: choose an intercept just above the maximum row pole,
+so every row drop and column drop tends to zero while the intercept
+tends to one. This observation verifies admissibility of the finite
+families, not their shattering power.
+
+\begin{proposition}[Independent profiles do not create a ladder]
+Subtract the common token kernel
+$C_j(\epsilon)_i=(D_i(\epsilon)-\beta_j(\epsilon))^{-1}$.
+If the vectors $V_h=(V_{ih})_i$ are linearly independent, then the
+column-space limit of $K_h-C_{\pi(h)}$ is exactly
+$\operatorname{span}\{V_h:1\leq h\leq H\}$, independently of $\pi$
+and of the positive exponents.
+\end{proposition}
+\begin{proof}
+The exact identity is
+\[
+ \frac{K_h-C_{\pi(h)}}{\alpha_h}
+ =\frac{V_h}{(D-\beta_{\pi(h)})
+                  (D-\beta_{\pi(h)}-\alpha_hV_h)}.
+\]
+The right-hand side converges coordinatewise to $V_h$. Division by
+the nonzero scalar $\alpha_h$ does not change the column space.
+The limiting columns are independent, so their span is the limit.
+In particular, a permutation-dependent power of $W$ cannot be
+inserted in this argument without an additional cancellation.
+\end{proof}
+
+Deliberately dependent profiles remain a separate possibility.
+For the linearized subtracted kernel, their successive moment
+matrices have the form $S,S\operatorname{diag}(\beta),
+S\operatorname{diag}(\beta)^2,\ldots$. One must analyze the full
+least nonzero exterior coefficients, including exceptional moment
+relations; dimension counting alone does not identify the flat.
+
+\paragraph{Exact finite-field probes.}
+The script \texttt{reverse-unbalanced-flat-probe.py} computes the
+Grassmann limit over $\mathbb F_{1000003}((\epsilon))$ by invertible
+Laurent-series column operations. At every step it divides out the
+lowest valuation, normalizes a unit pivot series, and eliminates the
+pivot row from all remaining columns. It reduces the available
+series precision after every division, and rejects unresolved
+dependence rather than treating unknown coefficients as zero.
+The leading columns are independent. Reversing the input columns is
+also checked to give the same canonical leading subspace.
+
+The profile of slot $h$ is the vector consisting of one followed by
+its binary digits; the queries are pairs of a token address and a
+profile coordinate. Thus the profile rank is logarithmic in $H$,
+as contemplated by the token-address proposal. Both raw and
+common-kernel-subtracted columns were tested, including negative
+head shifts with $a_h=b_h$, unequal head exponents, widely separated
+token exponents, and a shared row perturbation of order
+$\epsilon^3$.
+
+For $H=4$, all 24 permutations in the saved configurations have
+union-flat dimension at most six. For $H=6$, ten sampled positive
+shift configurations and seven negative shift configurations, each
+with 100 sampled permutations, have union-flat dimension at most
+eight. For $H=8$, five negative-shift configurations with 100 sampled
+permutations and shared row exponent three have union-flat dimension
+at most ten; the subtracted families all have union dimension eight.
+The reproducible saved $H=4$ output is
+\texttt{reverse-unbalanced-flat-probe.jsonl}. These are finite-field
+experiments. They do not constitute an upper bound over the reals,
+do not exclude other profiles, and do not prove a universal
+obstruction to amplification.
+
+\begin{proposition}[Boolean masks with low matrix rank]
+Suppose $H$ strict reverse heads have grid entries
+\[
+ R_h(i,j)=\frac{A_{hi}+a_{hj}}{b_h-p_{hi}-u_{hj}},
+ \qquad p_{hi},u_{hj}>0,
+ \qquad b_h-\sum_i p_{hi}-\sum_j u_{hj}>0.
+\]
+Let $V_{ih}\in\{0,1\}$ have real matrix rank at most $L$. Then
+$\sum_h V_{ih}R_h(i,j)$ has an exact strict reverse grid
+representation with at most $H+L+1$ heads.
+\end{proposition}
+
+\begin{proof}
+Replace the row slopes and row numerator terms of head $h$ by
+$V_{ih}p_{hi}$ and $V_{ih}A_{hi}$. Removing negative denominator
+slopes only increases its whole-cube minimum. The resulting weak
+reverse head has grid value
+\[
+ V_{ih}R_h(i,j)+(1-V_{ih})q_{hj},
+ \qquad q_{hj}=\frac{a_{hj}}{b_h-u_{hj}}.
+\]
+Factor $V_{ih}=\sum_{\ell=1}^L f_{i\ell}g_{\ell h}$.
+The required correction to the sum of the $H$ modified heads is
+\[
+ -\sum_h q_{hj}
+ +\sum_{\ell=1}^L f_{i\ell}
+                  \left(\sum_hg_{\ell h}q_{hj}\right).
+\]
+This is a column term plus $L$ rank-one factors. The independently
+checked exact rank-correction construction supplies it with $L+1$
+weak reverse heads. Apply the checked weight-two gauge to every
+denominator to obtain strictly negative slopes, with unchanged grid
+values and no added heads.
+\end{proof}
+
+A common Boolean row mask has $L\leq1$, so it costs only $H+2$
+heads. By transposition this also holds for a Boolean column mask.
+Combining it with the checked $2H+2$ row-sign construction improves
+the row-sign-plus-column-mask count from $4H+6$ to $2H+4$.
+The proposition is a written corollary of the checked rank repair
+and gauge; it has not been added as a Lean declaration.
+
+The baseline must be row independent in this argument. Multiplying
+an arbitrary row-dependent token filter $Q_i(\lambda_j)$ by the
+slot-bit mask generally creates up to $H\log H$ independent memory
+features. The proposition does not silently supply that missing
+head-selective filter at cost $O(H)$.
+\end{document}
