@@ -1,0 +1,216 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Independent Permutation Fibers Inside the Original Boolean Cube}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This note gives a complete written construction of many isolated regular
+interpolation roots in a strictly admissible family. It is not Lean
+formalized. The interpolation constraints use a specified subset of
+Boolean vertices; the roots need not agree at the other vertices.
+Consequently neither a universal sign compiler nor the requested global
+lower bound follows. The final section identifies the remaining readout
+problem explicitly.
+
+\begin{lemma}[An elementary reciprocal-power interpolation fact]
+Let $\lambda_1<\cdots<\lambda_H$, let $k$ be a positive integer, and
+let $d_1,\ldots,d_H$ be distinct real numbers greater than $\lambda_H$.
+The matrix $(d_i-\lambda_j)^{-k}$ is nonsingular.
+\end{lemma}
+\begin{proof}
+More generally a nonzero linear combination of the $H$ functions
+$(t-\lambda_j)^{-k}$ has at most $H-1$ distinct zeros for
+$t>\lambda_H$. Prove this simultaneously for every $k\geq1$ by
+induction on $H$. The case $H=1$ is immediate.
+If
+$g(t)=\sum_j a_j(t-\lambda_j)^{-k}$
+had $H$ distinct zeros, multiply it by $(t-\lambda_H)^k$ and
+differentiate. Rolle's theorem supplies at least $H-1$ distinct zeros
+of
+\[
+ k(t-\lambda_H)^{k-1}
+ \sum_{j<H}a_j(\lambda_H-\lambda_j)(t-\lambda_j)^{-k-1}.
+\]
+The prefactor is positive. Unless all $a_j$ for $j<H$ vanish, the
+inductive assertion bounds these zeros by $H-2$, a contradiction.
+If they all vanish, the original nonzero function is a single
+reciprocal power and has no zero. Thus the assertion holds, and a
+matrix kernel vector would contradict it. This proof avoids any
+external Cauchy-square determinant identity.
+\end{proof}
+
+Fix integers $d,r\geq1$ and put
+\[
+ H=2^d,\qquad n=r+d+1,\qquad
+ C=(r+3)(H+2),\qquad \lambda_h=h+1\quad(0\leq h<H).
+\]
+Write the actual $n$ input coordinates as
+$x\in\{0,1\}^r$, $y\in\{0,1\}^d$, and $z\in\{0,1\}$.
+Define the affine address denominator
+\[
+ D(y)=C-\sum_{k=0}^{d-1}2^k y_k.
+\]
+Its $H$ values are distinct. For real parameters
+$a_{hi},u_{hi}$ define the $2H$-head score
+\[
+ F_{u,a}(x,y,z)=
+ \sum_{h=0}^{H-1}
+ \frac{\sum_{i=1}^r a_{hi}x_i+z}
+      {D(y)-\sum_{i=1}^r u_{hi}x_i-z}
+ -
+ \sum_{h=0}^{H-1}
+ \frac{z}{D(y)-\lambda_h-\sum_{i=1}^r x_i-z}.
+ \tag{1}
+\]
+The second sum consists of fixed reference heads. The first sum has
+exactly $p=2Hr$ free real parameters.
+
+\begin{theorem}[Factorially many independent positive-chamber roots]
+Evaluate (1) at the $p$ distinct vertices
+\[
+ \mathcal T=\{(e_i,y,z):1\leq i\leq r,\ y\in\{0,1\}^d,\
+                                               z\in\{0,1\}\}.
+ \tag{2}
+\]
+This evaluation map from its $p$ free parameters to $\mathbb R^p$
+has at least $(H!)^r$ distinct regular zeros. Every denominator at
+every listed zero has strictly negative slopes and is positive on
+the entire $n$-dimensional Boolean cube. All these roots persist as
+distinct regular real branches for every target vector in one common
+open neighborhood of zero.
+\end{theorem}
+\begin{proof}
+Choose an independent permutation $\pi_i$ of the $H$ tokens for each
+$i$ and set
+\[
+             a_{hi}=0,\qquad u_{hi}=\lambda_{\pi_i(h)}+1.
+ \tag{3}
+\]
+At $z=0$ both numerators vanish. At $x=e_i,z=1$ the first denominator
+is $D(y)-\lambda_{\pi_i(h)}-2$, while the corresponding reference
+denominators are $D(y)-\lambda_h-2$. Their reciprocal sums are equal
+because $\pi_i$ is a permutation. Thus (3) gives a zero of every
+evaluation in (2), and the $(H!)^r$ parameter vectors are distinct.
+
+For the first family of heads all coordinate slopes are strictly
+negative: they are $-u_{hi}$, $-2^k$, and $-1$. Their cube minima
+are at least
+\[
+ C-(H-1)-r(H+1)-1=2H+r+6>0.
+ \tag{4}
+\]
+The reference head slopes are $-1$, $-2^k$, and $-1$, and their
+cube minima are at least
+\[
+ C-(H-1)-H-r-1=(r+1)H+r+6>0.
+ \tag{5}
+\]
+Thus these are actual original-model admissible affine ratios,
+with no weak slopes, extra coordinates, or limiting transfer.
+The strict conditions persist in open parameter neighborhoods.
+
+At samples with $x=e_i$, the derivatives with respect to
+$a_{hj},u_{hj}$ vanish when $j\ne i$. The complete Jacobian is
+therefore block diagonal in $i$. For the $i$th block order the
+parameters as $(u_{\cdot i},a_{\cdot i})$ and the samples first by
+$z=0$, then by $z=1$. At (3) the block is
+\[
+ \begin{pmatrix}
+  0 & C_i^0\\
+  C_i^1\circ C_i^1 & C_i^1
+ \end{pmatrix},
+ \qquad
+ (C_i^0)_{yh}=\frac1{D(y)-\lambda_{\pi_i(h)}-1},
+ \quad
+ (C_i^1)_{yh}=\frac1{D(y)-\lambda_{\pi_i(h)}-2}.
+ \tag{6}
+\]
+The first lemma makes both $C_i^0$ and $C_i^1\circ C_i^1$
+nonsingular. All address poles exceed the largest shifted token,
+as is also immediate from (4). The determinant in (6) is
+$(-1)^H\det(C_i^0)\det(C_i^1\circ C_i^1)$ and is nonzero.
+Thus every full Jacobian is nonsingular.
+
+Apply the inverse function theorem in pairwise disjoint neighborhoods
+of the finitely many roots, keeping the strict margins (4)--(5).
+Every branch image contains an open neighborhood of zero. Their
+finite intersection contains one common open neighborhood, proving
+the last assertion.
+\end{proof}
+
+\paragraph{Quantitative relevance to a proposed counting shortcut.}
+Take $r=\lceil\log_2 d\rceil$ and let $d$ tend to infinity. The
+actual head count is $h=2H$, and
+\[
+ N=2^n=2^{r+1}H,\qquad
+ \frac{h}{N/n}=\frac{n}{2^r}=\Theta(1).
+ \tag{7}
+\]
+On the other hand,
+\[
+ \log\bigl((H!)^r\bigr)
+ \geq \frac{Hr}{2}\log(H/2)
+ =\Omega(Hn\log n).
+ \tag{8}
+\]
+Here and below the unlabeled logarithm is natural. For any fixed
+$K>0$,
+\[
+ \log\bigl(h!\exp(Khn)\bigr)
+ \leq h\log h+Khn=O(Hn),
+ \tag{9}
+\]
+so (8) eventually exceeds (9). Even quotienting by simultaneous
+permutation of all main heads leaves $(H!)^{r-1}$ roots and the
+same asymptotic comparison.
+
+Thus a uniform bound $h!\exp(O(hn))$ for regular interpolation
+fibers of all affine-parameter subfamilies cannot follow from
+positivity on the full Boolean cube alone. The example already uses
+actual cube evaluations and strict original admissibility. It has
+only $2Hr$ free parameters, with the other head coefficients fixed;
+it does not claim the same root count for a square system in every
+unrestricted head coefficient. Nor does a root count alone determine
+the number of strict truth-table sign patterns.
+
+\paragraph{The mixed-coordinate readout problem.}
+At a root, the score is zero for every $z=0$ input. For $z=1$ and
+$S=\{i:x_i=1\}$, it is exactly
+\[
+ \sum_h\frac1{D(y)-|S|-1-\sum_{i\in S}\lambda_{\pi_i(h)}}
+ -
+ \sum_h\frac1{D(y)-|S|-1-\lambda_h}.
+ \tag{10}
+\]
+This depends on the multiset of sums of the independently permuted
+tokens. For example, with two signals and two tokens, identical
+permutations give the sums $\{2,4\}$ and opposite permutations give
+$\{3,3\}$; strict convexity of the reciprocal function distinguishes
+their values. So the unused cube vertices can detect some joint
+permutation information.
+
+However these unmodified root scores do not read independent signs.
+When $S=\varnothing$, every term of the first sum is smaller than the
+corresponding reference term. When $|S|=1$, permutation invariance
+gives zero. When $|S|\geq2$, align the first sum's terms with one
+chosen permutation $\pi_{i_0}$. Since every other token is at least
+one,
+\[
+ \sum_{i\in S}\lambda_{\pi_i(h)}
+ \geq \lambda_{\pi_{i_0}(h)}+|S|-1.
+ \tag{11}
+\]
+For $|S|\geq2$ this implies that every term of the first reciprocal
+sum is strictly greater than its aligned reference term.
+Consequently all the strict mixed-face signs in (10) are positive,
+independently of the permutation choices. Arbitrary labels at these
+vertices have not been obtained. A usable global construction would
+require new readouts or additional cancellations that preserve a
+superconstant saving; the many regular roots alone do not supply them.
+
+\end{document}
