@@ -110,13 +110,74 @@ $O(r/\log\log r)$ universal compiler, including exact axes.
 A bad fraction at most $r^{-a}$ instead allows bounded $k$ and
 preserves the stronger $O(r/\log r)$ head bound.
 
+\begin{theorem}[Restriction to shattered rows]
+Suppose the same joint family promise holds and, for an integer
+$1\leq a\leq r$,
+\[
+ |\mathcal G|>\sum_{j=0}^{a-1}\binom rj.
+\]
+Then every $a\times s$ sign table has a reverse grid compiler with
+at most $H$ heads. Exact axis repair gives at most $3H+3$ heads.
+\end{theorem}
+
+\begin{proof}
+The finite Sauer--Shelah lemma gives an $a$-element coordinate set
+$I\subseteq[r]$ shattered by $\mathcal G$. Extend each target column
+on $I$ separately to a member of $\mathcal G$, then apply the joint
+width-$s$ compiler to these extensions. Set every row coordinate
+outside $I$ to zero. Affine forms remain affine, all retained slopes
+are strictly negative, and every point of the smaller Boolean cube
+is a point of the original cube. Thus full-cube positivity and every
+required strict grid sign persist, with no added heads.
+\end{proof}
+
+Consequently a fixed positive good fraction would suffice for the
+stronger logarithmic saving, under the joint promise. In fact, if
+$|\mathcal G|\geq\delta2^r$ for a fixed $\delta>0$, then for all
+sufficiently large $r$ it shatters at least $\lfloor r/3\rfloor$ rows.
+To check the entropy estimate directly, for $0<t<1$ and $k\leq r/3$,
+$t^k\geq t^{r/3}$, so
+\[
+ \sum_{k\leq r/3}\binom rk
+ \leq t^{-r/3}(1+t)^r.
+\]
+Taking $t=1/2$ gives the base $3/2^{2/3}<2$. Hence the displayed
+sum is smaller than $\delta2^r$ for all sufficiently large $r$.
+Choosing $r=3a$ loses only a constant factor in $H=O(r/\log r)$.
+This implication concerns jointly admissible column families;
+average success with unrelated row designs does not imply it.
+
+\paragraph{Finite leftover repair.}
+There is also a direct partial-cover bound, useful without invoking
+shattering, when $\mathcal G\neq\varnothing$. Put $q=b/N$. Among $k$
+independent row translations there
+is a tuple leaving at most $sq^k$ columns uncovered: this follows by
+summing the $s$ individual failure probabilities $q^k$. Compile and
+mask the successful columns as above, with $k(4H+6)$ heads. A matrix
+supported on $\ell$ exceptional columns has rank-factor expression
+\[
+ E(i,j)=\sum_{t=1}^{\ell} E(i,j_t)\mathbf1_{j=j_t}.
+\]
+The exact reverse rank-correction theorem represents it with
+$\ell+1$ heads. Set $E(i,j_t)$ equal to the desired sign minus the
+current score at that grid point. This repairs the exceptional
+columns exactly and leaves all successful columns unchanged. Thus
+the finite head count is at most
+\[
+ k(4H+6)+\lfloor sq^k\rfloor+1.
+\]
+For a single translation one can omit the mask: after the row flip,
+repair its at most $\lfloor sq\rfloor$ bad columns directly. This
+gives the sharper one-step count $2H+\lfloor sq\rfloor+3$.
+
 \paragraph{Verification and unresolved hypothesis.}
 The ternary row multiplier, block transposition, column multiplier,
 $4H+6$ masked score, exact finite one-translation union bound, and
 $6H+9$ conditional axis compiler are formalized in
 \texttt{formalization/HeadComplexity/Results/ReverseRowFlip.lean}.
-The multiple-translation argument and its asymptotic specialization
-are written proofs. The exact rational checker
+The multiple-translation argument, the restriction and leftover
+repair arguments, and their asymptotic specializations are written
+proofs. The exact rational checker
 \texttt{reverse-row-flip-check.py} tests all 27 ternary row masks of
 one three-head $3\times2$ example, including every full-cube
 vertex and the strict gauge.
