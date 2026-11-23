@@ -133,13 +133,95 @@ $r$ functions have at most $2r$ distinct zero locations, and hence
 at most $2r$ strict sign vectors. No three probes can be shattered.
 An identically zero probe only makes strict shattering impossible.
 
+
+\begin{theorem}[Joint affine variation still has period-sized oscillation]
+Let $(a_h)_h$ and $(b_h)_h$ be zero-mean $K$-periodic real sequences,
+and let $H$ be a positive multiple of $K$. If
+\[
+ G(s)=\sum_{h=1}^H\frac{a_h+s b_h}{s+h},\qquad s>0,
+\]
+is not identically zero, it has at most $4K-1$ distinct positive zeros.
+Consequently, let every residue $a_h(t)$, the common shift $z(t)$,
+and the common step $\delta(t)$ vary affinely with one real parameter
+$t$ on an interval where $z(t),\delta(t)>0$. Assume the residues
+are zero-mean $K$-periodic for every $t$. Then a nonidentically-zero
+chain
+\[
+ \sum_{h=1}^H\frac{a_h(t)}{z(t)+h\delta(t)}
+\]
+has at most $4K-1$ zeros on that interval. The bound is independent
+of the chain length.
+\end{theorem}
+
+\begin{proof}
+Set $P_a(q)=\sum_{j=1}^K a_jq^{j-1}$ and define $P_b$ similarly.
+With the positive polynomial weight $w$ from the first theorem,
+\[
+ G(s)=\int_0^1q^s\bigl(P_a(q)w(q)+sP_b(q)w(q)\bigr)\,dq.
+\]
+Integration by parts is valid because
+$q^{s+1}P_b(q)w(q)$ tends to zero at both endpoints: at zero use
+$s>0$ and boundedness, and at one use $P_b(1)=0$. Thus
+\[
+ G(s)=\int_0^1 q^s v(q)\,dq,\qquad
+ v=P_aw-(qP_bw)'.
+\]
+The function $v$ is a polynomial. Multiplying it by the positive
+factor $(1-q^K)^2$ on $(0,1)$ gives
+\[
+ \begin{split}
+ R(q)={}&C(q)+q^K\bigl(-C(q)-KP_b(q)\bigr)\\
+       &+q^H\bigl(-C(q)+HP_b(q)\bigr)\\
+       &+q^{H+K}\bigl(C(q)+(K-H)P_b(q)\bigr),
+ \end{split}
+ \qquad C=P_a-P_b-qP_b'.
+\]
+This follows by differentiating
+$w=(1-q^H)/(1-q^K)$ and collecting terms. Each of the four displayed
+coefficient polynomials has degree at most $K-1$. Thus $R$ has
+at most $4K$ nonzero monomials, even when some blocks overlap.
+The assumption that $G$ is not identically zero implies $v\ne0$,
+and hence $R\ne0$.
+
+A nonzero polynomial with $T$ nonzero monomials has at most $T-1$
+distinct positive zeros. For a direct proof, divide out its least
+power of $q$ and differentiate; the derivative has $T-1$ monomials.
+Induction on $T$, together with Rolle's theorem between consecutive
+positive zeros, proves the bound. Therefore $R$, and hence $v$, has
+at most $4K-1$ sign changes in $(0,1)$. The Mellin-transform induction
+in the first theorem bounds the zeros of $G$ by the same number.
+
+For the final assertion, if $z(t)/\delta(t)$ is constant then the
+chain is a single affine numerator divided by the positive affine
+function $\delta(t)$, so it has at most one zero unless it is
+identically zero. Otherwise put $s=z(t)/\delta(t)$, a strictly
+monotone variable. Write $z=z_0+z_1t$ and
+$\delta=\delta_0+\delta_1t$. Solving for $t$ gives
+\[
+ t=\frac{z_0-\delta_0s}{\delta_1s-z_1},\qquad
+ \delta(t)=\frac{\delta_1z_0-\delta_0z_1}{\delta_1s-z_1}.
+\]
+The determinant in the second numerator is nonzero. Consequently,
+for every affine residue $a_h(t)$, the quotient
+$a_h(t)/\delta(t)$ is affine in $s$. Its two coefficient sequences
+remain zero-mean and $K$-periodic. The preceding result applies.
+\end{proof}
+
+\paragraph{Consequence for an affine coupled scalar.}
+Even if each fixed probe has its own affine residue, shift, and step
+functions of the same coded scalar, $r$ nontrivial probes produce at
+most $r(4K-1)+1$ strict sign vectors on an interval of admissibility.
+Thus they can shatter only $O(\log K)$ probes by that scalar mechanism,
+independently of $H$. This assertion permits different coefficients
+at every probe; it only requires affine dependence on the one scalar.
+
 \paragraph{Scope and the remaining possibility.}
 The scalar corollary allows arbitrary fixed row-dependent residue
 vectors; they need only be zero-mean and $K$-periodic at each row.
 Thus merely assigning different periodic residues to different probes
-does not defeat the scalar shift/step bound. It does not address
-several independently varying pole parameters, or residues that vary
-jointly with the encoded parameters. At fixed poles, arbitrary periodic
+does not defeat the scalar shift/step bound. The joint-affine extension still does not address
+several independently varying pole parameters, or nonlinear coupled
+paths through residue and pole parameters. At fixed poles, arbitrary periodic
 affine numerators form a linear family with at most
 $(K-1)(n+1)$ numerator parameters, regardless of the chain length.
 A new construction would have to exploit simultaneous nonlinear
