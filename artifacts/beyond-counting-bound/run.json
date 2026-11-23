@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: second twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T10:34:37.443144+00:00",
+  "last_audit_utc": "2026-11-23T10:48:30.275218+00:00",
   "elapsed_seconds_at_last_audit": 95673.141043,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -673,5 +673,11 @@
     "start_utc": "2026-11-23T10:33:21Z",
     "duration_seconds": 7200,
     "status": "running; all outcomes require exact audit"
+  },
+  "parity_minimum_experiment": {
+    "session_id": 77998,
+    "start_utc": "2026-11-23T10:44:01Z",
+    "duration_seconds": 7200,
+    "status": "running; floating candidates require exact audit"
   }
 }

@@ -1,0 +1,28 @@
+{
+  "status": "SMOKE_CHECKS_PASS",
+  "derivative_error": 1.53431711780172e-09,
+  "seed_equations": "Exact rational Cauchy solve: score at weight k is 2*(-1)^k for k=1,...,n; score at origin is 1.",
+  "checks": [
+    "rational interpolation at every Hamming weight",
+    "positive or negative coherent slopes with positive full-cube denominators",
+    "floating seed comparison on every Boolean vertex",
+    "nonsymmetric perturbations accepted only after every cube margin passes"
+  ],
+  "logs": [
+    {
+      "path": "/out/parity-unit-smoke/results.jsonl",
+      "records": 11,
+      "sha256": "e374bfd9b9b0faad2a621c589bf4a8a71c8ad30c415d902ea99e015cb9d088ab",
+      "candidates": 0,
+      "maximum_accepted_perturbation": 1e-08
+    },
+    {
+      "path": "/out/parity-unit-nullspace-smoke/results.jsonl",
+      "records": 8,
+      "sha256": "658ec97aacc6d77bd0282b0c5ef992e3b09f3e43ce06b6beb67567c20e1b0ef6",
+      "candidates": 0,
+      "maximum_accepted_perturbation": 0.1
+    }
+  ],
+  "main_target_proved": false
+}
