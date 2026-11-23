@@ -1,0 +1,22 @@
+[
+  {
+    "source": "/out/arithmetic-unit-search/results.jsonl",
+    "archive": "experiments/arithmetic-unit-search.jsonl.gz",
+    "records": 239,
+    "lp_tests": 200,
+    "candidate_count": 0,
+    "elapsed_last": 173.23780996189453,
+    "sha256_uncompressed": "d49e927588f200114a81106a6c9c1a95571adb60a238b6122136c2222ad69647",
+    "outcome": "UNKNOWN; no impossibility conclusion"
+  },
+  {
+    "source": "/out/arithmetic-unit-search-capped/results.jsonl",
+    "archive": "experiments/arithmetic-unit-search-capped.jsonl.gz",
+    "records": 4451,
+    "lp_tests": 3730,
+    "candidate_count": 0,
+    "elapsed_last": 809.391166738933,
+    "sha256_uncompressed": "1bfc16b8004a8f0e4ee09aeb015bf7e20df5954023a6713e68477e46025a6dc1",
+    "outcome": "UNKNOWN; no impossibility conclusion"
+  }
+]

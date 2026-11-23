@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "derivative_error": 1.53431711780172e-09,
+  "clarabel_version": "0.11.1",
+  "smoke_output": "/out/constraint-generated-smoke/results.jsonl",
+  "smoke_seconds": 30.000632034847513,
+  "fixed_denominator_full_cube_relative_slack": -9.497090613930226e-12,
+  "joint_infeasible_iterates_rejected": true,
+  "script_sha256": "64f1c5c101c87c7e62e6e130c7c85869c82addce97d63a6479ee6c5b409767d2",
+  "target_proved": false
+}

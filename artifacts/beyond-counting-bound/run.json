@@ -588,20 +588,48 @@
       "task": "integer mixed binary score fibers and signed numerator-norm multipliers",
       "output": "/out/integer-binary-fibers",
       "status": "completed; 3967 recorded exact-rank examples through trial 48371; selected mixed binary fibers certified, but no nonnegative dual or full-cube unit-margin minimum certified"
+    },
+    {
+      "task": "integer zero layers with exact unit rescaling",
+      "status": "stopped to replace direct random multiplier testing with numerator optimization and constraint generation",
+      "reports": [
+        {
+          "source": "/out/arithmetic-unit-search/results.jsonl",
+          "archive": "experiments/arithmetic-unit-search.jsonl.gz",
+          "records": 239,
+          "lp_tests": 200,
+          "candidate_count": 0,
+          "elapsed_last": 173.23780996189453,
+          "sha256_uncompressed": "d49e927588f200114a81106a6c9c1a95571adb60a238b6122136c2222ad69647",
+          "outcome": "UNKNOWN; no impossibility conclusion"
+        },
+        {
+          "source": "/out/arithmetic-unit-search-capped/results.jsonl",
+          "archive": "experiments/arithmetic-unit-search-capped.jsonl.gz",
+          "records": 4451,
+          "lp_tests": 3730,
+          "candidate_count": 0,
+          "elapsed_last": 809.391166738933,
+          "sha256_uncompressed": "1bfc16b8004a8f0e4ee09aeb015bf7e20df5954023a6713e68477e46025a6dc1",
+          "outcome": "UNKNOWN; no impossibility conclusion"
+        }
+      ],
+      "target_proved": false
     }
   ],
   "active_experiments": [
     {
-      "task": "integer zero layers with exact full-cube rescaling and multiplier tests",
-      "script": "search_arithmetic_unit_minima.py",
-      "output": "/out/arithmetic-unit-search-capped",
-      "started_utc": "2026-11-23T09:45:28.582248+00:00",
+      "task": "numerator QP and full-cube constraint generation for unit-margin minima",
+      "script": "search_constraint_generated_minima.py",
+      "output": "/out/constraint-generated-unit-search",
+      "started_utc": "2026-11-23T10:04:39.901823+00:00",
       "requested_seconds": 21600,
-      "status": "active; at most 5000 zero rows used for each multiplier search; all cube margins verified before selection",
-      "new_mechanism": "Enumerate integer zero layers, retain positive active constraints, activate the closest negative layer by exact rational scaling; test KKT with all active cube vertices.",
-      "target_proved": false,
-      "first_uncapped_attempt": "/out/arithmetic-unit-search",
-      "first_attempt_stop_reason": "capped LP matrix to reduce shared-memory use"
+      "trial_limit_seconds": 900,
+      "status": "active; only floating candidates, requiring exact certification",
+      "new_mechanism": "Optimize numerator coefficients using a convex QP before joint optimization; enumerate all cube vertices as a separation oracle and add violated constraints.",
+      "dependency": "Clarabel 0.11.1 installed separately at /out/research-deps",
+      "dependency_source": "https://clarabel.org/stable/python/getting_started_py/",
+      "target_proved": false
     }
   ],
   "intermediate_exponent_lower_bound_proved": false,
