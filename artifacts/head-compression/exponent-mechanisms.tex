@@ -893,6 +893,66 @@ are absent. The statement is restricted to the nonvanishing first
 coefficient mechanism above. Cancellations exposing different higher
 orders at different inputs are not ruled out by it.
 
+\subsection{Parity for mixed-orientation priority lists}
+
+There is a useful limitation even when the leading decision lists have
+both literal orientations. Its strength must not be overstated: the
+bound below is smaller than the requested worst-case upper bound.
+
+\begin{proposition}\label{prop:mixed-list-parity}
+Suppose a constant plus a sum of $H$ real-valued priority lists strictly
+sign-represents parity on $n$ bits. Each list may have its own coordinate
+permutation, arbitrary real outputs, and either query only $1$-literals
+or query only $0$-literals. For every $m\geq0$ with $k=n-2m\geq1$,
+\[
+ H\geq\binom{n-m}{m}.
+\]
+In particular, with $m=\lfloor n/3\rfloor$,
+$H\geq4^m/(2m+1)$.
+\end{proposition}
+
+\begin{proof}
+Consider a face with $k$ free coordinates, $m$ coordinates fixed to $1$,
+and $m$ fixed to $0$. Its full $k$-fold mixed difference of a strict
+parity score is nonzero: the alternating signs in the difference cancel
+the parity labels, so all $2^k$ summands have the same strict sign.
+Consequently at least one summand list has a nonzero mixed difference
+on this face.
+
+For a $1$-literal list, if any fixed-$1$ coordinate occurs before the
+last free coordinate in its priority order, the restricted list ignores
+that last free coordinate. Its full mixed difference is then zero.
+Thus every free coordinate must precede every fixed-$1$ coordinate.
+Choose the $k+m$ positions occupied by these two types in the order.
+The first $k$ of those positions must be free and the last $m$ must be
+fixed to $1$; all remaining positions are fixed to $0$. Therefore at
+most $\binom n{k+m}$ faces can have nonzero mixed difference for this
+list. For a $0$-literal list the same count applies after swapping the
+roles of fixed zeros and ones.
+
+There are $n!/(k!m!^2)$ faces under consideration, and each must be
+accounted for by at least one of the $H$ lists. Division gives
+\[
+ H\geq\frac{n!/(k!m!^2)}{\binom n{k+m}}
+       =\binom{k+m}{m}=\binom{n-m}{m}.
+\]
+For $m=\lfloor n/3\rfloor$, $n-m\geq2m$, so the last binomial is at
+least $\binom{2m}{m}\geq4^m/(2m+1)$.
+\end{proof}
+
+Optimizing the displayed binomial gives exponential base equal to the
+golden ratio, up to polynomial factors. This obstructs short parity
+realizations by mixed-orientation leading lists, but does \emph{not}
+exclude $O(2^n/(n\log\log n))$ lists for all functions. In contrast,
+if only one orientation is allowed, every list has its multilinear
+expansion supported on a single maximal chain in the corresponding
+literal basis. Strict parity requires every monomial coefficient to be
+nonzero, by the same mixed-difference argument at the basis origin.
+The middle layer then requires at least
+$\binom n{\lfloor n/2\rfloor}$ lists, which does exclude the target
+for that one-orientation subclass. Neither argument is a lower bound
+for arbitrary admissible affine ratios with cancellations.
+
 \section{Formal verification status}
 
 The new file
