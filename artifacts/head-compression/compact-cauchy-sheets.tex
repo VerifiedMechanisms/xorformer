@@ -219,6 +219,46 @@ one-slot bound above proves that their transfer to that form actually
 fails for this construction. No reciprocal shattering conclusion
 follows from the assignment-cost theorem.
 
+\paragraph{The near-endpoint pole proposal and its exact budget.}
+For isolated scalar values $\lambda_j=\varepsilon-R^{-j}$, the kernel
+\[
+ \frac{t}{\varepsilon+t-\lambda_j}
+ =\frac{t}{t+R^{-j}}
+\]
+indeed gives a rank threshold after comparison with $1/2$.
+However, its direct use in the reverse-orientation chart has a
+whole-cube constraint. Write
+\[
+ B(u,v)=C-\sum_{i=1}^r a_i u_i-\sum_{j=1}^S b_j v_j,
+ \qquad a_i,b_j>0,\qquad C>\sum_i a_i+\sum_j b_j.
+\]
+The row baseline $d_i=C-a_i$ necessarily satisfies
+\[
+ d_i>\sum_{k\ne i}a_k+\sum_jb_j>\sum_jb_j
+\]
+when $r>1$, and $d_i>\sum_jb_j$ also when $r=1$.
+In particular, if every independently coded column has
+$b_j>\varepsilon-\eta$, then $d_i>S(\varepsilon-\eta)$.
+For two or more such columns this excludes placing all row poles
+arbitrarily close to $\varepsilon$.
+
+Even with a single column there is a row budget. Put
+$C=\varepsilon+T$, $d_i=\varepsilon+t_i$, and let its parameter be $b$.
+Then $a_i=T-t_i>0$, and whole-cube positivity gives exactly
+\[
+ \sum_i(T-t_i)<T+\varepsilon-b.
+\]
+Thus, for $0<\theta<1$, the number of rows with $t_i\le\theta T$
+is strictly less than
+\[
+ \frac{1+(\varepsilon-b)/T}{1-\theta}.
+\]
+Many freely placed geometric thresholds much smaller than the largest
+threshold therefore do not fit in one head when $b$ approaches
+$\varepsilon$. These inequalities refute only that direct placement
+of near-endpoint kernels. They do not rule out many-head cancellation,
+other parameter encodings, or superlinear reciprocal shattering.
+
 The open step for this local route is to construct sufficiently many
 asymmetric reciprocal queries whose strict sign vectors on, or near,
 these sheets cover all binary words of length $cH\log H$ for some
