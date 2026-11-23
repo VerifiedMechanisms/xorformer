@@ -206,6 +206,96 @@ def HasReverseAxisCompiler (a b M : ℕ) : Prop :=
   ∀ table : Fin a → Fin b → Bool, ∃ H ≤ M, ∃ L : ReverseAxisData a b H,
     ∀ i j, 0 < outputSign (table i j) * L.score (localGrid i j)
 
+/-- Raw local data allowing the scalar bias in the requested compiler. -/
+structure BiasedReverseAxisData (r s H : ℕ) where
+  bias : ℝ
+  a₀ : Fin H → ℝ
+  b₀ : Fin H → ℝ
+  a : Fin H → Fin (r + s) → ℝ
+  b : Fin H → Fin (r + s) → ℝ
+  positive : ∀ h bits, 0 < affineValue (b₀ h) (b h) bits
+  negative : ∀ h k, b h k < 0
+  zero_left : ∀ w : Fin s → Bool,
+    bias + (∑ h, affineValue (a₀ h) (a h) (Fin.addCases (fun _ : Fin r ↦ false) w) /
+      affineValue (b₀ h) (b h) (Fin.addCases (fun _ : Fin r ↦ false) w)) = 0
+  zero_right : ∀ z : Fin r → Bool,
+    bias + (∑ h, affineValue (a₀ h) (a h) (Fin.addCases z (fun _ : Fin s ↦ false)) /
+      affineValue (b₀ h) (b h) (Fin.addCases z (fun _ : Fin s ↦ false))) = 0
+
+noncomputable def BiasedReverseAxisData.score {a b H : ℕ}
+    (L : BiasedReverseAxisData a b H) (bits : Fin (a + b) → Bool) : ℝ :=
+  L.bias + ∑ h, affineValue (L.a₀ h) (L.a h) bits / affineValue (L.b₀ h) (L.b h) bits
+
+/-- Bias absorption for a whole finite sum costs no heads and leaves all
+denominators unchanged. This happens before any localization penalties. -/
+theorem absorb_bias_family {n H : ℕ} (hH : 0 < H)
+    (c : ℝ) (a₀ b₀ : Fin H → ℝ) (a b : Fin H → Fin n → ℝ)
+    (hpositive : ∀ h bits, 0 < affineValue (b₀ h) (b h) bits) :
+    ∃ (A₀ : Fin H → ℝ) (A : Fin H → Fin n → ℝ), ∀ bits,
+      (∑ h, affineValue (A₀ h) (A h) bits / affineValue (b₀ h) (b h) bits) =
+        c + ∑ h, affineValue (a₀ h) (a h) bits / affineValue (b₀ h) (b h) bits := by
+  classical
+  let first : Fin H := ⟨0, hH⟩
+  let A₀ (h : Fin H) := if h = first then a₀ h + c * b₀ h else a₀ h
+  let A (h : Fin H) (k : Fin n) := if h = first then a h k + c * b h k else a h k
+  refine ⟨A₀, A, ?_⟩
+  intro bits
+  have hterm (h : Fin H) :
+      affineValue (A₀ h) (A h) bits / affineValue (b₀ h) (b h) bits =
+        affineValue (a₀ h) (a h) bits / affineValue (b₀ h) (b h) bits +
+          if h = first then c else 0 := by
+    by_cases hh : h = first
+    · simp only [A₀, A, hh, ite_true]
+      rw [absorb_bias c (a₀ first) (b₀ first) (a first) (b first) bits
+        (ne_of_gt (hpositive first bits))]
+      ring
+    · simp [A₀, A, hh]
+  simp_rw [hterm]
+  rw [Finset.sum_add_distrib]
+  simp [add_comm]
+
+/-- Normalizing a biased axis-zero module preserves its value everywhere,
+not just its strict signs on the grid. -/
+theorem BiasedReverseAxisData.normalize {a b H : ℕ}
+    (L : BiasedReverseAxisData a b H) (hH : 0 < H) :
+    ∃ L' : ReverseAxisData a b H, ∀ bits, L'.score bits = L.score bits := by
+  obtain ⟨A₀, A, heval⟩ := absorb_bias_family hH L.bias L.a₀ L.b₀ L.a L.b L.positive
+  let L' : ReverseAxisData a b H :=
+    { a₀ := A₀, b₀ := L.b₀, a := A, b := L.b
+      positive := L.positive
+      negative := L.negative
+      zero_left := fun w ↦ (heval _).trans (L.zero_left w)
+      zero_right := fun z ↦ (heval _).trans (L.zero_right z) }
+  exact ⟨L', heval⟩
+
+/-- A nonempty grid with strict signs rules out zero heads once both axes
+vanish, so the normalization above is always available for the requested
+compiler dimensions. -/
+theorem BiasedReverseAxisData.head_pos {a b H : ℕ}
+    (L : BiasedReverseAxisData a b H) (i : Fin a) (j : Fin b) (σ : ℝ)
+    (hsign : 0 < σ * L.score (localGrid i j)) : 0 < H := by
+  by_contra h
+  have hzero : H = 0 := by omega
+  subst H
+  have hc : L.bias = 0 := by simpa using L.zero_left (fun _ ↦ false)
+  simp [BiasedReverseAxisData.score, hc] at hsign
+
+/-- The raw compiler with bias has the same quantitative transfer hypothesis.
+There is no extra head for its constant term. -/
+theorem hasReverseAxisCompiler_of_biased {a b M : ℕ} (ha : 0 < a) (hb : 0 < b)
+    (hcompiler : ∀ table : Fin a → Fin b → Bool,
+      ∃ H ≤ M, ∃ L : BiasedReverseAxisData a b H,
+        ∀ i j, 0 < outputSign (table i j) * L.score (localGrid i j)) :
+    HasReverseAxisCompiler a b M := by
+  intro table
+  obtain ⟨H, hH, L, hsign⟩ := hcompiler table
+  have hpos : 0 < H := L.head_pos ⟨0, ha⟩ ⟨0, hb⟩ _ (hsign ⟨0, ha⟩ ⟨0, hb⟩)
+  obtain ⟨L', heval⟩ := L.normalize hpos
+  refine ⟨H, hH, L', ?_⟩
+  intro i j
+  rw [heval]
+  exact hsign i j
+
 /-- A center as a vertex of the unchanged ambient cube. -/
 def centerBits {a b : ℕ} (S : Finset (Fin a)) (T : Finset (Fin b)) :
     Fin (a + b) → Bool :=
