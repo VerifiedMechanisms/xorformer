@@ -79,6 +79,7 @@ import HeadComplexity.Results.RawCalibratedVote
 import HeadComplexity.Results.RestrictionLowerBounds
 import HeadComplexity.Results.ReverseAxisCompiler
 import HeadComplexity.Results.ReverseGridAxisRepair
+import HeadComplexity.Results.ReverseRankCorrection
 import HeadComplexity.Results.SecantObstruction
 import HeadComplexity.Results.SliceRankTwo
 import HeadComplexity.Results.SmallDimensionExactCertificate
