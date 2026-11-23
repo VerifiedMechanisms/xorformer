@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Exact Parity Correlation of Bounded Admissible Atoms}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written proof, with an exact finite arithmetic check,
+but not a Lean formalization. It concerns an individually bounded atom.
+It is not a lower bound for arbitrary sums of atoms, because their
+individual magnitudes can be unbounded while their sum remains bounded.
+In particular it establishes neither of the requested global asymptotic
+alternatives. No model definition is changed.
+
+\begin{theorem}
+Let $n\geq1$, let $b_0>0$, and let $b_i\geq0$. Put
+\[
+ B(x)=b_0+\sum_{i=1}^n b_ix_i,\qquad
+ A(x)=a_0+\sum_{i=1}^n a_ix_i.
+\]
+If $|A(x)/B(x)|\leq1$ at every Boolean vertex, then
+\[
+ \left|2^{-n}\sum_{x\in\{0,1\}^n}
+              (-1)^{|x|}\frac{A(x)}{B(x)}\right|\leq 2^{1-n}.
+ \tag{1}
+\]
+The same bound holds when $B$ is positive everywhere on the cube and
+all its slopes are nonpositive. For strictly positive slopes, the
+constant in (1) is a supremum and cannot be improved.
+\end{theorem}
+\begin{proof}
+Write
+\[
+ I_0=\int_0^\infty e^{-b_0t}\prod_j(1-e^{-b_jt})\,dt,
+ \qquad
+ I_i=\int_0^\infty e^{-(b_0+b_i)t}
+                    \prod_{j\ne i}(1-e^{-b_jt})\,dt.
+\]
+All these integrals are nonnegative and finite. Expanding the finite
+products and using $\int_0^\infty e^{-ct}\,dt=1/c$ for $c>0$ gives
+\[
+ \sum_x(-1)^{|x|}\frac{A(x)}{B(x)}
+           =a_0I_0-\sum_i a_i I_i.
+ \tag{2}
+\]
+Integration of the derivative of
+$e^{-b_0t}\prod_j(1-e^{-b_jt})$ gives
+\[
+                 \sum_i b_iI_i=b_0I_0.
+ \tag{3}
+\]
+Indeed its values at both endpoints are zero, using $n\geq1$ at
+$t=0$. This also covers zero slopes. Furthermore, for every $i$,
+\[
+ I_0+I_i
+ =\int_0^\infty e^{-b_0t}\prod_{j\ne i}(1-e^{-b_jt})\,dt
+ \leq\frac1{b_0}.
+ \tag{4}
+\]
+
+Set $d_i=a_i+b_i$ and $c=a_0+b_0$. The lower bound $A+B\geq0$
+at every vertex implies
+\[
+             \sum_i\max\{-d_i,0\}\leq c.
+ \tag{5}
+\]
+This follows by choosing exactly the negative $d_i$ coordinates to be
+one. The bounds at the zero vertex give $0\leq c\leq2b_0$.
+Combining (2) and (3), and putting $M=\max_i I_i$, now yields
+\[
+ \begin{aligned}
+ a_0I_0-\sum_i a_iI_i
+ &=cI_0-\sum_i d_iI_i\\
+ &\leq cI_0+M\sum_i\max\{-d_i,0\}\\
+ &\leq c(I_0+M)\leq 2.
+ \end{aligned}
+\]
+Equation (4) proves the last step. Replacing $A$ by $-A$ proves the
+opposite inequality. Division by $2^n$ gives (1).
+
+If every slope is nonpositive, complement every input coordinate.
+The new denominator has positive constant coefficient $B(\mathbf1)$
+and nonnegative slopes. Complementation changes parity by the fixed
+factor $(-1)^n$, so its absolute correlation is unchanged.
+
+For sharpness take $b_0=1$, $b_i=T>0$ for every $i$, and
+\[
+ B_T(x)=1+T|x|,\qquad
+ A_T(x)=1-T|x|-2x_1.
+\]
+Then $A_T+B_T=2(1-x_1)\geq0$ and
+$B_T-A_T=2T|x|+2x_1\geq0$, so the quotient is bounded by one.
+As $T\to\infty$ it tends to $+1$ at the zero vertex and $-1$ at
+every other vertex. Its unnormalized parity correlation therefore
+tends to $2$, proving sharpness. Each denominator has strictly
+positive slopes, so this family consists of original admissible
+atoms via the existing positive-affine-ratio construction.
+\end{proof}
+
+\paragraph{Consequence for the proposed approximation route.}
+A distribution-uniform weak-learning claim with correlation
+$\Omega(n2^{-n/2})$ for individually bounded admissible heads is false:
+parity under the uniform distribution violates it by (1). The same
+holds for any convex combination of such heads and for its negative.
+An unrestricted affine numerator or an unrestricted outer coefficient
+does not contradict the theorem; it invalidates the individual
+boundedness hypothesis unless the resulting head is normalized again.
+The theorem does not restrict a sum whose heads have large cancelling
+magnitudes. A global improvement, if it exists, may use precisely that
+behavior.
+
+\end{document}
