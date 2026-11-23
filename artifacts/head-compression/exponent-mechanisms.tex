@@ -5,7 +5,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newcommand{\Qn}{\{0,1\}^n}
 \begin{document}
-\title{Adaptive Local Covers Require Many Simultaneously Active Denominators}
+\title{Sparse Local Covers Cannot Give Superconstant Head Savings}
 \author{}
 \date{November 23, 2026}
 \maketitle
@@ -133,14 +133,97 @@ This proves \eqref{eq:overlap}. A polynomial $L_n$ has
 $\log_2(L_n+1)=O(\log n)=o(n^\delta)$, giving the stated exclusion.
 \end{proof}
 
-\paragraph{Superconstant savings.}
-The same proof works with $n^\delta$ replaced by any $g(n)\to\infty$
-under $H_n\leq C2^n/(ng(n))$: it gives
-$\liminf \log_2(L_n+1)/g(n)\geq1/(2C)$.
-Indeed $H_n\geq1$ implies $g(n)\leq C2^n/n$, so
-$2^{-n}=o(1/g(n))$, which justifies the same estimate for $p_n/2^n$.
-For $g(n)=\log n$, the necessary overlap is polynomial, so the theorem
-does not rule out the requested superconstant-saving fallback.
+\begin{theorem}[Finite overlap requirement for any saving]\label{thm:general-g}
+Let $n,H\geq1$, $C,b,g>0$, $N=2^n$, and suppose all sign tables
+have masked representations with
+\[
+ H\leq\frac{CN}{ng},\qquad K\leq2^{bn},\qquad
+ \max_x|I_x|\leq L.
+\]
+Put $q_0=g/(C(2+3/n))$. If $q_0\geq2$, then
+\[
+ \log_2(L+1)\geq
+ q_0-\log_2q_0-\log_2(4e)-b/2.
+ \tag{4}\label{eq:finite-g}
+\]
+\end{theorem}
+\begin{proof}
+The assumptions $H\geq1$ and $H\leq CN/(ng)$ imply $g/N\leq C/n$.
+Therefore, with $p=1+2H(n+1)$,
+\[
+ \frac pN\leq\frac1N+\frac{2C(n+1)}{ng}
+ =\frac{g/N+2C(1+1/n)}g
+ \leq\frac{C(2+3/n)}g=\frac1{q_0}.
+\]
+In particular $p\leq N$ and $q=N/p\geq q_0\geq2$.
+Equation~\eqref{eq:entropy} implies
+\[
+ \log_2(L+1)\geq q-\log_2q-\log_2(4e)
+                   -\frac{H\log_2K}{p}.
+\]
+Since $p\geq2H(n+1)$, the last term is at most
+$bn/(2(n+1))\leq b/2$. Finally
+$\frac{d}{dt}(t-\log_2t)=1-1/(t\log 2)>0$ for $t\geq2$,
+so replacing $q$ by its lower bound $q_0$ preserves the inequality.
+This proves \eqref{eq:finite-g}, including cases in which $H$ is
+much smaller than its permitted upper bound.
+\end{proof}
+
+\begin{corollary}[Every superconstant saving needs unbounded overlap]
+For fixed $C,b>0$ and $g(n)\to\infty$, a universal masked
+construction with $H_n\leq C2^n/(ng(n))$ and $K_n\leq2^{bn}$ must
+satisfy
+\[
+ \liminf_{n\to\infty}
+ \frac{\log_2(L_n+1)}{g(n)}\geq\frac1{2C}.
+\]
+In particular bounded-overlap assembly from such a mask dictionary
+cannot give \emph{any} superconstant saving over $2^n/n$.
+\end{corollary}
+\begin{proof}
+Eventually $q_0(n)=g(n)/(C(2+3/n))\geq2$.
+Divide \eqref{eq:finite-g} by $g(n)$. Its leading term converges to
+$1/(2C)$, while $\log_2q_0(n)/g(n)\to0$, because $q_0(n)$ is a
+constant multiple of $g(n)$ up to a factor tending to one.
+\end{proof}
+
+When $g(n)=O(n)$, the finite bound also gives the more familiar form
+\[
+ \log_2(L_n+1)\geq \frac{g(n)}{2C}-\log_2g(n)-O_{C,b}(1),
+\]
+where the constant additionally depends on the bound in $g(n)=O(n)$.
+Indeed $g/(C(2+3/n))=g/(2C)-O_C(g/n)$ and
+$\log_2q_0=\log_2g-O_C(1)$.
+For $g(n)=\log_2 n$ this forces
+$L_n+1\geq n^{1/(2C)}/O_{C,b}(\log n)$.
+A bounded number of overlapping local ranking cells therefore cannot
+preserve the logarithmic local gain. Polynomially growing overlap
+remains compatible with this necessary condition.
+
+\begin{corollary}[Quantitative lower bound for bounded overlap]
+Fix $b>0$ and a nonnegative integer $L$, and put
+\[
+ Q=\max\{4,\;2\log_2(4e(L+1))+b\}.
+\]
+Any universal masked family on $\Qn$ with $n,H\geq1$,
+$K\leq2^{bn}$, and overlap at most $L$ satisfies
+\[
+ H\geq\frac{2^n/Q-1}{2(n+1)}.
+\]
+This is a lower bound for the specified localized auxiliary family,
+not for unrestricted attention scores.
+\end{corollary}
+\begin{proof}
+If $p=1+2H(n+1)>2^n$, then $p\geq2^n/Q$ already.
+Otherwise equation~\eqref{eq:entropy}, with $q=2^n/p$, gives
+$q-\log_2q\leq\log_2(4e(L+1))+b/2$.
+If $q<4$, then $q\leq Q$. If $q\geq4$, the elementary bound
+$\log_2q\leq q/2$ implies
+$q\leq2\log_2(4e(L+1))+b\leq Q$.
+For completeness, $q/2-\log_2q$ vanishes at $q=4$ and has positive
+derivative for $q\geq4$. Thus in both cases $p\geq2^n/Q$.
+Solving this inequality for $H$ proves the result.
+\end{proof}
 
 \paragraph{Finite Hamming balls.}
 Allow all centers and all radii as masks. This gives
