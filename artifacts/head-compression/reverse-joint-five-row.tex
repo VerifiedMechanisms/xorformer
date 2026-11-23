@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Five Row Queries from Two Reverse Heads}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and limitation.}
+This is a finite positive construction using independent column numerator
+and denominator parameters. Its denominators have strictly negative
+slopes and are positive on the entire Boolean cube. It does not vanish
+on the coordinate axes, and it does not yield an unbounded number of
+rows per head. Consequently it proves neither the requested local
+compiler nor an improved asymptotic bound for worst-case head complexity.
+The proof below is complete as a written argument, using the ordinary
+real inverse function theorem. It has not been formalized in Lean.
+
+\begin{theorem}
+For every integer $s\geq1$ and every sign table
+$\sigma:\{1,\ldots,5\}\times\{1,\ldots,s\}\to\{-1,1\}$, there
+are affine numerators $N_1,N_2$ and affine denominators $B_1,B_2$
+on the $(5+s)$-dimensional Boolean cube such that
+\[
+ \sigma(i,j)\left(\frac{N_1(e_i,e_j)}{B_1(e_i,e_j)}
+                 +\frac{N_2(e_i,e_j)}{B_2(e_i,e_j)}\right)>0.
+\]
+Both denominators are positive everywhere on the cube and have strictly
+negative slopes in every coordinate. For fixed $s$, all row coefficients
+can be fixed independently of $\sigma$; only column coefficients vary.
+\end{theorem}
+\begin{proof}
+Set $\varepsilon=1/(100(s+1))$, so $0<\varepsilon\leq1/200$. Define
+\[
+ (c_1,c_2,c_3,c_4,c_5)=(5,6,7,9,8),\qquad
+ (k_1,k_2,k_3,k_4,k_5)=(6,8,5,7,11),
+\]
+and set $d_i=1-c_i\varepsilon$, $e_i=1-k_i\varepsilon$. For four
+column parameters $x=(u,v,a,b)$, put
+\[
+ F_i(x)=\frac{A_i+a}{d_i-u}+\frac{C_i+b}{e_i-v}.
+\]
+The two distinguished parameter points are
+\[
+ x_+=(\varepsilon,2\varepsilon,3,5),\qquad
+ x_-=(2\varepsilon,\varepsilon,5,3).
+\]
+For the first four rows take
+\[
+\begin{array}{c|cc}
+ i&A_i&C_i\\\hline
+ 1&-3&-5\\
+ 2&-\dfrac{37\varepsilon-4}{17\varepsilon-2}
+  &-3\dfrac{35\varepsilon-4}{17\varepsilon-2}\\
+ 3&-3\dfrac{31\varepsilon-4}{15\varepsilon-2}
+  &-\dfrac{33\varepsilon-4}{15\varepsilon-2}\\
+ 4&-3\dfrac{39\varepsilon-4}{19\varepsilon-2}
+  &-\dfrac{41\varepsilon-4}{19\varepsilon-2}.
+\end{array}
+\]
+Direct substitution gives $F_i(x_+)=F_i(x_-)=0$ for $1\leq i\leq4$.
+For the fifth row take
+\[
+ A_5=-\frac{2250\varepsilon^3-625\varepsilon^2+61\varepsilon-2}
+                   {2\varepsilon(11\varepsilon-1)},\qquad
+ C_5=\frac{2964\varepsilon^3-949\varepsilon^2+83\varepsilon-2}
+                   {2\varepsilon(11\varepsilon-1)}.
+\]
+Another direct substitution gives $F_5(x_+)=1$ and $F_5(x_-)=-1$.
+
+For $i\leq4$ clear the two denominators:
+\[
+ G_i(x)=(A_i+a)(e_i-v)+(C_i+b)(d_i-u).
+\]
+These are polynomials in the four column parameters. Their Jacobian
+rows, with the parameter order $(u,v,a,b)$, are
+\[
+ (-C_i-b,\,-A_i-a,\,e_i-v,\,d_i-u).
+\]
+The determinants of the resulting four by four matrices at $x_+$ and
+$x_-$ are, respectively,
+\[
+ \Delta=\frac{96\varepsilon^3
+                 (337\varepsilon^2-74\varepsilon+4)}
+              {(15\varepsilon-2)(17\varepsilon-2)(19\varepsilon-2)}
+ \quad\text{and}\quad-\Delta.
+\]
+These identities follow by substituting the displayed row constants
+and expanding the four by four determinants. They also provide short
+exact-arithmetic verification certificates. None of their factors
+vanishes: the three linear factors are negative, and
+$337\varepsilon^2-74\varepsilon+4\geq4-74/200>0$.
+
+All $d_i-u$ and $e_i-v$ are positive at both distinguished points.
+For each choice of $\tau\in\{-1,1\}$, choose an open neighborhood
+$U_\tau$ of $x_\tau$ small enough that these denominators stay positive,
+$\tau F_5>0$, and
+\[
+ \varepsilon/2<u<5\varepsilon/2,\qquad
+ \varepsilon/2<v<5\varepsilon/2.
+\]
+The inverse function theorem, shrinking this neighborhood if necessary,
+shows that $G=(G_1,\ldots,G_4)$ maps a neighborhood of $x_\tau$
+onto a neighborhood of zero in $\mathbb R^4$. For every prescribed
+four signs, that neighborhood contains a sufficiently small vector
+having those signs. Its inverse image has those signs for the first
+four $F_i$, because the cleared denominators are positive; the fifth
+sign is $\tau$. Hence all $32$ strict sign vectors occur with $u,v$
+in the displayed bounds.
+
+For each column $j$, choose a parameter vector
+$(u_j,v_j,a_j,b_j)$ producing its desired five signs. Define on the
+whole cube
+\[
+\begin{split}
+ N_1(z,w)&=\sum_{i=1}^5 A_i z_i+\sum_{j=1}^s a_jw_j,
+ &B_1(z,w)&=1-\varepsilon\sum_{i=1}^5c_i z_i-\sum_{j=1}^su_jw_j,\\
+ N_2(z,w)&=\sum_{i=1}^5 C_i z_i+\sum_{j=1}^s b_jw_j,
+ &B_2(z,w)&=1-\varepsilon\sum_{i=1}^5k_i z_i-\sum_{j=1}^sv_jw_j.
+\end{split}
+\]
+Every slope of either denominator is strictly negative. Since
+$\sum_i c_i=35$ and $\sum_i k_i=37$, the minimum of each denominator
+on the whole cube is strictly greater than
+\[
+ 1-37\varepsilon-\frac52s\varepsilon
+ =1-\frac{37+(5/2)s}{100(s+1)}>0.
+\]
+On $(e_i,e_j)$ their sum of ratios is exactly
+$F_i(u_j,v_j,a_j,b_j)$, giving the required signs.
+\end{proof}
+
+\paragraph{What would be needed for amplification.}
+The two neighborhoods provide two regular parameter choices, while four
+independently varying local coordinates supply four additional signs.
+Repeating this finite gadget on separate row groups would require a
+mechanism preventing the groups from interfering; none is supplied here.
+Nor is an axis-zero transformation with a head saving supplied. The
+ratio of five rows to two heads is fixed and is not an asymptotic
+compression theorem.
+
+\end{document}

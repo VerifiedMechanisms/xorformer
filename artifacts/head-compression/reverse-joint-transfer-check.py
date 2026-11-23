@@ -69,6 +69,51 @@ def check_arbitrary_numerator_one_slot():
         assert difference * (d - t) * (e - t) == cleared
 
 
+def determinant(matrix):
+    """Small exact determinant, by elimination with rational pivots."""
+    a = [list(row) for row in matrix]
+    result = Q(1)
+    for i in range(len(a)):
+        pivot = next((j for j in range(i, len(a)) if a[j][i]), None)
+        if pivot is None:
+            return Q(0)
+        if pivot != i:
+            a[i], a[pivot] = a[pivot], a[i]
+            result = -result
+        result *= a[i][i]
+        for j in range(i + 1, len(a)):
+            factor = a[j][i] / a[i][i]
+            for k in range(i, len(a)):
+                a[j][k] -= factor * a[i][k]
+    return result
+
+
+def check_five_row_regular_sheets():
+    for columns in (1, 2, 7, 32, 1000):
+        eps = Q(1, 100 * (columns + 1))
+        c, k = (5, 6, 7, 9, 8), (6, 8, 5, 7, 11)
+        d = [1 - value * eps for value in c]
+        e = [1 - value * eps for value in k]
+        aa = [Q(-3), -(37*eps-4)/(17*eps-2),
+              -3*(31*eps-4)/(15*eps-2), -3*(39*eps-4)/(19*eps-2),
+              -(2250*eps**3-625*eps**2+61*eps-2)/(2*eps*(11*eps-1))]
+        bb = [Q(-5), -3*(35*eps-4)/(17*eps-2),
+              -(33*eps-4)/(15*eps-2), -(41*eps-4)/(19*eps-2),
+              (2964*eps**3-949*eps**2+83*eps-2)/(2*eps*(11*eps-1))]
+        delta = (96*eps**3*(337*eps**2-74*eps+4)
+                 / ((15*eps-2)*(17*eps-2)*(19*eps-2)))
+        assert delta != 0
+        for sign, (u, v, a, b) in ((1, (eps, 2*eps, Q(3), Q(5))),
+                                  (-1, (2*eps, eps, Q(5), Q(3)))):
+            values = [(aa[i]+a)/(d[i]-u)+(bb[i]+b)/(e[i]-v)
+                      for i in range(5)]
+            assert values == [0, 0, 0, 0, sign]
+            jacobian = [[-bb[i]-b, -aa[i]-a, e[i]-v, d[i]-u]
+                        for i in range(4)]
+            assert determinant(jacobian) == sign * delta
+        assert 1 - 37*eps - Q(5, 2)*columns*eps > 0
+
+
 def check_shared_baseline():
     # All 16 two-by-two tables. The common baseline has strictly negative
     # slopes, as does each row-specific denominator. Its cube minimum is 1.
@@ -102,6 +147,8 @@ if __name__ == "__main__":
     check_cauchy_covariance()
     check_independent_orders()
     check_arbitrary_numerator_one_slot()
+    check_five_row_regular_sheets()
     check_shared_baseline()
     print("Exact checks passed: Cauchy covariance, independent row orders, "
-          "arbitrary-numerator one-slot clearing, all 2x2 baseline tables.")
+          "arbitrary-numerator one-slot clearing, both five-row regular sheets, "
+          "all 2x2 baseline tables.")
