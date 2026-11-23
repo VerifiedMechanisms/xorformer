@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\title{The Total Budget of Separately Compiled Bilevel Supports}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and verification status.}
+This is a complete written counting argument for a restricted proposed
+upper-bound construction. It shows that reducing the number of components
+in each Erd\H{o}s--Moser bilevel module cannot restore a saving when every
+module is compiled separately with exact support, or with the specified
+uniformly small error. It is not a lower bound for the unchanged
+HeadComplexity model and does not resolve either accepted target.
+No result here is Lean formalized and no model definition is changed.
+
+Fix a bipartite table with $r$ rows, $s$ columns and $m=r+s$ vertices.
+A signed bilevel support is the restriction of a directed vertex-disjoint
+union of complete bipartite graphs to this row-column table. It is encoded
+by assigning each vertex either to the isolated class or to the top or
+bottom side of one of $k$ components. The direction between top and bottom
+specifies the sign on a table entry. Components with no nonzero table
+entry may be deleted. We consider decompositions into edge-disjoint such
+supports whose signs agree with the desired table; in particular their
+union covers every table entry. This is the support-preserving assembly
+used by paired orders. Arbitrary real amplitudes inside a component do
+not change its signed support.
+
+\begin{theorem}[Small-component tradeoff]
+At most $(2k+1)^{mT}$ signed tables can be encoded by a sequence of $T$
+bilevel supports having at most $k$ components each. Consequently any such
+scheme covering all $2^{rs}$ sign tables requires
+\[
+ T\geq \frac{rs}{m\log_2(2k+1)}.
+\]
+In particular $k=O(\log m)$ requires $T=\Omega(m/\log\log m)$ on
+balanced tables, rather than $O(m/\log m)$.
+\end{theorem}
+\begin{proof}
+The vertex assignment has $2k+1$ choices at each vertex. Every encoded
+support is specified by one of these assignments, with overcounting
+allowed. A sequence of $T$ assignments therefore has at most the stated
+number of possibilities. Restricting to edge-disjoint sign-consistent
+covers only decreases this number. Every valid sequence determines its
+final sign table uniquely. Compare with the $2^{rs}$ possible targets.
+\end{proof}
+
+\begin{theorem}[Nonuniform exact-support budget]
+Suppose each nonempty support is implemented by a sum of $H_i\geq1$
+affine-ratio heads, with denominators nonzero on the grid, having exactly
+zero values outside its support and the specified signs on that support.
+The number of sign tables obtainable by the above support-preserving
+assemblies with total head budget at most $L\geq1$ is at most
+\[
+ 2^{(3m+1)L}.
+\]
+Thus some balanced tables require $\Omega(m)$ total heads in this
+restricted assembly, even when the numbers of components and heads vary
+arbitrarily among modules.
+\end{theorem}
+\begin{proof}
+The exact cleared separation-rank theorem in
+\texttt{reverse-joint-exact-support-rank.tex} implies
+\[
+ k_i\leq 2^{H_i+1}-2.
+\]
+Indeed choose one supported row-column pair from each component. Cross
+pairs between different components have score zero, so the selected
+cleared submatrix is diagonal with $k_i$ nonzero diagonal entries.
+This argument permits unequal magnitudes and arbitrary signs.
+For a fixed $H_i$, all its possible signed supports are consequently
+covered by at most
+\[
+ (2(2^{H_i+1}-2)+1)^m
+ \leq 2^{m(H_i+2)}\leq2^{3mH_i}
+\]
+vertex assignments. For a fixed ordered composition
+$H_1+\cdots+H_T=L'\leq L$, the number of support sequences is at most
+$2^{3mL'}\leq2^{3mL}$.
+There are $2^{L'-1}$ ordered positive compositions of $L'$, and
+$\sum_{L'=1}^L2^{L'-1}<2^L$. Summing the bounds proves the assertion.
+Whenever $(3m+1)L<rs$, this number is smaller than $2^{rs}$, so some
+target table is absent. For $r=\lfloor m/2\rfloor$ and
+$s=\lceil m/2\rceil$, this gives the stated linear order.
+\end{proof}
+
+\begin{corollary}[A uniformly accurate support replacement also loses]
+Suppose instead that module $i$ approximates its signed unit support
+entrywise within $\epsilon_i$, where
+\[
+ \epsilon_i<\frac1{2k_i},\qquad
+ \sum_i\epsilon_i<1.
+\]
+Assume its denominators are positive on the entire Boolean cube with
+weakly nonpositive slopes. The number of sign tables represented by these
+support-preserving assemblies with at most $L$ total heads is at most
+$2^{(5m+1)L}$. Consequently some balanced tables again require
+$\Omega(m)$ total heads within this restricted scheme.
+\end{corollary}
+\begin{proof}
+The approximation hypothesis and the strengthened rank calculation in
+\texttt{reverse-joint-equality-mask.tex} and
+\texttt{reverse-joint-exact-support-rank.tex} give
+\[
+ k_i\leq4H_i^2+2^{H_i+1}-2.
+\]
+For $H\geq1$, induction gives $H^2\leq4^{H-1}$, and also
+$2^{H+1}\leq2\cdot4^H$. Hence
+$4H^2+2^{H+1}-2\leq3\cdot4^H-2<2^{2H+2}-1$.
+Hence $2k_i+1<2^{2H_i+3}$, and the count is at most
+$2^{m(2H_i+3)}\leq2^{5mH_i}$. Sum over positive head-budget
+compositions as before.
+Finally, the ideal support sum is exactly the desired $\pm1$ table,
+and the total entrywise error is less than one. Its signs therefore
+agree with that table. This justifies counting signed supports rather
+than unconstrained numerical scores.
+\end{proof}
+
+\paragraph{Audit of the primary construction.}
+In Section 2, Lemmas 3 and 4 of
+\href{https://www.renyi.hu/~p_erdos/1964-22.pdf}{Erd\H{o}s and Moser's
+1964 paper}, the dense phase builds each bilevel graph from components
+with one side of order $\sqrt m$ and the other of order
+$\log m/(a+1)$, where $a$ indexes the density phase. The proof greedily
+packs a number of these components of order $\sqrt m/2^a$.
+At bounded $a$ the component count is therefore polynomial in $m$,
+not logarithmic. Section 3 uses the resulting large supports to obtain
+$O(m/\log m)$ order pairs. The original paper does not provide the
+combination of logarithmically many components and $O(m/\log m)$
+modules assumed in the small-component proposal; the first theorem
+above independently excludes that combination for all sign tables.
+
+\paragraph{What is still open.}
+The count does not apply if off-support tails interact to create the
+final signs, if overlapping supports are combined with target-dependent
+cancellation, or if multiple modules are compiled jointly into heads
+whose individual supports no longer follow the decomposition. It also
+does not apply to every arbitrary affine-ratio sign representation.
+Such a genuinely joint construction remains a possible route to the
+requested improvement.
+\end{document}
