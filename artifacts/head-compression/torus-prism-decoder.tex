@@ -214,6 +214,39 @@ complementing selected input coordinates changes the signs of their
 denominator slopes; positivity on a cell alone would not repair the model's
 whole-cube admissibility requirement. The global transfer remains open.
 
+
+\begin{proposition}[Exact dual-rail denominator lift]
+Suppose $D(z)=b+\sum_{i=1}^r a_i z_i$ is positive at every vertex of
+$\{0,1\}^r$, allowing arbitrary signs for the logical slopes $a_i$.
+There is a positive-constant, strictly positive-slope affine denominator
+$\widetilde D$ on $\{0,1\}^{2r}$ such that
+$\widetilde D(z,1-z)=D(z)$ for every logical input $z$.
+Consequently every affine numerator divided by $D$ is exactly one actual
+admissible attention atom on the complementary-pair subset.
+\end{proposition}
+\begin{proof}
+Put $\mu=b-\sum_i\max(-a_i,0)$. This is the minimum of $D$ on the
+logical cube, attained by setting $z_i=1$ precisely when $a_i<0$; hence
+$\mu>0$. Choose $\varepsilon=\mu/(2(r+1))$ and define
+\[
+ \widetilde b=b-\sum_i\max(-a_i,0)-r\varepsilon>0,\qquad
+ w_i=\max(a_i,0)+\varepsilon>0,\qquad
+ w_i'=\max(-a_i,0)+\varepsilon>0.
+\]
+Then $\widetilde D(x,x')=\widetilde b+\sum_i(w_i x_i+w_i'x_i')$
+is positive on the entire physical cube. Since $w_i-w_i'=a_i$,
+substituting $x=z,x'=1-z$ gives $D(z)$ exactly. Lift the numerator by
+placing its logical coefficients on the first rail and zero on the second
+rail. The positive-affine-ratio realization theorem then gives one actual
+atom. This proof also covers $r=0$.
+\end{proof}
+
+The lift does not provide a representation of arbitrary labels on the
+physical cube. For example, a natural mask of the complementary-pair
+subset is $\prod_i(x_i-x_i')$, but multiplying an arbitrary rational
+score by this mask is an additional operation not supplied by the model.
+No efficient global mask or covering compiler is asserted here.
+
 \paragraph{Formal status.}
 The combinatorial extraction proof and local decoder theorem above are
 written proofs only at this checkpoint. The analytic prefix and suffix bounds
@@ -228,6 +261,10 @@ identities, are Lean-checked in
 \texttt{gatedRationalInterval\_equal\_endpoints}, all in the
 \texttt{HeadComplexity} namespace. They use only the standard logical axioms
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The dual-rail proposition, including an actual atom witness, is Lean-checked
+in \texttt{Results/DualRailLift.lean}, most directly as
+\texttt{HeadComplexity.exists\_fracAtom\_dualRail\_affineRatio}. Its axioms
+are the same three standard logical axioms.
 The exact atom realization used in the proof is the existing Lean theorem
 \texttt{HeadComplexity.FracAtom.ofPositiveAffineRatio\_eval} in
 \texttt{Atoms/PositiveAffineRatio.lean}. No full-cube universal head upper
