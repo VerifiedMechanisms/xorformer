@@ -1,0 +1,120 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{Joint Reverse Compiler: Two Exact Transfer Tests}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and status.}
+This note audits two attempted assembly mechanisms for the requested
+reverse-orientation, axis-zero local compiler. Neither result is an
+obstruction to that compiler itself. In particular, freely and jointly
+programmed row and column coefficients in different denominators are
+not excluded. No superconstant universal head saving is proved here.
+The propositions have complete written proofs; they are not Lean
+formalizations. The companion exact-arithmetic script
+\texttt{reverse-joint-transfer-check.py} checks the displayed identities
+and the smallest nontrivial row-order example.
+
+\section{Common positive factors do not repair independent row orders}
+
+On a two-one-hot grid an affine denominator is an additive matrix.
+Multiplication of the complete score by positive row and column factors
+would preserve every strict sign. This suggests using a Cauchy-kernel
+change of variables to change all the denominator orientations together.
+There is a restrictive compatibility condition.
+
+\begin{proposition}[Simultaneous additive rescaling]
+Let $r,s\geq 2$, let $h$ range over a finite nonempty family, and put
+$D_h(i,j)=b_h(i)+t_h(j)$. Suppose two of the row vectors $b_h$ are
+nonconstant and are not affinely related. Suppose at least one column
+vector $t_h$ is nonconstant. If positive numbers $\alpha_i,\beta_j$
+make every matrix
+\[
+ E_h(i,j)=\alpha_i\beta_j\bigl(b_h(i)+t_h(j)\bigr)
+\]
+additive, then $\alpha_i$ is independent of $i$ and $\beta_j$ is
+independent of $j$.
+\end{proposition}
+\begin{proof}
+Assume first that $\beta_j\neq\beta_\ell$ for two columns. An additive
+matrix has a column difference independent of the row. Consequently,
+for every $h$ there is a constant $K_h$ such that
+\[
+ \alpha_i\bigl[(\beta_j-\beta_\ell)b_h(i)
+      +\beta_jt_h(j)-\beta_\ell t_h(\ell)\bigr]=K_h
+ \quad\text{for every }i.
+\]
+If $b_h$ is nonconstant, then $K_h\neq0$: otherwise positivity of
+$\alpha_i$ and $\beta_j-\beta_\ell\neq0$ would make $b_h$ constant.
+Thus $1/\alpha_i$ is an affine function of $b_h(i)$ with nonzero
+linear coefficient. Applying this to the two designated row vectors
+makes them affinely related, contrary to the hypothesis.
+Hence $\beta_j=\beta$ is constant.
+
+Choose $h$ and columns $j,\ell$ with $t_h(j)\neq t_h(\ell)$.
+The column difference of $E_h$ is
+$\beta\alpha_i(t_h(j)-t_h(\ell))$. Its independence of $i$, together
+with $\beta>0$, proves that $\alpha_i$ is constant.
+\end{proof}
+
+For example, $b_1=(1,2,4)$ and $b_2=(1,4,2)$ are not affinely related.
+Indeed, the first two coordinates would force slope $3$ and intercept
+$-2$, incorrectly predicting the last coordinate to be $10$.
+Thus even two such row orders already prevent any nonconstant common
+separable rescaling when there is a varying column parameter.
+
+For clarity, the exact Cauchy covariance identity is as follows. For
+$f(x)=(ax+b)/(cx+d)$ and $ad-bc\neq0$, wherever the expressions are
+defined,
+\[
+ f(u)-f(-v)=\frac{(ad-bc)(u+v)}{(cu+d)(d-cv)}.
+\]
+It supplies a separable row and column multiplier for one kernel.
+For independent row orders those multipliers generally depend on the
+head. Such different multipliers cannot simply be pulled outside a
+signed sum. The proposition excludes a common separable multiplier
+that keeps every individual transformed denominator additive; it does
+not exclude changing the head decomposition, adding heads, or a
+nonseparable multiplier.
+
+\section{Exact common-selector gates need enough poles}
+
+The positive-orientation interval extraction compiler uses saturation to
+make a selected interval contribute little on other row groups. An
+attempt to replace this with exact cancellation on those groups has the
+following elementary cost when all selector choices lie on one affine
+parameter line.
+
+\begin{proposition}[Exact selector cost]
+Let $t_1,\ldots,t_c$ be distinct reals and fix a group $g$. Let
+\[
+ Q_g(t)=q_g+\sum_{h=1}^H\frac{a_{gh}+b_{gh}t}{d_{gh}+e_{gh}t},
+\]
+where all displayed denominators are nonzero at every $t_k$. If
+$Q_g(t_g)\neq0$ and $Q_g(t_k)=0$ for all $k\neq g$, then $H\geq c-1$.
+The conclusion permits signed numerators and arbitrary cancellation.
+\end{proposition}
+\begin{proof}
+Multiply by $D_g(t)=\prod_{h=1}^H(d_{gh}+e_{gh}t)$. The resulting
+polynomial $P_g$ has degree at most $H$, including its bias term.
+It is nonzero because $P_g(t_g)=D_g(t_g)Q_g(t_g)\neq0$.
+Each of the $c-1$ other distinct selectors is a root. The elementary
+root bound therefore gives $c-1\leq\deg P_g\leq H$.
+The argument also covers $H=0$ by the empty-product convention.
+\end{proof}
+
+This is a statement about exact off-group zeros on one parameter line.
+It does not apply to approximate gates with controlled accumulated error,
+selectors with several independent parameters, sign-only majority
+assembly, or a fully joint compiler that never isolates the groups.
+
+\paragraph{Remaining construction problem.}
+The requested $O((r+s)/\log\log(r+s))$ compiler remains open after these
+tests. A successful joint construction must avoid the particular
+common-factor or common-selector restrictions above, or quantitatively
+account for the cost of abandoning exact cancellation. These tests do
+not replace the main universal construction requirement.
+\end{document}
