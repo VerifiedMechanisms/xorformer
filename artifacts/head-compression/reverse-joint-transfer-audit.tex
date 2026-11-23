@@ -111,6 +111,72 @@ It does not apply to approximate gates with controlled accumulated error,
 selectors with several independent parameters, sign-only majority
 assembly, or a fully joint compiler that never isolates the groups.
 
+\section{Polynomial divided differences do not extract many bits from one slot}
+
+Independent column numerator coefficients are a real degree of freedom.
+In particular, one may prescribe a memory numerator $-P(t)$ at a memory
+denominator parameter $t$, and the row numerator $P(d)$ at row pole $d$.
+The resulting head is the polynomial divided difference
+\[
+ \frac{P(d)-P(t)}{d-t}.
+\]
+Its polynomial degree in $t$ may be arbitrarily high. Nevertheless,
+subtracting a symmetric baseline in all but one permutation slot does
+not yield independent high-degree queries of that slot.
+
+\begin{proposition}[One-slot queries with arbitrary numerator memory]
+Let $\psi:T\to\mathbb R$ be an arbitrary function on a set $T\subseteq
+\mathbb R$. Consider $q$ fixed queries
+\[
+ Q_i(t)=c_i+\frac{a_i-\psi(t)}{d_i-t}
+              -\frac{b_i-\psi(t)}{e_i-t},
+ \qquad 1\leq i\leq q,
+\]
+with $d_i-t>0$ and $e_i-t>0$ for every $t\in T$.
+As $t$ varies, the number of strict sign vectors of the $Q_i$ is at most
+$\sum_{k=0}^3\binom qk$. In particular, four such fixed queries cannot
+decode four arbitrary independent bits from one slot, regardless of the
+choice of $\psi$ or the size of $T$.
+\end{proposition}
+\begin{proof}
+Clearing the two positive denominators gives exactly
+\[
+\begin{split}
+ (d_i-t)(e_i-t)Q_i(t)
+ ={}&(d_i-e_i)\psi(t)+c_i t^2\\
+ &+[-a_i+b_i-c_i(d_i+e_i)]t\\
+ &+a_i e_i-b_i d_i+c_i d_i e_i.
+\end{split}
+\]
+Thus every strict sign is the sign of an affine form on the common
+curve $t\mapsto(\psi(t),t,t^2)$ in $\mathbb R^3$. An arrangement of
+$q$ affine hyperplanes in $\mathbb R^3$ has at most
+$\sum_{k=0}^3\binom qk$ open regions. To recall the elementary proof,
+in dimension $d$ a new hyperplane splits at most as many old regions
+as the previous hyperplanes cut out on that hyperplane, a space of
+dimension at most $d-1$. Induction on the number of hyperplanes and
+Pascal's identity give $\sum_{k=0}^d\binom qk$. Degenerate or identically
+zero forms cannot add strict sign vectors. Each nonempty prescribed
+strict sign set is convex, hence belongs to one region. Restriction
+to the displayed curve cannot add regions.
+For $q=4$ the bound is $1+4+6+4=15<16$.
+\end{proof}
+
+With $\psi=P$, $a_i=P(d_i)$, and $b_i=P(e_i)$, this applies to the
+polynomial divided-difference proposal. With no additional threshold
+($c_i=0$), the cleared expression is an affine function of just
+$(P(t),t)$, so the stronger planar arrangement bound applies. If the
+baseline $e_i=e$ is common as well, the unthresholded comparison is
+between the secant slopes
+$(P(t)-P(e))/(t-e)$ and $(P(d_i)-P(e))/(d_i-e)$, up to a fixed sign.
+Large polynomial degree therefore does not mean independently
+programmable polynomial coefficients in these queries.
+
+The scope is one modified permutation slot and one symmetric baseline.
+Several jointly modified slots, independently programmed column
+numerator and denominator vectors, and a different head decomposition
+remain outside this result.
+
 \paragraph{Remaining construction problem.}
 The requested $O((r+s)/\log\log(r+s))$ compiler remains open after these
 tests. A successful joint construction must avoid the particular

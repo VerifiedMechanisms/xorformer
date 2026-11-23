@@ -46,6 +46,29 @@ def check_independent_orders():
                 assert len(set(alpha)) == len(set(beta)) == 1
 
 
+def check_arbitrary_numerator_one_slot():
+    # A high-degree numerator still clears into the four claimed features.
+    def psi(t):
+        return t ** 17 - 3 * t ** 9 + 7 * t ** 2 - 2
+
+    for t in map(Q, (-2, -1, 0, 1, 2)):
+        for a, b, c in product(map(Q, (-3, 0, 2)), repeat=3):
+            d, e = Q(5), Q(7)
+            score = c + (a - psi(t)) / (d - t) - (b - psi(t)) / (e - t)
+            cleared = ((d - e) * psi(t) + c * t ** 2
+                       + (-a + b - c * (d + e)) * t
+                       + a * e - b * d + c * d * e)
+            assert score * (d - t) * (e - t) == cleared
+    # Check the actual divided-difference specialization, not merely
+    # arbitrary affine numerators.
+    for d, e, t in product(map(Q, (5, 6, 7)),
+                           map(Q, (8, 9)), map(Q, (-1, 0, 1, 2))):
+        difference = (psi(d) - psi(t)) / (d - t) - (psi(e) - psi(t)) / (e - t)
+        cleared = ((d - e) * psi(t) + (-psi(d) + psi(e)) * t
+                   + psi(d) * e - psi(e) * d)
+        assert difference * (d - t) * (e - t) == cleared
+
+
 def check_shared_baseline():
     # All 16 two-by-two tables. The common baseline has strictly negative
     # slopes, as does each row-specific denominator. Its cube minimum is 1.
@@ -78,5 +101,7 @@ def check_shared_baseline():
 if __name__ == "__main__":
     check_cauchy_covariance()
     check_independent_orders()
+    check_arbitrary_numerator_one_slot()
     check_shared_baseline()
-    print("Exact checks passed: Cauchy covariance, independent row orders, all 2x2 baseline tables.")
+    print("Exact checks passed: Cauchy covariance, independent row orders, "
+          "arbitrary-numerator one-slot clearing, all 2x2 baseline tables.")
