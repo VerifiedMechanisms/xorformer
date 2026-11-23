@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{A Compact Cauchy Obstruction to Independent Pair Readout}
+\author{Continuation checkpoint}
+\date{23 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note proves a limitation of one concrete permutation-memory mechanism.
+It is a complete written proof, not a Lean-checked result and not a lower
+bound for general attention heads. The original model and its denominator
+admissibility conditions are unchanged. In particular, correlated subset
+choices, signed residues, slot-dependent query poles, and more input choices
+than output queries are not covered by the theorem below.
+
+\begin{lemma}[A monotone bijection of a finite cube]
+If a coordinatewise monotone map
+$T:\{-1,1\}^k\longrightarrow\{-1,1\}^k$ is surjective, there is a
+permutation $\sigma$ of $\{1,\ldots,k\}$ such that
+$T_i(s)=s_{\sigma(i)}$ for every $i,s$.
+\end{lemma}
+\begin{proof}
+Surjectivity between finite sets of equal size implies bijectivity.
+As a permutation of a finite set, $T$ has finite order, say $T^m$ is the
+identity. Its inverse $T^{m-1}$ is therefore also monotone. Thus $T$ is an
+order automorphism. Identify the cube with the subsets of a $k$-element set,
+ordered by inclusion. The empty set, the atoms (singleton sets), and least
+upper bounds are defined by the order and hence preserved by an order
+automorphism. The automorphism permutes the singleton sets. Every set is
+the least upper bound of its singleton subsets, so its image is exactly the
+union of their images. This is the claimed coordinate permutation.
+\end{proof}
+
+\begin{lemma}[Positive linear threshold bijections]
+Let $V$ be a $k$ by $k$ matrix with strictly positive entries, and let
+$\tau\in\mathbb R^k$. Suppose all $2^k$ strict sign patterns of
+$Vs-\tau$ occur as $s$ ranges over $\{-1,1\}^k$. Then there is a
+permutation $\sigma$ such that
+\[
+ V_{i,\sigma(i)}>\sum_{j\ne\sigma(i)}V_{ij}
+ \quad\hbox{for every }i.
+\]
+\end{lemma}
+\begin{proof}
+There are only $2^k$ inputs. The assumed $2^k$ strict patterns therefore
+use all inputs, each exactly once; no input has a zero output coordinate.
+The sign map is coordinatewise monotone because every entry of $V$ is
+positive. Apply the preceding lemma. For row $i$, put $j=\sigma(i)$.
+The input with $s_j=1$ and every other coordinate equal to $-1$ gives
+$V_{ij}-\sum_{\ell\ne j}V_{i\ell}>\tau_i$. The opposite input gives
+$-V_{ij}+\sum_{\ell\ne j}V_{i\ell}<\tau_i$.
+Combining the two strict inequalities proves the claim.
+\end{proof}
+
+\begin{theorem}[Compact independent-pair obstruction]
+Fix $k\geq1$, $0\leq\beta<a\leq b$, and pairs
+\[
+ 0\leq\lambda_j^-<\lambda_j^+\leq\beta
+ \qquad(1\leq j\leq k).
+\]
+The pairs need not be mutually disjoint. For each input
+$s\in\{-1,1\}^k$, select $\lambda_j^{s_j}$ independently, and query
+\[
+ L_i(s)=\sum_{j=1}^k\frac{1}{D_i-\lambda_j^{s_j}}-t_i,
+ \qquad a\leq D_i\leq b,\quad 1\leq i\leq k,
+\]
+with arbitrary real thresholds $t_i$. If the $k$ queries realize every
+strict sign pattern, then
+\[
+ k<1+\left(\frac{b}{a-\beta}\right)^2.
+\]
+In particular, when $a=1$, $b=11/10$, and $\beta=1/10$, this readout
+cannot shatter $k\geq3$ independent pair choices.
+\end{theorem}
+\begin{proof}
+Set $w_j=\lambda_j^+-\lambda_j^->0$. Subtract the midpoint of the two
+possible values in each summand and absorb all midpoints into the
+threshold. Multiplication by two does not change any sign, and gives a
+threshold map with matrix
+\[
+ V_{ij}=\frac{1}{D_i-\lambda_j^+}
+             -\frac{1}{D_i-\lambda_j^-}
+ =\frac{w_j}{(D_i-\lambda_j^-)(D_i-\lambda_j^+)}.
+\]
+All denominators are strictly positive, and
+\[
+ \frac{w_j}{b^2}\leq V_{ij}\leq\frac{w_j}{(a-\beta)^2}.
+\]
+Write $W=\sum_jw_j$ and $\kappa=(b/(a-\beta))^2$.
+By the preceding lemma there is a distinct dominant column
+$j=\sigma(i)$ in every row. Its strict dominance and these bounds give
+\[
+ \frac{w_j}{(a-\beta)^2}>
+ \frac{W-w_j}{b^2},\qquad
+ w_j>\frac{W}{1+\kappa}.
+\]
+Every column occurs once. Summing gives
+$W>kW/(1+\kappa)$; since $W>0$, this is $k<1+\kappa$.
+For the specified compact interval,
+$1+\kappa=1+121/81=202/81<3$.
+\end{proof}
+
+\paragraph{What the theorem rules out.}
+One proposed hierarchical permutation code sends one member of each pole
+pair into a slot block, and reads the choices by unweighted Cauchy sums at
+nearby exterior poles. The theorem rules out reading one independent bit
+per pair in such a square block once it has three or more pairs in the
+specified compact regime. Large numbers of possible pair assignments do
+not supply independently readable output bits.
+
+\paragraph{Exact remaining gap.}
+The theorem does not rule out a constant fraction of as many queries as
+pair choices, or correlated equal-moment partitions used at overlapping
+levels of a hierarchy. To obtain an asymptotic improvement from the latter
+route one would need an explicit family of permutations of $H$ poles,
+together with more than a constant multiple of $H$ fixed admissible
+Cauchy queries, realizing every strict sign pattern. No such family is
+constructed here. Mere factorial cardinality of the permutation family
+does not establish this assertion.
+\end{document}
