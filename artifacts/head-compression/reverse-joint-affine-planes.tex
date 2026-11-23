@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,booktabs,fullpage}
+\title{Finite exact tests of corrected Cauchy planes}
+\author{}
+\date{23 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This note records a finite experiment on a possible joint compiler, with exact
+rational witnesses and, for simple arrangements, a complete enumeration.
+It proves no asymptotic compression, no universal shattering statement, and
+no obstruction for the unrestricted reverse compiler.  The small instances
+below do not realize all sign vectors.
+
+\paragraph{The directly realizable family.}
+Fix positive tokens $\lambda_1,\ldots,\lambda_H$, row/head poles
+$t_{ih}>\max_j\lambda_j$, an arbitrary real matrix $Q\in\mathbb R^{r\times H}$,
+and a row bias $\beta\in\mathbb R^r$.  A permutation $\pi$ and a vector
+$b\in\mathbb R^H$ define
+\[
+ F_i(\pi,b)=\beta_i+\sum_{j=1}^H
+ \left(\frac1{t_{i,\pi^{-1}(j)}-\lambda_j}-Q_{ij}\right)b_j.
+\]
+This is a union of at most $H!$ affine planes of dimension at most $H$.
+For the main $H$ heads, assign the column numerator at slot $h$ to
+$b_{\pi(h)}$ and its denominator token to $\lambda_{\pi(h)}$.
+The correction $-Qb$ has separation rank at most $H$.
+The rank correction construction in \texttt{reverse-joint-deformed-sheets.tex}
+implements this correction and the row bias with $H+1$ additional heads.
+Thus a finite collection of column witnesses is a reverse promised-grid
+family with at most $2H+1$ heads, subject to the full-cube denominator margin.
+No inverse function theorem is needed for this assertion.  The regular-sheet
+construction is useful if one also wants to add independent sign choices on
+its $2H$ regular query rows.
+
+When $\beta=0$, setting $b=0$ makes the whole column exactly zero, including
+all auxiliary numerator memories.  Consequently disjoint collections of
+column labels can be assigned to distinct copies of this family, with each
+column inactive in all but its designated copy.  This costs the sum of the
+head budgets.  It does not by itself supply a saving if the required number
+of copies grows.
+
+\paragraph{Enumeration certificate.}
+The accompanying script uses only Python integer arithmetic and
+\texttt{fractions.Fraction}.  For one matrix $D$, it first selects a basis of
+its column space, obtaining a full-column-rank $r\times k$ matrix.  The
+inequalities $\operatorname{sign}(Da+\beta)=\sigma$ define the chambers of
+an affine hyperplane arrangement in $\mathbb R^k$.
+
+For each nonsingular selection of $k$ rows the script solves exactly for the
+corresponding vertex.  At a simple vertex it solves the $2^k$ systems giving
+all active-wall sign directions.  It takes a positive rational step small
+enough to preserve every nonzero inactive-wall sign.  Every resulting
+witness is checked again against the original, unreduced matrix.
+
+If all vertices have exactly $k$ active hyperplanes, this enumeration is
+complete.  Indeed, the closure of every nonempty chamber is a nonempty
+pointed polyhedron: its recession lineality is contained in the kernel of
+the full-rank matrix.  Such a polyhedron has a vertex, and the local sign
+sectors at that vertex include the chamber.  Parallel and absent hyperplanes
+do not invalidate this argument.
+
+For central arrangements the only vertex is the origin.  Instead the script
+enumerates selections of $k-1$ independent walls, both orientations of their
+common line, and all $2^{k-1}$ local sign perturbations.  If every such ray
+has exactly $k-1$ active walls, this too is complete, since each full
+dimensional pointed chamber has an extreme ray.  Degenerate cases are
+explicitly labeled as witnessed lower bounds only.  Six moment-curve test
+arrangements verify the known generic counts
+\[
+ \sum_{j=0}^k\binom rj,
+ \qquad 2\sum_{j=0}^{k-1}\binom{r-1}j.
+\]
+These tests check the implementation; the preceding geometric argument
+explains the completeness certificate.
+
+\paragraph{Reproducible inputs.}
+The default seed is $20261123$.  Put $\varepsilon=10^{-5}$ and
+$\lambda_j=\varepsilon j$, using one-based token indices.
+Choose integer offsets $v_{ih}\in\{1,\ldots,11\}$ by Python's seeded
+\texttt{random.Random}, and set $t_{ih}=1-\varepsilon v_{ih}$.
+The mode \texttt{identity} uses
+$Q_{ij}=1/(t_{ij}-\lambda_j)$ and independent integer row biases in
+$\{1,\ldots,99\}$.  The mode \texttt{perturbed} adds independent
+$\varepsilon^2$ times integers in $\{-4,\ldots,4\}$ to $Q$ before generating
+the biases.  The mode \texttt{central\_perturbed} uses the same perturbed
+matrix and zero bias.  The exact sequence of random draws is specified by
+the script.
+
+For at most $s$ selected witness columns the main denominator on the full
+Boolean cube is at least
+\[
+ 1-11r\varepsilon-Hs\varepsilon.
+\]
+In every tabulated case $r\leq12$, $H\leq4$, and one may take
+$s\leq2^r\leq4096$, so this bound is positive.  Every main slope is strictly
+negative.  The existing no-cost grid gauge and exact axis repair apply to
+the auxiliary weak slopes.  A table at this fixed $\varepsilon$ does not
+establish the same coverage for arbitrarily many columns or for all smaller
+$\varepsilon$.
+
+\paragraph{Results.}
+Every entry in the following table is a complete exact enumeration.  The
+numbers are counts of attained strict sign vectors, not sampling estimates.
+\[
+\begin{array}{c|r|r|r|r}
+ H&r&2^r&\texttt{identity}&\texttt{perturbed}\\\hline
+ 3&7&128&84&95\\
+ 3&8&256&132&159\\
+ 3&9&512&189&262\\
+ 3&10&1024&285&345\\
+ 4&9&512&408&453\\
+ 4&10&1024&667&845\\
+ 4&11&2048&1151&1420\\
+ 4&12&4096&1776&2300
+\end{array}
+\]
+The central perturbed cases $(H,r)=(3,7)$ and $(4,10)$ cover respectively
+$74/128$ and $742/1024$ sign vectors, again completely enumerated.
+Other central runs have degenerate arrangements and are intentionally not
+reported here as complete counts.  Ten additional seeds $0,\ldots,9$ for
+$(H,r)=(3,7)$ in perturbed mode cover between $92$ and $108$ sign vectors.
+
+For example, reproduce one row with
+\begin{verbatim}
+heavy python3 artifacts/head-compression/reverse-joint-affine-plane-search.py 
+  --heads 4 --rows 10 --mode perturbed
+\end{verbatim}
+(The displayed command is one shell command.)
+
+\paragraph{What remains.}
+The finite family shows that arbitrary common token corrections materially
+change the set of obtainable signs.  It does not produce an unbounded
+row/head ratio, a sufficiently dense universal label family, or a large
+shattered subset of the required asymptotic size.  The main unresolved
+construction is still a joint reverse compiler with a superconstant saving.
+\end{document}
