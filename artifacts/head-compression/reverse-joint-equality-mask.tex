@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Quantitative Cost of Reverse Equality Masks}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note audits a directly attempted construction for the requested
+logarithmic or double-logarithmic saving. Erd\H{o}s--Moser paired orders
+encode edge-disjoint unions of disjoint bicliques. Replacing each such
+union by a highly accurate reverse-orientation equality mask might
+have avoided the known per-vote reversal loss. The following theorem
+shows that this numerical replacement also needs logarithmically many
+heads when the number of components grows polynomially.
+It is not an obstruction to a joint sign-only compiler, nonuniform
+assembly, or arbitrary admissible head sums. It is a written proof,
+not a Lean theorem, and it supplies no new unrestricted global bound.
+
+\begin{theorem}
+Let $k,H\geq1$ and $0\leq\epsilon<1/(2k)$. Suppose
+\[
+ F(z,w)=c+\sum_{h=1}^H\frac{A_h(z,w)}{B_h(z,w)}
+\]
+on the Boolean $2k$-cube has affine numerators and denominators, and
+each denominator is positive throughout that cube with weakly
+nonpositive slopes. Suppose, for arbitrary signs $\tau_i\in\{-1,1\}$,
+\[
+ |F(e_i,e_i)-\tau_i|\leq\epsilon,\qquad
+ |F(e_i,e_j)|\leq\epsilon\quad(i\neq j).
+\]
+Then
+\[
+ k-4H^2\leq H2^H.
+\]
+In particular, for $k\geq1024$,
+\[
+ H\geq\log_2k-\log_2\log_2k-1.
+\]
+The same conclusion applies to a matched $k$ by $k$ subgrid of a
+larger Boolean cube with the same whole-cube denominator conditions.
+\end{theorem}
+\begin{proof}
+Divide each numerator and denominator by the positive constant term
+of its denominator. Its grid denominator is then
+\[
+ B_h(e_i,e_j)=1-\alpha_{hi}-\beta_{hj},\qquad
+ \alpha_{hi},\beta_{hj}\geq0,qquad
+ \sum_i\alpha_{hi}+\sum_j\beta_{hj}<1.
+\]
+The last inequality follows by evaluating at the all-one vertex.
+For every head discard indices $i$ with
+$\alpha_{hi}+\beta_{hi}>1/(4H)$. Fewer than $4H$ indices are
+discarded for that head, and fewer than $4H^2$ altogether. Let $I$
+be the remaining set and $q=|I|$, so $q\geq k-4H^2$.
+For $i,j\in I$,
+\[
+ 1-\frac1{2H}\leq B_h(e_i,e_j)\leq1.
+\]
+Consequently the product $D_{ij}=\prod_h B_h(e_i,e_j)$ satisfies
+\[
+ \frac12\leq\left(1-\frac1{2H}\right)^H
+                    \leq D_{ij}\leq1.
+\]
+The first inequality is Bernoulli's inequality, including $H=1$.
+
+Let $P_{ij}=D_{ij}F(e_i,e_j)$ for $i,j\in I$.
+Its diagonal entries have absolute value at least
+$(1-\epsilon)/2$, whereas its off-diagonal entries have absolute
+value at most $\epsilon$. Since
+\[
+ (q-1)\epsilon\leq(k-1)\epsilon<(1-\epsilon)/2,
+\]
+the matrix $P$ is strictly diagonally dominant by rows and hence
+nonsingular. For completeness, if $Pv=0$ with $v\neq0$, choose
+$i$ with maximal $|v_i|>0$. Then
+$|P_{ii}v_i|>\sum_{j\neq i}|P_{ij}v_j|$, contradicting the
+$i$-th equation. Thus $\operatorname{rank}P=q$.
+
+Absorb $c$ into the first numerator, replacing $A_1$ by
+$A_1+cB_1$. The cleared grid matrix is
+\[
+ P_{ij}=\sum_{h=1}^H A_h(e_i,e_j)
+                     \prod_{g\neq h}B_g(e_i,e_j).
+\]
+Each affine grid factor is a sum of a row function and a column
+function. Expanding the $H$ factors in any summand therefore writes
+it as at most $2^H$ matrices of rank at most one. Rank subadditivity
+gives $q\leq H2^H$, proving the finite inequality.
+
+For $k\geq1024$, one has $4(\log_2k)^2\leq k/2$.
+If $H\geq\log_2k$, the final lower bound is immediate.
+Otherwise $q\geq k/2$, and $H2^H\geq k/2$ implies
+\[
+ H\geq\log_2k-\log_2H-1
+   \geq\log_2k-\log_2\log_2k-1.
+\]
+For a subgrid of a larger cube the selected nonnegative slope sums
+are still less than one, so the same proof applies.
+\end{proof}
+
+\paragraph{Consequence for the attempted paired-order route.}
+A bilevel module with $k$ disjoint components contains a matched
+subgrid obtained by choosing one row and one column from each
+component. Its intended numerical values on that subgrid are signed
+unit diagonal entries and zero off the diagonal. Thus the theorem
+applies to a uniform approximation of that module, even though the
+component values can have either sign. If $k=m^{\gamma+o(1)}$ for
+fixed $\gamma>0$ and the error is $O(\log m/m)$, then the error
+condition holds whenever $\gamma<1$, and the head cost is
+$\Omega(\log m)$. In particular $k$ of order $\sqrt m$ is covered.
+A plan using $O(m/\log m)$ such modules cannot obtain a saving by
+compiling each one with $O(\log m/\log\log m)$ heads at this
+accuracy. This rules out that proposed sufficient intermediate
+lemma. It does not prove that every paired-order assembly must use
+that uniform accuracy or that all decompositions have many components.
+
+\paragraph{Why cancellation and tiny slopes do not bypass this proof.}
+Numerator coefficients are unrestricted in magnitude, and all heads
+can cancel arbitrarily. The argument does not approximate the score
+by a Taylor polynomial. It bounds the exact separation rank after
+clearing denominators. The only quantitative approximation is in the
+specified target values. Denominator comparability is obtained by
+discarding a small number of indices, directly from whole-cube
+admissibility.
+\end{document}
