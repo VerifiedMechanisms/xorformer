@@ -54,6 +54,9 @@ for n in range(1, 5):
     d = [1-F(i+1, 100*(n+1)) for i in range(n)]
     c = [[1/(x-y) for y in lam] for x in d]
     c2 = [[x*x for x in row] for row in c]
+    barycentric = [prod(lam[j]-x for x in d)
+                   / prod(lam[j]-lam[k] for k in range(n) if k != j)
+                   for j in range(n)]
     u = [[F((i+2)*(j+3) % 7 - 3) for j in range(n)] for i in range(n)]
     e_matrix = multiply(c, u)
     inv_c = inverse(c)
@@ -101,6 +104,31 @@ for n in range(1, 5):
         assert ep == reconstructed_e
         mt = multiply(multiply(inv_c, c2), [[x] for x in t])
         assert a == [-b[p[h]]-mt[p[h]][0] for h in range(n)]
+
+        def ratio(t):
+            return prod(t-x for x in d)/prod(t-y for y in lam)
+
+        def column_q(h, t):
+            return sum(u[j][h]/(t-lam[j]) for j in range(n))
+
+        w = [[u[j][h]/barycentric[j] for j in range(n)] for h in range(n)]
+        common = F(3, 2)
+        common_left = sum((column_q(h, common)+a[h])/(common-lam[p[h]])
+                          for h in range(n))
+        common_right = ratio(common)*sum(w[h][p[h]]/(common-lam[p[h]])
+                                        for h in range(n))
+        assert common_left == common_right
+        poles = [F(3, 2)+F(h+1, 100) for h in range(n)]
+        nonuniform_left = sum((column_q(h, poles[h])+a[h])/(poles[h]-lam[p[h]])
+                              for h in range(n))
+        target = sum(ratio(poles[h])*w[h][p[h]]/(poles[h]-lam[p[h]])
+                     for h in range(n))
+        leakage = sum(
+            barycentric[p[l]]*(w[h][p[l]]-w[h][p[h]])/(lam[p[l]]-lam[p[h]])
+            *(1/(poles[h]-lam[p[l]])-1/(poles[l]-lam[p[l]]))
+            for h in range(n) for l in range(n) if l != h
+        )
+        assert nonuniform_left == target + leakage
         checked += 1
 
-print(f"Verified {checked} exact sheets, full Jacobians, derivative identities, and preconditioning formulas.")
+print(f"Verified {checked} exact sheets, full Jacobians, derivatives, preconditioning formulas, and readout decompositions.")

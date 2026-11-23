@@ -151,6 +151,69 @@ column of $U$. This is a possible source of richer joint information,
 but Gaussian independence of these selected entries does not itself
 prove a uniform separation estimate for the complete readout features.
 
+\paragraph{Exact assignment signal and its joint leakage.}
+Define
+\[
+ P_d(t)=\prod_i(t-d_i),\quad P_\lambda(t)=\prod_j(t-\lambda_j),
+ \quad R(t)=\frac{P_d(t)}{P_\lambda(t)},\quad
+ V_j=\frac{P_d(\lambda_j)}{P_\lambda'(\lambda_j)},
+ \quad Q_h(t)=\sum_j\frac{U_{jh}}{t-\lambda_j},
+ \quad W_{hj}=\frac{U_{jh}}{V_j}.
+\]
+All $V_j$ are nonzero. The unique linear combination of the simple
+reciprocals $1/(t-\lambda_j)$ interpolating
+$Q_h(t)/(t-\lambda_k)$ at every $d_i$ is
+\[
+ I_{h,k}(t)=\frac{Q_h(t)-R(t)U_{kh}/V_k}{t-\lambda_k}.
+ \tag{3}
+\]
+Indeed the expression has only simple poles at the tokens: its
+potential double pole at $\lambda_k$ cancels because the residue
+of $R$ there is $V_k$. It tends to zero at infinity and has the
+desired values at the $d_i$. Invertibility of $C$ gives uniqueness.
+Consequently, at every sheet and every common extra pole $t$,
+\[
+ \sum_h\frac{Q_h(t)+a_h^\pi}{t-\lambda_{\pi(h)}}
+   =R(t)\sum_h\frac{W_{h,\pi(h)}}{t-\lambda_{\pi(h)}}.
+ \tag{4}
+\]
+Thus an arbitrary assignment matrix $W$ may be encoded in the
+deformed sheets, but (4) only rescales its token columns as $t$ varies.
+For this specific family the vectors of selected entries, indexed by
+token, give a fixed $H$-dimensional linear embedding. This does not
+yet provide arbitrary row weights or independent assignment matrices.
+
+The exact effect of giving each head its own pole $t_h$ is
+\[
+\begin{split}
+ \sum_h\frac{Q_h(t_h)+a_h^\pi}{t_h-\lambda_{\pi(h)}}
+ ={}&\sum_h\frac{R(t_h)W_{h,\pi(h)}}{t_h-\lambda_{\pi(h)}}\\
+ &+\sum_{h\neq\ell}
+ \frac{V_{\pi(\ell)}(W_{h,\pi(\ell)}-W_{h,\pi(h)})}
+      {\lambda_{\pi(\ell)}-\lambda_{\pi(h)}}
+ \left(\frac1{t_h-\lambda_{\pi(\ell)}}
+             -\frac1{t_\ell-\lambda_{\pi(\ell)}}\right).
+ \tag{5}
+\end{split}
+\]
+To prove (5), take partial fractions of (3). For $j\neq k$ its
+coefficient at $1/(t-\lambda_j)$ is
+$V_j(W_{hj}-W_{hk})/(\lambda_j-\lambda_k)$.
+The residue vector $a^\pi$ is the negative sum of the interpolation
+coefficient vectors $I_{h,\pi(h)}$, with coordinates relabeled by
+$\pi$. Substitute this description, subtract the first line of (5),
+and exchange $h$ and $\ell$ in one of the resulting double sums.
+The diagonal terms cancel and the second line remains.
+
+At $t_h=d_i+\eta v_h$, the derivative of the first line of (5) is
+$R'(d_i)\sum_hv_hW_{h,\pi(h)}C_{i,\pi(h)}$.
+The second line has a derivative involving
+$V_{\pi(\ell)}(v_h-v_\ell)$ and two assigned tokens. In a compact
+far-pole regime $R'(d_i)$ can be very small while $V_j$ is large.
+It would therefore be unjustified to discard that second line as
+a small numerical error. Its possible joint sign capacity remains
+part of the unresolved problem.
+
 \paragraph{Unresolved quantitative issue.}
 As the poles and tokens enter a very compact far-pole regime, the
 inverse Cauchy matrix is ill conditioned. Generic unscaled choices
