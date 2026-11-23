@@ -2,6 +2,7 @@
 \usepackage{amsmath,amssymb,amsthm,hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
 \title{Permutation Sheet Readers: Two Exact Capacity Obstructions}
 \author{}
 \date{}
@@ -135,4 +136,130 @@ These obstructions concern readers on an already admissible compact
 parameter family. They do not claim that an arbitrary $H$-head score
 has either reader form, and hence do not imply an unrestricted lower
 bound for $W(n)$.
+
+\section{A mixed-column fiber is not sign-constant}
+
+\paragraph{Question tested.}
+Signed interpolation residues give the following exact identity. If
+$P(t)=\prod_{i=0}^{H-1}(t-d_i)$, $Q(t)=\prod_{j=1}^H(t-\lambda_j)$,
+and $c_j=-P(\lambda_j)/Q'(\lambda_j)$, then
+\[
+ -1+\sum_{j=1}^H\frac{c_j}{d-\lambda_j}
+       =-\frac{P(d)}{Q(d)}.
+\]
+Indeed, the two sides have the same simple-pole residues and the same
+limit $-1$ at infinity. Thus their difference is an identically zero
+polynomial. Assigning either $(\lambda_j,c_j)$ or a permutation of
+these pairs to each memory column gives zero scores at all row nodes
+on every single-memory-column fiber. A new query is supplied without
+new row coefficients by activating two memory columns at once.
+For their relative permutation $\pi$, its score is
+\[
+ G_\pi(d)=-1+\sum_{j=1}^H
+       \frac{c_j+c_{\pi(j)}}{d-\lambda_j-\lambda_{\pi(j)}}.
+\]
+Some equally spaced small-pole experiments gave only constant signs
+on the row nodes. The following exact counterexample shows that this
+is not a general obstruction.
+
+\begin{theorem}[Four-head mixed-fiber counterexample]
+There are four strictly admissible negative-orientation affine ratios
+on a four-dimensional Boolean cube, with output bias $-1$, such that
+both single-memory-column fibers are identically zero, while the
+two-memory-column fiber has strict signs $(+,+,-,-)$ on the ordered
+binary row nodes $1,63/64,31/32,61/64$. Every denominator has margin
+at least $61/64-8\cdot10^{-6}$ on the whole cube.
+\end{theorem}
+
+\begin{proof}
+Set $\varepsilon=10^{-6}$ and
+\[
+ d_i=1-i/64\quad(0\le i\le3),\qquad d_0'=125/128,
+ \qquad a=\varepsilon,\quad b=3\varepsilon,\quad c=4\varepsilon.
+\]
+Here $d_0'$ is a midpoint and is different from the first row node
+$d_0=1$. Put $P(t)=\prod_{i=0}^3(t-d_i)$ and define
+\[
+ R=\frac{P(a)}{P(b)},\qquad
+ T=\frac{d_0'-2a}{d_0'-2b},\qquad
+ K=R\frac{c-b}{c-a},\qquad z=\frac{Kb+Ta}{K+T}.
+\]
+All factors defining $R,T,K$ are positive. Consequently $a<z<b$.
+Take the ordered poles $(\lambda_1,\lambda_2,\lambda_3,\lambda_4)
+=(a,z,b,c)$, the interpolation residues above, and the transposition
+$\pi=(1\ 3)$. The explicit rational value is
+\[
+ z=\frac{167345231716377275203659679}
+          {111563373496753577074833704500000}.
+\]
+The formula defining $z$ implies
+\[
+ \frac{c_1}{c_3}
+ =\frac{P(a)}{P(b)}\frac{(b-z)(c-b)}{(z-a)(c-a)}
+ =K\frac{b-z}{z-a}=T.
+\]
+Also $c_3>0$, because
+\[
+ c_3=\frac{P(b)}{(b-a)(b-z)(c-b)}.
+\]
+Let $\Delta=b-a$. Comparing the transposition with the identity
+permutation and simplifying the two affected terms gives, for every
+$d>2c$,
+\[
+ \begin{aligned}
+ G_\pi(d)
+ &= -\frac{P(d/2)}{Q(d/2)}
+   +\frac{2\Delta}{d-a-b}
+     \left(\frac{c_1}{d-2a}-\frac{c_3}{d-2b}\right)\\
+ &= -\frac{P(d/2)}{Q(d/2)}
+   +\frac{4\Delta^2c_3(d-d_0')}
+    {(d-a-b)(d-2a)(d-2b)(d_0'-2b)}.
+ \end{aligned}
+\]
+The second equality uses $c_1/c_3=T$ exactly, not approximately.
+For all four row nodes, $0<d/2<\min_i d_i$ and
+$d/2>\max_j\lambda_j$. Hence $P(d/2),Q(d/2)>0$.
+At the two lower row nodes $d<d_0'$, both displayed terms are
+strictly negative.
+
+At either upper row node, $d-d_0'\ge1/128$.
+Every $d_i-b>1/2$, while
+$(b-a)(b-z)(c-b)<4\varepsilon^3$, so
+$c_3>1/(64\varepsilon^3)$.
+Each of the four factors in the denominator of the second term lies
+strictly between zero and one. Since $\Delta=2\varepsilon$, that
+positive term is greater than
+\[
+ 4(2\varepsilon)^2\frac1{64\varepsilon^3}\frac1{128}
+     =\frac1{512\varepsilon}>256.
+\]
+On the other hand, every factor of $P(d/2)$ has absolute value less
+than one, and every factor of $Q(d/2)$ is greater than $1/4$.
+Thus $0<P(d/2)/Q(d/2)<256$. The upper two signs are strictly positive.
+
+To realize the score on the whole Boolean cube, use row bits $u_1,u_2$
+and memory bits $v_1,v_2$, and put
+\[
+ D(u)=1-u_1/64-u_2/32,\qquad
+ B_h(u,v)=D(u)-\lambda_hv_1-\lambda_{\pi(h)}v_2,
+ \qquad
+ A_h(u,v)=c_hv_1+c_{\pi(h)}v_2.
+\]
+Every slope of $B_h$ is strictly negative and
+$B_h\ge61/64-8\varepsilon>0$ on the entire cube. These affine ratios
+therefore satisfy the original admissibility conditions. With output
+bias $-1$, the interpolation identity makes the scores zero whenever
+$(v_1,v_2)=(1,0)$ or $(0,1)$, at all four row inputs.
+For $(v_1,v_2)=(1,1)$ they are exactly $G_\pi(D(u))$, whose strict
+signs were just proved.
+\end{proof}
+
+\paragraph{Scope.}
+This theorem refutes the proposed sign-constancy obstruction for the
+mixed-column mechanism. It does not show that arbitrarily prescribed
+mixed-column tables can be realized simultaneously. Such a compatibility
+theorem, or an explicit decoder establishing it, remains unproved.
+The exact rational evaluations are reproducible with
+\texttt{continuation\_mixed\_fiber\_audit.py}; the sign proof above
+does not rely on the numerical approximations printed by that script.
 \end{document}
