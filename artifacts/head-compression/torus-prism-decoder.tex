@@ -244,6 +244,80 @@ the head count and adds their errors. No assertion of arbitrary real-valued
 interpolation is used.
 \end{proof}
 
+
+\begin{proposition}[A whole-cube priority extension]
+Keep all $M=cq$ rows of the extraction construction, and let $h_i(j)$ be
+the distinct head orders assigned to the groups $i=1,\ldots,c$ in column
+$j$. For group $i$ and order $h$, write $A_{ih}\subseteq\{1,\ldots,q\}$
+for the subset encoded by $E_{ih}$. For a nonempty active column set $V$,
+put
+\[
+ g_h(V)=\max\bigl(\{i:\text{some }j\in V\text{ has }h_i(j)=h\}\cup\{0\}\bigr).
+\]
+For a nonempty active row set, let $g$ be its largest group index, and let
+$U\subseteq\{1,\ldots,q\}$ be the nonempty set of active rows in that
+group. Define an integer-valued function on the entire Boolean cube by
+\[
+ Q_\infty(u,v)=
+ \#\{h:g_h(V)=g\ \text{and}\ U\subseteq A_{gh}\}
+\]
+when both active sets are nonempty, and set it to zero if either is empty.
+The same $2d$ admissible heads uniformly approximate $Q_\infty$ on the
+entire cube as $R\to\infty$. More precisely, their unbiased sum $Q_R$
+satisfies
+\[
+ |Q_R(u,v)-Q_\infty(u,v)|\leq\frac{2d(M+s+1)}R
+\]
+for every Boolean input and every $R>1$.
+\end{proposition}
+\begin{proof}
+For each assigned group $i$, use lower endpoint $(i-1)q$ and upper endpoint
+$(i-1)q+|A_{ih}|$. This also assigns the empty interval to that group's
+own starting position. For unused orders use both endpoints zero.
+If several active columns assign the same order $h$ to the same group $i$,
+then their requested subsets are all the fixed subset $A_{ih}$, since
+extraction required $E_{ih}=a_i(j)$. Thus their lower and upper endpoints
+coincide. The largest lower and upper endpoint ranks among active columns
+are consequently
+\[
+ \ell_h=(g_h(V)-1)q,\qquad
+ u_h=(g_h(V)-1)q+|A_{g_h(V),h}|
+\]
+when $g_h(V)>0$, and both are zero otherwise. This remains true when the
+highest assigned group requests an empty subset; its interval can shadow
+all lower assigned groups.
+
+Let $r_h$ be the maximum rank of an active row in order $h$. For either
+endpoint sum $T$ with maximum endpoint $t$, one has
+\[
+ R^{2r_h}\leq B_h\leq M R^{2r_h},\qquad
+ R^{2t+1}\leq T\leq s R^{2t+1}.
+\]
+If $r_h>t$, then
+$1-B_h/(1+B_h+T)\leq(1+T)/B_h\leq(s+1)/R$.
+If $r_h\leq t$, then
+$B_h/(1+B_h+T)\leq B_h/T\leq M/R$.
+The suffix ratio therefore differs from $\mathbf1_{r_h>t}$ by at most
+$(M+s+1)/R$. Subtracting the two suffix ratios gives error at most twice
+this amount from $\mathbf1_{\ell_h<r_h\leq u_h}$.
+
+All orders concatenate the groups in the same order, so their maximal
+active row lies in the same group $g$. If $g_h(V)\neq g$, its interval
+cannot contain that rank. If $g_h(V)=g$, the interval is the initial block
+$A_{gh}$ of group $g$. Its maximal active row is in that block exactly
+when all active rows in the group belong to $A_{gh}$, that is,
+$U\subseteq A_{gh}$. Summing the $d$ errors proves the bound. Empty row or
+column sets give exact zero by the previous cancellation identity.
+\end{proof}
+
+With one active column $j$, precisely one order is assigned to the highest
+active row group $g$, so this whole-cube primitive outputs one exactly when
+all active rows in that group are permitted by that column's selected
+subset. With several active columns, assignments to higher groups can
+suppress lower assignments in a given order. This is why an unrestricted
+union-of-columns interpretation would be incorrect. No decomposition of
+arbitrary Boolean functions into few such priority extensions is proved.
+
 \begin{proposition}[Exact dual-rail denominator lift]
 Suppose $D(z)=b+\sum_{i=1}^r a_i z_i$ is positive at every vertex of
 $\{0,1\}^r$, allowing arbitrary signs for the logical slopes $a_i$.
