@@ -405,6 +405,36 @@ This causes no restriction on the extra readouts in (13), since the
 auxiliary correction is set to zero there; only the regular paired
 rows need (11).
 
+\paragraph{Direct arbitrary-residue sheets.}
+There is a simpler $2H+1$-head version of the last construction
+which needs no polynomial interpolation. For each permutation choose
+an entirely arbitrary vector $a^\pi\in\mathbb R^H$, independently
+of every other permutation, and set
+\[
+ g_i(\pi)=-\sum_h\frac{E_{ih}+a_h^\pi}{d_i-\lambda_{\pi(h)}}.
+\]
+Use (12) to supply $H$ column memories $g_i(\pi)$, with row features
+equal to the $i$th coordinate vector on both members of regular pair
+$i$, and equal to zero on every extra readout. Then the prescribed
+points $(u^\pi,a^\pi)$ are common zeros of all regular queries.
+Keeping the auxiliary memories fixed, their Jacobian again has the
+same invertible blocks $(C_\pi\circ C_\pi,0)$ and $C_\pi$.
+The $H$ main heads and $H+1$ correction heads satisfy the same
+whole-cube margins and strict-slope gauge already proved. This is
+an arbitrary-residue regular-sheet platform, not an asymptotic
+compiler. Its extra readouts are
+\[
+ \sum_h\frac{A_{\rho h}+a_h^\pi}
+                  {t_{\rho h}-\lambda_{\pi(h)}}+b_\rho.
+\]
+When all $A_{\rho h}=0$, each permutation selects one Cauchy feature
+from each of $H$ groups, and $a^\pi$ supplies arbitrary linear
+coefficients for the selected features. A useful sufficient next
+step would be a superlinear shattering theorem for this particular
+grouped Cauchy dictionary, with the full-cube restrictions on the
+$t_{\rho h}$ retained. Generic sparse-classifier counting or
+arbitrary-dictionary lower bounds do not establish that theorem.
+
 \paragraph{Unresolved quantitative issue.}
 As the poles and tokens enter a very compact far-pole regime, the
 inverse Cauchy matrix is ill conditioned. Generic unscaled choices
