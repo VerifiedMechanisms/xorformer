@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\title{Projective covariance and the reverse cube budget}
+\author{Independent gluing audit}
+\date{23 November 2026}
+\begin{document}
+\maketitle
+
+This note audits a specific proposed transfer from positive-orientation
+Cauchy grids. It does not obstruct a joint reverse compiler or imply an
+asymptotic head bound. The identities and inequalities below are complete
+written proofs; they have not been formalized in Lean.
+
+\begin{proposition}[Additive numerator covariance]
+Let $T(t)=(\alpha t+\beta)/(\gamma t+\delta)$,
+$\Delta=\alpha\delta-\beta\gamma\ne0$, and
+$f(t)=\alpha-\gamma t$. Put $x=T(d)$ and $y=T(u)$.
+Whenever all displayed denominators are nonzero,
+\[
+ \frac{A+a}{d-u}
+ =\frac{A f(x)^2+a f(y)^2}{\Delta(x-y)}
+  +\frac{\gamma}{\Delta}\bigl(Af(x)-af(y)\bigr).
+\]
+Thus applying the same projective change to every row pole and column
+token preserves the additive numerator class modulo a row-only and a
+column-only correction.
+\end{proposition}
+\begin{proof}
+The inverse transformation gives
+$d-u=\Delta(x-y)/(f(x)f(y))$.
+Also $f(y)-f(x)=\gamma(x-y)$, whence
+\[
+ (A+a)f(x)f(y)-Af(x)^2-af(y)^2
+ =\gamma(x-y)\bigl(Af(x)-af(y)\bigr).
+\]
+Division proves the identity. On a one-hot grid the new row and column
+numerators, as well as the two corrections, are tabulated affine data.
+Corrections from multiple heads add into a single row function and a
+single column function. The three-head row--column repair in
+\texttt{ReverseGridAxisRepair.lean} can handle their sum once the new
+Cauchy denominators themselves have reverse cube extensions.
+\end{proof}
+
+\begin{lemma}[Three-by-three extension criterion]
+Let $R_1,R_2,R_3$ and $C_1,C_2,C_3$ satisfy $R_i-C_j>0$.
+A positive affine denominator with nonpositive slopes on the six-bit
+cube and grid values $R_i-C_j$ exists if and only if
+\[
+ G=\sum_i R_i-\sum_j C_j-2\max_iR_i+2\min_jC_j>0.
+\]
+The same criterion permits strictly negative slopes.
+\end{lemma}
+\begin{proof}
+Every additive representation has the form
+$B(z,w)=K-L-\sum_i(K-R_i)z_i-\sum_j(C_j-L)w_j$.
+Nonpositive slopes require $K\ge\max_iR_i$ and
+$L\le\min_jC_j$. Its cube minimum is
+$\sum_iR_i-\sum_jC_j-2K+2L\le G$.
+Conversely, $K=\max R$ and $L=\min C$ attain $G$ with weak slopes.
+If $G>0$, increasing $K$ and decreasing $L$ by sufficiently small
+positive amounts makes all slopes strictly negative while retaining
+positivity.
+\end{proof}
+
+\begin{proposition}[A precise failure of projective compactification]
+Suppose $0<a<b<c$, $c\ge a+b$, and $1/a\ge1/b+1/c$.
+Take row poles $d_i\in\{a,b,c\}$ and column tokens
+$u_j\in\{-a,-b,-c\}$. No real projective map $T$, finite on these
+six points, can simultaneously have
+\begin{enumerate}
+\item $T(d_i)-T(u_j)>0$ for all nine pairs; and
+\item an affine reverse denominator positive on the entire six-bit cube
+with these exact grid values.
+\end{enumerate}
+In particular, the concrete six-point configuration $a=1,b=2,c=4$
+already fails.
+\end{proposition}
+\begin{proof}
+Adding a constant to all transformed coordinates and multiplying them by
+a positive scalar preserve both conditions. An affine increasing $T$
+therefore has extension criterion proportional to
+$2(a+b-c)\le0$.
+
+For a nonaffine projective map, write its pole as $p$. Positivity of every
+row--column difference forces either $p\notin[-c,c]$ and, after the
+invariances just noted, $T(t)=1/(p-t)$; or $p\in(-a,a)$ and
+$T(t)=1/(t-p)$. A pole within either of the two point ranges gives both
+signs among the row--column differences, so cannot satisfy the first
+condition.
+
+In the outside case, $T$ is increasing on the six points. The criterion
+from the lemma is
+\[
+ G=\frac{2a}{p^2-a^2}+\frac{2b}{p^2-b^2}
+       -\frac{2c}{p^2-c^2}.
+\]
+For $0<x\le c$ and $|p|>c$,
+\[
+ \frac{x}{p^2-x^2}\le\frac{x}{c}\frac{c}{p^2-c^2}.
+\]
+Thus $G\le2((a+b)/c-1)c/(p^2-c^2)\le0$.
+
+In the separating-gap case, $T$ is decreasing within each cluster.
+The maximum row value is $T(a)$ and the minimum column value is $T(-a)$.
+Consequently
+\[
+ G=-\frac{2a}{a^2-p^2}+\frac{2b}{b^2-p^2}
+       +\frac{2c}{c^2-p^2}.
+\]
+For $x\ge a>|p|$, cross multiplication gives
+\[
+ \frac{x}{x^2-p^2}\le\frac{a}{x}\frac{a}{a^2-p^2}.
+\]
+Hence $G\le2(-1+a/b+a/c)a/(a^2-p^2)\le0$.
+Both cases violate the necessary strict positivity of the cube minimum.
+\end{proof}
+
+The conclusion is limited to one common projective transformation of a
+single Cauchy denominator grid. It allows arbitrary additive numerators
+and the covariance correction, but does not cover changing the target
+grid values by a joint sum of heads, introducing additional heads,
+partitioning the grid, or using a nonprojective construction. Therefore
+it rules out an automatic projective transfer of exponential ranking
+ranges, without ruling out the requested local compiler.
+\end{document}
