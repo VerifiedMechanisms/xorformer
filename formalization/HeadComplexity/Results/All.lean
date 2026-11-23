@@ -11,6 +11,9 @@ import HeadComplexity.Results.AtomicMarginProfile
 import HeadComplexity.Results.AtomicMarginRange
 import HeadComplexity.Results.AtomicMarginRefinement
 import HeadComplexity.Results.AtomicMarginSparsification
+import HeadComplexity.Results.AxisZeroCover
+import HeadComplexity.Results.AxisZeroFaces
+import HeadComplexity.Results.AxisZeroGluing
 import HeadComplexity.Results.CalibratedThresholdVote
 import HeadComplexity.Results.CauchyDecoderObstruction
 import HeadComplexity.Results.ScalarDecoderRootBound
@@ -71,6 +74,7 @@ import HeadComplexity.Results.PrecisionBarrier
 import HeadComplexity.Results.RawAlphabetSimulation
 import HeadComplexity.Results.RawCalibratedVote
 import HeadComplexity.Results.RestrictionLowerBounds
+import HeadComplexity.Results.ReverseAxisCompiler
 import HeadComplexity.Results.SecantObstruction
 import HeadComplexity.Results.SliceRankTwo
 import HeadComplexity.Results.SmallDimensionExactCertificate

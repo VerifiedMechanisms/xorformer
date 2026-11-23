@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Reverse Orientation Head Compression: Verified Reduction and Remaining Gap}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Outcome.}
+The requested unconditional bound
+\[
+ W(n)=O\left(\frac{2^n}{n\log\log n}\right)
+\]
+was not proved. Nor was the stronger logarithmic bound proved.
+The reverse-orientation, axis-zero compiler with a sublinear head budget
+remains unresolved. This run does not prove that compiler false.
+The best unconditional global bound available in the repository remains
+the existing $W(n)\leq 11\cdot 2^n/n$ for $n>0$.
+
+Work continues on the supplied branch \texttt{ar/1c1556983291}.
+The original definitions of \texttt{FracAtom}, \texttt{HStar}, and
+\texttt{worstCaseHeadComplexity} are unchanged.
+No input coordinates, additional layers, altered denominator conditions,
+proof placeholders, or new axioms are introduced. The new results are
+an independently audited and substantially formalized gluing reduction,
+and an exact universal local compiler at linear cost. They do not satisfy
+the requested asymptotic improvement.
+
+\section{Exact universal local construction at linear cost}
+For an arbitrary real $r$ by $s$ matrix $M$, let $m=r+s$ and define
+\[
+ D=m+2-\sum_i z_i-\sum_jw_j,\qquad
+ L_i(w)=m(m-1)\sum_jM_{ij}w_j,
+\]
+\[
+ F(z,w)=\sum_{i=1}^r\frac{L_i(w)}{D-z_i}
+               -\frac{\sum_iL_i(w)}D.
+\]
+On the entire Boolean cube, $D\geq2$ and $D-z_i\geq1$.
+Every denominator slope is $-1$, except for one slope $-2$ in each row
+head. Both axes vanish exactly. At $(e_a,e_b)$ all but the $a$-th row
+contribution cancel, leaving
+\[
+ F(e_a,e_b)=m(m-1)M_{ab}
+       \left(\frac1{m-1}-\frac1m\right)=M_{ab}.
+\]
+Thus $r+1$ actual admissible atoms suffice, with zero output bias.
+Transposition gives $\min(r,s)+1$ heads. The denominator conditions
+hold strictly before any limiting argument.
+
+The file \texttt{formalization/HeadComplexity/Results/ReverseAxisCompiler.lean}
+proves \texttt{exists\_reverseAxis\_atoms} and
+\texttt{exists\_reverseAxis\_exact\_compiler}. The latter packages exact
+arbitrary real grid interpolation and both Boolean-axis identities into
+one theorem about a family of $r+1$ original \texttt{FracAtom}s.
+The public algebraic lemmas include
+\texttt{reverseAxisDenom\_ge\_two},
+\texttt{reverseAxisRowDenom\_ge\_one},
+\texttt{reverseAxisScore\_zero\_left},
+\texttt{reverseAxisScore\_zero\_right}, and
+\texttt{reverseAxisScore\_oneHot}.
+The transposed minimum formulation is written in
+\texttt{reverse-alternative-notes.tex}; Lean states the $r+1$ orientation.
+This is a joint exact construction for all tables, but its cost is linear.
+
+\section{Independent gluing audit and complete budget}
+The complete written audit is \texttt{reverse-gluing-audit.tex}.
+The finite induction survives independent checking. Bias must be absorbed
+into a numerator before adding the outside-coordinate denominator penalty.
+Centers must be ordered by nonincreasing total cardinality. An earlier
+protected point inside the current downset then has at most two deletions.
+It is either on an exact-zero axis or in the current cell, where its new
+contribution has the correct strict sign. Outside the downset, the fixed
+numerators divided by penalized denominators tend to zero. Finiteness and
+the earlier strict margin supply one penalty preserving all protected signs.
+
+In \texttt{Results/AxisZeroGluing.lean}, namespace
+\texttt{HeadComplexity.AxisZeroGluing}, the public declarations
+\texttt{absorb\_bias}, \texttt{exists\_positive\_scale},
+\texttt{glue\_step}, \texttt{glue\_finite},
+\texttt{deletion\_counts}, and \texttt{ratios\_tendsto\_zero}
+check these analytic and arithmetic steps.
+\texttt{glue\_positive\_affine\_ratios} constructs actual atoms from
+compatible local affine-ratio modules, and \texttt{glued\_head\_count}
+proves that flattening its family uses exactly the sum of local head counts.
+\texttt{weak\_affine\_ratios\_admissible} checks the final perturbation
+from nonnegative slopes to strict positive slopes with unchanged head count.
+Its strict-sign hypothesis is imposed after gluing, so axis identities
+are not incorrectly required to survive that perturbation.
+
+\texttt{Results/AxisZeroCover.lean} proves
+\texttt{openDownwardCover\_of\_upward},
+\texttt{exists\_openDownwardCover},
+\texttt{product\_openDownwardCover}, and
+\texttt{exists\_product\_openDownwardCover}.
+Using the existing checked constant eleven, a block of size $a>0$ has an
+open downward cover of its proper vertices with at most $22\cdot2^a/a$
+centers. Therefore the product of blocks of sizes $a,b>0$ requires at most
+\[
+ \frac{484\cdot2^{a+b}}{ab}
+\]
+modules and excludes precisely the two faces where one block is all ones.
+
+\texttt{Results/AxisZeroFaces.lean} proves arbitrary real face corrections
+via \texttt{positive\_face\_uniformlyAtomsApproximable}.
+The theorem \texttt{repair\_two\_positive\_faces} takes an actual $H$-head
+score strictly correct off two positive faces with free dimensions $a,b$
+and produces \texttt{computableWithHeadsN} with $H+2^a+2^b$ heads.
+The first formal correction sets its face exactly to $\pm1$; the second
+has zero residual at the intersection and preserves the first face.
+Uniform monomial approximation then preserves the finite positive margin.
+These statements are about the original atom and attention interfaces.
+The companion \texttt{HStar\_le\_repair\_two\_positive\_faces}
+states the same head bound directly for \texttt{HStar}.
+
+Consequently the complete written local-to-global implication has budget
+\[
+ H\leq \frac{484\cdot2^n}{ab}\,M_n+2^a+2^b,
+ \qquad a=\lfloor n/2\rfloor,\quad b=\lceil n/2\rceil,
+\]
+where $M_n$ is a uniform valid local cost for all $2\leq r+s\leq n$.
+The hoped-for local rate gives $M_n=O(n/\log\log n)$, while
+$2^a+2^b=O(2^{\lceil n/2\rceil})$ is negligible at that scale.
+The exact compiler proved here instead supplies only $M_n=O(n)$.
+The geometric local-to-ambient substitution and the final asymptotic
+combination are written arguments. No Lean theorem asserting the requested
+new bound against \texttt{worstCaseHeadComplexity} has been added.
+
+\section{A finite joint decoder with two heads}
+The complete written proof in \texttt{reverse-joint-five-row.tex}
+constructs, for every $s\geq1$, two strictly admissible negative-slope
+heads realizing every sign table on a $5$ by $s$ grid.
+Its row coefficients are fixed independently of the labels; each column
+has four independent numerator and denominator parameters.
+Four fixed row queries have two distinct regular common zeros. A fifth
+query is exactly $+1$ at one and $-1$ at the other. The ordinary real
+inverse function theorem then realizes all $32$ strict row-sign patterns
+in two small parameter neighborhoods.
+
+With $\varepsilon=1/(100(s+1))$, every chosen column denominator
+coefficient lies in $(\varepsilon/2,5\varepsilon/2)$. The entire Boolean
+cube has denominator margin strictly greater than
+$1-37\varepsilon-(5/2)s\varepsilon>0$. Thus this result does not
+confuse positivity on the grid with full-cube admissibility.
+The sheet values and both Jacobian determinant identities have exact
+algebraic certificates. The inverse-function step is a written proof,
+not a Lean theorem in this run.
+
+This construction lacks exact axis zeros. It also gives only a fixed
+ratio of five rows per two heads. Disjoint repetition does not provide
+an unbounded improvement, and no interference-free repetition has been
+proved here. Multiplying or recursively composing such scores introduces
+products of unrelated affine denominators. The same note solves the row
+coefficients again after axis subtraction. This does yield a finite
+five-row decoder with both exact axes zero, but costs six ratios and
+has weakly negative slopes in four of them. Final global perturbation
+can restore admissibility after gluing, with no increase in this count.
+Six ratios for five rows gives no improvement over the strictly admissible
+linear compiler already proved in Lean.
+Consequently this finite positive result does not establish either the
+requested local compiler or the global asymptotic target.
+
+\section{Exact tests and failed compression attempts}
+The script \texttt{reverse\_exact\_audit.py} uses rational arithmetic.
+It exhaustively checks 602 sign tables of sizes $1\times1$, $1\times3$,
+$2\times2$, $2\times3$, and $3\times3$, including every cube denominator,
+both complete Boolean axes, and every exact grid value.
+Nine complete gluing examples in dimensions two through four check bias
+absorption, arbitrary tie order, preservation after each insertion, and
+both exceptional-face repairs followed by actual monomial-head approximation.
+The output is saved as \texttt{reverse-exact-validation.json}.
+
+An exact wrong-order example has four coordinates. The earlier singleton
+center module has score $-1$ at zero and $-1/6$ at $(0,1,0,1)$.
+The later full-center module has scores $24$ and $1$ respectively.
+Repairing the second point requires $\lambda>1/6$, whereas retaining the
+negative sign at zero requires $\lambda<1/24$. Thus reversing the audited
+order really can prevent a scalar repair. This example does not obstruct
+the correct descending order.
+
+Direct joint compression was investigated rather than separately reversing
+the known numerical ranking votes. The following failures are scoped:
+\begin{itemize}
+\item Grouping row shifts with one common grid-constant baseline yields
+  a matrix of rank at most the number of groups. This prevents arbitrary
+  real interpolation with fewer groups, but is not a general lower bound
+  for sign-only reverse compilers.
+\item A common positive separable multiplier cannot change independent
+  Cauchy row orders while keeping each denominator additive. The exact
+  compatibility theorem is in \texttt{reverse-joint-transfer-audit.tex}.
+  Head-dependent multipliers cannot be pulled out of a signed sum.
+\item Exact off-group zeros along one affine selector line require at
+  least one pole per other selector. This does not cover approximate
+  selectors or independently programmed multiple parameters.
+\item Arbitrary numerator memory, including high-degree polynomial divided
+  differences, was tested as a permutation-sheet decoder. A query changing
+  one slot against one symmetric baseline clears to an affine form in
+  $(\psi(t),t,t^2)$. Four such fixed queries have at most fifteen strict
+  patterns, so this particular high-degree proposal does not provide four
+  independently readable bits. This does not address joint multi-slot
+  resynthesis. Its identity is checked exactly in
+  \texttt{reverse-joint-transfer-check.py}.
+\item Changing upward versus downward covers still leaves the known
+  positive-orientation decoder incompatible with the outside suppression
+  slopes. Global amortization of arithmetic-chain reversal was considered,
+  but the existing target-dependent denominators do not satisfy its
+  common-chain and periodic-residue hypotheses. No construction enforcing
+  those hypotheses at the required cost was found.
+\item Near-common-denominator finite differences give higher-degree
+  polynomial limits, but a separate degree-$d$ feature costs $d$ poles.
+  No shared cancellation construction producing an unbounded head saving
+  was obtained. Analytic deformation of the known majority compiler
+  supplies no transfer theorem: its open sign regions need not continue
+  through the constant-denominator midpoint, and a regular common zero
+  for all $rs$ outputs cannot have a surjective Jacobian with only
+  $O(Hm)<rs$ parameters.
+\item Removing all center cylinders would remove the intermediate
+  axis-preservation requirement, but repairs on those general mixed faces
+  are not covered by the cheap positive-face correction theorem above.
+  Their required head budget remains unproved.
+\item Partitioning centers into four classes according to the two
+  cardinality parities removes the need for axis zeros within each class:
+  both deletion counts are odd and their sum is at most two. Combining
+  the four resulting scores would require a parity-dependent selection
+  operation. No such operation with a sufficient head budget was found.
+\end{itemize}
+The written transfer tests are not advertised as refutations of the
+desired local theorem. No successful alternative global construction was
+obtained.
+
+\section{Verification and remaining problem}
+All new Lean theorems are proved without placeholders. The audit checks
+60 theorem declarations across the four added modules. Their axiom audits
+permit only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. The main \texttt{HeadComplexity} build and the exact
+scripts are run as part of this checkpoint; the machine-readable
+\texttt{reverse-validation.json} records final commands, source hashes,
+and verification status. The aggregate result module imports the new
+files. No original theorem statement or resource definition was weakened.
+
+No external mathematical hypothesis is needed for the newly proved finite
+results. The sublinear local compiler is an unproved hypothesis only in
+the written conditional asymptotic implication. It is neither assumed as
+an axiom nor discharged by the linear compiler. A universal
+$O(m/\log\log m)$ joint reverse compiler, or a different complete
+global construction with the same saving, remains the required next result.
+\end{document}
