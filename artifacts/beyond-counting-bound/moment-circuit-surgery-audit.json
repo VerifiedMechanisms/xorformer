@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T22:55:28.831903+00:00",
+  "build": "moment-circuit-surgery-build.txt",
+  "build_jobs": 3137,
+  "declarations": [
+    "HeadComplexity.MomentCircuitSurgery.replacement_identity",
+    "HeadComplexity.MomentCircuitSurgery.replacement_affine",
+    "HeadComplexity.MomentCircuitSurgery.offset_moments_force",
+    "HeadComplexity.MomentCircuitSurgery.first_offset_expansion",
+    "HeadComplexity.MomentCircuitSurgery.second_offset_expansion",
+    "HeadComplexity.MomentCircuitSurgery.pair_offset_expansion",
+    "HeadComplexity.MomentCircuitSurgery.outside_span_coefficient",
+    "HeadComplexity.MomentCircuitSurgery.relation_rewrite"
+  ],
+  "axiom_audit": "moment-circuit-surgery-axioms.txt",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_sha256": "c8d86afe3dfe79fa24c4c7e5843ccafb7b3bac7dae008bcf943ec58e37a5fb70",
+  "writeup_sha256": "41c6d5fb6f138619e71294fd5e4e2635447a43e9b4ccca33629eea2c931f4ae7",
+  "rational_audit": "moment-circuit-surgery-rational-audit.json",
+  "scope": "Eight kernel-checked ingredients; the arbitrary-dimension induction is a complete written proof. Finite-field nonzero minors and integer relations certify finite rational ranks.",
+  "model_changes": [],
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}

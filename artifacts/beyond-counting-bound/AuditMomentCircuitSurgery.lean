@@ -1,0 +1,10 @@
+import HeadComplexity.Atoms.MomentCircuitSurgery
+
+#print axioms HeadComplexity.MomentCircuitSurgery.replacement_identity
+#print axioms HeadComplexity.MomentCircuitSurgery.replacement_affine
+#print axioms HeadComplexity.MomentCircuitSurgery.offset_moments_force
+#print axioms HeadComplexity.MomentCircuitSurgery.first_offset_expansion
+#print axioms HeadComplexity.MomentCircuitSurgery.second_offset_expansion
+#print axioms HeadComplexity.MomentCircuitSurgery.pair_offset_expansion
+#print axioms HeadComplexity.MomentCircuitSurgery.outside_span_coefficient
+#print axioms HeadComplexity.MomentCircuitSurgery.relation_rewrite

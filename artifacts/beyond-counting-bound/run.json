@@ -999,5 +999,11 @@
     "audit": "affine-projection-audit.json",
     "status": "Complete written module classification, graph circuits and three-dimensional contact circuit; ten kernel-checked ingredients",
     "main_target_proved": false
+  },
+  "moment_circuit_surgery": {
+    "writeup": "moment-circuit-surgery.md",
+    "audit": "moment-circuit-surgery-audit.json",
+    "status": "Complete written high-contact circuit theorem in growing dimension; eight kernel-checked ingredients",
+    "main_target_proved": false
   }
 }

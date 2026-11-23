@@ -1,0 +1,18 @@
+{
+  "status": "Completed finite search, no candidate found",
+  "elapsed_seconds": 180.00004433607683,
+  "trials": 317973,
+  "grid": "Five by five positive integer grid in two dimensions",
+  "degrees": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "criterion": "Fundamental circuits modulo 1000003 with H<2k+2, a nonzero next moment, and unequal nonzero projection-support counts",
+  "scope": "Random basis sampling only, not exhaustive. No conclusion about nonexistence or unrestricted head complexity.",
+  "script_sha256": "bc5a96506738314dc591ec35fff93562f2b7eb0d2b31af554d85a339f710c554"
+}

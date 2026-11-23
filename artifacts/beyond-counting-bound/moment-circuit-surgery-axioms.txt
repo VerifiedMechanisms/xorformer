@@ -1,0 +1,10 @@
+'HeadComplexity.MomentCircuitSurgery.replacement_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.replacement_affine' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.offset_moments_force' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.first_offset_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.second_offset_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.pair_offset_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.outside_span_coefficient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MomentCircuitSurgery.relation_rewrite' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T22:55:31.979681+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/moment-circuit-surgery.md",
+      "source_math_spans": 151,
+      "rendered_math_spans": 151,
+      "findings": 0,
+      "notes": [
+        "artifacts/beyond-counting-bound/moment-circuit-surgery.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ C_k(v)=\\\\bigl((v\\\\cdot x)^j\\\\bigr) _{x\\\\in\\\\lbrace0,1\\\\rbrace^n,\\\\ 0\\\\leq j\\\\leq k}. $'"
+      ],
+      "sha256": "41c6d5fb6f138619e71294fd5e4e2635447a43e9b4ccca33629eea2c931f4ae7"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "71711199071f548601b8b301b7724fbb1f060b7af8cf7320f4ef4c751c95c95a"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "be3ce60a21f0818d602d444b31ee6ef3a0ece5d61a6271a3a38734c1f124994c"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}
