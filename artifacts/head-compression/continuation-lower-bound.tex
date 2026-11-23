@@ -255,6 +255,63 @@ out replacing a sum of independently parameterized fractions by a
 sign polynomial of degree bounded independently of $H$ in those same
 effective coordinates, even when every denominator is positive.
 
+\section{Fourier and finite-difference rank do not count heads}
+
+\begin{theorem}[A single reciprocal has full transformed flattening rank]
+Fix $r\geq1$ and $k\geq0$. For $u,v\in\{0,1\}^r$ put
+$t(u)=\sum_{i=0}^{r-1}2^i u_i$. Fix $a_1,\ldots,a_k>0$ and consider
+the single admissible affine ratio
+\[
+ R(u,v,z)=\frac1{1+t(u)+t(v)+\sum_{j=1}^k a_jz_j},
+ \qquad z\in\{0,1\}^k.
+\]
+Let $M$ be the $2^r$ by $2^r$ matrix obtained by taking its mixed
+forward difference in all $k$ coordinates of $z$ at zero:
+\[
+ M_{u,v}=\sum_{z\in\{0,1\}^k}(-1)^{k-|z|}R(u,v,z).
+\]
+Then $(-1)^kM$ is strictly positive definite and has rank $2^r$.
+Applying the Boolean Walsh transform, the Boolean M\"obius transform,
+or any invertible linear transform independently to the $u$ and $v$
+axes preserves this full rank.
+\end{theorem}
+
+\begin{proof}
+Every denominator slope is strictly positive and its constant term
+is one, so the ratio is admissible on the entire cube. The elementary
+Laplace identity $q^{-1}=\int_0^\infty e^{-qs}\,ds$, valid for $q>0$,
+gives
+\[
+ (-1)^k M_{u,v}
+ =\int_0^\infty e^{-s}e^{-t(u)s}e^{-t(v)s}
+          \prod_{j=1}^k(1-e^{-a_js})\,ds.
+\]
+For $k=0$ the product is one. For every $k$ the density multiplying
+$e^{-t(u)s}e^{-t(v)s}$ is strictly positive for $s>0$.
+Thus for any nonzero vector $(q_u)$,
+\[
+ (-1)^k q^{\mathsf T}Mq
+ =\int_0^\infty e^{-s}\prod_{j=1}^k(1-e^{-a_js})
+       \left(\sum_u q_u e^{-t(u)s}\right)^2\,ds>0.
+\]
+To justify strictness, the integers $t(u)$ are all distinct, so the
+nonzero polynomial $\sum_u q_u y^{t(u)}$ cannot vanish on all
+$y\in(0,1)$. Substituting $y=e^{-s}$ shows that the squared factor is
+positive on some open interval. The integral is finite, since it is
+bounded by a constant times $e^{-s}$. Strict positive definiteness
+implies full rank. Finally, independent invertible transforms replace
+$M$ by $UMV^{\mathsf T}$ for invertible matrices $U,V$, which preserves
+rank. Both named Boolean transforms are invertible.
+\end{proof}
+
+This counterexample permits arbitrary signed affine numerators in the
+ambient model but needs only a constant positive numerator. Ordinary
+tensor rank bounds obtained from these flattenings therefore cannot
+assign $O(n)$ rank to each head. The conclusion remains true after
+arbitrarily many mixed Boolean differences in additional coordinates.
+It does not rule out an invariant using positivity or a joint
+factorization shared by several transforms.
+
 \section{Primary-source transfer checks}
 
 Pardo and Sebasti\'an, \emph{Erzeugungsgrad, VC-Dimension and Neural
