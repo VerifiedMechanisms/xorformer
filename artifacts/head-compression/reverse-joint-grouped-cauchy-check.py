@@ -67,25 +67,24 @@ def probe(rows, colors, mode, seed):
           f'{len(set(patterns))} distinct sign sets', flush=True)
 
 
-def transfer_check():
-    # The smallest convenient nontrivial fixed matching: three address bits,
-    # one address bit choosing between the remaining two matching colors.
-    d, hcount, gcount, colors, r = 3, 8, 4, 2, 3
+def transfer_check(colors):
+    # Anchor slots 0..G-1 have zero profile.  Color slots G..2G-1
+    # carry arbitrary color profiles, with equal multiplicities.
+    hcount, gcount, r = 8, 4, 3
     eps = F(1, 10000)
     poles = [eps*(g+1) for g in range(gcount)]
     p = [eps*(i+1) for i in range(r)]
     times = [1-x for x in p]
-    profiles = [[F(1), F(-2)], [F(3), F(1)], [F(-1), F(4)]]
-    value = [[sum(profiles[i][a]*((h >> (1+a)) & 1) for a in range(colors))
-              for h in range(hcount)] for i in range(r)]
-    edges = [[] for _ in range(colors)]
-    for h in range(hcount):
-        color = h & 1
-        coordinate = 1+color
-        if not ((h >> coordinate) & 1):
-            edges[color].append((h, h+(1 << coordinate)))
-    assert all(len(group) == gcount//colors for group in edges)
-    labels = assignments(colors)
+    profiles = [[F(1), F(-2), F(5), F(3)],
+                [F(3), F(1), F(-2), F(6)],
+                [F(-1), F(4), F(3), F(-2)]]
+    profiles = [row[:colors] for row in profiles]
+    slot_color = [h//(gcount//colors) for h in range(gcount)]
+    value = [[F(0)]*gcount+[profiles[i][color] for color in slot_color]
+             for i in range(r)]
+    slots = [[gcount+h for h in range(gcount) if slot_color[h] == color]
+             for color in range(colors)]
+    labels = assignments(colors)[:6]
     s = len(labels)
     coefficients = [[F((g+2)*(j+1)+1) for g in range(gcount)] for j in range(s)]
     target = [[sum(coefficients[j][g]*profiles[i][labels[j][g]] /
@@ -96,10 +95,10 @@ def transfer_check():
     residue = [[F(0)]*s for _ in range(hcount)]
     edge_assignment = []
     for j, label in enumerate(labels):
-        available = [list(group) for group in edges]
+        available = [list(group) for group in slots]
         assigned = []
         for g, color in enumerate(label):
-            low, high = available[color].pop()
+            low, high = g, available[color].pop()
             token[low][j] = token[high][j] = poles[g]
             residue[low][j] = -coefficients[j][g]
             residue[high][j] = coefficients[j][g]
@@ -133,7 +132,8 @@ def transfer_check():
                 -sum(token[h][j]*vertex[r+j] for j in range(s))
             assert denominator >= minimum[h] > 0
         vertices += 1
-    print(f'Cube transfer: {r*s} strict signs, {r*s*gcount} exact pair identities, '
+    print(f'Paired cube transfer D={colors}: {r*s} strict signs, '
+          f'{r*s*gcount} exact pair identities, '
           f'{vertices} full-cube vertices, all strict slopes; alpha={alpha}.', flush=True)
 
 
@@ -175,7 +175,8 @@ if __name__ == '__main__':
     parser.add_argument('--transfer-only', action='store_true')
     parser.add_argument('--shared-magnitude-only', action='store_true')
     args = parser.parse_args()
-    transfer_check()
+    transfer_check(2)
+    transfer_check(4)
     if args.shared_magnitude_only:
         shared_magnitude_check()
     elif not args.transfer_only:

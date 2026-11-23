@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,amsthm}
 \newtheorem{proposition}{Proposition}
-\title{A Grouped Sparse Cauchy Family from Cube Matchings}
+\title{A Grouped Sparse Cauchy Family from Paired Heads}
 \author{}
 \date{November 23, 2026}
 \begin{document}
@@ -14,16 +14,12 @@ superconstant saving. In particular, the large number of discrete
 assignments below is not a shattering theorem. No result in this note is
 Lean formalized, and no model definition is changed.
 
-Let $d\geq4$, $H=2^d$, and $G=H/2$. Choose a power of two $D$ with
-\[
- d/4\leq D\leq d/2,
- \qquad k=\log_2D.
-\]
-Then $D\leq d-k$. Partition the vertices of the $d$-cube according to
-the first $k$ bits, obtaining $D$ subcubes. In the subcube with address
-$\ell\in\{1,\ldots,D\}$, match every vertex along coordinate $k+\ell$.
-This is a perfect matching with exactly $G/D$ edges of each of the $D$
-chosen coordinate directions.
+Let $G\geq1$, $H=2G$, and let $D$ be any positive divisor of $G$.
+There are $G$ anchor slots and $G$ color slots, with exactly $G/D$
+color slots of each color in $\{1,\ldots,D\}$. In particular, $D=G$
+is allowed. The earlier restriction to coordinate directions of a
+hypercube was unnecessary: pairing an anchor with a color slot gives
+the required first difference directly.
 
 Fix distinct positive numbers $\xi_1,\ldots,\xi_G$. A balanced assignment
 is a function $\ell:\{1,\ldots,G\}\to\{1,\ldots,D\}$ taking every value
@@ -51,12 +47,13 @@ $H=2G$ affine-ratio heads whose denominators are positive on the entire
 Boolean $(r+s)$-cube and have strictly negative slopes.
 \end{proposition}
 \begin{proof}
-Use the fixed matching above. In each column $j$, biject its groups $g$
-to matching edges of the requested color $\ell_j(g)$; balance permits
-this. Orient each such edge as $h^-\to h^+$, where the selected bit
-increases from zero to one. Write
+In each column $j$, pair anchor $g$ with an unused color slot of the
+requested color $\ell_j(g)$; balance permits this. These pairs form a
+perfect matching of the $2G$ slots. Orient every pair from its anchor
+$h^-$ to its color slot $h^+$. Set
 \[
- V_i(h)=\sum_{a=1}^D(v_i)_a h_{k+a}.
+ V_i(h^-)=0,\qquad V_i(h^+)=(v_i)_{\ell}
+ \quad\text{for a color slot of color $\ell$.}
 \]
 Assign the same column denominator coefficient $q_{hj}=\xi_g$ to the two
 endpoints of the edge assigned group $g$. For $\alpha>0$, set
@@ -104,8 +101,9 @@ There are
 \]
 balanced assignments. Indeed the balanced multinomial coefficient is
 maximal, there are at most $(G+1)^D$ count vectors, and all multinomial
-coefficients sum to $D^G$. Since $D=\Theta(\log H)$, (4) gives
-$\log N=\Theta(H\log\log H)$.
+coefficients sum to $D^G$. Taking $D=\Theta(\log H)$ along divisible
+parameters gives $\log N=\Theta(H\log\log H)$; taking $D=G$ gives
+$N=G!$ and $\log N=\Theta(H\log H)$.
 
 These assignments do define distinct analytic functions when every
 $c_g=1$: the coefficient vector at the double pole $\xi_g$ records its
@@ -148,10 +146,9 @@ assignment-dependent signs, but no full shattering at these row counts.
 For $G=D=4$, the 24 balanced assignments are permutations. With ten rows,
 generic mixed profiles cover 260 of 1024 orthants, while a rank-two
 leading profile matrix with an order-$10^{-8}$ perturbation covers 650.
-These $G=D=4$ tests concern the abstract dictionary (1); they do not
-meet the $D=\Theta(\log H)$ matching parameters above and are not claimed
-to have an eight-head cube realization. The separate transfer test uses
-the valid three-bit matching with $G=4,D=2$ and checks 18 strict signs,
+The paired-head construction proves that these $G=D=4$ tests also have
+an eight-head cube realization. Separate transfer tests use $G=4$ with
+$D=2$ and $D=4$, six columns in each case. Each checks 18 strict signs,
 72 exact pair identities, and all 512 vertices of its ambient cube.
 These are finite exact facts only. Neither establishes a growing
 row-to-head ratio, and no asymptotic conclusion is drawn.
