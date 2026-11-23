@@ -1,3 +1,4 @@
+import HeadComplexity.Results.QuadraticFiberReciprocalRigidity
 import HeadComplexity.Results.MergedRefinementRigidity
 import HeadComplexity.Results.SubsetMomentRigidity
 import HeadComplexity.Results.SubsetInclusionRigidity

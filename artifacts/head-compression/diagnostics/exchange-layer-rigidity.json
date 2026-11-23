@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "dimensions": [
+    11,
+    12,
+    13
+  ],
+  "constant_coefficients": [
+    7,
+    10,
+    13
+  ],
+  "variable_coefficient": 10,
+  "four_pole_rank_cases": 2304,
+  "rank_distribution": {
+    "2": 144,
+    "3": 864,
+    "4": 1296
+  },
+  "layer_swap_checks": 1152,
+  "direct_reciprocal_checks": 1152,
+  "arithmetic": "Exact fractions and rational matrix ranks",
+  "scope": "Finite formula and rank checks only. The all-dimension theorem is the separate manual interpolation proof.",
+  "seconds": 0.853552803164348
+}

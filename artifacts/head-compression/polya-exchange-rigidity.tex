@@ -235,6 +235,120 @@ all these weights are nonzero, so that class must contain every
 edge. Otherwise every class is zero. This proves the assertion.
 \end{proof}
 
+\section{Equal variable coefficients with unrestricted increment magnitudes}
+
+The next result removes the bound on the number of magnitudes when the
+variable coefficients are all equal; the constant coefficient may differ.
+The weights may have either sign.
+
+\begin{theorem}[Equal-variable rigidity]
+Let $n\ge11$, let $b_0=\alpha>0$ and $b_1=\cdots=b_n=b>0$,
+and assign a nonzero
+increment $\delta_{ij}$ with $|\delta_{ij}|<\min(\alpha,b)$ to every edge
+$\{i,j\}$ of the complete graph on $\{0,\ldots,n\}$. Let
+$E_{ij}$ use that edge's increment in (1). If real weights satisfy
+\[
+                   \sum_{0\le i<j\le n}w_{ij}E_{ij}(x)=0
+                   \qquad(x\in\{0,1\}^n),
+ \tag{17}
+\]
+then either every weight is zero, or all increment magnitudes are
+identical and $w_{ij}=\lambda b_i b_j$ for one nonzero real $\lambda$.
+\end{theorem}
+\begin{proof}
+Put $a_{ij}=\delta_{ij}^2$, $c_{ij}=w_{ij}a_{ij}$, and
+\[
+ r_{ij}(t)=\frac{c_{ij}}{t-a_{ij}},\qquad t_k=(\alpha+bk)^2.
+\]
+For $|x|=k$, the exact exchange formulas already proved reduce (17),
+after dividing by the nonzero common factor $2/B(x)$, to
+\[
+ \alpha\sum_{1\le i<j\le n}r_{ij}(t_k)(x_i-x_j)^2
+       -bk\sum_{i=1}^n r_{0i}(t_k)(1-x_i)=0.
+ \tag{18}
+\]
+All denominators here are nonzero because
+$0<a_{ij}<\min(\alpha^2,b^2)$.
+
+Fix distinct variable indices $j,l$, and fix $2\le k\le n-2$.
+For any $(k-1)$-element set $S$ avoiding $j,l$, subtract (18) on
+$S\cup\{l\}$ from (18) on $S\cup\{j\}$. Writing
+$d_i=r_{ij}(t_k)-r_{il}(t_k)$ for $i\notin\{j,l\}$ gives
+\[
+ \alpha\left(\sum_{i\notin\{j,l\}}d_i-2\sum_{i\in S}d_i\right)
+                  +bk(r_{0j}(t_k)-r_{0l}(t_k))=0.
+ \tag{19}
+\]
+Thus all $(k-1)$-subset sums of the $n-2$ numbers $d_i$ are equal.
+Comparing two such sets differing by one element proves that all
+$d_i$ are equal. The comparison is valid because
+$1\le k-1\le(n-2)-1$. For every $i\notin\{j,l\}$, (19) becomes
+\[
+ \alpha(n-2k)(r_{ij}(t_k)-r_{il}(t_k))
+           +bk(r_{0j}(t_k)-r_{0l}(t_k))=0.
+ \tag{20}
+\]
+
+For this fixed triple of indices, set
+$F(t)=r_{ij}(t)-r_{il}(t)$ and
+$G(t)=r_{0j}(t)-r_{0l}(t)$. They involve at most four distinct
+poles. The rational function of a real variable $z$
+\[
+       \alpha(n-2z)F((\alpha+bz)^2)+bzG((\alpha+bz)^2)
+ \tag{21}
+\]
+therefore has, after multiplication by the product of its distinct
+quadratic denominators, a polynomial numerator of degree at most seven.
+Equation (20) supplies the $n-3\ge8$ distinct roots
+$z=2,\ldots,n-2$. None is a pole. Hence that numerator is identically
+zero.
+
+Write $r=\alpha/b$. The involution $z\mapsto-2r-z$
+preserves $(\alpha+bz)^2$. For every $z>0$, evaluating the rational
+identity (21) at these two arguments is legitimate and gives
+\[
+ \alpha(n-2z)F(t)+bzG(t)=0,\qquad
+ \alpha(n+4r+2z)F(t)-b(z+2r)G(t)=0,
+ \quad t=(\alpha+bz)^2.
+ \tag{22}
+\]
+Adding and using $br=\alpha$ yields $G(t)=(n+2r)F(t)$;
+substitution back yields $n(\alpha+bz)F(t)=0$.
+Thus $F(t)=G(t)=0$ for every $t>\alpha^2$.
+
+It follows that all variable-variable edge functions $r_{ij}$ are
+the same function $R$, and all anchor-variable functions $r_{0i}$
+are the same function $S$. Indeed any two edges sharing a vertex
+are compared by a triple as above, and the complete graph is connected.
+Equation (18) now reads
+\[
+                       k(n-k)(\alpha R(t_k)-bS(t_k))=0.
+\]
+Use $k=1$ and $k=2$. The difference of two single-pole functions
+has an affine numerator in $t$, so these two distinct zeros force
+$\alpha R=bS$ as rational functions. If these functions are zero, every
+$c_{ij}$ and hence every $w_{ij}$ is zero. Otherwise equality of
+nonzero single-pole rational functions forces every $a_{ij}$ to be
+identical. The coefficients $c_{ij}$ are constant within each edge type,
+and the anchor coefficient is $\alpha/b$ times the variable-variable
+coefficient. Since $a_{ij}>0$, this is exactly
+$w_{ij}=\lambda b_i b_j$ with $\lambda\ne0$.
+\end{proof}
+
+The new mechanism is finite interpolation in the layer variable followed
+by its two-to-one quadratic symmetry. The eight-sample rational identity
+and its symmetry step are kernel checked as
+\texttt{HeadComplexity.four\_reciprocal\_quadratic\_fiber\_rigidity}
+and \texttt{HeadComplexity.paired\_level\_exchange\_zero} in
+\texttt{Results/QuadraticFiberReciprocalRigidity.lean}. The Boolean
+layer reduction and final common-weight argument above remain manual.
+The script \texttt{check\_exchange\_layer\_rigidity.py} separately
+verifies $2304$ rational rank cases and $1152$ instances each of the
+layer swap and direct reciprocal formulas; these finite checks are not
+used as the all-dimension proof. The theorem does not
+claim a sharp dimension threshold, handle unequal variable coefficients with
+arbitrarily many magnitudes, or prove the universal head bound.
+
 \paragraph{Small-dimensional exceptions and finite checks.}
 The dimension restriction in the last theorem cannot simply be
 discarded. For $n=3$, take $b=(3,3,3,3)$. Give the edges

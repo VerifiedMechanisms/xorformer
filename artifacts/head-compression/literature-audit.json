@@ -1036,6 +1036,14 @@
       "checked_location": "Theorem 2.1, its variance-function argument, and Theorem 3.1 with the conditional-expectation proof and gamma example.",
       "mechanism": "Classifies affine inverse-sum regression identities and backward martingales for four positive iid distribution families.",
       "gap": "These conditional-expectation identities supply no finite affine-head atom bound or universal sign construction. The new exchange identity is independently derived from two finite Polya steps."
+    },
+    {
+      "title": "Hilbert cubes meet arithmetic sets",
+      "authors": "Norbert Hegyv\u00e1ri and P\u00e9ter P\u00e1l Pach",
+      "url": "https://www.researchgate.net/publication/342461505_Hilbert_cubes_meet_arithmetic_sets/fulltext/5ef54a21299bf18816e80891/Hilbert-cubes-meet-arithmetic-sets.pdf",
+      "checked_location": "Theorem 3.2, Lemma 4.3 and its Kloosterman-sum proof; definitions of prime-field Hilbert cubes and reciprocal sumsets.",
+      "mechanism": "Fourier and character-sum estimates bound the dimension of a finite-field additive cube avoiding a reciprocal sumset.",
+      "gap": "The theorem concerns modular incidence, not real sign representations. It supplies neither affine positive-denominator heads nor a head-count-preserving conversion from modular reciprocals to real reciprocals. No universal upper bound follows."
     }
   ]
 }

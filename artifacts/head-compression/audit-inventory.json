@@ -289,11 +289,19 @@
         "HeadComplexity.constant_branch_reaches_terminal"
       ],
       "scope": "Boundary data determine all step variations in a fixed acyclic refinement graph. Distinct branch rates and invariant constant branches support the manual extension to coordinate flips. Dimension, terminal-count, and sign-count consequences remain manual; no universal head bound is asserted."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/QuadraticFiberReciprocalRigidity.lean",
+      "main_declaration": "HeadComplexity.four_reciprocal_quadratic_fiber_rigidity",
+      "companion_declarations": [
+        "HeadComplexity.paired_level_exchange_zero"
+      ],
+      "scope": "Eight distinct nonpole samples force a four-reciprocal identity in an arbitrary shifted-square statistic with a nonzero linear rate; its fiber symmetry annihilates the two reciprocal differences. Supports the manual equal-variable exchange rigidity theorem. No head upper bound."
     }
   ],
   "validation": {
-    "build": "Full lake build passed (9220 jobs) after adding MergedRefinementRigidity.",
-    "build_log": "artifacts/head-compression/validation/lean-merged-refinement-full-build.log",
+    "build": "Full lake build passed (9221 jobs) after adding QuadraticFiberReciprocalRigidity.",
+    "build_log": "artifacts/head-compression/validation/lean-quadratic-fiber-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -314,7 +322,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "93 listed main and companion declarations in 36 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "95 listed main and companion declarations in 37 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -325,8 +333,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 93,
-      "modules": 36,
+      "declarations": 95,
+      "modules": 37,
       "only": [
         "propext",
         "Classical.choice",
@@ -349,10 +357,10 @@
         "validation/lean-subset-inclusion-axioms.log",
         "validation/lean-all-research-final-axioms.log"
       ],
-      "scope": "All 93 listed research declarations are checked together after the merged-refinement extension."
+      "scope": "All 95 listed research declarations are checked together after the quadratic-fiber extension."
     },
-    "lean": "Full project lake build succeeded with 9220 jobs, including all 36 new research modules and the results aggregator.",
-    "build_jobs": 9220,
+    "lean": "Full project lake build succeeded with 9221 jobs, including all 37 new research modules and the results aggregator.",
+    "build_jobs": 9221,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -386,7 +394,8 @@
       "validation/lean-subset-inclusion-full-build.log",
       "validation/lean-subset-inclusion-axioms.log",
       "validation/lean-merged-refinement-full-build.log",
-      "validation/lean-all-research-final-axioms.log"
+      "validation/lean-all-research-final-axioms.log",
+      "validation/lean-quadratic-fiber-full-build.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -428,7 +437,8 @@
     "Affine-fraction extrema on a Boolean cube are attained at sorted coefficient-ratio prefixes after complementing negative denominator slopes and handling zero slopes. Independent affine certificates verify the extrema without exhaustive evaluation. No universal head bound follows.",
     "Split-product logarithmic derivative cancellations have denominator factor rank at most 26 after removing common factors, by the real depth-three identity rank theorem. A sum of K=o(H) fixed-rank groups cannot be universal at H<=C*2^n/n^2. This applies only to the audited polynomial-identity construction.",
     "Ideal affine Prouhet-Tarry-Escott cancellations have denominator slope rank at most three: signed moment annihilation on at most 2m coefficient vectors implies a real affine Cayley-Bacharach planarity constraint. No split-difference assumption is needed. This is a restriction on the audited polynomial-identity construction only.",
-    "For a fixed merged coordinate-refinement DAG, including variable flips, the continuous realization dimension is at most L+n*c < 2*(R+L) when positive steps exist. This excludes universality of first variations for a subexponential number of graph choices at the target head rate, but does not control arbitrary graph incidence choices."
+    "For a fixed merged coordinate-refinement DAG, including variable flips, the continuous realization dimension is at most L+n*c < 2*(R+L) when positive steps exist. This excludes universality of first variations for a subexponential number of graph choices at the target head rate, but does not control arbitrary graph incidence choices.",
+    "For n>=11 with equal positive variable coefficients and arbitrary positive constant coefficient, reciprocal exchange identities with arbitrary admissible nonzero increment magnitudes are rigid: every nonzero relation has a common magnitude and weights proportional to b_i*b_j. Signed weights are included. Eight-layer interpolation and quadratic-fiber symmetry provide a new mechanism; the core is Lean checked."
   ],
   "blocked_routes": [
     {
@@ -1289,9 +1299,10 @@
     "obstruction": "For n>=2, a nonproportional identity with one positive constant-numerator term and H-1 negative terms requires H>=n+1, provided every coordinate occurs in some denominator. Proof uses strict convexity after projective normalization.",
     "compiler": "Any weighted exactly cancelling base and strict affine-over-square variation compile with one actual head per nonzero weight and an explicit rational remainder bound.",
     "generalized_compiler_audit": "artifacts/head-compression/diagnostics/nonideal-compiler-generalized-audit.json",
-    "side_searches": "Weighted n6/h8 search returned unknown after 7200.77 seconds, reason timeout; see diagnostics/weighted-reciprocal-n6-h8.json. Unweighted n6/h8 search remains pending. These are bounded diagnostics, not universal claims.",
+    "side_searches": "Weighted n6/h8 search returned unknown after 7200.77 seconds. Unweighted n6/h8 search returned unknown after 14400.77 seconds, reason timeout. Both diagnostics are preserved; neither outcome implies impossibility or a universal lower bound.",
     "target_proved": false,
-    "weighted_compiler_smoke": "artifacts/head-compression/diagnostics/weighted-reciprocal-compiler-audit.json"
+    "weighted_compiler_smoke": "artifacts/head-compression/diagnostics/weighted-reciprocal-compiler-audit.json",
+    "unweighted_search_diagnostic": "artifacts/head-compression/diagnostics/reciprocal-cube-n6-m4.json"
   },
   "polya_reciprocal_audit": {
     "file": "artifacts/head-compression/polya-reciprocal-audit.tex",
@@ -1356,7 +1367,14 @@
     "diagnostic": "artifacts/head-compression/diagnostics/polya-exchange-rigidity.json",
     "checker": "artifacts/head-compression/check_polya_exchange.py",
     "scope": "The two subset-inclusion lemmas are Lean checked. The exchange identities, polynomial degree separation, and full rigidity statements are manual proofs. No universal head bound.",
-    "finite_exceptions": "Positive mixed-magnitude relations exist in dimensions two and three. For the two specified weight vectors in dimensions four and five, the diagnostic exhausts all binary step assignments; this is not a theorem for arbitrary weights or increments."
+    "finite_exceptions": "Positive mixed-magnitude relations exist in dimensions two and three. For the two specified weight vectors in dimensions four and five, the diagnostic exhausts all binary step assignments; this is not a theorem for arbitrary weights or increments.",
+    "equal_base_extension": {
+      "result": "For n >= 11, b1=...=bn=b>0, and arbitrary b0=alpha>0, every nonzero exchange relation with 0<|delta_ij|<min(alpha,b) has a common increment magnitude and weights w_ij=lambda*b_i*b_j. Weights may be signed.",
+      "mechanism": "Middle-layer swaps reduce to four reciprocal terms. Eight layers force the cleared degree-seven polynomial to vanish; the shifted-square involution separates the two differences.",
+      "formal_core": "HeadComplexity.four_reciprocal_quadratic_fiber_rigidity",
+      "manual_scope": "Layer reduction and final edge-function classification remain manual. Unequal variable coefficients with unboundedly many magnitudes are not classified.",
+      "diagnostic": "artifacts/head-compression/diagnostics/exchange-layer-rigidity.json"
+    }
   },
   "private_repository_refresh_2026_11_23_1733": {
     "method": "Read-only fetch of both mirrors and inspection of latest branch dates and the latest autoresearch report.",

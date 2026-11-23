@@ -13,8 +13,8 @@ of that statement was added. No construction in the record should be
 read as establishing it.
 
 \paragraph{Formal results.}
-The inventory lists $93$ principal and companion declarations across
-$36$ new Lean modules. The full project build passed with $9220$ jobs.
+The inventory lists $95$ principal and companion declarations across
+$37$ new Lean modules. The full project build passed with $9221$ jobs.
 The inspected declarations use only \texttt{propext},
 \texttt{Classical.choice}, and \texttt{Quot.sound}.
 Among the construction results are
@@ -87,6 +87,16 @@ terminal head. Its first variations cannot give the target bound using
 only a subexponential number of graph choices. The number of unrestricted
 target-dependent graph choices is not controlled.
 
+The equal-variable exchange extension in
+\texttt{polya-exchange-rigidity.tex} allows arbitrarily many increment
+magnitudes and signed weights in dimensions at least eleven, with an
+arbitrary positive constant coefficient. The core
+interpolation and symmetry argument is checked by
+\texttt{HeadComplexity.four\_reciprocal\_quadratic\_fiber\_rigidity}
+and \texttt{HeadComplexity.paired\_level\_exchange\_zero} in
+\texttt{Results/QuadraticFiberReciprocalRigidity.lean}. The reduction
+from cube layers to the formal hypotheses remains a manual proof.
+
 \paragraph{Finite certificate.}
 The file \texttt{certificates/random-n14-anchored-h292.json} gives
 $292$ heads for one fixed fourteen-bit Boolean function. All $16384$
@@ -149,7 +159,7 @@ predicate is asserted to hold universally. The manuscript file in
 \texttt{audit-inventory.json} maps declarations, scope restrictions,
 and validation logs. \texttt{mechanism-audit.tex} contains the manual
 arguments, with separate notes for the full-box and permutation-orbit
-parity obstructions. \texttt{literature-audit.json} records $125$
+parity obstructions. \texttt{literature-audit.json} records $126$
 sources, the passages inspected, and the unresolved transfer steps.
 The remaining open deliverable is exactly the universal affirmative
 bound stated at the start of this report.
