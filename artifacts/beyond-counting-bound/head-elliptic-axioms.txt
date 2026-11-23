@@ -1,0 +1,13 @@
+'HeadComplexity.HeadEllipticEnergy.energy_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.boolean_spherical_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.scalar_variance_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.weighted_energy_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.completed_spherical_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.spherical_variance_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.radius_lt_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.spherical_variance_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HeadEllipticEnergy.elliptic_scalar_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,10 @@
+{
+  "records": 19710,
+  "sha256_uncompressed": "f3ba72a125c9c7b3e3ecea6bdbf28a208dc73a1165db1693bb7cae21451cf898",
+  "archive": "normalized-head-maxima-search.jsonl.gz",
+  "last_elapsed_seconds": 1800.0002936830278,
+  "interior_multiple_maximum_candidates": 2,
+  "single_maximum_candidates": 106,
+  "scope": "finite random multistart numerical diagnostic; no nonexistence inference",
+  "main_target_proved": false
+}

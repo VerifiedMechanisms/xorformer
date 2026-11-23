@@ -1,0 +1,11 @@
+import HeadComplexity.Atoms.HeadEllipticEnergy
+
+#print axioms HeadComplexity.HeadEllipticEnergy.energy_nonneg
+#print axioms HeadComplexity.HeadEllipticEnergy.boolean_spherical_identity
+#print axioms HeadComplexity.HeadEllipticEnergy.scalar_variance_identity
+#print axioms HeadComplexity.HeadEllipticEnergy.weighted_energy_variance
+#print axioms HeadComplexity.HeadEllipticEnergy.completed_spherical_variance
+#print axioms HeadComplexity.HeadEllipticEnergy.spherical_variance_upper
+#print axioms HeadComplexity.HeadEllipticEnergy.radius_lt_quarter
+#print axioms HeadComplexity.HeadEllipticEnergy.spherical_variance_bounds
+#print axioms HeadComplexity.HeadEllipticEnergy.elliptic_scalar_identity

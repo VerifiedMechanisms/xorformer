@@ -41,6 +41,12 @@ The [common-normal certificate](common-normal-maxima.md) gives two distinct nond
 
 This closes the uniqueness shortcut left open by the earlier family of saddles. It does not supply many Boolean labels, classification complementarity, or an asymptotic maximum count. Both tables classify every cube input positively. No inference toward the requested lower bound is drawn from this finite obstruction.
 
+## Elliptic normalization identity and its exact limitation
+
+The [elliptic identity](head-elliptic-energy.md) gives a different denominator-parameter invariant. A normalized full head table satisfies an elliptic equation with a nonnegative potential bounded strictly below one quarter, independently of dimension and conditioning. The bound comes from an exact ellipsoid identity for normalized Boolean subset vectors. Nine algebraic declarations pass Lean, and 56 independent rational replays check the differential formulas on 2,032 cube entries.
+
+The same calculation holds with an arbitrary fixed numerator table. Choosing that table to be any desired Boolean labeling times one fixed positive denominator realizes every sign pattern in this relaxed family. Thus the elliptic equation and potential bound alone cannot yield a sign restriction. An argument retaining the affine-numerator constraint under sums of heads is missing. The PDE-only approach is blocked by this explicit counterexample, not reopened as an unproved claim about the number of maxima.
+
 ## Complete monotonicity and Boolean tangents
 
 The [positive exponential interpolation theorem](complete-monotonicity-tangent.md) gives every Boolean tangent direction at a table equal to a single reciprocal head. One baseline extension works for every direction, and every mixed derivative has the strict sign required by complete monotonicity. The construction has explicit rational coefficients and a uniform positive perturbation interval. Independent exact arithmetic checks the coefficients through dimension ten and all binary directions through dimension three.

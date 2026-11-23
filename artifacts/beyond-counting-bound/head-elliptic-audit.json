@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T16:35:48.358759+00:00",
+  "declarations": [
+    "HeadComplexity.HeadEllipticEnergy.energy_nonneg",
+    "HeadComplexity.HeadEllipticEnergy.boolean_spherical_identity",
+    "HeadComplexity.HeadEllipticEnergy.scalar_variance_identity",
+    "HeadComplexity.HeadEllipticEnergy.weighted_energy_variance",
+    "HeadComplexity.HeadEllipticEnergy.completed_spherical_variance",
+    "HeadComplexity.HeadEllipticEnergy.spherical_variance_upper",
+    "HeadComplexity.HeadEllipticEnergy.radius_lt_quarter",
+    "HeadComplexity.HeadEllipticEnergy.spherical_variance_bounds",
+    "HeadComplexity.HeadEllipticEnergy.elliptic_scalar_identity"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "files": [
+    {
+      "file": "formalization/HeadComplexity/Atoms/HeadEllipticEnergy.lean",
+      "sha256": "dbaee84c5da67b5383e13afefca5276c8c36b7670bab73de6310b91a07b5fb64"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/verify_head_elliptic_energy.py",
+      "sha256": "5b6647270d388743cd8f48d81ae4187221d5ce59c5494efb45fa10bc4bb0159c"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/head-elliptic-rational-audit.json",
+      "sha256": "7930b099d09378b52f0759ef28de7f0aa66f9bb5de86ee7f3be74fbd4ef91bb6"
+    }
+  ],
+  "build_jobs": 3137,
+  "scope": "General algebraic sphere and variance identities in Lean; normalized-table calculus written explicitly.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/head-elliptic-energy.md",
+      "source_math_spans": 55,
+      "rendered_math_spans": 55,
+      "findings": 0,
+      "sha256": "fa0caa5ff8d59a4577d1db40cd479f751f0ba089bf02ad5647972af65738b40c"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 108,
+      "rendered_math_spans": 108,
+      "findings": 0,
+      "sha256": "8b83928d42f63b58b4ea39aaa1701ea83a6adc89f66eceb0f5bddff19d6402ca"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "02dcf7af95d87327f0d029a1e2e0d00f5bd65e33e1768f108828a1027b5932ba"
+    }
+  ],
+  "katex": "PASS, three files, 164 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "rational_cases": 56,
+  "cube_entries": 2032,
+  "pde_only_sign_count": "BLOCKED: arbitrary numerator tables satisfy the same PDE and realize every sign table",
+  "model_changes": [],
+  "main_target_proved": false
+}
