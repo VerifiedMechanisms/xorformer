@@ -1,0 +1,162 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Exact Permutation Sheets with Jointly Determined Residues}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The exact sheet construction and the readout identities below have
+complete written proofs and a finite exact-arithmetic checker. They
+are not Lean formalized. The required superlinear number of independently
+readable signs remains unproved. This note changes no atom definition,
+input dimension, or global complexity statement.
+
+Fix $H$ distinct positive tokens $\lambda_j$ and $H$ distinct poles
+$d_i>\max_j\lambda_j$. Write
+\[
+ C_{ij}=\frac1{d_i-\lambda_j},\qquad S_i=\sum_jC_{ij}.
+\]
+Let $E\in\mathbb R^{H\times H}$ be an arbitrary fixed matrix.
+For $u\in\mathbb R^H$ and $a\in\mathbb R^H$, define $2H$ queries
+\[
+ F_i^0(u,a)=\sum_h\frac{E_{ih}+a_h}{d_i-u_h},\qquad
+ F_i^1(u,a)=\sum_h\frac{E_{ih}+a_h+1}{d_i-u_h}-S_i.
+\]
+
+\begin{theorem}[Exact regular sheets]
+Every permutation $\pi$ defines a regular common zero of all $2H$
+queries by
+\[
+ u_h^\pi=\lambda_{\pi(h)},\qquad
+ e_i^\pi=\sum_hE_{ih}C_{i,\pi(h)},\qquad
+ a^\pi=-C_\pi^{-1}e^\pi,
+\]
+where $(C_\pi)_{ih}=C_{i,\pi(h)}$.
+Thus there are at least $H!$ distinct real regular sheets. The residue
+$a_h^\pi$ can depend on the entire permutation and need not be a
+permuted list of token residues.
+\end{theorem}
+\begin{proof}
+Cauchy's identity makes $C$ and hence $C_\pi$ invertible.
+The definition of $a^\pi$ gives $F_i^0=0$. The difference
+$F_i^1-F_i^0=\sum_h1/(d_i-u_h)-S_i$ vanishes at every permutation
+of the tokens, so $F_i^1=0$ as well.
+
+Order the parameters as $(u,a)$ and subtract the first block of
+Jacobian rows from the second. The Jacobian becomes
+\[
+ \begin{pmatrix}M_\pi&C_\pi\\C_\pi\circ C_\pi&0\end{pmatrix},
+ \qquad
+ (M_\pi)_{ih}=(E_{ih}+a_h^\pi)C_{i,\pi(h)}^2.
+\]
+Its determinant is
+$(-1)^H\det(C_\pi)\det(C_\pi\circ C_\pi)$, independently of
+$M_\pi$. Borchardt's identity expresses the second determinant as
+$\det(C_\pi)\operatorname{perm}(C_\pi)$; the permanent is positive.
+This proves regularity.
+\end{proof}
+
+\paragraph{Readouts from independent row-pole perturbations.}
+For $i\in\{1,\ldots,H\}$ and $v\in\mathbb R^H$, let
+\[
+ Q_{i,v,\eta}(u,a)=
+       \sum_h\frac{E_{ih}+a_h}{d_i+\eta v_h-u_h}.
+\]
+At each sheet $Q_{i,v,0}=0$, and exact differentiation gives
+\[
+ \left.\frac{\partial Q_{i,v,\eta}(u^\pi,a^\pi)}{\partial\eta}
+       \right|_{\eta=0}
+ =-\sum_hv_h(E_{ih}+a_h^\pi)C_{i,\pi(h)}^2.
+ \tag{1}
+\]
+Thus the arbitrary matrix $E$ produces $H$ separate linear feature
+maps of the permutation states,
+\[
+ \Psi_i(\pi)=\bigl((E_{ih}+a_h^\pi)C_{i,\pi(h)}^2\bigr)_{h=1}^H.
+\]
+If a finite collection of strict signs of the right side of (1)
+is realized at designated sheets, it is realized by the actual
+$Q$ queries for every sufficiently small common $\eta>0$.
+This follows by dividing each query value by $\eta$, taking its
+limit in (1), and taking the minimum of the finitely many resulting
+positive parameter bounds. The inverse function theorem then lets
+all $2H$ regular query signs vary independently in sufficiently small
+neighborhoods of those sheets while preserving the strict readouts.
+Consequently, $q$ independently readable derivative signs would give
+$2H+q$ universally programmable rows. No superlinear $q$ is proved here.
+
+\paragraph{Full-cube transfer.}
+All these formulas may be placed in an arbitrarily compact box.
+For any fixed total number $r$ of rows and any $s$ columns, choose
+$\varepsilon<1/[100(r+s+1)]$, take distinct
+$\lambda_j\in(0,\varepsilon)$ and distinct
+$d_i\in(1-\varepsilon,1-\varepsilon/2)$, and then choose $\eta$
+small enough that every additional pole $d_i+\eta v_h$ remains in
+that interval. The inverse-function neighborhoods may be chosen with
+every $u_h\in(0,\varepsilon)$.
+For the parameters selected for column $j$, set the column slope of
+head $h$ to $-u_{hj}$; if its pole on row $\rho$ is $d_{\rho h}$,
+set its row slope to $-(1-d_{\rho h})$. Then
+\[
+ B_h(z,w)=1-\sum_\rho(1-d_{\rho h})z_\rho
+                    -\sum_j u_{hj}w_j
+\]
+has strictly negative slopes and full-cube minimum greater than
+$1-(r+s)\varepsilon>0$. Its grid value is exactly
+$d_{\rho h}-u_{hj}$. All numerator values above are supplied by
+the affine numerator whose row coefficients are $E_{ih}$ or
+$E_{ih}+1$ and whose column coefficients are $a_{hj}$.
+
+The row biases $-S_i$ require one additional head. For example
+$D(z,w)=1-\frac\varepsilon2(|z|+|w|)$ is positive with strictly
+negative slopes, and on the grid the numerator
+$(1-\varepsilon)\sum_\rho c_\rho z_\rho$ divided by $D$
+equals the desired row bias $c_\rho$.
+Thus any successful readout family would give an $H+1$-head
+strict reverse promised-grid compiler. The separately proved general
+axis repair in \texttt{reverse-grid-axis-repair.tex} converts this
+to exact axis zero with at most $3H+6$ heads. These observations
+preserve a hypothetical superconstant saving but do not establish one.
+
+\paragraph{A useful exact preconditioning identity.}
+Writing $E=CU$ exposes how the residues mix the whole permutation.
+For $j\neq k$,
+\[
+ C_{ij}C_{ik}=\frac{C_{ij}-C_{ik}}{\lambda_j-\lambda_k}.
+\]
+Define the permutation-selected vector
+$t_k^\pi=U_{k,\pi^{-1}(k)}$ and set
+\[
+ b_j^\pi=\sum_{h:\pi(h)\neq j}
+                \frac{U_{jh}}{\lambda_j-\lambda_{\pi(h)}}
+       -\sum_{\ell\neq j}
+                \frac{U_{\ell,\pi^{-1}(j)}}{\lambda_\ell-\lambda_j}.
+\]
+Expanding $e_i^\pi=\sum_{j,h}U_{jh}C_{ij}C_{i,\pi(h)}$
+and separating its diagonal terms gives
+\[
+ e^\pi=Cb^\pi+(C\circ C)t^\pi,
+ \qquad
+ a_h^\pi=-b_{\pi(h)}^\pi-
+           \bigl(C^{-1}(C\circ C)t^\pi\bigr)_{\pi(h)}.
+ \tag{2}
+\]
+The signs in (2) are checked by the companion exact-arithmetic script.
+For random $U$, the vector $t^\pi$ selects one entry in each row and
+column of $U$. This is a possible source of richer joint information,
+but Gaussian independence of these selected entries does not itself
+prove a uniform separation estimate for the complete readout features.
+
+\paragraph{Unresolved quantitative issue.}
+As the poles and tokens enter a very compact far-pole regime, the
+inverse Cauchy matrix is ill conditioned. Generic unscaled choices
+of $E$ can be dominated by one barycentric mode, making the different
+feature maps strongly correlated. A proof must control all selected
+permutation pairs, not merely most pairs in a finite numerical sample.
+It remains open whether a structured $E$ and permitted readouts yield
+$q/H\to\infty$, let alone $q=\Omega(H\log\log H)$.
+\end{document}
