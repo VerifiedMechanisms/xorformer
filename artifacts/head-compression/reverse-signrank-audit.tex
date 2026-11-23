@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{A Small Exact Test of Reverse Sign Rank}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+The conjectured bound $\operatorname{signrank}(\operatorname{sign}F)\leq2H$
+for a reverse-admissible $H$-head grid score is false. This note supplies an
+explicit rational certificate using two heads. It neither disproves an
+unspecified $O(H)$ bound nor proves such a bound. In particular, it is not
+an obstruction to the requested logarithmic saving. All results here are
+written proofs and exact rational tests, not Lean declarations.
+
+\begin{proposition}
+There is a two-head score on the Boolean $37$-cube with strictly negative
+denominator slopes and denominator minima greater than $9/10$, whose
+$5$ by $32$ grid sign matrix has sign rank exactly $5$.
+\end{proposition}
+\begin{proof}
+Use the five row coefficients in
+\texttt{reverse-joint-five-row.tex}, with $s=32$ and
+$\varepsilon=1/3300$. Write its two poles as
+$d_i=1-c_i\varepsilon$ and $e_i=1-k_i\varepsilon$, and its two numerator
+coefficients as $A_i,C_i$. Thus
+\[
+ G_i(u,v,a,b)=(A_i+a)(e_i-v)+(C_i+b)(d_i-u)
+\]
+is the cleared score. The two rational points
+$x_+=(\varepsilon,2\varepsilon,3,5)$ and
+$x_-=(2\varepsilon,\varepsilon,5,3)$ satisfy $G_i(x_\tau)=0$ for
+$1\leq i\leq4$ and $\tau G_5(x_\tau)>0$.
+The displayed determinant formula in that note proves that each first-four
+Jacobian $J_\tau$ is invertible over the rationals. No inverse function
+theorem is needed for the following construction.
+
+Given $\sigma\in\{-1,1\}^4$, put
+$v=J_\tau^{-1}\sigma$ and $q=-v_a v_v-v_b v_u$.
+For every row the quadratic remainder is the same, so
+\[
+ G_i(x_\tau+t v)=t\sigma_i+t^2q\quad(1\leq i\leq4),
+ \qquad
+ G_5(x_\tau+t v)=g+t\ell+t^2q,
+\]
+where $g=G_5(x_\tau)$ and
+$\ell=\nabla G_5(x_\tau)\cdot v$ are rational.
+Choose the following explicit positive rational step:
+\[
+ t=\min\left\{
+ \frac12,
+ \frac{\varepsilon}{4(1+|v_u|+|v_v|)},
+ \frac1{4(1+|q|)},
+ \frac{|g|}{4(1+|\ell|+|q|)}
+ \right\}.
+\]
+Then $|tq|<1/4$, so the first four signs are $\sigma$.
+Also $t\leq1$ and
+$|t\ell+t^2q|\leq t(|\ell|+|q|)<|g|/4$, so the fifth sign is
+$\tau$. The denominator parameters remain in
+$\varepsilon/2<u,v<5\varepsilon/2$.
+
+Apply this construction once for each of the $32$ pairs $(\sigma,\tau)$,
+using these rational points as the columns. The same full-cube denominator
+calculation as in the five-row construction gives, for either head,
+\[
+ \min B>1-37\varepsilon-32\frac52\varepsilon
+ =1-\frac{117}{3300}>\frac9{10}.
+\]
+All row and column slopes are strictly negative. Positive denominator
+products preserve the signs of the cleared scores, so the resulting
+matrix contains every column of $\{-1,1\}^5$ exactly once.
+
+Every real matrix with these strict signs has linearly independent rows.
+Indeed, if its rows obeyed a nonzero relation with coefficients $a_i$,
+choose a column whose $i$th sign agrees with $a_i$ whenever $a_i\neq0$.
+The corresponding entry of the alleged relation is a sum of positive
+numbers, a contradiction. Thus its rank is at least $5$. There are only
+five rows, proving that the sign rank is exactly $5$.
+\end{proof}
+
+\paragraph{Verification.}
+\texttt{reverse-small-signrank-check.py} constructs all $32$ rational
+columns by the displayed formula, verifies the exact quadratic expansion,
+checks all $160$ strict signs, and checks both whole-cube minima. It uses
+neither floating-point arithmetic nor a numerical solver. The existing
+regular-sheet construction with path-comparison readouts gives the stronger
+asymptotic ratio $(3H-1)/(H+1)$, but that ratio still remains bounded.
+
+\paragraph{What the approximation argument does not establish.}
+The reverse coefficient budget allows rapidly convergent denominator
+expansions away from a small set of large coefficients. Truncating such
+expansions gives low-rank approximations. There is no uniform positive
+lower bound on the strict margins in this model, however, so an error
+bound alone does not preserve all signs. Neither low displacement rank
+of individual Cauchy or Loewner matrices nor ordinary parameter-side VC
+dimension resolves this issue. This audit establishes no universal
+linear sign-rank bound and no superlinear reverse sign-rank family.
+
+\end{document}
