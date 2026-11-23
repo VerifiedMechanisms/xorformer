@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{First-Order Rigidity of a Boolean Permutation Construction}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note audits a specific possible use of the Boolean-only moment
+construction in \texttt{ideal-moment-rank-audit.tex}. It does not prove
+the requested universal head bound. The results below have elementary
+manual proofs; they have not been formalized in Lean.
+
+\section{The permutation forms}
+
+For $x\in\{0,1\}^n$, define
+\[
+ u_0(x)=\sum_{i=1}^n x_i,\qquad
+ u_k(x)=k(1-x_k)+\sum_{i=k+1}^n x_i\quad(1\le k\le n).
+\]
+Their values are a permutation of $0,1,\ldots,n$ at every vertex.
+Induct on $n$: the last entry is $n$ when $x_n=0$, and the earlier
+entries are the smaller construction. When $x_n=1$, the last entry
+is zero and each earlier entry is increased by one.
+
+\begin{lemma}[Affine rigidity on the level sets]
+Suppose $n\ge4$ and $r:\{0,1\}^n\to\mathbb R$ has the following
+property: for every $k,j\in\{0,\ldots,n\}$, the restriction of $r$
+to $\{x:u_k(x)=j\}$ agrees with an affine function of $x$.
+Then $r$ agrees with a single affine function on the entire cube.
+\end{lemma}
+\begin{proof}
+Because $u_n=n(1-x_n)$, the restrictions of $r$ to both faces
+$x_n=0$ and $x_n=1$ are affine. Subtracting these two affine
+expressions shows that, on the cube,
+\[
+ r(x)=L(x)+x_n\sum_{i=1}^{n-1}c_i x_i
+\]
+for some affine function $L$ and real numbers $c_i$.
+
+The level set $u_0=2$ is the Hamming layer of weight two. Consequently
+$x_n\sum_{i<n}c_i x_i$ agrees on this layer with an affine expression
+$a+\sum_{i=1}^n w_i x_i$. For all distinct $i,j<n$, evaluating at
+$e_i+e_j$ gives $a+w_i+w_j=0$. Since $n-1\ge3$, comparing these
+equalities shows that all $w_i$, $i<n$, are equal to some $w$ and
+$a=-2w$. Evaluation at $e_i+e_n$ then gives
+$c_i=a+w_i+w_n=w_n-w$. Thus every $c_i$ equals one common value $c$.
+
+Fix $i\in\{1,\ldots,n-3\}$ and set $k=n-2$. For $t\in\{0,1\}$
+consider the four vertices
+\[
+ p_t=t e_i+e_k+e_{n-1},\qquad
+ q_t=t e_i+e_k+e_n.
+\]
+At all four vertices $u_k=1$. Hence the level-set hypothesis implies
+\[
+ r(q_1)-r(q_0)=r(p_1)-r(p_0),
+\]
+because the same affine expression represents $r$ there and both
+differences are taken in direction $e_i$.
+The affine term $L$ has equal differences as well. But the corresponding
+differences of $c x_n\sum_{j<n}x_j$ are $c$ on the $q$ pair and zero
+on the $p$ pair. Therefore $c=0$, as required.
+\end{proof}
+
+\section{Application to product differences}
+
+Let $a_0,\ldots,a_n,b_0,\ldots,b_n$ be arbitrary real affine forms.
+Introduce a deformation parameter $\varepsilon$ and an auxiliary
+variable $s$:
+\[
+ F_\varepsilon(s,x)=\prod_{k=0}^n(s+u_k(x)+\varepsilon a_k(x)),
+ \qquad
+ G_\varepsilon(s,x)=\prod_{j=0}^n(s+j+\varepsilon b_j(x)).
+\]
+At $\varepsilon=0$ these two products agree on the cube for every $s$.
+
+\begin{theorem}[First-order ideal moment differences are affine]
+Suppose $n\ge4$ and
+\[
+ \left.\frac{\partial}{\partial\varepsilon}
+ (F_\varepsilon(s,x)-G_\varepsilon(s,x))\right|_{\varepsilon=0}
+ =r(x)
+\]
+for every Boolean vertex $x$ and every real $s$, where the right side
+is independent of $s$. Then $r$ agrees with an affine form on the cube.
+Conversely, every affine form $r$ occurs as such a first-order difference.
+\end{theorem}
+\begin{proof}
+Put $P(s)=\prod_{j=0}^n(s+j)$ and
+\[
+ d_j=P'(-j)=(-1)^j j!(n-j)!,
+\]
+which is nonzero. Fix a Boolean vertex $x$. If $u_k(x)=j$, then
+evaluation of the first variation at $s=-j$ leaves exactly one term
+from each product, because the roots are distinct. It yields
+\[
+ r(x)=d_j\bigl(a_k(x)-b_j(x)\bigr).
+\]
+Thus $r$ agrees with an affine form on each level set $u_k=j$.
+The lemma proves the first assertion.
+
+For the converse, set $a_k=0$ for every $k$ and
+$b_j=-r/d_j$ for every $j$. These are affine forms. The first
+variation is
+\[
+ r(x)\sum_{j=0}^n\frac{1}{d_j}\prod_{\ell\ne j}(s+\ell)=r(x).
+\]
+Indeed the polynomial in $s$ given by the sum has degree at most $n$
+and takes the value one at all $n+1$ distinct points $-j$. Subtract
+one and apply the elementary root bound for polynomials.
+\end{proof}
+
+\paragraph{Precise limitation.}
+The conclusion concerns the first variation at these particular two
+factor lists. It is not asserted for arbitrary affine permutation cubes,
+for nonconstant unperturbed product differences, or for higher-order
+deformations. In particular the proof does not exclude a nonlinear
+sign construction from higher-order cancellations. Such a construction
+would require a separate argument controlling those cancellations and
+their head count.
+
+\section{Diagnostic and audit}
+
+The script \texttt{probe\_boolean\_moment\_tangent.py} independently
+encodes the linear conditions
+\[
+ d_j(a_{u^{-1}(j)}-b_j)=d_0(a_{u^{-1}(0)}-b_0)
+\]
+at every Boolean vertex. Finite-field ranks at the prime $2147483647$
+give first-variation output dimensions $2,4,6$ for $n=1,2,3$, and
+$n+1$ for $4\le n\le10$. These ranks are only diagnostic observations,
+not characteristic-zero certificates. The preceding proof supplies
+the exact real result for every $n\ge4$, including both directions.
+No computational observation is used in that proof.
+
+\end{document}

@@ -1046,5 +1046,14 @@
   "private_repository_refresh_2026_11_23_1058": {
     "command": "Explicit +refs/heads/*:refs/heads/* fetch in both existing bare mirrors",
     "result": "Both fetches completed successfully without changed branch output; no new mathematical result was imported."
+  },
+  "boolean_moment_tangent_audit": {
+    "file": "artifacts/head-compression/boolean-moment-tangent-audit.tex",
+    "status": "Complete elementary manual proof, not Lean formalized.",
+    "result": "For the explicit n+1-root affine permutation cube and n >= 4, a first-order product difference independent of the auxiliary variable is exactly an affine function on the cube. Every affine function occurs.",
+    "mechanism": "Affine restrictions on the two last-coordinate faces, on the weight-two layer, and on one four-point parallelogram force the potential quadratic terms to vanish.",
+    "limitation": "Does not address arbitrary permutation cubes, nonconstant base differences, or higher-order deformations. No universal head bound.",
+    "diagnostic": "artifacts/head-compression/diagnostics/boolean-moment-tangent.json",
+    "diagnostic_scope": "Ranks modulo 2147483647 only; not used in the real proof."
   }
 }

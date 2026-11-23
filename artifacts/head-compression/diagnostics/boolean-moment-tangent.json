@@ -1,0 +1,96 @@
+{
+  "prime": 2147483647,
+  "rows": [
+    {
+      "n": 1,
+      "variables": 8,
+      "constraints": 2,
+      "constraint_rank": 2,
+      "combined_rank": 4,
+      "tangent_output_dimension": 2,
+      "seconds": 8.317502215504646e-05
+    },
+    {
+      "n": 2,
+      "variables": 18,
+      "constraints": 8,
+      "constraint_rank": 7,
+      "combined_rank": 11,
+      "tangent_output_dimension": 4,
+      "seconds": 0.00012740795500576496
+    },
+    {
+      "n": 3,
+      "variables": 32,
+      "constraints": 24,
+      "constraint_rank": 18,
+      "combined_rank": 24,
+      "tangent_output_dimension": 6,
+      "seconds": 0.00036118412390351295
+    },
+    {
+      "n": 4,
+      "variables": 50,
+      "constraints": 64,
+      "constraint_rank": 36,
+      "combined_rank": 41,
+      "tangent_output_dimension": 5,
+      "seconds": 0.0013099780771881342
+    },
+    {
+      "n": 5,
+      "variables": 72,
+      "constraints": 160,
+      "constraint_rank": 56,
+      "combined_rank": 62,
+      "tangent_output_dimension": 6,
+      "seconds": 0.004554299172013998
+    },
+    {
+      "n": 6,
+      "variables": 98,
+      "constraints": 384,
+      "constraint_rank": 80,
+      "combined_rank": 87,
+      "tangent_output_dimension": 7,
+      "seconds": 0.015773891005665064
+    },
+    {
+      "n": 7,
+      "variables": 128,
+      "constraints": 896,
+      "constraint_rank": 108,
+      "combined_rank": 116,
+      "tangent_output_dimension": 8,
+      "seconds": 0.04277562000788748
+    },
+    {
+      "n": 8,
+      "variables": 162,
+      "constraints": 2048,
+      "constraint_rank": 140,
+      "combined_rank": 149,
+      "tangent_output_dimension": 9,
+      "seconds": 0.126254937145859
+    },
+    {
+      "n": 9,
+      "variables": 200,
+      "constraints": 4608,
+      "constraint_rank": 176,
+      "combined_rank": 186,
+      "tangent_output_dimension": 10,
+      "seconds": 0.3496792409569025
+    },
+    {
+      "n": 10,
+      "variables": 242,
+      "constraints": 10240,
+      "constraint_rank": 216,
+      "combined_rank": 227,
+      "tangent_output_dimension": 11,
+      "seconds": 0.9718963450286537
+    }
+  ],
+  "scope": "Finite-field rank diagnostic only; no characteristic-zero rank or universal construction claimed."
+}

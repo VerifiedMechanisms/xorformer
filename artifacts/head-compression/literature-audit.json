@@ -22,7 +22,7 @@
     },
     {
       "title": "Exact hyperplane covers for subsets of the hypercube",
-      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bart\u0142omiej Kielak",
+      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bartłomiej Kielak",
       "url": "https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf",
       "checked_location": "Theorem 2, Lemmas 9 and 10, and their proofs",
       "mechanism": "Hamming-neighborhood covers and a count of hyperplane intersection patterns.",
@@ -83,7 +83,8 @@
       "url": "https://arxiv.org/pdf/2504.11345",
       "checked_location": "Introduction; Section 5.5, especially Lemma 5.12, Corollary 5.13 and Definition 25 (rechecked in the HTML version).",
       "mechanism": "Intersection theory bounds the growth function of classifiers given by distinguished Zariski-open sets D(f/g)={x:f(x)g(x)!=0} over an algebraically closed field; it also bounds the size and density of identity-testing sequences.",
-      "gap": "These classifiers test nonvanishing, not the positive versus negative real sign required here. The results give upper growth bounds and identity tests, not shattering of the fixed Boolean cube or a construction with positive same-sign-slope affine denominators."
+      "gap": "These classifiers test nonvanishing, not the positive versus negative real sign required here. The results give upper growth bounds and identity tests, not shattering of the fixed Boolean cube or a construction with positive same-sign-slope affine denominators.",
+      "rechecked_2026_11_23": "Re-read the stated model distinctions and principal bounds; no stronger transfer found."
     },
     {
       "title": "Network size and weights size for memorization with two-layers neural networks",
@@ -135,7 +136,7 @@
     },
     {
       "title": "Extremal properties of polynomial threshold functions",
-      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
+      "authors": "Ryan O’Donnell and Rocco A. Servedio",
       "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
       "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
       "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
@@ -441,7 +442,7 @@
       "authors": "Kordag Mehmet Kilic, Jin Sima, and Jehoshua Bruck",
       "url": "https://www.paradise.caltech.edu/papers/etr153.pdf",
       "checked_location": "Theorem 1, Lemma 2, Section IV, and the decoding appendix",
-      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel\u2019s lemma bounds the achievable rate.",
+      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel’s lemma bounds the achievable rate.",
       "application": "This supplies a concrete number-theoretic and coding-theoretic compression mechanism for integer equality tests. With m_0=n_0=1 the rate is k/2+1. It was checked as a possible address encoder for the head problem.",
       "gap": "The decoder explicitly uses reduction modulo two and recursive arithmetic. The circuit consequences concern EQUALITY and COMPARISON with extra threshold/equality gates, not arbitrary Boolean tables in a flat sum of admissible affine fractions. No head compiler with the requested cost is supplied."
     },
@@ -490,7 +491,7 @@
     },
     {
       "title": "How many sorted projections determine any n points in k dimensions?",
-      "authors": "Christopher Gorham Lester and Raymond Hau S\u00f8rensen",
+      "authors": "Christopher Gorham Lester and Raymond Hau Sørensen",
       "url": "https://arxiv.org/html/2611.06470v3",
       "checked_location": "Theorems 1.1 and 1.4; Sections 1.2-1.4, version 3 dated 19 November 2026",
       "mechanism": "Generic directions separate finite multisets through coloured-matching graph rigidity, with O(k log n log log n) directions.",
@@ -503,7 +504,8 @@
       "url": "https://eccc.weizmann.ac.il/report/2026/311/download/",
       "checked_location": "Theorems 1.5, 1.7, 6.1 and 6.2; Section 6.1 proof",
       "mechanism": "Strict semialgebraic feasibility yields architecture-preserving parameter bounds after exponentiating sigmoid parameters. Other constructions use additional depth.",
-      "gap": "The sigmoid denominator is 1+B times a product of coordinate factors, not an affine input form. Parameter bounds assume an existing representation and do not construct every truth table with the requested number of admissible heads."
+      "gap": "The sigmoid denominator is 1+B times a product of coordinate factors, not an affine input form. Parameter bounds assume an existing representation and do not construct every truth table with the requested number of admissible heads.",
+      "rechecked_2026_11_23": "Re-read the stated model distinctions and principal bounds; no stronger transfer found."
     },
     {
       "title": "Nondegenerate hyperplane covers of the hypercube",
@@ -907,6 +909,14 @@
       "checked_location": "Definition 2.9, Theorem 2.10 and its proof including Lemma 2.11, Proposition 2.16 and proof, and Theorem 3.4 and proof. Other existence and optimality claims in the 56-page paper were not independently audited.",
       "mechanism": "Pigeonhole arguments for character sums in number-field lattices construct disjoint equal-moment blocks. A group-action construction removes multiplicities from rational designs; a related construction represents ring elements as sums of distinct units.",
       "gap": "The design replacement has cardinality m*|A1|, where m is the original sum of integer weights, and does not reduce the number of terms. The number-field units and multiplicative group actions are not automatically admissible affine fractions of the original input. No target-dependent sign construction with O(2^n/n^2) heads or quantitative transfer to that count is established."
+    },
+    {
+      "title": "On the Computation of Boolean Functions by Analog Circuits of Bounded Fan-In",
+      "authors": "Gyorgy Turan and Farrokh Vatan",
+      "url": "https://homepages.math.uic.edu/~gyt/papers/Analog-JCSS.pdf",
+      "checked_location": "Theorem 4.1, Lemma 4.2 and their proofs on printed page 203; circuit model in Section 2.",
+      "mechanism": "A quadratic map with two inverse branches encodes an arbitrary bit string in one real parameter. Iteration of that map decodes the string; addressing and selection give O(2^(n/2)) arithmetic gates.",
+      "gap": "The decoder uses sequential nonlinear composition and products of intermediate outputs. Those operations are absent from a single affine-fraction sum. The construction does not bound head count."
     }
   ]
 }

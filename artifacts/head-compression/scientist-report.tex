@@ -51,6 +51,14 @@ constructions. Numerical failures and solver timeouts are never used
 as lower bounds. The later pruning and denominator-coalescence outcomes
 are recorded separately in the final continuation diagnostics.
 
+\paragraph{Latest analytical audit.}
+The elementary proof in \texttt{boolean-moment-tangent-audit.tex}
+shows that for the explicit $(n+1)$-root Boolean permutation construction,
+first-order product differences independent of the auxiliary variable
+are precisely affine functions when $n\ge4$. This is a manual theorem
+about that construction, not an additional Lean declaration or a
+universal head upper bound. Higher-order deformations are outside its scope.
+
 \paragraph{Definitions and assumptions.}
 The original attention model, head resource, and target statement are
 unchanged. Auxiliary definitions include shared-affine and confluent
@@ -63,7 +71,7 @@ predicate is asserted to hold universally. The manuscript file in
 \texttt{audit-inventory.json} maps declarations, scope restrictions,
 and validation logs. \texttt{mechanism-audit.tex} contains the manual
 arguments, with separate notes for the full-box and permutation-orbit
-parity obstructions. \texttt{literature-audit.json} records $110$
+parity obstructions. \texttt{literature-audit.json} records $111$
 sources, the passages inspected, and the unresolved transfer steps.
 The remaining open deliverable is exactly the universal affirmative
 bound stated at the start of this report.
