@@ -108,6 +108,60 @@ statement: its factors would be products of functions of the two
 blocks, rather than affine numerators divided by affine denominators.
 The rankings above supply the missing local transfer explicitly.
 
+\begin{proposition}[Three-head cancellation at the lower local layers]
+For $p>0$ and $u,v\geq0$, define
+\[
+ J_p(u,v)=\frac{u-v}{p+u+v}-\frac{u}{p+u}+\frac{v}{p+v}.
+\]
+Then
+\[
+ J_p(u,v)=\frac{(u-v)uv}{(p+u+v)(p+u)(p+v)}.
+\]
+It vanishes when $u=0$ or $v=0$. If $1\leq p\leq2$,
+$u=R^a$, $v=R^b$, $a,b\geq1$ are distinct integers, and $R\geq2$,
+then
+$|J_p(u,v)-\operatorname{sgn}(a-b)|\leq7/R$.
+\end{proposition}
+\begin{proof}
+Subtracting the last two displayed fractions from the first uses
+\[
+ \frac{u}{p+u}-\frac{v}{p+v}
+ =\frac{p(u-v)}{(p+u)(p+v)},\qquad
+ (p+u)(p+v)-p(p+u+v)=uv,
+\]
+which proves the identity and the vanishing. By symmetry take $a>b$.
+For $Q=(u-v)/(p+u+v)$ one has $0<Q<1$ and
+$1-Q=(p+2v)/(p+u+v)\leq3/R$, since $a\geq b+1\geq2$.
+Also, with $M=uv/((p+u)(p+v))$,
+\[
+ 0<M<1,\qquad
+ 1-M\leq\frac{p}{u}+\frac{p}{v}\leq\frac4R.
+\]
+The identity gives $J_p=QM$, and
+$1-QM\leq(1-Q)+(1-M)\leq7/R$.
+\end{proof}
+
+This is an actual three-ratio construction on the whole cube. For
+example take $u,v$ to be nonnegative linear combinations of disjoint
+blocks of $y_i=1-x_i$, and put
+$p(x)=1+\varepsilon\sum_i y_i$ with $0<\varepsilon\leq1/n$.
+All three denominators then have strictly negative $x$-slopes,
+are everywhere positive, and satisfy $1\leq p\leq2$.
+Summing these expressions over rankings retains a strict majority
+margin if $R>14H$. It also vanishes exactly when either local block
+has no deletions. This removes the center and first-deletion layers
+without assuming a numerical indicator gate.
+
+\paragraph{Adversarial check on triangular gluing.}
+One might next try to process cells by cardinality, preserving already
+fixed higher layers by localizing this expression to the downset of
+its center. The direct localization denominator adds a large term
+$T\sum_{j\notin S}x_j$. Its slopes are positive outside $S$ but
+negative in the active deletion coordinates inside $S$. Such a
+denominator is not an admissible atom, even when it is positive on
+the whole cube. This explicit proposed triangular compiler therefore
+fails. No constant-cost admissible replacement of that step is claimed.
+
 \paragraph{Why this is not a full-cube bound.}
 The promised set has only $rs$ points among $2^{r+s}$ cube vertices.
 All the other inputs have defined scores but unconstrained signs.
