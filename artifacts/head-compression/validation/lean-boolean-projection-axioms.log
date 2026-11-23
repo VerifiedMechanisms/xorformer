@@ -1,0 +1,4 @@
+'HeadComplexity.booleanProjection_vanishing_iff_linearCombination' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.booleanProjection_multilinear_ext' depends on axioms: [propext, Classical.choice, Quot.sound]

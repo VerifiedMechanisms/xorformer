@@ -918,6 +918,30 @@
       "checked_location": "Theorem 4.1, Lemma 4.2 and their proofs on printed page 203; circuit model in Section 2.",
       "mechanism": "A quadratic map with two inverse branches encodes an arbitrary bit string in one real parameter. Iteration of that map decodes the string; addressing and selection give O(2^(n/2)) arithmetic gates.",
       "gap": "The decoder uses sequential nonlinear composition and products of intermediate outputs. Those operations are absent from a single affine-fraction sum. The construction does not bound head count."
+    },
+    {
+      "title": "The multidimensional truncated moment problem: Caratheodory numbers",
+      "authors": "Philipp J. di Dio and Konrad Schmudgen",
+      "url": "https://arxiv.org/pdf/1703.01494",
+      "checked_location": "Definitions 4 and 18, Proposition 23, Theorem 25 and its proof, and Remark 28, arXiv v2.",
+      "mechanism": "The signed Caratheodory number is at most twice the least atom count at which the moment-map derivative has full rank. The proof uses an open image at a regular point and differences of nearby moment vectors.",
+      "gap": "This represents every numerical moment vector. The full-rank requirement already needs at least m/(d+1) atoms for m functions on a d-dimensional domain. It gives no additional logarithmic saving specific to strict signs, and does not bypass the exact-table dimension obstruction."
+    },
+    {
+      "title": "Hadamard products of linear spaces",
+      "authors": "Cristiano Bocci, Enrico Carlini, and Joe Kileel",
+      "url": "https://web.ma.utexas.edu/users/jkileel/HadamardPublished.pdf",
+      "checked_location": "Complex-field convention in Section 2, Theorem 6.8 and proof, Remark 6.9, and Corollary 6.10 and proof, printed pages 612-614.",
+      "mechanism": "Tropical intersection and identifiability calculate dimension and degree of Hadamard products of generic linear spaces and reciprocal linear spaces in sufficiently high ambient dimension.",
+      "gap": "The Boolean affine-evaluation space is special, not generic. Componentwise products are not head sums. Complex dimension and degree alone do not ensure a real point in each strict orthant or positivity and common orientation of denominator slopes."
+    },
+    {
+      "title": "Almost Linear VC Dimension Bounds for Piecewise Polynomial Networks",
+      "authors": "Peter L. Bartlett, Vitaly Maiorov, and Ron Meir",
+      "url": "https://papers.nips.cc/paper_files/paper/1998/file/bc7316929fe1545bf0b98d114ee3ecb8-Paper.pdf",
+      "checked_location": "Introduction on printed page 191 and Theorem 3.1 with proof on pages 195-196.",
+      "mechanism": "Packed real parameters, sequential threshold bit extraction, and address selection give large VC dimension with increasing depth. The introduction separately distinguishes real-input two-layer results from binary-input three-layer results.",
+      "gap": "The decoder is a sequence of nonlinear layers. A shatterable point set is not the prescribed complete Boolean cube. Neither the decoder nor the activation transfer is a one-layer sum of admissible affine fractions."
     }
   ]
 }
