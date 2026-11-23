@@ -57,6 +57,10 @@
     "formalization/HeadComplexity/Results/AxisZeroCover.lean": "f7e0224a83509a1db163d1db8ed16988b721038c06ebe584d186de0056d9275b",
     "formalization/HeadComplexity/Results/AxisZeroFaces.lean": "e77eee5d5fa013dc82fd41f817b5b1172be8603f8dac284865ba3517df9c5077",
     "formalization/HeadComplexity/Results/ReverseAxisCompiler.lean": "b7d64cef2fa83b4f2c3d02f417eb1ca09867f5ffabd6759eae4c56dd153057b4",
-    "artifacts/head-compression/continuation-branch-audit.tex": "207ea26f23f2db15c74a2efe994c9ee3893206e1cddc1d371a8f6af64a098f8d"
+    "artifacts/head-compression/continuation-branch-audit.tex": "207ea26f23f2db15c74a2efe994c9ee3893206e1cddc1d371a8f6af64a098f8d",
+    "artifacts/head-compression/continuation-compact-decoder-audit.tex": "9531c3d87cc7bb99207318d24b11eed0387527274d4d1eba9904afbf5b7de90a"
+  },
+  "new_written_audits": {
+    "compact_decoder": "Exact axis normal form, common-Mobius whole-cube counterexample, and signed-residue erasure obstruction; no asymptotic conclusion"
   }
 }
