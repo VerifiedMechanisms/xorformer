@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{theorem}{Theorem}
+\title{Independent Bits in Butterfly Rectangle Counts}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a complete elementary written proof about permutation matrices,
+checked exhaustively for the two- and three-layer examples. It is not a
+HeadComplexity compiler: the required rectangle readouts have not been
+implemented by admissible affine fractions with a saving. In particular,
+this note does not prove either accepted asymptotic target. No original
+model definition is changed. The theorem is not Lean checked.
+
+\section{The independent rectangle system}
+Let $d\geq1$, put $H=2^d$, and identify the wires $\{0,\ldots,H-1\}$
+with bit strings $(x_0,\ldots,x_{d-1})$, where $x_0$ is the least
+significant bit. For each $k=0,\ldots,d-1$, the $k$th layer contains
+one binary switch for each pair
+\[
+ s\in\{0,1\}^k,\qquad g\in\{0,1\}^{d-k-1}.
+\]
+The switch indexed by $e=(k,s,g)$ either fixes or exchanges the two
+wires $(s,0,g)$ and $(s,1,g)$. Different switches in a layer act on
+disjoint pairs. Apply layers in increasing order of $k$. Given their
+$dH/2$ binary settings $\eta_e$, their composition is a permutation
+$\pi_\eta$ of the $H$ wires.
+
+For each switch define sets of input and output labels
+\[
+ A_e=\{x:x_k=0,\ (x_{k+1},\ldots,x_{d-1})=g\},
+ \qquad
+ B_e=\{y:y_k=1,\ (y_0,\ldots,y_{k-1})=s\}.
+\]
+Both sets depend only on the switch index, not on any switch setting.
+Their sizes are $2^k$ and $2^{d-k-1}$, respectively.
+
+\begin{theorem}\label{thm:decoder}
+For every switch setting $\eta$ and every switch $e$,
+\[
+ \bigl|\pi_\eta(A_e)\cap B_e\bigr|=\eta_e.
+ \tag{1}\label{eq:bit}
+\]
+Consequently the $dH/2$ fixed rank-one rectangle functionals
+\[
+ L_e(P)=\sum_{x\in A_e}\sum_{y\in B_e}P_{xy}-\tfrac12
+\]
+on permutation matrices jointly realize all $2^{dH/2}$ strict sign
+tables. Moreover, all $2^{dH/2}$ butterfly switch settings yield
+different permutations.
+\end{theorem}
+\begin{proof}
+Fix $e=(k,s,g)$. Every earlier layer changes only a bit with index
+less than $k$. Hence it preserves the input set $A_e$, and its action
+on that set is a bijection. Just before layer $k$, exactly one of the
+inputs from $A_e$ occupies the wire $(s,0,g)$, and none occupies
+$(s,1,g)$. More generally, for each lower tuple $s'$ exactly one
+input from $A_e$ occupies $(s',0,g)$.
+
+Layer $k$ keeps lower bits unchanged. Among the inputs from $A_e$,
+the unique one with lower tuple $s$ therefore has its bit $k$ set
+to one precisely when switch $e$ is exchanged, that is, precisely
+when $\eta_e=1$. All later layers change only bits with index greater
+than $k$, so preserve membership in $B_e$. This proves
+\eqref{eq:bit}.
+
+The rectangle coefficient matrix is the outer product
+$\mathbf1_{A_e}\mathbf1_{B_e}^{\mathsf T}$ and thus has rank one.
+Equation \eqref{eq:bit} gives $L_e(P_{\pi_\eta})=\eta_e-1/2$.
+Every binary switch table is allowed independently, proving the
+strict sign assertion. Equation \eqref{eq:bit} also recovers every
+switch setting from the resulting permutation, proving injectivity.
+\end{proof}
+
+\paragraph{Exact verification.}
+The companion script \texttt{butterfly-rectangle-decoder-check.py}
+checks every switch setting for $d=1,2,3$, namely $2$, $16$, and
+$4096$ settings. It checks every rectangle equality and permutation
+injectivity. It also checks $1000$ deterministic pseudorandom
+settings for $d=4$; that last test is not exhaustive. Its JSON
+output is stored beside the script. These checks are independent
+integer evaluations of the statement, not a substitute for the proof.
+
+\section{The missing analytic implementation}
+The theorem is stronger than counting permutations: it specifies
+independent binary coordinates and explicit linear readouts. It also
+differs from reading pairwise comparisons of permutation values.
+Nevertheless, a single reciprocal matching perturbation typically
+gives a readout of the form
+\[
+ \sum_x c_x V_e(\pi(x))K_e(\xi_x)
+       -\text{a label-independent anchor term},
+ \qquad K_e(\xi)=(t_e-\xi)^{-2},
+\]
+with all $t_e-\xi_x>0$ (and additional full-cube admissibility
+conditions). A freely chosen color profile $V_e$ could supply
+$\mathbf1_{B_e}$, but the remaining factor
+$\mathbf1_{A_e}(x)$ is not a freely chosen row-dependent residue.
+It would have to be provided by the kernel, a proved cancellation,
+or another construction. Transposing the permutation exchanges
+these two indicator roles.
+
+The sets $A_e$ are dyadic intervals in ordinary binary order. The
+sets $B_e$ are dyadic intervals after reversing bit order. Neither
+family consists only of nested final intervals in a single ordering.
+Exterior reciprocal kernels are not arbitrary interval indicators.
+No simultaneous implementation of these indicators with sublinear
+overhead has been proved here. Interpolating each indicator
+separately with $H$ poles loses the proposed saving, and allowing
+interior poles without checking denominator positivity changes the
+model. The independent rectangle theorem supplies a concrete decoder
+target; it does not close that analytic gap.
+
+\end{document}

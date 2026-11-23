@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "d": 1,
+      "H": 2,
+      "switches": 1,
+      "settings_checked": 2,
+      "exhaustive": true,
+      "all_rectangle_counts_correct": true,
+      "injectivity_checked": true
+    },
+    {
+      "d": 2,
+      "H": 4,
+      "switches": 4,
+      "settings_checked": 16,
+      "exhaustive": true,
+      "all_rectangle_counts_correct": true,
+      "injectivity_checked": true
+    },
+    {
+      "d": 3,
+      "H": 8,
+      "switches": 12,
+      "settings_checked": 4096,
+      "exhaustive": true,
+      "all_rectangle_counts_correct": true,
+      "injectivity_checked": true
+    },
+    {
+      "d": 4,
+      "H": 16,
+      "switches": 32,
+      "settings_checked": 1000,
+      "exhaustive": false,
+      "all_rectangle_counts_correct": true,
+      "injectivity_checked": false
+    }
+  ]
+}
