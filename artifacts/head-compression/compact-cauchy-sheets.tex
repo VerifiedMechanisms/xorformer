@@ -127,6 +127,35 @@ baseline, both coefficients, both poles, and the bias to vary from
 query to query. It is a statement about the exact permutation sheets;
 it does not control arbitrary neighborhoods of them.
 
+There is also a concrete obstruction for queries which alter every
+slot. Suppose $H\ge3$, $d_h>\varepsilon$, and
+\[
+ Q(b)=c+\sum_{h=1}^H\frac{\alpha_h+\beta_h b_h}{d_h-b_h}.
+\]
+Then $Q(\lambda_{\pi(1)},\ldots,\lambda_{\pi(H)})$ cannot have
+strict sign $\operatorname{sgn}(\pi)$ for every permutation $\pi$.
+Indeed, clearing the positive product of denominators gives the
+multi-affine polynomial
+\[
+ P(b)=c\prod_h(d_h-b_h)
+       +\sum_h(\alpha_h+\beta_h b_h)\prod_{k\ne h}(d_k-b_k).
+\]
+Every squarefree monomial $\prod_{h\in T}b_h$ has zero alternating
+sum on the permutation orbit. To see this, since $H\ge3$, either $T$
+or its complement contains two distinct positions. Swapping those
+positions preserves the monomial's value and reverses the permutation
+sign, pairing all summands with their negatives. Linearity therefore
+gives
+\[
+ \sum_{\pi\in\mathfrak S_H}\operatorname{sgn}(\pi)
+ P(\lambda_{\pi(1)},\ldots,\lambda_{\pi(H)})=0.
+\]
+The proposed strict signs would make every summand positive, a
+contradiction. Thus even fully asymmetric queries cannot read an
+arbitrary labeling of the factorial code. This particular obstruction
+does not bound its shattering dimension, since a shattering construction
+need not use permutation parity as one of its readable bits.
+
 The open step for this local route is to construct sufficiently many
 asymmetric reciprocal queries whose strict sign vectors on, or near,
 these sheets cover all binary words of length $cH\log H$ for some
