@@ -1,0 +1,13 @@
+{
+  "run": "Reverse Orientation Head Compression",
+  "resumed_utc": "2026-11-23 18:21:46 UTC",
+  "minimum_research_end_utc": "2026-11-23 20:21:46 UTC",
+  "target": "Unconditional worstCaseHeadComplexity n = O(2^n/(n log log n)); natural logarithms; unchanged model",
+  "status": "Active two-hour continuation. Target remains unproved.",
+  "definitions_changed": false,
+  "parallel_targets": [
+    "Scalable joint reverse-orientation compiler",
+    "Concrete local-to-global transfer and worst-case budget formalization",
+    "Materially different global compression mechanism"
+  ]
+}
