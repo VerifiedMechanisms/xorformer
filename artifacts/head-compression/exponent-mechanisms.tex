@@ -623,6 +623,130 @@ paired-denominator argument, not a theorem excluding every possible
 cube-specific counting improvement. No such improvement was proved
 in this run.
 
+\section{A grid dictionary with uniform orthant matchings}
+
+The following construction improves the coding rate of a specific
+local reciprocal-memory mechanism. It does not solve its global
+assembly problem. All dimensions and all denominator signs are
+specified to distinguish these two issues.
+
+\begin{proposition}[Grid routing]\label{prop:grid-routing}
+Let $k\geq1$, $q\geq2k$ be integers, let $V=\{1,\ldots,q\}^k$,
+and put $K=q^k$ and $m=\lfloor K/8\rfloor$. Assume $m\geq1$.
+For every sequence $\sigma_0,\ldots,\sigma_{m-1}\in\{-1,1\}^k$
+there are pairwise disjoint ordered pairs $(a_s,b_s)$ of vertices
+of $V$ with $b_s-a_s=\sigma_s$.
+\end{proposition}
+
+\begin{proof}
+Partition $V$ into maximal chains whose successive vertices differ
+by $(1,\ldots,1)$. Each chain starts at a vertex with at least one
+coordinate equal to $1$, so the number of chains is
+$K-(q-1)^k\leq kq^{k-1}\leq K/2$.
+Pair consecutive vertices within each chain. There is at most one
+unmatched vertex per chain, and hence at least $K/4$ disjoint pairs.
+For any sign vector $\sigma$, reflect coordinate $j$ by
+$v_j\mapsto q+1-v_j$ when $\sigma_j=-1$. This preserves $V$ and
+sends the oriented differences of these pairs to $\sigma$.
+We therefore have a matching of at least $K/4\geq2m$ pairs for each
+prescribed sign vector. Choose the pairs greedily. Before step $s$,
+exactly $2s$ vertices have been used; they destroy at most $2s$
+edges of the matching for $\sigma_s$. Since $s<m$, an edge remains.
+\end{proof}
+
+\begin{theorem}[Three one-hot blocks]\label{thm:grid-compiler}
+With $k,q,K,m$ as in Proposition~\ref{prop:grid-routing}, let $d\geq1$.
+Every labeling of
+\[
+ \{(e_p,e_t,e_j):0\leq p<m,\ 1\leq t\leq d,\ 1\leq j\leq k\}
+ \subseteq\{0,1\}^{m+d+k}
+\]
+has a strict sign representation by $2K<32m$ affine ratios.
+Every denominator has a strictly positive constant and strictly
+positive coefficients on every input coordinate, so is admissible
+on the entire Boolean cube. Signs away from the displayed promised
+domain are not specified.
+\end{theorem}
+
+\begin{proof}
+Enumerate $V$ as $v_1,\ldots,v_K$. For each memory index $t$,
+use Proposition~\ref{prop:grid-routing} to route the $m$ target
+words $\sigma_{p,t}\in\{-1,1\}^k$. For the two dictionary vertices
+of its $p$th pair, assign pole $b_{h,t}=R^p$ and amplitudes
+$\alpha_{h,t}=-1,+1$, respectively. No dictionary vertex receives
+two assignments at the same $t$. Unused vertices receive pole $1$
+and amplitude $0$. Set $R=32$, $\delta=1/16$, and define affine forms
+on the three coordinate blocks $(y,x,z)$ by
+\[
+ P(y)=\sum_{p=0}^{m-1}R^p y_p,\quad
+ B_h(x)=\sum_{t=1}^d b_{h,t}x_t,\quad
+ A_h(x)=\sum_{t=1}^d\alpha_{h,t}b_{h,t}x_t,\quad
+ J_h(z)=\sum_{j=1}^k v_{h,j}z_j,
+\]
+\[
+ D_h(y,x,z)=P(y)+B_h(x)+
+ \delta\left(1+\sum_p y_p+\sum_t x_t+\sum_jz_j\right).
+\]
+For $\varepsilon>0$ use the two ratios
+\[
+ \frac{A_h/\varepsilon}{D_h}
+ -\frac{A_h/\varepsilon}{D_h+\varepsilon J_h}.
+\]
+Their sum is $A_hJ_h/[D_h(D_h+\varepsilon J_h)]$, which converges
+to $A_hJ_h/D_h^2$ as $\varepsilon\downarrow0$. Both denominators
+are strictly positive on the full cube and have strictly positive
+slopes, as claimed. At the promised input $(e_p,e_t,e_j)$,
+summing the limiting scores of each routed pair gives exactly
+\[
+ F_0(e_p,e_t,e_j)=
+ \sum_{s=0}^{m-1}\sigma_{s,t,j}
+       \frac{R^s}{(R^p+R^s+4\delta)^2}.
+\]
+The summand with $s=p$ has absolute value greater than
+$1/(9R^p)$, since $R^p\geq1$ and $4\delta=1/4$.
+The sum of absolute values for $s<p$ is less than
+$1/[(R-1)R^p]$, by replacing its denominator by $R^{2p}$
+and summing a geometric series. The same bound holds for $s>p$,
+by replacing its denominator by $R^{2s}$. Consequently
+\[
+ \sigma_{p,t,j}F_0(e_p,e_t,e_j)
+ >\frac1{R^p}\left(\frac19-\frac2{31}\right)
+ =\frac{13}{279R^p}>0.
+\]
+There are only finitely many promised inputs. Continuity at
+$\varepsilon=0$ therefore supplies a single positive $\varepsilon$
+for which all these strict inequalities persist. The score uses
+two ratios for each of the $K$ dictionary vertices. Finally
+$K<8m+8\leq16m$, proving $2K<32m$.
+\end{proof}
+
+\paragraph{Coding rate and exact remaining obstruction.}
+Taking $q=2k$ yields $K=(2k)^k$, $m=\lfloor K/8\rfloor$, and
+$k=\Theta(\log m/\log\log m)$. The construction stores $mdk$
+independent signs using $O(m)$ heads and $m+d+k$ input coordinates.
+It avoids the previously audited impossibility of constant-density
+orthant matchings with only $O(2^k)$ dictionary vertices: its dictionary
+has $(2k)^k$ vertices instead. The address block uses $m$ one-hot
+coordinates, the memory block uses $d$ one-hot coordinates, and the
+output-bit block uses $k$ one-hot coordinates. Replacing the address
+block by $\log_2m$ binary coordinates would require the geometric
+address function $R^p$ to be affine on those coordinates; it is not,
+so no such replacement is asserted.
+
+Three directed-star covers could supply $O(2^n/(mdk))$ promised
+cells in corresponding blocks, suggesting the numerical cost
+$O(2^n/(dk))$. This is only accounting, not a bound on $W(n)$.
+The compiler has positive slopes in its one-hot variables. On
+downward-star cells these become negative slopes in the original
+cube coordinates, whereas Theorem~\ref{thm:glue} needs positive
+original slopes for localization. On upward stars the converse
+localization problem appears. The score also has no proved
+simultaneous axis-zero structure. Thus there is no valid global
+transfer at present. This route is recorded as blocked at that
+transfer, and its local shattering statement is not one of the
+requested asymptotic outcomes. All results in this section are
+written proofs only.
+
 \section{Formal verification status}
 
 The new file
