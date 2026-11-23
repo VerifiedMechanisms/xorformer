@@ -1260,4 +1260,84 @@ required theorem. The cited construction supplies no such
 reciprocal approximation bound. Neither step has been established
 here.
 
+\section{Asymmetric queries on compact Cauchy permutation sheets}
+
+The companion note \texttt{compact-cauchy-sheets.tex} gives $H!$
+regular common zeros of an admissible reciprocal system, indexed by
+permutations of distinct pole parameters
+$\lambda_1,\ldots,\lambda_H$. Those zeros lie in an arbitrarily
+small parameter box. Consequently an argument based only on a small
+analytic neighborhood does not exclude many parameter sheets. The
+remaining question is whether admissible asymmetric queries can read
+enough independent bits of the permutation. The following exact
+identities expose a possible route and its outstanding requirement.
+
+\begin{proposition}[Conditional assignment means and variance]
+\label{prop:permutation-average}
+Let $H\ge3$, let $\pi$ be a uniformly random permutation of
+$\{1,\ldots,H\}$, and let
+\[
+ Q(\pi)=c+\sum_{h=1}^H\phi_h(\lambda_{\pi(h)}),
+\]
+where the functions $\phi_h$ are arbitrary on the displayed finite
+set. Fix a slot $g$. There is a constant $C$, independent of $j$,
+such that
+\[
+ \mathbb E[Q\mid\pi(g)=j]
+ =C+\phi_g(\lambda_j)
+       -\frac1{H-1}\sum_{h\ne g}\phi_h(\lambda_j).
+\]
+For a fixed $j$, put $q=H-1$ and form the $q$ by $q$ matrix
+$M_{h\ell}=\phi_h(\lambda_\ell)$ using $h\ne g$ and
+$\ell\ne j$. Let $\widehat M$ be obtained by subtracting the row
+mean and the column mean from each entry and adding the grand mean.
+Then
+\[
+ \operatorname{Var}(Q\mid\pi(g)=j)
+ =\frac1{q-1}\sum_{h\ne g,\,\ell\ne j}
+       \widehat M_{h\ell}^{,2}.
+\]
+In particular this conditional variance vanishes exactly when the
+restricted matrix has the form $M_{h\ell}=a_h+b_\ell$.
+\end{proposition}
+\begin{proof}
+Conditional on $\pi(g)=j$, each remaining slot receives each of the
+remaining values with probability $1/(H-1)$. Summing these means
+gives the first assertion with
+\[
+ C=c+\frac1{H-1}\sum_{h\ne g}\sum_{\ell=1}^H
+             \phi_h(\lambda_\ell).
+\]
+Subtracting row and column means changes an assignment sum only by
+a constant. Thus its variance is that of
+$U=\sum_h\widehat M_{h,\pi(h)}$. All row and column sums of
+$\widehat M$ are zero, so $\mathbb E U=0$. A specified remaining
+entry is used with probability $1/q$, and two entries in distinct
+rows and columns are used together with probability $1/[q(q-1)]$.
+Write $T=\sum_{h,\ell}\widehat M_{h\ell}^2$. The zero row and
+column sums give
+\[
+ \sum_{h\ne h'}\sum_{\ell\ne\ell'}
+       \widehat M_{h\ell}\widehat M_{h'\ell'}=T.
+\]
+Therefore
+$\mathbb E U^2=T/q+T/[q(q-1)]=T/(q-1)$.
+Finally $T=0$ is equivalent to $\widehat M=0$, which is exactly
+the stated row-plus-column form.
+\end{proof}
+
+For reciprocal queries, each $\phi_h$ may be a one-pole affine
+ratio. The conditional mean is then a combination with as many as
+$H$ poles, so it need not inherit the two-zero restriction of a
+single modified-slot query. This distinguishes the idea from the
+already excluded one-slot decoder. However, a conditional mean
+with a desired sign does not give one permutation satisfying all
+the desired query signs. The displayed variance is the exact
+fluctuation that such an argument must control. No assignment
+discrepancy estimate or simultaneous strict-sign construction is
+established here. Nor does the count $H!$ alone assert that any
+$\Omega(H\log H)$ fixed queries are shattered. This remains a
+specific unresolved route, rather than a proved memory compiler or
+a bound on worst-case head complexity.
+
 \end{document}
