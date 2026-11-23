@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Full Regular Reciprocal Sheets with Independent Row Biases}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a complete written construction of regular parameter sheets.
+It repairs the one-dimensional degeneracy of symmetric pole-and-residue
+queries with a shared output bias. It does not supply a superlinear
+sign decoder, an axis-zero compiler with a saving, or a new global
+head-complexity bound. No model definition is changed.
+
+\begin{theorem}
+Let $H\geq1$ and $0<\varepsilon<1/4$. Choose distinct
+$\lambda_1,\ldots,\lambda_H\in(0,\varepsilon)$, arbitrary real
+$\mu_1,\ldots,\mu_H$, and distinct
+$d_1,\ldots,d_H\in(1-\varepsilon,1)$. Put
+\[
+ R_i=\sum_{j=1}^H\frac{\mu_j}{d_i-\lambda_j},\qquad
+ S_i=\sum_{j=1}^H\frac1{d_i-\lambda_j}.
+\]
+For parameters $(u,a)\in(0,\varepsilon)^H\times\mathbb R^H$, define
+\[
+ F_i^0(u,a)=\sum_{h=1}^H\frac{a_h}{d_i-u_h}-R_i,
+ \qquad
+ F_i^1(u,a)=\sum_{h=1}^H\frac{1+a_h}{d_i-u_h}-(R_i+S_i).
+\]
+These $2H$ equations have at least $H!$ distinct regular common zeros,
+namely
+\[
+ u_h=\lambda_{\pi(h)},\qquad a_h=\mu_{\pi(h)}
+ \quad (\pi\in\mathfrak S_H).
+\]
+The full Jacobian determinant at every such zero equals
+$(-1)^H\det(C)\det(C\circ C)\neq0$, where
+$C_{ij}=1/(d_i-\lambda_j)$ and $\circ$ denotes entrywise product.
+\end{theorem}
+\begin{proof}
+The common-zero assertion follows from permutation invariance of the
+sums. In the row order $(F_1^0,\ldots,F_H^0,F_1^1,\ldots,F_H^1)$
+and column order $(u_1,\ldots,u_H,a_1,\ldots,a_H)$, subtract the
+first $H$ Jacobian rows from their corresponding last $H$ rows.
+The resulting block matrix at the sheet indexed by $\pi$ is
+\[
+ \begin{pmatrix}M_\pi&C_\pi\\D_\pi&0\end{pmatrix},\qquad
+ (M_\pi)_{ih}=\frac{\mu_{\pi(h)}}{(d_i-\lambda_{\pi(h)})^2},
+ \quad (C_\pi)_{ih}=\frac1{d_i-\lambda_{\pi(h)}},
+ \quad (D_\pi)_{ih}=\frac1{(d_i-\lambda_{\pi(h)})^2}.
+\]
+Exchanging the two groups of $H$ columns gives a block upper triangular
+matrix. Thus its original determinant is
+$(-1)^{H^2}\det(C_\pi)\det(D_\pi)$.
+The two column-permutation signs cancel, and $H^2$ and $H$ have the
+same parity. Cauchy's determinant formula gives $\det(C)\neq0$.
+Borchardt's identity gives
+$\det(C\circ C)=\det(C)\operatorname{perm}(C)\neq0$, since every
+entry of $C$ is positive. For a primary proof of this identity see
+D.~Singer, \emph{A Bijective Proof of Borchardt's Identity},
+Electronic Journal of Combinatorics 11 (2004), Theorem~1.1,
+\url{https://www.combinatorics.org/ojs/index.php/eljc/article/download/v11i1r48/pdf/}.
+This proves regularity. The zeros are distinct because the pole values
+$\lambda_j$ are distinct. Notice that the residues $\mu_j$ need not
+be distinct; taking them all zero is permitted.
+\end{proof}
+
+\paragraph{Realization by original admissible heads on the grid.}
+Fix a positive number of columns $s$ and choose
+$0<\varepsilon<1/[4(2H+s)]$. Index the $2H$ row coordinates by
+$(i,t)$ with $1\leq i\leq H$ and $t\in\{0,1\}$.
+Choose arbitrary column parameter vectors with $0<u_{hj}<\varepsilon$.
+For $h=1,\ldots,H$ set
+\[
+ N_h(z,w)=\sum_{i=1}^H z_{i,1}+\sum_{j=1}^s a_{hj}w_j,
+ \qquad
+ B_h(z,w)=1-\sum_{i=1}^H\sum_{t=0}^1(1-d_i)z_{i,t}
+                 -\sum_{j=1}^s u_{hj}w_j.
+\]
+Every denominator slope is strictly negative, and every full-cube
+value satisfies $B_h>1-(2H+s)\varepsilon>3/4$.
+On the one-hot input $(e_{i,t},e_j)$ the ratio is
+$(t+a_{hj})/(d_i-u_{hj})$.
+
+For the row biases put $c_{i,0}=-R_i$ and
+$c_{i,1}=-(R_i+S_i)$. Let $m=2H+s$, choose
+$0<\eta<1/(2m)$, and define one additional head by
+\[
+ D(z,w)=1-\eta\left(\sum_{i,t}z_{i,t}+\sum_jw_j\right),
+ \qquad
+ N_0(z,w)=(1-2\eta)\sum_{i,t}c_{i,t}z_{i,t}.
+\]
+Its denominator has strictly negative slopes and is greater than
+$1/2$ everywhere on the cube. Its grid value is exactly $c_{i,t}$.
+Consequently $N_0/D+\sum_hN_h/B_h$ realizes all displayed
+$2H$ query functions with $H+1$ admissible affine-ratio heads.
+The inverse function theorem gives every strict sign vector of these
+$2H$ rows in a sufficiently small neighborhood of each sheet, independently
+for every column. Whole-cube admissibility holds uniformly in those
+neighborhoods, after shrinking them to keep $0<u_{hj}<\varepsilon$.
+
+\paragraph{What remains missing.}
+The $H!$ regular sheets provide many discrete choices, and the
+$2H$ local coordinates provide $2H$ continuously adjustable signs.
+This is still only a fixed row/head ratio. To obtain the requested
+saving by this route, fixed additional row queries would have to
+read $\omega(H)$ independent signs from suitable sheet neighborhoods.
+Neither regularity nor the cardinality $H!$ implies that property.
+General permutation parity is already unreadable by some restricted
+query families, and single-slot readouts have an independently proved
+bounded feature dimension. Multi-slot decoding remains the open step.
+Axis subtraction can be imposed by a separate three-copy mixed
+difference, but no saving follows from that transformation here.
+
+\paragraph{Exact verification.}
+The companion script \texttt{reverse-joint-full-sheets-check.py}
+checks the sheet values and the full Jacobian determinant identity
+with rational arithmetic for every permutation when $1\leq H\leq4$.
+It also tests positivity on all vertices of a small full-cube example.
+These are reproducible checks of the formulas; the written proof above,
+not the finite checks, establishes the general statement. This theorem
+has not been formalized in Lean.
+\end{document}
