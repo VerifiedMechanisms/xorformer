@@ -693,4 +693,98 @@ decoder. It does not rule out a family whose tokens and queries change
 with $S$, head-dependent transformations with additional corrections,
 or another construction of the desired asymptotic bound.
 
+\section{Highest-label equality indicators and rational multiplicities}
+
+\begin{proposition}[Sparse support for the Boolean highest-label indicator]
+Partition some of the input variables into disjoint pairs of blocks
+$(A_\ell,B_\ell)$, for $1\le\ell\le k$, and order the labels by
+$\ell$. The Boolean function which is one precisely when the highest
+active label occurs on both sides has, in the variables $z_i=1-x_i$,
+at most $3k+1$ nonzero multilinear coefficients.
+\end{proposition}
+
+\begin{proof}
+Let $U_{>\ell}=\bigcup_{p>\ell}(A_p\cup B_p)$ and write
+$z^S=\prod_{i\in S}z_i$. The function is exactly
+\[
+ \sum_{\ell=1}^k
+ z^{U_{>\ell}}(1-z^{A_\ell})(1-z^{B_\ell}).
+\]
+The four terms for label $\ell$ are two prefix monomials
+$z^{U_{>\ell}}$, $z^{U_{>\ell}\cup A_\ell\cup B_\ell}$ and two
+partial-prefix monomials. There are at most $k+1$ distinct prefixes
+and $2k$ partial prefixes. Empty blocks only remove terms.
+\end{proof}
+
+For completeness, if a multilinear polynomial $P(z)$ strictly
+sign-matches parity on the full $n$-cube, every one of its $2^n$
+coefficients is nonzero. Indeed its coefficient on $z^S$ is
+\[
+ \sum_{T\subseteq S}(-1)^{|S|-|T|}P(\boldsymbol1_T).
+\]
+All summands have the same nonzero sign, since parity at
+$\boldsymbol1_T$ is a fixed global sign times $(-1)^{|T|}$.
+Consequently a signed linear combination of $H$ highest-label
+indicators, each with at most $k$ labels, plus a bias, can strictly
+sign-match parity only if $H(3k+1)+1\ge2^n$.
+
+\begin{proposition}[A repeated-label rational kernel has full support]
+The preceding support bound does not hold for the actual two-ratio
+kernel
+\[
+ K_t(X,Y)=\frac{tX}{tX+Y}-\frac X{X+Y},\qquad t>1.
+\]
+For every $m\ge1$ there are positive $t,R$ such that, with
+\[
+ X=1+R\sum_{i=1}^m x_i,\qquad Y=1+Rx_{m+1},
+\]
+the multilinear polynomial of $K_t(X,Y)$ in $z=1-x$ has all
+$2^{m+1}$ coefficients nonzero. Both denominators have strictly
+positive slopes and are positive on the whole cube.
+\end{proposition}
+
+\begin{proof}
+Put $a=\sum_{i=1}^m x_i$ and $b=x_{m+1}$. As $R\to\infty$ the
+kernel converges at every cube point to
+\[
+ b F_t(a)+c_t\boldsymbol1_{a=b=0},\qquad
+ F_t(a)=\frac1{a+1}-\frac1{ta+1},\quad
+ c_t=\frac{t-1}{2(t+1)}.
+\]
+Here $F_t(0)=0$. The extra term is the actual value at the all-zero
+input, where $X=Y=1$, and is essential for this admissible
+regularization.
+
+The coefficient of $F_t(m-\sum_{i=1}^m z_i)$ on any specified
+size-$j$ subset of the first $m$ variables is
+\[
+ c_j(t)=j!\left(
+ \frac1{\prod_{q=0}^j(m+1-q)}
+ -\frac{t^{-1}}{\prod_{q=0}^j(m+t^{-1}-q)}\right).
+\]
+This follows by the finite-difference identity for $1/(a+c)$,
+which in turn follows immediately by partial fractions or induction
+on $j$. For $j<m$, its limit as $t\to\infty$ is strictly positive.
+For $j=m$, that limit is $1/(m+1)-1=-m/(m+1)$.
+Thus every $c_j(t)$ is nonzero for all sufficiently large finite $t$.
+Multiplication by $b=1-z_{m+1}$ gives coefficients $c_j(t)$ and
+$-c_j(t)$ on the two corresponding subsets. The origin term changes
+only the coefficient on the full set, from $-c_m(t)$ to
+$-c_m(t)+c_t$, whose limit is $m/(m+1)+1/2>0$.
+The limiting polynomial therefore has all coefficients nonzero.
+There are finitely many coefficients, each a continuous linear
+combination of cube values. They remain nonzero for every sufficiently
+large finite $R$. Finally $tX+Y$ and $X+Y$ have positive constants
+and strictly positive coefficients in every input coordinate.
+\end{proof}
+
+\paragraph{Scope.}
+Equal highest labels do not make this rational kernel constant: when
+several variables carry that label, its limiting value retains their
+multiplicities. The sparse indicator argument is therefore a valid
+obstruction only for the actual Boolean indicator, or for restricted
+models in which those multiplicities are absent. It supplies no lower
+bound for unrestricted attention heads or unrestricted sums of these
+positive kernels.
+
 \end{document}
