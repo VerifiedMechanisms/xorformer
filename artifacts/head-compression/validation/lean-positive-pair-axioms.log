@@ -1,0 +1,2 @@
+'HeadComplexity.three_positive_pair_relations_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.positive_pair_relations_vanish_of_three' depends on axioms: [propext, Classical.choice, Quot.sound]

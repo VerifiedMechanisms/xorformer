@@ -1,4 +1,5 @@
 import HeadComplexity.Results.PolyaReciprocalIdentity
+import HeadComplexity.Results.PositivePairRigidity
 import HeadComplexity.Results.AffinePartialFractionDegree
 import HeadComplexity.Results.BooleanProjectionIdeal
 import HeadComplexity.Results.WeightedRootCompletion

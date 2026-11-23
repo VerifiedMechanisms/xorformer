@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{A Low-Degree Filtration for Boolean Reciprocal Lattice Jets}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note gives a necessary condition for higher-order perturbations
+of the reciprocal lattice used by repeated P\'olya averaging. It is
+a manual proof, not a Lean formalization, and does not prove the
+universal head bound. In particular, it does not discard higher
+orders merely because first variations fail.
+
+\section{The common reciprocal polynomial}
+
+Let $n\ge1$, $k\ge0$, and $\delta>0$. Let $C(x)$ be affine and
+strictly positive on $\{0,1\}^n$. For any nonnegative integer vector
+$\alpha=(\alpha_0,\ldots,\alpha_n)$ with $|\alpha|\le k$, put
+\[
+ L_\alpha(x)=\alpha_0+\sum_i\alpha_i x_i,
+ \qquad B_\alpha(x)=C(x)+\delta L_\alpha(x),
+ \qquad Q(t)=\prod_{j=0}^k(t+\delta j).
+ \tag{1}
+\]
+All these denominators are positive on the cube. Requiring the
+additional same-sign slope condition only restricts the family.
+Let $\mathcal P_d$ be the space of Boolean tables represented by
+real polynomials of degree at most $d$, and set
+\[
+            D_d=\dim\mathcal P_d
+                  =\sum_{j=0}^{\min(d,n)}\binom nj.
+ \tag{2}
+\]
+Every polynomial table has a unique multilinear representative;
+reducing $x_i^m$ to $x_i$ never increases degree.
+
+\begin{lemma}[Division and differentiation]
+There is a polynomial $R(t,z)$ of total degree at most $k$ such that
+$R(t,j)=Q(t)/(t+\delta j)$ for $j=0,\ldots,k$. Define
+$W_\ell(t)=(d/dt)^\ell(1/Q(t))$. For every integer $m\ge0$,
+every eligible $\alpha$, and every Boolean input,
+\[
+ \frac1{B_\alpha(x)^{m+1}}
+ =\frac{(-1)^m}{m!}
+   \sum_{j=0}^{\min(m,k)}\binom mj
+       (\partial_t^j R)(C(x),L_\alpha(x))W_{m-j}(C(x)).
+ \tag{3}
+\]
+\end{lemma}
+\begin{proof}
+Divide $Q(t)$ by the monic $t+\delta z$ in $\mathbb R[z][t]$.
+Its quotient $R$ has total degree at most $k$. At $z=j$ the
+remainder vanishes, proving the first statement. Fix a Boolean
+input. Its value $L_\alpha(x)$ is an integer between zero and $k$,
+so the corresponding identity of rational functions in $t$ is
+valid before substituting $t=C(x)$. Differentiate it $m$ times
+and use the product rule. The $j$th derivative of $R$ has degree
+at most $k-j$ and is zero for $j>k$, giving (3).
+\end{proof}
+
+\section{All coefficients up to a specified perturbation order}
+
+For each of finitely many heads choose a base $B_{\alpha_h}$ from
+(1). Let $A_h(\varepsilon,x)$ and
+$B_h(\varepsilon,x)$ be power series in $\varepsilon$ whose
+coefficients are affine functions of $x$, with
+$B_h(0,x)=B_{\alpha_h}(x)$. Also allow a scalar power-series bias.
+These can be formal series for the coefficient assertion, or
+convergent real analytic series for the sign assertion. Write
+\[
+ F(\varepsilon,x)=c(\varepsilon)+
+                       \sum_h A_h(\varepsilon,x)/B_h(\varepsilon,x).
+ \tag{4}
+\]
+No cancellation identity, equal root multiset, or restriction on the
+numerator coefficients is assumed.
+
+\begin{theorem}[Jet filtration]
+Every coefficient of (4) through order $r$ belongs to
+\[
+ \mathcal S_{k,r}(C,\delta)
+       =\sum_{\ell=0}^r W_\ell(C(x))\mathcal P_{k+\ell+1}.
+ \tag{5}
+\]
+In particular,
+\[
+ \dim\mathcal S_{k,r}\le\sum_{\ell=0}^r D_{k+\ell+1}
+                   \le(r+1)D_{k+r+1}.
+ \tag{6}
+\]
+If each input has a nonzero coefficient at some order at most $r$,
+the strict sign table of $F(\varepsilon,\cdot)$ for all sufficiently
+small positive $\varepsilon$ is represented by an element of (5).
+The first nonzero orders may differ between inputs.
+\end{theorem}
+\begin{proof}
+Expand a reciprocal denominator formally by its geometric series
+about $B_{\alpha_h}$. A coefficient at order at most $r$ is a
+linear combination of terms
+\[
+                    P_m(x)/B_{\alpha_h}(x)^{m+1},
+             \qquad 0\le m\le r,\quad \deg P_m\le m+1.
+ \tag{7}
+\]
+There are $m$ affine denominator-increment factors and at most one
+affine numerator factor, proving the degree bound. In the $j$th
+summand of (3), multiplication by $P_m$ gives a polynomial factor
+of degree at most $m+1+k-j=k+(m-j)+1$. Setting $\ell=m-j$
+puts this term in the $\ell$th summand of (5). A scalar bias
+belongs to its $\ell=0$ summand, since $1=Q(C)/Q(C)$ and
+$\deg Q(C)\le k+1$. This proves the coefficient assertion and (6).
+
+For convergent series, at each input the sign for small positive
+$\varepsilon$ is the sign of its first nonzero coefficient. The
+same holds for the degree-$r$ Taylor truncation. There are finitely
+many inputs, so one sufficiently small positive number works for
+all of them. The truncation at that number is a linear combination
+of the first $r+1$ coefficient tables, hence lies in (5).
+\end{proof}
+
+For constant-numerator first variations one obtains the sharper
+space bound
+\[
+ \dim\left\{c+\sum_\alpha D_\alpha(x)/B_\alpha(x)^2:
+                         D_\alpha\text{ affine}\right\}
+                    \le 1+D_k+D_{k+1}.
+ \tag{8}
+\]
+Indeed (3) with $m=1$ gives a sum of
+$W_0(C)\mathcal P_k$ and $W_1(C)\mathcal P_{k+1}$, plus the bias.
+For $k=1$, this is $\binom n2+2n+3$, agreeing with the direct
+one-step calculation in \texttt{polya-reciprocal-audit.tex}.
+
+\section{Counting target-dependent base parameters}
+
+\begin{theorem}[Low-order lattice jets are not universal]
+Fix $\eta>0$. Suppose $k,r\ge0$ and
+$k+r+1\le(1/2-\eta)n$. Even allowing $C$, $\delta$, all selected
+lattice bases, all numerator series, and all denominator series to
+depend on the target, the stable strict sign tables in the preceding
+theorem number only $2^{o(2^n)}$ as $n$ tends to infinity.
+The conclusion is uniform over these integers $k,r$ and does not
+require a bound on the number of selected lattice bases.
+\end{theorem}
+\begin{proof}
+Write $W_\ell(t)=N_\ell(t)/Q(t)^{\ell+1}$, with $N_0=1$.
+Differentiation gives
+\[
+ N_{\ell+1}=Q N_\ell'-(\ell+1)Q'N_\ell.
+ \tag{9}
+\]
+Regarding $t,\delta$ as variables, $Q$ is homogeneous of degree
+$k+1$ and induction gives total degree at most $\ell k$ for
+$N_\ell$. For an arbitrary table in (5), clear the positive
+denominator $Q(C)^{r+1}$. Each resulting input polynomial has
+degree at most one in the
+\[
+                       p_1=\sum_{\ell=0}^r D_{k+\ell+1}
+\]
+free coefficients of the multilinear polynomial factors in (5).
+Its degree in the $q=n+2$ coefficients of $C$ and the step
+$\delta$ is at most $r(k+1)$: the factor multiplying the
+$\ell$th polynomial is $N_\ell(C)Q(C)^{r-\ell}$, whose degree
+is at most $\ell k+(r-\ell)(k+1)$.
+
+Put $p=p_1+q$. Once $p\le N=2^n$, the two-block sign bound from
+\texttt{mechanism-audit.tex} gives
+\[
+ \left(\frac{32768N}{p}\right)^p
+      2^{p_1}\max\{2,r(k+1)\}^{q}.
+ \tag{10}
+\]
+This is an enlarged family: arbitrary polynomial coefficients in
+(5) need not be realizable by actual paths, but every actual
+coefficient or stable sign table under consideration is included.
+
+If $a=1/2-\eta$ is nonnegative, the elementary binomial-entropy
+bound gives $D_{\lfloor an\rfloor}\le2^{h_2(a)n}$, where
+$h_2(a)=-a\log_2a-(1-a)\log_2(1-a)<1$ (with the usual endpoint
+convention). Thus $p_1\le(n+1)2^{h_2(a)n}$, and every logarithm
+in (10) is $o(N)$. For $a<0$ the hypotheses have no instances.
+There are at most $(n+1)^2$ possible $(k,r)$, so their union still
+has $2^{o(N)}$ sign tables. No factor for choosing the individual
+$\alpha_h$ is needed: every choice is already included in the
+single envelope (5).
+\end{proof}
+
+\begin{corollary}[A necessary linear perturbation order]
+Let $\alpha_*>0$ be the unique solution of
+\[
+       (1+\alpha_*)\log_2(1+\alpha_*)
+                         -\alpha_*\log_2\alpha_*=1.
+ \tag{11}
+\]
+It is approximately $0.29381537$. Consider complete depth-$k$
+layers, charging all $\binom{n+k}{k}$ distinct terminal forms.
+If this cost is $O(2^n/n^2)$, a universal construction by the
+analytic paths above cannot have maximum first-nonzero order at
+most $\beta n$ for any fixed $\beta<1/2-\alpha_*$.
+The numerical value of this threshold is approximately $0.20618463$.
+\end{corollary}
+\begin{proof}
+The cost hypothesis and the factorial estimate imply
+$k/n\le\alpha_*+o(1)$. Indeed the exponential rate of
+$\binom{n+k}{k}$, when $k/n$ tends to a positive constant
+$\alpha$, is the strictly increasing expression on the left of
+(11). A larger limiting ratio would exceed rate one; unbounded
+$k/n$ also violates the cost bound. If $\beta<1/2-\alpha_*$,
+choose a fixed positive gap $\eta$ smaller than
+$1/2-\alpha_*-\beta$. For sufficiently large $n$ the preceding
+theorem applies, excluding universality.
+\end{proof}
+
+This is a necessary order bound, not a construction at or above
+that order. The polynomial coefficients in (5) are only an upper
+envelope, and their compatibility with one collection of affine
+head paths has not been proved. Assigning them independently and
+calling the resulting table a head score would be an invalid step.
+Arbitrary higher orders and general admissible base configurations
+remain outside this obstruction.
+
+\end{document}

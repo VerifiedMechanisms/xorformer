@@ -246,11 +246,19 @@
         "HeadComplexity.polya_affine_selector_sum"
       ],
       "scope": "Exact positive reciprocal averaging and a Boolean selector sum identity. The algebraic identities do not assert universal compressed sign representations."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/PositivePairRigidity.lean",
+      "main_declaration": "HeadComplexity.three_positive_pair_relations_eq_zero",
+      "companion_declarations": [
+        "HeadComplexity.positive_pair_relations_vanish_of_three"
+      ],
+      "scope": "Three positive-coefficient pair relations force three values to vanish; a complete family of such relations on at least three indices is zero. The star-identity reduction is a separate manual proof, and no head upper bound follows."
     }
   ],
   "validation": {
-    "build": "Full lake build passed (9215 jobs) after adding PolyaReciprocalIdentity.",
-    "build_log": "artifacts/head-compression/validation/lean-polya-full-build.log",
+    "build": "Full lake build passed (9216 jobs) after adding PositivePairRigidity.",
+    "build_log": "artifacts/head-compression/validation/lean-positive-pair-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -271,7 +279,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "80 listed main and companion declarations in 31 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "82 listed main and companion declarations in 32 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -282,8 +290,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 80,
-      "modules": 31,
+      "declarations": 82,
+      "modules": 32,
       "only": [
         "propext",
         "Classical.choice",
@@ -299,12 +307,13 @@
         "validation/lean-boolean-projection-axioms.log",
         "validation/lean-weighted-root-axioms.log",
         "validation/lean-low-root-axioms.log",
-        "validation/lean-polya-axioms.log"
+        "validation/lean-polya-axioms.log",
+        "validation/lean-positive-pair-axioms.log"
       ],
-      "scope": "The previous 77 declarations were unchanged; the three PolyaReciprocalIdentity declarations were checked separately."
+      "scope": "The previous 80 declarations were unchanged; the two PositivePairRigidity declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9215 jobs, including all 31 new research modules and the results aggregator.",
-    "build_jobs": 9215,
+    "lean": "Full project lake build succeeded with 9216 jobs, including all 32 new research modules and the results aggregator.",
+    "build_jobs": 9216,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -328,7 +337,9 @@
       "validation/lean-weighted-root-full-build.log",
       "validation/lean-weighted-root-axioms.log",
       "validation/lean-polya-full-build.log",
-      "validation/lean-polya-axioms.log"
+      "validation/lean-polya-axioms.log",
+      "validation/lean-positive-pair-full-build.log",
+      "validation/lean-positive-pair-axioms.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -1253,6 +1264,16 @@
     "sparse_depth": "A two-orientation, target-dependent sparse count gives only 2^{o(2^n)} tables at H=O(2^n/n^2) when integer refinement depth K satisfies log(K+1)=o(n). Applies to first powers and affine-over-square variations, without assuming cancellation.",
     "local_maximum_principle": "Every nonconstant linear combination of Boolean reciprocal kernels has no local extrema in the positive parameter cone. Every kernel is in the relative interior of the convex hull of each parameter neighborhood; the affine hull has dimension 2^n-1. This gives no sparse compression.",
     "unbounded_depth": "For ordinary affine-over-affine scores, unbounded integer depth recovers the original strict sign model by rational approximation and scaling. An unrestricted depth existence lemma would only restate the target.",
-    "unmerged_forest": "For R refined roots and T full (n+1)-ary internal nodes, charging J=2R+nT root and terminal occurrences gives q=(n+1)R+T<=J independent denominator parameters. A two-block count excludes universality at J=O(2^n/n^2), even with independent real steps and nodewise complemented selectors. Exact merging of leaves is not charged by this theorem. The count allows D/B+U*V/B^2 with arbitrary affine D,U,V, hence all affine-numerator first variations at such bases."
+    "unmerged_forest": "For R refined roots and T full (n+1)-ary internal nodes, charging J=2R+nT root and terminal occurrences gives q=(n+1)R+T<=J independent denominator parameters. A two-block count excludes universality at J=O(2^n/n^2), even with independent real steps and nodewise complemented selectors. Exact merging of leaves is not charged by this theorem. The count allows D/B+U*V/B^2 with arbitrary affine D,U,V, hence all affine-numerator first variations at such bases.",
+    "star_rigidity": "For n>=3 and nonzero original slopes, any nondegenerate constant-weight identity c/B=c0/(B+delta0)+sum ci/(B+delta_i*x_i), with all denominators positive on the cube, has delta_i=delta0. The pair-sign lemma is Lean checked; the algebraic reduction is manual. An explicit two-bit counterexample shows the dimension hypothesis matters."
+  },
+  "polya_lattice_jets": {
+    "file": "artifacts/head-compression/polya-jet-filtration.tex",
+    "status": "Manual complete proof, not Lean formalized.",
+    "filtration": "At integer lattice depth k, every coefficient through perturbation order r lies in sum_{ell=0}^r (d/dC)^ell[1/Q(C)]*P_{<=k+ell+1}, of dimension at most sum_{ell=0}^r D_{k+ell+1}. Stable signs with input-dependent first nonzero orders up to r also lie in that space.",
+    "uniform_obstruction": "For any fixed eta>0, k+r+1 <= (1/2-eta)*n gives only 2^{o(2^n)} target-dependent sign tables, even allowing all lattice nodes and arbitrary analytic affine numerator and denominator paths.",
+    "complete_layer_consequence": "Charging binomial(n+k,k) terminal heads at O(2^n/n^2) forces k/n <= 0.29381537+o(1); universal stable jets cannot have first nonzero order uniformly <= beta*n for any beta<0.20618463.",
+    "limitation": "Higher orders and general base configurations are not excluded. Independent polynomial factors in the enclosing space are not asserted to be realizable by one set of head paths.",
+    "target_proved": false
   }
 }
