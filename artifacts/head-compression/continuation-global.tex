@@ -579,4 +579,58 @@ some signs, growing-order degenerations, or a mechanism using multiple
 separated pole-order components. Those possibilities require a new
 construction beyond the computed quadratic interaction.
 
+
+\section{An exact all-orders formula for translated pole columns}
+
+\begin{proposition}[Translation reads only a scalar squared distance]
+In the preceding $H=2M$ anchor construction, restrict column pole vectors
+to common translations $b_h(t)=\lambda_h+t$. Put
+$Q(t)=\prod_h(t-\lambda_h)$ and
+$c_h(t)=-P(\lambda_h+t)/Q'(\lambda_h)$. Whenever all denominators
+below are positive, the pair score satisfies
+\[
+ -1+\sum_h\frac{c_h(t)+c_h(s)}{d_i-2\lambda_h-t-s}
+ =-\frac{P(z+v)+P(z-v)}{2Q(z-m)},\qquad
+ z=d_i/2,\quad m=(t+s)/2,\quad v=(t-s)/2.
+\]
+Consequently its strict sign depends only on $(t-s)^2$. Across all
+$M$ row anchors, at most $M(M-1)+1$ different strict row sign patterns
+can occur as $t,s$ vary in any admissible interval. In particular,
+this translated-column family cannot realize all $2^M$ row patterns.
+\end{proposition}
+
+\begin{proof}
+The polynomial
+\[
+ L_v(x)=\frac{P(x+v)+P(x-v)-2P(x)}2
+\]
+has degree at most $H-2$ in $x$. Cauchy interpolation at the distinct
+nodes $\lambda_h+m$ gives
+\[
+ \sum_h\frac{L_v(\lambda_h+m)}
+ {Q'(\lambda_h)(z-\lambda_h-m)}=\frac{L_v(z)}{Q(z-m)}.
+\]
+Substitute the residue definitions into the exact central-difference
+identity from the previous theorem. It gives the negative of the left
+side. Since $P(z)=0$, the claimed formula follows.
+
+The denominator is positive. The numerator is an even polynomial in
+$v$, hence a degree-$M$ polynomial in $w=v^2$, with leading coefficient
+$2$ and zero constant term. It has at most $M-1$ distinct positive roots.
+The $M$ row numerators together therefore have at most $M(M-1)$ distinct
+positive roots, partitioning $w>0$ into at most $M(M-1)+1$ intervals of
+constant strict row sign. At $w=0$ all row scores vanish, so it adds no
+strict pattern. This proves the count. The elementary inequality
+$M(M-1)+1<2^M$ holds for $M=1,2,3$ directly; for $M\ge4$, use
+$2^M\ge M^2$ and induction on $M$. Thus full row shattering is impossible.
+\end{proof}
+
+\paragraph{Scope.}
+This all-orders obstruction is stronger than merely truncating to the
+mixed Hessian, but only for a shared scalar translation of each pole
+column. It does not apply to general independent pole deformations or
+permutations. Extending the displayed functional calculus to independent
+rowwise latent values would require a new identity and is not established
+by this calculation.
+
 \end{document}
