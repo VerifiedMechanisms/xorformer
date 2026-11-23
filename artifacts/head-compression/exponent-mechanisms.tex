@@ -747,6 +747,152 @@ transfer, and its local shattering statement is not one of the
 requested asymptotic outcomes. All results in this section are
 written proofs only.
 
+\section{Exact paired masking and its analytic cost}
+
+The following construction makes the cost of the most direct paired
+mask explicit. It is not a lower bound for identities restricted to the
+Boolean cube.
+
+\begin{proposition}\label{prop:paired-antisymmetry}
+Let $r\geq1$, $c>0$, and $0<a_i<b_i$ for $1\leq i\leq r$.
+For $u,v\in\{0,1\}^r$, let
+\[
+ B(u,v)=c+\sum_i(a_i u_i+b_i v_i),\qquad
+ T(u,v)=\sum_{\sigma\in\{0,1\}^r}
+     \frac{(-1)^{|\sigma|}}{B(\sigma\cdot(u,v))},
+\]
+where $\sigma$ swaps the two coordinates of precisely the indicated
+pairs. All $2^r$ summands have strictly positive denominator slopes.
+The value is zero if some $u_i=v_i$. Otherwise its sign is
+$\prod_i(u_i-v_i)$ and it is nonzero. As a rational function of real
+variables $u,v$, this particular $T$ requires at least $2^r$ distinct
+nonconstant affine denominator factors in any sum of affine ratios.
+\end{proposition}
+
+\begin{proof}
+The elementary integral $1/z=\int_0^\infty e^{-tz}\,dt$, for $z>0$,
+and the finite distributive law give
+\[
+ T(u,v)=\int_0^\infty e^{-ct}
+ \prod_i\left(e^{-t(a_i u_i+b_i v_i)}
+             -e^{-t(a_i v_i+b_i u_i)}\right)\,dt.
+\]
+An invalid pair makes a factor zero. For a valid pair and $t>0$,
+the factor has the strict sign of $u_i-v_i$, since $a_i<b_i$.
+Thus the integrand has one strict sign for all $t>0$, which proves
+the asserted nonzero sign. The denominators are positive everywhere
+on the cube because their constant is $c>0$ and every coefficient
+is positive.
+
+The $2^r$ affine forms have the same nonzero constant and distinct
+coefficient vectors, so none are proportional. At a generic point
+of the complex affine hyperplane defined by one of them, all other
+denominators are nonzero. The corresponding summand has a nonzero
+simple-pole residue, so $T$ has a pole on that hyperplane. Any rational
+identity expressing $T$ as a sum of affine ratios must therefore
+contain a denominator proportional to this affine form. Applying the
+argument to every form proves the analytic denominator count.
+This pole argument does not apply to equality only at Boolean inputs.
+\end{proof}
+
+\section{A geometric obstruction to small orientation-conflict covers}
+
+\begin{proposition}\label{prop:small-conflict-cover}
+Suppose a local cell is contained in the Hamming ball of radius $b$
+about $a\in\{0,1\}^n$. Suppose further that its denominator architecture
+uses strictly positive slopes in every oriented coordinate
+$z_i=x_i\mathbin{\mathrm{xor}}a_i$. To make these slopes all have one
+sign in the original coordinates requires reversing at least
+$\min(|a|,n-|a|)$ coordinates. Consequently, cells whose reversal
+budget is at most $k$ can cover only inputs satisfying
+\[
+ \min(|x|,n-|x|)\leq k+b.
+\]
+If at most $c$ coordinates may instead be ignored by that architecture,
+the necessary condition relaxes to
+$\min(|x|,n-|x|)\leq k+b+c$.
+\end{proposition}
+
+\begin{proof}
+The substitution $z_i=x_i$ when $a_i=0$ and $z_i=1-x_i$ when $a_i=1$
+makes exactly $|a|$ slopes negative. Uniform positive orientation needs
+$|a|$ reversals and uniform negative orientation needs $n-|a|$.
+Deleting $c$ coordinates can reduce the smaller count by at most $c$.
+Hamming distance at most $b$ implies both
+$|x|\leq|a|+b$ and $n-|x|\leq n-|a|+b$; choose the inequality
+corresponding to the smaller center weight. This gives the result.
+\end{proof}
+
+For fixed-radius product-star cells and
+$k=O(\log\log\log n)$, the whole middle layer is therefore missed.
+No number of adaptive choices or repeated projections within this
+specified architecture repairs the defect. The proposition does not
+exclude architectures with other denominator signs or additional
+cancellations.
+
+\section{The first nontrivial tropical cancellation layer}
+
+Here is a precise global primitive, followed by a limitation of its
+first cancellation layer. Let $0<\lambda_1<\cdots<\lambda_n<L$,
+$b_{hi}>0$, and $a_{hi}\in\mathbb R$. For $0<t<1$ put
+\[
+ B_h(t,x)=t^L+\sum_i b_{hi}t^{\lambda_i}x_i,
+ \qquad A_h(t,x)=\sum_i a_{hi}t^{\lambda_i}x_i.
+\]
+For each fixed $t$, these are admissible positive-orientation affine
+denominators on the whole cube. On a nonempty input with first active
+coordinate $i$, $A_h/B_h\to a_{hi}/b_{hi}$ as $t\downarrow0$.
+Thus one head uniformly approximates any real-valued decision list
+querying $1$-literals in this fixed order, including an arbitrary
+all-zero value by adding a matching $t^L$ numerator constant.
+Uniformity follows because the Boolean cube is finite. Complementing
+every input gives the analogous $0$-literal primitive with uniform
+negative denominator slopes.
+
+\begin{proposition}\label{prop:tropical-pair-rank}
+Assume $\sum_h a_{hi}/b_{hi}=0$ for every $i$ and choose
+$L>2\lambda_n$. If a nonempty input has first two active coordinates
+$i<j$, then
+\[
+ \sum_h\frac{A_h(t,x)}{B_h(t,x)}
+   =t^{\lambda_j-\lambda_i}(C_{ij}+o(1)),\qquad
+ C_{ij}=\sum_h\left(\frac{a_{hj}}{b_{hi}}
+                    -\frac{a_{hi}b_{hj}}{b_{hi}^2}\right).
+\]
+The matrix given by this formula for all pairs $i,j$ has real rank at
+most $2H$. In particular, when $C_{ij}\neq0$, the eventual strict
+sign depends only on the first two active coordinates and equals the
+sign of $C_{ij}$.
+\end{proposition}
+
+\begin{proof}
+Divide numerator and denominator by $t^{\lambda_i}$ and expand the
+reciprocal at the positive constant $b_{hi}$. Terms from coordinates
+after $j$ have exponent larger than $\lambda_j-\lambda_i$; the
+constant-denominator term has exponent $L-\lambda_i$, also larger.
+Products of two perturbations have strictly larger exponent than the
+first perturbation. The constant coefficients cancel by hypothesis,
+leaving the displayed coefficient. Finally, for each $h$ its first
+matrix summand is the outer product
+$(1/b_{hi})_i(a_{hj})_j$, and its second is the outer product
+$(a_{hi}/b_{hi}^2)_i(b_{hj})_j$. Their sum has rank at most $2H$.
+\end{proof}
+
+In particular this first surviving layer is not a universal
+$o(m)$-head decoder on an $m$ by $m$ two-block grid. To see this without
+assuming an explicit hard sign matrix, parameterize rank-at-most-$r$
+matrices as $UV$ with $2mr$ real parameters. The $m^2$ entries are
+degree-two polynomials. Warren's strict sign-pattern estimate gives,
+when $2mr\leq m^2$,
+\[
+ \#\{\text{strict signs of rank-at-most-}r\text{ matrices}\}
+ \leq\left(\frac{4em}{r}\right)^{2mr}.
+\]
+For $r=o(m)$ the base-two logarithm is $o(m^2)$, so some label tables
+are absent. The statement is restricted to the nonvanishing first
+coefficient mechanism above. Cancellations exposing different higher
+orders at different inputs are not ruled out by it.
+
 \section{Formal verification status}
 
 The new file
