@@ -583,7 +583,18 @@
       "status": "completed; 3967 recorded exact-rank examples through trial 48371; selected mixed binary fibers certified, but no nonnegative dual or full-cube unit-margin minimum certified"
     }
   ],
-  "active_experiments": [],
+  "active_experiments": [
+    {
+      "task": "integer zero layers with exact full-cube rescaling and multiplier tests",
+      "script": "search_arithmetic_unit_minima.py",
+      "output": "/out/arithmetic-unit-search",
+      "started_utc": "2026-11-23T09:45:28.582248+00:00",
+      "requested_seconds": 21600,
+      "status": "active; floating candidates require independent exact certification",
+      "new_mechanism": "Enumerate integer zero layers, retain positive active constraints, activate the closest negative layer by exact rational scaling; test KKT with all active cube vertices.",
+      "target_proved": false
+    }
+  ],
   "intermediate_exponent_lower_bound_proved": false,
   "final_audit_index": "audit-index.md",
   "bounded_amplitude_obstruction": {
