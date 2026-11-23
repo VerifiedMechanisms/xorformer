@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "scope": "finite exact diagnostics only",
+  "tables": 648,
+  "table_values": 40288,
+  "literal_atom_values": 158336,
+  "cases": [
+    {
+      "H": 2,
+      "selectors": 2,
+      "address_bits": 2,
+      "distinct_tables": 2
+    },
+    {
+      "H": 2,
+      "selectors": 3,
+      "address_bits": 2,
+      "distinct_tables": 4
+    },
+    {
+      "H": 3,
+      "selectors": 2,
+      "address_bits": 3,
+      "distinct_tables": 6
+    },
+    {
+      "H": 3,
+      "selectors": 3,
+      "address_bits": 3,
+      "distinct_tables": 36
+    },
+    {
+      "H": 4,
+      "selectors": 2,
+      "address_bits": 3,
+      "distinct_tables": 24
+    },
+    {
+      "H": 4,
+      "selectors": 3,
+      "address_bits": 3,
+      "distinct_tables": 576
+    }
+  ],
+  "verifier_sha256": "72903a29bca7c04f8339afa2b9b16fac6eac820c1c54d680b79aeca375dae45d"
+}

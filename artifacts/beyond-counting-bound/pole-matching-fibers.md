@@ -79,3 +79,35 @@ The leading positive term has order $Hn\log n$, whereas the subtracted term has 
 This does not settle sign counting. All the constructed scores are nonnegative, and are strictly positive whenever $z\neq0$. The different real-valued branches therefore have the same Boolean sign pattern. Counting them can substantially overcount Boolean functions. A method that counts sign patterns without counting these interpolation branches is not contradicted by this construction. Also, the logarithm of the branch count at the critical scale is only of order $2^n\log n/n$, which is smaller than $2^n$.
 
 No statement about $W(n)$ follows without another mechanism. The original target remains unchanged and unproved.
+
+## Small integer alternative and kernel audit
+
+The prime construction above can be replaced by small integer slopes, at the cost of allowing the distinguishing address to depend on the two matchings. Index the heads by $h=0,\ldots,H-1$, fix the first selector column, and set
+
+$$ b_{h1}=h+1,\qquad b_{hj}^{\pi}=H(\pi_j(h)+1)\quad(2\leq j\leq k). $$
+
+All slopes lie between one and $H^2$. Each column still has distinct entries, so the same Jacobian proof establishes regularity at every matching. All one-selector values agree, exactly as before. It remains to prove that two different matchings give different full-cube functions.
+
+On a two-selector slice, the score is twice the reciprocal sum with poles
+
+$$ p_h=H+2+h+H\pi_j(h),\qquad S(y,e_1+e_j)=2\sum_h\frac1{t(y)+p_h},\qquad t(y)=\sum_{a=1}^d2^{a-1}y_a. $$
+
+The two digits $h$ and $\pi_j(h)$ are recovered from $h+H\pi_j(h)$ by remainder and quotient upon division by $H$. Thus different matchings yield different pole sets.
+
+**Finite-sample separation.** Let $p_1,\ldots,p_H$ be distinct real numbers and let $q_1,\ldots,q_H$ be another list. If the two reciprocal sums agree at $2H$ distinct points where every denominator is nonzero, then every $p_i$ occurs in the second list.
+
+**Proof.** Set $Q_p(X)=\prod_i(X+p_i)$ and define $Q_q$ similarly. Clearing denominators gives the comparison polynomial
+
+$$ P(X)=\left(\sum_i\prod_{r\neq i}(X+p_r)\right)Q_q(X)-\left(\sum_i\prod_{r\neq i}(X+q_r)\right)Q_p(X). $$
+
+Its degree is at most $2H-1$. Agreement at $2H$ distinct regular samples forces $P=0$. Evaluation at $X=-p_i$ then gives
+
+$$ 0=\prod_{r\neq i}(p_r-p_i)\prod_r(q_r-p_i). $$
+
+The first product is nonzero by distinctness, so one factor in the second vanishes. This proves the claim. $\blacksquare$
+
+Apply it at the integer samples $0,\ldots,2H-1$, all supplied by the $d$ address bits. Different pole sets must differ at one of these samples. This proves the full-cube distinctness needed in the original regular-branch theorem, with the small slopes displayed above.
+
+`formalization/HeadComplexity/Atoms/PermutationPoleFibers.lean` proves the finite-sample separation, injective two-digit encoding, detection of distinct matchings, invariance of zero- and one-selector slices, and an injective family of $(H!)^{k-1}$ sampled tables. The formal sampled-table numerator is constant one in each head. On a slice with $r$ active selectors, the numerator in the original regular-fiber construction multiplies that table by $r$, so the zero-, one-, and two-selector identities transfer directly. The binary-address encoding, the regular Jacobian argument, and the inverse-function conclusion remain written proofs. No unrestricted parameter-fiber component count is claimed.
+
+The independent exact verifier checks the matching tables and literal atom realizations on small full cubes. All six printed Lean declarations use only standard foundational axioms. This refinement does not change the quantitative limitation or the main target.

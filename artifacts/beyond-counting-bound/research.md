@@ -308,3 +308,21 @@ For any finite head count, the resulting parity score has relative margin at mos
 [Reitwießner, Improved Bounds for Depth-Two Threshold Circuits Computing Andreev's Function, November 22, 2026](https://eccc.weizmann.ac.il/report/2026/330/download/) uses the fact that a fixed circuit's surviving threshold gates retain their weights under restrictions, and exploits constancy of sign-coherent Boolean gates on many prefix cubes. Its Lemma 11 counts varying thresholds with weights fixed before drawing the random lookup table. The manuscript permits target-dependent parameters, so those quantifiers cannot be interchanged.
 
 There is also an explicit failure of the restriction step for real head outputs. The admissible reciprocal $1/(1+\sum_i x_i)$ varies on every prefix cube with a live coordinate. Its sign is constant, but subtracting three quarters already gives opposite labels at an all-zero vertex and a one-hot vertex. Thus discarding heads merely because their own signs are constant does not preserve the sum's labels. Neither the cited threshold-gate count nor its gate-survival estimate applies to these rational scores without a new representation theorem. No such theorem is asserted.
+
+## Small integer pole matching refinement
+
+The [pole-matching proof](pole-matching-fibers.md) now has an alternative using two base digits instead of the Chinese remainder theorem. All selector slopes are at most the square of the head count. A polynomial root-count argument distinguishes different pole sets using twice as many integer address samples as heads. The sample separation, matching injection, slice invariance, and factorial family cardinality pass Lean. Independent rational arithmetic verifies 648 distinct full tables, 40,288 table values, and 158,336 literal atom evaluations.
+
+This refines the earlier restricted-family theorem. It does not assert that the corresponding unrestricted parameter fibers are finite or disconnected. The branch count remains insufficient to settle the critical-width sign count, and the refined constant-residue scores are positive everywhere.
+
+## Formal polynomial identities do not control Boolean cancellation
+
+[Saxena and Seshadhri's depth-three rank theorem](https://www.cse.iitk.ac.in/users/nitin/papers/rank-bound.pdf) concerns simple minimal formal polynomial identities, with a bound depending on the top fan-in. [Forbes, Kumar, and Saptharishi](https://drops.dagstuhl.de/storage/00lipics/lipics-vol050-ccc2016/LIPIcs.CCC.2016.33/LIPIcs.CCC.2016.33.pdf) explicitly distinguish equality on the Boolean cube from formal polynomial equality, and prove functional lower bounds for specified arithmetic circuit classes. Neither theorem counts unrestricted real signs of affine-ratio sums.
+
+There is a direct exact-model reason not to substitute formal identities for Boolean cancellation. For $n\geq1$, put $t=\sum_i x_i$ and
+
+$$ R_n(t)=\frac{\prod_{r=0}^{n}(t-r)}{\prod_{j=1}^{n+1}(t+j)}=1+\sum_{j=1}^{n+1}\frac{c_j}{t+j},\qquad c_j=(-1)^{n+j}\frac{(n+j)!}{((j-1)!)^2(n+1-j)!}. $$
+
+The coefficients are the residues at the distinct poles $-j$, so partial fractions proves the identity. Every denominator has positive constant and positive coherent slopes, hence each summand is an admissible head. The score is zero on the entire Boolean cube, although it is nonzero at $t=1/2$. All residues are nonzero and all poles are distinct. Thus full-cube cancellation need not arise from a formal rational identity or coincident denominators. This example has one shared affine statistic; it does not refute every possible classification of cancellations.
+
+Moreover, a rank estimate polynomial in the number of summands exceeds the ambient input dimension at the exponential head counts relevant here. A stronger sign-sensitive statement would still be needed even if the Boolean-identity issue were repaired. The proposed transfer is blocked at those two precise steps, and gives no intermediate exponent.

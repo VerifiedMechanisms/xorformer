@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T15:03:38.708685+00:00",
+  "declarations": [
+    "HeadComplexity.PermutationPoleFibers.exists_distinguishing_sample",
+    "HeadComplexity.PermutationPoleFibers.pairCode_injective",
+    "HeadComplexity.PermutationPoleFibers.permutation_detected_at_integer_sample",
+    "HeadComplexity.PermutationPoleFibers.singleton_slice_invariant",
+    "HeadComplexity.PermutationPoleFibers.sampledTable_injective",
+    "HeadComplexity.PermutationPoleFibers.matching_family_card"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_file": "formalization/HeadComplexity/Atoms/PermutationPoleFibers.lean",
+  "lean_sha256": "6fb68823303bd9de32e7ad8fe0db80abee6d21596008b759492b615632cddda1",
+  "build_jobs": 2534,
+  "scope": "Finite-sample pole separation, matching injection, invariant slices and family cardinality. Binary address realization and regular-fiber consequence are written. No unrestricted fiber-component or head lower bound.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/pole-matching-fibers.md",
+      "source_math_spans": 100,
+      "rendered_math_spans": 100,
+      "findings": 0,
+      "sha256": "f0802fb5d6bdd86c69dee0f1532ff98d6c7dd770b4cec24b014514a347729273"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 108,
+      "rendered_math_spans": 108,
+      "findings": 0,
+      "sha256": "f2f4de0a99a00664d309974673a8ba6d6a9f5f927cb7ae45b3476c51cc2353b6"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "04b7d0ec1dd2c5ebf064ff94886cdd6b711425315b07a50328bfb8311263df64"
+    }
+  ],
+  "katex": "PASS, three files, 209 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "rational_audit": "permutation-pole-rational-audit.json",
+  "model_changes": [],
+  "main_target_proved": false
+}
