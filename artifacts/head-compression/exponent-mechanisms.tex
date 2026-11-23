@@ -953,6 +953,90 @@ $\binom n{\lfloor n/2\rfloor}$ lists, which does exclude the target
 for that one-orientation subclass. Neither argument is a lower bound
 for arbitrary admissible affine ratios with cancellations.
 
+\section{Weak certificates on affine binary flats}
+
+The weak-density construction in O'Donnell and Servedio,
+\emph{Extremal properties of polynomial threshold functions},
+\href{https://www.cs.columbia.edu/~rocco/Public/journal-revised2.pdf}{Section 6.1},
+uses a monochromatic affine binary subspace. Its weak polynomial is
+zero everywhere outside that subspace. The following elementary cube
+count makes this step quantitative; it does not compile the weak
+polynomial into attention heads.
+
+\begin{proposition}\label{prop:weak-flat}
+For $n\geq8$, every Boolean sign function on $\mathbb F_2^n$ has a
+nonzero weak Fourier sign representative with at most $4\cdot2^n/n$
+characters. It can be chosen to be a signed indicator of an affine
+$k$-flat, where $k=\lfloor\log_2(n/2)\rfloor$.
+\end{proposition}
+
+\begin{proof}
+Let $A$ be a color class of density $\alpha\geq1/2$ and put
+\[
+ C_j=\mathbb E_{x,h_1,\ldots,h_j}
+       \prod_{\omega\in\{0,1\}^j}
+       1_A(x+\omega_1h_1+\cdots+\omega_jh_j).
+\]
+Here all variables are uniform and independent in $\mathbb F_2^n$.
+For each fixed $h_1,\ldots,h_{j-1}$, averaging over $x,h_j$ is the
+square of the average over $x$ of the $(j-1)$-cube product, because
+$x$ and $x+h_j$ are independent uniform points. Jensen's inequality
+therefore gives $C_j\geq C_{j-1}^2$, and hence
+$C_j\geq\alpha^{2^j}$, starting from $C_0=\alpha$.
+The probability that $h_1,\ldots,h_k$ are linearly dependent is at
+most
+\[
+ \sum_{i=1}^k2^{i-1-n}=(2^k-1)/2^n.
+\]
+Our choice of $k$ satisfies $2^k+k<n$, so
+$C_k\geq2^{-2^k}>2^{k-n}$. Some nondegenerate cube is entirely in
+$A$, giving an affine flat $a+V\subseteq A$ of dimension $k$.
+
+Writing $\chi_\gamma(x)=(-1)^{\gamma\cdot x}$, orthogonality gives
+\[
+ 1_{a+V}(x)=2^{-(n-k)}\sum_{\gamma\in V^\perp}
+                 \chi_\gamma(a)\chi_\gamma(x).
+\]
+This has exactly $2^{n-k}$ nonzero Fourier coefficients, is positive
+on $a+V$, and is zero elsewhere. Multiplication by the color of $A$
+gives the required weak representative. Finally $2^k>n/4$.
+\end{proof}
+
+This support geometry is costly for an individual exact-zero module.
+The following statement applies even when the denominator orientation
+restriction is discarded.
+
+\begin{proposition}\label{prop:sparse-weak-score}
+If a nonzero score consisting of a bias and $H$ affine ratios has
+strictly positive denominators on the $n$-cube and is zero off a set
+$S$, then $|S|\geq2^{n-H}$. In particular, a nonzero score supported
+on a $k$-flat requires $H\geq n-k$.
+\end{proposition}
+
+\begin{proof}
+Multiplication by the denominator product produces a polynomial of
+degree at most $H$, with exactly the same support on the cube.
+Multilinear reduction does not increase its degree or change its
+values. A nonzero multilinear polynomial of degree at most $d$ has
+at least $2^{n-d}$ nonzero cube values. For completeness, induct on
+$n$, the claim being immediate when $d\geq n$. If the polynomial
+ignores the last variable, each nonzero value in dimension $n-1$
+appears twice and induction applies. Otherwise its difference between
+the two last-coordinate faces is a nonzero polynomial of degree at
+most $d-1$ in $n-1$ variables. At each point where this difference
+is nonzero, at least one of the two face values is nonzero. Induction
+again gives at least $2^{(n-1)-(d-1)}=2^{n-d}$ values.
+Applying the result with $d=H$ proves the proposition.
+\end{proof}
+
+Thus the $\Theta(n)$-point weak certificate furnished above needs
+$n-O(\log n)$ heads if compiled as its own exactly supported module.
+The Fourier characters are parity functions, rather than ordinary
+positive-literal monomials, so a monomial-chain compiler cannot be
+applied to their support. Recursive repair or a shared cancellation
+construction across many flats would need an additional mechanism;
+neither follows from the weak-density theorem.
+
 \section{Formal verification status}
 
 The new file
