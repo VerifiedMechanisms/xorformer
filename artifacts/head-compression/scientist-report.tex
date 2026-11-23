@@ -13,7 +13,7 @@ of that statement was added. No construction in the record should be
 read as establishing it.
 
 \paragraph{Formal results.}
-The inventory lists $61$ principal and companion declarations across
+The inventory lists $64$ principal and companion declarations across
 $26$ new Lean modules. The full project build passed with $9210$ jobs.
 The inspected declarations use only \texttt{propext},
 \texttt{Classical.choice}, and \texttt{Quot.sound}.
@@ -26,7 +26,10 @@ in \texttt{Results/AnchoredFractionLift.lean}, an exact normalization
 identity; and
 \texttt{HeadComplexity.affineFraction\_pair\_merge\_error\_le}
 in \texttt{Results/AffineFractionRange.lean}, a sufficient merging
-error bound. None asserts universal existence of a small score.
+error bound. The declarations in \texttt{Results/ReciprocalExchange.lean}
+also verify an exact three-head cycle producing a checkerboard correction
+on one face and zero correction on the opposite face. None asserts
+universal existence of a small score.
 
 \paragraph{Finite certificate.}
 The file \texttt{certificates/random-n14-anchored-h292.json} gives

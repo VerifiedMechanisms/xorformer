@@ -15,6 +15,8 @@ simplest local modification, with exact values rather than a linearized
 optimization objective. It does not exclude general coordinated changes
 of many heads.
 
+\section{Two-row transpositions}
+
 \begin{proposition}[Exact two-row exchange]
 Let $u+a,u+b,v+a,v+b$ be positive real numbers. Then
 \[
@@ -78,6 +80,89 @@ checked as \texttt{HeadComplexity.reciprocal\_exchange\_identity},
 \texttt{affine\_numerator\_exchange\_identity} in
 \texttt{Results/ReciprocalExchange.lean}.
 
+\section{A three-row cycle with a quadratic sign}
+
+The preceding affine-sign obstruction does not extend to all cycles.
+The following construction uses a third row to produce a strict
+checkerboard correction while retaining the exact zero on the inactive
+face.
+
+\begin{proposition}[An exact three-cycle identity]
+For $u,v>0$, define
+\[
+ D(u,v)=\frac1{u+1}+\frac1{v+2}+\frac2{u+v+6}
+       -\frac1{u+2}-\frac1{v+3}-\frac2{u+v+2}.
+\]
+Then
+\[
+ D(u,v)=
+ \frac{(u-v)(u-v-2)(u^2+4uv+v^2+13u+11v+22)}
+ {(u+1)(u+2)(v+2)(v+3)(u+v+2)(u+v+6)}.
+\]
+Consequently $D(u,v)$ has the sign of $(u-v)(u-v-2)$.
+\end{proposition}
+\begin{proof}
+Put the six terms over the displayed common denominator and expand.
+The resulting numerator is the stated product. Every denominator
+factor is positive, as is $u^2+4uv+v^2+13u+11v+22$.
+\end{proof}
+
+To interpret this as a coefficient cycle, let $U,V$ be positive affine
+forms in coordinates other than a selector bit $z$, and put
+$W=(U+V)/2$. The old three denominators are
+$U+z,V+2z,W+3z$, and the new denominators are
+$U+2z,V+3z,W+z$. All six numerators are one. On $z=0$ the score
+does not change; on $z=1$ the old score minus the new is $D(U,V)$.
+If all other slopes of $U,V$ are strictly positive, every displayed
+denominator is admissible.
+
+\begin{proposition}[A strict checkerboard update]
+For Boolean $x,y,z$, take
+\[
+ U=2+3x+y,\qquad V=1+x+3y,\qquad W=\tfrac32+2x+2y.
+\]
+Let $\Delta$ be the old score minus the new score under the above
+cycle. Then $\Delta(x,y,0)=0$, and
+\[
+ (1-2x)(1-2y)\Delta(x,y,z)\le-\frac z{2100}.
+\]
+Thus the correction is strictly positive at $(x,y)=(0,1),(1,0)$
+on the active face and strictly negative at $(0,0),(1,1)$.
+\end{proposition}
+\begin{proof}
+The denominators have positive constants and strictly positive slopes
+in all three coordinates. The equality on $z=0$ follows directly.
+On $z=1$, $U-V=1+2x-2y$, so the sign follows from the three-cycle
+identity. Its four exact values, ordered as $00,01,10,11$, are
+\[
+ -\frac1{90},\qquad\frac{89}{16380},\qquad
+ \frac{89}{16380},\qquad-\frac3{6188}.
+\]
+Their absolute values exceed $1/2100$, proving the margin assertion.
+\end{proof}
+
+The identity, sign equivalence, and displayed margin are kernel checked
+as \texttt{reciprocal\_three\_cycle\_identity},
+\texttt{reciprocal\_three\_cycle\_pos\_iff}, and
+\texttt{reciprocal\_three\_cycle\_checkerboard} in the same Lean module.
+The mathematical positivity check for the six affine denominators is
+given above; it is not separately packaged as an attention-model
+realization theorem in that module.
+
+\paragraph{Compatibility limitation.}
+This operation changes an existing three-head score. Viewed as a
+standalone difference it uses six heads. Its correction is a signed
+real quantity, not an XOR operation on an arbitrary existing score:
+that score's active-face magnitudes must still be controlled. Moreover,
+the averaging relation $W=(U+V)/2$ constrains every nonselector
+coefficient. Subsequent overlapping cycles can destroy that relation.
+There is no proved schedule of compatible cycles realizing all truth
+tables at the target head count. The checkerboard result justifies
+examining three-row interactions, without supplying that missing
+global construction.
+
+\section{Arithmetic permutation identities}
+
 \paragraph{Number-theoretic permutation constructions.}
 Ai, Hu and Yan, \emph{On Permutations Whose Adjacent-Sum Reciprocals
 Sum to One}, \url{https://arxiv.org/pdf/2610.18431}, Theorem 1.1,
@@ -93,8 +178,10 @@ with the requested head budget remain missing.
 
 \paragraph{Status.}
 Independent two-row switches do not implement arbitrary local updates.
-Long cycles and changes of several coefficient columns are outside that
-obstruction. No universal construction from them is claimed here, and
-the permutation counting heuristic is not treated as an existence proof.
+The explicit three-row cycle escapes the affine-sign restriction.
+General cycles and changes of several coefficient columns remain
+outside that obstruction. No universal construction from them is
+claimed here, and the permutation counting heuristic is not treated
+as an existence proof.
 
 \end{document}

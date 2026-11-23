@@ -1,0 +1,3 @@
+'HeadComplexity.reciprocal_three_cycle_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.reciprocal_three_cycle_pos_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.reciprocal_three_cycle_checkerboard' depends on axioms: [propext, Classical.choice, Quot.sound]

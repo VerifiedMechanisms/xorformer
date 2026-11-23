@@ -193,14 +193,17 @@
       "main_declaration": "HeadComplexity.reciprocal_exchange_identity",
       "companion_declarations": [
         "HeadComplexity.reciprocal_exchange_pos_iff",
-        "HeadComplexity.affine_numerator_exchange_identity"
+        "HeadComplexity.affine_numerator_exchange_identity",
+        "HeadComplexity.reciprocal_three_cycle_identity",
+        "HeadComplexity.reciprocal_three_cycle_pos_iff",
+        "HeadComplexity.reciprocal_three_cycle_checkerboard"
       ],
-      "scope": "Exact two-row coefficient-exchange identities. Equal constant numerators give affine correction signs on the active face. No obstruction to arbitrary global parameter changes or universal head bound."
+      "scope": "Exact two-row and three-row coefficient-exchange identities. Equal-numerator transpositions give affine correction signs. An averaging-based three-cycle gives a quadratic sign and an explicit checkerboard correction on an active face, zero on the opposite face. No globally compatible universal schedule is asserted."
     }
   ],
   "validation": {
     "build": "Full project lake build succeeded with 9210 jobs, including all 26 new research modules and the results aggregator.",
-    "build_log": "validation/lean-reciprocal-exchange-full-build.log",
+    "build_log": "validation/lean-reciprocal-three-cycle-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -221,7 +224,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "61 listed main and companion declarations in 26 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "64 listed main and companion declarations in 26 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -232,7 +235,7 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 61,
+      "declarations": 64,
       "modules": 26,
       "only": [
         "propext",
@@ -243,7 +246,8 @@
         "/out/head-compression/lean-research-axioms.log",
         "/out/head-compression/lean-range-final-axioms.log",
         "validation/lean-gapped-cover-axioms.log",
-        "validation/lean-reciprocal-exchange-axioms.log"
+        "validation/lean-reciprocal-exchange-axioms.log",
+        "validation/lean-reciprocal-three-cycle-axioms.log"
       ],
       "scope": "The prior 58 declarations were unchanged; all three ReciprocalExchange declarations were checked separately."
     },
@@ -982,7 +986,8 @@
     "literature_entry": 98,
     "new_mechanism_examined": "Exact changes from permuting denominator coefficients across heads.",
     "result": "For equal constant numerators, a two-row exchange has affine signs on its active face. Fixed affine numerators give a cleared cubic on that face.",
-    "unresolved": "Long cycles and simultaneous changes of multiple columns have no universal sign-realization construction here."
+    "unresolved": "Long cycles and simultaneous changes of multiple columns have no universal sign-realization construction here.",
+    "three_cycle": "Exact averaging-based cycle has sign (U-V)*(U-V-2). The explicit Boolean checkerboard has margin greater than 1/2100 on the selector-one face and zero correction on the selector-zero face. Subsequent overlapping cycles may destroy the averaging relation; no universal compatibility theorem is claimed."
   },
   "private_repository_refresh_2026_11_23_0900": {
     "method": "Explicit read-only fetch of '+refs/heads/*:refs/heads/*' in both authorized bare run mirrors.",

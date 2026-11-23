@@ -1,0 +1,77 @@
+⚠ [3887/3893] Replayed HeadComplexity.Results.ScalarDecoderRootBound
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:36:35: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:68:15: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:81:15: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:117:15: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [3891/3893] Replayed HeadComplexity.Results.OrthantRankDistance
+warning: HeadComplexity/Results/OrthantRankDistance.lean:56:8: `injective_rank_distance_card_bound` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/OrthantRankDistance.lean:65:8: `multidimensional_rank_distance_card_bound` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/OrthantRankDistance.lean:77:8: `rank_ball_card_bound` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [9125/9210] Replayed HeadComplexity.Results.ConditionalFractionCompletion
+warning: HeadComplexity/Results/ConditionalFractionCompletion.lean:17:16: `positive_uniform_slack` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/ConditionalFractionCompletion.lean:76:8: `strictFractionCompletion_iff_positiveSlack` does not use the following hypothesis in its type:
+  • [Fintype X] (#3)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+⚠ [9207/9210] Replayed HeadComplexity.Results.OrthantSignEnergy
+warning: HeadComplexity/Results/OrthantSignEnergy.lean:53:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+✔ [9208/9210] Built HeadComplexity.Results.All (2.9s)
+✔ [9209/9210] Built HeadComplexity (2.8s)
+Build completed successfully (9210 jobs).
