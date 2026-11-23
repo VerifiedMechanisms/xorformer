@@ -41,6 +41,8 @@ The [common-normal certificate](common-normal-maxima.md) gives two distinct nond
 
 This closes the uniqueness shortcut left open by the earlier family of saddles. It does not supply many Boolean labels, classification complementarity, or an asymptotic maximum count. Both tables classify every cube input positively. No inference toward the requested lower bound is drawn from this finite obstruction.
 
+The [permutation-orbit refinement](symmetry-orbit-maxima.md) gives six distinct nondegenerate strict maxima on six input bits. An exact full 13-parameter Hessian certificate and a three-coordinate symmetric functional produce all six points at once. A constant translation of both target and head tables makes the functional coefficients and all six tables positive, preserving the squared-distance objective. The finite identities and positive definiteness are Lean checked; the normalized-image calculus is written explicitly. A numerical 24-point candidate failed exact stationarity correction and was rejected. No growing asymptotic count or head lower bound follows.
+
 ## Elliptic normalization identity and its exact limitation
 
 The [elliptic identity](head-elliptic-energy.md) gives a different denominator-parameter invariant. A normalized full head table satisfies an elliptic equation with a nonnegative potential bounded strictly below one quarter, independently of dimension and conditioning. The bound comes from an exact ellipsoid identity for normalized Boolean subset vectors. Nine algebraic declarations pass Lean, and 56 independent rational replays check the differential formulas on 2,032 cube entries.

@@ -1,0 +1,14 @@
+import HeadComplexity.Atoms.SymmetryOrbitMaxima
+#print axioms HeadComplexity.SymmetryOrbitMaxima.denominators_positive
+#print axioms HeadComplexity.SymmetryOrbitMaxima.functional_invariant
+#print axioms HeadComplexity.SymmetryOrbitMaxima.action_bijective
+#print axioms HeadComplexity.SymmetryOrbitMaxima.tables_distinct
+#print axioms HeadComplexity.SymmetryOrbitMaxima.orbit_equal_norm
+#print axioms HeadComplexity.SymmetryOrbitMaxima.stationarity
+#print axioms HeadComplexity.SymmetryOrbitMaxima.hessian_factorization
+#print axioms HeadComplexity.SymmetryOrbitMaxima.lower_inverse_mul
+#print axioms HeadComplexity.SymmetryOrbitMaxima.pivots_positive
+#print axioms HeadComplexity.SymmetryOrbitMaxima.realHessian_posDef
+#print axioms HeadComplexity.SymmetryOrbitMaxima.reconstruction_det
+#print axioms HeadComplexity.SymmetryOrbitMaxima.radial_identity
+#print axioms HeadComplexity.SymmetryOrbitMaxima.positive_translation

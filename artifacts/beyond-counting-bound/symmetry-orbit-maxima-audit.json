@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T17:31:18.835541+00:00",
+  "declarations": [
+    "HeadComplexity.SymmetryOrbitMaxima.denominators_positive",
+    "HeadComplexity.SymmetryOrbitMaxima.functional_invariant",
+    "HeadComplexity.SymmetryOrbitMaxima.action_bijective",
+    "HeadComplexity.SymmetryOrbitMaxima.tables_distinct",
+    "HeadComplexity.SymmetryOrbitMaxima.orbit_equal_norm",
+    "HeadComplexity.SymmetryOrbitMaxima.stationarity",
+    "HeadComplexity.SymmetryOrbitMaxima.hessian_factorization",
+    "HeadComplexity.SymmetryOrbitMaxima.lower_inverse_mul",
+    "HeadComplexity.SymmetryOrbitMaxima.pivots_positive",
+    "HeadComplexity.SymmetryOrbitMaxima.realHessian_posDef",
+    "HeadComplexity.SymmetryOrbitMaxima.reconstruction_det",
+    "HeadComplexity.SymmetryOrbitMaxima.radial_identity",
+    "HeadComplexity.SymmetryOrbitMaxima.positive_translation"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "files": [
+    {
+      "file": "formalization/HeadComplexity/Atoms/SymmetryOrbitMaxima.lean",
+      "sha256": "5ce22b455524099c2e9ef8b2f5a9fb66bf9f5321111b1ef375f52c84aa4ab7aa"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/verify_symmetry_orbit_maxima.py",
+      "sha256": "1862ad716969f356524ad2d819bd81eb50c5b743a1123b972c6a2ba80897f9f8"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/generate_symmetry_orbit_lean.py",
+      "sha256": "b2690c30803d92a3da03ef9bb92d3e8d4f9f9b95e013d0717afdfbe6a284ed0e"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/symmetry-orbit-maxima-certificate.json",
+      "sha256": "590c7c5b2c2f77fd7953eb023891a07056fe37da69aa2a441c148c5fe769256e"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/symmetry-orbit-maxima-rational-audit.json",
+      "sha256": "66af04e6ee6dd6508cec7215ca1d614a74bc44e7d4ffb72f058aa26707f40166"
+    }
+  ],
+  "build_jobs": 3147,
+  "scope": "Finite exact identities, rational Hessian factorization, and real positive definiteness in Lean; full local-maxima theorem is a written analytic deduction.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/symmetry-orbit-maxima.md",
+      "source_math_spans": 51,
+      "rendered_math_spans": 51,
+      "findings": 0,
+      "sha256": "e87edf013990b6f03cfa4c58dfdcad900b8fb5d72384c75607cbe09de147402d"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "sha256": "00db1c0d19e1812973eec1d45e71bda834054b60c916e84f7eec4f5ce012bf8e"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "d6791fc1bd121e7693719345c786ba87d813e7d1bf1759e988a5f21cb4d03d63"
+    }
+  ],
+  "katex": "PASS, three files, 162 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "strict_local_maxima": 6,
+  "input_bits": 6,
+  "positive_functional_coefficients": "After the explicitly verified constant translation by 100",
+  "all_table_entries_positive": "After the explicitly verified constant translation by 100",
+  "distinct_boolean_labels_before_translation": 3,
+  "model_changes": [],
+  "main_target_proved": false
+}

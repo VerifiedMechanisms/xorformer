@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "samples": 64,
+  "parameters": 13,
+  "orbit_size": 6,
+  "orbit_distinct_label_count": 3,
+  "positive_translation": 100,
+  "stationarity": "exact rational",
+  "hessian": "exact positive LDL and exact inverse",
+  "reconstruction_determinant": "690194282359739897079/9648514031409376640",
+  "squared_table_norm": "18145235304336680725288692015516847155557159919756288411147871395185889861586921614503767581446669634498709680645911698252119808725539/3664269476467055680186018175841191688574246057038847686521954406332555005629687143250367994173544764076672453403182672728920108800",
+  "source_sha256": "590c7c5b2c2f77fd7953eb023891a07056fe37da69aa2a441c148c5fe769256e",
+  "verifier_sha256": "1862ad716969f356524ad2d819bd81eb50c5b743a1123b972c6a2ba80897f9f8",
+  "scope": "Finite exact identities only; smooth local-maximum deduction is written separately.",
+  "main_target_proved": false
+}
