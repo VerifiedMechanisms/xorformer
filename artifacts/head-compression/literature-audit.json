@@ -871,6 +871,15 @@
       "checked_location": "Primary PDF version displayed as v1: Section 2 cost model, Theorem 1, and construction outline through page 7. The entire 186-page paper and its Lean files were not audited.",
       "mechanism": "Rational preprocessing gives monic degree-d polynomial evaluation using floor(d/2)+1 multiplications in characteristic zero or characteristic greater than d, with logarithmic multiplicative height.",
       "gap": "Rational preprocessing of coefficients does not make the runtime circuit a sum of affine ratios. The circuit multiplies nonlinear intermediate quantities. No head-count-preserving flattening theorem follows from the inspected construction."
+    },
+    {
+      "title": "From Sylvester-Gallai Configurations to Rank Bounds: Improved Black-Box Identity Test for Depth-3 Circuits",
+      "authors": "Nitin Saxena and C. Seshadhri",
+      "url": "https://eccc.weizmann.ac.il/report/2010/013/revision/1/download/",
+      "checked_location": "Definition 1, Theorem 5, and Section 2 proof outline in ECCC TR10-013 revision 1. The full 33-page proof is used as a cited theorem, not claimed to have been independently formalized.",
+      "mechanism": "Simple minimal real identities with k products of linear forms have factor span dimension less than 3*k^2. The proof combines ideal Chinese remaindering, matchings, and Sylvester-Gallai rank bounds.",
+      "application": "After common-factor removal, F-G=R with three nonzero fully real-split products has factor rank at most 26. This removes the generic-fiber hypothesis from a bounded-rank audit of logarithmic derivative cancellation.",
+      "gap": "Applies to polynomial identities, not just Boolean-cube identities. The resulting head-family obstruction for a sublinear number of bounded-rank groups is in split-product-rank-audit.tex. It does not exclude arbitrary admissible fractions or prove the target."
     }
   ]
 }

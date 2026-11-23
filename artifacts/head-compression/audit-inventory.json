@@ -319,7 +319,8 @@
     "Weighted-degree grouping bounds all-order affine-fraction Taylor constructions: with total H heads in L adaptive positive-base confluent clusters, m=2*(n+1)*H+1<=2^n parameters and b=1+floor(log2(H)), the strict sign count is at most (4096*L*(b+1)^5*2^n/m)^m. Thus polynomially many clusters with H<=C*2^n/n^2 are insufficient, even at exponentially high orders. General exponentially many-base scores remain unexcluded.",
     "An H-covering set S with an isolating (H+1)-face through each point has uniform numerical indicator error at least 1/(1+|S|*(2^(H+1)-1)) for every H-head score, even allowing arbitrary positive affine denominators. The proof uses a nonnegative subcube expansion of the denominator product. Sparse affine level sets with this property exist for H=floor(log2(n)/2), although their strict sign complexity is at most two. An exact ten-bit example has strict sign complexity two and numerical two-head approximation error at least 1/85.",
     "A product of admissible denominators satisfies D00*D11<=D10*D01 on every coordinate square, strictly if any denominator is nonconstant. For n>=2 it therefore cannot be a constant or positive multiplicatively separable table unless all factors are constant. This obstructs a proposed norm-one implementation of arithmetic unit signatures, not the general head model.",
-    "Affine-fraction extrema on a Boolean cube are attained at sorted coefficient-ratio prefixes after complementing negative denominator slopes and handling zero slopes. Independent affine certificates verify the extrema without exhaustive evaluation. No universal head bound follows."
+    "Affine-fraction extrema on a Boolean cube are attained at sorted coefficient-ratio prefixes after complementing negative denominator slopes and handling zero slopes. Independent affine certificates verify the extrema without exhaustive evaluation. No universal head bound follows.",
+    "Split-product logarithmic derivative cancellations have denominator factor rank at most 26 after removing common factors, by the real depth-three identity rank theorem. A sum of K=o(H) fixed-rank groups cannot be universal at H<=C*2^n/n^2. This applies only to the audited polynomial-identity construction."
   ],
   "blocked_routes": [
     {
@@ -1021,5 +1022,14 @@
     "result": "Bounded coefficient degree is equivalent to membership of the exact-degree homogenization in the homogeneous product ideal. Dehomogenized ideal membership alone is insufficient.",
     "counterexample": "xy cannot equal c*(1+x+y)*(2+x+y)+A1*(2+x+y)+A2*(1+x+y) with affine A1,A2, although the two denominator forms generate the unit affine ideal.",
     "scope": "No target model change and no universal head bound."
+  },
+  "split_product_rank_audit": {
+    "writeup": "split-product-rank-audit.tex",
+    "external_theorem": "Saxena-Seshadhri, ECCC TR10-013 revision 1, Theorem 5, real rank less than 3*k^2.",
+    "result": "A three-term nonzero fully real-split polynomial identity has factor rank at most 26 after common-factor removal. Hence its logarithmic derivative difference has bounded-rank denominators.",
+    "counting_consequence": "At H<=C*2^n/n^2, scores partitionable into K=o(H) groups of uniformly bounded denominator-slope rank realize only 2^o(2^n) strict sign tables, even with arbitrary affine numerators and target-dependent groups.",
+    "audit_limits": "Two parameter blocks are used in the count. No uncharged factor depending on a growing number of blocks is omitted. Polynomial-ring identities are distinguished from Boolean identities.",
+    "formalization": "Manual application of a cited literature theorem; no new Lean declaration.",
+    "target_proved": false
   }
 }

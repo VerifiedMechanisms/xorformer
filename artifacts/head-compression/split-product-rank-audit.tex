@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{A Rank Obstruction for Split-Product Cancellation}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note audits a proposed extension of the reciprocal cycle identities.
+It does not prove the requested universal head bound. The polynomial
+identities below are identities over the real polynomial ring, not merely
+identities on the Boolean cube. The rank theorem used below is an external
+theorem; this note does not claim a Lean formalization of it.
+
+\section{The exact construction being tested}
+
+Let $u_1,\ldots,u_m,v_1,\ldots,v_m$ be real affine forms in $x$, and set
+\[
+ F(s,x)=\prod_{j=1}^m(s+u_j(x)),\qquad
+ G(s,x)=\prod_{j=1}^m(s+v_j(x)).
+\]
+Suppose $F-G=R(x)$ as a polynomial identity, with $R$ independent of $s$.
+Differentiation gives $F_s=G_s$ and hence
+\[
+ \sum_{j=1}^m\frac1{s+u_j(x)}-
+ \sum_{j=1}^m\frac1{s+v_j(x)}
+ =\frac{F_s}{F}-\frac{G_s}{G}
+ =-\frac{R(x)F_s(s,x)}{F(s,x)G(s,x)}.
+\]
+At every point where all the displayed affine factors are positive,
+$F_s=\sum_j\prod_{k\ne j}(s+u_k)>0$. Therefore the score has the
+strict sign of $-R$ wherever $R\ne0$. Substitution of an affine
+$s=C(x)$ preserves both affine denominators and this identity. The
+substitution must separately ensure the manuscript's denominator
+admissibility. The displayed score uses $2m$ heads before cancellations.
+
+Thus a tempting construction is to arrange a prescribed product of affine
+sign tests as $F-G$, and then use its logarithmic derivative difference.
+The next result bounds the number of independent directions in this
+construction, independently of $m$.
+
+\section{Rank from a three-term polynomial identity}
+
+We use Saxena and Seshadhri, \emph{From Sylvester--Gallai Configurations
+to Rank Bounds: Improved Black-Box Identity Test for Depth-3 Circuits},
+ECCC TR10-013, revision 1,
+\url{https://eccc.weizmann.ac.il/report/2010/013/revision/1/download/}.
+Their Theorem 5 states that a simple, minimal, identically zero real
+depth-three circuit with $k$ product terms has linear-factor span of
+dimension less than $3k^2$. Here simple means that the product terms
+have no common linear factor, and minimal means that no nonempty proper
+subsum vanishes.
+
+\begin{proposition}[Split-product differences have bounded factor rank]
+Let $F,G,R$ be nonzero homogeneous real polynomials of the same positive
+degree, each a scalar times a product of real linear forms, with
+$F-G=R$. Divide all three polynomials by their greatest common divisor.
+The linear factors of the resulting three polynomials span a vector
+space of dimension at most $26$.
+\end{proposition}
+\begin{proof}
+Write the quotients as $F_0,G_0,R_0$. They are nonzero, have the same
+degree, and satisfy $F_0-G_0-R_0=0$. The three product terms have no
+common linear factor. No one-term subsum is zero. If a two-term subsum
+were zero, the remaining nonzero term would have to be zero by the
+identity. Thus the circuit is simple and minimal. The cited theorem
+with $k=3$ gives rank less than $27$, hence rank at most $26$.
+If the quotients have degree zero, there are no remaining linear factors
+and the conclusion is immediate without applying the theorem.
+\end{proof}
+
+The rank bound must not be silently replaced by three. For independent
+variables $a,b,c,d$ there is the identity
+\[
+ (a^2-b^2)(c^2-d^2)-(a^2-c^2)(b^2-d^2)
+ +(a^2-d^2)(b^2-c^2)=0.
+\]
+Every displayed quadratic factor splits over the reals. The products
+are pairwise coprime, and their linear factors span all four variables:
+for example $a+b,a-b,c+d,c-d$ are independent. The identity follows
+by expanding with $A=a^2,B=b^2,C=c^2,D=d^2$. It is consistent with
+the bound $26$ used here.
+
+For affine products, homogenize every factor to degree one in a new
+variable $z$. If the difference has smaller degree, homogenize it to
+the common product degree, including the required power of $z$.
+If the affine difference is a product of real affine forms, this
+homogenized difference is still completely split over the reals.
+The proposition therefore applies to the homogenized identity.
+Dehomogenization and affine substitutions are linear maps on the
+coefficient vectors and cannot increase their span dimension.
+
+Common factors of $F,G$ also divide $F-G$. They cancel identically in
+$\partial_s F/F-\partial_s G/G$, because the logarithmic derivative
+of their common product appears in both summands. Consequently the
+remaining denominators in this score have slope vectors spanning at
+most $26$ dimensions. This assertion includes multiplicities.
+
+\paragraph{A hypothesis that is not being assumed.}
+The preceding argument does not require an irreducible generic fiber.
+Pereira--Yuzvinsky, Theorem 2.1(3), gives a sharper bound through a
+linear pullback from projective four-space when that additional
+hypothesis holds. Coprimality alone must not be used to infer it:
+$F=X^2$ and $G=Y^2$ are coprime, whereas their generic pencil member
+splits over the algebraic closure. The real circuit-rank theorem
+avoids that inference entirely.
+
+\section{The cost of combining independent cancellation blocks}
+
+The following counting statement permits arbitrary affine numerators,
+so it enlarges the class of logarithmic derivative constructions.
+
+\begin{theorem}[Bounded-rank blocks]
+Fix constants $r\ge1$ and $C>0$. Let $N=2^n$ and
+$1\le K\le H\le CN/n^2$. Consider scores with at most $H$ positive
+affine denominators. Suppose the heads can be partitioned into at most
+$K$ groups so that, within each group, the denominator slope vectors
+span a space of dimension at most $r$. The groups, their spanning
+vectors, and all coefficients may depend on the Boolean target.
+If $K/H\to0$, the number of strict Boolean sign tables realized by
+this class is $2^{o(N)}$.
+\end{theorem}
+\begin{proof}
+Normalize each denominator by its positive value at $x=0$. Absorbing
+each numerator's constant multiple of the denominator into the bias
+leaves $k_1=1+nH$ numerator parameters. For a fixed group assignment
+$g:[H]\to[K]$, write
+\[
+ B_h(x)=1+\sum_{a=1}^r t_{ha}\sum_{i=1}^n v_{g(h),a,i}x_i.
+\]
+The denominator block has $q=rnK+rH$ parameters. Every allowed
+group of slope vectors admits such a factorization, including groups
+of rank less than $r$. The cleared numerator at each cube vertex has
+degree at most one in the numerator block and at most $2H$ in the
+denominator block. With $k=k_1+q$, the two-block sign-count lemma
+in \texttt{mechanism-audit.tex} gives, for sufficiently large $n$,
+\[
+ K^H\left(\frac{32768N}{k}\right)^k2^{k_1}(2H)^q
+\]
+as an upper bound on the number of strict patterns. The factor $K^H$
+counts all assignments, and $k\le N$ holds because
+$k=O_{C,r}(N/n)$. Applying the sign count on all real parameters only
+enlarges the family obtained by requiring positive admissible
+denominators.
+
+The base-two logarithm is bounded by
+\[
+ O_{C,r}(N\log n/n)+O_r(n^2K+nH).
+\]
+Indeed $H\log_2 K=O_C(N/n)$,
+$k\log_2(32768N/k)=O_{C,r}(N\log n/n)$, and
+$q\log_2(2H)=O_r(n^2K+nH)$.
+Finally $n^2K\le CN(K/H)=o(N)$ and $nH=O_C(N/n)$.
+This proves the claim. Zero-numerator constant-denominator heads
+allow padding smaller representations without increasing group rank.
+\end{proof}
+
+\paragraph{Consequence for the proposed construction.}
+Apply the theorem with $r=26$ to any sum of split-product logarithmic
+derivative blocks of the kind just proved. At the requested head
+budget, a family using $o(H)$ such blocks cannot be universal.
+Increasing the degree of a small number of split-product identities
+therefore cannot supply the missing factor of $n$.
+The result does not exclude a number of small blocks comparable to
+$H$, differences that do not split over the reals, or identities valid
+only modulo the Boolean ideal. It is not a lower bound for the full
+manuscript model.
+
+\paragraph{Counting audit.}
+The proof deliberately uses two parameter blocks. Replacing them by
+one block per head and multiplying only the individual degree factors
+would omit the dependence of multiblock sign bounds on the number of
+blocks. In particular, that shortcut would incorrectly strengthen the
+bound even when every group contains just one arbitrary denominator.
+No such shortcut is used above.
+
+\end{document}
