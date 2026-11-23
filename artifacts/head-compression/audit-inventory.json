@@ -1098,7 +1098,7 @@
     "compatibility": "A cube-indexed list G_T(t) is in the image exactly when every subset difference D_S is divisible by (t-1)^|S|. The unique multilinear remainder is explicit.",
     "compiler": "A Laurent polynomial with a prescribed strict sign along every curve (t,t^x), for 0<t<1, integrates against t^(C(x)-1) to the same number of admissible constant-numerator heads.",
     "construction_cost": "The explicit lift of any table has at most (n+2)*2^(n-1) monomials for n>=1. This is weaker than the manuscript bound and does not meet the requested rate.",
-    "scope": "No small-support theorem is asserted. An ideal generating set does not bound the support of a representation or preserve nonnegative multiplicities.",
+    "scope": "The algebraic kernel and compiler remain valid. Universality of the uniform-sign Mellin lift at the target budget is now ruled out in laplace-sign-obstruction.tex.",
     "target_proved": false,
     "lean_file": "formalization/HeadComplexity/Results/BooleanProjectionIdeal.lean"
   },
@@ -1133,7 +1133,7 @@
     "manual_proof": "artifacts/head-compression/weighted-root-completion.tex",
     "construction": "An integer affine form with coefficient absolute sum M is part of an explicit affine permutation list of roots 0 through M, using M+1 forms.",
     "compiler": "A supplied ideal first variation with strict target signs yields 2m admissible constant-numerator heads with an explicit finite rational epsilon choice.",
-    "gap": "No universal small-root-list existence theorem. This conditional compiler does not prove the target.",
+    "gap": "Finite construction and witnesses remain valid. Universality of ideal leading terms at the target budget is now ruled out by the Laplace-sign count.",
     "diagnostic": "artifacts/head-compression/diagnostics/permutation-tangent-smt-initial.json",
     "new_exact_witness": "artifacts/head-compression/diagnostics/permutation-tangent-n4-weighted.json",
     "new_score": "artifacts/head-compression/certificates/permutation-tangent-parity-n4-h12.json",
@@ -1152,11 +1152,34 @@
     "asymptotic": "Only 2^{o(2^n)} strict tables for m<=C*2^n/n^2, including target-dependent distinct real root sets.",
     "parity": "m^2>=2^(n-1).",
     "higher_orders": "The same barrier holds for the first nonzero ideal coefficient at any formal perturbation order, with a fixed simple base root set.",
-    "not_covered": [
-      "Input-dependent common root multisets",
-      "Higher-order collisions at repeated roots",
-      "Variations depending nontrivially on the auxiliary variable s"
-    ],
+    "not_covered": "General head scores; moving-root ideal strategies are now covered by the separate Laplace-sign obstruction.",
     "universal_route_status": "Closed by the extreme-root invariant; do not resume on the basis of the four-bit example alone."
+  },
+  "laplace_sign_obstruction": {
+    "file": "artifacts/head-compression/laplace-sign-obstruction.tex",
+    "status": "Manual complete proofs; not formalized in Lean. No universal head bound proved.",
+    "exponential_count": "Affine-weighted exponential H-term scores on the Boolean cube have at most [4e(n+1)2^n/p]^p strict sign tables, p=(2n+1)H+1<=2^n. Thus only 2^{o(2^n)} tables at H=O(2^n/n^2).",
+    "closed_routes": [
+      "A common Laplace time that strictly aligns with the entire target table.",
+      "Ideal first variations of arbitrary affine root multiset identities, including input-dependent root multisets.",
+      "Exact ideal product differences holding only on the Boolean cube, including repeated roots.",
+      "Arbitrary finite analytic ideal leading orders, including repeated base roots.",
+      "Uniform-sign sparse Laurent/Mellin lifts, even with unbounded exponents."
+    ],
+    "new_mechanism": "Lagrange divided differences and positive convolutions force common Laplace signs. Boolean exponential factorization then permits a polynomial sign-pattern count with degree n+1 instead of H.",
+    "boundary_check": "An admissible one-bit two-head score is positive on both vertices but its two integrands have disjoint positive-time intervals.",
+    "not_excluded": [
+      "Conflicting Laplace signs across separate blocks.",
+      "Nonconstant auxiliary-variable leading coefficients with sign-changing inverse transforms.",
+      "General admissible head scores."
+    ],
+    "literature_entry": 118,
+    "diagnostic": "artifacts/head-compression/diagnostics/moving-root-identity-audit.json",
+    "diagnostic_scope": "72 SAT moving-root identities rechecked exactly, and every stored SAT tangent witness independently recomputed with Fractions. The three-variable five-root example realizes parity; no asymptotic consequence. Solver UNSAT outputs are not imported proofs.",
+    "target_proved": false
+  },
+  "private_repository_refresh_2026_11_23_1402": {
+    "command": "git fetch origin '+refs/heads/*:refs/heads/*' in the two existing bare mirrors",
+    "result": "Both completed without updates. No new target proof found."
   }
 }

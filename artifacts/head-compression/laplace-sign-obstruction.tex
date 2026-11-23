@@ -1,0 +1,349 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Laplace Sign Consistency and the Cost of Ideal Moment Constructions}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+These are obstructions to specified construction mechanisms, not a
+lower bound ruling out the requested head complexity. They apply even
+when all affine forms depend on the target and the common root multiset
+varies with the input. The final explicit example explains why the
+restriction is substantive. The proofs are manual, not Lean checked.
+
+\begin{theorem}[Counting affine-weighted exponential scores on the cube]
+Let $N=2^n$, $H\ge1$, and $p=(2n+1)H+1\le N$. The number of
+strict sign tables of
+\[
+ E(x)=c+\sum_{h=1}^H A_h(x)\exp(-B_h(x)),
+ \qquad x\in\{0,1\}^n,
+\tag{1}
+\]
+where $A_h,B_h$ are arbitrary real affine forms, is at most
+\[
+ \left(\frac{4e(n+1)N}{p}\right)^p.
+\tag{2}
+\]
+For every fixed $C>0$, the union over $H\le C N/n^2$ therefore
+has only $2^{o(N)}$ strict sign tables.
+\end{theorem}
+\begin{proof}
+Write $B_h=b_{h0}+\sum_i b_{hi}x_i$ and put
+$\theta_{hi}=\exp(-b_{hi})$. Absorb the positive factor
+$\exp(-b_{h0})$ into all coefficients of $A_h$. Since the inputs
+are Boolean, (1) becomes
+\[
+ c+\sum_h\left(a_{h0}+\sum_i a_{hi}x_i\right)
+                         \prod_{i:x_i=1}\theta_{hi}.
+\tag{3}
+\]
+At each fixed input this is a polynomial in the $p$ parameters
+$c,a_{hi},\theta_{hi}$, of total degree at most $n+1$.
+Enlarging the domain $\theta_{hi}>0$ to all real values only
+increases the number of sign tables. Warren's strict-sign theorem
+gives (2). We use its formulation in Goldberg--Jerrum,
+\emph{Bounding the Vapnik--Chervonenkis Dimension of Concept Classes
+Parameterized by Real Numbers},
+\href{https://www.cs.ox.ac.uk/people/paul.goldberg/papers/GJ-ML95.pdf}
+{Machine Learning 18 (1995), Theorem 2.1, page 137}.
+If $p=N$, the trivial bound $2^N$ is already smaller than (2),
+so the possible strict inequality convention in that theorem is immaterial.
+
+For $H\le C N/n^2$, one has $p=O_C(N/n)$. The logarithm of
+(2) is $O_C(N\log n/n)=o(N)$, uniformly over these $H$.
+For sufficiently large $n$, this follows also by monotonicity of
+$p\log(4e(n+1)N/p)$ throughout the allowed range. Taking the
+union adds at most $O_C(n)$ to the logarithm.
+\end{proof}
+
+\begin{corollary}[A shared Laplace time is too restrictive]
+Suppose an admissible rational score is
+\[
+ S(x)=c+\sum_h\frac{A_h(x)}{B_h(x)},\qquad B_h(x)>0,
+\]
+and let
+\[
+ E_t(x)=c e^{-t}+\sum_h A_h(x)e^{-tB_h(x)}.
+\tag{4}
+\]
+Then $S(x)=\int_0^\infty E_t(x)\,dt$. At the budget
+$H\le C2^n/n^2$, only $2^{o(2^n)}$ target tables can have a
+representation for which some common $t>0$ satisfies
+$y(x)E_t(x)>0$ at every input. In particular this holds if the
+inequality is required for all positive times.
+\end{corollary}
+\begin{proof}
+Integrate the finite sum in (4), using $B_h(x)>0$.
+For any selected common $t$, its multiplication of every denominator
+coefficient can be absorbed into the freely chosen affine form $B_h$,
+and $ce^{-t}$ is simply a new bias. Thus even a target-dependent
+choice of $t$ gives a table in (1). Apply the theorem.
+\end{proof}
+
+\begin{lemma}[A positive divided exponential sum]
+For distinct real numbers $b_1,\ldots,b_m$ and every $t>0$,
+\[
+ K_b(t)=\sum_{h=1}^m
+       \frac{e^{-tb_h}}{\prod_{j\ne h}(b_j-b_h)}>0.
+\tag{5}
+\]
+\end{lemma}
+\begin{proof}
+For $m=1$ this is immediate. Otherwise let $q$ be the degree-at-most
+$m-1$ Lagrange interpolant to $g(z)=e^{-tz}$ at the $m$ nodes.
+Its leading coefficient is
+$\sum_h g(b_h)/\prod_{j\ne h}(b_h-b_j)$.
+Repeated Rolle's theorem applied to $g-q$ shows that this coefficient
+equals $g^{(m-1)}(\xi)/(m-1)!$ for some point between the smallest
+and largest node. Multiplication by $(-1)^{m-1}$ gives
+$K_b(t)=t^{m-1}e^{-t\xi}/(m-1)!>0$.
+\end{proof}
+
+\begin{theorem}[All ideal first variations have consistent Laplace signs]
+Let $u_h,v_h,a_h,b_h$ be affine forms, $1\le h\le m$.
+At every Boolean input, suppose $u$ and $v$ have the same multiset
+of values, with no repetitions. This multiset may depend on the input.
+Suppose the product first variation
+\[
+ R_x(s)=\left.\partial_\epsilon\right|_0
+ \left[\prod_h(s+u_h(x)+\epsilon a_h(x))-
+       \prod_h(s+v_h(x)+\epsilon b_h(x))\right]=r(x)
+\tag{6}
+\]
+is independent of $s$ and has strict signs $y(x)$.
+Then for every $t>0$,
+\[
+ y(x)\left(\sum_h a_h(x)e^{-tu_h(x)}
+             -\sum_h b_h(x)e^{-tv_h(x)}\right)>0
+\tag{7}
+\]
+at every Boolean input. Therefore this entire ideal-first-variation
+construction, including moving root multisets, is not universal with
+$m=O(2^n/n^2)$.
+\end{theorem}
+\begin{proof}
+Fix an input and match the two lists by their distinct values.
+Write $\pi(h)$ for the index with $v_{\pi(h)}=u_h$ and
+$d_h=\prod_{j\ne h}(u_j-u_h)$. Evaluation of (6) at $s=-u_h$
+gives
+\[
+ a_h-b_{\pi(h)}=r/d_h.
+\]
+Consequently the expression in parentheses in (7) is exactly
+$rK_u(t)$, positive after multiplication by $y$ by (5).
+At any one fixed $t$, (7) is a $2m$-term score in (1), with
+affine weights. Apply the counting theorem. No assumption that
+the roots are constant across inputs was used.
+
+The distinctness condition loses no nonzero ideal first variation.
+If a base value is repeated, each summand in either product's first
+derivative still vanishes at the negative of that value. Evaluation
+of (6) there would force $r=0$ at that input.
+\end{proof}
+
+\begin{lemma}[Positive convolution and its elementary Laplace transform]
+For $b_1,\ldots,b_k>0$, let $k_b(t)=e^{-bt}$ on $t\ge0$.
+The iterated convolution $k_{b_1}*\cdots*k_{b_k}$ is strictly
+positive for every $t>0$ and has Laplace transform
+$\prod_{j=1}^k(s+b_j)^{-1}$ for $s\ge0$.
+These assertions permit repeated $b_j$.
+\end{lemma}
+\begin{proof}
+Positivity follows by induction from the integral over $0<u<t$.
+The transform identity follows by the substitution $t=u+v$ in the
+integral of a convolution; the nonnegative integrand justifies
+interchanging the integrals. The transform of one factor is
+$1/(s+b)$.
+
+We also record the uniqueness fact needed below without requiring a
+general inversion theorem. Finite convolutions of these exponentials
+are finite sums of $t^j e^{-bt}$: this follows inductively by
+integrating an exponential times a polynomial, with equal exponents
+giving one extra power of $t$. The Laplace transform of
+$t^j e^{-bt}$ is $j!/(s+b)^{j+1}$, by integration by parts.
+If a finite sum of these transforms vanishes, uniqueness of partial
+fractions forces every coefficient to vanish. That uniqueness follows
+by multiplying by the highest power at a pole, evaluating there,
+and then successively removing the remaining powers. Hence equal
+transforms in this finite class imply equal functions.
+\end{proof}
+
+\begin{theorem}[Boolean ideal product differences are also excluded]
+Let $u_1,\ldots,u_m,v_1,\ldots,v_m$ be real affine forms and suppose,
+at every Boolean input, that
+\[
+ F(s,x)=\prod_h(s+u_h(x)),\quad
+ G(s,x)=\prod_h(s+v_h(x)),\quad F(s,x)-G(s,x)=r(x),
+\tag{8}
+\]
+with $r$ independent of $s$ and strictly of sign $y(x)$.
+These identities need only hold on the cube, not as polynomial
+identities in the input coordinates. Then
+\[
+ y(x)\left(\sum_h e^{-tv_h(x)}-\sum_h e^{-tu_h(x)}\right)>0
+                  \qquad(t>0).
+\tag{9}
+\]
+Thus ideal product differences and their logarithmic-derivative head
+compiler cannot give the requested universal bound at
+$m=O(2^n/n^2)$.
+\end{theorem}
+\begin{proof}
+Choose a common affine shift $C(x)$ so that all coefficients of
+$C+u_h,C+v_h$ are strictly positive. This is possible by taking
+each coefficient of $C$ larger than one plus the largest absolute
+coefficient in the two lists. Fix an input and temporarily replace
+the roots by their shifted positive values. Substitution
+$s\mapsto s+C(x)$ leaves $F-G=r$ unchanged.
+
+Since $F_s=G_s$, logarithmic differentiation gives
+\[
+ \frac{G_s}{G}-\frac{F_s}{F}
+   =\frac{r F_s}{FG}
+   =r\sum_{j=1}^m\frac{1}{s+u_j}
+                          \prod_{\ell=1}^m\frac{1}{s+v_\ell}.
+\tag{10}
+\]
+The left side is the Laplace transform of
+$\sum_h e^{-tv_h}-\sum_h e^{-tu_h}$. By the lemma, the
+right side is the transform of $r$ times a sum of $m$ strictly
+positive convolution kernels. The uniqueness fact in the lemma
+identifies the two functions. This proves (9) for the shifted roots;
+removing the common positive factor $e^{-tC(x)}$ proves it as stated.
+Finally apply (2) at $t=1$, even allowing affine rather than
+constant numerator weights. Repeated roots cause no difficulty here.
+\end{proof}
+
+\begin{theorem}[Ideal leading terms at arbitrary analytic parameter order]
+Let $u_h(\epsilon,x),v_h(\epsilon,x)$, $1\le h\le m$, be real
+analytic in $\epsilon$ near zero, with affine dependence on $x$
+for each $\epsilon$. Suppose their products satisfy, at every Boolean
+input, the coefficientwise expansion in the auxiliary variable $s$
+\[
+ F_\epsilon(s,x)=\prod_h(s+u_h(\epsilon,x)),\qquad
+ G_\epsilon(s,x)=\prod_h(s+v_h(\epsilon,x)),
+\]
+\[
+ F_\epsilon(s,x)-G_\epsilon(s,x)
+    =\epsilon^k r(x)+O(\epsilon^{k+1}),\qquad k\ge1,
+\tag{11}
+\]
+where $r(x)$ is independent of $s$ and has strict signs $y(x)$.
+Then $y$ has an affine-weighted exponential representation with at
+most $2m$ terms. The base root multiset may depend on $x$ and may
+have repetitions. Thus increasing the order or coalescing base roots
+in this ideal-leading-term strategy does not overcome (2).
+\end{theorem}
+\begin{proof}
+The order-zero products agree; write their common value as $P(s,x)$.
+After a common affine shift, all base root values are positive.
+They remain at least some $\delta>0$ for sufficiently small
+$|\epsilon|$, uniformly over the finite cube and finite root lists.
+Fix one input for the intermediate calculation. The logarithmic
+derivative difference has expansion
+\[
+ \frac{(G_\epsilon)_s}{G_\epsilon}
+       -\frac{(F_\epsilon)_s}{F_\epsilon}
+       =\epsilon^k r\frac{P_s}{P^2}
+                                 +O(\epsilon^{k+1}).
+\tag{12}
+\]
+Indeed its numerator is
+$(G_\epsilon)_s(F_\epsilon-G_\epsilon)
+ -G_\epsilon((F_\epsilon)_s-(G_\epsilon)_s)$.
+In (11) the derivative in $s$ of the order-$k$ coefficient is zero.
+Taking the coefficient of $\epsilon^k$ proves (12); all smaller
+coefficients vanish.
+
+The left side of (12) is the Laplace transform of the finite sum
+\[
+ T_\epsilon(t,x)=\sum_h e^{-t v_h(\epsilon,x)}
+                         -\sum_h e^{-t u_h(\epsilon,x)}.
+\]
+Coefficients through order $k$ may be taken under this integral.
+Here is a domination justification. By induction in $j$, the
+$j$th parameter derivative of $e^{-t u_h}$ is $e^{-t u_h}$
+times a polynomial in $t$ of degree at most $j$: differentiate
+the polynomial and subtract $t(\partial_\epsilon u_h)$ times
+it to pass from $j$ to $j+1$. On a sufficiently small closed
+parameter interval, all coefficients of these finitely many
+polynomials are bounded. Thus the derivatives through order $k$
+are bounded by $M(1+t)^k e^{-\delta t}$ for some $M$, which
+is integrable on $[0,\infty)$. The same argument applies to $v_h$.
+
+Every parameter coefficient of $T_\epsilon$ is a finite exponential
+polynomial in $t$. The transform uniqueness in the preceding lemma
+therefore makes every coefficient below order $k$ zero. At order
+$k$ it identifies the coefficient with the inverse transform of
+$rP_s/P^2$. If $P=\prod_j(s+b_j)$, then
+\[
+ \frac{P_s}{P^2}=\sum_j\frac1{s+b_j}\prod_\ell\frac1{s+b_\ell}.
+\]
+Its inverse transform is a sum of strictly positive convolution
+kernels for every $t>0$, including when some $b_j$ coincide.
+Consequently the leading coefficient of $T_\epsilon(1,x)$ has
+strict sign $y(x)$. On the finite cube, one sufficiently small
+$\epsilon>0$ makes every $T_\epsilon(1,x)$ have that sign.
+Its $2m$ exponents are affine in $x$ by hypothesis, so it belongs
+to (1), even with constant numerator weights. Removing the common
+shift only multiplies the exponential sum by a positive factor.
+Apply (2).
+\end{proof}
+
+\begin{corollary}[Uniform-sign Mellin lifts cannot compress enough]
+The uniform-sign Laurent-polynomial construction in
+\texttt{toric-switching-audit.tex} is not universal at
+$H=O(2^n/n^2)$ monomials, regardless of how large its exponents are.
+\end{corollary}
+\begin{proof}
+Evaluate its asserted uniform sign at $t=1/2$.
+Each monomial becomes a constant times
+$\prod_{i:x_i=1}\theta_{hi}$, with positive $\theta_{hi}$.
+This is the constant-weight subfamily of (3). Arbitrarily large
+integer or real exponents are already included by allowing arbitrary
+positive $\theta_{hi}$, so they do not invalidate the count.
+\end{proof}
+
+\begin{proposition}[General admissible scores can escape the restriction]
+On the one-bit cube the admissible two-head score
+\[
+ S(x)=\frac{1+x}{1+9x}+\frac{-2+x}{3+3x}
+\]
+is strictly positive at both vertices. Nevertheless its exponential
+integrands are never simultaneously strictly positive at any
+common $t>0$.
+\end{proposition}
+\begin{proof}
+The score values are $S(0)=1/3$ and $S(1)=1/30$.
+All denominator coefficients are strictly positive. The integrands are
+\[
+ E_t(0)=e^{-t}-2e^{-3t},\qquad
+ E_t(1)=2e^{-10t}-e^{-6t}.
+\]
+The first is positive exactly when $t>(\log 2)/2$; the second
+is positive exactly when $t<(\log 2)/4$. These intervals are
+disjoint. Thus the argument above is not a lower bound for the
+unrestricted head model. This example is a boundary check, not an
+efficient universal construction.
+\end{proof}
+
+\paragraph{Research consequence.}
+The fixed-root face invariant and the moving-root computational
+examples remain valid. The stronger exponential factorization now
+closes ideal first variations, ideal product differences, and analytic
+ideal leading terms at the target budget, as well as uniform-sign Mellin lifts.
+Any proposed universal proof based on these integrals must therefore
+use a materially different sign-cancellation mechanism. No such
+universal mechanism is proved in this note.
+
+Sums of blocks whose Laplace signs conflict at some inputs are not
+excluded by these statements. Neither are leading coefficients with
+nonconstant dependence on $s$ whose inverse transforms change sign.
+The general head model permits both behaviors.
+\end{document}

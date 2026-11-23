@@ -967,6 +967,14 @@
       "checked_location": "Main theorem and its constructive existence proof by successive division, accepted author version pages 3-4.",
       "mechanism": "A proper univariate rational function has a finite alternating expansion with denominators h0, h0*h1, and successive products, where the factor degrees increase strictly.",
       "gap": "The displayed denominators are nonlinear polynomial products. The theorem neither makes them admissible affine forms nor bounds the cost of any conversion to heads."
+    },
+    {
+      "title": "Bounding the Vapnik-Chervonenkis Dimension of Concept Classes Parameterized by Real Numbers",
+      "authors": "Paul W. Goldberg and Mark R. Jerrum",
+      "url": "https://www.cs.ox.ac.uk/people/paul.goldberg/papers/GJ-ML95.pdf",
+      "checked_location": "Theorem 2.1, printed page 137 (PDF page 6), restating Warren\u2019s strict polynomial sign-pattern theorem.",
+      "mechanism": "For m degree-at-most-d real polynomials in p variables with m >= p, the number of strict sign patterns is at most (4 e d m / p)^p. Affine-weighted exponential scores on Boolean inputs become degree-at-most-n+1 polynomials in (2n+1)H+1 parameters.",
+      "gap": "This proves an obstruction to common-Laplace-time constructions and ideal moment variations, not a lower bound for unrestricted sums of positive affine reciprocals. Cancellation across integration times is permitted in the original model."
     }
   ]
 }

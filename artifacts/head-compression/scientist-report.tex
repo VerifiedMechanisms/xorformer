@@ -13,8 +13,8 @@ of that statement was added. No construction in the record should be
 read as establishing it.
 
 \paragraph{Formal results.}
-The inventory lists $68$ principal and companion declarations across
-$28$ new Lean modules. The full project build passed with $9212$ jobs.
+The inventory lists $75$ principal and companion declarations across
+$29$ new Lean modules. The full project build passed with $9213$ jobs.
 The inspected declarations use only \texttt{propext},
 \texttt{Classical.choice}, and \texttt{Quot.sound}.
 Among the construction results are
@@ -34,7 +34,12 @@ universal existence of a small score. The new declarations
 and \texttt{HeadComplexity.booleanProjection\_multilinear\_ext}
 in \texttt{Results/BooleanProjectionIdeal.lean} check the exact projection
 kernel and uniqueness of multilinear representatives over an integral
-domain. These algebraic facts do not control head count.
+domain. The seven declarations in
+\texttt{Results/WeightedRootCompletion.lean}, including
+\texttt{HeadComplexity.weightedRootPolynomials\_eval\_perm\_range},
+verify an explicit family of affine forms whose Boolean values permute
+a fixed integer interval. These algebraic facts do not give the
+requested universal head bound.
 
 \paragraph{Finite certificate.}
 The file \texttt{certificates/random-n14-anchored-h292.json} gives
@@ -66,8 +71,16 @@ universal head upper bound. The continuation also classifies zero first
 variations and proves a necessary sparsity condition at second order.
 A separate level-set count excludes first-order ideal perturbations of
 any target-dependent permutation list against a constant reference list
-at the requested asymptotic rate. Two nonconstant reference lists and
-arbitrary higher-order leading terms remain outside these results.
+at the requested asymptotic rate. The later proof in
+\texttt{laplace-sign-obstruction.tex} closes all ideal product
+differences and ideal analytic leading terms at the target rate,
+including two nonconstant lists, input-dependent root multisets,
+arbitrary perturbation order, and repeated base roots. Positive
+convolution kernels force common Laplace signs. Boolean exponential
+factorization then gives too few sign tables. This is a manual
+theorem about the construction family, not the full head model:
+an explicit admissible score has no common strictly aligned Laplace
+time. General cancellation across times remains available.
 
 \paragraph{Definitions and assumptions.}
 The original attention model, head resource, and target statement are
@@ -81,7 +94,7 @@ predicate is asserted to hold universally. The manuscript file in
 \texttt{audit-inventory.json} maps declarations, scope restrictions,
 and validation logs. \texttt{mechanism-audit.tex} contains the manual
 arguments, with separate notes for the full-box and permutation-orbit
-parity obstructions. \texttt{literature-audit.json} records $117$
+parity obstructions. \texttt{literature-audit.json} records $118$
 sources, the passages inspected, and the unresolved transfer steps.
 The remaining open deliverable is exactly the universal affirmative
 bound stated at the start of this report.
