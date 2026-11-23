@@ -105,5 +105,7 @@
 'HeadComplexity.two_branch_boundary_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.two_rate_boundary_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.constant_branch_reaches_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.refinement_projection_reaches_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.refinement_card_le_terminal_card_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.four_reciprocal_quadratic_fiber_rigidity' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.paired_level_exchange_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

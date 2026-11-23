@@ -1044,6 +1044,14 @@
       "checked_location": "Theorem 3.2, Lemma 4.3 and its Kloosterman-sum proof; definitions of prime-field Hilbert cubes and reciprocal sumsets.",
       "mechanism": "Fourier and character-sum estimates bound the dimension of a finite-field additive cube avoiding a reciprocal sumset.",
       "gap": "The theorem concerns modular incidence, not real sign representations. It supplies neither affine positive-denominator heads nor a head-count-preserving conversion from modular reciprocals to real reciprocals. No universal upper bound follows."
+    },
+    {
+      "title": "Projections, Entropy and Sumsets",
+      "authors": "Paul Balister and Bela Bollobas",
+      "url": "https://arxiv.org/pdf/0711.1151",
+      "checked_location": "Sections 2 and 3: finite uniform-cover inequality (4), entropy chain rule (5), conditional monotonicity (7), and Theorem 2 (Shearer).",
+      "mechanism": "Coordinate-deleted projections of every unflipped refinement state occur among terminal states. The discrete Loomis-Whitney inequality bounds distinct states by L^((n+1)/n); a separate colored-forest encoding then controls all unflipped graphs at once.",
+      "gap": "This yields a rigorous obstruction to a specified first-variation family, not an affirmative universal construction. Node-dependent selector flips and arbitrary-order perturbations remain outside this application."
     }
   ]
 }

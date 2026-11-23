@@ -125,4 +125,54 @@ theorem merged_refinement_boundary_rigidity {V ι : Type*} [DecidableEq ι]
   rw [hedge v hv i j, h.2 v hv]
   simp
 
+/-- Every coordinate-deleted projection of a refinement state occurs at a
+terminal. This only uses the branch that changes the deleted coordinate. -/
+theorem refinement_projection_reaches_terminal {V ι α : Type*}
+    (active : V → Prop) (height : V → ℕ) (child : V → ι → V)
+    (state : V → ι → α)
+    (hdesc : ∀ v, active v → ∀ i, height (child v i) < height v)
+    (hkeep : ∀ v, active v → ∀ i j, j ≠ i → state (child v i) j = state v j)
+    (i : ι) (v : V) :
+    ∃ w, ¬active w ∧ ∀ j, j ≠ i → state w j = state v j := by
+  obtain ⟨w, hw, heq⟩ := constant_branch_reaches_terminal active height
+    (fun v ↦ child v i) (fun v (j : {j : ι // j ≠ i}) ↦ state v j)
+    (fun v hv ↦ hdesc v hv i)
+    (by intro v hv; funext j; exact hkeep v hv i j j.property) v
+  exact ⟨w, hw, fun j hj ↦ congrFun heq ⟨j, hj⟩⟩
+
+/-- Two distinct coordinate projections inject a graph with distinct states
+into pairs of terminals. The stronger Loomis--Whitney exponent in the
+accompanying note is a separate manual argument. -/
+theorem refinement_card_le_terminal_card_sq {V ι α : Type*} [Fintype V]
+    (active : V → Prop) [DecidablePred active]
+    (height : V → ℕ) (child : V → ι → V) (state : V → ι → α)
+    (hinj : Function.Injective state)
+    (hdesc : ∀ v, active v → ∀ i, height (child v i) < height v)
+    (hkeep : ∀ v, active v → ∀ i j, j ≠ i → state (child v i) j = state v j)
+    (a b : ι) (hab : a ≠ b) :
+    Fintype.card V ≤ Fintype.card {v : V // ¬active v} ^ 2 := by
+  classical
+  have hend : ∀ i v, ∃ w, ¬active w ∧ ∀ j, j ≠ i → state w j = state v j :=
+    refinement_projection_reaches_terminal active height child state hdesc hkeep
+  choose endpoint terminal same using hend
+  let f : V → {v : V // ¬active v} × {v : V // ¬active v} :=
+    fun v ↦ (⟨endpoint a v, terminal a v⟩, ⟨endpoint b v, terminal b v⟩)
+  have hf : Function.Injective f := by
+    intro v w hvw
+    have ha : endpoint a v = endpoint a w := congrArg (fun z ↦ z.1.val) hvw
+    have hb : endpoint b v = endpoint b w := congrArg (fun z ↦ z.2.val) hvw
+    apply hinj
+    funext j
+    by_cases hja : j = a
+    · subst j
+      calc
+        state v a = state (endpoint b v) a := (same b v a hab).symm
+        _ = state (endpoint b w) a := congrArg (fun z ↦ state z a) hb
+        _ = state w a := same b w a hab
+    · calc
+        state v j = state (endpoint a v) j := (same a v j hja).symm
+        _ = state (endpoint a w) j := congrArg (fun z ↦ state z j) ha
+        _ = state w j := same a w j hja
+  simpa [pow_two] using Fintype.card_le_of_injective f hf
+
 end HeadComplexity

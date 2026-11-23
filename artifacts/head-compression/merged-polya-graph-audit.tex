@@ -9,10 +9,12 @@
 \maketitle
 
 \paragraph{Scope.}
-This note treats a fixed finite graph of coordinate refinements, allowing
-arbitrary merging of equal states. It proves a parameter-dimension bound,
-not the universal head conjecture. The graph itself may contain discrete
-information that is not counted by its continuous dimension.
+This note treats finite graphs of coordinate refinements, allowing
+arbitrary merging of equal states. It proves a parameter-dimension bound
+for fixed graphs, then uses projection counting and spanning forests to
+exclude first variations of all unflipped positive-step graphs at the
+requested head rate. It does not prove or disprove the universal head
+conjecture. The extension to arbitrary flipped graphs remains open.
 
 \section{The graph and its linear realization space}
 
@@ -197,12 +199,180 @@ first-variation scheme would need at least $2^{N-o(N)}$ graph
 choices, or would have to leave the stated family in another way.
 
 \paragraph{What remains unproved.}
-There is no uniform bound here on the number of realizable graph
-incidence patterns, nor on the number of uncharged internal states.
-In particular, (2) alone does not exclude target-dependent graphs.
+The fixed-graph argument alone supplies no sufficiently small bound on
+the number of realizable graph incidence patterns. The projection and
+spanning-forest arguments below resolve this issue for all unflipped
+positive-step graphs, including repeated state vectors. The analogous
+union over arbitrary flipped graphs and higher-order perturbations
+remains outside the argument.
 Low continuous dimension for each member of an arbitrarily large
 discrete family is not a sign-count bound for their union. No
 universal labeling construction from those graph choices is supplied.
+
+\section{A projection bound on distinct unflipped states}
+
+The following additional constraint uses the combinatorial
+Loomis--Whitney inequality. Its projection and entropy forms are recalled
+in Balister and Bollob\'as, \emph{Projections, Entropy and Sumsets},
+Sections 2--3, \url{https://arxiv.org/pdf/0711.1151}.
+
+\begin{theorem}[Distinct-state bound]
+Consider any finite unflipped refinement graph satisfying (1).
+Let $S$ be the set of its distinct state vectors and $T\subseteq S$
+the set of its distinct terminal state vectors. Then
+\[
+              |S|^{d-1}\le |T|^d. \tag{12}
+\]
+Thus $|S|\le L^{d/(d-1)}$. This does not require distinct vertices to
+have distinct states. It bounds states, not the number of occurrences
+of a state or the number of different refinement rules at that state.
+\end{theorem}
+\begin{proof}
+Let $\pi_i$ delete coordinate $i$. Starting from any vertex and
+following only its color-$i$ child reaches a terminal, since the graph
+is finite and acyclic. Each such edge preserves $\pi_i$. Therefore
+\[
+                         \pi_i(S)=\pi_i(T)
+                         \quad(0\le i<d). \tag{13}
+\]
+The inclusion from right to left uses $T\subseteq S$; the reverse
+inclusion is the preceding path argument.
+
+For completeness, the finite projection inequality follows directly
+from entropy. Assume $S$ is nonempty and let $X$ be uniform on $S$.
+The chain rule and decrease of conditional entropy under additional
+conditioning give
+\[
+ \sum_{i=0}^{d-1}H(X_{[d]\setminus\{i\}})
+ \ge \sum_{i=0}^{d-1}\sum_{j\ne i}
+             H(X_j\mid X_0,\ldots,X_{j-1})
+ =(d-1)H(X).
+\]
+Here the chain-rule expansion on the left conditions on the preceding
+coordinates other than $i$, a subset of all preceding coordinates.
+Since $H(X)=\log_2|S|$ and
+$H(\pi_i(X))\le\log_2|\pi_i(S)|$, exponentiation yields
+\[
+              |S|^{d-1}\le\prod_{i=0}^{d-1}|\pi_i(S)|.
+\]
+Use (13) and $|\pi_i(T)|\le |T|$ to obtain (12). Empty $S$ is
+immediate, since $d\ge2$.
+\end{proof}
+
+The path argument is kernel checked in
+\texttt{HeadComplexity.refinement\_projection\_reaches\_terminal}.
+The companion
+\texttt{HeadComplexity.refinement\_card\_le\_terminal\_card\_sq}
+proves the weaker square bound for a graph with injectively labeled
+states: choose terminals reached in two different colors; the two
+terminal states determine every coordinate of the starting state.
+The entropy argument and its sharper exponent are manual.
+
+For $d=n+1$ and $L\le C2^n/n^2$ with fixed $C$, (12) implies
+$|S|\le(2+o(1))L$. If graph vertices have distinct states and each
+internal state has one specified refinement rule, a labeled graph on
+$M$ states has at most $2^M M^{dM}$ possible terminal flags and
+child maps. Summing over $M\le\lfloor L^{d/(d-1)}\rfloor$ still
+gives only the bound
+\[
+                         2^{O(nL\log(L+1))}.
+\]
+At the requested scale this is $2^{O_C(2^n)}$, not $2^{o(2^n)}$.
+It is therefore insufficient to combine with (9) to exclude all
+target-dependent graphs. Neither an upper sign-coverage theorem nor a
+lower bound for the full head model follows from this enumeration.
+The direct graph-count statement explicitly requires one rule per
+distinct state. The next argument avoids counting complete graphs and
+does not require that assumption.
+
+\section{Spanning forests close the unflipped first-variation route}
+
+\begin{theorem}[Arbitrary unflipped graphs]
+Fix $C>0$ and put $N=2^n$. Consider all finite unflipped refinement
+graphs in $d=n+1$ coordinates that admit realizations with positive
+coordinates and strictly positive steps. Require every weak component
+to contain an internal vertex. Charge every root and terminal occurrence,
+with total $J\le CN/n^2$. Allow the graph, its number of internal
+vertices, all its parameters, and the coefficients in (7) to depend
+on the target. The union of the strict sign tables of (7), over all
+these choices, has cardinality $2^{o(N)}$ as $n\to\infty$.
+In particular this entire construction family is not universal at the
+requested head rate.
+\end{theorem}
+\begin{proof}
+For any one realization, identify vertices with the same state vector
+only for purposes of encoding their positions. Keep every original edge
+in the resulting geometric graph, allowing several outgoing refinement
+rules at a state. This operation preserves geometric connectivity; it
+need not preserve a single-rule graph presentation and we do not use
+such a presentation. Every geometric edge joins points differing in one
+coordinate. Positive steps exclude loops with equal endpoints.
+
+Let $M$ be the number of distinct state vectors and $c'$ the number
+of weak components of this geometric graph. The distinct-state theorem
+gives $M\le J^{(n+1)/n}$. Each geometric component contains the image
+of an original internal vertex. Its $d$ monochromatic paths have
+distinct terminal endpoint vectors, as in the proof of (3). Components
+have disjoint state sets, so $dc'\le |T|\le J$.
+
+Choose a spanning tree in each geometric component and root each tree
+arbitrarily. Label the $M$ states. Record each nonroot vertex's parent
+and the coordinate changed on that tree edge. Starting from an arbitrary
+vector at each root, introduce one real signed displacement per tree
+edge. The resulting state vectors are linear functions of
+\[
+                  q_0=dc'+M-c'=M+(d-1)c'\le M+J
+                  \tag{14}
+\]
+real parameters. Every original realization is included, because along
+the chosen tree every edge is parallel to its recorded coordinate
+axis. Allowing arbitrary signed displacements is an enlargement;
+positivity and the other refinement constraints may be discarded when
+counting sign tables. Head denominators are obtained by recording which
+state occurs at each charged root or terminal occurrence. Repeated
+occurrences and different rules at the same state cause no difficulty.
+
+For fixed $C$ and sufficiently large $n$, $J^{1/n}\le3$, hence
+$M\le3J$ and $q_0\le4J$. Parent maps and edge colors give at most
+$(M+1)^M d^M$ encodings, including maps which are not forests as a
+harmless overcount. Assigning $J$ ordered head occurrences to states
+costs at most $M^J$. Summing over $1\le M\le3J$ bounds the number
+of valid templates by
+\[
+           3J(3J+1)^{4J}d^{3J}
+              =2^{O(J\log(J+1)+J\log(n+1))}. \tag{15}
+\]
+Only forests satisfying $dc'\le J$ are needed. Their templates have
+the parameter bound (14); invalid maps counted in (15) are not added
+as function families.
+
+Within each template, use the unrestricted affine numerators in (7).
+With $k_1=(3J+1)(n+1)$ and $p=k_1+q_0$, clearing the positive
+squared denominators gives degree at most two in the numerator block
+and at most $2J$ in the forest-parameter block. Apply (8), with $q_0$
+in place of $q$. Its logarithm is
+\[
+ O\bigl(nJ\log(N/(nJ))+nJ+J\log(J+1)\bigr)
+                  =O_C(N\log n/n)=o(N). \tag{16}
+\]
+For a uniform bound over smaller values of $J$, pad (7) with zero
+numerators using an existing denominator, up to
+$\lfloor CN/n^2\rfloor$. This does not add states or components.
+The empty-score family contributes only the affine scores already
+allowed by $P_0$ and is also subexponential. Thus the estimates can all
+be made at the largest budget, where $p<N$ for sufficiently large $n$.
+The logarithm of (15) is $O_C(N/n)=o(N)$, so taking the union of
+all templates preserves $2^{o(N)}$ sign coverage.
+\end{proof}
+
+The hypothesis excluding isolated unrefined components is essential to
+this statement: arbitrary isolated denominators would recover the full
+head model. The theorem permits arbitrary numbers of internal vertex
+occurrences, arbitrary real positive steps, and multiple refinement
+rules at a repeated state. It imposes no integrality, bounded-depth,
+or fixed-denominator-list restriction. It concerns first variations
+only. The projection and forest encoding, rather than an unsupported
+enumeration of all refinement graphs, are the new counting mechanism.
 
 \section{Finite structural probe}
 

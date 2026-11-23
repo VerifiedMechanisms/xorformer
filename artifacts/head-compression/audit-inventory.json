@@ -286,9 +286,11 @@
       "companion_declarations": [
         "HeadComplexity.two_branch_boundary_rigidity",
         "HeadComplexity.two_rate_boundary_rigidity",
-        "HeadComplexity.constant_branch_reaches_terminal"
+        "HeadComplexity.constant_branch_reaches_terminal",
+        "HeadComplexity.refinement_projection_reaches_terminal",
+        "HeadComplexity.refinement_card_le_terminal_card_sq"
       ],
-      "scope": "Boundary data determine all step variations in a fixed acyclic refinement graph. Distinct branch rates and invariant constant branches support the manual extension to coordinate flips. Dimension, terminal-count, and sign-count consequences remain manual; no universal head bound is asserted."
+      "scope": "Boundary rigidity, terminal reachability for coordinate-deleted projections, and an injective-state square cardinality bound. The sharper Loomis-Whitney exponent and the union count for all unflipped graphs remain manual. No universal head upper bound."
     },
     {
       "file": "formalization/HeadComplexity/Results/QuadraticFiberReciprocalRigidity.lean",
@@ -300,8 +302,8 @@
     }
   ],
   "validation": {
-    "build": "Full lake build passed (9221 jobs) after adding QuadraticFiberReciprocalRigidity.",
-    "build_log": "artifacts/head-compression/validation/lean-quadratic-fiber-full-build.log",
+    "build": "Full lake build passed (9221 jobs) after adding terminal-projection and cardinality declarations.",
+    "build_log": "artifacts/head-compression/validation/lean-terminal-projections-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -322,7 +324,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "95 listed main and companion declarations in 37 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "97 listed main and companion declarations in 37 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -333,7 +335,7 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 95,
+      "declarations": 97,
       "modules": 37,
       "only": [
         "propext",
@@ -357,7 +359,7 @@
         "validation/lean-subset-inclusion-axioms.log",
         "validation/lean-all-research-final-axioms.log"
       ],
-      "scope": "All 95 listed research declarations are checked together after the quadratic-fiber extension."
+      "scope": "All 97 listed research declarations checked together after the terminal-projection extension."
     },
     "lean": "Full project lake build succeeded with 9221 jobs, including all 37 new research modules and the results aggregator.",
     "build_jobs": 9221,
@@ -395,7 +397,8 @@
       "validation/lean-subset-inclusion-axioms.log",
       "validation/lean-merged-refinement-full-build.log",
       "validation/lean-all-research-final-axioms.log",
-      "validation/lean-quadratic-fiber-full-build.log"
+      "validation/lean-quadratic-fiber-full-build.log",
+      "validation/lean-terminal-projections-full-build.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -1384,9 +1387,25 @@
     "file": "artifacts/head-compression/merged-polya-graph-audit.tex",
     "result": "For each fixed finite coordinate-refinement DAG, including independently flipped variable selectors, realization dimension q <= L+n*c. Positive steps force at least n+1 terminals per nontrivial weak component, so q < 2*(R+L).",
     "mechanism": "A fixed terminal covector annihilates every step variation by descending induction; following constant-coordinate branches produces affinely independent terminal projections.",
-    "sign_scope": "First variations over any fixed graph, or over 2^o(2^n) graphs, cannot be universal at O(2^n/n^2) charged heads. Arbitrarily many target-dependent graphs and higher-order variations are not excluded.",
+    "sign_scope": "All unflipped positive-step graphs, without depth or incidence restrictions, are excluded at the target rate for first variations. Fixed flipped graphs and subexponential families of them are also excluded. Arbitrary flipped graphs and higher-order jets remain outside the result.",
     "diagnostic": "artifacts/head-compression/diagnostics/merged-polya-dimension.json",
     "diagnostic_scope": "126839 unflipped integer graphs. No dimension exceeding R+L was found; that stronger inequality remains unproved.",
-    "target_proved": false
+    "target_proved": false,
+    "all_unflipped_graphs": {
+      "state_bound": "M^(n) <= L^(n+1) for distinct state vectors and terminal vectors; no bound on repeated vertex occurrences is claimed.",
+      "encoding": "A colored spanning forest of the geometric state graph uses q0=M+n*c parameters. Each component has at least n+1 terminal vectors. At J=O(2^n/n^2), M=O(J), q0=O(J), and the number of forest templates and head assignments is 2^O(J*log(J*n)).",
+      "conclusion": "All first variations of all target-dependent unflipped positive-step graphs have 2^o(2^n) strict sign tables at the target rate, provided every component has an internal vertex and roots plus terminals are charged.",
+      "still_open": "Arbitrary node-dependent selector flips, arbitrary-order jets, and general admissible heads are outside this obstruction.",
+      "proof_status": "Manual projection-entropy, spanning-forest, and two-block sign-count proof. The terminal projection and weaker square bound are Lean checked.",
+      "target_proved": false
+    }
+  },
+  "private_repository_refresh_2026_11_23_1923": {
+    "repositories": [
+      "VerifiedMechanisms/xorformer-runs",
+      "VerifiedMechanisms/autoresearch-runs"
+    ],
+    "method": "git fetch origin '+refs/heads/*:refs/heads/*' in existing read-only bare mirrors",
+    "result": "Both fetches completed without updated heads. Latest xorformer branch remains ar/1bfc2d7fde2f, c45f40a, 2026-11-05 11:26:38; latest autoresearch branch remains ar/a3733e82430f7754604, 2026-11-23 08:01:20, previously inspected usage report only."
   }
 }

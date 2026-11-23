@@ -13,7 +13,7 @@ of that statement was added. No construction in the record should be
 read as establishing it.
 
 \paragraph{Formal results.}
-The inventory lists $95$ principal and companion declarations across
+The inventory lists $97$ principal and companion declarations across
 $37$ new Lean modules. The full project build passed with $9221$ jobs.
 The inspected declarations use only \texttt{propext},
 \texttt{Classical.choice}, and \texttt{Quot.sound}.
@@ -77,15 +77,19 @@ and \texttt{HeadComplexity.fixed\_card\_pair\_sum\_zero} in
 lemmas used in the latter proof. The polynomial and reciprocal steps
 remain manual. These statements do not bound universal head complexity.
 
-The four declarations in \texttt{Results/MergedRefinementRigidity.lean},
+The six declarations in \texttt{Results/MergedRefinementRigidity.lean},
 including \texttt{HeadComplexity.merged\_refinement\_boundary\_rigidity},
 check descending boundary rigidity and terminal reachability. The manual
 note \texttt{merged-polya-graph-audit.tex} proves that every fixed
 merged coordinate-refinement graph, including independently flipped
 selectors, has fewer than two continuous parameters per charged root or
-terminal head. Its first variations cannot give the target bound using
-only a subexponential number of graph choices. The number of unrestricted
-target-dependent graph choices is not controlled.
+terminal head. A later projection argument bounds distinct unflipped states by
+$L^{(n+1)/n}$. Encoding those states with colored spanning forests
+closes the entire unflipped first-variation route, including arbitrary
+target-dependent graphs and repeated state vectors. The core terminal
+projection and a weaker square cardinality bound are Lean checked; the
+entropy and forest count are manual. Arbitrary node-dependent flips and
+higher-order perturbations remain outside this obstruction.
 
 The equal-variable exchange extension in
 \texttt{polya-exchange-rigidity.tex} allows arbitrarily many increment
@@ -159,7 +163,7 @@ predicate is asserted to hold universally. The manuscript file in
 \texttt{audit-inventory.json} maps declarations, scope restrictions,
 and validation logs. \texttt{mechanism-audit.tex} contains the manual
 arguments, with separate notes for the full-box and permutation-orbit
-parity obstructions. \texttt{literature-audit.json} records $126$
+parity obstructions. \texttt{literature-audit.json} records $127$
 sources, the passages inspected, and the unresolved transfer steps.
 The remaining open deliverable is exactly the universal affirmative
 bound stated at the start of this report.
