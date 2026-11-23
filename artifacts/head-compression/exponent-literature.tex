@@ -18,8 +18,8 @@ a superconstant saving, nor a matching lower bound for $W$.
 It records the strongest applicable literature construction found,
 checks its exact transfer, and proves several obstructions to proposed
 ways of extending that transfer. The new propositions in this note
-are written proofs, except for the algebraic partial-mask facts
-identified below that have also been checked in Lean. The definitions of heads,
+are written proofs, except for the partial-mask and singleton-degree
+facts identified below that have also been checked in Lean. The definitions of heads,
 admissibility, and $W$ are unchanged.
 
 The supplied \texttt{scientist-report.tex} and the relevant mechanisms
@@ -722,6 +722,21 @@ $F(0,w)=F(z,0)=0$ for every Boolean $z,w$.
 This is the reverse-orientation, axis-zero local compiler. Natural
 logarithms are used in its displayed rate; the added four makes the
 iterated logarithm positive in every stated dimension.
+
+It would also suffice to allow nonpositive slopes in this missing
+lemma. After complementing the deletion variables, run the finite
+gluing proof first with weakly nonnegative $x$-slopes. The same
+penalty preserves weak orientation and positive denominators.
+Once the finite sum has a positive strict margin on $U$, replace
+each resulting denominator $B(x)$ by
+$B(x)+\delta\sum_i x_i$. For $\delta>0$ its slopes become
+strictly positive and its positive constant term is unchanged.
+As $\delta\to0$ the scores converge pointwise, hence uniformly
+on the finite cube. Choosing $\delta$ below the positive margin
+threshold preserves the required signs with the same head count.
+Exact axis zeros are needed during gluing, but need not survive
+this final perturbation. This observation relaxes a hypothesis of
+the unproved local lemma; it does not change atom admissibility.
 
 \begin{proposition}[The local lemma would give an explicit superconstant saving]
 If the missing local lemma holds, then
