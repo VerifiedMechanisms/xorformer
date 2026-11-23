@@ -1,0 +1,31 @@
+{
+  "checked_utc": "2026-11-23T12:25:13.249911+00:00",
+  "passed": true,
+  "foundational_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "modules": {
+    "ApproximateInverse": "389cc035f420fa3238dfc6760310c9a06e95fc5d6ad3afa807162165a4173b4a",
+    "FiniteRatioCalculus": "db6f0ef689adf03d9d9324275947540ca24718a9727d8105ae66ad3f3b48d8ce",
+    "FiniteMatrixNorm": "5b002c13726068d37da8f21a0e10e78d75b6ca2a3c9c2d104876b6747eaafeb6",
+    "UnitMinimumAnalyticData": "48dec1c54ffff4014093c9a4b7bc1eb95235df3d54dc12fd2a97dfd4d41f8d05",
+    "UnitMinimumAnalyticBounds": "def956c76e5506503eff555e4564a54d09fd0340b89e4454c0373a6f8643ef36"
+  },
+  "principal_declarations": [
+    "HeadComplexity.ApproximateInverse.inverse_norm_bound",
+    "HeadComplexity.ApproximateInverse.exists_zero_of_derivative_certificate",
+    "HeadComplexity.FiniteRatioCalculus.hasFDerivAt_ratioSum",
+    "HeadComplexity.FiniteRatioCalculus.ratio_square_difference_bound",
+    "HeadComplexity.FiniteRatioCalculus.matrixMap_of_basis_values",
+    "HeadComplexity.FiniteRatioCalculus.matrixMap_comp",
+    "HeadComplexity.UnitMinimumAnalytic.T_center",
+    "HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_T",
+    "HeadComplexity.UnitMinimumAnalytic.B_bound",
+    "HeadComplexity.UnitMinimumAnalytic.score_difference",
+    "HeadComplexity.UnitMinimumAnalytic.derivative_difference"
+  ],
+  "scope": "Generic approximate-inverse and finite-ratio calculus; concrete center identification, full cube denominator positivity throughout the certification ball, score and derivative Lipschitz bounds. The complete concrete root and local-minimum theorem is not yet assembled in Lean.",
+  "main_target_proved": false
+}

@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: second twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T11:58:20.757626+00:00",
+  "last_audit_utc": "2026-11-23T12:25:13.249911+00:00",
   "elapsed_seconds_at_last_audit": 129719.76039,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -713,13 +713,16 @@
     "scope_exclusion": "No claim about global minima or the main asymptotic target.",
     "center_lean_checks": "PASS",
     "session_id": 75843,
-    "jacobian_lean_checks": "running",
-    "jacobian_lean_session_id": 5120,
+    "jacobian_lean_checks": "PASS",
+    "jacobian_lean_session_id": 15955,
     "center_lean_audit": "unit-minimum-certificate/center-lean-audit.json",
     "search_archive": "experiments/unit-minimum-search-closure.json",
     "analytic_bridge_audit": "unit-minimum-certificate/analytic-bridges-lean-audit.json",
     "jacobian_lean_audit": "unit-minimum-certificate/jacobian-lean-audit.json",
-    "jacobian_lean_passed": true
+    "jacobian_lean_passed": true,
+    "calculus_lean_checks": "PASS",
+    "calculus_lean_audit": "unit-minimum-certificate/calculus-lean-audit.json",
+    "concrete_analytic_assembly": "in progress; not yet a Lean theorem"
   },
   "unit_minimum_searches_stopped_utc": "2026-11-23T11:26:31.410109+00:00"
 }
