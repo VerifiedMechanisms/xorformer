@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Strict Reverse Grid Compilers Admit Exact Axis Repair}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\begin{theorem}[Exact repair with a constant factor]
+Let $r,s\geq1$, and suppose
+\[
+ F(z,w)=c+\sum_{h=1}^H
+ \frac{a_{h0}+\alpha_h\cdot z+\beta_h\cdot w}
+ {c_h-p_h\cdot z-q_h\cdot w}
+\]
+has $p_{hi},q_{hj}>0$ and every denominator positive on the entire
+Boolean $(r+s)$-cube. There exists a sum $G$ of $3H+3$ affine ratios,
+all with strictly negative denominator slopes and positive denominators
+on the entire cube, such that
+\[
+ G(0,w)=G(z,0)=0,\qquad G(e_i,e_j)=F(e_i,e_j).
+\]
+In particular, a universal strict reverse grid sign compiler of cost
+$H(r,s)$ yields the axis-zero compiler required by the checked gluing
+reduction at cost $3H(r,s)+3$. This preserves either requested logarithmic
+or double-logarithmic saving. The theorem does not construct the remaining
+unproved sublinear reverse grid compiler.
+\end{theorem}
+
+\begin{proof}
+Whole-cube positivity gives $c_h>\sum_i p_{hi}+\sum_j q_{hj}$.
+Put $k_h=a_{h0}/c_h$, and absorb the constant numerator by defining
+\[
+ T_h(z)=(\alpha_h+k_hp_h)\cdot z,\qquad
+ W_h(w)=(\beta_h+k_hq_h)\cdot w,\qquad
+ c'=c+\sum_h k_h.
+\]
+Then $F=c'+\sum_h(T_h+W_h)/B_h$, with the original denominators
+$B_h=c_h-p_h\cdot z-q_h\cdot w$.
+Choose $0<\eta_h<\min(\{p_{hi}\}_i\cup\{q_{hj}\}_j)$ and set
+\[
+ D_h=c_h-\eta_h(|z|+|w|),\quad
+ U_h=(p_h-\eta_h\mathbf1)\cdot z,\quad
+ V_h=(q_h-\eta_h\mathbf1)\cdot w.
+\]
+The three-ratio expression
+\[
+ Q_h=\frac{T_h+W_h}{D_h-U_h-V_h}
+       -\frac{T_h}{D_h-U_h}
+       -\frac{W_h}{D_h-V_h}
+\]
+vanishes on both Boolean axes. Every denominator has strictly negative
+slopes. The two modified denominators are pointwise at least $B_h$ on
+the cube, so positivity is retained. On the promised grid,
+\[
+ Q_h(e_i,e_j)=\frac{T_h(e_i)+W_h(e_j)}{B_h(e_i,e_j)}
+ -\frac{T_h(e_i)}{c_h-p_{hi}-\eta_h}
+ -\frac{W_h(e_j)}{c_h-\eta_h-q_{hj}}.
+\]
+Consequently $F(e_i,e_j)-\sum_hQ_h(e_i,e_j)=R_i+C_j$, where
+\[
+ R_i=c'+\sum_h\frac{T_h(e_i)}{c_h-p_{hi}-\eta_h},\qquad
+ C_j=\sum_h\frac{W_h(e_j)}{c_h-\eta_h-q_{hj}}.
+\]
+These arbitrary row and column corrections themselves admit an exact
+three-head, axis-zero realization. Put $L=2(r+s)+4$,
+$E=L-|z|-|w|$, and
+\[
+ M_R(z)=(L-2)(L-3)\sum_iR_iz_i,\qquad
+ M_C(w)=(L-2)(L-3)\sum_jC_jw_j.
+\]
+Define
+\[
+ P(z,w)=\frac{M_R(z)}{E-|w|}
+       +\frac{M_C(w)}{E-|z|}
+       -\frac{M_R(z)+M_C(w)}{E}.
+\]
+All slopes are $-1$ or $-2$. All denominators are at least
+$L-2(r+s)=4>0$. The expression vanishes when either block is zero.
+At $(e_i,e_j)$ its value is $R_i+C_j$, because
+\[
+ (L-2)(L-3)\left(\frac1{L-3}-\frac1{L-2}\right)=1.
+\]
+Thus $G=\sum_hQ_h+P$ has every asserted property. No limiting
+perturbation or weakly admissible atom is used. The input dimension is
+unchanged, and all identities hold exactly.
+\end{proof}
+
+\paragraph{Verification status.}
+The proof above is complete as a written algebraic construction.
+The accompanying exact-rational check enumerates 3,600 cube evaluations
+for $1\leq r,s\leq4$ and $0\leq H\leq3$, independently checking axes,
+grid equality, and all denominators. This finite check is supplementary;
+the universal proof is the displayed construction. The universal construction is checked in
+\texttt{ReverseGridAxisRepair.lean}:
+\texttt{strict\_reverse\_ratio\_axisize},
+\texttt{strict\_axis\_row\_col\_repair}, and
+\texttt{exists\_reverse\_axis\_repair}. The theorem
+\texttt{hasReverseAxisCompiler\_of\_strictReverseGridCompiler}
+exposes the exact cost transfer, and
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_strictReverseGridCompiler}
+connects it to the unchanged global model. Independent axiom inspection
+reports only standard Lean foundations: propositional extensionality,
+classical choice, and quotient soundness.
+\end{document}
