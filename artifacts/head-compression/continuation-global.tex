@@ -636,4 +636,61 @@ permutations. Extending the displayed functional calculus to independent
 rowwise latent values would require a new identity and is not established
 by this calculation.
 
+\section{A projective change cannot compactify a fixed exterior decoder}
+
+\begin{proposition}[Cross-ratio obstruction to common projective compression]
+Let $\lambda_0<\lambda_1<D_0<D_1$ and put
+\[
+ R=\frac{(D_0-\lambda_0)(D_1-\lambda_1)}
+         {(D_0-\lambda_1)(D_1-\lambda_0)}>1.
+\]
+Suppose a real fractional linear map $\phi$ is finite on these four
+points, preserves their displayed order, and maps both tokens to
+positive numbers. If $S>1$ and
+$\phi(D_0)\ge S\phi(\lambda_1)$, then
+\[
+ R<\frac{S}{S-1}.
+\]
+In particular no fixed four-point configuration can be transformed in
+this way for unbounded $S$.
+\end{proposition}
+
+\begin{proof}
+Cross-ratio invariance permits replacing every point by its image.
+Writing the images as $0<a<b<x<y$ gives
+\[
+ R=\frac{x-a}{x-b}\frac{y-b}{y-a}
+   <\frac{x}{x-b}
+   =\frac1{1-b/x}\le\frac S{S-1}.
+\]
+Since the original $R$ is fixed and greater than one, the last bound
+fails once $S\ge R/(R-1)$.
+\end{proof}
+
+\paragraph{Why this tests an actual transfer mechanism.}
+For $\phi(x)=(ax+b)/(cx+d)$, with $ad-bc\ne0$, direct algebra gives
+\[
+ \frac1{D-\lambda}
+ =\frac{ad-bc}{(cD+d)^2}
+       \frac1{\phi(D)-\phi(\lambda)}
+       +\frac c{cD+d}.
+\]
+Thus common-pole Cauchy query scores transform by row scaling and a
+row bias, both available in the reverse-grid platforms. This initially
+suggests relocating a near-pole decoder to an admissible compact box.
+The proposition prevents a uniform relocation by one common map.
+Indeed a reverse denominator
+\[
+ B(z,w)=C-\sum_i(C-D_i)z_i-\sum_{j=1}^S u_jw_j
+\]
+that must allow every memory column to select the largest token $b$
+has, on the vertex with just row $i$ active and all memory coordinates
+active, value $D_i-Sb$. Whole-cube positivity therefore requires
+$D_i>Sb$. The cross-ratio obstruction applies directly whenever the
+decoder contains the displayed two token and two query values.
+This only rules out common fractional linear compression of a fixed
+decoder. It does not rule out a family whose tokens and queries change
+with $S$, head-dependent transformations with additional corrections,
+or another construction of the desired asymptotic bound.
+
 \end{document}
