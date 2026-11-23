@@ -97,6 +97,7 @@ import HeadComplexity.Results.UniversalLinearSaving
 import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.WeightedUpperBound
 import HeadComplexity.Results.WarrenBound
+import HeadComplexity.Results.WarrenAsymptotics
 
 set_option linter.style.header false
 
