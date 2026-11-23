@@ -966,7 +966,8 @@
       "published_url": "https://doi.org/10.1080/00029890.2024.2379749",
       "checked_location": "Main theorem and its constructive existence proof by successive division, accepted author version pages 3-4.",
       "mechanism": "A proper univariate rational function has a finite alternating expansion with denominators h0, h0*h1, and successive products, where the factor degrees increase strictly.",
-      "gap": "The displayed denominators are nonlinear polynomial products. The theorem neither makes them admissible affine forms nor bounds the cost of any conversion to heads."
+      "gap": "The displayed denominators are nonlinear polynomial products. The theorem neither makes them admissible affine forms nor bounds the cost of any conversion to heads.",
+      "rechecked_2026_11_23": "Read the full main theorem proof, its uniqueness argument, Proposition 3, Theorem 5, and the Euclidean-domain discussion. The nonlinear denominator-product gap remains."
     },
     {
       "title": "Bounding the Vapnik-Chervonenkis Dimension of Concept Classes Parameterized by Real Numbers",
@@ -1008,6 +1009,14 @@
       "checked_location": "Section 4.3.2, printed page 226, the one-step martingale calculation for a Polya urn. No convergence theorem is used in the new head identity.",
       "mechanism": "Proportional reinforcement preserves the expected share of a selected color. Applying the conditional-expectation calculation to every subset containing color zero yields a simultaneous Boolean reciprocal averaging identity.",
       "gap": "The identity replaces one head by n+1 heads. A general compression or same-cost implementation of repeated branching is not obtained. Complete-layer first variations obey the separate polynomial-degree obstruction in polya-reciprocal-audit.tex."
+    },
+    {
+      "title": "Rings that are Egyptian with respect to a multiplicative set",
+      "authors": "Neil Epstein",
+      "url": "https://arxiv.org/html/2304.09845v2",
+      "checked_location": "Definition 2.1, Proposition 2.6, Theorem 2.7, Proposition 2.10, Theorem 2.12, Example 2.13 and Lemma 2.15, including their proofs.",
+      "mechanism": "Unit-fraction decompositions in localizations of rings, including rings with zero divisors; a regular Jacobson-radical element gives a two-term construction, and decompositions pass through products and quotients.",
+      "gap": "The admissible affine denominator family is not multiplicatively closed, including modulo the Boolean ideal. For example (1+x+y)(1+2x+3y) reduces to 1+5x+7y+5xy. The Boolean coordinate ring is a finite product of fields with zero Jacobson radical. Arbitrary units or power-series denominators can already contain the full target table and are not heads; the theorems provide no affine or head-count control."
     }
   ]
 }

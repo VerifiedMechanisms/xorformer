@@ -299,6 +299,83 @@ lemma for all sign tables would simply restate the target within
 this parametrization. The count above does not exclude depths
 exponential in $n$ or larger.
 
+\section{Independent steps in an unmerged refinement forest}
+
+Integer depth is not the only restriction one might relax. The next
+count permits an independent real step at every refinement node.
+Its cost hypothesis is different: every root and terminal occurrence
+is charged, before merging equal leaves or cancelling terminal terms.
+
+Consider a forest with $R$ roots and $T$ internal nodes, each internal
+node having $n+1$ ordered children. Every root is internal, so $R\le T$.
+A root starts with an arbitrary affine form with $n+1$ coefficients.
+At an internal node with form $B$ and independent parameter $\delta$,
+its children have forms $B+\delta$ and $B+\delta x_i$, $1\le i\le n$.
+One may replace any coordinate selector $x_i$ at any node by $1-x_i$.
+This enlarges the family and is useful for the count, whether or not
+a particular choice has positive averaging weights. Admissibility of
+the final forms is still required. There are
+\[
+                    L=R+nT\quad\hbox{leaves},\qquad
+                    J=R+L=2R+nT
+ \tag{13}
+\]
+root and terminal occurrences. Each of their coefficients is affine
+in the $q=(n+1)R+T$ root and step parameters, and
+\[
+                         q\le J,
+ \tag{14}
+\]
+because $R\le T$.
+
+\begin{theorem}[Unmerged-forest obstruction]
+Allow scores of the form
+\[
+ P_0(x)+\sum_{h=1}^J\left(\frac{D_h(x)}{B_h(x)}+
+                      \frac{U_h(x)V_h(x)}{B_h(x)^2}\right),
+ \tag{15}
+\]
+where $P_0,D_h,U_h,V_h$ are arbitrary affine forms and the $B_h$
+are the $J$ positive root and terminal forms in (13). Uniformly over
+all such forests and all real root and step choices, this family
+realizes only $2^{o(2^n)}$ strict sign tables when
+$J\le C2^n/n^2$ for a fixed $C$. In particular, the conclusion
+includes arbitrary first variations with affine base numerators.
+\end{theorem}
+\begin{proof}
+Fix a forest and its coordinate-selector choices. Let
+$k_1=(3J+1)(n+1)$ and $p=k_1+q$. Clearing the product of the
+squared denominators gives block degrees at most $2$ and $2J$ in
+the numerator parameters and the $q$ denominator parameters. For
+large $n$, $p\le N$. The two-block bound therefore gives
+\[
+       \left(\frac{32768N}{p}\right)^p2^{k_1}(2J)^q.
+ \tag{16}
+\]
+Its base-two logarithm is $O_C(N\log n/n)+O(J\log(J+1))=o(N)$,
+using (14).
+
+For completeness, the discrete forest choices also contribute only
+$2^{o(N)}$. There are $M=R+(n+1)T=J+T-R\le2J$ nodes.
+Label them by $1,\ldots,M$. Recording for each node either a root
+marker or its parent and its child position gives at most
+$[1+M(n+1)]^M$ codes. This overcounts the possible forests. The
+selector complements give at most $2^{nT}\le2^J$ choices. Summing
+over $R,T,J$ bounded by $C N/n^2$ adds only a polynomial factor in
+$J+1$. The logarithm of all these factors is
+$O(J\log(Jn+1))=O_C(N/n)=o(N)$. Combine with (16).
+\end{proof}
+
+This result does not charge a merged directed acyclic graph as an
+unmerged tree. Exact coincidences of many terminal forms can reduce
+the actual head count, and the estimate $q\le J$ need not remain
+valid when $J$ counts only those merged boundary forms. Nor does the
+result include isolated unrefined root pairs: two equal reciprocal
+heads already give arbitrary affine-over-square first variations at
+an independently chosen base. Adding those pairs would reintroduce
+essentially the unrestricted denominator parameter count. These are
+explicit boundaries of the theorem, not an assumed compression step.
+
 \section{A local maximum principle for the reciprocal feature map}
 
 Write $K(b)=(K_x(b))_{x\in\{0,1\}^n}$ for $b\in(0,\infty)^n$.
