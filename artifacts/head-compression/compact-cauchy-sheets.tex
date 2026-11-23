@@ -156,6 +156,69 @@ arbitrary labeling of the factorial code. This particular obstruction
 does not bound its shattering dimension, since a shattering construction
 need not use permutation parity as one of its readable bits.
 
+\paragraph{Arbitrary assignment costs do have superlinear shattering.}
+The following finite construction isolates what the reciprocal transfer
+would have to supply. Let $L=2^k$ be sufficiently large, set $H=L^2$
+and $m=H/2$. There exist $m$ colorings
+$c_g:\{1,\ldots,H\}\to\{1,\ldots,L\}$ such that every prescription
+of one color for each $g$ can be realized by distinct values $j_g$.
+Consequently, arbitrary assignment-cost queries on permutations can
+shatter
+\[
+ mk=\frac14H\log_2H
+\]
+bits. This claim does not restrict the costs to reciprocal functions.
+
+Here is a full existence proof. Independently for each $g$, partition
+the $H$ values uniformly into $L$ labeled bins of size $L$.
+A selection of one bin per slot fails to have distinct representatives
+only if some $t$ selected bins have union contained in a set $U$ of
+size $t-1$, by Hall's theorem. Necessarily $t\ge L+1$, since every
+bin has size $L$. For fixed $t$ slots, selected bin labels, and $U$,
+the probability that all bins lie in $U$ is
+\[
+ \left(\frac{\binom{t-1}{L}}{\binom HL}\right)^t
+ \le\left(\frac tH\right)^{Lt}.
+\]
+Independence holds across slots; within a slot only one prescribed bin
+is being tested. Taking a union bound over slots, labels, and $U$
+gives failure probability at most
+\[
+ \sum_{t=L+1}^{m}\binom mt\binom H{t-1}L^t
+                  \left(\frac tH\right)^{Lt}.
+\]
+Using $\binom mt\le(eH/t)^t$ and
+$\binom H{t-1}\le(2eH/t)^t$, each summand is at most
+\[
+ \left[2e^2L\left(\frac tH\right)^{L-2}\right]^t
+ \le\left[8e^2L\,2^{-L}\right]^t,
+\]
+because $t\le H/2$. For all sufficiently large $L$ the bracket is
+at most $1/2$, and the sum is less than one. A choice of partitions
+with no Hall failure therefore exists.
+
+For each slot $g\le m$ and bit index $\ell\le k$, define a query
+on permutations by the corresponding bit of $c_g(\pi(g))$, represented
+as a sign in $\{-1,1\}$. It is an assignment-cost sum
+$\sum_h C_{g,\ell}(h,\pi(h))$ with all cost rows zero except $h=g$.
+Given any $mk$ desired bits, choose their $m$ desired colors. The
+proved distinct-representative property assigns distinct values to
+the first $m$ slots; extend this injection to a permutation of all
+$H$ values. Every desired strict sign is then realized.
+
+Even monotonicity of the cost rows alone does not block this example.
+For any fixed query cost matrix $C$ and ordered distinct real values
+$\lambda_1<\cdots<\lambda_H$, choose $M$ sufficiently large that
+$C(h,j)+M\lambda_j$ is strictly increasing in $j$ for every $h$.
+Adding this same column function to every row changes an assignment
+sum by the permutation-independent constant $M\sum_j\lambda_j$,
+which a bias removes exactly. Thus all costs can be made increasing
+without changing any query sign. However, these arbitrary increasing
+cost vectors need not have the one-pole affine-ratio form. The
+one-slot bound above proves that their transfer to that form actually
+fails for this construction. No reciprocal shattering conclusion
+follows from the assignment-cost theorem.
+
 The open step for this local route is to construct sufficiently many
 asymmetric reciprocal queries whose strict sign vectors on, or near,
 these sheets cover all binary words of length $cH\log H$ for some
