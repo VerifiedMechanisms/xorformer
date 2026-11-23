@@ -323,16 +323,16 @@ corollary must not be applied to arbitrary hyperplane masks without
 counting their dictionary size.
 
 \paragraph{One concrete missing lemma.}
-The new necessary condition suggests the precise type of mechanism
-that would avoid this obstruction: an unconditional universal construction
-of $O(2^n/(n\log n))$ admissible affine-ratio scores with strict whole-cube
-signs, in which the sign information is carried jointly by at least
-polynomially many simultaneously significant denominators at some input.
-The known two-one-hot majority-ranking compiler is a weaker local tool;
-a valid whole-cube gluing lemma with sublogarithmic multiplicative overhead
-would turn its logarithmic local saving into the requested fallback.
-No such gluing lemma is proved here, and it is not treated as a
-conditional solution.
+The necessary condition suggests that any logarithmic saving would
+have to use polynomially many simultaneously significant denominators
+at some input. The known two-one-hot majority-ranking compiler has
+enough simultaneous heads but the wrong denominator orientation for
+the new finite gluing theorem proved below. The remaining local task
+is an $o(n)$-head compiler for arbitrary signs on two-one-hot cells
+whose denominators have the opposite orientation and whose score
+vanishes on the two coordinate axes of the entire local downset.
+That local task is unproved. The finite gluing theorem makes its
+transfer precise without asserting any requested asymptotic bound.
 
 \section{Audit of the separate total-domination branch}
 
@@ -429,6 +429,120 @@ starting from the constant score $-1$, no scalar multiple makes
 $x$ positive while keeping $y$ negative. This disproves that scalar
 repair step, not cancellation among several independently chosen
 modules and not a general gluing theorem.
+
+\section{A finite gluing theorem for the opposite local orientation}
+
+The preceding obstruction concerns a specific scalar repair with
+negative-coordinate denominators. There is a valid scalar repair
+theorem for the opposite orientation, provided the local module has
+additional exact axis cancellations. This theorem isolates a genuinely
+local missing construction instead of assuming global sign compatibility.
+
+Partition the $n$ coordinates into blocks $A$ and $B$. Identify an
+input with a pair of subsets $(X,Y)\subseteq(A,B)$. For centers
+$S\subseteq A$ and $T\subseteq B$, define their downset and open
+product star by
+\[
+ D_{S,T}=\{(X,Y):X\subseteq S,\ Y\subseteq T\},\qquad
+ C_{S,T}=\{(S\setminus\{i\},T\setminus\{j\}):i\in S,\ j\in T\}.
+\]
+Empty cells can be omitted. Write $|x|=|X|+|Y|$ and
+$r(S,T)=|S|+|T|$.
+
+\begin{theorem}[Gluing positive-slope axis-zero modules]\label{thm:glue}
+Let $\mathcal C$ be a finite list of centers with nonempty cells,
+let $U=\bigcup_{(S,T)\in\mathcal C}C_{S,T}$, and let
+$f:U\to\{-1,1\}$ be arbitrary. Suppose for each center there is a
+score
+\[
+ F_{S,T}(x)=c_{S,T}+\sum_{h=1}^{H_{S,T}}
+                    \frac{A_{S,T,h}(x)}{B_{S,T,h}(x)},
+ \qquad H_{S,T}\geq1,
+\]
+such that every numerator is affine and every denominator is
+positive on the full cube and has strictly positive slopes in all
+original coordinates $x_i$. Suppose also that
+\begin{enumerate}
+\item $f(x)F_{S,T}(x)>0$ for every $x\in C_{S,T}$;
+\item $F_{S,T}(X,Y)=0$ whenever $(X,Y)\in D_{S,T}$ and
+either $X=S$ or $Y=T$.
+\end{enumerate}
+Then an admissible score with at most
+$\sum_{(S,T)\in\mathcal C}H_{S,T}$ heads has strict signs $f$ on
+all of $U$.
+\end{theorem}
+\begin{proof}
+First eliminate each scalar bias without adding heads: replace the
+first numerator by $A_{S,T,1}+c_{S,T}B_{S,T,1}$ and set the bias
+to zero. This preserves affineness and the score exactly. This step
+is necessary because an unchanged additive bias would not disappear
+in the limiting suppression argument below.
+
+Order the centers so that $r(S,T)$ is nonincreasing, breaking ties
+arbitrarily. We build a sum $G$ inductively, initially zero, whose
+strict signs are correct on every cell already processed. Fix the
+next center $(S,T)$ and let $P$ be the union of the preceding cells.
+For a parameter $t\geq0$, set
+\[
+ q_{S,T}(x)=\sum_{i\in A\setminus S}x_i+
+                 \sum_{j\in B\setminus T}x_j,\qquad
+ F_{S,T,t}(x)=\sum_h
+ \frac{A_{S,T,h}(x)}{B_{S,T,h}(x)+tq_{S,T}(x)}.
+\]
+Every new denominator is positive everywhere and still has strictly
+positive slopes. On $D_{S,T}$ the penalty is zero, so
+$F_{S,T,t}=F_{S,T}$ for every $t$. At any fixed point outside
+$D_{S,T}$, the penalty is at least one. All numerators are fixed,
+independent of $t$, so $F_{S,T,t}(x)\to0$ there as $t\to\infty$.
+
+Choose a scalar $\lambda>0$ large enough that
+\[
+ f(x)(G(x)+\lambda F_{S,T}(x))>0
+ \quad\hbox{for every }x\in C_{S,T}.
+\]
+Such a scalar exists because this cell is finite and
+$f(x)F_{S,T}(x)>0$ at every one of its points. Explicitly, any
+positive $\lambda$ exceeding all ratios
+$-f(x)G(x)/(f(x)F_{S,T}(x))$ suffices.
+
+Consider a previously protected point $x=(X,Y)\in P\cap D_{S,T}$.
+It belongs to a previously processed cell, so
+$|x|\geq r(S,T)-2$. Inside this downset the total number of
+deletions is
+$d=(|S|-|X|)+(|T|-|Y|)=r(S,T)-|x|\leq2$.
+If either block has zero deletions, hypothesis 2 gives
+$F_{S,T,t}(x)=0$. Otherwise both deletion counts are positive;
+therefore $d=2$ and they are both one. In that case
+$x\in C_{S,T}$ and hypothesis 1 shows that the added score has
+the correct strict sign. Consequently for every $t\geq0$,
+$G+\lambda F_{S,T,t}$ preserves all previously correct signs on
+$P\cap D_{S,T}$.
+
+For the remaining protected points $P\setminus D_{S,T}$,
+let $\mu=\min_{x\in P\setminus D_{S,T}}|G(x)|>0$ if that finite
+set is nonempty. Choose $t$ large enough that
+$|\lambda F_{S,T,t}(x)|<\mu$ simultaneously on that set.
+This is possible by the pointwise limits just proved and finiteness.
+If the set is empty, take any $t\geq0$. Then
+$G+\lambda F_{S,T,t}$ preserves all previously protected signs
+and has the correct strict signs on the new cell. Multiplying each
+numerator by $\lambda$ adds exactly $H_{S,T}$ admissible heads.
+The induction over the finite center list proves the theorem.
+\end{proof}
+
+The companion note constructs $O(2^n/n^2)$ product-star cells covering
+the cube except two balanced exceptional faces. Thus a positive-slope
+axis-zero local compiler with $o(n)$ heads per cell would combine
+with Theorem~\ref{thm:glue} and the explicit negligible-cost face
+corrections there to give a superconstant saving. More specifically,
+$O(n/\log n)$ local heads would give $O(2^n/(n\log n))$ globally.
+Even $O(n/\log\log n)$ local heads would already give the weaker
+but qualifying fallback $O(2^n/(n\log\log n))$.
+The known majority-ranking compiler has the opposite denominator
+orientation. The three-head partial mask cancels its axes but retains
+that opposite orientation. Neither construction satisfies the new
+theorem's positive-slope hypothesis, and no such local compiler is
+proved here. The finite gluing theorem and its proof are written only.
 
 \section{Why the checked count does not improve the full-cube bound}
 
