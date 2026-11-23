@@ -1,0 +1,14 @@
+import HeadComplexity.Atoms.TypicalAmplitude
+
+#print axioms HeadComplexity.TypicalAmplitude.card_pos
+#print axioms HeadComplexity.TypicalAmplitude.correlation_add
+#print axioms HeadComplexity.TypicalAmplitude.correlation_sub
+#print axioms HeadComplexity.TypicalAmplitude.correlation_smul
+#print axioms HeadComplexity.TypicalAmplitude.abs_correlation_le_uniform
+#print axioms HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum
+#print axioms HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum_le
+#print axioms HeadComplexity.TypicalAmplitude.finite_chain_bound
+#print axioms HeadComplexity.TypicalAmplitude.approximation_transfer
+#print axioms HeadComplexity.TypicalAmplitude.dyadic_chain_bound
+#print axioms HeadComplexity.TypicalAmplitude.margin_le_correlation
+#print axioms HeadComplexity.TypicalAmplitude.relative_margin_bound

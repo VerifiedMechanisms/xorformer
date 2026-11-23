@@ -1,0 +1,23 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/typical-label-amplitude.md",
+    "source_math_spans": 103,
+    "rendered_math_spans": 103,
+    "findings": 0,
+    "sha256": "021bd8fd6837208969df7ca8a6e25779fb69522ffd7480e0db5964fa8b4f9c1f"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "source_math_spans": 110,
+    "rendered_math_spans": 110,
+    "findings": 0,
+    "sha256": "d3b0fa5e979dbf0b6d83f84f5188a550dd6eb04dc5ac502e7deb94c1f60c3074"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/audit-index.md",
+    "source_math_spans": 1,
+    "rendered_math_spans": 1,
+    "findings": 0,
+    "sha256": "4db5cae768e243acc396f148d97638ae30d3a55bcbf87933c9aab1d7a656a9d2"
+  }
+]

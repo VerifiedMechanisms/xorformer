@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T17:55:32.879913+00:00",
+  "declarations": [
+    "HeadComplexity.TypicalAmplitude.card_pos",
+    "HeadComplexity.TypicalAmplitude.correlation_add",
+    "HeadComplexity.TypicalAmplitude.correlation_sub",
+    "HeadComplexity.TypicalAmplitude.correlation_smul",
+    "HeadComplexity.TypicalAmplitude.abs_correlation_le_uniform",
+    "HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum",
+    "HeadComplexity.TypicalAmplitude.weighted_dyadic_partial_sum_le",
+    "HeadComplexity.TypicalAmplitude.finite_chain_bound",
+    "HeadComplexity.TypicalAmplitude.approximation_transfer",
+    "HeadComplexity.TypicalAmplitude.dyadic_chain_bound",
+    "HeadComplexity.TypicalAmplitude.margin_le_correlation",
+    "HeadComplexity.TypicalAmplitude.relative_margin_bound"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "scope": "Complete written probability and covering argument; deterministic finite chain, limiting bound, and all-finite-sums transfer kernel checked. Full probabilistic theorem not formalized.",
+  "build_jobs": 3137,
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/typical-label-amplitude.md",
+      "source_math_spans": 103,
+      "rendered_math_spans": 103,
+      "findings": 0,
+      "sha256": "021bd8fd6837208969df7ca8a6e25779fb69522ffd7480e0db5964fa8b4f9c1f"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "sha256": "d3b0fa5e979dbf0b6d83f84f5188a550dd6eb04dc5ac502e7deb94c1f60c3074"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "4db5cae768e243acc396f148d97638ae30d3a55bcbf87933c9aab1d7a656a9d2"
+    }
+  ],
+  "katex": "PASS: three files, 214 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "model_changes": [],
+  "main_target_proved": false,
+  "files": [
+    {
+      "file": "formalization/HeadComplexity/Atoms/TypicalAmplitude.lean",
+      "sha256": "22285c6057f2a5260b6a21bd5d3aa853c16458f4aa02d55a031cfa0a0fc98ea5"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/typical-label-amplitude.md",
+      "sha256": "021bd8fd6837208969df7ca8a6e25779fb69522ffd7480e0db5964fa8b4f9c1f"
+    }
+  ]
+}
