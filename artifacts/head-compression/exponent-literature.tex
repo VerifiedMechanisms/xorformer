@@ -16,9 +16,10 @@ $W(n)=\texttt{HeadComplexity.worstCaseHeadComplexity}\ n$.
 In particular, it proves neither a positive exponent improvement,
 a superconstant saving, nor a matching lower bound for $W$.
 It records the strongest applicable literature construction found,
-checks its exact transfer, and gives two additional counterexamples
-to proposed ways of extending that transfer. The new propositions in
-this note are written proofs only. The definitions of heads,
+checks its exact transfer, and proves several obstructions to proposed
+ways of extending that transfer. The new propositions in this note
+are written proofs, except for the algebraic partial-mask facts
+identified below that have also been checked in Lean. The definitions of heads,
 admissibility, and $W$ are unchanged.
 
 The supplied \texttt{scientist-report.tex} and the relevant mechanisms
@@ -196,6 +197,18 @@ specified residual. It does not rule out signed sums of rankings,
 additional affine corrections, function-dependent overlap choices,
 or general rational cancellations.
 
+The exact identity, axis cancellations, positivity, strict decrease
+with the baseline, and resulting scalar-repair obstruction are also
+Lean-checked in \texttt{Results/PartialRankingMask.lean}, as
+\texttt{partialRankingMask\_eq},
+\texttt{partialRankingMask\_zero\_left},
+\texttt{partialRankingMask\_zero\_right},
+\texttt{partialRankingMask\_pos},
+\texttt{partialRankingMask\_strictAnti\_parameter}, and
+\texttt{not\_partialRankingMask\_scalar\_repair}.
+The $7/R$ approximation estimate and the six-coordinate instantiation
+above remain written proofs.
+
 \paragraph{Why this is not a full-cube bound.}
 The promised set has only $rs$ points among $2^{r+s}$ cube vertices.
 All the other inputs have defined scores but unconstrained signs.
@@ -209,18 +222,249 @@ coordinates. Hence it is not affine when $d\geq2$.
 Likewise, a sign test for membership in $X_{r,s}$ is not a free
 numerical mask for multiplying this score.
 
+\section{Reversing the grid denominator orientation has a cost}
+
+An alternative to the forbidden mixed-slope gate would replace the
+positive-orientation grid compiler by negative-orientation heads
+before localization. The following bounds address the precise
+numerical replacement step: approximating one ranking vote uniformly
+by negative-orientation heads. They do not preclude representing an
+arbitrary grid labeling directly by a different construction.
+
+Write $s_{ij}=1$ if $i\geq j$ and $s_{ij}=-1$ otherwise, for
+$1\leq i,j\leq m$. This table is the ranking comparison of the
+interleaved row and column candidates. On the two-one-hot grid, a
+negative-orientation denominator has the form
+\[
+ B_{ij}=c-b_i-d_j,\qquad b_i,d_j\geq0,\qquad
+ c>\sum_i b_i+\sum_jd_j.
+\]
+The last inequality is required by positivity on the entire cube,
+not merely the promised grid. Allowing zero slopes enlarges the
+actual negative-orientation class and also includes constant
+denominators, so it is legitimate for these lower bounds.
+
+\begin{proposition}[One opposite-orientation ratio cannot saturate a ranking]
+Let $m\geq3$. Suppose $F_{ij}=(a_0+a_i+e_j)/B_{ij}$ with the
+denominator conditions above. If
+$|F_{ij}-s_{ij}|\leq\varepsilon$ for every $i,j$, then
+\[
+ \varepsilon>\frac{m-2}{2m-3}.
+\]
+\end{proposition}
+\begin{proof}
+Write $A_{ij}=a_0+a_i+e_j$. In the rectangle with rows and columns
+$i,i+1$, only the upper-right target sign is negative. Both $A$ and
+$B$ satisfy the additive rectangle identity. Multiplying the four
+approximation inequalities by their positive denominators and
+using that identity gives
+\[
+ 2B_{i,i+1}
+ \leq\varepsilon(B_{ii}+B_{i+1,i+1}+B_{i,i+1}+B_{i+1,i})
+ =2\varepsilon(B_{ii}+B_{i+1,i+1}).
+\]
+Indeed, the alternating rectangle sum of the four target values
+$s_{kl}B_{kl}$ is $2B_{i,i+1}$, whereas that of $A$ is zero.
+Set $k=m-1$ and
+$E=\sum_{i=1}^{m-1}b_i+\sum_{j=2}^m d_j<c$.
+Summing the preceding inequalities gives
+\[
+ kc-E\leq\varepsilon
+   \sum_{i=1}^{m-1}(B_{ii}+B_{i+1,i+1})
+ \leq\varepsilon(2kc-E).
+\]
+The second inequality follows because each coefficient included in
+$E$ is subtracted at least once in the sum of diagonal denominators.
+Here $\varepsilon\geq0$ follows from its definition as an error
+bound. Thus
+\[
+ \varepsilon\geq\frac{kc-E}{2kc-E}
+ >\frac{k-1}{2k-1}=\frac{m-2}{2m-3},
+\]
+where the strict inequality uses $E<c$ and $k\geq2$.
+\end{proof}
+
+The next proposition allows arbitrarily large affine numerators,
+arbitrary signs of the summands, and severe cancellation. No bound
+on an individual head's magnitude is assumed.
+
+\begin{proposition}[A bounded number of opposite-orientation heads is insufficient]
+Let $H\geq1$ and $0\leq\varepsilon<1$. Suppose a bias plus $H$
+affine ratios, all with negative-orientation denominators positive
+on the entire $2m$-dimensional cube, gives a score satisfying
+$|F(e_i,e_j)-s_{ij}|\leq\varepsilon$ on the grid. If $m\geq8H$,
+then
+\[
+ \frac m2\leq
+ \left(1+\frac{2(1+\varepsilon)}{1-\varepsilon}\right)^{H2^H}.
+\]
+Consequently, for any fixed $\varepsilon<1$, such a numerical
+ranking compiler needs $H=\Omega(\log\log m)$ heads.
+\end{proposition}
+\begin{proof}
+Write the $h$th denominator as
+$c_h-b_{hi}-d_{hj}$ on the grid, with nonnegative slopes and
+$c_h>\sum_i b_{hi}+\sum_jd_{hj}$.
+Absorb the global bias into the numerator of the first head;
+this preserves its affine form and the head count. Define
+\[
+ t_i=\sum_{h=1}^H\frac{b_{hi}+d_{hi}}{c_h}.
+\]
+Then $\sum_i t_i<H$. The set
+$I=\{i:t_i\leq2H/m\}$ has cardinality at least $m/2$.
+For $i,j\in I$, put
+\[
+ D_{ij}=\prod_{h=1}^H
+ \left(1-\frac{b_{hi}}{c_h}-\frac{d_{hj}}{c_h}\right).
+\]
+Every factor belongs to $(0,1]$, and
+\[
+ \sum_{h=1}^H\left(\frac{b_{hi}}{c_h}+\frac{d_{hj}}{c_h}\right)
+ \leq t_i+t_j\leq\frac{4H}{m}\leq\frac12.
+\]
+The elementary inequality $\prod_h(1-u_h)\geq1-\sum_hu_h$
+for $0\leq u_h\leq1$ proves $1/2\leq D_{ij}\leq1$.
+
+Let $P_{ij}=D_{ij}F(e_i,e_j)$ on the retained subgrid. Clearing
+denominators expresses $P$ as a sum of $H$ matrices, each an
+entrywise product of one additive numerator matrix and $H-1$
+additive denominator matrices. Each additive matrix has rank at
+most two. If $M=\sum_{u=1}^r a_u b_u^{\mathsf T}$ and
+$N=\sum_{v=1}^s c_vd_v^{\mathsf T}$, their entrywise product
+equals $\sum_{u,v}(a_u\circ c_v)(b_u\circ d_v)^{\mathsf T}$,
+so its rank is at most $rs$. Therefore
+$\operatorname{rank}P\leq H2^H$.
+
+Set $L=(1-\varepsilon)/2>0$ and $U=1+\varepsilon$.
+The approximation and denominator bounds imply
+\[
+ |P_{ij}|\leq U,\qquad s_{ij}P_{ij}\geq L.
+\]
+List $I$ in increasing order. Any two different rows of $P$ are
+at distance at least $2L$ in the maximum norm: if their indices
+are $i<j$, the column $j$ has opposite prescribed signs in those
+rows. Let $r$ be the dimension of the row space. In this
+$r$-dimensional normed space, the open balls of radius $L$ about
+the $|I|$ row vectors are disjoint and lie in the ball of radius
+$U+L$ about zero. Comparing their $r$-dimensional volumes gives
+\[
+ |I|\leq\left(1+\frac UL\right)^r
+ \leq\left(1+\frac{2(1+\varepsilon)}{1-\varepsilon}\right)^{H2^H}.
+\]
+Together with $|I|\geq m/2$, this proves the finite bound.
+For fixed $\varepsilon$, use $H2^H\leq4^H$ and take two
+logarithms. This gives $H=\Omega(\log\log m)$ when $m\geq8H$;
+the alternative $m<8H$ gives the stronger $H>m/8$.
+\end{proof}
+
+Thus a constant-factor replacement of each existing positive-slope
+ranking ratio by uniformly accurate negative-slope numerical votes
+is impossible, even with unbounded cancellation. This does not rule
+out a direct negative-orientation compiler of many ranking votes
+together, a compiler with a slowly growing overhead, or a different
+global construction. Sign-only comparison is easy: the affine
+numerator $i-j+1/2$ on the grid already gives these signs with one
+constant-denominator head. The obstruction concerns bounded numerical
+votes suitable for summation.
+
+With $L=O(m/\log m)$ majority orders, an integer vote margin may
+be only one. Uniform error less than $1/(2L)$ per compiled order
+is sufficient to preserve that margin, whereas fixed constant
+error alone does not justify their summation. At the uniform
+accuracy $O(\log m/m)$ adequate for the worst-case number of orders,
+the opposite-orientation cost is much larger than the preceding
+constant-accuracy lower bound.
+
+\begin{proposition}[Accurate opposite-orientation votes require logarithmically many heads]
+Under the preceding proposition's hypotheses with $m\geq8H$,
+\[
+ H2^H\geq\frac m2-(m\varepsilon+4H)^2.
+\]
+In particular, for every fixed $A>0$, if
+$\varepsilon\leq A\log_2m/m$, then for all sufficiently large $m$,
+\[
+ H\geq\log_2m-\log_2\log_2m-\log_2 3.
+\]
+The eventual conclusion holds without the hypothesis $m\geq8H$.
+\end{proposition}
+\begin{proof}
+Use the retained subgrid and cleared matrix $P$ from the preceding
+proof. Let $l=|I|\geq m/2$, and let $T$ be its comparator sign
+matrix, with rows and columns in increasing order. The earlier
+bound actually gives $1-4H/m\leq D_{ij}\leq1$. Therefore
+\[
+ |P_{ij}-T_{ij}|
+ =|D_{ij}(F_{ij}-T_{ij})+(D_{ij}-1)T_{ij}|
+ \leq\varepsilon+4H/m,
+\]
+and hence $\|P-T\|_{\mathrm F}^2\leq(m\varepsilon+4H)^2$.
+
+Every singular value of $T$ is at least one. To verify the exact
+bound without a spectral formula, write $y=Tx$. For $l\geq2$,
+\[
+ 2x_1=y_1+y_l,\qquad 2x_i=y_i-y_{i-1}\quad(2\leq i\leq l).
+\]
+Applying $(a\pm b)^2\leq2a^2+2b^2$ and summing gives
+$4\|x\|_2^2\leq4\|y\|_2^2$. For $l=1$ the claim is direct.
+If $v_1,\ldots,v_d$ is an orthonormal basis of the kernel of
+$P$, then
+\[
+ d\leq\sum_{k=1}^d\|Tv_k\|_2^2
+   =\sum_{k=1}^d\|(T-P)v_k\|_2^2
+   \leq\|T-P\|_{\mathrm F}^2.
+\]
+The last inequality follows by extending these vectors to an
+orthonormal basis of $\mathbb R^l$ and expressing the squared
+Frobenius norm in that basis. Thus
+\[
+ H2^H\geq\operatorname{rank}P=l-d
+ \geq\frac m2-(m\varepsilon+4H)^2,
+\]
+as claimed.
+
+For the final assertion, $H>\log_2m$ already implies the desired
+bound. Otherwise, for sufficiently large $m$ one has $m\geq8H$,
+and the squared error is at most
+$(A+4)^2(\log_2m)^2=o(m)$. The finite inequality gives
+$H2^H\geq m/3$. Taking binary logarithms and using
+$\log_2H\leq\log_2\log_2m$ proves the assertion.
+\end{proof}
+
+Thus separately replacing every numerical ranking vote to this
+accuracy incurs a logarithmic head cost and erases the known local
+logarithmic saving. This statement permits unrestricted numerator
+sizes and cancellation within each replacement. It does not rule
+out jointly compiling all votes, proving larger majority margins
+with an adequate head count, or constructing the desired local
+sign table directly.
+
+There is an opposite-orientation axis-zero identity. For $u,v\geq0$
+and $p>u+v$,
+\[
+ \frac{u-v}{p-u-v}-\frac{u}{p-u}+\frac{v}{p-v}
+ =\frac{(u-v)uv}{(p-u-v)(p-u)(p-v)}.
+\]
+It follows by the same common-denominator calculation as before.
+Taking $u,v$ as nonnegative linear forms and choosing $p$ larger
+than their total cube weight gives positive denominators throughout
+the cube, negative slopes in the active variables, exact zeros
+on both axes, and the correct strict comparison signs. It does
+not supply uniform numerical saturation: when $u,v$ are much
+smaller than $p$, the value has order $uv(u-v)/p^3$.
+
 \section{Exact masks destroy this particular gain}
 
 The following obstruction does not use the common-slope restriction;
 it is valid even for arbitrary affine denominators positive everywhere.
 
 \begin{proposition}[Exact Hamming-ball localization]
-Let $0\leq r\leq n$. Suppose a nonzero score
+Let $r$ be an integer with $0\leq r\leq n$. Suppose a score
 \[
  F(x)=c+\sum_{h=1}^H\frac{A_h(x)}{B_h(x)}
 \]
-has affine numerators and denominators, with $B_h(x)>0$ on the
-whole cube. If $F(x)=0$ outside a Hamming ball of radius $r$, then
+has affine numerators and denominators, is nonzero at some cube
+vertex, and satisfies $B_h(x)>0$ on the whole cube. If $F(x)=0$
+outside a Hamming ball of radius $r$, then
 $H\geq n-r$.
 \end{proposition}
 \begin{proof}
@@ -245,6 +489,15 @@ $n-t$ has zero full alternating sum: each monomial misses one of
 the free variables, and the two terms differing in that variable
 cancel. Thus $H\geq n-t\geq n-r$.
 \end{proof}
+
+The exact singleton core is also Lean-checked in
+\texttt{Results/ExactMaskDegree.lean} as
+\texttt{le\_totalDegree\_of\_cube\_supported\_at\_zero},
+\texttt{le\_heads\_of\_clearedAffinePoly\_supported\_at\_zero}, and
+\texttt{le\_heads\_of\_atom\_score\_supported\_at\_zero}.
+The last declaration directly treats the repository's admissible
+atoms. The restriction to a face at a maximal support vertex, which
+extends the result to a radius-$r$ ball, remains written only.
 
 \begin{corollary}[Exact product-star masks]
 A nonzero score supported exactly inside a product of two
@@ -401,7 +654,7 @@ uses growing depth, as stated after Theorem 1.7. Neither mechanism
 therefore closes the current one-layer gap. Its bounded-parameter
 existence theorem also supplies no universal low-head construction.
 
-\section{A precise remaining lemma for the logarithmic route}
+\section{A precise remaining local lemma}
 
 Here is a concrete cover to which the missing composition theorem
 could apply. Write $n=a+b$, where $a=\lfloor n/2\rfloor$ and
@@ -438,24 +691,65 @@ $1-x_i$, so it is a valid negative-orientation atom, using
 \texttt{FracAtom.ofNegativeAffineRatio\_eval}.
 Thus each cell really has a local $O(n/\log n)$-head compiler,
 including cells whose centers have mixed zero and one coordinates.
+Its orientation is negative in $x$, however. The new finite gluing
+theorem in \texttt{exponent-mechanisms.tex}, entitled ``Gluing
+positive-slope axis-zero modules,'' proves global sign compatibility
+when local denominators instead have positive $x$-slopes and the
+local score vanishes whenever either deletion block is empty,
+throughout the center's downset. It uses no additional heads.
+Its complete written proof was reviewed independently: descending
+center cardinality, exact axis zeros, and a positive denominator
+penalty outside the current downset preserve every protected strict
+sign. This is a proved composition step, not an assumed one.
 
-The following is the \emph{unproved} missing lemma:
+Consequently the remaining requirement can be stated entirely
+locally. One explicit version that suffices for a fallback is the
+following \emph{unproved} lemma:
 
 \begin{quote}
-For the covers just defined, there is an absolute constant $K$ such
-that every strict labeling $f$ of $U$ admits one admissible score
-$F_{S,T}$ for each cell, each with at most $Kn/\log n$ heads,
-which has the prescribed signs on its own cell, and for which
-$\sum_{S,T}F_{S,T}$ has the prescribed strict signs on all of $U$.
+There is an absolute $K>0$ such that for every $r,s\geq1$ and every
+table $f:[r]\times[s]\to\{-1,1\}$ there is a bias plus at most
+\[
+ K\left(1+\frac{r+s}{\log\log(r+s+4)}\right)
+\]
+affine ratios in $(z,w)\in\{0,1\}^{r+s}$, with all denominator
+slopes strictly negative and all denominators positive on that
+whole cube, whose score $F$ satisfies
+$f(i,j)F(e_i,e_j)>0$ for all $i,j$, and
+$F(0,w)=F(z,0)=0$ for every Boolean $z,w$.
 \end{quote}
 
-\begin{proposition}[The stated lemma would finish the logarithmic route]
-If the missing lemma holds eventually in $n$, then
-$W(n)=O(2^n/(n\log n))$.
+This is the reverse-orientation, axis-zero local compiler. Natural
+logarithms are used in its displayed rate; the added four makes the
+iterated logarithm positive in every stated dimension.
+
+\begin{proposition}[The local lemma would give an explicit superconstant saving]
+If the missing local lemma holds, then
+$W(n)=O(2^n/(n\log\log n))$.
 \end{proposition}
 \begin{proof}
-The total head count supplied on $U$ is the product
-$O(2^n/n^2)O(n/\log n)=O(2^n/(n\log n))$.
+In a nonempty cell use the lemma with $r=|S|$, $s=|T|$,
+$z_i=1-x_i$ on $S$, and $w_j=1-x_j$ on $T$.
+After this substitution all active-coordinate denominator slopes
+are strictly positive. Extend each affine numerator independently
+of coordinates outside $S\cup T$ and give those coordinates any
+strictly positive denominator slopes. On the center's downset
+these outside coordinates are zero, so neither the score nor its
+axis zeros change. The extended denominator is positive on the
+whole ambient cube because its constant term and all slopes are
+positive.
+
+Uniformly for $k=r+s\leq n$, the displayed local rate is
+$O(n/\log\log n)$. For $k\leq\sqrt n$, use the positive lower
+bound for $\log\log(k+4)$ to bound the rate by $O(\sqrt n)$.
+For $k>\sqrt n$, use
+$\log\log(k+4)\geq\log\log\sqrt n
+=\log\log n-\log2$ and $k\leq n$.
+Apply the proved finite gluing theorem to the product-star cover.
+The total number of heads supplied on $U$ is therefore
+\[
+ O(2^n/n^2)O(n/\log\log n)=O(2^n/(n\log\log n)).
+\]
 It remains to justify, rather than assume, the negligible cost of
 the two excluded faces. On the face with first block all ones,
 interpolate the difference between the desired values $f\in\{-1,1\}$
@@ -484,16 +778,18 @@ to the finitely many correction monomials, absorbing their real
 coefficients into their affine numerators. Sufficiently small
 $\eta$ makes the total error smaller than half the minimum strict
 margin. At most $2^a+2^b$ additional heads suffice.
-Finally $2^a+2^b=o(2^n/(n\log n))$ for the balanced split.
+Finally $2^a+2^b=o(2^n/(n\log\log n))$ for the balanced split.
 \end{proof}
 
 This conditional proposition is not a claimed asymptotic result.
-The missing lemma has comparable strength to the logarithmic target,
-so the route is blocked there. Its exact-zero interpretation is
-false by the localization proposition. Its direct common-orientation
-dominant-vote interpretation is false by the parity proposition.
-Approximate masking with controlled interference or genuinely global
-cancellation would have to supply the new part. No such construction
-was obtained.
+The missing local lemma would finish the stated fallback and remains
+unproved; the route is blocked there. It asks for zeros only on the
+two axes, not outside the cell, so the exact Hamming-ball localization
+lower bound does not refute it. The common-orientation decision-list
+lower bound also does not apply to the finite rational cancellations
+it permits. A sublogarithmic-cost reversal of individual numerical
+ranking votes at the needed uniform accuracy is excluded above.
+A joint or direct local construction remains open. No target or
+requested fallback has been obtained.
 
 \end{document}
