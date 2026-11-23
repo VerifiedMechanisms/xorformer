@@ -41,10 +41,22 @@ heads. \texttt{repair\_two\_positive\_faces} proves that an actual
 $H$-atom score strictly correct outside two positive faces with free
 dimensions $a,b$ extends to \texttt{computableWithHeadsN} with
 $H+2^a+2^b$ heads; its axiom audit reports the same standard foundations.
-The identification of the abstract gluing hypotheses with the concrete
-ordered centers remains a written proof supported by the checked
-deletion-count invariant. No unconditional improved asymptotic theorem
-is asserted.
+The resumed audit closes the concrete-transfer gap in
+\texttt{HeadComplexity.Results.AxisZeroTransfer}.
+\texttt{enumerate\_descending}, \texttt{descending\_center\_geometry},
+\texttt{centerDeletion\_affine}, and
+\texttt{glue\_reverse\_axis\_modules} instantiate the order, affine
+substitution, downsets, axes, and localization penalties.
+\texttt{hasReverseAxisCompiler\_of\_biased} proves exact bias
+normalization without adding a head.
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_reverse\_axis\_compiler}
+connects the complete finite budget to the original worst-case invariant.
+The module \texttt{HeadComplexity.Results.AxisZeroBaselineTransfer}
+proves \texttt{hasReverseAxisCompiler\_linear}, which instantiates
+this chain with the checked linear compiler at cost $a+1$.
+\texttt{HeadComplexity.Results.AxisZeroAsymptotics} proves the exact
+conditional natural-logarithm and iterated-logarithm consequences.
+No unconditional improved asymptotic theorem is asserted.
 
 \section{Gluing}
 Identify a Boolean input with $(X,Y)$ in two disjoint coordinate blocks
@@ -145,16 +157,27 @@ with at most
 \[
 N\leq\frac{484\cdot2^n}{ab}=O(2^n/n^2)
 \]
-nonempty modules. Repeated centers can be removed. If a local compiler
-uses at most $K(1+m/\log\log(m+4))$ heads, define
+modules. Repeated centers can be removed. The concrete formal proof uses
+one fixed local dimension $a+b=n$ at every center. For center $(S,T)$,
+put $z_i=1-x_i$ when $i\in S$ and $z_i=0$ otherwise, and similarly for
+$w_j$. Request local labels $f(S\setminus\{i\},T\setminus\{j\})$
+for every $i\in A,j\in B$, including arbitrary unused labels outside
+$S\times T$. The local compiler always exists under the stated full-table
+hypothesis. Its restriction has exactly the required cell signs and axes.
+Thus one may use the common budget
 \[
-M_n=K\max_{2\leq m\leq n}\left(1+\frac{m}{\log\log(m+4)}\right).
+M_n=K\left(1+\frac{n}{\log\log(n+4)}\right)
 \]
-The gluing budget is at most $NM_n$. For $m\leq\sqrt n$, positivity
-of $\log\log6$ gives $O(\sqrt n)$; for $m>\sqrt n$, use
-$\log\log(m+4)\geq\log\log n-\log2$. Hence
-$M_n=O(n/\log\log n)$. The same split gives $O(n/\log n)$ for a
-local $O(1+m/\log(m+4))$ compiler.
+directly; no monotonicity of a varying-dimensional budget is needed.
+For a local denominator $b_0+\sum_i b_i z_i$, its new constant is the
+local denominator evaluated at the center indicator, so full-cube
+positivity immediately proves that constant positive. Active slopes
+become $-b_i>0$; give inactive coordinates slope $1$. Those inactive
+coordinates vanish throughout the downset. This proves full ambient
+positivity and original atom admissibility without any change of input
+dimension. Numerator outside slopes can be zero.
+The gluing budget is at most $NM_n$, and the same argument uses
+$K(1+n/\log(n+4))$ for the stronger conditional target.
 
 \section{Exceptional faces}
 Let $G$ be the actual admissible glued score on $U$. For the first
