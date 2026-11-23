@@ -359,4 +359,85 @@ across many memory fibers. The theorem above further excludes the
 exact $H$-head/$H$-row axis-zero budget for that reuse. It does not
 exclude a constant surplus of heads, fewer anchors, or general row
 affine forms which differ between heads.
+
+\section{A surplus-head decoder and its exact four-cycle obstruction}
+
+Surplus heads remove the previous coefficient obstruction, but one
+natural linear-residue repair has a different, exact compatibility
+constraint. The following construction separates the two issues.
+
+\begin{theorem}[Three arbitrary pair fibers with twice as many heads]
+Let $d_1,\ldots,d_M$ be distinct positive nodes satisfying
+$\max_i d_i<2\min_i d_i$. Choose $2M$ distinct poles
+$0<\lambda_h<\min_i d_i/3$. For arbitrary real tables
+$y_{i,12},y_{i,13},y_{i,23}$ there exist residues $c_{hj}$,
+$1\le h\le2M$, $1\le j\le3$, such that
+\[
+ F(d,v)=\sum_{h=1}^{2M}
+ \frac{c_{h1}v_1+c_{h2}v_2+c_{h3}v_3}
+ {d-\lambda_h(v_1+v_2+v_3)}
+\]
+vanishes at $(d_i,0)$ and $(d_i,e_j)$, and satisfies
+$F(d_i,e_j+e_k)=y_{i,jk}$ for every pair $j<k$.
+If the row nodes are the values of a strictly negative-slope affine
+form $D(u)$ on a Boolean cube, every denominator in $F(D(u),v)$
+has strictly negative slopes and is positive on the entire cube.
+\end{theorem}
+
+\begin{proof}
+The $2M$ nodes $d_i$ and $d_i/2$ are distinct, since their two ranges
+are disjoint. The square matrix with rows indexed by these nodes $z$
+and entries $1/(z-\lambda_h)$ is invertible. Indeed, a vector in its
+kernel gives a rational function $\sum_h a_h/(z-\lambda_h)$ with
+$2M$ distinct zeros. Its numerator has degree at most $2M-1$, so
+it is identically zero. Evaluation of that numerator at each distinct
+pole proves $a_h=0$.
+
+Set
+\[
+ x_{i1}=\frac{y_{i,12}+y_{i,13}-y_{i,23}}2,\quad
+ x_{i2}=\frac{y_{i,12}+y_{i,23}-y_{i,13}}2,\quad
+ x_{i3}=\frac{y_{i,13}+y_{i,23}-y_{i,12}}2.
+\]
+For each column $j$, invert the Cauchy matrix to choose its residues
+with
+\[
+ \sum_h\frac{c_{hj}}{d_i-\lambda_h}=0,\qquad
+ \sum_h\frac{c_{hj}}{d_i-2\lambda_h}=x_{ij}.
+\]
+The second set of equations is ordinary Cauchy interpolation at
+$d_i/2$, with right side $2x_{ij}$.
+The singleton identities now hold by construction, and the pair
+score is $x_{ij}+x_{ik}=y_{i,jk}$.
+Finally $D(u)-3\lambda_h>0$ on the whole cube, and every memory
+slope is $-\lambda_h<0$. The claimed admissibility follows.
+\end{proof}
+
+\begin{proposition}[The same template cannot handle four arbitrary columns]
+For any number of heads and residues, suppose the denominator of head
+$h$ is $d-\lambda_h\sum_jv_j$, with positive denominator on the domain,
+and the numerator is $\sum_j c_{hj}v_j$. At each fixed row, its pair
+outputs obey
+\[
+ F(d,e_1+e_2)+F(d,e_3+e_4)
+ =F(d,e_1+e_3)+F(d,e_2+e_4).
+\]
+Consequently these four pair outputs cannot have signs $+,+,-,-$
+in the displayed order.
+\end{proposition}
+
+\begin{proof}
+Put $x_j(d)=\sum_h c_{hj}/(d-2\lambda_h)$. Every pair output is
+$x_j(d)+x_k(d)$, so both sides of the identity are
+$x_1(d)+x_2(d)+x_3(d)+x_4(d)$. The asserted strict signs would give
+a positive left side and a negative right side.
+\end{proof}
+
+\paragraph{Scope.}
+The three-column theorem is an exact admissible decoder and the
+four-column proposition is an exact obstruction to extending that
+particular mechanism. Neither supplies an asymptotic saving. Different
+column pole assignments, target-dependent permutations, or another
+nonlinear interaction are necessary for an unbounded-column extension.
+
 \end{document}
