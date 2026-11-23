@@ -1,0 +1,34 @@
+Source: VerifiedMechanisms/xorformer-runs
+Commit: 6f5c7d43e32195fe4b05508de9f5f2d3e4888699
+Port: 13 new Lean files, 1450 lines, copied verbatim.
+Existing model and CountingLowerBound files were not changed.
+
+Command: lake build HeadComplexity.Results.WarrenBound
+Result: Build completed successfully (3426 jobs).
+New modules built successfully:
+  HeadComplexity.Polynomial.SignedSubsetCount
+  HeadComplexity.Polynomial.DiagonalRootBound
+  HeadComplexity.Polynomial.PenaltyMinimization
+  HeadComplexity.Polynomial.GenericClosestPoint
+  HeadComplexity.Polynomial.AlgebraicRegularValues
+  HeadComplexity.Polynomial.EvaluationDerivative
+  HeadComplexity.Polynomial.RegularRootBound
+  HeadComplexity.Polynomial.GenericPolynomialValues
+  HeadComplexity.Polynomial.GenericFiberBound
+  HeadComplexity.Polynomial.ConstrainedMinimaBound
+  HeadComplexity.Polynomial.SignRegionMinima
+  HeadComplexity.Polynomial.PolynomialSignCount
+  HeadComplexity.Results.WarrenBound
+
+Independent axiom audit using lake env lean:
+'HeadComplexity.strictPolynomialSignPatterns_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.warrenStrictSignPatternBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.coarseWarrenSignPatternBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.card_headComputableFunctions_le_counting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.exists_HStar_gt_of_counting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_gt_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+A source scan of the imported files found no sorry and no new axiom declarations.
+
+This is only the existing unconditional Omega(2^n/n^2) baseline.
+Neither requested asymptotic resolution is proved.

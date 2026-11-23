@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Full-Cube Counting Audit and an Unconditional Baseline}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+Neither the requested upper bound $O(2^n/(n\log\log n))$ nor the
+alternative lower bound $\Omega(2^n/n)$ is proved by this note.
+The unconditional result imported and checked here is the existing
+$\Omega(2^n/n^2)$ counting baseline. The subsequent calculations record
+what a sharper full-cube argument would have to improve. They are not
+asserted as an obstruction to all admissible representations.
+
+\section{Checked unconditional counting theorem}
+The public module
+\texttt{HeadComplexity/Results/WarrenBound.lean} and its twelve new
+polynomial dependencies are copied verbatim from
+\texttt{VerifiedMechanisms/xorformer-runs}, commit
+\texttt{6f5c7d43e32195fe4b05508de9f5f2d3e4888699}.
+The imported dependency closure has 1,450 lines. It proves Warren's
+strict sign-pattern estimate from algebraic root counts, generic regular
+values, and constrained minima. No sign-pattern theorem is assumed.
+The current files defining the model, \texttt{HStar}, and
+\texttt{worstCaseHeadComplexity} are unchanged.
+
+The declarations
+\texttt{warrenStrictSignPatternBound},
+\texttt{card\_headComputableFunctions\_le\_counting}, and
+\texttt{worstCaseHeadComplexity\_gt\_div}
+give, respectively, the proved Warren interface, the bound
+\[
+ \#\{f:H^*(f)\leq H\}\leq2^{35n^2H}
+ \quad(1\leq n,\ 1\leq H\leq2^n),
+\]
+and the unconditional finite statement
+\[
+ \left\lfloor\frac{2^n-1}{35n^2}\right\rfloor<W(n)
+ \quad\text{when }1\leq n\text{ and }35n^2\leq2^n-1.
+\]
+The floor in the last display is natural-number division in the Lean
+declaration. It yields the stated asymptotic baseline.
+This does not supply the extra factor of $n$ sought in the
+alternative lower-bound target.
+
+\paragraph{Verification.}
+\texttt{lake build HeadComplexity.Results.WarrenBound} passed with
+3,426 jobs and no warnings. Independent \texttt{\#print axioms} checks of
+all six public declarations in the entrypoint reported only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The imported files contain no \texttt{sorry} and no new axiom.
+The build and axiom output is preserved in
+\texttt{reverse-alternative-warren-check.txt}.
+
+\section{Exact full-cube coefficient recurrence}
+For $x\in\{0,1\}^n$, let
+$A(x)=a_0+\sum_i a_ix_i$ and $B(x)=b_0+\sum_i b_ix_i>0$.
+Write the unique multilinear expansion of $A/B$ as
+$\sum_{S\subseteq[n]}u_S x_S$, where $x_S=\prod_{i\in S}x_i$.
+\begin{proposition}
+For every $S\subseteq[n]$,
+\[
+ \left(b_0+\sum_{i\in S}b_i\right)u_S
+       +\sum_{i\in S}b_i u_{S\setminus\{i\}}=a_S,
+ \qquad
+ a_S=\begin{cases}a_0&S=\varnothing,\\a_i&S=\{i\},\\0&|S|\geq2.
+ \end{cases}
+\]
+\end{proposition}
+\begin{proof}
+Multiply the multilinear expansion by $B$ in the quotient algebra
+$\mathbb R[x_1,\ldots,x_n]/(x_i^2-x_i)_{i=1}^n$.
+The coefficient of $x_S$ in $b_ix_i\sum_Tu_Tx_T$ is
+$b_i(u_S+u_{S\setminus\{i\}})$ if $i\in S$, and zero otherwise.
+The resulting function is $A$, whose coefficients are the displayed $a_S$.
+\end{proof}
+The diagonal coefficient is $B(\mathbf1_S)>0$, so this is a genuine
+triangular recurrence even with the negative denominator orientation.
+For a sum of heads the recurrences have different coefficients.
+Composing their multiplication operators returns the familiar
+degree-$H$ cleared numerator. No stronger recurrence for their sum, or
+sign-only lower bound, has been obtained from this calculation.
+
+\section{Convex sections and the remaining multiplicity issue}
+Fix all heads except one and fix a required sign function $f$ on the cube.
+Let $R(x)$ be the score of the fixed heads and the bias. On the region
+$B(x)>0$, the sign constraints on the remaining head are exactly
+\[
+ f(x)\bigl(A(x)+R(x)B(x)\bigr)>0\quad\text{for every }x.
+\]
+These are linear inequalities in that head's affine coefficients.
+For either fixed denominator orientation, admissibility is also a
+collection of linear strict inequalities. Thus every such one-head
+section of the feasible parameter set is convex.
+
+This observation does not imply that the complete feasible set is
+connected or that its intersections have few isolated solutions.
+The checked Warren proof bounds the relevant constrained minima by
+$(2d)^p$. With $p=1+2H(n+1)$ and $d=H+1$, this is still
+$H^{O(Hn)}$. Replacing it by a suitable full-cube bound on the scale
+$H!C^{Hn}$ would be quantitatively useful when $H$ is exponential in
+$n$, but no such result is proved here. A uniform estimate of that
+strength for arbitrary promised subsets would conflict with the
+existing positive-orientation one-hot decoder. Any argument must
+specify and use its full-cube or parameter-regime hypotheses.
+
+\section{A sparse-polynomial shortcut does not follow}
+There is a simple exact interpolation construction that cautions against
+transferring Fourier-sparsity lower bounds directly to heads.
+Partition the input into two blocks $x,y\in\{0,1\}^k$ and set
+$t(x,y)=|x|+(k+1)|y|$. It takes the $(k+1)^2$ distinct values
+$0,\ldots,(k+1)^2-1$.
+For $K=(k+1)^2$ choose distinct positive numbers $p_1,\ldots,p_K$.
+The Cauchy matrix $[1/(t+p_h)]_{0\leq t<K,1\leq h\leq K}$ is invertible.
+Indeed a linear dependence, multiplied by $\prod_h(t+p_h)$,
+would give a polynomial of degree at most $K-1$ vanishing at $K$
+distinct points. The polynomial is zero; evaluating at $-p_h$ then
+shows that every coefficient of the dependence is zero.
+
+Consequently every real function of the two block weights has an exact
+$K$-head representation with constant numerators and denominators
+$p_h+t(x,y)$. These denominators have strictly positive slopes and
+positive constants, so they are actual original-model atoms.
+In particular the intersection of two majority functions has a
+polynomial head bound by this elementary construction. Sherstov's
+Theorem 6.3 gives Fourier threshold density
+$k^{\Omega(\log k)}$ for that function; see
+\url{https://web.cs.ucla.edu/~sherstov/pdf/hshs.pdf}.
+Thus a general conversion to a Fourier polynomial with only
+$H\,\operatorname{poly}(n)$ monomials cannot be used here.
+This literature-based consequence is not Lean-formalized and is not
+used by the imported counting theorem.
+
+\paragraph{Open work.}
+The exact recurrence, convex sections, shared-direction observations,
+and standard rational-network counting results have not supplied the
+needed positivity-sensitive multiplicity estimate. No universal
+global construction achieving the logarithmic saving has been found
+by this route either.
+\end{document}
