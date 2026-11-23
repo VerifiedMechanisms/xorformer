@@ -312,6 +312,68 @@ arbitrarily many mixed Boolean differences in additional coordinates.
 It does not rule out an invariant using positivity or a joint
 factorization shared by several transforms.
 
+\begin{theorem}[Fourier threshold density is not a polynomial head invariant]
+For odd $m\geq3$, let $f_m$ be the conjunction of majority on two
+disjoint blocks of $m$ bits. In the unchanged attention model,
+\[
+ H^*(f_m)\leq 2m+2.
+\]
+Nevertheless its Fourier threshold density is $m^{\Omega(\log m)}$:
+every strict polynomial sign representation in the Walsh characters
+requires that many nonzero coefficients. Consequently no fixed
+polynomial in $nH^*(f)$ bounds Fourier threshold density for all
+Boolean functions on $n$ bits.
+\end{theorem}
+
+\begin{proof}
+Write $\sigma_k\in\{-1,1\}$ for majority at Hamming weight $k$.
+Fix distinct positive
+numbers $\lambda_0,\ldots,\lambda_m$. The square Cauchy matrix
+$C_{k,j}=1/(k+\lambda_j)$, $0\leq k,j\leq m$, is invertible.
+Indeed, a vector in its kernel gives a rational function
+$\sum_j c_j/(t+\lambda_j)$ vanishing at $m+1$ distinct points.
+After multiplication by $\prod_j(t+\lambda_j)$ its numerator has
+degree at most $m$, so it is zero. Taking the residue at each pole
+then gives $c_j=0$ for all $j$.
+
+Choose the unique vector $c$ with $Cc=\sigma$ and put
+\[
+ U(t)=\sum_{j=0}^m\frac{c_j}{t+\lambda_j}.
+\]
+On the Boolean cube the score
+$U(|x|)+U(|y|)-1$ equals $1$ when both majorities are positive,+$-1$ when exactly one is positive, and $-3$ otherwise. It has strict
+margin at least one. The denominators in its $2m+2$ displayed terms
+have positive slopes in the active block and zero slopes in the
+other block. Replace them, respectively, by
+\[
+ |x|+\lambda_j+\varepsilon|y|,
+ \qquad |y|+\lambda_j+\varepsilon|x|.
+\]
+For every $\varepsilon>0$ all slopes are strictly positive, and each
+denominator is at least $\lambda_j>0$ on the entire cube. Each ratio
+therefore compiles to one actual admissible head. The perturbed
+score converges to the preceding score at every cube point as
+$\varepsilon\downarrow0$. Since the cube is finite, convergence is
+uniform there; choose $\varepsilon>0$ with error less than $1/2$.
+Every required strict sign is preserved, proving the head bound.
+
+The density lower bound is Sherstov's Theorem 6.3 in
+\emph{The Intersection of Two Halfspaces Has High Threshold Degree},
+\url{https://web.cs.ucla.edu/~sherstov/pdf/hshs.pdf}. Its density is
+defined using monomials on $\{-1,1\}^{2m}$, exactly the Walsh
+characters after the coordinate change from $\{0,1\}^{2m}$.
+The theorem states
+$\operatorname{dns}(\operatorname{MAJ}_m\wedge
+\operatorname{MAJ}_m)=m^{\Omega(\log m)}$. This outgrows every fixed
+polynomial in $(2m)(2m+2)$, proving the last assertion.
+\end{proof}
+
+The Cauchy compilation is a complete written construction. The density
+lower bound in this theorem is an application of the cited published
+result, not a new proof or a Lean formalization. Its role here is to
+reject a concrete proposed invariant; a restricted-class upper bound
+does not resolve the worst-case asymptotic question.
+
 \section{Primary-source transfer checks}
 
 Pardo and Sebasti\'an, \emph{Erzeugungsgrad, VC-Dimension and Neural
