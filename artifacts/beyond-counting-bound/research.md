@@ -47,6 +47,12 @@ The [elliptic identity](head-elliptic-energy.md) gives a different denominator-p
 
 The same calculation holds with an arbitrary fixed numerator table. Choosing that table to be any desired Boolean labeling times one fixed positive denominator realizes every sign pattern in this relaxed family. Thus the elliptic equation and potential bound alone cannot yield a sign restriction. An argument retaining the affine-numerator constraint under sums of heads is missing. The PDE-only approach is blocked by this explicit counterexample, not reopened as an unproved claim about the number of maxima.
 
+## Independent denominator energy diverges under cancellation
+
+The [two-head cancellation theorem](cancellation-energy.md) retains the affine-numerator restriction and tests composition of the new elliptic identity. A fixed two-bit function has exact head complexity two, yet its displayed family of admissible minimal-head representations has normalized block potential at least $1/(1024t^2)$ for every $0\lt t\leq1$. Both denominator orientations are positive. An exact squared-minor identity gives the lower bound; it is not inferred from numerical condition estimates.
+
+The score table, strict signs, affine exclusion, norm bounds, and general unbounded angular-energy theorem pass Lean. A separate rational verifier checks the full first and second differential equations in 100 instances. The analytic interpretation is written explicitly. This disproves a uniform potential bound for independent denominator blocks even at minimal head count. It does not exclude a different representation or metric with controlled energy, and it gives no asymptotic sign count. Any such selection or geometric theorem remains a substantive missing mechanism.
+
 ## Complete monotonicity and Boolean tangents
 
 The [positive exponential interpolation theorem](complete-monotonicity-tangent.md) gives every Boolean tangent direction at a table equal to a single reciprocal head. One baseline extension works for every direction, and every mixed derivative has the strict sign required by complete monotonicity. The construction has explicit rational coefficients and a uniform positive perturbation interval. Independent exact arithmetic checks the coefficients through dimension ten and all binary directions through dimension three.

@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T17:08:29.067645+00:00",
+  "declarations": [
+    "HeadComplexity.CancellationEnergy.ratio_difference",
+    "HeadComplexity.CancellationEnergy.denominator_positive",
+    "HeadComplexity.CancellationEnergy.table_values",
+    "HeadComplexity.CancellationEnergy.four_signs",
+    "HeadComplexity.CancellationEnergy.no_affine_separator",
+    "HeadComplexity.CancellationEnergy.square_minor_identity",
+    "HeadComplexity.CancellationEnergy.coordinate_bounds",
+    "HeadComplexity.CancellationEnergy.normSq_bounds",
+    "HeadComplexity.CancellationEnergy.gram_lower",
+    "HeadComplexity.CancellationEnergy.angularEnergy_lower",
+    "HeadComplexity.CancellationEnergy.angularEnergy_unbounded",
+    "HeadComplexity.CancellationEnergy.first_block_energy_dominates"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "files": [
+    {
+      "file": "formalization/HeadComplexity/Atoms/CancellationEnergy.lean",
+      "sha256": "f4b487c0af630cdbcebbb74827de1899365441ec20f3513b940b223798d119c1"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/verify_cancellation_energy.py",
+      "sha256": "e50fa1cfbb2311b0e38f07daacf04f654f621c0e9ca8ca4a4a040db37ee050e0"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/cancellation-energy-rational-audit.json",
+      "sha256": "f9ff1f4372e69d9a2bd2209ca2d27e963b413160b5d385656e0e5c24bfb8cdbf"
+    }
+  ],
+  "build_jobs": 3137,
+  "scope": "General cancellation energy divergence and actual table in Lean; normalized block calculus written explicitly.",
+  "github_render": [
+    {
+      "file": "artifacts/beyond-counting-bound/cancellation-energy.md",
+      "source_math_spans": 50,
+      "rendered_math_spans": 50,
+      "findings": 0,
+      "sha256": "5ba4d64c0528567489b02ccead510bf3b1c09c8ca311c387f8aa9f56c4894e1c"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "sha256": "67f2748d392fcea78c0249921590723527406ebf015f01b1fc644b1e61367095"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "sha256": "ef76da1ee92ba4ddb4ddb0ba630e284f525477c00b8b0143ec690511d92df691"
+    }
+  ],
+  "katex": "PASS, three files, 161 spans",
+  "gitlab": "NOT RUN: glab unavailable",
+  "rational_cases": 100,
+  "cube_entries": 400,
+  "uniform_block_potential": "REFUTED: two necessary heads have potential at least 1/(1024*t^2)",
+  "model_changes": [],
+  "main_target_proved": false
+}

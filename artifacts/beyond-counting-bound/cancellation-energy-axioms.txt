@@ -1,0 +1,14 @@
+'HeadComplexity.CancellationEnergy.ratio_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.denominator_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.table_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.four_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.no_affine_separator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.square_minor_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.coordinate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.normSq_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.gram_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.angularEnergy_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.angularEnergy_unbounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CancellationEnergy.first_block_energy_dominates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

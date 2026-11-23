@@ -1,0 +1,14 @@
+import HeadComplexity.Atoms.CancellationEnergy
+
+#print axioms HeadComplexity.CancellationEnergy.ratio_difference
+#print axioms HeadComplexity.CancellationEnergy.denominator_positive
+#print axioms HeadComplexity.CancellationEnergy.table_values
+#print axioms HeadComplexity.CancellationEnergy.four_signs
+#print axioms HeadComplexity.CancellationEnergy.no_affine_separator
+#print axioms HeadComplexity.CancellationEnergy.square_minor_identity
+#print axioms HeadComplexity.CancellationEnergy.coordinate_bounds
+#print axioms HeadComplexity.CancellationEnergy.normSq_bounds
+#print axioms HeadComplexity.CancellationEnergy.gram_lower
+#print axioms HeadComplexity.CancellationEnergy.angularEnergy_lower
+#print axioms HeadComplexity.CancellationEnergy.angularEnergy_unbounded
+#print axioms HeadComplexity.CancellationEnergy.first_block_energy_dominates
