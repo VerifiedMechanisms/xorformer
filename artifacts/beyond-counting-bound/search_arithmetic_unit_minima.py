@@ -146,6 +146,12 @@ def main():
                 closest = closest_negative(p, prod)
                 if closest is not None:
                     gap, negative = closest
+                    # A certificate supported on a subset of active constraints
+                    # still certifies the full feasible problem. Cap this search
+                    # matrix to avoid several-GB LP copies on large zero layers.
+                    if len(zeros) > 5000:
+                        zeros = np.sort(rng.choice(zeros, size=5000, replace=False))
+                    record['zero_rows_used'] = len(zeros)
                     active = np.r_[zeros, negative]
                     y = np.r_[np.ones(len(zeros)), -np.ones(len(negative))]
                     J = active_jacobian(active, u, den, num, constants, y)

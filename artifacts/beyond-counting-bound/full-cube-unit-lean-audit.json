@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "commands": [
+    "lake build HeadComplexity.Atoms.IntegerUnitCubeSplit",
+    "lake env lean -o .lake/build/lib/lean/HeadComplexity/Atoms/IntegerUnitCube.olean HeadComplexity/Atoms/IntegerUnitCube.lean",
+    "lake env lean -o .lake/build/lib/lean/HeadComplexity/Atoms/IntegerUnitRank.olean HeadComplexity/Atoms/IntegerUnitRank.lean",
+    "lake env lean HeadComplexity/Atoms/IntegerUnitMargin.lean"
+  ],
+  "checked_declarations": [
+    "HeadComplexity.IntegerBinaryFiber.UnitRank.newIndices_injective",
+    "HeadComplexity.IntegerBinaryFiber.UnitRank.scaledJacobian_det_ne_zero",
+    "HeadComplexity.IntegerBinaryFiber.UnitRank.active_scores",
+    "HeadComplexity.IntegerBinaryFiber.UnitMargin.integer_gap",
+    "HeadComplexity.IntegerBinaryFiber.UnitMargin.full_cube_unit_margin",
+    "HeadComplexity.IntegerBinaryFiber.UnitMargin.origin_value",
+    "HeadComplexity.IntegerBinaryFiber.UnitMargin.active_values"
+  ],
+  "printed_axioms": {
+    "UnitRank.scaledJacobian_det_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitRank.active_scores": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitMargin.full_cube_unit_margin": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "UnitMargin.active_values": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "sources": {
+    "IntegerUnitCubeSplit.lean": "5ab7336e987d04137d23f40e8d960b832d3c860b40236d6a3f61f165dd131ae0",
+    "IntegerUnitCube.lean": "88e956488495b39e3fd0928da4fd6b5e817b3169375bed9416060c7ec6615933",
+    "IntegerUnitRank.lean": "fd7ca0e0de0cc34b97939c47f515fecbeac06e0f63561eca6827eda7e826121b",
+    "IntegerUnitMargin.lean": "e55a744b081636594c9b1c095c3d65065d2d5165076b2c4ac9fd3b6e5711c0eb"
+  },
+  "target_proved": false
+}

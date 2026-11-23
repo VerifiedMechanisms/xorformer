@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "katex_spans": 34,
+  "github": [
+    {
+      "file": "full-cube-unit-rank.md",
+      "sha256": "0b7bcd652c153bb22fd84cc7fdfdaa4bb1af86c3deb9cb8109864f28042b1b70",
+      "github_math_payloads": 33,
+      "status": "PASS"
+    },
+    {
+      "file": "audit-index.md",
+      "sha256": "aebd14a657205b03facae178be818231a1698937f1e4c19ffd806d0aed3ae651",
+      "github_math_payloads": 1,
+      "status": "PASS"
+    }
+  ],
+  "gitlab": "not run: glab unavailable",
+  "target_proved": false
+}
