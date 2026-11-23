@@ -29,8 +29,9 @@ strict signs, on
 by at most $Cm/\log m$ admissible affine-ratio heads and a constant.
 The resulting score can also be chosen nonzero at every vertex of the full
 Boolean cube. Every denominator has positive constant and strictly positive slopes on all
-$m+s$ original input variables. The same fixed row coefficients work for
-all columns and all sign tables; the column coefficients depend on $f$.
+$m+s$ original input variables. The same fixed row coefficients and numerator coefficients work for
+all columns and all sign tables; only the column denominator coefficients
+depend on $f$.
 \end{theorem}
 
 The combinatorial source is the interval-order shattering mechanism in
@@ -107,12 +108,14 @@ $c\geq d/3$ and $q\geq (\log_2 d)/5$, giving the weaker stated constant.
 \begin{lemma}[Positive rational prefix decoder]
 Let $R>1$, let $r\geq1$ and $\ell\geq0$ be integers, and define
 \[
- K_R(r,\ell)=\frac{R^{2\ell+1}}{1+R^{2\ell+1}+R^{2r}}.
+ K_R(r,\ell)=\frac{R^{2\ell+1}}{1+R^{2\ell+1}+R^{2r}},\qquad
+ J_R(r,\ell)=\frac{R^{2r}}{1+R^{2\ell+1}+R^{2r}}.
 \]
 Then
 \[
  0<K_R(r,\ell)<1,\qquad
- \left|K_R(r,\ell)-\1_{r\leq\ell}\right|\leq\frac2R.
+ \left|K_R(r,\ell)-\1_{r\leq\ell}\right|\leq\frac2R,\qquad
+ \left|J_R(r,\ell)-\1_{r>\ell}\right|\leq\frac2R.
 \]
 \end{lemma}
 \begin{proof}
@@ -127,6 +130,9 @@ If $r>\ell$, then $R^{2r}\geq R^{2\ell+2}$, hence
 \[
  K_R(r,\ell)\leq\frac{R^{2\ell+1}}{R^{2r}}\leq\frac1R\leq\frac2R.
 \]
+For the suffix expression $J_R$, if $r\leq\ell$ then $J_R\leq B/T\leq1/R$.
+If $r>\ell$, then $1-J_R\leq(1+T)/B\leq2/R$, because
+$B\geq R^{2\ell+2}$ and $1\leq R^{2\ell+1}=T$.
 \end{proof}
 
 \begin{proof}[Proof of the local decoder theorem]
@@ -150,9 +156,9 @@ $v\in\{0,1\}^s$, set
  T_h^\pm(v)=\sum_j t^\pm_{hj}v_j,
 \]
 \[
- F_h^\pm(u,v)=\frac{T_h^\pm(v)}{1+B_h(u)+T_h^\pm(v)},
+ F_h^\pm(u,v)=\frac{B_h(u)}{1+B_h(u)+T_h^\pm(v)},
  \qquad
- S(u,v)=-\frac12+\sum_{h=1}^d(F_h^+(u,v)-F_h^-(u,v)).
+ S(u,v)=-\frac12+\sum_{h=1}^d(F_h^-(u,v)-F_h^+(u,v)).
 \]
 Each $F_h^\pm$ is an affine ratio with positive constant denominator and
 strictly positive denominator coefficients on every row and column bit.
@@ -160,8 +166,8 @@ Its negative is also such an atom, by changing the numerator sign only.
 The repository's exact positive-affine-ratio realization therefore gives
 $2d$ actual heads.
 
-At $(u,v)=(e_i,e_j)$, each $F_h^\pm$ is the prefix decoder above.
-Thus $F_h^+-F_h^-$ differs from its interval indicator by at most $4/R$,
+At $(u,v)=(e_i,e_j)$, each $F_h^\pm$ is the suffix decoder above.
+Thus $F_h^--F_h^+$ differs from its interval indicator by at most $4/R$,
 and the full sum differs from the integer number of intervals containing
 $i$ by at most $4d/R<1/8$. If $f(i,j)=-1$ that integer is zero, and
 $S(e_i,e_j)<-3/8$. If $f(i,j)=1$ the integer is at least one, and
@@ -184,27 +190,21 @@ head count $2d$ is $O(m/\log m)$, uniformly in $s$ and $f$.
 For every Boolean $u,v$ and every $h$, put $D_h=1+B_h(u)$.
 Then
 \[
- F_h^+-F_h^-=
- \frac{D_h\bigl(T_h^+(v)-T_h^-(v)\bigr)}
+ F_h^--F_h^+=
+ \frac{B_h(u)\bigl(T_h^+(v)-T_h^-(v)\bigr)}
  {(D_h+T_h^+(v))(D_h+T_h^-(v))}\geq0.
 \]
-If $v=0$, this difference is exactly zero. If $u=0$ and $v\ne0$, it is at
-most $1/(1+T_h^-(v))\leq1/(1+R)$.
-For general nonempty $u,v$, the same formula applies without approximation:
-the module compares sums of the fixed row powers with sums of the
-column-dependent endpoint powers. It does not select one row and one column.
+If $u=0$ or $v=0$, this difference is exactly zero, so the complete score
+before the final bias perturbation is $-1/2$ on both pure faces. For general nonempty $u,v$, the same formula
+applies without approximation: the module compares sums of the fixed row
+powers with sums of the column-dependent endpoint powers. It does not
+select one row and one column.
 \end{proposition}
 \begin{proof}
 Subtract the two fractions over their common positive denominator.
 Since $U_{hj}\geq L_{hj}$, one has $t^+_{hj}\geq t^-_{hj}$, hence
-$T_h^+(v)\geq T_h^-(v)$. The zero case is immediate. If $u=0$, then $D_h=1$
-and
-\[
- 0\leq F_h^+-F_h^-=
- \frac{T_h^+-T_h^-}{(1+T_h^+)(1+T_h^-)}
- \leq\frac1{1+T_h^-}.
-\]
-A nonempty $v$ makes $T_h^-\geq R$.
+$T_h^+(v)\geq T_h^-(v)$. If $u=0$ then $B_h(u)=0$; if $v=0$ then
+$T_h^+(v)=T_h^-(v)=0$. Both vanishing claims are exact.
 \end{proof}
 
 This nonnegativity permits monotone union assembly only when the intended
@@ -216,8 +216,19 @@ whole-cube admissibility requirement. The global transfer remains open.
 
 \paragraph{Formal status.}
 The combinatorial extraction proof and local decoder theorem above are
-written proofs only at this checkpoint. The exact atom realization used in
-the proof is the existing Lean theorem
+written proofs only at this checkpoint. The analytic prefix and suffix bounds
+and the exact nonnegative cancellation formula, including both vanishing
+identities, are Lean-checked in
+\texttt{Results/TorusPrismDecoder.lean}. The public declarations are
+\texttt{rationalPrefixKernel\_error},
+\texttt{rationalSuffixKernel\_error},
+\texttt{gatedRationalInterval\_eq},
+\texttt{gatedRationalInterval\_nonneg},
+\texttt{gatedRationalInterval\_zero\_row}, and
+\texttt{gatedRationalInterval\_equal\_endpoints}, all in the
+\texttt{HeadComplexity} namespace. They use only the standard logical axioms
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The exact atom realization used in the proof is the existing Lean theorem
 \texttt{HeadComplexity.FracAtom.ofPositiveAffineRatio\_eval} in
 \texttt{Atoms/PositiveAffineRatio.lean}. No full-cube universal head upper
 bound follows from the statement proved here.
