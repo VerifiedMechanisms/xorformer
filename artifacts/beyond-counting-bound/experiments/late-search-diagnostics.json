@@ -1,0 +1,47 @@
+{
+  "recorded_utc": "2026-11-23T00:35:26.966271+00:00",
+  "main_target_proved": false,
+  "numerical_failures_do_not_imply_infeasibility": true,
+  "binary-active-fibers": {
+    "records": 20064,
+    "sha256": "72b43f54fa57e60f4ca5e14169e5059c3c7ef50d46016a6faf910625f32670b9",
+    "states": {
+      "UNKNOWN": 20062,
+      "NUMERICAL_FAILURE_UNKNOWN": 2
+    },
+    "last": {
+      "trial": 20063,
+      "n": 7,
+      "heads": 4,
+      "residual": 0.2951024819824397,
+      "min_singular": 1.3218018419171743e-07,
+      "nfev": 1800,
+      "elapsed_seconds": 10035.62351097609,
+      "status": "UNKNOWN"
+    },
+    "termination": "stopped after about 10000 seconds to redirect to a certified-base continuation mechanism"
+  },
+  "active-minimum-continuation": {
+    "records": 23,
+    "sha256": "d3177bc08dcfa2e3a50eacac6d5662c64450c939a4266379e54e6799eb32d464",
+    "states": {
+      "NUMERICAL_CONTINUATION_ONLY": 23
+    },
+    "last": {
+      "status": "NUMERICAL_CONTINUATION_ONLY",
+      "trial": 22,
+      "epsilon": "1.3884635137804372122348599e-11",
+      "step": "3.2118388779548551052e-12",
+      "newton_iterations": 5,
+      "sample_residual": "3.54199317763e-61",
+      "minimum_slope": "0.9092507254135053313",
+      "minimum_signed_dual": "-51426.962423418136167",
+      "negative_dual_count": 1,
+      "float_unsampled_min_slack": 1.8327853953774764e-10,
+      "worst_vertex": 51619,
+      "elapsed_seconds": 115.7475723810494,
+      "main_target_proved": false
+    },
+    "termination": "first signed multiplier became negative; numerical diagnostic only"
+  }
+}

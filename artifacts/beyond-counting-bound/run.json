@@ -7,8 +7,8 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T00:29:53.077911+00:00",
-  "elapsed_seconds_at_last_audit": 88412,
+  "last_audit_utc": "2026-11-23T00:44:42.555893+00:00",
+  "elapsed_seconds_at_last_audit": 89301,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
   "checked_lean_declarations": [
@@ -542,5 +542,13 @@
     "script": "search_variable_constant_minima.py",
     "scope": "constant and numerator coefficients optimized; both coherent denominator orientations; all cube constraints",
     "main_target_proved": false
+  },
+  "continuation_diagnostic": {
+    "status": "numerical branch stopped at first negative signed multiplier",
+    "accepted_samples": 23,
+    "last_epsilon": "1.3884635137804372122348599e-11",
+    "interval_certified": false,
+    "impossibility_claim": false,
+    "writeup": "continuation-diagnostics.md"
   }
 }
