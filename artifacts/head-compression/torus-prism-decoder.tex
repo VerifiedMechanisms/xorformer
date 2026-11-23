@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\1}{\mathbf 1}
+\title{A Superlinear One-Hot Decoder from Interval Orders}
+\author{Research checkpoint, 23 November 2026}
+\date{}
+\begin{document}
+\maketitle
+
+This note proves a local sign-only decoder with a logarithmic saving. It does
+not prove an upper bound for arbitrary truth tables on the full Boolean cube.
+The distinction is essential: all denominators below are admissible on the
+whole cube, but the arbitrary labels are prescribed only on its one-hot
+product subset. No model definition is changed.
+
+\begin{theorem}[Local decoder]
+There is an absolute constant $C$ such that for all sufficiently large $m$
+and every positive integer $s$, every sign table
+$f:\{1,\ldots,m\}\times\{1,\ldots,s\}\to\{-1,1\}$ is represented, with
+strict signs, on
+\[
+ \{(e_i,e_j):1\leq i\leq m,\ 1\leq j\leq s\}\subseteq\{0,1\}^{m+s}
+\]
+by at most $Cm/\log m$ admissible affine-ratio heads and a constant.
+Every denominator has positive constant and strictly positive slopes on all
+$m+s$ original input variables. The same fixed row coefficients work for
+all columns and all sign tables; the column coefficients depend on $f$.
+\end{theorem}
+
+The combinatorial source is the interval-order shattering mechanism in
+Gillibert, Lachmann, and M\"ullner,
+\emph{The VC-Dimension of Axis-Parallel Boxes on the Torus},
+Journal of Complexity 68 (2022), 101600,
+\url{https://arxiv.org/abs/2004.13861}.
+Their sharper result is asymptotic to $d\log_2 d$ points in $d$ coordinates.
+For completeness, a weaker constant-factor bound sufficient here follows
+from the elementary argument below. This note uses nonwrapping intervals,
+so no periodic activation or periodic arithmetic is being introduced.
+
+\begin{lemma}[Extraction matrix]
+For every sufficiently large integer $d$, put $c=\lfloor d/2\rfloor$ and
+$k=\lfloor\sqrt d\rfloor$. There is a matrix
+$E\in\{1,\ldots,k\}^{c\times d}$ with this property: for every word
+$(a_1,\ldots,a_c)\in\{1,\ldots,k\}^c$ there are distinct columns
+$j_1,\ldots,j_c$ satisfying $E_{i,j_i}=a_i$.
+\end{lemma}
+\begin{proof}
+Choose all matrix entries independently and uniformly from the alphabet.
+For a fixed requested word let
+$X_i=\{j:E_{i,j}=a_i\}$. Hall's marriage theorem says that distinct
+representatives exist if every $U\subseteq\{1,\ldots,c\}$ satisfies
+$|\bigcup_{i\in U}X_i|\geq |U|$.
+Consequently, failure for any word implies that, for some nonempty set
+$U$ of size $u\leq c$ and some set $V$ of $u-1$ columns, every row in $U$
+has an alphabet symbol absent from all columns outside $V$.
+For fixed $U,V$, independence between rows and a union bound over the symbol
+in each row give probability at most
+\[
+ \left[k(1-1/k)^{d-u+1}\right]^u
+ \leq \left[k\exp(-d/(2k))\right]^u.
+\]
+There are at most $d^u$ choices for $U$ and at most $d^u$ choices for $V$.
+Thus the probability of any failure is at most
+\[
+ \sum_{u=1}^c\left[d^2k\exp(-d/(2k))\right]^u.
+\]
+Since $k\leq\sqrt d$, the bracket is at most
+$d^{5/2}\exp(-\sqrt d/2)$, which tends to zero.
+For all sufficiently large $d$ it is less than $1/3$, and the displayed
+finite geometric sum is less than $1/2$. Some matrix therefore has the
+asserted property. This argument ranges over all words simultaneously;
+there is no target-dependent choice of matrix.
+\end{proof}
+
+\begin{lemma}[Fixed interval orders]
+For all sufficiently large $d$, there are $M\geq (d\log_2 d)/16$ points and
+$d$ fixed linear orders on those points such that every subset is the union
+of one interval in each order, permitting empty intervals.
+\end{lemma}
+\begin{proof}
+Use the extraction matrix above and put $q=\lfloor\log_2 k\rfloor$.
+Index the points by pairs $(i,b)$ with $1\leq i\leq c$ and $1\leq b\leq q$,
+so $M=cq$. Associate the first $2^q$ alphabet symbols with all subsets
+$A\subseteq\{1,\ldots,q\}$; assign arbitrary subsets to remaining symbols.
+For coordinate $h\in\{1,\ldots,d\}$, order the $c$ groups by $i$.
+Within group $i$, put first those points $(i,b)$ for which $b$ lies in the
+subset associated to $E_{i,h}$, and then all remaining points. Break ties by
+$b$. This defines a fixed permutation of the $M$ points.
+
+Given a desired subset $S$ of the points, let $a_i$ be the symbol associated
+to $\{b:(i,b)\in S\}$. Choose distinct columns $h_i$ by extraction. In
+order $h_i$, the desired subset of group $i$ is a consecutive initial block
+of that group. Select exactly this block as the interval for coordinate
+$h_i$, or select the empty interval if the block is empty. Select the empty
+interval for every unused coordinate. These intervals are contained in
+separate groups, so their union is exactly $S$.
+Finally, for sufficiently large $d$,
+$c\geq d/3$ and $q\geq (\log_2 d)/5$, giving the weaker stated constant.
+\end{proof}
+
+\begin{lemma}[Positive rational prefix decoder]
+Let $R>1$, let $r\geq1$ and $\ell\geq0$ be integers, and define
+\[
+ K_R(r,\ell)=\frac{R^{2\ell+1}}{1+R^{2\ell+1}+R^{2r}}.
+\]
+Then
+\[
+ 0<K_R(r,\ell)<1,\qquad
+ \left|K_R(r,\ell)-\1_{r\leq\ell}\right|\leq\frac2R.
+\]
+\end{lemma}
+\begin{proof}
+The positivity claims follow from positivity of all powers.
+If $r\leq\ell$, then $R^{2r}\leq R^{2\ell}$ and
+$1\leq R^{2\ell}$. Writing $T=R^{2\ell+1}$ and $B=R^{2r}$ gives
+\[
+ 1-K_R(r,\ell)=\frac{1+B}{1+T+B}
+ \leq\frac{1+B}{T}\leq\frac{2R^{2\ell}}{R^{2\ell+1}}=\frac2R.
+\]
+If $r>\ell$, then $R^{2r}\geq R^{2\ell+2}$, hence
+\[
+ K_R(r,\ell)\leq\frac{R^{2\ell+1}}{R^{2r}}\leq\frac1R\leq\frac2R.
+\]
+\end{proof}
+
+\begin{proof}[Proof of the local decoder theorem]
+First suppose that there are $M$ rows and fixed interval orders as above.
+Let $\pi_h(i)\in\{1,\ldots,M\}$ be the rank of row $i$ in order $h$.
+For every column $j$, express $\{i:f(i,j)=1\}$ as a union of intervals
+in the fixed orders. Write the $h$-th interval as
+\[
+ \{i:L_{hj}<\pi_h(i)\leq U_{hj}\},\qquad
+ 0\leq L_{hj}\leq U_{hj}\leq M.
+\]
+Empty intervals have $L_{hj}=U_{hj}$. Put $R=32d+1$, and define
+\[
+ b_{hi}=R^{2\pi_h(i)},\qquad
+ t^+_{hj}=R^{2U_{hj}+1},\qquad t^-_{hj}=R^{2L_{hj}+1}.
+\]
+For arbitrary Boolean vectors $u\in\{0,1\}^M$ and
+$v\in\{0,1\}^s$, set
+\[
+ B_h(u)=\sum_i b_{hi}u_i,\qquad
+ T_h^\pm(v)=\sum_j t^\pm_{hj}v_j,
+\]
+\[
+ F_h^\pm(u,v)=\frac{T_h^\pm(v)}{1+B_h(u)+T_h^\pm(v)},
+ \qquad
+ S(u,v)=-\frac12+\sum_{h=1}^d(F_h^+(u,v)-F_h^-(u,v)).
+\]
+Each $F_h^\pm$ is an affine ratio with positive constant denominator and
+strictly positive denominator coefficients on every row and column bit.
+Its negative is also such an atom, by changing the numerator sign only.
+The repository's exact positive-affine-ratio realization therefore gives
+$2d$ actual heads.
+
+At $(u,v)=(e_i,e_j)$, each $F_h^\pm$ is the prefix decoder above.
+Thus $F_h^+-F_h^-$ differs from its interval indicator by at most $4/R$,
+and the full sum differs from the integer number of intervals containing
+$i$ by at most $4d/R<1/8$. If $f(i,j)=-1$ that integer is zero, and
+$S(e_i,e_j)<-3/8$. If $f(i,j)=1$ the integer is at least one, and
+$S(e_i,e_j)>3/8$. All signs are strict.
+
+For an arbitrary sufficiently large row count $m$, choose
+$d=\lceil A m/\log_2 m\rceil$ with a sufficiently large absolute $A$.
+The bound $M\geq d\log_2(d)/16$ is eventually at least $m$.
+Restrict the orderings to any $m$ rows. The interval-union property is
+preserved by restriction; assign ranks again if desired. The resulting
+head count $2d$ is $O(m/\log m)$, uniformly in $s$ and $f$.
+\end{proof}
+
+\begin{proposition}[Exact behavior off the one-hot product]
+For every Boolean $u,v$ and every $h$, put $D_h=1+B_h(u)$.
+Then
+\[
+ F_h^+-F_h^-=
+ \frac{D_h\bigl(T_h^+(v)-T_h^-(v)\bigr)}
+ {(D_h+T_h^+(v))(D_h+T_h^-(v))}\geq0.
+\]
+If $v=0$, this difference is exactly zero. If $u=0$ and $v\ne0$, it is at
+most $1/(1+T_h^-(v))\leq1/(1+R)$.
+For general nonempty $u,v$, the same formula applies without approximation:
+the module compares sums of the fixed row powers with sums of the
+column-dependent endpoint powers. It does not select one row and one column.
+\end{proposition}
+\begin{proof}
+Subtract the two fractions over their common positive denominator.
+Since $U_{hj}\geq L_{hj}$, one has $t^+_{hj}\geq t^-_{hj}$, hence
+$T_h^+(v)\geq T_h^-(v)$. The zero case is immediate. If $u=0$, then $D_h=1$
+and
+\[
+ 0\leq F_h^+-F_h^-=
+ \frac{T_h^+-T_h^-}{(1+T_h^+)(1+T_h^-)}
+ \leq\frac1{1+T_h^-}.
+\]
+A nonempty $v$ makes $T_h^-\geq R$.
+\end{proof}
+
+This nonnegativity permits monotone union assembly only when the intended
+positive regions are already compatible. It does not establish that arbitrary
+labels on multiple translated cells can be combined. In particular,
+complementing selected input coordinates changes the signs of their
+denominator slopes; positivity on a cell alone would not repair the model's
+whole-cube admissibility requirement. The global transfer remains open.
+
+\paragraph{Formal status.}
+The combinatorial extraction proof and local decoder theorem above are
+written proofs only at this checkpoint. The exact atom realization used in
+the proof is the existing Lean theorem
+\texttt{HeadComplexity.FracAtom.ofPositiveAffineRatio\_eval} in
+\texttt{Atoms/PositiveAffineRatio.lean}. No full-cube universal head upper
+bound follows from the statement proved here.
+\end{document}
