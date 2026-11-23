@@ -1295,7 +1295,7 @@ Then
 \[
  \operatorname{Var}(Q\mid\pi(g)=j)
  =\frac1{q-1}\sum_{h\ne g,\,\ell\ne j}
-       \widehat M_{h\ell}^{,2}.
+       \widehat M_{h\ell}^{2}.
 \]
 In particular this conditional variance vanishes exactly when the
 restricted matrix has the form $M_{h\ell}=a_h+b_\ell$.
@@ -1339,5 +1339,59 @@ established here. Nor does the count $H!$ alone assert that any
 $\Omega(H\log H)$ fixed queries are shattered. This remains a
 specific unresolved route, rather than a proved memory compiler or
 a bound on worst-case head complexity.
+
+\begin{proposition}[Untuned random queries in a shrinking Cauchy chart]
+\label{prop:random-small-chart}
+Fix $H\ge2$ and $M\ge H$. Put $t_j=j/H$. Fix numbers
+$d_{rh}\in[1,2]$ and $\beta_r\in\mathbb R$, and choose the
+$a_{rh}$ independently from the standard normal distribution.
+For a permutation $\pi$ and $0<\varepsilon<1/2$, define
+\[
+ Q_{r,\varepsilon}(\pi)=\varepsilon\beta_r+
+ \sum_{h=1}^H a_{rh}
+ \left(\frac1{d_{rh}-\varepsilon t_{\pi(h)}}
+                         -\frac1{d_{rh}}\right).
+\]
+Almost surely there exists $\varepsilon_0>0$ such that, for every
+$0<\varepsilon<\varepsilon_0$, these $M$ queries do not attain
+all $2^M$ strict sign vectors as $\pi$ varies. In particular,
+factorially many small parameter sheets do not by themselves turn
+this untuned random-query scheme into a superlinear-capacity code.
+\end{proposition}
+\begin{proof}
+The exact expansion
+\[
+ \frac1{d-\varepsilon t}-\frac1d
+ =\frac{\varepsilon t}{d^2}
+   +\frac{\varepsilon^2t^2}{d^2(d-\varepsilon t)}
+\]
+shows that $Q_{r,\varepsilon}(\pi)/\varepsilon$ tends to
+\[
+ L_r(\pi)=\beta_r+
+      \sum_h \frac{a_{rh}}{d_{rh}^2}t_{\pi(h)}.
+\]
+For every fixed $r,\pi$, this is a Gaussian random variable with
+positive variance, and hence it is nonzero with probability one.
+There are finitely many pairs $r,\pi$. Almost surely their absolute
+values therefore have a positive minimum. The expansion is uniform
+over this finite set, so one positive $\varepsilon_0$ makes all the
+query signs equal to their limiting signs for every smaller positive
+$\varepsilon$.
+
+The vectors $(t_{\pi(1)},\ldots,t_{\pi(H)})$ lie in the affine
+hyperplane $\sum_h x_h=(H+1)/2$, of dimension $H-1$. The $L_r$
+are affine functions on this hyperplane. An arrangement of $M$
+affine hyperplanes in dimension $H-1$ has at most
+$\sum_{j=0}^{H-1}\binom Mj<2^M$ regions when $M\ge H$.
+Restricting to the permutation vectors cannot create more strict
+sign vectors. This proves the claim.
+\end{proof}
+
+The proposition deliberately fixes the query parameters before
+shrinking the chart. Parameters depending on $\varepsilon$ can
+cancel the leading affine forms or amplify higher-order terms;
+such tuned queries are not covered. Nor is a fixed moderate chart
+size excluded. Thus this result closes one proposed random
+projection shortcut, not the general asymmetric Cauchy decoder.
 
 \end{document}
