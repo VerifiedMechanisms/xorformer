@@ -1099,4 +1099,152 @@ can store more truth-table bits. A construction that combines this
 additive orientation repair with an efficient independently
 programmable decoder remains open.
 
+
+\section{A common shift does not program a long chain efficiently}
+
+\begin{proposition}[One nonlinear parameter and linear residues]
+\label{prop:one-shift}
+For $1\le i\le M$, consider scores
+\[
+ F_i(a,t)=P_{i0}(t)+\sum_{j=1}^K a_j P_{ij}(t),
+ \qquad a\in\mathbb R^K,\quad t\in\mathbb R,
+\]
+where the $P_{ij}$ are fixed real polynomials of degree at most
+$D\ge1$. The number of strict sign vectors realized by these scores
+is at most
+\[
+ \left(2(K+1)D\binom{M+K+1}{K+1}+1\right)
+ \sum_{j=0}^K\binom Mj.
+\]
+In particular, if all $2^M$ sign vectors are realized, then
+$M=O(K+\log(D+2))$, with an absolute implied constant.
+\end{proposition}
+\begin{proof}
+Form the $M$ row vectors
+$v_i(t)=(P_{i1}(t),\ldots,P_{iK}(t),P_{i0}(t))$ and append the
+$K+1$ standard coordinate vectors. The augmented configuration has
+rank $K+1$ for every $t$. There are
+$B=\binom{M+K+1}{K+1}$ maximal minors. Each is a polynomial of
+degree at most $(K+1)D$. Discard the identically zero minors. Their
+real zeros partition the real line into at most
+$2B(K+1)D+1$ open intervals and singleton points. On each such set,
+the signs, including zeros, of all maximal minors are constant.
+
+These signs determine which strict sign vectors the affine family
+in $a$ realizes. Here is the needed linear-algebra argument. A
+minimal linear dependence of the augmented vectors is a circuit.
+Extend all but one vector of a circuit to a basis of the augmented
+configuration. Cramer's rule expresses its dependence coefficients
+as signed maximal minors, so their signs are determined by the
+listed minors. For a prescribed sign vector $\sigma$, the existence
+of $a$ with $\sigma_i F_i(a,t)>0$ is equivalent to the existence of
+a vector $u\in\mathbb R^{K+1}$ with
+\[
+ \sigma_i v_i(t)\mathbin{\cdot}u>0\quad(1\le i\le M),
+ \qquad e_{K+1}\mathbin{\cdot}u>0.
+\]
+Indeed, divide $u$ by its positive last coordinate. The strict
+linear alternative says this system is feasible precisely when its
+row vectors have no nonzero nonnegative linear dependence. A
+nonnegative dependence with inclusion-minimal support is a circuit:
+any further independent dependence on that support could be
+subtracted in a suitable amount to remove a coordinate while
+preserving nonnegativity. Thus feasibility depends only on the
+circuit coefficient signs, and hence only on the maximal-minor
+signs. It is constant on each of the sets in the partition.
+
+For one fixed $t$, an arrangement of $M$ affine hyperplanes in
+$\mathbb R^K$ has at most $\sum_{j=0}^K\binom Mj$ regions. This
+bound follows by induction on $M$: a newly added hyperplane splits
+at most as many existing regions as the induced arrangement on
+that hyperplane has regions. Every strict sign vector is a region,
+so multiplying by the number of sets in the partition proves the
+finite bound.
+
+For the asymptotic assertion, the case $M<K$ is immediate. For
+$M\ge K\ge1$, the usual estimate
+$\binom uv\le(eu/v)^v$ and the corresponding bound for the binomial
+sum give, after taking logarithms,
+\[
+ M\le C_0 K\log(1+M/K)+C_1\log(D+2)
+\]
+for absolute constants $C_0,C_1$. Choose a fixed $R$ large enough
+that $C_0\log(1+r)\le r/2$ for all $r\ge R$. If $M/K<R$, then
+$M<RK$; otherwise the last display implies
+$M\le2C_1\log(D+2)$. When $K=0$, the direct polynomial root count
+gives at most $2MD+1$ patterns and the same stated conclusion.
+\end{proof}
+
+A reciprocal chain with $H$ poles, one freely varying common shift,
+and $K$ freely varying linear residue parameters fits this statement
+after multiplication by its positive denominator product: the
+polynomial degree in the shift is at most $H$. Arbitrary fixed row
+coefficients are allowed. Thus even a long chain has capacity only
+$O(K+\log(H+2))$ in this particular programming scheme. The
+periodic-chain repair above remains valid, but this common-shift
+scheme does not turn it into a superlinear-capacity decoder. The
+proposition does not cover independently varying pole locations,
+several coupled nonlinear parameter directions, or different
+compiler structures.
+
+\section{The local receptive field construction is not a Boolean embedding}
+
+Schmitt's
+\href{https://eccc.weizmann.ac.il/report/2001/045/download/}{\emph{Neural
+Networks with Local Receptive Fields and Superlinear VC Dimension}
+(2001)}, Theorem~2, starts from $h(m+1)$ real points in
+$\mathbb R^m$ in spherical general position. Definition~2(2)
+requires, in particular, that no $m+2$ points lie on one
+$(m-1)$-dimensional sphere. Theorem~11 transfers the resulting
+shell construction to differences of Gaussians, and Theorem~13 to
+Gaussian radial basis functions. Section~7 explicitly leaves
+Boolean input restrictions unresolved. The following obstruction is
+our transfer check, not a claim that the paper proves impossibility
+for Boolean inputs.
+
+Every Boolean vertex $x\in\{0,1\}^m$ satisfies
+\[
+ \left\|x-(1/2,\ldots,1/2)\right\|^2=m/4.
+\]
+Consequently a Boolean subset with $m+2$ points already violates
+the spherical general-position assumption. The same is true of
+constant-weight layers and complementary-rail embeddings. In
+particular, merely substituting Boolean points into that proof
+cannot retain the factor $h$.
+
+\begin{proposition}[Affine distance-preserving perturbations are cospherical]
+Let $\Psi(x)=v_0+\sum_{i=1}^m v_i x_i$ be an affine embedding into a
+Euclidean space. If $x\mapsto\|\Psi(x)-c\|^2$ is affine on the
+Boolean cube for every center $c$, then the vectors $v_i$ are
+pairwise orthogonal and every image vertex lies on a common sphere.
+\end{proposition}
+\begin{proof}
+For $i\ne j$, take the second Boolean difference at the four
+vertices $0,e_i,e_j,e_i+e_j$. Applied to the squared distance, this
+difference equals $2\langle v_i,v_j\rangle$. Applied to an affine
+function it is zero. Thus the $v_i$ are pairwise orthogonal. With
+$c_\ast=v_0+\frac12\sum_i v_i$, one then has
+\[
+ \|\Psi(x)-c_\ast\|^2
+ =\sum_i\|v_i\|^2(x_i-1/2)^2
+ =\frac14\sum_i\|v_i\|^2,
+\]
+independent of the Boolean vertex. This is the required sphere.
+\end{proof}
+
+For the original cube, the exact Gaussian input identity is
+\[
+ \|x-c\|^2=\sum_i c_i^2+\sum_i(1-2c_i)x_i.
+\]
+Its coefficients can have mixed signs. A nonlinear embedding could
+avoid the cospherical obstruction, but then squared distance need
+not remain affine in the original bits; those additional features
+are not free in this attention model. Even when the displayed
+affine form has common orientation, replacing
+$\exp(-\|x-c\|^2/\sigma^2)$ by a sum of admissible reciprocals with
+sufficiently small error and sufficiently few heads is another
+required theorem. The cited construction supplies no such
+reciprocal approximation bound. Neither step has been established
+here.
+
 \end{document}
