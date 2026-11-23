@@ -942,6 +942,31 @@
       "checked_location": "Introduction on printed page 191 and Theorem 3.1 with proof on pages 195-196.",
       "mechanism": "Packed real parameters, sequential threshold bit extraction, and address selection give large VC dimension with increasing depth. The introduction separately distinguishes real-input two-layer results from binary-input three-layer results.",
       "gap": "The decoder is a sequence of nonlinear layers. A shatterable point set is not the prescribed complete Boolean cube. Neither the decoder nor the activation transfer is a one-layer sum of admissible affine fractions."
+    },
+    {
+      "title": "Tight Bounds for the VC-Dimension of Piecewise Polynomial Networks",
+      "authors": "Akito Sakurai",
+      "url": "https://papers.neurips.cc/paper_files/paper/1998/file/f18a6d1cde4b205199de8729a6637b42-Paper.pdf",
+      "checked_location": "Depth convention in Section 2; Theorem 4.1, Lemmas 4.2-4.7, Theorem 4.8 and the encoder construction; Section 5 proof outline.",
+      "mechanism": "Iterated quadratic maps decode real-parameter bit strings; polynomial feature products implement an encoder. Piecewise polynomial arrays replace parts of the iterated decoder.",
+      "gap": "The construction uses additional nonlinear layers, multiplies intermediate features, and chooses a special input set. None is a free operation in the manuscript model. No full-cube one-layer head construction is obtained."
+    },
+    {
+      "title": "On the power of border of depth-3 arithmetic circuits",
+      "authors": "Mrinal Kumar",
+      "url": "https://mrinalkr.bitbucket.io/papers/topfanin-formaldeg_revised.pdf",
+      "checked_location": "Model and border definition, Theorem 1.5, and Section 3.1 proof of the product construction.",
+      "mechanism": "For P=sum_i L_i^d, the product of 1+epsilon^d*L_i^d has P as its first nonconstant term. Splitting over the complex numbers yields top fan-in two with d*T affine factors.",
+      "gap": "Top fan-in is not factor count or head count. Complex factors need not be real admissible denominators. The direct replacement by a product of admissible real factors minus a constant cannot sign-represent parity in dimension at least three, as proved in border-real-factor-audit.tex. No general real transfer is established."
+    },
+    {
+      "title": "Rational Functions as Sums of Reciprocals of Polynomials",
+      "authors": "Neil Epstein",
+      "url": "https://math.gmu.edu/~nepstei2/ratfuns-accepted.pdf",
+      "published_url": "https://doi.org/10.1080/00029890.2024.2379749",
+      "checked_location": "Main theorem and its constructive existence proof by successive division, accepted author version pages 3-4.",
+      "mechanism": "A proper univariate rational function has a finite alternating expansion with denominators h0, h0*h1, and successive products, where the factor degrees increase strictly.",
+      "gap": "The displayed denominators are nonlinear polynomial products. The theorem neither makes them admissible affine forms nor bounds the cost of any conversion to heads."
     }
   ]
 }

@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Complex Border Products and Admissible Real Factors}
+\author{}
+\date{November 23, 2026}
+\maketitle
+
+\paragraph{The construction inspected.}
+Mrinal Kumar's \emph{On the power of border of depth-3 arithmetic
+circuits}, Theorem 1.5 and its proof, starts with a homogeneous
+polynomial $P=\sum_{i=1}^T L_i^d$ over $\mathbb C$ and forms
+\[
+ A_\epsilon(x)=\prod_{i=1}^T(1+\epsilon^dL_i(x)^d)
+                   =1+\epsilon^dP(x)+O(\epsilon^{2d}).
+\]
+Each degree-$d$ factor splits over $\mathbb C$, so
+$(A_\epsilon-1)/\epsilon^d$ is a difference of two products of
+affine forms and tends coefficientwise to $P$. The nonconstant
+product has $dT$ factors. Thus two product gates do not mean two
+heads. More seriously, the factors produced by this splitting need
+not be real or positive with the manuscript's slope orientation.
+
+The following elementary invariant shows why replacing that
+complex splitting by a product of admissible real denominators
+cannot preserve general Boolean signs in this particular construction.
+
+\begin{proposition}[A product threshold obstruction]
+Let $D(x)$ be a finite product of positive affine functions on
+$\{0,1\}^n$, each having all variable coefficients nonnegative
+or all variable coefficients nonpositive. For a positive constant
+$c$, neither $D-c$ nor $c-D$ can strictly sign represent parity
+on $n\ge3$ variables, or its complement.
+The assertion also holds for the stricter admissibility conditions
+in the manuscript.
+\end{proposition}
+
+\begin{proof}
+Fix any two coordinates and any assignment of the others. On this
+square write one denominator's four values as
+$a,a+b,a+d,a+b+d$. They are positive, and $bd\ge0$. Hence
+\[
+                  a(a+b+d)\le(a+b)(a+d).
+\]
+Multiplication over the factors gives
+\[
+                          D_{00}D_{11}\le D_{01}D_{10}.
+\tag{1}
+\]
+In particular it is impossible that both $D_{00},D_{11}>c$
+and both $D_{01},D_{10}<c$, since these inequalities would make
+the left side of (1) exceed $c^2$ and the right side less than $c^2$.
+
+For parity on at least three variables, fix all but two variables.
+Changing one of the fixed bits switches which diagonal has the
+positive label. Whichever overall output orientation is chosen,
+one of these faces would demand exactly the forbidden pattern
+for the predicate $D>c$. This proves the assertion.
+\end{proof}
+
+The same argument excludes a limiting construction using such
+products if its limiting score has the required strict signs.
+There are only finitely many cube vertices, so convergence to a
+strict separator would preserve all signs for sufficiently small
+positive parameter, contradicting the proposition. This requires
+only convergence of the actual scores on the cube.
+
+\paragraph{Scope.}
+The result does not exclude a difference of two nonconstant
+products, or a sum of affine fractions. Nor does it refute Kumar's
+theorem, which is explicitly over the complex numbers and charges
+formal degree separately. The gap is a real, admissible,
+head-count-controlled transfer; no such transfer is asserted here.
+The denominator product square inequality also follows from the
+existing Lean results in
+\texttt{Results/DenominatorProductSubmodularity.lean}.
+
+\paragraph{A separate rational expansion.}
+Neil Epstein's \emph{Rational Functions as Sums of Reciprocals of
+Polynomials} uses successive polynomial division. Its main theorem
+writes a proper univariate fraction as
+\[
+ \frac{f}{g}=\frac1{h_0}-\frac1{h_0h_1}
+       +\cdots+\frac{(-1)^r}{h_0\cdots h_r},
+ \qquad r\le\deg f,
+\]
+where the positive degrees of the $h_i$ increase strictly. The
+denominators are products of polynomials of increasing degree;
+they are not asserted to be affine, positive, or one oriented.
+Charging each displayed summand as one manuscript head is therefore
+invalid. The theorem supplies no target head bound.
+
+\paragraph{Primary sources.}
+\url{https://mrinalkr.bitbucket.io/papers/topfanin-formaldeg_revised.pdf}
+
+\url{https://math.gmu.edu/~nepstei2/ratfuns-accepted.pdf}
+\end{document}

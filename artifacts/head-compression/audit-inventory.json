@@ -1102,5 +1102,12 @@
       "proof_note": "artifacts/head-compression/two-permutation-tangent-certificate.tex",
       "audit": "artifacts/head-compression/diagnostics/two-permutation-tangent-exact-n12-audit.json"
     }
+  },
+  "border_real_factor_audit": {
+    "file": "artifacts/head-compression/border-real-factor-audit.tex",
+    "status": "Manual proof; uses the elementary denominator product square inequality also present in the existing Lean library.",
+    "result": "A product of admissible positive real affine factors, thresholded against a positive constant, cannot represent parity or its complement in dimension at least three. Strict limits of that construction have the same limitation.",
+    "scope": "Blocks a direct real replacement of the complex one-product-minus-constant border construction. Does not exclude differences of two nonconstant products or arbitrary affine-fraction scores.",
+    "target_proved": false
   }
 }
