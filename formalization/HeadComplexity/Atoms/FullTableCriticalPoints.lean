@@ -52,6 +52,26 @@ theorem energy_differential_identity {ι : Type*} [Fintype ι]
   rw [hK, hsym]
   linarith
 
+/-- Algebraic second-derivative identity used by the interval saddle audit.
+The differential relation gives `G dr = dK - dG r`; substituting its inverse
+is the completed-square expression in the written proof. -/
+theorem energy_second_differential_identity {ι : Type*} [Fintype ι]
+    (G dG ddG : Matrix ι ι ℝ) (hdG : dG.IsSymm)
+    (dK ddK r dr : ι → ℝ)
+    (hdK : dK = dG.mulVec r + G.mulVec dr) :
+    2 * dotProduct ddK r + 2 * dotProduct dK dr -
+      (dotProduct dr (dG.mulVec r) + dotProduct r (ddG.mulVec r) +
+        dotProduct r (dG.mulVec dr)) =
+      2 * dotProduct dr (G.mulVec dr) + 2 * dotProduct ddK r -
+        dotProduct r (ddG.mulVec r) := by
+  have hsym : dotProduct dr (dG.mulVec r) = dotProduct r (dG.mulVec dr) :=
+    hdG.dotProduct_mulVec_comm (x := dr) (y := r)
+  have hdot : dotProduct dK dr = dotProduct dr (dG.mulVec r) +
+      dotProduct dr (G.mulVec dr) := by
+    rw [hdK, add_dotProduct]
+    rw [dotProduct_comm (dG.mulVec r) dr, dotProduct_comm (G.mulVec dr) dr]
+  linarith
+
 theorem weighted_pair_kernel {d k : ℕ} (hd : 0 < d) (hk : 2 ≤ k)
     (a : Fin d → ℝ) (t c : Fin k → ℝ)
     (ha : ∀ i, 0 < a i) (ht : ∀ j, 0 < t j)
@@ -110,5 +130,6 @@ end HeadComplexity.FullTableCriticalPoints
 
 #print axioms HeadComplexity.FullTableCriticalPoints.singleton_energy_bound
 #print axioms HeadComplexity.FullTableCriticalPoints.energy_differential_identity
+#print axioms HeadComplexity.FullTableCriticalPoints.energy_second_differential_identity
 #print axioms HeadComplexity.FullTableCriticalPoints.weighted_pair_kernel
 #print axioms HeadComplexity.FullTableCriticalPoints.sharp_well_kernel

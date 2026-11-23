@@ -1,9 +1,10 @@
 {
   "status": "PASS",
-  "audited_utc": "2026-11-23T15:30:21.692073+00:00",
+  "audited_utc": "2026-11-23T15:46:05.159307+00:00",
   "declarations": [
     "HeadComplexity.FullTableCriticalPoints.singleton_energy_bound",
     "HeadComplexity.FullTableCriticalPoints.energy_differential_identity",
+    "HeadComplexity.FullTableCriticalPoints.energy_second_differential_identity",
     "HeadComplexity.FullTableCriticalPoints.weighted_pair_kernel",
     "HeadComplexity.FullTableCriticalPoints.sharp_well_kernel"
   ],
@@ -15,7 +16,7 @@
   "files": [
     {
       "file": "formalization/HeadComplexity/Atoms/FullTableCriticalPoints.lean",
-      "sha256": "020e6d6a5b910f46cd540d4195c7b7d024eddbc90512308ce872a23bfaae2c73"
+      "sha256": "46e5f17fcd6724061d959c810ee682ceef27508b2b3b4823a2a66f9363815ab1"
     },
     {
       "file": "artifacts/beyond-counting-bound/verify_full_table_critical_points.py",
@@ -23,7 +24,7 @@
     },
     {
       "file": "artifacts/beyond-counting-bound/certify_full_table_critical_points.py",
-      "sha256": "c3972fe811365f9157fa974b7c61ede9142cbc77b8ef6c478ff29de5161cd0c3"
+      "sha256": "49f49c46cabc3fac1408a9fdc7a1e971193ec0bdbd819d66b3d92b2539b01fb7"
     },
     {
       "file": "artifacts/beyond-counting-bound/full-table-critical-rational-audit.json",
@@ -31,18 +32,18 @@
     },
     {
       "file": "artifacts/beyond-counting-bound/full-table-critical-interval-audit.json",
-      "sha256": "eb18af1ed53958c65f8ebdcb8ab35b6f13442504c55342d53d89944b20832954"
+      "sha256": "8c4b5376ceba448072a35e49e48c7e10d358f01d856824a8d279641cce88d3d6"
     }
   ],
   "build_jobs": 3138,
-  "scope": "Complete written full-table norm critical-point construction; four algebraic Lean ingredients. The general analytic theorem is not a Lean declaration.",
+  "scope": "Complete written full-table norm critical-point construction; five algebraic Lean ingredients. The general analytic theorem is not a Lean declaration.",
   "github_render": [
     {
       "file": "artifacts/beyond-counting-bound/full-table-critical-points.md",
-      "source_math_spans": 172,
-      "rendered_math_spans": 172,
+      "source_math_spans": 225,
+      "rendered_math_spans": 225,
       "findings": 0,
-      "sha256": "04008a6603dd98d13ced842f0d1a4d77c677e55470ad13b0272076a68dc91e0b"
+      "sha256": "786d62e795f773a812e44100b4f2e8418796642e216ebadef72b71159c8378c5"
     },
     {
       "file": "artifacts/beyond-counting-bound/projective-critical-points.md",
@@ -56,20 +57,22 @@
       "source_math_spans": 108,
       "rendered_math_spans": 108,
       "findings": 0,
-      "sha256": "d3bdf56e9e5ca5f1513701d3adaceea1866c06f0d427cb93326b43b562ed6ebb"
+      "sha256": "aa595f32b097174a1e7e856a913531a19bc0414a2aca7f811ef97b7c22a02d0b"
     },
     {
       "file": "artifacts/beyond-counting-bound/audit-index.md",
       "source_math_spans": 1,
       "rendered_math_spans": 1,
       "findings": 0,
-      "sha256": "76ac30fe2895f4f3f346009148db15b4e25d261aa86464ca80288d57ad26f368"
+      "sha256": "7f31c0d9381049d98147c749c2f39fee0915a404bc51cb387bbd1a0411cb1196"
     }
   ],
-  "katex": "PASS, four files, 389 spans",
+  "katex": "PASS, four files, 442 spans",
   "gitlab": "NOT RUN: glab unavailable",
   "limiting_grid_checks": 654,
   "interval_root_certificates": 9,
+  "interval_saddle_certificates": 9,
+  "written_hessian_signature": true,
   "interval_delta": "1/10^50",
   "interval_radius": "1/10^20",
   "interval_precision_bits": 1024,

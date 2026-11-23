@@ -251,7 +251,43 @@ def system(d, k, ell, eta, coeff, delta, center, radius):
         reconstruction[row][i] = (value-r[i]).v
         reconstruction[row][j] = (value-r[j]).v
     interval_determinant(reconstruction)
-    return first + second + third, ratios
+    # A separate curvature check. At a system zero, r=G^{-1}K, and
+    # E_00 = 2 (K_0-G_0 r)^T G^{-1}(K_0-G_0 r)
+    #        + 2 K_00^T r - r^T G_00 r.
+    # Scale by delta^8 before evaluating to avoid enormous intermediate values.
+    # The expression is enclosed on the whole box, so its positivity applies
+    # in particular at the certified zero. Together with the negative fiber
+    # Hessian this proves that the image critical point is a saddle.
+    av, tv, bv, rv = [x.v for x in a], [x.v for x in t], [x.v for x in b], [x.v for x in r]
+    Gv = [[x.v for x in row] for row in G]
+    G0 = [[x.v for x in row] for row in Gb[0]]
+    totalv = 1 + sum(av)
+    h00 = [2*N*int(i == 0)/totalv**2 - 2*N*(1+av[i])/totalv**3 for i in range(d)]
+    U00, V00 = [I(0) for _ in range(d)], [I(0) for _ in range(k)]
+    for j in range(k):
+        for code in range(N):
+            s = [(code >> i) & 1 for i in range(d)]
+            D = 1 + sum(av[i]*s[i] for i in range(d)) + tv[j]
+            c = eta[j]*coeff[code]
+            V00[j] += 2*c*(1+tv[j])*s[0]**2/D**3
+            for i in range(d):
+                U00[i] += c*s[i]*(-2*int(i == 0)*s[0]/D**2 + 2*(1+av[i])*s[0]**2/D**3)
+    G00 = [[I(0) for _ in range(n)] for _ in range(n)]
+    for bits in product((0, 1), repeat=n):
+        D = 1 + sum(bv[i]*bits[i] for i in range(n))
+        psi = [(1+bv[i])*bits[i]/D for i in range(n)]
+        dp = [int(i == 0)*bits[i]/D - psi[i]*bits[0]/D for i in range(n)]
+        ddp = [-2*int(i == 0)*bits[i]*bits[0]/D**2 + 2*psi[i]*bits[0]**2/D**2 for i in range(n)]
+        for i in range(n):
+            for j in range(n):
+                G00[i][j] += ddp[i]*psi[j] + 2*dp[i]*dp[j] + psi[i]*ddp[j]
+    scaled_first = [Dh[i][0].v-delta**3*Ub[i][0].v for i in range(d)] + [-delta**3*Vb[j][0].v for j in range(k)]
+    scaled_second = [delta**4*h00[i]-delta**7*U00[i] for i in range(d)] + [-delta**7*V00[j] for j in range(k)]
+    qvec = [u-delta**4*v for u,v in zip(scaled_first,matvec(G0,rv))]
+    invq = solve([[AD(x) for x in row] for row in Gv], [AD(x) for x in qvec])
+    curvature = 2*inner(qvec,[x.v for x in invq]) + 2*inner(scaled_second,rv) - delta**8*inner(rv,matvec(G00,rv))
+    assert curvature.lo > 0, 'uncertified positive anchor curvature'
+    return first + second + third, ratios, curvature
 
 
 def check_interval_arithmetic():
@@ -293,8 +329,8 @@ def run():
                 A[d+k+i][d+k+j] = Hinv[j][i]
         for j in range(k):
             A[d+j][d+j] = 1 / diagonal[j]
-        fbox, ratios = system(d,k,ell,eta,coeff,delta,center,radius)
-        fcenter, _ = system(d,k,ell,eta,coeff,delta,center,F(0))
+        fbox, ratios, curvature = system(d,k,ell,eta,coeff,delta,center,radius)
+        fcenter, _, _ = system(d,k,ell,eta,coeff,delta,center,F(0))
         contraction = 0
         for i in range(dim):
             row = []
@@ -313,11 +349,14 @@ def run():
         ratio_boxes.append([r.v for r in ratios])
         result = dict(ell=ell, contraction_upper=str(F(contraction,SCALE)),
                       displacement_upper=str(F(displacement,SCALE)),
+                      scaled_anchor_curvature_lower=str(F(curvature.lo,SCALE)),
+                      scaled_anchor_curvature_upper=str(F(curvature.hi,SCALE)),
                       elapsed_seconds=time.monotonic()-start)
         results.append(result)
         print(json.dumps(dict(ell=ell, contraction_less_than_one_quarter=True,
                               displacement_less_than_radius_over_four=True,
                               image_reconstruction_invertible=True,
+                              positive_anchor_curvature=True,
                               elapsed_seconds=result['elapsed_seconds'])), flush=True)
     for i, left in enumerate(ratio_boxes):
         for right in ratio_boxes[i+1:]:
@@ -326,6 +365,7 @@ def run():
                   dimension=5, delta=str(delta), radius=str(radius), dyadic_precision=BITS,
                   all_jacobians_invertible=True, distinct_image_ratio_boxes=True,
                   all_image_reconstruction_matrices_invertible=True,
+                  all_critical_points_are_saddles=True,
                   main_target_proved=False, results=results,
                   verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     (base/'full-table-critical-interval-audit.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -174,11 +174,53 @@ Thus equal tables would force equal grid tuples. Finitely many distinct limiting
 
 Finally $\|T\|=1$ implies $|T(x)|\leq1$ at every cube vertex. The scores $2+T$ are all strictly positive, and each uses one admissible positive-denominator head and a free bias. This proves the theorem and its sign-count limitation. $\blacksquare$
 
+## The critical points are saddles
+
+The construction does not obstruct a bound that counts only local maxima. In fact its Hessian signature can be computed. For a grid tuple, put $m_\ell=|\lbrace j:r_j^0\gt0\rbrace|$. For all sufficiently small positive $\delta$, the Hessian of the height functional on the normalized image has exactly
+
+$$ n-1+m_\ell\text{ negative eigenvalues},\qquad d+k-m_\ell\text{ positive eigenvalues}. $$
+
+Both counts are positive. In particular every constructed critical point is a saddle.
+
+**Proof.** Put $J=G_{TT}$ and $S=G_{AA}-G_{AT}J^{-1}G_{TA}$. These matrices are positive definite. Replace the anchor coordinates locally by
+
+$$ p=K_A-G_{AT}J^{-1}v. $$
+
+Completing the square in the block inverse of $G$ gives the exact identity
+
+$$ E=p^\top S^{-1}p+v^\top J^{-1}v. $$
+
+At the constructed critical point, $p=Sr_A=\delta^3S\zeta$. Also $p_a=\delta^{-4}H+O(\delta^{-1})$ there, with the same invertible limiting matrix $H$. Hence $(a,t)\mapsto(p,t)$ is a local diffeomorphism. All estimates below are at the constructed branch, with constants depending on its fixed grid tuple. The finitely many tuples allow one common sufficiently small interval.
+
+Implicit differentiation of this coordinate change gives
+
+$$ a_p=O(\delta^4),\qquad a_t=O(\delta^3),\qquad a_{pp}=O(\delta^8),\qquad a_{pt}=O(\delta^7),\qquad a_{tt}=O(\delta^3). $$
+
+To check these orders directly, in the original coordinates $p_a=\delta^{-4}H+O(\delta^{-1})$, $p_t=O(\delta^{-1})$, $p_{aa}=O(\delta^{-4})$, and $p_{at},p_{tt}=O(\delta^{-1})$. Substitute these in the first and second derivatives of the identity $p(a(p,t),t)=p$. The inverse of $p_a$ is $O(\delta^4)$, proving each displayed estimate.
+
+In the new coordinates, derivatives of $J$ and $S$ with respect to $t$ through order two stay bounded. Their first $p$ derivatives are $O(\delta^4)$ and their second $p$ derivatives are $O(\delta^8)$. The formula $v=\eta-\delta^{-1}V$ gives
+
+$$ v_p=O(\delta^3),\qquad v_{pp}=O(\delta^7),\qquad v_{pt}=O(\delta^3),\qquad v_t=O(1),\qquad \delta v_{t_jt_l}\to-2\eta_jC_{\ell_j}\delta_{jl}e_j. $$
+
+Here the last limit uses $V_{t_jt_j}(a^0,\ell)=2\eta_jC_{\ell_j}e_j$ and the vanishing of mixed original data derivatives. The terms introduced by differentiating $a(p,t)$ tend to zero after multiplication by $\delta$.
+
+Differentiate the completed-square formula, using $p=O(\delta^3)$ and $v\to\eta$. If $\widetilde E(p,t)$ denotes the energy in these coordinates, the Hessian blocks satisfy
+
+$$ \widetilde E_{pp}\to2S_\ell^{-1},\qquad \widetilde E_{pt}=O(\delta^3),\qquad \delta\widetilde E_{tt}\to-4\mathrm{diag}(\eta_jC_{\ell_j}r_j^0), $$
+
+where $S_\ell$ is the limiting Schur complement. In the last block, only the two terms containing second derivatives of $v$ contribute to the limit; $J^{-1}\eta=r^0$. Congruence by $\mathrm{diag}(I_d,\sqrt\delta I_k)$ therefore makes the Hessian tend to the nonsingular block diagonal matrix
+
+$$ \mathrm{diag}\left(2S_\ell^{-1},-4\mathrm{diag}(\eta_jC_{\ell_j}r_j^0)\right). $$
+
+Its inertia is stable under sufficiently small perturbations. Since $\eta_j$ and $C_{\ell_j}$ are positive, the energy has $m_\ell$ negative and $d+k-m_\ell$ positive directions. At a critical point coordinate changes act on the Hessian by congruence, so this is also its inertia in the original denominator coordinates.
+
+The numerator ellipsoid contributes $n-1$ negative directions. Its Schur complement is the Hessian of $\sqrt E$, which has the same inertia as the energy Hessian because $E\gt0$ and $\nabla E=0$. Sylvester's law of inertia gives the stated signature on the normalized parameter family. The local inverse from table entries already proved above transfers it to the image. $\blacksquare$
+
 ## Audit status
 
 The preceding text is a complete written argument using the analytic implicit-function theorem. Its new ingredients are the full Gram metric, the common rational amplitude selection, and the single rescaled system with an explicit invertible limiting Jacobian. It does not assume that derivative offsets chosen at different grid points can be realized independently.
 
-`FullTableCriticalPoints.lean` checks four algebraic ingredients: the Gram lower bound from singleton rows, the energy differential identity, the weighted pair-reconstruction kernel, and the diagonal sharp-well kernel. Its declarations are `singleton_energy_bound`, `energy_differential_identity`, `weighted_pair_kernel`, and `sharp_well_kernel`, in `HeadComplexity.FullTableCriticalPoints`. All use only standard foundational axioms. The complete analytic theorem above is not claimed as a Lean declaration.
+`FullTableCriticalPoints.lean` checks five algebraic ingredients: the Gram lower bound from singleton rows, the first and second energy differential identities, the weighted pair-reconstruction kernel, and the diagonal sharp-well kernel. Its declarations are `singleton_energy_bound`, `energy_differential_identity`, `energy_second_differential_identity`, `weighted_pair_kernel`, and `sharp_well_kernel`, in `HeadComplexity.FullTableCriticalPoints`. All use only standard foundational axioms. The complete analytic theorem above is not claimed as a Lean declaration.
 
 `verify_full_table_critical_points.py` checks 654 limiting grid systems with exact rational arithmetic, including the common amplitude choices and all pair-reconstruction determinants. The tested dimensions are four through seven. These limiting checks are separate from existence of perturbed roots.
 
@@ -187,5 +229,11 @@ For a concrete perturbed instance, `certify_full_table_critical_points.py` certi
 $$ \|I-A DF\|_\infty\lt\frac14,\qquad \|AF(\text{center})\|_\infty\lt\frac{10^{-20}}4. $$
 
 The first inequality makes the Newton map a contraction; together they make it map the box strictly into itself. Banach's theorem gives a unique zero in each box, and the same derivative estimate proves Jacobian invertibility. The verifier also certifies positive coefficients, nonzero data entries, invertible pair-reconstruction matrices, and disjoint table-ratio intervals for different branches. Thus these are genuine distinct critical image points for one specified rational functional. This interval certificate is a checked arithmetic computation, not a Lean kernel certificate.
+
+An additional interval calculation certifies positive anchor curvature at all nine actual roots. With $r=G^{-1}K$, direct differentiation gives
+
+$$ E_{a_0a_0}=2(K_{a_0}-G_{a_0}r)^\top G^{-1}(K_{a_0}-G_{a_0}r)+2K_{a_0a_0}^\top r-r^\top G_{a_0a_0}r. $$
+
+The verifier evaluates $\delta^8$ times this expression, using explicit first and second derivatives, and obtains a strictly positive lower endpoint on every certified root box. Combined with the negative numerator-fiber Hessian, this certifies that these nine concrete critical points are saddles. The general signature formula is a written analytic proof, not an additional Lean declaration or a claim that every eigenvalue of these concrete instances was interval enclosed.
 
 The result still supplies no asymptotic head-count conclusion, and the scores obtained by adding bias two all have the same Boolean labels.
