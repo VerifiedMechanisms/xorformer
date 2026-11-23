@@ -855,4 +855,142 @@ arbitrary affine numerators and arbitrary cancellation magnitudes.
 It does not permit a denominator that was positive only on a promised
 subset in the first place.
 
+\section{Coupled arithmetic encodings in the continued research round}
+
+The subsequent search examined shared denominator products and a shared
+decoder library, rather than compiling one ranking vote at a time. The
+following identities identify exactly which parts of those proposals
+flatten. They do not establish a universal head bound.
+
+\begin{proposition}[A shared projective correction]
+Let $\Delta=\alpha\delta-\beta\gamma\ne0$, put
+\[
+ t=\frac{\alpha u+\beta}{\gamma u+\delta},\qquad
+ k(D)=\gamma D+\alpha,\qquad
+ D'=\frac{\delta D+\beta}{k(D)}.
+\]
+Whenever the displayed denominators are nonzero,
+\[
+ \frac1{D+t}
+ =\frac\gamma{k(D)}+
+   \frac{\Delta}{k(D)^2}\frac1{D'+u}.
+\]
+Consequently, for fixed row functions $A_1,\ldots,A_H$ and
+column-dependent parameters $t_1,\ldots,t_H$, the transformation of
+$\sum_h A_h/(D+t_h)$ has the single correction
+$\gamma\sum_h A_h/k(D)$, independent of the column parameters.
+\end{proposition}
+\begin{proof}
+One has
+$D+t=k(D)(u+D')/(\gamma u+\delta)$ and
+$\delta-\gamma D'=\Delta/k(D)$. Dividing
+$\gamma u+\delta=\gamma(u+D')+\Delta/k(D)$ proves the identity.
+Summing it proves the assertion about the correction.
+\end{proof}
+
+On a one-hot row domain, $D'$ and all row-dependent numerator
+coefficients can be tabulated by affine functions of the row bits.
+On a binary row domain this implication fails: after clearing $k(D)$,
+the transformed denominator is
+\[
+ (\delta+\gamma u)D+\beta+\alpha u.
+\]
+Its term $uD$ multiplies a memory parameter by a row affine form.
+When $u$ is selected by a one-hot memory input, this is generally a
+bilinear function of the actual inputs, not an admissible affine
+denominator. Moreover, positivity of $D'+u$ at all promised row-column
+pairs does not imply common orientation or positivity on the full cube.
+Thus the globally shared correction is valid, but it does not provide
+the required flattening of the transformed denominators.
+
+\begin{proposition}[Shared products and interpolation]
+Let $t_1,\ldots,t_H$ be distinct real numbers, let
+$Q(z)=\prod_{h=1}^H(z-t_h)$ and
+$w_h=1/\prod_{k\ne h}(t_h-t_k)$. For a permutation $\pi$ and numbers
+$a_1,\ldots,a_H$, let $p_\pi$ be the polynomial of degree at most
+$H-1$ satisfying $p_\pi(t_{\pi(h)})=a_h$. Then
+\[
+ \sum_{h=1}^H\frac{a_h w_{\pi(h)}}{z-t_{\pi(h)}}
+ =\frac{p_\pi(z)}{Q(z)}.
+\]
+\end{proposition}
+\begin{proof}
+Multiplying the left side by $Q$ gives a polynomial of degree at most
+$H-1$. At $z=t_{\pi(h)}$, all terms but the $h$th vanish, and the
+remaining term is $a_h$. Uniqueness of interpolation proves the claim.
+\end{proof}
+
+This proposal uses the same denominator product for every permutation,
+so multiplying by a positive $Q$ would preserve signs simultaneously.
+The residue $a_{ih}w_{\pi_j(h)}$, however, multiplies a row coefficient
+by a column-programmed coefficient. It is not an affine numerator on
+the product cube. A two-head perturbation gives the precise weaker
+identity
+\[
+ \frac{c_j}{\varepsilon}
+ \left(\frac1{B_{ij}-\varepsilon a_i}-\frac1{B_{ij}}\right)
+ =\frac{a_i c_j}{B_{ij}(B_{ij}-\varepsilon a_i)}
+ \longrightarrow\frac{a_i c_j}{B_{ij}^2}.
+\]
+For a finite domain and strictly admissible $B$, sufficiently small
+$\varepsilon$ preserves admissibility and gives uniform convergence.
+This produces a squared kernel, not the interpolation kernel above.
+No assertion that these residues have a constant-head implementation
+is made. A shared-product sign decoder resolving this issue was not
+obtained.
+
+\begin{proposition}[The scalar-address limit of arithmetic decoding]
+Let $v_1<\cdots<v_M$ be real addresses, and suppose every denominator
+and numerator in a score is affine in this same scalar address:
+\[
+ F(v)=c+\sum_{h=1}^H\frac{a_h v+b_h}{d_h v+e_h},
+ \qquad d_hv_i+e_h>0\quad(1\le i\le M).
+\]
+If the signs of $F(v_i)$ alternate strictly, then $H\ge M-1$.
+\end{proposition}
+\begin{proof}
+Multiplication by $Q(v)=\prod_h(d_hv+e_h)$ gives a polynomial
+$P(v)$ of degree at most $H$. At every address its sign is the sign
+of $F$. Between each adjacent pair of addresses, the intermediate
+value theorem gives a zero of $P$. These $M-1$ intervals are disjoint,
+and $P$ is not zero identically because its values at the addresses
+are nonzero. The polynomial root bound gives the result. The proof
+uses positivity only at the addresses and therefore also applies
+under the stronger full-cube admissibility requirement.
+\end{proof}
+
+For example, Chinese-remainder storage followed by a cotangent
+partial-fraction decoder still has this scalar-address limitation if
+all its affine ratios use one common address. Useful cotangent poles
+between two addresses would additionally make the corresponding
+individual denominator change sign there. No such denominator is
+admissible if its values at the two cube vertices have opposite signs.
+This proposition does not apply to coupled constructions using
+different affine address directions.
+
+\paragraph{Recent literature checked.}
+Li, Reichman, Williams, and Wu,
+\href{https://arxiv.org/html/2611.21910v1}{\emph{New Gate, Weight and
+Wire Complexity Bounds for Sigmoid Neural Networks} (2026)},
+Section~6.3, encode several bit products in separated digits after a
+Taylor product construction. Their subsequent decoder is sequential;
+the sublinear-gate conclusion there allows growing depth. Lemma~7.1
+instead interpolates a finite output set by independently movable
+biases. Neither statement supplies a one-layer affine-ratio decoder.
+In particular, a Boolean logistic gate has denominator
+$1+B\prod_i W_i^{x_i}$, which is generally not affine in the original
+bits. This exact transfer condition cannot be omitted.
+
+Hambardzumyan, Myasnikov, Riazanov, Shirley, and Shraibman,
+\href{https://eccc.weizmann.ac.il/report/2026/030/download/}{\emph{Spiky
+Rank} (2026)}, give an $O(m/\log m)$ universal upper bound for the
+blocky and spiky rank of $m\times m$ Boolean matrices. These matrix
+atoms use equality of row and column class labels, with the spiky
+version also allowing rank-one weights on a blocky support. The
+paper does not identify those atoms with admissible affine ratios.
+Representing a block equality only in sign is insufficient to add
+such decompositions: the magnitudes outside the equal-label blocks
+also affect the final sign. No simultaneous admissible compiler for
+that decomposition was found.
+
 \end{document}
