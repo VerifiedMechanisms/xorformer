@@ -271,6 +271,14 @@
         "HeadComplexity.subset_moment_ext"
       ],
       "scope": "The upper-subset moment transform is injective. Any finite signed family matching all moments of strictly positive subset masses has at least 2^n atoms. The explicit beta-integral masses and finite-q reciprocal estimates are manual proofs."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/SubsetInclusionRigidity.lean",
+      "main_declaration": "HeadComplexity.fixed_card_subset_sum_zero",
+      "companion_declarations": [
+        "HeadComplexity.fixed_card_pair_sum_zero"
+      ],
+      "scope": "Injectivity of fixed-cardinality sums of singleton and pair coefficients in the stated middle-cardinality ranges. Supports the manual exchange-rigidity argument; no head upper bound is asserted."
     }
   ],
   "validation": {
@@ -307,8 +315,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 87,
-      "modules": 34,
+      "declarations": 89,
+      "modules": 35,
       "only": [
         "propext",
         "Classical.choice",
@@ -327,12 +335,13 @@
         "validation/lean-polya-axioms.log",
         "validation/lean-positive-pair-axioms.log",
         "validation/lean-permutation-average-axioms.log",
-        "validation/lean-subset-moment-axioms.log"
+        "validation/lean-subset-moment-axioms.log",
+        "validation/lean-subset-inclusion-axioms.log"
       ],
-      "scope": "The previous 84 declarations were unchanged; the three SubsetMomentRigidity declarations were checked separately."
+      "scope": "The previous 87 declarations were unchanged; the two SubsetInclusionRigidity declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9218 jobs, including all 34 new research modules and the results aggregator.",
-    "build_jobs": 9218,
+    "lean": "Full project lake build succeeded with 9219 jobs, including all 35 new research modules and the results aggregator.",
+    "build_jobs": 9219,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -362,7 +371,9 @@
       "validation/lean-permutation-average-full-build.log",
       "validation/lean-permutation-average-axioms.log",
       "validation/lean-subset-moment-full-build.log",
-      "validation/lean-subset-moment-axioms.log"
+      "validation/lean-subset-moment-axioms.log",
+      "validation/lean-subset-inclusion-full-build.log",
+      "validation/lean-subset-inclusion-axioms.log"
     ],
     "low_root_axioms": "artifacts/head-compression/validation/lean-low-root-axioms.log"
   },
@@ -1330,7 +1341,7 @@
     "proof_mechanism": "Singleton and pair coefficients, followed by injectivity of the one-element and two-element subset inclusion matrices.",
     "diagnostic": "artifacts/head-compression/diagnostics/polya-exchange-rigidity.json",
     "checker": "artifacts/head-compression/check_polya_exchange.py",
-    "scope": "Manual proofs and finite exact checks only. No new Lean declaration; no universal head bound.",
+    "scope": "The two subset-inclusion lemmas are Lean checked. The exchange identities, polynomial degree separation, and full rigidity statements are manual proofs. No universal head bound.",
     "finite_exceptions": "Positive mixed-magnitude relations exist in dimensions two and three. For the two specified weight vectors in dimensions four and five, the diagnostic exhausts all binary step assignments; this is not a theorem for arbitrary weights or increments."
   },
   "private_repository_refresh_2026_11_23_1733": {

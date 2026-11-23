@@ -10,8 +10,10 @@
 
 \paragraph{Scope.}
 This note derives a merged, two-step averaging identity and proves
-rigidity of its common-step edge weights. It is a manual proof, not a
-new Lean result. It supplies no universal head upper bound.
+rigidity of its edge weights. The subset-inclusion lemmas are kernel
+checked in \texttt{Results/SubsetInclusionRigidity.lean}; the reciprocal
+identities and polynomial degree arguments are manual proofs. This note
+supplies no universal head upper bound.
 
 Let $b_0,\ldots,b_n>0$, let $z_0=1$, and let $z_i=x_i\in\{0,1\}$
 for $i>0$. Set
@@ -149,6 +151,11 @@ $r$. Thus all incident edge weights at each vertex agree. Symmetry
 then makes all edge weights equal. A $k$-element sum, containing
 $\binom{k}{2}>0$ edges, makes their common value zero.
 \end{proof}
+
+The two assertions are kernel checked as
+\texttt{HeadComplexity.fixed\_card\_subset\_sum\_zero} and
+\texttt{HeadComplexity.fixed\_card\_pair\_sum\_zero}. The second
+uses a symmetric double sum, which counts each unordered pair twice.
 
 \begin{lemma}[Separated quadratic coefficients]
 Let $B=b_0+\sum_i b_ix_i$ with every $b_i\ne0$, let $M\ge1$,

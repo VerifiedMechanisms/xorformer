@@ -1,0 +1,2 @@
+'HeadComplexity.fixed_card_subset_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.fixed_card_pair_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
