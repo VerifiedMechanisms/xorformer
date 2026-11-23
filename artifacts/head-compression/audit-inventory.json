@@ -990,5 +990,15 @@
     "updated_branch": "autoresearch-runs ar/a3733e82430f at 7754604",
     "relevance": "The new branch commits concern weekly usage snapshots and their run report, not the head-complexity target.",
     "target_proof_found": false
+  },
+  "lookup_and_cover_audit": {
+    "file": "artifacts/head-compression/lookup-and-cover-audit.tex",
+    "literature_entries": [
+      99,
+      100,
+      101
+    ],
+    "manual_result": "An exact open-interval rational identity with M distinct nonzero simple poles needs at least M affine-fraction terms. This does not constrain arbitrary finite-cube sign representations.",
+    "target_status": "No universal construction; target unchanged and unproved."
   }
 }

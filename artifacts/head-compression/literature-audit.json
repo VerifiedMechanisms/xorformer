@@ -22,7 +22,7 @@
     },
     {
       "title": "Exact hyperplane covers for subsets of the hypercube",
-      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bart\u0142omiej Kielak",
+      "authors": "James Aaronson, Carla Groenland, Andrzej Grzesik, Tom Johnston, and Bartłomiej Kielak",
       "url": "https://tomjohnston.co.uk/papers/exact-hyperplane-covers-for-subsets-of-the-hypercube.pdf",
       "checked_location": "Theorem 2, Lemmas 9 and 10, and their proofs",
       "mechanism": "Hamming-neighborhood covers and a count of hyperplane intersection patterns.",
@@ -135,7 +135,7 @@
     },
     {
       "title": "Extremal properties of polynomial threshold functions",
-      "authors": "Ryan O\u2019Donnell and Rocco A. Servedio",
+      "authors": "Ryan O’Donnell and Rocco A. Servedio",
       "url": "https://www.cs.columbia.edu/~rocco/Public/ccc03j2.pdf",
       "checked_location": "Definitions 1 and 2, Theorem 3, and Section 6.1 proofs of Theorems 13 and 14",
       "mechanism": "Weak polynomial sign representations supported on a monochromatic restriction or affine subspace.",
@@ -441,7 +441,7 @@
       "authors": "Kordag Mehmet Kilic, Jin Sima, and Jehoshua Bruck",
       "url": "https://www.paradise.caltech.edu/papers/etr153.pdf",
       "checked_location": "Theorem 1, Lemma 2, Section IV, and the decoding appendix",
-      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel\u2019s lemma bounds the achievable rate.",
+      "mechanism": "A recursive ternary detecting matrix A_k = [[A_{k-1},A_{k-1},I],[A_{k-1},-A_{k-1},0]] has m_k=2^k m_0 rows and n_k=2^k(n_0+k m_0/2) columns, with no nonzero ternary kernel vector. The proof uses parity to recover the identity-block coordinates. Siegel’s lemma bounds the achievable rate.",
       "application": "This supplies a concrete number-theoretic and coding-theoretic compression mechanism for integer equality tests. With m_0=n_0=1 the rate is k/2+1. It was checked as a possible address encoder for the head problem.",
       "gap": "The decoder explicitly uses reduction modulo two and recursive arithmetic. The circuit consequences concern EQUALITY and COMPARISON with extra threshold/equality gates, not arbitrary Boolean tables in a flat sum of admissible affine fractions. No head compiler with the requested cost is supplied."
     },
@@ -490,7 +490,7 @@
     },
     {
       "title": "How many sorted projections determine any n points in k dimensions?",
-      "authors": "Christopher Gorham Lester and Raymond Hau S\u00f8rensen",
+      "authors": "Christopher Gorham Lester and Raymond Hau Sørensen",
       "url": "https://arxiv.org/html/2611.06470v3",
       "checked_location": "Theorems 1.1 and 1.4; Sections 1.2-1.4, version 3 dated 19 November 2026",
       "mechanism": "Generic directions separate finite multisets through coloured-matching graph rigidity, with O(k log n log log n) directions.",
@@ -814,6 +814,30 @@
       "checked_location": "Theorem 1.1, Propositions 1.2, 1.4 and 1.6, and the splicing and multiplicity calculations in Section 2",
       "mechanism": "An inductive permutation construction preserves one prescribed reciprocal sum using controlled denominator multiplicities and edge splicing.",
       "gap": "One scalar cancellation does not prescribe independent signs on all cube vertices. A simultaneous affine encoder and a quantified admissible head decoder are not supplied."
+    },
+    {
+      "title": "Multivariate lookups based on logarithmic derivatives",
+      "authors": "Ulrich Habock",
+      "url": "https://eprint.iacr.org/2022/1530",
+      "checked_location": "Primary abstract and indexed primary PDF Section 3, equations (13)-(15). Direct PDF retrieval returned 403; indexed text supplied the displayed identities.",
+      "mechanism": "Lookup membership is certified by equality of reciprocal sums weighted by table-entry multiplicities; multilinear helper functions enable a sumcheck protocol.",
+      "gap": "The table, witness, and multiplicity functions need not be affine. They are additional oracles, not free head operations. The exact pole-count audit does not imply a finite-cube sign lower bound."
+    },
+    {
+      "title": "Functional Lower Bounds in Algebraic Proofs: Symmetry, Lifting, and Barriers",
+      "authors": "Tuomas Hakoniemi, Nutan Limaye, Iddo Tzameret",
+      "url": "https://www.doc.ic.ac.uk/~itzamere/HLT-functional-23.pdf",
+      "checked_location": "Theorem 1; Section 6.2 definition of the word-indexed knapsack polynomial; Section 6.3, Claim 55. March 2024 manuscript.",
+      "mechanism": "Alternating sums of restrictions of reciprocal knapsack polynomials yield coefficient-space identities used in algebraic proof lower bounds.",
+      "gap": "The knapsack polynomial includes products of input variables, and the subset expansion has exponentially many displayed terms. Neither a flat affine-fraction compiler nor the universal sign upper bound is provided."
+    },
+    {
+      "title": "Stability for Hyperplane Covers",
+      "authors": "Shagnik Das, Valjakas Djaljapayan, Yen-chi Roger Lin, Wei-Hsuan Yu",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v33i4p37/pdf",
+      "checked_location": "Definition 1, Theorem 3, Corollary 4 and Section 2; publication date November 20, 2026.",
+      "mechanism": "Classifies weight-one hyperplanes for the Clifton-Huang weighting and proves a 1/n gap for all other hyperplanes; applies to origin-avoiding multiplicity covers.",
+      "gap": "The target subset is not arbitrary. These weighted incidence results do not prove an O(2^n/n^2) exact cover of every subset or an admissible head compiler."
     }
   ]
 }

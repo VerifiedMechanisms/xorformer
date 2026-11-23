@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Lookup Identities and Hyperplane Cover Stability}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note audits three additional literature mechanisms. None supplies
+the universal head bound. The pole obstruction below concerns equality
+of rational functions on an interval. It is not a lower bound for strict
+sign representation on a finite Boolean cube.
+
+\section{Logarithmic-derivative lookup identities}
+
+Hab\"ock's \emph{Multivariate lookups based on logarithmic derivatives},
+\href{https://eprint.iacr.org/2022/1530}{Cryptology ePrint 2022/1530},
+Section 3, equations (13)--(15), uses the following identity. For two
+finite lists of field elements $a_i$ and $t_j$, with distinct table
+entries $t_j$, membership of every $a_i$ in the table is certified by
+\[
+ \sum_i\frac{1}{X+a_i}=\sum_j\frac{m_j}{X+t_j},
+ \qquad m_j=\#\{i:a_i=t_j\}.
+\]
+In positive characteristic the characteristic must be large enough to
+preserve the relevant multiplicities. The protocol supplies multilinear
+table, witness, and helper functions and tests a polynomial identity.
+These functions are not required to be affine.
+
+The source's use of a Boolean hypercube indexes a table of field
+elements. It does not make that table an affine function of its index.
+Likewise, testing the identity at a verifier's random challenge is not
+the same operation as producing the label of an arbitrary cube input.
+
+\begin{proposition}[Distinct lookup poles cannot disappear in a flat identity]
+Let $t_1,\ldots,t_M$ be distinct real numbers and let each $m_j$ be
+nonzero. Suppose that on a nonempty open real interval, avoiding all
+displayed denominator zeros,
+\[
+ \sum_{j=1}^M\frac{m_j}{X+t_j}
+ =c+\sum_{h=1}^H\frac{a_hX+b_h}{u_hX+v_h}.
+\]
+Assume that no denominator on the right is the zero polynomial.
+Then $H\ge M$.
+\end{proposition}
+\begin{proof}
+Multiplication by all denominators gives a polynomial identity on an
+open interval, hence a polynomial identity everywhere. Thus the two
+rational functions agree. Fix $j$. The left side has a simple pole
+at $-t_j$, because its residue is $m_j\ne0$ and all other left-hand
+summands are regular there. If every right-hand denominator were
+nonzero at $-t_j$, the right side would be regular there, a
+contradiction. Consequently some right-hand denominator vanishes at
+$-t_j$. A nonzero affine polynomial vanishes at at most one real
+number. Distinct $j$ therefore require distinct right-hand denominators,
+and $H\ge M$.
+\end{proof}
+
+The proposition permits cancellation between right-hand summands,
+constant denominators, and arbitrary affine numerators. Cancellation
+can remove a pole, but cannot create a pole at a new location.
+It does not prevent a different, target-dependent score from matching
+only the signs at finitely many points. No such compressed score is
+constructed by the lookup identity alone.
+
+\section{Functional lower bounds for reciprocal polynomials}
+
+Hakoniemi, Limaye, and Tzameret,
+\emph{Functional Lower Bounds in Algebraic Proofs: Symmetry, Lifting,
+and Barriers},
+\href{https://www.doc.ic.ac.uk/~itzamere/HLT-functional-23.pdf}{March 2024 manuscript},
+Section 6.2 and Claim 55, use alternating sums of restrictions of an
+inverse knapsack polynomial to analyze its coefficient spaces on
+Boolean inputs. In their notation the relevant identity is
+\[
+ h_\alpha=\sum_{\mu\subseteq\alpha}(-1)^{|\mu|}
+ \tau_\mu(1/\mathrm{ks}_w).
+\]
+Their word-indexed knapsack polynomial $\mathrm{ks}_w$ includes products
+of input variables. An inverse of this polynomial is not generally an
+allowed head. Even the displayed alternating expansion retains one
+term for each subset of $\alpha$. The paper proves lower bounds for
+polynomial proof representations; it does not give a head-efficient
+compiler for these inverses or their sign tables.
+
+\section{The new cover-stability theorem}
+
+Das, Djaljapayan, Lin, and Yu,
+\emph{Stability for Hyperplane Covers},
+\href{https://www.combinatorics.org/ojs/index.php/eljc/article/download/v33i4p37/pdf}{Electronic Journal of Combinatorics 33(4), P4.37},
+published November 20, 2026, sharpen the multiplicity-cover problem
+that avoids the origin. Define
+\[
+ w(x)=\frac{1}{|x|\binom n{|x|}},\qquad
+ w(h)=\sum_{x\in h\cap\{0,1\}^n}w(x),
+\]
+where $h$ avoids the origin. Their Theorem 3 characterizes weight-one
+hyperplanes $\sum_i c_i x_i=1$: the coefficients are integers at most
+one and their sum is at least one. Otherwise $w(h)\le1-1/n$.
+Corollary 4 counts $\binom{2n-1}{n}$ weight-one hyperplanes.
+
+These are weighted incidence and stability statements for covers of
+all nonzero vertices with prescribed multiplicity. They do not cover
+an arbitrary target subset while avoiding its entire complement, and
+they do not construct fractional scores with arbitrary labels. In
+particular, the stability theorem does not remove the factor-$n$ gap
+in the general exact-cover bounds used in the earlier audit. A
+conversion of cover unions into strict-sign sums would also still
+need a separate amplitude argument.
+
+\paragraph{Audit outcome.}
+No denominator list, numerator list, or parameter construction at
+$O(2^n/n^2)$ heads follows from the three mechanisms examined here.
+The exact manuscript model and the universal target remain unchanged.
+
+\end{document}
