@@ -348,8 +348,10 @@ by the hypotheses $d_i>t_h>0$.
 \paragraph{No logarithmic row compression from a single row coordinate.}
 More generally, an $H$-head fiber depending on the row only through a
 common scalar $d$ has the form $c+\sum_h a_h/(d-t_h)$.
-Clearing nonvanishing denominators gives a numerator of degree at
-most $H$. Strictly alternating labels at $M$ ordered row nodes force
+Suppose each denominator is positive at all row nodes; it is then
+positive throughout their convex hull. Clearing these denominators
+gives a numerator of degree at most $H$. Strictly alternating labels
+at $M$ ordered row nodes force
 at least $M-1$ distinct zeros by the intermediate value theorem, and
 therefore $H\ge M-1$.
 Thus tuning disjoint transpositions or spare poles in this common-row
@@ -565,7 +567,7 @@ repository's Warren interface gives, for $m\ge p$,
 \]
 If all $2^m$ patterns occur, $2^{m/p}\le8e(m/p)$, which implies
 $m/p<8$: the inequality fails at $8$, and $2^x/x$ is strictly
-increasing for $x\ge8$. Consequently
+increasing for $x\ge8$. Consequently (also trivially when $m<p$)
 \[
  S<1+16H/M.
 \]
