@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "representations": 280,
+  "deformed_representations": 840,
+  "sign_checks": 6540,
+  "spike_energy_identities": 6540,
+  "angular_projection_identities": 7248,
+  "arithmetic": "fractions.Fraction; exact Cauchy interpolation in sympy",
+  "script_sha256": "7f3b07a008c7c10c7c03935a04bd9156617937f4a702b5670849d86974429082",
+  "scope": "Finite independent checks, not an asymptotic head-count theorem.",
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}

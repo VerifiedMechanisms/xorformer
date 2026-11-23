@@ -1,0 +1,10 @@
+import HeadComplexity.Atoms.VanishingEnergySpike
+#print axioms HeadComplexity.VanishingEnergySpike.energy_scale
+#print axioms HeadComplexity.VanishingEnergySpike.energy_cauchy
+#print axioms HeadComplexity.VanishingEnergySpike.angularEnergy_bounds
+#print axioms HeadComplexity.VanishingEnergySpike.spike_energy
+#print axioms HeadComplexity.VanishingEnergySpike.spike_energy_bound
+#print axioms HeadComplexity.VanishingEnergySpike.preserve_sign
+#print axioms HeadComplexity.VanishingEnergySpike.origin_norm_bound
+#print axioms HeadComplexity.VanishingEnergySpike.small_scale
+#print axioms HeadComplexity.VanishingEnergySpike.spikeAtom_eval

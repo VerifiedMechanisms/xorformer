@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T23:49:29.015003+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/vanishing-energy-spike.md",
+      "source_math_spans": 76,
+      "rendered_math_spans": 76,
+      "findings": 0,
+      "notes": [],
+      "sha256": "582107be7e28cb7752d6d807b5ac98099bad68693d486e84ec36bd354abb2da4"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/ellipse-moment-circuits.md",
+      "source_math_spans": 93,
+      "rendered_math_spans": 93,
+      "findings": 0,
+      "notes": [],
+      "sha256": "9d307f3b9893a14bcdfafe01f785f838488f998038675f92628941b5ed997977"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "7afe4408a0b6584752b0e030836f10169124210434796852c33924c97d553af7"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "45b906c76681c257186c84d26d64bdf549c712a98f7b400309b24bc9ed4bd000"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

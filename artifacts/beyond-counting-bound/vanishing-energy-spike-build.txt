@@ -1,0 +1,102 @@
+⚠ [3137/3227] Replayed HeadComplexity.Atoms.HeadEllipticEnergy
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:23:20: missing space in the source
+
+This part of the code
+  'i)^2 = x'
+should be written as
+  'i) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:23:48: missing space in the source
+
+This part of the code
+  'i*x i ≠'
+should be written as
+  'i * x'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/HeadEllipticEnergy.lean:117:40: missing space in the source
+
+This part of the code
+  'i*v x i)'
+should be written as
+  'i * v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [3227/3227] Built HeadComplexity.Atoms.VanishingEnergySpike (2.3s)
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:68:44: missing space in the source
+
+This part of the code
+  'x)^2) :'
+should be written as
+  'x) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:83:20: missing space in the source
+
+This part of the code
+  'i)^2 = x'
+should be written as
+  'i) ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:83:50: missing space in the source
+
+This part of the code
+  's^2 = 1)'
+should be written as
+  's ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:106:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:110:47: missing space in the source
+
+This part of the code
+  'y^2 = 1)'
+should be written as
+  'y ^ 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:111:28: missing space in the source
+
+This part of the code
+  'y*S) (hε'
+should be written as
+  'y * S)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:112:30: missing space in the source
+
+This part of the code
+  'ε*m/2) :'
+should be written as
+  'ε * m'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:123:18: missing space in the source
+
+This part of the code
+  'o)^2) :'
+should be written as
+  'o) ^ 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:134:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/VanishingEnergySpike.lean:135:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Build completed successfully (3227 jobs).

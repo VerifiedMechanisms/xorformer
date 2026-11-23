@@ -54,7 +54,7 @@ $$ \sum_v\frac{c_v}{D(z)+\varepsilon v\cdot z}=\sum_{j\geq0}\frac{(-\varepsilon)
 
 The moments through $k$ vanish at every Boolean input, and some degree $k+1$ moment does not. This proves exact contact order $k+1$. All denominator slopes are $1+\varepsilon v_i\gt0$ for nonnegative $\varepsilon$.
 
-At the input $z=(1,0)$ the projections are distinct and positive. Thus the reciprocal terms have distinct simple poles in the deformation parameter. Nonzero residues prevent cancellation of any pole. This proves both absence of persistent linear identities and minimality of the number $H$ among representations of this entire rational family using heads with denominators affine in the deformation parameter and numerators independent of it: fewer heads could supply fewer than $H$ poles at that one input.
+At the input $z=(1,0)$ the projections are distinct and positive. Thus the reciprocal terms have distinct simple poles in the deformation parameter. Nonzero residues prevent cancellation of any pole. This proves both absence of persistent linear identities and minimality of the number $H$ among representations of this entire rational family using heads with denominators affine in the deformation parameter, numerators independent of it, and a bias independent of it: fewer heads could supply fewer than $H$ poles at that one input.
 
 ## Why no collinear constant-residue replacement exists
 

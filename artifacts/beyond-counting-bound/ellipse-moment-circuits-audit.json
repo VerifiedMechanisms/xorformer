@@ -22,10 +22,12 @@
     "Quot.sound"
   ],
   "lean_sha256": "5462b778524b5e5e5d68f48abc28eedcadd1be82aa9bfdaf1a924d722550327c",
-  "writeup_sha256": "c122e8a7d0c9035cf7fa7ea3181040c24f8523d212a17a7a7e2328dfbfeccf24",
+  "writeup_sha256": "9d307f3b9893a14bcdfafe01f785f838488f998038675f92628941b5ed997977",
   "rational_audit": "ellipse-moment-circuits-rational-audit.json",
   "scope": "Ten kernel-checked finite declarations. Harmonic dimension and arbitrary-degree rational existence have complete written proofs. No asymptotic Boolean lower bound.",
   "model_changes": [],
   "main_target_proved": false,
-  "stronger_target_proved": false
+  "stronger_target_proved": false,
+  "scope_clarification_utc": "2026-11-23T23:49:09.893021+00:00",
+  "scope_clarification": "Persistent pole minimality explicitly assumes deformation-independent bias."
 }

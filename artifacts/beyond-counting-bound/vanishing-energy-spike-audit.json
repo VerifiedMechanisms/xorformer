@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-23T23:49:09.893021+00:00",
+  "build": "vanishing-energy-spike-build.txt",
+  "build_jobs": 3227,
+  "declarations": [
+    "HeadComplexity.VanishingEnergySpike.energy_scale",
+    "HeadComplexity.VanishingEnergySpike.energy_cauchy",
+    "HeadComplexity.VanishingEnergySpike.angularEnergy_bounds",
+    "HeadComplexity.VanishingEnergySpike.spike_energy",
+    "HeadComplexity.VanishingEnergySpike.spike_energy_bound",
+    "HeadComplexity.VanishingEnergySpike.preserve_sign",
+    "HeadComplexity.VanishingEnergySpike.origin_norm_bound",
+    "HeadComplexity.VanishingEnergySpike.small_scale",
+    "HeadComplexity.VanishingEnergySpike.spikeAtom_eval"
+  ],
+  "axiom_audit": "vanishing-energy-spike-axioms.txt",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_sha256": "9282c8f6d9e72a87462846bc9bddd4f39198c1237b51b7454deaa34d0d74c8fc",
+  "writeup_sha256": "582107be7e28cb7752d6d807b5ac98099bad68693d486e84ec36bd354abb2da4",
+  "rational_audit": "vanishing-energy-spike-rational-audit.json",
+  "scope": "Nine kernel-checked general algebraic declarations, including actual atom realization. Differentiation and complete head assembly are written proofs. No head-count lower bound.",
+  "model_changes": [],
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}
