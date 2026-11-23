@@ -84,6 +84,121 @@ numerator values, not a pole or a failure of positivity. It does not
 apply once head-dependent row numerators or row denominators break
 the displayed symmetric form.
 
+\section{Signed residues restore factorially many components}
+
+The previous obstruction does not extend to arbitrary numerators.
+The following construction is a new full-cube-compatible counterexample
+to a parameter-linear bound on logarithms of intersection-component
+counts. It uses cancellation by signed residues.
+
+\begin{theorem}[Binary-addressed interpolation components]
+Let $d_1,\ldots,d_H$ be distinct real numbers, all larger than $\beta>0$.
+For $b\in(0,\beta)^H$ and $c\in\mathbb R^H$, set
+\[
+ F_i(b,c)=-1+\sum_{h=1}^H\frac{c_h}{d_i-b_h},\qquad 1\leq i\leq H.
+\]
+Their common zero set has exactly $H!$ connected components, each
+a smooth manifold of dimension $H$. Every common zero has distinct
+pole coordinates, and its residues are uniquely given by
+\[
+ c_h=-\frac{\prod_{i=1}^H(b_h-d_i)}
+                  {\prod_{g\ne h}(b_h-b_g)}.
+ \tag{1}
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose first that a common zero has only $K<H$ distinct pole values.
+Collect equal poles by adding their residues. Subtracting one and
+clearing the $K$ distinct denominator factors gives a polynomial
+in a scalar argument $d$ of degree exactly $K$, with leading
+coefficient $-1$. Its $H$ distinct roots $d_i$ are impossible.
+Thus all pole coordinates at a common zero are distinct.
+
+For distinct $b_h$, consider the exact rational identity
+\[
+ -1+\sum_{h=1}^H\frac{c_h}{d-b_h}
+ =-\frac{\prod_{i=1}^H(d-d_i)}{\prod_{h=1}^H(d-b_h)},
+ \tag{2}
+\]
+with the residues from (1). Both sides tend to $-1$ as $d$ tends
+to infinity. Their residues at each simple pole $b_h$ coincide.
+Their difference is therefore a rational function with no finite
+poles, tending to zero at infinity; it is identically zero.
+Equivalently one may clear denominators: the difference numerator
+has degree at most $H-1$ and vanishes at all $H$ distinct $b_h$.
+Equation (2) proves that (1) is a common zero.
+
+Uniqueness of the residues follows by the same root argument:
+the difference of two interpolants has numerator degree at most
+$H-1$ and vanishes at the $H$ distinct arguments $d_i$.
+The common zero set is consequently the graph of (1) over
+\[
+ \{b\in(0,\beta)^H:b_h\ne b_g\text{ for }h\ne g\}.
+\]
+This domain has exactly $H!$ connected components, its convex
+strict-order chambers. The graph projection is a homeomorphism,
+as its inverse is the continuous map (1).
+Finally the derivative of $(F_i)_i$ with respect to $(c_h)_h$
+is the Cauchy matrix $(1/(d_i-b_h))_{i,h}$, which is nonsingular
+by the same uniqueness argument. Thus all zero intersections
+are regular, of codimension $H$ in dimension $2H$.
+\end{proof}
+
+\begin{corollary}[Whole-cube realization with logarithmically many row bits]
+For $r\geq1$ and $S\geq1$, there is a family of $H=2^r$ actual
+admissible affine-ratio heads on $n=r+S$ Boolean coordinates, with
+$2HS$ free effective parameters, for which the zero equations on
+the $HS$ inputs
+\[
+ (u,e_j),\qquad u\in\{0,1\}^r,\quad 1\leq j\leq S,
+\]
+have exactly $(H!)^S$ connected components. All denominators exceed
+$3/4$ on the entire $n$-cube, throughout the parameter domain.
+\end{corollary}
+
+\begin{proof}
+Number the row coordinates from $0$ to $r-1$ and set
+\[
+ D(u)=1-\sum_{i=0}^{r-1}2^{-i-4}u_i.
+\]
+Its $2^r$ values are distinct, by uniqueness of finite binary
+expansions, and all exceed $7/8$. For each $h,j$ choose
+$b_{hj}\in(0,1/(8S))$ and $c_{hj}\in\mathbb R$. Use
+\[
+ B_h(u,v)=D(u)-\sum_{j=1}^S b_{hj}v_j,
+ \qquad A_h(u,v)=\sum_{j=1}^S c_{hj}v_j,
+ \qquad F(u,v)=-1+\sum_h\frac{A_h(u,v)}{B_h(u,v)}.
+\]
+Every denominator slope is strictly negative and
+$B_h>7/8-1/8=3/4$ on the whole cube. Hence these are admissible
+affine-ratio denominators in the original model; their affine
+numerators may have arbitrary real coefficients.
+At $(u,e_j)$ the score equals
+$-1+\sum_h c_{hj}/(D(u)-b_{hj})$. The equations for distinct
+columns involve disjoint parameter pairs $(b_{\cdot j},c_{\cdot j})$.
+Their common zero set is the Cartesian product of $S$ zero sets
+from the theorem, so it has $(H!)^S$ connected components.
+\end{proof}
+
+For example, $S=r$ gives $n=2r$, $H=2^r\gg n$, and $p=2Hr$
+free parameters. Since $\log(H!)=(1-o(1))H\log H$, the logarithm
+of the component count is $(1-o(1))p\log H/2$. Thus a bound
+$\exp(O(p))$ on all such regular zero-set intersections is false,
+even in this regime with exponentially many heads and denominators
+uniformly far from zero. Quotienting by a single simultaneous
+permutation of all head labels leaves $(H!)^{S-1}$ component orbits,
+so global head-label redundancy does not explain the growth.
+
+This construction does not establish shattering of more than a
+parameter-linear number of points. Symmetric extra row queries still
+have the form (2), whose sign away from the prescribed zero rows is
+independent of the pole ordering. The residue attached to the
+$k$th smallest pole has sign $(-1)^{k+1}$, which supplies an
+explicit ordering-dependent observable but not an independent
+binary encoding of all orders. A general asymmetric decoder remains
+unproved.
+
 \section{Why denominator clearing cannot have bounded parameter degree}
 
 \begin{theorem}[Necessary degree in the original effective coordinates]
