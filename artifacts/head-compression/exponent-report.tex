@@ -52,6 +52,14 @@ The branch's compiler first proves full linear spanning and then
 interpolates the truth table exactly. That mechanism does not transfer
 a lower-dimensional sign-only local certificate.
 
+A final cross-run check read 91 run reports at the 31 branch tips of
+\texttt{autoresearch-runs} and 70 branch tips of
+\texttt{xorformer-runs}; ten of the latter lacked a conventional
+report. No claimed universal exponent improvement or superconstant
+saving was found in those reports. Restricted quadratic-function
+bounds and a last-token-readout variant do not meet this task.
+This was a report audit, not an independent rebuild of every branch.
+
 \section{New results, separated by proof status}
 
 All Lean paths below are relative to
@@ -258,12 +266,14 @@ there is no theorem claiming it. The results aggregate imports the
 new modules. The previous \texttt{mechanism-audit.tex} and
 \texttt{scientist-report.tex} are unchanged.
 
-The new Lean modules and the results aggregate were built with
-\texttt{lake}. Axiom audits of the new proved declarations use only
+The complete \texttt{HeadComplexity} target was built with
+\texttt{lake}. Axiom audits of all 37 new proved declarations use only
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 The Warren consequence retains its explicit theorem hypothesis.
 There are no new axioms or admitted proofs. TeX sources were checked
 for balanced environments and braces; no TeX compiler was available
 on the machine, so PDF rendering was not checked.
+The machine-readable file \texttt{exponent-validation.json} records
+the checked source hashes and declaration names.
 
 \end{document}

@@ -1,0 +1,376 @@
+{
+  "run": "Beyond Linear Head Savings",
+  "target_achieved": false,
+  "superconstant_saving_achieved": false,
+  "matching_unrestricted_lower_bound_achieved": false,
+  "model_definitions_changed": false,
+  "build_command": "lake build HeadComplexity",
+  "build_result": "passed",
+  "proved_declaration_count": 37,
+  "modules": [
+    {
+      "file": "formalization/HeadComplexity/Results/PrecisionBarrier.lean",
+      "sha256": "4642412010531e931cb9133cda78f021a04f5af4767686a5d744a6bfbbff320f",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.two_pow_card_le_card_of_strict_universal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.two_pow_card_le_alphabet_pow_of_strict_universal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.card_le_bits_mul_parameters_of_strict_universal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.computableWithHeadsN_of_finiteAlphabetStrictFracComputable",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.two_pow_le_bits_mul_affine_parameters_of_finiteAlphabet_universal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.card_rawFracParameter",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.rawFracParameterScore_point",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.two_pow_le_bits_mul_raw_parameters_of_finiteAlphabet_universal",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/FixedDenominatorLibrary.lean",
+      "sha256": "aa7e24d33474e1bb9479a6cf8e7f60fe951d6b076860f4d3b3887ab265091e72",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.card_le_finrank_of_linearStrictSignSets_shatters",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.linearStrictSignSets_vcDim_le",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.card_linearStrictSignSets_le_sum_choose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.two_pow_card_le_library_card_mul_sum_choose",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.two_pow_two_pow_le_denominator_library_capacity",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.two_pow_two_pow_le_bits_denominator_capacity",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/RawAlphabetSimulation.lean",
+      "sha256": "124cd875ba44edd90ef7baf91f4a1e6aed262151b99ef03f5327dea3f32884e6",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.neg_mem_rawScalarAlphabet",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.rawAlphabetSum_of_mem_pair_closure",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.dense_rawAlphabetSum",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.dense_rawAlphabetSum_vectors",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.exists_rawAlphabetSum_strict_certificate",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ExponentMechanisms.lean",
+      "sha256": "16f77688530c9af8f0ef1b6287b7072f5911218c54ea0ab587a87c62437db740",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.activeCountingClearedPoly_totalDegree_le",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.eval_activeCountingClearedPoly",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.strictPolynomialSignPattern_of_active_score",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.active_strictPatterns_card_le_warren",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/PartialRankingMask.lean",
+      "sha256": "2fedb6464a77170e85c6db68c1c6ba5d9544f15c0772c34faff53a75c093d97b",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.partialRankingMask_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.partialRankingMask_zero_left",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.partialRankingMask_zero_right",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.partialRankingMask_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.partialRankingMask_strictAnti_parameter",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.not_scalar_repair_of_ordered_positive_scores",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.not_partialRankingMask_scalar_repair",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.reversePartialRankingMask_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.reversePartialRankingMask_zero_left",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.reversePartialRankingMask_zero_right",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.reversePartialRankingMask_pos",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ExactMaskDegree.lean",
+      "sha256": "ac0149770ebb33797900201c9524767562202068fcb6922f463351a8607ea584",
+      "proved_declarations": [
+        {
+          "name": "HeadComplexity.le_totalDegree_of_cube_supported_at_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.le_heads_of_clearedAffinePoly_supported_at_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "HeadComplexity.le_heads_of_atom_score_supported_at_zero",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ]
+    }
+  ],
+  "tex": [
+    {
+      "file": "artifacts/head-compression/exponent-literature.tex",
+      "sha256": "78730c17fa7efcba5fb3bc8331fce2824dbe31b869996ba5198bf4df9aa1ee4e",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/exponent-mechanisms.tex",
+      "sha256": "4803bfe79e0ed772599ab5822843666b7c1e55455a3d50f2721434a051a3800d",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/exponent-precision.tex",
+      "sha256": "e13fe147e3bc5ec6941de754056f01479a923ed2862204012f16020a01c7fbf2",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    },
+    {
+      "file": "artifacts/head-compression/exponent-report.tex",
+      "sha256": "bcd2283e391cd42d67ccb332872b41b3bdde254ad1dbb2f6985cf3ae8bc71799",
+      "static_braces_environments_and_no_em_dash": "passed",
+      "pdf_rendered": false
+    }
+  ],
+  "notes": [
+    "WorstCaseExponentImprovement is a proposition definition, not a proved theorem.",
+    "active_strictPatterns_card_le_warren retains the explicit WarrenStrictSignPatternBound hypothesis.",
+    "Full raw attention alphabet simulation, finite gluing, comparator bounds, and asymptotic corollaries remain written proofs.",
+    "No TeX compiler was available; TeX checks were static only."
+  ]
+}
