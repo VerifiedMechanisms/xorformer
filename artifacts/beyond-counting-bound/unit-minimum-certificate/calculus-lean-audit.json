@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-23T12:25:13.249911+00:00",
+  "checked_utc": "2026-11-23T12:35:22.333717+00:00",
   "passed": true,
   "foundational_axioms": [
     "propext",
@@ -11,7 +11,9 @@
     "FiniteRatioCalculus": "db6f0ef689adf03d9d9324275947540ca24718a9727d8105ae66ad3f3b48d8ce",
     "FiniteMatrixNorm": "5b002c13726068d37da8f21a0e10e78d75b6ca2a3c9c2d104876b6747eaafeb6",
     "UnitMinimumAnalyticData": "48dec1c54ffff4014093c9a4b7bc1eb95235df3d54dc12fd2a97dfd4d41f8d05",
-    "UnitMinimumAnalyticBounds": "def956c76e5506503eff555e4564a54d09fd0340b89e4454c0373a6f8643ef36"
+    "UnitMinimumAnalyticBounds": "def956c76e5506503eff555e4564a54d09fd0340b89e4454c0373a6f8643ef36",
+    "UnitMinimumDerivativeMatrix": "c5bb3e0b23e3e7aec688165acc138fd772517b9bf23e474ffb3dc8939c0f8188",
+    "UnitMinimumInverseBounds": "916f6a46ba96261acc19f5c51ee0677405770d052753febb6ecb55ef4c0ffd01"
   },
   "principal_declarations": [
     "HeadComplexity.ApproximateInverse.inverse_norm_bound",
@@ -24,8 +26,12 @@
     "HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_T",
     "HeadComplexity.UnitMinimumAnalytic.B_bound",
     "HeadComplexity.UnitMinimumAnalytic.score_difference",
-    "HeadComplexity.UnitMinimumAnalytic.derivative_difference"
+    "HeadComplexity.UnitMinimumAnalytic.derivative_difference",
+    "HeadComplexity.UnitMinimumAnalytic.hasFDerivAt_F",
+    "HeadComplexity.UnitMinimumAnalytic.J_center_entry",
+    "HeadComplexity.UnitMinimumAnalytic.inverse_center_residual",
+    "HeadComplexity.UnitMinimumAnalytic.exists_certified_root"
   ],
-  "scope": "Generic approximate-inverse and finite-ratio calculus; concrete center identification, full cube denominator positivity throughout the certification ball, score and derivative Lipschitz bounds. The complete concrete root and local-minimum theorem is not yet assembled in Lean.",
+  "scope": "Generic calculus, concrete center and derivatives, exact integer-to-real matrix residual transfer, and existence of an actual zero of all 108 active equations in the radius 10^-40 certification ball with injective derivative. Full cube margin and strict local-minimum assembly remain in progress.",
   "main_target_proved": false
 }

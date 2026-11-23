@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: second twelve-hour extension; target not proved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-23T12:25:13.249911+00:00",
+  "last_audit_utc": "2026-11-23T12:35:22.333717+00:00",
   "elapsed_seconds_at_last_audit": 129719.76039,
   "minimum_duration_met": false,
   "target_theorem_proved": false,
@@ -722,7 +722,8 @@
     "jacobian_lean_passed": true,
     "calculus_lean_checks": "PASS",
     "calculus_lean_audit": "unit-minimum-certificate/calculus-lean-audit.json",
-    "concrete_analytic_assembly": "in progress; not yet a Lean theorem"
+    "concrete_analytic_assembly": "Root and Jacobian invertibility proved; margin and local-minimum assembly in progress",
+    "concrete_root_lean": "PASS"
   },
   "unit_minimum_searches_stopped_utc": "2026-11-23T11:26:31.410109+00:00"
 }
