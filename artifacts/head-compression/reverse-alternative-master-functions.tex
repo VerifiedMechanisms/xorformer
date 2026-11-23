@@ -230,9 +230,102 @@ regularity calculation. All equalities are checked by the accompanying
 exact-arithmetic script.
 \end{proof}
 
-This finite example does not imply an asymptotic lower bound on the
-number of normal contacts. In particular it neither proves nor refutes
-the proposed $H!C^{Hn}$ count. It shows precisely that the local Boolean
-Hessian identities do not exclude ordinary nonconstant contacts, even
-inside a strict output orthant.
+\begin{lemma}[Regularity of a normalized contact]
+Suppose $\nabla\Phi(c)=0$, the Hessian $H$ has kernel
+$\mathbb R a$, and $D^3\Phi(c)[a,a,a]\neq0$. Choose an index $\ell$
+with $a_\ell\neq0$. The function
+\[
+ (u,b)\longmapsto u\cdot\nabla\Phi(b),\qquad u_\ell=a_\ell,
+\]
+has a nondegenerate critical point at $(a,c)$.
+\end{lemma}
+\begin{proof}
+The first derivatives vanish because $\nabla\Phi(c)=0$ and $Ha=0$.
+Let $U=\{p:p_\ell=0\}$. The Hessian on $U\times\mathbb R^n$ has
+block form
+\[
+ \begin{pmatrix}0&H|_{U\times\mathbb R^n}\\
+ H|_{\mathbb R^n\times U}&D^3\Phi(c)[a]\end{pmatrix}.
+\]
+If $(p,q)$ belongs to its kernel, the upper equations say that
+$Hq$ is a multiple of the coordinate vector $e_\ell$.
+Since $a^{\mathsf T}Hq=0$ and $a_\ell\neq0$, that multiple is zero.
+Thus $q=ta$. Pairing the lower equations with $a$ gives
+$tD^3\Phi(c)[a,a,a]=0$, hence $t=0$. The lower equations now give
+$Hp=0$, so $p$ is a multiple of $a$. Since $p_\ell=0$, it is zero.
+The Hessian is therefore nonsingular.
+\end{proof}
+
+\begin{theorem}[Many normalized nonconstant contacts]
+For every sufficiently large dimension $N$ there is a signed linear
+functional on full-cube evaluation vectors having at least
+$2^{cN^2}$ distinct nonconstant one-head normal contacts, for an absolute
+$c>0$. All denominators have positive constant and strictly positive
+slopes. The scores can all be chosen strictly positive on the entire
+cube. Each contact is isolated and nondegenerate after quotienting out
+the constant-output and output-scaling directions.
+\end{theorem}
+\begin{proof}
+Apply the many-critical-points theorem in dimension $n=N-3$ and denote
+the resulting potential by $\Phi_{\mathrm{many}}(b)$.
+Let $\Phi_{\mathrm{fold}}(d)$ be the three-variable potential in the
+preceding proposition. The sum
+\[
+ \Phi(b,d)=\Phi_{\mathrm{many}}(b)+\Phi_{\mathrm{fold}}(d)
+\]
+is again a signed Boolean-cube master potential: embed the first set of
+weights on vertices whose last three coordinates vanish and the second
+set on vertices whose first $n$ coordinates vanish. Their origin weights
+are added. Adjust the weight at the origin so that the total weight is
+zero; this changes neither potential nor any of its derivatives.
+
+Every nondegenerate critical point $b^*$ of
+$\Phi_{\mathrm{many}}$, paired with $d=(1,1,1)$, is critical for
+$\Phi$. Its Hessian is block diagonal, with the invertible first block
+and the corank-one three-variable block. Its kernel is therefore spanned
+by $a=(0,\ldots,0,2,1,1)$, and its third derivative along $a$ is $-2$.
+The regularity lemma applies at every such point.
+
+For the associated cube functional $\lambda$, consider the head
+\[
+ G_{b^*}(x,y)=
+ \frac{2y_1+y_2+y_3}{1+b^*\cdot x+y_1+y_2+y_3}.
+\]
+Derivative in every numerator slope is a component of
+$\nabla\Phi=0$, and derivative in denominator slopes is a component
+of $Ha=0$. Derivative in the numerator constant is also zero, because
+\[
+ \sum_z\frac{\lambda_z}{1+c\cdot z}
+ =\sum_z\lambda_z-c\cdot\nabla\Phi(c)=0.
+\]
+The homogeneous denominator-scaling derivative then vanishes as well.
+Thus this is a normal contact for the full affine-ratio family.
+The chart used in the lemma fixes numerator constant zero and the first
+nonzero numerator slope to two. These remove precisely the locally
+irrelevant constant-output and output-scaling directions. The lemma
+shows that the contact is isolated and nondegenerate in this chart.
+
+Different $b^*$ give different cube scores: at $y=(1,0,0)$ and
+$x=e_i$, the value is $2/(2+b^*_i)$, which determines $b^*_i$.
+Adding one makes every score strictly positive. The corresponding
+numerator remains affine, and the zero total weight means this addition
+does not affect any contact assertion. There are at least
+$2^{n^2/12}$ such contacts for all sufficiently large $n$, which is
+$2^{cN^2}$ for a fixed positive $c$ and all sufficiently large $N$.
+\end{proof}
+
+\paragraph{Scope of the contact theorem.}
+This refutes a uniform $C^N$ bound on the number of normalized
+nonconstant contacts of an arbitrary signed full-cube functional in
+the positive denominator chamber. It does not refute the proposed
+$H!C^{HN}$ interpolation or strict-sign count. The functional constructed
+here is special. Under a perturbation of the functional, the
+nondegenerate critical points in the normalized chart persist, but
+their critical values need not remain zero. Consequently these
+perturbations need not remain normal contacts of the unnormalized cone
+of head scores. No generic conic-normal-fiber statement is asserted.
+All the examples above can lie in the same strictly positive output
+orthant, so a large contact count alone also gives no strict-sign
+shattering theorem. The new theorem is a written proof, not a Lean
+formalization, and neither main asymptotic target is settled by it.
 \end{document}
