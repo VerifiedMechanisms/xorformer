@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-23T01:17:31.879286+00:00",
+  "new_proof_found": false,
+  "repositories": {
+    "autoresearch-runs": "refs/heads/ar/1dc3df1f7016 045a8fb2584d5dcfb3fa03657492b1b893942956 2026-11-21T06:16:49+00:00",
+    "xorformer-runs": "refs/heads/ar/1bfc2d7fde2f c45f40a4b48494b7ca00f05d3b84b6bf5a31fc1d 2026-11-05T11:26:38+00:00",
+    "public-head-complexity": "refs/heads/main 37bc9db6081a566e1cf3a6ddd324446f311a2ad7 2026-07-23T15:40:58+01:00"
+  },
+  "private_run_heads_explicitly_fetched": true,
+  "public_repository_scope": "default branch, shallow snapshot"
+}

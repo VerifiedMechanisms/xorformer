@@ -1,0 +1,29 @@
+{
+  "status": "NUMERICAL_REPLAY_NOT_CERTIFICATE",
+  "relative_stationarity_residual": 9.547140000118671e-06,
+  "minimum_multiplier": 0.0,
+  "positive_multipliers": 15,
+  "active_rank_min_singular": 4.687790088573235e-09,
+  "tangent_dimension": 28,
+  "curvature": [
+    {
+      "step": 0.0001,
+      "min_eigenvalue": -0.00240503496923612,
+      "max_eigenvalue": 3.2415659192188633,
+      "hessian_asymmetry": 0.0005560254576266743
+    },
+    {
+      "step": 1e-05,
+      "min_eigenvalue": -0.0024050349649877983,
+      "max_eigenvalue": 3.241565919154075,
+      "hessian_asymmetry": 3.37987148668617e-06
+    },
+    {
+      "step": 1e-06,
+      "min_eigenvalue": -0.002405034962905259,
+      "max_eigenvalue": 3.24156591900221,
+      "hessian_asymmetry": 3.5552009649109095e-05
+    }
+  ],
+  "main_target_proved": false
+}

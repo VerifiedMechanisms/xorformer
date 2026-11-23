@@ -39,12 +39,14 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True)
     p.add_argument('--seconds',type=float,default=5400);p.add_argument('--seed',type=int,default=209341)
     p.add_argument('--log-bound',type=float,default=12.)
+    p.add_argument('--replay',type=int)
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
     rng=np.random.default_rng(a.seed);start=time.monotonic();trial=0;linear_skips=0
     print(json.dumps({'energy_gradient_error':check_gradient()}),flush=True)
     class Expired(Exception):pass
     with (a.output/'results.jsonl').open('a',buffering=1) as log:
         while time.monotonic()-start<a.seconds:
+            if a.replay is not None and trial>a.replay:break
             n,h=[(6,3),(7,3),(7,4),(8,4)][trial%4];k=n*h;pcount=1+2*k
             x=((np.arange(2**n)[:,None]>>np.arange(n))&1).astype(float)
             ori=rng.choice([-1.,1.],size=h);u=rng.normal(size=(n,h));logp=rng.uniform(-3,3,size=(n,h))
@@ -56,6 +58,7 @@ def main():
             theta[0]=-np.quantile(raw,rng.uniform(.15,.85));values=raw+theta[0]
             if min(abs(values))<1e-5:trial+=1;continue
             y=np.sign(values)
+            if a.replay is not None and trial!=a.replay:trial+=1;continue
             lp=linprog(np.zeros(n+1),A_ub=-y[:,None]*np.c_[np.ones(len(x)),x],
                 b_ub=-np.ones(len(x)),bounds=[(None,None)]*(n+1),method='highs')
             if lp.status!=2:
@@ -98,6 +101,10 @@ def main():
                             active_vertices=chosen.tolist(),multipliers=dual.tolist(),slack=slack.tolist())
                         (a.output/name).write_text(json.dumps(data,indent=2)+'\n')
                 log.write(json.dumps(rec)+'\n');print(json.dumps(rec),flush=True)
+                if a.replay is not None:
+                    data=dict(rec,theta=theta.tolist(),orientation=ori.tolist(),labels=y.tolist(),
+                        active_vertices=active.tolist(),gradient=g.tolist(),slack=slack.tolist())
+                    (a.output/'replay.json').write_text(json.dumps(data,indent=2)+'\n')
             except Expired:break
             except (ValueError,np.linalg.LinAlgError,FloatingPointError) as exc:
                 log.write(json.dumps(dict(status='NUMERICAL_FAILURE_UNKNOWN',trial=trial,error=type(exc).__name__))+'\n')

@@ -1,0 +1,10 @@
+{
+  "file": "artifacts/beyond-counting-bound/audit-index.md",
+  "sha256": "129d3bcc81c118baae57f240cad2b7d42181d7ef5f23aee2d6861972ac979f31",
+  "utc": "2026-11-23T01:15:38.374903+00:00",
+  "static_lint": "PASS",
+  "katex": "PASS",
+  "github_render": "PASS",
+  "math_spans": 1,
+  "notes": []
+}

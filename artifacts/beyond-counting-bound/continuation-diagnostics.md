@@ -46,6 +46,8 @@ The first fixed-constant search used the squared numerator norm at the initial f
 
 `audit_unit_minimum_curvature.py` exposes this discrepancy. Three subsequent optimization passes, each rescaled by its current numerator norm, reduce the norm from approximately $245.43$ to $229.93$. The resulting point reaches the imposed parameter bound and violates a margin constraint by approximately $5.24\cdot10^{-6}$. It is not an interior feasible minimum either. The two complete floating-point replay records are retained in `experiments/unit-minimum-curvature-495.json` and `experiments/unit-minimum-curvature-495-refined.json`.
 
+Those two records use the implementation at commit `7be65ed`, before the stable-denominator change below. Use that commit to reproduce their exact floating-point trajectories.
+
 Both searches were restarted with these rescaling passes. Earlier records remain unresolved diagnostics, not local-minimum certificates. The optimization boxes, finite tolerances, and finite sample of starting points preclude any conclusion about all unrestricted real parameters.
 
 ## Stable denominators and an independent objective
@@ -61,3 +63,5 @@ These formulas avoid cancellation in the equivalent expression $1+b\cdot x$. The
 $$ E(c,r)=c^2+2^{-n}\sum_x\sum_h r_h(x)^2 $$
 
 subject to every signed cube margin being at least one. Its objective measures actual head-table values rather than numerator coefficients. The independent objective-gradient check has maximum error below $1.2\cdot10^{-9}$. A numerical linear-programming screen discards starting labelings reported to be linear thresholds; this screen is not a certified lower bound on any labeling. Candidate minima still require separate exact or interval verification.
+
+A replay of head-energy trial 185 reproduced an interior feasible solver endpoint with seventeen nearly active constraints and forty-three parameters. Its relative nonnegative-multiplier residual was approximately $9.55\cdot10^{-6}$, and two fitted multipliers were zero. Numerical projected Hessians also had a negative eigenvalue near $-0.002405$ at three finite-difference scales. Because stationarity and the relevant ranks are not certified, this is not asserted to be a certified saddle or a minimum. The replay and curvature diagnostics are retained as `experiments/head-energy-replay-185.json` and `experiments/head-energy-curvature-185.json`.
