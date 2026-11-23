@@ -76,6 +76,15 @@ This verifies the claimed $n^\varepsilon/2$ scale when the suppressed
 head-count constant is $C=1$. The constant $C$ cannot be omitted in a
 literal quantitative statement.
 
+These finite formulas use exactly $H$ coded heads. If a construction
+uses a target-dependent number $h\le H$, include $h$ in the code.
+There are at most $(H+1)2^{b(1+2H(n+1))}$ such codes, so the exact
+inequality becomes
+$2^n\le\log_2(H+1)+b(1+2H(n+1))$. In the head-count regime above,
+$\log_2(H+1)=O(n)=o(2^n)$; the displayed asymptotic precision bound
+is unchanged. This argument does not assume that a particular finite
+alphabet contains coefficients for padding by zero heads.
+
 The same asymptotic bound holds for alphabets on the original
 \texttt{FracAtom} parameters: there are $2n+4$ parameters per atom,
 namely $\eta,\delta,\gamma,\alpha$, the $n$ values of $\rho$, and the
@@ -196,6 +205,10 @@ allows unbounded information in all numerator coefficients. Thus a
 successful exponent improvement must have the adaptive denominator
 choices themselves encode almost $2^n$ bits across the worst-case
 family, when measured by the size of a fixed finite library.
+
+Allowing lists of any length at most $H$ adds at most a factor $H+1$
+to this library count. The same $O(n)=o(2^n)$ logarithmic correction
+therefore preserves the denominator-only asymptotic conclusion.
 
 Admissibility has only been relaxed when counting sign spaces. Every
 admissible attention denominator is nonvanishing on the entire cube,
