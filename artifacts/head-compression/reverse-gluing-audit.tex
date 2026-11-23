@@ -20,8 +20,9 @@ affine ratio with strictly negative slopes, by
 different orientations. The proofs below use these existing interfaces.
 
 \paragraph{Lean verification.}
-The new modules \texttt{HeadComplexity.Results.AxisZeroGluing} and
-\texttt{HeadComplexity.Results.AxisZeroCover} build successfully.
+The new modules \texttt{HeadComplexity.Results.AxisZeroGluing},
+\texttt{HeadComplexity.Results.AxisZeroCover}, and
+\texttt{HeadComplexity.Results.AxisZeroFaces} build successfully.
 Within namespace \texttt{HeadComplexity.AxisZeroGluing},
 \texttt{glue\_finite} checks the entire finite sign-preservation induction,
 \texttt{glue\_positive\_affine\_ratios} constructs actual original-model
@@ -34,9 +35,16 @@ cover transfer, and \texttt{exists\_product\_openDownwardCover} proves the
 explicit product budget $484\cdot2^{a+b}/(ab)$.
 Independent \texttt{\#print axioms} checks of these central declarations
 report only \texttt{propext}, \texttt{Classical.choice}, and
-\texttt{Quot.sound}. The geometric application of the abstract gluing
-hypotheses and the exceptional-face repair below remain written proofs;
-no unconditional improved asymptotic theorem is asserted.
+\texttt{Quot.sound}. \texttt{positive\_face\_uniformlyAtomsApproximable}
+checks arbitrary real residual approximation on a positive face with $2^m$
+heads. \texttt{repair\_two\_positive\_faces} proves that an actual
+$H$-atom score strictly correct outside two positive faces with free
+dimensions $a,b$ extends to \texttt{computableWithHeadsN} with
+$H+2^a+2^b$ heads; its axiom audit reports the same standard foundations.
+The identification of the abstract gluing hypotheses with the concrete
+ordered centers remains a written proof supported by the checked
+deletion-count invariant. No unconditional improved asymptotic theorem
+is asserted.
 
 \section{Gluing}
 Identify a Boolean input with $(X,Y)$ in two disjoint coordinate blocks
