@@ -1,0 +1,122 @@
+import HeadComplexity.Atoms.UnitMinimumJacobianBlock17
+
+set_option linter.style.header false
+
+namespace HeadComplexity.UnitMinimumCenter
+
+theorem inverse_error_rows (r : Fin 108) : 10^55 * inverseErrorRow r < scale^2 := by
+  fin_cases r
+  · exact inverse_error_0
+  · exact inverse_error_1
+  · exact inverse_error_2
+  · exact inverse_error_3
+  · exact inverse_error_4
+  · exact inverse_error_5
+  · exact inverse_error_6
+  · exact inverse_error_7
+  · exact inverse_error_8
+  · exact inverse_error_9
+  · exact inverse_error_10
+  · exact inverse_error_11
+  · exact inverse_error_12
+  · exact inverse_error_13
+  · exact inverse_error_14
+  · exact inverse_error_15
+  · exact inverse_error_16
+  · exact inverse_error_17
+  · exact inverse_error_18
+  · exact inverse_error_19
+  · exact inverse_error_20
+  · exact inverse_error_21
+  · exact inverse_error_22
+  · exact inverse_error_23
+  · exact inverse_error_24
+  · exact inverse_error_25
+  · exact inverse_error_26
+  · exact inverse_error_27
+  · exact inverse_error_28
+  · exact inverse_error_29
+  · exact inverse_error_30
+  · exact inverse_error_31
+  · exact inverse_error_32
+  · exact inverse_error_33
+  · exact inverse_error_34
+  · exact inverse_error_35
+  · exact inverse_error_36
+  · exact inverse_error_37
+  · exact inverse_error_38
+  · exact inverse_error_39
+  · exact inverse_error_40
+  · exact inverse_error_41
+  · exact inverse_error_42
+  · exact inverse_error_43
+  · exact inverse_error_44
+  · exact inverse_error_45
+  · exact inverse_error_46
+  · exact inverse_error_47
+  · exact inverse_error_48
+  · exact inverse_error_49
+  · exact inverse_error_50
+  · exact inverse_error_51
+  · exact inverse_error_52
+  · exact inverse_error_53
+  · exact inverse_error_54
+  · exact inverse_error_55
+  · exact inverse_error_56
+  · exact inverse_error_57
+  · exact inverse_error_58
+  · exact inverse_error_59
+  · exact inverse_error_60
+  · exact inverse_error_61
+  · exact inverse_error_62
+  · exact inverse_error_63
+  · exact inverse_error_64
+  · exact inverse_error_65
+  · exact inverse_error_66
+  · exact inverse_error_67
+  · exact inverse_error_68
+  · exact inverse_error_69
+  · exact inverse_error_70
+  · exact inverse_error_71
+  · exact inverse_error_72
+  · exact inverse_error_73
+  · exact inverse_error_74
+  · exact inverse_error_75
+  · exact inverse_error_76
+  · exact inverse_error_77
+  · exact inverse_error_78
+  · exact inverse_error_79
+  · exact inverse_error_80
+  · exact inverse_error_81
+  · exact inverse_error_82
+  · exact inverse_error_83
+  · exact inverse_error_84
+  · exact inverse_error_85
+  · exact inverse_error_86
+  · exact inverse_error_87
+  · exact inverse_error_88
+  · exact inverse_error_89
+  · exact inverse_error_90
+  · exact inverse_error_91
+  · exact inverse_error_92
+  · exact inverse_error_93
+  · exact inverse_error_94
+  · exact inverse_error_95
+  · exact inverse_error_96
+  · exact inverse_error_97
+  · exact inverse_error_98
+  · exact inverse_error_99
+  · exact inverse_error_100
+  · exact inverse_error_101
+  · exact inverse_error_102
+  · exact inverse_error_103
+  · exact inverse_error_104
+  · exact inverse_error_105
+  · exact inverse_error_106
+  · exact inverse_error_107
+
+#print axioms rounded_jacobian_error
+#print axioms inverse_error_rows
+#print axioms dual_residual
+
+end HeadComplexity.UnitMinimumCenter

@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-23T11:58:36.282033+00:00",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/unit-margin-strict-minimum.md",
+      "source_math_spans": 92,
+      "github_math_spans": 92,
+      "findings": [],
+      "notes": [],
+      "sha256": "80429375cf2d20f6f7dddfef0b2a504083f0f1e6b43788c73cfde9e43cad0fb4"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 94,
+      "github_math_spans": 94,
+      "findings": [],
+      "notes": [],
+      "sha256": "4fc93f10afb187844753047aac7f43336c2cc243a5e237d9b07f891aca1d77d6"
+    }
+  ],
+  "katex_and_static": "PASS",
+  "gitlab": "Not run: glab unavailable"
+}

@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-23T11:58:20.757626+00:00",
+  "build_exit_code": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "declarations": [
+    "HeadComplexity.UnitMinimumCenter.rounded_jacobian_error",
+    "HeadComplexity.UnitMinimumCenter.inverse_row_bound",
+    "HeadComplexity.UnitMinimumCenter.dual_bounds",
+    "HeadComplexity.UnitMinimumCenter.inverse_error_rows",
+    "HeadComplexity.UnitMinimumCenter.dual_residual"
+  ],
+  "scope": "Kernel arithmetic checks for all 108 by 108 rounded Jacobian entries, inverse row bounds, exact integer inverse residual row sums, and dual positivity and residual. This does not itself identify the matrix with an analytic derivative or instantiate the local minimum theorem.",
+  "data_sha256": "46c83825266d3e7971d89882a42ef3e04747d10858f07ce860cbafd85c682fc5",
+  "file_sha256": {
+    "UnitMinimumJacobianData.lean": "6adcf8f2f88cbf256b4e0465a1aefeec313f68902b2784512e80f214c231cba9",
+    "UnitMinimumJacobianBlock00.lean": "de55318f08ff58a90c386ad8c7c33d2227b453c2e5da556608be96cd0ad2cdc1",
+    "UnitMinimumJacobianBlock01.lean": "a11786f5c4add9c5b6968a2ad7c03a61612209630cc315666d188d300d2f37b0",
+    "UnitMinimumJacobianBlock02.lean": "d2f3585afa81d185978853ea71c6caf69fbaa46670f5609defa174137b506f87",
+    "UnitMinimumJacobianBlock03.lean": "cf8a14c7b0eb1b6c9a49588a94f149fbe755706639fe328120c6a154d5b9adf7",
+    "UnitMinimumJacobianBlock04.lean": "fcd5cf99407501e9edb95fbf0ab060177a20ccac6f7e0bdfd08d04a575dc7492",
+    "UnitMinimumJacobianBlock05.lean": "0dc9fde43a698a4c03c4061fdf9ab788f8c4c10782ae351663770390538c93e4",
+    "UnitMinimumJacobianBlock06.lean": "60a17f396c328311f55c7b9a08daa16d0e3bd7698a53fd4afa045f4cf50238c3",
+    "UnitMinimumJacobianBlock07.lean": "9dd853d55b7ca886c36555ff335d1aac3082723f0e1447d8f23443138ec29e53",
+    "UnitMinimumJacobianBlock08.lean": "cc75ba44e23363fba36c42e8a2f7e36318921ca78d71235f88f7ab8bf1376df2",
+    "UnitMinimumJacobianBlock09.lean": "3b1bceffe34bf51cde3233bcfa436113f70781519fa728307f359af035d33654",
+    "UnitMinimumJacobianBlock10.lean": "2a2ac22b8e55f8849ac3efbb29e0ce6706c287f1ed0c82fbd07d0472c27e8531",
+    "UnitMinimumJacobianBlock11.lean": "ba29bc827fe710d268827b7b628a0f7b61ceafea19cc2132e318ed5f49a7042a",
+    "UnitMinimumJacobianBlock12.lean": "547a196df07c377b9a23d7f13a797696c4cac36d99ace789d21856b8dddd6e71",
+    "UnitMinimumJacobianBlock13.lean": "f425004c4d6ec667690c923ce00120049fdab2870fad34d309bf751236812c8a",
+    "UnitMinimumJacobianBlock14.lean": "25ad0d01611d61d231bf8da30185b223907a6fdeac4fc401e2a6e1b7a02bc50e",
+    "UnitMinimumJacobianBlock15.lean": "e41884288fbd34f711d57ecc3c102263ef751d3f80bd67c55df5509c3225b0f0",
+    "UnitMinimumJacobianBlock16.lean": "9e39fcc2b30b9a8e49187fd7f9b00a54752991e32c05ebc4a0b50e8aac1a79c5",
+    "UnitMinimumJacobianBlock17.lean": "5b63f01fdd3acbed0412970351d4ca41ce49f44a938407048a0c9b80039741e3",
+    "UnitMinimumCenterJacobian.lean": "7496b4bda8a099589fbc1660d78fad4cb24c4a538a71d812e20e2838ef6a19c0"
+  },
+  "generator_sha256": "fabdfe269902bc9d1799072f3297d6821cb337367e51e13a719a62d1f7a09b95",
+  "representation": "256-bit offset signed entries packed by inverse rows and Jacobian columns; 18 serial blocks of 6 inverse rows",
+  "superseded_attempt": {
+    "exit_code": 137,
+    "reported_build_seconds": 2487,
+    "representation": "nested explicit 108 by 108 function vectors"
+  },
+  "main_target_proved": false
+}
