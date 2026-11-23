@@ -1,0 +1,103 @@
+\section{A finite direction alphabet and its exact scope}
+\label{sec:finite-direction-alphabet}
+
+The grouped Cauchy transfer permits a different signed residue vector for
+ each actual target column.  Consider query rows indexed by an address
+ $i\in[G]$ and one of two bit types.  With a fixed invertible matrix $C$, a
+ label $(s_g,k_g)\in\{-1,1\}\times\{-1,0,1\}$ at residue $g$ gives scores
+\[
+ y=Cc,\qquad y'=C\operatorname{diag}(s_g(1+\delta k_g))c.
+\]
+The two displayed vectors are query row types within one target column;
+ they are not two target columns forced to share amplitudes.  Nevertheless,
+ arbitrary labels need not satisfy the balanced color inventory required
+ by the grouped transfer.
+
+\paragraph{A complete finite lemma.}
+Suppose $C\in\mathbb R^{G\times G}$ is invertible and every entry of $C$
+ is nonzero.  If $\sigma,\tau\in\{-1,1\}^G$ satisfy
+\[
+ \min\{d_H(\sigma,\tau),d_H(\sigma,-\tau)\}\leq 1,
+\]
+then for every sufficiently small $\delta>0$ there are labels from the six
+ directions above and a residue vector $c$ giving the strict signs
+ $\sigma$ and $\tau$.  A single sufficiently small $\delta$ works for all
+ pairs satisfying this condition.
+
+\paragraph{Proof.}
+Choose $s\in\{-1,1\}$ so that $\sigma$ and $s\tau$ differ in at most one
+ coordinate.  If they agree, take $c=C^{-1}\sigma$ and all labels $(s,0)$.
+Otherwise let $j$ be the exceptional coordinate.  Put $(y_0)_j=0$ and
+ $(y_0)_i=\sigma_i$ for $i\ne j$, and set $c_0=C^{-1}y_0$.  The only
+ potentially exceptional case $G=1$ was already covered by global sign
+ reversal, so $y_0\ne0$ and $c_0\ne0$.  Choose $g$ with $(c_0)_g\ne0$.
+Since $C_{jg}\ne0$, choose $k=\pm e_g$ so that
+\[
+ z_j<0\quad\hbox{if }\sigma_j=1,\qquad
+ z_j>0\quad\hbox{if }\sigma_j=-1,
+ \qquad z=C\operatorname{diag}(k)c_0.
+\]
+Let $T=C\operatorname{diag}(k)C^{-1}$ and define
+\[
+ y_\delta=y_0-\frac{\delta z_j}{2}e_j,
+ \qquad c_\delta=C^{-1}y_\delta.
+\]
+Then $\operatorname{sign}(y_\delta)=\sigma$ for every $\delta>0$, while
+\[
+ C(I+\delta\operatorname{diag}(k))c_\delta
+ =y_0+\delta z-\frac{\delta z_j}{2}e_j
+  -\frac{\delta^2z_j}{2}Te_j.
+\]
+At $j$ the leading term is $\delta z_j/2$, which has sign $-\sigma_j$.
+At all other coordinates the nonzero constant term has sign $\sigma_i$.
+For sufficiently small $\delta$ all desired signs therefore hold, and
+ multiplication by $s$ gives $\tau$.  There are finitely many eligible
+ pairs, so the minimum of their positive admissible thresholds gives one
+ common threshold.  This proves the lemma.
+
+In particular, for $G\leq3$ the Hamming condition holds for every pair.
+Consequently the three-address success below needs no special Cauchy
+ property and is not evidence for a growing superconstant saving.
+
+\paragraph{Exact rational example.}
+The accompanying script and JSON use
+\[
+ C_{ig}=\left(1-\varepsilon(i+g+2)\right)^{-2},
+ \qquad 0\leq i,g<3,\quad
+ \varepsilon=10^{-4},\quad\delta=\varepsilon^3.
+\]
+The JSON contains an explicit rational residue vector, labels, and all
+ six nonzero scores for each of the $64$ strict sign patterns.  The checker
+ recomputes and checks every stored witness against the original matrix.
+This is finite exact computational evidence, with the universality for
+ sufficiently small $\delta$ additionally supplied by the preceding proof.
+Neither the balanced inventory condition nor a growing-address alphabet
+ theorem is established.
+
+\paragraph{A complete chamber enumeration rule.}
+For a real matrix $A\in\mathbb R^{r\times k}$ of column rank $k$, every
+ strict sign pattern attained by $Ax$ is attained at a solution
+\[
+ A_Ix=\eta,\qquad |I|=k,\quad\det A_I\ne0,
+ \quad\eta\in\{-1,1\}^k.
+\]
+Indeed, scale a strict witness into the nonempty polyhedron
+ $\{x:\sigma_i(Ax)_i\geq1\text{ for every }i\}$.
+Starting from any feasible point, if its active rows have rank below $k$,
+ choose a nonzero direction annihilating those rows.  Some other row has
+ nonzero derivative because $A$ has full column rank.  Orient the direction
+ so one inactive constraint decreases, and move to the first new active
+ constraint.  Its row is independent of the old active rows because its
+ derivative is nonzero.  Repeating gives a point with $k$ independent active
+ rows.  This proves the claim even for degenerate arrangements.
+It yields complete finite enumeration, unlike a chamber-adjacency search
+ that only perturbs extreme rays in independent active directions.
+
+\paragraph{Open scope.}
+At four addresses the row pairs $(++),(+-),(-+),(--)$ give the first pair
+ outside the nesting explanation.  Exact witnesses obtained for fewer than
+ all sign patterns in a degenerate arrangement are only lower bounds on
+ coverage.  No impossibility claim follows without a complete feasibility
+ certificate.  A compiler saving still requires a family with growing
+ address count, growing bit count, all strict patterns, compact exterior
+ Cauchy poles, and quantitatively controlled balanced inventories.
