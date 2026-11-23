@@ -162,6 +162,40 @@ denominator is not an admissible atom, even when it is positive on
 the whole cube. This explicit proposed triangular compiler therefore
 fails. No constant-cost admissible replacement of that step is claimed.
 
+\begin{proposition}[A concrete unmasked repair fails]
+Take six coordinates, a first block $\{1,2,3\}$, a second block
+$\{4,5,6\}$, and downward-star centers $S=\{1,2\}$ and
+$T=\{4,5\}$. Let
+\[
+ u(x)=R^2(1-x_1)+R^4(1-x_2),\qquad
+ v(x)=R(1-x_4)+R^3(1-x_5),\qquad
+ p(x)=1+\varepsilon\sum_{i=1}^6(1-x_i),
+\]
+where $R>1$ and $\varepsilon>0$. Write $J(x)=J_{p(x)}(u(x),v(x))$.
+For the vertices with supports
+\[
+ x=\{2,5\},\qquad y=\{2,3,5,6\},
+\]
+no real scalar $\lambda$ makes $-1+\lambda J(x)>0$ and
+$-1+\lambda J(y)<0$ simultaneously.
+\end{proposition}
+\begin{proof}
+At both points $u=R^2>v=R>0$. The first lies in
+$\partial^-S\times\partial^-T$, whereas the second lies outside
+the downset of its center. Moreover
+$p(x)=1+4\varepsilon>1+2\varepsilon=p(y)>0$.
+The exact identity for $J_p$ has a fixed positive numerator and
+a product of three positive factors strictly increasing with $p$.
+Consequently $0<J(x)<J(y)$. The first requested inequality forces
+$\lambda>1/J(x)>0$, and hence $\lambda J(y)>1$, contradicting
+the second inequality.
+\end{proof}
+
+This counterexample tests one positive-ranking correction against a
+specified residual. It does not rule out signed sums of rankings,
+additional affine corrections, function-dependent overlap choices,
+or general rational cancellations.
+
 \paragraph{Why this is not a full-cube bound.}
 The promised set has only $rs$ points among $2^{r+s}$ cube vertices.
 All the other inputs have defined scores but unconstrained signs.
