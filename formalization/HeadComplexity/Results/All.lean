@@ -34,6 +34,7 @@ import HeadComplexity.Results.AffineSidonRows
 import HeadComplexity.Results.AnchoredFractionLift
 import HeadComplexity.Results.AffineFractionRange
 import HeadComplexity.Results.CountingLowerBound
+import HeadComplexity.Results.ExponentMechanisms
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
@@ -41,9 +42,11 @@ import HeadComplexity.Results.DominantPowerLift
 import HeadComplexity.Results.DummyVariables
 import HeadComplexity.Results.EqualityExact
 import HeadComplexity.Results.ExactFamilies
+import HeadComplexity.Results.ExactMaskDegree
 import HeadComplexity.Results.FiveBitDegreeFourCertificate
 import HeadComplexity.Results.FiveBitDegreeTwoCertificate
 import HeadComplexity.Results.FixedDenominatorSignBarrier
+import HeadComplexity.Results.FixedDenominatorLibrary
 import HeadComplexity.Results.AffineFractionAlternation
 import HeadComplexity.Results.FourierSupport
 import HeadComplexity.Results.FractionalNormalForm
@@ -56,12 +59,15 @@ import HeadComplexity.Results.OneBitGateThresholdDegree
 import HeadComplexity.Results.OneBitNonXorGate
 import HeadComplexity.Results.ParityBlockThresholdDegree
 import HeadComplexity.Results.ParityHingeNonattainment
+import HeadComplexity.Results.PartialRankingMask
 import HeadComplexity.Results.RegularizedParityHinge
 import HeadComplexity.Results.PartitionSignRank
 import HeadComplexity.Results.PositiveMultigrid
 import HeadComplexity.Results.PositiveOrderOneBitGate
 import HeadComplexity.Results.PositiveProjection
 import HeadComplexity.Results.PositiveWeightedSignDegree
+import HeadComplexity.Results.PrecisionBarrier
+import HeadComplexity.Results.RawAlphabetSimulation
 import HeadComplexity.Results.RawCalibratedVote
 import HeadComplexity.Results.RestrictionLowerBounds
 import HeadComplexity.Results.SecantObstruction

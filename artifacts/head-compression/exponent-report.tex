@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\usepackage[margin=1in]{geometry}
+\title{Beyond Linear Head Savings: Research Report}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Outcome.}
+The requested asymptotic improvement was not proved. Neither fallback
+was reached: this run proves no bound
+$W(n)=O(2^n/(n g(n)))$ with $g(n)\to\infty$, and no unrestricted
+lower bound $W(n)\geq c2^n/n$ on infinitely many dimensions.
+The new results concern necessary information, a specified class of
+localized constructions, and exact failures of proposed transfer steps.
+They do not close the exponent gap.
+
+\section{Verified baseline and unchanged scope}
+
+The repository's existing theorem
+\texttt{worstCaseHeadComplexity\_real\_le\_eleven\_mul\_two\_pow\_div}
+in \texttt{Results/UniversalLinearSaving.lean} states, for $n>0$,
+\[
+ (\texttt{HeadComplexity.worstCaseHeadComplexity}\ n:\mathbb R)
+ \leq 11\,2^n/n.
+\]
+The new modules import the unchanged definitions of the head resource,
+the one-layer attention model, and admissibility. In particular,
+positivity of an affine denominator on the cube alone is insufficient
+to identify it with an atom: its nonzero slopes must have one common
+orientation. Strict signs are used throughout.
+
+The existing counting file has an important formal-status qualification.
+\texttt{worstCaseHeadComplexity\_gt\_div\_of\_warren}
+takes \texttt{WarrenStrictSignPatternBound} as a hypothesis.
+The reduction to parameter polynomials is Lean-checked; Warren's
+general sign-pattern theorem is an explicit interface, not a proved
+theorem of that file. The familiar mathematical
+$\Omega(2^n/n^2)$ conclusion follows by the classical theorem, but
+should not be described as an unconditional Lean theorem here.
+No axiom was added to discharge this interface.
+
+The separately supplied branch
+\texttt{ar/1dc3df1f7016} of
+\texttt{VerifiedMechanisms/autoresearch-runs} was inspected at
+\texttt{045a8fb}. Its declaration
+\texttt{HeadBound.HStar\_le\_all}, in
+\texttt{HeadBound/SubCube.lean}, bounds every function by
+$2^n/2^{\lfloor\log_2 n\rfloor}$, using natural-number division.
+The branch's compiler first proves full linear spanning and then
+interpolates the truth table exactly. That mechanism does not transfer
+a lower-dimensional sign-only local certificate.
+
+\section{New results, separated by proof status}
+
+All Lean paths below are relative to
+\texttt{formalization/HeadComplexity/Results/}; all names are in
+namespace \texttt{HeadComplexity}.
+
+\paragraph{Finite precision and denominator information, Lean-checked.}
+\texttt{PrecisionBarrier.lean} proves
+\texttt{two\_pow\_le\_bits\_mul\_affine\_parameters\_of\_finiteAlphabet\_universal}
+and
+\texttt{two\_pow\_le\_bits\_mul\_raw\_parameters\_of\_finiteAlphabet\_universal}.
+For a fixed alphabet of at most $2^b$ elements these give, respectively,
+\[
+ 2^n\leq b(1+2H(n+1)),\qquad
+ 2^n\leq b(1+H(4+2n)).
+\]
+The first chart encodes effective affine numerators and denominators;
+the second encodes the original \texttt{FracAtom} scalar parameters.
+The hypotheses require universality over all strict Boolean tables.
+
+\texttt{FixedDenominatorLibrary.lean} proves a finite Sauer bound,
+then the denominator-only result
+\texttt{two\_pow\_two\_pow\_le\_bits\_denominator\_capacity}:
+\[
+ 2^{2^n}\leq 2^{bnH}
+       \sum_{j=0}^{1+nH}\binom{2^n}{j}.
+\]
+Here only the normalized denominator coefficients have a finite
+alphabet. Every numerator coefficient and the bias may be any real
+number. This result is unconditional and does not use Warren's theorem.
+
+\paragraph{Asymptotic information consequences, written only.}
+The complete proof in \texttt{exponent-precision.tex} shows that, for
+every $g(n)\to\infty$ and fixed $C>0$, a universal construction with
+$H\leq C2^n/(n g(n))$ requires a denominator library of size $K$ with
+\[
+ \log_2 K\geq(1-o(1))2^n.
+\]
+Thus normalized denominator coefficients in fixed $b$-bit alphabets
+require $b\geq(1/C-o(1))g(n)$. Counting all effective coefficients
+gives the weaker constant $1/(2C)$. The earlier precision claim is
+therefore valid in these intrinsic finite-information interpretations,
+with the head-count constant included. It is a worst-case information
+bound, not a requirement on each individual weight of each target.
+
+\paragraph{Raw width qualification, partly Lean-checked.}
+The actual model leaves width unrestricted. The written construction
+in \texttt{exponent-precision.tex} realizes every strict $H$-head
+certificate, for $H\geq1$, with the same number of heads, larger finite
+width, shared embeddings, and all raw entries in
+$\{0,1,-1,\sqrt2,-\sqrt2\}$. Integer multiplicities are carried by
+width; this is not a finite binary-rational precision theorem.
+The construction uses positivity of exponential denominators and a
+finite strict margin, so it preserves admissibility and every sign.
+
+The approximation lemmas are formalized in
+\texttt{RawAlphabetSimulation.lean}:
+\texttt{dense\_rawAlphabetSum},
+\texttt{dense\_rawAlphabetSum\_vectors}, and
+\texttt{exists\_rawAlphabetSum\_strict\_certificate}.
+The full embedding and matrix construction remains written only.
+
+\paragraph{Adaptive local masks, Lean key lemma and written consequence.}
+\texttt{ExponentMechanisms.lean} proves
+\texttt{activeCountingClearedPoly\_totalDegree\_le},
+\texttt{eval\_activeCountingClearedPoly}, and
+\texttt{strictPolynomialSignPattern\_of\_active\_score}.
+If at most $L$ heads are active at any input, pointwise denominator
+clearing has parameter degree at most $L+1$.
+\texttt{active\_strictPatterns\_card\_le\_warren} gives the
+corresponding count conditional on the existing Warren interface.
+
+Using the classical theorem, \texttt{exponent-mechanisms.tex} proves:
+if the mask dictionary has size at most $2^{bn}$ and a universal
+masked construction uses $H\leq C2^n/(ng(n))$, then
+\[
+ \liminf_{n\to\infty}
+ \frac{\log_2(L_n+1)}{g(n)}\geq\frac1{2C}.
+\]
+This rules out bounded active-head overlap for every superconstant
+saving, and polynomial active-head overlap for every positive power
+saving. It counts heads, not cells. In particular, a cell carrying
+$O(n/\log n)$ heads is not excluded from a logarithmic-saving route.
+The theorem is about explicitly masked scores, or actual scores with
+a proved sign-preserving truncation. It places no such restriction
+on arbitrary attention representations with large cancellations.
+
+\paragraph{A new partial ranking mask and its limitation, Lean-checked algebra.}
+\texttt{PartialRankingMask.lean} proves
+\texttt{partialRankingMask\_eq}, the identity
+\[
+ \frac{u-v}{p+u+v}-\frac{u}{p+u}+\frac{v}{p+v}
+ =\frac{(u-v)uv}{(p+u+v)(p+u)(p+v)}.
+\]
+It cancels exactly when either local block is absent.
+\texttt{partialRankingMask\_strictAnti\_parameter} and
+\texttt{not\_partialRankingMask\_scalar\_repair} certify a concrete
+failure of scalar layer repair. The actual three-head realization,
+the uniform ranking approximation, and the six-bit instance are
+written in \texttt{exponent-literature.tex}. The formal algebra is
+not presented as a formalization of that complete compiler.
+
+The same module also proves \texttt{reversePartialRankingMask\_eq}
+and \texttt{reversePartialRankingMask\_pos}. Replacing each denominator
+by $p-u-v$, $p-u$, or $p-v$, with $p>u+v$, gives the analogous
+axis-zero identity in the orientation needed by the gluing theorem
+below. Its comparison amplitudes are not uniformly saturated.
+
+\paragraph{Exact localization, Lean singleton theorem and written extension.}
+\texttt{ExactMaskDegree.lean} proves
+\texttt{le\_totalDegree\_of\_cube\_supported\_at\_zero},
+\texttt{le\_heads\_of\_clearedAffinePoly\_supported\_at\_zero}, and
+\texttt{le\_heads\_of\_atom\_score\_supported\_at\_zero}.
+In particular, a nonzero score of actual admissible atoms that is
+exactly zero at all cube vertices except the all-false vertex needs
+at least $n$ heads. This is an exact-zero support statement, not a
+lower bound for sign computation of the singleton indicator. The
+radius-$r$ extension by restriction to a maximal support vertex is
+written in \texttt{exponent-literature.tex}.
+
+\paragraph{A valid global composition theorem, written only.}
+The finite gluing theorem in \texttt{exponent-mechanisms.tex}
+composes product downward-star modules without extra heads, when
+their denominators have positive slopes in the original coordinates
+and their scores vanish exactly on both local axes. The proof orders
+centers by cardinality, rescales each module to correct its cell,
+and adds a large positive outside-coordinate penalty to its
+denominators to preserve all previously fixed strict signs. It
+verifies admissibility on the whole cube. This proves a transfer
+step but does not supply the required efficient local modules.
+
+\paragraph{Opposite-orientation vote transfer, written only.}
+For an $m$ by $m$ interleaved-order comparator, suppose $H$ heads
+whose denominator slopes have the opposite orientation approximate
+every numerical vote in $\{-1,1\}$ to error $\varepsilon$.
+The complete proof in \texttt{exponent-literature.tex} gives
+\[
+ H2^H\geq m/2-(m\varepsilon+4H)^2
+ \qquad\text{when }m\geq8H.
+\]
+It allows arbitrary numerator sizes and cancellation. In particular,
+error $O(\log m/m)$ requires
+$H\geq\log_2m-\log_2\log_2m-O(1)$.
+The direct uniform-error summation guarantee for
+$O(m/\log m)$ majority votes with integer margin one uses that
+accuracy. Thus this
+particular reversal of the known local compiler loses its saving.
+This is a numerical-approximation obstruction, not a lower bound
+for sign-only computation of that comparator, which is affine.
+
+\section{Routes tried and the remaining lemma}
+
+The literature transfer audit is in \texttt{exponent-literature.tex}.
+It includes depth-two thresholds, deep memorization, sign rank,
+rational networks, covering codes, and number-theoretic encodings.
+Every successful transfer is stated on its exact domain. The strongest
+local transfer is the Erd\H{o}s--Moser majority-order representation:
+an arbitrary two-one-hot table on $\Theta(n^2)$ inputs has an actual
+admissible $O(n/\log n)$-head sign representation.
+
+The failed extensions have explicit endpoints. Exact zero localization
+to a radius-$r$ Hamming ball requires at least $n-r$ heads. Sums of
+common-orientation first-hit decision lists representing parity need
+at least $\binom n{\lfloor n/2\rfloor}$ lists. The new three-ratio
+mask leaves a cylinder of unwanted signs; its proposed scalar repair
+fails on an explicit pair of cube inputs. The direct downset gate
+would also introduce inadmissible mixed denominator slopes. These
+statements exclude the specified constructions, not arbitrary globally
+cancelling head systems.
+
+\paragraph{Single missing lemma.}
+The concrete remaining lemma is the \emph{reverse-orientation
+axis-zero local compiler}. For every $r,s\geq1$ and every strict
+$r$ by $s$ sign table, construct a sum of at most
+\[
+ K\left(1+\frac{r+s}{\log\log(r+s+4)}\right)
+\]
+affine ratios with strictly negative denominator slopes in the deletion
+variables, positive denominators on the entire $(r+s)$-cube,
+the prescribed strict signs on $(e_i,e_j)$, and exact zero whenever
+either variable block is all zero. All coefficients may depend on
+the table. This lemma is unproved.
+
+The written gluing theorem would apply after changing deletion
+variables to original coordinates. Existing star covers provide
+$O(2^n/n^2)$ cells, the local cost is uniformly $O(n/\log\log n)$,
+and the two exceptional faces cost only
+$O(2^{\lceil n/2\rceil})$ additional heads. Therefore this one lemma
+would finish fallback 2 with
+$W(n)=O(2^n/(n\log\log n))$. Full quantifiers and the face
+correction are in the last section of
+\texttt{exponent-literature.tex}. The lemma remains a substantial
+unresolved local universality problem; this implication is not
+counted as a successful asymptotic result.
+
+\section{Changes and verification}
+
+No original definition or theorem statement was weakened or altered.
+New auxiliary predicates, parameterizations, and score functions were
+added in the new modules. \texttt{WorstCaseExponentImprovement} in
+\texttt{PrecisionBarrier.lean} is only a proposition definition of
+the requested eventual bound against \texttt{worstCaseHeadComplexity};
+there is no theorem claiming it. The results aggregate imports the
+new modules. The previous \texttt{mechanism-audit.tex} and
+\texttt{scientist-report.tex} are unchanged.
+
+The new Lean modules and the results aggregate were built with
+\texttt{lake}. Axiom audits of the new proved declarations use only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The Warren consequence retains its explicit theorem hypothesis.
+There are no new axioms or admitted proofs. TeX sources were checked
+for balanced environments and braces; no TeX compiler was available
+on the machine, so PDF rendering was not checked.
+
+\end{document}
