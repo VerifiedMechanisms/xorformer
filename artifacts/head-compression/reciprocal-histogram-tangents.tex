@@ -1,0 +1,199 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{proposition}{Proposition}
+\title{Orthants at Coincident Reciprocal Branches}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This note studies first-order perturbations of the exact full-cube
+identities in \texttt{reciprocal-histogram-fibers.tex}. It proves a
+finite seven-point interpolation statement and a scoped capacity bound
+for these tangent families. Neither accepted asymptotic target is
+proved. No model definition is changed. The arguments are written
+proofs, with exact rational calculations supplied by
+\texttt{reciprocal-histogram-tangents-check.py}; they are not Lean proofs.
+
+\section{A finite orthant gain from two full-cube branches}
+On the five-dimensional Boolean cube set
+\[
+ a=x_1-x_2,\qquad b=x_2-x_3,\qquad
+ D=1+4(x_1+x_2+x_3)+8x_4+16x_5.
+\]
+For $h=0,1,2$ and a permutation $\pi$ of $\{0,1,2\}$ put
+$B_{\pi,h}=D+ha+\pi(h)b$.
+Take the two permutations
+\[
+ \pi=(0,2,1),\qquad \tau=(1,0,2).
+\]
+For every Boolean input the two denominator triples have the same
+multiset. Indeed one of $a=0$, $b=0$, or $a+b=0$ holds. In the first
+two cases this follows from the permutation property; in the third,
+both difference multisets $\{h-\pi(h)\}_h$ and
+$\{h-\tau(h)\}_h$ equal $\{-1,0,1\}$.
+Every denominator has constant coefficient one and coordinate slopes
+\[
+ 4+h,\quad4+\pi(h)-h,\quad4-\pi(h),\quad8,\quad16,
+\]
+all strictly positive. Consequently
+\[
+ S_\pi(x)=\sum_{h=0}^2B_{\pi,h}(x)^{-1}
+          =\sum_{h=0}^2B_{\tau,h}(x)^{-1}=S_\tau(x)
+\]
+is an exact identity between admissible original-model sums.
+
+Perturb a branch by replacing its denominators with
+$B_{\pi,h}+\epsilon(d_h+p_hb)$. The derivative at zero is
+\[
+ T_{\pi,d,p}(x)=-\sum_{h=0}^2
+            \frac{d_h+p_hb(x)}{B_{\pi,h}(x)^2}.
+ \tag{1}\label{eq:tangent}
+\]
+The direction $(d,p)$ has six independent real coordinates. Let $E$
+be the following ordered seven-point subset of the original cube:
+\[
+\begin{split}
+ &(1,0,1,1,0),\ (1,0,1,1,1),\ (1,0,0,1,0),\ (0,1,1,0,0),\\
+ &(1,1,0,0,0),\ (1,1,0,1,1),\ (0,1,0,1,1).
+\end{split}
+\]
+\begin{proposition}
+Every strict sign table on $E$ is realized by a sum of six affine
+fractions, all with strictly positive coordinate slopes and positive
+denominators on the entire five-cube.
+\end{proposition}
+\begin{proof}
+For each of the two branches form the $7$ by $6$ matrix whose row at
+$x\in E$ is
+\[
+ \bigl(-B_{\pi,0}^{-2},-B_{\pi,1}^{-2},-B_{\pi,2}^{-2},
+       -bB_{\pi,0}^{-2},-bB_{\pi,1}^{-2},-bB_{\pi,2}^{-2}\bigr).
+\]
+Its entries are explicitly specified rational numbers. The companion
+checker calculates all seven signed maximal minors, verifies they are
+nonzero, and verifies that their sign vectors for the two branches
+are, respectively,
+\[
+ (-,+,-,-,-,+,+),\qquad(-,+,-,-,-,+,-).
+\]
+They are neither equal nor opposite. It also verifies the corresponding
+cofactor vectors are orthogonal to every matrix column.
+
+Here is why those finite calculations prove all $128$ strict labels
+are obtained. A hyperplane $\nu^\perp\subset\mathbb R^7$, with every
+$\nu_i\ne0$, meets every strict orthant except the two with signs
+$\operatorname{sgn}\nu$ and $-\operatorname{sgn}\nu$.
+For any other sign vector $s$, the numbers $s_i\nu_i$ include both
+signs, so positive magnitudes can be chosen to make their weighted
+sum zero. This produces a vector in the requested orthant of the
+hyperplane. The two branch hyperplanes have disjoint exceptional
+pairs, hence their union meets every strict orthant.
+
+For any such tangent witness, subtract the common baseline $S_\pi$
+from the perturbed chosen branch. This is a six-fraction score.
+Its quotient by $\epsilon>0$ converges at every point of $E$ to
+\eqref{eq:tangent}. Strict inequalities and strictly positive
+denominator coefficients therefore persist for sufficiently small
+$\epsilon$. Thus it realizes the requested signs with original
+admissible atoms.
+
+The checker independently enumerates all $128$ tangent labels and
+checks actual finite rational perturbations for each of them, including
+every denominator at all $32$ Boolean inputs. More explicitly, let
+$Q=\max_h(|d_h|+|p_h|)$ and
+$\mu=\min_{x\in E}|T_{\pi,d,p}(x)|$. It uses
+\[
+ \epsilon=\min\left\{\frac1{4(1+Q)},
+                  \frac{\mu}{24(1+Q)^2}\right\}>0.
+\]
+The identity
+\[
+ \frac1{B+\epsilon u}-\frac1B
+ =-\frac{\epsilon u}{B^2}
+  +\frac{\epsilon^2u^2}{B^2(B+\epsilon u)}
+\]
+shows that, after division by $\epsilon$, the total error is at most
+$6\epsilon Q^2<\mu/2$, since $B\geq1$ and
+$B+\epsilon u>1/2$. The coefficient checks follow from
+$\epsilon Q<1/4$ and the original slopes being at least two.
+\end{proof}
+
+\paragraph{Exact diagnostic beyond seven points.}
+The same script verifies that the two six-dimensional tangent spaces
+have a ten-dimensional joint linear span on all $32$ inputs. On the
+eight-point set recorded in its JSON output, each individual branch
+has exactly $240$ strict orthants, and their union has exactly $244$
+of $256$. The enumeration includes exact witnesses and verifies that
+the central arrangements are simple, which makes its count complete.
+This is one finite configuration. It neither proves nor disproves a
+growing interpolation gain.
+
+\section{Full coefficient perturbations on one core face}
+The preceding regularity calculation uses only constant and core
+coefficient perturbations. Arbitrary numerator and filler-coordinate
+perturbations enlarge it considerably. There is nevertheless a useful
+bound that applies to all these first-order directions simultaneously.
+
+Fix a core assignment, leave $d$ Boolean filler coordinates
+$y=(y_1,\ldots,y_d)$ free, and put
+$t(y)=t_0+\sum_iw_iy_i$. Suppose every base denominator on this
+face is of the form $t(y)+q_h$, positive at every filler input.
+Both the $q_h$ and the selected base branch may vary. A first-order
+perturbation of numerator and denominator coefficients at a base
+whose numerators are constant has the form
+\[
+ G(y)=\sum_{h=1}^H
+ \left(\frac{A_h(y)}{t(y)+q_h}
+              +\frac{C_h(y)}{(t(y)+q_h)^2}\right),
+ \tag{2}\label{eq:fulltangent}
+\]
+where $A_h,C_h$ are arbitrary affine functions of $y$.
+
+\begin{proposition}
+If all strict labels on this $d$-cube are realized by scores
+\eqref{eq:fulltangent}, allowing arbitrary branches and pole lists,
+then
+\[
+ 2Hd+1\geq2^d.
+\]
+The same conclusion applies to compilers obtained by subtracting the
+common base score and taking a nonzero first-order limit.
+\end{proposition}
+\begin{proof}
+Multiply a score by the positive quantity
+$P(t)^2=\prod_h(t+q_h)^2$. Its signs are unchanged and its values
+belong to the fixed linear space
+\[
+ V=\operatorname{span}\{t(y)^j,\ y_it(y)^j:
+          1\leq i\leq d,\ 0\leq j<2H\}.
+\]
+The largest degree is $2H-1$, from the simple-pole terms. This
+space is independent of all poles and branches. For $1\leq j<2H$,
+\[
+ t^j=t_0t^{j-1}+\sum_iw_i y_it^{j-1}.
+\]
+Thus $V$ is spanned by its constant function and the $2Hd$ functions
+$y_it^j$, so $\dim V\leq2Hd+1$.
+
+Any proper linear subspace of $\mathbb R^{2^d}$ misses a strict
+orthant. Indeed choose a nonzero orthogonal vector $\nu$ and prescribe
+the sign of $\nu_x$ at its nonzero coordinates, with arbitrary signs
+at the remaining coordinates. Every vector in that orthant has
+strictly positive inner product with $\nu$. If $2Hd+1<2^d$, this
+argument applied to $V$ supplies a label absent from every branch.
+\end{proof}
+
+\paragraph{Scope of this bound.}
+It uses the common affine filler statistic at the base and the
+first-order form \eqref{eq:fulltangent}. Finite perturbations with
+independently varying filler slopes, higher-order cancellations,
+and unrestricted original representations are not covered. With
+$k$ core triples there are $d=n-3k$ filler bits. The lower bound
+is then on the scale $2^n/(n8^k)$, so a growing number of core
+triples remains compatible with the requested logarithmic savings.
+Consequently this result does not establish the accepted global
+lower bound, and the finite seven-point construction does not
+establish the accepted global upper bound.
+\end{document}
