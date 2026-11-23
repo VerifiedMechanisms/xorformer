@@ -1,0 +1,35 @@
+{
+  "independent_exact_embedding_checks": 902,
+  "lean_exit_status": 0,
+  "declarations": [
+    "affineValue_pairPoint",
+    "pairPoint_injective",
+    "exists_exact_bipartite_embedding",
+    "replicate_shattering",
+    "unbounded_actual_tests_per_parameter"
+  ],
+  "lean_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "katex_spans": 50,
+  "github": [
+    {
+      "file": "artifacts/beyond-counting-bound/bipartite-reciprocal-shattering.md",
+      "sha256": "e748b1716816487849978ac451ae1e86547b7b16dde7dc6f60f081b5aa52924d",
+      "rendered_spans": 49,
+      "errors": [],
+      "notes": []
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "sha256": "9acd3f82615e84db96dbd5c2dfdeaeb5b124a0d7a6002b87356d812da0a59080",
+      "rendered_spans": 1,
+      "errors": [],
+      "notes": []
+    }
+  ],
+  "gitlab": "not run: glab unavailable",
+  "main_target_proved": false
+}
