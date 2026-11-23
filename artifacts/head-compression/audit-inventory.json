@@ -187,11 +187,20 @@
         "HeadComplexity.projective_halfspace_sign_iff"
       ],
       "scope": "An explicit denominator-gap cover is separated by a reciprocal sum. A common positive projective denominator preserves halfspace signs. No suitable universal cube cover is asserted."
+    },
+    {
+      "file": "formalization/HeadComplexity/Results/ReciprocalExchange.lean",
+      "main_declaration": "HeadComplexity.reciprocal_exchange_identity",
+      "companion_declarations": [
+        "HeadComplexity.reciprocal_exchange_pos_iff",
+        "HeadComplexity.affine_numerator_exchange_identity"
+      ],
+      "scope": "Exact two-row coefficient-exchange identities. Equal constant numerators give affine correction signs on the active face. No obstruction to arbitrary global parameter changes or universal head bound."
     }
   ],
   "validation": {
-    "build": "Full project lake build succeeded with 9209 jobs, including all 25 new research modules and the results aggregator.",
-    "build_log": "validation/lean-gapped-cover-full-build.log",
+    "build": "Full project lake build succeeded with 9210 jobs, including all 26 new research modules and the results aggregator.",
+    "build_log": "validation/lean-reciprocal-exchange-full-build.log",
     "proof_axioms": "Audited declarations use only propext, Classical.choice, and Quot.sound; no new axiom or sorry is used in these modules.",
     "tex": "mechanism-audit.tex was manually audited and statically checked for environment balance. No TeX engine was available, so no PDF compilation is claimed.",
     "certificates": "See certificates/manifest.json. Independent exact Fraction or integer-interval verifiers check strict scores and whole-cube denominator admissibility; the promised-domain example is explicitly distinguished from full-cube examples. Eight large-certificate records link their hash-matched integer audit reports.",
@@ -212,7 +221,7 @@
     "regression_box_sign_audit": "The final 384-bit interval audit certifies exactly three negative and thirteen positive margins throughout the stationary-point box, with no undetermined signs. See diagnostics/interior-square-n4-h1-audit.json.",
     "projected_gain_scope": "The projected candidate derivative is stated only on locally constant-rank regions. At a rank change projection energy can be discontinuous. The exact candidate gain inequality does not require differentiability, and searches accept only measured refitted improvements.",
     "final_static_checks": "All top-level audit JSON files parse; TeX environments are balanced; the research writeup has no em dashes; diff --check passes for artifacts/head-compression and formalization. A whole-run diff check separately finds trailing whitespace in the earlier automatically generated autoresearch report; that independent report was left untouched.",
-    "inventory_references": "58 listed main and companion declarations in 25 Lean modules, all imported by Results/All.lean. No target declaration was added.",
+    "inventory_references": "61 listed main and companion declarations in 26 Lean modules, all imported by Results/All.lean. No target declaration was added.",
     "all_order_jet_audit": "Manual coefficient expansion and multi-block Basu-Rizzie Theorems 12-13; weighted-degree and entropy calculation. No new target or Lean declaration. The finite-difference lift is confined to paths of admissible affine denominators.",
     "indicator_axioms": "/out/head-compression/lean-indicator-axioms.log; all three declarations use only propext, Classical.choice, and Quot.sound.",
     "denominator_product": {
@@ -223,8 +232,8 @@
     },
     "large_certificate_integers": "Shared-affine export and independent integer/Fraction audit now allow the locally generated arbitrary-precision integers exceeding Python JSON's default 4300-digit limit. Existing long-lived search processes imported the old code; if they reach strict signs and fail at JSON export, regenerate from their saved strict checkpoint using the patched exporter.",
     "all_current_research_axioms": {
-      "declarations": 58,
-      "modules": 25,
+      "declarations": 61,
+      "modules": 26,
       "only": [
         "propext",
         "Classical.choice",
@@ -233,12 +242,13 @@
       "logs": [
         "/out/head-compression/lean-research-axioms.log",
         "/out/head-compression/lean-range-final-axioms.log",
-        "validation/lean-gapped-cover-axioms.log"
+        "validation/lean-gapped-cover-axioms.log",
+        "validation/lean-reciprocal-exchange-axioms.log"
       ],
-      "scope": "The prior 56 declarations were unchanged; both GappedReciprocalCover declarations were checked separately."
+      "scope": "The prior 58 declarations were unchanged; all three ReciprocalExchange declarations were checked separately."
     },
-    "lean": "Full project lake build succeeded with 9209 jobs, including all 25 new research modules and the results aggregator.",
-    "build_jobs": 9209,
+    "lean": "Full project lake build succeeded with 9210 jobs, including all 26 new research modules and the results aggregator.",
+    "build_jobs": 9210,
     "repository_integrity_2026_11_22_1821": {
       "lean_modules": 24,
       "listed_declarations": 55,
@@ -256,7 +266,9 @@
       "validation/lean-range-final-axioms.log",
       "validation/lean-final-full-build.log",
       "validation/lean-gapped-cover-full-build.log",
-      "validation/lean-gapped-cover-axioms.log"
+      "validation/lean-gapped-cover-axioms.log",
+      "validation/lean-reciprocal-exchange-full-build.log",
+      "validation/lean-reciprocal-exchange-axioms.log"
     ]
   },
   "manual_results": [
@@ -927,6 +939,12 @@
       "proposal_script": "certify_pair_noncompletion.py",
       "self_test": "diagnostics/completion-dual-self-test.json",
       "statement": "With the other 290 heads fixed, these two heads cannot be replaced by one admissible head. Constant denominators are included. Changing retained heads is not excluded."
+    },
+    "resumed_search": {
+      "start_pair": 20768,
+      "seconds_budget": 25200,
+      "output": "/out/head-compression/pair-completion-n14-h291-resumed",
+      "status": "Running; no smaller certificate found as of the current audit."
     }
   },
   "reciprocal_algebra_audit": {
@@ -958,5 +976,19 @@
       96,
       97
     ]
+  },
+  "permutation_exchange_audit": {
+    "manual_proof": "permutation-exchange-audit.tex",
+    "literature_entry": 98,
+    "new_mechanism_examined": "Exact changes from permuting denominator coefficients across heads.",
+    "result": "For equal constant numerators, a two-row exchange has affine signs on its active face. Fixed affine numerators give a cleared cubic on that face.",
+    "unresolved": "Long cycles and simultaneous changes of multiple columns have no universal sign-realization construction here."
+  },
+  "private_repository_refresh_2026_11_23_0900": {
+    "method": "Explicit read-only fetch of '+refs/heads/*:refs/heads/*' in both authorized bare run mirrors.",
+    "new_updates": true,
+    "updated_branch": "autoresearch-runs ar/a3733e82430f at 7754604",
+    "relevance": "The new branch commits concern weekly usage snapshots and their run report, not the head-complexity target.",
+    "target_proof_found": false
   }
 }

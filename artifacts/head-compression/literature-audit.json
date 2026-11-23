@@ -806,6 +806,14 @@
       "checked_location": "Proposition 1 and Definition 2; equations (2.4), (2.5), and the input-selected derivative formula",
       "mechanism": "Boolean interpolation can be written as a complex product of affine factors; differential encodings extract selected monomial coefficients.",
       "gap": "The displayed universal complex product can use 2^n-1 factors. Differentiation, coefficient extraction, and complex factorization are not free operations in the manuscript model. The construction does not prove the requested bound."
+    },
+    {
+      "title": "On Permutations Whose Adjacent-Sum Reciprocals Sum to One",
+      "authors": "Jinggao Ai, Dingsheng Hu, Junmin Yan",
+      "url": "https://arxiv.org/pdf/2610.18431",
+      "checked_location": "Theorem 1.1, Propositions 1.2, 1.4 and 1.6, and the splicing and multiplicity calculations in Section 2",
+      "mechanism": "An inductive permutation construction preserves one prescribed reciprocal sum using controlled denominator multiplicities and edge splicing.",
+      "gap": "One scalar cancellation does not prescribe independent signs on all cube vertices. A simultaneous affine encoder and a quantified admissible head decoder are not supplied."
     }
   ]
 }

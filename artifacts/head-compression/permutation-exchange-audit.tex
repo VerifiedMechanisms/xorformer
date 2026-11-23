@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Cross-Head Permutation Exchanges}
+\author{}
+\date{November 23, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+Permuting a column of denominator coefficients is a coupled modification
+of several heads. Its combinatorial information count does not establish
+a decoder on the Boolean cube. The following calculation audits the
+simplest local modification, with exact values rather than a linearized
+optimization objective. It does not exclude general coordinated changes
+of many heads.
+
+\begin{proposition}[Exact two-row exchange]
+Let $u+a,u+b,v+a,v+b$ be positive real numbers. Then
+\[
+ \frac1{u+a}+\frac1{v+b}-\frac1{u+b}-\frac1{v+a}
+ =\frac{(a-b)(u-v)(u+v+a+b)}
+ {(u+a)(u+b)(v+a)(v+b)}.
+\]
+In particular, its strict sign is the strict sign of $(a-b)(u-v)$.
+\end{proposition}
+\begin{proof}
+Group the two terms involving $u$ and the two involving $v$.
+Putting the resulting two fractions over a common denominator leaves
+\[
+ (b-a)\big((v+a)(v+b)-(u+a)(u+b)\big)
+ =(a-b)(u-v)(u+v+a+b).
+\]
+The denominator is positive. Also
+$u+v+a+b=(u+a)+(v+b)>0$, proving the sign assertion.
+\end{proof}
+
+\begin{proposition}[A coefficient transposition is affine on its active face]
+Let $U,V$ be positive affine functions independent of a Boolean coordinate
+$x_i$, and let $a,b>0$. Consider two positive-slope heads with common
+constant numerator one and denominators $U+a x_i$ and $V+b x_i$.
+Transpose just these two coefficients to obtain denominators $U+b x_i$
+and $V+a x_i$. The old score minus the new score is zero on $x_i=0$.
+On $x_i=1$ its sign is the sign of the affine function
+$(a-b)(U-V)$.
+\end{proposition}
+\begin{proof}
+On the zero face the denominators have not changed. On the one face
+apply the preceding identity pointwise. All four denominators are
+positive. Positivity of the original other slopes and of $a,b$ also
+preserves admissibility after the transposition.
+\end{proof}
+
+Consequently such a single transposition cannot prescribe arbitrary
+strict correction signs on a face of dimension at least two. For example,
+the checkerboard signs on any coordinate square are impossible: affine
+values $q_{00},q_{01},q_{10},q_{11}$ satisfy
+$q_{00}+q_{11}=q_{01}+q_{10}$, which rules out positive diagonal and
+negative off-diagonal values. This concerns the correction alone.
+Adding a nonzero preexisting score changes the classification problem.
+
+\paragraph{Unequal and affine numerators.}
+Holding two arbitrary affine numerators $A,C$ fixed gives, on $x_i=1$,
+\[
+ \frac A{U+a}+\frac C{V+b}-\frac A{U+b}-\frac C{V+a}
+ =\frac{(b-a)\big(A(V+a)(V+b)-C(U+a)(U+b)\big)}
+ {(U+a)(U+b)(V+a)(V+b)}.
+\]
+The numerator restricted to this face has degree at most three.
+For constant $A,C$ it has degree at most two. These identities follow
+by the same subtraction, with no approximation. They show precisely
+which additional interactions are available when numerators differ;
+they do not bound a sequence of globally interacting exchanges.
+
+The two scalar identities and the positivity equivalence are kernel
+checked as \texttt{HeadComplexity.reciprocal\_exchange\_identity},
+\texttt{reciprocal\_exchange\_pos\_iff}, and
+\texttt{affine\_numerator\_exchange\_identity} in
+\texttt{Results/ReciprocalExchange.lean}.
+
+\paragraph{Number-theoretic permutation constructions.}
+Ai, Hu and Yan, \emph{On Permutations Whose Adjacent-Sum Reciprocals
+Sum to One}, \url{https://arxiv.org/pdf/2610.18431}, Theorem 1.1,
+construct permutations with one prescribed reciprocal sum. Their
+Proposition 1.2 splices two edges with denominator $D$ into one edge
+with denominator $D/2$, preserving the sum because
+$-1/D-1/D+1/(D/2)=0$.
+Propositions 1.4 and 1.6 preserve prescribed denominator multiplicities
+under an inductive expansion. These give explicit arithmetic
+cancellations, but do not prescribe independent signs at all $2^n$
+input vertices. A simultaneous affine encoder and an admissible decoder
+with the requested head budget remain missing.
+
+\paragraph{Status.}
+Independent two-row switches do not implement arbitrary local updates.
+Long cycles and changes of several coefficient columns are outside that
+obstruction. No universal construction from them is claimed here, and
+the permutation counting heuristic is not treated as an existence proof.
+
+\end{document}
