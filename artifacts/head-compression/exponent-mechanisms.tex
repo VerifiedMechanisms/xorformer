@@ -1,0 +1,316 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Qn}{\{0,1\}^n}
+\begin{document}
+\title{Adaptive Local Covers Require Many Simultaneously Active Denominators}
+\author{}
+\date{November 23, 2026}
+\maketitle
+
+\paragraph{Status and scope.}
+This note proves a necessary condition for a specified family of local
+construction strategies. It does not prove an improved upper bound on
+$W(n)$ or an unrestricted lower bound of order $2^n/n$. In particular,
+none of the three requested asymptotic outcomes is asserted here.
+The model, head count, and admissibility definitions are unchanged.
+The masked scores below are auxiliary mathematical objects, not new
+attention heads. Their purpose is to test proposals that first solve
+local cells and then discard contributions outside those cells.
+
+\paragraph{What is new relative to the prior audit.}
+The programmable-cell obstruction in \texttt{mechanism-audit.tex}
+assumes that every labeling of a given cell can be independently
+programmed. Here the masks may be selected after seeing the entire
+target, and the local pieces may overlap and interact. The parameter
+polynomial degree is controlled by the number of pieces that are
+simultaneously active at an input. This yields an obstruction even
+when no individual cell is universally programmable.
+
+\section{Finite adaptive-mask theorem}
+
+Fix $n,H\geq1$, put $N=2^n$ and $p=1+2H(n+1)$, and let
+$\mathcal M$ be a family of $K\geq1$ subsets of $\Qn$.
+For an ordered mask list $M_1,\ldots,M_H\in\mathcal M$, define
+$I_x=\{h:x\in M_h\}$. Its overlap is
+$\max_x|I_x|$. A masked affine-fraction score has the form
+\[
+ S(x)=c+\sum_{h\in I_x}\frac{A_h(x)}{B_h(x)},
+\]
+where $A_h,B_h$ are affine and $B_h(x)>0$ throughout $\Qn$.
+In particular, all denominators admissible for the actual model are
+allowed, but the theorem relaxes their additional slope conditions.
+The mask list and all coefficients may depend arbitrarily on the target.
+
+\begin{theorem}[Counting with adaptive masks]\label{thm:count}
+Suppose $p\leq N$. The number of strict Boolean sign tables obtainable
+from the preceding scores with overlap at most $L$ is at most
+\[
+ K^H\left(\frac{4e(L+1)N}{p}\right)^p.
+\]
+Consequently, if all $2^N$ sign tables are obtainable, then
+\[
+ N\leq H\log_2 K+
+ p\log_2\left(\frac{4e(L+1)N}{p}\right).
+ \tag{1}\label{eq:entropy}
+\]
+\end{theorem}
+\begin{proof}
+First fix a mask list with overlap at most $L$. Use the scalar $c$
+and the $2H(n+1)$ affine coefficients as independent real parameters.
+For each $x\in\Qn$, multiply $S(x)$ by
+$D_x=\prod_{h\in I_x}B_h(x)>0$. The result is
+\[
+ P_x=c\prod_{h\in I_x}B_h(x)+
+ \sum_{h\in I_x}A_h(x)
+       \prod_{j\in I_x\setminus\{h\}}B_j(x).
+ \tag{2}\label{eq:cleared}
+\]
+As a polynomial in the parameters, its degree is at most
+$|I_x|+1\leq L+1$. The empty active set gives $D_x=1$ and $P_x=c$,
+so no endpoint exception is needed. Multiplication by $D_x>0$
+preserves both strict positive and strict negative signs.
+
+Warren's strict sign-pattern theorem bounds the number of strict
+sign vectors of $N$ polynomials of degree at most $L+1$ in $p\leq N$
+variables by $(4e(L+1)N/p)^p$. The coefficient restrictions defining
+positive or admissible denominators only remove parameter choices.
+There are at most $K^H$ ordered mask lists. There are therefore at most $K^H$ lists satisfying the overlap
+condition. Summing the fixed-list bound over those valid lists proves
+the claimed bound. Comparing it with $2^N$ and taking binary
+logarithms proves \eqref{eq:entropy}.
+\end{proof}
+
+The analytic input is H.~E.~Warren,
+\emph{Lower Bounds for Approximation by Nonlinear Manifolds},
+Transactions of the AMS 133 (1968), 167--178,
+\href{https://doi.org/10.2307/1994937}{doi:10.2307/1994937}.
+The theorem is used as an established mathematical result, not introduced
+as a Lean axiom.
+
+\section{Consequence for every positive exponent improvement}
+
+\begin{corollary}[Exponential overlap is necessary]\label{cor:overlap}
+Fix $C,b,\delta>0$. Suppose that for every sufficiently large $n$ all
+Boolean sign tables on $\Qn$ have a masked representation satisfying
+\[
+ 1\leq H_n\leq\frac{C2^n}{n^{1+\delta}},
+ \qquad K_n\leq2^{bn},
+ \qquad \max_x|I_x|\leq L_n.
+\]
+Then
+\[
+ \liminf_{n\to\infty}
+ \frac{\log_2(L_n+1)}{n^\delta}\geq\frac1{2C}.
+ \tag{3}\label{eq:overlap}
+\]
+Thus a construction with polynomial overlap cannot attain any fixed
+positive exponent improvement, even if every center and every local
+coefficient is chosen from the complete target table.
+\end{corollary}
+\begin{proof}
+Set $p_n=1+2H_n(n+1)$ and $q_n=2^n/p_n$. Then
+\[
+ \frac{p_n}{2^n}\leq2^{-n}+
+ \frac{2C(n+1)}{n^{1+\delta}}
+ =\frac{2C+o(1)}{n^\delta}.
+\]
+In particular $p_n\leq2^n$ eventually and
+$q_n\geq(1/(2C)+o(1))n^\delta$. Dividing
+\eqref{eq:entropy} by $p_n$ and rearranging gives
+\[
+ \log_2(L_n+1)\geq q_n-\log_2q_n-\log_2(4e)
+                 -\frac{H_n\log_2K_n}{p_n}.
+\]
+The final term is at most
+$bn/(2(n+1))\leq b/2$. The function
+$t-\log_2t$ is increasing for $t>1/\log 2$. Its value at
+$(1/(2C)+o(1))n^\delta$ is
+$(1/(2C)+o(1))n^\delta$, because $\log n=o(n^\delta)$.
+This proves \eqref{eq:overlap}. A polynomial $L_n$ has
+$\log_2(L_n+1)=O(\log n)=o(n^\delta)$, giving the stated exclusion.
+\end{proof}
+
+\paragraph{Superconstant savings.}
+The same proof works with $n^\delta$ replaced by any $g(n)\to\infty$
+under $H_n\leq C2^n/(ng(n))$: it gives
+$\liminf \log_2(L_n+1)/g(n)\geq1/(2C)$.
+Indeed $H_n\geq1$ implies $g(n)\leq C2^n/n$, so
+$2^{-n}=o(1/g(n))$, which justifies the same estimate for $p_n/2^n$.
+For $g(n)=\log n$, the necessary overlap is polynomial, so the theorem
+does not rule out the requested superconstant-saving fallback.
+
+\paragraph{Finite Hamming balls.}
+Allow all centers and all radii as masks. This gives
+$K_n\leq(n+1)2^n\leq2^{2n}$ for $n\geq1$.
+Consequently adaptive ball covers satisfy the dictionary hypothesis.
+The exclusion depends on overlap, not on the radius or the number of
+points in each ball. If each vertex interacts with only polynomially
+many local pieces, selecting a target-dependent cover does not circumvent
+Corollary~\ref{cor:overlap}.
+
+\paragraph{Approximate localization.}
+Suppose actual scores $F_f$ have strict margin
+$\gamma_f=\min_x|F_f(x)|>0$, and a proposed sparsification produces
+masked scores $S_f$ of the preceding form with
+$\max_x|S_f(x)-F_f(x)|<\gamma_f$.
+Then $S_f$ and $F_f$ have identical strict signs at every input: if
+$F_f(x)>0$, then $S_f(x)>F_f(x)-\gamma_f\geq0$, and the negative
+case is identical with signs reversed. Therefore the same obstruction
+applies whenever this sign-preserving sparsification is proved.
+Without such a bound the masked theorem says nothing about small tails
+of the actual heads; tails can interact through arbitrarily large
+cancellations.
+
+\section{Independent cells must grow with the requested saving}
+
+\begin{proposition}[Cell-size requirement at a general rate]
+Suppose a cell $E_n\subseteq\Qn$ of size $M_n$ is shattered by sums
+of $H_n\geq1$ affine fractions, with positive denominators, and suppose
+$H_n\leq CM_n/(ng(n))$, where $C>0$ is fixed and $g(n)\to\infty$.
+Then
+\[
+ \liminf_{n\to\infty}\frac{\log_2 M_n}{g(n)}\geq\frac1{2C}.
+\]
+In particular, at exponent improvement $g(n)=n^\delta$, an independent
+cell must have at least $2^{(1/(2C)+o(1))n^\delta}$ points.
+\end{proposition}
+\begin{proof}
+Set $p_n=1+2H_n(n+1)$. Since $H_n\geq1$, the assumed rate implies
+$M_n\geq ng(n)/C$, and hence
+\[
+ \frac{p_n}{M_n}\leq\frac{C}{ng(n)}+
+ \frac{2C(n+1)}{ng(n)}=\frac{2C+o(1)}{g(n)}.
+\]
+Thus $p_n\leq M_n$ eventually. Clearing denominators and applying
+Warren gives
+\[
+ 1\leq\frac{p_n}{M_n}
+ \log_2\left(\frac{4e(H_n+1)M_n}{p_n}\right)
+ \leq\frac{p_n}{M_n}
+ \log_2\left(\frac{4eM_n}{n+1}\right).
+\]
+The final inequality uses
+$(H_n+1)/p_n\leq1/(n+1)$, valid for $H_n\geq1$.
+Consequently
+$\log_2 M_n\geq M_n/p_n+\log_2(n+1)-\log_2(4e)$.
+Divide by $g(n)$ and use the bound on $p_n/M_n$.
+\end{proof}
+
+A radius-$r$ Hamming ball has at most $\sum_{j=0}^r\binom nj$
+points, at most $(en/r)^r$ when $1\leq r\leq n/2$.
+Thus at exponent $\delta$ such an independent ball compiler must have
+$r\log_2(en/r)=\Omega(n^\delta)$. In particular fixed radius cannot
+suffice. This strengthens the prior constant-head radius-two exclusion
+to arbitrary head counts at the proposed improved rate.
+
+\section{Literature transfer and remaining mechanism}
+
+\paragraph{Covering codes.}
+Cooper, Ellis, and Kahng,
+\href{https://math.iit.edu/~rellis/papers/3asy_short.pdf}
+{\emph{Asymmetric Binary Covering Codes}}, JCTA 100 (2002), 232--249,
+prove $K^+(n,R)=\Theta_R(2^n/n^R)$ for fixed $R$.
+Their theorem transfers directly to a count of downward Hamming-ball
+centers. It does not turn a degree-$R$ local numerator into an affine
+numerator. The new mask theorem shows that allowing target-dependent
+centers and polynomial overlap cannot supply an exponent improvement
+through sign-preserving local sparsification. It leaves globally
+interacting, nonsparsifiable head systems untouched.
+
+\paragraph{Exact hyperplane covers.}
+Aaronson, Groenland, Grzesik, Johnston, and Kielak,
+\href{https://arxiv.org/abs/2010.00315}
+{\emph{Exact Hyperplane Covers for Subsets of the Hypercube}},
+give a combinatorial cover, not an affine-ratio union operation.
+Hyperplane membership as a strict sign test does not by itself supply
+numerical indicators that can be added. No new transfer was obtained.
+The full hyperplane-intersection dictionary is also much larger than
+the $2^{O(n)}$ mask dictionaries in Corollary~\ref{cor:overlap}, so that
+corollary must not be applied to arbitrary hyperplane masks without
+counting their dictionary size.
+
+\paragraph{One concrete missing lemma.}
+The new necessary condition suggests the precise type of mechanism
+that would avoid this obstruction: an unconditional universal construction
+of $O(2^n/(n\log n))$ admissible affine-ratio scores with strict whole-cube
+signs, in which the sign information is carried jointly by at least
+polynomially many simultaneously significant denominators at some input.
+The known two-one-hot majority-ranking compiler is a weaker local tool;
+a valid whole-cube gluing lemma with sublogarithmic multiplicative overhead
+would turn its logarithmic local saving into the requested fallback.
+No such gluing lemma is proved here, and it is not treated as a
+conditional solution.
+
+\section{Audit of the separate total-domination branch}
+
+The branch \texttt{ar/1dc3df1f7016} of
+\texttt{VerifiedMechanisms/autoresearch-runs} was read at commit
+\texttt{045a8fb}. Its exact declaration
+\texttt{HeadBound.HStar\_le\_all}, in
+\texttt{HeadBound/SubCube.lean}, assumes $1\leq n$ and states
+\[
+ \texttt{HeadComplexity.HStar}\ n\ f
+ \leq 2^n/2^{\texttt{Nat.log}\ 2\ n},
+\]
+where division is natural-number division. The inspected branch has no
+corresponding theorem named against \texttt{worstCaseHeadComplexity}.
+The real inequality $W(n)<2^{n+1}/n$ is a direct written consequence;
+it is not part of the formal statement of \texttt{HStar\_le\_all}.
+
+The general cover theorem is
+\texttt{HeadBound.fracComputable\_of\_sectionCover}, in
+\texttt{HeadBound/CoverGeneral.lean}. Its hypotheses provide affine
+forms $D_j^0$ whose zero sections cover the cube and, on each section,
+affine Lagrange functions that equal one at one chosen vertex and zero
+at every other vertex of that section. The proof first establishes full
+linear spanning at a degenerate parameter value. The theorem
+\texttt{HeadBound.span\_generic}, in \texttt{HeadBound/Generic.lean},
+then keeps full rank outside the finitely many roots of a nonzero
+polynomial determinant. One chooses an admissible parameter $t>n+1$
+and denominators
+\[
+ D_j(t,x)=D_j^0(x)+t(4n+2|x|).
+\]
+The parameter $t$ and the denominator list can be chosen independently
+of the target. The proof explicitly concludes exact $0/1$ interpolation
+before subtracting $1/2$ to obtain strict signs.
+
+Consequently this bridge cannot directly use a sign-only rational
+compiler on a radius-two cell. Such a compiler provides neither the
+affine Lagrange functions nor the full-rank hypothesis. The determinant
+argument preserves linear spanning, not arbitrary sign feasibility
+along a path from degenerate to admissible denominators. The prior
+mechanism audit already gives a counterexample to that latter inference.
+This route remains blocked unless a new admissible sign-gluing theorem
+is supplied; the branch's sharper constant does not supply one.
+
+\section{Formal verification status}
+
+The new file
+\texttt{formalization/HeadComplexity/Results/ExponentMechanisms.lean}
+contains the auxiliary definition \texttt{activeCountingClearedPoly}
+and the following kernel-checked statements:
+\begin{itemize}
+\item \texttt{activeCountingClearedPoly\_totalDegree\_le}: equation
+\eqref{eq:cleared} has parameter degree at most $|I_x|+1$.
+\item \texttt{eval\_activeCountingClearedPoly}: evaluation equals the
+masked score multiplied by its positive active-denominator product.
+\item \texttt{strictPolynomialSignPattern\_of\_active\_score}:
+every strict masked certificate transfers to the indicated polynomial
+sign pattern.
+\item \texttt{active\_strictPatterns\_card\_le\_warren}: the fixed-mask
+counting consequence, with \texttt{WarrenStrictSignPatternBound} as an
+explicit hypothesis.
+\end{itemize}
+The finite union over mask lists, the asymptotic consequences, and the
+cell-size proposition are written proofs only. The project already
+isolates Warren's analytic theorem as a hypothesis in
+\texttt{CountingLowerBound.lean}; this note does not claim that theorem
+has been formalized or remove its hypothesis. No \texttt{sorry}, new
+axiom, original definition change, or changed original theorem statement
+is introduced.
+
+\end{document}
