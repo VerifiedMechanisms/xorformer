@@ -1042,5 +1042,9 @@
     "formalization": "Complete manual proof, not Lean checked.",
     "target_proved": false,
     "boundary_example": "For every n, the affine permutation list u0=sum xi and uk=k*(1-xk)+sum_{i>k}xi has n independent slope directions. Compare product(s+uk) on the cube with a constant real-root list obtained from product_{k=0}^n(s+k)-delta. Their cube-only difference is a nonzero constant; after a common admissible affine shift, denominator rank remains n. Thus the polynomial-identity hypothesis is essential."
+  },
+  "private_repository_refresh_2026_11_23_1058": {
+    "command": "Explicit +refs/heads/*:refs/heads/* fetch in both existing bare mirrors",
+    "result": "Both fetches completed successfully without changed branch output; no new mathematical result was imported."
   }
 }

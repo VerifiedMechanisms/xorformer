@@ -898,6 +898,15 @@
       "mechanism": "Small Cayley-Bacharach point sets lie in unions of low-dimensional linear spaces in specified proven ranges.",
       "application": "Provides geometric context for the independent elementary planarity proof used to bound affine ideal Prouhet-Tarry-Escott cancellations by three denominator directions.",
       "gap": "No unproved case of the general plane-configuration conjecture is used. The result excludes a proposed cancellation mechanism under explicit polynomial-identity hypotheses, not the full head model."
+    },
+    {
+      "title": "Rational Designs and Prouhet-Tarry-Escott Problems",
+      "authors": "Ryutaro Misawa, Masanori Sawa, and Filip Spiranec",
+      "url": "https://arxiv.org/pdf/2611.25516",
+      "version": "arXiv v1, submitted November 19, 2026",
+      "checked_location": "Definition 2.9, Theorem 2.10 and its proof including Lemma 2.11, Proposition 2.16 and proof, and Theorem 3.4 and proof. Other existence and optimality claims in the 56-page paper were not independently audited.",
+      "mechanism": "Pigeonhole arguments for character sums in number-field lattices construct disjoint equal-moment blocks. A group-action construction removes multiplicities from rational designs; a related construction represents ring elements as sums of distinct units.",
+      "gap": "The design replacement has cardinality m*|A1|, where m is the original sum of integer weights, and does not reduce the number of terms. The number-field units and multiplicative group actions are not automatically admissible affine fractions of the original input. No target-dependent sign construction with O(2^n/n^2) heads or quantitative transfer to that count is established."
     }
   ]
 }
