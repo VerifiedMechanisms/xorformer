@@ -1,0 +1,26 @@
+'HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_cauchy_zero_bias_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_common_cauchy_zero_score_proportional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_row_monomial_correction_preserves_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.finiteLevelScorePolynomial_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.finiteLevelScorePolynomial_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_filtered_kernel_equal_steps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_equal_step_filter_word_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_filtered_kernel_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_exists_shared_reciprocal_basis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

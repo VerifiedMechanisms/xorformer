@@ -105,3 +105,26 @@ establish growing-dimensional universality. Generic nearby directions miss
 many patterns in finite numerical sampling; that is not an impossibility
 certificate. The active route studies singular coincident-direction bases,
 balanced moment permutations, and joint higher-order cancellations.
+
+Decoder-capacity checkpoint, 2026-11-24 16:49 UTC (about 79 minutes)
+The strongest unconditional bound remains the constant improvement
+W(n) <= 151010*2^n/(n*log n), n >= 32. EqualStepCapacity now proves that
+a bits decoded by q equal-step order-c reciprocal filters along a scalar
+parameter have at most 1+a*q*(c+1) distinct strict sign words. Thus their
+word efficiency is O(log(c+2)), including when q grows. This rules out an
+unbounded gain by this specific filter family. Unequal steps are not
+covered. A written moment argument bounds cancellation at infinity of
+two fixed centered unequal-step filters by order 2c unless their positive
+weight multisets coincide. Finite-center and multivariable decoders remain
+open. These scope restrictions are explicit in joint-cell-kernel-capacity.tex.
+
+The full default lake build passed, 9286 jobs. The second audit records
+standard transitive axioms for the global theorem, equal-step capacity,
+filtered-kernel sharing, compact-zero obstructions, finite-level polynomial
+encoding, and monomial correction gluing. No model definition changed.
+
+Next genuinely different attempt: tensor products of finite planes with
+shared proper-face corrections. The row domain has q^(2c) points in c*q^2
+coordinates. Before claiming a gain, resolve the non-affine decoder residue
+tensor and the label-dependent partial-diagonal sums. Hierarchical additive
+poles may give a compatible residue factorization; this is unproved.

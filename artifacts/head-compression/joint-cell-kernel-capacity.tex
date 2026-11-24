@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\title{What the Exponential Pole Count Does and Does Not Supply}
+\author{Joint Cell Head Compression}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+This note concerns the candidate in \texttt{joint-cell-filtered-kernels.tex}.
+It does not prove a new asymptotic bound for the original head complexity.
+The equal-step identities and scalar word budget below are kernel checked
+in \texttt{Results/JointCellEqualStepCapacity.lean}. The moment argument is
+a written proof, not a Lean declaration. Unequal steps, several independent
+tokens, and affine row numerators remain outside the equal-step conclusion.
+
+For positive weights $w_1,\ldots,w_c$, put $s_w=\sum_iw_i$ and
+\[
+ K_w(d)=\sum_{T\subseteq[c]}\frac{(-1)^{c-|T|}}{d-\sum_{i\in T}w_i},
+ \qquad d>s_w.
+\]
+
+\begin{theorem}[Equal-step collapse]
+If $w_i=w$ for every $i$, then
+\[
+ K_w(d)=\sum_{j=0}^c\frac{(-1)^{c+j}\binom cj}{d-jw}.
+\]
+Consequently, suppose each of $a$ scalar output bits is a bias plus a sum
+of $q$ equal-step filters, with arbitrary bit-dependent amplitudes, shifts,
+and step sizes. If all denominators are positive at ordered tokens and the
+tokens yield $m+1$ distinct strict sign words, then
+\[
+ m\leq aq(c+1).
+\]
+In particular, decoding every $a$-bit word requires
+$2^a-1\leq aq(c+1)$.
+\end{theorem}
+
+\begin{proof}
+Group subsets by cardinality. Each bit has a partial-fraction expansion
+with at most $q(c+1)$ poles, counting multiplicities. Clearing its positive
+denominator gives a polynomial of degree at most $q(c+1)$. Consecutive
+distinct words differ in at least one coordinate. The corresponding
+polynomial has a root in that token gap. The gaps are disjoint, so the sum
+of polynomial degrees is at least their number. The Lean declarations are
+\texttt{jointCell\_filtered\_kernel\_equal\_steps},
+\texttt{jointCell\_bitwise\_cauchy\_word\_budget}, and
+\texttt{jointCell\_equal\_step\_filter\_word\_budget} in namespace
+\texttt{HeadComplexity.AxisZeroGluing}.
+\end{proof}
+
+For fixed $q$ and $c\leq n$, the word length is only $O(\log n)$.
+More generally the efficiency $a/q$ is $O(\log(c+2))$, even when $q$ grows.
+Here is an elementary verification of the latter statement. Let
+$L=\lceil\log_2(c+2)\rceil$. If $a\leq4L$, the assertion follows from
+$q\geq1$. Otherwise use
+\[
+ \frac aq\leq\frac{a^2(c+1)}{2^a-1}
+ \leq\frac{2a^2(c+1)}{2^a}
+ \leq\frac{32L^2}{8^L}\leq4L.
+\]
+The penultimate inequality uses $c+1\leq2^L$ and the decrease of
+$u^2/2^u$ for integers $u\geq4$; the last uses $8L\leq8^L$.
+Thus increasing the number of equal-step filters cannot rescue the
+proposed efficiency. This conclusion concerns a shared scalar token.
+It is not a lower bound for independent multivariate token decoders.
+
+\begin{proposition}[Fixed unequal weights cannot hide arbitrarily many
+leading moments at infinity]
+Let $w,v\in(0,\infty)^c$ and define
+\[
+ G_w(z)=\frac{z^{c+1}}{c!\prod_iw_i}K_w(z+s_w/2),
+ \qquad z>s_w/2.
+\]
+If $G_w(z)-G_v(z)=O(z^{-2c-2})$ as $z\to+\infty$, then $w$ and $v$
+have the same multiset of coordinates and $G_w=G_v$. If their multisets
+are different, their first unequal Laurent coefficient has order at most
+$2c$.
+\end{proposition}
+
+\begin{proof}
+Iterating the fundamental theorem of calculus in the mixed difference
+gives, for independent $U_i$ uniform on $[-w_i/2,w_i/2]$ and
+$X_w=\sum_iU_i$,
+\[
+ \frac{K_w(z+s_w/2)}{c!\prod_iw_i}
+   =\mathbb E(z-X_w)^{-c-1}.
+\]
+The expansion is convergent for $z>s_w/2$, and symmetry gives
+\[
+ G_w(z)=\sum_{r\geq0}\binom{c+2r}{2r}
+              \mathbb E X_w^{2r}\,z^{-2r}.
+\]
+Equality through order $2c$ therefore equates the first $c$ even moments.
+Moments determine cumulants triangularly. The moment generating function
+of $X_w$ is
+\[
+ \mathbb E e^{tX_w}=\prod_i\frac{\sinh(w_it/2)}{w_it/2},
+ \qquad
+ \kappa_{2r}(X_w)=\frac{B_{2r}}{2r}\sum_iw_i^{2r}.
+\]
+The Bernoulli numbers $B_{2r}$ are nonzero. Their generating function and
+nonvanishing sign are recorded in the NIST DLMF,
+\href{https://dlmf.nist.gov/24.2.E1}{24.2.1} and
+\href{https://dlmf.nist.gov/24.2.E2}{24.2.2}.
+Thus the power sums of the $c$ numbers $w_i^2$ and $v_i^2$ agree through
+degree $c$. Newton's identities give equality of their monic root
+polynomials. Positivity then gives equality of the original multisets.
+\end{proof}
+
+The proposition only treats a fixed pair of normalized centered kernels
+at infinity. It does not bound zeros near a finite center, allow weights
+to vary with the compactness parameter, or handle affine numerators.
+It therefore does not close the unequal-step route. Numerical searches
+have found ratios with several turns, but have not established an
+exponential number of usable sign intervals or a uniform upper bound.
+Moreover, a usable codebook must fit a token interval of width $\delta$
+while retaining a denominator margin larger than the sum of all column
+and bit slope changes. One-hot positivity alone is insufficient.
+
+\end{document}
