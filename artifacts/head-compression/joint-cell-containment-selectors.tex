@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Containment and signed-product selectors for finite planes}
+\author{Joint-cell audit}
+\date{24 November 2026}
+\maketitle
+
+\paragraph{Scope.}
+The original xorformer model and its admissibility conditions are unchanged.
+This note concerns a proposed implementation of the finite-plane incidence
+selectors on larger Boolean row domains.  It does not give a lower bound
+for arbitrary joint scores or for the original worst-case head complexity.
+The first theorem and its energy identity are kernel checked in
+\texttt{JointCellContainmentSelectors.lean}.  The subsequent observations
+are written proofs only.
+
+Let $F$ be a finite field of order $q$.  The points are $F^2$ and the
+nonvertical lines are $L_{\alpha,\beta}=\{(x,y):y=\alpha x+\beta\}$.
+
+\begin{theorem}[Containment dimension]
+Suppose each point $p$ receives a set $T_p\subseteq[n]$ and each line $L$
+receives a set $S_L\subseteq[n]$, with
+\[
+p\in L\quad\Longleftrightarrow\quad T_p\subseteq S_L.
+\]
+Then $n\geq q-1$.
+\end{theorem}
+\begin{proof}
+For $f:F^2\to\mathbb R$, put $m_L=\sum_{p\in L}f(p)$.
+The exact line-transform identity is
+\[
+\sum_L m_L^2
+=q\sum_p f(p)^2+\left(\sum_p f(p)\right)^2
+-\sum_x\left(\sum_y f(x,y)\right)^2.
+\]
+Indeed, a point belongs to $q$ lines, a pair with different first
+coordinates belongs to one line, and two distinct points with the same
+first coordinate belong to no nonvertical line.
+
+For a point set $P$ and a line set $\mathcal L$ with no incidences, take
+$f=1_P$ and $p=|P|$.  The first moment is $\sum_Lm_L=qp$ and the
+identity gives $\sum_Lm_L^2\leq qp+p^2$.  Hence
+\[
+\sum_L(qm_L-p)^2\leq q^3p.
+\]
+Every line in $\mathcal L$ has $m_L=0$, so
+$|\mathcal L|p^2\leq q^3p$.  Thus $|P||\mathcal L|\leq q^3$,
+including the empty case.
+
+For coordinate $i$, define
+$P_i=\{p:i\in T_p\}$ and $\mathcal L_i=\{L:i\notin S_L\}$.
+Their rectangle has no incidences.  Every nonincidence lies in at least
+one such rectangle.  There are $q^4-q^3=q^3(q-1)$ nonincidences, and
+therefore $q^3(q-1)\leq\sum_i|P_i||\mathcal L_i|\leq nq^3$.
+\end{proof}
+
+\paragraph{Pure-power consequence.}
+On a $c$-hot Boolean address $1_T$, the squarefree coefficient of degree
+$c$ in $(\sum_iw_i x_i)^c$ is $c!\prod_{i\in T}w_i$.
+Its nonzero support is precisely $T\subseteq\{i:w_i\ne0\}$.
+Consequently a single pure-power jet per line cannot encode a plane of
+order $q>n+1$, regardless of how large $c$ is.  In particular increasing
+the jet order alone does not create an exponentially large finite plane
+inside only $n$ physical coordinates.
+
+\paragraph{Two products with a positive ratio.}
+There is a further restricted obstruction when all product factors are
+nonzero and the ratio of the two products is positive on every address.
+If a line selector is
+\[
+A_L\prod_{i\in T_p}u_{Li}-B_L\prod_{i\in T_p}v_{Li},
+\]
+then its zero set agrees with the zero set of
+\[
+\log|A_L/B_L|+\sum_{i\in T_p}\log|u_{Li}/v_{Li}|.
+\]
+The latter point-by-line matrix has real rank at most $n+1$.
+If the former selector is nonzero exactly on line incidences, the latter
+is a weighted incidence matrix with nonzero weight at every incidence.
+The weighted design-matrix estimate from
+\texttt{joint-cell-weighted-selectors.tex} then applies.
+Opposite product signs can make the original expression nonzero while the
+log ratio vanishes, so this real-rank argument alone is insufficient.
+There is nevertheless a separate bound for arbitrary signs when all
+factors remain nonzero.  Let $A$ be the real matrix of log absolute
+ratios and let $B$ be the matrix over $\mathbb F_2$ recording whether
+the two product signs differ.  Their ranks are at most $n+1$ over their
+respective fields.  Both vanish off incidences and their supports jointly
+cover every incidence.  Fix a parallel class of $q$ disjoint lines.  If
+$r$ columns of $A$ are nonzero, those columns have disjoint supports and
+are independent over $\mathbb R$.  The remaining $q-r$ columns of $B$
+are nonzero and disjoint, hence independent over $\mathbb F_2$.
+Therefore $r\leq n+1$ and $q-r\leq n+1$, giving $q\leq2(n+1)$.
+This proof does not handle zero factors or three or more signed products.
+
+\paragraph{Binary product addresses and a different rank test.}
+Suppose a point $(x,y)\in F^2$ is encoded by separate binary encodings
+of $x$ and $y$.  For every nonzero slope the $q$ by $q$ line-incidence
+matrix is a permutation matrix.  A degree-$c$ polynomial of one affine
+statistic $u(x)+v(y)$ has matrix rank at most $c+1$, by the binomial
+expansion.  Thus a sum of $R$ such jets representing the line exactly
+requires $R(c+1)\geq q$.
+This statement depends on the product encoding and does not extend
+without proof to arbitrary $c$-hot point codes.
+
+\paragraph{What remains possible.}
+Signed sums with several products, nonproduct point encodings, approximate
+selectors combined with quantitative interference cancellation, and
+joint rational decoders with independent column poles are not excluded
+by these arguments.  Any successful construction still has to charge
+its line selection, independent-memory corrections, proper-row support,
+axis repair, and full-cube denominator positivity.
+\end{document}
