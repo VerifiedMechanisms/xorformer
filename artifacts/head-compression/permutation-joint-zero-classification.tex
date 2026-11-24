@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Exact Joint-Zero Fibers under All Pole Permutations}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This complete written classification audits a proposed source of
+many tangent subspaces. It concerns constancy over the full symmetric
+group. A structured set of permutations, such as butterfly networks,
+need not satisfy its conclusion. It gives no unrestricted
+HeadComplexity lower bound and no superconstant compiler. The exact
+checker supplements the algebra; the result is not Lean-checked.
+
+Fix $H\geq3$, distinct pole labels $p_1,\ldots,p_H$, residue labels
+$a_1,\ldots,a_H$, and one query with denominator offsets $D_h$ and
+numerator offsets $b_h$. Assume $D_h\ne p_k$ for all $h,k$. Define
+\[
+ G(\pi)=\sum_{h=1}^H\frac{a_{\pi(h)}+b_h}{D_h-p_{\pi(h)}}.
+ \tag{1}
+\]
+An additional query bias can turn a constant value into zero, so
+constancy is the relevant joint-zero condition.
+
+\begin{theorem}[Full permutation classification]
+If $G$ is constant over all permutations, then one of the following
+holds:
+\begin{enumerate}
+\item All $D_h$ are equal and all $b_h$ are equal.
+\item At least two $D_h$ differ, there is a polynomial
+$Q(X)=AX^2+BX+C$ with $a_k=Q(p_k)$ for every $k$, and
+$b_h=-Q(D_h)$ for every $h$.
+\end{enumerate}
+Both conditions are sufficient for constancy. In particular, if
+$H\geq4$ and the residue labels do not agree with a quadratic on the
+pole labels, every head must use the same denominator and numerator
+offset at this query.
+\end{theorem}
+\begin{proof}
+Write $C_{hk}=(a_k+b_h)/(D_h-p_k)$. Comparing two permutations that
+differ by swapping the labels assigned to two rows gives
+$C_{hk}+C_{g\ell}=C_{h\ell}+C_{gk}$. Thus
+$C_{hk}=u_h+v_k$ for suitable row and column vectors. Conversely, an
+additive matrix has a constant permutation sum.
+
+If every $D_h=D$, the difference of rows is
+$(b_h-b_g)/(D-p_k)$. It can be constant in $k$ only if $b_h=b_g$,
+because at least two pole labels differ.
+
+Otherwise choose $D_h\ne D_g$. Since the difference of these two
+rows is constant in $k$, multiplication by
+$(D_h-p_k)(D_g-p_k)$ expresses $(D_g-D_h)a_k$ as a polynomial of
+degree at most two in $p_k$. This constructs $Q$.
+Polynomial division now gives
+\[
+ C_{hk}=-Ap_k-(AD_h+B)+\frac{R_h}{D_h-p_k},
+ \qquad R_h=b_h+Q(D_h).
+ \tag{2}
+\]
+For any pair of rows with distinct offsets, the difference of the two
+last fractions in (2) is constant at all $H\geq3$ pole labels.
+After clearing denominators, this is a polynomial identity of degree
+at most two with at least three distinct roots. Its quadratic
+coefficient first makes that constant zero; its remaining coefficients
+then give $R_h=R_g=0$. Every other row can be paired with one of
+these two rows with a different offset, proving $R_h=0$ for all $h$.
+This proves necessity. The displayed division formula proves
+sufficiency in the second case; the first case is immediate.
+\end{proof}
+
+\paragraph{The quadratic escape is a continuous fiber.}
+For arbitrary, continuously varying poles, put
+$a_h=Q(p_h)+u_h$ and $b_{hj}=-Q(D_{hj})$. Then the exact identity
+\[
+ \sum_h\frac{a_h+b_{hj}}{D_{hj}-p_h}
+ =\sum_h\frac{u_h}{D_{hj}-p_h}
+   -A\sum_h p_h-A\sum_hD_{hj}-HB
+ \tag{3}
+\]
+holds. The last three terms are row and column corrections. At $u=0$
+all pole choices lie in the zero fiber after these corrections.
+The tangent readout is therefore the constant-numerator separable
+reciprocal family, rather than an automatically independent collection
+of $H!$ subspaces. Counting the permutation points in this fiber alone
+does not prove that its tangent spaces cover all required orthants.
+
+\paragraph{A genuine structured-permutation escape.}
+The full symmetric group assumption matters. Let $H=2^d$ and let
+$\pi$ be any setting of the usual butterfly network whose layer $k$
+switches bit $k$, with layers in increasing order. At any cut $k$,
+the map
+\[
+ h\longmapsto
+ (\text{input bits of }h\text{ at positions }\geq k,
+  \text{output bits of }\pi(h)\text{ at positions }<k)
+ \tag{4}
+\]
+is a bijection onto the $H$ possible pairs. Before the cut, higher
+bits have not changed and the lower wires are permuted within each
+higher block. After the cut, lower bits never change. Consequently
+every cost that is an arbitrary function of the pair in (4) has a
+butterfly-setting-independent sum. Such costs generally are not
+row-plus-column additive on the entire permutation matrix.
+
+For example, a leading pole value depending only on the lower output
+prefix and a query denominator depending only on the higher input
+prefix produce an invariant sum. A later pole digit can expose
+switches at the cut. This is an available zero-branch mechanism, but
+it does not yet isolate the different lower output prefixes with
+admissible exterior kernels. No shattering theorem is inferred from
+(4).
+\end{document}
