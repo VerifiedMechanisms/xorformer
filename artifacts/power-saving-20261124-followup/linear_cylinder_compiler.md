@@ -12,7 +12,7 @@ This is kernel checked in `formalization/HeadComplexity/Research/LinearCylinderC
 
 The inherited `CubeCylinder.cost`, which uses the cheaper of the two exponential inclusion-exclusion expansions, is unchanged. The new budget improves that estimate when both literal sets are sufficiently large. It does not assert a lower bound for unrestricted head complexity.
 
-The explicit coefficient and relative-margin bounds below are written proofs. The uniform approximation theorem and the original-model compilation theorem are kernel checked. The build and transitive axiom outputs are in `linear_cylinder_build.txt` and `linear_cylinder_axioms.txt`.
+The first coefficient bound below is a written proof. A second explicit bound and the resulting full-cube relative-margin theorem are now kernel checked in `formalization/HeadComplexity/Research/LinearCylinderMargin.lean`. The earlier approximation logs are `linear_cylinder_build.txt` and `linear_cylinder_axioms.txt`; the quantitative compiler logs are `linear-cylinder-margin-build.txt` and `linear-cylinder-margin-axioms.txt`.
 
 ## Interpolation and admissible gating
 
@@ -43,6 +43,24 @@ Consequently, suppose a strict unit-margin score consists of a bias $b$ and fini
 $$ H\leq\sum_\ell(p_\ell+1),\qquad \gamma\geq\frac{1}{2\left(|b|+\sum_\ell C_{p_\ell}M_\ell\right)+1}. $$
 
 This norm bound uses the entire Boolean cube, including points outside each cylinder. A bound only on the cylinder would not justify the displayed estimate for the gated reciprocal terms without another argument.
+
+## Kernel-checked quantitative variant
+
+The quantitative module uses $p+1$ reciprocals with poles $a_h=h+1$, where $0\leq h\leq p$, instead of a constant plus $p$ reciprocals. Put
+
+$$ \widetilde Q_p(t)=\prod_{h=0}^{p}(t+a_h),\qquad \widetilde P_p(t)=\frac{\widetilde Q_p(p)}{p!}\prod_{j=0}^{p-1}(t-j). $$
+
+The ratio takes value one at $p$ and zero at every smaller nonnegative integer. Integer pole separation gives the kernel-checked bounds
+
+$$ |r_h|\leq(2p+2)^{2p+1},\qquad \widetilde C_p=(p+1)(2p+2)^{2p+1}. $$
+
+Here $r_h$ is the residue at $-a_h$. This bound is slightly looser than the written $C_p$ estimate, but still has logarithm $O(p\log(p+1))$. It includes $p=0$ without a separate theorem. `bounded_decomposition_min` supplies the exact sum of $p+1$ bounded target functions, each uniformly approximable by one genuine head. Every target norm is bounded by $(2p+2)^{2p+1}M$ on the entire cube.
+
+The declaration `HeadComplexity.LinearCylinderMargin.hasRelativeMargin_of_cylinder_affine_sum` proves that a full-cube unit signed gap and affine bounds $M_\ell$ imply
+
+$$ H=\sum_\ell(p_\ell+1),\qquad \gamma\geq\frac{1}{2\left(|b|+\sum_\ell\widetilde C_{p_\ell}M_\ell\right)+1}. $$
+
+The sum can contain arbitrary real coefficients and arbitrary signed cancellation. The proof uses exact partial fractions, coherent-face gating, global input complementation, and the existing quantitative uniform compiler. It does not rescale away relative margin. All seventeen public theorem declarations have transitive axiom output `[propext, Classical.choice, Quot.sound]`.
 
 ## Relation to the open repair step
 

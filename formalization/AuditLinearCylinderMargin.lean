@@ -1,0 +1,19 @@
+import HeadComplexity.Research.LinearCylinderMargin
+
+#print axioms HeadComplexity.LinearCylinderMargin.pole_pos
+#print axioms HeadComplexity.LinearCylinderMargin.pole_one_le
+#print axioms HeadComplexity.LinearCylinderMargin.pole_injective
+#print axioms HeadComplexity.LinearCylinderMargin.base_product_one_le
+#print axioms HeadComplexity.LinearCylinderMargin.scale_nonneg
+#print axioms HeadComplexity.LinearCylinderMargin.scale_le
+#print axioms HeadComplexity.LinearCylinderMargin.indicatorPolynomial_natDegree_le
+#print axioms HeadComplexity.LinearCylinderMargin.indicatorPolynomial_eval_top
+#print axioms HeadComplexity.LinearCylinderMargin.indicatorPolynomial_eval_lt
+#print axioms HeadComplexity.LinearCylinderMargin.indicatorPolynomial_eval_pole_bound
+#print axioms HeadComplexity.LinearCylinderMargin.pole_difference_one_le
+#print axioms HeadComplexity.LinearCylinderMargin.residue_abs_le
+#print axioms HeadComplexity.LinearCylinderMargin.reciprocal_profile
+#print axioms HeadComplexity.LinearCylinderMargin.bounded_decomposition_positive
+#print axioms HeadComplexity.LinearCylinderMargin.bounded_decomposition_negative
+#print axioms HeadComplexity.LinearCylinderMargin.bounded_decomposition_min
+#print axioms HeadComplexity.LinearCylinderMargin.hasRelativeMargin_of_cylinder_affine_sum

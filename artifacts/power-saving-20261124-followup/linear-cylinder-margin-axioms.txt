@@ -1,0 +1,33 @@
+'HeadComplexity.LinearCylinderMargin.pole_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.pole_one_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.pole_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.base_product_one_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.scale_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.scale_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.indicatorPolynomial_natDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.indicatorPolynomial_eval_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.indicatorPolynomial_eval_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.indicatorPolynomial_eval_pole_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.pole_difference_one_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.residue_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.reciprocal_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LinearCylinderMargin.bounded_decomposition_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.bounded_decomposition_negative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.bounded_decomposition_min' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LinearCylinderMargin.hasRelativeMargin_of_cylinder_affine_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
