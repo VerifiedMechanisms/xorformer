@@ -1,0 +1,6 @@
+import HeadComplexity.Polynomial.WeightedDiagonalRootBound
+#print axioms HeadComplexity.PolynomialRootCount.weightedDiagonalIdeal_quotient_finite
+#print axioms HeadComplexity.PolynomialRootCount.weightedDiagonalIdeal_finrank_le
+#print axioms HeadComplexity.PolynomialRootCount.weightedDiagonalRoot_finite
+#print axioms HeadComplexity.PolynomialRootCount.weightedDiagonalRoot_card_le
+#print axioms HeadComplexity.PolynomialRootCount.weighted_perturbed_roots_card_le

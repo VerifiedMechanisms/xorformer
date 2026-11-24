@@ -1,0 +1,15 @@
+'HeadComplexity.PolynomialRootCount.weightedDiagonalIdeal_quotient_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDiagonalIdeal_finrank_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDiagonalRoot_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDiagonalRoot_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weighted_perturbed_roots_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
