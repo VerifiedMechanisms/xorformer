@@ -206,6 +206,42 @@ They do not exclude jointly label-dependent banks, different poles, larger
 $H$, or the asymptotic decoder hypothesis. They are finite exact
 computations, not kernel-checked Lean declarations.
 
+\section{A targeted finite bank that covers every labeling}
+The fixed-bank failures do not persist for every bank. The certificate
+\texttt{LargeDomainTargetedCoverage.json} specifies two integer affine
+banks for $k=3,H=3,q=3000000$. With
+$b_h=1+(h+1)/q$ and $w_i=2^i/q$, their weighted permutation branches
+realize all $2^8=256$ strict sign patterns. The same two banks can therefore
+serve arbitrarily many independently labeled columns at this fixed
+compact width, using the checked $2H$-head transfer whenever its column
+positivity condition holds. This is a finite-width computation; neither
+arbitrarily small width nor growing $k$ follows from it.
+
+The bank was designed to contain parity exactly. Solve the full-rank
+square-pole affine feature system for a difference array $\Delta$ with
+positive parity score, choose an integer array $U$, and set $V=U+\Delta$.
+The identity branch with all square-kernel residues equal to one gives
+parity; changing all residues' signs gives its complement. The remaining
+254 patterns are certified by 18 rays from other permutation branches.
+
+Each ray certificate specifies five independent rows of an $8$ by $6$
+feature matrix. Its one-dimensional nullspace has nonzero values on the
+other three rows. Since the selected five rows have rank five, one can
+perturb the null vector to assign any prescribed signs to their five
+scores while retaining the three already strict signs. Thus each ray and
+its negative certify up to $64$ patterns. The stored rays, together with
+parity and its complement, cover all $256$ patterns. The exact verifier
+rebuilds the rational feature matrices, checks each rank and nonzero score,
+and checks the finite union without invoking an optimization solver:
+\begin{verbatim}
+python3 artifacts/head-compression/LargeDomainTargetedCoverageVerify.py \
+  artifacts/head-compression/LargeDomainTargetedCoverage.json
+\end{verbatim}
+This is an exact rational finite computation, not a Lean declaration.
+Analogous sampled rays for targeted $(k,H)=(4,4)$ banks covered only about
+55000 of 65536 patterns. Incomplete sampling is not an impossibility
+certificate. A recursive or asymptotic coverage theorem remains open.
+
 \section{The first unresolved lemma}
 For fixed $F$ and a shared coefficient array $v$, the possible column
 vectors form the projected permutation orbit $\{F(P_\pi v):\pi\in S_H\}$.
