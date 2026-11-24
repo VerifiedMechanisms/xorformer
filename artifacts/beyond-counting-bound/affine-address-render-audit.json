@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "renderer": "GitHub Markdown API",
+  "checked_utc": "2026-11-24T07:23:29.702889+00:00",
+  "files": [
+    {
+      "file": "affine-address-budget.md",
+      "math_spans": 95,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "3c174a4ed84ca70c940a52c7a900a9f2580c21cde67d854af1c2f74544a76d2d"
+    },
+    {
+      "file": "research.md",
+      "math_spans": 128,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "556b777d91c8e35730444d282148d4390ad0ecfd507d126b6a90bf4fbc6193f4"
+    },
+    {
+      "file": "audit-index.md",
+      "math_spans": 8,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "1880ccabccd58385dbb7e679e40ee637ac79a43963d91a9d4bdbd53d3fad4870"
+    }
+  ]
+}

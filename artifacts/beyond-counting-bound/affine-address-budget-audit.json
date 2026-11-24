@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "finite exact checks, not Lean",
+  "counts": {
+    "symmetry_arrays": 26400,
+    "symmetry_query_families": 60,
+    "component_compositions": 131071,
+    "tied_level_equalities": 4
+  },
+  "sha256": {
+    "affine-address-budget.md": "3c174a4ed84ca70c940a52c7a900a9f2580c21cde67d854af1c2f74544a76d2d",
+    "verify_affine_address_budget.py": "6ea6deda0872bbb7a701fc56dfca45f69ed7941a00f783ae108983c279da55c7"
+  }
+}

@@ -20,6 +20,8 @@ The [deletion-star denominator criterion](deletion-star-denominator-budget.md) c
 
 ## Exact results useful for auditing proposed proofs
 
+The [affine address and generic symmetry audit](affine-address-budget.md) bounds the number of independently selected interpolation blocks and classifies column permutations preserving a generic reciprocal observation map. Many Boolean queries force the latter symmetry multiplicity down to the critical order $nH\log n$. This only counts specified symmetry orbits; specially tied coefficients and other isolated solutions are explicitly outside the theorem. The finite exact audit passes, and the proof is written rather than Lean-formalized.
+
 | Result | Verification scope | Source |
 | --- | --- | --- |
 | Infinitesimal row balancing is an orthogonal projection; fixed denominator pencils lose pole-location freedom, but a positive three-head family retains all twelve denominator directions after the quotient. | Complete written differential and interpolation proofs; nine Lean finite-field identities and independent rational checks. No asymptotic sign count. | `HeadComplexity.RowScalingQuotient.selected_formula` and `selected_inverse_mul`; [proof and scope](row-scaling-quotient.md). |
