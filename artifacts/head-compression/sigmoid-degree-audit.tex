@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Audit of a Discrete-Sigmoid Degree Bound}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is an independent written audit of a potentially useful literature
+lead. It proves that one polynomial-degree step in the printed argument
+cannot hold as stated. It does not disprove the printed VC-dimension
+theorem, and it proves neither accepted HeadComplexity target. Nothing
+here changes the model or is imported as a Lean theorem.
+
+\section{The lead and its limitation}
+Anthony and Bartlett, \emph{Neural Network Learning: Theoretical
+Foundations}, Theorem 8.11, printed page 122, gives
+$2W\log_2(60ND)$ as an upper bound for a two-layer standard-sigmoid
+network with $W$ parameters, integer inputs in $[-D,D]$, and first-layer
+fan-in at most $N$. Its proof on printed page 123 transforms each hidden
+unit to a rational function of degree at most $ND$ in the numerator and
+$2ND+1$ in the denominator, then asserts a degree bound $3ND+2$ for
+the polynomial whose sign is the output. The preceding Theorem 8.3
+uses total degree, explicitly defined on printed page 108 as the sum
+of monomial exponents. Thus a coordinatewise-degree convention does
+not explain the missing dependence on the number $k$ of hidden units.
+
+Straight denominator clearing gives the valid bound
+$k(2ND+1)+1$: each output summand has its own numerator and all the
+other denominator factors. This returns an order
+$W\log(kND)$ VC estimate. The abstract of the primary 1996 paper by
+Bartlett and Williamson reports order $W\log(WD)$, consistent with
+this dependence. No erratum resolving the discrepancy was found in
+the author's book webpage or targeted searches during this audit.
+
+\section{The degree cannot be removed at this proof step}
+Even at the single allowed input $x=0$, a sigmoid network contains
+the parameter family
+\[
+ Z(a,u,b)=b+\sum_{j=1}^k\frac{u_j}{1+a_j},
+ \qquad a_j>0,\quad u_j,b\in\mathbb R.
+\]
+Here $a_j$ is the exponential of the $j$th hidden bias. Input weights
+may be fixed at zero; all output weights remain unrestricted.
+
+\begin{proposition}
+If a nonzero real polynomial $Q(a,u,b)$ has the same strict sign as
+$Z$ wherever $Z\ne0$ on this parameter domain, then
+$\deg Q\ge k+1$.
+\end{proposition}
+\begin{proof}
+Set $L_j=1+a_j$, $D=\prod_jL_j$, and
+\[
+ P=bD+\sum_{j=1}^ku_j\prod_{i\ne j}L_i.
+\]
+Its total degree is $k+1$. Regard $P$ as a polynomial in $b$ over
+the unique factorization domain $R=\mathbb R[a_1,\ldots,a_k,
+u_1,\ldots,u_k]$. Its leading coefficient $D$ is relatively prime
+to its constant coefficient. Indeed any irreducible factor of $D$
+is some $L_j$, and reduction of the constant coefficient modulo
+$L_j$ is $u_j\prod_{i\ne j}L_i$, which is nonzero. Therefore $P$
+is primitive. It is linear and hence irreducible over the fraction
+field of $R$; Gauss's lemma makes it irreducible in $R[b]$.
+
+For every positive $a$ and every real $u$, variation of $b$ crosses
+the zero of $Z$ with positive slope. Continuity and the assumed
+strict signs force
+\[
+ Q\left(a,u,-\sum_j u_j/L_j\right)=0.
+\]
+After clearing a power of $D$, this is a polynomial identity: a
+polynomial vanishing on the open set
+$(0,\infty)^k\times\mathbb R^k$ vanishes identically. Consequently
+$P$ divides $Q$ over the fraction field of $R$ and, by primitivity,
+in $R[b]$. Total degrees add for nonzero polynomial products, giving
+the claim.
+\end{proof}
+
+For $N=D=1$ and $k\ge5$, this contradicts the proof's claimed
+degree bound $3ND+2=5$ in precisely its proposed transformed
+parameters. This is a failure of that proof step, not a
+counterexample to its VC-dimension conclusion. At the single input
+used above there is of course no large shattered set. A different
+sign-counting argument could conceivably prove the stated bound,
+but none is supplied by the cited polynomial-degree calculation.
+
+\section{Consequence for the present research}
+The bound cannot currently be used as a shortcut to an improved
+unrestricted count for sums of admissible reciprocals. Positive
+denominators do not by themselves justify dropping the number of
+summands from the total degree. The missing task remains a direct
+sign-pattern argument exploiting additional structure, or a
+different construction for the upper-bound target.
+
+\begin{thebibliography}{9}
+\bibitem{AB}
+M. Anthony and P. L. Bartlett,
+\emph{Neural Network Learning: Theoretical Foundations},
+Cambridge University Press, 1999, Chapter 8.
+\href{https://www.stat.berkeley.edu/~bartlett/nnl/index.html}{Author's book webpage}.
+\href{https://openeclass.panteion.gr/modules/document/file.php/PMS152/LEARNING/Anthony\%20Martin\%2C\%20Bartlett\%20Peter\%20L.\%20\%282009\%29\%20--\%20Neural\%20Network\%20Learning_\%20Theoretical\%20Foundations.pdf}{Consulted scan}.
+\bibitem{BW}
+P. L. Bartlett and R. C. Williamson,
+The VC dimension and pseudodimension of two-layer neural networks
+with discrete inputs, \emph{Neural Computation} 8(3), 625--628, 1996.
+\href{https://doi.org/10.1162/neco.1996.8.3.625}{doi:10.1162/neco.1996.8.3.625}.
+\href{https://ieeexplore.ieee.org/document/6796931/}{Publisher abstract}.
+\end{thebibliography}
+\end{document}
