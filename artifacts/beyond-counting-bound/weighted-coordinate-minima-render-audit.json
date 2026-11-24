@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T00:48:01.463801+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/weighted-coordinate-minima.md",
+      "source_math_spans": 109,
+      "rendered_math_spans": 109,
+      "findings": 0,
+      "notes": [],
+      "sha256": "1e3d99bc83b0b9243a4fcef9afa4d11d8e50124bc4521a4c3e7038de82728005"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "76617cdc09e64c5e59c4a679d669d1b8dbd524ff2e7fb939b569ecb53a93df27"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "b4dcb15db26eedf8b69ce5e72b8e3d347b792d60f80c9cf0fc442c04ae7bebc3"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

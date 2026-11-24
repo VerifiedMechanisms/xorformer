@@ -1,0 +1,12 @@
+'HeadComplexity.WeightedCoordinateMinima.regression_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.variance_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.variance_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.log_curvature_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.hessian_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.hessian_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.many_selector_numerator_negative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedCoordinateMinima.two_samples_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

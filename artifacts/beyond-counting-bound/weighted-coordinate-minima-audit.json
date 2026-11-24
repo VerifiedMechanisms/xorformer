@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "lean_build": "weighted-coordinate-minima-build.txt",
+  "axioms": "weighted-coordinate-minima-axioms.txt",
+  "rational": "weighted-coordinate-minima-rational-audit.json",
+  "declarations": [
+    "HeadComplexity.WeightedCoordinateMinima.regression_square",
+    "HeadComplexity.WeightedCoordinateMinima.variance_identity",
+    "HeadComplexity.WeightedCoordinateMinima.variance_nonneg",
+    "HeadComplexity.WeightedCoordinateMinima.log_curvature_bound",
+    "HeadComplexity.WeightedCoordinateMinima.hessian_square",
+    "HeadComplexity.WeightedCoordinateMinima.hessian_positive",
+    "HeadComplexity.WeightedCoordinateMinima.many_selector_numerator_negative",
+    "HeadComplexity.WeightedCoordinateMinima.two_samples_injective"
+  ],
+  "source_sha256": "57b40093d23241c737ab59d9b1f7fe5ed6efa97f766f375bea4a83a073f65468",
+  "written_proof": "weighted-coordinate-minima.md",
+  "scope": "Eight algebraic ingredients. General calculus, implicit-function perturbation, and positive-definite Hessian argument are complete written proofs, not end-to-end Lean theorems.",
+  "positive_epsilon_numerical_certificate": false,
+  "main_target_proved": false
+}

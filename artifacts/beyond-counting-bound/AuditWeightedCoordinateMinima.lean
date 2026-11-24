@@ -1,0 +1,9 @@
+import HeadComplexity.Atoms.WeightedCoordinateMinima
+#print axioms HeadComplexity.WeightedCoordinateMinima.regression_square
+#print axioms HeadComplexity.WeightedCoordinateMinima.variance_identity
+#print axioms HeadComplexity.WeightedCoordinateMinima.variance_nonneg
+#print axioms HeadComplexity.WeightedCoordinateMinima.log_curvature_bound
+#print axioms HeadComplexity.WeightedCoordinateMinima.hessian_square
+#print axioms HeadComplexity.WeightedCoordinateMinima.hessian_positive
+#print axioms HeadComplexity.WeightedCoordinateMinima.many_selector_numerator_negative
+#print axioms HeadComplexity.WeightedCoordinateMinima.two_samples_injective
