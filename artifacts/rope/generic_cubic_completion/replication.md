@@ -4,7 +4,7 @@
 
 This appendix establishes the averaging step needed to turn a quantitative cubic coefficient obstruction into a finite Boolean obstruction. It does not by itself choose a sufficient replication count or prove the quantitative sign-rigidity estimate. Those are separate inputs.
 
-The identities `ThreeHeadReplication.coefficient_sum_three_groups` and `ThreeHeadReplication.uniform_group_sum` are checked in `formalization/HeadComplexity/Polynomial/ThreeHeadReplication.lean`. The permutation averaging and finite-population formulas are now checked in `Polynomial/MeanGridSymmetrization.lean` and `Polynomial/MeanGridCubic.lean`. In particular, `MeanGridCubic.cubic_mean_polynomial_exists` constructs the degree-at-most-three polynomial for every arbitrary, untied raw cubic; `cubic_mean_sign_exists` proves its sign agreement on the full mean grid. The distinct-group coefficient identification with the polynomial so constructed is justified below, while the separate group-sum factorization identity is formalized.
+The identities `ThreeHeadReplication.coefficient_sum_three_groups` and `ThreeHeadReplication.uniform_group_sum` are checked in `formalization/HeadComplexity/Polynomial/ThreeHeadReplication.lean`. The permutation averaging and finite-population formulas are now checked in `Polynomial/MeanGridSymmetrization.lean` and `Polynomial/MeanGridCubic.lean`. In particular, `MeanGridCubic.cubic_mean_polynomial_exists` constructs the degree-at-most-three polynomial for every arbitrary, untied raw cubic; `cubic_mean_sign_exists` proves its sign agreement on the full mean grid. The identification of its distinct-group cubic coefficients is checked by `CubeTopCoefficients.meanPolynomial_cubic_coefficient`; the separate group-sum factorization identity is also formalized. Thus the averaging degree, sign, and exact distinct-group coefficient steps are all kernel-checked.
 
 ## Replicated pure function
 
@@ -45,6 +45,8 @@ There are positive target inputs, so $Q$ is not the zero polynomial. It may ther
 For three distinct groups $i,j,k$, the coefficient of $t_it_jt_k$ in $Q$ is exactly the sum of the coefficients of $z_{i,r}z_{j,s}z_{k,u}$ in the original raw cleared polynomial $P$ over all replica indices $r,s,u$.
 
 Indeed, such a raw cubic monomial has no repeated coordinate, so multilinear reduction leaves it unchanged. Any other raw monomial of degree at most three involves at most two distinct groups, so neither reduction nor permutation averaging can produce a term involving all three groups. Finally, averaging the relevant monomial gives exactly $t_it_jt_k$, with no factor depending on $m$.
+
+The Lean proof uses an equivalent finite-character argument. At every group spin-cube corner the replicas are constant, so the averaged polynomial agrees with the raw polynomial after substituting one variable for every group. `CubeTopCoefficients.top_coefficient_eq_of_cube_eq` proves that two polynomials agreeing on the spin cube have the same squarefree coefficient whenever the support size is at least both total degrees. Finite Walsh averaging isolates that coefficient exactly. Applied to three distinct groups, this proves the required coefficient identity without any limiting or interpolation step.
 
 Write the centered raw numerator and denominator slope arrays as $A_{h,i,r}$ and $B_{h,i,r}$. Define their group sums by
 

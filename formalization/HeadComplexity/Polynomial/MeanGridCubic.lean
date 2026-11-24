@@ -247,6 +247,21 @@ theorem cubic_mean_sign_exists {n m : ℕ} (hm : 2 < m)
   change 0 < eval (spin (permuted x σ)) P ↔ f x = true
   rw [hPf, hf]
 
+
+/-- At a spin-cube corner, replicas are constant and averaging has no effect. -/
+theorem meanPolynomial_corner {n m : ℕ} (hm : 2 < m)
+    (P : MvPolynomial (Fin n × Fin m) ℝ) (hP : P.totalDegree ≤ 3)
+    (x : Fin n → Bool) :
+    eval (spin x) (meanPolynomial P) = eval (spin x) (rename Prod.fst P) := by
+  have hmean (i : Fin n) : (∑ _r : Fin m, spin x i) / m = spin x i := by
+    have hm0 : (m : ℝ) ≠ 0 := by exact_mod_cast (show m ≠ 0 by omega)
+    simp [hm0]
+  have he := average_polynomial_eq hm P hP (fun p ↦ spin x p.1)
+    (fun p ↦ spin_square x p.1)
+  simp only [hmean, average_const] at he
+  rw [eval_rename]
+  exact he.symm
+
 end
 
 end HeadComplexity.MeanGridCubic
