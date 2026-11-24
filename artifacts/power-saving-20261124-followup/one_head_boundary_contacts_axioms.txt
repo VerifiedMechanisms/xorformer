@@ -1,0 +1,9 @@
+'HeadComplexity.OneHeadBoundaryContacts.abs_slope_gt_of_opposite_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadBoundaryContacts.coordinate_irrelevant_of_abs_slope_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadBoundaryContacts.maximizing_coordinate_of_positive_slope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

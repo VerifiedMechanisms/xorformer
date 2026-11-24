@@ -1,0 +1,4 @@
+import HeadComplexity.Research.OneHeadBoundaryContacts
+#print axioms HeadComplexity.OneHeadBoundaryContacts.abs_slope_gt_of_opposite_gap
+#print axioms HeadComplexity.OneHeadBoundaryContacts.coordinate_irrelevant_of_abs_slope_le
+#print axioms HeadComplexity.OneHeadBoundaryContacts.maximizing_coordinate_of_positive_slope
