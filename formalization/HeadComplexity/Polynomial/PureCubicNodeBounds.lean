@@ -158,5 +158,50 @@ theorem finite_node_denominator (y : Fin 13 → ℝ) (hy : ∀ i, y i ∈ chartG
   exact ⟨nodeDenominator j, nodeDenominator_pos j, nodeDenominator_bound j,
     fun i ↦ ⟨nodeInteger j i, rawNode_rational j i⟩⟩
 
+theorem rational_monomial {α : Type*} (d : α →₀ ℕ) (a : α → ℤ) (q : ℕ) :
+    d.prod (fun i k ↦ ((a i : ℝ) / q) ^ k) =
+      ((d.prod (fun i k ↦ a i ^ k) : ℤ) : ℝ) / (q : ℝ) ^ d.sum (fun _ k ↦ k) := by
+  classical
+  simp only [Finsupp.prod, Finsupp.sum, div_pow, Finset.prod_div_distrib,
+    Finset.prod_pow_eq_pow_sum, Int.cast_prod, Int.cast_pow]
+
+theorem cubic_integer_row {α : Type*} (z : α → ℝ) (q : ℕ) (hq : 0 < q)
+    (hz : ∀ i, ∃ a : ℤ, z i = (a : ℝ) / q)
+    (d : α →₀ ℕ) (hd : d.sum (fun _ k ↦ k) ≤ 3) :
+    ∃ a : ℤ, (q : ℝ) ^ 3 * d.prod (fun i k ↦ z i ^ k) = (a : ℝ) := by
+  classical
+  choose a ha using hz
+  have he : z = fun i ↦ (a i : ℝ) / q := funext ha
+  rw [he, rational_monomial]
+  refine ⟨(q : ℤ) ^ (3 - d.sum (fun _ k ↦ k)) * d.prod (fun i k ↦ a i ^ k), ?_⟩
+  have hq' : (q : ℝ) ≠ 0 := by exact_mod_cast hq.ne'
+  simp only [Int.cast_mul, Int.cast_pow, Int.cast_natCast]
+  conv_lhs =>
+    rw [show 3 = (3 - d.sum (fun _ k ↦ k)) + d.sum (fun _ k ↦ k) by omega, pow_add]
+  field_simp
+
+theorem node_monomial_bound (y : Fin 13 → ℝ) (hy : ∀ i, y i ∈ chartGrid)
+    (d : Fin 14 →₀ ℕ) : |d.prod (fun i k ↦ rawNode y i ^ k)| ≤ 1 := by
+  classical
+  rw [Finsupp.prod, Finset.abs_prod]
+  apply Finset.prod_le_one
+  · intro i _
+    exact abs_nonneg _
+  · intro i _
+    rw [abs_pow]
+    have hi : |rawNode y i| ≤ 1 := (rawNode_abs_bound y hy i).le.trans (by norm_num)
+    simpa using pow_le_pow_left₀ (abs_nonneg _) hi (d i)
+
+/-- The actual evaluation matrix rows have bounded integer denominators. -/
+theorem finite_cubic_row (y : Fin 13 → ℝ) (hy : ∀ i, y i ∈ chartGrid) :
+    ∃ q : ℝ, 0 < q ∧ q < 2 ^ 414 ∧
+      ∀ d : Fin 14 →₀ ℕ, d.sum (fun _ k ↦ k) ≤ 3 →
+        ∃ a : ℤ, q * d.prod (fun i k ↦ rawNode y i ^ k) = (a : ℝ) := by
+  obtain ⟨q, hq, hb, hz⟩ := finite_node_denominator y hy
+  refine ⟨(q : ℝ) ^ 3, by positivity, ?_, fun d hd ↦ cubic_integer_row _ q hq hz d hd⟩
+  have hb' : (q : ℝ) < (2 : ℝ) ^ 138 := by exact_mod_cast hb
+  have hp := pow_lt_pow_left₀ hb' (by positivity : 0 ≤ (q : ℝ)) (by decide : 3 ≠ 0)
+  simpa only [← pow_mul] using hp
+
 end
 end HeadComplexity.PureCubicNodeBounds
