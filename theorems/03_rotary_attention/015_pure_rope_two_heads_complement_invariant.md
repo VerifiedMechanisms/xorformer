@@ -12,7 +12,7 @@ $$ H_P(f)\leq2\quad\Longrightarrow\quad H_P(f)=H_V(f). $$
 
 This holds with either fixed standard rotary frequencies or freely chosen frequencies. Consequently a strict two-head pure-RoPE improvement, if one exists, must be a function that is not invariant under simultaneous input complementation, and its counts must be exactly two versus three.
 
-This does not supply a strict Boolean head-count example. It excludes a substantial candidate class beyond the fully symmetric functions already covered by Theorem 14.
+[Theorem 16](016_pure_rope_two_head_equality.md) strengthens this result to every Boolean function and provides a complete Lean proof of the scalar-to-vanilla implication. The proof below remains useful as a separate reorientation argument, but the complement-invariance hypothesis is no longer needed for the head-count conclusion.
 
 ## Proof
 

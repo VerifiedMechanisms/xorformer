@@ -269,9 +269,15 @@ The scalar simulations, complexity bounds, and symmetric equality are Lean-check
 
 ### Theorem 15. Two pure rotary heads and complement invariance
 
-If $f(1-x)=f(x)$ and $H_P(f)\leq2$, then $H_P(f)=H^{\ast}(f)$. Thus a two-versus-three pure-RoPE separation must fail simultaneous input-complement invariance. The complete head-count proof is handwritten; the special pure-head coefficients, positive-direction lemma, and polynomial identities are Lean-checked.
+If $f(1-x)=f(x)$ and $H_P(f)\leq2$, then $H_P(f)=H^{\ast}(f)$. Theorem 16 below removes the complement-invariance hypothesis. The proof in Theorem 15 is handwritten; the special pure-head coefficients, positive-direction lemma, and polynomial identities are Lean-checked.
 
 **Proof.** [theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md](theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md)
+
+### Theorem 16. Two pure rotary heads always equal vanilla
+
+For every Boolean function, $H_P(f)\leq2$ implies $H_P(f)=H^{\ast}(f)$. This rules out every two-versus-three pure-RoPE separation, including asymmetric functions. A positive oriented form in one pure head's numerator-denominator pencil compiles the cleared quadratic into two vanilla-admissible ratios. The complete scalar-to-vanilla implication, finite perturbation, and minimum-count conclusion are Lean-checked. The literal pure-RoPE matrix bridge has the scope stated in Theorem 14.
+
+**Proof.** [theorems/03_rotary_attention/016_pure_rope_two_head_equality.md](theorems/03_rotary_attention/016_pure_rope_two_head_equality.md)
 
 ## Dependency Order
 

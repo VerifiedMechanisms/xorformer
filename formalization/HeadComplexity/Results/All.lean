@@ -9,6 +9,7 @@ import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.StrictSeparation
 import HeadComplexity.Results.RoPEComparison
 import HeadComplexity.Atoms.RoPEReorientation
+import HeadComplexity.Results.PureRoPETwoHeads
 
 set_option linter.style.header false
 
@@ -126,5 +127,14 @@ alias theorem14_degree_lower_bound := thresholdDeg_le_retainedRoPEHStar
 
 /-- **Theorem 14.** Both rotary scalar complexities equal sign changes on symmetric functions. -/
 alias theorem14_symmetric := ropeHStar_symmetric
+
+/-- **Theorem 16.** Pure rotary and vanilla Boolean classes agree at two heads. -/
+alias theorem16_pure_two_head_equivalence := pureRoPEComputable_two_iff_vanilla
+
+/-- **Theorem 16.** The minimum counts agree whenever pure rotary needs at most two heads. -/
+alias theorem16_pure_two_head_complexity := pureRoPEHStar_eq_vanilla_of_le_two
+
+/-- **Theorem 16.** Any strict pure rotary improvement needs at least three pure heads. -/
+alias theorem16_separation_requires_three := pureRoPE_separation_requires_three_heads
 
 end HeadComplexity
