@@ -1,0 +1,7 @@
+import HeadComplexity.Research.CauchyMomentInterpolation
+#print axioms HeadComplexity.CauchyMomentInterpolation.sum_residue_div
+#print axioms HeadComplexity.CauchyMomentInterpolation.residue_moment_zero
+#print axioms HeadComplexity.CauchyMomentInterpolation.exists_residues
+#print axioms HeadComplexity.CauchyMomentInterpolation.sum_polynomial_zero_of_moments
+#print axioms HeadComplexity.CauchyMomentInterpolation.translated_moment_zero
+#print axioms HeadComplexity.CauchyMomentInterpolation.exists_original_heads_with_moment_cancellation

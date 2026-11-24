@@ -1,0 +1,14 @@
+'HeadComplexity.CauchyMomentInterpolation.sum_residue_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CauchyMomentInterpolation.residue_moment_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CauchyMomentInterpolation.exists_residues' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CauchyMomentInterpolation.sum_polynomial_zero_of_moments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CauchyMomentInterpolation.translated_moment_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CauchyMomentInterpolation.exists_original_heads_with_moment_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
