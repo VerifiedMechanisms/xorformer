@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A uniform relative-margin limit for mixtures of comparison orders}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written probabilistic proof, with exact finite
+enumeration for the two smallest nontrivial square grids. It is not
+Lean-checked. The theorem concerns weighted mixtures of order-comparison
+signs, even allowing arbitrarily many votes. It does not bound arbitrary
+affine-ratio sums and does not resolve either global HeadComplexity target.
+Its purpose is to close a possible margin-based repair of the audited
+per-vote reversal route.
+
+For a strict total order on $r+s$ named objects
+$R_1,\ldots,R_r,C_1,\ldots,C_s$, define the comparison table
+$v\in\{-1,1\}^{r\times s}$ by $v_{ij}=1$ exactly when $R_i$ precedes
+$C_j$. Let $\mathcal V_{r,s}$ be the set of all such tables. It contains
+both constant tables and is closed under negation. Write $N=rs$ and
+$M=|\mathcal V_{r,s}|\leq(r+s)!$.
+
+\begin{theorem}
+For every $r,s\geq1$ there is a sign table $\sigma$ such that every
+finite weighted order mixture
+\[
+ S_{ij}=c+\sum_{h=1}^L\lambda_hv^{(h)}_{ij},
+ \qquad v^{(h)}\in\mathcal V_{r,s},
+\]
+with $A=|c|+\sum_h|\lambda_h|>0$ obeys
+\[
+ \min_{i,j}\frac{\sigma_{ij}S_{ij}}A
+ <\sqrt{\frac{2(\log M+1)}{rs}}
+ \leq\sqrt{\frac{2(\log((r+s)!)+1)}{rs}}.                 \tag{1}
+\]
+All logarithms are natural. In particular, when $r=s=m\geq2$, the
+right side is at most
+\[
+ \sqrt{\frac{4\log(2m)}m+\frac2{m^2}}
+ =O\!\left(\sqrt{\frac{\log m}m}\right).                 \tag{2}
+\]
+\end{theorem}
+
+\begin{proof}
+Choose all $N$ entries of $\sigma$ independently and uniformly from
+$\{-1,1\}$. For a fixed $v$, put $X_v=\sum_{ij}\sigma_{ij}v_{ij}$.
+For every $u>0$, independence and
+$\cosh u\leq\exp(u^2/2)$ give
+\[
+ \Pr(X_v\geq t)
+ \leq\exp(-ut)\,\mathbb E\exp(uX_v)
+ \leq\exp(-ut+Nu^2/2).
+\]
+Taking $u=t/N$ proves
+$\Pr(X_v\geq t)\leq\exp(-t^2/(2N))$.
+For $t=\sqrt{2N(\log M+1)}$, the union bound over the $M$ comparison
+tables is at most $e^{-1}<1$. Thus some $\sigma$ satisfies
+\[
+             \sum_{ij}\sigma_{ij}v_{ij}<t
+             \quad\hbox{for every }v\in\mathcal V_{r,s}.       \tag{3}
+\]
+For completeness, the elementary exponential inequality used above
+follows by differentiating $u^2/2-\log\cosh u$: its derivative is
+$u-\tanh u\geq0$ for $u\geq0$, because the derivative of
+$u-\tanh u$ is $\tanh^2u\geq0$.
+
+Absorb each coefficient sign into its order table by reversing that
+order when necessary. Represent the constant term using the appropriate
+constant comparison table. Applying (3) and adding with the resulting
+nonnegative coefficients yields
+\[
+       \sum_{ij}\sigma_{ij}S_{ij}<tA.
+\]
+The strict inequality persists because at least one coefficient is
+positive. The minimum of the $N$ numbers on the left after division
+by $A$ is at most their average, proving (1). Finally
+$\log((2m)!)\leq2m\log(2m)$ proves (2).
+\end{proof}
+
+\paragraph{Consequence for numerical vote approximation.}
+Suppose a proposed universal order-mixture construction promised a
+uniform relative margin bounded below by $1/(\log m)^K$, for some
+fixed $K>0$. The theorem rules out that promise for all sufficiently
+large square tables, regardless of the number of order votes or their
+real weights. Indeed
+$\sqrt{\log m/m}=o((\log m)^{-K})$.
+Therefore replacing the known unit absolute majority margin by a
+universal inverse-polylogarithmic relative margin cannot justify
+coarse numerical reversal of the individual votes.
+
+This conclusion does not rule out target-dependent signed cancellations,
+joint reversal identities, nonuniform per-entry error estimates, or
+other constructions using actual affine ratios. Nor does it prove
+that the existing quantitative per-vote lower bound is sharp for every
+achievable margin.
+
+\paragraph{Exact finite check.}
+The accompanying script enumerates all total orders and all target
+tables for $m=2,3$. It computes
+$\min_\sigma\max_{v\in\mathcal V_{m,m}}\sum_{ij}\sigma_{ij}v_{ij}$
+using only integer bit counts, verifies negation and constant-table
+closure, and checks the exact binomial correlation distribution for a
+fixed order. The resulting maximum-correlation bounds for a worst
+target are $2/4$ and $5/9$, respectively. These small enumerations
+illustrate (3); the all-size
+existence theorem is the probabilistic proof above.
+\end{document}
