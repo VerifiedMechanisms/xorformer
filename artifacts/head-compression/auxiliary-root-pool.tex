@@ -10,8 +10,10 @@
 This is a complete written root-only compatibility theorem, with exact
 rational checks. It permits a single strictly positive residue pool for
 several prescribed words by choosing routing at unused query indices.
-It is not Lean-checked, does not preserve descendant inequalities, and
-does not prove a growing-query compiler.
+The positive-spanning interpolation ingredient is now Lean-checked in
+\texttt{ExteriorCauchyInterpolation.lean}. The several-word routing
+theorem below remains a written proof. Neither result preserves
+descendant inequalities or proves a growing-query compiler.
 
 Let $q\geq1$, and let $t_1<\cdots<t_q$ be exterior queries. Write
 $v(p)=(1/(t_j-p))_{j=1}^q$ for $p<t_1$.
@@ -37,6 +39,22 @@ Then $c+\lambda z$ is strictly positive for sufficiently large
 $\lambda$, without changing its image. Additional prescribed
 columns can first be subtracted from $y$.
 \end{proof}
+
+\paragraph{Lean verification of the interpolation ingredient.}
+The declaration
+\texttt{HeadComplexity.AxisZeroGluing.exists\_positive\_exterior\_cauchy\_interpolation}
+proves an equivalent barycentric form, with $q+1$ arbitrary distinct
+poles below all $q$ distinct queries. If
+$w_h=\prod_{k\ne h}(p_h-p_k)^{-1}$, it constructs $a_h>0$ such that
+$\sum_h a_hw_h/(t_j-p_h)=y_j$ for every requested real vector $y$.
+For sorted poles the signs of $w_h$ alternate, giving the displayed
+positive-spanning statement, up to a common sign.
+The Lean proof interpolates a polynomial $P$ with
+$P(t_j)=y_j\prod_h(t_j-p_h)$, then adds a sufficiently large positive
+multiple of $Q(t)=\prod_j(t_j-t)$. This preserves all query values
+and makes the numerator positive at every pole. Lagrange's
+barycentric identity gives the exact fractions. The proof allows
+$q=0$ as well, and uses no additional axioms or model definitions.
 
 Suppose now that the poles come in $M$ adjacent pairs,
 \[
