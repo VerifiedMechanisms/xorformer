@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\title{Shared high-order cancellations and their unresolved readout problem}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Verification and scope.}
+The two identities below have elementary complete written proofs. The
+companion checker verifies finite rational instances. Neither identity
+is a superconstant compiler. In particular, a large common order of
+vanishing is not a count of independently selectable signs.
+
+\begin{lemma}[Barycentric shared orders]
+Let $x_1,\ldots,x_H$ be distinct real numbers and put
+$a_h=\prod_{g\ne h}(x_h-x_g)^{-1}$. For any real $u$ and integer
+$k\geq1$ with $2k-1<H-1$,
+\[
+ \sum_{h=1}^H a_h(1+ux_h)^k x_h^{k-1}=0.
+\]
+Consequently the normalized reverse query
+\[
+ F_{u,t}(\delta)=\sum_h
+ \frac{\delta a_h}{t/(1+ux_h)-\delta x_h}
+\]
+has all its coefficients of orders $1\leq k<H/2$ equal to zero,
+simultaneously for every $u$ for which all $1+ux_h$ are positive and
+every positive $t$. Its denominators are positive for sufficiently
+small positive $\delta$.
+\end{lemma}
+\begin{proof}
+Lagrange interpolation implies $\sum_h a_h Q(x_h)=0$ for every
+polynomial $Q$ of degree below $H-1$: compare coefficients of $X^{H-1}$
+in its interpolation formula. Apply this to
+$Q(X)=(1+uX)^kX^{k-1}$, of degree at most $2k-1$.
+The coefficient of $\delta^k$ in the displayed reciprocal sum is
+$t^{-k}\sum_h a_h(1+ux_h)^kx_h^{k-1}$, by the geometric series.
+\end{proof}
+
+For varying first directions $(A,P)$, uniform cancellation through
+order $D-1$ in this family is equivalent to the mixed moments
+\[
+ \sum_h A_h x_h^l P_h^{k-1}=0
+ \quad(1\leq k<D,\ 0\leq l\leq k),
+\]
+with the usual omission of vacuous or repeated conditions. This uses
+only $O(D^2)$ polynomial conditions, irrespective of the number of
+query values $u$. However, the next coefficient remains the single
+degree-$D$ polynomial
+\[
+ R_D(u)=\sum_{l=0}^D\binom Dl u^l
+            \sum_h A_hx_h^lP_h^{D-1}.
+\]
+Thus this leading coefficient cannot supply arbitrary signs at more
+than $D+1$ ordered $u$ values: the fully alternating pattern would
+require more than $D$ distinct real zeros. This is only a limitation
+of the displayed leading readout, not of all perturbations of the
+original rational family.
+
+Query-specific numerator offsets can vanish on the fixed barycentric
+curve to high order. For a query with reciprocal vector $w_h>0$, its
+offset coefficients $b_h$ must satisfy
+\[
+ \sum_h b_hw_h^{k+1}x_h^k=0\qquad(0\leq k<D).
+\]
+These are at most $D$ linear conditions in its $H$ freely chosen
+offsets. They leave many offset choices for a fixed curve. What is
+not proved is that these cancellations persist on a sufficiently rich
+family of variable first directions while their higher terms provide
+independent signs at a superlinear number of queries. Imposing them
+separately for many queries can reintroduce the original number of
+moment constraints. No independence or dimension conclusion is inferred
+merely from counting the coefficients in one query.
+
+\begin{lemma}[Walsh shared orders]
+Let $H=2^d$, index heads by $h\in\{-1,1\}^d$, and put
+$P_h=\sum_{j=1}^d x_jh_j$. For $S\subseteq[d]$ let
+$\chi_S(h)=\prod_{j\in S}h_j$. Then
+\[
+ \sum_h\chi_S(h)P_h^k=0\quad(k<|S|),\qquad
+ \sum_h\chi_S(h)P_h^{|S|}
+ =2^d|S|!\prod_{j\in S}x_j.
+\]
+\end{lemma}
+\begin{proof}
+Expand the power by the multinomial theorem. Summing over each sign
+$h_j$ annihilates a monomial unless its exponent is odd for $j\in S$
+and even for $j\notin S$. This requires degree at least $|S|$. At
+that degree, every coordinate in $S$ appears exactly once and every
+other coordinate has exponent zero, giving the stated coefficient.
+\end{proof}
+
+Approximately half the Walsh masks have a common vanishing order
+proportional to $\log H$. Their displayed leading signs are nevertheless
+products of only $d$ scalar signs. This identity therefore demonstrates
+shared cancellation, not independent readout. Higher perturbations of
+the poles or residues require a separate universality argument.
+
+\paragraph{Exact finite progress.}
+The nonlinear cone in
+\texttt{reverse-unbalanced-h4-cubic.tex} does yield a complete finite
+improvement: four heads realize every ten-query sign pattern with a
+strict whole-cube embedding for arbitrarily many rows. The proof uses
+the cubic remainder after two cancellations and exact rational witnesses
+on a quadratic moment cone. It does not extrapolate either of the
+shared-order identities above into an asymptotic construction.
+\end{document}
