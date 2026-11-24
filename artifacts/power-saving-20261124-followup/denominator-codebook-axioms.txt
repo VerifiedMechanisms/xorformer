@@ -1,0 +1,26 @@
+'HeadComplexity.DenominatorCodebookCapacity.card_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.scorePoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.eval_scorePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.mem_represented_of_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.card_represented_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.mem_represented_of_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.card_represented_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.card_represented_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.card_represented_with_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DenominatorCodebookCapacity.worstCase_gt_of_codebook_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
