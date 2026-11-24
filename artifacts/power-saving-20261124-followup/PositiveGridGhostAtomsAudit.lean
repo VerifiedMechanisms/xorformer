@@ -1,0 +1,6 @@
+import HeadComplexity.Research.PositiveGridGhostAtoms
+#print axioms HeadComplexity.PositiveGridGhostAtoms.booleanProjection_extendInput
+#print axioms HeadComplexity.PositiveGridGhostAtoms.gridResidue_affineValue
+#print axioms HeadComplexity.PositiveGridGhostAtoms.ghostAtom_eval
+#print axioms HeadComplexity.PositiveGridGhostAtoms.sum_ghostAtoms_eq_zero
+#print axioms HeadComplexity.PositiveGridGhostAtoms.ghost_head_count
