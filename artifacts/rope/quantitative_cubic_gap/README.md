@@ -12,7 +12,7 @@ $$ R=N_0D_1D_2+N_1D_0D_2+N_2D_0D_1, $$
 
 where each homogeneous denominator direction has strictly uniform coordinate signs or is zero. Its numerator directions are arbitrary. The maximum difference between the squarefree cubic coefficients of $R$ and $P_3$ is greater than $2^{-2000}$. The same exclusion holds for the closure of this class. This permits arbitrary untied vanilla parameters and unbounded numerator coefficients.
 
-This note proves a coefficient bound used in the finite Boolean replication argument. The proof is mathematical; `verify_gap.py` checks all arithmetic inequalities for its explicit rational constants. The underlying mass and matrix-minor certificates are checked by `../generic_cubic_completion/verify.py`.
+This note proves a coefficient bound used in the finite Boolean replication argument. The explicit squarefree gap against every oriented competitor is also Lean-certified; `verify_gap.py` independently checks all arithmetic inequalities for its explicit rational constants. The underlying mass and matrix-minor certificates are checked by `../generic_cubic_completion/verify.py`.
 
 ## Explicit constants
 
@@ -90,4 +90,12 @@ The exact rank and recovery statements used here are kernel checked in the follo
 
 - [`DeterminantPerturbation.lean`](../../../formalization/HeadComplexity/Polynomial/DeterminantPerturbation.lean): `det_sub_det_le` proves the exact six-by-six determinant perturbation bound used in both the raw gap and Schur recovery, by a telescoping product estimate and the Leibniz formula.
 
-These declarations use no `sorry` or new axioms. The complete quantitative coefficient-recovery argument in this note remains a mathematical proof with exact arithmetic certificates; they are not presented as a complete Lean proof of the exclusion radius.
+- [`ExplicitCubicVandermonde.lean`](../../../formalization/HeadComplexity/Polynomial/ExplicitCubicVandermonde.lean): `rows_det_lower` proves the uniform bound for every injective six-row coefficient minor, using integer Vandermonde divisibility by the fifth superfactorial. `exists_cross_lower` supplies the disjoint cross blocks avoiding any prescribed pair of coordinates.
+
+- [`CubicCoefficientHessian.lean`](../../../formalization/HeadComplexity/Polynomial/CubicCoefficientHessian.lean) proves the factor-168 coefficient-to-Hessian estimate. [`ExplicitCubicRawGap.lean`](../../../formalization/HeadComplexity/Polynomial/ExplicitCubicRawGap.lean) combines it with the concrete pole and determinant bounds to prove `raw_coefficient_gap_with_readout`, the uniform raw coefficient obstruction with arbitrary numerator forms and readout.
+
+- [`QuantitativeCrossRecovery.lean`](../../../formalization/HeadComplexity/Polynomial/QuantitativeCrossRecovery.lean) and [`QuantitativeCubicRecovery.lean`](../../../formalization/HeadComplexity/Polynomial/QuantitativeCubicRecovery.lean) check the inverse perturbation estimates and both Schur recovery stages. `all_entries_error_bound` recovers every repeated tensor entry from squarefree errors. [`ExplicitCubicGapConstants.lean`](../../../formalization/HeadComplexity/Polynomial/ExplicitCubicGapConstants.lean) checks all required exact arithmetic inequalities at the radius $2^{-2000}$.
+
+- [`ExplicitCubicSquarefreeGap.lean`](../../../formalization/HeadComplexity/Polynomial/ExplicitCubicSquarefreeGap.lean): `squarefree_coefficient_gap_with_readout` proves the complete explicit squarefree exclusion against all uniformly oriented or zero denominator directions, with arbitrary numerator coefficients and readout. Its tensor conventions are connected to actual polynomial derivatives and ordinary coefficients.
+
+These declarations use no `sorry` or new axioms. In particular, the quantitative squarefree exclusion itself is kernel checked. Converting it into a Boolean head-count separation requires the separate finite-grid interpolation, averaging, and architecture arguments in [Theorem 22](../../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md).
