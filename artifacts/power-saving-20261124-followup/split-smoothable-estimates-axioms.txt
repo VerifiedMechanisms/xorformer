@@ -1,0 +1,43 @@
+'HeadComplexity.SplitSmoothableEstimates.coarseWeight_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.prod_coarseWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.prod_weight_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableFunctions_le_coarse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableFunctions_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableUnion_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.uniform_cluster_entropy_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.unionEntropy_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.parameterCount_le_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableUnion_le_exp_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableUnion_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.sqrt_cluster_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableUnion_sqrt_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.logarithmic_cluster_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.card_smoothableUnion_logarithmic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.worstCase_gt_of_lowMargin_access' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableEstimates.worstCase_gt_of_smoothable_access' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
