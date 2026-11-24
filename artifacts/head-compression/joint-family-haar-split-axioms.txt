@@ -1,0 +1,8 @@
+'HeadComplexity.AxisZeroGluing.jointFamily_haar_pair_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_haar_normalized_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_haar_split_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_haar_split_strict_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

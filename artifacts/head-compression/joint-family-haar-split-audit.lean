@@ -1,0 +1,5 @@
+import HeadComplexity.Results.JointFamilyHaarSplit
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_haar_pair_factor
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_haar_normalized_limit
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_haar_split_limit
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_haar_split_strict_signs
