@@ -75,4 +75,23 @@ multipliers, so that continuation does not supply a compactness
 obstruction.  The first failed lemma is universality of this fixed
 geometric scalar readout at this fixed scale, with all residues and biases
 allowed to adapt to the target.
+
+\section{The corresponding compact sample is feasible}
+The same deterministic eighty-bit target is feasible for the original
+hierarchy $\gamma_k=(1/100)^{2^k}$. The file
+\texttt{joint-family-haar-h32-compact-primal.json} contains an exact rational
+witness. The solver-free verifier
+\texttt{JointFamilyHaarCompactWitness.py} checks all $120$ inequalities
+obtained by eliminating the $31$ node biases, reconstructs those biases,
+and verifies all $80$ strict signs and all scalar denominator inequalities.
+The residues were rounded to $44$ decimal places and then checked again
+exactly; the resulting certificate is about eight kilobytes.
+
+This is a finite computation at one positive scale. It proves neither
+feasibility for all targets at this width nor feasibility as the scale
+tends to zero. In particular, it prevents extending the geometric
+counterexample to the original hierarchy without another argument.
+Even a uniform scalar Haar decoder would still need a compatible global
+cover or a full-shell extension of the sparse staircase query domain.
+
 \end{document}
