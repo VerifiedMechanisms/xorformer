@@ -1,0 +1,62 @@
+Joint Cell Head Compression
+Run branch: ar/027ac8030b43
+Start: 2026-11-24 15:30:09 UTC
+Deadline: 2026-11-25 03:30:09 UTC
+
+Research objective
+Improve the original worstCaseHeadComplexity bound by a fixed power beyond
+2^n/n, aiming for exponent 3/2. If that remains open, seek an explicit
+unbounded factor beyond 2^n/(n log n), with its validity range. Keep the
+original model and resource definitions unchanged. Independent local labels
+must remain arbitrary. Fallback theorems are checkpoints, not completion.
+
+Initial provenance and verification
+HEAD 7b27662729ec7b116004ffdef562767dfd2167c6 exactly equals remote
+origin branch ar/1c1556983291. The requested exponent-mechanisms.tex at
+7065e81f2c6bb6733a077b9e6b671d079c707b03 (ar/0f08fe6fb98a) is byte-for-byte
+equal to the current file. No base reconstruction or cherry-pick is needed.
+The initial lake build passed: Build completed successfully (9272 jobs).
+Existing style/deprecation warnings are unrelated to this run.
+The inherited explicit bound is 2323202 * 2^n/(n log n), for n >= 32.
+Transitive axiom checks for the explicit bound, its asymptotic version,
+and hasStrictReverseGridCompiler_affinePlane report exactly propext,
+Classical.choice, and Quot.sound. This verifies the inherited baseline,
+not the requested improvement.
+
+Initial attack allocation
+1. Exact label-dependence and aggregate axis-repair audit.
+2. Joint-family score construction, including selection and interference.
+3. Larger domains, explicit covers, and independent-cell counting test.
+4. Whole-cube synthesis, literature transfer, and global integration.
+
+Early decisive checks
+The finite-plane line sums depend on all memory tokens on each line.
+Their common incidence geometry does not share arbitrary independent table
+values. Rank-head denominators may be fixed while their column numerators
+vary. Cauchy point-correction denominators vary with the table's tokens.
+Uniform axis choices make those point corrections' row repairs fixed;
+the rank repairs retain a label-dependent aggregate column vector.
+
+For k blocks of m one-hot coordinates, M = m^k and n = km. Slicing into
+two-dimensional tables has local cost of order m^(k-1)/log m, so its
+efficiency is only m log m, below n log n. Moreover, taking products of
+the inherited star-cover bound introduces a 22^k cover constant. Passing
+the cell-size entropy test alone therefore does not establish a saving.
+
+The direct finite-plane affine-selector extension has an additional rank
+obstruction: its nonvertical line-incidence matrix has real rank q^2-q+1.
+Binary addresses do not preserve arbitrary affine line selectors in a
+smaller ambient dimension. A formal proof is being developed separately.
+
+Potential concrete checkpoint
+Aggregating the rank-head axis subtractions may reduce the exact rank
+compiler from 3(L+1)+3 to L+4 heads. Combined with G exterior Cauchy
+corrections this would give L+2G+4, and 3q^2+4 for the finite-plane
+construction. This is currently under formal verification and improves
+constants only. It is not a claimed unbounded factor.
+
+Checkpoint discipline
+At roughly two-hour intervals append elapsed time, strongest proved result,
+decisive inequality or counterexample, and next genuinely different route.
+Keep proofs and exact evidence committed and buildable. Use the final hour
+for verification and handoff while continuing tractable proof work.

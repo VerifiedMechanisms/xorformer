@@ -1,0 +1,7 @@
+import HeadComplexity.Results.UniversalLogSaving
+
+#check HeadComplexity.worstCaseHeadComplexity_real_le_log_saving
+#check HeadComplexity.worstCaseHeadComplexity_isBigO_two_pow_div_mul_log
+#print axioms HeadComplexity.worstCaseHeadComplexity_real_le_log_saving
+#print axioms HeadComplexity.worstCaseHeadComplexity_isBigO_two_pow_div_mul_log
+#print axioms HeadComplexity.AxisZeroGluing.hasStrictReverseGridCompiler_affinePlane
