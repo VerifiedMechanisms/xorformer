@@ -150,6 +150,62 @@ $X_i(t)/(b_h+t)^2$ lie in the span of the constant function together with
 $1/(b_h+t)$ and $1/(b_h+t)^2$, of dimension at most $1+2H$.
 The row matroid can be uniform despite this rank defect.
 
+\section{Free column residues at the same head count}
+The stronger interface in
+\texttt{formalization/HeadComplexity/Results/LargeDomainWeightedTangent.lean}
+allows arbitrary real column coefficients $a_{h,j},c_{h,j}$ and the limit
+\[
+ T_j(x)=\sum_h\left(
+ \frac{a_{h,j}(v_{\pi_j(h)}(x)-u_h(x))}{(b_h+w\cdot x)^2}
+ +\frac{c_{h,j}}{b_h+w\cdot x}\right).
+\]
+Use positive-bank numerator coefficients $t a_{h,j}+c_{h,j}$ and
+negative-bank coefficients $-t a_{\pi_j^{-1}(h),j}$. The matched terms
+cancel to first order exactly as before. The correction converges to the
+additional reciprocal term. Both bank numerators still vanish individually
+on the column axis, and the denominator proof is unchanged. Thus this is
+still a $2H$-head construction, not a $3H$-head construction.
+
+The checked declarations are
+\texttt{weightedPermutationTangentApprox\_tendsto},
+\texttt{exists\_weightedPermutationTangentApprox\_data},
+\texttt{weightedPermutationTangent\_preserves\_signs},
+\texttt{hasReverseCubeStarCompiler\_of\_weightedPermutationTangent}, and
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_weightedPermutationTangent}.
+The unresolved proposition is
+\texttt{HasCompactWeightedPermutationTangentDecoder}.
+For each permutation, the variable coefficients select a linear space of
+dimension at most $2H$. The family is therefore a union of such spaces,
+which is stronger than the unit-residue orbit above.
+
+There is an exact finite counterexample to replacing the missing coverage
+lemma by a full-rank assertion. The data in
+\texttt{LargeDomainTangentFarkas.json} give fixed shared affine banks at
+$(k,H)=(3,3)$ and $(4,4)$, with the compact poles and row weights just
+specified and $q=100H$. The ambient affine feature matrix has full row
+rank in both cases, certified modulo $65521$. Nevertheless, strict parity
+is impossible in every one of the $H!$ weighted branches, even with all
+$a_h,c_h$ free.
+For each permutation, the certificate contains rational numbers
+$\lambda_x\geq0$, not all zero, satisfying
+\[
+ \sum_x\lambda_x(-1)^{|x|}R_xF_{x,\pi}=0,
+ \qquad R_x=\prod_h(q+x+h+1)^2>0.
+\]
+Here $F_{x,\pi}$ is the complete row of square-kernel and reciprocal
+features, with irrelevant positive column scaling removed. If a branch
+had strict parity signs, multiplying its score by these weights would
+produce a strictly positive sum, contradicting the displayed annihilator.
+The independent verifier uses only Python integers and fractions:
+\begin{verbatim}
+python3 artifacts/head-compression/LargeDomainTangentFarkasVerify.py \
+  artifacts/head-compression/LargeDomainTangentFarkas.json
+\end{verbatim}
+These certificates exclude only the two specified fixed dictionaries.
+They do not exclude jointly label-dependent banks, different poles, larger
+$H$, or the asymptotic decoder hypothesis. They are finite exact
+computations, not kernel-checked Lean declarations.
+
 \section{The first unresolved lemma}
 For fixed $F$ and a shared coefficient array $v$, the possible column
 vectors form the projected permutation orbit $\{F(P_\pi v):\pi\in S_H\}$.
