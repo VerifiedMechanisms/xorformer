@@ -12,6 +12,8 @@ These bounds include $H=0$ and $n=0$. For $H=1$ the bound is one. For $H=2$ it r
 
 The bound is independent of the input length. It does not prove head preservation for general pure rotary families.
 
+The special pure numerator improves the bound to $2^H-2$ for $H\geq2$. In fact, only one of the $H$ heads needs to be pure; all other affine numerators and positive denominators may be arbitrary. The proof below also gives the bounds $2^{H-1}$ for $H\geq1$ reciprocal heads with a free constant and $2^{H-1}-1$ for reciprocal heads with zero free constant.
+
 ## Proof
 
 For $H=0$, the classifier is constant and needs zero vanilla heads. Assume $H\geq1$, and write the original score as
@@ -66,6 +68,24 @@ The right side is a fixed finite nonnegative number times $\varepsilon$ at each 
 
 Every head has finite real parameters at this selected $\varepsilon$. The vanilla affine-fraction normal form realizes $R_\varepsilon$ with $2^H-1$ heads. The argument also works when $n=0$, where the cube has one point and denominator-slope conditions are vacuous. This proves the bound. $\blacksquare$
 
+## One pure head removes one subset term
+
+Suppose $H\geq2$ and one head is pure. The finite perturbation from Theorem 16 makes its input-token values distinct and all total scores nonzero. Its endpoint lemma supplies $N_1=tD_1+\sigma F$, where $\sigma\in\lbrace-1,1\rbrace$, the affine form $F$ is positive on the cube, and its slopes are all strictly positive or all strictly negative.
+
+Subtract $tD_1$ from the first numerator and absorb $c+t$ into a second numerator. The cleared polynomial $P$ is unchanged, and the first resulting numerator is $L_1=\sigma F$. Use $F$ as the common base in the subset construction. For parameter $\varepsilon\gt0$, perturb only this numerator to
+
+$$ L_1^{(\varepsilon)}=\sigma(F+\varepsilon D_1). $$
+
+The new cleared polynomial is $P+\sigma\varepsilon\prod_hD_h$, so the scaled finite-difference score still tends to $P/F^H$. The exact geometric remainder remains continuous at zero because all denominators equal $F$ there. Every perturbed denominator $F+\varepsilon D_I$ is positive and retains the strict slope orientation of $F$ for sufficiently small $\varepsilon$.
+
+The empty subset still has zero numerator. The singleton subset $I=\lbrace1\rbrace$ now has a constant ratio:
+
+$$ \frac{L_1^{(\varepsilon)}}{F+\varepsilon D_1}=\sigma. $$
+
+Its scaled coefficient can be put into the free readout constant. Deleting these two subsets leaves exactly $2^H-2$ heads. A finite strict sign margin chooses one finite parameter and completes the Boolean simulation. This gives six vanilla heads for an arbitrary three-head pure classifier, and recovers two heads when $H=2$.
+
+The proof is Lean-checked in `Results/PureFiniteDifference.lean`. The main declarations are `CubeAffine.computable_of_strict_tangent_uniform_numerator`, `vanilla_of_positive_fractions_with_uniform_endpoint`, `vanilla_of_pure_add_positive_fractions`, and `pureRoPEComputable_vanilla_improved_exponential_bound`. The mixed theorem allows all heads except the distinguished pure head to be arbitrary positive affine ratios. It includes $n=0$; the zero-head and one-head pure cases are separately covered by Theorem 16.
+
 ## Zero-constant reciprocal improvement
 
 If the score is a sum of $H+1$ constant-numerator reciprocals with no free constant, multiplying by the last positive denominator gives
@@ -102,4 +122,4 @@ The full scalar bound is Lean-checked in `Results/FiniteDifferenceUpperBound.lea
 
 The algebraic identities are formalized in `Foundation/AlternatingMoments.lean`: `AlternatingMoments.power_below`, `AlternatingMoments.power_top`, `AlternatingMoments.mixed_below`, `AlternatingMoments.mixed_top`, and `AlternatingMoments.reciprocal_sum_expansion`. Lean obtains the mixed moments by differentiating the ordinary power identities over the polynomial ring. The construction then applies `exists_pos_lt_sign_preserving` to the explicit continuous remainder and selects one finite positive parameter. The checked declarations use only the standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`, with no `sorry` or new axioms.
 
-The proof uses no pure-specific numerator constraint. It cannot establish the requested equality by itself, because its subset expansion generally has more than $H$ terms.
+The generic bound uses no pure-specific numerator constraint; the one-subset deletion uses the positive pure endpoint explicitly. Neither construction establishes the requested equality at arbitrary head counts, because its subset expansion generally has more than $H$ terms.
