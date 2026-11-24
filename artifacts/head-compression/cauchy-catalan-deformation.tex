@@ -1,0 +1,174 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{A Catalan Deformation with a Linear-Cost High-Order Moment Jump}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This note gives a complete written identity and an exact rational
+series checker. It is not Lean-checked. It proves a scalable
+high-order cancellation mechanism, not a superconstant sign decoder.
+In particular, a finite sign cube may have very few points satisfying
+the required lower moments. No conclusion about either accepted global
+HeadComplexity target is claimed.
+
+Let $q\geq2$. Let $C(z)$ be the analytic solution near zero of
+\[
+ C(z)=1+zC(z)^2,\qquad C(0)=1,
+\]
+and define
+\[
+ W_q(z)=\frac{C(z)^{-(q-1)}}{1-2zC(z)}.
+ \tag{1}
+\]
+For any fixed real nodes $x_h$, set
+\[
+ p_h(\varepsilon)=\varepsilon x_h C(\varepsilon x_h^2),
+ \qquad w_h(\varepsilon)=W_q(\varepsilon x_h^2).
+ \tag{2}
+\]
+For positive nodes and sufficiently small positive $\varepsilon$,
+both the poles and weights are positive, and every fixed positive
+query time is exterior to all poles. The poles in (2) may be made
+$O(\eta^2)$ by setting $\varepsilon=\eta^2$, so the existing exact
+compactification theorem can enforce the full-cube slope budget for
+any fixed finite table. This observation does not create missing sign
+patterns.
+
+We use generalized binomial coefficients
+$\binom{a}{k}=a(a-1)\cdots(a-k+1)/k!$ for integers $a$ and
+$k\geq0$, including negative $a$.
+
+\begin{lemma}[Coefficient identity]
+For every integer $r$ and $k\geq0$,
+\[
+ [z^k]\frac{C(z)^r}{1-2zC(z)}=\binom{2k+r}{k}.
+ \tag{3}
+\]
+\end{lemma}
+\begin{proof}
+Put $u=C(z)-1$, so $z=u/(1+u)^2$ and
+$dz=(1-u)(1+u)^{-3}du$. Formal residues are invariant under this
+substitution, which has a nonzero linear coefficient. The residue
+computing the coefficient on the left becomes
+\[
+ \operatorname{Res}_{u=0}
+ u^{-k-1}(1+u)^{2k+r}\,du,
+\]
+since $1-2zC=(1-u)/(1+u)$. This is the binomial coefficient in (3).
+Equivalently, this is the usual power-series change of variable in
+Lagrange inversion; all operations are on convergent series near zero.
+\end{proof}
+
+Consequently, for $\ell\geq j\geq0$,
+\[
+ [\varepsilon^\ell]\bigl(w_h(\varepsilon)
+                         p_h(\varepsilon)^j\bigr)
+ =\binom{2\ell-j-q+1}{\ell-j}x_h^{2\ell-j}.
+ \tag{4}
+\]
+The coefficient is zero for $j>\ell$.
+
+Let $D_\ell$ now denote the span in $\mathbb R^H$ of all coefficient
+vectors of $w p^j$ through order $\varepsilon^\ell$, over $j\geq0$.
+This is the deformed-pole analogue of the filtration in
+\texttt{cauchy-krylov-leading-audit.tex}; the fixed-pole increment
+bound in that note does not apply here.
+
+\begin{theorem}[A large new coefficient space]
+For any nodes, all coefficient vectors of orders below $q-1$ lie in
+\[
+ \operatorname{span}\{(x_h^d)_h:0\leq d\leq q-2\}.
+ \tag{5}
+\]
+Every vector in this list occurs, so $D_{q-2}$ equals that span.
+At order $q-1$, the $q$ vectors obtained from $j=0,\ldots,q-1$
+are exactly
+\[
+ (x_h^{2q-2-j})_h.
+ \tag{6}
+\]
+If $H=2q-1$ and the nodes are distinct, then
+\[
+ \dim D_{q-2}=q-1,\qquad \dim D_{q-1}=2q-1.
+ \tag{7}
+\]
+Thus the last increment is $q$, although all preceding increments
+together total only $q-1$.
+\end{theorem}
+\begin{proof}
+Set $E=2\ell-j$ and $k=\ell-j$. If $\ell\leq q-2$ and
+$E\geq q-1$, then $0\leq E-q+1<k$, so the binomial coefficient
+in (4) is zero. Every remaining vector has exponent below $q-1$.
+For each $0\leq d\leq q-2$, take $\ell=j=d$ in (4); the coefficient
+is one and the vector is $(x_h^d)_h$.
+
+At $\ell=q-1$, the top and bottom arguments of the binomial
+coefficient in (4) are both $q-1-j$, so its value is one. The
+ordinary Vandermonde determinant makes all powers from zero through
+$2q-2$ independent on $2q-1$ distinct nodes. This proves (7).
+\end{proof}
+
+\begin{theorem}[Leading exterior score]
+Let $s_h$ be any real coefficients, and write
+$M_d=\sum_h s_h x_h^d$. Suppose $M_d=0$ for $0\leq d\leq q-2$.
+For every fixed $t>0$,
+\[
+ \sum_h\frac{s_h w_h(\varepsilon)}{t-p_h(\varepsilon)}
+ =\varepsilon^{q-1}t^{-q}
+       \sum_{k=0}^{q-1}M_{q-1+k}t^k+O(\varepsilon^q).
+ \tag{8}
+\]
+The remainder is uniform on any compact positive interval of query
+times.
+\end{theorem}
+\begin{proof}
+Expand each reciprocal as $\sum_{j\geq0}p_h^j/t^{j+1}$.
+All coefficients below order $q-1$ vanish by (5) and the moment
+hypotheses. At order $q-1$, (6) gives
+$\sum_{j=0}^{q-1}t^{-j-1}M_{2q-2-j}$.
+Put $k=q-1-j$ to obtain (8). Analyticity on a compact positive
+interval, for sufficiently small $\varepsilon$, gives the stated
+uniform remainder.
+\end{proof}
+
+With unrestricted real coefficients $s_h$, $H=2q-1$ distinct nodes
+allow the $q$ higher moments in (8) to be assigned arbitrarily while
+the first $q-1$ moments vanish. This is ordinary square Vandermonde
+interpolation. Hence it supplies every degree-$(q-1)$ polynomial as
+the leading score and every sign word at $q$ distinct positive query
+times. That fact uses a linear number of heads per query and is not
+the missing asymptotic saving.
+
+For a weighted sign-cube or permutation decoder, the allowable $s_h$
+are restricted. Formula (8) does not show that these restricted
+coefficients meet all orthants in the higher-moment space. In the
+simple sign-cube case $s_h\in\{-1,1\}$ with odd $H=2q-1$, even the
+condition $M_0=0$ is impossible. One must therefore enlarge or change
+the pool, or use a different branch family, before claiming a sign
+decoder. The value of (7) is that large shared order need not require
+a quadratic number of independent preceding coefficient directions
+once poles can deform.
+
+\paragraph{Small examples.}
+Two independently found finite examples already disprove a direct
+extension of the fixed-pole triangular bound. With five distinct
+positive nodes, take
+\[
+ p_h=\varepsilon x_h+\varepsilon^2x_h^4,
+ \qquad w_h=1+\varepsilon x_h+\varepsilon^2x_h^3.
+\]
+The coefficient spans through orders zero, one and two have dimensions
+$1,2,5$. With seven distinct positive nodes, take
+\[
+ p_h=\varepsilon x_h-\varepsilon^2x_h^3+2\varepsilon^3x_h^5,
+ \qquad w_h=1+\varepsilon x_h^2+\varepsilon^3x_h^6.
+\]
+The dimensions are $1,3,3,7$. These are verified by the same exact
+checker as (3)--(8). They are finite algebraic examples, not standalone
+admissible universal compilers.
+\end{document}
