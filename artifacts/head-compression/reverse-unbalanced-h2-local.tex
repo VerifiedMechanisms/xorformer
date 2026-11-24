@@ -10,7 +10,9 @@
 
 \paragraph{Status and scope.}
 This is a complete written construction, with an independent exact-rational
-checker. It is not a Lean proof. It gives a fixed constant improvement in a
+checker. The fixed five-query compiler and its strict axis-zero consequence
+are now Lean-checked in \texttt{Results/ReverseFiveQueries.lean}. The
+arbitrarily-small-slope strengthening below remains written only. It gives a fixed constant improvement in a
 local grid representation, not either accepted asymptotic target. In
 particular, no amplification to $\Omega(H\log H)$ shattered columns is
 proved here. All denominators below are positive on the entire Boolean
@@ -132,8 +134,12 @@ Every $r\times5$ sign table consequently has an axis-zero strict reverse
 compiler with at most nine heads, by the existing Lean-checked theorem
 \texttt{hasReverseAxisCompiler\_of\_strictReverseGridCompiler} in
 \texttt{Results/ReverseGridAxisRepair.lean}, whose general cost is
-$3H+3$. Applying that theorem to this written construction is not itself
-formalized here. This does not improve the known
+$3H+3$. The resulting declarations are
+\texttt{hasWeakReverseGridCompiler\_five} and
+\texttt{hasReverseAxisCompiler\_five}. Lean checks all rational leading
+coefficients and the cleared-numerator identities, and uses continuity
+to choose one positive perturbation satisfying all signs and whole-cube
+budgets for every row count. The final theorem has no external hypothesis. This does not improve the known
 linear-cost compiler asymptotically. Its significance is that the two-head
 grid shattering phenomenon persists under arbitrarily strong compactness,
 so the finite wide-denominator certificate is not the only source of the

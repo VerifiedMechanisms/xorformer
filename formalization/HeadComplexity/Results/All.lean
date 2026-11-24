@@ -22,6 +22,7 @@ import HeadComplexity.Results.AxisZeroUnbalancedTransfer
 import HeadComplexity.Results.AxisZeroUnbalancedAsymptotics
 import HeadComplexity.Results.ReverseMobius
 import HeadComplexity.Results.ReverseMaskedCauchy
+import HeadComplexity.Results.ReverseFiveQueries
 import HeadComplexity.Results.CalibratedThresholdVote
 import HeadComplexity.Results.CauchyDecoderObstruction
 import HeadComplexity.Results.ScalarDecoderRootBound

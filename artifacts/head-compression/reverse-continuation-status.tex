@@ -15,6 +15,19 @@ dimension, atom admissibility, \texttt{HStar}, and
 asymptotic statements are natural. This is a checkpoint during continuing
 research, not a completion certificate.
 
+\paragraph{Five-column compiler, newly Lean-checked.}
+\texttt{Results/ReverseFiveQueries.lean} proves
+\texttt{hasWeakReverseGridCompiler\_five}: every finite table with five
+columns has a two-head reverse grid compiler. Exact rational certificates
+cover all $32$ row patterns, and continuity chooses a common positive
+perturbation satisfying the full-cube denominator budgets. The checked
+strictification and axis repair give
+\texttt{hasReverseAxisCompiler\_five}, with nine strictly admissible
+axis-zero heads. Neither declaration assumes a local universality lemma.
+This is a finite construction; its head count does not improve the known
+linear axis-zero baseline asymptotically. The stronger arbitrary-small-slope
+version remains written only in \texttt{reverse-unbalanced-h2-local.tex}.
+
 \paragraph{Unconditional checked bounds.}
 The imported and checked Warren proof, followed by
 \texttt{Results/WarrenAsymptotics.lean}, gives for $n\geq16$
