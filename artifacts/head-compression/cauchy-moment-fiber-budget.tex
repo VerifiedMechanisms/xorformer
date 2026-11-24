@@ -85,6 +85,48 @@ Distinctness, interior nodes, and strictly positive weights persist in
 a sufficiently small neighborhood.
 \end{proof}
 
+\begin{theorem}[Positive compression and convex sample image]
+Fix $p+s=2a$ and right-exterior sample points. Every finite positive
+atomic measure on a compact interval has a positive measure with at
+most $a$ atoms in that interval having the same first $p$ moments and
+the same $s$ samples. Consequently, after any fixed values of the first
+$p$ moments are prescribed, the attainable $s$-sample vectors of
+positive measures with at most $a$ atoms form a convex set.
+\end{theorem}
+\begin{proof}
+The zero measure and measures already having at most $a$ atoms need no
+change. Otherwise set $d\rho=d\mu/Q$, which is positive since $Q>0$
+on the interval. Let $P_a$ be the monic polynomial of degree $a$
+orthogonal to all lower-degree polynomials for $\rho$. It exists
+uniquely because the moment Gram matrix is positive definite: a
+nonzero polynomial of degree below $a$ cannot vanish on the more than
+$a$ support points.
+
+For completeness, $P_a$ has $a$ distinct roots $\xi_i$ in the interior
+of the convex hull of the support. If its number $b$ of interior
+sign-change roots were below $a$, the polynomial $R$ which is the
+product of those $b$ linear factors would make $P_aR$ have a constant
+sign on the support interval. It is nonzero on at least one support
+point, since $P_a$ has degree $a$ and the support has more than $a$
+points. Its integral would be nonzero, contradicting orthogonality to
+$R$. Thus $b=a$, which also proves simplicity.
+
+Let $L_i$ be the degree-$(a-1)$ Lagrange polynomial for the roots and
+put $\lambda_i=\int L_i\,d\rho$. Polynomial division by $P_a$ and
+orthogonality show
+\[
+ \int R\,d\rho=\sum_i\lambda_iR(\xi_i)
+ \qquad(\deg R<2a).
+\]
+Applying this to $L_i^2$ proves
+$\lambda_i=\int L_i^2\,d\rho>0$. Therefore
+$\widehat\mu=\sum_i\lambda_iQ(\xi_i)\delta_{\xi_i}$ is positive.
+The mixed-basis lemma proves preservation of all the stated moments
+and samples. Finally, take a convex combination of two finite positive
+atomic measures with the prescribed moments and apply this compression.
+Its samples are the corresponding convex combination.
+\end{proof}
+
 \paragraph{Consequence for the proposed tree gluing.}
 A child with $a$ positive atoms can vary its $a$ parent sample values
 locally while keeping $a$ moments fixed. This is actual interpolation
@@ -96,5 +138,13 @@ shared constraints, extra atoms, approximate matching with quantified
 sign margins, or a different readout. The theorem says nothing about
 the existence of such alternatives, nor about a finite sign table
 whose offsets and poles may be chosen jointly.
+
+There is therefore a useful positive statement as well: mixed moment
+and sample constraints admit Gaussian compression without losing
+positivity, and the sample-coordinate image of the moment fiber is
+convex. Such compression does not preserve additional readouts that
+depend on labels or masks of individual atoms. Applying it inside a
+tree while silently retaining those descendant readouts would be a
+separate, unproved step.
 
 \end{document}
