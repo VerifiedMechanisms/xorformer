@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\begin{document}
+\title{Audit of Ambient-Independent Relative-Rank Counting}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+This note audits a literature route. It proves neither accepted target
+and imports no external theorem into Lean. The original model and its
+definitions are unchanged.
+
+\paragraph{The relevant real theorem.}
+Basu and Parida, \emph{Bounds on the realizations of zero-nonzero patterns
+and sign conditions of polynomials restricted to varieties and applications},
+\href{https://arxiv.org/html/2411.11729v5}{arXiv:2411.11729v5}, Theorem 11,
+bounds the maximum, over connected components of a semialgebraic set $W$,
+of its minimum additive rank relative to a real algebraic family $\Delta$.
+Writing $p=\dim\Delta$, $D=\deg\Delta$, and defining $W$ with $s$
+polynomials of degree at most $\delta\geq2$, the lower bound is
+\[
+ \Omega\left(\frac{\log b_0(W)}
+ {(p+1)(\log s+\log\delta+\log D+\log\log b_0(W))}\right).
+ \tag{1}
+\]
+The hypothesis requires each irreducible component of $\Delta$ to have
+its full real dimension at every real point. The theorem concerns real
+sign conditions; it is not merely a zero-nonzero theorem. Its product-family
+estimate, Proposition 5.1, retains an explicit factor $H$ inside the
+logarithm through the bound
+$(O(sH\delta D))^{3H(p+1)}$. Thus the ambient independence does not
+remove the head-count logarithm.
+
+\paragraph{A valid smooth lift and its actual scale.}
+Here is an independent application check, including the geometric
+hypothesis. Set $N=2^n$. Normalize any admissible affine denominator by
+its positive value at the zero vertex, so
+\[
+ B_b(x)=1+\sum_{i=1}^n b_i x_i,
+ \qquad A_a(x)=a_0+\sum_{i=1}^n a_i x_i.
+\]
+A free score bias can be absorbed into one numerator whenever there is
+at least one head. Let $P(b)=\prod_{x\in\{0,1\}^n}B_b(x)$ and consider
+the complex affine algebraic set with coordinates $(a,b,z,(y_x)_x)$
+defined by
+\[
+ P(b)z=1,\qquad y_x B_b(x)=A_a(x)\quad\hbox{for every }x.
+ \tag{2}
+\]
+Projection to $(a,b)$ is an algebraic isomorphism from (2) onto the
+principal open subset $P\neq0$ of $\mathbb C^{2n+1}$. Its inverse is
+$z=P^{-1}$ and $y_x=A_a(x)/B_b(x)$. Hence this set is irreducible,
+smooth, real, and has dimension $p=2n+1$ at every real point.
+All admissible heads lift into it; relaxing denominator positivity and
+orientation only enlarges the available family.
+
+A projective parametrization is obtained by multiplying the constant
+coordinate and every displayed coordinate by $P$. Each resulting
+coordinate polynomial has degree at most $N+1$. Pulling back generic
+hyperplanes and applying the usual projective B\'ezout bound gives
+\[
+ \deg\Delta\leq(N+1)^{2n+1}.
+ \tag{3}
+\]
+Base points cannot increase this upper bound on the degree of the image.
+This degree estimate is an external standard algebraic-geometric step,
+not a Lean-checked claim here.
+
+In the ambient real vector space, take
+\[
+ W=\{(a,b,z,y):y_x\neq0\text{ for every }x\}.
+\]
+Its connected components are exactly the $2^N$ choices of strict signs
+of $y$, times the unrestricted auxiliary coordinates. It has $s=N$
+linear defining tests, which are also of degree at most $\delta=2$.
+A sum of lifted heads has the desired score vector in its $y$
+coordinates; the sums of the auxiliary coordinates are unrestricted in
+$W$. Therefore a missing low-rank component really would give a hard
+Boolean sign function. Standard finite bias strictification handles the
+original convention allowing zero on false outputs.
+
+Substituting (3) into (1) gives only
+$\Omega(N/n^3)$, weaker than the already checked Warren baseline.
+Even a hypothetical constant value of $D$ in this application leaves
+$\log s=\log\log b_0(W)=\Theta(n)$ and $p=\Theta(n)$ in (1), producing
+the scale $N/n^2$, not the accepted $N/n$ target. This is a limitation
+of this direct application, not a lower-bound obstruction for other
+image-side arguments.
+
+\paragraph{A separate generic-shattering caution.}
+Sontag's \emph{VC Dimension of Neural Networks}, Section 7.1,
+\href{https://mathsci.kaist.ac.kr/~nipl/mas557/VCD_ANN_3.pdf}{defines a
+generic-shattering dimension} using density of shattered input tuples
+in the entire configuration space. Its bound by twice the number of
+parameters plus one is not an ordinary VC bound. Failure of density
+allows a nonempty open set of shattered tuples. In particular it gives
+no conclusion for shattering the particular Boolean cube. For a family
+of continuous scores, strict shattering itself persists in a small
+neighborhood of a finite tuple, by taking a minimum over the finitely
+many chosen sign witnesses. Thus a claim that all larger strictly
+shattered sets have measure zero would require a different theorem.
+\end{document}
