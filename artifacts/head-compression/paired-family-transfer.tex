@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{Family-dependent compact paired decoders}
+\maketitle
+For each independently labelled table on $\{0,1\}^k\times[s]$ and each
+$\eta>0$, the decoder interface allows positive row directions $d_h$,
+affine row numerators $A_h$, and column coefficients $a_{hj},b_{hj}$ to be
+chosen jointly after the entire table is known. Within that table the row
+directions and row numerators are shared. The required score is
+\[
+ \sum_{h=1}^H\left(\frac{A_h(x)+a_{hj}}{b_{hj}+d_h\cdot x}
+ -\frac{A_h(x)}{1+d_h\cdot x}\right),\qquad 1<b_{hj}<1+\eta.
+\]
+This interface is strictly less restrictive in its quantifier order than
+a fixed dictionary required to decode every possible column target.
+It is still a hypothesis, not a universal decoder construction.
+
+The checked theorem \texttt{exists\_reverse\_cube\_star\_paired\_score}
+constructs one $2H$-head reverse score for any such coefficients when
+$s\eta<1+\eta$. Put $C_h=1+\eta+\sum_i d_{hi}$ and use denominator banks
+\[
+ C_h-d_h\cdot x+\sum_j(b_{hj}-1-\eta)z_j,
+ \qquad C_h-d_h\cdot x-\eta\sum_jz_j.
+\]
+All slopes are strictly negative. Each denominator is bounded below by
+$1+\eta-s\eta>0$ on the entire cube. The numerator banks are
+$A_h(1-x)+\sum_j a_{hj}z_j$ and $-A_h(1-x)$.
+They cancel exactly on the zero-column axis, for every row input. On a
+one-hot column they give the displayed score at the complemented row.
+No independent compilation of the columns or additional axis heads is hidden.
+
+Taking $\eta=1/(s+1)$ and applying the full-cube by star cover proves
+\[
+ W(k+s)\leq\frac{22\,2^s(2H)}{s}+2^{k+1}
+\]
+under \texttt{HasCompactPairedCubeDecoder k s H}.
+The exact Lean declaration is
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_compact\_paired\_cube\_decoder}
+in \texttt{CubeStarPairedDecoder.lean}. Finite certificates with an additional
+column bias are evidence for a related $2H+1$ interface, not instances of this
+bias-free universal hypothesis. Neither fixed-power nor unbounded-factor
+improvement has been obtained from this transfer alone.
+\end{document}

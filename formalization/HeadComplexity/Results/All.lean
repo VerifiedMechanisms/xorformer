@@ -45,6 +45,9 @@ import HeadComplexity.Results.JointFamilyCompactZeros
 import HeadComplexity.Results.JointFamilyMonomialCorrections
 import HeadComplexity.Results.LargeDomainFiniteLevels
 import HeadComplexity.Results.JointCellEqualStepCapacity
+import HeadComplexity.Results.CubeStarPairedDecoder
+import HeadComplexity.Results.JointFamilyMomentCurve
+import HeadComplexity.Results.JointFamilyPermutationData
 import HeadComplexity.Results.CubeTwoStarTransfer
 import HeadComplexity.Results.JointCellWeightedCover
 import HeadComplexity.Results.JointFamilyCompactRank
