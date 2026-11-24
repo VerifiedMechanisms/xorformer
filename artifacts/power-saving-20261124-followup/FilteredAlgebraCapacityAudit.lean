@@ -1,0 +1,7 @@
+import HeadComplexity.Research.FilteredAlgebraCapacity
+#print axioms HeadComplexity.FilteredAlgebraCapacity.nilpotentPower_weightedDegreeLE
+#print axioms HeadComplexity.FilteredAlgebraCapacity.nilpotentPower_eq_zero_of_order
+#print axioms HeadComplexity.FilteredAlgebraCapacity.scorePoly_weightedDegreeLE
+#print axioms HeadComplexity.FilteredAlgebraCapacity.eval_scorePoly
+#print axioms HeadComplexity.FilteredAlgebraCapacity.mem_represented_of_score
+#print axioms HeadComplexity.FilteredAlgebraCapacity.card_represented_le

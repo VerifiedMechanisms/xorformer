@@ -1,0 +1,14 @@
+'HeadComplexity.FilteredAlgebraCapacity.nilpotentPower_weightedDegreeLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredAlgebraCapacity.nilpotentPower_eq_zero_of_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredAlgebraCapacity.scorePoly_weightedDegreeLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredAlgebraCapacity.eval_scorePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FilteredAlgebraCapacity.mem_represented_of_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredAlgebraCapacity.card_represented_le' depends on axioms: [propext, Classical.choice, Quot.sound]
