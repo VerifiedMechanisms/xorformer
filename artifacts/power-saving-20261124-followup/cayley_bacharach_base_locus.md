@@ -94,7 +94,37 @@ $$ \sum_{h=1}^H c_h P(b_h)=0\qquad\text{for every polynomial }P\text{ of degree 
 
 Then their projective closures in a common affine chart satisfy $\mathrm{CB}(D)$. Indeed a separating polynomial would reduce the displayed sum to one nonzero coefficient times a nonzero value. The identity extends to complex polynomials by linearity.
 
-The requirement that every coefficient is nonzero is essential. Zero coefficients must be discarded before defining the essential support. More general derivative functionals require a scheme version, which is not proved here. In particular, arbitrary affine numerators and Boolean projection ghosts cannot silently be replaced by this reduced-point hypothesis.
+The requirement that every coefficient is nonzero is essential. Zero coefficients must be discarded before defining the essential support. The scheme version below permits derivative functionals under an ordinary-moment hypothesis. Boolean projection ghosts still cannot silently be replaced by this hypothesis.
+
+## Extension to finite local schemes
+
+Let $Z\subset\mathbb A^n_{\mathbb C}$ be a zero-dimensional scheme of length $L$, with coordinate algebra $B=\prod_p B_p$ decomposed into its local factors. Let $\Lambda:B\to\mathbb C$ be a linear functional whose restriction to every factor $B_p$ is nonzero. Assume
+
+$$ \Lambda(P)=0\qquad\text{for every polynomial }P\text{ of degree at most }D. $$
+
+Let $V_s(Z)$ be the reduced base locus of all polynomials of degree at most $s$ vanishing scheme-theoretically on $Z$, or equivalently use their degree $s$ homogenizations in a chart containing $Z$. If $D\geq n(s-1)$, every support point of $Z$ lies on a positive-dimensional component of $V_s(Z)$. Every component dimension $r$ satisfies $\binom{s+r}{r}\leq L$.
+
+**Proof.** Suppose $p$ is isolated in this base locus and choose $n$ equations of degree at most $s$ from $I(Z)$ isolating it, as before. Write $A$ for their finite local complete-intersection algebra at $p$, and $\Delta(x,y)$ for their divided-difference determinant. The natural map $A\to B_p$ is surjective.
+
+We first verify the required full local duality using the same distinguished-socle fact as Lemma 1. In $A\otimes_{\mathbb C}A$, the adjugate identity gives $(x_j-y_j)\Delta=0$. Thus
+
+$$ \Theta:A^\vee\to A,\qquad \Theta(\lambda)=(\mathrm{id}\otimes\lambda)(\Delta) $$
+
+is an $A$-linear map, where $(a\lambda)(b)=\lambda(ab)$. The socle of $A^\vee$ is one-dimensional and consists of scalar multiples of residue evaluation $\pi:A\to\mathbb C$: annihilation by the maximal ideal means exactly that the functional vanishes on that ideal. The image $\Theta(\pi)=\Delta(x,p)$ is the nonzero distinguished socle element.
+
+Every nonzero submodule of a finite module over an Artinian local ring meets its socle. To see this, multiply a nonzero element by the largest power of the maximal ideal that acts nontrivially. Therefore $\ker\Theta$ is zero. Its source and target have the same finite dimension, so $\Theta$ is an isomorphism.
+
+After applying $A\to B_p$ in the first factor, the coefficient functionals of $\Delta(x,y)$ consequently span all of $B_p$. At every other local factor $B_q$, the determinant vanishes in $B_q\otimes A$. Indeed the adjugate identity still holds, and some $x_j-y_j$ has nonzero constant residue $q_j-p_j$ and hence is a unit in this tensor product of finite local complex algebras.
+
+Choose $b\in B_p$ with $\Lambda|_{B_p}(b)\neq0$, and choose $\lambda\in A^\vee$ so that $g(x)=\lambda(\Delta(x,y))$ maps to $b$ in $B_p$. It maps to zero in all other factors, and has degree at most $n(s-1)$. Thus $\Lambda(g)\neq0$, contradicting the assumed moment annihilation.
+
+Finally, scheme-theoretic containment of $Z$ in the degree $s$ equations implies the inequality
+
+$$ \mathrm{HF}_{V_s(Z)}(s)\leq\mathrm{HF}_Z(s)\leq L. $$
+
+The Noether-normalization argument gives the component bound. $\blacksquare$
+
+A directional first-order functional $P\mapsto cP(b)+v\cdot\nabla P(b)$ factors through the length-two algebra obtained from $P(b+t v)$ modulo $t^2$, provided $v\neq0$; if $v=0$, its essential algebra has length one. A collection of such functionals at distinct supports can therefore have total scheme length at most twice the number of heads. This observation supplies the scheme input only when the asserted ordinary polynomial moments vanish. It does not establish that vanishing from original Boolean score cancellation.
 
 ## Source audit and remaining parameter problem
 
@@ -102,10 +132,10 @@ The proof above uses a local socle generator, not an inference from the regulari
 
 Known Cayley–Bacharach structure theorems do not presently supply the needed quantitative alternative. [Levinson and Ullery](https://arxiv.org/html/2102.08525) conjecture a plane-configuration statement in general dimension, with several low-dimensional cases proved. [Le and Linh](https://arxiv.org/html/2511.22113) extend the dimension-four case. [Banerjee](https://arxiv.org/html/2403.07272) obtains curve containment when the Cayley–Bacharach order is sufficiently large relative to the desired curve degree. The sufficient order in the latter argument is polynomial in that curve degree; at $H\asymp\exp(n)$ and $D\asymp\exp(\sqrt n)$, the natural degree budget $H/D$ is much too large to satisfy that condition. None of these results is used in the proof above.
 
-The remaining counting problem is substantive. A low-dimensional variety can have a large family of defining equations. A candidate incidence bound would control the family of ordered configurations whose degree $s$ base locus has no isolated configuration points by roughly
+The remaining counting problem is substantive. A low-dimensional variety can have a large family of defining equations. Set $r_\ast=\max\lbrace r\leq n:\binom{s+r}{r}\leq H\rbrace$. A candidate incidence bound would control the family of ordered configurations whose degree $s$ base locus has no isolated configuration points by roughly
 
-$$ O\left(rH+H+\frac{n^2H}{s}\right) $$
+$$ O\left(r_\ast H+H+\frac{n^2H}{s}\right) $$
 
-parameters, together with a suitably small algebraic degree or an explicit polynomial atlas. This expression is a target, not a proved bound. Unions of long lines suggest the $rH$ position term and a cost of order $nH/s$ for varying their supports. Hypersurfaces of degree at most $s$ in a small linear space suggest why a moduli cost comparable to the degree $s$ Hilbert function could be plausible. Neither example justifies the bound for arbitrary reducible or singular base loci.
+parameters, together with a suitably small algebraic degree or an explicit polynomial atlas. This expression is a target, not a proved bound. Unions of long lines suggest the $r_\ast H$ position term and a cost of order $nH/s$ for varying their supports. Hypersurfaces of degree at most $s$ in a small linear space suggest why a moduli cost comparable to the degree $s$ Hilbert function could be plausible. Neither example justifies the bound for arbitrary reducible or singular base loci.
 
 Even such an incidence dimension theorem would need an effective sign-pattern count on the resulting parameter locus. Replacing ambient parameter dimension by intrinsic dimension without charging algebraic degree would repeat the already-audited intrinsic-counting gap. The ordinary-moment lifting problem, the incidence-family bound, and its effective capacity estimate are three separate remaining steps.
