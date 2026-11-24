@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_observable_span.md",
+    "source_spans": 32,
+    "rendered_spans": 32,
+    "findings": [],
+    "notes": []
+  }
+]

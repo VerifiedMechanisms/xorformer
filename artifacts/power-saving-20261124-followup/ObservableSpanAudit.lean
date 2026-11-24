@@ -1,0 +1,13 @@
+import HeadComplexity.Research.ObservableSpanInstability
+#print axioms HeadComplexity.ObservableSpanInstability.coefficients_positive
+#print axioms HeadComplexity.ObservableSpanInstability.baseDen_ge_one
+#print axioms HeadComplexity.ObservableSpanInstability.score_zero
+#print axioms HeadComplexity.ObservableSpanInstability.score_eq_difference
+#print axioms HeadComplexity.ObservableSpanInstability.reciprocal_difference_abs_le
+#print axioms HeadComplexity.ObservableSpanInstability.score_abs_le
+#print axioms HeadComplexity.ObservableSpanInstability.multipliedScore_probe
+#print axioms HeadComplexity.ObservableSpanInstability.multipliedScore_abs_ge
+#print axioms HeadComplexity.ObservableSpanInstability.no_bound_at_zero
+#print axioms HeadComplexity.ObservableSpanInstability.multipliedVector_not_mem_span
+#print axioms HeadComplexity.ObservableSpanInstability.annihilator_eq_zero_of_pos
+#print axioms HeadComplexity.ObservableSpanInstability.arbitrarily_bad_full_rank_ratio

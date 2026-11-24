@@ -1,0 +1,28 @@
+'HeadComplexity.ObservableSpanInstability.coefficients_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.baseDen_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ObservableSpanInstability.score_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ObservableSpanInstability.score_eq_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.reciprocal_difference_abs_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.score_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ObservableSpanInstability.multipliedScore_probe' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.multipliedScore_abs_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.no_bound_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ObservableSpanInstability.multipliedVector_not_mem_span' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.annihilator_eq_zero_of_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ObservableSpanInstability.arbitrarily_bad_full_rank_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
