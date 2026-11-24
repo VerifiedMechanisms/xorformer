@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{A conditional positive composition for paired Haar readouts}
+\maketitle
+
+\paragraph{Status.}
+The composition theorem below is a written proof. It does not establish
+the common-residue hypothesis for arbitrary child words. The finite
+certificates at the end use exact rational arithmetic, not Lean.
+
+For $D>p$ put
+\[
+ f_t(D,p,a)=\frac{a+t}{D-p}-\frac{a-t}{D+t-p}.
+\]
+For $0\leq r,s<m$, let the distinct real poles $p_r$ satisfy
+$p_r+p_s<1$, and put
+\[
+ K_{sr}=(1-p_s-p_r)^{-2}.
+\]
+This matrix is positive definite: it is the Gram matrix of the linearly
+independent functions $u\mapsto e^{p_ru}$ in the positive measure
+$u e^{-u}\,du$ on $(0,\infty)$. Linear independence follows, for example,
+by differentiating at zero and using the Vandermonde determinant.
+
+\begin{theorem}
+Suppose two child butterfly words at the same lower-level pole geometry
+admit a common output-indexed residue vector $a\in\mathbb R^m$, with
+independent node biases and strict signs for each child word.
+Then, for any prescribed final-stage switch word
+$\theta\in\{0,1\}^m$, the combined parent word is feasible after
+introducing a sufficiently small new pole gap $t>0$.
+\end{theorem}
+\begin{proof}
+Write $\sigma_s=1-2\theta_s$, and choose $v=K^{-1}\sigma$.
+There is $\delta>0$ so small that replacing the child residues by
+$a+\delta v/2$ and $a-\delta v/2$, respectively, preserves every strict
+child sign. This follows from continuity and the finiteness of the
+child query sets; the original child biases can be retained.
+
+The final switch sends the first child's token $r$ to pole
+$p_r+\theta_rt$ and the second child's token $r$ to pole
+$p_r+(1-\theta_r)t$. Give these two physical output poles the residues
+$a_r+\delta v_r/2$ and $a_r-\delta v_r/2$, respectively. These assignments
+are allowed to depend on the parent switch word. At every lower-stage
+query, the resulting score converges to its already-correct child score
+as $t\downarrow0$.
+
+At the final stage, take the node bias to be zero. Its score at prefix
+$s$ is
+\[
+ T_s(t)=\sum_r\left[
+ f_t(1-p_s,p_r+\theta_rt,a_r+\delta v_r/2)
+ -f_t(1-p_s,p_r+(1-\theta_r)t,a_r-\delta v_r/2)
+ \right].
+\]
+Using
+\[
+ \frac{f_t(D,p,a)}{t}
+ =\frac{a}{(D-p)(D+t-p)}+
+   \frac1{D-p}+\frac1{D+t-p},
+\]
+one obtains
+\[
+ \lim_{t\downarrow0}\frac{T_s(t)}t
+ =\delta\sum_r K_{sr}v_r=\delta\sigma_s.
+\]
+Consequently all final-stage signs are correct for sufficiently small
+$t>0$. Finitely many positive denominator margins and child sign
+margins persist simultaneously. This proves the claim.
+\end{proof}
+
+\paragraph{What this does not prove.}
+The new gap is selected after the lower geometry and its strict margins
+are fixed. No bound such as $t=\varepsilon^{2^d}$ follows. Recursively
+much smaller gaps are compatible with the original local full-cube
+positivity condition, since that condition only bounds the sum of gaps.
+The remaining hypothesis is substantive: it asks for one residue vector
+that works for two independently chosen child routing words. Extending
+that intersection statement by a common perturbation at the next level
+would require simultaneous conjugated-Cauchy positivity systems, and
+those can fail. Moreover, a scalar Haar theorem still needs a supported
+local-domain construction before it implies a worst-case head bound.
+
+\paragraph{Two exact finite checks of a stronger invariant.}
+At $\gamma_k=(1/100)^{2^k}$, one common physical-output-indexed residue
+vector realizes all $256$ eight-token words with bottom-stage bits fixed
+to zero. Independent node biases are allowed for each word. The file
+\texttt{joint-family-haar-common-residue-primal.json} gives a homogeneous
+rational vector whose final coordinate is positive; every reduced
+strict inequality is positive.
+
+For sixteen tokens, five explicitly listed words have no common residue
+vector, even allowing independent node biases for every word. The file
+\texttt{joint-family-haar-common-residue-dual.json} contains eighteen
+strictly positive rational weights, summing to one, whose weighted
+reduced rows sum to zero in all seventeen homogeneous coordinates.
+The solver-free verifier
+\texttt{JointFamilyHaarCommonResidue.py} checks both certificates.
+Each of the ten pairs, ten triples, and five four-element subfamilies of
+these five words was separately feasible in exact rational linear
+programming. Those exploratory subfamily checks are not needed to
+verify the saved certificates. In particular, the five-word obstruction
+does not settle the pairwise intersection hypothesis in the theorem.
+
+\end{document}
