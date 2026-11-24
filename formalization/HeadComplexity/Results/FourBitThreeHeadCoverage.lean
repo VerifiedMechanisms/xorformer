@@ -25,6 +25,7 @@ def MaskMatches (y support positive : BitVec 16) : Prop :=
 instance (y support positive : BitVec 16) : Decidable (MaskMatches y support positive) :=
   inferInstanceAs (Decidable (_ ∨ _))
 
+set_option linter.style.cdot false in
 set_option maxHeartbeats 0 in
 -- A 163-node Boolean decision tree proves finite coverage by ordinary case splits.
 private theorem boolean_coverage : ∀ b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 b15 : Bool,
