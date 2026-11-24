@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{An Exact Audit of Isolated Divided-Difference Tokens}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This is a written obstruction to a specific proposed decoder, not a
+lower bound on attention head complexity. It rules out increasing the
+polynomial degree in an isolated-token divided-difference construction
+as a source of unbounded independent bit readout. Interacting token
+assignments and permutation-dependent rank drops are not covered.
+
+\begin{proposition}
+Let $P$ be any real polynomial, let $D_0,D_1,\ldots,D_k$ be fixed real
+numbers, and restrict the variable token $t$ to a set on which
+$D_i-t>0$ for every $i$. Define
+\[
+ F(D,t)=\frac{P(D)-P(t)}{D-t},\qquad
+ R_i(t)=F(D_i,t)-F(D_0,t).
+\]
+If the $k$ readouts $R_i$ jointly attain every strict sign word, then
+$k\leq2$. More generally, if fixed real thresholds $b_i$ are allowed
+and the readouts are $R_i(t)+b_i$, then $k\leq3$.
+The conclusions also hold when the token is restricted to any finite
+library, regardless of its size or the degree of $P$.
+\end{proposition}
+
+\begin{proof}
+If $D_i=D_0$, then the unthresholded readout is identically zero,
+and the thresholded readout is constant. Such a coordinate already
+prevents all strict words. We may assume $D_i\ne D_0$.
+Let $L_i(t)$ be the affine function whose graph is the secant of $P$
+through $D_0$ and $D_i$:
+\[
+ L_i(t)=\frac{P(D_i)(t-D_0)+P(D_0)(D_i-t)}{D_i-D_0}.
+\]
+Direct common-denominator subtraction gives the exact identity
+\[
+ R_i(t)=
+ \frac{(D_i-D_0)(P(t)-L_i(t))}{(D_i-t)(D_0-t)}.
+ \tag{1}
+\]
+Both denominator factors are positive. Removing their product and
+the fixed nonzero factor $D_i-D_0$ only applies a fixed sign flip to
+coordinate $i$. The transformed unthresholded output vector therefore
+lies in a fixed affine subspace of $\mathbb R^k$ of dimension at most
+two, with scalar coordinates $t$ and $P(t)$.
+
+For completeness, a proper affine subspace $a+V$ of $\mathbb R^k$
+cannot meet every open orthant. Choose a nonzero vector $w$ orthogonal
+to $V$. Every vector $z\in a+V$ satisfies $w\cdot z=w\cdot a$.
+If this constant is nonnegative, the orthant with signs opposite to
+the nonzero coordinates of $w$ makes $w\cdot z<0$. If the constant
+is negative, choose the matching signs, which give $w\cdot z>0$.
+Coordinates where $w$ vanishes may have arbitrary strict signs.
+Thus all strict words require the affine subspace to have dimension
+at least $k$, proving the first assertion.
+
+For thresholded outputs, multiply by the same positive denominator
+product and divide by $D_i-D_0$. The resulting readout is
+\[
+ P(t)-L_i(t)+\frac{b_i}{D_i-D_0}(D_i-t)(D_0-t).
+ \tag{2}
+\]
+Its vector lies in a fixed affine subspace parametrized by
+$t,t^2,P(t)$, of dimension at most three. The preceding orthant
+argument proves the second assertion. Restricting the token set
+cannot add sign words.
+\end{proof}
+
+\paragraph{Use in the present research.}
+Summing common-probe divided differences over a permutation of a
+fixed token library gives a permutation-invariant background. If a
+query changes exactly one probe and subtracts that background, its
+token-dependent contribution is precisely (1). Arbitrarily large
+values or high-degree polynomial interpolation in the numerator do
+not change this bound. A proposed multi-token construction must give
+an explicit additional interaction; it cannot use this isolated
+readout as an unbounded-bit primitive.
+
+\paragraph{Verification boundary.}
+The identity and affine-subspace proof above are written only. This
+file adds no Lean declaration or model definition and claims no
+asymptotic upper bound for $W(n)$.
+\end{document}
