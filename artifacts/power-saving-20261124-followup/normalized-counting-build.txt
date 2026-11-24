@@ -1,0 +1,2 @@
+✔ [3427/3427] Built HeadComplexity.Research.NormalizedCounting (2.0s)
+Build completed successfully (3427 jobs).

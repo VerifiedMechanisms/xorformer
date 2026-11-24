@@ -1,0 +1,10 @@
+HeadComplexity.NormalizedCounting.worstCase_real_lower {n : ℕ} (hn : 8 ≤ n) :
+  (2 ^ n - 1) / (2 * ↑n * ↑n) ≤ ↑(HeadComplexity.worstCaseHeadComplexity n)
+'HeadComplexity.NormalizedCounting.mem_strictPatterns_of_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NormalizedCounting.card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedCounting.worstCase_gt_div_all_large' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NormalizedCounting.worstCase_real_lower' depends on axioms: [propext, Classical.choice, Quot.sound]

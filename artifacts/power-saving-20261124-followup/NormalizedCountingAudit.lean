@@ -1,0 +1,6 @@
+import HeadComplexity.Research.NormalizedCounting
+#check HeadComplexity.NormalizedCounting.worstCase_real_lower
+#print axioms HeadComplexity.NormalizedCounting.mem_strictPatterns_of_computable
+#print axioms HeadComplexity.NormalizedCounting.card_le
+#print axioms HeadComplexity.NormalizedCounting.worstCase_gt_div_all_large
+#print axioms HeadComplexity.NormalizedCounting.worstCase_real_lower
