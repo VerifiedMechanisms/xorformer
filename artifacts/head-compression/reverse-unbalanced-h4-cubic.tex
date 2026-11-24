@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A cubic compact germ with four heads and ten queries}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a written proof with a finite exact rational certificate. The
+certificate and every subsequent arithmetic assertion are checked by
+\texttt{reverse-unbalanced-h4-cubic-check.py}, using only Python integer
+and fraction arithmetic. No numerical feasibility assertion is used in
+the proof. This result is not Lean checked. It improves a local constant
+and does not establish either asymptotic target.
+
+\begin{theorem}
+For every $r\geq1$ and every sign table
+$\sigma:[r]\times[10]\to\{-1,1\}$, four affine ratios realize all its
+strict grid signs. Every denominator has strictly negative slopes and
+is positive on the full Boolean $(r+10)$-cube.
+\end{theorem}
+
+\begin{proof}
+We use the normalized family
+\[
+ f_j(a,p)=\sum_{h=1}^4\frac{a_h+b_{hj}}{D_{hj}-p_h}.
+\]
+The first three queries have $b=0$ and
+$D=t(1,1,1,1)$, respectively for
+$t=1,1001/1000,501/500$. The remaining seven queries are defined by
+the following two integer arrays:
+\[
+ U=\begin{pmatrix}
+ 3&-5&3\\-2&-3&2\\0&5&1\\-3&-3&4\\-3&-1&5\\4&4&5\\5&0&-5
+ \end{pmatrix},\qquad
+ V=\begin{pmatrix}
+ -7&-7&-9\\1&0&10\\1&-5&1\\8&-4&6\\2&0&3\\-7&-1&1\\7&-5&-6
+ \end{pmatrix}.
+\]
+For each row put $u=U_j/1000$, $v=V_j$,
+$w=(1+u_1,1+u_2,1+u_3,1)$ and
+\[
+ \widetilde v=(v_1,v_2,v_3,-\sum_{h=1}^3v_h/(1+u_h)),
+ \qquad D_h=1/w_h,\qquad b_h=\widetilde v_h/w_h^2.
+\]
+Thus $f_j(0,0)=\sum_h\widetilde v_h/w_h=0$.
+
+Write a first-order direction as
+\[
+ A=(A_1,A_2,A_3,-A_1-A_2-A_3),\qquad
+ P=(x_1+z,x_2+z,x_3+z,z).
+\]
+The first derivatives of the seven extra queries are the linear forms
+\[
+ Y_j=u\cdot A_{[3]}+v\cdot x+
+ z\sum_{h=1}^3\frac{u_hv_h}{1+u_h}.
+\]
+Define
+\[
+ Q=A_{[3]}\cdot x=\sum_hA_hP_h,
+ \qquad R=\sum_{h=1}^3 A_hx_h^2.
+\]
+On $Q=0$, the latter also equals $\sum_{h=1}^4A_hP_h^2$.
+
+The finite rational certificate
+\texttt{reverse-unbalanced-h4-cubic-certificate.json} contains one
+seven-tuple $(A_1,A_2,A_3,x_1,x_2,x_3,z)$ for each of the $128$
+prescribed strict signs of $(Y_1,\ldots,Y_7)$, satisfying exactly
+$Q=0$ and $R>0$. The checker verifies these equalities and strict
+inequalities for every listed tuple. Negating a tuple negates every
+$Y_j$ and $R$, and preserves $Q=0$. Consequently every choice of the
+seven extra signs and either sign of $R$ has an exact rational witness.
+This is the only finite certificate assertion in the proof.
+
+Now prescribe all ten signs. Choose a witness whose extra signs are
+the required ones and whose $R$ sign is the required first-query sign.
+Construct a polynomial $C(t)$ of degree at most two as follows. Start
+with the constant $R$. For each consecutive pair of the three query
+times with different prescribed signs, multiply by $1-t/\alpha$, where
+$\alpha$ is the midpoint of those two times. Then
+\[
+ C(t)=R+Mt+Lt^2
+\]
+has the prescribed signs at all three times. Each root is strictly
+between its neighboring query times, so every claimed sign is strict.
+Choose a coordinate $h$ with $A_h\ne0$, put $P^2_h=M/A_h$ and all
+other coordinates of $P^2$ equal to zero, and put
+$A^3=(L/4,L/4,L/4,L/4)$. Take
+\[
+ a=\delta A+\delta^3 A^3,\qquad
+ p=\delta P+\delta^2 P^2.
+\]
+At a base query with denominator $t$, the expansion is
+\[
+ \sum_h\frac{a_h}{t-p_h}
+ =\frac{\delta}{t}\sum_hA_h
+ +\frac{\delta^2}{t^2}\sum_hA_hP_h
+ +\frac{\delta^3}{t^3}
+ \left(t^2\sum_h A^3_h+t\sum_h A_hP^2_h+
+       \sum_h A_hP_h^2\right)+O(\delta^4)
+ =\frac{\delta^3}{t^3}C(t)+O(\delta^4).
+\]
+Every extra query equals $\delta Y_j+O(\delta^2)$. Thus all ten
+desired signs hold for sufficiently small positive $\delta$.
+All data are rational and there are only $1024$ patterns, so one
+positive rational $\delta$ works simultaneously. Clearing the positive
+denominators reduces this assertion to finitely many polynomials with
+proved nonzero leading coefficients. The checker additionally verifies
+all $10240$ strict scores at $\delta=2^{-80}$.
+
+For the full cube, all normalized query denominators lie in
+$[200/201,200/199]$. Put $d_0=99/100$, $\rho=1/(10000r)$ and shrink
+the common $\delta$ further until $|d_0p_{hi}|<\rho/2$ for all selected
+row patterns. Define
+\[
+ \widehat p_{hi}=\rho+d_0p_{hi},\qquad
+ \widehat q_{hj}=1-\rho-d_0D_{hj},
+\]
+\[
+ B_h(z,w)=1-\sum_i\widehat p_{hi}z_i-\sum_j\widehat q_{hj}w_j,
+ \qquad
+ A_h(z,w)=d_0\left(\sum_i a_{hi}z_i+\sum_jb_{hj}w_j\right).
+\]
+At $(e_i,e_j)$ these ratios equal the normalized scores exactly.
+The slope drops satisfy
+\[
+ \rho/2<\widehat p_{hi}<3\rho/2,
+ \qquad 0<1/199-\rho\leq\widehat q_{hj}<1/67.
+\]
+Their total is less than $3/20000+10/67<1$. Every slope is strictly
+negative, and the all-one vertex, hence the entire Boolean cube, has
+positive denominator. This proves the theorem.
+\end{proof}
+
+\paragraph{Mechanism and limitation.}
+The two preceding low-order cancellations use the nonlinear cone
+$Q=A\cdot x=0$, not a fixed linear subspace of directions. A maximal
+isotropic linear slice loses enough variables to erase this cubic gain.
+This example shows that such a loss cannot be assumed when auditing
+higher-order constructions. It does not show how to share the increasing
+number of moment constraints across an unbounded number of base-query
+groups. A single group of $D$ proportional queries consumes a degree
+$D-1$ polynomial; this alone gives only a constant ratio when $D$ is at
+most the number of heads.
+
+The theorem has no initial axis-zero property. Applying the existing
+checked reverse-grid axis repair costs $3H+3=15$ heads for this $H=4$
+input, before any unrelated gluing. No asymptotic conclusion is asserted.
+\end{document}
