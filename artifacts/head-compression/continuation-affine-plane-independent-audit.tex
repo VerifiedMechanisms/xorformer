@@ -18,9 +18,10 @@ axis-repair, and global-transfer results used below are existing checked
 declarations. The finite compiler is now checked as
 \texttt{hasStrictReverseGridCompiler\_affinePlane} in
 \texttt{Results/AffinePlaneCompiler.lean}. The final unconditional
-asymptotic theorem is being assembled in a separate Lean file.
-This note does not change the model or assert that its entire argument
-has already been formalized.
+asymptotic theorem is now Lean-checked in
+\texttt{Results/UniversalLogSaving.lean}. This note gives an independent
+written derivation with different, unoptimized intermediate constants.
+It does not change the model.
 
 \section{The exact finite compiler}
 
@@ -278,4 +279,19 @@ and the complete finite affine-plane compiler report only Lean's
 standard \texttt{propext}, \texttt{Classical.choice}, and
 \texttt{Quot.sound}. In particular, none of these declarations depends
 on \texttt{sorryAx} or a new axiom.
+
+The completed final declarations are
+\texttt{HeadComplexity.worstCaseHeadComplexity\_isBigO\_two\_pow\_div\_mul\_log},
+\texttt{HeadComplexity.worstCaseHeadComplexity\_real\_le\_log\_saving},
+and \texttt{HeadComplexity.worstCaseHeadComplexity\_exists\_log\_saving}.
+The explicit Lean bound is
+\[
+ W(n)\le2323202\frac{2^n}{n\log n}\qquad(n\ge32).
+\]
+Its finite scale is the same least $k$ with
+$\lfloor n/2\rfloor\le k4^k$ used above. The checked asymptotic
+proof allows the larger raw budget $2\cdot4^k+2^k+1$, so the exact
+$2\cdot4^k+1$ compiler satisfies its hypothesis directly. This
+harmless slack explains why its displayed constant is larger than
+the independently derived eventual coefficient in (16).
 \end{document}
