@@ -1,0 +1,21 @@
+{
+  "github": [
+    {
+      "file": "artifacts/power-saving-20261124/typical_head_amplitude_obstruction.md",
+      "source_spans": 63,
+      "rendered_spans": 63,
+      "findings": [],
+      "notes": [],
+      "equal_counts": true
+    },
+    {
+      "file": "artifacts/power-saving-20261124/universal_upper_construction_audit.md",
+      "source_spans": 100,
+      "rendered_spans": 100,
+      "findings": [],
+      "notes": [],
+      "equal_counts": true
+    }
+  ],
+  "gitlab": "not run: glab unavailable"
+}
