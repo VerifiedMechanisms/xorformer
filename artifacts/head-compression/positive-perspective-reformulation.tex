@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{A Positive Perspective Reformulation of Admissible Scores}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The following is an exact written reformulation, not a new upper or lower
+bound for \texttt{worstCaseHeadComplexity}. It applies to every sum of
+strictly oriented positive affine ratios, and therefore to the strict
+ratio representations used by the unchanged model. It neither assumes
+nor proves a small number of sign regions. The elementary identities
+are checked on a rational example by
+\texttt{positive-perspective-check.py}; the general proof is written,
+not Lean-formalized.
+
+Fix a head count $H\geq1$. For each head choose either $y_{hi}(x)=x_i$
+for all $i$, or $y_{hi}(x)=1-x_i$ for all $i$. Write
+\[
+ B_h(x)=b_{h0}+\sum_{i=1}^n b_{hi}y_{hi}(x),\qquad
+ A_h(x)=a_{h0}+\sum_{i=1}^n a_{hi}y_{hi}(x),\qquad
+ b_{hi}>0\quad(0\leq i\leq n),
+\]
+and let $F(x)=c_0+\sum_h A_h(x)/B_h(x)$. This includes both allowed
+strict denominator orientations. An everywhere-positive negative-slope
+form is put in this form by complementing its coordinates; its new
+constant is its positive value at the all-one vertex. The usual final
+strict-slope perturbation, already checked in
+\texttt{HeadComplexity.Results.AxisZeroGluing}, handles weak slopes when
+only a strict finite sign pattern is required. A Boolean representation
+with zero scores on false inputs is first made strict by subtracting a
+sufficiently small positive bias, using finiteness of the cube. This note does not change
+that existing admissibility argument.
+
+\begin{proposition}[Positive coefficients and convex parameter sections]
+There are real numbers $c_h$ and nonnegative numbers $u_{hi}$ such that
+\[
+ F(x)=\sum_{h=1}^H
+ \frac{u_{h0}^2+\sum_i u_{hi}^2 y_{hi}(x)}{B_h(x)}-C,
+ \qquad C=\sum_h c_h-c_0.
+ \tag{1}
+\]
+For a fixed Boolean vertex $x$ and fixed choices of orientations, the
+set of parameters $(u,b,C)$ with $b_{hi}>0$ and $F(x)<0$ is convex.
+If $F$ is negative at any vertex, then $C>0$, and division by $C$
+normalizes the threshold in (1) to one without changing any strict sign.
+\end{proposition}
+\begin{proof}
+Choose
+\[
+ c_h\geq\max_{0\leq i\leq n}(-a_{hi}/b_{hi}),\qquad
+ u_{hi}=\sqrt{a_{hi}+c_hb_{hi}}.
+\]
+Thus $A_h+c_hB_h=u_{h0}^2+\sum_i u_{hi}^2y_{hi}$, which proves (1).
+At a fixed vertex put
+\[
+ q_h=(u_{h0},u_{h1}y_{h1}(x),\ldots,u_{hn}y_{hn}(x)).
+\]
+Because $y_{hi}(x)^2=y_{hi}(x)$, the summand in (1) is
+$\|q_h\|^2/B_h(x)$. The quadratic perspective $(q,B)\mapsto\|q\|^2/B$
+is convex on $B>0$: its second differential is
+\[
+ \frac{2}{B}\left\|dq-\frac{q}{B}\,dB\right\|^2\geq0.
+ \tag{2}
+\]
+Here $q_h$ is linear in $u$ and $B_h(x)$ is linear in $b$.
+Consequently $\sum_h\|q_h\|^2/B_h(x)-C$ is jointly convex, proving
+the sublevel assertion. Every summand is nonnegative, so a negative
+value of $F$ forces $C>0$. Replacing each $u_{hi}$ by $u_{hi}/\sqrt C$
+gives $F/C$ with threshold one.
+\end{proof}
+
+\begin{proposition}[Convex extension and an affine matrix pencil]
+The function
+\[
+ \widetilde F(x)=\sum_h
+ \frac{u_{h0}^2+\sum_i u_{hi}^2y_{hi}(x)^2}{B_h(x)}-C
+ \tag{3}
+\]
+is convex on $[0,1]^n$ and equals $F$ at every Boolean vertex.
+Its strict negative sublevel is given by an explicit affine positive
+matrix inequality. Namely, stack the vectors
+$q_h(x)=(u_{h0},u_{h1}y_{h1}(x),\ldots,u_{hn}y_{hn}(x))$ into $q(x)$,
+and put
+\[
+ D(x)=\operatorname{diag}(B_1(x)I_{n+1},\ldots,B_H(x)I_{n+1}),
+ \qquad
+ L(x)=\begin{pmatrix}D(x)&q(x)\\q(x)^{\mathsf T}&C\end{pmatrix}.
+ \tag{4}
+\]
+Then $L(x)$ is affine in $x$ and
+\[
+             L(x)\succ0\quad\Longleftrightarrow\quad
+             \widetilde F(x)<0.
+ \tag{5}
+\]
+\end{proposition}
+\begin{proof}
+Each denominator stays positive on the entire continuous cube, and
+both $q_h(x)$ and $B_h(x)$ are affine in $x$. Equation (2) proves
+convexity. Equality at vertices is the Boolean identity $y^2=y$.
+The matrix $D(x)$ is positive definite. Completing the square in the
+quadratic form of $L(x)$ gives the Schur complement
+$C-q(x)^{\mathsf T}D(x)^{-1}q(x)=-\widetilde F(x)$, proving (5).
+All entries in (4) are affine in $x$.
+\end{proof}
+
+\paragraph{The exact Boolean-vanishing freedom.}
+The continuous extension is not canonical. Increasing one shift $c_h$
+by $t\geq0$, and adjusting the squared coefficients and $C$ accordingly,
+changes it by exactly
+\[
+ -t\,\frac{\sum_i b_{hi}y_{hi}(x)(1-y_{hi}(x))}{B_h(x)}.
+ \tag{6}
+\]
+Indeed the change in the numerator of (3) is
+$t(b_{h0}+\sum_i b_{hi}y_{hi}^2)$ and the threshold increases by $t$.
+The difference is (6). It vanishes at every vertex and is strictly
+negative at every nonvertex of the cube, since all slopes are positive.
+On any compact set disjoint from the vertices, its negative magnitude
+has a positive minimum. Hence, for any fixed score, large shifts make
+the convex extension negative throughout that compact set without
+changing a single Boolean score. This freedom must be retained in any
+geometric counting argument.
+
+\paragraph{What this does not prove.}
+An arbitrary collection of convex subsets of a parameter space can
+have arbitrarily large dual shattering complexity; convexity alone
+therefore does not give the desired $O(nH)$ sign-count exponent.
+Likewise every subset of cube vertices has a convex separator, so the
+existence of a convex extension is not a Boolean lower bound. The
+matrix in (4) has special repeated scalar blocks. A useful theorem
+would have to exploit this shared structure quantitatively.
+Its determinant still contains the familiar cleared numerator:
+\[
+ \det L(x)=\left(\prod_h B_h(x)^{n+1}\right)
+ \left(C-\sum_h\frac{\|q_h(x)\|^2}{B_h(x)}\right).
+\]
+Removing the positive factor $\prod_hB_h(x)^n$ recovers a polynomial
+of degree at most $H+1$ in the ordinary affine numerator and denominator
+coefficients. Thus merely introducing the matrix pencil does not remove
+the degree factor in the existing Warren argument.
+
+The original sum of heads and its head count are unchanged. No new
+hypothesis establishing either global asymptotic target is supplied.
+\end{document}
