@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Affine denominator extension on swap cells}
+\author{}
+\date{}
+\maketitle
+\paragraph{Status.}
+These are complete elementary written proofs of extension and localization
+facts. They do not give a compiler, a covering theorem, or an improved
+worst-case head bound. They are not Lean formalizations. In particular,
+the obstruction below concerns preservation of a specified affine
+denominator, not every alternative ratio representation of its score.
+
+Let $S$ and $T$ be disjoint coordinate sets, of sizes $k,r\geq1$.
+The swap grid consists of the points $S\setminus\{i\}\cup\{j\}$,
+where $i\in S$ and $j\in T$. Suppose prescribed denominator values are
+$D_{ij}=b+u_i+v_j$.
+
+\begin{proposition}[Exact one-orientation extension criterion]
+An affine denominator with strictly positive slopes and positive constant
+coefficient extends $D$ to the whole Boolean $(k+r)$-cube if and only if
+\[
+ b+\sum_{i\in S}u_i-(k-1)\max_i u_i+\min_jv_j>0.
+\]
+An everywhere-positive affine denominator with strictly negative slopes
+extends $D$ if and only if
+\[
+ b+\min_i u_i+\sum_{j\in T}v_j-(r-1)\max_jv_j>0.
+\]
+\end{proposition}
+\begin{proof}
+Write the extension as $\alpha+\sum_i A_ix_i+\sum_jB_jx_j$.
+The grid identities imply, and are implied by, the existence of two
+scalars $\lambda,\mu$ such that
+\[
+ A_i=\lambda-u_i,\qquad B_j=\mu+v_j,\qquad
+ \alpha=b+\sum_i u_i-(k-1)\lambda-\mu.
+\]
+Indeed differences between two row indices determine all $A_i$ up to
+one additive constant, and column differences do the same for $B_j$.
+For positive slopes one needs $\lambda>\max u$ and
+$\mu>-\min v$. The greatest possible limiting constant coefficient is
+exactly the first displayed expression. Strict positivity of that
+expression is necessary and sufficient, choosing both parameters close
+to their strict bounds. This remains valid when $k=1$.
+
+For negative slopes one needs $\lambda<\min u$ and
+$\mu<-\max v$. The minimum cube value occurs at the full set and equals
+\[
+ \alpha+\sum_iA_i+\sum_jB_j
+ =b+\lambda+(r-1)\mu+\sum_jv_j.
+\]
+Its greatest possible limiting value is the second expression. The same
+strict approximation argument proves necessity and sufficiency,
+including $r=1$.
+\end{proof}
+
+\begin{lemma}[Mixed local slopes on a paired diagonal]
+Suppose $c+\sum_{i=1}^m d_i z_i$ is positive on the Boolean $m$-cube.
+On the paired diagonal $x_{a_i}=1-z_i$, $x_{b_i}=z_i$ it is the
+restriction of an affine denominator with positive constant coefficient
+and strictly positive slopes on the Boolean $2m$-cube.
+\end{lemma}
+\begin{proof}
+Positivity is equivalent to
+$c>\sum_i\max(0,-d_i)$. Choose $A_i>\max(0,-d_i)$ with
+$\sum_iA_i<c$, and set $B_i=A_i+d_i>0$ and
+$\alpha=c-\sum_iA_i>0$. Then
+\[
+ \alpha+\sum_i A_ix_{a_i}+\sum_i B_ix_{b_i}
+ =c+\sum_i d_iz_i
+\]
+on the paired diagonal. Every numerator affine in $z$ also extends,
+by replacing $z_i$ by $x_{b_i}$. This uses the existing $2m$ coordinates;
+it makes no statement allowing new coordinates in the original model.
+\end{proof}
+
+\begin{lemma}[Affine localization cannot isolate a swap grid]
+Let $q$ be affine and nonnegative on a Boolean cube. If it vanishes on a
+set $E$, then it vanishes on the smallest coordinate face containing $E$.
+In particular, a paired diagonal cannot be isolated by such a penalty.
+For $k,r\geq2$, a swap grid on $S\cup T$ cannot be isolated either:
+its smallest coordinate face is the whole cube on these coordinates.
+\end{lemma}
+\begin{proof}
+Write $q(x)=a+\sum_i c_ix_i$. Its cube minimum is
+$a+\sum_i\min(0,c_i)\geq0$. Any zero is a minimizer, so at a coordinate
+with $c_i>0$ every zero has $x_i=0$, and at a coordinate with $c_i<0$
+every zero has $x_i=1$. Every coordinate taking both values in $E$
+therefore has $c_i=0$. On the minimal coordinate face the remaining
+coordinates are fixed, so $q$ is constant there and that constant is zero.
+Every paired coordinate takes both values. On a swap grid with
+$k,r\geq2$, every coordinate does too.
+\end{proof}
+
+\paragraph{The exact gluing gap.}
+On the Hamming layer of size $k$, the affine expression
+$(k-1)-\sum_{i\in S}x_i$ is zero on the swap grid and positive at points
+at swap distance at least two from $S$. It is negative at $S$ itself.
+Adding an arbitrarily large positive multiple to a denominator therefore
+violates positivity at $S$. The paired-diagonal extension lemma does not
+supply the nonnegative localization penalty needed by the already checked
+reverse-axis gluing theorem. No new cell ordering, repair budget, or
+superconstant saving is asserted here.
+\end{document}
