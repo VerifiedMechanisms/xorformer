@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Exact Two-Fraction Identities on the Full Boolean Cube}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status and scope.}
+The classification below is a complete written proof with exact rational
+checks, not a Lean theorem. It covers all pairs of original admissible
+denominators in dimension at least four, including mixed orientations
+and constant denominators. It classifies exact score identities, not
+strict sign equivalence. It gives no bound for general sums of many
+heads and does not establish either accepted asymptotic target.
+
+\begin{theorem}
+Let $n\geq4$. Let $A,B,C,D$ be real affine forms on $\mathbb R^n$.
+Suppose $B,D$ are positive at all Boolean vertices, and each denominator
+is either constant or has a nonzero coefficient in every variable.
+Suppose $A/B=C/D$ at every Boolean vertex. Then the polynomial
+$q=AD-CB$ is one of the following:
+\[
+ 0,\qquad \kappa x_i(x_i-1),\qquad
+ \kappa(x_i-x_j)(x_i+x_j-1),
+ \tag{1}
+\]
+where $i\neq j$ and $\kappa\neq0$ in the nonzero cases.
+\end{theorem}
+\begin{proof}
+A polynomial of degree at most two vanishing at every Boolean vertex
+has the form
+\[
+ q=\sum_i\kappa_i(x_i^2-x_i).
+ \tag{2}
+\]
+Indeed reduction modulo $x_i^2=x_i$ gives a multilinear polynomial
+vanishing on the cube, whose coefficients are all zero by successive
+finite differences at the zero vertex.
+
+Homogenize using coordinate $X_0$. With the affine coefficient vectors
+$a,b,c,d$, the symmetric matrix of $q$ is
+\[
+ Q=\tfrac12(ad^\top+da^\top-cb^\top-bc^\top).
+\]
+It has rank at most four. Moreover, if $\operatorname{rank}Q\geq3$,
+then all four coefficient vectors belong to $\operatorname{im}Q$.
+To check this last assertion, let $U$ have columns $a,d,c,b$. Then
+$Q=UKU^\top$, where $K$ is an invertible $4$ by $4$ matrix with two
+nonzero off-diagonal $2$ by $2$ blocks. If $U$ has rank four, the
+surjectivity of $U^\top$ and injectivity of $U$ imply that $Q$ has
+rank four and image $\operatorname{im}U$. If $Q$ has rank three,
+$U$ cannot have rank four, and consequently both ranks equal three
+and their images again agree.
+
+Let $I=\{i:\kappa_i\neq0\}$ and $k=|I|$. Formula (2) gives the
+nonzero block of $Q$, indexed by $\{0\}\cup I$, as
+\[
+ \begin{pmatrix}0&-\kappa^\top/2\\
+                 -\kappa/2&\operatorname{diag}(\kappa)\end{pmatrix}.
+\]
+Its Schur complement with respect to the invertible diagonal block is
+$-\sum_i\kappa_i/4$. Hence its rank is $k+1$ if that sum is nonzero,
+and $k$ otherwise. In particular $k\leq4$.
+
+Suppose $\operatorname{rank}Q\geq3$. If $k<n$, the image of $Q$
+has zero coordinate in every variable outside $I$. The preceding
+image assertion forces both denominators to have zero slopes in those
+variables. Thus neither denominator can be of the nonconstant type
+allowed in the hypothesis. Both would be constant, making $AD-CB$
+affine and hence zero, a contradiction.
+
+It remains that $k=n$. Since $n\geq4$ and $k\leq4$, this means
+$k=n=4$. The rank bound forces $\sum_i\kappa_i=0$. The homogeneous
+cube-center vector $v=(1,1/2,\ldots,1/2)$ then satisfies $Qv=0$.
+Symmetry of $Q$ and $b,d\in\operatorname{im}Q$ force
+$B(1/2,\ldots,1/2)=D(1/2,\ldots,1/2)=0$. Each value is the average
+of the corresponding positive vertex values, a contradiction.
+
+We have proved $\operatorname{rank}Q\leq2$. If $q\neq0$, the rank
+formula leaves either $k=1$, or $k=2$ with the two coefficients
+opposite. These are exactly the two nonzero factorizations in (1).
+\end{proof}
+
+\paragraph{Canonical meaning of the nonzero cases.}
+Write $q=\kappa LM$ using its two displayed affine factors.
+The denominators $B,D$ are linearly independent: if they were
+proportional, their common positive affine factor would divide $LM$,
+but each of $L,M$ vanishes at a Boolean vertex.
+On the homogeneous subspace $B=D=0$, the product $LM$ vanishes.
+A vector space over the infinite field $\mathbb R$ cannot be a union
+of two proper linear subspaces. Thus one of the factors, say $L$,
+belongs to the span of $B,D$. Write
+\[
+ D=\alpha B+\beta L.
+\]
+Here $\beta\neq0$, and evaluating at a Boolean zero of $L$ shows
+$\alpha>0$. Since $B$ and $L$ are coprime linear forms, the identity
+\[
+ (\alpha A-C)B=L(\kappa M-\beta A)
+\]
+implies $\kappa M-\beta A=k_0B$ for a scalar $k_0$. Therefore
+\[
+ A=-\frac{k_0}{\beta}B+\frac\kappa\beta M,
+ \qquad
+ C=-\frac{k_0}{\beta}D+\frac{\alpha\kappa}{\beta}M.
+\]
+After subtracting a common constant score and positively rescaling
+$C,D$, the two numerators coincide and the denominators differ by a
+multiple of the other Boolean-vanishing factor. This identifies the
+precise one-coordinate or two-coordinate cancellation mechanism.
+
+\paragraph{Exact examples and the dimension threshold.}
+For any $n\geq4$, take $B=10+\sum_i x_i$.
+With $D=B+x_1$ and $A=C=x_1-1$, the cross-product is
+$x_1(x_1-1)$. With $D=B+x_1-x_2$ and $A=C=x_1+x_2-1$, it is
+$(x_1-x_2)(x_1+x_2-1)$. Replacing the common coefficient one by
+two makes the slopes of the latter $D$ strictly positive as well.
+Both identities hold on the whole cube and give nonconstant scores.
+
+Dimension three has additional identities, so it cannot be silently
+included in the theorem. For variables $x,y,z$, put
+\[
+ \begin{gathered}
+ B=(2885x+5y+6z+184)/5100,\\
+ L=1195x+5y+76,\qquad M=1393x-y+92,\\
+ K=102(2885x+5y-6z+190),\\
+ D=B+L,\qquad A=-M/10,\qquad C=A-K.
+ \end{gathered}
+\]
+All denominator constants and slopes are strictly positive. Direct
+expansion gives
+\[
+ AD-CB=BK-LM/10
+      =x(x-1)+y(y-1)-\frac{18}{25}z(z-1).
+\]
+Thus the two scores agree at all eight vertices while the cross-product
+uses three coordinates. The checker verifies this identity coefficient
+by coefficient, checks every vertex, and verifies the one-coordinate
+and two-coordinate examples in dimension five.
+\end{document}

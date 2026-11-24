@@ -1,0 +1,53 @@
+{
+  "status": "all exact checks passed",
+  "three_variable_vertex_checks": 8,
+  "five_variable_vertex_checks": 64,
+  "rank_checks": [
+    {
+      "coefficients": [
+        "1"
+      ],
+      "rank": 2
+    },
+    {
+      "coefficients": [
+        "1",
+        "-1"
+      ],
+      "rank": 2
+    },
+    {
+      "coefficients": [
+        "1",
+        "2"
+      ],
+      "rank": 3
+    },
+    {
+      "coefficients": [
+        "1",
+        "2",
+        "-3"
+      ],
+      "rank": 3
+    },
+    {
+      "coefficients": [
+        "1",
+        "1",
+        "-18/25"
+      ],
+      "rank": 4
+    },
+    {
+      "coefficients": [
+        "1",
+        "2",
+        "-1",
+        "-2"
+      ],
+      "rank": 4
+    }
+  ],
+  "scope": "written classification and exact examples, not Lean or asymptotic lower bound"
+}
