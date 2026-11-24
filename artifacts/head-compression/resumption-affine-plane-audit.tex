@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Independent Resumption Audit of the Affine-Plane Compiler}
+\author{}\date{24 November 2026}
+\begin{document}\maketitle
+
+\paragraph{Scope and status.}
+This audit reads the construction published at commit \texttt{7065e81} on
+\texttt{ar/0f08fe6fb98a}, independently checks its central identities, and
+reconstructs actual heads with exact rational arithmetic. No mathematical
+flaw was found. The proof of universality is the symbolic construction,
+not the finite tests. The Lean declarations being audited are
+\texttt{exists\_cauchy\_grid\_decoder},
+\texttt{affinePlane\_weighted\_pencil\_identity},
+\texttt{exists\_affinePlane\_encoding}, and
+\texttt{hasStrictReverseGridCompiler\_affinePlane}.
+Their source proofs contain no additional compiler hypothesis.
+The complete build and axiom audit are recorded separately by the parent run.
+
+\paragraph{Encoding and interpolation.}
+For $q=2^k$, $k\geq1$, a field $F$ of order $q$ exists. Its underlying set
+is in bijection with the $k$-bit words. An injection of the requested
+$r\leq kq^2$ rows into $F^2\times\{1,\ldots,k\}$ lets us extend a table
+arbitrarily on unused row labels. At each point $g$ and column $j$, one
+field element therefore stores exactly the requested $k$ bits.
+This argument uses only finite cardinalities; it does not require the
+field arithmetic to agree with binary word operations.
+
+Choose distinct real $d_a\in(1-\delta,1)$ and
+$t_z\in(0,\delta)$, with $(r+s)\delta<1$ and $\delta<1/2$.
+The Cauchy evaluation matrix $1/(d_a-t_z)$ is nonsingular: clearing its
+common denominator gives a polynomial of degree at most $q-1$ with $q$
+distinct roots, and evaluating the zero polynomial at each $d_a$
+annihilates its corresponding coefficient. Consequently each bit vector
+has exact reciprocal interpolation coefficients $\eta_{b,a}$.
+The Lean proof permits an additional constant $c_b$. This causes no gap:
+the rank-grid compiler explicitly supports arbitrary row biases, so the
+term $c_b$ is carried without an additional factor per bit.
+
+\paragraph{The essential cancellation.}
+For $h=(x_h,y_h)$, use the $q$ nonvertical lines
+$L_{a,y_h-ax_h}$. If $g\ne h$ has $x_g=x_h$, no such line contains $g$.
+Otherwise exactly one does, of slope
+$a(h,g)=(y_g-y_h)/(x_g-x_h)$. Therefore, with
+\[
+ Z_{a,c,j}=\sum_{g\in L_{a,c}}\frac1{d_a-t_{g,j}},
+\]
+we obtain
+\[
+ \sum_a\eta_{b,a}Z_{a,y_h-ax_h,j}
+ =\sum_a\frac{\eta_{b,a}}{d_a-t_{h,j}}
+  +\sum_{g:x_g\ne x_h}
+       \frac{\eta_{b,a(h,g)}}{d_{a(h,g)}-t_{g,j}}.
+\]
+The first term decodes the requested bit. The left side is a displayed
+rank-$q^2$ factorization, and the second term is cancelled by $q^2$
+heads, one per point. Each correction head has row-dependent numerator
+coefficient $-\eta_{b,a(h,g)}$ and row-dependent pole
+$d_{a(h,g)}$, with zero numerator for the excluded rows. These are
+arbitrary permitted affine coefficients. The data-column token
+$t_{g,j}$ depends on $g,j$ but not on the query row, exactly as required
+for one correction denominator.
+
+The line values $Z$ are precomputed real parameters after the whole table
+is specified. Computing them does not require an input-dependent product
+or an extra attention layer. This is why earlier fixed-pool or
+single-token decoder obstructions do not apply.
+
+\paragraph{Actual head budget and whole-cube positivity.}
+For any rank factor $f_i g_j$, let
+\[
+ C=1+\sum_i|f_i|,\quad u_i=C+f_i>0,\quad M=4(r+1)C.
+\]
+The affine ratio with column numerator $M g_j$, row denominator slopes
+$-u_i/(M+u_i)$, and denominator intercept one has grid value
+$(M+C+f_i)g_j$. Its full-cube minimum is greater than $1/2$.
+One shared affine head removes all column-only terms, so the line rank
+factorization costs $q^2+1$ heads, irrespective of coefficient magnitudes.
+Each correction denominator has the form
+\[
+ 1-\sum_i(1-D_{i,g})z_i-\sum_jt_{g,j}w_j,
+\]
+and its whole-cube minimum exceeds $1-(r+s)\delta>0$.
+Thus the raw budget is exactly $2q^2+1$.
+
+For a weak denominator with positive minimum $m$, replace it by
+$D+\epsilon(2-\sum x_i)$ with $\epsilon=m/(r+s+1)$.
+All slopes become strictly negative, the minimum remains positive, and
+all weight-two grid values remain unchanged. The already checked
+threefold axis repair then gives $6q^2+6$ strict heads and exact zero on
+both Boolean axes. Numerators remain affine throughout. The input
+coordinates are the original $r+s$ bits.
+
+\paragraph{Independent exact reconstruction.}
+The new script \texttt{resumption-affine-plane-check.py} imports no
+upstream audit script. It constructs fields of orders two, four, and
+eight from irreducible binary polynomials, chooses a shuffled partial
+row embedding, encodes independent prescribed Boolean entries, and
+inverts the Cauchy matrix over exact rationals. It then constructs every
+rank head, the shared affine head, and every point-correction head.
+After strictification, it evaluates the sum of the actual ratios on
+every grid point. Its results are:
+\[
+\begin{array}{c|c|c|c|c}
+q&r&s&\text{strict heads}&\text{exact grid values}\\\hline
+2&4&3&9&12\\
+4&27&9&33&243\\
+8&187&5&129&935
+\end{array}
+\]
+All 1190 outputs equal their requested $\pm1$ exactly. All 4368 ordered
+point pairs satisfy the asserted incidence classification. Every
+constructed denominator has strictly negative slopes and an exactly
+computed positive minimum on the whole cube.
+
+The script also independently expands the $3H+3$ axis repair for the
+first two examples, checks all their grid values again, and verifies
+576 Boolean-axis values. It exhaustively checks every denominator at
+every Boolean input for the seven-variable example. For larger examples,
+the exact minimum calculation proves whole-cube positivity directly.
+These computations supplement, and do not replace, the universal proof.
+
+\paragraph{Asymptotic conclusion of the audit.}
+Taking the least $k\geq1$ with $r\leq k4^k$ gives
+$4^k=O(r/\log r)$ by minimality. The finite compiler therefore supplies
+the previously missing superconstant saving. Combined with the unchanged
+checked gluing transfer, it gives the claimed unconditional
+$W(n)=O(2^n/(n\log n))$. This audit found no additional precision,
+fixed-pool, sign-pattern, finite-field, or full-cube hypothesis hidden
+in the central construction. The separate final Lean build is needed
+to certify the imported formalization and its exact dependency closure.
+\end{document}
