@@ -22,9 +22,9 @@ $$ S(x)=c+\sum_{g=1}^G\sum_{r=0}^{q_g-1}L_{g,r}(x)R_{g,r}(x),\qquad S(x)\neq0\te
 
 There are $p=1+2dK$ real parameters, including the bias $c$. Let $T(q_1,\ldots,q_G)$ be the number of strict truth tables represented by these scores. If $p\leq N$, then
 
-$$ T(q_1,\ldots,q_G)\leq\left(\frac{16e^2N}{p}\right)^p\prod_{g=1}^G\left(\frac K{q_g}\right)^d. $$
+$$ T(q_1,\ldots,q_G)\leq\left(\frac{16e^2N}{p}\right)^p K^{dG}. $$
 
-Only the $dG$ base-coefficient blocks retain the indicated length penalty. For equal lengths $q_g=K/G$, this penalty is $G^{dG}$.
+Only the $dG$ base-coefficient blocks retain the indicated length penalty. There is no factor $K^{dK}$ on the higher jet coefficients.
 
 ## Proof of the finite count
 
@@ -44,7 +44,7 @@ Here $0\leq\ell\leq r\leq q_g-1$, so the displayed exponent of $B_{g,0}$ is nonn
 
 Every coefficient of the indicated affine form receives the following weight:
 
-$$ w(B_{g,0})=\frac1K,\qquad w(B_{g,j})=\frac j{q_g}+\frac1K\ (j\geq1),\qquad w(L_{g,r})=1-\frac r{q_g},\qquad w(c)=1. $$
+$$ w(B_{g,0})=\frac1K,\qquad w(B_{g,j})=\frac j{q_g}+\frac1K\quad(j\geq1),\qquad w(L_{g,r})=1-\frac r{q_g},\qquad w(c)=1. $$
 
 All weights are positive and at most two. The contribution of one cluster term to the cleared polynomial has weight
 
@@ -58,15 +58,15 @@ The weights are rational. Choose a common positive integer multiple $M$ making $
 
 For each of the $d$ affine coefficient positions at a cluster of length $q$, the product of its denominator and numerator weights is at least
 
-$$ \begin{aligned} \frac1K\left(\prod_{j=1}^{q-1}\frac jq\right)\left(\prod_{j=1}^{q}\frac jq\right)&=\frac qK\left(\frac{q!}{q^q}\right)^2\cr &\geq\frac qK e^{-2q}. \end{aligned} $$
+$$ \begin{aligned} \frac1K\left(\prod_{j=1}^{q-1}\frac jq\right)\left(\prod_{j=1}^{q}\frac jq\right)&=\frac1K\left(\frac{q!}{q^q}\right)^2\cr &\geq\frac1K e^{-2q}. \end{aligned} $$
 
 The first product is empty when $q=1$, and the identity remains valid. The last step is $q!\geq(q/e)^q$. Consequently
 
-$$ \prod_{\ell=1}^p w_\ell\geq e^{-2dK}\prod_g\left(\frac{q_g}{K}\right)^d. $$
+$$ \prod_{\ell=1}^p w_\ell\geq e^{-2dK}K^{-dG}. $$
 
 The weighted theorem, followed by $2dK=p-1\leq p$, now gives
 
-$$ \begin{aligned} T(q_1,\ldots,q_G)&\leq\left(\frac{16eN}{p}\right)^p e^{2dK}\prod_g\left(\frac K{q_g}\right)^d\cr &\leq\left(\frac{16e^2N}{p}\right)^p\prod_g\left(\frac K{q_g}\right)^d. \end{aligned} $$
+$$ \begin{aligned} T(q_1,\ldots,q_G)&\leq\left(\frac{16eN}{p}\right)^p e^{2dK}K^{dG}\cr &\leq\left(\frac{16e^2N}{p}\right)^p K^{dG}. \end{aligned} $$
 
 The positivity restriction on base denominators only decreases the set of parameter points relative to the polynomial sign-count theorem. No noncancellation condition was used. $\blacksquare$
 
@@ -92,7 +92,7 @@ $$ \frac{N}{20\sqrt n}\log(320e^2\sqrt n)\leq N\left(\frac8{20\sqrt n}+\frac1{40
 
 Here $\log(320e^2)\lt8$, $\log n\leq\sqrt n$, and $\sqrt n\geq5$ were used. For the base penalty, $G\leq K/q_{\min}$, $d\leq2n$, $K\leq N$, and $\log K\leq n\log2$ give
 
-$$ d\sum_g\log\left(\frac K{q_g}\right)\leq\frac{2nK}{q_{\min}}\log K\leq\frac{2n^2K\log2}{q_{\min}}\leq\frac{N\log2}{50}. $$
+$$ dG\log K\leq\frac{2nK}{q_{\min}}\log K\leq\frac{2n^2K\log2}{q_{\min}}\leq\frac{N\log2}{50}. $$
 
 The last inequality follows separately from either stated pair of width and cluster-size bounds. There are $2^{K-1}$ ordered positive compositions of $K$. Summing this number over $1\leq K\leq K_{\max}$, and including one empty composition, gives $2^{K_{\max}}$ charts. The two constant sign tables fit the same uniform upper bound used for the nonempty charts. Since $K_{\max}\leq N/100$, the additional logarithm from the chart union is at most $N\log2/100$.
 
@@ -111,3 +111,7 @@ For the margin route, the useful missing statement is about truth tables: every 
 The class also excludes a residual collection of arbitrary simple poles unless their total contribution is separately counted. Length-one clusters are valid finite-class parameters, but then the base penalty restores a factor $K^{dK}$. Declaring all such poles to be a single cluster requires a proved sign-preserving degeneration or repair. Neither the weighted calculation nor an arbitrarily small coefficient margin supplies it.
 
 The finite formula is therefore a new restricted capacity estimate. It does not yet improve the original unrestricted lower bound.
+
+## Audit correction
+
+The first committed version overstated the factorial product by a factor of $q$ per affine coefficient position. The correct identity is $(q-1)!/q^{q-1}=q!/q^q$. The finite prefactor above is therefore $K^{dG}$. Both displayed half-entropy corollaries are unchanged, since their proofs already used the larger bound $dG\log K$ for this contribution. This correction was found by independently clearing the rational weights to integer weights.

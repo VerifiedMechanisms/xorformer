@@ -1,11 +1,9 @@
 [
   {
     "file": "artifacts/power-saving-20261124-followup/multicluster_weighted_capacity.md",
-    "source_spans": 86,
-    "rendered_spans": 86,
+    "source_spans": 89,
+    "rendered_spans": 89,
     "findings": [],
-    "notes": [
-      "artifacts/power-saving-20261124-followup/multicluster_weighted_capacity.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ w(B_{g,0})=\\\\frac1K,\\\\qquad w(B_{g,j})=\\\\frac j{q_g}+\\\\frac1K\\\\ (j\\\\geq1),\\\\qquad w('"
-    ]
+    "notes": []
   }
 ]
