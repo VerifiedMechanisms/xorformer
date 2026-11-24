@@ -247,6 +247,42 @@ it does not establish emptiness at every smaller scale. It does not
 exclude target-dependent residues or a coalescence argument with boundary
 terms and higher pole orders.
 
+
+The obstruction persists after the line quotient needed to allow a
+root bias in a strict coalesced induction. Put
+$C_{st}=1/(1-p_s-p_t)$ on the sixteen-pole lower grid and
+$v=C^{-1}{\bf1}$. For each of the three partitions of the four target
+cones into two pairs, let $L$ and $R$ be the respective pair
+intersections. The file \texttt{butterfly-biased-cone-bridge.json}
+certifies
+\[
+ (L-R)\cap\operatorname{span}\{v\}=\varnothing.       \tag{3}
+\]
+The checker verifies a nonnegative exact Farkas vector for the
+seventeen-variable system asking for $a\in L$ and
+$a+\tau v\in R$. Thus (3) is stronger than failure of the four-way
+intersection and already incorporates the free root bias.
+
+For clarity, the coalesced consequence is as follows. The set of
+possible root score vectors with a bias is the open convex cone
+$C(L-R)+\mathbb R{\bf1}$. It meets every strict orthant if and only if
+it is all of $\mathbb R^{16}$: a proper open convex cone has a nonzero
+separating linear functional, and misses the orthant with opposite
+coordinate signs. It is all of the space if and only if it contains
+zero, which is equivalent to the negation of (3). For the first
+partition the certificate supplies an explicit separating normal $q$
+with $q^\top{\bf1}=0$. Its forbidden root word is eight minus signs
+followed by eight plus signs in numerical prefix order. This word is
+fully alternating when the query locations are sorted. The certificate
+also lists the two thirty-two-wire target words obtained by assigning
+the four saved child targets to this common root word.
+
+This excludes an induction that demands a common strict child baseline
+at zero highest-bit separation for all these parent pairs. It does not
+exclude a nonzero separation, residues diverging as the separation tends
+to zero, or a different lower-pole grid. In particular it is not an
+infeasibility certificate for either listed parent at positive separation.
+
 \paragraph{Remaining quantitative gap.}
 A proof that (1) is feasible for all targets at arbitrarily large $H$,
 or a sufficiently strong uniform lower bound on the density of feasible

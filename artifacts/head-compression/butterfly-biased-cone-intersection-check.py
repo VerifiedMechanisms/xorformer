@@ -47,3 +47,28 @@ for pair in data['pairs']:
             assert all((1-2*bits[e])*(values[e]+bias)>0 for e in pos+neg)
 assert len(data['pairs'])==6 and len(data['dual'])==17
 print(json.dumps(dict(dimension=d,nonempty_pair_intersections=6,empty_joint_intersection=True,dual_support=len(data['dual']),strict_original_queries=6*2*len(sw))))
+
+bridge=json.loads((path/'butterfly-biased-cone-bridge.json').read_text())
+v=list(map(F,bridge['bridge']))
+C=[[1/(1-p[i]-p[j]) for j in range(H)] for i in range(H)]
+assert all(sum(a*b for a,b in zip(row,v))==1 for row in C)
+for part in bridge['partitions']:
+    assert not part['feasible']
+    selected=[]
+    for index in part['left']+part['right']:
+        for row in rows_by_target[index]:
+            selected.append(row+[sum(a*b for a,b in zip(row,v)) if index in part['right'] else F(0)])
+    lam=[F(0)]*len(selected)
+    for index,value in part['dual']:lam[index]=F(value)
+    assert all(a>=0 for a in lam) and sum(lam)==1
+    assert all(sum(lam[i]*selected[i][j] for i in range(len(lam)))==0 for j in range(H+1))
+example=bridge['separating_example'];normal=list(map(F,example['normal']));n=list(map(F,example['n']))
+assert any(normal) and sum(normal)==0
+assert all(sum(a*b for a,b in zip(row,normal))==target for row,target in zip(C,n))
+first=bridge['partitions'][0];ordered=sum((rows_by_target[i] for i in first['left']+first['right']),[]);lam=[F(0)]*len(ordered)
+for index,value in first['dual']:lam[index]=F(value)
+offset=sum(len(rows_by_target[i]) for i in first['left'])
+assert sum(lam[:offset])>0 and sum(lam[offset:])>0
+assert all(sum(lam[i]*ordered[i][j] for i in range(offset))==n[j] for j in range(H))
+assert all((1-2*bit)*value<=0 for bit,value in zip(example['rootword'],normal))
+print(json.dumps(dict(empty_quotient_bridges=len(bridge['partitions']),missing_coalesced_rootword=example['rootword'])))
