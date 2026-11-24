@@ -309,4 +309,86 @@ so with an eventually admissible profile is proved here. However,
 any additive corrections arising from a valid simultaneous
 transport can be summed across all heads at constant total cost.
 
+\subsection{Closing the inversion-and-gauge iteration route}
+
+\begin{lemma}[M\"obius transport cannot improve both profile budgets]
+Let $d_1,\ldots,d_m>0$, and let $\phi$ be a real fractional linear
+function defined at every $d_i$ and $-d_i$. Suppose
+$\phi(d_i)-\phi(-d_j)>0$ for all $i,j$. If the transformed grid
+denominator with row profile $\phi(d_i)$ and column profile
+$-\phi(-d_j)$ satisfies the reverse whole-cube budget, then at least
+one of the profiles $(d_i)$ and $(1/d_i)$ satisfies its symmetric
+reverse whole-cube budget.
+\end{lemma}
+
+\begin{proof}
+An affine $\phi$ gives a positive multiple of the original budget.
+Otherwise write $s$ for its pole, and $d_- =\min_i d_i$,
+$d_+=\max_i d_i$. The difference formula for fractional linear
+functions and positivity of the diagonal values show that either
+$|s|<d_-$ or $|s|>d_+$: a pole with intermediate absolute value
+would give diagonal differences of opposite signs.
+
+If $|s|>d_+$, both transformed profiles increase with $d_i$.
+Their maxima occur at $d_+$. Their sum at a common argument is a
+positive constant times $f(d)=d/(s^2-d^2)$. For every $d_i$,
+\[
+ \frac{f(d_i)}{f(d_+)}
+ =\frac{d_i}{d_+}\frac{s^2-d_+^2}{s^2-d_i^2}
+ \le\frac{d_i}{d_+}.
+\]
+Thus the transformed budget implies the original profile budget.
+If $|s|<d_-$, both profiles decrease and their maxima occur at $d_-$.
+Their sum is now a positive constant times $f(d)=d/(d^2-s^2)$,
+and
+\[
+ \frac{f(d_i)}{f(d_-)}
+ =\frac{d_i}{d_-}\frac{d_-^2-s^2}{d_i^2-s^2}
+ \le\frac{d_-}{d_i}.
+\]
+The transformed budget therefore implies the reciprocal-profile
+budget. Constant shifts between row and column profiles cancel
+from the asymmetric budget, so they do not affect this argument.
+\end{proof}
+
+\begin{lemma}[Four Joukowski levels also fail the reciprocal budget]
+Let $d_j=\beta R^{-j}+kR^j>0$ for $j=0,1,2,3$ and
+$R\ge(3+\sqrt5)/2$. Then
+\[
+ \sum_{j=0}^3\frac1{d_j}\le3\max_j\frac1{d_j}.
+\]
+\end{lemma}
+
+\begin{proof}
+Set $T=R+R^{-1}\ge3$. The profile obeys
+$d_{j+2}=Td_{j+1}-d_j$. Scale its minimum to one and reverse the
+sequence if necessary, so a minimum occurs at index zero or one.
+If $d_0=1$ and $d_1=u\ge1$, then
+\[
+ (d_0,d_1,d_2,d_3)
+ =(1,u,Tu-1,(T^2-1)u-T).
+\]
+The reciprocal sum decreases with $u\ge1$ and is at most
+$2+1/(T-1)+1/(T^2-T-1)\le2+2/(T-1)\le3$.
+If $d_1=1$ and $d_2=u$, then
+\[
+ (d_0,d_1,d_2,d_3)=(T-u,1,u,Tu-1),
+ \qquad 1\le u\le T-1.
+\]
+The reciprocal sum is a convex function of $u$ on this interval,
+since each denominator is positive affine and the reciprocal has
+nonnegative second derivative. Its maximum is attained at an
+endpoint. The endpoint values are respectively
+$2+2/(T-1)$ and
+$2+1/(T-1)+1/(T(T-1)-1)$, both at most three.
+Rescaling proves the claim.
+\end{proof}
+
+Together with the earlier four-level obstruction, these lemmas show
+that repeated gauge changes and universal inversions cannot repair
+four sufficiently separated geometric Joukowski levels. This closes
+only that iteration route. A simultaneous resynthesis of several
+kernels could use cancellations not represented by a common
+fractional linear profile and is not excluded.
+
 \end{document}
