@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T03:22:23.719951+00:00",
+  "method": "Independent integer arithmetic and fractions; no optimizer or Lean output used.",
+  "checks": {
+    "finite_difference": {
+      "instances": 63,
+      "positive_paths_checked": 7866
+    },
+    "central_binomial": {
+      "instances": 129
+    },
+    "majority_spectra": [
+      {
+        "block_bits": 1,
+        "largest_unnormalized_coefficient": 2
+      },
+      {
+        "block_bits": 3,
+        "largest_unnormalized_coefficient": 4
+      },
+      {
+        "block_bits": 5,
+        "largest_unnormalized_coefficient": 12
+      },
+      {
+        "block_bits": 7,
+        "largest_unnormalized_coefficient": 40
+      },
+      {
+        "block_bits": 9,
+        "largest_unnormalized_coefficient": 140
+      },
+      {
+        "block_bits": 11,
+        "largest_unnormalized_coefficient": 504
+      },
+      {
+        "block_bits": 13,
+        "largest_unnormalized_coefficient": 1848
+      }
+    ],
+    "product_spectra": [
+      {
+        "bits": 3,
+        "largest_unnormalized_coefficient": 8,
+        "density_lower_bound": "1"
+      },
+      {
+        "bits": 9,
+        "largest_unnormalized_coefficient": 64,
+        "density_lower_bound": "8"
+      },
+      {
+        "bits": 15,
+        "largest_unnormalized_coefficient": 1728,
+        "density_lower_bound": "512/27"
+      }
+    ],
+    "four_head_scores": [
+      {
+        "block_bits": 1,
+        "count_classes": 8,
+        "minimum_margin": "1/360",
+        "conditioned_minimum_margin": "25/12840534",
+        "denominator_upper_bound": "101/100"
+      },
+      {
+        "block_bits": 3,
+        "count_classes": 64,
+        "minimum_margin": "1/3990",
+        "conditioned_minimum_margin": "40/160184037",
+        "denominator_upper_bound": "101/100"
+      },
+      {
+        "block_bits": 5,
+        "count_classes": 216,
+        "minimum_margin": "1/14880",
+        "conditioned_minimum_margin": "115/1241464587",
+        "denominator_upper_bound": "101/100"
+      },
+      {
+        "block_bits": 7,
+        "count_classes": 512,
+        "minimum_margin": "1/37023",
+        "conditioned_minimum_margin": "6400/133669448223",
+        "denominator_upper_bound": "101/100"
+      }
+    ],
+    "parity_mobius": {
+      "dimensions": 10,
+      "nonzero_coefficients_checked": 1023
+    }
+  },
+  "main_target_proved": false,
+  "scope": "Finite checks of complete written arguments; not an asymptotic head lower bound."
+}

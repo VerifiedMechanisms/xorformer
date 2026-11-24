@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T03:25:43.036544+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/sparse-sign-compiler-obstruction.md",
+      "source_math_spans": 99,
+      "rendered_math_spans": 99,
+      "findings": 0,
+      "notes": [],
+      "sha256": "fa0c6ea2e543b0e9accbf60ef7634c7bd685a09e2b82810940863d00aeb979f0"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "2a2f530f184a7b38929aeb27595a4370c57511d028b6e6730bcfb60c84e83825"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "43fb49e779b79cbc05e9985304464f3a40a3ddcd4bc621c9fa9885e35049bd61"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

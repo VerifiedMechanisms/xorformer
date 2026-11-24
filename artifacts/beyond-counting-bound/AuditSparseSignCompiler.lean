@@ -1,0 +1,14 @@
+import HeadComplexity.Results.AffineTripleFourHeads
+import HeadComplexity.Polynomial.SpectralDensityBarrier
+
+#print axioms HeadComplexity.four_ratio_product_identity
+#print axioms HeadComplexity.four_ratio_product_pos_iff
+#print axioms HeadComplexity.computableWithHeadsN_affineTriple
+#print axioms HeadComplexity.HStar_affineTriple_le
+#print axioms HeadComplexity.SpectralDensityBarrier.abs_eq_signed
+#print axioms HeadComplexity.SpectralDensityBarrier.spectral_sum_bound
+#print axioms HeadComplexity.SpectralDensityBarrier.spectral_card_bound
+#print axioms HeadComplexity.SpectralDensityBarrier.tensor_correlation
+#print axioms HeadComplexity.SpectralDensityBarrier.tensor_correlation_bound
+#print axioms HeadComplexity.SpectralDensityBarrier.centralRatio_nonneg
+#print axioms HeadComplexity.SpectralDensityBarrier.centralRatio_sq_bound

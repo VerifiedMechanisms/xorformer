@@ -62,3 +62,5 @@ Generic coordinate uniqueness, uniformly small critical-point counts, a head-ind
 - [General row-scaling geometry](row-scaling-geometry-audit.json): twenty-four Lean-checked finite-dimensional matrix declarations, including singular-Laplacian solvability and uniqueness of the least-norm tangent. No head-count lower bound.
 
 - [Fixed-direction flattening obstruction](homothetic-flattening-audit.json): eleven checked declarations and an exact rational replay. Two admissible heads realize the original labels, but the specified flattened denominator pair cannot. Adaptive direction changes and both asymptotic targets remain open.
+
+- [Sparse-sign compiler obstruction](sparse-sign-compiler-audit.json): eleven Lean declarations, including `HeadComplexity.HStar_affineTriple_le`; complete written general construction and spectral proof. Both standard polynomial dictionaries fail to provide a polynomial-size universal conversion. This is not a worst-case head lower bound.

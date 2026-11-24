@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-24T03:00:42.514837+00:00",
+  "checks": [
+    {
+      "name": "build",
+      "exit_code": 0,
+      "forbidden_axioms": [],
+      "log": "continuation-recheck-build.txt"
+    },
+    {
+      "name": "flattening_axioms",
+      "exit_code": 0,
+      "forbidden_axioms": [],
+      "log": "continuation-recheck-flattening_axioms.txt"
+    },
+    {
+      "name": "geometry_axioms",
+      "exit_code": 0,
+      "forbidden_axioms": [],
+      "log": "continuation-recheck-geometry_axioms.txt"
+    }
+  ],
+  "status": "PASS"
+}

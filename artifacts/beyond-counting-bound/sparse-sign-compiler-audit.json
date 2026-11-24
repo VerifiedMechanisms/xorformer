@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-24T03:24:26.844056+00:00",
+  "declarations": [
+    "HeadComplexity.four_ratio_product_identity",
+    "HeadComplexity.four_ratio_product_pos_iff",
+    "HeadComplexity.computableWithHeadsN_affineTriple",
+    "HeadComplexity.HStar_affineTriple_le",
+    "HeadComplexity.SpectralDensityBarrier.abs_eq_signed",
+    "HeadComplexity.SpectralDensityBarrier.spectral_sum_bound",
+    "HeadComplexity.SpectralDensityBarrier.spectral_card_bound",
+    "HeadComplexity.SpectralDensityBarrier.tensor_correlation",
+    "HeadComplexity.SpectralDensityBarrier.tensor_correlation_bound",
+    "HeadComplexity.SpectralDensityBarrier.centralRatio_nonneg",
+    "HeadComplexity.SpectralDensityBarrier.centralRatio_sq_bound"
+  ],
+  "sources": {
+    "formalization/HeadComplexity/Results/AffineTripleFourHeads.lean": "807066e5d155dd92dfed0886a763c9dcb738bbed63d92046153caafb22671cfb",
+    "formalization/HeadComplexity/Polynomial/SpectralDensityBarrier.lean": "f3a8db9187a776379660593bf7b65972c63a2e61e13a199f43424e744dd9d063"
+  },
+  "build": "sparse-sign-compiler-build.txt",
+  "axioms": "sparse-sign-compiler-axioms.txt",
+  "rational": "sparse-sign-compiler-rational-audit.json",
+  "written_proof": "sparse-sign-compiler-obstruction.md",
+  "scope": "Eleven Lean declarations: four-head original-model realization, general orthogonal-dictionary sparsity inequality, tensor factorization, and central-ratio recurrence bound. The all-k construction, majority coefficients, binomial identification, and asymptotic no-compiler result are complete written proofs. No worst-case head lower bound.",
+  "main_target_proved": false
+}

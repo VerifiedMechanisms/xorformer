@@ -1,0 +1,13 @@
+'HeadComplexity.four_ratio_product_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.four_ratio_product_pos_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.computableWithHeadsN_affineTriple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HStar_affineTriple_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.abs_eq_signed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.spectral_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.spectral_card_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.tensor_correlation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.tensor_correlation_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.centralRatio_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SpectralDensityBarrier.centralRatio_sq_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
