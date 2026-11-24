@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Cauchy Reflection and Monotone Readout Coordinates}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+Complete written algebraic identities with exact rational checks, not Lean.
+The monotone-readout feasibility property below remains open as the number
+of butterfly levels grows. These identities are not a compiler theorem.
+
+Let $p_1,\ldots,p_H$ be distinct real numbers with $p_i<T/2$ and define
+\[
+ C_{ij}=\frac1{T-p_i-p_j},\qquad
+ Q(x)=\prod_i(x-p_i),\qquad A(x)=Q(T-x),\qquad
+ w_i=\frac{A(p_i)}{Q'(p_i)},\qquad B=C\operatorname{diag}(w).
+\]
+\begin{theorem}[Exact reflection]
+For a vector $v$, let $N_v$ be the unique polynomial of degree less than
+$H$ with $N_v(p_i)=A(p_i)v_i$. Then
+\[
+ (Bv)_i=\frac{N_v(T-p_i)}{A(p_i)},\qquad B^2=I,
+ \qquad C^{-1}=\operatorname{diag}(w)C\operatorname{diag}(w).
+\]
+For every diagonal multiplier $D_u$,
+\[
+ C D_u C^{-1}=B D_u B.
+\]
+\end{theorem}
+\begin{proof}
+The partial fraction identity for $N_v/Q$ is
+\[
+ \frac{N_v(x)}{Q(x)}
+ =\sum_j\frac{A(p_j)v_j}{Q'(p_j)(x-p_j)}.
+\]
+Evaluate at $x=T-p_i$. The interpolation polynomial associated with
+$Bv$ is therefore exactly $N_v(T-x)$, whose degree is still less than
+$H$. Applying reflection twice proves $B^2=I$. Since every $w_i$ is
+nonzero, this proves the inverse formula. Diagonal matrices commute,
+so the last identity follows as well.
+\end{proof}
+
+\begin{lemma}[Exact symmetric Schur complement]
+Remove an index set $J$ from the positive definite Cauchy matrix. Its
+Schur complement on the remaining indices is
+\[
+ C^J_{ik}=f_J(p_i)C_{ik}f_J(p_k),\qquad
+ f_J(x)=\prod_{j\in J}\frac{x-p_j}{T-x-p_j}.
+\]
+\end{lemma}
+\begin{proof}
+For one removed index $j$, direct subtraction gives
+\[
+ C_{ik}-\frac{C_{ij}C_{jk}}{C_{jj}}
+ =\frac{p_i-p_j}{T-p_i-p_j}\,C_{ik}\,
+   \frac{p_k-p_j}{T-p_k-p_j}.
+\]
+Iterating gives the displayed product. The diagonal factors are nonzero
+on remaining distinct poles. Positive definiteness follows either from
+Schur complements or from
+\[
+ v^\top C v=\int_0^\infty e^{-Tt}
+       \left(\sum_i v_i e^{p_it}\right)^2dt>0
+\]
+for nonzero $v$, since distinct real exponentials are linearly independent.
+The integral converges under $2\max_i p_i<T$.
+\end{proof}
+
+\paragraph{Application to the signed Haar decoder.}
+For a fixed routing, let $u_g(y)$ be its signed Haar block mask in output
+coordinates. If $x=Cc$, then every unbiassed block readout at a grid query
+$p_s$ is
+\[
+ (C D_{u_g}c)_s=(B D_{u_g}B x)_s.
+\]
+This changes no scores and imposes no restriction on signed residues.
+The family of all multiplier operators commutes, and each indicator
+multiplier becomes a projection in these coordinates. This does not
+make its matrix entries nonnegative.
+
+Order the poles increasingly. A strictly increasing readout vector can
+be written uniquely as
+\[
+ x=\alpha\mathbf1+\sum_{j=1}^{H-1}d_j s_j,
+ \qquad d_j>0,
+\]
+where $s_j$ is the indicator of the final $H-j$ ordered coordinates.
+Eliminating the independent block biases by comparing each required
+positive query with each required negative query gives a real matrix
+$L$ in residue coordinates. The exact strengthened feasibility question
+is
+\[
+ L C^{-1}\left(\alpha\mathbf1+\sum_jd_js_j\right)>0,
+ \qquad d_j>0.
+\]
+It is stronger than the original signed biased decoder. No theorem here
+asserts it for all routings or target words. A fixed common increasing
+$x$ is stronger still and is not assumed.
+
+Exact finite probes show that the physical-alternation stress word at
+$H=32$ has a feasible strictly increasing readout, and the same holds for
+the tested $H=16$ words. A greedy construction by successively choosing
+one dominating gap fails already for the $H=8$ stress word: every gap
+column has a negative entry among the required comparison rows, and
+neither sign of the constant column is nonnegative on all these rows.
+Thus these examples require balanced cancellations in the gap variables.
+
+Finite feasibility rates alone provide little asymptotic evidence.
+The signed biased family has $2H-1$ parameters and
+$q=H\log_2(H)/2$ queries. For a generic rank-$d$ central linear image in
+$\mathbb R^q$, the fraction of orthants met is
+$2^{1-q}\sum_{j=0}^{d-1}\binom{q-1}{j}$.
+For $d=2H-1$, this is already close to one at the small sizes tested.
+The desired growing-capacity statement must use the coupling between
+routing and target signs, rather than this dimension count.
+
+\paragraph{Limits of a positivity shortcut.}
+The paired divided-difference matrix
+$K_{ij}=1/((t_j-r_i)(t_j-s_i))$ is not universally sign regular for
+arbitrary matching of two separated pole clusters. For four points,
+match a sorted set $R$ to its translate by $100$ using the permutation
+$(0,3,1,2)$. The exact determinant is negative for
+\[
+ R=(0,14,17,31),\qquad t=(229,245,338,379),
+\]
+and positive for
+\[
+ R=(0,8,13,21),\qquad t=(207,229,257,274).
+\]
+Both pole sets are symmetric binary grids and all query points are
+exterior. Thus a proposed recursive positivity argument must use
+additional hierarchy or routing information. The symmetric Schur
+identity above remains valid; it does not identify these arbitrary
+paired matrices with symmetric Schur complements.
+\end{document}
