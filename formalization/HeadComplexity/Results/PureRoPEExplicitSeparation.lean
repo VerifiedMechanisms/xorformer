@@ -2,6 +2,7 @@ import HeadComplexity.Polynomial.PureCubicFiniteRigidity
 import HeadComplexity.Polynomial.ThreeHeadMeanSign
 import HeadComplexity.Polynomial.ReplicatedMeanGrid
 import HeadComplexity.Results.PureRoPEReplicationBounds
+import HeadComplexity.Results.PureRoPEReplicationFive
 import HeadComplexity.Results.FourHeadLocalPattern
 
 set_option linter.style.header false
@@ -27,7 +28,7 @@ theorem replicationCount_gt_two : 2 < replicationCount := by
   have h : 4 ≤ replicationCount := by
     change 2 ^ 2 ≤ 2 ^ 400000
     exact Nat.pow_le_pow_right (n := 2) (i := 2) (j := 400000) (by decide) (by decide)
-  omega
+  exact lt_of_lt_of_le (by norm_num : (2 : ℕ) < 4) h
 
 /-- The lower bound applies to the literal original vanilla architecture. -/
 theorem not_vanilla_three :
@@ -68,8 +69,8 @@ theorem strict_separation :
 
 theorem vanillaHStar_bounds :
     4 ≤ HStar (14 * replicationCount) explicitUnshiftedFunction ∧
-      HStar (14 * replicationCount) explicitUnshiftedFunction ≤ 7 :=
-  ⟨vanillaHStar_ge_four, explicit_vanillaHStar_le_seven⟩
+      HStar (14 * replicationCount) explicitUnshiftedFunction ≤ 5 :=
+  ⟨vanillaHStar_ge_four, PureRoPEReplicationFive.explicit_vanillaHStar_le_five⟩
 
 theorem shared_strict_separation :
     PureRoPEHStar (14 * replicationCount) explicitUnshiftedFunction <
