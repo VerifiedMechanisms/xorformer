@@ -1,0 +1,41 @@
+'HeadComplexity.FeasibleChartEntropy.choose_le_exp_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleChartEntropy.card_certificates_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleChartEntropy.certificate_entropy_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleChartEntropy.card_original_le_exp_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleChartEntropy.worstCase_gt_of_chart_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleChartEntropy.worstCase_gt_of_sqrt_chart_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleChartEntropy.worstCase_gt_of_logarithmic_chart_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.denPoly_slope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.represented_of_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.exists_coherent_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.card_original_le_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.card_original_le_exp_of_chart_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.worstCase_gt_of_chart_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.worstCase_gt_of_sqrt_chart_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentDenominatorCharts.worstCase_gt_of_logarithmic_chart_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
