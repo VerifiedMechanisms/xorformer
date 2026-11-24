@@ -37,7 +37,10 @@ import HeadComplexity.Results.UniversalLogSaving
 import HeadComplexity.Results.JointCellGlobalBound
 import HeadComplexity.Results.JointCellLabelAudit
 import HeadComplexity.Results.JointFamilyIncidenceObstruction
+import HeadComplexity.Results.JointFamilyActiveDirections
+import HeadComplexity.Results.JointFamilyScalarCapacity
 import HeadComplexity.Results.LargeDomainSelectors
+import HeadComplexity.Results.CubeStarCompactDecoder
 import HeadComplexity.Results.UniversalAxisLogCompiler
 import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms

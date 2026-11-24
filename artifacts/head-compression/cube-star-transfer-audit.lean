@@ -1,0 +1,8 @@
+import HeadComplexity.Results.CubeStarCompactDecoder
+import HeadComplexity.Results.JointFamilyScalarCapacity
+
+#check HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_of_compact_cube_decoder
+#print axioms HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_of_compact_cube_decoder
+#print axioms HeadComplexity.AxisZeroGluing.hasReverseCubeStarCompiler_of_compact
+#print axioms HeadComplexity.AxisZeroGluing.glue_reverse_cube_star_modules
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_cauchy_affine_word_length_le_log

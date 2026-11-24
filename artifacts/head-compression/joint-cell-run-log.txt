@@ -84,3 +84,24 @@ positive row directions. A universal H(k)=O(2^k/k) decoder would yield
 W(n)=O(2^n/((n-k)*k)) if the global gluing conditions can be met. This is
 presently a candidate, not a theorem. Exact small finite examples are
 being checked; no asymptotic inference is made from them.
+
+Larger-domain transfer checkpoint, 2026-11-24 16:16 UTC (about 46 minutes)
+CubeStarTransfer.lean proves one joint score can be glued per full-row-cube
+by column-star cell. The exact budget is 22*2^s*H/s + 2^(k+1) on k+s bits.
+CubeStarCompactDecoder.lean proves that a fixed-direction scalar decoder
+whose column intercepts can lie in every interval (1,1+eta) supplies such
+a compiler at the same H. The quantifier order fixes row directions before
+arbitrary independent column labels are chosen. The construction explicitly
+checks positivity at every multihot column input, not only the star.
+These are conditional transfer theorems. No asymptotic decoder instance
+has been proved. In balanced dimensions H=O(2^k/sqrt(k)) would suffice for
+the requested exponent one-half. Full lake build passed, 9281 jobs, and
+the new transfer declarations use only the three standard axioms.
+
+Finite evidence: the separate LargeDomainCompactDecoder.tex gives a written
+arbitrary-width two-bit decoder using two fixed-direction fractions and a
+column bias, with exact rational witnesses also retained. This does not
+establish growing-dimensional universality. Generic nearby directions miss
+many patterns in finite numerical sampling; that is not an impossibility
+certificate. The active route studies singular coincident-direction bases,
+balanced moment permutations, and joint higher-order cancellations.
