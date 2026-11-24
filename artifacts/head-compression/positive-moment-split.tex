@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A positive moment-preserving split realizes arbitrary exterior signs locally}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+This is a complete written local theorem using the ordinary finite-dimensional
+inverse function theorem. It is not Lean-checked. The exact checker verifies
+its rational tangent identities on small examples, not the inverse function
+theorem. No HeadComplexity definition is changed, and no recursive decoder
+or asymptotic head saving is claimed.
+
+For a finite measure $\mu$, write
+$m_k(\mu)=\int x^k\,d\mu(x)$ and
+$S_\mu(t)=\int(t-x)^{-1}\,d\mu(x)$.
+
+\begin{theorem}[Local positive split]
+Let $a<b<t_1<\cdots<t_M$, and let
+$\mu=\sum_{h=1}^M w_h\delta_{p_h}$, where
+$a<p_1<\cdots<p_M<b$ and $w_h>0$.
+For every $\sigma\in\{-1,1\}^M$, there are positive $M$-atom
+measures $\mu_+(\delta),\mu_-(\delta)$, defined for every sufficiently
+small $\delta>0$, converging to $\mu$, such that
+\[
+ m_k(\mu_+)=m_k(\mu_-)=m_k(\mu)\quad(0\leq k<M),
+\]
+\[
+ m_k(\mu_+)+m_k(\mu_-)=2m_k(\mu)\quad(0\leq k<2M),
+\]
+and
+\[
+ \sigma_j\bigl(S_{\mu_+}(t_j)-S_{\mu_-}(t_j)\bigr)>0
+ \quad(1\leq j\leq M).
+\]
+The pole pairs stay disjoint and ordered around the original $p_h$.
+Moreover, for every $h$, the pole of $\mu_+$ is to the right of the
+corresponding pole of $\mu_-$ exactly when $\sigma_1=1$.
+Thus the pair orientation is constant across all $M$ pairs, up to one
+global exchange of the two children.
+\end{theorem}
+
+\begin{proof}
+Put $Q(t)=\prod_h(t-p_h)$. For each index $j$ with
+$\sigma_j\ne\sigma_{j+1}$, choose one root $z_j\in(t_j,t_{j+1})$.
+Let $N$ be the product of the resulting linear factors, multiplied by a
+nonzero constant so that $\operatorname{sign}N(t_1)=\sigma_1$.
+Then $\deg N\leq M-1$, $\operatorname{sign}N(t_j)=\sigma_j$, and
+$N$ has constant sign $\sigma_1$ throughout the pole interval $[a,b]$.
+
+The partial-fraction expansion of $F=N/Q^2$ is
+\[
+ F(t)=\sum_h\left(\frac{\alpha_h}{t-p_h}
+                  +\frac{\beta_h}{(t-p_h)^2}\right),\qquad
+ \beta_h=\frac{N(p_h)}{Q'(p_h)^2},\quad
+ \alpha_h=\frac{N'(p_h)}{Q'(p_h)^2}
+          -\frac{N(p_h)Q''(p_h)}{Q'(p_h)^3}.              \tag{1}
+\]
+The formulas follow by taking the value and derivative of
+$N(t)/(Q(t)/(t-p_h))^2$ at $p_h$; subtraction leaves a proper rational
+function with no poles and therefore zero.
+
+Consider the tangent variation of weights and nodes
+$\dot w_h=\alpha_h$, $\dot p_h=\beta_h/w_h$.
+Its Stieltjes-transform derivative is exactly $F$.
+Since $F(t)=O(t^{-M-1})$ at infinity, its derivatives of moments
+$m_0,\ldots,m_{M-1}$ vanish. Equivalently, expansion of (1) gives
+\[
+ \sum_h\bigl(\alpha_h p_h^k+k\beta_h p_h^{k-1}\bigr)=0
+ \quad(0\leq k<M),                                    \tag{2}
+\]
+with the second summand interpreted as zero when $k=0$.
+
+The map from the $M$ weights and $M$ ordered nodes to the first $2M$
+moments has invertible Jacobian. Indeed, a tangent vector in its kernel
+annihilates every polynomial of degree below $2M$ by the functional
+\[
+ P\longmapsto\sum_h\bigl(\dot w_hP(p_h)
+                              +w_h\dot p_hP'(p_h)\bigr).
+\]
+Hermite interpolation independently prescribes all $2M$ values
+$P(p_h),P'(p_h)$, forcing the tangent vector to vanish.
+The square Jacobian is therefore invertible.
+
+Let $v\in\mathbb R^{2M}$ be the moment derivative of the tangent
+vector in (1). Its first $M$ coordinates are zero by (2).
+The inverse function theorem supplies a smooth local inverse to the
+moment map near $\mu$. Apply it to the two moment vectors
+$m(\mu)\pm\delta v$. Their resulting measures are positive, have distinct
+nodes inside $(a,b)$ for sufficiently small $\delta$, and satisfy all
+the stated moment equalities exactly. Their first derivatives at zero
+are the two opposite tangent vectors from (1). Consequently,
+\[
+ S_{\mu_+(\delta)}(t_j)-S_{\mu_-(\delta)}(t_j)
+      =2\delta\frac{N(t_j)}{Q(t_j)^2}+o(\delta),
+\]
+which gives every strict requested sign. Similarly, the difference of
+the corresponding nodes is
+$2\delta\beta_h/w_h+o(\delta)$.
+All $\beta_h$ have sign $\sigma_1$ and are nonzero, proving the uniform
+pair orientation. The finitely many strict conditions hold at one
+common sufficiently small positive scale.
+\end{proof}
+
+\paragraph{Exact tests.}
+The checker \texttt{positive-moment-split-check.py} verifies (1), (2),
+the query signs, and the uniform node-direction sign over every word
+for $1\leq M\leq8$ on rational pole and query grids. The nonlinear
+moment equalities above are proved by the local inverse argument, not
+by these tests.
+
+\paragraph{The recursive gap.}
+The theorem starts both children near the \emph{same} measure $\mu$.
+It does not prove that two independently prescribed descendant patterns
+are both feasible near a common positive measure in their fixed-moment
+fiber. Positivity, the moment budget, and the root sign construction
+alone do not supply that compatibility statement. In particular, the
+theorem does not replace the missing growing-capacity local compiler.
+\end{document}
