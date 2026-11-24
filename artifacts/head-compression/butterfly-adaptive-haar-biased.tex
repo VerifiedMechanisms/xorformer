@@ -120,6 +120,15 @@ series precisions range from $256$ to $1024$; in every case all comparison
 scores have positive leading terms. The detailed discussion below treats
 the first certificate.
 
+The first of these thirty-two-wire targets also admits a strictly
+positive residue germ. The alternative certificate
+\texttt{butterfly-adaptive-haar-positive-biased-h32.json} is checked by
+\texttt{butterfly-adaptive-haar-laurent-check.py} at precision $1024$.
+It verifies all $104$ comparisons and all $32$ residue positivities.
+The largest pole order of a residue is $18$; its nonconstant leading
+coefficients are positive integers. This is one target, and supplies
+no all-target or density conclusion.
+
 \paragraph{Biases remove one certified positive-residue obstruction.}
 The sixteen-wire target in
 \texttt{butterfly-adaptive-haar-positive-h16-dual.json} has no nonnegative
