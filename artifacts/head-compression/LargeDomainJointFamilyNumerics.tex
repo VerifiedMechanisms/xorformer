@@ -55,7 +55,7 @@ The committed file \texttt{LargeDomainJointFamilyCertificates.json}
 contains 20 certified families with
 \[
 k=5,\quad s=5,\quad H=6,\quad
-\delta=\frac1{20},\quad B=\frac{11}{10},\quad E=\frac{23}{20}.
+\delta=\frac1{20},\quad B=1,\quad E=\frac{11}{10}.
 \]
 The first target includes coordinate and full-parity columns. The other
 19 targets have independently sampled signs at every row and column.
@@ -92,12 +92,11 @@ The committed certificates were generated with the equivalent of:
 heavy python3 artifacts/head-compression/LargeDomainJointFamilySearch.py \
   --dimension 5 --heads 6 --columns 5 --targets 20 --restarts 20 \
   --iterations 500 --affine-row --paired --sign-cone \
-  --baseline 1.1 --delta .05 --seed 241124 --output result.json
+  --baseline 1 --delta .05 --seed 241124 --output result.json
 \end{verbatim}
-The explicit baseline option was added immediately after this run; its
-original value was $1+2\delta=1.1$. This provenance is recorded in the
-certificate file. Subsequent searches can use baseline one, the form of
-the general paired compact-family transfer.
+The baseline-one form matches the paired compact-family transfer.
+The committed final certificates replace an earlier successful run with
+baseline $1.1$; both forms have exact axis cancellation.
 
 \section{Limits of the evidence}
 
@@ -106,6 +105,14 @@ across several unrelated columns is feasible at this small size.
 They do not show that every five-column family has such a representation.
 Nor do they show $H(k)=o(2^k/\log k)$, which would be needed to improve the
 inherited asymptotic scale through a full-row-cube transfer.
+
+For $k=6,s=6,H=10$, the same paired search certified the structured
+coordinate/parity target but did not certify four independently sampled
+families after 20 restarts of 1000 iterations each. For $k=7,s=7,H=16$,
+it certified the structured target but did not certify the first random
+family after ten restarts of 1000 iterations. The second run was then
+stopped to return to structural research. These are optimization failures,
+not counterexamples or lower bounds.
 
 An earlier unpaired $k=4,H=3$ experiment failed on a column of full
 four-bit parity. That failure has an independent mathematical explanation:
