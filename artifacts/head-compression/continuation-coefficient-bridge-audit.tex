@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\title{Auditing the Pair-Odd Coefficient Compiler}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+The pair-odd kernel is a valid new coefficient-domain construction.
+The results here verify its bounded expander span and identify a concrete
+failure of the proposed small-tail argument for transferring coefficient
+signs to signs of cube values. None of these statements is Lean-checked.
+No attention definition or admissibility condition is changed.
+
+\section*{The exact two-head family}
+Take three coordinate pairs $(x,x'),(y,y'),(z,z')$, a real $R>1$, and
+\[
+ A=x-x',\quad B=y-y',\quad
+ D=1+R(2-x-x')+R(2-y-y')+(2-z-z').
+\]
+For $0<t<1$ define
+\[
+ F_t=\frac1{2t}\left(\frac{A}{D-tB}-\frac{A}{D+tB}\right)
+     =\frac{AB}{D^2-t^2B^2}.
+ \tag{1}
+\]
+All denominator slopes are strictly negative, and the denominators are
+positive throughout the Boolean cube: $D\ge1$ and $|tB|<1$.
+Each summand is therefore an original admissible affine-ratio head by
+\texttt{FracAtom.ofNegativeAffineRatio}. On this finite cube,
+$F_t\to F_0=AB/D^2$ uniformly as $t\to0$.
+
+Swapping $x,x'$ negates $F_t$, and swapping $y,y'$ also negates it.
+Uniqueness of the multilinear representative implies that any coefficient
+whose support contains both or neither members of the row pair is zero;
+the same statement holds for the column pair. In particular, all
+coefficients of degrees six and five vanish exactly.
+
+\begin{proposition}[Unbounded lower tails inside the admissible family]
+Let $K_4,K_3,K_2$ be the coefficients of $xyz z'$, $xyz$, and $xy$
+in the multilinear representative of $F_0$. Then
+\[
+\begin{aligned}
+ K_4&=\frac1{(2R+1)^2}-\frac2{(2R+2)^2}+\frac1{(2R+3)^2},\\
+ K_3&=\frac1{(2R+2)^2}-\frac1{(2R+3)^2},\\
+ K_2&=\frac1{(2R+3)^2}.
+\end{aligned}
+ \tag{2}
+\]
+All three are positive, and
+\[
+ K_4\sim\frac3{8R^4},\qquad K_3\sim\frac1{4R^3},\qquad
+ K_2\sim\frac1{4R^2}.
+ \tag{3}
+\]
+Consequently $K_3/K_4\sim2R/3$ and $K_2/K_4\sim2R^2/3$.
+These unbounded ratios also occur in actual two-head scores $F_t$,
+with all the stated exact upper-coefficient zeros.
+\end{proposition}
+\begin{proof}
+For $D>0$, $D^{-2}=\int_0^\infty u e^{-Du}\,du$.
+Multilinear coefficient extraction is a finite linear combination of
+Boolean evaluations, so it commutes with this integral. For example,
+the $xyz z'$ coefficient is
+\[
+ \int_0^\infty u e^{-(2R+1)u}(1-e^{-u})^2\,du.
+\]
+Deleting one or both reserve coordinates gives respectively
+\[
+ \int_0^\infty u e^{-(2R+2)u}(1-e^{-u})\,du,
+ \qquad \int_0^\infty u e^{-(2R+3)u}\,du.
+\]
+Integration yields (2), and expansion at $R=\infty$ yields (3).
+For each fixed $R$, coefficient extraction is continuous in the finite
+cube values. Thus the same ratios are approached by $F_t$ as $t\to0$.
+Choose $R$ first and a sufficiently small positive $t$ second.
+\end{proof}
+
+This disproves a uniform claim that such modules can be normalized to
+have unit desired coefficient and arbitrarily small lower coefficients.
+It does not disprove a different compiler that cancels or controls the
+lower tails by a new mechanism.
+
+\section*{Why the coefficient-sign bridge is not yet a proof}
+If a multilinear polynomial is
+$P(x)=\sum_T c_Tx^T$, its value at $\mathbf1_S$ is
+$\sum_{T\subseteq S}c_T$. Therefore coefficient signs alone do not
+determine cube-value signs. For instance $P(x)=2-x$ has negative
+$x$ coefficient but a positive value at the vertex $x=1$.
+
+One sufficient condition is
+$|c_S|>\sum_{T\subsetneq S}|c_T|$ for every nonempty $S$, with the
+desired coefficient signs. Descending-degree synthesis does not
+automatically produce this condition. Exact zero coefficients above
+the programmed degree preserve coefficients set earlier, but earlier
+modules already create lower coefficients. To change a later
+coefficient's sign, its new contribution may have to cancel a large
+existing value. It cannot simply be assigned an arbitrarily small
+amplitude. Equations (2)--(3) exhibit this issue inside the proposed
+two-head family.
+
+Nor can one obtain dominance by substituting a large number for each
+Boolean variable in the rational formula. Boolean multilinearization
+and dilation do not commute. Already
+\[
+ F(x)=\frac1{1+x},\quad
+ P(x)=1-\frac{x}{2}\quad(x\in\{0,1\}),\qquad
+ F(3)=\frac14>0>P(3)=-\frac12.
+ \tag{4}
+\]
+A valid transfer would have to control the actual cube values, or
+implement the dilated multilinear polynomial by admissible heads with
+the asserted cost. Equation (4) invalidates substituting directly into
+the rational heads as an implementation of that dilation.
+
+\section*{A bounded expander span does hold}
+The separate incidence-matrix issue has a positive answer. Let $U$ and
+$V$ be oriented vertex-edge incidence matrices of finite graphs on
+$r$ and $s$ vertices. Let $P_r=I-\mathbf1\mathbf1^\top/r$ and define
+$P_s$ similarly. Assume the scalar $\ell^1$ Poincare inequalities
+\[
+ \|P_r a\|_1\le C_r\|U^\top a\|_1,
+ \qquad
+ \|P_s b\|_1\le C_s\|V^\top b\|_1.
+ \tag{5}
+\]
+
+\begin{proposition}[Uniformly bounded edge-edge coefficients]
+If an $r\times s$ matrix $Y$ has every row sum and every column sum
+zero, then there is a matrix $K$, indexed by the two edge sets, with
+\[
+ Y=UKV^\top,\qquad
+ \|K\|_\infty\le C_rC_s\|Y\|_\infty.
+ \tag{6}
+\]
+If both graph degrees are at most $d$, entrywise rounding $K$ with
+error at most $\delta$ changes $UKV^\top$ entrywise by at most
+$d^2\delta$.
+\end{proposition}
+\begin{proof}
+Apply (5) to the columns, and then to the transposes of the rows, to get
+for every real $r\times s$ matrix $Z$
+\[
+ \|P_r ZP_s\|_1
+ \le C_r\|U^\top ZP_s\|_1
+ \le C_rC_s\|U^\top ZV\|_1.
+ \tag{7}
+\]
+Here matrix $\ell^1$ is the sum of the absolute values of all entries.
+Since $P_rYP_s=Y$, the Frobenius pairing obeys
+\[
+ |\langle Y,Z\rangle|
+ =|\langle Y,P_rZP_s\rangle|
+ \le C_rC_s\|Y\|_\infty\|U^\top ZV\|_1.
+ \tag{8}
+\]
+Define $\ell(U^\top ZV)=\langle Y,Z\rangle$ on the image of the
+linear map $Z\mapsto U^\top ZV$. Equation (8) proves both that this
+definition is independent of the choice of $Z$ and that its norm
+for the entrywise $\ell^1$ norm is at most
+$C_rC_s\|Y\|_\infty$. Finite-dimensional Hahn--Banach extends it
+to all edge-edge matrices with the same bound. The dual of entrywise
+$\ell^1$ is entrywise $\ell^\infty$, so the extension is pairing
+with a matrix $K$ of the asserted norm. For all $Z$,
+\[
+ \langle Y,Z\rangle=\langle K,U^\top ZV\rangle
+                  =\langle UKV^\top,Z\rangle,
+\]
+which proves (6). Finally each output entry sums at most $d^2$
+signed entries of $K$, proving the rounding assertion.
+\end{proof}
+
+For completeness, an edge-isoperimetric lower bound
+$|\partial S|\ge h|S|$ for $|S|\le r/2$ implies (5) with
+$C_r=2/h$. Choose a median $m$ of $a$. The layer-cake formula and
+the edge bound give
+$\sum_i|a_i-m|\le h^{-1}\sum_{ij\in E}|a_i-a_j|$.
+Since
+$r|\overline a-m|\le\sum_i|a_i-m|$, the triangle inequality gives
+$\sum_i|a_i-\overline a|\le2\sum_i|a_i-m|$.
+Thus bounded-degree expanders give constants independent of the number
+of vertices. Two perfect matchings whose union is a cycle give the
+algebraic zero-sum span, but not these uniform constants.
+
+The span theorem addresses only the double-centered coefficient
+matrix. Mean and row/column components, and the coefficient-to-value
+bridge discussed above, still require their own valid constructions.
+\end{document}
