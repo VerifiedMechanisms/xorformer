@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{A positive antisymmetric parent has a common child limit}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is a complete written corollary of the exact certificate in
+\texttt{positive-paired-root-h16.tex}. It concerns the positive
+antisymmetric numerator subfamily only. It does not exclude unrestricted
+signed Haar decoders, adaptive pole shapes, or either requested
+asymptotic bound. It is not Lean-checked.
+
+\begin{proposition}
+Fix $M$ distinct poles $0\leq p_1<\cdots<p_M<1/2$ and signs
+$u_i\in\{-1,1\}$. Put
+\[
+ P(t)=\prod_i(t-p_i),\qquad
+ Q_\delta(t)=P(t)P(t-\delta),\qquad
+ N_\delta(t)=(t-1/2)R_\delta(t(1-t)),
+\]
+where $\deg R_\delta\leq M-1$. On the paired poles $p_i,p_i+\delta$
+use root masks $u_i,-u_i$ and residues
+\[
+ c_{i,0}=\frac{N_\delta(p_i)}{u_iQ_\delta'(p_i)},
+ \qquad
+ c_{i,1}=\frac{N_\delta(p_i+\delta)}{-u_iQ_\delta'(p_i+\delta)}.
+\]
+Suppose a sequence $\delta\downarrow0$ has all these residues positive.
+After multiplying each residue vector by a positive scalar, a subsequence
+has a limit of the form $(w,w)$, where $w\geq0$ and $w\ne0$.
+\end{proposition}
+\begin{proof}
+Normalize the coefficient vector of $R_\delta$ to Euclidean norm one;
+this is a positive rescaling. Pass to a subsequence on which it converges
+to a nonzero polynomial $R_0$ of degree at most $M-1$, and let
+$N_0(t)=(t-1/2)R_0(t(1-t))$. Since
+\[
+ \delta^{-1}Q_\delta'(p_i)\longrightarrow-P'(p_i)^2,
+ \qquad
+ \delta^{-1}Q_\delta'(p_i+\delta)\longrightarrow P'(p_i)^2,
+\]
+both $\delta c_{i,0}$ and $\delta c_{i,1}$ tend to
+\[
+ w_i=-\frac{N_0(p_i)}{u_iP'(p_i)^2}.
+\]
+Positivity gives $w_i\geq0$. The numbers $p_i(1-p_i)$ are distinct,
+and $p_i-1/2\ne0$. If every $w_i$ were zero, $R_0$ would have $M$
+distinct zeros, contradicting its degree and normalization.
+\end{proof}
+
+\paragraph{Application to the saved sixteen-pole obstruction.}
+Fix any sufficiently small positive $\epsilon$ for which the supported
+dual in \texttt{positive-paired-root-h16.tex} is positive. Its $17$
+supported comparison and nonnegativity rows form a $17$ by $16$
+matrix $A$ of rank $16$: the certificate's augmented normalized-dual
+matrix $[A^\top;\mathbf1^\top]$ is invertible. If $Aw\geq0$, the
+strictly positive left null vector forces $Aw=0$, hence $w=0$.
+Thus the two saved root words
+\[
+ (+,+,+,+,-,-,-,-),\qquad (+,-,+,+,-,-,+,+)
+\]
+have no common nonzero weak nonnegative residue pool, even when each
+has its own bias. Biases have already been eliminated into comparisons
+between oppositely labelled queries.
+
+Take these as the two child root words of a thirty-two-pole parent,
+with base poles
+\[
+ p_y=\sum_{j=0}^3 y_j\epsilon^{2^j},\qquad 0\leq y<16,
+\]
+and newest pairs $p_y,p_y+\delta$. Any fixed parent root word gives
+the masks $u_y,-u_y$ in the proposition. Top routing may exchange the
+two members of an individual pair, but their limiting residues are
+equal, so both children still receive the same vector $w$.
+
+If positive antisymmetric parents realized the required child words
+for a sequence $\delta\downarrow0$, scale as in the proposition and
+pass to the limit in the bias-eliminated child inequalities. Their
+denominators stay bounded away from zero. The common nonzero vector
+$w\geq0$ would satisfy all supported weak inequalities, contradicting
+$Aw\geq0\Rightarrow w=0$. Therefore, for each such fixed $\epsilon$,
+all sufficiently small newest gaps $\delta$ are infeasible in this
+subfamily. Neither diverging coefficients nor a boundary residue pool
+avoids this conclusion.
+
+\paragraph{Quantifier caution.}
+The conclusion is $\forall\epsilon$ sufficiently small,
+$\exists\delta_0(\epsilon)>0$, followed by infeasibility for
+$0<\delta<\delta_0(\epsilon)$. No estimate on $\delta_0$ is supplied.
+In particular this argument alone does not assert infeasibility along
+the specific curve $\delta=\epsilon^{16}$.
+\end{document}
