@@ -1,0 +1,18 @@
+'HeadComplexity.SublinearOverheadRepairTradeoff.testMargin_log_dimension' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SublinearOverheadRepairTradeoff.log_dimension_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SublinearOverheadRepairTradeoff.card_highMargin_linear_exponent_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SublinearOverheadRepairTradeoff.worstCase_gt_of_linear_exponent_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SublinearOverheadRepairTradeoff.worstCase_gt_of_linear_exponent_low_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SublinearOverheadRepairTradeoff.worstCase_gt_of_sqrt_overhead_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
