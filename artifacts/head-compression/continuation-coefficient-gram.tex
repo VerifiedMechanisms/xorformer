@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\begin{document}
+\title{An Equality Kernel in Paired Multilinear Coefficients}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+This is a complete written proof of a coefficient programming mechanism,
+followed by a counterexample to its proposed global assembly. None of
+this note is Lean-checked. It proves no asymptotic bound for
+\texttt{worstCaseHeadComplexity}. In particular, coefficients of the
+multilinear interpolant are not the values of the rational score on the
+Boolean cube. The companion note
+\texttt{continuation-coefficient-bridge-audit.tex} gives an independent
+audit of this distinction and a bounded incidence-span theorem.
+
+\section{Two heads and an exact coefficient support restriction}
+
+Partition a finite coordinate set into row pairs $(x_i,x'_i)$,
+column pairs $(y_j,y'_j)$, and reserve coordinates $z_k$. Choose
+positive weights $a_i,b_j,r_k$ and $\epsilon>0$, and write
+\[
+ D=\epsilon+\sum_i a_i(2-x_i-x'_i)
+       +\sum_j b_j(2-y_j-y'_j)+\sum_k r_k(1-z_k),
+ \quad A=\sum_i c_i(x_i-x'_i),\quad
+ B=\sum_j d_j(y_j-y'_j).
+\]
+For every sufficiently small $t>0$, define
+\[
+ F_t=\frac1{2t}\left(\frac{A}{D-tB}-\frac{A}{D+tB}\right)
+     =\frac{AB}{D^2-t^2B^2}.                         \tag{1}
+\]
+Every slope of both denominators is strictly negative for sufficiently
+small $t$, and both denominators are strictly positive on the whole
+cube. Indeed, their slopes tend to the strictly negative slopes of
+$D$, while their values tend uniformly to values at least $\epsilon$.
+Thus (1) consists of two original admissible affine-ratio heads.
+On the finite cube it converges uniformly to $F_0=AB/D^2$.
+
+Let $S$ be the full coordinate set. The unique multilinear interpolant
+of $F_t$ has zero coefficient at $x^S$, at every monomial obtained by
+deleting one coordinate, and at every monomial obtained by deleting two
+coordinates except a row coordinate and a column coordinate. To see
+this, interchange both coordinates in every row pair. This negates
+$A$ and preserves $D,B$, hence negates $F_t$. Interchanging every
+column pair similarly negates $F_t$. Every asserted zero monomial is
+invariant under at least one of these two interchanges. Uniqueness of
+the multilinear interpolant therefore forces its coefficient to be
+its own negative.
+
+\section{The positive Gram kernel}
+
+Put
+\[
+ W(u)=\prod_i(1-e^{-a_i u})^2
+             \prod_j(1-e^{-b_j u})^2
+             \prod_k(1-e^{-r_k u}),\qquad
+ q(v)=\frac{e^{-v}}{(1-e^{-v})^2},
+\]
+and define
+\[
+ K(a,b)=\int_0^\infty u e^{-\epsilon u}
+                         W(u)q(au)q(bu)\,du.        \tag{2}
+\]
+The coefficient of $x^{S\setminus\{x_i,y_j\}}$ in $F_0$ is
+\[
+                         c_i d_j K(a_i,b_j).        \tag{3}
+\]
+Deleting a primed coordinate instead changes the sign for that pair.
+
+For a direct verification, use $D^{-2}=\int_0^\infty u e^{-Du}du$.
+An untouched pair of equal-weight coordinates contributes
+$(1-e^{-au})^2$ to its full multilinear coefficient. After deleting
+$x_i$, the contribution of $c_i(x_i-x'_i)$ and its pair is
+$-c_i e^{-a_i u}$. Every other term of $A$ has zero full coefficient
+on its own pair. Dividing the exceptional contribution by the
+untouched pair factor gives $-c_iq(a_i u)$. The two minus signs from
+the row and column deletions give (3). This computation also shows
+that there is no alternating sign depending on $|S|$ in (2).
+
+Equation (2) is a Gram kernel for the functions $q(au)$ in the
+positive measure $u e^{-\epsilon u}W(u)du$. Its diagonal entries are
+strictly positive and finite. Choosing
+$c_i=K(a_i,a_i)^{-1/2}$ and $d_j=K(b_j,b_j)^{-1/2}$ normalizes (3)
+to its correlation kernel.
+
+\section{Geometric labels become orthogonal}
+
+\begin{theorem}\label{thm:orthogonal}
+Fix integers $L\ge1$ and $m_0,\ldots,m_L\ge2$. For $R>1$ put
+$a_g=R^g$, and replace $W$ in (2) by
+\[
+                  W_R(u)=\prod_{\ell=0}^L
+                                  (1-e^{-R^\ell u})^{m_\ell}.
+\]
+For every $g,b\in\{1,\ldots,L\}$,
+\[
+ \lim_{R\to\infty}
+ \frac{K_R(R^g,R^b)}
+ {\sqrt{K_R(R^g,R^g)K_R(R^b,R^b)}}
+                       ={\bf1}_{g=b}.              \tag{4}
+\]
+The label $0$ is reserved and is not queried.
+\end{theorem}
+
+\begin{proof}
+Define $M_g=\sum_{\ell<g}m_\ell$ and
+\[
+                  E_g=-2g+\sum_{\ell<g}m_\ell(\ell-g).
+\]
+Substitution $u=R^{-g}v$ gives
+\[
+ R^{-E_g}K_R(R^g,R^g)\longrightarrow
+ C_g=\int_0^\infty
+       v^{1+M_g}(1-e^{-v})^{m_g}q(v)^2\,dv>0.        \tag{5}
+\]
+For $g>b\ge1$, the same substitution gives
+\[
+ R^{-E_g-2(g-b)}K_R(R^g,R^b)\longrightarrow
+ C_{gb}=\int_0^\infty
+       v^{M_g-1}(1-e^{-v})^{m_g}q(v)\,dv>0.          \tag{6}
+\]
+Here $(1-e^{-\rho v})/\rho\to v$ and
+$\rho^2q(\rho v)\to v^{-2}$ as $\rho\downarrow0$.
+For domination, use $(1-e^{-\rho v})/\rho\le v$,
+$q(v)\le v^{-2}$, and
+$1-e^{-v}\le\min(1,v)$. At zero the resulting power in both
+integrands is $v^{M_g+m_g-3}$, which is integrable because
+$M_g\ge m_0\ge2$ and $m_g\ge2$. At infinity the factor $q(v)$
+or $q(v)^2$ gives exponential decay. High-label factors are bounded
+by one. These bounds justify (5) and (6) by dominated convergence.
+
+It remains to show that the power in the normalized off-diagonal
+entry is negative. For $g>b$ it is
+\[
+ T_{gb}=\frac{E_g-E_b}{2}+2(g-b).
+\]
+The recurrence
+$E_{k+1}-E_k=-2-\sum_{\ell\le k}m_\ell$ gives
+\[
+ 2T_{gb}=\sum_{k=b}^{g-1}
+                  \left(2-\sum_{\ell\le k}m_\ell\right)<0,
+\]
+because $b\ge1$ and each sum is at least $m_0+m_1\ge4$.
+Equations (5) and (6) prove (4). The diagonal case is identically one.
+\end{proof}
+
+The theorem permits arbitrary fixed multiplicities, so different
+two-head modules need not use a common multiset of labels. First
+choose $R$ to make all finitely many undesired correlations small;
+then choose $t$ in (1) small enough to preserve all required coefficient
+inequalities. The exact coefficient zeros established above survive
+for every such $t$. This is a genuine equality mechanism in the
+specified coefficient slice.
+
+\section{Why this does not yet assemble a Boolean classifier}
+
+Consider only one row pair and one column pair, both of weight $R$,
+two reserve coordinates of weight one, and $\epsilon=1$. Take
+$A=x-x'$ and $B=y-y'$. In $F_0=AB/D^2$, delete $x$ and $y$.
+The coefficient including both reserves equals
+\[
+ K_4=\frac1{(2R+1)^2}-\frac2{(2R+2)^2}
+                      +\frac1{(2R+3)^2}
+                  \sim\frac3{8R^4}.
+\]
+The coefficient omitting one reserve, and the coefficient omitting
+both, respectively equal
+\[
+ K_3=\frac1{(2R+2)^2}-\frac1{(2R+3)^2}
+               \sim\frac1{4R^3},\qquad
+ K_2=\frac1{(2R+3)^2}\sim\frac1{4R^2}.
+\]
+Thus $K_3/K_4\sim2R/3$ and $K_2/K_4\sim2R^2/3$.
+Normalizing the intended coefficient to one makes lower coefficients
+arbitrarily large. The mechanism does not have the small lower tails
+needed for a descending-coefficient sign construction.
+
+There is also no legitimate shortcut by evaluating the multilinear
+interpolant at rescaled inputs. For example, the Boolean interpolant
+of $1/(1+x)$ is $1-x/2$. At $x=3$ the interpolant is negative and
+the rational expression is positive. Substitution into the rational
+head does not perform substitution into its Boolean interpolant.
+
+Finally, at actual mixed-corner vertices the simpler score
+$AB/D^2$, with $A=\sum_i a_i(1-x_i)$ and
+$B=\sum_j b_j(1-y_j)$, has normalized value
+$4a_i b_j/(\epsilon+a_i+b_j)^2$. This is the already known forward
+equality kernel in deletion coordinates. Adding a large positive
+coefficient on coordinates outside a downset center produces mixed
+denominator slopes. It does not supply the reverse-grid compiler
+required by the gluing theorem.
+
+The exact remaining issue is a whole-cube assembly preserving strict
+output signs at the improved head count. Coefficient orthogonality,
+bounded matrix decompositions, and small parameter $t$ do not solve
+that issue. This route is closed unless a new assembly mechanism or
+a genuinely new lower-tail invariant is supplied.
+\end{document}
