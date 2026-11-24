@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Three compact reverse heads shatter eight columns}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written proof, supplemented by an exact rational
+checker. It has not been formalized in Lean. The improvement is a fixed
+local constant, not either accepted asymptotic target. No growing
+query-to-head ratio follows from this argument. The construction initially
+has no axis-zero requirement; the existing checked axis repair can then
+be applied with its stated constant overhead.
+
+\begin{theorem}
+For every integer $r\geq1$ and every sign table
+$\sigma:[r]\times[8]\to\{-1,1\}$, three affine ratios realize the
+strict grid signs $\sigma$. Every denominator has strictly negative
+slopes and is positive on the entire Boolean $(r+8)$-cube.
+\end{theorem}
+
+\begin{proof}
+We first construct eight fixed normalized queries for the three-head
+family
+\[
+ f_j(a,p)=\sum_{h=1}^3\frac{a_h+b_{hj}}{D_{hj}-p_h}.
+\]
+Put $t=101/100$, $a^0=(1,1,-2)$, and
+$w^A=(1,1,1)$, $w^B=(101/100,99/100,1)$.
+The first four queries have zero $b$ and respective denominator vectors
+$1/w^A,t/w^A,1/w^B,t/w^B$, where division is coordinatewise.
+For the remaining four queries use the following pairs of vectors $w,v$:
+\[
+\begin{array}{c|ccc|ccc}
+ &w_1&w_2&w_3&v_1&v_2&v_3\\ \hline
+1&101/100&24/25&1&10&-8&-475/303\\
+2&51/50&26/25&49/50&-5&-10&18865/1326\\
+3&1&51/50&101/100&7&7&-71407/5100\\
+4&1&99/100&1&0&-2&200/99
+\end{array}
+\]
+Set $D_h=1/w_h$ and $b_h=v_h/w_h^2$ for each such query.
+By construction $\sum_hv_h/w_h=0$, so all eight queries vanish
+at $a=p=0$.
+
+Restrict the first-order numerator direction to $a=\delta\lambda a^0$,
+and write $p=\delta P$. The four extra query derivatives are
+$L(\lambda,P_1,P_2,P_3)^{\mathsf T}$, where
+\[
+L=\begin{pmatrix}
+-3/100&10&-8&-475/303\\
+1/10&-5&-10&18865/1326\\
+0&7&7&-71407/5100\\
+-1/100&0&-2&200/99
+\end{pmatrix},\qquad
+\det L=\frac{835605281}{736593000}>0.
+\]
+Given $Y\in\mathbb R^4$, set $(\lambda,P)=L^{-1}Y$ and define
+\[
+ Q_A=\lambda(P_1+P_2-2P_3),\qquad
+ Q_B=\lambda((101/100)^2P_1+(99/100)^2P_2-2P_3).
+\]
+For completeness, the following exact rows give the three linear forms
+$\lambda=uY$, $P_1+P_2-2P_3=v_A Y$, and
+$(101/100)^2P_1+(99/100)^2P_2-2P_3=v_B Y$:
+\[
+\begin{array}{c|rrrr}
+u&3643867900/358116549&371958600/119372183&-30859300000/2506815843&-11861500200/119372183\\
+v_A&72215/238744366&-86658/596860915&118924450/835605281&-563277/238744366\\
+v_B&2906209249/1432466196000&1868678071/2984304575000&71834075071/501363168600&418378323/2387443660000
+\end{array}
+\]
+These identities can also be checked by multiplying the displayed rows
+by $L$. Every entry is nonzero. For each of these three rows $v$ and
+every coordinate $j$, direct rational comparison gives
+\[
+ \sum_{k\ne j}|v_k|<1000|v_j|.
+\]
+The diagonal sign pairs $(\operatorname{sgn}(u_jv_{A,j}),
+\operatorname{sgn}(u_jv_{B,j}))$, in order, are
+$(+,+),(-,+),(-,-),(+,-)$.
+
+Now prescribe all eight query signs. Choose the coordinate $j$ whose
+diagonal sign pair is the desired sign at the first $A$ query and the
+first $B$ query. Set $Y_j$ equal to $1000$ times its desired extra-query
+sign, and each other $Y_k$ equal to its desired extra-query sign.
+The strict dominance inequalities show that $Q_A,Q_B$ have the two
+prescribed signs, independently of the four extra-query signs.
+
+For each pair $K=A,B$, let its two desired signs be $s_K,s'_K$ and set
+\[
+ \ell_K=\begin{cases}
+ 0&s_K=s'_K,\\
+ -Q_K(t+1)/(2t)&s_K\ne s'_K.
+ \end{cases}
+\]
+Choose
+\[
+ a^2=(50(\ell_B-\ell_A),-50(\ell_B-\ell_A),\ell_A).
+\]
+Then $w^A\cdot a^2=\ell_A$ and $w^B\cdot a^2=\ell_B$.
+Take the actual normalized parameters
+\[
+ a=\delta\lambda a^0+\delta^2a^2,\qquad p=\delta P.
+\]
+The first-order terms in each pair vanish, since
+$w^A\cdot a^0=w^B\cdot a^0=0$. The two scores of pair $K$ are
+\[
+ \delta^2(\ell_K+Q_K)+O(\delta^3),\qquad
+ \frac{\delta^2}{t^2}(t\ell_K+Q_K)+O(\delta^3).
+\]
+If the signs agree, the leading terms both have sign $Q_K$.
+If they disagree, the parenthesized leading terms are respectively
+$Q_K(t-1)/(2t)$ and $-Q_K(t-1)/2$. All are nonzero and have the
+required signs. Each extra query is $\delta Y_k+O(\delta^2)$,
+and therefore has its required sign as well. All normalized denominators
+are positive for sufficiently small positive $\delta$.
+
+There are only $256$ desired sign vectors. The preceding construction
+provides fixed rational $\lambda,P,a^2$ for every one, so one common
+positive rational $\delta$ can be chosen to work for all of them.
+This assertion is constructive: clear the three denominators of each
+query. Its numerator is a polynomial of degree at most four in $\delta$,
+whose first nonzero coefficient has the proved desired sign. If this
+coefficient is $c_k$, then
+\[
+0<\delta\leq\min\left(\frac12,
+ \frac{|c_k|}{2\sum_{l>k}|c_l|}\right)
+\]
+preserves the sign, omitting the second bound when its denominator is
+zero. Take the minimum over all queries and all $256$ patterns, together
+with the positive denominator bounds. This is a finite rational
+algorithm, with no numerical feasibility hypothesis.
+
+It remains to put arbitrarily many rows on one admissible cube. All
+normalized query denominators satisfy
+$25/26\leq D_{hj}\leq25/24$. Put
+$d_0=19/20$ and $\rho=1/(1000r)$. Choose the preceding common
+$\delta$ smaller, if necessary, so that
+$d_0\delta|P_h|<\rho/2$ for every pattern and head.
+In row $i$ use the parameters for its desired eight-sign vector and set
+\[
+ \widehat p_{hi}=\rho+d_0\delta P_{hi},\qquad
+ \widehat q_{hj}=1-\rho-d_0D_{hj}.
+\]
+Define the three affine denominators and numerators by
+\[
+ B_h(z,w)=1-\sum_i\widehat p_{hi}z_i-\sum_j\widehat q_{hj}w_j,
+ \qquad
+ A_h(z,w)=d_0\left(\sum_i a_{hi}z_i+\sum_jb_{hj}w_j\right).
+\]
+At $(e_i,e_j)$ the ratio equals its normalized counterpart, since
+$B_h(e_i,e_j)=d_0(D_{hj}-\delta P_{hi})$.
+Moreover
+\[
+ \rho/2<\widehat p_{hi}<3\rho/2,
+ \qquad 0<1/96-\rho\leq\widehat q_{hj}<9/104.
+\]
+The total slope magnitude is consequently less than
+$3r\rho/2+8(9/104)=3/2000+9/13<1$.
+All slopes are strictly negative, and the minimum denominator on the
+entire Boolean cube is positive. This completes the proof.
+\end{proof}
+
+\paragraph{Checked transfer and remaining limitation.}
+The Lean theorem
+\texttt{hasReverseAxisCompiler\_of\_strictReverseGridCompiler}
+in \texttt{Results/ReverseGridAxisRepair.lean} converts an $H$-head
+strict reverse grid compiler to an axis-zero compiler with $3H+3$ heads.
+Thus this written construction gives twelve axis-zero heads for every
+$r\times8$ table. Its use with this written input theorem has not been
+formalized. The construction exhibits two independent quadratic
+disagreement choices in addition to four linear choices. It supplies no
+induction producing an unbounded query-to-head ratio, so neither the
+global logarithmic saving nor a matching global lower bound is proved.
+\end{document}
