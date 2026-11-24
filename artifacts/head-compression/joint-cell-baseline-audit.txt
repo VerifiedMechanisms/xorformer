@@ -1,0 +1,11 @@
+HeadComplexity.worstCaseHeadComplexity_real_le_log_saving {n : ℕ} (hn : 32 ≤ n) :
+  ↑(HeadComplexity.worstCaseHeadComplexity n) ≤ 2323202 * 2 ^ n / (↑n * Real.log ↑n)
+HeadComplexity.worstCaseHeadComplexity_isBigO_two_pow_div_mul_log :
+  (fun n => ↑(HeadComplexity.worstCaseHeadComplexity n)) =O[Filter.atTop] fun n => 2 ^ n / (↑n * Real.log ↑n)
+'HeadComplexity.worstCaseHeadComplexity_real_le_log_saving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_isBigO_two_pow_div_mul_log' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.hasStrictReverseGridCompiler_affinePlane' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -60,3 +60,27 @@ At roughly two-hour intervals append elapsed time, strongest proved result,
 decisive inequality or counterexample, and next genuinely different route.
 Keep proofs and exact evidence committed and buildable. Use the final hour
 for verification and handoff while continuing tractable proof work.
+
+Early buildable checkpoint, 2026-11-24 15:58 UTC (about 29 minutes)
+The axis aggregation is now proved in JointCellRankRepair.lean. The local
+compiler uses 3*4^a+4 heads, and JointCellGlobalBound.lean proves
+HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving:
+for every n >= 32, W(n) <= 151010*2^n/(n*log n).
+The inherited constant was 2323202. This is a constant improvement only.
+Full lake build passed, 9277 jobs. The global theorem and its local
+compiler have transitive axioms [propext, Classical.choice, Quot.sound].
+The original model and W definitions have not changed.
+
+The affine selector and scalar decoder capacity obstruction is now also
+formalized: arbitrary bit-dependent addresses and zero decoder residues
+still force (q-1)^2 <= a*n, and for q=2^a force q <= 4*n.
+Thus this direct selector route has word length at most log_2(4*n).
+Separate weighted nonlinear-selector expansion is being audited using a
+design-matrix rank bound, with its external theorem marked as written only.
+
+Next different positive route: a full k-bit cube of row addresses crossed
+with a one-hot column star, using compact variable offsets and fixed
+positive row directions. A universal H(k)=O(2^k/k) decoder would yield
+W(n)=O(2^n/((n-k)*k)) if the global gluing conditions can be met. This is
+presently a candidate, not a theorem. Exact small finite examples are
+being checked; no asymptotic inference is made from them.

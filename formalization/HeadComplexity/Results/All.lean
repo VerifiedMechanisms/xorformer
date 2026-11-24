@@ -34,6 +34,10 @@ import HeadComplexity.Results.ReverseCauchyCompactification
 import HeadComplexity.Results.ExteriorCauchyInterpolation
 import HeadComplexity.Results.SharedCauchyPair
 import HeadComplexity.Results.UniversalLogSaving
+import HeadComplexity.Results.JointCellGlobalBound
+import HeadComplexity.Results.JointCellLabelAudit
+import HeadComplexity.Results.JointFamilyIncidenceObstruction
+import HeadComplexity.Results.LargeDomainSelectors
 import HeadComplexity.Results.UniversalAxisLogCompiler
 import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms

@@ -1,0 +1,20 @@
+HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving {n : ℕ} (hn : 32 ≤ n) :
+  ↑(HeadComplexity.worstCaseHeadComplexity n) ≤ 151010 * 2 ^ n / (↑n * Real.log ↑n)
+'HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.hasReverseAxisCompiler_affinePlane_joint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_reverse_axis_rank_grid_joint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_reverse_axis_rank_cauchy_grid_joint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_affine_line_selectors_dimension' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.additive_line_selectors_depend_on_one_axis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
