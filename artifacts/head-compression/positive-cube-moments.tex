@@ -184,4 +184,34 @@ remain. The exact two-kernel three-variable parity example in
 Consequently neither truncating (3) nor applying (6) with a bound
 on the total score would be justified without an additional,
 cancellation-safe argument. No such argument is supplied here.
+
+\begin{proposition}[Promised shattering survives odd normalization]
+Suppose a sum of $H\geq1$ positive-slope admissible affine ratios
+has specified strict signs on a finite subset $S\subseteq\{0,1\}^n$.
+There is an antipodally odd sum of $2H$ admissible ratios in $n+1$
+variables with the same strict signs on $\{0\}\times S$.
+Here odd means $G(1-u,1-x)=-G(u,x)$.
+\end{proposition}
+\begin{proof}
+Absorb any scalar bias into the first affine numerator, and write
+$F=\sum_h A_h/B_h$. For $T>0$ put
+\[
+ H_T(u,x)=\sum_h\frac{A_h(x)}{B_h(x)+Tu},\qquad
+ G_T(u,x)=H_T(u,x)-H_T(1-u,1-x).
+\]
+The first $H$ denominators have strictly positive slopes, and the
+last $H$ have strictly negative slopes. All are positive on the full
+cube. Each numerator remains affine. The displayed odd identity is
+exact. On $u=0$,
+$G_T(0,x)=F(x)-H_T(1,1-x)$, and the second term tends uniformly to
+zero on the finite cube as $T\to\infty$. Choose $T$ large enough to
+preserve the finite positive margin on $S$.
+\end{proof}
+
+In particular the forward majority-order grid compiler already
+audited in \texttt{exponent-mechanisms.tex} gives promised-domain odd
+scores with $\Omega(n^2)$ shattered points and $O(n/\log n)$ heads.
+A generic $O(nH)$ VC bound for odd scores would therefore be false
+as well. A lower bound specifically for the entire prescribed cube
+is not contradicted by this construction.
 \end{document}
