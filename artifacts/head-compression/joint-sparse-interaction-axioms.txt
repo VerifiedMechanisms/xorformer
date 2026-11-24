@@ -1,0 +1,8 @@
+'HeadComplexity.warrenStrictSignPatternBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.sparseRatioCleared_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.sparseRatioCleared_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.sparseRatio_universal_capacity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.sparseRatio_universal_log_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.polynomialLibrary_universal_capacity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.warren_capacity_log_budget_with_choices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.polynomialLibrary_universal_log_budget' depends on axioms: [propext, Classical.choice, Quot.sound]

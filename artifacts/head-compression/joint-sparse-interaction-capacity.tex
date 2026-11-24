@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{Sparse interaction does not remove the logarithmic budget}
+\author{}\date{24 November 2026}\maketitle
+
+\paragraph{Checked statement.}
+Fix an input set of size $M$, a real parameter space of dimension $P$, and
+an active head set $S_x$ for each input, with $|S_x|\le D$. Consider
+\[
+ F_\theta(x)=B_x(\theta)+\sum_{h\in S_x}
+ \frac{A_{xh}(\theta)}{Q_{xh}(\theta)},
+ \qquad Q_{xh}(\theta)>0.
+\]
+All numerators and the bias have polynomial degree at most $a$, and the
+denominators have degree at most $b$. Coefficients and parameters may be
+chosen jointly after the entire label family is known. The incidence sets
+are fixed for this first statement. Clearing only the active denominators
+gives degree at most $d=a+bD$. If $0<P\le M$, $d>0$, and every strict sign
+pattern is represented, the kernel-checked Warren bound gives
+\[
+ 2^M\le (4edM/P)^P,
+ \qquad M\le 6P\log(4ed).
+\]
+The declarations are \texttt{sparseRatio\_universal\_capacity} and
+\texttt{sparseRatio\_universal\_log\_budget} in
+\texttt{JointSparseInteractionCapacity.lean}. Warren's theorem is already
+unconditional in the base repository, through
+\texttt{warrenStrictSignPatternBound}; no counting hypothesis is added here.
+
+\paragraph{Charge label-dependent selection.}
+For a finite library of $T$ architectures, each with the same parameter and
+degree budgets, all labels may choose their architecture independently.
+The proved union bound and logarithmic consequence are
+\[
+ 2^M\le T(4edM/P)^P,
+ \qquad M\le 6\log T+6P\log(4ed).
+\]
+These are \texttt{polynomialLibrary\_universal\_capacity} and
+\texttt{polynomialLibrary\_universal\_log\_budget}. Thus combinatorial
+selection must be charged, but it need not be confused with the active
+degree. A library with $\log T=O(nH)$ and $P=O(nH)$ still gives only
+$O(nH\log n)$ labels when $a,b,D$ are polynomial in $n$.
+
+\paragraph{Consequence for the search.}
+Within this class, an $H=O(2^n/n^{1+\delta})$ universal construction requires
+$\log d=\Omega(n^\delta)$. An improvement
+$H=O(2^n/(n\log n\,g(n)))$ requires
+$\log d=\Omega(\log n\,g(n))$. For bounded numerator and denominator degree,
+this forces respectively exponentially many or superpolynomially many
+active interactions per query. Merely enlarging the domain to exponential
+size while retaining a polynomial active neighborhood does not suffice.
+These asymptotic substitutions are written consequences of the displayed
+checked inequalities; they are not new bounds for unrestricted $W(n)$.
+
+\paragraph{Scope and remaining possibilities.}
+Unrestricted xorformer scores have all $H$ terms available at every input,
+so this lemma does not rule out the benchmark. A near-face limiting model
+must not silently drop tiny tails: diverging signed residues can retain
+their effect or create high-order jets, increasing the effective degree.
+The bound applies to the exact retained-term family, or to an approximation
+only after a uniform error-versus-margin argument has justified that
+replacement. Dense signed cancellation, label-adaptive high-degree
+families, and larger architecture libraries remain possible.
+\end{document}

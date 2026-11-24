@@ -1,0 +1,9 @@
+import HeadComplexity.Results.JointSparseInteractionCapacity
+#print axioms HeadComplexity.warrenStrictSignPatternBound
+#print axioms HeadComplexity.sparseRatioCleared_degree
+#print axioms HeadComplexity.sparseRatioCleared_eval
+#print axioms HeadComplexity.sparseRatio_universal_capacity
+#print axioms HeadComplexity.sparseRatio_universal_log_budget
+#print axioms HeadComplexity.polynomialLibrary_universal_capacity
+#print axioms HeadComplexity.warren_capacity_log_budget_with_choices
+#print axioms HeadComplexity.polynomialLibrary_universal_log_budget
