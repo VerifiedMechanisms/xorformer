@@ -9,7 +9,10 @@
 
 \paragraph{Status.}
 The identities and geometric budget bounds below are complete elementary
-written proofs. They are not Lean checked. They do not provide a
+written proofs. The exact transport identity, finite-table extension
+criterion, and complete conditional atom assembly are now Lean checked
+in \texttt{Results/ReverseMobius.lean}; the optimized box criterion is
+not Lean checked. They do not provide a
 superconstant saving, nor do they by themselves supply axis-zero
 extensions. The distinction between a bound for a whole parameter box
 and the actual sum of a finite table's slopes is essential.
@@ -43,9 +46,12 @@ each head may use its own transformation. All discrepancies in (1)
 add to one row function plus one column function. Consequently one
 additive affine grid correction restores the original scores exactly.
 This assertion is about grid values. A constant denominator realizes
-the correction with weak slopes; sufficiently small strictly negative
-slopes preserve all finitely many strict grid signs. An axis-zero
-construction still has to be applied separately and audited.
+the correction with weak slopes. The checked weight-two correction
+restores strictly negative slopes without changing any grid value.
+The existing axis repair then gives $3H+6$ strictly admissible axis-zero
+heads, again preserving every grid value exactly. The theorem
+\texttt{exists\_mobius\_reverse\_axis} checks this entire assembly,
+conditional on each transformed head satisfying its finite sum budget.
 
 \paragraph{A small exact check.}
 For $\phi(t)=t/(2-t)$, $\Delta=2$, $p=1/4$, $d=3/4$, $a=2$, and
@@ -131,12 +137,29 @@ For the normalized parameters define
 \]
 Its value at $(e_i,e_j)$ is $d'_j-p'_i$. The box budget ensures
 positivity on the full cube. A strict budget leaves room to replace
-zero slopes by small negative slopes while preserving all finite
-strict signs. The actual finite-table budget is
+zero slopes by strictly negative slopes while preserving all grid
+values, by the checked weight-two correction. The actual finite-table budget is
 $\sum_i p'_i+\sum_j(1-d'_j)<1$; it can be much smaller than the
 uniform box bound $rP+sQ<1$. Thus failure of (4) is not a barrier to
 all table-specific compactifications. Conversely, compactifying a
 fixed finite inventory once does not authorize arbitrarily many
 copies of its largest row slope. A growing-table compiler still
 requires quantitative control as $r,s$ grow.
+
+\paragraph{Exact extension criterion and verification.}
+Without endpoint normalization, let $\ell=\min_i p_i$ and
+$u=\max_j d_j$. A reverse affine extension with precisely the grid
+denominators $d_j-p_i$ exists if and only if
+\[
+ u-\ell-\sum_i(p_i-\ell)-\sum_j(u-d_j)>0.
+\]
+Sufficiency uses the natural coefficients $\ell-p_i$ and $d_j-u$.
+For necessity, every other extension's row coefficients differ by a
+common nonpositive offset from the natural row coefficients, and the
+column coefficients do likewise. At the all-ones vertex this changes
+the natural slack by $(r-1)$ times the row offset plus $(s-1)$ times
+the column offset, which is nonpositive. This argument is checked by
+\texttt{separated\_reverse\_extension\_iff}. The exact identity is
+\texttt{mobius\_separated\_ratio}. None of these declarations assumes
+or establishes a universal sublinear compiler.
 \end{document}
