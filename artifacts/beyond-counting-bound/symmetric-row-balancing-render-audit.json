@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T01:14:35.331318+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/symmetric-row-balancing.md",
+      "source_math_spans": 118,
+      "rendered_math_spans": 118,
+      "findings": 0,
+      "notes": [],
+      "sha256": "a64c6f69c463e30e8e727553fb41ba3a7fde89f6180ebc788a086623162a89b6"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "1be668ab821d92fb3a787d562cd7bc0045f3f5bad324e18e258e73b0b3539f1f"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "b2055016e6fa385f1a8515ad43eda0064b6e6ca181d5a5b59023f94f9984369c"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

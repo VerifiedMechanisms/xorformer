@@ -1,0 +1,10 @@
+import HeadComplexity.Atoms.SymmetricRowBalancing
+
+#print axioms HeadComplexity.SymmetricRowBalancing.translation_sum
+#print axioms HeadComplexity.SymmetricRowBalancing.constant_average
+#print axioms HeadComplexity.SymmetricRowBalancing.positive_scaling_sign
+#print axioms HeadComplexity.SymmetricRowBalancing.squared_mass_bound
+#print axioms HeadComplexity.SymmetricRowBalancing.supported_trace_bound
+#print axioms HeadComplexity.SymmetricRowBalancing.balanced_line_diagonal
+#print axioms HeadComplexity.SymmetricRowBalancing.balanced_line_idempotent
+#print axioms HeadComplexity.SymmetricRowBalancing.balanced_line_fixed

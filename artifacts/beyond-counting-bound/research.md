@@ -10,6 +10,12 @@ The desired conclusion is not an assumption in any argument. Denominators may de
 
 The source and start time are recorded in `run.json`. The attachment is outside this repository and is not modified.
 
+## Generic head spaces admit symmetric row balancing
+
+The [row-balancing theorem](symmetric-row-balancing.md) gives a positive normalization of every strict representation after a label-preserving perturbation. Simultaneously maximal row ranks form a cube-symmetric matroid. Averaging all its bases puts the uniform vector in the relative interior of its basis polytope; a coercive determinant objective then gives an exact positive scaling with uniform leverage. This covers arbitrary signed cancellation and target-dependent denominators. The scaling is an analytical device, not a head-count compiler.
+
+The three general statements have complete written proofs. Eight finite ingredients pass Lean, and exact rational examples check basis symmetries, projection identities, and a special denominator list that cannot be balanced before perturbation. Every sign vector also spans a balanced line, so equal leverage alone cannot exclude labels. Bounding the particular normalized family uniformly remains the missing theorem. No claim of an asymptotic improvement is made.
+
 ## Global numerator norm audit
 
 The [boundary-escape theorem](global-numerator-norm-obstructions.md) constructs an admissible negative-slope head with bounded normalized numerator norm on which any nonzero linear functional away from the origin is arbitrarily large. Thus every ordinary numerator-norm Lagrangian with a nonzero constraint multiplier away from the origin has infimum negative infinity. The same note gives a two-head family with full-cube unit margins and numerator norm tending to zero, although zero norm is infeasible. Both constructions and their actual fractional atoms are Lean checked. Global norm attainment and a nontrivial ordinary global norm-duality certificate are therefore unavailable without additional hypotheses. This does not exclude the separate strict local minimum, and does not improve the worst-case head lower bound.

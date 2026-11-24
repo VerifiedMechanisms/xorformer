@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "declarations": [
+    "HeadComplexity.SymmetricRowBalancing.translation_sum",
+    "HeadComplexity.SymmetricRowBalancing.constant_average",
+    "HeadComplexity.SymmetricRowBalancing.positive_scaling_sign",
+    "HeadComplexity.SymmetricRowBalancing.squared_mass_bound",
+    "HeadComplexity.SymmetricRowBalancing.supported_trace_bound",
+    "HeadComplexity.SymmetricRowBalancing.balanced_line_diagonal",
+    "HeadComplexity.SymmetricRowBalancing.balanced_line_idempotent",
+    "HeadComplexity.SymmetricRowBalancing.balanced_line_fixed"
+  ],
+  "lean_build": "symmetric-row-balancing-build.txt",
+  "axioms": "symmetric-row-balancing-axioms.txt",
+  "rational": "symmetric-row-balancing-rational-audit.json",
+  "source_sha256": "ff0596636888a25d4a5342440c97c3f58de13a44d6a16169b7019b409de8ee32",
+  "written_proof": "symmetric-row-balancing.md",
+  "scope": "Eight finite ingredients only. Generic ranks, exact convex minimization and perturbation are complete written proofs, not end-to-end Lean theorems.",
+  "main_target_proved": false
+}

@@ -1,0 +1,10 @@
+'HeadComplexity.SymmetricRowBalancing.translation_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.constant_average' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.positive_scaling_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.squared_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.supported_trace_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.balanced_line_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.balanced_line_idempotent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SymmetricRowBalancing.balanced_line_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]

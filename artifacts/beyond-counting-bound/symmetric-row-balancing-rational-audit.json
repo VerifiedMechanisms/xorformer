@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "exact_head_space_examples": [
+    {
+      "n": 2,
+      "H": 1,
+      "rank": 3,
+      "basis_count": 4,
+      "basis_memberships": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "positive_scaling": [
+        1,
+        4,
+        3,
+        6
+      ],
+      "projection_diagonal": "3/4"
+    },
+    {
+      "n": 3,
+      "H": 1,
+      "rank": 4,
+      "basis_count": 58,
+      "basis_memberships": [
+        29,
+        29,
+        29,
+        29,
+        29,
+        29,
+        29,
+        29
+      ],
+      "positive_scaling": [
+        1,
+        6,
+        4,
+        9,
+        3,
+        8,
+        6,
+        11
+      ],
+      "projection_diagonal": "1/2"
+    },
+    {
+      "n": 3,
+      "H": 2,
+      "rank": 7,
+      "basis_count": 8,
+      "basis_memberships": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "positive_scaling": [
+        1,
+        36,
+        18,
+        84,
+        10,
+        65,
+        40,
+        126
+      ],
+      "projection_diagonal": "7/8"
+    }
+  ],
+  "nonbalanceable_special_denominator_examples": [
+    {
+      "n": 5,
+      "origin_value": "-1",
+      "checked_cube_values": 32,
+      "residues": [
+        "-30",
+        "420",
+        "-1680",
+        "2520",
+        "-1260"
+      ]
+    },
+    {
+      "n": 6,
+      "origin_value": "1",
+      "checked_cube_values": 64,
+      "residues": [
+        "42",
+        "-840",
+        "5040",
+        "-12600",
+        "13860",
+        "-5544"
+      ]
+    },
+    {
+      "n": 7,
+      "origin_value": "-1",
+      "checked_cube_values": 128,
+      "residues": [
+        "-56",
+        "1512",
+        "-12600",
+        "46200",
+        "-83160",
+        "72072",
+        "-24024"
+      ]
+    },
+    {
+      "n": 8,
+      "origin_value": "1",
+      "checked_cube_values": 256,
+      "residues": [
+        "72",
+        "-2520",
+        "27720",
+        "-138600",
+        "360360",
+        "-504504",
+        "360360",
+        "-102960"
+      ]
+    },
+    {
+      "n": 9,
+      "origin_value": "-1",
+      "checked_cube_values": 512,
+      "residues": [
+        "-90",
+        "3960",
+        "-55440",
+        "360360",
+        "-1261260",
+        "2522520",
+        "-2882880",
+        "1750320",
+        "-437580"
+      ]
+    }
+  ],
+  "balanced_sign_lines": 256,
+  "script_sha256": "e7d0f23e9f4a58f5f8f29b0afc579b7ba5c192f4e6e991f427a9e7a66738817c",
+  "scope": "Exact finite examples. General generic balancing is proved in the written note; no asymptotic head lower bound.",
+  "main_target_proved": false
+}
