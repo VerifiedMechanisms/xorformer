@@ -53,3 +53,23 @@ For the reciprocal subclass, pivoting an arrowhead matrix produces continued-fra
 The same limitation affects order-based arguments. Cauchy partial fractions and divided differences can exploit one ordered scalar statistic. General rotary denominators need not order the cube points consistently, and their relative order can change from one denominator to another. No multivariate replacement preserving the original head count was established.
 
 The difference-of-products representation is a rigorous alternative sign certificate. Turning it into $H$ admissible affine fractions, while retaining the finite strict signs, remains open in this route.
+
+## A simpler algebraic product difference
+
+The exponential tilt is unnecessary for the sign certificate itself. Consider any finite family of positive affine denominators $D_h$ and affine numerators $N_h$, with a strict score $S(x)=\sum_hN_h(x)/D_h(x)$. Define
+
+$$ G(t,x)=\prod_h(D_h(x)+tN_h(x)). $$
+
+Differentiating the finite product at zero gives
+
+$$ \partial_tG(0,x)=\left(\prod_hD_h(x)\right)S(x). $$
+
+The difference quotient has a continuous extension at zero. The cube is finite, the original derivative is nonzero at every cube point, and every original factor is positive. Consequently, for every prescribed upper bound $a\gt0$, there is one finite $t\in(0,a)$ such that every perturbed factor stays positive and
+
+$$ \mathrm{sgn}\left(\prod_h(D_h(x)+tN_h(x))-\prod_hD_h(x)\right)=\mathrm{sgn}S(x) $$
+
+for every cube point. The product difference is also nonzero everywhere. This statement applies to arbitrary positive affine fractions, so it is stronger than a statement restricted to pure atoms.
+
+A free score constant can be absorbed into the first numerator when $H\geq1$. Before absorption, a sufficiently small downward shift removes zero scores without changing the strict-positive classifier convention. Thus every positive affine-fraction classifier with at least one head has a strict sign representation by the difference of two products of $H$ positive affine factors. For $H=0$, the classifier is constant and can be treated separately.
+
+The full finite-parameter statement and the free-constant wrapper are Lean-checked in `Results/ProductDifferenceSign.lean`, as `exists_positive_product_difference` and `CubeAffine.classifier_as_product_difference`. This formalization proves an alternate sign representation. It supplies no denominator orientation or vanilla head-count conclusion.
