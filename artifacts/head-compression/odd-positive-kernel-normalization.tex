@@ -18,8 +18,14 @@ the kernel denominator is \texttt{value\_den\_pos}, and strictification
 under oddness is \texttt{strict\_odd\_part}, all in the same namespace.
 Their axiom audits report only \texttt{propext}, \texttt{Classical.choice},
 and \texttt{Quot.sound}. Mixed atom orientations and constant denominators
-are included. The converse and the Fourier statements below are complete
-written proofs, with additional exact rational checks, but are not formalized.
+are included. The converse is checked in
+\texttt{Results/OddKernelConverse.lean}: the declarations
+\texttt{exists\_atoms\_of\_strict\_parameters},
+\texttt{exists\_strict\_parameters}, and
+\texttt{fracComputable\_of\_parameters} prove the exact two-atom identity,
+the simultaneous inward perturbation, and the final original-model
+representation. The Fourier statements below remain complete written
+proofs with additional exact rational checks, but are not formalized.
 No improved head-count lower bound or upper bound follows here. In particular, the
 positivity statements below do not control arbitrary signed numerator
 directions or cancellations between heads.

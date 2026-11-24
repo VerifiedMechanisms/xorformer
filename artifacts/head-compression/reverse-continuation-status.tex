@@ -140,7 +140,7 @@ The budget remains a hypothesis; grid positivity alone is insufficient.
 independently moving row poles satisfying its explicit sum budget have
 an exact strictly admissible axis-zero realization with two heads per
 pole. No extra axis repair is needed. The aggregate build passes
-9243 jobs after the further modules below, and the new declarations use
+9245 jobs after the further modules below, and the new declarations use
 only the standard Lean axioms.
 
 \paragraph{Compact local constructions and a failed induction.}
@@ -305,18 +305,25 @@ analytic parameter-dependent weights in a different fixed-scaled-pole
 sign-cube family. It likewise excludes moving or exact-root queries
 and pole deformations. Neither audit is an unrestricted lower bound.
 
-\paragraph{New unrestricted normalizations, written only.}
+\paragraph{New unrestricted normalizations.}
 \texttt{positive-perspective-reformulation.tex} gives an exact
 positive-numerator normalization and a convex quadratic-perspective
 extension, together with an affine arrowhead matrix description.
 Its Boolean-vanishing gauge shows why convexity away from the vertices
-does not by itself bound strict Boolean labels. The written
+does not by itself bound strict Boolean labels. The
 \texttt{odd-positive-kernel-normalization.tex} treats all odd targets
 and both original orientations exactly, including constant denominators.
 It reduces them, within a factor two in head count, to sums of kernels
 $u\cdot t/(1-(w\cdot t)^2)$ with $w$ nonnegative and
 $\|w\|_1<1$. Arbitrary numerator directions remain, and no sharper
-global sign count for these kernels is proved.
+global sign count for these kernels is proved. The forward and converse
+are now checked in \texttt{OddKernelNormalization.lean} and
+\texttt{OddKernelConverse.lean}, with main declarations
+\texttt{of\_fracComputable} and \texttt{fracComputable\_of\_parameters}
+in the namespace \texttt{HeadComplexity.OddKernel}. The exact identity,
+whole-cube positivity, strictification of odd targets, and simultaneous
+inward perturbation of weakly positive parameters are included.
+The Fourier observations in the written note are not yet formalized.
 
 \paragraph{Verification and external hypotheses.}
 The aggregate \texttt{lake build HeadComplexity.Results.All} completed
