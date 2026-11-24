@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\W}{W}
+\begin{document}
+\title{A Logarithmic Smaller Block Suffices for the Global Log-Log Target}
+\author{}
+\date{23 November 2026}
+\maketitle
+
+\paragraph{Status.}
+The budget and the final asymptotic implication below are Lean checked
+in \texttt{Results/AxisZeroUnbalancedAsymptotics.lean}. The required
+sublinear compiler remains an open hypothesis. This note does not prove
+either accepted global upper or lower bound. All logarithms denoted
+$\log$ are natural. The original model and complexity definitions are
+unchanged.
+
+\section{The repaired-face budget}
+Write $C(a,b;M)$ for the existing Lean proposition
+\texttt{HasReverseAxisCompiler a b M}, which requires a universal
+strict reverse-orientation axis-zero compiler using at most $M$ heads.
+The checked star-face transfer gives, for $a,b\geq1$,
+\[
+ C(a,b;M)\quad\Longrightarrow\quad
+ \W(a+b)\leq \frac{484\,2^{a+b}M}{ab}
+       +\frac{11\,2^a}{a}+\frac{11\,2^b}{b}.
+ \tag{1}
+\]
+The two last terms approximate arbitrary real residual values on the
+exceptional faces using affine monomial-star covers. Strict margins on
+the finite cube make approximation sufficient; the construction is
+proved against the original admissible atoms. Its proof and exact
+declaration are in \texttt{AxisZeroStarFaces.lean} and
+\texttt{AxisZeroUnbalancedTransfer.lean}.
+
+For $n\geq32$, choose $b=\lfloor\log_2 n\rfloor$ and $a=n-b$.
+Then
+\[
+ 1\leq b,\qquad a\geq n/2,\qquad n/2<2^b\leq n,
+ \qquad n^3\leq2^n.
+\]
+Consequently
+\[
+ \frac{11\,2^a}{a}\leq\frac{44\,2^n}{n^2},
+ \qquad
+ \frac{11\,2^b}{b}\leq11n\leq\frac{11\,2^n}{n^2}.
+ \tag{2}
+\]
+Thus the entire exceptional-face cost is at most $55\,2^n/n^2$.
+In particular the earlier $2^a$ face cost is not an obstruction to a
+logarithmic smaller block.
+
+\begin{theorem}[Finite budget]
+Let $n\geq32$, $K\geq0$, and $0<d\leq n$. If
+$C(n-b,b;M)$ and $M\leq Kb/d$, then
+\[
+ \W(n)\leq (968K+55)\frac{2^n}{nd}.
+\]
+\end{theorem}
+\begin{proof}
+The main term in (1) is at most
+$484K2^n/(ad)\leq968K2^n/(nd)$.
+By (2) and $d\leq n$, the remaining terms are at most
+$55\,2^n/(nd)$.
+\end{proof}
+
+\begin{theorem}[Checked asymptotic implication]
+Suppose that a constant $K\geq0$ satisfies, for all sufficiently large
+$n$, the existence of an $M$ with
+\[
+ C(n-b,b;M),\qquad
+ M\leq K\left(1+\frac{b}{\log b}\right),
+ \qquad b=\lfloor\log_2 n\rfloor.
+\]
+Then $\W(n)=O(2^n/(n\log\log n))$.
+\end{theorem}
+\begin{proof}
+For $n\geq32$, $b\geq3$ and
+$n<2^{b+1}$. Since $\log2<3/4$,
+$\log n<(b+1)\log2\leq b$. Hence
+$0<d:=\log\log n\leq\log b\leq b\leq n$ and
+\[
+ M\leq K(1+b/\log b)\leq 2Kb/d.
+\]
+The finite theorem gives the explicit eventual constant $1936K+55$.
+\end{proof}
+
+\paragraph{Central checked declarations.}
+Within \texttt{HeadComplexity.AxisZeroGluing}, the finite theorem is
+\texttt{worstCaseHeadComplexity\_logarithmic\_block\_le}, and the final
+implication is
+\texttt{worstCaseHeadComplexity\_isBigO\_loglog\_of\_logarithmic\_block\_compiler}.
+The latter retains the compiler as an explicit premise, not an axiom.
+The aggregate \texttt{lake build HeadComplexity.Results.All} succeeds.
+
+\paragraph{What is still missing.}
+The checked linear compiler costs $b+1$ after transposing the grid.
+To obtain the new implication's hypothesis, it must be improved to
+$O(b/\log b)$ for all $(n-b)\times b$ sign tables with the required
+full-cube positivity. No such construction has been proved. The smaller
+block changes the quantitative compiler regime; it does not supply
+the missing saving.
+\end{document}

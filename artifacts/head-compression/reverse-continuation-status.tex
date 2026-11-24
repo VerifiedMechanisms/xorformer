@@ -66,6 +66,23 @@ compiler in \texttt{AxisZeroBaselineTransfer.lean}.
 \emph{implications}, under the corresponding compiler hypotheses.
 Those hypotheses have not been discharged.
 
+\paragraph{A logarithmic smaller block now has a checked complete budget.}
+\texttt{AxisZeroStarFaces.lean} replaces each exponential exceptional-face
+repair by the corresponding affine monomial-star cover. The resulting
+bound in \texttt{AxisZeroUnbalancedTransfer.lean} is
+\[
+ W(a+b)\leq484\,2^{a+b}M/(ab)+11\,2^a/a+11\,2^b/b.
+\]
+For $b=\lfloor\log_2 n\rfloor$ and $a=n-b$,
+\texttt{AxisZeroUnbalancedAsymptotics.lean} checks that the face terms
+are at most $55\,2^n/n^2$. Its final declaration
+\texttt{worstCaseHeadComplexity\_isBigO\_loglog\_of\_logarithmic\_block\_compiler}
+therefore proves the desired upper asymptotic conditional on an
+$O(b/\log b)$ universal compiler in these unbalanced dimensions.
+This compiler is still unproved. The complete calculation is recorded
+in \texttt{logarithmic-block-budget.tex}; its constants include every
+module and correction head. The aggregate build and axiom audit pass.
+
 \paragraph{Axis zeros and strict slopes are no longer separate obstacles.}
 \texttt{Results/ReverseGridAxisRepair.lean} turns any $H$-head reverse
 grid representation with positive full-cube denominators and weakly
@@ -157,6 +174,24 @@ components needs $H\geq\log_2(k+2)-1$, even with arbitrary nonzero
 amplitudes. This rules out a constant-cost exact-support replacement
 for each Erd\H{o}s--Moser order pair. It does not rule out a joint
 construction with interacting nonzero tails.
+
+\texttt{paired-support-budget-audit.tex} strengthens that restricted
+conclusion to nonuniform component counts and total separately compiled
+head cost. Every universal exact-support assembly of those modules
+requires $\Omega(m)$ total heads. Its approximate version states an
+explicit uniform-error condition. Neither assertion covers joint
+representations with unrestricted interacting tails.
+
+\texttt{butterfly-rectangle-decoder.tex} gives independent switch bits
+readable by assignment rectangles. The span theorem in
+\texttt{butterfly-wavelet-span.tex} identifies exactly which Haar tensor
+components can vary. The analytic one-kernel decoder is obstructed
+when its residues are fixed across settings. The separate
+\texttt{butterfly-tree-cauchy-audit.tex} treats adaptive residues in a
+specified four-pole tree limit: the required partial-sum zero lies
+outside the admissible query interval. Exact certificates cover the
+finite test, but these are restricted decoder obstructions, not a
+global lower bound.
 
 \paragraph{Lower-bound mechanisms that did not close the gap.}
 The checked polynomial sign count yields the inverse-square estimate

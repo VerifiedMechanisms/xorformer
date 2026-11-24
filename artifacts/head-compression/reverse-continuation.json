@@ -16,5 +16,6 @@
   ],
   "minimum_is_not_deadline": true,
   "capacity_recovery_utc": "2026-11-23 22:54:02 UTC",
-  "last_checkpoint_utc": "2026-11-23 23:22:53 UTC"
+  "last_checkpoint_utc": "2026-11-24 00:01:35 UTC",
+  "latest_checked_progress": "Complete logarithmic-block star-face budget and conditional log-log asymptotic transfer; compiler still open."
 }
