@@ -1,0 +1,233 @@
+{
+  "kind": "finite_field_rank_experiment_not_real_proof",
+  "prime": 65521,
+  "arguments": {
+    "n": 8,
+    "heads": 16,
+    "rmax": 6,
+    "kmax": 32,
+    "seed": 1,
+    "mode": "generic"
+  },
+  "directions": [
+    [
+      47,
+      51,
+      75,
+      95,
+      4,
+      15,
+      82,
+      94
+    ],
+    [
+      25,
+      31,
+      87,
+      42,
+      28,
+      82,
+      26,
+      41
+    ],
+    [
+      64,
+      55,
+      9,
+      3,
+      86,
+      75,
+      83,
+      54
+    ],
+    [
+      81,
+      33,
+      45,
+      79,
+      13,
+      31,
+      13,
+      45
+    ],
+    [
+      97,
+      14,
+      38,
+      40,
+      90,
+      21,
+      50,
+      26
+    ],
+    [
+      2,
+      75,
+      7,
+      28,
+      50,
+      49,
+      12,
+      98
+    ],
+    [
+      75,
+      96,
+      10,
+      72,
+      30,
+      54,
+      92,
+      28
+    ],
+    [
+      72,
+      16,
+      32,
+      97,
+      42,
+      52,
+      30,
+      12
+    ],
+    [
+      43,
+      62,
+      46,
+      77,
+      36,
+      61,
+      77,
+      91
+    ],
+    [
+      43,
+      4,
+      72,
+      53,
+      87,
+      46,
+      37,
+      7
+    ],
+    [
+      46,
+      64,
+      77,
+      85,
+      22,
+      59,
+      80,
+      26
+    ],
+    [
+      35,
+      84,
+      58,
+      51,
+      67,
+      51,
+      98,
+      75
+    ],
+    [
+      6,
+      15,
+      54,
+      82,
+      7,
+      68,
+      76,
+      78
+    ],
+    [
+      87,
+      19,
+      55,
+      80,
+      36,
+      19,
+      48,
+      9
+    ],
+    [
+      22,
+      85,
+      67,
+      86,
+      84,
+      87,
+      31,
+      47
+    ],
+    [
+      62,
+      28,
+      92,
+      1,
+      83,
+      64,
+      26,
+      72
+    ]
+  ],
+  "results": [
+    {
+      "r": 0,
+      "span_dimension": 93,
+      "ambient_column_bound": 129,
+      "history": [
+        {
+          "order": 0,
+          "new_germs": 9,
+          "leading_span": 9,
+          "remaining_germs": 120
+        },
+        {
+          "order": 1,
+          "new_germs": 36,
+          "leading_span": 37,
+          "remaining_germs": 84
+        },
+        {
+          "order": 2,
+          "new_germs": 84,
+          "leading_span": 93,
+          "remaining_germs": 0
+        }
+      ]
+    },
+    {
+      "r": 1,
+      "span_dimension": 129,
+      "ambient_column_bound": 129,
+      "history": [
+        {
+          "order": 0,
+          "new_germs": 9,
+          "leading_span": 9,
+          "remaining_germs": 249
+        },
+        {
+          "order": 1,
+          "new_germs": 37,
+          "leading_span": 37,
+          "remaining_germs": 212
+        },
+        {
+          "order": 2,
+          "new_germs": 92,
+          "leading_span": 93,
+          "remaining_germs": 120
+        },
+        {
+          "order": 3,
+          "new_germs": 120,
+          "leading_span": 129,
+          "remaining_germs": 0
+        }
+      ]
+    }
+  ],
+  "seconds": 0.14209842681884766
+}

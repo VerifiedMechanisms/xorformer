@@ -2,7 +2,7 @@
 
 ## Status and model
 
-This is a checked auxiliary theorem, not a lower bound for unrestricted head complexity. The proof was independently rechecked in this run on 2026-11-24. No Lean formalization of this note is claimed.
+This is a checked auxiliary theorem, not a lower bound for unrestricted head complexity. The proof was independently rechecked in this run on 2026-11-24. The fixed-radial comparison in Section 1 is now kernel checked as `HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer` in `formalization/HeadComplexity/Research/RadialMomentTransfer.lean`. Its only axioms are the standard `propext`, `Classical.choice`, and `Quot.sound`. The polynomial sign-count applications and the ANOVA corollaries remain written proofs, not Lean formalizations.
 
 The original scores are $c+\sum_{h=1}^H A_h(x)/B_h(x)$ on $X=\lbrace0,1\rbrace^n$. Every numerator and denominator is affine. Every denominator is strictly positive on the cube and has slopes all strictly positive, all strictly negative, or all zero. Constant denominators retain the original restriction on numerator slopes. The transfer lemma needs only a finite input set and a positive common base.
 

@@ -1,0 +1,11 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/two_head_constant_collision_geometry.md",
+    "source_spans": 72,
+    "rendered_spans": 72,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124/two_head_constant_collision_geometry.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ (Q_k)_{00}=(P_k)_0,\\\\qquad 2(Q_k)_{0i}+(Q_k)_{ii}=(P_k)_i,\\\\qquad 2(Q_k)_{ij}=('"
+    ]
+  }
+]

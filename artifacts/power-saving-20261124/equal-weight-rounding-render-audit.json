@@ -1,0 +1,11 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/equal_weight_permutation_rounding_obstruction.md",
+    "source_spans": 85,
+    "rendered_spans": 85,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124/equal_weight_permutation_rounding_obstruction.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ (143,-106),\\\\ (1988,1001),\\\\ (2895,-399),\\\\ (-1050,1506),\\\\ (1193,-505),\\\\ (3038,6'"
+    ]
+  }
+]

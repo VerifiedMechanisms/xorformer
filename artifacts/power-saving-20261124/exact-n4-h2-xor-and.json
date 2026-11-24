@@ -1,0 +1,89 @@
+{
+  "started_utc": "2026-11-24T09:51:37.081716+00:00",
+  "n": 4,
+  "heads": 2,
+  "target": "xor_and",
+  "cube_order": "lexicographic",
+  "labels": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "cases": [
+    {
+      "negative_heads": 0,
+      "status": "unknown",
+      "seconds": 300.13070935895666,
+      "reason": "timeout"
+    },
+    {
+      "negative_heads": 1,
+      "status": "sat",
+      "seconds": 20.85617481614463,
+      "a": [
+        [
+          "0",
+          "-1/2",
+          "0",
+          "-7/8",
+          "0"
+        ],
+        [
+          "-1",
+          "63/64",
+          "1/2",
+          "45/32",
+          "3/4"
+        ]
+      ],
+      "b": [
+        [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "2"
+        ]
+      ],
+      "exact_values": [
+        "-1",
+        "-1/12",
+        "-1/64",
+        "-1/384",
+        "-1/4",
+        "1/16",
+        "1/96",
+        "-17/160",
+        "-17/128",
+        "13/768",
+        "1/192",
+        "-83/320",
+        "-1/192",
+        "-1/320",
+        "-55/256",
+        "-359/384"
+      ],
+      "independently_checked_rational": true
+    }
+  ],
+  "elapsed_seconds": 321.01797095593065,
+  "finished_utc": "2026-11-24T09:56:58.129149+00:00"
+}
