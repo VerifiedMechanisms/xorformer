@@ -68,8 +68,10 @@ Every head has finite real parameters at this selected $\varepsilon$. The vanill
 
 ## Architectural and formalization scope
 
-The scalar result applies to both pure and retained rotary attention through Theorem 14's scalar normal forms. Its use for standard fixed rotary frequencies and freely chosen frequencies makes no comparison at a fixed width or under bounded parameter precision.
+The scalar result applies to every architectural rotary family whose scores have the stated positive affine-ratio form. The pure architectural-to-scalar direction, including the self-query token and arbitrary rotary frequency tables, is addressed separately in Theorem 18. No fixed-width or bounded-precision claim is made here.
 
-This general finite-difference bound is a handwritten proof. The alternating-moment identities and the arbitrary-head assembly are not Lean declarations in this checkout. The finite strictification and finite margin principles used here are independently Lean-checked in `Foundation/FiniteSignMargin.lean`.
+The full scalar bound is Lean-checked in `Results/FiniteDifferenceUpperBound.lean`. The main declarations are `FiniteDifference.computable_of_positive_denominators`, `pureRoPEFamily_vanilla_exponential_bound`, and `retainedRoPEFamily_vanilla_exponential_bound`. They include zero heads and zero input bits, preserve the existing strict-positive threshold convention, and conclude computability in the unchanged shared-embedding vanilla architecture.
+
+The algebraic identities are formalized in `Foundation/AlternatingMoments.lean`: `AlternatingMoments.power_below`, `AlternatingMoments.power_top`, `AlternatingMoments.mixed_below`, `AlternatingMoments.mixed_top`, and `AlternatingMoments.reciprocal_sum_expansion`. Lean obtains the mixed moments by differentiating the ordinary power identities over the polynomial ring. The construction then applies `exists_pos_lt_sign_preserving` to the explicit continuous remainder and selects one finite positive parameter. The checked declarations use only the standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`, with no `sorry` or new axioms.
 
 The proof uses no pure-specific numerator constraint. It cannot establish the requested equality by itself, because its subset expansion generally has more than $H$ terms.
