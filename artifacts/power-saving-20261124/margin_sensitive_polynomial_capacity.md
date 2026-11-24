@@ -6,7 +6,7 @@ This note gives a new unconditional relation between width, relative head-amplit
 
 The argument differs from a metric cover of normalized heads. A reciprocal is replaced by a polynomial whose degree is proportional to the logarithm of the reciprocal margin. Polynomial sign counting then pays the logarithm of that degree. Consequently the entropy penalty is proportional to the double logarithm of the reciprocal margin.
 
-All proofs below are written mathematical proofs. No Lean verification is claimed. The polynomial sign bound used is Warren's strict-sign estimate, in the form of Proposition 5.4 in [Alon, Tools from Higher Algebra](https://web.math.princeton.edu/~nalon/PDFS/tools1.pdf).
+The original proofs below are written mathematical proofs. The follow-up run has now formalized the finite theorem and both requested scale estimates. The declarations and exact hypotheses are recorded in the audit section below. The polynomial sign bound used in the written proof is Warren's strict-sign estimate, in the form of Proposition 5.4 in [Alon, Tools from Higher Algebra](https://web.math.princeton.edu/~nalon/PDFS/tools1.pdf). Its Lean implementation is also kernel checked.
 
 ## Definitions
 
@@ -127,3 +127,22 @@ If one could prove that every target represented with $H$ heads also has a repre
 No such sparse margin repair is proved here. Generic semialgebraic witness estimates are much weaker at exponentially large width. Unlimited-head constructions with good margin do not imply a width-preserving repair. Exact pencil families can separately be counted by their small nonlinear parameter block, but an arbitrary denominator configuration need not belong to few pencils.
 
 The earlier typical-target amplitude theorem, which forces margins at most $4n/\sqrt N$ independently of width, does not contradict this approach. Such a singly exponential margin still gives polynomial approximation degree and logarithmic degree cost. The present obstruction is specifically the potentially doubly exponential deterioration of the best margin at small width.
+
+
+## Follow-up kernel audit and logarithmic scale
+
+The finite formula is now `HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le` in `formalization/HeadComplexity/Research/OriginalMarginCapacity.lean`. It uses genuine original `FracAtom` heads and the full-cube relative margin defined in `RelativeMarginQuantifiers.lean`. The coefficient-order chart includes both orientations and all $(n+1)!$ coefficient orders. Its only analytic approximation hypothesis is discharged by the displayed ceiling degree. The parameter hypothesis remains $1+3(n+1)H\leq N$.
+
+The declarations `HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_scale` and `HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_scale` establish the following finite bounds for every $n\geq32$:
+
+$$ H\leq\frac{N}{100n\sqrt n},\quad\gamma=\exp(-\exp(\sqrt n))\quad\Longrightarrow\quad T(n,H,\gamma)\leq2^{N/2}. $$
+
+$$ H\leq\frac{N\log n}{100n^2},\quad\gamma=\exp(-\exp(n/\log n))\quad\Longrightarrow\quad T(n,H,\gamma)\leq2^{N/2}. $$
+
+The logarithmic statement is obtained directly from the finite formula, with $t=n/\log n$. It is not an application of the fixed-power corollary with an exponent depending on $n$. In both cases the proof bounds the natural-log entropy by $7N/25$, checks the parameter budget, and uses $7/25\lt(\log2)/2$.
+
+The overhead versions charge a comparison width $K=\lceil CH\rceil+B$. For $C\geq1$, they replace $1/100$ by $1/(100C)$ and require $500(B+1)n^2\leq N$. This condition holds for every sufficiently large $n$ for each fixed additive overhead $B$. Thus neither rounding nor a constant multiplicative overhead is omitted.
+
+All these declarations have transitive axioms exactly among `propext`, `Classical.choice`, and `Quot.sound`. Build and axiom logs are in `artifacts/power-saving-20261124-followup/`; see [the finite audit](../power-saving-20261124-followup/finite_count_audit.md) for the declaration inventory and constants.
+
+The unrestricted conclusion is still absent. The exact exceptional set is `allRepresentationsLowMargin n H K gamma`, meaning original width $H$ truth tables for which every strict width $K$ representation has margin below $\gamma$. `mem_allRepresentationsLowMargin_iff` proves that universal quantifier explicitly. A low-margin chosen representation, rescaling, or a strict weak-limit argument cannot replace a count of this set or a truth-table-preserving repair.
