@@ -1,0 +1,250 @@
+⚠ [3832/3832] Built HeadComplexity.Research.FullRankMarginDegeneration (2.9s)
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:181:0: 'HeadComplexity.FullRankMarginDegeneration.score_has_genuine_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:182:0: 'HeadComplexity.FullRankMarginDegeneration.margin_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:183:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:184:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_at_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:185:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_at_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:186:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_full_cube_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3832 jobs).
