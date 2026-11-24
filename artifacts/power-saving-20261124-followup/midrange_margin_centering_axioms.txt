@@ -1,0 +1,28 @@
+'HeadComplexity.MidrangeMarginCentering.subtractConstant_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.rangeMin_le_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.eval_le_rangeMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.radius_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.center_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.atomSup_center_le_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.abs_midrange_add_radius_le_atomSup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.abs_midrange_add_atomSup_center_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.rangeMax_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.rangeMin_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.centered_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.centered_amplitude_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.centered_relativeMargin_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MidrangeMarginCentering.exists_centered_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

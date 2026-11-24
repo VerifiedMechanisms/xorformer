@@ -1,0 +1,16 @@
+import HeadComplexity.Research.MidrangeMarginCentering
+
+#print axioms HeadComplexity.MidrangeMarginCentering.subtractConstant_eval
+#print axioms HeadComplexity.MidrangeMarginCentering.rangeMin_le_eval
+#print axioms HeadComplexity.MidrangeMarginCentering.eval_le_rangeMax
+#print axioms HeadComplexity.MidrangeMarginCentering.radius_nonneg
+#print axioms HeadComplexity.MidrangeMarginCentering.center_eval
+#print axioms HeadComplexity.MidrangeMarginCentering.atomSup_center_le_radius
+#print axioms HeadComplexity.MidrangeMarginCentering.abs_midrange_add_radius_le_atomSup
+#print axioms HeadComplexity.MidrangeMarginCentering.abs_midrange_add_atomSup_center_le
+#print axioms HeadComplexity.MidrangeMarginCentering.rangeMax_center
+#print axioms HeadComplexity.MidrangeMarginCentering.rangeMin_center
+#print axioms HeadComplexity.MidrangeMarginCentering.centered_score
+#print axioms HeadComplexity.MidrangeMarginCentering.centered_amplitude_le
+#print axioms HeadComplexity.MidrangeMarginCentering.centered_relativeMargin_ge
+#print axioms HeadComplexity.MidrangeMarginCentering.exists_centered_certificate
