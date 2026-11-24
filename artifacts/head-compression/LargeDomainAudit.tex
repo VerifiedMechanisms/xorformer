@@ -135,6 +135,22 @@ It also does not cover architectures that change the bit query jointly
 with the product coordinates, use nonlinear selector scores, cancel
 selector errors globally, or ask only for the final strict signs.
 
+\section{Uniform approximation does not remove selector rigidity}
+
+Suppose every line indicator is uniformly within $\epsilon$ of an additive
+function of the two axes. The four-corner mixed difference of that additive
+function is zero. If a line contains the first corner and neither adjacent
+corner, its indicator mixed difference is at least one. The four errors
+would then imply $1\leq4\epsilon$. Thus, for $4\epsilon<1$, the same corner
+property and the same one-axis conclusion follow. This is kernel checked as
+\texttt{approx\_additive\_line\_selectors\_depend\_on\_one\_axis}; the injective
+contradiction is
+\texttt{not\_approx\_additive\_line\_selectors\_of\_injective}.
+
+This statement concerns individual selector approximation with a uniform
+absolute error. It makes no assertion about cancellation of large selector
+errors in a complete rational score.
+
 \section{Checked declarations and remaining opportunity}
 
 The namespace is \texttt{HeadComplexity.LargeDomain}. The main declarations

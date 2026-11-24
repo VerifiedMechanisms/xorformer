@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\newtheorem{proposition}{Proposition}
+\title{Compact-offset cube decoders: a positive two-bit construction}
+\author{Research checkpoint, branch ar/027ac8030b43}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\section{Target and status}
+
+The proposed larger local domain is a full $k$-bit cube times $s$ one-hot
+columns. The sufficient decoder would have directions
+$d_h\in\mathbb R_{>0}^k$ fixed for all columns and all labelings, and for
+every Boolean table would choose column-dependent $a_{hj},b_{hj},\tau_j$
+so that
+\[
+ F_j(x)=\tau_j+\sum_{h=1}^H\frac{a_{hj}}{b_{hj}+d_h\cdot x}
+\]
+has the prescribed strict signs on the entire row cube. For the reverse
+column extension, the offsets must lie in a common interval of relative
+width $O(1/s)$. Directions may depend on $k,s$, but cannot depend on an
+individual column's labels.
+
+A bound $H(k)=O(2^k/\sqrt{k})$ with this compact-offset property would be
+sufficient for the requested exponent one half under the one-star
+transfer: choose $k$ proportional to the ambient dimension. The stronger
+$H(k)=O(2^k/k)$ would give the corresponding quadratic denominator. Neither
+large-dimensional decoder is established here.
+
+The proposition below is a written mathematical proof, not a Lean
+formalization. Its fixed rational instance is independently checked by
+exact rational arithmetic in the accompanying finite certificates. The
+computational scripts do not change the original model or assert a
+universal asymptotic theorem.
+
+\section{Every two-bit table with two reciprocal terms}
+
+\begin{proposition}
+For every $\eta>0$, there are two fixed strictly positive directions
+$d_1,d_2\in\mathbb R_{>0}^2$ such that every map
+$f:\{0,1\}^2\longrightarrow\{-1,1\}$ has a strict sign representation
+\[
+ f(x)\left(\tau+\frac{a_1}{b_1+d_1\cdot x}
+                   +\frac{a_2}{b_2+d_2\cdot x}\right)>0
+\]
+with both offsets in $(1,1+\eta)$. Only two offset pairs are needed,
+independently of $f$.
+\end{proposition}
+\begin{proof}
+Put $B=1+\eta/3$, $\delta=\eta/3$, and choose $\epsilon>0$ so small that
+\[
+ \epsilon\bigl(B^2+B+\delta(B-1)\bigr)<2\delta.
+\]
+Take $d_1=(1,1)$ and $d_2=(1,1+\epsilon)$. Use either $(b,c)=(B,B)$ or
+$(b,c)=(B+\delta,B)$ as the two offsets. All denominators are positive
+on the cube, and both offset choices lie in the required interval.
+
+Order the four inputs as $00,01,10,11$ and form the four by three
+feature matrix with rows
+\[
+ v_{xy}=\left(1,\frac1{b+x+y},
+                  \frac1{c+x+(1+\epsilon)y}\right).
+\]
+Let $C_i=(-1)^i\det V_{\widehat i}$ be its signed maximal minors, starting
+with $i=0$. Direct expansion gives
+\[
+ C_0=\frac{\epsilon}{(b+1)(b+2)(c+1)(c+\epsilon+1)},\qquad
+ C_3=\frac{\epsilon}{b(b+1)(c+1)(c+\epsilon+1)},
+\]
+\[
+ C_1=-\frac{bc\epsilon-b\epsilon-2b+2c\epsilon+2c}
+ {bc(b+1)(b+2)(c+1)(c+\epsilon+2)},
+\]
+\[
+ C_2=-\frac{bc\epsilon+b\epsilon^2+3b\epsilon+2b-2c}
+ {bc(b+1)(b+2)(c+\epsilon+1)(c+\epsilon+2)}.
+\]
+All denominators displayed here are positive. Since $C_0>0$, the matrix
+has rank three, and its column space is precisely
+$\{z\in\mathbb R^4:C\cdot z=0\}$. A strict orthant with signs $f_i$
+intersects this hyperplane if and only if the four nonzero numbers
+$C_i f_i$ do not all have the same sign. For sufficiency, choose positive
+magnitudes for the coordinates so that the positive and negative terms
+in $C\cdot z$ have equal total magnitude. Necessity is immediate.
+
+At $(b,c)=(B,B)$, the two middle numerators are respectively
+$B(B+1)\epsilon$ and $B\epsilon(B+\epsilon+3)$, so
+\[
+ \operatorname{sgn} C=(+,-,-,+).
+\]
+At $(b,c)=(B+\delta,B)$, the numerator of $-C_1$ is
+$\epsilon(B^2+B+\delta(B-1))-2\delta<0$, whereas the numerator of
+$-C_2$ is positive. Therefore
+\[
+ \operatorname{sgn} C=(+,+,-,+).
+\]
+Each feature matrix misses only its own two opposite orthants, and these
+two excluded pairs are distinct. Their union consequently meets every
+strict orthant of $\mathbb R^4$. Membership in a feature column space
+supplies the required $(\tau,a_1,a_2)$.
+\end{proof}
+
+\section{Finite computations and their limits}
+
+\texttt{LargeDomainFixedDirections.py} clears the positive denominators
+and asks Z3 for real solutions. Rational solutions are then re-evaluated
+independently with Python's exact rational arithmetic. For
+$d_1=(1,1)$, $d_2=(1,1001/1000)$, and offsets in $(1,9/8)$, all eight
+labelings up to complementation passed this rational recheck. Their
+witnesses are in \texttt{LargeDomainTwoBitCertificates.jsonl}. Negating
+the bias and residues realizes the complementary table.
+
+\texttt{LargeDomainFixedDirectionCoverage.py} samples offsets while
+holding a family of positive directions fixed. It enumerates candidate
+chambers of the feature arrangement by maximal intersections, using
+floating-point singular value decompositions. Reported patterns are
+re-evaluated at explicit floating-point coefficients, but are not exact
+certificates. In one fixed near-uniform direction family, the observed
+numbers of sign complement classes were:
+\[
+\begin{array}{c|c|r|r|r}
+ k&H&\text{offset samples}&\text{observed classes}&\text{all classes}\\
+ 3&3&1000&105&128\\
+ 3&4&1000&125&128\\
+ 4&4&100&5522&32768\\
+ 4&5&200&10619&32768
+\end{array}
+\]
+These missing sampled patterns are not impossibility results. Near
+singular offset regimes may be missed by random sampling, and large
+condition numbers limit floating-point evidence. Separate exact-real
+solver timeouts also establish no lower bound.
+
+The next algebraic route starts at equal row directions. With $H\geq
+k+1$, a nonzero reciprocal combination can have numerator divisible by
+$\prod_{r=0}^k(w-r)$, where $w=\sum_i x_i$, and hence vanish on the whole
+cube. Perturbing the directions then produces polynomial jets on each
+Hamming layer. The first jet is affine on each layer and cannot represent
+arbitrary central-layer labels. The unresolved step is independent
+sign control across layers using higher jets and the nonlinear offset
+parameters, at $H=O(2^k/\sqrt{k})$ or better.
+\end{document}

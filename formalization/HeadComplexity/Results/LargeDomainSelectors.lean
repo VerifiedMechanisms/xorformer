@@ -133,5 +133,67 @@ theorem not_additive_line_selectors_of_injective
   · have hp : (x₀, y₀) = (x₁, y₀) := hinj h
     exact hx (congrArg Prod.fst hp)
 
+/-- Uniform additive approximation of all nonvertical line indicators. -/
+def ApproxAdditiveLineSelectors (g : α → β → F × F) (ε : ℝ) : Prop := by
+  classical
+  exact ∀ a b : F, ∃ (constant : ℝ) (left : α → ℝ) (right : β → ℝ),
+    ∀ x y, |(if lineCoordinate a (g x y) = b then (1 : ℝ) else 0) -
+      (constant + left x + right y)| ≤ ε
+
+theorem lineCoordinate_corner_or_of_approx_additive_selectors
+    {g : α → β → F × F} {ε : ℝ} (hε : 4 * ε < 1)
+    (hg : ApproxAdditiveLineSelectors g ε)
+    (a : F) (x x' : α) (y y' : β) :
+    lineCoordinate a (g x y) = lineCoordinate a (g x y') ∨
+      lineCoordinate a (g x y) = lineCoordinate a (g x' y) := by
+  classical
+  by_contra hn
+  push Not at hn
+  obtain ⟨constant, left, right, h⟩ := hg a (lineCoordinate a (g x y))
+  have hp := (abs_le.mp (h x y)).2
+  have hq := (abs_le.mp (h x y')).1
+  have hr := (abs_le.mp (h x' y)).1
+  have hs := (abs_le.mp (h x' y')).2
+  simp only [ite_true] at hp
+  simp only [Ne.symm hn.1, ite_false, zero_sub] at hq
+  simp only [Ne.symm hn.2, ite_false, zero_sub] at hr
+  have hnonneg : (0 : ℝ) ≤
+      if lineCoordinate a (g x' y') = lineCoordinate a (g x y) then 1 else 0 := by
+    split_ifs <;> norm_num
+  linarith
+
+/-- The exact rigidity survives any uniform selector error below one quarter.
+Hence arbitrarily accurate affine approximations cannot bypass the obstruction. -/
+theorem approx_additive_line_selectors_depend_on_one_axis
+    [Nonempty α] [Nonempty β] {g : α → β → F × F} {ε : ℝ}
+    (hε : 4 * ε < 1) (hg : ApproxAdditiveLineSelectors g ε) {a b c : F}
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
+    (∃ u : α → F × F, ∀ x y, g x y = u x) ∨
+      (∃ v : β → F × F, ∀ x y, g x y = v y) := by
+  apply depends_on_one_axis_of_corner_property g
+  intro x x' y y'
+  exact corner_eq_of_three_lineCoordinates hab hac hbc
+    (lineCoordinate_corner_or_of_approx_additive_selectors hε hg a x x' y y')
+    (lineCoordinate_corner_or_of_approx_additive_selectors hε hg b x x' y y')
+    (lineCoordinate_corner_or_of_approx_additive_selectors hε hg c x x' y y')
+
+theorem not_approx_additive_line_selectors_of_injective
+    {g : α → β → F × F}
+    (hinj : Function.Injective (fun p : α × β ↦ g p.1 p.2))
+    {x₀ x₁ : α} (hx : x₀ ≠ x₁) {y₀ y₁ : β} (hy : y₀ ≠ y₁)
+    {a b c : F} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    {ε : ℝ} (hε : 4 * ε < 1) :
+    ¬ ApproxAdditiveLineSelectors g ε := by
+  intro hg
+  have hcorner := corner_eq_of_three_lineCoordinates hab hac hbc
+    (lineCoordinate_corner_or_of_approx_additive_selectors hε hg a x₀ x₁ y₀ y₁)
+    (lineCoordinate_corner_or_of_approx_additive_selectors hε hg b x₀ x₁ y₀ y₁)
+    (lineCoordinate_corner_or_of_approx_additive_selectors hε hg c x₀ x₁ y₀ y₁)
+  rcases hcorner with h | h
+  · have hp : (x₀, y₀) = (x₀, y₁) := hinj h
+    exact hy (congrArg Prod.snd hp)
+  · have hp : (x₀, y₀) = (x₁, y₀) := hinj h
+    exact hx (congrArg Prod.fst hp)
+
 end LargeDomain
 end HeadComplexity

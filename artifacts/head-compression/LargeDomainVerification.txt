@@ -17,5 +17,11 @@ Transitive #print axioms output:
 'HeadComplexity.LargeDomain.additive_line_selectors_depend_on_one_axis' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.LargeDomain.not_additive_line_selectors_of_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
 
+'HeadComplexity.LargeDomain.lineCoordinate_corner_or_of_approx_additive_selectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.approx_additive_line_selectors_depend_on_one_axis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.not_approx_additive_line_selectors_of_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+The build and all nine axiom reports were rerun after the approximation extension.
+
 No original model definition, admissibility condition, or bound statement changed.
 These are auxiliary obstruction theorems. They do not improve W(n).
