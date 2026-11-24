@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_small_collisions.md",
+    "source_spans": 93,
+    "rendered_spans": 93,
+    "findings": [],
+    "notes": []
+  }
+]
