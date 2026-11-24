@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{A Degree Audit for the Discrete-Input Sigmoid Argument}
+\author{Research checkpoint, branch ar/027ac8030b43}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This note identifies an explicit false step in the printed proof of
+Theorem 8.11 of Anthony and Bartlett, \emph{Neural Network Learning:
+Theoretical Foundations}, printed pages 122--123 (PDF pages 136--137 in
+\href{https://openeclass.panteion.gr/modules/document/file.php/PMS152/LEARNING/Anthony\%20Martin\%2C\%20Bartlett\%20Peter\%20L.\%20\%282009\%29\%20--\%20Neural\%20Network\%20Learning_\%20Theoretical\%20Foundations.pdf}{the inspected copy}).
+It does not refute the theorem's VC-dimension conclusion, which could
+conceivably have a different proof. It does not establish an obstruction
+to the original xorformer benchmark. No model definition is changed.
+The counterexample and degree argument here are written proofs, not
+Lean declarations.
+
+\section{The first failing assertion}
+
+The printed theorem gives an upper bound $2W\log_2(60ND)$ for two-layer
+sigmoid networks on $\{-D,\ldots,D\}^n$, with at most $N$ inputs per
+hidden unit and $W$ total parameters. Its proof transforms first-layer
+weights and thresholds by exponentiation. One hidden unit then becomes
+a rational function whose numerator and denominator have degrees at most
+$ND$ and $2ND+1$, respectively.
+
+The next step says that an affine combination of $k$ such units has the
+same sign as a polynomial of degree at most $3ND+2$ in all transformed
+parameters. This assertion fails even for $N=D=1$ and seven units.
+The error is not resolved by distinguishing ordinary degree from degree
+in each parameter block: Theorem 8.3 uses ordinary total degree, and the
+following affine-line restriction rules out any polynomial of the claimed
+ordinary degree, regardless of how it is obtained.
+
+\begin{proposition}
+For a fixed input of a seven-unit, one-input sigmoid network, the sign
+function in the transformed parameters need not admit a polynomial sign
+representation of total degree at most five on the positive parameter
+orthant.
+\end{proposition}
+
+\begin{proof}
+Fix the input $x=0$. Along an affine line in the transformed parameter
+space, set the threshold parameters to $a_{0,i}(t)=t+i-1$, for
+$i=1,\ldots,7$ and $t>0$, and set the transformed input weights to one.
+All transformed first-layer parameters are strictly positive. The hidden
+outputs are $1/(t+i)$. Choose output bias zero and fixed output weights
+\[
+(c_1,\ldots,c_7)=(7,-168,1260,-4200,6930,-5544,1716).
+\]
+Their sum is exactly
+\[
+F(t)=\sum_{i=1}^7\frac{c_i}{t+i}
+ =\frac{\prod_{j=1}^6(t-j)}{\prod_{i=1}^7(t+i)}.
+\tag{1}
+\]
+For example, this identity follows from partial fractions, since
+$c_i=\prod_{j=1}^6(-i-j)/\prod_{\ell\ne i}(-i+\ell)$.
+The denominator is positive for every $t>0$, and the numerator has the
+six distinct simple positive roots $1,\ldots,6$. Thus the seven values
+$F(1/2),F(3/2),\ldots,F(13/2)$ have alternating, nonzero signs.
+
+A polynomial in all network parameters of total degree at most five
+restricts on this affine parameter line to a univariate polynomial of
+degree at most five. If it represented the same strict signs, the
+intermediate value theorem would give a distinct root between every
+consecutive pair of the seven displayed points. Six distinct roots are
+impossible unless the polynomial is zero, which also cannot represent
+the nonzero signs. Here $3ND+2=5$, proving the assertion.
+\end{proof}
+
+For reproducibility, the seven exact rational values in the proof are
+\[
+\frac2{195},\quad-\frac2{12155},\quad\frac2{138567},\quad
+-\frac{10}{2909907},\quad\frac2{1062347},\quad
+-\frac6{2414425},\quad\frac{22}{1671525}.
+\]
+They were independently evaluated with Python's exact rational arithmetic;
+the displayed partial-fraction identity supplies the general proof.
+
+\section{What straightforward clearing actually gives}
+
+Write each hidden output as $P_i/Q_i$, with $Q_i>0$, and let the output
+score be $\beta+\sum_i c_i P_i/Q_i$. Clearing all positive denominators
+gives
+\[
+\beta\prod_iQ_i+\sum_i c_iP_i\prod_{\ell\ne i}Q_\ell.
+\]
+If each hidden unit has at most $N$ inputs, this polynomial has degree at
+most $1+k(2ND+1)$. If the individual fan-ins are $N_i$, the sharper bound
+is $1+2D\sum_iN_i+k$, hence $O(DW)$ when $D\geq1$. Applying the ordinary
+polynomial sign-count argument at this degree yields $O(W\log(WD))$,
+with the total parameter count inside the logarithm. It does not yield
+the claimed replacement of $W$ by the maximum hidden fan-in $N$.
+
+The book's bibliographical notes, printed page 129, explicitly describe
+Theorems 8.11 and 8.12 as a fan-in refinement of Bartlett and Williamson
+(1996), DOI \href{https://doi.org/10.1162/neco.1996.8.3.625}
+{10.1162/neco.1996.8.3.625}. The present audit did not retrieve that paper's
+full text from an accessible primary endpoint, so it does not claim to
+have audited its proof. Targeted searches of the authors' publication
+pages and for a book erratum did not locate an erratum addressing this
+step as of November 24, 2026. Failure to find an erratum is not evidence
+that none exists.
+
+\section{Implication for the xorformer investigation}
+
+A sum of $H$ positive-denominator affine ratios has the same elementary
+clearing issue: ordinary total degree grows with $H$. The bounded degree
+of each individual head does not justify dropping $\log H$ from the
+polynomial sign-pattern count. A stronger multiblock or structural
+count would require an independent proof. The book argument therefore
+cannot be used here to rule out a fixed-power or unbounded-factor
+improvement in worst-case head complexity.
+\end{document}
