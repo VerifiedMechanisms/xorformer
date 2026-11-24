@@ -1,0 +1,7 @@
+import HeadComplexity.Research.PartialLinearCapacity
+#print axioms HeadComplexity.PartialLinearCapacity.det_totalDegree_le
+#print axioms HeadComplexity.PartialLinearCapacity.cramer_totalDegree_le
+#print axioms HeadComplexity.PartialLinearCapacity.exists_unsigned_basis
+#print axioms HeadComplexity.PartialLinearCapacity.exists_certificate_pattern
+#print axioms HeadComplexity.PartialLinearCapacity.card_patterns_le
+#check HeadComplexity.PartialLinearCapacity.card_patterns_le

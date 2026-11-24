@@ -1,0 +1,8 @@
+⚠ [3746/3746] Built HeadComplexity.Research.PartialLinearCapacity (2.4s)
+warning: HeadComplexity/Research/PartialLinearCapacity.lean:395:8: `card_patterns_le` does not use the following hypothesis in its type:
+  • [DecidableEq κ] (#6)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+Build completed successfully (3746 jobs).

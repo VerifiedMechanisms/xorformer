@@ -2,13 +2,13 @@
 
 ## Status
 
-The active row certificate and Cramer sign reconstruction below are kernel checked in `formalization/HeadComplexity/Research/PartialLinearCertificate.lean`. The resulting polynomial count and its application to denominator families are written proofs. They do not yet give a smaller unrestricted bound for `HeadComplexity.worstCaseHeadComplexity`.
+The active row certificate and Cramer sign reconstruction below are kernel checked in `formalization/HeadComplexity/Research/PartialLinearCertificate.lean`. The finite partially linear polynomial count is kernel checked as `HeadComplexity.PartialLinearCapacity.card_patterns_le` in `formalization/HeadComplexity/Research/PartialLinearCapacity.lean`. Its application to denominator families is a written proof. They do not yet give a smaller unrestricted bound for `HeadComplexity.worstCaseHeadComplexity`.
 
 The count handles arbitrary real coefficients, arbitrary signed cancellation, and arbitrarily small margin. The outstanding obstruction is the number of independent denominator parameters.
 
 ## A finite partially linear count
 
-Let $P_i(b)\in\mathbb R^L$, for $1\leq i\leq m$, be vector valued polynomials in $q$ real parameters. Assume every coordinate has total degree at most $D$, where $D\geq 1$. Consider the strict sign patterns of the scores $P_i(b)\cdot a$, where both $b\in\mathbb R^q$ and $a\in\mathbb R^L$ vary freely.
+Let $P_i(b)\in\mathbb R^L$, for $1\leq i\leq m$, be vector valued polynomials in $q$ real parameters. Assume every coordinate has total degree at most $D$, where $D\geq 0$. Consider the strict sign patterns of the scores $P_i(b)\cdot a$, where both $b\in\mathbb R^q$ and $a\in\mathbb R^L$ vary freely.
 
 Suppose $L\geq 1$ and $q+1\leq m$. The number of strict sign patterns is at most
 
@@ -48,7 +48,7 @@ has degree at most $2LD+1$. At the certified point,
 
 $$ Q_i(b,T)=\Delta(b)^2 P_i(b)\cdot a. $$
 
-The determinant is nonzero, so $Q_i$ has the same strict sign as the original score. The Lean declarations `cramer_eq_det_smul` and `sign_cramer` prove this identity and strict sign equivalence over the reals. Polynomial degrees are a written calculation here.
+The determinant is nonzero, so $Q_i$ has the same strict sign as the original score. The Lean declarations `cramer_eq_det_smul` and `sign_cramer` prove this identity and strict sign equivalence over the reals. The declarations `det_totalDegree_le`, `cramer_totalDegree_le`, and `certificateScore_totalDegree_le` in namespace `HeadComplexity.PartialLinearCapacity` prove the polynomial degree calculation. The declaration `exists_certificate_pattern` proves the complete chart cover, including arbitrary coefficient scaling, selected labels, and the extra box variable.
 
 There are $q+1$ free real parameters. Applying Warren with degree $2LD+1$ gives the count for each fixed certificate. Sum over the discrete certificates from Lemma 2. $\blacksquare$
 

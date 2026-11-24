@@ -1,0 +1,15 @@
+'HeadComplexity.PartialLinearCapacity.det_totalDegree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PartialLinearCapacity.cramer_totalDegree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PartialLinearCapacity.exists_unsigned_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PartialLinearCapacity.exists_certificate_pattern' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PartialLinearCapacity.card_patterns_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+HeadComplexity.PartialLinearCapacity.card_patterns_le.{u_1, u_2, u_3} {ι : Type u_1} {κ : Type u_2} {ν : Type u_3}
+  [Fintype ι] [Fintype κ] [DecidableEq κ] [Fintype ν] (P : Matrix ι κ (MvPolynomial ν ℝ)) {D : ℕ}
+  (hP : ∀ (i : ι) (j : κ), (P i j).totalDegree ≤ D) (hκ : 0 < Fintype.card κ)
+  (hν : Fintype.card ν + 1 ≤ Fintype.card ι) :
+  ↑(HeadComplexity.PartialLinearCapacity.patterns P).ncard ≤
+    ↑((Fintype.card ι + 2 * Fintype.card κ).choose (Fintype.card κ)) * 2 ^ Fintype.card κ *
+      (4 * Real.exp 1 * (2 * ↑D * ↑(Fintype.card κ) + 1) * ↑(Fintype.card ι) / (↑(Fintype.card ν) + 1)) ^
+        (Fintype.card ν + 1)
