@@ -1,0 +1,18 @@
+{
+  "exact_vertex_checks": 24,
+  "cases": [
+    {
+      "epsilon": "9/160",
+      "cube_vertices": 8
+    },
+    {
+      "epsilon": "2/63",
+      "cube_vertices": 8
+    },
+    {
+      "epsilon": "47/1650",
+      "cube_vertices": 8
+    }
+  ],
+  "scope": "finite exact tests; universality is proved in the TeX note"
+}

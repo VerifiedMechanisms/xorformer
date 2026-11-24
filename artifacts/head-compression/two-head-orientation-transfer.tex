@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Three heads transfer every two-head strict sign function}
+\author{}\date{}\maketitle
+
+\paragraph{Verification status and scope.}
+The theorem below is a complete written finite-domain proof, with an
+exact rational checker. It is not Lean-checked. It gives a constant-size
+orientation transfer and does not establish an asymptotic saving.
+It preserves the input dimension and uses the existing admissibility
+criterion for positive affine denominators with strictly uniform slopes.
+It neither asserts an analogous constant-factor transfer for arbitrarily
+many heads nor supplies exact axis cancellation.
+
+\begin{theorem}
+Let $X$ be a finite subset of a Boolean cube, and let $A_1,A_2,B_1,B_2$
+be affine forms with $B_1,B_2>0$ on the entire cube. Suppose
+$F=A_1/B_1+A_2/B_2$ has no zero on $X$.
+Choose any affine form $L$ positive on the entire cube whose slopes
+are all strictly positive or all strictly negative.
+For every sufficiently small $\varepsilon>0$, the three-head score
+\[
+ G_\varepsilon=
+ \frac{A_1/\varepsilon}{L-\varepsilon B_2}
+ +\frac{A_2/\varepsilon}{L-\varepsilon B_1}
+ -\frac{(A_1+A_2)/\varepsilon}{L}
+ \tag{1}
+\]
+has the same strict signs as $F$ on $X$. All three denominators are
+positive on the entire cube, have the orientation of $L$, and converge
+coefficientwise to $L$.
+\end{theorem}
+\begin{proof}
+Put $P=A_1B_2+A_2B_1$. Exact common-denominator arithmetic gives
+\[
+ G_\varepsilon=
+ \frac{LP-\varepsilon(A_1+A_2)B_1B_2}
+ {L(L-\varepsilon B_1)(L-\varepsilon B_2)}.
+ \tag{2}
+\]
+In particular $G_\varepsilon\to P/L^2$ at every cube vertex.
+The signs of $P/L^2$ and $F=P/(B_1B_2)$ agree. Every specified sign
+is strict, and $X$ is finite, so all of them persist for sufficiently
+small positive $\varepsilon$.
+
+For completeness, the following explicit inequalities suffice.
+At every cube vertex require
+\[
+ \varepsilon\max(B_1,B_2)<L/2;
+ \tag{3}
+\]
+at every point of $X$ where $(A_1+A_2)B_1B_2\ne0$, require
+\[
+ \varepsilon |(A_1+A_2)B_1B_2|<L|P|/2.
+ \tag{4}
+\]
+If $l_i$ is a slope of $L$ and $b_{h,i}$ a slope of $B_h$, also
+require $\varepsilon|b_{h,i}|<|l_i|/2$ whenever $b_{h,i}\ne0$.
+All right-hand bounds are strictly positive, and there are finitely
+many of them. Their minimum therefore admits a positive
+$\varepsilon$. Equations (3) and the slope bounds prove the full-cube
+positivity and strict orientation assertions. Equation (4) and (2)
+prove the strict sign assertion directly.
+\end{proof}
+
+\paragraph{Biases and the Boolean threshold convention.}
+A bias $c$ can first be absorbed by replacing $A_1$ with $A_1+cB_1$.
+For a representation whose false inputs may have score zero, first
+subtract a sufficiently small positive constant: finitely many true
+inputs have a positive minimum score, so their signs are preserved,
+while every false score becomes negative. The constant functions
+cause no difficulty. Thus the theorem applies to the original strict
+Boolean classification convention after this elementary finite repair.
+
+\paragraph{Comparison with two-head coalescence.}
+The earlier exact two-head coalescence uses one of the original
+denominators as its limiting denominator. Formula (1) instead permits
+an arbitrary prescribed limiting affine denominator and therefore
+reverses its orientation when necessary, at a cost of one extra head.
+The proof relies on the cleared numerator being a sum of two products.
+For more heads the cleared numerator contains products of more affine
+forms; replacing it by (1) one pair at a time does not preserve the
+sign of the total score, because the positive multipliers differ.
+
+\end{document}
