@@ -8,8 +8,11 @@
 
 \paragraph{Status.}
 The finite embedding, transposition, and one-batch lemmas are Lean checked
-in \texttt{Results/ReverseGridEmbedding.lean}. The complete iteration and
-asymptotic estimate below are written proofs, not yet Lean formalized.
+in \texttt{Results/ReverseGridEmbedding.lean}. The dyadic finite iteration,
+same-cost coordinate restriction, and dyadic budget estimate are now Lean
+checked in \texttt{ReverseAlternatingAssembly.lean} and
+\texttt{ReverseAxisRestriction.lean}. The natural-log asymptotic
+comparison below remains a written proof.
 The density hypothesis is unproved at any growing logarithmic-saving
 rate. Consequently this note does not establish an unconditional upper
 bound improvement. It sharpens the precise construction that would suffice.
@@ -139,6 +142,28 @@ could suffice; an all-small-scale continuation theorem is not a premise.
 Separate realizability of each good column does not establish the joint
 hypothesis, and a large number of zero branches does not establish the
 required half-density.
+
+\paragraph{Checked dyadic statements.}
+The declaration \texttt{exists\_alternating\_dense\_square\_patch}
+constructs the full embedded dyadic square, with strict signs and exact
+zero outside. The compiler declarations
+\texttt{hasReverseAxisCompiler\_of\_alternating\_half\_dense} and
+\texttt{hasReverseAxisCompiler\_of\_alternating\_half\_dense\_le}
+handle dyadic squares and all smaller rectangles. The latter uses
+\texttt{HasReverseAxisCompiler.restrict}, which preserves the head count,
+whole-cube positivity, strictly negative slopes, and both full Boolean
+axis identities.
+
+The exact budget is $B_0=12M(1,1)+21$ and
+\[
+ B_{k+1}=12M(2^{k+1},2^{k+1})+21+
+          12M(2^k,2^{k+1})+21+B_k.
+\]
+If each already masked square or rectangular batch at row size $2^k$
+costs at most $C2^k/(k+2)$, then the Lean declaration
+\texttt{alternatingDenseBudget\_le} proves
+$B_k\leq8C2^k/(k+2)$ for every $k$. These are conditional statements:
+no logarithmic-rate half-dense family is supplied by these declarations.
 
 \paragraph{Relation to the earlier checked batching bound.}
 \texttt{ReverseDensityBatching.lean} keeps the query dimension fixed

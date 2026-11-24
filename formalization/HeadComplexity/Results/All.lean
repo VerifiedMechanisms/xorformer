@@ -27,9 +27,12 @@ import HeadComplexity.Results.ReverseSignedCauchy
 import HeadComplexity.Results.ReverseCauchyBiasAssembly
 import HeadComplexity.Results.ReverseDensityBatching
 import HeadComplexity.Results.ReverseGridEmbedding
+import HeadComplexity.Results.ReverseAxisRestriction
+import HeadComplexity.Results.ReverseAlternatingAssembly
 import HeadComplexity.Results.TwoHeadOrientationTransfer
 import HeadComplexity.Results.ReverseCauchyCompactification
 import HeadComplexity.Results.ExteriorCauchyInterpolation
+import HeadComplexity.Results.SharedCauchyPair
 import HeadComplexity.Results.ReverseMomentGerms
 import HeadComplexity.Results.ReverseFiveQueries
 import HeadComplexity.Results.CalibratedThresholdVote
