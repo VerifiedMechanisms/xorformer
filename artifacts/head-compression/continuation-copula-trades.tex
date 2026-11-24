@@ -1,0 +1,240 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref,longtable}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{An Exact Four-Head Copula Trade on Eight Mixed Fibers}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete finite construction in the unchanged attention model.
+It is written mathematics with independently checkable rational witnesses,
+not a Lean theorem. It is not an asymptotic improvement for unrestricted
+head complexity. In particular, it does not resolve the requested upper
+bound. Its purpose is to exhibit actual independent sign capacity from
+target-dependent permutations, rather than merely count parameter sheets.
+The companion checker uses only Python's standard library and exact
+\texttt{Fraction} arithmetic. There are no floating-point tests or numerical
+optimization assumptions in the certificate.
+
+\begin{theorem}[Four admissible heads program eight mixed-fiber signs]
+Let $u,v_1,v_2,v_3\in\{0,1\}$. Prescribe arbitrary signs
+$s(u,v)\in\{-1,1\}$ at the eight vertices with
+$v_1+v_2+v_3\ge2$. There is a sum $F$ of four original
+\texttt{FracAtom} evaluations on these four input coordinates such that
+\[
+ F(u,v)=0\quad\text{if }v_1+v_2+v_3\le1,
+ \qquad s(u,v)F(u,v)\ge1\quad\text{otherwise}.
+\]
+Every denominator is strictly decreasing in every coordinate and is at
+least $1$ on the whole Boolean cube. The four numerators have zero constant
+term and no $u$ term. All coefficients can be chosen rational. Only three
+denominator templates are needed, selected according to the requested
+signs.
+\end{theorem}
+
+\subsection*{The construction}
+Index the four heads by $h\in\{0,1,2,3\}$ and set
+\[
+ (\lambda_0,\lambda_1,\lambda_2,\lambda_3)=(1,2,3,4),\qquad
+ q=(78/55,-12/5,1,0),\qquad
+ r=(52/15,-22/5,0,1).
+\]
+Write $\mathrm{id}=(0,1,2,3)$. The three allowed permutations for
+the third memory coordinate are
+\[
+ \pi^{(0)}=(0,1,2,3),\qquad
+ \pi^{(1)}=(0,2,3,1),\qquad
+ \pi^{(2)}=(1,3,0,2).
+\]
+Choose one of these for $\pi_3$, and put
+$\pi_1=\pi_2=\mathrm{id}$. For $j=1,2,3$ choose independent
+vectors $c_j=\theta_{2j-2}q+\theta_{2j-1}r$. Define
+\[
+ F(u,v)=\sum_{h=0}^3
+ \frac{\sum_{j=1}^3 c_{j,\pi_j(h)}v_j}
+ {14-u-\sum_{j=1}^3\lambda_{\pi_j(h)}v_j}.
+ \tag{1}
+\]
+At $v=0$ this is zero. Direct fraction arithmetic gives
+\[
+ \sum_{h=0}^3\frac{q_h}{d-\lambda_h}
+ =\sum_{h=0}^3\frac{r_h}{d-\lambda_h}=0
+ \qquad(d=14,13).
+ \tag{2}
+\]
+On $v=e_j$, permutation invariance of the sum and (2) prove the
+asserted exact vanishing for both values of $u$.
+
+\subsection*{Whole-cube admissibility in the original model}
+For one head let
+\[
+ a=(1,\lambda_{\pi_1(h)},\lambda_{\pi_2(h)},
+                         \lambda_{\pi_3(h)}),\qquad
+ t=(0,c_{1,\pi_1(h)},c_{2,\pi_2(h)},c_{3,\pi_3(h)}).
+\]
+All $a_i$ are positive and $\sum_i a_i\le13$. Consequently the
+denominator $14-\sum_i a_ix_i$ is at least $1$ for every cube vertex.
+Here is an explicit original \texttt{FracAtom}, not just a relaxed
+affine ratio:
+\[
+ \alpha=\frac1{28},\qquad \delta=0,\qquad
+ \rho_i=\frac{28a_i}{27},\qquad
+ \gamma=14-\sum_i\rho_i,\qquad
+ m_i=-\frac{t_i}{a_i},\qquad \eta=-\sum_i\rho_i m_i.
+ \tag{3}
+\]
+Indeed $\alpha>0$, every $\rho_i>0$, and
+$\gamma\ge14-28\cdot13/27=14/27>0$. On a Boolean coordinate,
+$\rho_i\alpha^{x_i}=\rho_i-a_ix_i$. Substituting (3) in the
+original numerator and denominator gives exactly
+\[
+ \frac{\eta+\sum_i\rho_i\alpha^{x_i}(m_i+\delta x_i)}
+      {\gamma+\sum_i\rho_i\alpha^{x_i}}
+ =\frac{\sum_i t_ix_i}{14-\sum_i a_ix_i}.
+\]
+Thus no limiting construction, zero attention weight, or denominator
+repair is involved.
+
+\subsection*{Exact sign coverage by three rational charts}
+Order the eight remaining vertices by the memory masks
+$3,5,6,7$, where $v_j$ has binary weight $2^{j-1}$, and within each
+mask by $u=0,1$. Formula (1) defines an $8\times6$ rational matrix
+$A_k$ for each of the three templates. Explicitly, for mask $S$
+and $d=14-u$, its column $(j,w)$, with $w=q$ or $r$, is
+\[
+ (A_k)_{(S,d),(j,w)}=
+ \begin{cases}
+ \displaystyle\sum_{h=0}^3
+ \frac{w_{\pi_j(h)}}{d-\sum_{\ell\in S}\lambda_{\pi_\ell(h)}}
+       &j\in S,\\[3pt]
+ 0&j\notin S.
+ \end{cases}
+ \tag{4}
+\]
+The mixed-output vector is $A_k\theta$.
+
+\begin{lemma}[Strict orthant alternative]
+Let $A$ be a real $m\times d$ matrix and $s\in\{-1,1\}^m$.
+The image of $A$ meets the strict orthant $s$ if and only if
+there is no nonzero $z\in\ker A^\top$ with $s_i z_i\ge0$
+for every $i$.
+\end{lemma}
+\begin{proof}
+One direction follows from
+$z^\top A\theta=0$: if all $s_i(A\theta)_i>0$ and all
+$s_i z_i\ge0$, with some $z_i\ne0$, their scalar product is positive.
+For the converse let $a_i$ be the rows of $A$ and consider the compact
+convex hull $K$ of $s_i a_i$. If $0\in K$, its convex coefficients
+$w_i\ge0$, $\sum_iw_i=1$, give the forbidden nonzero vector
+$z_i=s_iw_i$. Otherwise choose the point $p\in K$ of least Euclidean
+norm. The derivative at zero of
+$\|p+t(s_i a_i-p)\|^2$, for $t\ge0$, is nonnegative. Hence
+$\langle p,s_i a_i\rangle\ge\|p\|^2>0$ for every $i$.
+Taking $\theta=p$ realizes the desired strict signs.
+\end{proof}
+
+The two columns listed for each template in the appendix are independent
+integer vectors spanning $\ker A_k^\top$. This is verified by
+multiplying (4) by each column and by exhibiting a nonzero $6\times6$
+minor of $A_k$. Encode an orthant by an integer $p\in\{0,\ldots,255\}$:
+bit $i$ is one exactly when output coordinate $i$ is positive. The
+orthants forbidden by the preceding lemma are as follows. The table
+lists only representatives $p<128$; include $255-p$ for each listed
+representative.
+\[
+\begin{array}{c|l}
+ k&\text{forbidden representatives}\\ \hline
+0&42,64,65,66,68,69,72,74,80,81,84,85,96,98,104,106\\
+1&41,66,70,74,82,86,98,105,106,107\\
+2&41,64,65,68,73,80,84,86,97,105
+\end{array}
+\tag{5}
+\]
+Here is a fully rational way to verify the table. If the two columns
+of a dual basis are $a,b$, sort the distinct rational roots
+$-a_i/b_i$ for which $b_i\ne0$. Evaluate $a+tb$ at each root, at
+the midpoint of each consecutive pair, and at the outermost roots
+minus and plus $1$. Also evaluate $b$. Include each resulting vector
+and its negative; at each zero coordinate allow either sign. These are
+exactly all compatible orthants: every nonvertical line in the dual
+plane has the form $\mathbb R(a+tb)$, and every coordinate sign is
+constant on each of the stated open intervals. Independence ensures
+that no sampled vector is zero.
+
+The intersection of the first two representative lists is
+$\{66,74,98,106\}$, disjoint from the third list. The same is true
+after taking complements. Thus no orthant is forbidden by all three
+charts. The lemma proves existence of a strict witness for every
+requested pattern. Since the matrices are rational, a rational vector
+can be chosen in each nonempty open solution set. Scaling it makes
+all eight signed outputs at least $1$. Together with (2) and (3), this
+proves the theorem.
+
+\subsection*{Direct certificates and reproducibility}
+The adjacent file \texttt{copula-eight-fibers-certificates.json} contains
+one explicit chart and one rational six-vector for every one of the
+$256$ orthants. The script
+\texttt{audit\_copula\_eight\_fibers.py} independently checks the
+following exact statements:
+\begin{enumerate}
+\item Each matrix (4) has rank six, and the supplied independent
+dual vectors annihilate it.
+\item Exact enumeration of dual-plane signs gives exactly (5), and
+the three forbidden sets have empty intersection.
+\item Each of the $256$ rational witnesses has the specified eight
+strict output signs, with signed output at least $1$.
+\item For every witness and every one of the $16$ cube vertices,
+the original parameters (3) are strictly positive where required,
+the original numerator and denominator equal (1), every denominator
+is at least $1$, and each of the eight axis values is exactly zero.
+\end{enumerate}
+Run the script without arguments to verify the existing witnesses.
+With \texttt{--write-certificates}, it reconstructs them by enumerating
+the $\binom86$ square submatrices in each chart, solving the selected
+six equalities with right hand sides $\pm1$, and checking all eight
+inequalities. All matrix operations use exact fractions.
+
+\subsection*{The precise scaling problem remains open}
+For general $H$ poles, $r$ row nodes, and $b$ memory coordinates,
+the same axis-preserving idea allows each residue column to lie in an
+$(H-r)$-dimensional Cauchy nullspace. The target mixed outputs number
+$r(2^b-b-1)$, while a fixed permutation template supplies only
+$b(H-r)$ real residue parameters. The four-head theorem shows that
+changing templates can genuinely increase the simultaneous strict-sign
+capacity beyond the dimension of any one chart. It does not show that
+the increase grows with $H$, or that all target signs remain independently
+programmable for $b\to\infty$. Establishing such a scalable construction,
+with full-cube admissibility and the entire head cost included, is still
+required before this mechanism implies an asymptotic saving.
+
+\appendix
+\section*{Integer dual bases}
+The two columns for template zero are
+\[
+\begin{pmatrix}
+7800&73515\\-5145&-46893\\7800&73515\\-5145&-46893\\
+7800&73515\\-5145&-46893\\104&0\\0&245
+\end{pmatrix}.
+\]
+The two columns for template one are
+\[
+\begin{pmatrix}
+-23763535640&-354276520\\13363204687&198807917\\
+392916888&12053496\\-649638080&-13877864\\
+392916888&12053496\\-649638080&-13877864\\
+182752752&0\\0&1554020
+\end{pmatrix}.
+\]
+The two columns for template two are
+\[
+\begin{pmatrix}
+-26477449440&-6983755064\\14438550798&3827948061\\
+5117626150&1352121680\\-4486674465&-1148377230\\
+5117626150&1352121680\\-4486674465&-1148377230\\
+254650305&0\\0&29102892
+\end{pmatrix}.
+\]
+\end{document}
