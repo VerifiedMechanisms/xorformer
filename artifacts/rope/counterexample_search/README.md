@@ -71,6 +71,8 @@ These verification commands use only the Python standard library. NumPy and SciP
 
 Twelve random fitting restarts failed for the 24-bit example. Continuing from the exact 18-bit solution then produced a valid certificate. The failed restarts were inconclusive and were never used as a lower bound.
 
+`search_mixed_tribes_active.py` continues a smaller certificate on a larger count grid, repeatedly adding violating inputs. The tested continuations at $m=5$ and $m=6$ did not produce a certificate. These are unresolved searches, including unrestricted vanilla representations that need not share coefficients within literal groups.
+
 ## Other targeted searches
 
 `search_g12_pure_three.py` explored the twelve-bit four-vanilla-head quadratic and a fresh-bit XOR of the seven-bit retained example. The twelve-bit search was stopped when the symbolic pure-three obstruction was obtained. No certificate was found for the XOR target; its search status remains inconclusive.

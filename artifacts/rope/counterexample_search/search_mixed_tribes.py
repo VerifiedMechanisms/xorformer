@@ -19,7 +19,7 @@ def data(size):
     return 2*x-1,y
 
 
-def fit(z,y,restarts,seed,maxiter,initial=None):
+def fit(z,y,restarts,seed,maxiter,initial=None,regularization=1e-12):
     n=z.shape[1];h=3;rng=np.random.default_rng(seed)
     x=np.column_stack([np.ones(len(z)),z])
     for restart in range(restarts):
@@ -35,7 +35,7 @@ def fit(z,y,restarts,seed,maxiter,initial=None):
             pairs=np.column_stack([d[:,1]*d[:,2],d[:,0]*d[:,2],d[:,0]*d[:,1]])
             p=np.sum(num*pairs,axis=1)
             gap=np.minimum(y*p-1,0)
-            reg=1e-12
+            reg=regularization
             loss=np.mean(gap*gap)+reg*np.sum(a*a)
             gp=2*gap*y/len(y)
             ga=(gp[:,None]*pairs).T@x+2*reg*a
@@ -65,7 +65,7 @@ def fit(z,y,restarts,seed,maxiter,initial=None):
         den=1+z@beta.T
         features=np.column_stack([x*den[:,1,None]*den[:,2,None],x*den[:,0,None]*den[:,2,None],x*den[:,0,None]*den[:,1,None]])
         lp=linprog(np.zeros(h*(n+1)),A_ub=-y[:,None]*features,b_ub=-np.ones(len(y)),bounds=[(None,None)]*(h*(n+1)),method='highs')
-        record={'restart':restart,'seed':seed,'loss':float(res.fun),'success':lp.success,'seconds':time.time()-start,'beta':beta.tolist(),'numerators':lp.x.reshape(h,n+1).tolist() if lp.success else None}
+        record={'restart':restart,'seed':seed,'loss':float(res.fun),'success':lp.success,'seconds':time.time()-start,'beta':beta.tolist(),'numerators':lp.x.reshape(h,n+1).tolist() if lp.success else None,'optimizer_numerators':res.x[h*(n+1):].reshape(h,n+1).tolist()}
         yield record
         if lp.success:
             return
