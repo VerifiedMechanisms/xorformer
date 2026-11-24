@@ -17,6 +17,7 @@ import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Research.NormalizedCounting
 import HeadComplexity.Research.NormalizedLogCounting
 import HeadComplexity.Research.WeightedNormalizedCounting
+import HeadComplexity.Research.BootstrapWeightedCounting
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
@@ -740,5 +741,14 @@ alias weighted_normalized_counting_worst_case_lower_bound :=
 /-- The sharper logarithmic denominator for the weighted unrestricted count. -/
 alias weighted_normalized_counting_worst_case_log_lower_bound :=
   WeightedNormalizedCounting.worstCase_real_log_lower
+
+/-- One entropy bootstrap improves the finite denominator to `n*(n+7)`
+for every `n≥256`, without changing the original unrestricted model. -/
+alias bootstrap_weighted_counting_worst_case_lower_bound :=
+  BootstrapWeightedCounting.worstCase_real_lower
+
+/-- Exact logarithmic-denominator version of the entropy bootstrap. -/
+alias bootstrap_weighted_counting_worst_case_log_lower_bound :=
+  BootstrapWeightedCounting.worstCase_real_log_lower
 
 end HeadComplexity
