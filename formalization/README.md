@@ -26,8 +26,11 @@ The scalar statements and an exact-score separation are machine-checked.
 The finite-frequency interpolation connecting these atoms to literal rotary
 attention is a handwritten proof in the
 [RoPE writeup](../theorems/03_rotary_attention/014_rope_head_complexity.md).
-Universal equality with vanilla, or a strict Boolean head-count separation,
-remains unresolved here.
+[Theorem 22](../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md)
+now gives an explicit Boolean pure/vanilla separation. Its quantitative vanilla
+lower bound is handwritten with exact rational certificates, not Lean-formalized.
+The replicated pure scalar upper construction and cleared-score identity are
+Lean-checked in `Results/PureRoPEReplication.lean`.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -50,6 +53,10 @@ remains unresolved here.
 | 18 | four vanilla heads for three nonnegative affine zero sets | `ThreeFaceFourHeads.computable_four` | `Results/ThreeFaceFourHeads.lean` |
 | 19 | all-vanilla four-head local obstruction and explicit cubic target | `FourHeadCrossOnlyExample.certified_target` | `Results/FourHeadCrossOnlyExample.lean` |
 | 19 | original local pattern also excludes four pure heads | `PureFourHeadLocalPattern.pureRoPEHStar_ge_five` | `Results/PureFourHeadLocalPattern.lean` |
+| 20 | cubic parity faces exclude all vanilla three-head models | `ThreeHeadTripartitePattern.HStar_ge_four`, `ThreeHeadEmbeddedPattern.HStar_ge_four` | `Results/ThreeHeadTripartitePattern.lean`, `Results/ThreeHeadEmbeddedPattern.lean` |
+| 21 | quartic parity faces exclude all vanilla four-head models | `FourHeadQuarticPattern.HStar_ge_five` | `Results/FourHeadQuarticPattern.lean` |
+| 22, upper component | exact replicated pure atoms and their cleared classifier | `PureRoPEReplication.explicitFunction_pure_three`, `PureRoPEReplication.explicitFunction_full_cube_sign` | `Results/PureRoPEReplication.lean` |
+| 22, averaging component | exact distinct-group cubic coefficient identity | `ThreeHeadReplication.coefficient_sum_three_groups`, `ThreeHeadReplication.uniform_group_sum` | `Polynomial/ThreeHeadReplication.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:

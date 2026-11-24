@@ -14,6 +14,13 @@ import HeadComplexity.Results.PureRoPETwelvePairExact
 import HeadComplexity.Results.ThreeFaceFourHeads
 import HeadComplexity.Results.FourHeadCrossOnlyExample
 import HeadComplexity.Results.PureFourHeadLocalPattern
+import HeadComplexity.Results.TwoProductsThreeHeads
+import HeadComplexity.Results.FourHeadBlockComplement
+import HeadComplexity.Results.ThreeHeadRegularBlockPattern
+import HeadComplexity.Results.ThreeHeadEmbeddedPattern
+import HeadComplexity.Results.FourHeadQuarticPattern
+import HeadComplexity.Polynomial.ThreeHeadReplication
+import HeadComplexity.Results.PureRoPEReplication
 
 set_option linter.style.header false
 
@@ -163,5 +170,23 @@ alias theorem19_explicit_target := FourHeadCrossOnlyExample.certified_target
 /-- **Theorem 19.** The stronger original local pattern also excludes four
 pure rotary heads, so that pattern cannot give a four-versus-five separation. -/
 alias theorem19_original_pattern_pure_lower := PureFourHeadLocalPattern.pureRoPEHStar_ge_five
+
+/-- **Theorem 20.** Cubic parity faces exclude every vanilla three-head model. -/
+alias theorem20_tripartite_lower := ThreeHeadTripartitePattern.HStar_ge_four
+
+/-- **Theorem 20.** The obstruction allows arbitrary auxiliary coordinates. -/
+alias theorem20_embedded_lower := ThreeHeadEmbeddedPattern.HStar_ge_four
+
+/-- **Theorem 21.** Quartic parity faces exclude every vanilla four-head model. -/
+alias theorem21_quartic_lower := FourHeadQuarticPattern.HStar_ge_five
+
+/-- **Theorem 22, upper-bound component only.** The explicit replicated,
+biased classifier has three exact pure scalar atoms. The vanilla lower bound
+and the literal rotary-matrix bridge remain handwritten. -/
+alias theorem22_explicit_pure_upper := PureRoPEReplication.explicitFunction_pure_three
+
+/-- **Theorem 22, algebraic component only.** Exact signs of the biased cleared
+polynomial on the entire cube. This does not assert a vanilla lower bound. -/
+alias theorem22_explicit_cleared_sign := PureRoPEReplication.explicitFunction_full_cube_sign
 
 end HeadComplexity

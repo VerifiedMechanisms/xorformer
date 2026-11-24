@@ -23,7 +23,7 @@ Both rotary complexities are independent of whether the frequencies are fixed to
 
 **Strict retained comparison.** The seven-bit function in [Theorem 15's corollary](015_pure_rope_two_heads_complement_invariant.md) satisfies $H_A(f)=2\lt3=H_P(f)=H_V(f)$. Thus retaining positional embeddings alongside RoPE can strictly reduce head count.
 
-**Unresolved pure comparison.** Whether $H_P(f)=H_V(f)$ for every Boolean function remains open here. No strict pure-RoPE Boolean head-count example is certified. The strict score separation below is not a head-count separation.
+**Strict pure comparison.** [Theorem 22](022_explicit_pure_rope_separation.md) supplies an explicit finite Boolean function with $H_P(f)=3$ and $4\leq H_V(f)\leq7$. Its lower bound combines a quantitative coefficient obstruction with a finite replication and sign-rigidity argument. The full separation proof is handwritten, with exact rational certificates; its supporting pure upper construction is Lean-checked. The separate score example below does not itself establish this Boolean separation.
 
 ## Model conventions
 
@@ -213,4 +213,4 @@ The new Lean scalar model is `PureRoPEAtom` in [Atoms/RoPE.lean](../../formaliza
 
 The literal rotation matrices, the Vandermonde interpolation argument, the bridge from scalar atoms to literal rotary attention, Theorem 4's unrestricted-denominator equivalence, and Theorem 6's three-head upper bound are handwritten proofs here, not Lean-checked statements. No existing vanilla definition or theorem is changed.
 
-The remaining head-count question is whether the pure scalar class in Theorem 2 realizes a Boolean function with fewer atoms than the vanilla-admissible class. Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Theorem 16 now rules out every two-head pure separation, so a strict pure example would require at least three pure heads and four vanilla heads. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves answer the pure question.
+Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Theorem 16 rules out every two-head pure separation. The explicit replicated construction in Theorem 22 achieves a strict pure separation with three pure heads and at least four vanilla heads. Its exact vanilla count within the range four through seven, a substantially smaller example, and a complete Lean formalization of the quantitative lower bound remain open. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves prove any Boolean separation.

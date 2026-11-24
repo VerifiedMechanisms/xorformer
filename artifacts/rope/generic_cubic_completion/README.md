@@ -94,6 +94,6 @@ None of the $b_{h,k}$ vanishes. Therefore every required cross Hessian minor is 
 
 The scalar atom construction is also available generally as `HeadComplexity.PureRoPECenteredConstruction.atom_eval`. Realization by the specified fixed-query, token-only-value pure RoPE architecture uses the finite-position scalar-to-rotation bridge in `theorems/03_rotary_attention/014_rope_head_complexity.md`.
 
-## Exact remaining Boolean gap
+## From the coefficient obstruction to Boolean signs
 
-The construction supplies a pure cubic coefficient tensor that all three-head vanilla coefficient tensors avoid, even in closure. It does not show that the Boolean sign function of the displayed pure score lacks a different three-head vanilla representation. To obtain a Boolean separation, one must force every strict cubic sign certificate for a finite truth table into the excluded coefficient neighborhood, or supply another all-admissible sign argument. Neither has been established here.
+The construction supplies a pure cubic coefficient tensor that all three-head vanilla coefficient tensors avoid, even in closure. By itself, it does not show that the Boolean sign function on the original fourteen coordinates lacks a different three-head vanilla representation. [Theorem 22](../../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md) closes the Boolean gap after an explicit finite coordinate replication: rational zero-surface interpolation forces every cubic sign certificate into the excluded coefficient neighborhood. The quantitative tensor bound, replication identities, and chart certificates are separate supporting arguments, not consequences of score separation alone.

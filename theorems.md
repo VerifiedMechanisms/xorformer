@@ -261,7 +261,7 @@ Let $H_P$ denote RoPE replacing additive positional embeddings, and let $H_A$ de
 
 $$ \deg_{\pm}(f)\leq H_A(f)\leq H_P(f)\leq H^{\ast}(f). $$
 
-Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE remains unresolved here. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
+Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Theorem 22 disproves universal equality for pure RoPE. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
 
 The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. The connection to literal rotary attention uses a handwritten finite trigonometric interpolation proof. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
 
@@ -298,6 +298,24 @@ A union of the zero sets of three affine functions that are nonnegative on the c
 A finite pattern on 364 seventeen-bit inputs excludes every four-head vanilla representation. An explicit cubic completion has threshold degree three and vanilla head complexity at least five. Its pure four-head realization remains open. A stronger 404-input pattern is excluded for pure four heads as well. The matrix obstructions, local label implications, and cubic completion are Lean-checked.
 
 **Proof.** [theorems/03_rotary_attention/019_four_head_local_orientation_obstruction.md](theorems/03_rotary_attention/019_four_head_local_orientation_obstruction.md)
+
+### Theorem 20. Cubic parity faces exclude three vanilla heads
+
+A consistent pattern on 102 eleven-bit inputs forces a cubic coefficient matrix that no three-head vanilla representation can realize. The lower bound permits independently chosen face backgrounds, arbitrary additional coordinates, and all admissible denominator orientations. Its matrix obstruction and face implications are Lean-checked. No pure upper bound for this small pattern is asserted.
+
+**Proof.** [theorems/03_rotary_attention/020_three_head_tripartite_face_obstruction.md](theorems/03_rotary_attention/020_three_head_tripartite_face_obstruction.md)
+
+### Theorem 21. Quartic parity faces exclude four vanilla heads
+
+A consistent pattern on 281 fourteen-bit inputs excludes every four-head vanilla representation. An explicit integer quartic completes it on the full cube. The all-admissible lower bound is Lean-checked; the completion has an exact arithmetic certificate. Its pure four-head upper bound remains open.
+
+**Proof.** [theorems/03_rotary_attention/021_four_head_quartic_face_obstruction.md](theorems/03_rotary_attention/021_four_head_quartic_face_obstruction.md)
+
+### Theorem 22. An explicit pure rotary Boolean separation
+
+An explicit non-complement-invariant function on $14\cdot2^{400000}$ bits has threshold degree three, pure complexity exactly three, and vanilla complexity between four and seven. Its rational pure atoms have a proved positive margin on the entire cube. A quantitative cubic obstruction and finite sign-rigidity argument exclude all vanilla three-head models, including untied parameters. The separation proof and literal rotary bridge are handwritten; exact arithmetic checks the constants, and supporting atom and coefficient identities are Lean-checked.
+
+**Proof.** [theorems/03_rotary_attention/022_explicit_pure_rope_separation.md](theorems/03_rotary_attention/022_explicit_pure_rope_separation.md)
 
 ## Dependency Order
 
