@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{The Exact Constraint Budget of a Finite Cauchy Moment Fiber}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Status and scope.}
+These are complete written elementary interpolation proofs, with a small
+exact rational checker. They are not Lean-checked. They audit a proposed
+moment-matching gluing mechanism, not the original HeadComplexity model.
+They establish neither of the requested global asymptotic bounds and
+change no model definition.
+
+For a finite signed atomic measure $\mu$, write
+\[
+ m_k(\mu)=\int x^k\,d\mu(x),\qquad
+ S_\mu(t)=\int\frac{d\mu(x)}{t-x}.
+\]
+The sample points below are distinct and outside the support interval.
+Exterior points to its right suffice for every application under discussion.
+
+\begin{lemma}[Mixed interpolation basis]
+Let $p,s\geq0$, let $t_1,\ldots,t_s$ be distinct, and put
+$Q(x)=\prod_{j=1}^s(t_j-x)$. The functions
+\[
+ 1,x,\ldots,x^{p-1},\quad
+ (t_1-x)^{-1},\ldots,(t_s-x)^{-1}
+\]
+span exactly the functions $P(x)/Q(x)$ with $\deg P<p+s$.
+Empty lists and the empty product are allowed.
+\end{lemma}
+\begin{proof}
+The polynomial part multiplied by $Q$ has degrees from $s$ through
+$p+s-1$ with a nonsingular triangular leading-coefficient matrix.
+The $s$ polynomials $Q(x)/(t_j-x)$ form a basis of degrees below $s$:
+evaluation at $t_i$ gives a diagonal matrix with nonzero diagonal.
+Thus all $p+s$ displayed numerator polynomials form a basis.
+\end{proof}
+
+\begin{theorem}[Identifiability at the atom budget]
+Let each of $\mu,\nu$ have at most $a$ atoms in an interval $I$.
+If $p+s\geq2a$, and
+\[
+ m_k(\mu)=m_k(\nu)\quad(0\leq k<p),\qquad
+ S_\mu(t_j)=S_\nu(t_j)\quad(1\leq j\leq s),
+\]
+then $\mu=\nu$ as signed measures. Positivity of weights is not needed.
+\end{theorem}
+\begin{proof}
+Write $\mu-\nu=\sum_{i=1}^N c_i\delta_{x_i}$ with distinct $x_i$,
+where $N\leq2a$. By the lemma,
+$\sum_i c_i P(x_i)/Q(x_i)=0$ for every polynomial of degree below $p+s$.
+For each support point use its Lagrange polynomial of degree $N-1$,
+which is one there and zero at the other support points.
+This gives $c_i/Q(x_i)=0$; the denominator is nonzero.
+\end{proof}
+
+\begin{theorem}[Local freedom and its exhaustion]
+Consider the $2a$ coordinates of an ordered $a$-atomic measure
+$\mu=\sum_{i=1}^a w_i\delta_{x_i}$, with distinct interior nodes and
+nonzero weights. For any $p+s=2a$, the map consisting of the first $p$
+moments and $s$ exterior samples has nonsingular Jacobian.
+Consequently, near any positive such measure, fixing the first $a$
+moments leaves an $a$-dimensional smooth fiber, and its $a$ exterior
+sample values are local coordinates on that fiber.
+\end{theorem}
+\begin{proof}
+A tangent vector in the kernel would satisfy
+\[
+ \sum_i\bigl(\dot w_i f(x_i)+w_i\dot x_i f'(x_i)\bigr)=0
+\]
+for every function in the mixed basis, hence for every $f=P/Q$ with
+$\deg P<2a$. Such functions can have arbitrary values and first
+derivatives at the $a$ nodes. Indeed, prescribe the corresponding jets
+$P(x_i)=Q(x_i)f(x_i)$ and
+$P'(x_i)=Q'(x_i)f(x_i)+Q(x_i)f'(x_i)$, then apply elementary Hermite
+interpolation. Choosing these jets one at a time gives
+$\dot w_i=0$ and $w_i\dot x_i=0$, hence the tangent vector is zero.
+The inverse function theorem gives the local-coordinate assertion.
+Distinctness, interior nodes, and strictly positive weights persist in
+a sufficiently small neighborhood.
+\end{proof}
+
+\paragraph{Consequence for the proposed tree gluing.}
+A child with $a$ positive atoms can vary its $a$ parent sample values
+locally while keeping $a$ moments fixed. This is actual interpolation
+freedom, but it cannot be counted twice. If two such children are then
+required to agree on those $a$ samples as well as those $a$ moments,
+their entire atomic measures must coincide, globally, by the preceding
+identifiability theorem. A new gluing invariant must therefore use fewer
+shared constraints, extra atoms, approximate matching with quantified
+sign margins, or a different readout. The theorem says nothing about
+the existence of such alternatives, nor about a finite sign table
+whose offsets and poles may be chosen jointly.
+
+\end{document}
