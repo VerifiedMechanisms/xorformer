@@ -188,7 +188,8 @@ inequalities persist by continuity on a finite set.
 \end{proof}
 
 \begin{theorem}\label{thm:twenty}
-There are twenty fixed query times and fixed masks on eight terms such
+For each sufficiently small common $\epsilon$, there are twenty query times
+fixed across all target sign vectors, and fixed masks on eight terms, such
 that every twenty-bit sign vector is realized by masked exterior Cauchy
 sums with label-dependent poles and residues. The pole magnitudes can
 be arbitrarily small, and all query times lie in $[1-7\eta,1+7\eta]$
@@ -218,6 +219,66 @@ pole is then $\epsilon$. Choose the perturbation small enough to keep
 all poles positive and of size $O(\epsilon)$. All query denominators
 remain positive. As $\epsilon$ can be arbitrarily small, so can the
 final pole magnitudes.
+\end{proof}
+
+\section{An original-model axis-zero consequence}
+\begin{theorem}\label{thm:compiler}
+For every $r\geq1$ and every sign table on an $r\times20$ grid,
+there is an axis-zero compiler with sixteen affine-ratio heads. Every
+denominator has strictly negative slopes and is positive on the entire
+Boolean $(r+20)$-cube.
+\end{theorem}
+\begin{proof}
+Choose a common
+\[
+ 0<\epsilon<\min\{\epsilon_0,10^{-6},1/(10000r)\}.
+\]
+Use Theorem~\ref{thm:twenty} independently for each of the $r$ rows,
+with the same fixed twenty times and masks. In every row take the final
+pole perturbations smaller than $\epsilon/2$, and preserve the strict
+signs as in the proof. Add $4\epsilon$ to the centered poles and query
+times as there, then multiply all poles and times by
+$\alpha=1000/1008$. Multiply all residues by $\alpha$ too, preserving
+the scores exactly. The resulting row poles $p_{hi}$ and common query
+times $t_j$ satisfy
+\[
+ 0<p_{hi}<8\epsilon,\qquad .985<t_j<.9991.
+\]
+Let $a_{hi}$ be the resulting residues, and let $M_{hj}\in\{0,1\}$
+be the fixed masks. Put $\zeta=10^{-4}$ and define, for each of the
+eight pole indices $h$, two affine denominators and one numerator:
+\[
+\begin{split}
+ B_h^+(z,w)&=1+\zeta-\sum_i p_{hi}z_i
+               -\sum_j\bigl(\zeta+M_{hj}(1-t_j)\bigr)w_j,\\
+ B_h^-(z,w)&=1+\zeta-\sum_i p_{hi}z_i-\sum_j\zeta w_j,\\
+ A_h(z,w)&=\sum_i(1-p_{hi})a_{hi}z_i.
+\end{split}
+\]
+Every slope is strictly negative. Moreover
+\[
+ \sum_i p_{hi}+20\zeta+\sum_j M_{hj}(1-t_j)
+ <.0008+.002+.3<1+\zeta.
+\]
+Thus both denominators are positive on the entire cube. The sixteen-head
+score is
+\[
+ F(z,w)=\sum_{h=1}^8\left(\frac{A_h(z,w)}{B_h^+(z,w)}
+                         -\frac{A_h(z,w)}{B_h^-(z,w)}\right).
+\]
+It vanishes whenever $z=0$, because the numerators vanish, and whenever
+$w=0$, because the two denominators in each pair agree. At a grid point,
+a direct subtraction gives
+\[
+ F(e_i,e_j)=(1-t_j)\sum_{h:M_{hj}=1}\frac{a_{hi}}{t_j-p_{hi}}.
+\]
+The factor $1-t_j$ is positive, proving the prescribed strict sign.
+This exact paired identity and its full-cube axis-zero admissibility
+are independently Lean checked as
+\texttt{HeadComplexity.AxisZeroGluing.exists\_maskedCauchy\_reverseAxisData}
+in \texttt{Results/ReverseMaskedCauchy.lean}. The analytic shared-pool
+existence theorem used here has not been formalized, so this complete
+compiler corollary remains a written proof.
 \end{proof}
 
 \paragraph{Why this is not an induction.}
