@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T03:42:31.326723+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/tensor-sign-conversion-audit.md",
+      "source_math_spans": 68,
+      "rendered_math_spans": 68,
+      "findings": 0,
+      "notes": [],
+      "sha256": "687c25ece260471290571cc07a1430ec45b0d9983ee1194c357268c025d12112"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "29107a9e50a77592365453f5559075e4735e742b60558c8974170512b483769f"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "99c69aadb438eec44b5403417effed28d4205613bed02b4dfbe9d84a2e63c933"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

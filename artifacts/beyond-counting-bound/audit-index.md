@@ -64,3 +64,5 @@ Generic coordinate uniqueness, uniformly small critical-point counts, a head-ind
 - [Fixed-direction flattening obstruction](homothetic-flattening-audit.json): eleven checked declarations and an exact rational replay. Two admissible heads realize the original labels, but the specified flattened denominator pair cannot. Adaptive direction changes and both asymptotic targets remain open.
 
 - [Sparse-sign compiler obstruction](sparse-sign-compiler-audit.json): eleven Lean declarations, including `HeadComplexity.HStar_affineTriple_le`; complete written general construction and spectral proof. Both standard polynomial dictionaries fail to provide a polynomial-size universal conversion. This is not a worst-case head lower bound.
+
+- [Tensor sign conversion audit](tensor-sign-conversion-audit.md): a complete written obstruction to a constant-cost conversion, using the earlier checked bipartite construction and Warren's theorem. The weaker sufficient conversion remains unproved; neither asymptotic head target is established.

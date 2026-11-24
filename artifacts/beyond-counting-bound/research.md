@@ -464,3 +464,9 @@ The [finite-difference construction and spectral obstruction](sparse-sign-compil
 The general reciprocal path identity, the majority Fourier bound, and the polynomial-conversion contradiction have complete written proofs. Lean checks the four-head realization in the unchanged model, the general spectral inequality, tensor factorization, and the central-ratio recurrence bound. Exact rational and integer computations independently check the identities and finite spectra. This does not prove a worst-case head lower bound; it closes the proposed conversion route for both standard polynomial dictionaries.
 
 The latest row-scaling and homothetic-flattening modules were rebuilt together in 3,224 jobs. Their axiom audits again pass using only the standard foundational axioms, as recorded in `continuation-latest-recheck.json`. No claimed asymptotic resolution is included in these checks.
+
+## Tensor sign rank requires a different conversion mechanism
+
+The [tensor sign-rank audit](tensor-sign-conversion-audit.md) treats target-dependent separable factors, which are more general than a fixed polynomial dictionary. Combining the already checked bipartite shattering construction with a strict sign-rank count proves that some admissible functions need a logarithmic factor more product terms than heads. Thus a uniform constant-cost conversion is false even in this broader model.
+
+A conversion costing a logarithm of the input dimension would suffice for a lower bound stronger than the selected target. No such conversion is proved. The missing statement is explicitly marked as a theorem-strength gap; integral representations and quadrature do not by themselves preserve signs under arbitrary cancellation. This formulation is not being counted as progress on the asymptotic theorem.
