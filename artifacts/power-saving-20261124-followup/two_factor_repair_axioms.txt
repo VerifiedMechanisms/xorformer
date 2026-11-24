@@ -1,0 +1,13 @@
+'HeadComplexity.TwoFactorMarginRepair.abs_affineValue_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoFactorMarginRepair.hasRelativeMargin_of_bounded_affine_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoFactorMarginRepair.twoFactorRepairMargin_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoFactorMarginRepair.hasRelativeMargin_of_two_LTFs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoFactorMarginRepair.computableWithHeadsN_of_two_LTFs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

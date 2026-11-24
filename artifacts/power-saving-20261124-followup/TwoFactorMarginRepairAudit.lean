@@ -1,0 +1,7 @@
+import HeadComplexity.Research.TwoFactorMarginRepair
+
+#print axioms HeadComplexity.TwoFactorMarginRepair.abs_affineValue_le
+#print axioms HeadComplexity.TwoFactorMarginRepair.hasRelativeMargin_of_bounded_affine_product
+#print axioms HeadComplexity.TwoFactorMarginRepair.twoFactorRepairMargin_pos
+#print axioms HeadComplexity.TwoFactorMarginRepair.hasRelativeMargin_of_two_LTFs
+#print axioms HeadComplexity.TwoFactorMarginRepair.computableWithHeadsN_of_two_LTFs
