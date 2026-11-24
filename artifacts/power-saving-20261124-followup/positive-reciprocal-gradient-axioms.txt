@@ -1,0 +1,21 @@
+'HeadComplexity.PositiveReciprocalGradient.monotonicity_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalGradient.evaluation_eq_of_gradient_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalGradient.injective_gradient_on_positive_domain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalGradient.SignedCounterexample.parameters_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalGradient.SignedCounterexample.evaluations_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalGradient.SignedCounterexample.gradient_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalGradient.SignedCounterexample.parameters_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

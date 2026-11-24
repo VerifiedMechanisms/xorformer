@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_positive_reciprocal_geometry.md",
+    "source_spans": 34,
+    "rendered_spans": 34,
+    "findings": [],
+    "notes": []
+  }
+]
