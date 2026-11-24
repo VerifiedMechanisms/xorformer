@@ -8,12 +8,13 @@ from pathlib import Path
 import importlib.util
 import itertools
 import json
+import sys
 from flint import fmpq_series as S,ctx
 
 path=Path(__file__).parent
 spec=importlib.util.spec_from_file_location('bf',path/'butterfly-rectangle-decoder-check.py')
 bf=importlib.util.module_from_spec(spec);spec.loader.exec_module(bf)
-data=json.loads((path/'butterfly-adaptive-haar-common-h8-laurent.json').read_text())
+data=json.loads(Path(sys.argv[1]).read_text()) if len(sys.argv)>1 else json.loads((path/'butterfly-adaptive-haar-common-h8-laurent.json').read_text())
 d=data['dimension'];H=1<<d;sw=bf.switches(d);blocks=list(dict.fromkeys((k,g) for k,s,g in sw))
 profiles=set()
 for bits in itertools.product((0,1),repeat=len(sw)):
@@ -30,12 +31,12 @@ for bits in itertools.product((0,1),repeat=len(sw)):
 canonical={(min(a,b),max(a,b),tuple(u)) for a,b,u in data['rows']}
 assert canonical==profiles and len(profiles)==len(data['rows'])==40
 
-ctx.cap=128;shift=40;x=S([0,1])
+ctx.cap=data.get('precision',128);shift=ctx.cap//3;x=S([0,1])
 p=[sum((x**data['powers'][j] for j in range(d) if y&(1<<j)),S([])) for y in range(H)]
 def row(spec):
     a,b,u=spec
     return [u[y]/((1-p[a]-p[y])*(1-p[b]-p[y])) for y in range(H)]
-basis=[row(data['rows'][i]) for i in data['basis']]
+basis=[row(data['rows'][i]) if i<len(data['rows']) else [S([int(j==i-len(data['rows']))]) for j in range(H)] for i in data['basis']]
 assert len(basis)==H
 A=[values+[x**shift] for values in basis];columns=list(range(H));pivots=[]
 for k in range(H):
@@ -56,7 +57,9 @@ for values in basis:
     residual=sum((a*b for a,b in zip(values,c)),S([]))-x**shift
     assert residual.valuation()<0 and residual.prec>0
 leading=[[v.valuation()-shift,str(v[v.valuation()])] for v in c]
-assert leading==data['leading'] and pivots==data['pivots']
+if 'leading' in data:assert leading==data['leading']
+if 'pivots' in data:assert pivots==data['pivots']
+if data.get('require_positive_residues'):assert all(v.valuation()>=0 and v[v.valuation()]>0 for v in c)
 for spec in data['rows']:
     score=sum((a*b for a,b in zip(row(spec),c)),S([]));valuation=score.valuation()
     assert 0<=valuation<score.prec and score[valuation]>0

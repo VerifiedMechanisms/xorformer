@@ -83,6 +83,26 @@ The obstruction in
 \texttt{butterfly-common-pool-bias-bound.tex} explains why a universal
 compact common pool cannot be the general induction invariant.
 
+The stronger certificate
+\texttt{butterfly-adaptive-haar-common-positive-h8-laurent.json}
+provides a common pool whose eight residues are all strictly positive.
+The same checker accepts this certificate as a command-line argument,
+verifies the forty exhaustive profiles, and additionally verifies all
+residue leading signs. Its active basis has one equation $c_0=1$;
+the pivot valuations are $0,0,0,0,0,5,5,8$.
+The leading residue terms, in output order, are
+\[
+ (1,\epsilon^{-8},\epsilon^{-8},\epsilon^{-6},
+       2,\epsilon^{-8},\epsilon^{-8},\epsilon^{-6}).
+\]
+Thus common positive residues, not only signed residues, suffice at
+this fixed depth for every sufficiently small positive $\epsilon$.
+The finite doubling theorem below consequently also works with
+strictly positive residues: its root perturbations can be made small
+enough to preserve the finitely many positive child residues.
+This strengthened finite result does not establish a common-pool
+induction at larger depths.
+
 \paragraph{Adaptive thirty-two-wire samples.}
 The script \texttt{butterfly-adaptive-haar-lp.py} generates exact rational
 witnesses using an ordinary continuous rational LP. It never declares
@@ -190,14 +210,14 @@ thirteen larger-tree samples.
 
 Fix a sufficiently small $\epsilon>0$ so that the common eight-wire
 certificate holds. Let $p_0,\ldots,p_7$ be its poles and let
-$v\in\mathbb R^8$ be its common residue vector. For a new parameter
+$v\in\mathbb R^8$ be its common strictly positive residue vector. For a new parameter
 $\delta>0$, define sixteen poles by
 \[
  P_s=p_s,\qquad P_{s+8}=p_s+\delta\quad(0\leq s<8).
 \]
 All thirty-two query times are still $1-p_s$ with the prefix $s$
 appropriate to that query. For every sufficiently small $\delta>0$,
-every target on the sixteen-wire butterfly has a residue vector and
+every target on the sixteen-wire butterfly has a strictly positive residue vector and
 fifteen block biases giving all its thirty-two required strict signs.
 
 To prove this, fix the target. Its two input children have independent
@@ -224,7 +244,8 @@ The physical output positions of these residues are
 At $\delta=0$, the root score is $C(a-b)=\lambda\sigma$.
 The root can therefore use bias zero. The child scores depend
 continuously on $\lambda$ and were strict at zero, so sufficiently
-small $\lambda>0$ preserves all child signs, with their existing biases.
+small $\lambda>0$ preserves all child signs, with their existing biases, and keeps every
+residue strictly positive.
 All scores are now strict at $\delta=0$. Their denominators are positive
 there, so continuity in $\delta$ preserves all signs for sufficiently
 small positive $\delta$. There are finitely many complete target words.
