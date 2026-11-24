@@ -63,7 +63,7 @@ Let $A,V,D,W$ be the eight-by-four matrices of the coefficients of the left and 
 
 $$ C=AW^\top+VD^\top, $$
 
-where each column of $V$ and $W$ is strictly positive or zero. Since $C$ is invertible, both square concatenations $(A\ V)$ and $(W\ D)$ are invertible. In particular no column of $V$ or $W$ is zero. The factorization implies
+where each column of $V$ and $W$ is strictly positive or zero. Since $C$ is invertible, both square concatenations $(A,V)$ and $(W,D)$ are invertible. In particular no column of $V$ or $W$ is zero. The factorization implies
 
 $$ V^\top M^{-1}W=0. $$
 
@@ -80,9 +80,9 @@ The scalar-to-architecture step uses the repository's existing exact affine-frac
 
 ## A variant using only cross coefficients
 
-The first pattern also forces every off-diagonal coefficient within the $y$ block to be negative. A stronger Gram-matrix obstruction rules out the intended pure four-head construction for that pattern. The following variant removes this condition while retaining the all-vanilla lower bound.
+The first pattern also forces every off-diagonal coefficient within the $y$ block to be negative. A stronger Gram-matrix obstruction rules out every pure four-head representation meeting that pattern. The full scalar bridge is formalized by `PureFourHeadLocalPattern.not_pureRoPEComputable_four` in [PureFourHeadLocalPattern.lean](../../formalization/HeadComplexity/Results/PureFourHeadLocalPattern.lean). The following variant removes this condition while retaining the all-vanilla lower bound.
 
-Keep the corner, singleton, and off-matching cross-pair prescriptions. Replace the within the $y$ block pair prescriptions by these middle-layer witnesses. For each $j$, choose a background $v_j$ on the other seven $y$ coordinates:
+Keep the corner, singleton, and off-matching cross-pair prescriptions. Replace the pair prescriptions within the $y$ block by these middle-layer witnesses. For each $j$, choose a background $v_j$ on the other seven $y$ coordinates:
 
 - For $j=0$, set coordinates $1,2,3$ positive and $4,5,6,7$ negative.
 - For $j\neq0$, set coordinate $0$ and the two smallest elements of $\lbrace1,\ldots,7\rbrace\setminus\lbrace j\rbrace$ positive; set the other background coordinates negative.
@@ -103,8 +103,23 @@ The pattern is consistent. Set $w_0=11/10$ and $w_j=1$ for $j\neq0$, and let $J$
 
 $$ Q_0(x,y)=\frac{48}{5}-\frac3{20}\left[\left(\sum_i x_i\right)^2+\left(\sum_i y_i\right)^2\right]+x^\top\left(\mathrm{diag}(w+8)-J\right)y $$
 
-has every required local label. Moreover, for any real $\delta$, the perturbation $\delta(y_4-y_5)(y_6-y_7)$ vanishes at every prescribed point. A sufficiently positive $\delta$ therefore makes a within the $y$ block coefficient positive while retaining the entire pattern. This verifies that the second pattern does not impose the within-block sign condition used by the preceding Gram obstruction.
+has every required local label. Moreover, for any real $\delta$, the perturbation $\delta(y_4-y_5)(y_6-y_7)$ vanishes at every prescribed point. A sufficiently positive $\delta$ therefore makes a coefficient within the $y$ block positive while retaining the entire pattern. This verifies that the second pattern does not impose the within-block sign condition used by the preceding Gram obstruction.
 
 [FourHeadCrossOnlyPattern.lean](../../formalization/HeadComplexity/Results/FourHeadCrossOnlyPattern.lean) defines `middleInput` and `CrossOnlyPattern`, checks `middle_difference`, and proves `crossOnly_not_computable_four`, `crossOnly_HStar_ge_five`, and `crossOnly_SharedHStar_ge_five`. The independent [local-pattern verifier](../../artifacts/rope/prior_obstructions/verify_four_head_local_patterns.py) checks the point counts, the quadratic completion, and the vanishing perturbation exactly.
 
 A pure four-head score meeting the second pattern would establish a strict separation, regardless of its labels at the remaining inputs. Constructing and certifying such a score remains a separate task.
+
+
+## An explicit cubic completion
+
+The following complete Boolean function meets the second pattern. Write $S_x=\sum_i x_i$ and $S_y=\sum_i y_i$, and set
+
+$$ R(x,y)=192-3(S_x^2+S_y^2)+180\sum_i x_i y_i+2x_0y_0-20S_xS_y+20(y_4-y_5)(y_6-y_7). $$
+
+Define $f(t,x,y)=1$ exactly when $tR(x,y)\gt0$. The integer $R(x,y)$ is always congruent to $2$ modulo $4$, so this formula has no zero scores. Its threshold degree is exactly three: the displayed cubic gives the upper bound, while fixing every coordinate except $t,x_0,y_1$ exposes three-bit parity after complementing the selector coordinate. Therefore
+
+$$ \deg_{\pm}(f)=3,\qquad H_V(f)\geq5. $$
+
+[FourHeadCrossOnlyExample.lean](../../formalization/HeadComplexity/Results/FourHeadCrossOnlyExample.lean) proves `quadratic_mod_four`, `score_ne_zero`, `crossOnlyPattern`, `thresholdDeg_eq_three`, and `vanillaHStar_ge_five`; `certified_target` combines the last two claims. The generic [ThresholdDegreeRestriction.lean](../../formalization/HeadComplexity/Polynomial/ThresholdDegreeRestriction.lean) proves `ThresholdDegLE.affine_restriction`, including complemented coordinates and arbitrary real polynomials.
+
+No pure rotary upper bound for this explicit completion has been established. Its certified role is a concrete low-threshold-degree target with an unrestricted vanilla lower bound.
