@@ -1,0 +1,7 @@
+'HeadComplexity.OneHeadAddressExtension.contact_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadAddressExtension.residual_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadAddressExtension.canonical_signed_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadAddressExtension.feasible_labels_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadAddressExtension.full_gap_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]

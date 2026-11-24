@@ -1,0 +1,6 @@
+import HeadComplexity.Research.OneHeadAddressExtension
+#print axioms HeadComplexity.OneHeadAddressExtension.contact_value
+#print axioms HeadComplexity.OneHeadAddressExtension.residual_mono
+#print axioms HeadComplexity.OneHeadAddressExtension.canonical_signed_gap
+#print axioms HeadComplexity.OneHeadAddressExtension.feasible_labels_unique
+#print axioms HeadComplexity.OneHeadAddressExtension.full_gap_preserved
