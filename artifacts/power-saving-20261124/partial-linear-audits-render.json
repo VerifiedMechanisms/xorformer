@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/frozen_head_boundary_obstruction.md",
+    "source_spans": 60,
+    "rendered_spans": 60,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124/fixed_direction_independent_audit.md",
+    "source_spans": 10,
+    "rendered_spans": 10,
+    "findings": [],
+    "notes": []
+  }
+]
