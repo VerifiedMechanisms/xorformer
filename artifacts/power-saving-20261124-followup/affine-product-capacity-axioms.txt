@@ -1,0 +1,24 @@
+'HeadComplexity.AffineProductCapacity.card_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProductCapacity.affinePoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProductCapacity.productPoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProductCapacity.scorePoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProductCapacity.eval_scorePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProductCapacity.mem_represented_of_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProductCapacity.card_represented_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineProductCapacity.card_represented_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProductCapacity.worstCase_gt_of_compiler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineProductCapacity.worstCase_gt_of_approximate_compiler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,11 @@
+import HeadComplexity.Research.AffineProductCapacity
+#print axioms HeadComplexity.AffineProductCapacity.card_parameter
+#print axioms HeadComplexity.AffineProductCapacity.affinePoly_totalDegree_le
+#print axioms HeadComplexity.AffineProductCapacity.productPoly_totalDegree_le
+#print axioms HeadComplexity.AffineProductCapacity.scorePoly_totalDegree_le
+#print axioms HeadComplexity.AffineProductCapacity.eval_scorePoly
+#print axioms HeadComplexity.AffineProductCapacity.mem_represented_of_score
+#print axioms HeadComplexity.AffineProductCapacity.card_represented_le
+#print axioms HeadComplexity.AffineProductCapacity.card_represented_le_half_tables
+#print axioms HeadComplexity.AffineProductCapacity.worstCase_gt_of_compiler
+#print axioms HeadComplexity.AffineProductCapacity.worstCase_gt_of_approximate_compiler
