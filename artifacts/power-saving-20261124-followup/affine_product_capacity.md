@@ -48,9 +48,9 @@ For positive $\varepsilon$, replace every factor $B_g$ by $(\exp(\varepsilon B_g
 
 $$ P_\varepsilon(x)=\varepsilon^{1-H}\sum_{U\subsetneq\lbrace1,\ldots,H\rbrace}(-1)^{H-1-|U|}\left(\sum_{h\notin U}A_h(x)\right)\exp\left(\varepsilon\sum_{g\in U}B_g(x)\right). $$
 
-Every summand is an affine function times a separable positive product. Thus a written proof gives $K\leq2^H-1$. This is useful for fixed $H$ and entirely inadequate when $H$ is exponential in $n$. It also shows why preserving the numerators and directions of the individual reciprocal terms is an unnecessarily restrictive requirement: cancellation is reorganized before approximation.
+Every summand is an affine function times a separable positive product. Thus $K\leq2^H-1$. This is useful for fixed $H$ and entirely inadequate when $H$ is exponential in $n$. It also shows why preserving the numerators and directions of the individual reciprocal terms is an unnecessarily restrictive requirement: cancellation is reorganized before approximation.
 
-This finite-difference compiler is a written proof only. It is not used in the Lean comparison-class count or either conditional bridge.
+This finite-difference compiler is now kernel checked as `HeadComplexity.FiniteDifferenceProductCompiler.original_compiler` in `formalization/HeadComplexity/Research/FiniteDifferenceProductCompiler.lean`; see the [compiler proof and audit](finite_difference_product_compiler.md). It is not used in the comparison-class count or either conditional bridge, and its width is too large for the critical regime.
 
 ## Existing obstructions and the surviving question
 

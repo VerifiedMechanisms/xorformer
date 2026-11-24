@@ -1,0 +1,7 @@
+import HeadComplexity.Research.FiniteDifferenceProductCompiler
+
+#print axioms HeadComplexity.FiniteDifferenceProductCompiler.weighted_prod_sub_expansion
+#print axioms HeadComplexity.FiniteDifferenceProductCompiler.exp_difference_quotient_limit
+#print axioms HeadComplexity.FiniteDifferenceProductCompiler.mem_represented_of_affine_ratios
+#print axioms HeadComplexity.FiniteDifferenceProductCompiler.mem_represented_of_original
+#print axioms HeadComplexity.FiniteDifferenceProductCompiler.original_compiler

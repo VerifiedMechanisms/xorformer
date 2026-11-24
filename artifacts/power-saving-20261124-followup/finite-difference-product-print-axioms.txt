@@ -1,0 +1,15 @@
+'HeadComplexity.FiniteDifferenceProductCompiler.weighted_prod_sub_expansion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteDifferenceProductCompiler.exp_difference_quotient_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteDifferenceProductCompiler.mem_represented_of_affine_ratios' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteDifferenceProductCompiler.mem_represented_of_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteDifferenceProductCompiler.original_compiler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
