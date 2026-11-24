@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\title{Vector Cauchy Lookup and Admissible Two-Head Products}
+\author{Research checkpoint, branch ar/027ac8030b43}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The two-head product construction and simultaneous preservation of strict
+signs are kernel checked in \texttt{Results/LargeDomainProducts.lean}.
+The lookup count and budget analysis below are written arguments using
+Warren's theorem, not Lean declarations. There is no improved unconditional
+bound on the original worst-case head complexity in this note. The model,
+admissibility conditions, and definition of that complexity are unchanged.
+
+\section{A concrete family-dependent lookup interface}
+
+Fix distinct tokens $t_1,\ldots,t_q$ and exterior poles
+$D_1,\ldots,D_q$, with $D_u>t_z$. Given an arbitrary table
+$T:[r]\times[s]\to[q]$, seek a single score on the three one-hot axes
+\[
+ S_T(u,v,j)=c+\sum_{h=1}^H
+ \frac{a_{h0}+a^U_{hu}+a^V_{hv}+a^J_{hj}}
+      {b_{h0}+b^U_{hu}+b^V_{hv}+b^J_{hj}}
+ \approx\frac1{D_u-t_{T(v,j)}}.
+ \tag{1}
+\]
+Every displayed coefficient may depend jointly on the complete table $T$.
+The same heads and coefficients must then work simultaneously for all
+$u,v,j$. Each denominator is an affine function on the full Boolean cube
+of dimension $q+r+s$ and must be positive everywhere on that cube, with
+the required common slope orientation. Approximation means arbitrarily
+small uniform error, because the outer finite-plane decoder may have
+arbitrarily ill-conditioned fixed residues. A proof of signs alone is not
+a proof of this lookup interface.
+
+The naive expansion into $q$ token-indicator matrices uses
+$O(qr/\log r)$ heads if each indicator matrix is compiled separately.
+A possible efficient target is $O(r\log q/\log r)$. This interface is more
+general than a fixed row dictionary: the row slopes and numerators are
+allowed to depend on all independently chosen column tables together.
+A separation-rank lower bound does not apply to an arbitrary sum in (1),
+whose denominators couple the three axes.
+
+\section{A nonlinear product that avoids a numerator-rank charge}
+
+Let $A,D,f$ be affine functions on a Boolean cube, with $D>0$ everywhere
+and every slope of $D$ nonpositive. Write $f(x)=f_0+\sum_i f_i x_i$ and put
+\[
+ G(x)=1+|f_0|+\sum_i(1+2|f_i|)-\sum_i(1+|f_i|)x_i.
+\]
+Both $G$ and $G+f$ are strictly positive on the whole cube; their slopes
+are strictly negative. For every $t>0$, the two heads
+\[
+ Q_t(x)=\frac{tA(x)}{D(x)+G(x)/t}
+       -\frac{tA(x)}{D(x)+(G(x)+f(x))/t}
+\]
+therefore have positive denominators everywhere and strictly negative
+slopes. Their numerators remain affine. Direct cancellation gives
+\[
+ Q_t(x)=\frac{f(x)A(x)}
+ {(D(x)+G(x)/t)(D(x)+(G(x)+f(x))/t)}
+ \longrightarrow\frac{f(x)A(x)}{D(x)^2}.
+ \tag{2}
+\]
+The convergence is simultaneous on every finite set. Consequently, if a
+prior score $P$ has the desired strict signed margins after adding
+$fA/D^2$, one sufficiently large common $t$ preserves all those margins
+with the two admissible heads instead. Every zero of $A$ is an exact zero
+of both new heads for every $t$.
+
+The checked declarations in namespace \texttt{HeadComplexity.LargeDomain}
+are \texttt{exists\_strict\_reverse\_affine\_product\_pair},
+\texttt{strict\_reverse\_affine\_product\_pair\_limit}, and
+\texttt{affine\_product\_pair\_preserves\_signs}. The two supporting guard
+positivity declarations are also checked. The construction uses no
+composition layer, and its two heads satisfy positivity on multihot inputs
+as well as on the local one-hot domain.
+
+This is a potential tool for (1), not a solution. It multiplies an affine
+selector by a squared reciprocal kernel. A full inner compiler based on
+squared Cauchy kernels, its common parameter choices, and its complete
+axis repair still need separate proofs. Merely applying (2) to an ordinary
+reciprocal decoder changes its kernel and cannot be treated as a black-box
+multiplication theorem for that decoder.
+
+\section{Why an efficient three-axis lookup still does not multiply savings}
+
+First, the $\log q$ cost in the optimistic target is necessary in the
+polynomial regime. Restrict (1) to one fixed outer pole $u_0$. The $q$
+values $1/(D_{u_0}-t_z)$ are distinct, so $q-1$ intermediate thresholds
+recover $T(v,j)$ from any sufficiently accurate approximation. Thus all
+$q^{rs}$ color tables give distinct strict sign vectors at
+$m=(q-1)rs$ threshold tests.
+
+For $H$ heads, use $p=1+2H(r+s+1)$ real parameters after restriction to
+$u_0$. Clearing the $H$ positive denominators makes each threshold test a
+polynomial of degree at most $H+1$. Provided $m\geq p$, Warren's theorem
+therefore gives the necessary inequality
+\[
+ rs\log_2q\leq p\log_2\left(\frac{4e(H+1)(q-1)rs}{p}\right).
+ \tag{3}
+\]
+The alternative $p>m$ already gives a stronger lower bound in the regimes
+at issue. If $s$ is comparable to $r$, $2\leq q\leq r^B$, and
+$H\leq r^C$ for fixed constants, (3) implies
+\[
+ H=\Omega_{B,C}\left(\frac{r\log q}{\log r}\right).
+ \tag{4}
+\]
+This proof allows label-dependent row coefficients and arbitrary
+interference among the heads. It excludes a universal lookup bound
+$o(r\log q/\log r)$ in this regime, not a general Boolean sign decoder
+which avoids recovering the lookup values.
+
+Now take an outer finite plane with $P=q^2$ memory points and
+$a=\log_2q$ bit queries per point. Across inner axes of sizes $r,s$, the
+full tensor has $M=P a r s$ independent Boolean labels. Even an optimal
+lookup of cost $O(r\log q/\log r)$ at every outer memory point gives
+\[
+ H=O\left(\frac{P r\log q}{\log r}\right)
+   =O\left(\frac{P a r}{\log r}\right),\qquad
+ \frac{M}{H}=\Theta(s\log r).
+ \tag{5}
+\]
+The outer $a$-bit saving is consumed by the $\log q$ cost of the inner
+lookup. For $P a,r,s$ of order at most the ambient dimension, this is the
+inherited $n\log n$ inputs-per-head scale. This is consistent with the
+independent-cell size test: a three-axis domain is polynomial in $n$ and
+cannot support any unbounded improvement over that scale.
+
+A growing number of axes remains possible. For $d$ axes of size about
+$n/d$, the input count is $(n/d)^d$ and the logarithm is
+$d\log(n/d)$. A successful joint decoder must exploit this whole
+logarithm while keeping the cover density and boundary repairs controlled.
+Applying independent vector lookups recursively only supplies the bottom
+axis logarithm; no multiplicative logarithmic gain follows from (1).
+
+\paragraph{Analytic source.}
+The sign-count input is Warren's strict polynomial sign-pattern bound;
+a convenient primary statement is Theorem 2.1 of
+\href{https://www.cs.ox.ac.uk/people/paul.goldberg/papers/goldbergjerrum.pdf}
+{Goldberg and Jerrum, Bounding the Vapnik--Chervonenkis Dimension of
+Concept Classes Parameterized by Real Numbers}.
+No analytic sign-count theorem is introduced as a Lean axiom.
+\end{document}

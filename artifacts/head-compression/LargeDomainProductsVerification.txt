@@ -1,0 +1,28 @@
+Verification of admissible affine product pairs
+Date: 2026-11-24
+
+Command:
+  cd formalization
+  lake build HeadComplexity.Results.LargeDomainProducts
+
+Result:
+  Built HeadComplexity.Results.LargeDomainProducts (1.7s)
+  Build completed successfully (3315 jobs).
+
+Command:
+  lake env lean /tmp/LargeDomainProductsAxioms.lean
+
+Transitive #print axioms output:
+'HeadComplexity.LargeDomain.productGuard_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.productGuard_add_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.exists_strict_reverse_affine_product_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.strict_reverse_affine_product_pair_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.affine_product_pair_preserves_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Scope:
+Two original admissible reverse-ratio heads approximate f*A/D^2,
+with positive denominators on the entire Boolean cube, strictly negative
+slopes, affine numerators, and simultaneous preservation of any specified
+finite family of strict signed margins. This is a construction tool, not
+an improvement of the worst-case upper bound.
+The companion vector lookup count is a written argument, not Lean.
