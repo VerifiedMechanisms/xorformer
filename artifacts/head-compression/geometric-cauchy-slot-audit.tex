@@ -1,0 +1,121 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\title{Geometric Cauchy localization and the full-cube slot budget}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written obstruction to one exact bridge, accompanied
+by exact rational checks. Geometric Cauchy kernels do localize well on
+exterior queries. However, a fixed head slot which can receive every
+geometric pole token cannot preserve that kernel, even up to separable
+amplitudes, inside a full-cube-admissible reverse denominator. Three
+tokens suffice for the obstruction. This is not a lower bound for sums
+of admissible heads or for sign-table complexity. It does not exclude
+target-adaptive routing, arbitrary affine numerators, or joint
+cancellations among several heads. It has not been formalized in Lean.
+
+\begin{lemma}[A three-index budget constraint]
+Suppose
+\[
+ B_{ij}=b-p_i-q_j,\qquad p_i,q_j\geq0,\qquad
+ \sum_i p_i+\sum_jq_j<b.                                      \tag{1}
+\]
+For any three distinct matched row and column indices, there are two
+of them, denoted $i,j$, for which
+\[
+ \frac{B_{ii}B_{jj}}{B_{ij}B_{ji}}>\frac14.                    \tag{2}
+\]
+The conclusion also holds for a selected three by three submatrix of
+a larger matrix satisfying (1).
+\end{lemma}
+\begin{proof}
+All denominators are positive and at most $b$. Among three nonnegative
+numbers $p_i+q_i$ whose sum is strictly smaller than $b$, at least two
+are strictly smaller than $b/2$. Their diagonal denominators exceed
+$b/2$, while $B_{ij}B_{ji}\leq b^2$. This proves (2).
+Restricting the sum in (1) to selected rows and columns preserves the
+strict inequality.
+\end{proof}
+
+For a matrix with nonzero entries, define its inverse diagonal
+cross-ratio on indices $i,j$ by
+\[
+ \mathcal R_{ij}(K)=\frac{K_{ij}K_{ji}}{K_{ii}K_{jj}}.          \tag{3}
+\]
+This quantity is unchanged on replacing $K_{ij}$ by $u_i v_j K_{ij}$
+for arbitrary nonzero separable row and column factors. In particular,
+for $K_{ij}=1/B_{ij}$ it equals the ratio in (2).
+
+\begin{theorem}[No exact three-scale bridge]
+Let $0<a_1<a_2<a_3$ with $a_{i+1}/a_i\geq16$, and put
+$C_{ij}=1/(a_i+a_j)$. There do not exist a denominator matrix satisfying
+(1) and nonzero row and column factors $u_i,v_j$ such that
+\[
+                    \frac1{B_{ij}}=u_i v_j C_{ij}
+                       \quad(1\leq i,j\leq3).                \tag{4}
+\]
+More generally, let $L\geq1$. If every successive scale ratio is at
+least $16L^4$, then there is no such representation with multiplicative
+errors $E_{ij}\in[L^{-1},L]$ on the right side of (4).
+\end{theorem}
+\begin{proof}
+For $a_j/a_i=r\geq16$,
+\[
+ \mathcal R_{ij}(C)=\frac{4a_i a_j}{(a_i+a_j)^2}
+                   =\frac{4r}{(1+r)^2}<\frac4r\leq\frac14.
+                                                               \tag{5}
+\]
+Every distinct pair has this property, contradicting (2) and the
+invariance of (3). With multiplicative errors, the ratio in (3)
+changes by the factor $E_{ij}E_{ji}/(E_{ii}E_{jj})\leq L^4$.
+If $r\geq16L^4$, it remains strictly smaller than $1/4$.
+\end{proof}
+
+\paragraph{Why fixed slotwise projective changes are covered.}
+For a nonconstant fractional linear map
+$\phi(x)=(\alpha x+\beta)/(\gamma x+\delta)$,
+\[
+ \phi(v)-\phi(u)
+ =\frac{(\alpha\delta-\beta\gamma)(v-u)}
+        {(\gamma v+\delta)(\gamma u+\delta)}.                 \tag{6}
+\]
+Away from the pole of $\phi$, the reciprocal difference therefore
+changes only by separable factors. Taking $u=-a_i$ and $v=a_j$
+shows that a fixed projective change for one head slot, together with
+arbitrary nonzero separable amplitudes, is included in the theorem.
+If every one of three tokens can be routed to this slot across input
+rows and their three matching queries are present, the corresponding
+submatrix already contradicts full-cube admissibility. Additional
+rows, columns, and zero-residue padding do not improve its denominator
+budget. Zero factors cannot reproduce the nonzero entries of $C$.
+If a proposed representation instead discards these entries or uses
+their cancellation against other heads, this theorem does not apply.
+
+\paragraph{Localization before enforcing the cube budget.}
+The obstruction concerns the bridge, not the elementary localization
+mechanism. Let $R>5$, $a_i=R^{2i}$, and define
+\[
+ M_{ij}=\frac{R^{i+j}}{R^{2i}+R^{2j}}.
+\]
+Then $M_{ii}=1/2$, and $M_{ij}\leq R^{-|i-j|}$ off the diagonal.
+Consequently
+\[
+ \sum_{j\ne i}M_{ij}<\frac{2}{R-1}<\frac12.                 \tag{7}
+\]
+For every finite sign word $\sigma$, the vector $M\sigma$ has signs
+$\sigma$. Equivalently, the residues $R^j\sigma_j$ in the exterior
+Cauchy kernel with queries $a_i$ decode one independent bit per pole.
+Reusing these well-separated tokens across arbitrary head slots would
+require an additional construction beyond fixed projective changes.
+
+\paragraph{Verification.}
+The accompanying Python checker uses only integer and rational
+arithmetic. It checks the budget lemma on an exhaustive small grid,
+cross-ratios and projective invariance on explicit scales, the robust
+error estimate, and strict diagonal dominance for several finite
+geometric kernels. These tests supplement the written proof; they do
+not establish any growing-head compiler.
+\end{document}
