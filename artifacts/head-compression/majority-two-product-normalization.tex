@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A Majority of Separated Comparisons as Two Positive Products}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and purpose.}
+This is a complete elementary normalization with exact finite checks.
+It is not a reverse-orientation head construction and gives no new
+bound on worst-case head complexity by itself. Its purpose is to
+isolate a structured joint transfer target with a fixed relative
+margin, rather than a generic high-degree cleared numerator.
+No Lean verification is asserted.
+
+\begin{theorem}
+Let $L\geq1$, $R\geq8L$, and $u_h,v_h>0$. Suppose each ratio
+$r_h=u_h/v_h$ is either at least $R$ or at most $1/R$, and write
+$s_h=1$ in the first case and $s_h=-1$ in the second. Put
+\[
+ P=\prod_{h=1}^L(2u_h+v_h),\qquad
+ Q=\prod_{h=1}^L(u_h+2v_h).
+\]
+If $\sum_hs_h>0$, then $P/Q\geq3/2$. If $\sum_hs_h<0$,
+then $P/Q\leq2/3$. Consequently the strict majority sign, whenever
+nonzero, equals $\operatorname{sgn}(P-Q)$.
+\end{theorem}
+\begin{proof}
+Write $g(r)=(2r+1)/(r+2)$. For every $r>0$, $g(r)>1/2$.
+If $r\geq R$, then
+\[
+ g(r)=2-\frac3{r+2}\geq2\left(1-\frac2R\right).
+\]
+Let $a$ and $b$ be the counts of positive and negative votes.
+If $a-b\geq1$, Bernoulli's inequality gives
+\[
+ \frac P Q=\prod_hg(r_h)
+ \geq2^{a-b}\left(1-\frac2R\right)^a
+ \geq2\left(1-\frac{2a}R\right)
+ \geq2\left(1-\frac{2L}R\right)\geq\frac32.
+\]
+The base of the Bernoulli power is positive because $R\geq8$.
+Swapping $u_h$ and $v_h$ negates every vote and exchanges $P,Q$;
+this proves the negative-majority assertion. Odd $L$ guarantees
+that one of the two cases applies, but oddness is otherwise unused.
+\end{proof}
+
+\paragraph{Joint sign tables and the full cube.}
+Suppose the comparison data are $u_h(i),v_h(j)>0$, and every grid
+pair obeys the same separation hypothesis. On local Boolean variables
+$z\in\{0,1\}^r$, $w\in\{0,1\}^s$, put
+\[
+ U_h(z)=\sum_i u_h(i)z_i,\qquad V_h(w)=\sum_jv_h(j)w_j.
+\]
+The theorem gives the majority signs on the one-hot grid using
+$\prod_h(2U_h+V_h)-\prod_h(U_h+2V_h)$.
+All factor slopes are strictly positive. The factors vanish at the
+origin, so to make them strictly positive on the entire cube, add a
+common constant $\delta>0$ to every factor. Let $b>0$ be the
+minimum of all original factors over the finite grid and choose
+$\delta\leq b/(8L)$. Each product increases by a factor between
+one and $(1+\delta/b)^L$. For $0\leq t<1/L$,
+\[
+ (1+t)^L\leq\sum_{k\geq0}(Lt)^k=\frac1{1-Lt},
+\]
+since $\binom Lk\leq L^k$. Therefore a positive-majority ratio
+remains at least $(3/2)(7/8)=21/16>1$ after this perturbation.
+The reciprocal argument handles a negative majority. Thus this is
+also a difference of two products of affine factors that have strict
+positive slopes and are positive on the full local cube.
+
+\paragraph{Exact remaining transfer problem.}
+The score in this note is a difference of products, not a sum of
+admissible affine fractions. A cyclic linear determinant represents
+such a binomial, but elimination of that matrix introduces products
+or non-affine rational entries. It does not supply heads in the
+unchanged model. Likewise, replacing separate groups of votes by
+their product differences introduces group-dependent positive
+multipliers and need not preserve the outer sum. No efficient
+negative-slope axis-zero realization is asserted here.
+\end{document}
