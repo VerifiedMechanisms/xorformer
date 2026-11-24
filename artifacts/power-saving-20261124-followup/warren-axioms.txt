@@ -1,0 +1,3 @@
+'HeadComplexity.strictPolynomialSignPatterns_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.warrenStrictSignPatternBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_gt_div' depends on axioms: [propext, Classical.choice, Quot.sound]

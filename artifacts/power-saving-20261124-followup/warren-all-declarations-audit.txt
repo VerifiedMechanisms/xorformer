@@ -1,0 +1,15 @@
+HeadComplexity.Polynomial.DiagonalRootBound: audited 27 theorem declarations
+HeadComplexity.Polynomial.RegularRootBound: audited 3 theorem declarations
+HeadComplexity.Polynomial.AlgebraicRegularValues: audited 6 theorem declarations
+HeadComplexity.Polynomial.GenericPolynomialValues: audited 4 theorem declarations
+HeadComplexity.Polynomial.EvaluationDerivative: audited 8 theorem declarations
+HeadComplexity.Polynomial.GenericFiberBound: audited 2 theorem declarations
+HeadComplexity.Polynomial.GenericClosestPoint: audited 3 theorem declarations
+HeadComplexity.Polynomial.PenaltyMinimization: audited 5 theorem declarations
+HeadComplexity.Polynomial.ConstrainedMinimaBound: audited 9 theorem declarations
+HeadComplexity.Polynomial.SignRegionMinima: audited 11 theorem declarations
+HeadComplexity.Polynomial.SignedSubsetCount: audited 11 theorem declarations
+HeadComplexity.Polynomial.PolynomialSignCount: audited 4 theorem declarations
+HeadComplexity.Results.WarrenBound: audited 8 theorem declarations
+Audited 101 theorem declarations across 13 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].

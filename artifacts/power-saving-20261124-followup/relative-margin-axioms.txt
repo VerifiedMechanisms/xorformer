@@ -1,0 +1,12 @@
+'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

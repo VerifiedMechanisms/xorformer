@@ -1,0 +1,16 @@
+ℹ [3281/3712] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:289:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [3838/3840] Built HeadComplexity.Results.All (1.7s)
+✔ [3839/3840] Built HeadComplexity (1.7s)
+Build completed successfully (3840 jobs).

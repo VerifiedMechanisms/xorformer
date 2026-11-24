@@ -53,6 +53,7 @@ import HeadComplexity.Results.ThresholdDegreeSpan
 import HeadComplexity.Results.TopThresholdDegree
 import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.UniversalLinearSaving
+import HeadComplexity.Results.WarrenBound
 import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.WeightedUpperBound
 
