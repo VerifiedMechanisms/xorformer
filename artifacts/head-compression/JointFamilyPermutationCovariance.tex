@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
 \newtheorem{proposition}{Proposition}
 \begin{document}
 \title{Permutation covariance and the support problem}
@@ -82,15 +82,18 @@ $x\cap y$, giving the first formula. Counting negative signs in $S$ and
 $x\setminus S$ gives the second formula.
 \end{proof}
 
-The Johnson harmonic subspace of degree $i$ has multiplicity
+For $m\leq k/2$, the Johnson harmonic subspace of degree $i$ has multiplicity
 $\binom ki-\binom k{i-1}$. The standard inclusion-matrix decomposition
 of the kernel $\binom{|x\cap y|}{j}$ gives its eigenvalue
 \[
  \lambda_i=\sum_{j=i}^m c_j^2
        \binom{m-i}{j-i}\binom{k-j-i}{m-j}.
 \]
-This last spectral formula is recorded for calculation; the elementary
-second-moment identity above does not require it.
+The inclusion-matrix eigenvalue used here is Lemma 8 of Ghareghani,
+Ghorbani and Mohammad-Noori,
+\href{https://arxiv.org/abs/0902.4367}{\emph{Intersection matrices revisited}}
+(2011 version). The elementary second-moment identity above does not
+require this spectral decomposition.
 
 As $B\downarrow m\varepsilon$, every $c_j$ has leading term
 $(-1)^j/(2^m(B-m\varepsilon))$. Consequently the leading kernel is a
