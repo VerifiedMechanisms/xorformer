@@ -1,0 +1,120 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{An eight-pole positive pool whose sign cube covers four queries}
+\author{}\date{}\maketitle
+\paragraph{Status.}
+This is a complete elementary written construction, with exact rational
+and guarded Laurent certificates. It is not Lean-checked. It concerns a
+fixed finite size and does not prove an asymptotic compiler or either
+accepted bound on \texttt{worstCaseHeadComplexity}.
+
+\begin{theorem}
+Let $0<t_0<t_1<t_2<t_3$, and let $0<8\epsilon<t_0$.
+There are positive numbers $v_1,\ldots,v_8$ such that, for every
+$(a,b,c,d)\in\{-1,1\}^4$, the function
+\[
+ F_{a,b,c,d}(t)=\sum_{h=1}^8\frac{v_h\tau_h}{t-h\epsilon},
+ \qquad \tau=(a,b,c,d,-c,c,-a,a),
+\]
+has strict sign word $(d,-a,b,c)$ at $(t_0,t_1,t_2,t_3)$.
+Thus the positive weighted sign cube on eight exterior poles meets
+all sixteen orthants on four fixed queries. The same pool works for
+all sixteen words.
+\end{theorem}
+\begin{proof}
+Write
+\[
+ R(t)=(t-t_0)(t-t_2),\qquad
+ P_A(t)=(t-\epsilon)(t-7\epsilon)(t-8\epsilon),\qquad
+ P_C(t)=(t-3\epsilon)(t-5\epsilon)(t-6\epsilon).
+\]
+First choose positive single-pole functions
+\[
+ B(t)=\frac{v_2}{t-2\epsilon},\qquad
+ D(t)=\frac{v_4}{t-4\epsilon}
+\]
+so that $D(t_0)-B(t_0)=1$ and $B(t_2)-D(t_2)=1$.
+For explicit formulas put
+\[
+ q_i=(t_i-2\epsilon)(t_i-4\epsilon)\quad(i=0,2),\qquad
+ L=\frac{q_0+q_2}{t_2-t_0},\qquad
+ v_4=\frac{q_0+L(t_0-4\epsilon)}{2\epsilon},\qquad v_2=v_4+L.
+\]
+These quantities are positive and direct substitution proves both
+identities. Set $S=B+D+1$, which is positive at all queries.
+
+The ratio $k=P_C/P_A$ is strictly decreasing on $(8\epsilon,\infty)$.
+Indeed, if $f(x)=1/(t-\epsilon x)$, then
+\[
+ \frac{d}{dt}\log k(t)
+   =f(3)+f(5)+f(6)-f(1)-f(7)-f(8)<0.
+\]
+The last inequality follows because $f$ is strictly increasing and
+strictly convex: $f(7)-f(5)>f(3)-f(1)$, and $f(8)>f(6)$.
+In particular $k(t_1)>k(t_3)$. Put
+\[
+ u=-\frac{P_C(t_1)S(t_1)}{R(t_1)}>0,\qquad
+ w=\frac{P_C(t_3)S(t_3)}{R(t_3)}>0,\qquad
+ \alpha=\frac{u+w}{k(t_1)-k(t_3)}>0,\qquad
+ \gamma=k(t_3)\alpha+w>0.
+\]
+Then
+\[
+ A(t)=\frac{\alpha R(t)}{P_A(t)},\qquad
+ C(t)=\frac{\gamma R(t)}{P_C(t)}
+\]
+satisfy $C(t_i)-A(t_i)=S(t_i)$ for $i=1,3$.
+Both vanish at $t_0,t_2$. Both are negative at $t_1$ and positive at
+$t_3$. Consequently
+\[
+ -A(t_1)=|C(t_1)|+B(t_1)+D(t_1)+1,
+ \qquad
+ C(t_3)=A(t_3)+B(t_3)+D(t_3)+1.
+\]
+These are strict dominance inequalities. Together with the defining
+identities for $B,D$, they show that
+$aA+bB+cC+dD$ has the claimed four signs, for every choice of bits.
+
+Finally, the three residues of $A$ at its ordered poles have signs
+$+,-,+$. In fact, the residue at $p$ is $\alpha R(p)/P_A'(p)$,
+where $R(p)>0$ since $p<t_0$. The derivative signs of the monic
+cubic at its ordered roots are $+,-,+$. The same argument applies
+to $C$. Taking their positive absolute residues as
+$(v_1,v_7,v_8)$ and $(v_3,v_5,v_6)$, respectively, gives exactly
+the sign assignment in the theorem. All eight residues are strictly
+positive.
+\end{proof}
+
+\paragraph{Exact verification.}
+\texttt{rectangular-cauchy-eight-pole-pool-check.py} verifies a saved
+rational instance at queries $(77/80,39/40,79/80,1)$ and
+$\epsilon=10^{-8}$. It independently checks a rational-function
+continuation defined by eight score equations, using guarded exact
+power-series arithmetic. Every one of the sixteen grouped words has
+four positive signed leading scores, and all eight residues have
+positive leading terms. The companion JSON contains the exact finite
+residues, equations, and all leading coefficients. These certificates
+are supplementary to the elementary proof above.
+\texttt{rectangular-cauchy-eight-pole-formula-check.py} checks the
+explicit formulas directly at several rational query grids and pole
+scales, including all sixteen words each time.
+
+\paragraph{Scope of the potential recursion.}
+The code in the theorem consists of four disjoint pole groups of
+sizes $3,1,3,1$. Each new three-pole group carries the quadratic
+factor vanishing at the two earlier queries. Repeating this literal
+construction by adding a pair of queries would require two new
+filters vanishing at all earlier queries. Their numerator degree
+and pole support would grow with the number of earlier queries;
+the resulting count is quadratic. The theorem therefore supplies
+no linear-pole induction.
+
+A superconstant compiler gain would require a new way to share these
+filters or use nonlinear sign preimages while preserving one fixed
+pool and the required joint color counts. Neither the sixteen-word
+coverage nor the large number of available sign assignments establishes
+that further statement. The theorem changes no model definition,
+input dimension, or atom admissibility condition.
+\end{document}
