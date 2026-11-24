@@ -1,0 +1,11 @@
+'HeadComplexity.DownsetJetGrading.indexDegree_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.indexDegree_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.indexDegree_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.indexDegree_le_extensionHeight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.DownsetJetGrading.extensionHeight_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.grading_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.grading_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.grading_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DownsetJetGrading.grading_superadditive' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -2,7 +2,13 @@
 
 ## Status and scope
 
-This note proves a new finite comparison-class count in writing. Its only sign-count input is the kernel-checked theorem `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le` in [WeightedPolynomialSignCount.lean](../../formalization/HeadComplexity/Polynomial/WeightedPolynomialSignCount.lean). The combinatorial grading lemma and the downset-jet specialization below are not yet Lean declarations. The grading construction was proposed by the root agent and independently checked by the margin-repair agent.
+This note proves a new finite comparison-class count in writing. Its only sign-count input is the kernel-checked theorem `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le` in [WeightedPolynomialSignCount.lean](../../formalization/HeadComplexity/Polynomial/WeightedPolynomialSignCount.lean). The strong product estimate and the downset-jet specialization below are not yet Lean declarations. The grading construction was proposed by the root agent and independently checked by the margin-repair agent.
+
+An independent explicit superadditive grading is kernel checked in [DownsetJetGrading.lean](../../formalization/HeadComplexity/Research/DownsetJetGrading.lean). Its declarations `grading_pos`, `grading_le_half`, and `grading_superadditive` use
+
+$$ \widetilde\omega(\alpha)=\frac{|\alpha|}{2h(\alpha)},\qquad h(\alpha)=\max_{\substack{\gamma\in T\cr\gamma\geq\alpha}}|\gamma|. $$
+
+At zero the quotient is zero. The maximum extension degree is antitone, which immediately proves superadditivity. This formal construction establishes existence of a suitable grading but does not formally establish the stronger primitive-ray product bound below.
 
 The comparison class allows arbitrary real coefficients and arbitrary signed cancellation. Every base denominator is positive on the full Boolean cube. No claim places all original xorformer truth tables in this class. In particular, a finite local algebra need not be a quotient by a monomial ideal, and replacing it by its initial monomial ideal need not preserve the truth table.
 

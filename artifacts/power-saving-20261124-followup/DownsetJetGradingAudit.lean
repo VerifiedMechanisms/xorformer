@@ -1,0 +1,11 @@
+import HeadComplexity.Research.DownsetJetGrading
+
+#print axioms HeadComplexity.DownsetJetGrading.indexDegree_zero
+#print axioms HeadComplexity.DownsetJetGrading.indexDegree_add
+#print axioms HeadComplexity.DownsetJetGrading.indexDegree_pos
+#print axioms HeadComplexity.DownsetJetGrading.indexDegree_le_extensionHeight
+#print axioms HeadComplexity.DownsetJetGrading.extensionHeight_antitone
+#print axioms HeadComplexity.DownsetJetGrading.grading_zero
+#print axioms HeadComplexity.DownsetJetGrading.grading_pos
+#print axioms HeadComplexity.DownsetJetGrading.grading_le_half
+#print axioms HeadComplexity.DownsetJetGrading.grading_superadditive
