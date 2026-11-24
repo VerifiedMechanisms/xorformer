@@ -130,6 +130,55 @@ Applying a different projective transform to each slot does not by
 itself establish that budget when a slot receives many token scales
 across different represented rows.
 
+\paragraph{An exact projective-budget obstruction for those scales.}
+Here is a precise limitation of that proposed transfer. Suppose one
+slot receives two different poles $P_0<P_1$, and its query list contains
+two values $T_0<T_1$, with $P_1<T_0$, each repeated at least $L$ times.
+Consider a projective change of coordinate after which all query
+coordinates lie strictly above all pole coordinates. Assume the
+transformed differences are extended to a reverse affine denominator
+on the full row/query Boolean cube. Then necessarily
+\[
+ \frac{(P_1-P_0)(T_1-T_0)}{(T_0-P_0)(T_1-P_1)}<\frac1L.
+ \tag{6}
+\]
+For clarity, this is an obstruction to the stated headwise projective
+transfer of this fixed denominator grid. It is not an obstruction to
+an alternative representation of its signs.
+
+To prove (6), work first in transformed coordinates, denoting the
+two displayed poles by $x_0<x_1$ and the two queries by $y_0<y_1$.
+An affine denominator extending the differences has row slopes
+$\alpha_i=x_i-u$, column slopes $\beta_j=v-y_j$, and constant
+$v-u$, for some $u,v$. Nonnegative slopes imply
+$u\leq\min_i x_i$ and $v\geq\max_j y_j$. The full-cube budget
+therefore implies
+\[
+ v-u>\sum_i\alpha_i+\sum_j\beta_j
+ \geq (x_1-u)+L(v-y_0).
+\]
+Writing $\Delta P=x_1-x_0$, $\Delta T=y_1-y_0$ and $g=y_0-x_1$,
+this gives $g>(L-1)(v-y_0)\geq(L-1)\Delta T$, and hence
+\[
+ \frac{\Delta P\Delta T}{(g+\Delta P)(g+\Delta T)}
+ <\frac{\Delta T}{g+\Delta T}<\frac1L.
+\]
+Projective transformations preserve this cross-ratio. If the chart has its pole in
+the separating gap, it reverses the orders within both intervals;
+the same cross-ratio is obtained by reversing both pairs. The
+multiplicity assumption on both displayed queries covers this case.
+A chart cannot split either pole or query interval while preserving
+strict separation of every transformed pole and query.
+
+For the geometric pool, take poles $-a_k,-a_j$ and query values
+$a_j,a_k$, where $k>j$ and $a_k/a_j\geq32$. The left side of (6) is
+at least $(31/33)^2>1/2$. Hence a slot mixing even two such scales
+cannot satisfy this reverse extension budget if each address query
+is used twice. In a signed color-mask assembly a slot of mask weight
+at least two has precisely that repetition. Thus arbitrary token
+permutation across these geometric scales is not licensed by
+per-slot projective compactification.
+
 \paragraph{Relation to the four-query example.}
 The saved eight-pole rectangular certificate has a sufficient sign
 subcube

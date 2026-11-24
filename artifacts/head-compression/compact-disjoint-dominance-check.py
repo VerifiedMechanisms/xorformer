@@ -7,7 +7,6 @@ from fractions import Fraction as F
 from itertools import product
 from pathlib import Path
 import json
-import math
 
 
 def prod(xs):
@@ -60,8 +59,17 @@ def main():
             for a, value in zip(aa, row):
                 assert value == -a / (t + a) + 2 * a / (t + 2 * a)
             noncompact_checks += 1
+    # The gap chart reverses both lists while preserving the obstruction.
+    assert F(31, 33)**2 > F(1, 2)
+    for scale in (32, 1024, 32768):
+        p0, p1, t0, t1 = map(F, (-scale, -1, 1, scale))
+        cross = (p1-p0)*(t1-t0)/((t0-p0)*(t1-p1))
+        pp = sorted((1/p0, 1/p1)); tt = sorted((1/t0, 1/t1))
+        transformed = ((pp[1]-pp[0])*(tt[1]-tt[0])
+                       / ((tt[0]-pp[0])*(tt[1]-pp[1])))
+        assert transformed == cross >= F(31, 33)**2
     print(f"PASS: {checks} grouped strict signs, {pad_checks} padding identities, "
-          f"{noncompact_checks} noncompact dominance rows")
+          f"{noncompact_checks} noncompact dominance rows, 3 projective obstructions")
 
 
 if __name__ == "__main__":
