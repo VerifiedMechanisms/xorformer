@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\title{Positive residue bridges require more than the signed quadratic repair}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is a finite, exact rational certificate for one sixteen-pole configuration.
+It is not a Lean proof and makes no claim about all sufficiently small pole
+scales, adaptive pole choices, larger profile spaces, or either asymptotic
+HeadComplexity target. No model definition is changed.
+
+Use the four target words and the pole grid
+$p_y=\sum_{j=0}^3y_j\epsilon^{2^j}$, $\epsilon=1/100$, saved in
+\texttt{butterfly-positive-polynomial-bridge.json}. Let $K_i$ be the
+strict residue cone of target $i$ after eliminating the separate Haar-block
+biases, as in \texttt{butterfly-adaptive-haar-biased.tex}. Define
+\[
+ K_i^+=K_i\cap(0,\infty)^{16},\qquad
+ C_{ij}=\frac1{1-p_i-p_j},\qquad
+ V_2=C^{-1}\operatorname{span}\{\mathbf1,(p_i)_i,(p_i^2)_i\}.
+\]
+All six intersections $K_i^+\cap K_j^+$, $i<j$, are nonempty.
+Nevertheless,
+\[
+ (K_0^+\cap K_1^+)\cap
+ \bigl((K_2^+\cap K_3^+)-V_2\bigr)=\varnothing.       \tag{1}
+\]
+The analogous signed intersection is nonempty by
+\texttt{butterfly-polynomial-profile-bridge.tex}. Thus positivity cannot
+be added to that finite signed repair without further argument.
+
+\paragraph{Exact verification.}
+For every pair, the JSON file saves a rational vector with sixteen strictly
+positive entries. The checker reconstructs every bias-eliminated comparison
+and verifies that it is strictly positive on the corresponding pair's vector.
+This proves all six pair intersections directly.
+
+For (1), write $V=C^{-1}[\mathbf1,p,p^2]$ and use variables
+$(x,\lambda)\in\mathbb R^{16}\times\mathbb R^3$. A comparison row $r$
+from cones $0,1$ becomes $(r,0)$; a row from cones $2,3$ becomes $(r,rV)$.
+Append the sixteen coordinate rows asserting $x>0$ and the sixteen rows
+asserting $x+V\lambda>0$. Let $A$ be the resulting rational matrix.
+The saved certificate has twenty positive weights, extended by zero to a
+vector $\eta$ on all rows, satisfying exactly
+\[
+ \eta\geq0,\qquad \sum_i\eta_i=1,\qquad \eta^\top A=0.
+\]
+If every required inequality held strictly, then
+$\eta^\top A(x,\lambda)>0$, a contradiction. The checker uses exact
+rational matrix inversion and fraction arithmetic, and no optimization solver:
+\begin{verbatim}
+python3 artifacts/head-compression/butterfly-positive-polynomial-bridge-check.py
+\end{verbatim}
+
+\paragraph{What remains open.}
+This leaves pairwise positive compatibility, larger affordable query-profile
+spaces, and target-adaptive pole perturbations as separate questions. The
+certificate gives no lower bound for unrestricted HeadComplexity.
+\end{document}
