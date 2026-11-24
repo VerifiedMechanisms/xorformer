@@ -227,6 +227,26 @@ slopes with positivity on the whole cube. The finite common-pool
 certificate and the doubling argument have not been formalized in Lean;
 the implementation theorem alone is Lean checked.
 
+
+\paragraph{A precise cone-intersection limitation.}
+Pairwise compatibility is weaker than the common baseline required by a
+naive four-child coalescence argument. At $H=16$, $\epsilon=1/100$, and
+pole exponents $(1,2,4,8)$, the file
+\texttt{butterfly-biased-cone-intersection.json} gives four target words
+whose six pairwise biased residue-cone intersections are nonempty,
+while their joint intersection is empty. The solver-free checker
+\texttt{butterfly-biased-cone-intersection-check.py} verifies six explicit
+rational shared-residue witnesses, including all $384$ original strict
+biased-query inequalities. For emptiness it verifies a nonnegative
+rational vector $\lambda$, supported on seventeen comparison rows,
+with $\sum_i\lambda_i=1$ and $\lambda^\top A=0$. If all comparisons
+$Ac$ were positive, then $\lambda^\top Ac>0$, a contradiction.
+Thus the empty intersection is an exact certificate, not a floating-point
+infeasibility report. This statement is at the displayed finite scale;
+it does not establish emptiness at every smaller scale. It does not
+exclude target-dependent residues or a coalescence argument with boundary
+terms and higher pole orders.
+
 \paragraph{Remaining quantitative gap.}
 A proof that (1) is feasible for all targets at arbitrarily large $H$,
 or a sufficiently strong uniform lower bound on the density of feasible
