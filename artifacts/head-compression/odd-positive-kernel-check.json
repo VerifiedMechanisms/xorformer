@@ -1,0 +1,28 @@
+{
+  "status": "exact rational identity checks; not Lean and not a new asymptotic bound",
+  "atom_orientations_checked": [
+    "alpha>1",
+    "0<alpha<1",
+    "alpha=1"
+  ],
+  "atom_vertex_checks": 24,
+  "three_bit_gram_matrix": [
+    [
+      "48/35",
+      "32/105",
+      "32/105"
+    ],
+    [
+      "32/105",
+      "48/35",
+      "32/105"
+    ],
+    [
+      "32/105",
+      "32/105",
+      "48/35"
+    ]
+  ],
+  "parity_coefficient_after_first_level_cancellation": "32/105",
+  "parity_vertex_checks": 8
+}

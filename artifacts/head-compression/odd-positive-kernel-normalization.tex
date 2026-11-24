@@ -1,0 +1,199 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Odd targets and positive tangent kernels}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written normalization for all representations of odd
+Boolean targets in the unchanged fractional-atom model. It includes mixed
+atom orientations and constant denominators. The attached rational checker
+tests the identities, but this note is not a Lean proof. No improved
+head-count lower bound or upper bound follows here. In particular, the
+positivity statements below do not control arbitrary signed numerator
+directions or cancellations between heads.
+
+Write $t_i=2x_i-1\in\{-1,1\}$, and let $-t$ denote the simultaneous
+complement of every input bit. A target $f:\{-1,1\}^n\to\{-1,1\}$ is
+odd if $f(-t)=-f(t)$. A score represents it in the original convention
+when $F(t)>0$ exactly at its positive labels, and $F(t)\leq0$ at its
+negative labels.
+
+\begin{theorem}[Global positive-kernel normalization]
+Suppose an odd target is represented by a bias plus $H$ original atoms.
+There exist vectors $u_h\in\mathbb R^n$ and $w_h\in[0,\infty)^n$ such that
+\[
+ \sum_i w_{hi}<1,\qquad
+ G(t)=\sum_{h=1}^H\frac{u_h\cdot t}{1-(w_h\cdot t)^2},\qquad
+ f(t)G(t)>0\quad\hbox{for every }t\in\{-1,1\}^n.
+\]
+For each $h$, either every coordinate of $w_h$ is strictly positive,
+or $w_h=0$. No strictification of the original representation is needed.
+Conversely, every finite strictly sign-representing score of the displayed
+form, allowing arbitrary weakly positive $w_h$ with the stated strict
+sum bound, is represented by at most $2H$ original atoms. This converse
+preserves its strict signs, rather than necessarily its exact values.
+\end{theorem}
+
+\begin{proof}
+For one original atom, abbreviate its parameters by
+$\eta,\delta,\gamma,\alpha,\rho_i,m_i$, with
+$\gamma,\alpha,\rho_i>0$. Its raw-bit affine coefficients are
+\[
+ B(x)=\gamma+\sum_i\rho_i+\sum_i\rho_i(\alpha-1)x_i,
+ \qquad
+ A(x)=\eta+\sum_i\rho_i m_i+
+       \sum_i\rho_i((\alpha-1)m_i+\alpha\delta)x_i.
+\]
+Put $R=\sum_i\rho_i$ and
+\[
+ d=\gamma+\frac{\alpha+1}{2}R>0,\qquad
+ v_i=\frac{\rho_i(\alpha-1)}{2d},\qquad
+ a_i=\frac{\rho_i((\alpha-1)m_i+\alpha\delta)}{2d},
+ \qquad
+ a_0=\frac{\eta+\sum_i\rho_i m_i}{d}+\sum_i a_i.
+\]
+Then the atom is exactly
+\[
+ \frac{a_0+a\cdot t}{1+v\cdot t}.
+\]
+All $v_i$ have the same strict sign when $\alpha\ne1$, and $v=0$ when
+$\alpha=1$. Moreover
+\[
+ 1-\sum_i|v_i|
+ =\frac{2\gamma+(\alpha+1-|\alpha-1|)R}{2d}>0.
+\]
+The last numerator is positive since
+$\alpha+1-|\alpha-1|=2\min(\alpha,1)>0$.
+In particular $1\pm v\cdot t>0$ on the whole real cube.
+
+The odd part of this atom is
+\[
+ \frac12\left(
+   \frac{a_0+a\cdot t}{1+v\cdot t}
+  -\frac{a_0-a\cdot t}{1-v\cdot t}\right)
+ =\frac{(a-a_0v)\cdot t}{1-(v\cdot t)^2}.
+\]
+Set $u=a-a_0v$ and $w_i=|v_i|$. Uniform orientation gives
+$(v\cdot t)^2=(w\cdot t)^2$, including the case $v=0$.
+The arbitrary bias cancels when the full score is replaced by
+$G(t)=(F(t)-F(-t))/2$.
+If $f(t)=1$, then $F(t)>0$ and $F(-t)\leq0$, so $G(t)>0$.
+If $f(t)=-1$, the reverse inequalities give $G(t)<0$.
+This proves the forward statement directly under the model's original
+weak inequality at negative labels.
+
+For the converse, first suppose every $w_{hi}>0$. Each kernel has the
+exact decomposition
+\[
+ \frac{u_h\cdot t}{1-(w_h\cdot t)^2}
+ =\frac12\frac{u_h\cdot t}{1+w_h\cdot t}
+  +\frac12\frac{u_h\cdot t}{1-w_h\cdot t}.
+\]
+In raw bits these two denominators are
+\[
+ 1-\sum_iw_{hi}+2\sum_iw_{hi}x_i,
+ \qquad
+ 1+\sum_iw_{hi}-2\sum_iw_{hi}x_i.
+\]
+Their slopes are respectively strictly positive and strictly negative;
+both are positive throughout the cube by $\sum_iw_{hi}<1$.
+Their numerators are arbitrary affine functions. The existing exact
+positive/negative affine-ratio realization therefore implements the two
+fractions by two original atoms.
+
+For weakly positive $w_h$, replace each coordinate by $w_{hi}+\varepsilon$.
+For sufficiently small positive $\varepsilon$, all sum bounds remain
+strict. Every denominator stays positive and every score converges to
+its original value as $\varepsilon\downarrow0$. There are only finitely
+many vertices and all their signed scores are strictly positive, so
+sufficiently small $\varepsilon$ preserves every sign. Apply the preceding
+two-atom construction. This uses exactly two heads per original kernel
+and does not change the input dimension.
+\end{proof}
+
+\paragraph{Interpretation as tangent kernels.}
+For $w\in(0,\infty)^n$ with $\sum_iw_i<1$, differentiation gives
+\[
+ D_u\operatorname{atanh}(w\cdot t)
+ =\frac{u\cdot t}{1-(w\cdot t)^2}.
+\]
+This interpretation is only a convenient identity; the proof above uses
+no transcendental operation in the model.
+
+\begin{proposition}[First Fourier level]
+Let
+\[
+ K(w)_{ij}=2^{-n}\sum_{t\in\{-1,1\}^n}
+       \frac{t_i t_j}{1-(w\cdot t)^2}.
+\]
+The degree-one Fourier coefficient vector of one kernel is $K(w)u$.
+The real symmetric matrix $K(w)$ is positive definite and satisfies
+$K(w)\succeq I$. Consequently, for fixed $w$, the degree-one coefficient
+vector ranges over all of $\mathbb R^n$ as $u$ varies.
+\end{proposition}
+
+\begin{proof}
+The coefficient identity follows by expanding $u\cdot t$ in the finite
+sum. For any $z\in\mathbb R^n$,
+\[
+ z^TK(w)z
+ =2^{-n}\sum_t\frac{(z\cdot t)^2}{1-(w\cdot t)^2}
+ \geq 2^{-n}\sum_t(z\cdot t)^2=\sum_i z_i^2.
+\]
+Every denominator belongs to $(0,1]$, and the last equality uses
+orthogonality of the coordinate characters. Thus $K(w)$ is invertible.
+\end{proof}
+
+For a sum of $H$ kernels, vanishing first-level Fourier coefficients is
+exactly the vector equation $\sum_hK(w_h)u_h=0$. For fixed denominators
+this is an $n$-equation constraint on the $nH$ numerator coefficients,
+with full rank whenever $H\geq1$. It can be solved for the numerator
+of one head. However, doing so does not generally preserve the target
+signs, so it is not a permissible normalization of an arbitrary existing
+small representation.
+
+\begin{lemma}[Why first-level elimination is not automatic]
+If an odd target is strictly sign-represented by a nonzero linear form
+$\ell(t)=b\cdot t$, no strict score for that same target has all
+degree-one Fourier coefficients equal to zero.
+\end{lemma}
+
+\begin{proof}
+For every vertex $t$, strict signs imply $G(t)\ell(t)>0$.
+Its average is therefore positive. But if all degree-one coefficients
+of $G$ vanish, that average equals $\sum_i b_i\widehat G(\{i\})=0$,
+a contradiction.
+\end{proof}
+
+\paragraph{An exact cancellation example.}
+Conversely, low-degree cancellations can expose higher characters at
+very small cost. On three bits, choose $w=(1/4,1/4,1/4)$ and $u=e_1$.
+Direct calculation gives
+\[
+ \frac{t_1}{1-(t_1+t_2+t_3)^2/16}
+ -\frac{48}{35}t_1-\frac{32}{105}(t_2+t_3)
+ =\frac{32}{105}t_1t_2t_3
+ \quad(t\in\{-1,1\}^3).
+\]
+The subtracted linear form is a second kernel with $w=0$.
+Thus every degree-one coefficient cancels, while a strict parity score
+remains. The converse theorem realizes its signs using four strict
+original heads after an arbitrarily small perturbation. No positivity
+of a kernel's Taylor coefficients excludes these signed cancellations.
+
+\paragraph{Remaining lower-bound problem.}
+An eventual lower bound of order $2^n/n$ for this positive-kernel class
+on odd targets would imply the requested unrestricted lower bound,
+since every original representation yields a representation in this
+class with the same $H$. The converse shows that the two complexities
+on odd targets differ by at most a factor of two. The normalization is
+therefore global, not a restricted-head obstruction. A quantitative
+bound on its strict sign patterns, uniform in all positive denominator
+parameters and all numerator cancellations, is still missing.
+\end{document}
