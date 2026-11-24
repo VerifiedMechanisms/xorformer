@@ -130,4 +130,109 @@ rather than replace each row's common height by an independent cost
 matrix. This fixed-probe route is therefore blocked as an asymptotic
 mechanism, even though its arbitrary-height algebra is valid.
 
+\section{A sign-only obstruction for the full hierarchical code}
+
+The next result allows a different probe at every query and an arbitrary
+fixed edge-residue table. It concerns the complete hierarchical code
+from \texttt{continuation-lower-bound.tex}, with every bit at every tree
+node free. It does not concern a redundant code in which some unread
+bits are chosen as functions of the desired output signs.
+
+\begin{theorem}[Compact root-bit obstruction]
+Let $H=2^d=2m$, and let $\pi(s,t)$ be the hierarchical permutation
+encoding, where $s\in\{-1,1\}^m$ gives the root bits and $t$ gives
+all descendant bits. Fix distinct poles
+$0\leq\lambda_1<\cdots<\lambda_H\leq\beta<a$ and an arbitrary
+real matrix $G=(G_{hj})$. Suppose there are $m$ query rows
+\[
+ F_i(\pi)=b_i+\sum_{h=1}^H
+       \frac{A_{ih}-G_{h,\pi(h)}}{D_i-\lambda_{\pi(h)}},
+ \qquad a\leq D_i\leq b,
+\]
+such that $s_iF_i(\pi(s,t))>0$ for every root word $s$, every
+descendant word $t$, and every $i$. Then
+\[
+ m<3\left(1+\left(\frac{b}{a-\beta}\right)^4\right). \tag{4}
+\]
+In particular, if $H\geq16$ and
+$b/(a-\beta)\leq(5/3)^{1/4}$, no such rows exist. This conclusion
+permits arbitrarily large coefficients and does not assume equality
+of readout magnitudes across different words.
+\end{theorem}
+
+\begin{proof}
+Fix the root word and average uniformly over all descendant words.
+Conditional on being assigned to the left half of the slots, each
+symbol is uniformly distributed over those $m$ slots, and the same
+holds on the right. To check this, follow the symbol down the binary
+tree. At each step the bit governing its pair is an independent
+uniform sign, so either child is selected with probability $1/2$.
+Thus each of the $m$ leaves of its prescribed half has probability
+$1/m$. Only these one-symbol marginals are needed below.
+
+Write $A_i^L,A_i^R$ for the averages of $A_{ih}$ on the left and
+right halves, and similarly write $G_j^L,G_j^R$ for the half-averages
+of the $j$th column of $G$. Put
+\[
+ A_i^\circ=(A_i^L-A_i^R)/2,
+ \qquad R_j=(G_j^L-G_j^R)/2.
+\]
+The averaged query has the form
+\[
+ \overline F_i(s)=c_i+\sum_{j=1}^m\Delta_{ij}s_j,
+ \qquad
+ \Delta_{ij}=
+ \frac{A_i^\circ-R_{2j}}{D_i-\lambda_{2j}}
+ -\frac{A_i^\circ-R_{2j-1}}{D_i-\lambda_{2j-1}}. \tag{5}
+\]
+Indeed the root bit selects which member of its pair goes to each
+half, and the difference of the two possible pair contributions,
+divided by two, is exactly (5). Finite averaging preserves the
+required strict sign. Minimizing $s_i\overline F_i(s)$ over the
+independent root signs therefore yields
+\[
+ \Delta_{ii}>|c_i|+\sum_{j\ne i}|\Delta_{ij}|. \tag{6}
+\]
+
+Let $Q_{ij}=(D_i-\lambda_{2j})(D_i-\lambda_{2j-1})$, and set
+$N_{ij}=Q_{ij}\Delta_{ij}$. Clearing denominators gives
+\[
+ \begin{split}
+ N_{ij}={}&A_i^\circ(\lambda_{2j}-\lambda_{2j-1})
+       +D_i(R_{2j-1}-R_{2j})\\
+       &+R_{2j}\lambda_{2j-1}-R_{2j-1}\lambda_{2j}.
+ \end{split}
+\]
+This is a sum of three outer products, so $\operatorname{rank}N\leq3$.
+Moreover $(a-\beta)^2\leq Q_{ij}\leq b^2$. By (6), all $N_{ii}$
+are positive. Divide each row by its diagonal entry to obtain $M$.
+Then $M_{ii}=1$, $\operatorname{rank}M\leq3$, and, with
+$\kappa=b^2/(a-\beta)^2$,
+\[
+ \sum_{j\ne i}|M_{ij}|
+ =\sum_{j\ne i}\frac{Q_{ij}|\Delta_{ij}|}
+                         {Q_{ii}\Delta_{ii}}
+ <\kappa.
+\]
+Consequently $\|M\|_F^2<m(1+\kappa^2)$. For any real square
+matrix, $|\operatorname{tr}M|^2\leq
+\operatorname{rank}(M)\|M\|_F^2$: if $P$ is the orthogonal
+projection onto its column space, then $PM=M$, and Cauchy--Schwarz
+applied to the Frobenius inner product of $P$ and $M$ gives the
+claim because $\|P\|_F^2=\operatorname{rank}M$.
+Since $\operatorname{tr}M=m$, we obtain (4). If $m\geq8$ and the
+stated ratio bound holds, its right side is at most $8$, a
+contradiction.
+\end{proof}
+
+\paragraph{Scope and remaining escape.}
+The argument rules out sign-only decoding of the original complete
+hierarchical word family by these compact asymmetric-anchor readouts.
+It is stronger than an obstruction requiring exact, bit-independent
+readout values. It does not rule out selecting a different permutation
+for each requested sign word, or retaining only some hierarchical bits
+and choosing the unread bits adaptively. Such redundancy destroys the
+independent averaging step; it still requires a new simultaneous
+readout construction.
+
 \end{document}
