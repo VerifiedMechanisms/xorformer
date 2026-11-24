@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Binary hyperplanes: the joint correction equation}
+\maketitle
+
+\paragraph{Status.}
+This note gives exact written identities and a scoped obstruction to a
+particular shared-jet implementation.  It is not a Lean theorem or an
+improvement of the original worst-case head bound.  All table columns
+and all point memories below are independently arbitrary.
+
+\section{The larger cell and its interference}
+
+Let $G=\mathbb F_2^r$, let $\chi_\alpha(x)=(-1)^{\alpha\cdot x}$,
+and include the zero direction in the following sums.  For each
+direction $\alpha\in G$ choose a pole $p_\alpha$, and for each point
+$g\in G$ and column $j$ choose a token $t_{gj}<\min_\alpha p_\alpha$.
+The hyperplane memories are
+\[
+ Z_{\alpha,e}(j)=\sum_{g:\alpha\cdot g=e}
+             \frac{1}{p_\alpha-t_{gj}}.
+\]
+For a query bit $b$, choose fixed residues $\eta_b(\alpha)$ and put
+\[
+ F_b(t)=\sum_\alpha\frac{\eta_b(\alpha)}{p_\alpha-t},
+ \qquad
+ K_b(z,t)=\sum_\alpha\frac{\chi_\alpha(z)\eta_b(\alpha)}
+                                      {p_\alpha-t}.
+\]
+The formal main score obtained by selecting the hyperplane through $x$
+is exactly
+\[
+ \sum_\alpha\eta_b(\alpha)Z_{\alpha,\alpha\cdot x}(j)
+ =\frac12\sum_g F_b(t_{gj})
+  +\frac12\sum_g K_b(x+g,t_{gj}).                 \tag{1}
+\]
+Indeed, the equality indicator is
+$(1+\chi_\alpha(x+g))/2$; distributing the finite sums proves (1).
+The diagonal term has $K_b(0,t_{xj})=F_b(t_{xj})$.  Therefore the
+exact correction needed to obtain that diagonal lookup is
+\[
+ \frac12\sum_g F_b(t_{gj})
+ +\frac12\sum_{g\ne x}K_b(x+g,t_{gj})
+ -\frac12 F_b(t_{xj}).                           \tag{2}
+\]
+The first term is independent of the row and can be absorbed in a
+column correction.  The second is not: for every independently chosen
+$g$-memory it retains a whole Walsh transform of the Cauchy spectrum.
+
+In the affine plane, a distinct pair of points determines one line
+direction, so its corresponding correction is one Cauchy fraction.
+Here a distinct pair lies on $2^{r-1}$ of the selected hyperplanes.
+Replacing their sum by one Cauchy fraction is an additional, generally
+false interpolation equation.  It does not follow from shared geometry.
+
+For example, with $p_\alpha=D-\sum_i w_i\alpha_i$ and
+$\eta_b(\alpha)=1$, a character involving every coordinate gives
+\[
+ K_b((1,\ldots,1),t)
+ =\sum_{A\subseteq[r]}\frac{(-1)^{|A|}}
+                             {D-t-\sum_{i\in A}w_i}.
+\]
+This is the mixed finite-difference kernel already studied in
+\texttt{JointCellFilteredKernels.lean}.  It has many poles when the
+subset sums are distinct.  The binary geometry has therefore exposed
+the earlier tensor correction problem, not removed it.
+
+\section{What shared polynomial repair does and does not save}
+
+A parity on a support $S$ can be recovered from a suitable degree
+$|S|$ jet of a reciprocal affine statistic, after subtracting lower
+Boolean degrees.  In a joint table compiler, those subtractions have
+coefficients depending on the column tokens.  If residues depend on
+the queried bit, the subtraction coefficients depend on both $b$ and
+$j$.  They cannot be replaced by one label-independent correction.
+
+On the full $r$-cube, the union of all proper-degree row monomials has
+dimension $2^r-1$.  Paying one column-memory correction per row
+monomial and bit therefore costs $a(2^r-1)$ heads up to the constant
+cost of the admissible monomial primitive.  This cancels the proposed
+$a$-fold gain from $2^r$ point memories.  This is a cost statement for
+that implementation, not a lower bound for all rational scores.
+
+There is a second collapse to avoid.  If a proposed cancellation turns
+all column dependence into just $M$ arbitrary real residues against
+fixed row--bit features, each column lies in a fixed linear space of
+dimension at most $M$.  The number of its strict sign vectors on $aM$
+queries is at most $2\sum_{k=0}^{M-1}\binom{aM-1}{k}$, which is
+$(O(a))^M$.  It cannot represent all $2^{aM}$ sign vectors for growing
+$a$.  Keeping genuine, independently variable column poles may evade
+this particular linear-space obstruction.
+
+\section{The remaining moment-cancellation question}
+
+Orthogonal-array identities could in principle cancel lower jets
+across many hyperplanes before decoding.  Such an identity must hold
+with the actual token-dependent coefficients, not merely with uniform
+weights.  For instance,
+\[
+ \sum_\alpha\chi_S(\alpha)=0
+ \quad\not\Longrightarrow\quad
+ \sum_\alpha\frac{\chi_S(\alpha)}{(p_\alpha-t_{\alpha j})^k}=0
+\]
+for independent $t_{\alpha j}$.  Fixing every token except one and
+varying that remaining token already disproves the implication.
+An admissible jointly chosen token dictionary satisfying the needed
+moment equations while retaining arbitrary table signs remains open.
+
+\end{document}

@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Sharp finite-sample interpolation by rank-one tensor kernels}
+\maketitle
+
+\paragraph{Status.}
+The following is a complete written scalar proof, not a Lean
+declaration or an admissible original-model compiler.  It concerns a
+label-adaptive finite list of scalar samples.  It does not provide a
+fixed decoder containing every word of a growing bit alphabet.
+
+\begin{theorem}
+Let $c\geq1$, $q\geq2$, and $L=c(q-1)$.  Given any positive real
+numbers $r_1,\ldots,r_L$, there are real vectors
+$a_l(0),\ldots,a_l(q-1)$, $1\leq l\leq c$, such that
+\[
+ \sum_{\alpha\in\{0,\ldots,q-1\}^c}
+ \frac{\prod_l a_l(\alpha_l)}{z+\sum_l\alpha_l}
+ =\frac{L!\prod_{i=1}^L(z-r_i)}{z(z+1)\cdots(z+L)}
+ \qquad(z>0).                                      \tag{1}
+\]
+In particular a CP-rank-one tensor kernel attains its possible
+$c(q-1)$ positive zeros.  Those zeros can be prescribed in any
+nonempty positive interval, including an arbitrarily short interval
+strictly beyond any specified full-cube gap budget.
+\end{theorem}
+
+\begin{proof}
+Write $T_rP=-xP'(x)-rP(x)$ and start with $P_0(x)=(1-x)^L$.
+Recursively let $P_k=T_{r_k}P_{k-1}$.  We claim
+\[
+ P_k(x)=(1-x)^{L-k}Q_k(x),
+\]
+where $Q_k$ has degree $k$ and exactly $k$ distinct roots in $(0,1)$.
+For the induction step, put $d=L-k>0$.  If $Q=Q_k$, then
+\[
+ Q_{k+1}(x)=xdQ(x)-x(1-x)Q'(x)-r_{k+1}(1-x)Q(x).    \tag{2}
+\]
+At each root $u$ of $Q$, the value in (2) is
+$-u(1-u)Q'(u)$.  These values alternate signs.  At zero its value is
+$-r_{k+1}Q(0)$, and at one it is $dQ(1)$.  Consequently there is one
+root in each interval between consecutive members of
+$0,u_1,\ldots,u_k,1$.  Its degree is at most $k+1$, so these are all
+the roots and each is simple.  This proves the claim, including the
+initial case $Q_0=1$.
+
+For $z>0$, let ${\cal M}P(z)=\int_0^1x^{z-1}P(x)\,dx$.
+If $P(1)=0$, integration by parts gives
+\[
+ {\cal M}(T_rP)(z)=(z-r){\cal M}P(z).
+\]
+The boundary term at zero vanishes because $z>0$ and $P$ is a
+polynomial.  Each $P_k$ with $k<L$ vanishes at one.  The elementary
+beta integral for $(1-x)^L$ now yields
+\[
+ {\cal M}P_L(z)
+ =\frac{L!\prod_i(z-r_i)}{z(z+1)\cdots(z+L)}.       \tag{3}
+\]
+The polynomial $P_L$ has $L$ simple roots in $(0,1)$.  Group these
+roots into $c$ groups of $q-1$, assigning the nonzero leading
+coefficient to one group.  This factors
+$P_L(x)=\prod_l E_l(x)$ with
+$E_l(x)=\sum_{a=0}^{q-1}a_l(a)x^a$.
+Expanding the product and integrating its monomials proves (1).
+\end{proof}
+
+\paragraph{Finite-sample consequence.}
+For any $s\leq L+1$ ordered positive tokens, an arbitrary prescribed
+strict sign pattern at those tokens can be obtained by placing one
+root between exactly those consecutive tokens whose signs differ.
+Fill the remaining $L$ root slots with positive roots strictly to the
+right of all tokens, and multiply one tensor factor by a nonzero
+scalar of the required sign.  Thus each bit can interpolate its
+arbitrary $s$ labels by its own rank-one residue tensor.  The tensor
+factors may depend on the entire observed label list.
+
+\paragraph{Why this is not yet a larger-cell compiler.}
+With a fixed universal scalar decoder, $a$ bit readers having at most
+$L$ zeros each produce at most $1+aL$ strict sign words along an
+interval.  Therefore containing all $2^a$ words still requires
+$2^a\leq1+aL$.  Polynomially bounded $cq$ only gives
+$a=O(\log(cq))$ in that setting.
+
+The finite-sample version avoids this screen because the residue
+factors are chosen after the $s$ column words are supplied.  Its
+remaining problem is architectural.  For different bits $b$, the
+factors $a_{b,l}(\alpha_l)$ are independently different.  A point
+correction would have to produce
+\[
+ \prod_l a_{b,l}(\alpha_l)
+\]
+using an admissible affine numerator and denominator, without one
+separate copy for each bit or factor.  A bit shift in an affine block
+perturbation does not accomplish this: if
+$f_l(x_l,b)=A_l(x_l)+\beta_l(b)$, its row-block increment is exactly
+\[
+ f_l(x_l,b)-f_l(x_l^0,b)=A_l(x_l)-A_l(x_l^0),
+\]
+so the bit shift disappears from every mixed row jet.  Encoding $b$
+inside every block's physical one-hot coordinates would supply the
+coupling, but introduces dimension and consistency-cover costs that
+have not yielded a saving.  Higher jets retain more bit dependence,
+but their intermediate full-support orders have not been canceled
+with a sublinear number of heads per point.
+
+\end{document}
