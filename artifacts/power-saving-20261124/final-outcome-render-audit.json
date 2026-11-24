@@ -1,0 +1,18 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/RESEARCH_OUTCOME.md",
+    "source_spans": 2,
+    "rendered_spans": 2,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124/RESEARCH_OUTCOME.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ \\\\exists\\\\delta\\\\gt0\\\\ \\\\exists c\\\\gt0\\\\ \\\\exists n_0\\\\in\\\\mathbb N\\\\ \\\\forall n\\\\geq n_0,'"
+    ]
+  },
+  {
+    "file": "artifacts/power-saving-20261124/restriction_and_near_constant_obstructions.md",
+    "source_spans": 39,
+    "rendered_spans": 39,
+    "findings": [],
+    "notes": []
+  }
+]

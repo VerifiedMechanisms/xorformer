@@ -54,3 +54,9 @@ The requested exponent improvement is **not proved** at this checkpoint. The sup
 ## Verification distinctions
 
 Written proofs, exact finite computations, numerical experiments, and Lean kernel checks will be labeled separately. The final theorem must imply the original target without new axioms or `sorry` to count as a formal solution.
+
+## Closing checkpoint
+
+- **2026-11-24 13:06:39 UTC:** The new run has an elapsed window of 4 hours, 7 minutes, 18 seconds from the recorded start. Substantive mathematical investigation, candidate falsification, formalization, and independent verification continued beyond the four-hour threshold. No previous-run time, summed parallel-agent hours, deliberate sleep, or idle polling is counted as research. Queued computations were overlapped with other mathematical work; queue time is not added as research. There was no platform interruption. The elapsed figure is a clock interval, not a claim of second-by-second active-time measurement.
+- **Final verification:** Twenty auxiliary declarations in thirteen new Lean research modules passed the aggregate axiom audit, with only the standard three axioms and no admitted proofs. Source hashes and the audit transcript are saved. The new explicit all-face determinant construction and the near-constant Cauchy interpolation obstruction received a separate independent mathematical audit. The Markdown reports passed static, KaTeX, and faithful GitHub rendering checks.
+- **Exact outcome:** No unrestricted exponent improvement was obtained. No explicit exponent below two, no original-model lower-bound proof meeting the acceptance criterion, and no formal theorem of that target is claimed. The original definitions and target statement were not changed. The final research inventory and failure boundaries are in [RESEARCH_OUTCOME.md](RESEARCH_OUTCOME.md).

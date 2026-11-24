@@ -1,0 +1,56 @@
+'HeadComplexity.RadialSpanSeparation.target_computableWith_two_heads' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RadialSpanSeparation.not_exponentialScore_represents_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RadialContraction.target_computableWith_two_heads' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RadialContraction.not_small_scale_represents_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RadialJetAlgebra.tail_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.RadialJetAlgebra.moment_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RadialMovingNumeratorTransfer.uniform_moving_numerator_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineBooleanZeroDivisors.support_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoHeadBooleanDegeneracy.denominator_difference_support_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoHeadProductCompilation.uniform_two_head_sign_compilation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoHeadProductCompilation.affine_exponential_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoHeadOriginalProductBridge.original_two_heads_have_three_affine_exponential_terms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AntipodalProductRank.rank_eq_card_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AntipodalProductRank.product_width_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanInterpolationStability.denominator_product_upperStable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanInterpolationStability.interpolation_agrees_on_boolean_cube' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanInterpolationStability.multilinear_not_upperStable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteDifferenceCompilation.uniform_finite_head_sign_compilation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

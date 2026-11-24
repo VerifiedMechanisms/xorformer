@@ -3,3 +3,24 @@ Command: lake env lean HeadComplexity/Research/FiniteDifferenceCompilation.lean
 Exit code: 0
 HeadComplexity.FiniteDifferenceCompilation.uniform_finite_head_sign_compilation depends on axioms: [propext, Classical.choice, Quot.sound]
 Scope: analytic finite-input sign bridge for sum of products of scaled exponential differences. Subset grouping, Boolean product factorization, and arbitrary-H original-model wrapper remain written.
+
+Additional independent radial/global subagent audit, 2026-11-24 12:59 UTC.
+
+Command run from /work/formalization:
+lake env lean HeadComplexity/Research/FiniteDifferenceCompilation.lean
+
+Exit status: 0
+
+'HeadComplexity.FiniteDifferenceCompilation.uniform_finite_head_sign_compilation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+The source was independently read. The theorem quantifies arbitrary finite
+head and input types, arbitrary real numerator values, strictly positive
+denominator values, and a nowhere-zero score. Its conclusion gives one
+positive parameter interval on which the original score and compiled finite
+difference expression have the same strict signs at every input.
+
+The powerset expansion and the count of affine-times-product atoms are
+separate written steps. No original-model exponent-saving lower bound is
+asserted or verified by this theorem.

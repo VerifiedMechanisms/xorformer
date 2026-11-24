@@ -12,7 +12,7 @@ For fixed positive denominators and unrestricted affine numerators, strict Gorda
 
 The gradient and Hessian of the signed logarithmic potential have the stated signs. The two-bit Hessian has eigenvalues $-1/18$ and $4/9$ at the indicated normalized coefficient vector.
 
-For the stronger all-dimensional example, the weights are fixed at $lambda_x=1+|x|$ before differentiating the denominator parameters. At the all-ones denominator coefficient vector, the gradient is the parity sum against each affine coordinate, hence zero for $n\geq2$. Expanding the other Boolean coordinates under the elementary integral for the reciprocal gives diagonal and off-diagonal entries
+For the stronger all-dimensional example, the weights are fixed at $\lambda_x=1+|x|$ before differentiating the denominator parameters. At the all-ones denominator coefficient vector, the gradient is the parity sum against each affine coordinate, hence zero for $n\geq2$. Expanding the other Boolean coordinates under the elementary integral for the reciprocal gives diagonal and off-diagonal entries
 
 $$ d=\int_0^1t(1-t)^{n-1}dt=\frac1{n(n+1)},\qquad o=-\int_0^1t^2(1-t)^{n-2}dt=-\frac2{(n-1)n(n+1)}. $$
 
@@ -27,3 +27,5 @@ The later indicator proposition also passes independent audit. If two values $(a
 Distinct positive parameters $\beta_h\lt\varepsilon$ give distinct simple denominator factors in the univariate rational interpolant. Its numerator degree is strictly smaller than its denominator degree, so its partial fractions have constant real residues and no polynomial part. Substitution gives exactly the stated indicator as a sum of affine ratios. Each denominator slope is $\varepsilon+\beta_h$ or $\varepsilon-\beta_h$, hence strictly positive.
 
 Orthogonality to this exact table forces $\lambda_vF(v)=0$ and therefore $\lambda_v=0$ for every dual certificate. This is a statement about the fixed numerator span, not a claim that indicator sign labels themselves need polynomial width.
+
+The source note also makes nonvacuity explicit. For all sufficiently large $n$, the numerator span has dimension at most $(n+1)L\lt2^n$. Choose a nonzero orthogonal vector $w$, assign the target signs to match its nonzero coordinates, and take $\lambda=|w|$. This is an existing nonnegative certificate for that target, and every such certificate still vanishes at the prescribed vertex. This argument is correct.

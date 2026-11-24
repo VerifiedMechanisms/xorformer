@@ -1,0 +1,463 @@
+⚠ [3226/3232] Replayed HeadComplexity.Research.RadialMomentTransfer
+warning: HeadComplexity/Research/RadialMomentTransfer.lean:31:11: missing space in the source
+
+This part of the code
+  'B-t*C ≠ 0)'
+should be written as
+  'B - t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/RadialMomentTransfer.lean:43:29: missing space in the source
+
+This part of the code
+  'B-t*C h ≠'
+should be written as
+  'B - t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/RadialMomentTransfer.lean:225:49: missing space in the source
+
+This part of the code
+  'u*v) :'
+should be written as
+  'u * v)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/RadialMomentTransfer.lean:232:8: `uniform_kernel_sign_transfer` does not use the following hypothesis in its type:
+  • [Fintype X] (#4)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/RadialMomentTransfer.lean:262:8: `uniform_radial_sign_transfer` does not use the following hypothesis in its type:
+  • [Fintype X] (#4)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+info: HeadComplexity/Research/RadialMomentTransfer.lean:281:0: 'HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3227/3232] Replayed HeadComplexity.Research.RadialJetAlgebra
+info: HeadComplexity/Research/RadialJetAlgebra.lean:76:0: 'HeadComplexity.RadialJetAlgebra.tail_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/RadialJetAlgebra.lean:77:0: 'HeadComplexity.RadialJetAlgebra.moment_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3228/3232] Built HeadComplexity.Research.RadialSpanSeparation (1.0s)
+info: HeadComplexity/Research/RadialSpanSeparation.lean:135:0: 'HeadComplexity.RadialSpanSeparation.target_computableWith_two_heads' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RadialSpanSeparation.lean:136:0: 'HeadComplexity.RadialSpanSeparation.not_exponentialScore_represents_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3229/3232] Built HeadComplexity.Research.ConditionedReciprocalApproximation (1.9s)
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:53:56: missing space in the source
+
+This part of the code
+  'm*q) :'
+should be written as
+  'm * q)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:71:56: missing space in the source
+
+This part of the code
+  'm*q) :'
+should be written as
+  'm * q)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:92:20: missing space in the source
+
+This part of the code
+  'gamma*(|c|+∑'
+should be written as
+  'gamma * (|c|'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:92:25: missing space in the source
+
+This part of the code
+  'gamma*(|c|+∑ h,'
+should be written as
+  '(|c| + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:92:39: missing space in the source
+
+This part of the code
+  'F*(c+∑'
+should be written as
+  'F * (c'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:92:42: missing space in the source
+
+This part of the code
+  'F*(c+∑ h,'
+should be written as
+  '(c + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:93:23: missing space in the source
+
+This part of the code
+  'h-g h|'
+should be written as
+  'h - g'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:93:36: missing space in the source
+
+This part of the code
+  'gamma/2*M h)'
+should be written as
+  'gamma / 2'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:112:23: missing space in the source
+
+This part of the code
+  'm*q h)'
+should be written as
+  'm * q'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:113:21: missing space in the source
+
+This part of the code
+  'h/B h|'
+should be written as
+  'h / B'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:115:20: missing space in the source
+
+This part of the code
+  'gamma*(|c|+∑'
+should be written as
+  'gamma * (|c|'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:115:25: missing space in the source
+
+This part of the code
+  'gamma*(|c|+∑ h,'
+should be written as
+  '(|c| + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:115:39: missing space in the source
+
+This part of the code
+  'F*(c+∑'
+should be written as
+  'F * (c'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:115:42: missing space in the source
+
+This part of the code
+  'F*(c+∑ h,'
+should be written as
+  '(c + ∑'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:115:51: missing space in the source
+
+This part of the code
+  'h/B h))'
+should be written as
+  'h / B'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:116:29: missing space in the source
+
+This part of the code
+  '(-((d+1 : ℕ)'
+should be written as
+  '(-((d + 1'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:116:41: missing space in the source
+
+This part of the code
+  'ℝ)/m) ≤'
+should be written as
+  'ℝ) / m)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:116:52: missing space in the source
+
+This part of the code
+  'gamma/2) :'
+should be written as
+  'gamma / 2)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:128:0: 'HeadComplexity.ConditionedReciprocalApproximation.geometric_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:129:0: 'HeadComplexity.ConditionedReciprocalApproximation.exponential_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'HeadComplexity.ConditionedReciprocalApproximation.sign_preserved_of_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3230/3232] Built HeadComplexity.Research.RadialMovingNumeratorTransfer (1.9s)
+warning: HeadComplexity/Research/RadialMovingNumeratorTransfer.lean:90:29: missing space in the source
+
+This part of the code
+  'B+t*C h ≠'
+should be written as
+  'B + t'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/RadialMovingNumeratorTransfer.lean:225:8: `uniform_moving_numerator_sign_transfer` does not use the following hypothesis in its type:
+  • [Fintype X] (#4)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+info: HeadComplexity/Research/RadialMovingNumeratorTransfer.lean:250:0: 'HeadComplexity.RadialMovingNumeratorTransfer.uniform_moving_numerator_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3231/3232] Built HeadComplexity.Research.AffineBooleanZeroDivisors (2.1s)
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:22:0: automatically included section variable(s) unused in theorem `HeadComplexity.AffineBooleanZeroDivisors.coefficient_relations`:
+  [Fintype ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:22:8: `coefficient_relations` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:22:8: `coefficient_relations` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:40:8: `three_nonzero_slopes_force_zero` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:40:8: `three_nonzero_slopes_force_zero` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:67:8: `support_card_le_two` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:80:8: `exists_nonzero_slope` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:80:8: `exists_nonzero_slope` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:97:8: `two_slope_classification` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:97:8: `two_slope_classification` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:168:8: `one_slope_classification` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:168:8: `one_slope_classification` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:206:0: 'HeadComplexity.AffineBooleanZeroDivisors.coefficient_relations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:207:0: 'HeadComplexity.AffineBooleanZeroDivisors.three_nonzero_slopes_force_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:208:0: 'HeadComplexity.AffineBooleanZeroDivisors.support_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:209:0: 'HeadComplexity.AffineBooleanZeroDivisors.two_slope_classification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:210:0: 'HeadComplexity.AffineBooleanZeroDivisors.one_slope_classification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3232/3232] Built HeadComplexity.Research.TwoHeadBooleanDegeneracy (2.4s)
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:21:0: automatically included section variable(s) unused in theorem `HeadComplexity.TwoHeadBooleanDegeneracy.cross_coefficient_relations`:
+  [Fintype ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:21:8: `cross_coefficient_relations` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:21:8: `cross_coefficient_relations` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:40:8: `diagonal_support_card_le_four` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:27: missing space in the source
+
+This part of the code
+  'i*c j+a'
+should be written as
+  'i * c'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:31: missing space in the source
+
+This part of the code
+  'j+a j*c'
+should be written as
+  'j + a'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:35: missing space in the source
+
+This part of the code
+  'j*c i+d'
+should be written as
+  'j * c'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:39: missing space in the source
+
+This part of the code
+  'i+d i*b'
+should be written as
+  'i + d'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:43: missing space in the source
+
+This part of the code
+  'i*b j+d'
+should be written as
+  'i * b'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:47: missing space in the source
+
+This part of the code
+  'j+d j*b'
+should be written as
+  'j + d'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:41:51: missing space in the source
+
+This part of the code
+  'j*b i ='
+should be written as
+  'j * b'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:65:8: `exists_zero_diagonal` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:80:8: `factor_at_zero_diagonal` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:80:8: `factor_at_zero_diagonal` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:138:8: `denominator_difference_support_le_two` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:179:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.diagonal_support_card_le_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:180:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.exists_zero_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:181:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.factor_at_zero_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:182:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.denominator_difference_support_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3232 jobs).
