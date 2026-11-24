@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Adjacent-grid Cauchy profiles and their first support obstruction}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+This is a discarded global construction, with a still meaningful auxiliary
+local decoding question. It proves no improvement in the worst-case head
+bound. The original model and admissibility conditions are unchanged.
+The three elementary finite support statements below are kernel checked
+in \texttt{LargeDomainGridSupport.lean}. The rational construction and its
+interpretation in the Boolean cube are written arguments.
+
+\section{The auxiliary decoder}
+There are $a$ row blocks, each with $m$ one-hot coordinates. Source cells
+are $u\in\{0,\ldots,m-1\}^a$ and vertices are
+$v\in\{0,\ldots,m\}^a$. The nonnegative affine coarse coefficient at
+row coordinate $(i,t)$ is
+\[
+ C_{v,i,t}=(t+1/2-v_i)^2-1/4\geq0.
+\]
+It is zero exactly when $v_i=t$ or $v_i=t+1$. Thus on the valid one-hot
+row input $u$, precisely its $2^a$ adjacent vertices have zero coarse
+penalty. There are $G=m^a$ source cells and $H=(m+1)^a$ vertices. For
+$m\geq a$, $H/G$ is bounded by an absolute constant. Every row/query
+input can therefore interact with exponentially many heads in $a$;
+this passes the sparse-interaction degree screen that defeats polynomial
+active overlap.
+
+A generic nonnegative affine fine penalty $p_v$ can give all $2^a$
+adjacent cells distinct levels. Consider the local score
+\[
+ F_j(u,i)=\sum_{v\text{ adjacent to }u}
+ \frac{c_{vj}q_{vi}}{(b_{vj}+p_v(u))^2},
+ \qquad 1<b_{vj}<1+\eta.
+\]
+The vectors $q_v\in\mathbb R^a$ may be arbitrary and shared across the
+independently labeled columns $j$. The amplitudes $c_{vj}$ and poles
+$b_{vj}$ vary independently with the column. All of them may be chosen
+jointly after seeing the entire label family. This is not forced to be a
+gradient field: its query vectors need not equal corner displacements.
+
+Two heads per vertex give the displayed squared reciprocal as a query
+slope tangent. Both heads have the same coarse gate, the same column
+poles, opposite column numerators, and query slopes differing by a small
+multiple of $q_v$. A common slope guard permits either sign of each
+$q_{vi}$. Their score is exactly zero on the query axis and the column
+axis. Complementing all source coordinates makes the row slopes
+negative, consistently with the reverse local interfaces; taking the
+column embedding intercept above all compact poles also gives negative
+column slopes and a positive full-cube floor. The query tangent is taken
+first and the coarse penalty tends to infinity afterwards. These facts
+only provide a local score, not the required support on earlier layers.
+
+\section{The unique all-double input}
+For an interior vertex, $1\leq v_i\leq m-1$ for every $i$, select both
+row coordinates $v_i-1$ and $v_i$ in every block. Call this forward input
+$X_v$. It has weight $2a$. Its complement has reverse row weight
+$am-2a$, strictly below the target reverse row weight $am-a$ when $a>0$.
+A vertex $w$ has zero coarse penalty at $X_v$ if and only if, for every
+$i$, it is adjacent to both intervals $v_i-1$ and $v_i$. This forces
+$w_i=v_i$. Therefore only the vertex $v$ survives.
+
+\begin{proposition}
+At $X_v$, the limiting score on query $i$ and column $j$ is exactly
+\[
+ \frac{c_{vj}q_{vi}}{(b_{vj}+p_v(X_v))^2}.
+\]
+If the unmodified gated family must vanish on all earlier reverse layers,
+then $c_{vj}q_{vi}=0$ for every interior $v$, every query $i$, and every
+column $j$.
+\end{proposition}
+\begin{proof}
+The denominator is strictly positive on the full cube. The unique-gate
+observation removes every other summand, so a zero score forces the
+numerator product to be zero. In Lean, the declarations are
+\texttt{grid\_double\_compatible\_iff},
+\texttt{grid\_double\_score\_eq}, and
+\texttt{grid\_double\_zero\_forces\_residue}, in namespace
+\texttt{HeadComplexity.LargeDomain}.
+\end{proof}
+
+This rules out using the unmodified auxiliary decoder in the current
+reverse graded-shell compiler. It does not rule out extra cancellation
+banks, different source domains, different lower-layer behavior, or a
+nontriangular global construction. In particular, it is not a lower
+bound for unrestricted original-model heads.
+
+The tempting count $((m+1)^a-m^a)$ of missing-block exceptions uses the
+opposite orientation and is not valid here. After the required source
+complement, earlier reverse layers include multihot forward blocks.
+A formal product with roots at all row weights $a+1,\ldots,2a$ would
+remove this obstruction, but its degree is $a$ and there is no established
+cheap shared implementation that retains the generic fine Cauchy levels.
+
+\section{Finite exploratory calculation}
+A PyTorch search used $a=4,m=8,s=16$, so $G=4096,H=6561$, and
+$262144$ independent random signs. With fixed generic fine slopes and
+compact pole width $0.05$, the trainable parameters were the shared
+$q_{vi}$, the column amplitudes and offsets, and cheap query/column
+biases. There were $236260$ real parameters, fewer than target entries.
+After $22000$ Adam steps, $230$ sign constraints remained unsatisfied.
+This is only an optimization failure. It proves neither local
+nonrepresentability nor a positive exact decoder theorem. The support
+counterexample above is independent of this computation, and is the
+reason this route was stopped as a global candidate.
+
+\end{document}
