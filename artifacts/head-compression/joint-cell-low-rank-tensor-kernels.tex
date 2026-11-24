@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Low-rank tensor residues and compact exterior oscillation}
+\maketitle
+
+\paragraph{Status.}
+The scalar identities and continuity argument below are complete written
+proofs.  Their displayed endpoint inequalities have an independent exact
+rational certificate.  They are not Lean declarations.  No growing local
+decoder, admissible tensor correction, or new asymptotic bound for the
+original worst-case quantity follows from this note.
+
+\section{The exact tensor family}
+
+Fix $c$ pole blocks $p_l(0),\ldots,p_l(q-1)$.  A residue tensor of CP rank
+at most $R$ has a decomposition
+\[
+ A(\alpha_1,\ldots,\alpha_c)
+ =\sum_{r=1}^R\prod_{l=1}^c a_{rl}(\alpha_l).
+\]
+Its scalar exterior Cauchy kernel is
+\[
+ F(z)=\sum_{\alpha\in[q]^c}
+ \frac{A(\alpha)}{z+\sum_l p_l(\alpha_l)},
+ \qquad z> -\min_\alpha\sum_l p_l(\alpha_l).
+\]
+After shifting each pole block, suppose all poles are nonnegative.  Then
+\[
+ F(z)=\int_0^\infty e^{-zu}G(u)\,du,
+ \qquad G(u)=\sum_{r=1}^R\prod_{l=1}^c E_{rl}(u),
+ \qquad E_{rl}(u)=\sum_a a_{rl}(a)e^{-p_l(a)u}.
+\]
+For $R=1$, each nonzero exponential polynomial $E_{1l}$ has at most
+$q-1$ real zeros.  Thus $G$ has at most $c(q-1)$ sign changes.  The
+variation-diminishing property of the Laplace kernel gives the same
+upper bound for the number of distinct zeros of nonzero $F$ on its
+exterior half-line.  This argument does not extend by simply adding
+the root counts of two product terms.
+
+For integer poles, $x=e^{-u}$ identifies $G$ with a sum of $R$ products
+of sparse polynomials.  The common pole support across the $R$ terms
+is not a substantial restriction: for two products of $t$-sparse
+polynomials, pad each pair of factor supports to their union, of size
+at most $2t$, and use zero coefficients on missing exponents.  After
+rescaling the polynomial variable, any finite collection of positive
+roots lies in $(0,1)$.  Therefore a polynomial bound in $(c,q)$ for
+zeros of all rank-two densities $G$ would imply the two-summand case
+of the real tau-conjecture for positive roots.
+
+Grenet, Koiran, Portier and Strozecki explicitly identify the
+two-summand case as unresolved in their paper, and the Wronskian
+bound of Koiran, Portier and Tavenas is exponential in the number of
+distinct sparse factors.  This is a precise connection for the
+\emph{density} family.  It does not assert equivalence between the
+real tau-conjecture and the number of exterior zeros of its Laplace
+transform.  Variation diminution gives only the upper-bound direction.
+
+\section{Rank two can attain all eight available exterior zeros}
+
+\begin{theorem}
+There are two three-element nonnegative pole blocks and a real residue
+matrix of rank exactly two whose scalar exterior kernel has eight
+distinct positive zeros in an arbitrarily short interval.  Every zero
+lies strictly beyond the full-cube gap budget for the generic
+three-point-plane extension described in the tensor audit.
+\end{theorem}
+\begin{proof}
+Use the fixed blocks
+\[
+ p=(0,2947,9807),\qquad q=(0,202,1015).
+\]
+All nine sums $\lambda_{ab}=p_a+q_b$ are distinct.  Their optimized
+generic-row extension has the gap budget
+\[
+ B=(3\cdot9807-2\cdot2947)+(3\cdot1015-2\cdot202)=26168.
+\]
+For $D>B$ and $\varepsilon\geq0$, put
+\[
+ P_{D,\varepsilon}(z)=\prod_{i=0}^7(z-D-i\varepsilon),
+ \qquad Q(z)=\prod_{a,b}(z+\lambda_{ab}),
+ \qquad
+ A_{ab}(D,\varepsilon)=
+ \frac{P_{D,\varepsilon}(-\lambda_{ab})}
+ {\prod_{(a',b')\ne(a,b)}(\lambda_{ab}-\lambda_{a'b'})}.
+\]
+The denominator in the last expression equals $Q'(-\lambda_{ab})$
+because there are eight factors.  Equality of residues and decay at
+infinity prove the rational identity
+\[
+ \sum_{a,b}\frac{A_{ab}(D,\varepsilon)}{z+\lambda_{ab}}
+ =\frac{P_{D,\varepsilon}(z)}{Q(z)}.
+ \tag{1}
+\]
+Let $D_-=1001B/1000=3274271/125$ and $D_+=2B=52336$.
+The exact rational checker verifies
+\[
+ \det A(D_-,0)<0<\det A(D_+,0).
+ \tag{2}
+\]
+It also verifies these same two strict signs at $\varepsilon=1/10$.
+The complete rational values, rather than decimal approximations,
+are saved in the JSON certificate.
+
+Each determinant is a polynomial in $(D,\varepsilon)$ times a fixed
+nonzero rational constant.  Continuity of (2) therefore supplies
+$\varepsilon_0>0$ such that its strict signs persist whenever
+$0\leq\varepsilon<\varepsilon_0$.  For each positive such
+$\varepsilon$, the intermediate value theorem supplies
+$D_*\in(D_-,D_+)$ with $\det A(D_*,\varepsilon)=0$.
+Thus the matrix has rank at most two.  Identity (1) gives the eight
+distinct zeros $D_*+i\varepsilon$, all in an interval of width
+$7\varepsilon$.  They are all beyond $B$, with the uniform gap
+$D_--B=3271/125$.  The width can be made arbitrarily small.
+
+The matrix is nonzero by (1).  It cannot have rank one, because the
+rank-one Laplace product argument gives at most $2(3-1)=4$ exterior
+zeros.  Its rank is consequently exactly two.
+\end{proof}
+
+The gap and arbitrarily small interval leave room for any fixed finite
+column-token budget and strict negative filler slopes.  This statement
+checks the scalar denominator budget only.  Implementing the rank-two
+residues and repairing all tensor partial diagonals still requires the
+separate admissible-score construction; that construction is not claimed
+here.  Eight zeros at $(c,q,R)=(2,3,2)$ do not imply exponentially many
+zeros at growing $c$.
+
+The independent verifier is
+\begin{verbatim}
+python3 artifacts/head-compression/JointCellRankTwoExteriorCertificate.py
+\end{verbatim}
+It uses only integers and rational arithmetic.  It verifies both endpoint
+sign pairs, distinct poles, the gap budget, and rational partial-fraction
+evaluations.  The proof of (1) and the continuity argument establish the
+uniform statements beyond those finite evaluations.
+
+\section{What tensor trains would additionally require}
+
+A bounded-width matrix-product residue can have exponentially many CP
+terms, so it is not covered by a small-$R$ product-density argument.
+However, one mixed derivative of a scalar affine reciprocal gives a
+product of one factor from each row block.  A sum of $R$ such scalar
+channels gives precisely $R$ CP terms.  A noncommuting matrix-product
+description by itself does not supply an admissible scalar head.
+
+Encoding adjacent block pairs as new one-hot coordinates makes their
+local factors affine, but forces consistency between neighboring pairs.
+For $q^2$ states per original block, the consistent tuples number
+$q^{2c}$ inside a naive $q^{4c}$ independent pair-coordinate domain.
+Using only those tuples loses an exponential factor in that direct
+cover.  A useful tensor-train route therefore needs a new exact score or
+a cover that charges these consistency constraints without this loss.
+No impossibility statement for more general realizations is asserted.
+
+\paragraph{Primary sources.}
+\href{https://www-verimag.imag.fr/~grenetb/publis/GKPS11.pdf}
+{Grenet, Koiran, Portier and Strozecki, The Limited Power of Powering};
+\href{https://arxiv.org/pdf/1205.1015}
+{Koiran, Portier and Tavenas, A Wronskian Approach to the Real
+\(\tau\)-Conjecture}.
+\end{document}
