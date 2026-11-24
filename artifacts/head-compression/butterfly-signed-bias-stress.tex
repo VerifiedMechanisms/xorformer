@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A Signed Stress Word and the Effect of Block Biases}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+Exact rational certificates and guarded rational-function continuation,
+not Lean proofs. The fixed unbiased routing fails already at sixteen
+wires, even with unrestricted signed residues. The analogous thirty-two
+wire word succeeds with signed residues and legal independent block
+biases for every sufficiently small pole scale. Neither result is a
+universality theorem or an obstruction in the original HeadComplexity
+model.
+
+For $H=2^d$ use
+\[
+ p_y(\epsilon)=\sum_{j=0}^{d-1}y_j\epsilon^{2^j},\qquad
+ t_{k,s}=1-p_s(\epsilon).
+\]
+At every switch $e=(k,s,g)$ prescribe and route the bit
+\[
+ \theta_e=\left\lfloor s/2^{\max(0,k-1)}\right\rfloor\bmod2,
+ \qquad \sigma_e=1-2\theta_e.
+\]
+Every switch is retained. Let $\pi_\theta$ be the resulting butterfly
+permutation and let $u_{k,g}$ be the standard signed input-block Haar
+function. Define
+\[
+ A_e(c,\beta)=\sigma_e\left[
+ \sum_h\frac{u_{k,g}(h)c_{\pi_\theta(h)}}
+ {1-p_s-p_{\pi_\theta(h)}}+\beta_{k,g}\right].
+\]
+All denominators are positive for sufficiently small positive $\epsilon$.
+
+\begin{theorem}[Failure without biases]
+For $d=4$, no real residue vector $c$ makes every $A_e(c,0)$ positive,
+when $\epsilon=1/100$, or for any sufficiently small positive $\epsilon$.
+\end{theorem}
+\begin{proof}
+The file \texttt{butterfly-signed-unbiased-h16-dual.json} gives a
+normalized strictly positive dependence on the seventeen query rows
+\[
+ 5,6,11,12,16,19,20,21,23,24,25,26,27,28,29,30,31.
+\]
+There are no residue nonnegativity rows. The checker verifies the
+positive weights, their unit sum, and their exactly zero weighted row
+sum at $\epsilon=1/100$. Thus it excludes arbitrary real residues.
+
+Keeping this support, solve the sixteen column equations and unit-sum
+equation over $\mathbb Q(\epsilon)$. The guarded series calculation
+certifies a nonsingular square system and positive leading coefficients
+for all seventeen solution entries. Their vanishing orders lie between
+zero and twenty-nine. Therefore the normalized dependence remains
+strictly positive throughout some punctured interval
+$0<\epsilon<\epsilon_0$. Its positive weighted sum excludes the strict
+query system throughout that interval.
+\end{proof}
+
+\begin{theorem}[Success with block biases]
+For $d=5$, there are real residues and independent block biases making
+all eighty $A_e(c,\beta)$ positive, when $\epsilon=1/100$, and for every
+sufficiently small positive $\epsilon$. Both residues and biases may
+depend on $\epsilon$.
+\end{theorem}
+\begin{proof}
+There are $32+31=63$ variables. The file
+\texttt{butterfly-signed-biased-h32-germ.json} specifies a square basis
+of forty-nine signed query equations with right side one and fourteen
+coordinate-zero equations. At $\epsilon=1/100$, exact rational solution
+and substitution give all eighty signed scores at least one. Eighteen
+of the thirty-two residues are negative.
+
+The same basis defines a rational-function solution. Its nonsingularity
+and all eighty positive score leading coefficients are certified by
+exact power series arithmetic with explicit precision guards. The
+largest pivot order is seventy-four. To use only power series, the
+checker first multiplies the right side by $\epsilon^{384}$ and later
+subtracts that exponent when reporting the score orders. Every division
+uses a certified nonzero leading coefficient, and every final basis
+residual is certified zero beyond order $384$. The calculation thus
+computes genuine leading coefficients of the unique rational-function
+solution, rather than evaluating a small floating-point parameter.
+
+Each of the finitely many nonzero score functions has the sign of its
+positive leading coefficient on a sufficiently small positive interval.
+Take the minimum of these finitely many thresholds and the denominator
+positivity threshold. Dividing the common scaled solution by the
+positive $\epsilon^{384}$ gives the asserted strict solution.
+\end{proof}
+
+\paragraph{Reproducible verification.}
+Run \texttt{heavy python3 artifacts/head-compression/}
+\texttt{butterfly-signed-bias-stress-check.py}. The checker uses no
+feasibility solver. It reconstructs the finite basis solutions and all
+matrices independently from the saved routing, then verifies the guarded
+series certificates. These are computational proofs of the two stated
+finite-dimensional rational-function claims. They do not establish a
+uniform construction as $d$ grows. In particular, the unbiased failure
+must not be presented as a failure of the biased or auxiliary-routing
+families.
+\end{document}
