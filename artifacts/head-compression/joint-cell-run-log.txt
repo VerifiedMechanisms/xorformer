@@ -128,3 +128,85 @@ shared proper-face corrections. The row domain has q^(2c) points in c*q^2
 coordinates. Before claiming a gain, resolve the non-affine decoder residue
 tensor and the label-dependent partial-diagonal sums. Hierarchical additive
 poles may give a compatible residue factorization; this is unproved.
+
+TWO-HOUR CHECKPOINT, 2026-11-24 17:30 UTC (about 120 minutes)
+Branch ar/027ac8030b43. Research began 15:30:09 UTC; deadline is
+2026-11-25 03:30:09 UTC. This is a checkpoint, not a handoff or completion.
+Strongest unconditional theorem remains
+HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving in
+formalization/HeadComplexity/Results/JointCellGlobalBound.lean:
+W(n) <= 151010*2^n/(n*Real.log n) for n >= 32.
+No fixed-power improvement and no explicit unbounded extra factor is proved.
+The original model, admissibility conditions, HStar and W definitions have
+not changed. All new interfaces are explicitly conditional.
+
+New kernel-checked positive progress:
+* CubeTwoStarTransfer combines the full row cube before the outer two-star
+  covers. Global cost 484*2^(a+b)*M/(a*b)+2^(k+a)+2^(k+b). The finite proof
+  charges overlaps, outside-downset suppression, exact axes, prior signs,
+  whole-cube positivity and the two exceptional faces. This corrects a
+  tempting invalid simultaneous three-axis gluing argument: lower-row
+  correction identities are only justified on one-hot bit/column inputs.
+* CubeStarPairedDecoder allows row directions and affine row numerators to
+  be chosen after all independent column labels are known. A compact paired
+  score has exactly 2H reverse heads and an exact zero-column axis. It gives
+  W(k+s) <= 22*2^s*(2H)/s+2^(k+1), under the stated universal decoder hypothesis.
+* JointCellSampleDependentPoles allows every affine-plane point's pole
+  pencil to depend on its own entire finite label sample, still at 3q^2+4
+  heads. This avoids imposing an unnecessary open-token-box identity.
+* JointFamilyMomentCurve proves a large permutation fiber with all common
+  polynomial jets through order d and an exact reciprocal remainder.
+  JointFamilyPermutationData supplies admissible 2H-head banks, arbitrary
+  independent column permutations, and exact zero-column/zero-row identities.
+* Weighted layer covers charge actual decoder and exception costs, with
+  K*choose(k+c,c)*|S|+B*|T| <= choose(m,k)*(K*log B+1).
+  Shared monomial corrections and strict affine-product pairs are checked.
+
+Decisive obstructions and their scope:
+* Fixed equal-step order-c scalar filters obey 2^a-1 <= a*q*(c+1), so their
+  word efficiency a/q is O(log(c+2)). Allowing growing q does not remove it.
+* Tensor-plane main incidence sums can share lower-face corrections, but
+  arbitrary decoder residues on a slope tuple are not affine on the query
+  blocks. Partial diagonals contain independently label-dependent sums.
+  Exact open-box vector-token identities require matching pole normals;
+  this does not rule out adaptive finite token samples.
+* A nonnegative affine penalty vanishing at an antipodal pair is identically
+  zero. Thus complementary-rail matching cubes cannot be selected by the
+  current affine-penalty gluing, even if a matching cover is efficient.
+* A fixed regular compact dictionary misses an orthant in every sufficiently
+  small intercept neighborhood. Singular/eta-dependent dictionaries and
+  directions chosen jointly after the family labels are not covered.
+* Permutation entropy alone gives no orthant theorem. Low jets of the
+  moment-curve family lie in O(kR^2) features. Naive conditioning through a
+  rank-saturating order R≈sqrt(2^k/k) loses more entropy than H! supplies.
+  This is a failed quantitative approach, not an impossibility theorem.
+
+Finite computations are kept distinct from proofs. Twenty independently
+sampled k=5,s=5,H=6 paired families (actual 2H+1 heads including a column
+bias) have exact rational denominator margins and all 3200 signs verified.
+They establish neither a universal k=5 theorem nor asymptotic scaling.
+Unsuccessful k=6 and k=7 searches give no lower bound. A scalar additive
+residue Wronskian reversal is outside the whole-cube positivity margin;
+it is not an admissible decoder. A variance-matching attempt to move that
+reversal into the exterior tail fails a positive quadratic discriminant test.
+
+Verification: latest default lake build passed, 9293 jobs. The committed
+paired-family and cube-two-star audit transcripts print only
+[propext, Classical.choice, Quot.sound] for their listed declarations.
+The strongest global theorem was already audited with those same axioms.
+Latest root implementation commit a1e35811; preceding outer-transfer
+implementation e597abf0, with corrected successful audit eab294d5.
+
+Next genuinely different attempts:
+1. Distinct compact baseline poles with column-dependent matching cancel at
+   order zero. Shared affine row perturbations then give H*k rather than H
+   first-order features. Prove the complete 2H-head tangent transfer, then
+   attack its projected permutation-orbit orthant condition for an arbitrary
+   family of s labels. Full row rank alone does not establish this condition.
+2. Cancel moment-curve low jets with a shared exterior-pole polynomial
+   correction of only (kR+1)(R+1) heads, retaining all permutations instead
+   of restricting to one moment fiber. Test residual coverage and anisotropy.
+3. Continue additive tensor residue analysis strictly inside the denominator
+   margin. A finite-center oscillation that violates this margin is a failed
+   lemma, not evidence for the benchmark. Explore whether adaptive finite
+   pole pencils can overcome the partial-diagonal correction cost.
