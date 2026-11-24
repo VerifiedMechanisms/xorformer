@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{An Exact Feature Bound for Separable Reciprocal Queries}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Scope and verification.}
+This is a complete written sign-pattern bound for a fixed-query row
+family. It is not Lean checked. In particular, it is not an unrestricted
+HeadComplexity lower bound. Its two-head case is sharp, by the existing
+five-query construction in \texttt{reverse-joint-five-row.tex}, and also
+by the arbitrarily compact five-query construction. Its general bound is
+exponential in the number of heads, so it does not exclude a
+superconstant saving in the requested local compiler.
+
+Fix real query data $D_{hj},b_{hj}$, with $1\leq h\leq H$ and
+$1\leq j\leq q$. The variable row parameters are $a_h,p_h$, restricted
+only by $D_{hj}-p_h>0$ for every $h,j$. Consider the strict signs of
+\[
+ F_j(a,p)=\sum_{h=1}^H\frac{a_h+b_{hj}}{D_{hj}-p_h}.
+ \tag{1}
+\]
+There is no separately variable row bias in (1). A fixed query-dependent
+bias would change the feature calculation, as would adding a separately
+variable row bias. Neither operation is silently included below.
+
+\begin{theorem}
+For $H\geq1$, the family (1) has strict VC dimension at most
+$2^{H+1}-3$. In particular, one head cannot shatter two queries and two
+heads cannot shatter six queries.
+\end{theorem}
+\begin{proof}
+For $S\subseteq[H]$, put $p_S=\prod_{h\in S}p_h$, with $p_\varnothing=1$.
+For nonempty $S$, put
+\[
+ A_S=\sum_{h\in S}a_h p_{S\setminus\{h\}}.
+\]
+Multiplying (1) by its positive denominator product gives
+\[
+ P_j=\sum_h(a_h+b_{hj})\prod_{k\ne h}(D_{kj}-p_k).
+\]
+Expanding the products and grouping the terms containing an $a_h$ gives
+\[
+ \begin{split}
+ P_j={}&\sum_{\varnothing\ne S\subseteq[H]}
+       (-1)^{|S|-1} A_S\prod_{k\notin S}D_{kj}\\
+ &+\sum_{S\subsetneq[H]}(-1)^{|S|}p_S
+       \sum_{h\notin S}b_{hj}
+          \prod_{k\notin S\cup\{h\}}D_{kj}.
+ \end{split}                                                    \tag{2}
+\]
+Indeed, an $a_h p_T$ term occurs precisely when $h\notin T$;
+setting $S=T\cup\{h\}$ gives the first line. The remaining terms give
+the second line directly.
+
+Consequently every $P_j$ is an affine function of the common features
+\[
+ (A_S)_{\varnothing\ne S\subseteq[H]},\qquad
+ (p_S)_{\varnothing\ne S\subsetneq[H]}.
+\]
+There are $(2^H-1)+(2^H-2)=d:=2^{H+1}-3$ features.
+An arbitrary feature image, including the one here, can visit no more
+strict sign patterns of $q$ affine functions on $\mathbb R^d$ than the
+whole space does.
+
+For completeness, $q$ affine hyperplanes in $\mathbb R^d$ have at most
+$\sum_{i=0}^d\binom qi$ complementary regions. Adding the final
+hyperplane splits only regions met by it, and its intersections with
+previous hyperplanes form an arrangement in dimension at most $d-1$.
+Induction therefore gives the recurrence
+$R(q,d)\leq R(q-1,d)+R(q-1,d-1)$ and the stated binomial bound.
+Every nonempty strict sign cell is an intersection of open half-spaces,
+hence convex and connected, so there is at most one cell for each
+region and no extra sign patterns. Degenerate or constant affine
+functions only decrease this count. If $q=d+1$, the bound is
+$2^q-1$, strictly less than all $2^q$ sign patterns. Shattering a larger
+set would shatter a subset of size $d+1$, which is impossible.
+\end{proof}
+
+\paragraph{The sharp two-head calculation.}
+For $H=2$, the five features can be written
+\[
+ a_1,\quad a_2,\quad p_1,\quad p_2,\quad
+ z=a_1p_2+a_2p_1.
+\]
+The exact cleared query is
+\[
+ P_j=-z+D_{2j}a_1+D_{1j}a_2-b_{2j}p_1-b_{1j}p_2
+       +b_{1j}D_{2j}+b_{2j}D_{1j}.
+ \tag{3}
+\]
+Thus six queries give six affine hyperplanes in five-dimensional feature
+space, with at most $63$ strict sign cells. The parameter image lies on
+the graph $z=a_1p_2+a_2p_1$, but no geometric property of that graph is
+needed for this upper bound. The five-query lower construction therefore
+attains the largest possible number of shattered queries in (1).
+The higher-head bounds given by the same argument are $13$ for three
+heads and $29$ for four heads. They are not asserted to be sharp.
+
+\paragraph{What remains open.}
+The feature count does not establish an $O(H)$ VC bound. The degree and
+number of features grow with $H$, and the positive-denominator parameter
+region can have many algebraic fibers without acquiring correspondingly
+many orthants. Controlling the strict sign patterns of this family as
+$H$ grows is still open in this run. Even an $O(H)$ result here would
+need a separate argument before implying a lower bound for all original
+HeadComplexity representations.
+
+The companion exact checker evaluates (2) at rational parameters for
+$1\leq H\leq7$, checks positivity of all denominators, and checks the
+special two-head formula (3). The proof of (2) itself is the product
+expansion above, not an inference from those tests.
+\end{document}

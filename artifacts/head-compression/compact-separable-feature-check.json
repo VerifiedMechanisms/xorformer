@@ -1,0 +1,148 @@
+{
+  "status": "all exact rational identities passed",
+  "checks": [
+    {
+      "heads": 1,
+      "seed": 1,
+      "feature_dimension": 1
+    },
+    {
+      "heads": 1,
+      "seed": 2,
+      "feature_dimension": 1
+    },
+    {
+      "heads": 1,
+      "seed": 3,
+      "feature_dimension": 1
+    },
+    {
+      "heads": 1,
+      "seed": 4,
+      "feature_dimension": 1
+    },
+    {
+      "heads": 2,
+      "seed": 1,
+      "feature_dimension": 5
+    },
+    {
+      "heads": 2,
+      "seed": 2,
+      "feature_dimension": 5
+    },
+    {
+      "heads": 2,
+      "seed": 3,
+      "feature_dimension": 5
+    },
+    {
+      "heads": 2,
+      "seed": 4,
+      "feature_dimension": 5
+    },
+    {
+      "heads": 3,
+      "seed": 1,
+      "feature_dimension": 13
+    },
+    {
+      "heads": 3,
+      "seed": 2,
+      "feature_dimension": 13
+    },
+    {
+      "heads": 3,
+      "seed": 3,
+      "feature_dimension": 13
+    },
+    {
+      "heads": 3,
+      "seed": 4,
+      "feature_dimension": 13
+    },
+    {
+      "heads": 4,
+      "seed": 1,
+      "feature_dimension": 29
+    },
+    {
+      "heads": 4,
+      "seed": 2,
+      "feature_dimension": 29
+    },
+    {
+      "heads": 4,
+      "seed": 3,
+      "feature_dimension": 29
+    },
+    {
+      "heads": 4,
+      "seed": 4,
+      "feature_dimension": 29
+    },
+    {
+      "heads": 5,
+      "seed": 1,
+      "feature_dimension": 61
+    },
+    {
+      "heads": 5,
+      "seed": 2,
+      "feature_dimension": 61
+    },
+    {
+      "heads": 5,
+      "seed": 3,
+      "feature_dimension": 61
+    },
+    {
+      "heads": 5,
+      "seed": 4,
+      "feature_dimension": 61
+    },
+    {
+      "heads": 6,
+      "seed": 1,
+      "feature_dimension": 125
+    },
+    {
+      "heads": 6,
+      "seed": 2,
+      "feature_dimension": 125
+    },
+    {
+      "heads": 6,
+      "seed": 3,
+      "feature_dimension": 125
+    },
+    {
+      "heads": 6,
+      "seed": 4,
+      "feature_dimension": 125
+    },
+    {
+      "heads": 7,
+      "seed": 1,
+      "feature_dimension": 253
+    },
+    {
+      "heads": 7,
+      "seed": 2,
+      "feature_dimension": 253
+    },
+    {
+      "heads": 7,
+      "seed": 3,
+      "feature_dimension": 253
+    },
+    {
+      "heads": 7,
+      "seed": 4,
+      "feature_dimension": 253
+    }
+  ],
+  "two_head_maximum_shattered_queries": 5,
+  "six_affine_hyperplanes_in_R5_region_bound": 63,
+  "verification_scope": "written theorem plus exact rational tests, not Lean"
+}
