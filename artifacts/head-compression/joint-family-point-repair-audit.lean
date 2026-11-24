@@ -1,0 +1,4 @@
+import HeadComplexity.Results.JointFamilyPointRepair
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_isolated_level_repair
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_point_repair
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_point_family_repair

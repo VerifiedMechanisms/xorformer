@@ -1,0 +1,7 @@
+'HeadComplexity.AxisZeroGluing.jointFamily_isolated_level_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_point_repair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_point_family_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

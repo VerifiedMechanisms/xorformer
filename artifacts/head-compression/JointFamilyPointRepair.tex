@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Exact shared repair of arbitrary row exceptions}
+\maketitle
+
+\paragraph{Kernel-checked statement.}
+For every $k$-bit row $x_0$ and arbitrary real amplitudes $c_j$ in $s$
+independent columns, there is a reverse cube--star bank of
+$k(k+1)+1$ heads whose score is exactly $c_j$ at $(x_0,j)$ and exactly zero
+at every other row. Every denominator is positive on the whole Boolean
+cube, every local slope is strictly negative, and the column axis is
+exactly zero. The declaration is
+\texttt{HeadComplexity.AxisZeroGluing.jointFamily\_point\_repair}
+in \texttt{JointFamilyPointRepair.lean}.
+The declaration \texttt{jointFamily\_point\_family\_repair} combines $m$
+exceptional rows at cost $m(k(k+1)+1)$, independently of the number of
+columns.
+
+\paragraph{Construction.}
+Give coordinate $i$ weight $1$ when $(x_0)_i=1$, and $k+1$ otherwise.
+The statistic $v(x)=\sum_i w_i x_i$ takes integer values between zero and
+$k(k+1)$, and $v(x)=v(x_0)$ only at $x=x_0$. Indeed any outside coordinate
+would contribute $k+1$, larger than $v(x_0)\leq k$; with outside
+coordinates absent, equality forces every coordinate of $x_0$ present.
+Let $Q$ be the Lagrange basis polynomial of the distinguished integer
+$v(x_0)$ among these $k(k+1)+1$ levels. The inherited barycentric identity
+writes a scaled version of $Q(v(x))$ as
+\[
+ \sum_{h=0}^{R}\frac{a_{hj}}{T+h-v(x)}
+   = P_j(v(x))\prod_{h=0}^{R}\frac{T+h}{T+h-v(x)},
+ \qquad R=k(k+1).
+\]
+Choosing $P_j$ as $c_j Q$ divided by the product at $x_0$ gives the exact
+indicator values. On the complete row--column Boolean cube use
+\[
+ D_h(x,z)=T+h+1-v(x)-\sum_jz_j,
+ \qquad N_h(x,z)=\sum_j a_{hj}z_j,
+ \qquad T>\sum_iw_i+s.
+\]
+These formulas certify all denominator, slope, and axis conditions, not
+just their restrictions to the required one-hot columns.
+
+A sharper written count uses weights $1$ and $a+1$, where $a=|x_0|$.
+Its number of distinct levels is $(a+1)(k-a+1)$, at most $(k+2)^2/4$.
+The checked declaration uses the simpler uniform quadratic bound above.
+
+\paragraph{Consequence for approximation routes.}
+If a proposed joint decoder has squared Frobenius error $E$ from a sign
+matrix, every row containing an incorrect or zero sign contributes at
+least one to that error. Thus fewer than $E+1$ rows require repair. The
+exact indicator bank repairs all their independent column values at a
+quadratic cost per row, leaving all prior correct row signs unchanged.
+For a block weak learner of cost $L$ and squared normalized correlation
+$\gamma^2$, the usual matching-pursuit estimate therefore gives a
+head budget of order
+\[
+ \frac{L}{\gamma^2}\log\frac{Ms}{E}+E k^2.
+\]
+In the balanced regime $M=2^k$, $s\asymp k$, choosing
+$E=M/k^3$ makes the logarithm $O(\log k)$ and the repair term $O(M/k)$.
+A benchmark-sized budget $O(M/\sqrt{k})$ would follow from a uniform
+block gain
+\[
+ \frac{\gamma^2}{L}\gg\frac{\sqrt{k}\log k}{M}.
+\]
+No such uniform gain is proved here. This accounting removes the need
+to drive the total error below one, but fully charges all exceptional
+rows and every head in the weak learner.
+\end{document}
