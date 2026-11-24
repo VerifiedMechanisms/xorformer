@@ -1,0 +1,14 @@
+⚠ [3227/3227] Built HeadComplexity.Research.GenericOneHeadBranchCount (78s)
+warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:16:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 8000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:41:52: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:41:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (3227 jobs).

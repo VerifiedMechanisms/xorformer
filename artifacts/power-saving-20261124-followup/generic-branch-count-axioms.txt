@@ -1,0 +1,15 @@
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.sign_fixed_outside_exceptional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.positiveTable_eq_one_of_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.positiveBasisTables_eq_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.positiveBasisTables_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.positiveTable_eq_one_of_two_of_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
