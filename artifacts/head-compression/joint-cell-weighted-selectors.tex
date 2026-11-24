@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\rank}{\operatorname{rank}}
+\title{Weighted support bounds for separately compiled line selectors}
+\author{Joint-cell label audit}
+\date{November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a written proof using an external rank theorem, not a Lean theorem.
+It concerns exact rational line selectors compiled separately before decoding.
+It does not bound arbitrary xorformer scores, approximate selectors, or a decoder
+that directly combines several cells without exposing their line selectors.
+All matrix weights below may depend on the individual selector.
+
+\paragraph{Rank theorem used.}
+Theorem 1.3 of Dvir, Saraf, and Wigderson,
+\emph{Improved rank bounds for design matrices and a new proof of Kelly's theorem},
+Forum of Mathematics, Sigma 2 (2014), e4,
+\href{https://doi.org/10.1017/fms.2014.2}{doi:10.1017/fms.2014.2}, states that an
+$m\times v$ complex matrix whose rows have at most $r$ nonzero entries,
+columns have at least $k>0$ nonzero entries, and pairs of distinct columns
+have at most $t$ common nonzero rows has
+\begin{equation}\label{eq:dsw}
+ \rank M\geq \frac{v}{1+r(r-1)mt/(vk^2)}.
+\end{equation}
+The theorem depends only on the zero pattern, so positive denominator products
+need not coincide between selectors.
+
+\begin{proposition}[Arbitrary retained supports]\label{prop:arbitrary}
+Let $P\subseteq\FF_q^2$ have $v>0$ points, and let $\mathcal L$ be a family of
+$m$ distinct nonvertical affine lines. Suppose every point of $P$ lies on at
+least $k>0$ members of $\mathcal L$. Assign each $p\in P$ an address
+$x_p\in\{0,1\}^n$. For each $\ell\in\mathcal L$, suppose
+\[
+ S_\ell(x)=\beta_\ell+\sum_{h=1}^{c_\ell}
+ \frac{A_{\ell h}(x)}{B_{\ell h}(x)},\qquad c_\ell\leq c,
+\]
+where $\beta_\ell$ is constant, $A_{\ell h},B_{\ell h}$ are real affine
+polynomials, and every $B_{\ell h}$ is nonzero on these addresses. Suppose
+$S_\ell(x_p)\neq0$ if and only if $p\in\ell$. Then
+\[
+ D(n,c):=\sum_{j=0}^{\min(c,n)}\binom nj
+ \ \geq\ \frac{v}{1+q(q-1)m/(vk^2)}.
+\]
+In particular, original-model denominators positive on the entire Boolean
+cube satisfy the denominator hypothesis.
+\end{proposition}
+\begin{proof}
+Multiply each selector by its own denominator product. The resulting
+polynomial $P_\ell$ has degree at most $c$ and exactly the same nonzero
+pattern on $P$. Multilinear reduction preserves its values on Boolean
+addresses and does not increase degree. Thus the rows of the matrix
+$M_{\ell p}=P_\ell(x_p)$ lie in an evaluation space of dimension at most
+$D(n,c)$. Each line contains at most $q$ points, and two distinct points
+lie on at most one nonvertical line. Apply \eqref{eq:dsw} with $r=q,t=1$.
+No common denominator across rows was used.
+\end{proof}
+
+\begin{corollary}[Active slope classes]\label{cor:active}
+If $P=\FF_q^2$ and $\mathcal L$ consists of all lines in $k$ slope classes,
+where $1\leq k\leq q$, then
+\[
+ D(n,c)\geq\frac{q^2k}{k+q-1}\geq\frac{kq}{2}.
+\]
+Zero residue directions must be deleted before applying this result.
+For arbitrary retained supports, Proposition~\ref{prop:arbitrary} applies
+only after establishing a positive minimum incidence degree.
+\end{corollary}
+\begin{proof}
+There are $m=kq$ rows, $v=q^2$ columns, and every column has exactly $k$
+nonzero entries. Substitute these parameters in Proposition~\ref{prop:arbitrary}.
+\end{proof}
+
+\begin{proposition}[All decoder bits remove the zero-residue loophole]
+Let $q=2^a$, $a\geq1$, and let $t_1<\cdots<t_q$ be scalar tokens in an
+interval $I$. For each bit $b\in\{1,\ldots,a\}$, let
+\[
+ R_b(t)=\gamma_b+\sum_{\alpha\in S_b}
+       \frac{\eta_{b\alpha}}{d_\alpha-t},
+ \qquad 0\neq\eta_{b\alpha}\in\RR,
+\]
+with distinct poles outside $I$. Suppose the strict sign vectors of
+$(R_b(t_j))_{b=1}^a$ are pairwise distinct. Write $k_b=|S_b|\leq q$.
+For every $b$ and every slope in $S_b$, suppose exact selectors as in
+Proposition~\ref{prop:arbitrary}, of at most $c$ heads each, are available
+for all lines of that slope. Addresses may depend on $b$. Then
+\begin{equation}\label{eq:budget}
+ a D(n,c)\geq\frac{q(q-1)}2.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Clearing $R_b$ gives a nonzero polynomial of degree at most $k_b$; its
+denominator has constant sign on $I$. Each of the $q-1$ consecutive token
+gaps contains a sign change in at least one bit, hence a root of the
+corresponding polynomial. Roots in distinct gaps are distinct, and
+therefore $q-1\leq\sum_b k_b$. For $k_b>0$, Corollary~\ref{cor:active}
+gives $D(n,c)\geq k_bq/2$. For $k_b=0$ the same weak inequality is trivial.
+Sum these inequalities over $b$.
+\end{proof}
+
+\paragraph{Accounting consequence, and its limit.}
+For $1\leq c\leq n$, $D(n,c)\leq(en/c)^c$ (the bound is immediate for
+$c>n/2$ from $D\leq2^n$). Since $q-1\geq q/2$, \eqref{eq:budget} implies
+\[
+ 2\log q\leq c\log(en/c)+\log(4a).
+\]
+As $q=2^a$, this forces $c=\Omega(a/\log n)$ in the growing-$a$ regime.
+Consequently, a compiler that assigns a uniform budget of $c$ heads to
+\emph{each} of its $q^2$ line selectors cannot improve the gain
+$a/c$ beyond $O(\log n)$ by increasing the field size. This last accounting
+statement assumes the uniform $cq^2$ cost; the bound on a maximum selector
+budget alone is not a lower bound on the sum of unequal selector costs.
+It also grants multiplication of a selector by its memory feature for free;
+such multiplication can violate affine numerator admissibility and needs
+its own construction. Sharing heads across many selectors, nonuniform
+budgets, directly decoded joint memories, and controlled approximation
+remain outside this conclusion.
+
+\paragraph{Formal pieces already available.}
+The scalar sign-change argument is formalized in
+\texttt{JointFamilyScalarCapacity.lean}. The exact fixed-feature incidence
+rank obstruction is formalized in \texttt{JointFamilyIncidenceObstruction.lean}.
+The external weighted-design theorem and its composition here have not been
+formalized. The positive local compiler improvement in
+\texttt{JointCellRankRepair.lean} is independent of this written obstruction.
+\end{document}
