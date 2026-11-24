@@ -12,3 +12,18 @@ The file imports HeadComplexity.Results.LargeDomainGridRouting and prints both d
 The unpadded combinatorial injection is kernel checked. The padded variant and
 analytic stability estimate are written proofs. No source-localizing attention
 realization or improved unconditional W(n) estimate is claimed.
+
+Extended verification 2026-11-24 19:42 UTC.
+Command: lake build HeadComplexity.Results.LargeDomainGridRouting
+Result: Build completed successfully (3137 jobs).
+
+'HeadComplexity.LargeDomain.exists_interval_padded_sign_injection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.exists_grid_padded_sign_injection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.exists_grid_padded_margin_injection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.grid_kernel_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.grid_kernel_preserves_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+The padded injection, its real margin and magnitude bounds, and the sufficient
+kernel perturbation estimate are now kernel checked. The O(1) overhead and
+Omega(1/a) normalized-margin asymptotic are elementary written consequences.
+The admissible source localization or dense mixed-routing realization remains open.

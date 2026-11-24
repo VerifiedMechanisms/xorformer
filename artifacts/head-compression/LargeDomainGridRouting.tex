@@ -36,12 +36,12 @@ slice. Equal complete outputs have equal first coordinates, then equal suffixes
 by the inductive injection, and finally equal original first coordinates by
 the one-dimensional injection. This proves injectivity and all coordinate signs.
 
-\paragraph{A robust variant, currently written proof.}
+\paragraph{A kernel-checked robust variant.}
 For an integer $r\geq0$, enlarge the catalog in each coordinate to
 $\{-r,-r+1,\ldots,m+r\}$. Send the negatives to the lowest available integers
 and the positives to the highest available integers in the same construction.
 Every signed displacement then has magnitude at least $r+\tfrac12$ and absolute
-value at most $m+r+\tfrac12$. The induction is unchanged. The head/source ratio
+value at most $m+r+\tfrac12$. The induction is unchanged. The declarations \texttt{exists\_grid\_padded\_sign\_injection} and \texttt{exists\_grid\_padded\_margin\_injection} check the injection and its real margin. The head/source ratio
 would be
 \[
  \frac{H}{G}=\left(1+\frac{2r+1}{m}\right)^a,
@@ -60,7 +60,7 @@ A sufficient stability condition is
  (m+r+\tfrac12)\max_u\sum_h|K_{u,h}-\delta_{u,h}|
  <r+\tfrac12.
 \]
-Indeed the left side bounds the error in every query, uniformly over every
+The declarations \texttt{grid\_kernel\_error\_bound} and \texttt{grid\_kernel\_preserves\_margin} check this sufficient condition. Indeed the left side bounds the error in every query, uniformly over every
 independently chosen labeling. With the padded catalog this only requires a
 row absolute-sum error of order $1/a$.
 
