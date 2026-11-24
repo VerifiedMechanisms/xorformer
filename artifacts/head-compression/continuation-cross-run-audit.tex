@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\begin{document}
+\title{Cross-Run Audit for the Logarithmic Upper-Bound Continuation}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Scope.}
+The current success target is a universal bound
+$W(n)=O(2^n/(n\log n))$, or $O(2^n/n^x)$ for a fixed $x>1$,
+in the unchanged model. A logarithmic-logarithmic saving, a constant
+improvement, and a promised-input theorem do not meet this target.
+This audit is a research checkpoint, not a claimed resolution.
+
+\paragraph{Published branches examined.}
+The named run branches were fetched and their relevant artifacts read.
+The last several commit subjects of all branches in the two run
+repositories were also scanned for additional worst-case constructions.
+That scan is not a claim to have audited every file in every branch.
+The additional worst-case branch
+\texttt{xorformer/ar/d57a87ee00e7}, at \texttt{6116fd4}, was inspected
+through its report, proof audit, and research notes. Its report explicitly
+says that it did not resolve the asymptotic gap.
+
+\paragraph{Exact universal bound from run 1dc3df1f7016.}
+In \texttt{autoresearch-runs/ar/1dc3df1f7016}, at
+\texttt{045a8fb2584d5dcfb3fa03657492b1b893942956},
+\texttt{HeadBound/Main.lean}'s \texttt{HStar\_le\_two\_pow\_div}
+has a power-of-two dimension hypothesis $n=2^m$ and concludes
+$H^*(f)\le 2^n/n$, with natural division.
+\texttt{HeadBound/SubCube.lean}'s \texttt{HStar\_le\_all} gives,
+for $n\ge1$,
+\[
+ H^*(f)\le 2^n/2^{\lfloor\log_2 n\rfloor}.
+\]
+Its mechanism is full-rank interpolation after continuation of a
+nonzero polynomial minor into the admissible region. Rank preservation
+does not imply that a smaller evaluation space meets a specified strict
+orthant. Consequently deleting interpolation columns is not a
+sign-compression proof.
+
+\paragraph{What can be reused from run 1c1556983291.}
+The fetched tip was \texttt{2672bc2f68e854622722d26b91a86e42e1ccab31}.
+Its reverse gluing theorem, exact axis repair with $3H+3$ heads, rank
+correction, and row flips remove explicit assembly costs once an
+appropriate local reverse compiler exists. They do not construct that
+compiler. The written Boolean row-mask identity gives a useful
+$H+L+1$ budget when the row-by-head mask has real rank $L$.
+Its Boolean idempotence hypothesis is essential; it does not authorize
+arbitrary real row multipliers or ambient Boolean face gates.
+The unpublished live transcript mentioned by the asker was not available
+through the fetched git history.
+
+\paragraph{What can be reused from run 7485202da367.}
+At \texttt{4216833b2239bfbe0044714ea175d94f83346970}, the reciprocal
+shattering construction supplies superlinear information on a
+two-one-hot promised set with positive full-cube denominators.
+Its code-supported constructions also save heads for functions supported
+on a specified code coset. Neither supplies a universal full-cube
+compiler. Paying independently for every coset restores the known
+linear-denominator order.
+
+\paragraph{Denominator information.}
+The fixed-denominator obstruction from \texttt{f4615fbe7181} sharpens
+the dimension to $1+nH$. In particular, the existing finite-library
+argument in \texttt{exponent-precision.tex} applies to any eventual
+superconstant saving $H\le C2^n/(ng(n))$:
+\[
+ \log_2 K\ge (1-o(1))2^n,
+ \qquad b\ge (C^{-1}-o(1))g(n)
+\]
+when $K$ is the size of a universal denominator library and each of the
+$nH$ normalized denominator coefficients has a fixed alphabet of size
+at most $2^b$. Numerator coefficients may be unrestricted.
+This verifies the intrinsic finite-information interpretation of the
+precision claim. It is not a bound on individual raw matrix entries
+when network width is unrestricted, and it supplies no decoder.
+
+\paragraph{A stronger claim in the older d57 report is not used.}
+That report describes the number of real admissible interpolation
+solutions as equivalent to the missing asymptotic upper bound. Such an
+equivalence is not established by its notes. Many isolated solutions,
+or many connected components, need not have extra query evaluations in
+all requested orthants. A proof still needs simultaneous sign readout
+and a complete admissible head budget. The present continuation does
+not infer universality from interpolation multiplicity.
+
+\paragraph{New mechanisms retained in this continuation.}
+The equality cover in \texttt{continuation-equality-cover.tex} gives
+$O(m/\log m)$ positive-orientation heads on a two-one-hot grid.
+The projective support repair in
+\texttt{continuation-projective-shell-batching.tex} isolates arbitrary
+affinely independent cube batches and gives constant-cost strict shell
+membership signs. Neither result is a flat summable vote theorem.
+The asymmetric-anchor identities in
+\texttt{continuation-asymmetric-anchors.tex} expose genuine
+head-dependent permutation interactions, but their independent bit
+capacity is unproved. The global mixed-fiber permutation route is being
+tested separately, so no single local-compiler reduction is treated as
+the only remaining route.
+
+\paragraph{Verification boundary.}
+This file contains no new Lean declarations. It does not change
+\texttt{HStar}, \texttt{worstCaseHeadComplexity}, the resource count,
+or denominator admissibility. No accepted upper-bound improvement is
+claimed by this checkpoint.
+\end{document}
