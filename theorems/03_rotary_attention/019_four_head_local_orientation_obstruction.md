@@ -123,3 +123,28 @@ $$ \deg_{\pm}(f)=3,\qquad H_V(f)\geq5. $$
 [FourHeadCrossOnlyExample.lean](../../formalization/HeadComplexity/Results/FourHeadCrossOnlyExample.lean) proves `quadratic_mod_four`, `score_ne_zero`, `crossOnlyPattern`, `thresholdDeg_eq_three`, and `vanillaHStar_ge_five`; `certified_target` combines the last two claims. The generic [ThresholdDegreeRestriction.lean](../../formalization/HeadComplexity/Polynomial/ThresholdDegreeRestriction.lean) proves `ThresholdDegLE.affine_restriction`, including complemented coordinates and arbitrary real polynomials.
 
 No pure rotary upper bound for this explicit completion has been established. Its certified role is a concrete low-threshold-degree target with an unrestricted vanilla lower bound.
+
+
+## An exact pure projected realization
+
+The second pattern is attainable by the relevant projection of four genuine pure atoms. This is a stronger intermediate certificate than a free quadratic constant or an unconstrained Gram factorization, but it does not give the required Boolean classifier.
+
+The construction uses a nearly singular selector matrix. Take
+
+$$ b=(1,1,2,-4/5+\varepsilon),\qquad k=(-1,-1,1,1),\qquad s_t=(2,2,3,2),\qquad a=(1,2,-2,-1),\qquad \ell_h=(a_h-k_hs_{t,h})/b_h. $$
+
+Set $T=0$ and define $A_{ij}=\sum_{h\neq i,j}b_h$ off the diagonal, with zero diagonal. At $\varepsilon=0$, the kernel of $A$ is spanned by $v=(-5,-5,15,1)$. Define $K=\mathrm{diag}(k)$ and $L_{ij}=\sum_{h\neq i,j}a_h+(\ell_i+\ell_j)A_{ij}$ off the diagonal. The pure middle matrix is
+
+$$ H=\begin{pmatrix}0&KA\cr AK&L\end{pmatrix}. $$
+
+Direct rational calculation gives
+
+$$ K^{-1}v=(5,5,15,1),\qquad v^\top L v=-200,\qquad \sum_h a_h=0. $$
+
+For small positive $\varepsilon$, the leading positive eigendirection of $H^{-1}$ therefore has positive coordinates in its first four components. Aligning this direction with a positive functional of the previously certified split quadratic produces a factorization whose mass coordinates strictly dominate the absolute denominator coordinates. Scaling the spatial factors also matches the actual selector projection constant; no independent constant remains in this certificate.
+
+The rationalized certificate fixes $\varepsilon=1/10000$. [near_singular_projection.json](../../artifacts/rope/prior_obstructions/near_singular_projection.json) contains all four exact rational pure atoms and the corresponding normalized mass and denominator coefficients. [verify_near_singular_projection.py](../../artifacts/rope/prior_obstructions/verify_near_singular_projection.py) checks all positive weights, positive fixed-token masses, and the actual cleared-score projection on all $364$ prescribed inputs using rational arithmetic only. It also checks that the unprojected score fails $182$ of those labels.
+
+A second [rational certificate](../../artifacts/rope/prior_obstructions/near_singular_projection_larger_epsilon.json) uses $\varepsilon=1/4000$ in the same family. A third [large-selector certificate](../../artifacts/rope/prior_obstructions/near_singular_projection_large_selector.json) uses the balanced kernel $(1,1,-1,1)$ at $b=(1,1,0,-2)$. It perturbs $b_3$ by $\varepsilon=3/1000$ and tunes the selector cubic constant to $-\varepsilon^2$. Spatial scaling then keeps the total mass bounded. Its common normalization is $1/6$, and its selector denominator coefficients are $(1/6,1/6,0,-1997/6000)$. The same exact verifier certifies all $364$ projected labels for both variants and records $182$ unprojected errors in each case.
+
+Thus the projected coefficient obstruction is now realized by valid pure atoms, including its scalar constant. The remaining obstruction is cancellation or control of the other components of the full score. No Boolean head-count separation follows from these certificates.
