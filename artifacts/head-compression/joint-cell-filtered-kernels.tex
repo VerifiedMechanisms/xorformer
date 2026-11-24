@@ -15,7 +15,9 @@
 The reciprocal filter, its positivity, its shared correction basis, and
 fixed-weight strictification are kernel checked in
 \texttt{HeadComplexity/Results/JointCellFilteredKernels.lean}.
-The cover estimate below is a written elementary proof. The proposed
+The exact weighted row-layer cover is also kernel checked in
+\texttt{HeadComplexity/Results/JointCellWeightedCover.lean}; the tail and
+global summation estimates below are written elementary proofs. The proposed
 large local domain and its global consequence are conditional on the
 explicit decoder hypothesis stated below. No improvement in the
 asymptotic unconditional bound is claimed here. All local labels may be
@@ -222,6 +224,10 @@ Taking $t=\log B$ and $m\ge2\log B/\kappa$ yields the useful bound
 The logarithm depends on the fallback table cost, not on the size
 $\binom rc$ of an edge. This is the source of the improvement over
 a naive union bound demanding that every row be covered by stars.
+The exact single-layer statement is
+\texttt{jointCell\_exists\_downward\_layer\_log\_cost}: its selected cost
+$K\binom{k+c}{c}|S|$ plus $B|T|$ for missed rows is at most
+$\binom mk(K\log B+1)$ whenever $k+c\le m$, $K>0$, and $B\ge1$.
 
 \section{Strict signs, penalties, and orientation}
 
