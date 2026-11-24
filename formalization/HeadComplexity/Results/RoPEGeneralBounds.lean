@@ -1,5 +1,6 @@
 import HeadComplexity.Results.RoPEArchitecturalComparison
 import HeadComplexity.Results.FiniteDifferenceUpperBound
+import HeadComplexity.Results.PureFiniteDifference
 import HeadComplexity.Results.RoPEFourInputs
 
 set_option linter.style.header false
@@ -101,5 +102,31 @@ theorem pureRoPE_strict_improvement_requires_five_inputs {n : ℕ}
     omega
   obtain ⟨hp, hv⟩ := pureRoPE_strict_improvement_lower_bounds f hf
   exact ⟨by omega, hp, hv⟩
+
+
+/-- The pure numerator structure improves the general bound by one head. -/
+theorem HStar_le_improved_exponential_pureRoPEHStar {n : ℕ}
+    (f : (Fin n → Bool) → Bool) (hf : 2 ≤ PureRoPEHStar n f) :
+    HStar n f ≤ 2 ^ PureRoPEHStar n f - 2 := by
+  classical
+  have hc := computableWithHeadsN_of_computableWithSharedHeadsN
+    (pureRoPEComputable_vanilla_improved_exponential_bound hf (pureRoPEHStar_computable f))
+  unfold HStar
+  rw [dif_pos (exists_computable f)]
+  exact Nat.find_min' _ hc
+
+theorem vanilla_improved_exponential_of_standardPureRotaryComputable {n H : ℕ}
+    (hH : 2 ≤ H) {f : (Fin n → Bool) → Bool}
+    (hf : rectangularStandardPureRotaryComputable n H f) :
+    computableWithSharedHeadsN n (2 ^ H - 2) f :=
+  pureRoPEComputable_vanilla_improved_exponential_bound hH
+    ((rectangularStandardPureRotaryComputable_iff_scalar n H f).mp hf)
+
+theorem vanilla_improved_exponential_of_freePureRotaryComputable {n H : ℕ}
+    (hH : 2 ≤ H) {f : (Fin n → Bool) → Bool}
+    (hf : rectangularFreePureRotaryComputable n H f) :
+    computableWithSharedHeadsN n (2 ^ H - 2) f :=
+  pureRoPEComputable_vanilla_improved_exponential_bound hH
+    ((rectangularFreePureRotaryComputable_iff_scalar n H f).mp hf)
 
 end HeadComplexity

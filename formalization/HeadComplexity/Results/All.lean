@@ -21,6 +21,10 @@ import HeadComplexity.Atoms.CubicPencilObstruction
 import HeadComplexity.Results.RoPEGeneralBounds
 import HeadComplexity.Results.ReciprocalUpperBound
 import HeadComplexity.Atoms.RoPEArrowhead
+import HeadComplexity.Atoms.RoPETiltObstruction
+import HeadComplexity.Results.ReciprocalFiniteDifference
+import HeadComplexity.Results.ProductDifferenceSign
+import HeadComplexity.Results.PureFiniteDifference
 
 set_option linter.style.header false
 
@@ -170,6 +174,9 @@ alias theorem18_fixed_free := rectangularStandardPureRotaryComputable_iff_free
 /-- **Theorem 19.** Arbitrary positive affine ratios have a general exponential
 vanilla head bound. This is not the same-head conjecture. -/
 alias theorem19_finite_difference := FiniteDifference.computable_of_positive_denominators
+
+/-- **Theorem 19.** Pure atoms improve the general bound to 2^H-2 for H≥2. -/
+alias theorem19_pure_improved_bound := pureRoPEComputable_vanilla_improved_exponential_bound
 
 /-- **Theorem 20.** All head budgets agree for at most four input bits. -/
 alias theorem20_small_inputs := pureRoPEComputable_iff_vanilla_of_input_le_four
