@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Generic stability of the zero-residue reciprocal branch}
+\author{}\date{}\maketitle
+\paragraph{Status and scope.}
+This is a complete written, elementary argument, not a Lean theorem.
+It concerns fixed query offsets and a sufficiently small neighborhood
+of a zero-residue branch. It does not bound the original model, the
+full affine-numerator family, or deliberately singular or scale-dependent
+query configurations.
+
+The common-zero identity
+\[
+ H+\sum_{h=1}^H\frac{a_h-D_{hj}}{D_{hj}-p_h}
+ =\sum_{h=1}^H\frac{a_h-p_h}{D_{hj}-p_h}
+\]
+shows that every pole vector $p$ is a zero branch when $a=p$.
+Writing $a=p+u$, its exact score space is the column space of
+$V(p)_{jh}=1/(D_{hj}-p_h)$.
+
+\begin{theorem}
+Let $q\geq H\geq1$, let every $D_{hj}>0$, and suppose every
+$H$-row minor of $V(0)$ is nonzero. There is $\delta>0$ such that
+for every $p\in(-\delta,\delta)^H$, the set
+\[
+ \{\operatorname{sign}(V(p)u):u\in\mathbb R^H,
+                  \ (V(p)u)_j\ne0\text{ for every }j\}
+\]
+is independent of $p$. In particular, allowing all such zero branches
+adds no strict sign words to a single $H$-dimensional linear score space.
+The number of words is
+\[
+ 2\sum_{i=0}^{H-1}\binom{q-1}{i}.
+\]
+\end{theorem}
+\begin{proof}
+Choose $\delta$ so all denominators remain positive and every
+$H$-row determinant retains its nonzero sign. This is possible by
+continuity and finiteness. All subsets of at most $H$ rows remain
+linearly independent: otherwise extending such a subset to $H$ rows
+would contradict a nonzero $H$-row determinant.
+
+For a proposed word $\sigma\in\{-1,1\}^q$, the inequalities
+$\sigma_jV(p)_{j,\cdot}u>0$ are feasible exactly when the origin is
+not in the convex hull of the signed rows. One direction follows by
+taking the inner product with $u$; for the other, the closest point
+of that compact convex hull to the origin gives a strictly separating
+linear functional. If the origin belongs to the convex hull, choose
+a convex representation with minimal support. Its rows are minimally
+linearly dependent, since a second independent dependence could be
+added until a positive coefficient becomes zero. Its support has
+exactly $H+1$ elements: smaller supports are independent, and a
+minimal dependence in $\mathbb R^H$ has at most $H+1$ elements.
+For an ordered support $j_0,\ldots,j_H$, its unique dependence has
+coefficients
+\[
+ (-1)^k\det V(p)_{\{j_0,\ldots,j_H\}\setminus\{j_k\},\cdot},
+ \qquad 0\leq k\leq H,
+\]
+up to one common nonzero factor. Signing the rows multiplies these
+coefficients by the prescribed signs, up to another common factor.
+All determinant signs are unchanged, so the existence of a positive
+dependence is unchanged. This proves equality of the strict word sets.
+For $q=H$ all words occur directly by invertibility.
+
+Finally, $q$ central hyperplanes in general position in $\mathbb R^H$
+have $2\sum_{i=0}^{H-1}\binom{q-1}{i}$ regions. This follows by
+adding the last hyperplane and applying the same recurrence to its
+induced arrangement, with the one-dimensional and single-hyperplane
+base cases. Each strict word is one convex open region.
+\end{proof}
+
+\paragraph{Genericity and the two-head collapse.}
+The hypothesis holds on an open dense subset of positive query-offset
+matrices. After clearing positive denominators, each determinant is a
+polynomial which is not identically zero: choosing
+$D_{hj}=x_j+y_h$ with distinct positive $x_j$ and distinct positive
+$y_h$ gives a nonsingular Cauchy minor for every row subset. A finite
+union of proper polynomial zero sets has empty interior.
+For $H=2$ there is a stronger global feature identity, with no
+small-neighborhood assumption:
+\[
+ \operatorname{sign}\left(\frac{u_1}{D_{1j}-p_1}
+              +\frac{u_2}{D_{2j}-p_2}\right)
+ =\operatorname{sign}\bigl(u_1D_{2j}+u_2D_{1j}
+                      -u_1p_2-u_2p_1\bigr)
+\]
+whenever the two denominators are positive. Thus that subfamily has
+VC dimension at most three. Neither statement covers nonzero fixed
+column numerator offsets, whose full two-head family can shatter five
+queries as proved elsewhere in this repository.
+
+\paragraph{Exact check.}
+The companion checker uses rational interval arithmetic to certify
+that all $35$ three-row determinants of one $7\times3$ example retain
+their signs throughout an explicit pole box. It also enumerates the
+circuit criterion and obtains the predicted $44$ strict words.
+The unresolved escape is a deliberately singular or scale-dependent
+query arrangement: its determinant signs can change at arbitrarily
+small pole scales. No claim of universality is made for that escape.
+\end{document}
