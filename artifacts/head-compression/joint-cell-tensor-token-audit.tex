@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{lemma}{Lemma}
+\title{Tensor plane tokens: the exact correction interface}
+\date{24 November 2026}
+\author{Label audit research checkpoint}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a written audit, not a Lean theorem. It records a positive joint
+construction for the line-rank part, and the first unresolved equations for
+the point-correction part. The pole-direction lemma applies only to an exact
+identity on an open token box or a sufficiently rich Cartesian token grid.
+It does not rule out dictionaries chosen after seeing a finite table, an
+approximate strict-sign decoder, or the original unrestricted model.
+
+\section{Tensor incidence and partial diagonals}
+
+Take $c$ affine planes over a field of order $q$. There are
+$M=q^{2c}$ tensor points and $M$ products of nonvertical lines. A row point
+$p=(p_1,\ldots,p_c)$ is represented by one-hot coordinates in each of $c$
+blocks of size $q^2$. Add a one-hot bit block of size $a$ and a one-hot
+column block of size $s$. The target domain has $Mas$ inputs in ambient
+dimension $cq^2+a+s$.
+
+For slope tuples $\alpha\in\mathbb F_q^c$, choose additive scalar poles
+$P_\alpha=\sum_l p_l(\alpha_l)$ and residues $\eta_b(\alpha)$.
+Line sums use the independent memory token at every point and column.
+If $g_l$ and $p_l$ have different first coordinates for every $l$, the
+off-diagonal point contribution is
+\[
+ \frac{\eta_b(\alpha(p,g))}{P_{\alpha(p,g)}-t_g(j)}.
+\]
+The denominator is affine in the one-hot block coordinates. The numerator
+is an arbitrary tensor in those coordinates and is generally not affine.
+
+Already for $c=2$, if $g_1=p_1$ and the second coordinates have a defined
+nonvertical slope $\alpha_2$, the contribution is instead
+\[
+ \sum_{\alpha_1\in\mathbb F_q}
+ \frac{\eta_b(\alpha_1,\alpha_2)}
+ {p_1(\alpha_1)+p_2(\alpha_2)-t_g(j)}.
+\]
+With distinct active poles and nonzero residues this is a genuine
+multiple-pole function of the independently chosen token. It cannot be
+replaced by the generic single-pole correction as a rational identity.
+For a matching coordinate set $S$, the analogous partial diagonal has
+$q^{|S|}$ slope terms. Vertical coincidences between unequal points can
+be omitted as in the original compiler, or treated by adding the vertical
+line class; they do not remove the equal-point partial diagonals.
+
+An arbitrary real residual on tensor rows and columns can be interpolated
+with $(q^2+1)^c$ shared monomial heads. But arbitrary bit-dependent residuals
+cost $(a+1)(q^2+1)^c$ in that argument. This is roughly $aM$, so it destroys
+the intended $a$-bit gain. A successful tensor construction must exploit
+additional structure in both the residue tensor and its partial sums.
+
+\section{Positive joint compilation of the line part}
+
+The line-rank contribution is easier than the point correction. Put
+$\ell_{L,l}(x)=\sum_{u\in L_l}x_{l,u}$, which is zero or one on a one-hot
+block. For every product line $L$ let $Z_L(z)$ be its arbitrary column-linear
+line-sum memory. Two heads with numerator $Z_L(z)$ and opposite signs have
+denominators
+\[
+ D+\varepsilon C-\varepsilon\sum_l\ell_{L,l}(x)
+ -\varepsilon\sum_b(\eta_b(L)+C)y_b,
+ \quad
+ D+\varepsilon C-\varepsilon\sum_l\ell_{L,l}(x)
+ -\varepsilon C\sum_b y_b.
+\]
+Take $C>\max_{L,b}|\eta_b(L)|$. Every displayed nonzero slope has the
+reverse orientation, and a sufficiently small positive $\varepsilon$
+makes all denominators positive on the full Boolean cube. On the bit axis
+the pair cancels exactly; on the column axis its numerator is zero.
+
+On a one-hot bit $b$, subtract all row terms missing at least one of the
+$c$ row blocks. The remaining full-block coefficient is
+\[
+ K_{[c]}(\varepsilon,\ldots,\varepsilon;D-\varepsilon\eta_b(L))
+ -K_{[c]}(\varepsilon,\ldots,\varepsilon;D)
+ =\frac{c!(c+1)}{D^{c+2}}\varepsilon^{c+1}\eta_b(L)
+  +O(\varepsilon^{c+2}).
+\]
+After one common scaling, it converges to the required arbitrary line
+residue times the product-line selector. The lower-row corrections across
+\emph{all} lines share the reciprocal basis proved in
+\texttt{JointCellFilteredKernels.lean}. Their number is at most
+\[
+ (a+1)\bigl((q^2+1)^c-q^{2c}\bigr).
+\]
+Thus the whole line part costs at most
+\[
+ 2M+(a+1)\bigl((q^2+1)^c-M\bigr),
+\]
+which is $O(M)$ when $ac/q^2$ is bounded. All label-dependent $Z_L$ are
+arbitrary throughout this calculation. A common small filler on a fixed
+weight slice makes zero slopes strict while preserving target values and
+paired axes. Since the eventual target set is finite, the limiting
+line-part approximation suffices whenever the complete construction has a
+strict margin. This does not solve the point correction or assume its
+existence.
+
+\section{Vector tokens and exact pole transport}
+
+Let a point memory now be $t_g(j)\in\mathbb R^r$. A vector Cauchy line
+kernel would have denominator
+\[
+ P_\alpha-u_\alpha\cdot t_g(j).
+\]
+Full-cube positivity can be enforced, for example, by positive coefficients
+$u_{\alpha h}$, tokens in $(0,\delta)^r$, and a margin exceeding
+$s\delta\sum_hu_{\alpha h}$ together with every row and bit slope budget.
+Positive denominators at the target inputs alone do not establish this
+condition.
+
+One original affine correction head for point $g$ may store one fixed
+linear functional $v_h\cdot t_g(j)$ in its column coefficients. Its
+denominator at a query row is
+$D_h(\text{row})-v_h\cdot t_g(j)$, with $v_h$ independent of the row.
+The forbidden term is a row-dependent coefficient multiplying a column
+token coordinate. An exact $H$-head correction would therefore require,
+at each relevant row, an identity of the form
+\[
+ \frac{A}{P-u\cdot t}
+ =R(t)+\sum_{h=1}^H
+ \frac{A_h(t)}{D_h-v_h\cdot t},
+\]
+where $A\ne0$, the numerators $A_h$ and $R$ are affine, and the fixed
+normal vectors $v_h$ are shared by all rows for that point module.
+
+\begin{lemma}[Unmatched pole directions cannot disappear]
+Suppose the displayed identity holds on a nonempty open set on which all
+denominators are nonzero. Then the affine hyperplane
+$P-u\cdot t=0$ equals one of the hyperplanes $D_h-v_h\cdot t=0$.
+In particular $u$ is proportional to some $v_h$.
+\end{lemma}
+\begin{proof}
+Clear denominators. A polynomial zero on a nonempty open set is zero
+identically. If no correction denominator is proportional to $P-u\cdot t$,
+choose a point on the latter hyperplane outside the finitely many
+intersections with correction hyperplanes. Such a point exists because a
+finite union of proper affine subspaces does not cover an affine space
+over the infinite field $\mathbb R$. At that point the cleared left side
+is $A$ times a product of nonzero correction denominators, while every
+term on the right contains the zero factor $P-u\cdot t$. This is a
+contradiction. The one-dimensional case is the same argument at the pole.
+\end{proof}
+
+After clearing denominators the polynomial in this proof has degree at
+most $H+2$, allowing the affine numerators and affine $R$. Consequently
+the same conclusion holds if the identity is required on a Cartesian
+token grid with more than $H+2$ distinct values in each coordinate and no
+zero denominators there. Repeated one-variable interpolation makes the
+cleared polynomial identically zero. With constant numerators and $R=0$,
+more than $H$ values in each coordinate suffice.
+
+Thus $q^c$ pairwise nonproportional active line directions would require
+at least $q^c$ correction directions per point in this exact interface.
+If all line directions instead lie among $r$ fixed directions, vector
+memory separates into $r$ scalar-token Cauchy families. Their line and
+partial-diagonal residue compatibility is still required; the existence
+of $r$ independent scalar parameters alone proves no extra saving.
+
+\paragraph{What remains possible.}
+In an actual table there are only $s$ columns. Tokens can be chosen after
+seeing all independently specified labels. They need not form an open set
+or a Cartesian grid, and exact lookup values are unnecessary when only
+strict signs matter. The pole argument therefore leaves open a
+sample-dependent vector dictionary using a small number of heads per
+point. Its target is to realize roughly $a\gg H\log n$ independently
+specified bits per point and column, while charging the line part,
+partial diagonals, both axes, and all earlier signs.
+
+\end{document}
