@@ -1,0 +1,26 @@
+'HeadComplexity.RowSparseRationalCapacity.cleared_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.RowSparseRationalCapacity.eval_cleared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.RowSparseRationalCapacity.represented_subset_patterns' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RowSparseRationalCapacity.card_represented_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RowSparseRationalCapacity.card_routing_union_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanPolynomialSupport.two_pow_le_degree_mul_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanPolynomialSupport.supportSize_ge_two_pow_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanPolynomialSupport.atom_score_support_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanPolynomialSupport.original_score_support_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanPolynomialSupport.one_head_support_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,2 @@
+✔ [3429/3429] Built HeadComplexity.Research.BooleanPolynomialSupport (2.0s)
+Build completed successfully (3429 jobs).

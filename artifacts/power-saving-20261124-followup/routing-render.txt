@@ -1,0 +1,9 @@
+[
+  {
+    "file": "/work/artifacts/power-saving-20261124-followup/unrestricted_capacity_routing.md",
+    "source_spans": 62,
+    "rendered_spans": 62,
+    "findings": [],
+    "notes": []
+  }
+]
