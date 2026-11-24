@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Exact Antisymmetry Does Not Propagate Independent Child Words}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is a complete written algebraic audit, accompanied by exact rational
+checks. It is not Lean-checked. It concerns the additional requirement
+that a parent and both literal partial-fraction components have numerators
+antisymmetric about the same external midpoint. The actual HeadComplexity
+model and the adaptive Haar decoder do not impose that requirement.
+Thus the result does not obstruct either accepted global target, nor
+does it obstruct the one-node positive-root theorem.
+
+Let $P^\ast(t)=P(T-t)$. Let $M\geq2$ be even, and let $Q_L,Q_R$ be
+monic degree-$M$ polynomials with simple, mutually disjoint real roots
+strictly below $T/2$. A decomposition into these two pole sets has
+numerators
+\[
+ \frac{N}{Q_LQ_R}=\frac{N_L}{Q_L}+\frac{N_R}{Q_R},\qquad
+ N=N_LQ_R+N_RQ_L,\qquad \deg N_L,\deg N_R<M.                 \tag{1}
+\]
+This is precisely the partial-fraction split: the component residues are
+inherited without any extra sign changes. This qualification matters for
+the actual Haar decoder. A descendant Haar score applies a fresh signed
+mask to the residues in its support, and its numerator need not be $N_L$
+or $N_R$ in (1). Therefore the following results do not exclude simultaneous
+antisymmetry of differently masked Haar scores. They exclude a shortcut
+that propagates symmetry by literal splitting alone.
+Assume additionally that
+$N^\ast=-N$, $N_L^\ast=-N_L$, and $N_R^\ast=-N_R$.
+
+\begin{theorem}[Coupled child signs]
+Under these hypotheses, for every $t>T/2$ the child numerators either
+both vanish or have opposite strict signs. The child rational sums
+therefore have opposite signs wherever nonzero on the whole exterior
+interval. This holds for every partition of the poles.
+\end{theorem}
+\begin{proof}
+Put $D_i=Q_i^\ast-Q_i$. Taking the reflection of (1) and using the three
+antisymmetry identities gives
+\[
+ N_LD_R+N_RD_L=0.                                            \tag{2}
+\]
+For every root $p<T/2$ and $t>T/2$,
+\[
+ (t-p)^2-(T-t-p)^2=(2t-T)(T-2p)>0.
+\]
+Since $t-p>0$, multiplication over all roots gives
+$|Q_i(T-t)|<Q_i(t)$, and therefore $D_i(t)<0$.
+Equation (2) now proves the assertion. Both denominators in (1) are
+strictly positive at exterior points.
+\end{proof}
+
+\begin{theorem}[Dimension and shared exterior zeros]
+Let $G$ be the monic greatest common divisor of $D_L,D_R$, and write
+$D_i=G U_i$, $g=\deg G$. Then $g$ is odd, $1\leq g\leq M-1$, and
+all triples satisfying (1) and the three antisymmetries are parameterized
+by
+\[
+ N_L=S U_L,\qquad N_R=-S U_R,\qquad S^\ast=-S,
+ \qquad \deg S\leq g.                                      \tag{3}
+\]
+The solution space has dimension $(g+1)/2$. Every nonzero solution has
+at most $(g-1)/2\leq M/2-1$ common child zeros in $t>T/2$.
+\end{theorem}
+\begin{proof}
+If $s_i$ is the sum of the roots of $Q_i$, the leading coefficient of
+$D_i$ in degree $M-1$ is $2s_i-MT<0$. Thus each $D_i$ has degree $M-1$.
+It is antisymmetric, hence its midpoint zero has odd multiplicity and
+all other roots occur in reflected pairs, with multiplicities. The same
+holds for their gcd, so $g$ is odd and $G^\ast=-G$; consequently
+$U_i^\ast=U_i$.
+
+The polynomials $U_L,U_R$ are coprime. Equation (2) is equivalent to
+$N_LU_R+N_RU_L=0$, which forces (3) for a polynomial $S$. The degree
+bounds on the child numerators give $\deg S\leq g$; their antisymmetry
+is then equivalent to $S^\ast=-S$. Conversely these conditions suffice,
+including the parent's antisymmetry by (2). An odd polynomial about
+$T/2$ of degree at most the odd number $g$ has $(g+1)/2$ coefficients.
+Neither $G$ nor $U_i$ has an exterior real zero, since $D_i(t)<0$ there.
+The exterior child zeros are exactly those of $S$. Its nonmidpoint real
+zeros occur in reflected pairs, giving the stated bound.
+\end{proof}
+
+\paragraph{Polynomial-preimage branches.}
+For the proposed split $Q_L=Q_0-\delta$, $Q_R=Q_0+\delta$, the two
+reflection differences coincide. Whenever the shifted polynomials have
+the required real pole geometry, (2) gives exactly
+\[
+ N_R=-N_L,\qquad N=2\delta N_L.
+\]
+Small shifts of a polynomial with simple roots below $T/2$ do have that
+geometry by continuity. Thus this split maximizes the symmetry-preserving
+freedom, but it still couples the two child words. In particular, exact
+antisymmetry does not supply independent child targets even for this
+particularly structured alternative to translated pole pairs.
+
+\paragraph{Different child grids do not restore universal freedom.}
+On a shared exterior grid the two words must be complementary. If each
+child instead has $M/2$ fixed exterior query points and the two grids are
+disjoint, their signs, with one child's signs reversed, are evaluations
+of the same $S$ up to a fixed common sign. Prescribing alternating signs
+on the merged $M$ ordered points would require at least $M-1$ exterior
+zeros. The preceding theorem permits only $M/2-1$. This conclusion
+continues to hold if the pole partition is chosen adaptively, provided
+all three exact antisymmetries and the same external midpoint are
+retained. A successful recursive construction based on these literal components
+must relax at least one
+of those extra requirements, for example by allowing non-antisymmetric
+component numerators or additional residue sign masks. The latter masks
+are already present in the Haar decoder and remain outside this audit.
+\end{document}
