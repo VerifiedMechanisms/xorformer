@@ -117,6 +117,21 @@ theorem denominator_pos (M : PureRoPEFamily n d m H) (h : Fin H)
     (bits : Fin n → Bool) : 0 < M.denominator h bits :=
   positiveNormalizer_pos _ (M.sigma_pos h bits)
 
+theorem denominator_ne_zero (M : PureRoPEFamily n d m H) (h : Fin H)
+    (bits : Fin n → Bool) : M.denominator h bits ≠ 0 :=
+  (M.denominator_pos h bits).ne'
+
+/-- The numerator/normalizer definition is exactly the ordinary softmax sum,
+including the output projection for this head. -/
+theorem headUpdate_eq_weighted_sum (M : PureRoPEFamily n d m H) (h : Fin H)
+    (bits : Fin n → Bool) :
+    M.headUpdate h bits = ∑ p,
+      (M.sigma h bits p / M.denominator h bits) • M.WO h (M.value h bits p) := by
+  simp only [headUpdate, numerator, map_smul, map_sum, Finset.smul_sum, smul_smul]
+  apply Finset.sum_congr rfl
+  intro p _
+  rw [div_eq_inv_mul]
+
 theorem computesPred_residual_iff_attnUpdate (M : PureRoPEFamily n d m H)
     (f : (Fin n → Bool) → Bool) :
     computesPred f M.residual ↔ computesPred f M.attnUpdate :=
