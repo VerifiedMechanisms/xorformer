@@ -73,9 +73,33 @@ def full_cube_arithmetic(chart, gap):
         assert atom['input_weight_replication_rule'] == (
             'each stored base weight is divided by m at every copy r')
     assert len(construction['pure_atoms']) == 3
+    vanilla = construction['vanilla_seven_upper']
+    assert vanilla['epsilon'] == '1/(16*A*m^3)'
+    assert vanilla['a'] == 'epsilon/4096'
+    assert vanilla['R'] == '1+sum_{i=1}^{14}sum_{r=0}^{m-1}x_{i,r}'
+    assert vanilla['U'] == ['S_0-epsilon*D_0', 'S_1', 'S_2']
+    assert vanilla['denominator_rule'] == 'R+a*sum(D_h for h in denominator_subset)'
+    assert vanilla['numerator_rule'] == (
+        'sum(numerator_U_coefficients[h]*U_h for h in [0,1,2])')
+    assert vanilla['readout_constant'] == '0'
+    # Collect the three reciprocal second differences by denominator subset.
+    collected = {}
+    for h in range(3):
+        j, k = [index for index in range(3) if index != h]
+        for subset, sign in [((), 1), ((j,), -1), ((k,), -1), ((j, k), 1)]:
+            vector = collected.setdefault(subset, [0, 0, 0])
+            vector[h] += sign
+    assert len(vanilla['heads']) == 7
+    assert {tuple(head['denominator_subset']): head['numerator_U_coefficients']
+            for head in vanilla['heads']} == collected
+    a = epsilon / 4096
+    assert F(576, 4096) < F(1, 4)
+    assert epsilon < F(1, 16)
+    assert 4 * a < 1
     for sh, bh in zip(s, b):
         assert all(si > abs(bi) for si, bi in zip(sh, bh))
         assert sum(sh) < 1
+        assert sum(sh) < F(1, 4)
         assert sum(abs(bi) for bi in bh) < F(1, 2)
         assert all((10000 * si).denominator == 1 for si in sh)
         assert all((w * bi).denominator == 1 for bi in bh)
@@ -115,6 +139,7 @@ def full_cube_arithmetic(chart, gap):
     assert error < F(1, 2**85)
     print('exact symbolic cube checks passed: n=14*2^400000, three pure atoms,')
     print('  construction.json matches every integer coefficient and rational atom parameter')
+    print('  seven explicit vanilla fractions use a=epsilon/4096; all bound constants pass')
     print('  strict margin >=1/(16*A*m^3), A=10240000000000000000000000')
     print('  interpolation error <2^-99933, tensor exclusion radius >2^-2000')
 
