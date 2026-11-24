@@ -84,4 +84,23 @@ For more heads the cleared numerator contains products of more affine
 forms; replacing it by (1) one pair at a time does not preserve the
 sign of the total score, because the positive multipliers differ.
 
+\paragraph{Lean verification checkpoint.}
+The module
+\texttt{HeadComplexity/Results/TwoHeadOrientationTransfer.lean}
+checks the exact identity as \texttt{three\_fraction\_identity}.
+Its theorem \texttt{exists\_reverse\_three} proves simultaneous strict
+sign preservation on the whole Boolean cube, positivity of every
+output denominator on that cube, and strictly negative output slopes.
+The theorem \texttt{reverse\_ratio\_exists\_atom} realizes each output
+ratio by an original admissible atom with $\alpha<1$.
+Finally, \texttt{exists\_reverse\_atoms\_of\_two} starts from the
+unchanged proposition \texttt{fracComputable n 2 f}, strictifies its
+threshold certificate, absorbs its bias, and produces three such
+atoms with strict signs and zero external bias. These declarations
+use no new axioms or unproved lemmas. The more general written
+formulation for signs specified only on a finite subset, and for
+the positive output orientation, is not claimed as Lean-checked by
+this module. Neither version supplies an unbounded-head transfer
+or the asymptotic improvement sought in this run.
+
 \end{document}
