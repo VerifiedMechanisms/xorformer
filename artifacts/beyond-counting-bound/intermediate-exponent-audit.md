@@ -2,11 +2,13 @@
 
 ## Strengthened candidate
 
-The asker suggested testing an exponent strictly between one and two. A sufficient strengthened target is the following, for some fixed $\alpha\in(1,2)$ and $c\gt0$, on an unbounded sequence of dimensions:
+The latest instruction prioritizes an exponent strictly between one and two, with a bound for every sufficiently large dimension. The target is the following, for some fixed $\alpha\in(1,2)$, $c\gt0$, and $n_0$:
 
-$$ W(n)\geq c\frac{2^n}{n^\alpha}. $$
+$$ W(n)\geq c\frac{2^n}{n^\alpha}\qquad(n\geq n_0). $$
 
-Indeed, multiplication by $n^2/2^n$ gives $n^2W(n)/2^n\geq c n^{2-\alpha}$, which is unbounded. The first candidate being tested is $\alpha=3/2$. No such bound has been proved in this run. The manuscript's model and the original unboundedness target are unchanged.
+Multiplication by $n^2/2^n$ gives $n^2W(n)/2^n\geq c n^{2-\alpha}$, which is unbounded. Any fixed $\alpha\lt2$ suffices; the work does not require the particular exponent $3/2$ or the matching exponent one. A subsequence result would answer the original unboundedness question but would not complete the current eventual target. No such exponent improvement has been proved in this run. The manuscript's model is unchanged.
+
+The [critical-scale address audit](critical-scale-address-audit.md) verifies that the factorial interpolation examples have logarithmic multiplicity of order $Hn\log n$ when $H$ is of order $2^n/n^\alpha$, including integer rounding. They do not refute the proposed full-cube entropy estimate in that range. The estimate for unrestricted adaptive denominators remains unproved.
 
 ## Exact scale of the counting gap
 

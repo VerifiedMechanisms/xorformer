@@ -1,0 +1,78 @@
+{
+  "source_repository": "VerifiedMechanisms/xorformer",
+  "source_commit": "2672bc2f68e854622722d26b91a86e42e1ccab31",
+  "files": [
+    {
+      "path": "formalization/HeadComplexity/Polynomial/AlgebraicRegularValues.lean",
+      "sha256": "73d2d905041e895352803eafbaf2fd2ca7270be6bfce093eee0944031ed096f6",
+      "lines": 97
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/ConstrainedMinimaBound.lean",
+      "sha256": "d7423dde5106356a5fe766cf98e21c61e9ec8fe18fb279352fbe54b2d6fdebca",
+      "lines": 146
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/DiagonalRootBound.lean",
+      "sha256": "49f5fbc9c3cbcd22377b3cd0d859f693735ab0583a011cad7e21ced1c0e0d5d5",
+      "lines": 187
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/EvaluationDerivative.lean",
+      "sha256": "69bbf61ce047f1a7309226803cef699293de1ae0f1d2eb865a82369191535539",
+      "lines": 71
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/GenericClosestPoint.lean",
+      "sha256": "a7c1d08876d66e1a770eb2c13e4ddddd9b26d0572569d1d67540baac869b2fe9",
+      "lines": 72
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/GenericFiberBound.lean",
+      "sha256": "427f4b7e40ded87aabb3e4b0dc73b48dff2a3d8a393b18dd9ded1678a01808b3",
+      "lines": 75
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/GenericPolynomialValues.lean",
+      "sha256": "b20f96eb42412c607d8c79561861dcbaeb1986a6f4d6b52900717415c151e6aa",
+      "lines": 101
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/PenaltyMinimization.lean",
+      "sha256": "f8e7e842d935362771d37a6bd1988fbcea2c3a1cc20cd905358ab6eb7646d315",
+      "lines": 112
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/PolynomialSignCount.lean",
+      "sha256": "c759c9ebccc6893a068aa2cbfeda32aa7ad8136d5b9e4d1a488b1fe7ba6726cb",
+      "lines": 109
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/RegularRootBound.lean",
+      "sha256": "1358ae254b790e9a382aa43b0691b652cbcddd658f2431c037e113f9e4b63da5",
+      "lines": 120
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/SignRegionMinima.lean",
+      "sha256": "b714d00102bab971d92a48aa887a36ded7e56e695852cef56ccfbadf508564cd",
+      "lines": 192
+    },
+    {
+      "path": "formalization/HeadComplexity/Polynomial/SignedSubsetCount.lean",
+      "sha256": "8e540f5fa39bf45e76d57dd9f2a94d29386fb6b4d469d27a6c43326c0a3e9d98",
+      "lines": 97
+    },
+    {
+      "path": "formalization/HeadComplexity/Results/WarrenAsymptotics.lean",
+      "sha256": "b88e0246e9fa0f0b080621ac617ea18c74f1cec98328a8efd004735384f60631",
+      "lines": 67
+    },
+    {
+      "path": "formalization/HeadComplexity/Results/WarrenBound.lean",
+      "sha256": "35ae40221e758272f17dc5b2d4bd0ddf3a02cd0998255d8f535332874142997e",
+      "lines": 71
+    }
+  ],
+  "model_changed": false,
+  "main_target_proved": false
+}

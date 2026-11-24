@@ -1,0 +1,21 @@
+'HeadComplexity.strictPolynomialSignPatterns_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.warrenStrictSignPatternBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.coarseWarrenSignPatternBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.card_headComputableFunctions_le_counting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.exists_HStar_gt_of_counting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_gt_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_real_ge_two_pow_div_seventy_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.two_pow_div_square_isBigO_worstCaseHeadComplexity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.second_difference_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.difference_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.difference_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.no_affine_sign_representation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.exists_actual_atom' depends on axioms: [propext, Classical.choice, Quot.sound]

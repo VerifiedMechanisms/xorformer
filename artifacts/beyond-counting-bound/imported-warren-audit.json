@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-11-24T04:31:13.019126+00:00",
+  "source_commit": "2672bc2f68e854622722d26b91a86e42e1ccab31",
+  "build_jobs": 3743,
+  "build_log": "imported-warren-build.txt",
+  "axiom_log": "imported-warren-axioms.txt",
+  "declarations": [
+    "HeadComplexity.strictPolynomialSignPatterns_card_le",
+    "HeadComplexity.warrenStrictSignPatternBound",
+    "HeadComplexity.coarseWarrenSignPatternBound",
+    "HeadComplexity.card_headComputableFunctions_le_counting",
+    "HeadComplexity.exists_HStar_gt_of_counting",
+    "HeadComplexity.worstCaseHeadComplexity_gt_div",
+    "HeadComplexity.worstCaseHeadComplexity_real_ge_two_pow_div_seventy_square",
+    "HeadComplexity.two_pow_div_square_isBigO_worstCaseHeadComplexity",
+    "HeadComplexity.BooleanDifferenceBarrier.second_difference_identity",
+    "HeadComplexity.BooleanDifferenceBarrier.difference_values",
+    "HeadComplexity.BooleanDifferenceBarrier.difference_signs",
+    "HeadComplexity.BooleanDifferenceBarrier.no_affine_sign_representation",
+    "HeadComplexity.BooleanDifferenceBarrier.exists_actual_atom"
+  ],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "source_files_verified": 14,
+  "existing_model_files_modified": false,
+  "main_target_proved": false,
+  "scope": "Unconditional existing exponent-two lower bound and latest finite Boolean-difference obstruction only."
+}

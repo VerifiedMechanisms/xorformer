@@ -2,11 +2,15 @@
 
 ## Target status
 
-The selected target is unproved:
+The current eventual fixed-exponent target is unproved. It asks for fixed $\varepsilon,c\gt0$ and $n_0$ with
 
-$$ \sup_n\frac{n^2W(n)}{2^n}=\infty. $$
+$$ W(n)\geq c\frac{2^n}{n^{2-\varepsilon}}\qquad(n\geq n_0). $$
 
-No lower bound with a denominator exponent strictly between one and two has been established either. The manuscript's architecture, unrestricted real parameters and embedding dimensions, target-dependent denominators, and definitions of head complexity have not been changed. None of the auxiliary statements below is presented as completion of the target.
+The original unboundedness target remains unproved as well. The manuscript's architecture, unrestricted real parameters and embedding dimensions, target-dependent denominators, and definitions of head complexity have not been changed. None of the auxiliary statements below is presented as completion of the target.
+
+The unconditional Warren proof imported verbatim from branch `ar/1c1556983291` now builds in this worktree, including `HeadComplexity.worstCaseHeadComplexity_real_ge_two_pow_div_seventy_square`. It proves $W(n)\geq2^n/(70n^2)$ for $n\geq16$. All thirteen declarations in the combined baseline and latest Boolean-difference axiom audit use only the standard foundational axioms. This establishes the verification status of the baseline, not an improvement of its exponent.
+
+The [address-budget audit](critical-scale-address-audit.md) checks both factorial constructions at the critical head scale, with exact integer ranges. Their component multiplicity does not refute the proposed critical-scale sign count. That full-class count remains a theorem-strength gap.
 
 ## Exact results useful for auditing proposed proofs
 

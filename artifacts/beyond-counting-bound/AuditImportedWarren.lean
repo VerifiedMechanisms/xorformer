@@ -1,0 +1,16 @@
+import HeadComplexity.Results.WarrenAsymptotics
+import HeadComplexity.Atoms.BooleanDifferenceBarrier
+
+#print axioms HeadComplexity.strictPolynomialSignPatterns_card_le
+#print axioms HeadComplexity.warrenStrictSignPatternBound
+#print axioms HeadComplexity.coarseWarrenSignPatternBound
+#print axioms HeadComplexity.card_headComputableFunctions_le_counting
+#print axioms HeadComplexity.exists_HStar_gt_of_counting
+#print axioms HeadComplexity.worstCaseHeadComplexity_gt_div
+#print axioms HeadComplexity.worstCaseHeadComplexity_real_ge_two_pow_div_seventy_square
+#print axioms HeadComplexity.two_pow_div_square_isBigO_worstCaseHeadComplexity
+#print axioms HeadComplexity.BooleanDifferenceBarrier.second_difference_identity
+#print axioms HeadComplexity.BooleanDifferenceBarrier.difference_values
+#print axioms HeadComplexity.BooleanDifferenceBarrier.difference_signs
+#print axioms HeadComplexity.BooleanDifferenceBarrier.no_affine_sign_representation
+#print axioms HeadComplexity.BooleanDifferenceBarrier.exists_actual_atom

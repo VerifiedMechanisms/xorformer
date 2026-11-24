@@ -2,10 +2,10 @@
   "name": "Beyond the Counting Bound",
   "started_utc": "2026-11-21T23:56:21Z",
   "minimum_work_until_utc": "2026-11-23T20:06:08.867115+00:00",
-  "target": "For every C>0 and n0 there exist n>=n0 and a Boolean f on n bits with HStar(f)>C*2^n/n^2.",
+  "target": "There exist fixed epsilon>0, c>0, n0 such that worstCaseHeadComplexity(n)>=c*2^n/n^(2-epsilon) for every integer n>=n0, in the unchanged unrestricted HeadComplexity model.",
   "attachment": "/out/attachments/version-5.tex",
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
-  "status": "active: explicit continuation; original lower-bound target and stronger order target remain unproved",
+  "status": "active: eventual fixed-exponent lower-bound target remains unproved",
   "model_changes": [],
   "last_audit_utc": "2026-11-24T04:17:34.558103+00:00",
   "elapsed_seconds_at_last_audit": 188473.558103,
@@ -1213,5 +1213,11 @@
   "continuation_latest_recheck": "continuation-latest-recheck.json",
   "boolean_difference_checkpoint": "boolean-difference-audit.json",
   "difference_kernel_minors": "difference-kernel-minors-audit.json",
-  "tensor_sign_conversion": "tensor-sign-conversion-audit.md"
+  "tensor_sign_conversion": "tensor-sign-conversion-audit.md",
+  "original_target": "For every C>0 and n0 there exist n>=n0 and a Boolean f on n bits with HStar(f)>C*2^n/n^2.",
+  "fixed_exponent_target_proved": false,
+  "latest_priority": "Count distinct full-cube labels in the exponential-head regime, and independently seek a cancellation-invariant random-function or hard-family lower bound. Any fixed exponent below two suffices; subsequence-only bounds are not completion.",
+  "latest_checkpoint_utc": "2026-11-24T04:31:13.019126+00:00",
+  "unconditional_baseline_recheck": "imported-warren-audit.json",
+  "critical_scale_address_audit": "critical-scale-address-audit.md"
 }

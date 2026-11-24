@@ -1,0 +1,30 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/critical-scale-address-audit.md",
+    "source_math_spans": 73,
+    "rendered_math_spans": 73,
+    "findings": 0,
+    "sha256": "bbfe9105f5377b6a0c8fce24223bbe91aef4107ec22858e583427f7fe4895ab9"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/intermediate-exponent-audit.md",
+    "source_math_spans": 24,
+    "rendered_math_spans": 24,
+    "findings": 0,
+    "sha256": "04b7586fdb0f6d3ce0a5bc0155de9b936b0b5dc78baa00817d75aa2f34a6ad50"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "source_math_spans": 113,
+    "rendered_math_spans": 113,
+    "findings": 0,
+    "sha256": "22a959775cd546e71de9ee5dd27b072858afe4da33ff68a33f87c83455574964"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/audit-index.md",
+    "source_math_spans": 5,
+    "rendered_math_spans": 5,
+    "findings": 0,
+    "sha256": "a569037e95173c474c2d8c8261d026e5f4b91a3a2820d9d9a39ab136f3f2d1dd"
+  }
+]
