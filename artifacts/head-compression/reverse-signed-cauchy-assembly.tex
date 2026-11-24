@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Signed Cauchy Queries and Shared Biases at Linear Head Cost}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The implementation statements below are Lean checked in
+\texttt{Results/ReverseSignedCauchy.lean} and
+\texttt{Results/ReverseCauchyBiasAssembly.lean}. They preserve the
+original input dimension and strict atom admissibility. They do not
+assert that a growing number of independent signs can be decoded.
+
+\begin{theorem}
+Fix positive query times $t_j$, positive row poles $p_{hi}<t_j$,
+arbitrary real residues $a_{hi}$, and two fixed Boolean query masks
+$M^+_{hj},M^-_{hj}$. The masks may overlap. Suppose $\epsilon>0$ and
+\[
+ \sum_{i=1}^r\frac{p_{hi}}{p_{hi}+\epsilon}
+ +\sum_{j=1}^s\frac{\epsilon}{t_j+\epsilon}<1
+ \qquad\text{for every }h.
+ \tag{1}
+\]
+Then $2H$ affine-fraction heads, with denominators positive on the
+whole Boolean $(r+s)$-cube and all slopes strictly negative, have
+exact zero scores on both Boolean axes and grid score
+\[
+ \epsilon\sum_{h=1}^H
+ (M^+_{hj}-M^-_{hj})\frac{a_{hi}}{t_j-p_{hi}}.
+ \tag{2}
+\]
+If $G$ additional fixed Boolean query masks $N_{gj}$ carry arbitrary
+row coefficients $b_{gi}$, then $2H+2G$ heads realize instead
+\[
+ \epsilon\left(\sum_{h=1}^H
+ (M^+_{hj}-M^-_{hj})\frac{a_{hi}}{t_j-p_{hi}}
+ +\sum_{g=1}^G N_{gj}b_{gi}\right)
+ \tag{3}
+\]
+with the same strict admissibility and axis identities.
+\end{theorem}
+\begin{proof}
+Set $q_{hi}=p_{hi}/(p_{hi}+\epsilon)$,
+$\tau_j=t_j/(t_j+\epsilon)$, and
+$\alpha_{hi}=\epsilon a_{hi}/(p_{hi}+\epsilon)$.
+Choose a sufficiently small $\eta>0$ using the strict margin in (1).
+For each $h$, use opposite numerators
+$\pm\sum_i(1-q_{hi})\alpha_{hi}z_i$ and denominators
+\[
+ B_h^\pm=1+\eta-\sum_iq_{hi}z_i
+ -\sum_j\left(\eta+M^\pm_{hj}(1-\tau_j)\right)w_j.
+\]
+All slopes are strictly negative. Each mask sum is bounded by the
+unmasked sum in (1), so these denominators are positive on the
+whole cube for sufficiently small $\eta$. On the left axis the
+numerators vanish; on the right axis each pair cancels.
+At a grid point, subtract the inactive denominator from each active
+one. The exact paired identity gives
+\[
+ (M^+_{hj}-M^-_{hj})(1-\tau_j)
+ \frac{\alpha_{hi}}{\tau_j-q_{hi}}
+ =\epsilon(M^+_{hj}-M^-_{hj})
+ \frac{a_{hi}}{t_j-p_{hi}}.
+\]
+This proves (2). The checked masked-row-bias construction uses two
+heads per mask, with row coefficient $\epsilon b_{gi}$, to produce
+the remaining term in (3). Concatenation preserves every denominator
+condition and both axis identities.
+\end{proof}
+
+\paragraph{Why the uniform factor matters.}
+The uncompactified paired identity has factor $1-t_j$, which depends
+on the query. Adding an unscaled row bias to that score would not
+implement a bias inside the original Cauchy expression. Formula (2)
+has one uniform positive factor, and therefore closes this assembly
+gap. A Haar system with $H-1$ independent block biases has total cost
+$4H-2$ whenever (1) holds.
+
+\paragraph{A sufficient small-pole condition.}
+Condition (1) follows from $0<p_{hi}\leq\epsilon^2C$, $t_j\geq b>0$,
+$\epsilon^2C<b$, and $\epsilon(rC+s/b)<1$. Indeed its two sums are
+bounded by $r\epsilon C$ and $s\epsilon/b$ respectively. Thus a decoder
+valid for arbitrarily small positive poles and queries bounded away
+from zero can meet the whole-cube budget for any finite row count.
+This estimate does not establish such a decoder.
+
+\paragraph{Lean declarations.}
+The main declarations are
+\texttt{exists\_signedMaskedCauchy\_reverseAxisData},
+\texttt{exists\_compactified\_signedCauchy\_reverseAxisData},
+\texttt{ReverseAxisData.append},
+\texttt{ReverseAxisData.append\_score}, and
+\texttt{exists\_compactified\_signedCauchy\_with\_bias},
+all in namespace \texttt{HeadComplexity.AxisZeroGluing}.
+Their premises include the explicit whole-cube budget; none assumes
+or concludes universality of the Haar sign decoder.
+\end{document}

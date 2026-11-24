@@ -325,6 +325,62 @@ whole-cube positivity, strictification of odd targets, and simultaneous
 inward perturbation of weakly positive parameters are included.
 The Fourier observations in the written note are not yet formalized.
 
+\paragraph{Deformed poles and exact permutation audits.}
+\texttt{cauchy-catalan-deformation.tex} constructs a scalable moment
+filtration jump of size $q$ using $2q-1$ deformed poles. This escapes
+the earlier fixed-pole filtration bound, but provides only a constant
+query-to-head ratio. The full permutation zero-fiber classification in
+\texttt{permutation-joint-zero-classification.tex} and the shared-pool
+audits distinguish full symmetric-group assumptions from structured
+butterfly settings. The higher-level interference theorem in
+\texttt{butterfly-haar-cardinalization-audit.tex} blocks one fixed-residue
+decoder on all butterfly settings, not target-dependent residues or
+selected subfamilies. These are written arguments with exact checks,
+not Lean proofs and not unrestricted lower bounds.
+
+\paragraph{Block biases, Lean checked.}
+\texttt{Results/ReverseMaskedBias.lean} proves
+\texttt{exists\_reverseAxis\_masked\_row\_sum}: arbitrary row coefficients
+on $H$ fixed Boolean query masks cost exactly $2H$ strictly admissible
+axis-zero heads. The proof has an explicit whole-cube margin and exact
+grid values, with no limiting or smallness assumption. Hence at most
+$H-1$ shared Haar-block biases, if useful in a future decoder, have
+linear head cost. Universality of the growing adaptive decoder remains
+open; finite feasibility checks are not promoted to it.
+
+\paragraph{Signed masks and uniform bias assembly, Lean checked.}
+\texttt{Results/ReverseSignedCauchy.lean} implements positive and
+negative query masks using the same two heads per moving pole. Its
+compactified form has a common positive scale factor across every
+query. \texttt{Results/ReverseCauchyBiasAssembly.lean} then proves
+\texttt{exists\_compactified\_signedCauchy\_with\_bias}: $H$ poles
+and $G$ fixed masked row biases cost $2H+2G$ strictly admissible
+axis-zero heads, under the explicit transformed whole-cube budget.
+The uniform factor is necessary: directly adding row biases to the
+uncompactified score would incorrectly omit its query-dependent
+factor. The aggregate build now passes with these modules included.
+
+\paragraph{Exact finite adaptive decoder.}
+\texttt{butterfly-adaptive-haar.tex} and its rational active-basis
+certificate establish every one of the $4096$ eight-wire switch
+patterns with target-dependent positive residues, uniformly at all
+sufficiently small positive hierarchy scales. The polynomial-height
+continuation and the $16$-head strict full-cube embedding have been
+independently audited. This is an exact computational theorem with a
+written continuation proof, not a Lean theorem and not a growing
+compiler. Simple common-residue induction fails on some pairs of
+child patterns. Faster hierarchies and block biases have additional
+finite evidence, but no universal recursion has been proved.
+
+\paragraph{Further global counting audit.}
+\texttt{ambient-relative-rank-audit.tex} checks the real sign-condition
+and relative-rank bounds of Basu and Parida, including a smooth lifted
+reciprocal variety. Their stated estimate retains the logarithmic loss
+and gives no improvement over the checked Warren lower bound here.
+The same note separates ordinary shattering from Sontag's generic
+shattering parameter, whose bound does not imply a bound on the fixed
+Boolean cube. No external counting theorem has been added as a Lean axiom.
+
 \paragraph{Verification and external hypotheses.}
 The aggregate \texttt{lake build HeadComplexity.Results.All} completed
 successfully after importing the new assembly and Warren modules.

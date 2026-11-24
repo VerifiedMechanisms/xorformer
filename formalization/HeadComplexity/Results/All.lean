@@ -23,6 +23,8 @@ import HeadComplexity.Results.AxisZeroUnbalancedAsymptotics
 import HeadComplexity.Results.ReverseMobius
 import HeadComplexity.Results.ReverseMaskedCauchy
 import HeadComplexity.Results.ReverseMaskedBias
+import HeadComplexity.Results.ReverseSignedCauchy
+import HeadComplexity.Results.ReverseCauchyBiasAssembly
 import HeadComplexity.Results.ReverseCauchyCompactification
 import HeadComplexity.Results.ReverseMomentGerms
 import HeadComplexity.Results.ReverseFiveQueries
