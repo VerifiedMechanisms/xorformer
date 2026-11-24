@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Higher-level interference in shared-residue Haar cardinalization}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written obstruction to one proposed decoder, with exact
+finite routing and four-wire checks. It is not Lean checked and is not a
+lower bound for the original HeadComplexity model. The restrictions are
+one fixed residue pool, one exterior Cauchy kernel per query, pure input
+Haar profiles, and correctness on every setting of the butterfly network.
+Target-dependent residues, several kernels in one query, different input
+profiles, and a selected subfamily whose later switches serve as auxiliary
+variables are not covered.
+
+Use the butterfly notation of \texttt{butterfly-wavelet-span.tex}.
+There are $H=2^d$ wires. Fix real residues $r_y$, poles
+$0\leq\xi_y\leq a$, and a positive integer $p$. Write
+\[
+ w_y(t)=\frac{r_y}{(t-\xi_y)^p},\qquad t\geq b>a.
+\]
+For a fixed level $k$ and input block $g$, queries have scores
+\[
+ F_s(\pi)=\beta_s+\lambda_s\sum_h u_{k,g}(h)w_{\pi(h)}(t_s),
+ \qquad 0\leq s<2^k,
+\]
+where $t_s\geq b$, $\lambda_s\ne0$, and $\beta_s$ are arbitrary.
+The desired strict sign is $1-2\theta_{k,s,g}$, where $\theta$ is the
+corresponding switch bit.
+
+\begin{lemma}[Independent later routing]
+Choose one representative $y_a$ from every output residue class
+$a\pmod {2^{k+1}}$. For every choice of the $2^k$ layer-$k$ switch bits
+in block $g$, there is a butterfly setting such that the input
+\[
+ h=(g\,2^{k+1})+b'2^k+s
+\]
+is sent to $y_{(b'\mathbin{\oplus}\theta_{k,s,g})2^k+s}$ for every
+$s<2^k$ and $b'\in\{0,1\}$.
+\end{lemma}
+\begin{proof}
+Set every earlier switch to the identity. Set the chosen layer-$k$
+switches as required. The tracked wires then have distinct lower
+$k+1$ tuples. Later layers preserve those tuples, so tracked wires
+never share a later switch. At each later layer, set the switch on
+each tracked path to give its next bit the value of its chosen output
+representative. These prescriptions never conflict, and after the last
+layer every tracked wire has the prescribed output.
+\end{proof}
+
+\begin{theorem}[A uniform bound on decodable prefixes]
+If the displayed queries decode their respective layer-$k$ switch bits
+on every butterfly setting, then
+\[
+ 2^k<(p+1)\left[1+\left(\frac b{b-a}\right)^{4p}\right].
+ \tag{1}
+\]
+In particular, for the simple Cauchy kernel $p=1$ and
+$a/b<1-3^{-1/4}$, no level $k\geq3$ admits this decoder.
+\end{theorem}
+\begin{proof}
+Fix arbitrary representatives as in the lemma and put
+\[
+ \Delta_s(t)=w_{y_s}(t)-w_{y_{2^k+s}}(t).
+\]
+For the settings constructed by the lemma, the score before its bias
+and scale is exactly
+\[
+ \sum_{j<2^k}(1-2\theta_{k,j,g})\Delta_j(t).
+\]
+All signs in this sum vary independently. Correctness of query $s$
+for every such choice forces
+\[
+ |\Delta_s(t_s)|>\sum_{j\ne s}|\Delta_j(t_s)|.
+ \tag{2}
+\]
+Indeed the target term must overcome both choices of its own sign and
+the worst choices of all other signs; an arbitrary bias cannot weaken
+this necessary inequality. In particular each diagonal term is nonzero.
+
+Let $R=2^k$. Write $\Delta_j=N_j/D_j$, where
+\[
+ D_j(t)=(t-\xi_{y_j})^p(t-\xi_{y_{R+j}})^p
+\]
+is positive and $N_j$ is a polynomial of degree at most $p$.
+The matrix
+\[
+ M_{ij}=\frac{N_j(t_i)}{N_i(t_i)}
+\]
+has diagonal entries one and rank at most $p+1$. Since
+$\Delta_j(t_i)/\Delta_i(t_i)=M_{ij}D_i(t_i)/D_j(t_i)$,
+(2) and the pole interval give
+\[
+ \sum_{j\ne i}|M_{ij}|<L,\qquad
+ L=\left(\frac b{b-a}\right)^{2p}.
+\]
+Here $D_j(t_i)/D_i(t_i)\leq(t_i/(t_i-a))^{2p}\leq L$.
+Consequently $\|M\|_F^2<R(1+L^2)$. For any real matrix,
+$|\operatorname{tr}M|\leq\sqrt{\operatorname{rank}M}\|M\|_F$:
+apply Cauchy--Schwarz to its singular values and use that the absolute
+trace is at most their sum. Thus
+\[
+ R^2<(p+1)R(1+L^2),
+\]
+which is (1). In the final case its right side is less than eight.
+\end{proof}
+
+\paragraph{Why the interpolation count does not settle the route.}
+The same-level Haar coefficients
+\[
+ W_{k,s}(t)=\sum_{y\bmod 2^k=s}(-1)^{y_k}w_y(t)
+\]
+can be constrained to vanish at query times belonging to other prefixes.
+For $k\leq\frac12\log_2H$, the total number of such linear conditions
+is only $O(H)$. However these conditions control averages over the later
+output bits. The independent-routing lemma lets those bits select
+individual representatives instead. Inequality (1) shows that no choice
+of the $H$ residues can make their unaveraged contributions harmless on
+all network settings at a growing number of levels. This identifies the
+higher-level interference gap quantitatively; it does not rule out using
+later switches as target-dependent auxiliary choices.
+
+\paragraph{A nontrivial four-wire exact example.}
+The bound is not a claim that every multilevel decoder fails. Let
+$\epsilon=1/10000$, $T=99/100$, $\xi_j=j\epsilon$ for $0\leq j<4$, and
+\[
+ r_0=100/\epsilon,\quad r_1=0,\quad
+ r_2=r_0(T-2\epsilon)/T,\quad r_3=-1.
+\]
+Use time one for both level-zero queries and for the level-one prefix-zero
+query, and use time $T$ for the level-one prefix-one query. All four
+switch signs are decoded on all sixteen network settings.
+For level zero, both even-indexed wire weights are positive and both
+odd-indexed weights are nonpositive, so every routed difference has the
+required strict sign. At level one the two gaps are
+\[
+ \Delta_0(t)=\frac{2\epsilon r_0(t-T)}{Tt(t-2\epsilon)},
+ \qquad \Delta_1(t)=\frac1{t-3\epsilon}.
+\]
+At $t=T$ the first is zero and the second positive. At $t=1$ the first
+is larger than the second, as follows directly from the displayed
+rational values. This proves both independent level-one signs.
+
+The companion checker verifies all 64 strict scores of this example
+using exact rational arithmetic. It also checks 13,862 instances of the
+routing lemma, exhausting all representative choices, switch bits, and
+input blocks for $d\leq4$. Exploratory floating-point infeasibility on
+larger examples is not used in the theorem.
+\end{document}
