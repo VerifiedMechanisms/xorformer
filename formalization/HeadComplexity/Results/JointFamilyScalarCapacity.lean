@@ -91,20 +91,20 @@ theorem jointFamily_root_feature_budget {a m n : ℕ}
     _ ≤ ∑ _b : Fin a, n := Finset.sum_le_sum (fun b _ ↦ hfeature b)
     _ = a * n := by simp
 
-/-- Distinct strict sign words suffice for the varying-degree root budget. -/
-theorem jointFamily_root_feature_budget_of_distinct_words {a m n : ℕ}
+/-- Distinct strict sign words require the sum of the numerator degrees
+to be at least the number of gaps between tokens. -/
+theorem jointFamily_distinct_words_total_degree_bound {a m : ℕ}
     (p : Fin a → Polynomial ℝ)
     (token : Fin (m + 1) → ℝ) (htoken : StrictMono token)
     (hnonzero : ∀ i b, (p b).eval (token i) ≠ 0)
     (hwords : Function.Injective (fun i : Fin (m + 1) ↦
-      fun b : Fin a ↦ (0 < (p b).eval (token i))))
-    (hfeature : ∀ b, (p b).natDegree * m ≤ n) :
-    m * m ≤ a * n := by
+      fun b : Fin a ↦ (0 < (p b).eval (token i)))) :
+    m ≤ ∑ b, (p b).natDegree := by
   classical
   have hp (b : Fin a) : p b ≠ 0 := by
     intro he
     simpa [he] using hnonzero 0 b
-  apply jointFamily_root_feature_budget p hp token htoken ?_ hfeature
+  apply polynomial_sign_sequence_degree_bound p hp token htoken
   intro i
   by_contra hc
   push Not at hc
@@ -127,6 +127,66 @@ theorem jointFamily_root_feature_budget_of_distinct_words {a m n : ℕ}
   have hi := hwords he
   have : i.castSucc < i.succ := by simp
   exact (ne_of_lt this) hi
+
+/-- Distinct strict sign words suffice for the varying-degree root budget. -/
+theorem jointFamily_root_feature_budget_of_distinct_words {a m n : ℕ}
+    (p : Fin a → Polynomial ℝ)
+    (token : Fin (m + 1) → ℝ) (htoken : StrictMono token)
+    (hnonzero : ∀ i b, (p b).eval (token i) ≠ 0)
+    (hwords : Function.Injective (fun i : Fin (m + 1) ↦
+      fun b : Fin a ↦ (0 < (p b).eval (token i))))
+    (hfeature : ∀ b, (p b).natDegree * m ≤ n) :
+    m * m ≤ a * n := by
+  have hroot := jointFamily_distinct_words_total_degree_bound p token htoken hnonzero hwords
+  calc
+    m * m ≤ (∑ b, (p b).natDegree) * m := Nat.mul_le_mul_right m hroot
+    _ = ∑ b, (p b).natDegree * m := Finset.sum_mul _ _ _
+    _ ≤ ∑ _b : Fin a, n := Finset.sum_le_sum (fun b _ ↦ hfeature b)
+    _ = a * n := by simp
+
+/-- The total active pole budget over all scalar Cauchy output bits is at
+least the number of gaps between distinct strict sign words. -/
+theorem jointFamily_cauchy_active_pole_budget {a m : ℕ}
+    (pole : I → ℝ) (η : Fin a → I → ℝ) (c : Fin a → ℝ)
+    (token : Fin (m + 1) → ℝ) (htoken : StrictMono token)
+    (hden : ∀ i z, 0 < pole z - token i)
+    (hnonzero : ∀ i b, c b + (∑ z : I, η b z / (pole z - token i)) ≠ 0)
+    (hwords : Function.Injective (fun i : Fin (m + 1) ↦
+      fun b : Fin a ↦ (0 < c b + ∑ z : I, η b z / (pole z - token i)))) :
+    m ≤ ∑ b : Fin a, (Finset.univ.filter (fun z : I ↦ η b z ≠ 0)).card := by
+  classical
+  let S : Fin a → Finset I := fun b ↦ Finset.univ.filter (fun z ↦ η b z ≠ 0)
+  let P : Fin a → Polynomial ℝ := fun b ↦
+    jointFamilyCauchyPolynomial (S b) pole (η b) (c b)
+  have hsum (b : Fin a) (t : ℝ) :
+      (∑ z ∈ S b, η b z / (pole z - t)) = ∑ z : I, η b z / (pole z - t) := by
+    apply Finset.sum_subset (Finset.subset_univ _)
+    intro z _ hz
+    have he : η b z = 0 := by simpa [S] using hz
+    simp [he]
+  have hprod (b : Fin a) (i : Fin (m + 1)) :
+      0 < ∏ z ∈ S b, (pole z - token i) :=
+    Finset.prod_pos (fun z _ ↦ hden i z)
+  have heval (b : Fin a) (i : Fin (m + 1)) :
+      (P b).eval (token i) = (∏ z ∈ S b, (pole z - token i)) *
+        (c b + ∑ z : I, η b z / (pole z - token i)) := by
+    change (jointFamilyCauchyPolynomial (S b) pole (η b) (c b)).eval (token i) = _
+    rw [jointFamilyCauchyPolynomial_eval (S b) pole (η b) (c b) (token i)
+      (fun z _ ↦ (hden i z).ne'), hsum]
+  have hPnonzero (i : Fin (m + 1)) (b : Fin a) : (P b).eval (token i) ≠ 0 := by
+    rw [heval]
+    exact mul_ne_zero (hprod b i).ne' (hnonzero i b)
+  have hPwords : Function.Injective (fun i : Fin (m + 1) ↦
+      fun b : Fin a ↦ (0 < (P b).eval (token i))) := by
+    intro i j he
+    apply hwords
+    funext b
+    have hb := congrFun he b
+    simpa only [heval, mul_pos_iff_of_pos_left (hprod b i),
+      mul_pos_iff_of_pos_left (hprod b j)] using hb
+  have hroot := jointFamily_distinct_words_total_degree_bound P token htoken hPnonzero hPwords
+  exact hroot.trans (Finset.sum_le_sum (fun b _ ↦
+    jointFamilyCauchyPolynomial_degree (S b) pole (η b) (c b)))
 
 /-- A scalar Cauchy codebook together with exact affine weighted line
 selectors obeys the quadratic capacity obstruction. The point addresses
