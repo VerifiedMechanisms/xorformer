@@ -18,11 +18,11 @@ This is a normalization of the score subspace for analysis. Multiplication by $s
 
 ### Theorem 1. Generic ranks inherit cube symmetry
 
-Normalize each denominator by $D_h(0)=1$ and write $D_h=1+b_h\cdot x$. The admissible parameter domain
+Normalize each denominator by $D_h(0)=1$ and write $D_h=1+b_h\cdot x$. For this generic-rank calculation only, enlarge the manuscript's denominator domain to all affine forms positive on the cube:
 
 $$ \Omega=\lbrace b:1+b_h\cdot x\gt0\text{ for all }h,x\rbrace $$
 
-is a nonempty open convex set. The space $U_D$ is the column space of the matrix with columns $1$ and $x_i/D_h$. Indeed, $1/D_h=1-\sum_i b_{h,i}x_i/D_h$, and $1=D_h/D_h$ belongs to every summand.
+This is a nonempty open convex set. Unlike the manuscript's admissible domain, it allows mixed slope signs. The enlargement is used only to establish the symmetry of the generic rank function. The space $U_D$ is the column space of the matrix with columns $1$ and $x_i/D_h$. Indeed, $1/D_h=1-\sum_i b_{h,i}x_i/D_h$, and $1=D_h/D_h$ belongs to every summand.
 
 For each subset $T\subseteq X$, let $r(T)$ be the maximum rank of this matrix restricted to $T$, over $\Omega$. A minor attaining $r(T)$ at one point is a nonzero rational function with denominators nonzero throughout $\Omega$. Its numerator is a nonzero polynomial. Its nonvanishing locus is open dense in $\Omega$. Intersect these loci for the finitely many subsets $T$ to obtain an open dense set $\Omega_\ast$ on which all row ranks attain their maxima simultaneously.
 
@@ -64,7 +64,7 @@ This proves exact balancing, including matroids with several connected component
 
 ### Theorem 3. Strict representations can be perturbed
 
-Take any strictly classifying head sum and hold its affine numerators fixed. Its finitely many positive denominators and signed score values have positive minima. By continuity, all denominator and classification inequalities persist on an open neighborhood of its denominator parameters. This neighborhood meets $\Omega_\ast$ by Theorem 1. Perturb to a point in the intersection and apply Theorem 2 to a column basis of its head space.
+Take any strictly classifying head sum and hold its affine numerators fixed. Its finitely many positive denominators and signed score values have positive minima. By continuity, all denominator and classification inequalities persist on an open neighborhood of its denominator parameters. First replace every constant denominator by itself plus a sufficiently small positive multiple of $\sum_i x_i$, preserving all strict labels. Each denominator then has either all positive or all negative slopes, exactly as required by the manuscript. Restrict the perturbation neighborhood to preserve each of these strict slope signs. This restricted neighborhood is still open in the enlarged space $\Omega$, so it meets $\Omega_\ast$ by Theorem 1. Perturb inside this intersection and apply Theorem 2 to a column basis of its head space. Every perturbed denominator remains admissible.
 
 Unused heads can have zero numerators. A separate readout constant is already included in $U_D$. This argument is compatible with the manuscript's strictification and positive affine-ratio normal form. $\blacksquare$
 
