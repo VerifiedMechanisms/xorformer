@@ -67,5 +67,22 @@ for d in range(1, 4):
             assert lhs == rhs
             identity_entries += 1
 
+paired_entries = 0
+for k in range(1, 501):
+    x, y = F(k, 10001), F(k + 501, 10001)
+    m, c = F((7 * k) % 31 - 15, 11), F((13 * k) % 37 - 18, 7)
+    D, E = F(3, 2) + F(k % 7, 20), F(3, 2) + F(k % 9, 20)
+    b, e = F(k % 13, 5), F(-(k % 17), 3)
+    S, P, T = x + y, x * y, m * x * y + c * (x + y)
+    def delta(t, z):
+        return (m * x + c + z) / (t - x) - (m * y + c + z) / (t - y)
+    lhs = (D - x) * (D - y) * (E - x) * (E - y) / (x - y)
+    lhs *= delta(D, b) - delta(E, e)
+    rhs = ((D - E) * (T - D * E * m - (D + E) * c)
+           + (e * D - b * E) * S + (b - e) * P + b * E * E - e * D * D)
+    assert lhs == rhs
+    paired_entries += 1
+
 print(f"PASS: {covariance_entries} exact covariance entries; "
-      f"{identity_entries} reciprocal identities")
+      f"{identity_entries} reciprocal identities; "
+      f"{paired_entries} paired-output identities")

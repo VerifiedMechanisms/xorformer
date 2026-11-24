@@ -147,4 +147,94 @@ to general query-dependent denominators, additional denominator
 states, or higher-order constructions that genuinely leave (6).
 Realizing useful parts of the larger invariant space with those
 additional freedoms remains open.
+
+\begin{lemma}[Six-feature bound for exact paired-output filters]
+Fix $q$ disjoint pairs of distinct pool poles $(x_s,y_s)$, with
+arbitrary fixed pool numerators at their endpoints. Let
+$L_s(t)=m_st+c_s$ be the secant line interpolating those two numerators,
+and set $S_s=x_s+y_s$, $P_s=x_sy_s$, and
+$T_s=m_sP_s+c_sS_s$. For a row choice $(D,b)$ define its paired
+difference by
+\[
+ \Delta_s(D,b)=\frac{a(x_s)+b}{D-x_s}
+                         -\frac{a(y_s)+b}{D-y_s}.
+\]
+All row denominators are assumed nonzero. Suppose for each
+$t=1,\ldots,q$ there are two row choices $(D_t,b_t),(E_t,e_t)$
+whose difference $\Delta_s(D_t,b_t)-\Delta_s(E_t,e_t)$ is zero for
+every $s\ne t$ and nonzero for $s=t$. Then $q\leq6$.
+\end{lemma}
+\begin{proof}
+Write $Q_s(D)=(D-x_s)(D-y_s)$. Direct subtraction gives
+\[
+ \Delta_s(D,b)=\frac{(x_s-y_s)(b+m_sD+c_s)}{Q_s(D)}.
+\]
+Consequently the numerator after clearing the two denominators is
+\begin{align*}
+ N_s(D,b,E,e)
+ &:={Q_s(D)Q_s(E)\over x_s-y_s}
+               (\Delta_s(D,b)-\Delta_s(E,e))\\
+ &=(D-E)\bigl(T_s-DEm_s-(D+E)c_s\bigr)
+       +(eD-bE)S_s+(b-e)P_s+bE^2-eD^2.                \tag{7}
+\end{align*}
+This identity does not divide by $D-E$ and includes $D=E$.
+For varying row choices the vector $(N_s)_s$ lies in the span of
+the six fixed vectors $(T_s)_s,(m_s)_s,(c_s)_s,(S_s)_s,(P_s)_s,1$.
+For the $q$ specified choices, the matrix $(N_s(D_t,b_t,E_t,e_t))_{t,s}$
+is diagonal with nonzero diagonal, since clearing preserves all zeros
+and nonzeros. Its rank is $q$ and is at most six.
+\end{proof}
+
+\paragraph{Application and precise limitation.}
+Consider common-token permutation branches with fixed $(p_y,a_y)$ and
+arbitrary query-dependent row choices
+$C^{(t)}_{hy}=(a_y+b_{ht})/(D_{ht}-p_y)$. The highest output Haar
+level $j=d-1$ admits no nonconstant input invariant modes: the
+classification has no $i>j$ there. If query $t$ is required to realize
+exactly its selected root switch rectangle, modulo invariant costs
+and arbitrary components at lower output levels, choose one input
+row in each root half and subtract them. Their highest-output paired
+differences isolate pair $t$. Thus realizing all $H/2$ root switches
+in this exact way requires $H/2\leq6$.
+This conclusion allows arbitrary column-only offsets because the
+two chosen rows cancel them. It is not an obstruction to strict sign
+decoding with contributions from other switches, target-adaptive
+tokens, approximate or higher-order readouts, or the unrestricted
+HeadComplexity model.
+
+\begin{lemma}[A compact quantitative version]
+In the preceding lemma suppose $y_s-x_s=\gamma>0$ for every $s$,
+all pool poles belong to $[0,a]$, and all $D_t,E_t\geq b>a$.
+Let $F_{ts}=\Delta_s(D_t,b_t)-\Delta_s(E_t,e_t)$.
+If $F$ is strictly row diagonally dominant in absolute value, then
+\[
+ q<6\left[1+\left(\frac{b}{b-a}\right)^8\right].       \tag{8}
+\]
+\end{lemma}
+\begin{proof}
+The matrix $N$ in (7) has rank at most six. The clearing factors in
+one row have ratios at most
+$R=(b/(b-a))^4$, since each of their four positive denominator
+factors varies by a ratio at most $b/(b-a)$ across pole pairs and
+the pole gaps are equal. Normalize each row of $N$ by its nonzero
+diagonal entry. The resulting matrix $M$ has diagonal one and
+$\sum_{s\ne t}|M_{ts}|<R$. Thus
+$\|M\|_F^2<q(1+R^2)$. For every real square matrix,
+$|\operatorname{tr}M|\leq\sqrt{\operatorname{rank}M}\|M\|_F$:
+write a singular-value decomposition and bound the trace by the sum
+of singular values, then apply Cauchy--Schwarz. Therefore
+$q^2<6q(1+R^2)$, which proves (8).
+\end{proof}
+
+\paragraph{Scope of the quantitative version.}
+Strict diagonal dominance is necessary for a fixed affine score
+$\beta_t+\sum_sF_{ts}\sigma_s$ to output the bit $\sigma_t$ for
+every independent switch word, up to choosing the sign of the
+diagonal coefficient. Hence (8) rules out such a uniformly saturated
+readout when its paired coefficients come from the two fixed row
+choices in the lemma. In a general butterfly, the two input rows
+contributing at a given output prefix can themselves depend on that
+prefix and on earlier routing. The lemma does not remove that
+generality, and supplies no impossibility theorem for the full
+adaptive-residue decoder.
 \end{document}
