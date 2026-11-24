@@ -161,6 +161,72 @@ admissible ratios. This is a zero certificate, not an approximate
 indicator. Its values away from the batch can have both signs and
 arbitrary magnitudes.
 
+\begin{proposition}[Five admissible heads recognize one thin shell]
+Let $B$ be an affine function on $\{0,1\}^m$ with strictly positive
+constant and slopes, and let $L$ be any affine function. For any
+$a>0$ such that
+\[
+ a^2-\left(\frac1{B(x)}-L(x)\right)^2\ne0
+ \qquad(x\in\{0,1\}^m),
+\]
+the strict signs of this expression are realized by five admissible
+affine ratios and a scalar bias.
+\end{proposition}
+\begin{proof}
+Write $L(x)=\ell_0+\sum_i\ell_i x_i$. For $t>0$ set
+$D_t(x)=1+\sqrt t\sum_i x_i$ and
+\[
+ A_t(x)=\frac1t\left(\frac1{B(x)}-\frac1{B(x)+t}\right)
+       -\frac{2L(x)}{B(x)}
+       +\frac1t\left(\frac{L(x)}{D_t(x)}
+                    -\frac{L(x)}{D_t(x)+tL(x)}\right).
+\]
+This is a sum of five affine ratios. All its denominators have
+strictly positive constant and slopes for sufficiently small $t$.
+For the only non-immediate denominator, the slopes are
+$\sqrt t+t\ell_i>0$ and the constant is $1+t\ell_0>0$; these
+inequalities hold simultaneously because there are finitely many
+coefficients. Hence every denominator is positive on the entire
+cube, not merely on the test set. Algebra gives
+\[
+ A_t(x)=\frac1{B(x)(B(x)+t)}-\frac{2L(x)}{B(x)}
+       +\frac{L(x)^2}{D_t(x)(D_t(x)+tL(x))}.
+\]
+As $t\downarrow0$, this converges uniformly on the finite cube to
+$(1/B-L)^2$. The desired score has a positive minimum absolute
+margin, so for sufficiently small $t$ the score $a^2-A_t$ has
+exactly its strict signs.
+\end{proof}
+
+\begin{proposition}[A batch times arbitrary one-hot columns]
+Fix a nonempty independent batch $S\subset\{0,1\}^m$ and a subset
+$A\subset\{1,\ldots,q\}$, with $q\ge1$. There exist five admissible
+heads on $m+q$ bits and a scalar bias whose score on $(x,e_j)$ is
+strictly positive exactly when $(x,j)\in S\times A$.
+The denominators are admissible on the full $(m+q)$-cube.
+\end{proposition}
+\begin{proof}
+Apply the rational-lift argument with $q(x)=1$ and $D(x)=1$ to
+obtain a positive affine $B_0$ with strictly positive slopes and
+an affine $L_0$ such that $T_0=1/B_0-L_0$ vanishes exactly on $S$.
+Choose $a>0$ with $4a<|T_0(x)|$ for every $x\notin S$; if there
+are no such points, choose any $a>0$.
+Choose $0<\eta<B_0(0)$ and put
+\[
+ B(x,z)=B_0(x)-\eta+\eta\sum_{j=1}^qz_j,
+ \qquad L(x,z)=L_0(x)+2a\sum_{j\notin A}z_j.
+\]
+The denominator $B$ has strictly positive constant and slopes, and
+$B(x,e_j)=B_0(x)$. The residual $1/B-L$ equals $0$ on $S\times A$,
+equals $-2a$ on $S\times A^c$, and has absolute value greater than
+$2a$ at every test point with $x\notin S$. Thus the score
+$a^2-(1/B-L)^2$ has the required strict signs on the tests.
+The preceding finite-difference construction approximates this
+score uniformly on the whole cube. Its test-set margin is positive,
+so sufficiently accurate approximation gives the asserted five
+heads. No assertion about the signs at non-test inputs is needed.
+\end{proof}
+
 \section{A full-cube batching bound}
 
 \begin{lemma}[Vertices in an affine flat]
@@ -237,5 +303,39 @@ threshold $1/2$, as proved in
 the independent-batch partition supplies these approximations.
 The common $B,D,q$ across batches could permit a joint cancellation
 construction, but no such construction is asserted here.
+
+\begin{proposition}[Raw squared residuals do not supply the joint vote]
+Fix common positive affine $B,D$ and affine $q$ on the Boolean
+cube. For arbitrary affine $L_s$, real weights $w_s$, real
+thresholds $a_s$, and any number of batches, the strict signs of
+\[
+ F(x)=c+\sum_s w_s\left(a_s^2-
+          \left(\frac{q(x)}{B(x)}-\frac{L_s(x)}{D(x)}\right)^2\right)
+\]
+are the strict signs of a polynomial of degree at most four.
+Consequently no such strict score realizes parity on more than
+four bits.
+\end{proposition}
+\begin{proof}
+Multiplication by the positive function $B^2D^2$ gives
+\[
+ B^2D^2F=
+ \left(c+\sum_s w_sa_s^2\right)B^2D^2
+ -\sum_s w_s(qD-L_sB)^2.
+\]
+Every term has degree at most four. To recall the parity obstruction
+directly, write parity as $\chi(x)=(-1)^{\sum_i x_i}$. The uniform
+average of $\chi$ times every monomial of degree less than $m$ is
+zero, by summing over an absent coordinate. Hence the average of
+$\chi P$ is zero for any degree-less-than-$m$ polynomial $P$.
+Strict sign representation would instead make every summand
+$\chi(x)P(x)$ positive, a contradiction.
+\end{proof}
+
+This last proposition concerns the displayed strict limiting score.
+It does not exclude a finite-difference construction in which all
+lower-order terms cancel identically and the signs are carried by a
+higher-order term. Such a mechanism would need its own construction
+and uniform strict-sign proof.
 
 \end{document}
