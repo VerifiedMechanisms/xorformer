@@ -210,3 +210,101 @@ Next genuinely different attempts:
    margin. A finite-center oscillation that violates this margin is a failed
    lemma, not evidence for the benchmark. Explore whether adaptive finite
    pole pencils can overcome the partial-diagonal correction cost.
+
+FOUR-HOUR CHECKPOINT, 2026-11-24 19:30 UTC (about 240 minutes)
+The benchmark remains open. Research continues until 2026-11-25 03:30:09 UTC.
+The strongest unconditional global statement is still
+HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving:
+W(n) <= 151010*2^n/(n*log n), for n >= 32. There is no proved unbounded
+factor g and no fixed-power improvement. The original definitions remain
+unchanged. The most recent complete default build passed, 9308 jobs.
+
+New kernel-checked positive transfers and exact budgets:
+* JointCubeBenchmarkTransfer proves the benchmark from one explicit local
+  hypothesis. At k=floor(n/2), s=n-k, a weighted permutation tangent decoder
+  with H*sqrt(k) <= A*2^k gives
+  W(n) <= (264*A+2)*2^n/(n*sqrt(n)), for n >= 32. Both banks, the column
+  cover, the exceptional face, strict signs, and full-cube admissibility are
+  charged. Decoder existence is unresolved. Commit 363b19d0.
+* GradedShellTransfer permits mixed-depth full deletion-shell covers and
+  depth-zero singleton exceptions. Descending target rank protects prior
+  signs when every lower deletion layer is exactly zero. A sparse subset
+  of a shell does not suffice: same-shell points outside that subset remain
+  uncontrolled. Commit 897cbb08.
+* Shared gated differences and polynomial corrections have exact finite
+  head counts, full-cube positive denominators, and zero-column axes. They
+  do not supply the missing full-shell or full-cube decoder.
+
+Decisive inequalities and scoped obstructions:
+* A score with P jointly chosen polynomial parameters, degree d, and a
+  library of T selectable architectures must obey
+  M <= 6*log T + 6*P*log(4*e*d) if it realizes all M input labels. For a fixed
+  active incidence pattern, numerator degree a, denominator degree b, and
+  D active heads per input, d <= a+b*D. Thus polynomially sparse exact
+  interactions cannot improve the n*log n budget when P,log T=O(nH).
+  Tiny tails cannot be dropped when signed residues diverge. Dense joint
+  interactions and high-order limits remain possible. Commit 040488af.
+  Warren's bound is already unconditional in the supplied base, through
+  WarrenBound.lean, inherited commit 1c1aa3a1. The new capacity declarations
+  use that proved theorem, not an extra counting hypothesis.
+* JointFamilyParityWeakLearner proves, for every affine numerator over a
+  positive monotone affine denominator, (sum parity*f)^2 <= 2*sum f^2.
+  The independently weighted column version is also checked. Hence a
+  shared single-head weak learner has squared normalized correlation at
+  most 2/2^k on parity, versus approximately k^(3/2)/2^k needed by the
+  full-error greedy route to the square-root budget. Signed multihead
+  blocks are outside this statement. Commit c2fa3081.
+* Exact finite-alphabet Cauchy cancellation requires all residues to vanish
+  once the number of distinct token tests reaches the pole count. Binary
+  marginals do not determine tensor Cauchy sums. Naive partial-diagonal
+  repair therefore retains complete histograms, with exponential face
+  cost, or pays c*M internal-state corrections. Commit 39e3bf1f.
+* A common positive amplitude pool cannot realize two specified compact
+  three-node Cauchy sign problems. This blocks a proposed induction, not
+  arbitrary signed or adaptive amplitudes. Commit 7ea35384.
+
+Written proofs and finite evidence, not asymptotic theorems:
+* A rank-two 3-by-3 tensor residue family has eight compact exterior roots;
+  exact rational determinant signs and continuity establish the example.
+  This corrects an overly strong rank-one extrapolation, but gives no
+  growing decoder. Commit 8f5a7faa.
+* An exact 34-support positive Farkas certificate refutes the geometric H=32
+  Haar hierarchy on one structured target. The original double-exponential
+  hierarchy realizes that same target at epsilon=1/100; an exact rounded
+  primal verifies all 80 signs. These facts do not establish a uniform
+  compact interval or universal labels. Commits c0f9c3a8 and 5cc9fba5.
+* An exact H=128 generic-SPD butterfly certificate refutes the claim that
+  arbitrary positive definite preconditioning suffices. It is not a Cauchy
+  or original-model counterexample. Commit 6c720c28.
+* The affine-numerator Boolean filter equals (a+sum v_i)*K_full plus
+  sum_i v_i*K_without_i, checked in Lean. Searches of its exterior
+  Wronskians found no reversal, which is only finite evidence. Positive
+  coefficients cannot change sign. Commit 32685a2f.
+
+Next genuinely different attempts:
+1. A grid catalog has a constructive matching for arbitrary independent
+   sign words, with nearly unit overhead, or constant overhead and relative
+   margin of order 1/a. Convert this combinatorial routing into a signed
+   admissible source-localization matrix with row error below c/a. The
+   key unresolved identity must decouple source gating from independently
+   permuted catalog vectors without paying one dictionary per source.
+2. Replace single-head greedy atoms by signed multihead cancellation blocks.
+   Derive a uniform gain before searching, charging block size and the
+   log(M*s) error reduction required for every strict sign. Parity itself
+   is not a sufficient test of universal progress.
+3. Investigate label-adaptive finite-state tensor corrections. A successful
+   route must retain arbitrary point tokens through state merging at
+   o(c)*M cost, or avoid exact correction with a proved margin estimate.
+   Repeating scalar zero-count tests without new structure is not enough.
+
+Transitive audits of the new sparse capacity declarations, including the
+inherited Warren theorem, report exactly [propext, Classical.choice,
+Quot.sound]. The parity and affine-filter audits report the same three.
+All conditional transfers retain their decoder hypotheses explicitly.
+
+Late checkpoint addition: grid routing itself is kernel checked in
+LargeDomainGridRouting.lean, exists_grid_sign_injection, commit e4c634a2.
+For m^a half-integer sources, every independent a-bit sign assignment has
+an injection into the fixed (m+1)^a integer catalog. The padded-margin
+variant and localization transfer remain written/unresolved respectively.
+The parity/filter integrated default build passed, 9310 jobs.

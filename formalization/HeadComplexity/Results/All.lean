@@ -67,6 +67,9 @@ import HeadComplexity.Results.JointCellHistogramAudit
 import HeadComplexity.Results.LargeDomainCauchySharedPool
 import HeadComplexity.Results.JointCubeBenchmarkTransfer
 import HeadComplexity.Results.JointSparseInteractionCapacity
+import HeadComplexity.Results.JointFamilyParityWeakLearner
+import HeadComplexity.Results.JointCellAffineFilteredNumerators
+import HeadComplexity.Results.LargeDomainGridRouting
 import HeadComplexity.Results.UniversalAxisLogCompiler
 import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms
