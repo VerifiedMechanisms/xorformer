@@ -1,6 +1,6 @@
 # Pure RoPE Can Use Fewer Heads Than Vanilla Attention
 
-> **Proof status.** The mathematical proof below has passed three independent audits. The full separation theorem is not yet Lean-formalized. The existing exact architectural bridges and two-head theorem are Lean-checked; additional finite-algebra and analytic components are being formalized separately. No unproved Lean axiom is used to assert the separation.
+> **Proof status.** The mathematical proof below has passed three independent audits. The full separation theorem is not yet Lean-formalized. Its explicit pure family, exact architectural bridges, two-head theorem, tensor obstruction, coefficient-limit utilities, cubic irreducibility, and local sign-to-divisibility argument are Lean-checked. The precise remaining formalization scope is recorded below. No unproved Lean axiom is used to assert the separation.
 
 ## Statement
 
@@ -169,3 +169,19 @@ Every $f_m$ has a three-head pure scalar representation by the explicit positive
 The pure representation is in the unchanged model: the query token is fixed, rotary maps act only on queries and keys, and values depend only on the token and are unrotated. The scalar-to-rotary realization from Theorem 18 realizes every displayed finite collection of positive masses with finite real parameters and common finite width $2(18m+2)$, using the standard frequencies. The Lean theorems `standardPureRotaryComputable_iff_scalar` and `freePureRotaryComputable_iff_scalar` give the square architecture equivalences. The corresponding rectangular architecture equivalences are `rectangularStandardPureRotaryComputable_iff_scalar` and `rectangularFreePureRotaryComputable_iff_scalar`. These quantify over all finite input lengths and head counts. Conversely, the vanilla affine-fraction normal form is the exact one for the original shared-embedding architecture. Thus the scalar separation transfers to both standard-frequency and free-frequency pure rotary architectures with unrestricted finite width.
 
 The proof gives no explicit bound on the first separating replication count. Its conclusion is an existential finite-dimensional Boolean separation. It neither uses approximate real-score equivalence nor infers a lower bound from a failed optimization search.
+
+## Lean formalization scope
+
+The following components are proved without `sorry` or new axioms. The axiom audit reports only `propext`, `Classical.choice`, and `Quot.sound`.
+
+- [`PureThreeReplicatedGrid.lean`](../../formalization/HeadComplexity/Results/PureThreeReplicatedGrid.lean) checks the explicit positive masses, numerator and denominator identities, continuous denominator bounds, cleared-score sign equivalence, opposite corner labels, and three-head scalar, standard-frequency rotary, and free-frequency rotary computability. The architectural results are the unconditional theorems `pure_computable`, `standard_computable`, and `free_computable` for every positive replication count.
+
+- [`RoPETensorFactors.lean`](../../formalization/HeadComplexity/Atoms/RoPETensorFactors.lean), together with its rank and compactness imports, proves `no_tendsto_scaled_physical_source_factorTensor`. It rules out convergence of arbitrary three-head factor tensors with an oriented nonzero denominator row to any nonzero scalar multiple of the source tensor. The theorem extracts the orthonormal frames and simplex vectors, passes to subsequences, and handles the fixed changes of tensor coordinates.
+
+- [`FiniteFeatureSignLimit.lean`](../../formalization/HeadComplexity/Foundation/FiniteFeatureSignLimit.lean) proves nonzero normalized coefficient subsequences, centered Hamming-grid approximation and density, convergence of moving finite-feature evaluations, weak sign agreement in the limit, and vanishing at two-sided sign boundaries.
+
+- [`RoPECubicIrreducible.lean`](../../formalization/HeadComplexity/Polynomial/RoPECubicIrreducible.lean) proves irreducibility and exact degree three of the source cubic in the full eighteen-variable polynomial ring. [`RoPECubicLocalDivisibility.lean`](../../formalization/HeadComplexity/Polynomial/RoPECubicLocalDivisibility.lean) proves `core_dvd_of_weak_sign_on_open`: weak sign agreement on an open neighborhood of a source zero with nonzero distinguished coefficient forces divisibility. Its proof explicitly clears the rational graph substitution. [`SignLimitProportionality.lean`](../../formalization/HeadComplexity/Polynomial/SignLimitProportionality.lean) supplies the general degree and positive-scalar consequences.
+
+- [`PureThreeReplicatedGridConsequences.lean`](../../formalization/HeadComplexity/Results/PureThreeReplicatedGridConsequences.lean) derives the stated complexity bounds from a premise asserting failure of three-head vanilla computability. That premise remains explicit in both the pointwise and eventual statements.
+
+The full Lean lower bound still requires connecting the actual vanilla representations to the averaged bounded-degree polynomials and their surviving cubic coefficients, transporting the source polynomial through its affine coordinate change, and assembling those components with the limit and tensor theorems. The mathematical argument above supplies those steps; the current formalization does not silently assume them as axioms.
