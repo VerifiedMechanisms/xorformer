@@ -1,0 +1,6 @@
+exact_cyclic_formula_verified True
+degree 5
+number_monomials 50
+{'u': [4, 9, 36], 'v': [10, 13, 46], 'cleared_determinant': 151360, 'u_increasing': True, 'v_increasing': True, 'coordinate_order': True, 'ratio_order': True}
+{'u': [3, 5, 7], 'v': [21, 33, 40], 'cleared_determinant': -10476, 'u_increasing': True, 'v_increasing': True, 'coordinate_order': True, 'ratio_order': True}
+{'u': [12, 38, 39], 'v': [13, 41, 42], 'cleared_determinant': 0, 'u_increasing': True, 'v_increasing': True, 'coordinate_order': True, 'ratio_order': True}
