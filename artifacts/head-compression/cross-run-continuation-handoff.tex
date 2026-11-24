@@ -421,4 +421,79 @@ compact scales and nonlinear perturbations are not excluded.
 \end{itemize}
 These checkpoints add audited mechanisms and clarify their gaps.
 They do not prove either requested unconditional asymptotic target.
+\paragraph{Checkpoints through 08:45 UTC.}
+An additional push at 08:32 UTC again failed with HTTP 403 for the
+same read-only bot. The local incremental bundle is the available
+transport artifact; no successful publication is claimed.
+\begin{itemize}
+\item \texttt{5ff6435}, \texttt{ExteriorCauchyInterpolation.lean},
+checks the barycentric identity and the positive exterior interpolation
+lemma used in the root-pool construction. The declarations are
+\texttt{exterior\_cauchy\_barycentric},
+\texttt{exists\_positive\_polynomial\_shift}, and
+\texttt{exists\_positive\_exterior\_cauchy\_interpolation}.
+For $q$ distinct exterior queries and $q+1$ distinct poles below them,
+arbitrary real query values admit a residue vector $a_hw_h$ with
+every $a_h>0$ and $w_h=\prod_{k\ne h}(p_h-p_k)^{-1}$.
+The module and aggregate \texttt{Results/All.lean} build passed;
+the axiom audit contains only the standard Lean foundations.
+\item \texttt{a407f1c} gives a complete written fixed positive
+eight-pole pool realizing all four-bit words at any four ordered
+positive queries, for sufficiently small positive pole spacing.
+Its Boolean residue signs have the form
+$(a,b,c,d,-c,c,-a,a)$, and the query word is $(d,-a,b,c)$.
+The explicit proof and exact checks are in
+\texttt{rectangular-cauchy-eight-pole-pool.tex} and its checkers.
+This constant-size construction has no proved scalable recursion.
+\item \texttt{4242966} shows why a direct disjoint-group extension
+cannot give a linear pole budget in the compact germ. If $q$ disjoint
+groups dominate one query each for every group-bit assignment, then
+$G\geq q^2/8$ eventually as the pole/query ratio tends to zero.
+The proof clears each small group's denominator, bounds the resulting
+matrix rank, and uses strict diagonal dominance with a trace bound.
+It does not cover nonlinear choices of residue-sign preimages.
+\texttt{2c0f76d} independently bounds binary-linear moment codes:
+$d$ independent code bits annihilating $k$ consecutive moments require
+at least $d(k+1)$ poles after inactive repeated-pole classes are removed.
+\item \texttt{67b42f6} and \texttt{3e471f8} audit exact projective
+transfer of noncompact geometric localization. If two query values
+are each repeated $L$ times in one slot, reverse full-cube
+admissibility forces the invariant cross-ratio
+\[
+ \frac{(P_1-P_0)(T_1-T_0)}{(T_0-P_0)(T_1-P_1)}<\frac1L.
+\]
+The geometric two-scale examples violate this for $L\geq2$.
+The statement allows projective charts reversing both list orders,
+but concerns this exact separable kernel bridge only.
+\item \texttt{00ed604} certifies a positive-residue obstruction for
+a fixed 32-pole underloaded routing with 49 retained queries.
+\texttt{098f195} repairs that very target with signed residues for
+every sufficiently small scale, by an independently checked Laurent
+certificate. \texttt{6add681} distinguishes reversing the routing
+bits from changing the requested signs. Anti-target routing repairs
+some positive examples but fails on a larger fixed-completion test;
+with arbitrary signed residues it is equivalent to direct routing
+after an input complement and a block relabeling. None of these
+restricted positive-pool failures is a signed universal obstruction.
+\item \texttt{4605e98}, \texttt{adaptive-barycentric-root.tex},
+gives a complete written adaptive-pole root construction. Choose
+$R$ of degree $M-1$ with
+\[
+ \operatorname{sgn}R(x_s)=\sigma_s\operatorname{sgn}P'(x_s),
+ \qquad \operatorname{sgn}R(t_s)=\sigma_s,
+ \qquad P(t)=\prod_s(t-x_s).
+\]
+Use $p_s^\pm=x_s\pm1/(\lambda|P'(x_s)R(x_s)|)$ and the exact
+barycentric residues $c_h=1/Q'(p_h)$. The masked root score divided
+by $\lambda$ converges to $R/P$, while the total moments through
+degree $2M-2$ vanish exactly for every admissible $\lambda$.
+The two children inherit opposite copies of
+$R(x_s)/(2P'(x_s))$. All 126 words through six pairs pass the exact
+rational tests. Choosing this shared numerator to satisfy both
+independent descendant tables is open; the root construction is not
+a recursive compiler and is not Lean checked.
+\end{itemize}
+The newest finite signed routing tests and general head-specific
+offset investigations remain active. No saving or matching global
+lower bound follows from these checkpoints.
 \end{document}
