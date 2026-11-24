@@ -1,0 +1,7 @@
+import HeadComplexity.Research.FirstJetCayleyBacharach
+#print axioms HeadComplexity.FirstJetCayleyBacharach.jet_square_zero
+#print axioms HeadComplexity.FirstJetCayleyBacharach.jet_square_mul_zero
+#print axioms HeadComplexity.FirstJetCayleyBacharach.jet_square_coordinate
+#print axioms HeadComplexity.FirstJetCayleyBacharach.jet_direction_zero
+#print axioms HeadComplexity.FirstJetCayleyBacharach.reducedCB_of_ordinary_firstJet_relation
+#print axioms HeadComplexity.FirstJetCayleyBacharach.reducedCB_half_order

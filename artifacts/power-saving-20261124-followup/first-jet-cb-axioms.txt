@@ -1,0 +1,10 @@
+'HeadComplexity.FirstJetCayleyBacharach.jet_square_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FirstJetCayleyBacharach.jet_square_mul_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FirstJetCayleyBacharach.jet_square_coordinate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FirstJetCayleyBacharach.jet_direction_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FirstJetCayleyBacharach.reducedCB_of_ordinary_firstJet_relation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FirstJetCayleyBacharach.reducedCB_half_order' depends on axioms: [propext, Classical.choice, Quot.sound]
