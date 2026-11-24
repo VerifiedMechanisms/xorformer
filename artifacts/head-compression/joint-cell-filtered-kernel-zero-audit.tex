@@ -111,4 +111,82 @@ The certificate therefore does not refute an $O(c)$ bound with a larger
 constant, an $O(c^C)$ bound, or a bound specialized to the product ratios
 above. None of those bounds has been proved here.
 
+\section{Distinct weight types and the real tau connection}
+
+There is a useful elementary bound when the number of distinct positive
+weights is small, even if individual weights occur many times. Suppose
+the union of the two weight multisets is contained in
+$\{w_1,\ldots,w_m\}$, with the $w_j$ distinct. Write their multiplicity
+differences as $\kappa_j\in\mathbb Z$ and put
+\[
+ U(t)=C e^{\gamma t}\prod_{j=1}^m(e^{w_jt}-1)^{\kappa_j},
+ \qquad C>0.
+\]
+The sign changes of the density difference are the crossings of
+$U(t)=1$. Since every factor is positive on $t>0$, logarithmic
+differentiation is legitimate there. Multiplication by the positive
+product $\prod_j(e^{w_jt}-1)$ gives
+\[
+ \left(\frac{U'}U\right)\prod_j(e^{w_jt}-1)
+ =\sum_{S\subseteq[m]}(-1)^{m-|S|}
+       \left(\gamma+\sum_{j\in S}\kappa_jw_j\right)
+       e^{(\sum_{j\in S}w_j)t}.
+ \tag{1}
+\]
+After collecting coincident exponents, the right side has at most
+$2^m$ exponential terms. A nonzero combination of $T$ exponentials
+with distinct real exponents has at most $T-1$ distinct real zeros:
+divide by the exponential of smallest exponent, differentiate, and
+induct using Rolle's theorem. Thus, unless $U$ is constant, $U'/U$
+has at most $2^m-1$ zeros and $\log U$ has at most $2^m$ zeros.
+If $U$ is constant, the density difference is either identically zero
+or has a fixed sign. The preceding Laplace argument consequently gives
+at most $2^m$ distinct zeros for every nonzero difference of the two
+filtered kernels. This is a written proof, not a new Lean declaration.
+
+The bound depends on distinct weight types, not filter order. In
+particular, if each of $a$ scalar bit readers is a nonzero difference
+of two such filters, using at most $m$ weight types, an ordered token
+alphabet with all $2^a$ distinct strict words must satisfy
+\[
+ 2^a\leq1+a2^m.
+\]
+Each transition between consecutive distinct words crosses a zero of
+at least one reader, and the total number of available zeros is at most
+$a2^m$. This argument does not apply to a general sum of more than two
+filters without a further zero bound.
+
+If the weights are commensurable, $w_j=\lambda k_j$ with positive
+integers $k_j\leq d$, the right side of (1), as a polynomial in
+$x=e^{\lambda t}$, has degree at most $\sum_j k_j\leq md$.
+The improved kernel zero bound is then $md+1$, regardless of the real
+shift difference $\gamma$. Merely saying that the weights are rational
+does not make this a polynomial bound in $c$: clearing denominators
+can make $d$ arbitrarily large.
+
+For integer or rational weights, the density itself becomes, after
+$x=e^{-\lambda t}$ and removal of a nonzero monomial factor, a sum of
+two products of binomials. This lies in the class studied by
+Grenet, Koiran, Portier and Strozecki, \emph{The Limited Power of
+Powering}, Theorem 1, and Koiran, Portier and Tavenas,
+\emph{A Wronskian Approach to the Real $\tau$-Conjecture},
+Theorems 12 and 13. In their notation the number of summands is $k=2$,
+the sparsity is $t=2$, and the number of distinct sparse base
+polynomials is as large as $m=2c+1$. Theorem 12 gives
+$t^{O(mk^2)}$, which is exponential in $c$ here, despite fixed $k$.
+The bounded-base-degree result in Theorem 13 is polynomial only when
+those degrees are controlled. These results do not supply the desired
+polynomial bound for arbitrarily many independently chosen weights.
+
+\paragraph{Primary sources.}
+The checked source statements are at
+\texttt{https://arxiv.org/pdf/1205.1015}, Theorems 12 and 13,
+and \texttt{https://www-verimag.imag.fr/\string~grenetb/publis/GKPS11.pdf},
+Theorem 1. The broad polynomial root-count assertion for sums of
+products of sparse polynomials is the real tau-conjecture. We have not
+proved that our restricted two-product family is equivalent to that
+conjecture, nor that its special arbitrary-weight case is known to be
+open. The point of the comparison is the exact limitation of the cited
+theorems, not an unsupported impossibility claim.
+
 \end{document}
