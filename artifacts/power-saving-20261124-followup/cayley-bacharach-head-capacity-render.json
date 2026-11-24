@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/cayley_bacharach_head_capacity.md",
+    "source_spans": 92,
+    "rendered_spans": 92,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/weighted_incidence_capacity.md",
+    "source_spans": 123,
+    "rendered_spans": 123,
+    "findings": [],
+    "notes": []
+  }
+]

@@ -4,7 +4,7 @@
 
 This is a written proof, not a Lean theorem. Its regular polynomial root-counting ingredient is kernel checked as `HeadComplexity.PolynomialRootCount.weighted_regular_roots_card_le` in `Polynomial/WeightedRootWrappers.lean`. The local algebraic geometry, parameter transversality, and constrained optimization arguments below have not been formalized.
 
-Let $u\in\mathbb R^b$ and $y\in\mathbb R^q$. Give the $u$ coordinates weight one and the $y$ coordinates an integer weight $M\geq1$. Put $K=b+q$. Suppose $V$ is the common real zero locus of finitely many real polynomials of weighted degree at most $L$, where $L\geq M$. Let $E\subseteq V$ be any subset such that the complex algebraic fiber obtained by fixing $u$ has local complex dimension at most $r$ at each point of $E$, where $0\leq r\lt q$. Write
+Let $u\in\mathbb R^b$ and $y\in\mathbb R^q$. Give the $u$ coordinates weight one and the $y$ coordinates an integer weight $M\geq1$. Put $K=b+q$. Suppose $V$ is the common real zero locus of finitely many real polynomials of weighted degree at most $L$, where $L\geq M$. Let $E\subseteq V$ be any subset such that the complex algebraic fiber obtained by fixing $u$ has local complex dimension at most $r$ at each point of $E$, where $0\leq r\leq q$. Write
 
 $$ c=q-r,\qquad d=b+r=K-c. $$
 
@@ -23,6 +23,8 @@ This supplies a proposed effective version of the reduced-support configuration 
 ## Finite representatives and a common projection
 
 There are finitely many strict sign patterns. Select one representative $z_a=(u_a,y_a)\in E$ of each. It is enough to construct a single smooth algebraic set of dimension $d$, of controlled weighted degrees, which still realizes all these patterns.
+
+If $c=0$, use the whole ambient affine space as that smooth set and proceed directly to the critical-point count, with no low-degree equations. In the following polar construction assume $c\geq1$.
 
 Choose one linear change of the $y$ coordinates such that projection onto their last $r$ coordinates locally isolates every $y_a$ in its fiber at fixed $u_a$. Such a choice exists simultaneously for the finitely many representatives. Indeed the projectivized tangent cone of a complex algebraic germ of dimension at most $r$ has dimension at most $r-1$. A generic codimension $r$ linear kernel avoids this projective cone. Its intersection with the germ is therefore isolated at the given point. Each point excludes a proper algebraic subset of possible linear projections; a finite intersection of their open complements is nonempty and has real points. In the case $r=0$, the fiber point is already isolated.
 
