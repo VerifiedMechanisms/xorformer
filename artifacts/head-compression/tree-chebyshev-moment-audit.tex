@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\title{Moment valuations in the unperturbed Chebyshev tree experiment}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+The moment theorem and its consequences below have complete written
+proofs. They have not been formalized in Lean. An accompanying exact
+cyclotomic computation checks the finite cases $H=4,8,16$.
+The result concerns one candidate mechanism, not all admissible heads.
+In particular it does not establish either accepted global target.
+It explains why generic fixed-numerator experiments with an unperturbed
+composed pole set have much less branch diversity than the number $H!$
+of permutations suggests. Numerators depending on the coalescence
+parameter, moving query times, and perturbed poles are outside the
+stated conclusion.
+
+Let $H=2^d$, and let $P_H$ be the monic multiple of the Chebyshev
+polynomial $T_H$. Write its distinct roots as
+$a_i=\cos((2i+1)\pi/(2H))$, $0\leq i<H$, and put
+$w_i=1/P_H'(a_i)$. For a subset $S$ of the roots define
+\[
+ \mu_k(S)=\sum_{i\in S}w_i a_i^k.
+\]
+For nonempty $S$, its valuation is the smallest $k\geq0$ for which
+$\mu_k(S)\ne0$.
+
+\begin{theorem}
+Every nonempty subset has valuation $2^j-1$ for some $0\leq j\leq d$.
+For $j<d$, the number of subsets with this valuation is
+\[
+ 2^{H/2^j}-2^{H/2^{j+1}}.
+\]
+Only the full subset has valuation $H-1$.
+\end{theorem}
+
+\begin{proof}
+First suppose $H\geq2$. Since $P_H$ is even, opposite roots have
+opposite barycentric weights. The positive-root weights are linearly
+independent over $\mathbb Q$. Indeed, up to a common nonzero constant
+and individual signs, these weights are
+$\sin((2i+1)\pi/(2H))$, $0\leq i<H/2$.
+Let $\zeta=\exp(\pi\mathrm i/(2H))$. A rational dependence among these
+sines would give a polynomial of degree less than $2H$ vanishing at
+$\zeta$, with its nonzero coefficients in the distinct exponent positions
+$2i+1$ and $2H-(2i+1)$. Such a polynomial is zero because the minimal
+polynomial of $\zeta$ is $X^{2H}+1$. The latter irreducibility is the
+usual power-of-two cyclotomic identity; alternatively, substituting
+$X+1$ gives Eisenstein's criterion at $2$.
+Consequently $\mu_0(S)=0$ if and only if $S$ is a union of opposite pairs.
+
+For such a union, write $P_H(X)=Q(X^2)$ and replace every selected pair
+$\{a,-a\}$ by $b=a^2$. Its two contributions give
+\[
+ \mu_{2l}(S)=0,\qquad
+ \mu_{2l+1}(S)=\sum_{b\in S'}\frac{b^l}{Q'(b)}.
+\]
+The identity $T_H(X)=T_{H/2}(2X^2-1)$ shows that the roots of $Q$ are
+the affine images $(1+u)/2$ of the roots of $P_{H/2}$. An affine change
+of variable preserves the first nonzero moment index, since the
+change between powers is triangular with nonzero diagonal. Thus if
+$S'$ has valuation $v$ in the smaller Chebyshev problem, then $S$ has
+valuation $2v+1$.
+
+Induction, starting with $H=1$, proves that the possible indices are
+$2^j-1$. More precisely, subsets whose moments vanish through index
+$2^j-2$ are exactly unions of the $H/2^j$ blocks obtained after $j$
+iterations of opposite-pair identification. There are
+$2^{H/2^j}-1$ nonempty such unions. Subtracting the count at the next
+level gives the stated formula. At the last level there is just the
+full subset. Its first nonzero moment is $\mu_{H-1}=1$, by the leading
+coefficient in Lagrange interpolation of $X^{H-1}$.
+\end{proof}
+
+\begin{corollary}
+Fix a real polynomial $N$ of degree at most $H-1$, and finitely many
+positive exterior query times. For $\varepsilon>0$ put
+\[
+ p_i=\varepsilon a_i,\qquad
+ r_i=\frac{N(p_i)}{\prod_{j\ne i}(p_i-p_j)},\qquad
+ F_S(t)=\sum_{i\in S}\frac{r_i}{t-p_i}.
+\]
+Let $N_{\leq k}$ be the Taylor polynomial of $N$ at zero through degree
+$k$. Assume $N_{\leq 2^j-1}(t)\ne0$ for every query time and every
+$0\leq j\leq d$. For every nonempty subset $S$ of valuation $k$,
+\[
+ F_S(t)=\varepsilon^{k+1-H}
+ \mu_k(S)\frac{N_{\leq k}(t)}{t^{k+1}}
+ +O(\varepsilon^{k+2-H}).
+\]
+For all sufficiently small positive $\varepsilon$, uniformly over every
+subset and query, the displayed nonzero leading coefficient determines
+the sign. Hence each fixed mask, as the pool is permuted, has at most
+$2(d+1)$ possible sign profiles on all its queries.
+\end{corollary}
+
+\begin{proof}
+Write $N(X)=\sum_l n_lX^l$ and expand
+\[
+ \frac{N(\varepsilon a_i)}{t-\varepsilon a_i}
+ =\sum_{k\geq0}\varepsilon^k a_i^k
+    \sum_{l=0}^{k}\frac{n_l}{t^{k-l+1}}.
+\]
+Here $n_l=0$ past the degree of $N$. The barycentric denominator is
+$\varepsilon^{H-1}/w_i$. All lower moments vanish, and the coefficient
+at the first remaining index is the stated Taylor truncation divided
+by $t^{k+1}$. There are finitely many subsets and queries, so their
+individual small-parameter sign bounds have a common positive minimum.
+The previous theorem supplies only $d+1$ indices, with two possible
+signs of $\mu_k(S)$.
+\end{proof}
+
+\paragraph{What this says about entropy.}
+For a binary tree with $H-1$ proper right-child masks, a fixed numerator
+therefore supplies at most $[2(d+1)]^{H-1}$ descendant patterns in this
+generic germ regime. The bound is independent of how many fixed times
+are queried at each mask. Even allowing $N$ to vary, the full collection
+of master signs $\operatorname{sgn}N_{\leq 2^j-1}(t)$ is determined by
+at most $q(d+1)$ linear forms in the $H$ coefficients of $N$, where $q$
+is the total number of queries. The elementary central-hyperplane
+arrangement bound, followed by the mask choices, gives at most
+\[
+ 2\left(\sum_{l=0}^{H-1}\binom{q(d+1)-1}{l}\right)
+ [2(d+1)]^{H-1}
+\]
+patterns. For $q=O(Hd)$ this is $\exp(O(H\log(d+1)))$.
+This is an upper bound for the described generic germs, not for all
+finite values of $\varepsilon$ or all adaptive constructions.
+
+For comparison, a sufficient Sauer counting route to a shattered
+subset of size $\Omega(H\log\log H)$ among $O(H\log H)$ queries would
+be a lower bound $\exp(\Omega(H(\log\log H)^2))$ with suitable absolute
+constants. The unperturbed generic germ estimate cannot supply that
+sufficient count. It does not exclude a more efficient query selection,
+a different counting argument, or a nongeneric construction.
+
+\paragraph{Reproducible computations.}
+\texttt{tree-chebyshev-moment-check.py} works in
+$\mathbb Q[\zeta]/(\zeta^{2H}+1)$ using integer coefficient vectors,
+so its subset valuation counts are exact. It produces respectively
+\[
+\begin{array}{c|rrrrr}
+H&k=0&k=1&k=3&k=7&k=15\\\hline
+4&12&2&1&0&0\\
+8&240&12&2&1&0\\
+16&65280&240&12&2&1
+\end{array}
+\]
+with one additional empty subset in each case.
+The separate script \texttt{tree-cauchy-sixteen-entropy-probe.py} is
+explicitly a high-precision numerical probe, not an exact certificate.
+With five fixed-numerator pools and $500000$ sampled permutations per
+pool, it found between $23521$ and $25635$ distinct descendant patterns
+on $32$ queries. That observation motivated the moment audit; it is
+not used in any proof above.
+\end{document}
