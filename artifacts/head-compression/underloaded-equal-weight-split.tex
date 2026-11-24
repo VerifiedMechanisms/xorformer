@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Underloaded exterior interpolation with equal positive atom weights}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status.}
+The following is a complete written local interpolation theorem. Its
+rational identities, interpolation systems, and root-preserving endpoint
+certificates have exact finite checks. It is not Lean-checked and does not
+supply a recursive compiler. In particular it makes no assertion that
+independently prescribed descendant patterns survive the split.
+
+Let $P(t)=\prod_{h=1}^M(t-p_h)$, where the real poles are distinct and
+belong to an open interval $(a,b)$. Let $1\leq q\leq M$, and let
+$b<t_1<\cdots<t_q$ be exterior query times.
+
+\begin{lemma}[Derivative interpolation]
+The map
+\[
+ \{R\in\mathbb R[t]:\deg R<q\}\longrightarrow\mathbb R^q,
+ \qquad R\longmapsto\bigl((R/P)'(t_j)\bigr)_{j=1}^q
+                                                               \tag{1}
+\]
+is a linear isomorphism.
+\end{lemma}
+\begin{proof}
+Put $f_k=(t^k/P)'$, for $0\leq k<q$. Write $W_m$ for the Wronskian
+of $f_0,\ldots,f_{m-1}$, with derivative orders indexing rows.
+The common-factor rule for Wronskians gives
+\[
+ \begin{aligned}
+ W_m&=W(1,1/P,t/P,\ldots,t^{m-1}/P)\\
+ &=P^{-(m+1)}W(P,1,t,\ldots,t^{m-1})\\
+ &=(-1)^m\left(\prod_{k=0}^{m-1}k!\right)
+                    \frac{P^{(m)}}{P^{m+1}}.                 \tag{2}
+ \end{aligned}
+\]
+The first identity expands the Wronskian along its constant first
+column. The common-factor rule follows by the triangular Leibniz rule
+on derivative rows. The last identity expands along the final row:
+all its entries except $P^{(m)}$ vanish, and the polynomial derivative
+block has diagonal $0!,1!,\ldots,(m-1)!$.
+
+For $t>b$ every factor of $P$ is positive, and the product rule gives
+$P^{(m)}(t)>0$ for $1\leq m\leq M$. Thus every initial Wronskian
+in (2) is nonzero throughout the exterior interval.
+
+Here is the elementary zero-count implication used in this argument.
+For $d$ smooth functions with nonvanishing initial Wronskians on an
+interval, every nonzero linear combination has at most $d-1$ distinct
+zeros. Induct on $d$. The first function $f_0$ never vanishes. Divide
+a proposed combination by $f_0$ and differentiate. The new $d-1$
+functions $(f_i/f_0)'$, $1\leq i<d$, again have nonvanishing initial
+Wronskians, since
+\[
+ W\bigl((f_1/f_0)',\ldots,(f_m/f_0)'\bigr)
+                  =W(f_0,\ldots,f_m)/f_0^{m+1}.
+\]
+If the derivative is a nonzero combination, Rolle's theorem and
+induction give the assertion. If it is zero, the original combination
+is a constant multiple of $f_0$, and has no zero unless identically
+zero. Nonzero full Wronskian excludes an identically zero nontrivial
+combination. Applying this implication to (2), a nonzero $R$ of
+degree less than $q$ cannot give $q$ zeros in (1). The square linear
+map (1) is therefore invertible.
+\end{proof}
+
+\begin{theorem}[Equal-weight underloaded split]
+For every $\sigma\in\{-1,1\}^q$ there is a polynomial $R$ of degree
+less than $q$ such that, for every sufficiently small $\delta>0$, the
+two polynomials
+\[
+                       P_+=P+\delta R,\qquad P_-=P-\delta R
+                                                               \tag{3}
+\]
+are monic of degree $M$ with $M$ distinct real roots in $(a,b)$.
+Let $\mu_+$ and $\mu_-$ put weight one at each root of $P_+$ and
+$P_-$ respectively. Then
+\[
+ m_k(\mu_+)=m_k(\mu_-)=m_k(\mu)
+              \quad(0\leq k\leq M-q),                       \tag{4}
+\]
+where $\mu=\sum_h\delta_{p_h}$, and their Stieltjes transforms obey
+\[
+ \sigma_j\bigl(S_{\mu_+}(t_j)-S_{\mu_-}(t_j)\bigr)>0
+                 \quad(1\leq j\leq q).                      \tag{5}
+\]
+The two root sets are not required to be disjoint from one another.
+In particular $q\leq M/2$ permits $q$ arbitrary exterior signs while
+preserving at least the first $q$ positive-degree moments and keeping
+all atom weights equal to one.
+\end{theorem}
+\begin{proof}
+Use (1) to choose $R$ with $(R/P)'(t_j)=\sigma_j$.
+Choose disjoint closed intervals around the simple roots of $P$,
+all inside $(a,b)$, with nonroot endpoints. At each interval the
+endpoint values of $P$ have opposite signs. For all sufficiently
+small $\delta>0$, $|\delta R|<|P|$ at every endpoint. Thus both
+polynomials in (3) retain a sign change in every interval. The
+intermediate value theorem gives $M$ distinct real roots; their
+degrees show that these are all their roots, each simple.
+
+Since $\deg R<q$, the coefficients of degrees $M-1,\ldots,q$ in
+both polynomials agree with those of $P$. Newton's identities give
+equality of their power sums of degrees $1,\ldots,M-q$. Degree
+zero is the common number $M$ of unit-weight atoms. This proves (4).
+
+The logarithmic derivative of a monic real-rooted polynomial is the
+Stieltjes transform of its unit-weight root measure. Direct subtraction
+therefore gives the exact identity
+\[
+ S_{\mu_+}(t)-S_{\mu_-}(t)
+ =\frac{2\delta(R'P-RP')}{P^2-\delta^2R^2}
+ =\frac{2\delta P^2}{P_+P_-}(R/P)'(t).                    \tag{6}
+\]
+At every exterior query, $P_+$ and $P_-$ are positive because all
+their roots are below the query. The multiplier in the final
+expression is strictly positive. Equation (5) follows exactly,
+without replacing (6) by an asymptotic expansion.
+\end{proof}
+
+\paragraph{Quantitative load and the recursive gap.}
+Applying a split with $q(M)$ queries to every node whose children
+have $M$ poles would formally provide
+$\sum_M (H/(2M))q(M)$ query slots. Taking $q(M)$ proportional to
+$M/\log M$ would make this order $H\log\log H$. This is only a
+slot count, not a construction: (3) replaces both children by
+perturbations of the same prescribed polynomial $P$. It does not
+preserve arbitrary separately prescribed child polynomials or their
+descendant signs.
+
+There is also a concrete coefficient-rigidity caution. If two child
+polynomials have already been restricted to the forms
+$Q_1^2-c_1$ and $Q_2^2-c_2$, with $Q_1,Q_2$ monic of degree $d$,
+then agreement of their coefficients of degrees $2d-1$ down to $d$
+forces $Q_1=Q_2$. Indeed, if the difference $Q_1-Q_2$ has degree
+$e<d$ and is nonzero, their square difference has degree $d+e\geq d$.
+Their difference is consequently constant after the stated agreement.
+Thus starting from a hierarchy that already has only constant
+square remainders can erase the apparent slack of the underloaded
+local theorem. An actual recursion must keep additional polynomial
+freedom or justify an adaptive partition of the poles.
+
+\paragraph{Exact checks.}
+\texttt{underloaded-equal-weight-split-check.py} uses rational poles,
+queries, polynomials, and linear algebra. For $1\leq M\leq8$ and
+every $1\leq q\leq M$, it checks (2) at a rational exterior point,
+solves (1) for every sign word, chooses a rational $\delta$ by the
+endpoint bound above, checks every endpoint sign and query sign,
+and verifies the shared power sums through degree $M-q$ by Newton's
+identities. No numerical root solver is used.
+\end{document}
