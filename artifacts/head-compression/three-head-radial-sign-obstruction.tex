@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A strict-sign obstruction to one prescribed denominator contraction}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written finite-cube certificate, checked by exact
+symbolic and integer arithmetic, but not formalized in Lean. It shows
+that a particular simultaneous straight contraction of three
+denominators can lose a realizable strict sign pattern, even when all
+three affine numerators may change arbitrarily. It does not exclude
+another denominator path, another common limiting denominator, or
+another three-head representation of the same Boolean function. It is
+not a lower bound on unrestricted head complexity.
+
+On four Boolean coordinates put
+\[
+ B=1+x_1+x_2+x_3+x_4,\qquad D=x_1+2x_2,\qquad E=x_3+2x_4,
+ \qquad C_1=B,\quad C_2(t)=B+tD,\quad C_3(t)=B+tE.
+\]
+For every $t>0$, these denominators are positive on the whole cube and
+all slopes are strictly positive. Order the sixteen inputs
+lexicographically, with $x_4$ changing fastest, and define
+\[
+ \sigma=(+,-,+,-,-,+,-,-,+,-,-,+,-,-,+,-).
+ \tag{1}
+\]
+
+\begin{theorem}
+The sign table (1) is realized by three admissible heads with
+denominators $C_1,C_2(1),C_3(1)$. For every $0<t\leq1/2$, it is not
+realized by any three affine numerators over the prescribed
+denominators $C_1,C_2(t),C_3(t)$, even with an arbitrary extra score bias.
+\end{theorem}
+
+\begin{proof}
+For existence at $t=1$, take the following coefficient vectors in the
+order $(1,x_1,x_2,x_3,x_4)$:
+\[
+ \begin{aligned}
+ A_1&=(-151022,-108764,268636,21418,8272),\\
+ A_2&=(114799,119774,-297673,-21143,0),\\
+ A_3&=(54912,49152,-81584,0,0).
+ \end{aligned}
+\]
+The cleared score $P=A_1C_2(1)C_3(1)+A_2BC_3(1)+A_3BC_2(1)$ has
+the exact values
+\[
+ \begin{split}
+ (&18689,-3960,3960,-3960,-3960,3960,-67644,-165836,\\
+  &3960,-262917,-3960,3960,-3960,-165836,3960,-3960).
+ \end{split}                                                     \tag{2}
+\]
+They are nonzero and have signs (1). Clearing the three positive
+denominators preserves those signs.
+
+For nonexistence define eight rational functions
+\[
+ \begin{aligned}
+ a&=(3t+5)(3t^2-16t-16)/6,\\
+ b&=(3t+2)(3t+5)(5t+4)/3,\\
+ c&=-2t(3t+5)(9t+8)/9,\\
+ d&=-2(3t+5)(9t^3+15t^2-12t-16)/(3(2t+3)),\\
+ e&=(3t+5)(6t^2+t-4)/3,\\
+ f&=-2(3t+2)(3t+5)(3t^2+12t+8)/(3(t+3)),\\
+ g&=2(t+1)(3t+2)(3t+5)/3,
+ \qquad h=-2t(t+1)(3t+4).
+ \end{aligned}
+\]
+These names shorten the explicit weight vector
+\[
+ \lambda_t=(0,a,b,c,a,d,0,e,b,0,f,g,c,e,g,h).             \tag{3}
+\]
+For every $v\in\{1,x_1,x_2,x_3,x_4\}$, direct expansion gives
+\[
+ \langle\lambda_t,vC_2(t)C_3(t)\rangle
+ =\langle\lambda_t,vBC_3(t)\rangle
+ =\langle\lambda_t,vBC_2(t)\rangle=0.                  \tag{4}
+\]
+All fifteen identities hold symbolically as rational identities in
+$t$; the accompanying checker verifies each numerator is exactly zero.
+
+When $0<t\leq1/2$, the denominators displayed above are positive and
+\[
+ a<0,\quad b>0,\quad c<0,\quad d>0,\quad e<0,
+ \quad f<0,\quad g>0,\quad h<0.
+\]
+For the only three nontrivial sign checks, use
+\[
+ \begin{aligned}
+ 3t^2-16t-16&\leq3/4-16<0,\\
+ 9t^3+15t^2-12t-16&\leq9/8+15/4-16<0,\\
+ 6t^2+t-4&\leq6/4+1/2-4=-2<0.
+ \end{aligned}
+\]
+Thus every nonzero coordinate of $\lambda_t$ has the corresponding
+sign (1), and $\lambda_t$ is not zero. If affine numerators produced
+strict signs (1), their cleared score $P_t$ would satisfy
+$\langle\lambda_t,P_t\rangle>0$. But (4) and affineness give
+$\langle\lambda_t,P_t\rangle=0$, a contradiction.
+
+An extra bias adds a multiple of $BC_2(t)C_3(t)$ to the cleared
+score. This term is already in the span annihilated by (4), by taking
+the affine multiplier $v=B$ of $C_2(t)C_3(t)$, or equivalently by
+absorbing the bias into the first numerator. Hence the argument
+includes arbitrary bias.
+\end{proof}
+
+\paragraph{Consequence for the proposed normalization.}
+The two-head identity in \texttt{two-head-sign-coalescence.tex} cannot
+be extended by simply moving every other denominator toward one
+reference denominator while freely readjusting affine numerators.
+The example excludes an entire interval of positive contraction
+parameters and not just preservation of one selected cleared score.
+It leaves open whether all strict sign patterns with a given head
+count have some different realization whose denominators coalesce.
+\end{document}

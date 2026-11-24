@@ -1,0 +1,8 @@
+{
+  "status": "exact certificate passed; written proof covers all 0<t<=1/2",
+  "symbolic_annihilator_identities": 15,
+  "integer_score_values_checked": 16,
+  "original_minimum_absolute_cleared_score": 3960,
+  "sample_dual_sign_checks": 3,
+  "scope": "prescribed radial denominator path only; not unrestricted head complexity"
+}
