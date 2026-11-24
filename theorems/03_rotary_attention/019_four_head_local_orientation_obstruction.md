@@ -148,3 +148,13 @@ The rationalized certificate fixes $\varepsilon=1/10000$. [near_singular_project
 A second [rational certificate](../../artifacts/rope/prior_obstructions/near_singular_projection_larger_epsilon.json) uses $\varepsilon=1/4000$ in the same family. A third [large-selector certificate](../../artifacts/rope/prior_obstructions/near_singular_projection_large_selector.json) uses the balanced kernel $(1,1,-1,1)$ at $b=(1,1,0,-2)$. It perturbs $b_3$ by $\varepsilon=3/1000$ and tunes the selector cubic constant to $-\varepsilon^2$. Spatial scaling then keeps the total mass bounded. Its common normalization is $1/6$, and its selector denominator coefficients are $(1/6,1/6,0,-1997/6000)$. The same exact verifier certifies all $364$ projected labels for both variants and records $182$ unprojected errors in each case.
 
 Thus the projected coefficient obstruction is now realized by valid pure atoms, including its scalar constant. The remaining obstruction is cancellation or control of the other components of the full score. No Boolean head-count separation follows from these certificates.
+
+## Complementing one coordinate block
+
+Both vanilla lower bounds survive complementing the entire $y$ block. Precisely, let $\tau(t,x,y)=(t,x,-y)$. If either prescribed local pattern holds for $f\circ\tau$, then $H_V(f)\geq5$.
+
+To see this, extract the quadratic from an arbitrary vanilla four-head score and then replace $y$ by $-y$. After orienting the original denominator factors, their $x$ coefficients remain positive and their $y$ coefficients become negative. The cross matrix still has the form $C=AW^\top+VD^\top$, now with $V$ positive and $W$ negative. Replacing $A,W$ by $-A,-W$ preserves $C$ and restores the two positive factors needed by Lemma 3. Zero directions remain covered by the same rank argument.
+
+[FourHeadBlockComplement.lean](../../formalization/HeadComplexity/Results/FourHeadBlockComplement.lean) formalizes the coordinate map, the projected score identity, and the complete original-model lower bound. Its main declarations are `not_computable_four`, `crossOnly_not_computable_four`, `HStar_ge_five`, and `crossOnly_HStar_ge_five` in namespace `HeadComplexity.FourHeadBlockComplement`.
+
+The existing pure-four impossibility proof for the first pattern does not automatically transfer through this map: its positive mass directions acquire opposite signs on the two blocks. This observation identifies another rigorously certified lower-bound target. It supplies no pure upper bound by itself.
