@@ -1,0 +1,12 @@
+{
+  "status": "all exact rational checks passed",
+  "checks": {
+    "mobius_coefficients": 126,
+    "affine_moment_coefficients": 120,
+    "log_supermodularity_pairs": 5460,
+    "fourier_resolvent_entries": 126,
+    "odd_extension_entries": 42,
+    "odd_extension_bounds": 42
+  },
+  "scope": "Finite checks only; general identities have written proofs. No asymptotic bound."
+}

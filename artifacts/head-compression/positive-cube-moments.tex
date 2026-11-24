@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{Exact Moment and Fourier Identities for Oriented Fractions}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+These are complete written identities, checked on exact rational
+examples by \texttt{positive-cube-moments-check.py}. They are not Lean
+theorems and do not establish either requested asymptotic bound.
+The Fourier resolvent statement applies to every oriented positive
+affine denominator. The odd resolvent statement applies to the full
+odd-target normalization already checked in
+\texttt{HeadComplexity.OddKernel.of\_fracComputable}.
+No bounded margin, bounded numerator, or separation between heads is
+assumed. The last paragraph identifies the cancellation gap explicitly.
+
+For a function on $\{0,1\}^n$, write $[f]_S$ for its coefficient of
+$x_S$ in its unique multilinear extension. Let
+\[
+ B(x)=b_0+\sum_i b_ix_i,\qquad
+ A(x)=a_0+\sum_i a_ix_i,\qquad b_0,b_i>0.
+\]
+
+\begin{proposition}[Positive moment formula]
+Put
+\[
+ m_S=\int_0^\infty e^{-b_0t}
+                \prod_{i\in S}(1-e^{-b_it})\,dt.
+\]
+Then $[1/B]_S=(-1)^{|S|}m_S$. For $S\ne\varnothing$, put
+\[
+ I_{S,i}=\int_0^\infty e^{-(b_0+b_i)t}
+             \prod_{k\in S\setminus\{i\}}(1-e^{-b_kt})\,dt>0.
+\]
+The exact affine-numerator formula is
+\[
+ (-1)^{|S|}[A/B]_S
+       =\sum_{i\in S}(a_0b_i/b_0-a_i)I_{S,i}.                 \tag{1}
+\]
+\end{proposition}
+\begin{proof}
+Use $1/B(x)=\int_0^\infty e^{-b_0t}\prod_i e^{-b_ix_it}\,dt$ and
+$e^{-b_ix_it}=1-(1-e^{-b_it})x_i$ at Boolean inputs. All sums are finite
+and all integrals converge. Multiplication by $x_i$ and the identity
+$x_i^2=x_i$ show that the coefficient on the left of (1) is
+\[
+ a_0m_S+\sum_{i\in S}a_i(m_S-m_{S\setminus\{i\}})
+             =a_0m_S-\sum_{i\in S}a_iI_{S,i}.
+\]
+Integration of the derivative of
+$e^{-b_0t}\prod_{i\in S}(1-e^{-b_it})$ gives
+$b_0m_S=\sum_{i\in S}b_iI_{S,i}$. Its boundary values are zero at
+both endpoints because $S$ is nonempty. Substitution proves (1).
+\end{proof}
+
+\paragraph{Both orientations and constant denominators.}
+A strictly negative-slope denominator positive on the cube becomes
+the displayed positive form under $y_i=1-x_i$ for every coordinate.
+Formula (1) then concerns coefficients in the $y$ basis; it is not
+permissible to combine the two orientations as though their original
+$x$ coefficients had the same alternating sign. A constant denominator
+has only affine coefficients and is handled separately. Thus the
+identity respects all original denominator cases.
+
+\begin{proposition}[A consequence and its limitation]
+The positive tensor $m$ is log-supermodular:
+\[
+             m_Sm_T\leq m_{S\cap T}m_{S\cup T}.              \tag{2}
+\]
+Nevertheless positivity and (2) alone impose no restriction on the
+strict signs of a difference of two such positive tensors: for every
+array $\sigma_S\in\{-1,1\}$ there are strictly positive
+log-supermodular arrays $u,v$ with
+$\operatorname{sgn}(u_S-v_S)=\sigma_S$ for every $S$.
+The latter arrays are not asserted to be reciprocal moment tensors.
+\end{proposition}
+\begin{proof}
+For (2), normalize the finite measure
+$e^{-b_0t}\prod_{i\in S\cap T}(1-e^{-b_it})\,dt$. The two remaining
+products for $S\setminus T$ and $T\setminus S$ are increasing
+functions of $t$. Their covariance is nonnegative, since it is half
+the integral over two independent samples of the product of their
+two differences. Undoing the normalization gives (2).
+
+For the second assertion take $v_S=2^{|S|^2}$. If $S,T$ are
+incomparable, then
+\[
+ |S\cup T|^2+|S\cap T|^2-|S|^2-|T|^2
+                 =2|S\setminus T|\,|T\setminus S|>0.
+\]
+All corresponding inequalities are therefore strict. There are only
+finitely many. For sufficiently small $\epsilon>0$, the array
+$u_S=v_S+\epsilon\sigma_S$ remains positive and satisfies all of
+them. For comparable sets the inequality is an identity for every
+array. Finally $u_S-v_S=\epsilon\sigma_S$.
+\end{proof}
+
+\paragraph{Fourier notation.}
+On $\{-1,1\}^n$ put $\chi_S(t)=\prod_{i\in S}t_i$, and let
+$\widehat f(S)=2^{-n}\sum_t f(t)\chi_S(t)$. Let $T_i$ act on
+vectors indexed by subsets by $(T_ic)_S=c_{S\mathbin\triangle\{i\}}$.
+These commuting matrices satisfy $T_i^2=I$.
+
+\begin{proposition}[Positive Fourier resolvent]
+Suppose $w_i\geq0$ and $\tau=\sum_iw_i<1$. Put
+$L_w=\sum_iw_iT_i$. For
+\[
+ R(t)=\frac{a_0+a\cdot t}{1-w\cdot t}
+\]
+the Fourier vector is
+\[
+ \widehat R=(I-L_w)^{-1}
+           \left(a_0e_\varnothing+\sum_i a_ie_{\{i\}}\right),
+ \qquad (I-L_w)^{-1}=\sum_{k\geq0}L_w^k.                   \tag{3}
+\]
+Every matrix entry of the inverse is nonnegative. Every original
+uniformly oriented positive affine denominator has this form after
+positive scalar normalization and possibly complementing all inputs.
+\end{proposition}
+\begin{proof}
+Multiplication by $t_i$ toggles Fourier index $i$. Applying the
+Fourier transform to $(1-w\cdot t)R=a_0+a\cdot t$ gives (3).
+The row-sum norm of $L_w$ is $\tau<1$, so the geometric matrix series
+converges and is the inverse. Its entries are nonnegative.
+For a general centered denominator $d+v\cdot t$, positivity at all
+vertices gives $d>\sum_i|v_i|$. Uniform slope orientation permits a
+single global complement to make all its slopes nonpositive; then
+divide by $d$. Zero slopes, including all slopes zero, cause no issue.
+\end{proof}
+
+\begin{proposition}[Odd coefficients are a killed-walk extension]
+Let
+\[
+ G(t)=\frac{u\cdot t}{1-(w\cdot t)^2},\qquad
+ w_i\geq0,\qquad \tau=\sum_iw_i<1.
+\]
+Its Fourier vector on odd subsets satisfies
+\[
+ c=(I-L_w^2)^{-1}\sum_i u_ie_{\{i\}}.                      \tag{4}
+\]
+Let $D$ be the singletons and $E$ the odd subsets of size at least
+three. With $M=L_w^2$ restricted to odd subsets,
+\[
+ c_E=P(w)c_D,\qquad
+ P(w)=(I-M_{EE})^{-1}M_{ED}\geq0.                          \tag{5}
+\]
+For each $S\in E$ its row mass obeys
+\[
+ \sum_{i\in D}P(w)_{S,i}\leq\tau^{|S|-1},\qquad
+ |c_S|\leq\tau^{|S|-1}\max_i|c_{\{i\}}|.                 \tag{6}
+\]
+\end{proposition}
+\begin{proof}
+Equation (4) follows by Fourier transformation just as in (3).
+The matrix $M$ is nonnegative with every row sum $\tau^2<1$.
+Its $E$ equations have zero source, giving (5). The inverse in (5)
+is again a convergent series of nonnegative matrices.
+
+If $\tau=0$, $M=0$ and the claims follow. Otherwise put
+$v_S=\tau^{|S|-1}$ on odd subsets. Then $v_D=1$.
+Every nonzero entry $M_{S,T}$ has $|T|\geq|S|-2$, so
+$v_T\leq\tau^{-2}v_S$. The row-sum identity implies
+$(Mv)_S\leq v_S$. Restricting this inequality to $E$ gives
+$(I-M_{EE})v_E\geq M_{ED}1$. Multiply by its nonnegative inverse
+to obtain $v_E\geq P(w)1$, which is the first assertion in (6).
+The second follows from (5) and the triangle inequality.
+\end{proof}
+
+\paragraph{What remains missing for the many-head lower bound.}
+For a sum of odd kernels, (6) bounds a high coefficient by
+\[
+ \sum_h \tau_h^{|S|-1}\max_i|\widehat G_h(\{i\})|.
+\]
+There is no bound here on the individual first-level coefficients in
+terms of the first-level coefficients of the sum, its head count,
+or its strict signs. Different positive extension matrices in (5)
+permit their first-level sources to cancel while higher coefficients
+remain. The exact two-kernel three-variable parity example in
+\texttt{odd-positive-kernel-normalization.tex} already exhibits this.
+Consequently neither truncating (3) nor applying (6) with a bound
+on the total score would be justified without an additional,
+cancellation-safe argument. No such argument is supplied here.
+\end{document}
