@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "finite exact checks supporting a written proof; not Lean",
+  "counts": {
+    "generating_coefficients": 10100,
+    "run_lengths": 5150,
+    "root_differences": 2,
+    "exact_head_values": 4,
+    "positive_denominators": 8
+  },
+  "sha256": {
+    "exterior-pole-unit-grid.md": "1af368a911130ea4b6c30eaf240692828c04360aff171b0569bf430a3f5b3505",
+    "verify_exterior_pole_unit_grid.py": "d4d50e321b29137b10aa039a7116a519e6da9210d80386bfc4b073fd35ed2702"
+  }
+}

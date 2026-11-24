@@ -20,6 +20,8 @@ The [deletion-star denominator criterion](deletion-star-denominator-budget.md) c
 
 ## Exact results useful for auditing proposed proofs
 
+The [exterior-pole unit-grid theorem](exterior-pole-unit-grid.md) rules out maximal unit-valued interpolation on an arithmetic grid for three or more univariate heads, including arbitrary bias, affine polynomial parts, and both pole orientations. Two actual oppositely oriented heads give the sharp two-head exception. This is a written common-address theorem with exact finite replay; it does not cover the unrestricted affine-address model.
+
 The [affine address and generic symmetry audit](affine-address-budget.md) bounds the number of independently selected interpolation blocks and classifies column permutations preserving a generic reciprocal observation map. Many Boolean queries force the latter symmetry multiplicity down to the critical order $nH\log n$. This only counts specified symmetry orbits; specially tied coefficients and other isolated solutions are explicitly outside the theorem. The finite exact audit passes, and the proof is written rather than Lean-formalized.
 
 | Result | Verification scope | Source |

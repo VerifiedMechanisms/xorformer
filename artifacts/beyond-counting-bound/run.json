@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: eventual fixed-exponent lower-bound target remains unproved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-24T04:17:34.558103+00:00",
+  "last_audit_utc": "2026-11-24T08:20:20.394399+00:00",
   "elapsed_seconds_at_last_audit": 188473.558103,
   "minimum_duration_met": true,
   "target_theorem_proved": false,
@@ -1219,5 +1219,25 @@
   "latest_priority": "Count distinct full-cube labels in the exponential-head regime, and independently seek a cancellation-invariant random-function or hard-family lower bound. Any fixed exponent below two suffices; subsequence-only bounds are not completion.",
   "latest_checkpoint_utc": "2026-11-24T04:31:13.019126+00:00",
   "unconditional_baseline_recheck": "imported-warren-audit.json",
-  "critical_scale_address_audit": "critical-scale-address-audit.md"
+  "critical_scale_address_audit": "critical-scale-address-audit.md",
+  "latest_written_checkpoints": [
+    {
+      "file": "affine-address-budget.md",
+      "scope": "affine selector blocks and generic permutation identity orbits only",
+      "verification": "written proof; exact finite replay; static, KaTeX, and real GitHub render audits passed"
+    },
+    {
+      "file": "exterior-pole-unit-grid.md",
+      "scope": "common scalar address, arithmetic unit data, both pole orientations and affine polynomial parts",
+      "verification": "written proof; exact finite replay; static, KaTeX, and real GitHub render audits passed"
+    }
+  ],
+  "latest_correct_repository_ref_check": {
+    "repository": "https://github.com/VerifiedMechanisms/xorformer.git",
+    "checked_utc": "2026-11-24T08:20:20.394399+00:00",
+    "refs": {
+      "0f08fe6fb98a": "ad4b30e10e5a5d6d0f1e025f2af6bddce8019931",
+      "1c1556983291": "2672bc2f68e854622722d26b91a86e42e1ccab31"
+    }
+  }
 }

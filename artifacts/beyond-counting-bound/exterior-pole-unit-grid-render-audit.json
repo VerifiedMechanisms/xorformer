@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "renderer": "GitHub Markdown API",
+  "checked_utc": "2026-11-24T08:14:46.305176+00:00",
+  "files": [
+    {
+      "file": "exterior-pole-unit-grid.md",
+      "math_spans": 112,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "1af368a911130ea4b6c30eaf240692828c04360aff171b0569bf430a3f5b3505"
+    },
+    {
+      "file": "research.md",
+      "math_spans": 131,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "1ab4676a4d11b1d5b6e32201e863a9f77dc6fa80eb210389c7779586c6e8ba79"
+    },
+    {
+      "file": "audit-index.md",
+      "math_spans": 8,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "948138b9a7a72d66b9b9d2c6a25f9c493a61ec6d39c227253660fb08d22906b5"
+    }
+  ]
+}
