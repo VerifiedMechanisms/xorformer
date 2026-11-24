@@ -40,13 +40,19 @@ In the six latent coordinates $(S_0,S_1,S_2,B_0,B_1,B_2)$, the Hessian of $P_3$ 
 
 $$ H=\begin{pmatrix}0&A\cr A^{\top}&L\end{pmatrix},\qquad \det H=-4(B_0B_1B_2)^2. $$
 
-The off-diagonal entries of $A$ are the remaining $B$ coordinates, and its diagonal is zero. At $w$, $H$ is invertible. Every entry has magnitude less than two, so its operator norm is at most twelve. Its least singular value is at least $4\delta^6/12^{11}$, by the determinant formula and the upper bound on its other five singular values.
+The off-diagonal entries of $A$ are the remaining $B$ coordinates, and its diagonal is zero. The ambient Hessian is $VHV^{\top}$. Use its first six rows and columns. Their determinant has absolute value at least
 
-Every entry of $V$ has magnitude less than one, and its operator norm is less than ten. Its least singular value is at least $v/10^5$, since its first six rows have determinant $v$. Thus the six nonzero singular values of the ambient Hessian $VH V^{\top}$ are at least $\lambda$. To see this explicitly, take a thin QR factorization $V=QR$; the nonzero part is $RHR^{\top}$, and its inverse has operator norm at most $\|R^{-1}\|^2\|H^{-1}\|$.
+$$ g=4v^2(\delta/12)^6=12^5\cdot10^{10}\lambda. $$
 
-The ambient Hessian of $R$ is a linear pullback of the same six-coordinate Hessian template, with latent coordinates $(N_0,N_1,N_2,D_0,D_1,D_2)$. At $w$, the chosen denominator direction vanishes. The determinant formula therefore makes this latent Hessian singular, so the ambient Hessian of $R$ has rank at most five. If all denominator directions are zero, its rank is zero. It cannot differ from the target Hessian by operator norm less than $\lambda$: intersect the six-dimensional range of the target Hessian with the kernel of the rank-at-most-five competitor. On a unit vector in this intersection, the Hessian difference has norm at least $\lambda$.
+Indeed, the six-row coefficient matrix has determinant of absolute value $v$, and all three $|B_h(w)|$ are at least $\delta/12$. Every entry of $V$ has magnitude less than one, and every entry of $H$ has magnitude less than two: the latter follows from $|w_i|\leq2$, $\sum_i s_{h,i}\lt1$, and $\sum_i|b_{h,i}|\lt1/2$. Expanding the two matrix products gives at most thirty-six terms, so every entry of the target Hessian has magnitude less than seventy-two.
 
-If every raw cubic coefficient differs by at most $\varepsilon$, then at a point of coordinate norm at most two every Hessian entry differs by at most $168\varepsilon$, and the operator norm differs by at most $2352\varepsilon$. Therefore raw coefficient error below $\lambda/2352$ is impossible. Zero denominator directions were included in the argument above. Since the gap is uniform, it also applies to the closure.
+The ambient Hessian of $R$ is a linear pullback of the same six-coordinate Hessian template, with latent coordinates $(N_0,N_1,N_2,D_0,D_1,D_2)$. At $w$, the chosen denominator direction vanishes. The determinant formula therefore makes this latent Hessian singular, so the ambient Hessian of $R$ has rank at most five. If all denominator directions are zero, its rank is zero. In either case the corresponding six-by-six coordinate minor has determinant zero.
+
+Suppose every raw cubic coefficient differs by at most $\eta\lt\lambda/2352$. At a point of coordinate norm at most two, every Hessian entry differs by at most $168\eta\lt\lambda/14\lt1$. Thus all entries of the competing six-by-six minor have magnitude less than seventy-three. The Leibniz determinant formula and telescoping each product of six entries give
+
+$$ |\det M-\det \widetilde M|\leq4320\cdot73^5\max_{i,j}|M_{ij}-\widetilde M_{ij}|\lt\frac{4320\cdot73^5}{14}\lambda\lt g. $$
+
+The last inequality is the integer inequality $4320\cdot73^5\lt14\cdot12^5\cdot10^{10}$. This contradicts the target determinant lower bound and the competing determinant being zero. Therefore raw coefficient error below $\lambda/2352$ is impossible. This proof uses only finite matrix identities, rank, and determinant estimates. Zero denominator directions were included; since the gap is uniform, it also applies to the closure.
 
 ## Quantitative recovery from squarefree coefficients
 
@@ -80,6 +86,8 @@ The exact rank and recovery statements used here are kernel checked in the follo
 
 - [`GenericCubicHessian.lean`](../../../formalization/HeadComplexity/Polynomial/GenericCubicHessian.lean): `eval_second_pderiv` identifies the six-variable polynomial Hessian, `hessian_det` proves its determinant formula, and `hessian_rank` proves rank six when the three denominator coordinates are nonzero. [`GenericCubicHessianPullback.lean`](../../../formalization/HeadComplexity/Polynomial/GenericCubicHessianPullback.lean) proves the actual ambient Hessian pullback identity and the rank-at-most-six bound, including an arbitrary readout term.
 
-- [`FiniteGridAvoidance.lean`](../../../formalization/HeadComplexity/Polynomial/FiniteGridAvoidance.lean): `exists_fourteen_cube_point` kernel checks the five-point grid counting argument and its simultaneous lower bounds for three linear forms.
+- [`FiniteGridAvoidance.lean`](../../../formalization/HeadComplexity/Polynomial/FiniteGridAvoidance.lean): `exists_fourteen_cube_point` kernel checks the five-point grid counting argument and its simultaneous lower bounds for three linear forms. [`FiniteGridPole.lean`](../../../formalization/HeadComplexity/Polynomial/FiniteGridPole.lean) proves `explicit_bounded_pole_point`, including the normalized positive-pole constraint, coordinate bound two, and the simultaneous rational lower bounds for the actual target forms.
 
-These declarations use no `sorry` or new axioms. The numerical norm estimates and quantitative stability bounds in this note remain mathematical proofs with exact arithmetic certificates; they are not presented as a complete Lean proof of the exclusion radius.
+- [`DeterminantPerturbation.lean`](../../../formalization/HeadComplexity/Polynomial/DeterminantPerturbation.lean): `det_sub_det_le` proves the exact six-by-six determinant perturbation bound used in both the raw gap and Schur recovery, by a telescoping product estimate and the Leibniz formula.
+
+These declarations use no `sorry` or new axioms. The complete quantitative coefficient-recovery argument in this note remains a mathematical proof with exact arithmetic certificates; they are not presented as a complete Lean proof of the exclusion radius.

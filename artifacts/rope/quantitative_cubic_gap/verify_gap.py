@@ -21,6 +21,11 @@ def main():
     v, delta, d, lam, k, radius = constants()
     assert min(v, delta, d, lam, k, radius) > 0
     assert k >= 1
+    # Raw coefficient gap uses a concrete 6x6 Hessian determinant, not spectra.
+    pole_minor = 4 * v**2 * (delta / 12)**6
+    assert pole_minor == 12**5 * 10**10 * lam
+    assert lam / 14 < 1
+    assert 4320 * 73**5 < 14 * 12**5 * 10**10
     # Determinant perturbation leaves every selected cross block invertible.
     assert 4320 * 19**5 * radius < d / 2
     # First Schur recovery bounds mixed repeated-index coefficients.
