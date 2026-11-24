@@ -1,0 +1,15 @@
+'HeadComplexity.AnchoredAtomicDecomposition.affineValue_flipBits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnchoredAtomicDecomposition.uniformlyOneAtomApproximable_negativeFace_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnchoredAtomicDecomposition.scalar_coefficient_mass_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnchoredAtomicDecomposition.face_coefficient_mass_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnchoredAtomicDecomposition.face_coefficient_mass_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

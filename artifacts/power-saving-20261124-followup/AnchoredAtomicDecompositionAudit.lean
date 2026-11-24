@@ -1,0 +1,7 @@
+import HeadComplexity.Research.AnchoredAtomicDecomposition
+
+#print axioms HeadComplexity.AnchoredAtomicDecomposition.affineValue_flipBits
+#print axioms HeadComplexity.AnchoredAtomicDecomposition.uniformlyOneAtomApproximable_negativeFace_affine
+#print axioms HeadComplexity.AnchoredAtomicDecomposition.scalar_coefficient_mass_le
+#print axioms HeadComplexity.AnchoredAtomicDecomposition.face_coefficient_mass_eq
+#print axioms HeadComplexity.AnchoredAtomicDecomposition.face_coefficient_mass_le
