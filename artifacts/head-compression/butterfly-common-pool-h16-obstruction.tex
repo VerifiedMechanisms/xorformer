@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A Sixteen-Wire Common-Pool Obstruction}
+\author{}\date{}\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is an exact finite and small-parameter obstruction to a single
+common residue vector serving every butterfly target, with separate
+block biases for the targets. The residues may have either sign.
+It does not obstruct target-adaptive residues, other pole or query
+geometries, or the original HeadComplexity model. Verification is
+written plus exact rational and Laurent arithmetic, not Lean.
+
+Use the notation and query convention of
+\texttt{butterfly-adaptive-haar-biased.tex}, with sixteen wires and
+\[
+ p_y(\epsilon)=y_0\epsilon+y_1\epsilon^2+y_2\epsilon^4+y_3\epsilon^8,
+ \qquad t_{k,s,g}=1-p_s.
+\]
+\begin{theorem}
+For every sufficiently small positive $\epsilon$, no one vector
+$c\in\mathbb R^{16}$ satisfies every butterfly target using separate
+block biases. The same statement holds at $\epsilon=1/100$.
+\end{theorem}
+\begin{proof}
+Eliminating a block bias gives a strict comparison between each
+positive-labelled prefix $a$ and negative-labelled prefix $b$.
+After dividing by $|p_a-p_b|$, this is $r\cdot c>0$, where
+\[
+ r_y=\frac{u_y}{(1-p_a-p_y)(1-p_b-p_y)},\qquad
+ u_y=\operatorname{sgn}(p_a-p_b)
+       u_{k,g}(\pi^{-1}(y)).                                  \tag{1}
+\]
+The file \texttt{butterfly-common-pool-h16-dual.json} gives seventeen
+such rows, possibly coming from different target words, and strictly
+positive rational weights at $\epsilon=1/100$ summing to one whose
+weighted row sum is exactly zero. Multiplying seventeen required
+strict inequalities by these weights gives a contradiction.
+
+The independent checker
+\texttt{butterfly-common-pool-h16-dual-check.py} first reconstructs a
+butterfly target for every saved row and verifies its actual permutation.
+Here is the construction behind that check. A row at level $k$ has one
+nonzero entry in each of the $2^{k+1}$ low-bit classes. Its signs determine
+the level-$k$ target bits. Earlier layers are set to the identity.
+The selected representative in each low-bit class determines all desired
+higher output bits. Later switches route each representative to those
+higher bits independently, because distinct low-bit classes never reach
+the same later switch. The checker also verifies that $a$ is labelled
+positive and $b$ negative. Thus all seventeen inequalities are necessary
+for a common pool; no infeasibility of an enlarged artificial system is
+being substituted for this requirement.
+
+For the small-parameter statement, solve the seventeen equations
+\[
+ \sum_{i=1}^{17}\lambda_i r_i=0,\qquad
+ \sum_{i=1}^{17}\lambda_i=1                                  \tag{2}
+\]
+over $\mathbb Q(\epsilon)$. Exact guarded power-series elimination,
+with tracked precision $1024$, has fourteen pivots of valuation zero
+and three of valuation nine. It gives the following leading terms,
+in the row order stored in the certificate:
+\[
+\begin{gathered}
+ \tfrac15\epsilon^{10},\ \tfrac3{10}\epsilon^{10},\
+ \tfrac2{25}\epsilon^2,\ \tfrac3{10}\epsilon,\
+ \tfrac3{10}\epsilon,\ \tfrac12,\ \tfrac12\epsilon,\
+ \tfrac15\epsilon,\ \tfrac3{10}\epsilon,\
+ \tfrac3{10}\epsilon,\ \tfrac12,\ \tfrac12\epsilon^{10},\
+ \tfrac12\epsilon^{10},\ \tfrac1{10}\epsilon^{10},\
+ \tfrac3{10}\epsilon,\ \tfrac2{25}\epsilon^2,\
+ \tfrac3{10}\epsilon.
+\end{gathered}
+\]
+Every leading coefficient is positive. Nonzero pivots certify an
+invertible rational-function system; the checker substitutes its
+solution into every equation in (2). Tracked precision certifies the
+listed nonzero leading terms. Therefore all seventeen rational weights
+are strictly positive on a common punctured interval to the right of
+zero. The contradiction from (1) applies throughout that interval.
+\end{proof}
+
+\paragraph{Consequence for the proposed induction.}
+A common strictly positive eight-wire pool does exist, as certified by
+\texttt{butterfly-adaptive-haar-common-positive-h8-laurent.json}.
+Its openness gives the written universal sixteen-wire decoder with
+residues depending on the target. The theorem above explains why
+repeating that argument with a strict common sixteen-wire pool fails
+on this particular pole grid. It does not exclude weaker pairwise
+cone bridges, additional query profiles, or singular perturbations
+with target-dependent residues.
+\end{document}
