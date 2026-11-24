@@ -78,4 +78,50 @@ theorem audited_shared_memory_table_eq {F : Type*} {a r s : ℕ}
   funext i j
   exact (h₀ i j).symm.trans (h₁ i j)
 
+/-- A common nonnegative coordinate penalty that vanishes on two centers
+also vanishes on their coordinate union. Thus it cannot isolate just the
+union of their downsets when the centers are incomparable. -/
+theorem audited_common_penalty_zero_join {n : ℕ} (q : Fin n → ℝ)
+    (hq : ∀ k, 0 ≤ q k) (x y : Fin n → Bool)
+    (hx : affineValue 0 q x = 0) (hy : affineValue 0 q y = 0) :
+    affineValue 0 q (fun k ↦ x k || y k) = 0 := by
+  have hnonneg (bits : Fin n → Bool) (k : Fin n) :
+      0 ≤ q k * boolToReal (bits k) := by
+    cases bits k <;> simp [boolToReal, hq k]
+  have hzero (bits : Fin n → Bool) (hbits : affineValue 0 q bits = 0) (k : Fin n) :
+      q k * boolToReal (bits k) = 0 := by
+    have hs : (∑ i, q i * boolToReal (bits i)) = 0 := by
+      simpa only [affineValue, zero_add] using hbits
+    exact (Finset.sum_eq_zero_iff_of_nonneg (fun i _ ↦ hnonneg bits i)).mp hs k
+      (Finset.mem_univ k)
+  simp only [affineValue, zero_add]
+  apply Finset.sum_eq_zero
+  intro k _
+  have hxk := hzero x hx k
+  have hyk := hzero y hy k
+  cases hxv : x k <;> cases hyv : y k <;> simp_all [boolToReal]
+
+/-- The exact weight-two defect in extending a one-hot Cauchy memory by
+affinely summing its token slopes. Centering the reciprocal does not remove it. -/
+theorem audited_cauchy_weight_two_defect (d t u : ℝ)
+    (hd : d ≠ 0) (hdt : d - t ≠ 0) (hdu : d - u ≠ 0)
+    (hdtu : d - t - u ≠ 0) :
+    1 / (d - t - u) - 1 / (d - t) - 1 / (d - u) + 1 / d =
+      t * u * (2 * d - t - u) / (d * (d - t) * (d - u) * (d - t - u)) := by
+  field_simp [hd, hdt, hdu, hdtu]
+  ring
+
+/-- Even with full-cube-positive denominators, the centered reciprocal at
+two active memory coordinates strictly exceeds the sum of its one-hot values. -/
+theorem audited_cauchy_weight_two_defect_pos {d t u : ℝ}
+    (ht : 0 < t) (hu : 0 < u) (hbudget : t + u < d) :
+    0 < 1 / (d - t - u) - 1 / (d - t) - 1 / (d - u) + 1 / d := by
+  have hd : 0 < d := by linarith
+  have hdt : 0 < d - t := by linarith
+  have hdu : 0 < d - u := by linarith
+  have hdtu : 0 < d - t - u := by linarith
+  rw [audited_cauchy_weight_two_defect d t u hd.ne' hdt.ne' hdu.ne' hdtu.ne']
+  have hn : 0 < 2 * d - t - u := by linarith
+  positivity
+
 end HeadComplexity.AxisZeroGluing

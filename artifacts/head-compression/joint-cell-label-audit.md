@@ -104,8 +104,22 @@ Likewise, after the descending-center map, individual cell penalties usually cha
 
 The current improvement merges axis-subtraction heads inside each table. It leaves $q^2$ arbitrary line-data heads and $q^2$ arbitrary token-denominator heads per table. Its ratio to separate compilation is bounded by a constant. An unbounded global gain still needs a way to encode and select independently chosen local words jointly, or a larger local domain with a fully charged cover and decoder.
 
+## Attempt with several actual cover cells
+
+Take the same left center and right centers of the same cardinality. Before localization, the fixed rank denominators can agree across all these cells: choose the same ambient slope on every right coordinate, including coordinates outside each right center. The reflected constant depends on the size of the right center and therefore also agrees. The line numerators can then be added without increasing their number.
+
+The first problem is selection. The original assembly gives different penalties to different right centers. These penalties restore separate denominators and remove the proposed saving. A common nonnegative coordinate penalty that vanishes on two centers also vanishes on their coordinate union. This is checked in `audited_common_penalty_zero_join`. If the centers are incomparable, the union downset strictly contains their two downsets, so a common penalty does not isolate the intended family.
+
+Keeping the point corrections separately localized while merging the rank heads would instead require one affine numerator per line to interpolate arbitrary line aggregates on all selected stars. On a rectangle of four equal-weight Boolean inputs, every affine numerator satisfies the parallelogram identity. Independently changing a token at just the fourth input changes its incident line aggregate while leaving the other three unchanged, contradicting that identity. This rules out that exact numerator-only merge.
+
+Removing all separate penalties also does not extend the incidence cancellation. A compact memory denominator on two active column coordinates uses their token sum. The centered reciprocal is not the sum of its one-hot values. For positive tokens with $t+u\lt d$, the exact defect is
+
+$$ \frac{1}{d-t-u}-\frac{1}{d-t}-\frac{1}{d-u}+\frac{1}{d}=\frac{tu(2d-t-u)}{d(d-t)(d-u)(d-t-u)}\gt 0. $$
+
+This identity and strict inequality are checked in `audited_cauchy_weight_two_defect` and `audited_cauchy_weight_two_defect_pos`. All four denominators are positive, so the failure is not caused by inadmissibility. Signed decoder residues can multiply this defect by either sign, and the inherited prior-sign argument therefore cannot simply be reused. A successful interaction construction would have to correct these multi-coordinate terms jointly and charge that correction.
+
 ## Validation
 
 `lake build HeadComplexity.Results.JointCellLabelAudit HeadComplexity.Results.JointCellRankRepair` completed successfully with 9123 jobs. Transitive `#print axioms` for `hasReverseAxisCompiler_affinePlane_joint`, `exists_reverse_axis_rank_grid_joint`, and `exists_reverse_axis_rank_cauchy_grid_joint` returns only `propext`, `Classical.choice`, and `Quot.sound`. The line-update witness has the same list, and `audited_shared_memory_table_eq` uses only `Quot.sound`.
 
-The static and KaTeX checker reports 70 source math spans and no findings. A real GitHub Markdown API render reports 70 rendered spans and no findings. The API was invoked directly because the machine has no `gh` executable. GitLab rendering was not attempted because `glab` is unavailable.
+The static and KaTeX checker reports 72 source math spans and no findings. A real GitHub Markdown API render reports 72 rendered spans and no findings. The API was invoked directly because the machine has no `gh` executable. GitLab rendering was not attempted because `glab` is unavailable.
