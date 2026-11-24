@@ -58,3 +58,5 @@ Generic coordinate uniqueness, uniformly small critical-point counts, a head-ind
 [Continuation diagnostics](continuation-diagnostics.md) distinguishes the certified small-margin construction from its uncertified continuation. The continued branch lost a necessary multiplier sign far below unit margin. Independent stationarity replays rejected solver-reported successes. Corrected searches use rescaled objectives, stable coherent-denominator formulas, all cube constraints, and a separate head-table energy objective.
 
 `experiments/late-search-diagnostics.json` retains search outcomes and hashes. Finite failures and missing numerical candidates imply neither infeasibility nor the desired asymptotic lower bound. `run.json` records the target status, checked declarations, and actual timing.
+
+- [General row-scaling geometry](row-scaling-geometry-audit.json): twenty-four Lean-checked finite-dimensional matrix declarations, including singular-Laplacian solvability and uniqueness of the least-norm tangent. No head-count lower bound.

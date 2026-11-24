@@ -444,3 +444,9 @@ The [weighted coordinate-loss construction](weighted-coordinate-minima.md) repla
 The proof explicitly handles the anchor coupling by a block triangular stationarity system and a positive Schur complement. It concerns local minima with freely chosen positive entry weights. It does not establish the same conclusion for equal weights or for global minima. Eight algebraic declarations pass Lean; exact rational arithmetic checks all six eight-pole critical brackets, 432 partial-fraction and curvature probes, and the anchor inverse. The positive perturbation parameter and the full family of minima are covered by the written analytic proof, not a numerical certificate.
 
 A fresh read of the private run mirrors found a newer parity-volume study in `VerifiedMechanisms/autoresearch-runs`, commit `33fe828`. Its own audit distinguishes finite hard/soft certificates from unformalized volume asymptotics. It concerns fixed-width parity and an original-parameter measure, and supplies no worst-case head lower bound. No theorem was imported from it.
+
+## The row-scaling projection is now checked in general
+
+The [row-scaling quotient proof](row-scaling-quotient.md) now has twenty-four general Lean declarations, beyond its earlier finite certificate. They prove the exact tangent formulas, positivity of the graph Laplacian, existence of a balancing correction even when that Laplacian is singular, orthogonality, the norm decrease, and uniqueness of the minimum tangent matrix. The module builds and every printed theorem uses only the standard three axioms. Analytic differentiation and smooth dependence remain written proofs.
+
+This validates the normalization mechanism but supplies no uniform bound on the size or variation of the balanced family. The original asymptotic target, every intermediate exponent improvement, and the stronger matching-order target remain open in this run.

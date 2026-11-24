@@ -10,7 +10,7 @@ The [symmetric normalization](symmetric-row-balancing.md) gives a positive row s
 
 3. This cancellation of denominator freedom does not extend to arbitrary lists. At a specified positive three-head point on four bits, all twelve denominator directions remain independent after quotienting by every infinitesimal row scaling. The same holds on an open set, including points to which symmetric normalization applies.
 
-The first statement is a complete written differential calculation. The second is a complete interpolation proof. The third has a written rational-lifting proof and nine Lean-checked finite-field identities. None is an asymptotic head lower bound.
+The first statement has twenty-four general Lean-checked matrix declarations, together with a complete written differentiation argument. The second is a complete interpolation proof. The third has a written rational-lifting proof and nine Lean-checked finite-field identities. None is an asymptotic head lower bound.
 
 ## An orthogonal formula for rebalancing
 
@@ -36,7 +36,7 @@ Use the Frobenius inner product on matrices. Cyclicity of trace, $PXP=0$, and $P
 
 $$ \langle X,R_P(t)\rangle_F=\frac12\sum_i t_iX_{ii},\qquad \lVert R_P(t)\rVert_F^2=\frac12t^\top Lt. $$
 
-Write $d=\mathrm{diag}(X)$. There is always a solution of $Lt=-d$. To see this, the kernel of $L$ consists of vectors constant on each connected component of the graph with edges $P_{ij}\neq0$. The matrix $P$ is block diagonal on these components. On each block, the tangent identities give $\mathrm{tr}(X)=2\mathrm{tr}(PX)=2\mathrm{tr}(PXP)=0$. Thus $d$ is orthogonal to the kernel of $L$ and belongs to its range.
+Write $d=\mathrm{diag}(X)$. There is always a solution of $Lt=-d$. Indeed, if $La=0$, the energy identity gives $R_P(a)=0$, so the pairing identity gives $a^\top d=0$. Thus $d$ is orthogonal to the kernel of the symmetric matrix $L$ and belongs to its range. This argument includes disconnected projection graphs and singular Laplacians.
 
 For any such solution put $Y=X+R_P(t)$. Then
 
@@ -113,6 +113,8 @@ This is a finite example, not an asymptotic claim. It excludes a proposed blanke
 ## Verification and literature scope
 
 `certify_row_scaling_quotient.py` constructs the actual rational matrices before reducing them modulo the prime. Nine declarations in `HeadComplexity.RowScalingQuotient` check positivity, evaluations, inverse identities, the annihilator, and the literal selected-matrix formula. The rational lifting, tangent-space interpretation, information identity, and general pencil theorem are written proofs, not end-to-end Lean theorems.
+
+`RowScalingGeometry.lean` separately proves twenty-four general matrix declarations over an arbitrary finite index type. In particular, `exists_rebalancing` proves solvability without an invertibility assumption, `rebalanced_energy` proves the exact norm decrease, `rebalanced_orthogonal` and `rebalanced_minimal` prove least norm, and `rebalanced_unique` proves uniqueness of the resulting tangent matrix. Their printed axiom dependencies contain only `propext`, `Classical.choice`, and `Quot.sound`. Differentiating the projection formula, smooth local dependence of the balancing scale, and the probability interpretation remain written analytic arguments.
 
 `verify_row_scaling_geometry.py` independently checks the differential identities by exact rational arithmetic on twelve variations of a six-row Vandermonde space. It evaluates all squared-minor probabilities, the graph Laplacian, the balancing correction, and both information identities. It also checks that two different positive three-denominator lists in the displayed two-dimensional span have the same thirteen-dimensional cleared space on four bits. These are finite replays of the written proofs.
 

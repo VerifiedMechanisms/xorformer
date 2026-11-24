@@ -17,6 +17,6 @@
   "rational": "row-scaling-geometry-rational-audit.json",
   "source_sha256": "8a457ab566f4ba7cf91029f0e38b3222bfe0afa77930d82eb9dae25367c90a0d",
   "written_proof": "row-scaling-quotient.md",
-  "scope": "Nine finite field identities. Rational lifting, quotient tangent interpretation, rebalancing and information identities, and pencil elimination are complete written proofs, not end-to-end Lean theorems.",
+  "scope": "Nine finite-field identities. General matrix rebalancing identities are separately checked in row-scaling-geometry-audit.json. Rational lifting, quotient tangent interpretation, analytic differentiation, information identities, and pencil elimination have complete written proofs.",
   "main_target_proved": false
 }

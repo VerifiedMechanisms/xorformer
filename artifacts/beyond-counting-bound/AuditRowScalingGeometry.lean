@@ -1,0 +1,26 @@
+import HeadComplexity.Atoms.RowScalingGeometry
+
+#print axioms HeadComplexity.RowScalingGeometry.pairing_trace
+#print axioms HeadComplexity.RowScalingGeometry.pairing_comm
+#print axioms HeadComplexity.RowScalingGeometry.pairing_add_left
+#print axioms HeadComplexity.RowScalingGeometry.pairing_add_right
+#print axioms HeadComplexity.RowScalingGeometry.energy_nonneg
+#print axioms HeadComplexity.RowScalingGeometry.energy_add
+#print axioms HeadComplexity.RowScalingGeometry.variation_symmetric
+#print axioms HeadComplexity.RowScalingGeometry.variation_tangent
+#print axioms HeadComplexity.RowScalingGeometry.variation_middle_zero
+#print axioms HeadComplexity.RowScalingGeometry.variation_pairing
+#print axioms HeadComplexity.RowScalingGeometry.variation_diagonal
+#print axioms HeadComplexity.RowScalingGeometry.variation_energy
+#print axioms HeadComplexity.RowScalingGeometry.zero_diagonal_orthogonal
+#print axioms HeadComplexity.RowScalingGeometry.zero_diagonal_minimal
+#print axioms HeadComplexity.RowScalingGeometry.rebalanced_diagonal
+#print axioms HeadComplexity.RowScalingGeometry.rebalanced_energy
+#print axioms HeadComplexity.RowScalingGeometry.rebalanced_orthogonal
+#print axioms HeadComplexity.RowScalingGeometry.rebalanced_minimal
+#print axioms HeadComplexity.RowScalingGeometry.laplacian_nonnegative
+#print axioms HeadComplexity.RowScalingGeometry.energy_zero_iff
+#print axioms HeadComplexity.RowScalingGeometry.rebalanced_unique
+#print axioms HeadComplexity.RowScalingGeometry.symmetric_solvable
+#print axioms HeadComplexity.RowScalingGeometry.laplacian_symmetric
+#print axioms HeadComplexity.RowScalingGeometry.exists_rebalancing

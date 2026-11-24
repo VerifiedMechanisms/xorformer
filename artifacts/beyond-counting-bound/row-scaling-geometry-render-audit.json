@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T02:18:43.597494+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/row-scaling-quotient.md",
+      "source_math_spans": 113,
+      "rendered_math_spans": 113,
+      "findings": 0,
+      "notes": [],
+      "sha256": "45cac2ced0ac25616669ac8ab00d2cbca4157ec5faaf1d392c2958bdab4545e2"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "dfcde88f8bb9476cf4f04b170d6f5871959fa12db76a248e5204dc98dc133062"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "ba011d2759a169178ea40f6d15c047f9d7f4356a287379ccdae5dab39d5eeea1"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}
