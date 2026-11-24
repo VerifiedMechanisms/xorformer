@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Two compact reverse heads shatter five columns}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written construction, with an independent exact-rational
+checker. It is not a Lean proof. It gives a fixed constant improvement in a
+local grid representation, not either accepted asymptotic target. In
+particular, no amplification to $\Omega(H\log H)$ shattered columns is
+proved here. All denominators below are positive on the entire Boolean
+cube and have strictly negative slopes. The first theorem does not impose
+axis zeros; the existing checked axis-repair theorem supplies that step.
+
+\begin{theorem}
+For every positive integer $r$ and every sign table
+$\sigma:[r]\times[5]\to\{-1,1\}$, there are two affine ratios
+whose sum has strict sign $\sigma(i,j)$ at $(e_i,e_j)$. Their denominators
+are strictly reverse and positive on the full Boolean $(r+5)$-cube.
+The sum of the absolute denominator slopes can be made arbitrarily
+small while the denominator intercepts stay equal to one.
+\end{theorem}
+
+\begin{proof}
+Fix $0<\epsilon\le 1/100$, put $t=1+\epsilon$, and first work with
+the five normalized queries
+\[
+\begin{array}{c|cc|cc}
+j&D_{1j}&D_{2j}&b_{1j}&b_{2j}\\ \hline
+0&1&1&0&0\\
+1&t&t&0&0\\
+2&1-\epsilon&1&\epsilon(1-\epsilon)&-\epsilon\\
+3&1-\epsilon&1&-\epsilon(1-\epsilon)&\epsilon\\
+4&1-2\epsilon&1&4\epsilon(1-2\epsilon)&-4\epsilon.
+\end{array}
+\]
+The score at query $j$ is
+\[
+ f_j=\frac{a_1+b_{1j}}{D_{1j}-p_1}
+       +\frac{a_2+b_{2j}}{D_{2j}-p_2}.
+\]
+Consider one desired sign vector $s_0,\ldots,s_4$. If $s_0=1$, set
+$Y=(8s_2,s_3,s_4)$; if $s_0=-1$, set $Y=(s_2,8s_3,s_4)$.
+Define
+\[
+ X=\frac{Y_1+Y_2}{2},\qquad
+ v=\frac{5Y_1-3Y_2-2Y_3}{4},\qquad
+ P=\frac{2Y_3-3Y_1+Y_2}{4\epsilon},\qquad Q=Xv.
+\]
+Thus $X+v+\epsilon P=Y_1$,
+$X-v-\epsilon P=Y_2$, and $X+2v+4\epsilon P=Y_3$.
+Moreover $Q$ has sign $s_0$: when $|Y_1|=8$, both factors
+in $8Q=(Y_1+Y_2)(5Y_1-3Y_2-2Y_3)$ have sign $Y_1$;
+when $|Y_2|=8$, their signs are opposite. The estimates
+\[
+ |X|\le5,\quad |v|\le12,\quad |P|\le7/\epsilon,
+ \quad |P+v|\le8/\epsilon,\quad 0<|Q|\le60
+\]
+follow directly. Let
+\[
+ \lambda=\begin{cases}0&s_0=s_1,\\
+ -Q(t+1)/(2t)&s_0\ne s_1.
+ \end{cases}
+\]
+For a sufficiently small positive $\delta$, set
+\[
+ p_2=\delta P,\quad p_1=\delta(P+v),\quad
+ a_1=\delta X,\quad a_2=-\delta X+\delta^2\lambda.
+\]
+Clearing the two positive denominators gives, exactly,
+\[
+\begin{split}
+ N_0&=\delta^2(\lambda+Q)-\delta^3\lambda(P+v),\\
+ N_1&=\delta^2(t\lambda+Q)-\delta^3\lambda(P+v).
+\end{split}
+\]
+If $s_0=s_1$, these have the required sign because $\lambda=0$.
+Otherwise their leading coefficients are
+$Q(t-1)/(2t)$ and $-Q(t-1)/2$. Both signs are preserved whenever
+$8\delta/\epsilon<\epsilon/(2t)$, since $|\lambda|\le|Q|$.
+For queries $j=2,3,4$, write respectively
+$k_j=\epsilon,\epsilon,2\epsilon$. Their cleared numerators are
+\[
+ N_j=\delta k_jY_{j-1}
+   +\delta^2\bigl((1-k_j)\lambda+Q\bigr)
+   -\delta^3\lambda(P+v).
+\]
+Thus the desired remaining signs hold, for example, if
+$200\delta<\epsilon$ and $8\delta/\epsilon<1$.
+
+Here is an explicit embedding that satisfies all these inequalities
+simultaneously for all rows and the entire Boolean cube. Put
+\[
+ \rho=\frac{\epsilon}{100r},\quad
+ \delta=\frac{\rho\epsilon^2}{100},\quad d_0=1-10\epsilon.
+\]
+Choose the above parameters independently in every row. Define
+\[
+ \widehat p_{1i}=\rho+d_0\delta(P_i+v_i),\quad
+ \widehat p_{2i}=\rho+d_0\delta P_i,\qquad
+ \widehat q_{hj}=1-\rho-d_0D_{hj}.
+\]
+The actual denominators and numerators are
+\[
+ B_h(z,w)=1-\sum_i\widehat p_{hi}z_i
+                -\sum_{j=0}^4\widehat q_{hj}w_j,
+ \qquad
+ A_h(z,w)=d_0\left(\sum_i a_{hi}z_i+
+                             \sum_{j=0}^4 b_{hj}w_j\right).
+\]
+At $(e_i,e_j)$, the denominator equals
+$d_0(D_{hj}-p_{hi})$, so the score is unchanged. The explicit bounds give
+\[
+ 0<\rho/2<\widehat p_{hi}<2\rho,\qquad
+ 8\epsilon<\widehat q_{hj}<12\epsilon.
+\]
+Consequently the sum of all denominator slopes in absolute value is
+less than $2r\rho+60\epsilon<61\epsilon<1$. This proves strict
+reverse slopes and whole-cube positivity. Letting $\epsilon$ decrease
+proves the final compactness assertion. The same $\delta$ works for
+all $32$ patterns, so there is no unproved uniformity or numerical
+feasibility premise.
+\end{proof}
+
+\paragraph{Consequence and remaining gap.}
+Every $r\times5$ sign table consequently has an axis-zero strict reverse
+compiler with at most nine heads, by the existing Lean-checked theorem
+\texttt{hasReverseAxisCompiler\_of\_strictReverseGridCompiler} in
+\texttt{Results/ReverseGridAxisRepair.lean}, whose general cost is
+$3H+3$. Applying that theorem to this written construction is not itself
+formalized here. This does not improve the known
+linear-cost compiler asymptotically. Its significance is that the two-head
+grid shattering phenomenon persists under arbitrarily strong compactness,
+so the finite wide-denominator certificate is not the only source of the
+fifth independent bit. A scalable construction with $\Omega(H\log H)$
+independent query signs, or another superconstant saving, is still missing.
+\end{document}
