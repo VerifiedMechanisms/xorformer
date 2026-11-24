@@ -1,0 +1,4 @@
+HeadComplexity.Research.UniformMarginCompiler: audited 2 theorem declarations
+HeadComplexity.Research.MonomialMarginCompiler: audited 4 theorem declarations
+Audited 6 theorem declarations across 2 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].
