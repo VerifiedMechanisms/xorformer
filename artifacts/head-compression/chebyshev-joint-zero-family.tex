@@ -156,4 +156,73 @@ cost, or by a new identity. Neither the permutation count nor the
 dimension of (4) proves that every sign table is covered. The missing
 statement remains a quantitative joint sign-coverage theorem with
 $k=o(r+s)$.
+
+\paragraph{A limitation of the one-address tangent.}
+There is a stronger reason not to replace the balanced-table problem
+by a universal row-shattering claim for (4). The following elementary
+lemma bounds that particular row class linearly in $k$.
+
+\begin{lemma}[Polynomial feature curves]
+Let $\phi_1(x),\ldots,\phi_q(x)\in\mathbb R^d$ have polynomial
+coordinates of degree at most $D$. Let $x$ range over any open real
+interval, and let $u\in\mathbb R^d$ vary freely. The number of strict
+sign patterns of $(\langle u,\phi_j(x)\rangle)_{j=1}^q$, when $q\geq d$,
+is at most
+\[
+ (dD+1)(eq/d)^{2d}.
+ \tag{5}
+\]
+In particular the VC dimension of any such feature-curve class is
+$O(d+\log(dD+1))$ with an absolute implied constant.
+\end{lemma}
+\begin{proof}
+First suppose the $q\times d$ polynomial feature matrix has rank $d$
+for some $x$. Every nonzero maximal minor has degree at most $dD$.
+Their real roots partition the interval into at most
+$dD\binom qd+1$ open intervals. On each interval all maximal-minor
+signs are fixed, so the represented oriented matroid, hence the
+collection of strict signs attained by linear functionals, is fixed.
+One may verify this last assertion directly by the theorem of
+alternatives: feasibility of a strict sign vector is obstructed by a
+nonzero nonnegative linear dependence, whose minimal support has at
+most $d+1$ elements and whose coefficient signs are determined by
+the maximal minors. Dependencies of smaller support are included by
+extending a basis; the same determinant signs determine them.
+
+For fixed $x$, the hyperplane arrangement bound gives at most
+$\sum_{l=0}^d\binom ql\leq(eq/d)^d$ strict patterns.
+A strict pattern attained at a root of a minor persists for the same
+$u$ at nearby $x$, so those finitely many points add no patterns.
+Using $\binom qd\leq(eq/d)^d$ gives (5).
+
+If the generic rank is $e<d$, choose $e$ columns with a nonzero
+$e\times e$ minor. Outside finitely many points these columns span
+the same feature image as all $d$ columns, and the preceding argument
+applies with $e$. Its bound is at most the stated one with $d$:
+$eD+1\leq dD+1$, and $a\mapsto (eq/a)^{2a}$ is increasing for
+$0<a\leq q$. Rank zero gives just the empty strict pattern class.
+
+For the final assertion, shattering implies
+$2^q\leq(dD+1)(eq/d)^{2d}$. If
+$q\geq32d$ and $q\geq4\log_2(dD+1)$, its base-two logarithm is
+strictly less than $q$. Indeed
+$2\log_2(ev)/v<1/2$ for $v\geq32$.
+This proves the claimed absolute bound.
+\end{proof}
+
+For application to (4), fix all column data, including their
+permutations and column tangent coefficients. Allow one row address
+$x$ and its row tangent coefficients to vary. Multiply each query by
+the positive denominator $[T_k(x/\varepsilon)-t_j]^2$.
+Because $x-\varepsilon\xi_h(t_j)$ is a factor of
+$T_k(x/\varepsilon)-t_j$, every resulting feature is a polynomial of
+degree at most $2k$. The score is affine-linear in $2k+2$ row
+coefficients; adding the constant feature makes $d=2k+3$ sufficient.
+The lemma therefore gives VC dimension $O(k)$ for this first-order
+one-address row class, uniformly over all fixed column data.
+
+This conclusion does not bound the balanced joint-table family:
+there the column data themselves may be selected for the entire
+target table. It also does not apply to higher-order perturbation
+germs or to arbitrary finite independent row denominator parameters.
 \end{document}
