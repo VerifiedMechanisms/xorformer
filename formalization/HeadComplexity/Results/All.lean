@@ -59,6 +59,10 @@ import HeadComplexity.Results.LargeDomainPermutationTangent
 import HeadComplexity.Results.CubeStarBiasedPairedDecoder
 import HeadComplexity.Results.JointFamilyButterflyMaskDimension
 import HeadComplexity.Results.LargeDomainWeightedTangent
+import HeadComplexity.Results.GradedShellTransfer
+import HeadComplexity.Results.JointCellAdaptivePoleCapacity
+import HeadComplexity.Results.LargeDomainCauchyLocalization
+import HeadComplexity.Results.JointFamilyGatedDifferences
 import HeadComplexity.Results.UniversalAxisLogCompiler
 import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms

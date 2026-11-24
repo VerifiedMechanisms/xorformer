@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Gluing reverse modules at different deletion depths}
+\author{Joint Cell Head Compression}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The transfer and singleton repair below are kernel checked in
+\texttt{GradedShellTransfer.lean}. They are conditional compiler interfaces,
+not a new asymptotic bound. The definition of the original model and of
+\texttt{HeadComplexity.worstCaseHeadComplexity} is unchanged.
+
+Identify an input with a subset of $[n]$. For a center $C$ and depth $d$ put
+\[
+ \mathcal S(C,d)=\{X\subseteq C:|C|=|X|+d\},
+ \qquad \mathcal D(C)=\{X:X\subseteq C\}.
+\]
+A reverse module of depth $d$ is a sum of $H$ affine fractions whose
+individual denominator slopes are strictly negative, whose denominators
+are positive on the entire Boolean cube, and whose sum vanishes at every
+input of weight less than $d$. Numerators may be arbitrary affine forms.
+The structure \texttt{ReverseGradedData} records exactly these conditions.
+
+\begin{theorem}
+Let $(C_i,d_i,L_i)_{i<N}$ be a finite family of reverse modules, using
+$H_i$ heads. Suppose $|C_i|-d_i$ is nonincreasing in $i$, the shells
+$\mathcal S(C_i,d_i)$ cover the cube, and
+\[
+ \operatorname{sgn}(f(X))L_i(C_i\setminus X)>0
+ \quad\text{for every }X\in\mathcal S(C_i,d_i).
+\]
+Then the original model computes $f$ with at most $\sum_{i<N}H_i$ heads.
+If such modules exist for every independently specified Boolean truth
+table $f$, then $W(n)\leq\sum_{i<N}H_i$.
+\end{theorem}
+\begin{proof}
+Reflect the local coordinates in $C_i$. A reverse denominator becomes
+an affine denominator with strictly positive slopes on those coordinates;
+assign slope one on coordinates outside $C_i$. Positivity at zero follows
+from the assumed full-cube positivity of the local denominator. Every
+resulting denominator therefore remains positive on the full cube. Add a
+sufficiently large multiple of the nonnegative affine penalty
+$\sum_{j\notin C_i}x_j$ to suppress this module away from its downset.
+Inside the downset, the reflected score is exactly $L_i(C_i\setminus X)$.
+
+If an earlier target $X\in\mathcal S(C_j,d_j)$ lies in the later downset,
+then the ordering gives $|X|\geq|C_i|-d_i$. Hence either
+$|C_i\setminus X|<d_i$, where the new score is exactly zero, or equality
+holds, in which case $X$ is also a target of the new module and its score
+has the same prescribed strict sign. Successive positive scaling and
+outside-downset suppression preserve every prior strict sign. The finite
+strict-sign gluing theorem supplies finite parameters for all modules.
+Thus no limiting score is substituted for an actual model score.
+Overlaps need no disjointness assumption.
+\end{proof}
+
+The exact declarations are
+\texttt{glue\_reverse\_graded\_shell\_modules},
+\texttt{HStar\_le\_graded\_shell\_cover}, and
+\texttt{worstCaseHeadComplexity\_le\_graded\_shell\_cover}, in namespace
+\texttt{HeadComplexity.AxisZeroGluing}. The depth-zero compiler
+\texttt{exists\_reverseGradedData\_depth\_zero} uses the single fraction
+\[
+ \frac{\operatorname{sgn}(\ell)}{n+1-\sum_jx_j}.
+\]
+Its denominator is at least one everywhere. It can repair a singleton
+exception at cost one within the same rank ordering, without a separate
+unproved claim that prior signs survive an exception repair.
+
+\paragraph{What a sparse query family still needs.}
+A constant-weight embedding by itself is insufficient. If a proposed
+module decodes only $Q_i\subsetneq\mathcal S(C_i,d_i)$, an earlier query
+may lie in $\mathcal S(C_i,d_i)\setminus Q_i$. Neither lower-weight
+cancellation nor the local sign hypothesis controls that input. One must
+supply signs on the remainder, prove its score zero there, or establish a
+stronger geometric cover compatibility condition. Moreover, a denominator
+gate that selects an upper coordinate face generally remains nonzero after
+some inactive coordinates are deleted. It does not automatically provide
+the required lower-weight cancellation. These are the two separate missing
+conditions for the gated butterfly query construction.
+
+\end{document}
