@@ -1,0 +1,23 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/critical-width-capacity-lower.md",
+    "source_math_spans": 92,
+    "rendered_math_spans": 92,
+    "findings": 0,
+    "sha256": "86c00c0ff7ad96494989cf997efed8910437471605eafba502420acdbc1b947f"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "source_math_spans": 124,
+    "rendered_math_spans": 124,
+    "findings": 0,
+    "sha256": "79b95fc4434f458ff77432d57055c4d491988b3ab43c1dc0e8117b50a2abeedb"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/audit-index.md",
+    "source_math_spans": 7,
+    "rendered_math_spans": 7,
+    "findings": 0,
+    "sha256": "165149921cf4f01c0935f20c5271c6d9d7e42c7ed15293c778a24512afdd9a3a"
+  }
+]

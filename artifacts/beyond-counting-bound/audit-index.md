@@ -12,6 +12,8 @@ The unconditional Warren proof imported verbatim from branch `ar/1c1556983291` n
 
 The [address-budget audit](critical-scale-address-audit.md) checks both factorial constructions at the critical head scale, with exact integer ranges. Their component multiplicity does not refute the proposed critical-scale sign count. That full-class count remains a theorem-strength gap.
 
+The asker's [critical-width capacity lower bound](critical-width-capacity-lower.md) is now audited as a complete written actual-model construction. It excludes a full-table upper count of order $nH$ in that range, and is compatible with the candidate order $nH\log n$. It is neither a worst-case head lower bound nor a VC lower bound of the same order.
+
 ## Exact results useful for auditing proposed proofs
 
 | Result | Verification scope | Source |
