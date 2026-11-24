@@ -1,0 +1,9 @@
+'HeadComplexity.AxisZeroGluing.HeadScoreClosure.permute' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.layerCoordinate_transitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.coordinateOrbit_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.supported_cell_coordinate_orbit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_layer_score_of_supported_cell' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,6 @@
+import HeadComplexity.Results.CoordinateOrbitLayerCover
+#print axioms HeadComplexity.AxisZeroGluing.HeadScoreClosure.permute
+#print axioms HeadComplexity.AxisZeroGluing.layerCoordinate_transitive
+#print axioms HeadComplexity.AxisZeroGluing.coordinateOrbit_regular
+#print axioms HeadComplexity.AxisZeroGluing.supported_cell_coordinate_orbit
+#print axioms HeadComplexity.AxisZeroGluing.exists_layer_score_of_supported_cell

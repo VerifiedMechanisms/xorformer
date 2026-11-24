@@ -1,0 +1,37 @@
+\section{An explicit coordinate-orbit cover}
+This is a conditional transfer, not a new local decoder or a new asymptotic
+bound. It removes an unnecessary combinatorial covering-design hypothesis.
+Let $Q$ be a nonempty subset of the weight-$k$ layer of the $n$-cube, with
+$e=|Q|$. Suppose every labeling of $Q$ has a limiting score of $H$ original
+admissible heads that is zero on every higher layer and on the complement
+of $Q$ in the weight-$k$ layer. Assume $1\le H\le e$.
+
+Take all coordinate permutations of $Q$, retaining repetitions as indexed
+cells. Coordinate permutations act transitively on the weight-$k$ layer and
+preserve the original head class exactly. Hence every point has the same
+positive incidence degree $d$, and double counting gives
+\[
+ n!\,e={n\choose k}d.
+\]
+The regular partial-cover theorem, with one-head singleton exceptions,
+then produces a score for the entire layer with head count at most
+\[
+ {n\choose k}\frac{H}{e}\left(1+\log\frac eH\right).
+\]
+Every selected cell is compiled for its own pulled-back labeling; no labels
+or decoder coefficients are identified across different orbit members.
+The logarithmic loss is the logarithm of the local gain $e/H$, not the
+logarithm of the number of points in a cell. Descending layer assembly
+preserves earlier signs because each local score vanishes above its layer.
+
+The exact checked declarations are
+\texttt{coordinateOrbit\_regular},
+\texttt{supported\_cell\_coordinate\_orbit}, and
+\texttt{exists\_layer\_score\_of\_supported\_cell}, all in namespace
+\texttt{HeadComplexity.AxisZeroGluing}, file
+\texttt{formalization/HeadComplexity/Results/CoordinateOrbitLayerCover.lean}.
+Their transitive axioms are only the standard
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The original model, admissibility conditions, and worst-case quantity are
+unchanged. The missing constructive hypothesis is a supported cell with a
+sufficiently large ratio $e/H$.
