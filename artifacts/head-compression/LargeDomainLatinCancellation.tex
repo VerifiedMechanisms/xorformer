@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Exact rational cancellation from Latin assignments}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The axis cancellation identities and denominator positivity in the first
+section are kernel checked in \texttt{LargeDomainLatinCancellation.lean}.
+They are a resource for a possible construction, not a universal decoder
+and not an improvement in $W(n)$. The higher-dimensional extension,
+entropy audit, and signed-fiber observation are written arguments.
+
+\section{A full reciprocal identity}
+Let $T,U:[q]^2\to[q]$ be Latin squares: every row and every column is
+a permutation. For arbitrary real vectors $b,r,c$, put
+\[
+ F_T(b,r,c)=\sum_{i,j\in[q]}\frac{1}{b_{T(i,j)}+r_i+c_j}.
+\]
+If $r=0$, summing along each column gives
+\[
+ F_T(b,0,c)=\sum_{j,k\in[q]}\frac{1}{b_k+c_j}=F_U(b,0,c).
+\]
+If $c=0$, the analogous row calculation gives $F_T(b,r,0)=F_U(b,r,0)$.
+No Taylor truncation is used. In particular, the identities hold for
+arbitrary distinct color poles. If $b_k>0$, $r_i\geq0$, and $c_j\geq0$,
+every denominator is positive.
+
+The Lean declarations, in namespace \texttt{HeadComplexity.LargeDomain},
+are \texttt{latin\_cauchy\_zero\_left},
+\texttt{latin\_cauchy\_zero\_right},
+\texttt{latin\_cauchy\_difference\_zero\_axes}, and
+\texttt{latin\_cauchy\_denominator\_pos}.
+
+For $a$ blocks, use a Latin hypercube $T:[q]^a\to[q]$ whose every
+coordinate line is a permutation. The same summation proves that
+\[
+ \sum_h\frac{1}{b_{T(h)}+\sum_{\ell=1}^a d_{\ell,h_\ell}(x_\ell)}
+ -\sum_h\frac{1}{b_{U(h)}+\sum_{\ell=1}^a d_{\ell,h_\ell}(x_\ell)}
+\]
+vanishes whenever some $d_{\ell,h_\ell}(x_\ell)$ is identically zero
+in $h_\ell$. Different outer columns may select their Latin assignments
+independently. The raw bank uses $2q^a$ reciprocal terms.
+
+For one-hot physical row blocks, every $d_{\ell,h_\ell}$ can be an
+affine row form with zero constant. Compact color poles can be embedded
+by column coefficients, with a common column-zero intercept in both
+banks. Thus the column axis can also cancel exactly. The existence of a
+strict-sign decoder with a useful number of signs is a separate question.
+Moving a color-dependent query numerator along with $T$ is not automatic:
+its resulting coefficient would depend jointly on query and column.
+
+\section{Entropy and embedding audit}
+Write $H=q^a$. The library of Latin assignments is contained in the
+library of all colorings, so it has at most $q^H$ members. Consequently,
+its contribution is at most $H\log_2q$ bits per independently chosen
+outer column. If every row block is one-hot, $aq$ physical coordinates
+are required and $\log q\leq\log n$. This library alone cannot produce
+a saving beyond the inherited logarithm.
+
+A large local domain with binary row blocks could allow
+$q=\exp(\Omega(\sqrt n))$. No admissible full-rational decoder for that
+embedding is established. Hard localization on dual-rail encodings has
+additional partial-block inputs, and cancellation on those inputs does
+not follow from the Latin whole-block identity.
+
+Nor does large library cardinality alone prove a head bound. Distinct
+parameter assignments need not give distinct sign tables. Even a
+shattered subset would need an independently justified support or cover
+argument before applying a global shell compiler.
+
+\section{A screen for independent colored OA memories}
+The following observation explains a different cost of enforcing exact
+orthogonal-array cancellation while retaining independently movable
+poles. Let a finite signed measure $\mu$ on $\{0,1\}^k$ have every
+cylinder marginal involving fewer than $c$ coordinates equal to zero.
+If $\mu$ is nonzero, then
+\[
+ |\operatorname{supp}\mu|\geq2^c.
+\]
+Indeed, in a non-singleton support choose a coordinate that splits it
+and retain a nonempty smaller part. Each step at least halves the
+number of points. A support of size less than $2^c$ therefore has a
+point isolated by fixing fewer than $c$ coordinates. Its cylinder
+marginal is its nonzero weight, a contradiction.
+
+Now consider a signed reciprocal bank indexed by Boolean direction
+patterns, with a separately movable scalar pole for each color. Suppose
+it vanishes identically on all row inputs of weight less than $c$, for
+all choices of these poles in an open interval. Suppose also that the
+fixed coordinate weights make all subset sums on each such row support
+distinct. Varying one color pole and using independence of simple Cauchy
+fractions forces every signed projection marginal in that color fiber
+to vanish. The preceding argument gives at least $2^c$ nonzero heads
+per nonzero color fiber.
+
+This is a statement about independent pole variables and exact
+identities. Correlated permutation memories, cancellation only at
+selected parameter values, label-dependent directions, or approximate
+cancellation with a justified limit are not ruled out.
+
+\end{document}

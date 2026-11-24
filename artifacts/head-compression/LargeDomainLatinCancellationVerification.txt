@@ -1,0 +1,18 @@
+2026-11-24 21:09 UTC
+
+Command: cd formalization && lake build HeadComplexity.Results.LargeDomainLatinCancellation
+Result: Build completed successfully (3139 jobs).
+
+Command: lake env lean /tmp/LargeDomainLatinAxioms.lean
+The temporary file imported HeadComplexity.Results.LargeDomainLatinCancellation and printed the four declarations below.
+
+HeadComplexity.LargeDomain.latin_cauchy_zero_left
+HeadComplexity.LargeDomain.latin_cauchy_zero_right
+HeadComplexity.LargeDomain.latin_cauchy_difference_zero_axes
+HeadComplexity.LargeDomain.latin_cauchy_denominator_pos
+
+Each depends on axioms: [propext, Classical.choice, Quot.sound].
+No sorryAx or additional axioms.
+
+Scope: exact reciprocal axis-cancellation and denominator positivity.
+This is not a decoder theorem or an improved unconditional bound on W(n).
