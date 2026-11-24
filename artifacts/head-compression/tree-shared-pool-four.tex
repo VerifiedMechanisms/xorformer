@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{A Shared Four-Term Pool and Twenty Tree Queries}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Verification status and scope.}
+The results here are complete written proofs about masked exterior Cauchy
+kernels. The companion Python checker uses exact rational arithmetic for
+the finite certificate and the limiting inequalities. These proofs are
+not Lean checked. They neither prove a superconstant saving nor establish
+an unrestricted lower bound for HeadComplexity. No model definition is
+changed. The main new point is stronger than eight-query shattering with
+four terms: a single four-term pool, after its four full-sum signs have
+been prescribed, realizes every proper-descendant pattern by permutation.
+This gives a target-adaptive eight-term construction with twenty signs.
+
+\section{The shared pool}
+Put $\eta=1/1000$. The four full-sum query times, two pair query times,
+and singleton query time are respectively
+\[
+ t_j=1+\eta u_j,\quad u=(-3,-1,1,3),\qquad
+ t_-=1-2\eta,\quad t_+=1+2\eta,\qquad t_0=1.
+\]
+For four terms $r_h/(t-q_h)$ and a permutation $\pi$ of
+$\{0,1,2,3\}$, the four proper-descendant scores are
+\[
+ \sum_{i\in\{1,3\}}\frac{r_{\pi(i)}}{t_--q_{\pi(i)}},\quad
+ \sum_{i\in\{1,3\}}\frac{r_{\pi(i)}}{t_+-q_{\pi(i)}},\quad
+ \frac{r_{\pi(2)}}{t_0-q_{\pi(2)}},\quad
+ \frac{r_{\pi(3)}}{t_0-q_{\pi(3)}}.
+ \tag{1}\label{eq:internal}
+\]
+
+\begin{theorem}\label{thm:pool}
+There exists $\epsilon_0>0$ such that for every
+$0<\epsilon<\epsilon_0$ and every prescribed full-sum sign vector
+$s\in\{-1,1\}^4$, the fixed poles
+\[
+ q_h=\epsilon a_h+\epsilon^2 b_h,\qquad
+ a=(-3,-1,1,3),\quad b=(0,16,0,0)
+ \tag{2}\label{eq:poles}
+\]
+admit nonzero real residues $r_h$ with these two properties:
+\begin{enumerate}
+\item $\sum_h r_h/(t_j-q_h)$ has sign $s_j$ for every $j$;
+\item as $\pi$ varies, the four scores in \eqref{eq:internal}
+realize all $16$ strict sign vectors.
+\end{enumerate}
+All denominators are positive. The same $\epsilon_0$ works for every
+$s$.
+\end{theorem}
+
+\begin{proof}
+Write $P_\epsilon(x)=\prod_h(x-q_h)$ and choose a cubic polynomial
+$N(x)=\prod_{\ell=1}^3(x-\rho_\ell)$, with the possible additional
+factor $-1$. Set
+\[
+ r_h=\frac{N(q_h)}{P_\epsilon'(q_h)}.
+\]
+The partial-fraction identity gives
+\[
+ \sum_h\frac{r_h}{t-q_h}=\frac{N(t)}{P_\epsilon(t)}.
+ \tag{3}\label{eq:partial}
+\]
+Consequently the full-sum signs are exactly the signs of $N$ at the
+four query times.
+
+Here is a finite list of eight root triples. An entry $v$ in the table
+means $\rho=1+\eta v/10$. The last column records the positive-sign
+bit pattern of $N(t_j)$, with the first query as the least significant
+bit.
+\[
+\begin{array}{c|r r r|r}
+ &v_1&v_2&v_3&\text{pattern}\\ \hline
+1&-34&-1&44&3\\
+2&17&-15&-12&8\\
+3&-7&-24&45&2\\
+4&26&-27&-2&10\\
+5&-52&23&14&15\\
+6&43&-36&-16&1\\
+7&-42&19&6&11\\
+8&33&12&-27&6
+\end{array}
+\]
+Together with the negatives of these polynomials, these give all sixteen
+full-sum patterns. Direct rational substitution gives, for every row,
+\[
+ t_-< t_*:=\frac{1}{\rho_1^{-1}+\rho_2^{-1}+\rho_3^{-1}-2}<t_+.
+ \tag{4}\label{eq:zero}
+\]
+These finitely many elementary inequalities are independently checked
+by the companion script.
+
+We verify that each chosen polynomial has the required permutation
+property for all sufficiently small $\epsilon$. Put $N_0=N(0)$,
+$N_1=N'(0)$, and
+\[
+ v_h=\frac1{\prod_{j\ne h}(a_h-a_j)}
+       =\frac1{48}(-1,3,-3,1)_h,
+ \qquad
+ L_h=\sum_{j\ne h}\frac{b_h-b_j}{a_h-a_j}=(8,-4,-8,-4)_h.
+\]
+Taylor expansion of a finite rational expression, with all displayed
+limiting denominators nonzero, yields
+\[
+ r_h=\epsilon^{-3}v_hN_0+
+       \epsilon^{-2}v_h(a_hN_1-N_0L_h)+O(\epsilon^{-1}).
+ \tag{5}\label{eq:residue}
+\]
+The residues therefore alternate in sign for small $\epsilon$.
+The four pairs having opposite residue signs are
+$\{0,1\},\{0,3\},\{1,2\},\{2,3\}$.
+For the first and last of these, multiplication of the partial score
+by $\epsilon^3$ gives the nonzero limits
+\[
+ \frac{N_0}{24t},\qquad -\frac{N_0}{24t}.
+\]
+They consequently give the two constant pair-sign patterns at
+$(t_-,t_+)$.
+
+For the outer pair $S=\{0,3\}$ one has
+\[
+ \sum_{h\in S}v_h=0,\quad
+ \sum_{h\in S}a_hv_h=1/8,\quad
+ \sum_{h\in S}v_hL_h=-1/4.
+\]
+Using \eqref{eq:residue} and expanding $(t-q_h)^{-1}$ gives
+\[
+ \epsilon^2\sum_{h\in S}\frac{r_h}{t-q_h}
+ \longrightarrow
+ \frac{N_0+(N_1+2N_0)t}{8t^2}.
+ \tag{6}\label{eq:limit}
+\]
+For the inner pair $\{1,2\}$ the limit is the negative of this
+expression. Since $N_1/N_0=-\sum_\ell\rho_\ell^{-1}$,
+the numerator in \eqref{eq:limit} vanishes precisely at $t_*$.
+By \eqref{eq:zero} the two symmetric pairs give the two alternating
+pair-sign patterns for small $\epsilon$.
+
+Every one of the four possible pair-sign patterns is thus supplied by
+a pair containing one residue of each sign. Its complementary pair
+also contains one residue of each sign. After choosing the pair occupying
+positions $1,3$, its internal order sets the sign at position $3$
+arbitrarily. Independently ordering the complementary pair sets the
+sign at position $2$ arbitrarily. This proves all sixteen patterns
+in \eqref{eq:internal}. Positivity and nonvanishing hold for sufficiently
+small $\epsilon$. Finally take the minimum of the finitely many positive
+thresholds for the eight polynomials and their negatives.
+\end{proof}
+
+\section{Adding full-sum signs by paired cancellation}
+\begin{lemma}\label{lem:jets}
+Let $p_1,\ldots,p_M$ be distinct real numbers below $2M$ distinct
+query times $x_1,\ldots,x_{2M}$, and let $c_h\ne0$.
+Start with the $2M$ terms
+\[
+ \frac{c_h}{t-p_h},\qquad -\frac{c_h}{t-p_h},\quad 1\le h\le M.
+\]
+Any prescribed strict signs at all $2M$ full-sum query times can be
+obtained by an arbitrarily small perturbation of just the poles and
+residues of the negative copies. Any finite collection of strict
+partial-sum signs at the initial configuration is preserved by a
+sufficiently small such perturbation.
+\end{lemma}
+\begin{proof}
+Perturb the negative copies to
+$(-c_h+\delta\alpha_h)/(t-p_h-\delta\beta_h)$.
+The derivative at $\delta=0$ of the full sum is
+\[
+ \sum_h\left(\frac{\alpha_h}{t-p_h}
+              -\frac{c_h\beta_h}{(t-p_h)^2}\right).
+\]
+The evaluation matrix of these $2M$ functions at the $2M$ query
+times is invertible. Indeed, multiply a purported vanishing linear
+combination by $\prod_h(t-p_h)^2$. The result is a polynomial of
+degree at most $2M-1$ with $2M$ distinct roots, hence zero. Uniqueness
+of the principal parts at the distinct poles then makes every
+coefficient zero. Since $c_h\ne0$, arbitrary derivative values at
+the query points are available. Choose them equal to the desired
+signs. For sufficiently small positive $\delta$, the full sums have
+those strict signs. The additional strict signs and all denominator
+inequalities persist by continuity on a finite set.
+\end{proof}
+
+\begin{theorem}\label{thm:twenty}
+There are twenty fixed query times and fixed masks on eight terms such
+that every twenty-bit sign vector is realized by masked exterior Cauchy
+sums with label-dependent poles and residues. The pole magnitudes can
+be arbitrarily small, and all query times lie in $[1-7\eta,1+7\eta]$
+after subtracting a common shift tending to zero.
+\end{theorem}
+\begin{proof}
+Use eight full-sum query times $1+\eta u$ with
+$u=-7,-5,-3,-1,1,3,5,7$. Divide the eight terms into a left group
+and a right group of four. Query the right group at the four full-sum
+times of Theorem~\ref{thm:pool}. In each of the two groups query the
+four proper descendants in \eqref{eq:internal}. This gives
+$8+4+4+4=20$ fixed queries.
+
+Choose the shared pool from Theorem~\ref{thm:pool} using the four
+prescribed right-group full-sum signs. In the right group, permute that
+pool to obtain its four prescribed descendant signs. In the left group,
+put a negative copy of the same pool and permute it to obtain its four
+prescribed descendant signs. The universal permutation property makes
+these two choices independent. At this stage twelve required signs
+are strict, and the full eight-term sum is identically zero.
+Lemma~\ref{lem:jets} supplies all eight remaining full-sum signs while
+preserving those twelve signs.
+
+For positive small poles, add $4\epsilon$ simultaneously to all poles
+and query times before applying the lemma. The smallest unperturbed
+pole is then $\epsilon$. Choose the perturbation small enough to keep
+all poles positive and of size $O(\epsilon)$. All query denominators
+remain positive. As $\epsilon$ can be arbitrarily small, so can the
+final pole magnitudes.
+\end{proof}
+
+\paragraph{Why this is not an induction.}
+Theorem~\ref{thm:pool} is a uniform four-term permutation-pool theorem.
+Theorem~\ref{thm:twenty} gives a target-adaptive eight-term representation;
+it does not produce one eight-term pool whose permutations realize all
+$4096$ proper-descendant patterns. That stronger invariant, or an
+adequate target-adaptive replacement, would be needed to repeat the
+argument. Exhausting all $40320$ permutations of the exact positive and
+negative doubles of the eight displayed four-term pools gives only
+$800$, $884$, or $1172$ strict proper-descendant patterns. This finite
+failure does not exclude different eight-term pools or other mechanisms.
+The missing unbounded construction is not assumed here.
+
+\end{document}

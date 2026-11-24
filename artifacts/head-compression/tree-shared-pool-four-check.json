@@ -1,0 +1,167 @@
+{
+  "coverage": {
+    "0": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "13867832823/13889111854",
+      "offsets_tenths": [
+        -52,
+        23,
+        14
+      ],
+      "orientation": -1
+    },
+    "1": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "15610678512/15625258601",
+      "offsets_tenths": [
+        43,
+        -36,
+        -16
+      ],
+      "orientation": 1
+    },
+    "2": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "25034693439/25000306372",
+      "offsets_tenths": [
+        -7,
+        -24,
+        45
+      ],
+      "orientation": 1
+    },
+    "3": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "38295261/38261978",
+      "offsets_tenths": [
+        -34,
+        -1,
+        44
+      ],
+      "orientation": 1
+    },
+    "4": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "249572658803/250002342394",
+      "offsets_tenths": [
+        -42,
+        19,
+        6
+      ],
+      "orientation": -1
+    },
+    "5": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "249923250351/250001749298",
+      "offsets_tenths": [
+        26,
+        -27,
+        -2
+      ],
+      "orientation": -1
+    },
+    "6": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "250447949827/250002052846",
+      "offsets_tenths": [
+        33,
+        12,
+        -27
+      ],
+      "orientation": 1
+    },
+    "7": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "49949860653/50000139194",
+      "offsets_tenths": [
+        17,
+        -15,
+        -12
+      ],
+      "orientation": -1
+    },
+    "8": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "49949860653/50000139194",
+      "offsets_tenths": [
+        17,
+        -15,
+        -12
+      ],
+      "orientation": 1
+    },
+    "9": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "250447949827/250002052846",
+      "offsets_tenths": [
+        33,
+        12,
+        -27
+      ],
+      "orientation": -1
+    },
+    "10": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "249923250351/250001749298",
+      "offsets_tenths": [
+        26,
+        -27,
+        -2
+      ],
+      "orientation": 1
+    },
+    "11": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "249572658803/250002342394",
+      "offsets_tenths": [
+        -42,
+        19,
+        6
+      ],
+      "orientation": 1
+    },
+    "12": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "38295261/38261978",
+      "offsets_tenths": [
+        -34,
+        -1,
+        44
+      ],
+      "orientation": -1
+    },
+    "13": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "25034693439/25000306372",
+      "offsets_tenths": [
+        -7,
+        -24,
+        45
+      ],
+      "orientation": -1
+    },
+    "14": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "15610678512/15625258601",
+      "offsets_tenths": [
+        43,
+        -36,
+        -16
+      ],
+      "orientation": -1
+    },
+    "15": {
+      "internal_patterns": 16,
+      "limiting_pair_zero": "13867832823/13889111854",
+      "offsets_tenths": [
+        -52,
+        23,
+        14
+      ],
+      "orientation": 1
+    }
+  },
+  "epsilon": "1/100000",
+  "internal_patterns_per_pool": 16,
+  "root_patterns": 16
+}
