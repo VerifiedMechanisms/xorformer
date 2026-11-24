@@ -78,4 +78,10 @@ The result applies to either rotary frequency convention through the scalar norm
 - `AffineStatistic.computable_of_strict_polynomial` proves the construction for a strict sign polynomial.
 - `AffineStatistic.computable_of_polynomial` handles the existing strict-positive threshold convention, including zero scores on negative inputs.
 
-Theorem 2 is a handwritten proof here. Its polynomial-valued partial-fraction assembly is not yet a Lean declaration.
+[Results/CollinearDenominatorUpperBound.lean](../../formalization/HeadComplexity/Results/CollinearDenominatorUpperBound.lean) proves Theorem 2:
+
+- `AffineStatistic.computable_of_affine_polynomial_sum` handles finite sums of affine coefficients times univariate polynomials of degree strictly below the head count, evaluated at one arbitrary affine statistic.
+- `AffineStatistic.computable_of_collinear_denominators` applies this construction to arbitrary positive affine ratios with collinear denominator slopes, with no numerator restriction.
+- `pureRoPEFamily_vanilla_of_collinear_denominators` and `retainedRoPEFamily_vanilla_of_collinear_denominators` specialize it to the existing rotary scalar families.
+
+All these Lean declarations cover zero inputs and zero heads and contain no additional axioms or unfinished proof placeholders.

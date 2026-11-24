@@ -133,8 +133,15 @@ theorem computable_of_strict_polynomial (w : Fin n → ℝ) (b : ℝ)
     d := t * b + av h }
   have hrden (h : Fin H) (x : Fin n → Bool) :
       (r h).denominator x = t * eval w b x + av h * base t x := by
+    have hs : (∑ i, t * (w i + av h) * boolToReal (x i)) =
+        t * (∑ i, w i * boolToReal (x i)) +
+          (av h * t) * ∑ i, boolToReal (x i) := by
+      rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
     dsimp [r, AffineFraction.denominator, eval, base]
-    simp only [mul_add, add_mul, Finset.mul_sum, Finset.sum_add_distrib, mul_assoc]
+    rw [hs]
     ring
   have hrnum (h : Fin H) (x : Fin n → Bool) :
       (r h).numerator x = bv h * base t x := by
@@ -145,7 +152,9 @@ theorem computable_of_strict_polynomial (w : Fin n → ℝ) (b : ℝ)
     apply Finset.sum_nonneg
     intro i _
     have hwi : 0 < t * (w i + av h) := mul_pos ht (by linarith [havw h i])
-    cases x i <;> simpa [boolToReal] using hwi.le
+    cases x i with
+    | false => simp [boolToReal]
+    | true => simpa only [r, boolToReal, ite_true, mul_one] using hwi.le
   have hradm (h : Fin H) : (r h).Admissible := by
     refine ⟨hrpos h, Or.inl (fun i ↦ mul_pos ht (by linarith [havw h i])), ?_⟩
     intro hz
