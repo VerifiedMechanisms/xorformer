@@ -70,6 +70,54 @@ theorem withValueOne_eval_sub_abs_le (p : PureRoPEAtom n) (t : ℝ)
 
 end PureRoPEAtom
 
+/-- At every head count, all token-value differences can be made nonzero while
+preserving the classifier and making every score strict. -/
+theorem pureRoPEComputable_nondegenerate {n H : ℕ}
+    {f : (Fin n → Bool) → Bool} (hf : pureRoPEComputable n H f) :
+    ∃ (p : Fin H → PureRoPEAtom n) (c : ℝ),
+      (∀ h, (p h).v₁ ≠ (p h).v₀) ∧ ∀ x,
+        (0 < c + ∑ h, (p h).eval x ↔ f x = true) ∧
+          c + ∑ h, (p h).eval x ≠ 0 := by
+  classical
+  obtain ⟨p, c, hp⟩ := hf
+  let S (x : Fin n → Bool) := c + ∑ h, (p h).eval x
+  obtain ⟨δ, hδ, hshift⟩ := exists_strict_shift S
+  obtain ⟨ε, hε, hstable⟩ := exists_sign_stability_margin
+    (fun x ↦ S x - δ) (fun x ↦ (hshift x).2)
+  let η : ℝ := ε / ((H : ℝ) + 1)
+  have hη : 0 < η := div_pos hε (by positivity)
+  have hex (h : Fin H) :
+      ∃ t : ℝ, 0 < t ∧ t < η ∧ (p h).v₁ + t ≠ (p h).v₀ := by
+    by_cases he : (p h).v₁ + η / 2 = (p h).v₀
+    · refine ⟨η / 3, by positivity, by linarith, ?_⟩
+      intro heq
+      linarith
+    · exact ⟨η / 2, by positivity, by linarith, he⟩
+  choose t ht htη hne using hex
+  let p' h := (p h).withValueOne ((p h).v₁ + t h)
+  have hclose : ∀ x, |(c - δ + ∑ h, (p' h).eval x) - (S x - δ)| < ε := by
+    intro x
+    have heq : (c - δ + ∑ h, (p' h).eval x) - (S x - δ) =
+        ∑ h, ((p' h).eval x - (p h).eval x) := by
+      dsimp [S]
+      rw [Finset.sum_sub_distrib]
+      ring
+    rw [heq]
+    calc
+      |∑ h, ((p' h).eval x - (p h).eval x)| ≤
+          ∑ h, |(p' h).eval x - (p h).eval x| := Finset.abs_sum_le_sum_abs _ _
+      _ ≤ ∑ _h : Fin H, η := Finset.sum_le_sum fun h _ ↦
+        ((p h).withValueOne_eval_sub_abs_le (t h) (ht h).le x).trans (htη h).le
+      _ = (H : ℝ) * η := by simp
+      _ < ε := by
+        have he : ((H : ℝ) + 1) * η = ε := by
+          dsimp [η]
+          field_simp
+        nlinarith
+  refine ⟨p', c - δ, hne, fun x ↦ ?_⟩
+  have hs := hstable (fun x ↦ c - δ + ∑ h, (p' h).eval x) hclose x
+  exact ⟨hs.1.trans ((hshift x).1.trans (hp x)), hs.2⟩
+
 /-- A pure two-head classifier has a representation whose first head has a
 nonzero token-value difference. The classifier, including its threshold
 convention, is unchanged. -/
