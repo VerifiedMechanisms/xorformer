@@ -76,6 +76,24 @@ The right side has $H$ arbitrary positive affine ratios. Consequently the origin
 
 This reduction is Lean-checked in `Results/ReciprocalUpperBound.lean` as `vanilla_of_zero_constant_reciprocals` and `vanilla_three_of_zero_constant_reciprocals`. It does not settle three reciprocal heads with a nonzero free constant: multiplication by the last denominator then adds an affine term whose incorporation into the remaining affine-ratio numerators is not established.
 
+## Reciprocal improvement with a free constant
+
+A sum of $m+1$ constant-numerator reciprocals, with an arbitrary free constant, requires at most $2^m$ vanilla heads. Thus three reciprocal heads with a free constant require at most four vanilla heads. This bound does not assert a three-head simulation.
+
+For $m \gt 0$, write $R=D_{m+1}$ and $L=a_{m+1}+cR$. Clearing denominators gives a polynomial with the same sign as the reciprocal score:
+
+$$ P=L\prod_{j=1}^mD_j+R\sum_{h=1}^ma_h\prod_{j\neq h}D_j. $$
+
+For each subset $I\subseteq\lbrace1,\ldots,m\rbrace$, put $D_I=\sum_{h\in I}D_h$ and $a_I=\sum_{h\in I}a_h$. Set $B_t(x)=1+t\sum_i x_i$. The following sum uses one affine numerator and one denominator for every subset, including the empty subset:
+
+$$ T_t=\sum_{I\subseteq\lbrace1,\ldots,m\rbrace}\frac{(-1)^{|I|}}{B_t+t^2D_I}\left(\frac{L}{t^{2m}m!}-\frac{Ra_I}{t^{2m-2}(m-1)!}\right). $$
+
+The alternating power identity and its mixed version show that $T_t(x)\to P(x)$ as $t\to0$. The constant weights first survive at order $m$ and produce $L\prod_jD_j/B_t^{m+1}$; the weights $a_I$ first survive at order $m-1$ and produce $R\sum_ha_h\prod_{j\neq h}D_j/B_t^m$. Both exact rational remainders tend to zero. These are two expansions of the same $2^m$ denominator family, so their affine numerators can be added without adding heads.
+
+Every denominator is positive for $t\gt0$, and its slope in coordinate $i$ is $t+t^2\sum_{h\in I}C_{hi}$, which is strictly positive for sufficiently small $t$. A finite strict sign margin therefore selects one finite $t\gt0$ that realizes the desired Boolean labels. For an original score that vanishes at some negative inputs, first decrease the free constant slightly. The case $m=0$ is an affine threshold after clearing its single positive denominator, and needs one head. Zero input bits are included.
+
+The exact reciprocal expansion is formalized as `AlternatingMoments.reciprocal_power_expansion` in `Foundation/AlternatingReciprocals.lean`. The shared-denominator construction is `FiniteDifference.computable_of_strict_reciprocalCleared`; the resulting bounds are `vanilla_of_reciprocals` and `vanilla_four_of_three_reciprocals` in `Results/ReciprocalFiniteDifference.lean`.
+
 ## Architectural and formalization scope
 
 The scalar result applies to every architectural rotary family whose scores have the stated positive affine-ratio form. The pure architectural-to-scalar direction, including the self-query token and arbitrary rotary frequency tables, is addressed separately in Theorem 18. No fixed-width or bounded-precision claim is made here.
