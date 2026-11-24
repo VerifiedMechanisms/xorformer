@@ -1,0 +1,118 @@
+{
+  "status": "finite exact computation, not a Lean theorem",
+  "original_head_model": false,
+  "cases": [
+    {
+      "size": 4,
+      "bits_per_position": 2,
+      "variables": 4,
+      "evaluation_polynomials": 8,
+      "coefficient_basis": "e_0,...,e_(H-1) of all variables except position i",
+      "integer_coefficients_by_bit": [
+        [
+          85,
+          -28,
+          10,
+          -4
+        ],
+        [
+          -20,
+          11,
+          -5,
+          2
+        ]
+      ],
+      "values_by_omitted_root": [
+        [
+          -3,
+          3,
+          -3,
+          3
+        ],
+        [
+          -3,
+          -3,
+          3,
+          3
+        ]
+      ],
+      "all_root_values_exactly_checked": true,
+      "all_permutations_directly_evaluated": 24,
+      "distinct_strict_sign_patterns": 24
+    },
+    {
+      "size": 8,
+      "bits_per_position": 3,
+      "variables": 8,
+      "evaluation_polynomials": 24,
+      "coefficient_basis": "e_0,...,e_(H-1) of all variables except position i",
+      "integer_coefficients_by_bit": [
+        [
+          1068453,
+          -173216,
+          29016,
+          -5048,
+          918,
+          -176,
+          36,
+          -8
+        ],
+        [
+          -785664,
+          108337,
+          -13536,
+          1363,
+          -54,
+          -23,
+          9,
+          -2
+        ],
+        [
+          -262944,
+          64249,
+          -15480,
+          3685,
+          -864,
+          199,
+          -45,
+          10
+        ]
+      ],
+      "values_by_omitted_root": [
+        [
+          -315,
+          315,
+          -315,
+          315,
+          -315,
+          315,
+          -315,
+          315
+        ],
+        [
+          -630,
+          -630,
+          630,
+          630,
+          -630,
+          -630,
+          630,
+          630
+        ],
+        [
+          -1260,
+          -1260,
+          -1260,
+          -1260,
+          1260,
+          1260,
+          1260,
+          1260
+        ]
+      ],
+      "all_root_values_exactly_checked": true,
+      "all_permutations_directly_evaluated": false,
+      "distinct_patterns_from_written_injectivity_proof": 40320
+    }
+  ]
+}
