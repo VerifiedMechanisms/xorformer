@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{Affine numerators in a shared Boolean filter}
+\maketitle
+
+Let $S$ have size $c$, let all $w_i>0$, and suppose $d>\sum_{i\in S}w_i$.
+Write
+\[
+ K_S(d)=\sum_{T\subseteq S}(-1)^{c-|T|}
+       \frac1{d-\sum_{i\in T}w_i},\qquad
+ F_S(d)=\sum_{T\subseteq S}(-1)^{c-|T|}
+       \frac{a+\sum_{i\in T}v_i}{d-\sum_{i\in T}w_i}.
+\]
+The exact identity
+\[
+ F_S(d)=\left(a+\sum_{i\in S}v_i\right)K_S(d)
+             +\sum_{i\in S}v_iK_{S\setminus\{i\}}(d)
+\]
+is kernel checked as
+\texttt{jointCell\_affine\_filtered\_kernel\_eq} in
+\texttt{JointCellAffineFilteredNumerators.lean}.
+The same file proves positivity when $a>0$ and all $v_i\geq0$.
+All original definitions are unchanged.
+
+This gives $c+1$ scalar features from the numerator of one main reciprocal
+before subtracting its proper-face values. It does not supply $c+1$
+independently chosen coefficients per column: the row coefficients $v_i$
+are shared across columns, while the denominator offset and the column
+numerator may vary. Pairing with a reference head gives structural zero on
+the column axis at twice the main-head cost. The existing shared monomial
+correction construction can fit the proper faces at the one-hot columns;
+preserving arbitrary multihot prior inputs still requires the two-stage
+gluing order recorded in the tensor audit.
+
+The Laplace density is
+\[
+ \prod_{i\in S}(e^{w_i u}-1)
+ \left(a+\sum_{i\in S}\frac{v_i e^{w_i u}}{e^{w_i u}-1}\right).
+\]
+Consequently its bracket belongs to the span of $1$ and
+$\coth(w_i u/2)$. A Chebyshev theorem for this bracket cannot simply be
+assumed: the separate exact ten-function coth determinant certificate
+already refutes the all-orders version of that claim. Nor does a density
+counterexample automatically survive the Laplace transform.
+
+\texttt{JointCellAffineFilterSearch.py} records exploratory Wronskians of
+the actual reciprocal feature family. Ten random six-coordinate examples
+and four random ten-coordinate examples, each tested at nine exterior
+distances, showed no sign reversal. Nearly equal weights
+$w_i=1+i/1000$ at orders $8,10,12$, tested with 450 decimal digits, also
+showed no reversal at eleven exterior distances. These are finite
+floating-point computations, not sign certificates, a zero theorem, or a
+decoder. No family with exponentially many strict sign words has been
+constructed. Even a modest violation of a dimension-sized zero bound
+would not by itself give the required unbounded saving.
+
+\end{document}
