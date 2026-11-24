@@ -110,8 +110,30 @@ Again $c=1/100$ gives $T\leq2^{N/2}$ for every sufficiently large $n$.
 
 The same conclusions hold if the effective number of distinct pole points is any positive integer at most the displayed width and its support satisfies the same Cayley–Bacharach condition. Sum the finite bounds over those widths. The preceding estimates are uniform after bounding the large degree parameter by the maximum width; the extra logarithm is $O(n)=o(N)$. Repeated identical denominators can be merged by adding their affine numerators, which is legitimate in the enlarged rational class used for this upper count.
 
+## First-order ordinary moments suffice
+
+Let the distinct normalized pole points be $b_1,\ldots,b_H$. Suppose there are scalars $c_h$ and vectors $v_h$, with $(c_h,v_h)\neq(0,0)$ for each $h$, such that the ordinary polynomial functional
+
+$$ \Lambda(P)=\sum_{h=1}^H\left(c_hP(b_h)+v_h\cdot\nabla P(b_h)\right) $$
+
+annihilates every polynomial of total degree at most $2D_0+1$. Then the reduced support $\lbrace b_1,\ldots,b_H\rbrace$ satisfies $\mathrm{CB}(D_0)$, and the finite and asymptotic counts above apply without any additional parameter cost.
+
+**Proof.** Suppose $F$ has degree at most $D_0$, vanishes at every pole other than $b_h$, and satisfies $F(b_h)\neq0$. At every other pole, both the value and all first derivatives of $F^2$ vanish. If $v_h=0$, then $c_h\neq0$ and
+
+$$ \Lambda(F^2)=c_hF(b_h)^2\neq0, $$
+
+contrary to the moment hypothesis. If $v_h\neq0$, choose an affine polynomial $\ell$ with $\ell(b_h)=0$ and $v_h\cdot\nabla\ell\neq0$. The product rule gives
+
+$$ \Lambda(F^2\ell)=F(b_h)^2v_h\cdot\nabla\ell\neq0. $$
+
+The degree is at most $2D_0+1$, again a contradiction. This proves reduced Cayley–Bacharach over the reals; a complex separator would have a real or imaginary part giving a real separator, so the complex condition used by the Hilbert-function theorem also follows. $\blacksquare$
+
+The auxiliary moment functional need not equal the numerator coefficients in the represented score. The conclusion is a restriction on the pole support, after which all score numerators are counted freely. In particular, this proof does not turn cancellation of Boolean reciprocal evaluations into ordinary polynomial moment annihilation.
+
+More generally, let a finite algebra at each distinct pole have maximal-ideal nilpotence index at most $q$, and let a polynomial functional have a nonzero restriction to every local factor. Ordinary annihilation through degree $qD_0+q-1$ again forces the reduced support to satisfy $\mathrm{CB}(D_0)$. For a proposed separator $F$, the element $F^q$ vanishes in every other local algebra and is a unit in the chosen one. Polynomials of degree at most $q-1$ in centered coordinates span that local algebra. Thus some such polynomial $G$ has $\Lambda(F^qG)\neq0$, contradicting the degree bound. This extension costs the factor $q$ in ordinary moment order; it supplies no uniform bound on $q$ for arbitrary moment schemes.
+
 ## The precise remaining access problem
 
-A sufficient ordinary-moment hypothesis is an annihilating coefficient vector with every coefficient nonzero on the distinct pole support, annihilating all polynomials of degree at most $D_0$. Such a support is $\mathrm{CB}(D_0)$. Original Boolean score cancellation does not imply this hypothesis: it tests reciprocal kernels at only the Boolean inputs, and exact projection ghosts can survive at separated poles.
+A sufficient ordinary-moment hypothesis is an annihilating coefficient vector with every coefficient nonzero on the distinct pole support, annihilating all polynomials of degree at most $D_0$. The preceding section also permits arbitrary first-order local functionals if the annihilation order is $2D_0+1$. Original Boolean score cancellation does not imply either hypothesis: it tests reciprocal kernels at only the Boolean inputs, and exact projection ghosts can survive at separated poles.
 
-The useful dichotomy would therefore have to show that every narrow truth table either has the previously proved quantitative relative margin, or has a comparable-width representation belonging to this ordinary-moment class, or to another class with an equally small count. No such dichotomy has been proved. Nonreduced local moment schemes also require an extension of the determining-subset capacity argument; the finite-scheme separator result alone does not provide one.
+The useful dichotomy would therefore have to show that every narrow truth table either has the previously proved quantitative relative margin, or has a comparable-width representation belonging to one of these ordinary-moment classes, or to another class with an equally small count. No such dichotomy has been proved. General nonreduced local moment schemes with unbounded nilpotence index still require an additional argument; the finite-scheme separator result alone does not provide the required small determining data.

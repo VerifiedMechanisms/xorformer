@@ -132,7 +132,7 @@ The proof above uses a local socle generator, not an inference from the regulari
 
 Known Cayley–Bacharach structure theorems do not presently supply the needed quantitative alternative. [Levinson and Ullery](https://arxiv.org/html/2102.08525) conjecture a plane-configuration statement in general dimension, with several low-dimensional cases proved. [Le and Linh](https://arxiv.org/html/2511.22113) extend the dimension-four case. [Banerjee](https://arxiv.org/html/2403.07272) obtains curve containment when the Cayley–Bacharach order is sufficiently large relative to the desired curve degree. The sufficient order in the latter argument is polynomial in that curve degree; at $H\asymp\exp(n)$ and $D\asymp\exp(\sqrt n)$, the natural degree budget $H/D$ is much too large to satisfy that condition. None of these results is used in the proof above.
 
-A low-dimensional variety can have a large family of defining equations. For reduced Cayley–Bacharach configurations, the next argument controls this family by a small determining subset. An effective sign-pattern estimate remains separate.
+A low-dimensional variety can have a large family of defining equations. For reduced Cayley–Bacharach configurations, the next argument controls this family by a small determining subset. The separate weighted incidence argument now supplies an effective sign-pattern estimate, as recorded at the end of this note.
 
 ## A small determining subset
 
@@ -151,6 +151,8 @@ $$ \sum_{t=0}^j a_t\leq\sum_{t=i+1-j}^{i+1}a_t\qquad(0\leq j\leq i+1). $$
 Their result extends the Geramita–Kreuzer–Robbiano inequality to any Cayley–Bacharach order, rather than only the final nonsurjective evaluation degree. No general-position hypothesis is present. Cayley–Bacharach is monotone in the order: a lower-degree separator could be multiplied by a linear form nonzero at the point being separated.
 
 **Proof of the displayed bound.** For each complete block of $s+1$ successive indices in $\lbrace0,\ldots,D+1\rbrace$, its $a_t$ sum is at least $h(s)$. The initial block has that sum by definition. A later block ends at an index $k\leq D+1$. Apply the source inequality with $i=k-1$ and $j=s$, using $\mathrm{CB}(k-1)$. Sum over the $m$ disjoint complete blocks and use $\sum_{t\geq0}a_t=H$. $\blacksquare$
+
+The arithmetic summation of these explicit window premises is kernel-checked in `Research/CayleyBacharachWindowMass.lean`: `window_mass_mul_floor_le`, `window_mass_le_div_floor`, and `window_mass_le_twice_ratio`. The geometric Hilbert-function inequality used to obtain those premises remains a written source-based argument.
 
 In particular, if $s+1\leq(D+2)/2$, then
 
@@ -180,14 +182,24 @@ $$ \dim\mathcal C_{n,H,D}\leq\left(2(\log2)\sqrt n+\frac4n\right)H. $$
 
 This dimension theorem concerns reduced ordinary-moment supports. The preceding finite-scheme separator theorem does not by itself extend the determining-point argument to nonreduced algebras.
 
-## The remaining capacity inequality
+## A bounded-degree curve cover at linear length
 
-The determining tuple uses only $nM$ parameters, but the incidence equations still have a degree cost. Choose an invertible $M$ by $M$ minor of its degree $s$ evaluation matrix. Membership of one additional point in the evaluation span is expressed by augmented minors. These equations have degree at most $sM$ in the determining-point variables and at most $s$ in the new point.
+In affine dimension three, suppose a finite reduced set $\Gamma$ satisfies $\mathrm{CB}(D)$ and has $H\leq CD$ points, where $C\geq1$. Put $s=\lceil4C\rceil+2$, and assume $D\geq3(s+1)$. Then $\Gamma$ lies on an algebraic curve of total degree at most $s^2$, independently of $D$.
 
-Giving weight one to the determining variables and weight $M$ to all other point variables bounds their weighted degree by $2sM$. A dimension-sensitive mixed-degree sign theorem would ideally charge the incidence codimension at this lower degree and the remaining dimension at the score degree. The expected cancellation is
+**Proof.** The window estimate gives
 
-$$ \frac{(sM)^c(HM)^k}{M^q}=M^b s^c H^k,\qquad b=nM,\quad q=n(H-M),\quad c+k=b+q. $$
+$$ h_\Gamma(s)\leq\frac{2(s+1)H}{D+2}\leq2C(s+1)\lt\binom{s+2}{2}. $$
 
-Here $k$ denotes the intrinsic configuration dimension, with $c$ its codimension in the $b+q$ point coordinates. Additional coefficient variables would require a separate accounting. This display is a proposed degree calculation, not a proved sign-pattern theorem. At the scales above, the logarithmic budget from $b\log M+nH\log s+O(\sqrt n H\log H)$ is $O(n^{3/2}H)$.
+Hence the degree $s$ base locus $V_s(\Gamma)$ has no component of dimension at least two. Its zero-dimensional components contain no point of $\Gamma$, by the local separator theorem and $D\geq3(s-1)$. Therefore every point of $\Gamma$ belongs to a one-dimensional component of $V_s(\Gamma)$.
 
-Replacing ambient parameter dimension by intrinsic dimension without charging algebraic degree is invalid. A rigorous effective incidence count, an ordinary-moment lift for arbitrary original representations, and control of affine numerators remain unresolved. The configuration dimension theorem above closes only the reduced-support moduli dimension step. All results in this note are written proofs, not kernel-checked Lean declarations.
+Choose two sufficiently general linear combinations of the degree at most $s$ equations defining this base locus. They have no common hypersurface component in affine three-space: first choose a nonzero combination, and then avoid its finitely many irreducible factors, none of which divides every defining equation. Their intersection contains all curve components of $V_s(\Gamma)$. Affine Bézout bounds the sum of degrees of these curve components by $s^2$. Equivalently, homogenize the two chosen polynomials to their actual degrees; neither acquires the hyperplane at infinity as a component, and a common projective hypersurface would restrict to a common affine one. Projective Bézout therefore gives the same bound. Taking the union of the relevant curve components proves the assertion. $\blacksquare$
+
+For a real set, one may take all complex curve components of the real base locus, which form a conjugation-invariant union. The resulting curve is defined over the reals and the degree bound still holds. This corollary uses the Hilbert-window and separator arguments above, not a separate curve-cover conjecture or a large-order curve theorem.
+
+## Effective capacity and the remaining access problem
+
+The determining tuple uses only $nM$ parameters, but its incidence equations also incur a degree cost. Choose an invertible $M$ by $M$ minor of its degree $s$ evaluation matrix. Membership of one additional point in the evaluation span is expressed by augmented minors. These equations have degree at most $sM$ in the determining-point variables and at most $s$ in the new point.
+
+Giving weight one to the determining variables and weight $M$ to all other point variables bounds their weighted degree by $2sM$. The written theorem in `weighted_incidence_capacity.md` charges the incidence codimension at this lower degree and the remaining dimension at the score degree. Its application, including all affine numerator coefficients through the kernel-checked active-coefficient certificate, is worked out in `cayley_bacharach_head_capacity.md`. It proves the stated half-entropy counts at both requested widths for this pole-restricted class. The first-order annihilation argument there reduces first-order local moment functionals to reduced Cayley–Bacharach support with a factor two in the annihilation order.
+
+An ordinary-moment lift or another access theorem for arbitrary original representations remains unresolved. Except for the explicitly identified arithmetic window declarations, the geometric results in this note are written proofs, not kernel-checked Lean declarations.
