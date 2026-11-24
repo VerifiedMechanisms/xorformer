@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Vector memories, fixed readout spans, and the remaining numerator cost}
+\maketitle
+
+\paragraph{Status and scope.}
+The feature-span statements below are kernel checked in
+\texttt{JointCellVectorMemoryCapacity.lean}. The rational identities and
+capacity discussion are written proofs or explicitly identified open
+steps. They do not improve the asymptotic upper bound for the original
+worst-case head complexity and do not change its definition.
+
+\paragraph{A positive vector-memory identity.}
+Let $u_1,\ldots,u_r$ be distinct real roots below every pole $p$ and set
+$a_l(u)=\prod_{k\ne l}(u_l-u_k)^{-1}$. Then
+\[
+ \frac1{\prod_l(p-u_l)}=\sum_l\frac{a_l(u)}{p-u_l},
+ \qquad
+ -\frac{\partial}{\partial p}\frac1{\prod_l(p-u_l)}
+   =\sum_l\frac{a_l(u)}{(p-u_l)^2}.
+\]
+The first equality is partial fractions; differentiation gives the second.
+The roots can be chosen independently for each table column, in any fixed
+compact region separated from the poles. All displayed denominators are
+positive there. This separation alone is not whole-cube admissibility;
+the affine extension of each pole and root must retain a positive gap
+on every Boolean input.
+
+The first identity is not automatically an $r$-head compiler when the
+original numerator is a row-dependent amplitude $A(x)$: its residue
+$A(x)a_l(u_j)$ is a row-column product. The squared-kernel identity has
+a two-head tangent implementation for each term, because
+\[
+ \frac{A(x)}{\varepsilon}
+ \left(\frac1{D(x)-u_{lj}-\varepsilon a_l(u_j)}
+             -\frac1{D(x)-u_{lj}}\right)
+ \longrightarrow
+ \frac{A(x)a_l(u_j)}{(D(x)-u_{lj})^2}.
+\]
+On a finite cube with an existing positive gap, sufficiently small
+$\varepsilon$ preserves positivity. This identity still requires both
+$A$ and $D$ to be affine in the actual input encoding. A tensor numerator
+is not made affine by writing it as a symbol $A$.
+
+\begin{lemma}[Fixed readout span]
+Let $X$ be any set, let $\phi:X\to\mathbb R^d$ be any map, and fix
+$v_1,\ldots,v_a\in\mathbb R^d$. If the vectors
+$(v_b\cdot\phi(x))_{b=1}^a$, as $x$ varies, realize every strict sign
+word in $\{-1,1\}^a$, then $a\le d$.
+\end{lemma}
+\begin{proof}
+If $a>d$, there is a nonzero vector $z$ such that $\sum_bz_bv_b=0$.
+Choose the strict sign word agreeing with $z_b$ at every nonzero
+coordinate. Its proposed realization has
+$\sum_b z_b(v_b\cdot\phi(x))>0$, contrary to the linear relation.
+Zero coordinates of $z$ may be assigned either sign.
+\end{proof}
+The exact Lean declaration is
+\texttt{jointCell\_vector\_memory\_feature\_capacity}.
+The memory $x$ may be a tuple of roots, a vector of poles, or any other
+nonlinear or label-adaptive object. The lemma only fixes the readout span.
+
+\paragraph{Additive tensor residues.}
+For $\alpha\in\{1,\ldots,q\}^c$, suppose
+$\eta_b(\alpha)=\sum_l\eta_{bl}(\alpha_l)$ and the kernel
+$K_\alpha(u)$ is independent of the query bit $b$. Then
+\[
+ \sum_\alpha\eta_b(\alpha)K_\alpha(u)
+ =\sum_{l,z}\eta_{bl}(z)
+      \sum_{\alpha:\alpha_l=z}K_\alpha(u).
+\]
+Thus $a\le cq$ is necessary for all strict words. Removing redundant
+constant coordinates improves this to $a\le1+c(q-1)$; the checked
+declaration \texttt{jointCell\_additive\_vector\_memory\_capacity}
+uses the simpler $cq$ bound. An additional independently chosen row bias
+adds at most one feature. No scalar zero-count theorem is needed.
+
+There is a second encoding charge. Separate one-hot coordinates for the
+bit $b$ and the $c$ plane points do not make $\eta_{bl}(\alpha_l)$
+affine. If only the first plane block jointly encodes $(b,p_1)$, the
+admissible numerator instead has the form
+\[
+ A_b(\alpha_1)+\sum_{l>1}A_l(\alpha_l).
+\]
+The common part contributes one feature, and the bit-dependent part
+contributes $q$ features. Hence $a\le q+1$, as checked by
+\texttt{jointCell\_one\_bit\_block\_vector\_memory\_capacity}.
+Replicating $(b,p_l)$ in every block uses $acq^2$ physical coordinates
+and creates a further consistency-cover problem: the intended tuples
+with equal bit labels form only an $a^{1-c}$ fraction of the full product
+of the encoded blocks. No cover saving is asserted for that restriction.
+
+More generally, a factorization
+$\eta_b(\alpha)=\sum_{t=1}^R v_{bt}w_t(\alpha)$ with a bit-independent
+kernel requires $a\le R$, up to explicitly included bias features.
+Consequently a small rank in the bit coordinate is not a free repair of
+the numerator condition. Bit-dependent pole shifts or kernels escape
+this lemma and require a new word-capacity argument.
+
+\paragraph{What the scalar tests do and do not show.}
+For rank-one residues on additive pole grids, the Laplace density is a
+product of $c$ exponential sums with $q$ terms each and has at most
+$c(q-1)$ sign changes. With all other roots fixed, dividing residues by
+positive factors $(p-u_l)$ corresponds to repeated exponential tail
+integration of that density; these operations do not increase sign
+variation. The derivative product kernel inserts the positive factor
+equal to total Laplace time before these integrations. Thus every
+one-coordinate section has at most $c(q-1)$ zeros.
+
+This fiber statement is not a multivariate arrangement bound. Even
+monotone graphs can have many pairwise intersections. In particular, it
+does not justify a bound of $O(c\log(cq))$ on the number of available
+bits. Sums of two product densities connect to the two-product case of
+the real tau problem; no polynomial zero bound is used here.
+
+For $q=2$, additive residues instead give a density proportional to
+$A+\sum_l\beta_l\tanh(w_lt/2)$ after division by a positive product.
+The scale family $\tanh(wt)$ is not a Chebyshev system of every order.
+With $w_i=1+i/1000$ and $t_j=T(1+j/1000)$ for $0\le i,j<10$, the
+determinant of $[\tanh(w_it_j)]$ is negative at $T=1$ and positive at
+$T=2$. The file \texttt{JointCellTanhChebyshevCertificate.py} verifies
+both signs using rational intervals and a Taylor remainder bound for the
+exponential. This is a finite computation, not a Lean declaration. By
+continuity, a nonzero linear combination has ten distinct positive
+zeros at an intermediate scale. This only refutes the sharp nine-zero
+Chebyshev claim, not an $O(cq)$ bound or any polynomial bound.
+
+\paragraph{Approximate lower-face filters, an open alternative.}
+A degree of order $\min\{c,\sqrt{c\log(1/\epsilon)}\}$ can approximate
+an endpoint indicator on the integer weights $0,\ldots,c$; see de Wolf,
+\emph{A note on quantum algorithms and the minimal degree of
+$\epsilon$-error polynomials for symmetric functions},
+\url{https://arxiv.org/abs/0802.1816}.
+Replacing exact degree-$c$
+filters by such a polynomial would be useful only if a global compiler
+tolerated an inverse-polynomial error $\epsilon$. Descending sign repair
+does not presently supply this: earlier scores and later coefficients
+may have arbitrarily large ratios. A simultaneous interaction argument
+would need an explicit bound on the local score away from its target,
+relative to its strict target margin, followed by a bound on the global
+interaction operator. Neither estimate has been proved for a decoder
+with a growing gain. The small average number of proper faces in a
+random weighted cover does not by itself provide either estimate.
+
+\paragraph{Numerical screen.}
+\texttt{JointCellFiniteVectorCauchySearch.py} tests whether a reciprocal
+rank-three matrix can be fitted by a small sum of positive Cauchy banks.
+It uses nonlinear least squares and is only an exploratory screen.
+A failed optimizer is not an impossibility certificate; a small residual
+is not an exact decomposition or an admissible original-model compiler.
+No theorem in this note depends on this search.
+\end{document}
