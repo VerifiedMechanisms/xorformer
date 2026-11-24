@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -203,11 +203,103 @@ still leaves exactly three affine-ratio heads on the right. Thus a
 shared cancellation can remove higher-degree edge numerators jointly;
 it need not remove them separately on each product term.
 
+\section{Connected flow geometry cannot give a superconstant saving}
+
+This restriction also permits a counting argument uniform over
+target-dependent choices of the denominators. It applies only when the
+affine-reciprocal-difference graph is connected.
+
+\begin{lemma}[A two-block sign-pattern bound]\label{lem:count}
+Let $F_1,\ldots,F_m$ be polynomials in blocks of $p$ and $q$ real
+variables, of degrees at most one and $d$, respectively, where $d\ge1$.
+Put $k=p+q$ and suppose $m\ge k\ge1$. There is an absolute constant
+$A$ such that the number of their strict sign patterns is at most
+\[
+ \left(\frac{Am}{k}\right)^k d^q.
+ \tag{5}
+\]
+\end{lemma}
+\begin{proof}
+Use Theorems 12 and 13 of Basu and Rizzie,
+\emph{Multi-degree bounds on the Betti numbers of real varieties and
+semi-algebraic sets and applications},
+\href{https://www.math.purdue.edu/~sbasu/multidegree-may-24-2017.pdf}
+{author's version of 24 May 2017}, page 11.
+Use two blocks with degree bounds $2$ and $\max(2,d)$. Their quantity
+$G_{\min}$ is bounded by $A_0^k d^q$ for an absolute $A_0$,
+uniformly in the number of equations. Their sign-condition bound with
+Betti index zero is therefore at most
+\[
+ A_0^k d^q\sum_{j=0}^k 4^j\binom mj
+ \le (4eA_0m/k)^k d^q.
+\]
+The last inequality follows by setting $t=k/m\le1$ and bounding
+$\sum_{j=0}^k\binom mj\le t^{-k}(1+t)^m\le(em/k)^k$.
+Every realized strict sign condition contributes at least one connected
+component, so its count is bounded by the cited Betti-number sum.
+\end{proof}
+
+\begin{theorem}\label{thm:connected}
+Consider all scores on the $n$-cube consisting of a bias and $H$ affine
+ratios with positive admissible denominators. Restrict this family by
+requiring the following graph on the denominators to be connected:
+two denominators are adjacent when their difference is nonvanishing
+on the cube and has an affine reciprocal there. The denominators and
+the graph may depend arbitrarily on the target function.
+There is a constant $c>0$ such that, for all sufficiently large $n$,
+realizing every Boolean sign pattern in this restricted family
+requires $H\ge c2^n/n$.
+\end{theorem}
+\begin{proof}
+Index the denominators and choose a spanning tree rooted at vertex one.
+There are at most $H^{H-1}$ choices of rooted parent lists, including
+an overcount of lists that are not trees. By
+Proposition~\ref{prop:inverse}, every difference along a tree edge
+has at most two nonzero affine coefficients in centered coordinates.
+Overcount by assigning an ordered pair of indices from $0,\ldots,n$
+to each edge, where index zero denotes the constant coefficient.
+This gives at most $(n+1)^{2(H-1)}$ choices.
+
+For each such discrete choice, specify the root denominator with
+$n+1$ parameters and each edge difference with two. All denominator
+coefficients are then linear functions of
+$q=n+2H-1$ parameters. Allow all affine numerators and a bias,
+using $p=H(n+1)+1$ further parameters. At a fixed cube vertex,
+multiply the score by the positive product of all denominators.
+The resulting polynomial has degree at most one in the numerator
+block and at most $H$ in the denominator block. Put
+$N=2^n$ and $k=p+q=H(n+3)+n$. If $k\le N$, Lemma~\ref{lem:count}
+bounds the number of strict patterns in the entire restricted family by
+\[
+ H^{H-1}(n+1)^{2(H-1)}
+ \left(\frac{AN}{k}\right)^k H^{n+2H-1}.
+ \tag{6}
+\]
+Whole-cube positivity and slope restrictions only reduce this count.
+
+To finish, suppose along some sequence $n\to\infty$ that
+$Hn/N\to0$. Then $k/N\to0$ and
+$k\log(AN/k)=o(N)$. Also $H\le N$ eventually, so
+$(n+3H)\log H\le(n+3H)n\log2=o(N)$, and
+$2H\log(n+1)=o(N)$. The logarithm of (6) is therefore $o(N)$,
+strictly less than $N\log2$ eventually. Such a family cannot contain
+all $2^N$ strict sign patterns. If the stated uniform constant $c$
+did not exist, one could select an increasing sequence of dimensions
+with universal budgets satisfying $Hn/N\to0$, giving exactly this
+contradiction. The case $H=0$ supplies only constant patterns.
+\end{proof}
+
+Thus the target-dependent geometry in a single connected flow network
+does not rescue this particular construction. The restriction is
+substantive: general pairs of admissible affine denominators need not
+have affine-reciprocal differences. Non-affine edge reciprocals, or a
+different cancellation identity, remain outside Theorem~\ref{thm:connected}.
+
 \section{Scope of the remaining problem}
 
 The identities provide exact assembly rules with original admissible
-denominators. They do not provide a family with enough independent
-strict sign choices to improve the universal head bound. In particular,
+denominators. They do not provide an improved universal head bound.
+In particular,
 counting all edge weights as independent output information is invalid:
 the conserved quadratic parts disappear from the score. A successful
 extension must exploit target-dependent choices of denominators or
