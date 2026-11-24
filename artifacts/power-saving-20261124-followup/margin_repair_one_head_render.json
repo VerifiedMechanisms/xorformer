@@ -1,0 +1,11 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/margin_repair_one_head_positive.md",
+    "source_spans": 53,
+    "rendered_spans": 53,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124-followup/margin_repair_one_head_positive.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ P=\\\\lbrace w\\\\in\\\\mathbb R^d:\\\\ \\\\langle r_x,w\\\\rangle\\\\geq1\\\\text{ for every }x\\\\rbra'"
+    ]
+  }
+]
