@@ -1,0 +1,11 @@
+'HeadComplexity.WeightedDegreeOptimization.product_le_mean_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedDegreeOptimization.mean_product_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedDegreeOptimization.product_blocks_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedDegreeOptimization.degree_ratio_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedDegreeOptimization.uniform_weight_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,6 @@
+import HeadComplexity.Research.WeightedDegreeOptimization
+#print axioms HeadComplexity.WeightedDegreeOptimization.product_le_mean_pow
+#print axioms HeadComplexity.WeightedDegreeOptimization.mean_product_le
+#print axioms HeadComplexity.WeightedDegreeOptimization.product_blocks_le
+#print axioms HeadComplexity.WeightedDegreeOptimization.degree_ratio_lower
+#print axioms HeadComplexity.WeightedDegreeOptimization.uniform_weight_identity
