@@ -1,0 +1,11 @@
+import HeadComplexity.Atoms.RowScalingQuotient
+
+#print axioms HeadComplexity.RowScalingQuotient.denominators_positive
+#print axioms HeadComplexity.RowScalingQuotient.denominator_inverse
+#print axioms HeadComplexity.RowScalingQuotient.evaluation_origin
+#print axioms HeadComplexity.RowScalingQuotient.evaluation_heads
+#print axioms HeadComplexity.RowScalingQuotient.base_inverse_mul
+#print axioms HeadComplexity.RowScalingQuotient.normal_annihilates
+#print axioms HeadComplexity.RowScalingQuotient.normal_extra_identity
+#print axioms HeadComplexity.RowScalingQuotient.selected_formula
+#print axioms HeadComplexity.RowScalingQuotient.selected_inverse_mul

@@ -1,0 +1,754 @@
+[
+  {
+    "n": 3,
+    "H": 1,
+    "field": 1000003,
+    "rank": 4,
+    "denominator_parameters": 3,
+    "row_gauge_rank": 7,
+    "joint_rank": 7,
+    "quotient_tangent_rank": 0,
+    "slopes": [
+      [
+        21,
+        25,
+        94
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 3,
+    "H": 2,
+    "field": 1000003,
+    "rank": 7,
+    "denominator_parameters": 6,
+    "row_gauge_rank": 7,
+    "joint_rank": 7,
+    "quotient_tangent_rank": 0,
+    "slopes": [
+      [
+        93,
+        43,
+        34
+      ],
+      [
+        99,
+        37,
+        46
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 4,
+    "H": 1,
+    "field": 1000003,
+    "rank": 5,
+    "denominator_parameters": 4,
+    "row_gauge_rank": 15,
+    "joint_rank": 15,
+    "quotient_tangent_rank": 0,
+    "slopes": [
+      [
+        69,
+        33,
+        41,
+        9
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 4,
+    "H": 2,
+    "field": 1000003,
+    "rank": 9,
+    "denominator_parameters": 8,
+    "row_gauge_rank": 15,
+    "joint_rank": 21,
+    "quotient_tangent_rank": 6,
+    "slopes": [
+      [
+        43,
+        3,
+        26,
+        27
+      ],
+      [
+        33,
+        27,
+        68,
+        9
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 4,
+    "H": 3,
+    "field": 1000003,
+    "rank": 13,
+    "denominator_parameters": 12,
+    "row_gauge_rank": 15,
+    "joint_rank": 27,
+    "quotient_tangent_rank": 12,
+    "slopes": [
+      [
+        4,
+        82,
+        24,
+        73
+      ],
+      [
+        30,
+        76,
+        4,
+        45
+      ],
+      [
+        57,
+        79,
+        45,
+        35
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 5,
+    "H": 1,
+    "field": 1000003,
+    "rank": 6,
+    "denominator_parameters": 5,
+    "row_gauge_rank": 31,
+    "joint_rank": 31,
+    "quotient_tangent_rank": 0,
+    "slopes": [
+      [
+        98,
+        65,
+        13,
+        10,
+        44
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 5,
+    "H": 2,
+    "field": 1000003,
+    "rank": 11,
+    "denominator_parameters": 10,
+    "row_gauge_rank": 31,
+    "joint_rank": 39,
+    "quotient_tangent_rank": 8,
+    "slopes": [
+      [
+        1,
+        72,
+        73,
+        6,
+        40
+      ],
+      [
+        50,
+        3,
+        24,
+        8,
+        1
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 5,
+    "H": 3,
+    "field": 1000003,
+    "rank": 16,
+    "denominator_parameters": 15,
+    "row_gauge_rank": 31,
+    "joint_rank": 46,
+    "quotient_tangent_rank": 15,
+    "slopes": [
+      [
+        45,
+        14,
+        56,
+        47,
+        71
+      ],
+      [
+        88,
+        17,
+        94,
+        29,
+        62
+      ],
+      [
+        66,
+        77,
+        95,
+        68,
+        86
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 5,
+    "H": 4,
+    "field": 1000003,
+    "rank": 21,
+    "denominator_parameters": 20,
+    "row_gauge_rank": 31,
+    "joint_rank": 51,
+    "quotient_tangent_rank": 20,
+    "slopes": [
+      [
+        77,
+        39,
+        10,
+        4,
+        59
+      ],
+      [
+        59,
+        58,
+        18,
+        25,
+        64
+      ],
+      [
+        60,
+        85,
+        27,
+        59,
+        34
+      ],
+      [
+        1,
+        12,
+        94,
+        61,
+        15
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 5,
+    "H": 5,
+    "field": 1000003,
+    "rank": 26,
+    "denominator_parameters": 25,
+    "row_gauge_rank": 31,
+    "joint_rank": 56,
+    "quotient_tangent_rank": 25,
+    "slopes": [
+      [
+        96,
+        40,
+        83,
+        41,
+        52
+      ],
+      [
+        65,
+        41,
+        3,
+        61,
+        44
+      ],
+      [
+        9,
+        19,
+        20,
+        93,
+        27
+      ],
+      [
+        47,
+        3,
+        45,
+        55,
+        4
+      ],
+      [
+        99,
+        31,
+        12,
+        26,
+        69
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 5,
+    "H": 6,
+    "field": 1000003,
+    "rank": 31,
+    "denominator_parameters": 30,
+    "row_gauge_rank": 31,
+    "joint_rank": 31,
+    "quotient_tangent_rank": 0,
+    "slopes": [
+      [
+        60,
+        41,
+        59,
+        9,
+        86
+      ],
+      [
+        15,
+        62,
+        40,
+        100,
+        50
+      ],
+      [
+        29,
+        90,
+        70,
+        5,
+        95
+      ],
+      [
+        67,
+        9,
+        9,
+        62,
+        50
+      ],
+      [
+        48,
+        14,
+        97,
+        95,
+        68
+      ],
+      [
+        33,
+        96,
+        79,
+        88,
+        12
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 1,
+    "field": 1000003,
+    "rank": 7,
+    "denominator_parameters": 6,
+    "row_gauge_rank": 63,
+    "joint_rank": 63,
+    "quotient_tangent_rank": 0,
+    "slopes": [
+      [
+        11,
+        29,
+        95,
+        61,
+        10,
+        34
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 2,
+    "field": 1000003,
+    "rank": 13,
+    "denominator_parameters": 12,
+    "row_gauge_rank": 63,
+    "joint_rank": 73,
+    "quotient_tangent_rank": 10,
+    "slopes": [
+      [
+        70,
+        58,
+        38,
+        42,
+        29,
+        18
+      ],
+      [
+        76,
+        17,
+        77,
+        84,
+        39,
+        45
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 3,
+    "field": 1000003,
+    "rank": 19,
+    "denominator_parameters": 18,
+    "row_gauge_rank": 63,
+    "joint_rank": 81,
+    "quotient_tangent_rank": 18,
+    "slopes": [
+      [
+        74,
+        21,
+        92,
+        12,
+        90,
+        6
+      ],
+      [
+        28,
+        13,
+        34,
+        3,
+        15,
+        45
+      ],
+      [
+        10,
+        25,
+        37,
+        21,
+        50,
+        18
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 4,
+    "field": 1000003,
+    "rank": 25,
+    "denominator_parameters": 24,
+    "row_gauge_rank": 63,
+    "joint_rank": 87,
+    "quotient_tangent_rank": 24,
+    "slopes": [
+      [
+        21,
+        1,
+        96,
+        88,
+        61,
+        53
+      ],
+      [
+        29,
+        60,
+        89,
+        62,
+        26,
+        63
+      ],
+      [
+        66,
+        93,
+        74,
+        100,
+        82,
+        31
+      ],
+      [
+        55,
+        24,
+        91,
+        13,
+        54,
+        82
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 5,
+    "field": 1000003,
+    "rank": 31,
+    "denominator_parameters": 30,
+    "row_gauge_rank": 63,
+    "joint_rank": 93,
+    "quotient_tangent_rank": 30,
+    "slopes": [
+      [
+        9,
+        48,
+        81,
+        59,
+        68,
+        47
+      ],
+      [
+        58,
+        90,
+        65,
+        91,
+        32,
+        92
+      ],
+      [
+        62,
+        63,
+        19,
+        83,
+        63,
+        66
+      ],
+      [
+        39,
+        27,
+        58,
+        27,
+        57,
+        7
+      ],
+      [
+        72,
+        100,
+        48,
+        1,
+        64,
+        29
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 6,
+    "field": 1000003,
+    "rank": 37,
+    "denominator_parameters": 36,
+    "row_gauge_rank": 63,
+    "joint_rank": 99,
+    "quotient_tangent_rank": 36,
+    "slopes": [
+      [
+        26,
+        2,
+        23,
+        49,
+        64,
+        9
+      ],
+      [
+        26,
+        36,
+        28,
+        34,
+        45,
+        67
+      ],
+      [
+        71,
+        52,
+        45,
+        60,
+        63,
+        2
+      ],
+      [
+        81,
+        92,
+        90,
+        70,
+        51,
+        31
+      ],
+      [
+        26,
+        66,
+        70,
+        69,
+        32,
+        98
+      ],
+      [
+        42,
+        78,
+        6,
+        35,
+        49,
+        51
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 7,
+    "field": 1000003,
+    "rank": 43,
+    "denominator_parameters": 42,
+    "row_gauge_rank": 63,
+    "joint_rank": 105,
+    "quotient_tangent_rank": 42,
+    "slopes": [
+      [
+        73,
+        86,
+        100,
+        40,
+        10,
+        33
+      ],
+      [
+        74,
+        48,
+        39,
+        54,
+        65,
+        24
+      ],
+      [
+        65,
+        88,
+        54,
+        11,
+        81,
+        18
+      ],
+      [
+        93,
+        53,
+        98,
+        88,
+        86,
+        60
+      ],
+      [
+        36,
+        23,
+        52,
+        1,
+        51,
+        31
+      ],
+      [
+        25,
+        31,
+        5,
+        74,
+        83,
+        75
+      ],
+      [
+        18,
+        60,
+        31,
+        38,
+        65,
+        53
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  },
+  {
+    "n": 6,
+    "H": 8,
+    "field": 1000003,
+    "rank": 49,
+    "denominator_parameters": 48,
+    "row_gauge_rank": 63,
+    "joint_rank": 111,
+    "quotient_tangent_rank": 48,
+    "slopes": [
+      [
+        55,
+        62,
+        70,
+        2,
+        37,
+        21
+      ],
+      [
+        26,
+        16,
+        21,
+        61,
+        27,
+        89
+      ],
+      [
+        60,
+        79,
+        64,
+        95,
+        16,
+        30
+      ],
+      [
+        75,
+        99,
+        44,
+        25,
+        40,
+        47
+      ],
+      [
+        59,
+        3,
+        7,
+        19,
+        64,
+        94
+      ],
+      [
+        24,
+        67,
+        36,
+        36,
+        3,
+        56
+      ],
+      [
+        44,
+        39,
+        12,
+        85,
+        31,
+        1
+      ],
+      [
+        56,
+        97,
+        83,
+        86,
+        97,
+        84
+      ]
+    ],
+    "status": "exact modular rank",
+    "main_target_proved": false
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "declarations": [
+    "HeadComplexity.RowScalingQuotient.denominators_positive",
+    "HeadComplexity.RowScalingQuotient.denominator_inverse",
+    "HeadComplexity.RowScalingQuotient.evaluation_origin",
+    "HeadComplexity.RowScalingQuotient.evaluation_heads",
+    "HeadComplexity.RowScalingQuotient.base_inverse_mul",
+    "HeadComplexity.RowScalingQuotient.normal_annihilates",
+    "HeadComplexity.RowScalingQuotient.normal_extra_identity",
+    "HeadComplexity.RowScalingQuotient.selected_formula",
+    "HeadComplexity.RowScalingQuotient.selected_inverse_mul"
+  ],
+  "lean_build": "row-scaling-quotient-build.txt",
+  "axioms": "row-scaling-quotient-axioms.txt",
+  "finite_field": "row-scaling-quotient-certificate.json",
+  "rational": "row-scaling-geometry-rational-audit.json",
+  "source_sha256": "8a457ab566f4ba7cf91029f0e38b3222bfe0afa77930d82eb9dae25367c90a0d",
+  "written_proof": "row-scaling-quotient.md",
+  "scope": "Nine finite field identities. Rational lifting, quotient tangent interpretation, rebalancing and information identities, and pencil elimination are complete written proofs, not end-to-end Lean theorems.",
+  "main_target_proved": false
+}

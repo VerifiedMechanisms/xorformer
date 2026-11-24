@@ -1,0 +1,96 @@
+{
+  "status": "PASS",
+  "projection_information_cases": [
+    {
+      "seed": 0,
+      "initial_information": "122247/196",
+      "quotient_information": "9506609627/93931530",
+      "removed_information": "98158696541/187863060"
+    },
+    {
+      "seed": 1,
+      "initial_information": "63854839/19600",
+      "quotient_information": "28013914729/26837580",
+      "removed_information": "8318833009723/3757261200"
+    },
+    {
+      "seed": 2,
+      "initial_information": "121091/245",
+      "quotient_information": "3113279377/15655255",
+      "removed_information": "4624314432/15655255"
+    },
+    {
+      "seed": 3,
+      "initial_information": "3381011/1225",
+      "quotient_information": "89068845433/46965765",
+      "removed_information": "202785438502/234828825"
+    },
+    {
+      "seed": 4,
+      "initial_information": "1818099/1225",
+      "quotient_information": "17693735711/93931530",
+      "removed_information": "86939938493/67093950"
+    },
+    {
+      "seed": 5,
+      "initial_information": "406912/175",
+      "quotient_information": "4021957512/2236465",
+      "removed_information": "5891482328/11182325"
+    },
+    {
+      "seed": 6,
+      "initial_information": "162418/49",
+      "quotient_information": "4444289107/2846410",
+      "removed_information": "4990572513/2846410"
+    },
+    {
+      "seed": 7,
+      "initial_information": "2154784/1225",
+      "quotient_information": "113828689811/93931530",
+      "removed_information": "256987807841/469657650"
+    },
+    {
+      "seed": 8,
+      "initial_information": "165019/980",
+      "quotient_information": "13677999791/93931530",
+      "removed_information": "611092523/26837580"
+    },
+    {
+      "seed": 9,
+      "initial_information": "7588851/4900",
+      "quotient_information": "52030332328/46965765",
+      "removed_information": "414153323587/939315300"
+    },
+    {
+      "seed": 10,
+      "initial_information": "40159151/19600",
+      "quotient_information": "16185570137/17078460",
+      "removed_information": "376142121737/341569200"
+    },
+    {
+      "seed": 11,
+      "initial_information": "86411/245",
+      "quotient_information": "4437962608/46965765",
+      "removed_information": "12126766859/46965765"
+    }
+  ],
+  "basis_count": 20,
+  "pencil_input_bits": 4,
+  "pencil_head_count": 3,
+  "pencil_space_rank": 13,
+  "pole_lists": [
+    [
+      "-1/10",
+      "1",
+      "2"
+    ],
+    [
+      "0",
+      "3",
+      "5"
+    ]
+  ],
+  "scope": "Exact finite replays of written general differential and pencil identities.",
+  "script_sha256": "9de5364120f1e8cce78f7c689ad5047868d228b62b99d940539ed934a1a86a22",
+  "main_target_proved": false
+}

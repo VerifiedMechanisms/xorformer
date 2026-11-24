@@ -10,6 +10,12 @@ The desired conclusion is not an assumption in any argument. Denominators may de
 
 The source and start time are recorded in `run.json`. The attachment is outside this repository and is not modified.
 
+## Row scaling removes a computable part of the variation
+
+The [quotient calculation](row-scaling-quotient.md) identifies infinitesimal balancing with an orthogonal projection away from positive row scaling. A weighted graph Laplacian determines the correction, and an equivalent covariance identity subtracts exactly the explained squared-minor information. A separate interpolation theorem eliminates all pole-location variation inside a fixed two-dimensional span of affine denominators.
+
+This does not eliminate the general denominator family. A concrete positive three-head example on four bits retains all twelve denominator directions modulo every row-scaling direction. Nine finite-field identities pass Lean, including the literal derivative matrix and a square inverse; rational lifting and the differential interpretation have complete written proofs. Twelve independent rational replays check both information identities. The remaining family entropy or strict-sign count is still a theorem-strength gap. No unrestricted lower bound is claimed.
+
 ## Generic head spaces admit symmetric row balancing
 
 The [row-balancing theorem](symmetric-row-balancing.md) gives a positive normalization of every strict representation after a label-preserving perturbation. Simultaneously maximal row ranks form a cube-symmetric matroid. Averaging all its bases puts the uniform vector in the relative interior of its basis polytope; a coercive determinant objective then gives an exact positive scaling with uniform leverage. This covers arbitrary signed cancellation and target-dependent denominators. The scaling is an analytical device, not a head-count compiler.
