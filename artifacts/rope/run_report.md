@@ -1,5 +1,7 @@
 # RoPE Head Complexity Run Report
 
+> **Historical report. Updated status, November 24, 2026:** The earlier runs recorded below did not settle pure-RoPE strictness. The subsequent [Theorem 22](../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md) gives an explicit Boolean function with exactly three pure RoPE heads and between four and five vanilla heads. The complete scalar/original-vanilla separation is Lean-certified; the literal rotary realization uses Theorem 14's mathematical bridge. See the [current certificate package and research manifest](explicit_separation/README.md). The original report and its validation counts are preserved below as research history.
+
 ## Answer obtained
 
 For all four requested variants, rotary head complexity is at most vanilla head complexity. Fixed standard frequencies and freely chosen frequencies give the same exact score class at unrestricted width, separately with and without additive positional embeddings.

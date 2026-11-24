@@ -1,6 +1,8 @@
 # Search For A Pure Rotary Head-Count Separation
 
-No strict Boolean head-count separation was found. All 830 sampled two-head pure rotary classifiers have exact two-head vanilla certificates.
+No strict Boolean head-count separation was found in this historical two-head campaign. All 830 sampled two-head pure rotary classifiers have exact two-head vanilla certificates.
+
+> **Updated status, November 24, 2026:** [Theorem 16](../../../theorems/03_rotary_attention/016_pure_rope_two_head_equality.md) now proves universal equality at two heads. The separate construction in [Theorem 22](../../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md) achieves a strict separation with three pure heads and between four and five vanilla heads. See its [certificate package](../explicit_separation/README.md) for the completed proof. The samples below remain exact certificates of this earlier campaign.
 
 | Campaign | Bits | Samples | Vanilla certificates |
 | --- | --- | --- | --- |
