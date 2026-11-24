@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newcommand{\R}{\mathbb R}
+\newcommand{\cube}{\{0,1\}^k}
+\title{Distinct-pole permutation tangents on a full Boolean row cube}
+\author{Unconditional upper-bound research checkpoint}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\section{Status and exact missing statement}
+The admissible transfer in this note is kernel checked in
+\texttt{formalization/HeadComplexity/Results/LargeDomainPermutationTangent.lean}.
+It is conditional on an explicitly named decoder hypothesis. Neither this
+note nor the finite rank computations prove an improvement in the original
+worst-case head complexity.
+
+Put $M=2^k$. Let $w_i>0$, let $1<b_h<1+\eta$, and let
+$u_h,v_h:\R^k\to\R$ be affine forms, for $1\leq h\leq H$.
+For independently chosen permutations $\pi_j\in S_H$, set
+\[
+ T_j(x)=\sum_{h=1}^H
+ \frac{v_{\pi_j(h)}(x)-u_h(x)}{(b_h+w\cdot x)^2}.
+\]
+The unresolved assertion is: for every family of $s$ arbitrary Boolean
+labelings of $\cube$, and every $\eta>0$, choose $w,b,u,v$ jointly for the
+family, and choose the $s$ permutations independently, so that every desired
+strict sign is realized. The useful target is
+$H=o(M/\log k)$, ideally $H=O(M/\sqrt{k})$ or $O(M/k)$.
+The Lean proposition is
+\texttt{HeadComplexity.LargeDomain.HasCompactPermutationTangentDecoder}.
+Its quantifier order does not require the directions to be fixed before the
+label family is known.
+
+\section{A single admissible score with two banks}
+Fix a finite family as above and assume $s\eta<1+\eta$. Let $t$ tend to
+positive infinity. Use the two column scores
+\[
+ S_{t,j}(x)=\sum_h\left(
+ \frac{t}{b_h+w\cdot x+u_h(x)/t}
+ -\frac{t}{b_{\pi_j^{-1}(h)}+w\cdot x+v_h(x)/t}
+ \right).
+\]
+Reindex the second sum by $h=\pi_j(g)$. The exact identity is
+\[
+ S_{t,j}(x)=\sum_h
+ \frac{v_{\pi_j(h)}(x)-u_h(x)}
+ {(b_h+w\cdot x+u_h(x)/t)
+  (b_h+w\cdot x+v_{\pi_j(h)}(x)/t)}.
+\]
+It converges to $T_j(x)$ on every row and column. Because the domain is
+finite, one sufficiently large $t$ preserves all prescribed strict signs,
+including strict signs of any prior score plus $T$.
+
+Here are the actual ambient heads, so the cost and off-domain conditions
+are explicit. Write $u_h(x)=u_{h,0}+\sum_i u_{h,i}x_i$ and
+$d^+_{h,i}=w_i+u_{h,i}/t$. Put
+$p^+_{h,j}=b_h+u_{h,0}/t$ and $E=1+\eta$. After complementing row bits,
+the positive head denominator is
+\[
+ E+\sum_i d^+_{h,i}-\sum_i d^+_{h,i}x_i
+       -\sum_j(E-p^+_{h,j})z_j,
+\]
+and its numerator is $t\sum_jz_j$. The negative bank uses
+$d^-_{h,i}=w_i+v_{h,i}/t$,
+$p^-_{h,j}=b_{\pi_j^{-1}(h)}+v_{h,0}/t$, and numerator
+$-t\sum_jz_j$.
+For large enough $t$, all row directions are positive and every offset
+lies strictly between $1$ and $1+\eta$. Every denominator slope is then
+strictly negative. On the full Boolean cube, each denominator is greater
+than or equal to
+\[
+ E-\sum_j(E-p^{\pm}_{h,j})>1+\eta-s\eta>0.
+\]
+At the zero-column axis $z=0$, each individual numerator is exactly zero.
+Thus no uncharged axis repair or cancellation assumption remains.
+The construction has exactly $2H$ original admissible heads, shared over
+all $s$ columns. Compiling the columns independently would instead use
+$2Hs$ heads by this same construction.
+
+The main checked declarations are
+\begin{itemize}
+\item \texttt{exists\_reverse\_cube\_star\_scalar\_score};
+\item \texttt{permutationTangentApprox\_tendsto};
+\item \texttt{permutationTangent\_eventual\_admissible};
+\item \texttt{exists\_permutationTangentApprox\_data};
+\item \texttt{permutationTangent\_preserves\_signs};
+\item \texttt{hasReverseCubeStarCompiler\_of\_permutationTangent};
+\item \texttt{worstCaseHeadComplexity\_real\_le\_of\_permutationTangent}.
+\end{itemize}
+All are in namespace \texttt{HeadComplexity.LargeDomain}. The last theorem
+uses the already checked full-cube by one-star cover and gives, against the
+unchanged original quantity,
+\[
+ W(k+s)\leq 22\,2^s\frac{2H}{s}+2^{k+1}.
+\]
+The cover theorem includes overlaps, preservation of earlier signs, and
+the exceptional column face. The displayed bound is conditional on the
+unproved decoder proposition, not an unconditional new upper bound.
+
+\section{Why this passes the local-size test}
+The jointly decoded domain has $2^ks$ inputs, not a polynomial-size
+collection being separately decoded. A target $H=O(2^k/k)$ would give
+$O(2^{k+s}/(sk))$ plus the exceptional term. For example, taking
+$k$ of order $\sqrt n$ and $s=n-k$ would achieve the requested power
+one-half improvement. The exponentially large row domain passes the
+independent-cell size test. It does not itself prove that the decoder exists.
+
+\section{The feature rank and what it does not imply}
+Write $x_0=1$. The linear feature matrix is
+\[
+ F_{x,(h,i)}=\frac{x_i}{(b_h+w\cdot x)^2},\qquad 0\leq i\leq k.
+\]
+It has $H(k+1)$ columns. Thus the first-order score is not confined to the
+$H$-dimensional fixed-residue span that obstructs several simpler
+permutation constructions. The two coefficient arrays are shared among
+columns; the only column-specific operation is a permutation of the $H$
+affine coefficient vectors. Full row rank of $F$ therefore gives a decoder
+for one labeling but does not give a decoder for arbitrary independent
+families.
+
+The script \texttt{LargeDomainTangentRank.py} performs exact modular
+Gaussian elimination. For each $k=2,\ldots,9$, put
+$H=\lceil 2^k/(k+1)\rceil$, $q=100H$,
+$b_h=1+(h+1)/q$ for zero-based $h$, and $w_i=2^i/q$.
+These poles all lie in $(1,1.01]$. The matrix has full row rank modulo
+$65521$ in every case, with head counts
+$2,2,4,6,10,16,29,52$. The recorded maximal minors are respectively
+$14804,10365,19920,61311,4800,45750,37460,7429$ modulo $65521$.
+All rational denominators are invertible modulo that prime, so these are
+also finite certificates of full real row rank. The JSON records the exact
+pivot columns. These computations are not Lean declarations and do not
+prove a theorem for unbounded $k$.
+
+A naive confluent argument is invalid. If all distinct poles coalesce,
+the resulting feature blocks involve $x_i/(B+w\cdot x)^r$ for consecutive
+$r$. The identity $w\cdot x=\sum_iw_ix_i$ creates dependencies among such
+blocks. For example, with binary-integer row addresses, the affine
+confluent matrix at $k=7,H=16$ has rank $113$, while the distinct-square-pole
+matrix has rank $128$ in the finite computation.
+More generally, for power-one Cauchy blocks, multiplication by the common
+nonzero denominator converts the span into the block Krylov space
+$[X,AX,\ldots,A^{H-1}X]$, where $A=\operatorname{diag}(w\cdot x)$.
+Square-pole blocks involve the larger polynomial family
+$(P(A)/(A+b_h))^2$ and do not obey that same $H$-step bound.
+
+Even a general matroid-density claim would not suffice without a
+cube-specific hypothesis. For rows $X(t)=(1,t,t^2)$, the functions
+$X_i(t)/(b_h+t)^2$ lie in the span of the constant function together with
+$1/(b_h+t)$ and $1/(b_h+t)^2$, of dimension at most $1+2H$.
+The row matroid can be uniform despite this rank defect.
+
+\section{The first unresolved lemma}
+For fixed $F$ and a shared coefficient array $v$, the possible column
+vectors form the projected permutation orbit $\{F(P_\pi v):\pi\in S_H\}$.
+The other bank supplies a common translate $F(u)$.
+What is needed is an orthant-covering theorem for this particular orbit,
+or the weaker assertion that $w,b,u,v$ can be jointly adapted to any given
+$s$ sign vectors. A count of $H!$ permutations and a rank calculation are
+necessary evidence, not a proof of coverage.
+
+One tempting localization step is also invalid. If a fixed inverse-Cauchy
+matrix $Q$ converts kernels into approximately localized selectors, the
+wanted coefficient operation is $QP_\pi v$. Actual permutation of shared
+head directions gives $P_\pi Qv$. These are generally different. Therefore
+one cannot import an arbitrary random matching dictionary after an
+uncharged inverse-Cauchy change of basis. No lower bound in this note
+excludes a genuinely nonlinear family-dependent construction.
+\end{document}
