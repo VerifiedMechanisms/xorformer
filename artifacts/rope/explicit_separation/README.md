@@ -1,6 +1,6 @@
 # Explicit pure RoPE separation certificate package
 
-[Theorem 22](../../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md) gives an explicit Boolean function on $14\cdot2^{400000}$ bits with threshold degree three, exactly three pure RoPE heads, and between four and seven vanilla heads. The formula, every rational pure atom parameter, the strict full-cube margin, and the scalar-to-architecture bridge are in that theorem.
+[Theorem 22](../../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md) gives an explicit Boolean function on $14\cdot2^{400000}$ bits with threshold degree three, exactly three pure RoPE heads, and either four or five vanilla heads. The formula, every rational pure atom parameter, the strict full-cube margin, and the scalar-to-architecture bridge are in that theorem.
 
 The lower bound allows arbitrary vanilla parameters within the original model. It does not assume that a competitor shares coefficients within the replicated groups. Averaging is used to obtain a sign polynomial, and only its coefficients on three distinct groups are passed to the unrestricted cubic obstruction.
 
@@ -12,9 +12,9 @@ Run from the repository root:
 heavy python3 artifacts/rope/explicit_separation/verify.py
 ```
 
-Only the Python standard library is required. The driver calls the three exact certificates below and then checks the rational denominator gap, replicated atom identities, strict-margin constants, and finite-grid inequalities. It does not enumerate an astronomical cube. The full-cube verification is symbolic: the cleared polynomial has a common rational denominator, every attention denominator is positive, and a fixed negative rational readout shift handles zero values.
+Only the Python standard library is required. The driver calls the exact certificates below and then checks the rational denominator gap, replicated atom identities, strict-margin constants, and finite-grid inequalities. It does not enumerate an astronomical cube. The full-cube verification is symbolic: the cleared polynomial has a common rational denominator, every attention denominator is positive, and a fixed negative rational readout shift handles zero values.
 
-[construction.json](construction.json) is the machine-readable function and scalar-parameter certificate. It stores the input length as a power expression, all 42 integer numerator coefficients, all 42 integer denominator coefficients, rational base masses and biases, all three atom parameter lists, the replication rules, and seven explicit vanilla affine fractions giving the upper bound. The driver checks these data against the defining formulas without printing or enumerating the enormous input dimension. The head-count claims in the JSON refer to the mathematical theorem; the driver checks their arithmetic ingredients, not the full lower-bound argument.
+[construction.json](construction.json) is the machine-readable function and scalar-parameter certificate. It stores the input length as a power expression, all 42 integer numerator coefficients, all 42 integer denominator coefficients, rational base masses and biases, all three atom parameter lists, the replication rules, five explicit vanilla affine fractions giving the improved upper bound, and the earlier seven-head certificate. The driver checks these data against the defining formulas without printing or enumerating the enormous input dimension. The head-count claims in the JSON refer to the mathematical theorem; the driver checks their arithmetic ingredients, not the full lower-bound argument.
 
 | Artifact | Exact checks |
 | --- | --- |
@@ -22,11 +22,12 @@ Only the Python standard library is required. The driver calls the three exact c
 | [Generic cubic verifier](../generic_cubic_completion/verify.py) | Pure mass bounds, all 3003 six-row Vandermonde minors, and 182 cross-Hessian minors |
 | [Chart verifier](../generic_cubic_completion/verify_chart.py) | Rational coordinate inverse, zero-chart bounds, denominator bounds, graph-restriction rank 679, interpolation constants, and cleared polynomial bounds |
 | [Gap verifier](../quantitative_cubic_gap/verify_gap.py) | Every rational inequality in the uniform tensor exclusion radius |
+| [Five-head upper certificate](../five_head_upper/README.md) | Exact oriented denominator combination and five reciprocal fractions |
 | [Combined verifier](verify.py) | The preceding checks, exact atom constant identities under replication, full-cube arithmetic gap, and comparison of interpolation error with the tensor exclusion radius |
 
 These scripts independently certify the arithmetic used in the proof. The complete Boolean lower bound is separately Lean-certified, including quantitative tensor recovery, finite sign rigidity, and averaging every admissible untied vanilla representation. The raw gap uses finite determinant estimates, with no spectral argument. The scalar-to-literal-RoPE matrix realization remains the mathematical proof in Theorem 14.
 
-The actual unshifted formula's pure upper bound, rational tie removal, strict full-cube margin, and non-complement-invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`. The seven-head vanilla upper compiler is checked in `Results/ThreeFractionsSevenHeads.lean`. To rebuild the formalized results and audit the axioms of every headline declaration, run from the repository root:
+The actual unshifted formula's pure upper bound, rational tie removal, strict full-cube margin, and non-complement-invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`. The improved five-head vanilla bound is checked in `Results/PureRoPEReplicationFive.lean`; the earlier general seven-head compiler remains in `Results/ThreeFractionsSevenHeads.lean`. For the displayed rational five-head step, `Polynomial/PureCubicFiveDenominators.lean` checks every denominator's admissibility, while Theorem 22 supplies the explicit finite-difference error estimate. To rebuild the formalized results and audit the axioms of every headline declaration, run from the repository root:
 
 ```bash
 cd formalization
@@ -58,4 +59,4 @@ The original model definitions, strict threshold convention, and admissibility c
 
 ## Remaining questions
 
-The exact vanilla count of the explicit function is between four and seven. A substantially smaller separating truth table and a Lean proof of the literal rotary interpolation bridge remain open. The earlier small face-pattern targets also remain unresolved where their documentation says no pure realization was certified.
+The exact vanilla count of the explicit function is either four or five. A substantially smaller separating truth table and a Lean proof of the literal rotary interpolation bridge remain open. The earlier small face-pattern targets also remain unresolved where their documentation says no pure realization was certified.

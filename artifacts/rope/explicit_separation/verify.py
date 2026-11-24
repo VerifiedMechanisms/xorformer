@@ -92,6 +92,29 @@ def full_cube_arithmetic(chart, gap):
     assert len(vanilla['heads']) == 7
     assert {tuple(head['denominator_subset']): head['numerator_U_coefficients']
             for head in vanilla['heads']} == collected
+    five = construction['vanilla_five_upper']
+    assert construction['claims']['vanilla_head_count_upper_bound'] == 5
+    assert five['a'] == 'epsilon/2^40' and five['E'] == '10*D_0-D_1'
+    assert five['U'] == ['S_0-epsilon*D_0', 'S_1', 'S_2']
+    assert five['readout_constant'] == '0'
+    expected_five = [
+        ([0, 0], [10, 1, 10], [-2, 0, -2]),
+        ([1, 0], [-10, -1, -20], [0, 0, 2]),
+        ([2, 0], [0, 0, 10], [0, 0, 0]),
+        ([0, 1], [-10, -1, 0], [2, 0, 0]),
+        ([1, 1], [10, 1, 0], [0, 0, 0]),
+    ]
+    assert [(h['denominator_D0_D2_multiplicities'], h['numerator_U_constant'],
+             h['numerator_U_a_coefficient']) for h in five['heads']] == expected_five
+    five_step = epsilon / 2**40
+    e_slopes = [10 * b[0][i] - b[1][i] for i in range(14)]
+    assert max(e_slopes) == -F(411, 16 * 10**9)
+    assert 2 * five_step < F(411, 16 * 10**9)
+    assert 4096 * five_step < epsilon / 4
+    for powers, _, _ in expected_five:
+        assert all(e_slopes[i] + five_step *
+                   (powers[0] * b[0][i] + powers[1] * b[2][i]) < 0
+                   for i in range(14))
     a = epsilon / 4096
     assert F(576, 4096) < F(1, 4)
     assert epsilon < F(1, 16)
@@ -139,7 +162,8 @@ def full_cube_arithmetic(chart, gap):
     assert error < F(1, 2**85)
     print('exact symbolic cube checks passed: n=14*2^400000, three pure atoms,')
     print('  construction.json matches every integer coefficient and rational atom parameter')
-    print('  seven explicit vanilla fractions use a=epsilon/4096; all bound constants pass')
+    print('  five explicit vanilla fractions use a=epsilon/2^40; all bound constants pass')
+    print('  the earlier seven-head certificate remains independently checked')
     print('  strict margin >=1/(16*A*m^3), A=10240000000000000000000000')
     print('  interpolation error <2^-99933, tensor exclusion radius >2^-2000')
 
@@ -148,9 +172,11 @@ def main():
     generic = load('pure_generic_certificate', 'generic_cubic_completion/verify.py')
     chart = load('pure_chart_certificate', 'generic_cubic_completion/verify_chart.py')
     gap = load('pure_gap_certificate', 'quantitative_cubic_gap/verify_gap.py')
+    five = load('five_head_upper_certificate', 'five_head_upper/verify.py')
     generic.main()
     chart.main()
     gap.main()
+    five.main()
     full_cube_arithmetic(chart, gap)
     print('All exact arithmetic checks supporting Theorem 22 passed.')
     print('Scope: arithmetic certificates plus symbolic cube identities;')

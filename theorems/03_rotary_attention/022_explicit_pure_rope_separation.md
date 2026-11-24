@@ -6,9 +6,9 @@ There is an explicit finite Boolean function for which replacing additive positi
 
 $$ m=2^{400000},\qquad n=14m. $$
 
-Its exact pure complexity is three, its threshold degree is three, and its vanilla complexity is between four and seven:
+Its exact pure complexity is three, its threshold degree is three, and its vanilla complexity is either four or five:
 
-$$ \deg_{\pm}(f)=H_P(f)=3\lt4\leq H_V(f)\leq7. $$
+$$ \deg_{\pm}(f)=H_P(f)=3\lt4\leq H_V(f)\leq5. $$
 
 The function is not invariant under complementing every input bit. The vanilla lower bound allows all parameters, all finite widths, and arbitrary differences between positions within the groups used in the construction. It concerns Boolean signs, not equality of scores.
 
@@ -84,7 +84,7 @@ The [quantitative cubic appendix](../../artifacts/rope/quantitative_cubic_gap/RE
 
 $$ R=N_0E_1E_2+N_1E_0E_2+N_2E_0E_1 $$
 
-is a homogeneous cubic in fourteen variables, each $N_h$ is arbitrary, and each $E_h$ has strictly positive coefficients, strictly negative coefficients, or is zero, then some squarefree cubic coefficient of $R-F_3$ has magnitude greater than $2^{-2000}$. The statement also holds for limits of such tensors.
+is a homogeneous cubic in fourteen variables, each $N_h$ is arbitrary, and each $E_h$ has strictly positive coefficients, strictly negative coefficients, or is zero, then some squarefree cubic coefficient of $R-F_3$ has magnitude greater than $2^{-2000}$. In particular, no sequence of such tensors converges coefficientwise to $F_3$.
 
 For clarity, the mechanism is summarized here. The six forms $S_h,B_h$ are independent, and every six-row minor of their coefficient matrix is nonzero. Every $B_h$ has both signs. On the kernel of a nonnegative denominator direction, one can choose a bounded point where the target cubic's Hessian has a six-by-six minor with determinant bounded away from zero. The competing vanilla cubic has Hessian rank at most five at that point, because one of its denominator forms vanishes. A finite determinant perturbation estimate gives a uniform gap for the complete cubic coefficients. Finally, a cubic depending on at most six linear forms has Hessian rank at most six. Invertible disjoint cross blocks of the target Hessians recover every repeated-index coefficient continuously from its squarefree coefficients, with explicit bounds. This gives the stated squarefree gap, including unbounded numerators, colliding denominators, zero directions, and arbitrary untied competitors.
 
@@ -196,27 +196,55 @@ $$ F-\varepsilon D_0D_1D_2 $$
 
 has degree at most three and realizes $f$. Conversely, apply Theorem 4 to a hypothetical degree-at-most-two sign polynomial, averaged over groups as above. Its cubic coefficients vanish. Some cubic coefficient of $F$ is nonzero, because its six defining forms are independent, and every coefficient of $F$ has denominator dividing $A\lt2^{84}$. Its magnitude is therefore greater than $2^{-84}$. The estimate $c\geq1/2$ contradicts the coefficient error $e\lt2^{-85}$. This proves $\deg_{\pm}(f)=3$.
 
-### Theorem 7. A seven-head vanilla upper bound
+### Theorem 7. An explicit five-head vanilla upper bound
 
-For completeness, the vanilla count is finite with the sharper bound $H_V(f)\leq7$. Write the preceding strict polynomial as
+Write the strict polynomial as
 
 $$ G=U_0D_1D_2+U_1D_0D_2+U_2D_0D_1,\qquad U_0=S_0-\varepsilon D_0,\quad U_1=S_1,\quad U_2=S_2. $$
 
-Let $R(x)=1+\sum_{i,r}x_{i,r}$. For each pair $j,k$, use the reciprocal second difference
+The additional affine form $E=10D_0-D_1$ is positive throughout the cube, since $D_0\gt1/2$ and $D_1\lt2$ give $E\gt3$. Its coefficient on mean variable $z_i$ is
 
-$$ \Delta_{jk}(a)=\frac1R-\frac1{R+aD_j}-\frac1{R+aD_k}+\frac1{R+a(D_j+D_k)}. $$
+$$ e_i=10b_{0,i}-b_{1,i}=-\frac{i^4-10i^3+16875/16}{10^9}\leq-\frac{411}{16\cdot10^9}\lt0. $$
 
-As the positive scalar $a$ tends to zero, $\Delta_{jk}(a)/a^2$ tends to $2D_jD_k/R^3$. Therefore
+The inequality is an exact check at the fourteen integer indices, with equality at $i=7$. Thus $E$ has strictly negative slopes in the original bit variables. Substituting $D_1=10D_0-E$ gives
 
-$$ a^{-2}\bigl(U_0\Delta_{12}(a)+U_1\Delta_{02}(a)+U_2\Delta_{01}(a)\bigr)\longrightarrow\frac{2G}{R^3}. $$
+$$ G=10U_2D_0^2+(10U_0+U_1)D_0D_2-E(U_2D_0+U_0D_2). $$
 
-There are only seven distinct denominators: $R$, the three $R+aD_j$, and the three $R+a(D_j+D_k)$. For sufficiently small positive $a$, each denominator is positive and has strictly positive coefficients in the original bit variables, hence admits an arbitrary affine numerator in the vanilla model. Because the cube is finite and the limiting signs are strict, one such $a$ preserves all labels simultaneously. Combining terms with the same denominator gives seven vanilla heads. This general compilation is Lean-checked as `vanilla_seven_of_pureRoPE_three` in [ThreeFractionsSevenHeads.lean](../../formalization/HeadComplexity/Results/ThreeFractionsSevenHeads.lean).
+Set $a=\varepsilon/2^{40}$. For affine forms $u,v$, put
 
-For this example one can choose the explicit rational value $a=\varepsilon/4096$. Since $1/2\lt D_j\lt2$, $R\geq1$, and $|U_j|\lt2$, the reciprocal second-difference estimate gives
+$$ \Delta_{uv}=\frac1E-\frac1{E+au}-\frac1{E+av}+\frac1{E+a(u+v)},\qquad \delta_u=\frac1E-\frac1{E+au}. $$
 
-$$ \left|\frac{\Delta_{jk}(a)}{a^2}-\frac{2D_jD_k}{R^3}\right|\leq\frac{96a}{R^4}. $$
+The score
 
-To verify the estimate, integrate the mixed derivative $2D_jD_k/(R+uD_j+vD_k)^3$ over $0\leq u,v\leq a$ and use the derivative bound $3/R^4$ for the reciprocal cube. The total score error is at most $576a/R^3$. On the other hand, $|G|\gt\varepsilon/8$ by the pure score margin and the denominator product bound, so the limiting score has magnitude greater than $\varepsilon/(4R^3)$. The chosen $a$ makes the error smaller than this magnitude. Each denominator slope in the original bit variables differs from one by less than $4a$, so it remains positive. This also makes the seven-head upper construction explicit. It does not establish that four heads suffice. $\blacksquare$
+$$ V_a=10U_2\Delta_{D_0D_0}+(10U_0+U_1)\Delta_{D_0D_2}-2aU_2\delta_{D_0}-2aU_0\delta_{D_2} $$
+
+uses only five denominators. Its exact affine numerators are as follows.
+
+| Denominator | Numerator |
+| --- | --- |
+| $E$ | $(10-2a)U_0+U_1+(10-2a)U_2$ |
+| $E+aD_0$ | $-10U_0-U_1+(-20+2a)U_2$ |
+| $E+2aD_0$ | $10U_2$ |
+| $E+aD_2$ | $(-10+2a)U_0-U_1$ |
+| $E+a(D_0+D_2)$ | $10U_0+U_1$ |
+
+Every denominator is positive. In mean coordinates each denominator slope differs from $e_i$ by less than $2a$, because $|b_{h,i}|\lt1$. Also $\varepsilon\lt1/16$, so
+
+$$ 2a\lt2^{-43}\lt\frac{411}{16\cdot10^9}. $$
+
+All five denominators consequently have strictly negative slopes. Their numerators are arbitrary affine forms, so all five fractions are admissible in the unchanged vanilla model.
+
+For $0\lt u,v\lt2$, elementary reciprocal difference estimates give
+
+$$ \left|\frac{\Delta_{uv}}{a^2}-\frac{2uv}{E^3}\right|\leq\frac{96a}{E^4},\qquad \left|\frac{\delta_u}{a}-\frac{u}{E^2}\right|\leq\frac{8a}{E^3}. $$
+
+For the first estimate, integrate $2uv/(E+su+tv)^3$ over the square $0\leq s,t\leq a$ and compare with its value at zero. For the second, integrate $u/(E+su)^2$ over $0\leq s\leq a$. All intermediate denominators are at least $E$. Using $|U_h|\lt2$ and $E\gt3$, these bounds imply
+
+$$ \left|\frac{V_a}{a^2}-\frac{2G}{E^3}\right|\leq\frac{4032a}{E^4}+\frac{64a}{E^3}\leq\frac{4096a}{E^3}\lt\frac{\varepsilon}{4E^3}. $$
+
+The pure score margin gives $|G|\gt\varepsilon/8$, hence $|2G/E^3|\gt\varepsilon/(4E^3)$. Therefore $V_a$ has the sign of $G$ at every Boolean input, including every original zero of $F$. This proves $H_V(f)\leq5$ with an explicit rational construction. The [five-head certificate](../../artifacts/rope/five_head_upper/README.md) checks the identities and constants; [construction.json](../../artifacts/rope/explicit_separation/construction.json) contains all five affine fractions. $\blacksquare$
+
+The earlier general seven-head compiler remains Lean-checked as `vanilla_seven_of_pureRoPE_three`. Its certificate is retained for comparison; the five-head improvement uses the additional oriented relation special to this target.
 
 ## Certification scope
 
@@ -224,7 +252,7 @@ The explicit atom parameters, all-input sign identity and margin, finite interpo
 
 The complete scalar/original-vanilla Boolean separation is Lean-certified in [PureRoPEExplicitSeparation.lean](../../formalization/HeadComplexity/Results/PureRoPEExplicitSeparation.lean). The declarations `not_vanilla_three`, `vanillaHStar_ge_four`, `pureHStar_eq_three`, `strict_separation`, `shared_strict_separation`, and `not_universal_equality` have no unproved hypotheses. They include arbitrary real parameters, untied replicas, constant heads, and zero scores on false inputs. The exact threshold degree is checked by `PureRoPEExplicitThreshold.thresholdDeg_eq_three` in [PureRoPEExplicitThreshold.lean](../../formalization/HeadComplexity/Results/PureRoPEExplicitThreshold.lean), quantifying over every real threshold polynomial.
 
-The exact atom parameters, integer-cubic identity, rational tie removal, full-cube margin, and non-complement-invariance are also Lean-certified. The literal rotary-matrix realization remains a mathematical proof in Theorem 14. The general seven-head vanilla compiler is Lean-certified; the particular numerical choice $a=\varepsilon/4096$ is justified by the estimate above.
+The exact atom parameters, integer-cubic identity, rational tie removal, full-cube margin, and non-complement-invariance are also Lean-certified. The literal rotary-matrix realization remains a mathematical proof in Theorem 14. The five-head upper bound is Lean-certified by `PureRoPEReplicationFive.explicit_sharedHStar_le_five` in [PureRoPEReplicationFive.lean](../../formalization/HeadComplexity/Results/PureRoPEReplicationFive.lean). For the particular rational step $a=\varepsilon/2^{40}$, denominator admissibility is Lean-certified by `PureCubicFiveDenominators.fraction_admissible` in [PureCubicFiveDenominators.lean](../../formalization/HeadComplexity/Polynomial/PureCubicFiveDenominators.lean); its finite-difference sign estimate is the mathematical proof above.
 
 Further supporting Lean results include the following:
 
@@ -242,6 +270,6 @@ Further supporting Lean results include the following:
 
 - `ThreeHeadMeanSign.meanCleared_sign` and `ReplicatedMeanGrid.rawTarget_classifier_grid` connect the original Boolean cube, exact untied averaging, and the entire finite mean grid, including ties.
 
-- `PureRoPEReplicationBounds.explicit_sharedHStar_le_seven` checks the seven-head upper bound for the actual explicit function in the literal shared-embedding vanilla architecture.
+- `PureRoPEReplicationFive.explicit_sharedHStar_le_five` checks the improved five-head upper bound for the actual explicit function in the literal shared-embedding vanilla architecture.
 
 All audited declarations use only `propext`, `Classical.choice`, and `Quot.sound`. No `sorry` or new axiom is used. The original model, its admissibility conditions, and its head-count definitions have not been modified. The [certificate package](../../artifacts/rope/explicit_separation/README.md) gives the exact verification command, research manifest, unsuccessful approaches, and remaining questions.

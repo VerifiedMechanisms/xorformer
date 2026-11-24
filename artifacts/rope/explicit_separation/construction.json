@@ -394,7 +394,7 @@
   "claims": {
     "pure_head_count": 3,
     "vanilla_head_count_lower_bound": 4,
-    "vanilla_head_count_upper_bound": 7,
+    "vanilla_head_count_upper_bound": 5,
     "threshold_degree": 3,
     "globally_complement_invariant": false
   },
@@ -485,5 +485,104 @@
     ],
     "readout_constant": "0",
     "scope": "Exact affine-fraction parameters; the original vanilla normal form realizes them because all denominator bit slopes and all cube denominator values are positive."
+  },
+  "vanilla_five_upper": {
+    "epsilon": "1/(16*A*m^3)",
+    "a": "epsilon/2^40",
+    "E": "10*D_0-D_1",
+    "U": [
+      "S_0-epsilon*D_0",
+      "S_1",
+      "S_2"
+    ],
+    "denominator_rule": "E+a*(denominator_D0_D2_multiplicities[0]*D_0+denominator_D0_D2_multiplicities[1]*D_2)",
+    "numerator_rule": "sum((numerator_U_constant[h]+a*numerator_U_a_coefficient[h])*U_h for h in [0,1,2])",
+    "heads": [
+      {
+        "denominator_D0_D2_multiplicities": [
+          0,
+          0
+        ],
+        "numerator_U_constant": [
+          10,
+          1,
+          10
+        ],
+        "numerator_U_a_coefficient": [
+          -2,
+          0,
+          -2
+        ]
+      },
+      {
+        "denominator_D0_D2_multiplicities": [
+          1,
+          0
+        ],
+        "numerator_U_constant": [
+          -10,
+          -1,
+          -20
+        ],
+        "numerator_U_a_coefficient": [
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "denominator_D0_D2_multiplicities": [
+          2,
+          0
+        ],
+        "numerator_U_constant": [
+          0,
+          0,
+          10
+        ],
+        "numerator_U_a_coefficient": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "denominator_D0_D2_multiplicities": [
+          0,
+          1
+        ],
+        "numerator_U_constant": [
+          -10,
+          -1,
+          0
+        ],
+        "numerator_U_a_coefficient": [
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "denominator_D0_D2_multiplicities": [
+          1,
+          1
+        ],
+        "numerator_U_constant": [
+          10,
+          1,
+          0
+        ],
+        "numerator_U_a_coefficient": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "readout_constant": "0",
+    "orientation": "Every denominator slope is strictly negative; every denominator is positive on the cube.",
+    "normalized_limit": "score/a^2 tends to 2*G/E^3, G=F-epsilon*D_0*D_1*D_2",
+    "error_bound": "abs(score/a^2-2*G/E^3)<=4096*a/E^3",
+    "certificate": "artifacts/rope/five_head_upper/verify.py"
   }
 }

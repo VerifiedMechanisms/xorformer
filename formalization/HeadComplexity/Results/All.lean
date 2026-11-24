@@ -45,6 +45,8 @@ import HeadComplexity.Polynomial.PureCubicFiniteRigidity
 import HeadComplexity.Polynomial.ThreeHeadMeanSign
 import HeadComplexity.Results.PureRoPEExplicitSeparation
 import HeadComplexity.Results.PureRoPEExplicitThreshold
+import HeadComplexity.Results.PureRoPEReplicationFive
+import HeadComplexity.Polynomial.PureCubicFiveDenominators
 
 set_option linter.style.header false
 
@@ -233,9 +235,14 @@ compile to seven heads in the original shared vanilla architecture. -/
 alias theorem22_vanilla_upper_compiler := vanilla_seven_of_pureRoPE_three
 
 /-- **Theorem 22, explicit vanilla upper bound.** The actual unshifted
-function has at most seven heads in the literal shared vanilla model. -/
+function has at most five heads in the literal shared vanilla model. -/
 alias theorem22_explicit_vanilla_upper :=
-  PureRoPEReplicationBounds.explicit_sharedHStar_le_seven
+  PureRoPEReplicationFive.explicit_sharedHStar_le_five
+
+/-- **Theorem 22, exact rational denominators.** Every affine numerator is
+admissible over each of the five displayed denominators at the explicit step. -/
+alias theorem22_five_exact_denominators :=
+  PureCubicFiveDenominators.fraction_admissible
 
 /-- **Theorem 22, averaging component.** Every untied cubic classifier
 averages to a degree-at-most-three polynomial in the group means. -/
@@ -337,7 +344,7 @@ alias theorem22_strict_separation := PureRoPEExplicitSeparation.strict_separatio
 alias theorem22_exact_pure_count := PureRoPEExplicitSeparation.pureHStar_eq_three
 
 /-- **Theorem 22.** Every original vanilla representation needs at least four
-heads, and a shared-embedding realization exists with seven heads. -/
+heads, and a shared-embedding realization exists with five heads. -/
 alias theorem22_vanilla_bounds := PureRoPEExplicitSeparation.vanillaHStar_bounds
 
 /-- **Theorem 22.** Strict separation also uses the literal shared-embedding
