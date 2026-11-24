@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Positive Residues from Antisymmetric Root Numerators}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+This is a complete written one-node construction with exact rational checks.
+It is not a universal nested decoder, a Lean theorem, or a head-complexity
+improvement. The construction preserves the positive exterior geometry;
+it does not change any definition in the original model.
+
+\begin{theorem}[Positive root realization]
+Let $q\geq1$, let
+\[
+ p_{0,0}<p_{0,1}<p_{1,0}<p_{1,1}<\cdots<p_{q-1,0}<p_{q-1,1}<T/2,
+\]
+and let $t_s\in[T-p_{s,1},T-p_{s,0}]$.
+For every $\sigma\in\{-1,1\}^q$ there are strictly positive
+$c_{s,0},c_{s,1}$ such that
+\[
+ \sigma_s\sum_{r=0}^{q-1}\sigma_r
+ \left(\frac{c_{r,0}}{t_s-p_{r,0}}-
+       \frac{c_{r,1}}{t_s-p_{r,1}}\right)>0
+ \quad(0\leq s<q).
+\]
+No additive bias is needed.
+\end{theorem}
+\begin{proof}
+For each $s<q-1$ where $\sigma_s\ne\sigma_{s+1}$ choose a point
+$b_s\in(p_{s,1},p_{s+1,0})$, and let $P(t)$ be the monic product
+of $t-b_s$ over these selected boundaries. Write $a=\deg P\leq q-1$.
+There is a sign $\eta$ such that $\eta P$ has sign $\sigma_s$
+throughout every closed pair interval $[p_{s,0},p_{s,1}]$.
+Put
+\[
+ Q(t)=\prod_{r,e}(t-p_{r,e}),\qquad
+ N(t)=\eta(t-T/2)P(t)P(T-t).
+\]
+The numerator has degree $2a+1\leq2q-1$, and satisfies
+$N(T-t)=-N(t)$. At every pole in pair $s$, its sign is
+$-\sigma_s$, because $P(T-p_{s,e})>0$.
+The derivative $Q'(p_{s,0})$ is negative and $Q'(p_{s,1})$ is
+positive. Define
+\[
+ c_{s,0}=\frac{N(p_{s,0})}{\sigma_s Q'(p_{s,0})},\qquad
+ c_{s,1}=\frac{N(p_{s,1})}{-\sigma_s Q'(p_{s,1})}.
+\]
+Both numbers are strictly positive. Partial fractions give
+\[
+ \frac{N(t)}{Q(t)}=
+ \sum_s\sigma_s\left(\frac{c_{s,0}}{t-p_{s,0}}
+                      -\frac{c_{s,1}}{t-p_{s,1}}\right).
+\]
+At $t_s$, the factors $t_s-T/2$ and $P(t_s)$ are positive,
+while $\eta P(T-t_s)$ has sign $\sigma_s$. Also $Q(t_s)>0$.
+This proves the required inequalities.
+\end{proof}
+
+\paragraph{A linear parameter family.}
+Every polynomial $N$ of degree at most $2q-1$ with
+$N(T-t)=-N(t)$ can be written uniquely as
+\[
+ N(t)=(t-T/2)R(t(T-t)),\qquad \deg R\leq q-1.
+\]
+To see this, translate $t$ by $T/2$: the odd polynomial has the form
+$xS(x^2)$, and $t(T-t)=T^2/4-x^2$. The preceding constructive
+numerator is in this family. For fixed poles and root routing, every
+residue is linear in the $q$ coefficients of $R$.
+If all these residues are positive, the root signs at
+$t_s=T-p_{s,0}$ hold automatically by antisymmetry, without any
+additional inequalities. All lower-node comparisons, when present,
+remain homogeneous linear inequalities in the same coefficients after
+eliminating their block biases. This supplies a smaller exact feasibility
+problem; its feasibility for arbitrary trees remains unproved.
+
+\paragraph{A limitation on common pools within this family.}
+Suppose two root words $\sigma,\tau$ use the same strictly positive
+residues $c$, and both have numerators in the displayed antisymmetric
+family. At every pole, the ratio of their numerator values is
+$\tau_s/\sigma_s\in\{-1,1\}$. The transformed poles
+$p_{s,e}(T-p_{s,e})$ are all distinct, since $t(T-t)$ is strictly
+increasing for $t<T/2$. Consequently $R_\tau^2-R_\sigma^2$ has
+$2q$ distinct roots and degree at most $2q-2$. It is identically zero,
+so $R_\tau=R_\sigma$ or $R_\tau=-R_\sigma$. Positivity excludes
+zero numerator values at the poles. Thus the two root words agree
+or differ by a global sign. This only limits common-pool arguments
+inside this special numerator family, not adaptive residues in general.
+
+\paragraph{Verification and missing step.}
+The companion checker exhausts all root words through six pairs at
+three reflected query choices per pair. It verifies strict residue
+positivity, every query sign, the partial-fraction identity at extra
+rational points, and antisymmetry. These checks complement the proof;
+they do not establish a larger-tree theorem.
+The missing step is to choose one positive residue vector satisfying
+all nested input-block constraints at once. A one-node construction
+has no preservation guarantee for any child block. No independent
+choices of the polynomials $R$ can be substituted for that shared-vector
+requirement.
+\end{document}
