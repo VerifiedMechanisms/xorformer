@@ -7,6 +7,7 @@ import HeadComplexity.Results.AffineFractionNormalForm
 import HeadComplexity.Results.LowComplexity
 import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.StrictSeparation
+import HeadComplexity.Results.RoPEComparison
 
 set_option linter.style.header false
 
@@ -106,5 +107,23 @@ alias theorem12_symmetric := HStar_symmetricFn
 /-- **Theorem 13.** Threshold degree can be strictly smaller than head
 complexity. -/
 alias theorem13_strict_separation := f10_strict_separation
+
+/-! ## Rotary scalar models -/
+
+/-- **Theorem 14.** Exact vanilla-to-pure-rotary scalar simulation, at every
+head count. The literal fixed-frequency interpolation bridge is handwritten. -/
+alias theorem14_pure_simulation := pureRoPEComputable_of_vanilla
+
+/-- **Theorem 14.** Pure rotary scalar head complexity is at most vanilla. -/
+alias theorem14_pure_le_vanilla := pureRoPEHStar_le_vanilla
+
+/-- **Theorem 14.** Retaining additive positions cannot increase the scalar count. -/
+alias theorem14_retained_le_pure := retainedRoPEHStar_le_pure
+
+/-- **Theorem 14.** Threshold degree lower-bounds the retained rotary scalar count. -/
+alias theorem14_degree_lower_bound := thresholdDeg_le_retainedRoPEHStar
+
+/-- **Theorem 14.** Both rotary scalar complexities equal sign changes on symmetric functions. -/
+alias theorem14_symmetric := ropeHStar_symmetric
 
 end HeadComplexity

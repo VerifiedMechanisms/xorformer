@@ -253,6 +253,20 @@ The quadratic gives threshold degree at most two, and an XOR restriction gives t
 
 **Proof.** [theorems/02_separations_and_counterexamples/013_strict_threshold_degree_separation.md](theorems/02_separations_and_counterexamples/013_strict_threshold_degree_separation.md)
 
+## Rotary Attention
+
+### Theorem 14. Rotary head-count comparisons
+
+Let $H_P$ denote RoPE replacing additive positional embeddings, and let $H_A$ denote RoPE retaining them. For fixed standard frequencies or freely chosen frequencies, with unrestricted width,
+
+$$ \deg_{\pm}(f)\leq H_A(f)\leq H_P(f)\leq H^{\ast}(f). $$
+
+Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Equality for arbitrary Boolean functions, or a strict Boolean head-count separation, remains unresolved here.
+
+The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. The connection to literal rotary attention uses a handwritten finite trigonometric interpolation proof. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
+
+**Proof.** [theorems/03_rotary_attention/014_rope_head_complexity.md](theorems/03_rotary_attention/014_rope_head_complexity.md)
+
 ## Dependency Order
 
 The current dependency structure is:

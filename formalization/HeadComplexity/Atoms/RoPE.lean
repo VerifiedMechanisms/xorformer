@@ -228,4 +228,80 @@ theorem pureRoPEComputable_of_vanilla {n H : ℕ} {f : (Fin n → Bool) → Bool
   choose p hp using fun h ↦ (r h).exists_pure (hr h)
   exact ⟨p, c, fun x ↦ by simpa only [hp] using hf x⟩
 
+/-- A scalar rotary head with additive positional embeddings retained. -/
+structure RetainedRoPEAtom (n : ℕ) where
+  a : Fin n → ℝ
+  b : Fin n → ℝ
+  γ : ℝ
+  η : ℝ
+  m : Fin n → ℝ
+  δ : ℝ
+  ha : ∀ i, 0 < a i
+  hb : ∀ i, 0 < b i
+  hγ : 0 < γ
+
+namespace RetainedRoPEAtom
+
+variable {n : ℕ}
+
+noncomputable def toAffineFraction (p : RetainedRoPEAtom n) : AffineFraction n where
+  A i := p.b i * (p.m i + p.δ) - p.a i * p.m i
+  b := p.η + ∑ i, p.a i * p.m i
+  C i := p.b i - p.a i
+  d := p.γ + ∑ i, p.a i
+
+noncomputable def eval (p : RetainedRoPEAtom n) (x : Fin n → Bool) : ℝ :=
+  p.toAffineFraction.eval x
+
+theorem denominator_pos (p : RetainedRoPEAtom n) (x : Fin n → Bool) :
+    0 < p.toAffineFraction.denominator x := by
+  let q : PureRoPEAtom n := ⟨p.a, p.b, p.γ, 0, 0, 0, p.ha, p.hb, p.hγ⟩
+  exact q.denominator_pos x
+
+theorem eval_eq_weighted (p : RetainedRoPEAtom n) (x : Fin n → Bool) :
+    p.eval x =
+      (p.η + ∑ i, if x i then p.b i * (p.m i + p.δ) else p.a i * p.m i) /
+      (p.γ + ∑ i, if x i then p.b i else p.a i) := by
+  have hn : p.toAffineFraction.numerator x =
+      p.η + ∑ i, if x i then p.b i * (p.m i + p.δ) else p.a i * p.m i := by
+    unfold AffineFraction.numerator toAffineFraction
+    rw [add_assoc, ← Finset.sum_add_distrib]
+    congr 1
+    apply Finset.sum_congr rfl
+    intro i _
+    cases x i <;> simp [boolToReal]
+  let q : PureRoPEAtom n := ⟨p.a, p.b, p.γ, 0, 0, 0, p.ha, p.hb, p.hγ⟩
+  exact congrArg₂ (· / ·) hn (q.denominator_eq x)
+
+end RetainedRoPEAtom
+
+noncomputable def PureRoPEAtom.toRetained {n : ℕ} (p : PureRoPEAtom n) :
+    RetainedRoPEAtom n where
+  a := p.a
+  b := p.b
+  γ := p.γ
+  η := p.η
+  m _ := p.v₀
+  δ := p.v₁ - p.v₀
+  ha := p.ha
+  hb := p.hb
+  hγ := p.hγ
+
+theorem PureRoPEAtom.toRetained_eval {n : ℕ} (p : PureRoPEAtom n)
+    (x : Fin n → Bool) : p.toRetained.eval x = p.eval x := by
+  rw [p.eval_eq]
+  have h : p.toRetained.toAffineFraction = p.toAffineFraction := by
+    ext i <;> simp [toRetained, RetainedRoPEAtom.toAffineFraction, toAffineFraction]
+  exact congrArg (fun r : AffineFraction n ↦ r.eval x) h
+
+def retainedRoPEComputable (n H : ℕ) (f : (Fin n → Bool) → Bool) : Prop :=
+  ∃ (p : Fin H → RetainedRoPEAtom n) (c : ℝ),
+    ∀ x, (0 < c + ∑ h, (p h).eval x ↔ f x = true)
+
+theorem retainedRoPEComputable_of_pure {n H : ℕ} {f : (Fin n → Bool) → Bool}
+    (hf : pureRoPEComputable n H f) : retainedRoPEComputable n H f := by
+  obtain ⟨p, c, hp⟩ := hf
+  exact ⟨fun h ↦ (p h).toRetained, c,
+    fun x ↦ by simpa only [PureRoPEAtom.toRetained_eval] using hp x⟩
+
 end HeadComplexity
