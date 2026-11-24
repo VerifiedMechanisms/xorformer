@@ -1,0 +1,42 @@
+[
+  {
+    "n": 2,
+    "source_length": 3,
+    "target_length_lower": 4,
+    "middle_catalecticant_rank_lower": 2,
+    "nonzero_matrix_entries": 2,
+    "boolean_points": 4
+  },
+  {
+    "n": 4,
+    "source_length": 5,
+    "target_length_lower": 16,
+    "middle_catalecticant_rank_lower": 6,
+    "nonzero_matrix_entries": 6,
+    "boolean_points": 16
+  },
+  {
+    "n": 6,
+    "source_length": 7,
+    "target_length_lower": 64,
+    "middle_catalecticant_rank_lower": 20,
+    "nonzero_matrix_entries": 20,
+    "boolean_points": 64
+  },
+  {
+    "n": 8,
+    "source_length": 9,
+    "target_length_lower": 256,
+    "middle_catalecticant_rank_lower": 70,
+    "nonzero_matrix_entries": 70,
+    "boolean_points": 256
+  },
+  {
+    "n": 10,
+    "source_length": 11,
+    "target_length_lower": 1024,
+    "middle_catalecticant_rank_lower": 252,
+    "nonzero_matrix_entries": 252,
+    "boolean_points": 1024
+  }
+]
