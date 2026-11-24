@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Thin-Shell Batching: Exact Votes and Transfer Obstructions}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written audit, not a Lean formalization. It does not
+prove an improved asymptotic bound for head complexity. It isolates the
+precise output-value and input-geometry requirements of the thin-shell
+route. The scalar rational lower bound below concerns the explicitly
+specified scalar compiler, not unrestricted attention heads on a Boolean
+cube.
+
+\section{A direct derivation of the shell batching mechanism}
+
+The starting point is Michael Schmitt, \emph{Neural Networks with Local
+Receptive Fields and Superlinear VC Dimension}, ECCC TR01-045 (2001),
+Definition 2 and Theorem 2, especially pages 12--16 of
+\url{https://eccc.weizmann.ac.il/report/2001/045/download/}.
+The following proof gives the required finite-sample shell values
+directly.
+
+\begin{theorem}[Finite shell batching]
+Let $v_1,\ldots,v_R\in\mathbb R^m$, where $R=h(m+1)$.
+Assume that every nonempty subset of at most $m+1$ base points is
+contained in a sphere of positive radius that contains no other base
+point. For every binary labeling of
+\[
+ X=\{(v_i,e_j):1\le i\le R,\ 1\le j\le q\}
+ \subset\mathbb R^{m+q},
+\]
+there are at most $h+2^q$ spherical shells whose indicator functions
+sum to exactly the labeling on $X$.
+\end{theorem}
+
+\begin{proof}
+For each $A\subseteq\{1,\ldots,q\}$, let $C_A$ be the rows whose
+positive columns are exactly $A$. Partition each nonempty $C_A$ into
+batches $S$ of size at most $m+1$. There are at most
+\[
+ \sum_{A:C_A\ne\varnothing}
+       \left\lceil\frac{|C_A|}{m+1}\right\rceil
+ \le \frac{R}{m+1}+2^q=h+2^q
+\]
+batches. Empty-positive-column batches may be omitted.
+
+For one batch $S\subseteq C_A$, choose its sphere with center $c$ and
+radius $r>0$. Write
+\[
+ \tau_i=\|v_i-c\|^2-r^2.
+\]
+Thus $\tau_i=0$ exactly for $i\in S$. Choose $s>0$ with $s<1/2$
+and $4s<|\tau_i|$ for every $i\notin S$. Such an $s$ exists because
+the list of nonzero residuals is finite. Put
+\[
+ d_j=\begin{cases}0&j\in A,\\-s&j\notin A,\end{cases}
+ \qquad
+ \rho^2=r^2+1+(q-|A|)s^2.
+\]
+For every sample point,
+\[
+ \|(v_i,e_j)-(c,d)\|^2-\rho^2
+   =\tau_i+2s\,\boldsymbol1_{j\notin A}.
+\]
+The shell whose squared-distance residual has absolute value less
+than $s$ therefore contains precisely $S\times A$. Indeed its
+residual is zero on this rectangle, is $2s$ on
+$S\times A^c$, and has absolute value greater than $2s$ off $S$.
+Both shell radii $\sqrt{\rho^2-s}$ and $\sqrt{\rho^2+s}$ are real
+and positive. Every positive sample belongs to exactly its own
+batch's shell, and every negative sample belongs to none.
+\end{proof}
+
+\begin{lemma}[The required vote accuracy]
+Suppose $K$ shell indicators sum to a binary labeling on a finite
+sample. If each is replaced by a real-valued function with uniform
+absolute error at most $\varepsilon$, where $K\varepsilon<1/2$,
+then the sum of the replacements minus $1/2$ has the required strict
+sign at every sample.
+\end{lemma}
+
+\begin{proof}
+The total error has absolute value at most $K\varepsilon$ by the
+triangle inequality. The original score is either $-1/2$ or $1/2$.
+\end{proof}
+
+Thus $\varepsilon=1/(4K)$ suffices. Correct shell membership signs
+alone provide no such conclusion: a negative shell score can have
+arbitrarily large magnitude and overwhelm the one active positive
+shell.
+
+\paragraph{The spheres are not supporting spheres.}
+The proof requires $\tau_i\ne0$ off a batch, not $\tau_i>0$.
+For the one-dimensional base points $0,1,2,3$, the sphere through
+the batch $\{0,2\}$ has center $1$ and radius $1$. The excluded
+base point $1$ is inside and the excluded base point $3$ is outside.
+These four distinct real points satisfy the needed one-dimensional
+general-position conditions. Accordingly Schmitt's proof explicitly
+treats both sides of every sphere. A one-sided pole near a supporting
+boundary does not directly supply these votes.
+
+\section{The Boolean input and one-hot input budgets}
+
+\begin{proposition}[Boolean general-position obstruction]
+Let $m\ge1$. A subset of the Boolean $m$-cube in spherical general
+position has at most $m+1$ elements. More generally, a subset in
+affine general position has at most $2m$ elements, and the latter
+bound remains true after any invertible affine transformation.
+\end{proposition}
+
+\begin{proof}
+All Boolean vertices lie on the sphere with center
+$(1/2,\ldots,1/2)$ and radius $\sqrt m/2$. Spherical general position
+forbids $m+2$ points on an $(m-1)$-dimensional sphere, giving the first
+bound. For the second, each of the coordinate faces $x_1=0$ and
+$x_1=1$ lies in an affine hyperplane. Affine general position permits
+at most $m$ selected points in each. Invertible affine transformations
+preserve affine dependence.
+\end{proof}
+
+The full spherical-general-position hypothesis used to guarantee
+Schmitt's arbitrary batches therefore does not specialize directly
+to many Boolean base points. A different batching argument could
+weaken that hypothesis, but it would be a new construction.
+
+Alternatively, one can encode the $R$ real base points by $R$ Boolean
+one-hot row coordinates. Every prescribed row function can then be
+put in the coefficients of an affine form. This consumes $R$ input
+coordinates, not $m$. Moreover the exact support of each shell in
+the construction above is a rectangle $S\times A$.
+
+\begin{proposition}[An exact rectangle obstruction]
+If shell batching on an $n$ by $n$ one-hot grid is used solely through
+its exact nonnegative rectangular supports, some Boolean matrices
+require at least $n$ shells.
+\end{proposition}
+
+\begin{proof}
+Take the identity matrix. Every nonempty rectangle contained in its
+positive support consists of one diagonal entry: two distinct
+diagonal entries in one rectangle force an off-diagonal entry in
+that rectangle. All $n$ positive entries must be covered.
+\end{proof}
+
+Splitting the columns into blocks does not change this example. In
+particular the theorem's numerical budget $h+2^q$, even with
+$q$ of logarithmic size, cannot by itself be read as an $o(n)$-head
+compiler for arbitrary $n$ by $n$ grids. Allowing signed cancellation
+between new nonrectangular votes would be a different mechanism.
+
+\section{A quantitative obstruction to a scalar shell compiler}
+
+The squared distance on a product sample is additive in its row and
+column indices. It is tempting to apply a rational scalar bump to
+that distance. The following elementary theorem makes one limitation
+of that transfer precise.
+
+\begin{theorem}[Real-pole scalar flattening costs logarithmically]
+Let $H\ge1$ and let
+\[
+ F(t)=c+\sum_{a=1}^H
+       \frac{\alpha_a+\beta_a t}{\gamma_a+\delta_a t},
+ \qquad -1\le t\le1,
+\]
+where every denominator is strictly positive throughout $[-1,1]$.
+If $0<\varepsilon\le1/2$, $F(0)\ge1-\varepsilon$, and
+$|F(t)|\le\varepsilon$ for all $t\in[1/2,1]$, then
+\[
+ \frac12\le \varepsilon\,16^H.
+\]
+In fact it suffices to require the small-value bound at the $H+1$
+points $t_j=(H+j)/(2H)$ for $0\le j\le H$.
+\end{theorem}
+
+\begin{proof}
+Normalize each denominator by its positive value at zero. It becomes
+$1+a_at$ with $|a_a|<1$. Thus
+\[
+ Q(t)=\prod_{a=1}^H(1+a_at),\qquad P(t)=Q(t)F(t)
+\]
+satisfy $Q(0)=1$, $0<Q(t)\le2^H$ on $[0,1]$, and
+$\deg P\le H$. Hence $|P(t_j)|\le\varepsilon2^H$.
+For the Lagrange interpolation basis at these points,
+\[
+ |L_j(0)|
+ =\frac{\prod_{0\le k\le H,\ k\ne j}(H+k)}{j!(H-j)!}
+ =\frac{(2H)!}{(H-1)!(H+j)j!(H-j)!}.
+\]
+Since $H+j\ge H$, summing gives
+\[
+ \sum_{j=0}^H|L_j(0)|
+ \le \frac{(2H)!}{H!}
+             \sum_{j=0}^H\frac1{j!(H-j)!}
+ =2^H\binom{2H}{H}
+ \le8^H.
+\]
+Interpolation therefore implies
+\[
+ \frac12\le1-\varepsilon\le P(0)
+ \le\sum_{j=0}^H|P(t_j)||L_j(0)|
+ \le\varepsilon16^H.
+\]
+\end{proof}
+
+For $K$ summable shell votes, the sufficient error $1/(4K)$ in the
+preceding lemma forces $16^H\ge2K$ for a compiler satisfying this
+scalar theorem's uniform requirement. Thus its cost is
+$\Omega(\log K)$ per shell. When the original shell batching gain is
+of order $q\asymp\log K$, this cost erases that gain.
+
+This conclusion has precise limitations. A specially chosen finite
+sample need not contain the interpolation nodes. An original
+attention head may use coordinates other than the scalar distance.
+An affine line inside the continuous cube contains at most two
+Boolean vertices. The theorem is consequently not a lower bound
+for all admissible heads, and does not exclude a joint, geometry
+dependent shell synthesis. Such a synthesis, with whole-cube
+admissibility and summable votes, is the missing transfer step.
+
+\end{document}
