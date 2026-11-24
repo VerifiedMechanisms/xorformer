@@ -1,0 +1,11 @@
+{
+  "status": "exact finite checks passed; universal theorem is the written proof",
+  "divided_difference_identities": 224,
+  "symmetric_numerator_checks": 224,
+  "numerator_evaluation_matrix_shape": [
+    16,
+    14
+  ],
+  "numerator_evaluation_matrix_rank": 10,
+  "sign_dominance_equivalence_cases": 450
+}

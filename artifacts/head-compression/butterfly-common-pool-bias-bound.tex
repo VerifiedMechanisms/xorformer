@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{A compact common-pool bound with target-dependent block biases}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written obstruction to a restricted butterfly decoder.
+It allows a new bias for every target and every input Haar block, but
+requires one fixed signed residue pool for every target. It does not
+cover target-dependent residues, and is not a lower bound for the
+original HeadComplexity model. The algebraic identities and the rank
+calculation have an exact rational companion check. This theorem has not
+been formalized in Lean.
+
+Fix a positive even integer $q=2m$, real numbers $0\leq a<b$, and poles
+$\xi_{s,e}\in[0,a]$ and residues $r_{s,e}\in\mathbb R$, for
+$1\leq s\leq q$ and $e\in\{0,1\}$. Define
+\[
+ F_s(t)=\frac{r_{s,0}}{t-\xi_{s,0}}
+       -\frac{r_{s,1}}{t-\xi_{s,1}},\qquad t\geq b.
+\]
+Fix query times $t_1,\ldots,t_q\geq b$. Say that this pool admits
+\emph{all labels with a target-dependent common bias} if for every
+$\eta\in\{-1,1\}^q$ there is $\beta_\eta\in\mathbb R$ such that
+\[
+ \eta_i\left(\sum_{s=1}^q\eta_s F_s(t_i)+\beta_\eta\right)>0
+ \quad\hbox{for every }1\leq i\leq q.                 \tag{1}
+\]
+There is no bound on the residues or biases.
+
+\begin{theorem}
+If (1) holds, then
+\[
+ q<20\left[1+\left(\frac b{b-a}\right)^{16}\right].    \tag{2}
+\]
+Consequently, if $a/b<1-(5/11)^{1/16}$, no such pool admits
+$q\geq64$ labels.
+\end{theorem}
+\begin{proof}
+Partition the $q$ indices into pairs $(a_i,b_i)$, $1\leq i\leq m$.
+Restrict the labels to $\eta_{a_i}=\varepsilon_i$ and
+$\eta_{b_i}=-\varepsilon_i$, where the $m$ signs $\varepsilon_i$
+vary independently. Subtract the two inequalities associated with
+$a_i,b_i$. The common bias disappears, giving
+\[
+ \varepsilon_i\sum_{j=1}^m C_{ij}\varepsilon_j>0,
+ \quad
+ C_{ij}=(F_{a_j}-F_{b_j})(t_{a_i})
+              -(F_{a_j}-F_{b_j})(t_{b_i}).           \tag{3}
+\]
+For fixed $i$, choose the other signs to minimize the left side.
+This proves strict row diagonal dominance:
+\[
+ C_{ii}>\sum_{j\ne i}|C_{ij}|.                       \tag{4}
+\]
+In particular $t_{a_i}\ne t_{b_i}$.
+
+Each function $F_{a_j}-F_{b_j}$ is a sum of four terms
+$\rho_{j\ell}/(t-\zeta_{j\ell})$, where all four poles are in
+$[0,a]$. Repeated poles and zero residues are allowed. Put
+\[
+ R_j(u,v)=\sum_{\ell=1}^4
+       \frac{\rho_{j\ell}}{(u-\zeta_{j\ell})(v-\zeta_{j\ell})},
+ \quad
+ D_j(u,v)=\prod_{\ell=1}^4
+           (u-\zeta_{j\ell})(v-\zeta_{j\ell}).        \tag{5}
+\]
+Then $C_{ij}=(t_{b_i}-t_{a_i})R_j(t_{a_i},t_{b_i})$.
+Write $P_j=D_jR_j$. This is a symmetric polynomial in $(u,v)$,
+with degree at most three in each variable. Such polynomials form a
+space of dimension ten, with basis
+\[
+ u^r v^r\ (0\leq r\leq3),\qquad
+ u^r v^s+u^s v^r\ (0\leq r<s\leq3).                 \tag{6}
+\]
+At $(u_i,v_i)=(t_{a_i},t_{b_i})$, $P_i(u_i,v_i)$ is nonzero by
+(4). Hence the matrix
+\[
+ M_{ij}=\frac{P_j(u_i,v_i)}{P_i(u_i,v_i)}              \tag{7}
+\]
+has diagonal one and rank at most ten. Moreover
+\[
+ \left|\frac{R_j(u_i,v_i)}{R_i(u_i,v_i)}\right|
+ =|M_{ij}|\frac{D_i(u_i,v_i)}{D_j(u_i,v_i)}.
+\]
+For every $u,v\geq b$, positivity of the factors gives
+\[
+ \frac{D_j(u,v)}{D_i(u,v)}
+ \leq\left(\frac u{u-a}\right)^4
+      \left(\frac v{v-a}\right)^4
+ \leq L:=\left(\frac b{b-a}\right)^8.                \tag{8}
+\]
+Combining (4) and (8) yields $\sum_{j\ne i}|M_{ij}|<L$.
+Thus $\|M\|_F^2<m(1+L^2)$. The singular-value inequality
+$|\operatorname{tr}M|\leq\sqrt{\operatorname{rank}M}\|M\|_F$
+now gives
+\[
+ m^2<10m(1+L^2).
+\]
+Since $m=q/2$, this is (2). Under the stated numerical condition,
+$(b/(b-a))^{16}<11/5$, so the right side of (2) is less than 64.
+\end{proof}
+
+\paragraph{Application to butterfly Haar queries.}
+At a fixed level $k$ and input block $g$, there are $q=2^k$
+independent switch bits. Fix one output representative in each of the
+$2^{k+1}$ lower-bit residue classes. Set all earlier switches to the
+identity. After layer $k$, the tracked wires have distinct lower
+$k+1$ bits, so they never share a later switch. Set each later switch
+on a tracked path to route that wire to its chosen representative.
+These choices never conflict. For every choice of the $q$ layer-$k$
+bits the normalized input-Haar score is therefore exactly
+$\sum_s\eta_s F_s(t_i)$, with the same functions $F_s$ for all
+choices of $\eta$. A bias depending on the complete target word gives
+one scalar $\beta_\eta$ in this block. Thus (1) is necessary for any
+common-pool decoder that succeeds on every butterfly setting.
+
+It follows that, in an arbitrarily compact pole family, a common signed
+residue pool cannot decode all levels of growing butterfly networks,
+even with target-dependent block biases. Levels with $2^k\geq64$ are
+excluded for the displayed compactness range. The finite eight-wire
+common-pool certificate is consistent with this bound. No assertion is
+made that the numerical constant 64 is sharp. Selecting a restricted
+family of later routings, or changing the residues with the target,
+remains outside the theorem.
+\end{document}
