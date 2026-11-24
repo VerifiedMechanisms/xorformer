@@ -1,0 +1,16 @@
+UTC verification date: 2026-11-24
+Working directory: /work/formalization
+Command: lake build
+Exit code: 0
+Build completed successfully (9307 jobs).
+
+The build includes JointCubeBenchmarkTransfer, JointCellHistogramAudit,
+LargeDomainCauchySharedPool, Results.All, and the default HeadComplexity target.
+Pre-existing style and unused-hypothesis warnings remain nonfatal.
+
+Command: lake env lean ../artifacts/head-compression/joint-cube-benchmark-audit.lean
+Exit code: 0
+The complete transitive axiom output is in joint-cube-benchmark-axioms.txt.
+Every listed declaration uses only propext, Classical.choice, and Quot.sound.
+The benchmark transfer declarations retain explicit decoder hypotheses;
+this axiom check does not prove those hypotheses.

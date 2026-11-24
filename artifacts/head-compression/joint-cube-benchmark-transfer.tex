@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\begin{document}
+\title{The Remaining Quantitative Joint Cube Decoder Target}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The transfers in this note are kernel checked. The decoder existence
+hypothesis is open. In particular, this note does not assert an unconditional
+power saving or an unbounded improvement to the logarithmic saving.
+The original head model and worst-case complexity definition are unchanged.
+
+\paragraph{General gain.}
+Write $n=k+s$, suppose $s\geq16$ and $n\leq3s$, and let $0<g\leq n$.
+If a reverse cube-star compiler uses at most $M$ heads for every independently
+labelled table on $\{0,1\}^k\times[s]$, and
+$Mg\leq A2^k$ with $A\geq0$, then
+\[
+ W(n)\leq(66A+1)\frac{2^n}{ng}.
+\]
+The input to this statement includes positivity of every local denominator
+on the whole Boolean cube, strict negative local slopes, and exact zero
+column-axis values. The existing gluing theorem supplies original-model
+atoms, preserves prior strict signs, and charges the exceptional face.
+Its initial count is $22\cdot2^sM/s+2^{k+1}$.
+For the main term use $n\leq3s$.
+For the exceptional term, induction gives $18s^2\leq2^s$ for $s\geq16$,
+so $2ng\leq2n^2\leq18s^2\leq2^s$.
+This proves the displayed constant without discarding exceptions.
+
+\paragraph{Permutation tangent target.}
+The checked weighted permutation tangent construction uses two banks,
+so a local budget $Hg\leq A2^k$ gives
+\[
+ W(k+s)\leq(132A+1)\frac{2^{k+s}}{(k+s)g}.
+\]
+All row directions, pole locations, affine perturbations and permutation
+catalogs may depend on the complete family of independently chosen labels.
+They must be common within that family in exactly the way specified by
+\texttt{HasCompactWeightedPermutationTangentDecoder}. The decoder is required
+for every positive compactness width, so its conversion pays the full-cube
+column margin rather than just the one-hot margin.
+
+Take $k=\lfloor n/2\rfloor$ and $s=n-k$. For every $n\geq32$, the explicit
+remaining sufficient condition is
+\[
+ H\sqrt{k}\leq A2^k,
+ \qquad
+ \texttt{HasCompactWeightedPermutationTangentDecoder}(k,s,H).
+\]
+It would imply
+\[
+ W(n)\leq(264A+2)\frac{2^n}{n\sqrt n}.
+\]
+Indeed $n\leq4k$ gives $\sqrt n\leq2\sqrt k$.
+This reduction identifies the exact missing existence theorem; neither
+feature rank, finite successful label samples, nor the size of a permutation
+catalog proves that theorem.
+
+\paragraph{Declarations.}
+All are in
+\texttt{formalization/HeadComplexity/Results/JointCubeBenchmarkTransfer.lean}:
+\begin{itemize}
+\item \texttt{AxisZeroGluing.worstCaseHeadComplexity\_real\_le\_of\_cube\_star\_gain};
+\item \texttt{LargeDomain.worstCaseHeadComplexity\_real\_le\_of\_weighted\_tangent\_gain};
+\item \texttt{LargeDomain.worstCaseHeadComplexity\_real\_le\_of\_weighted\_tangent\_sqrt\_gain};
+\item \texttt{LargeDomain.worstCaseHeadComplexity\_real\_le\_sqrt\_of\_balanced\_weighted\_tangent}.
+\end{itemize}
+Each declaration has the prefix \texttt{HeadComplexity}.
+\end{document}

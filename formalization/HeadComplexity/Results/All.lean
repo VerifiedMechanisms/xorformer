@@ -63,6 +63,9 @@ import HeadComplexity.Results.GradedShellTransfer
 import HeadComplexity.Results.JointCellAdaptivePoleCapacity
 import HeadComplexity.Results.LargeDomainCauchyLocalization
 import HeadComplexity.Results.JointFamilyGatedDifferences
+import HeadComplexity.Results.JointCellHistogramAudit
+import HeadComplexity.Results.LargeDomainCauchySharedPool
+import HeadComplexity.Results.JointCubeBenchmarkTransfer
 import HeadComplexity.Results.UniversalAxisLogCompiler
 import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms

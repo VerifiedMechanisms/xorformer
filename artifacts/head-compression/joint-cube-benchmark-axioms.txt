@@ -1,0 +1,25 @@
+'HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_of_cube_star_gain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.worstCaseHeadComplexity_real_le_of_weighted_tangent_gain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.worstCaseHeadComplexity_real_le_of_weighted_tangent_sqrt_gain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.worstCaseHeadComplexity_real_le_sqrt_of_balanced_weighted_tangent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_cauchy_zero_fiber_coefficients' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_cauchy_histogram_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_binary_marginals_do_not_determine_cauchy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.no_shared_positive_cauchy_pool' depends on axioms: [propext, Classical.choice, Quot.sound]
