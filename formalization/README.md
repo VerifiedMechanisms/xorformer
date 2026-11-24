@@ -3,7 +3,7 @@
 Lean 4 formalization of the head-complexity results for one-layer attention. The
 definitions and theorems mirror the informal proofs in the top-level `theorems/` writeups.
 
-## Status: thirteen formalized theorems
+## Status: vanilla results and rotary scalar comparisons
 
 Every theorem in `theorems/01_foundations_and_normal_form/` (L1–L12) is machine-checked
 for **general `n`**, with no `sorry`/`admit`, depending only on the three standard
@@ -20,6 +20,15 @@ constant denominator requires numerator slopes with `UniformSign` as well.
 Here `UniformSign` means all strictly positive, all strictly negative, or all zero.
 The numerator constant is unrestricted.
 
+Theorem 14 adds `PureRoPEAtom` and `RetainedRoPEAtom`, their minimum counts,
+the scalar comparison with vanilla, and exact symmetric-family results.
+The scalar statements and an exact-score separation are machine-checked.
+The finite-frequency interpolation connecting these atoms to literal rotary
+attention is a handwritten proof in the
+[RoPE writeup](../theorems/03_rotary_attention/014_rope_head_complexity.md).
+Universal equality with vanilla, or a strict Boolean head-count separation,
+remains unresolved here.
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |
@@ -35,6 +44,7 @@ The numerator constant is unrestricted.
 | 11 | levels 0/1: const / nonconstant LTF | `HStar_eq_zero_iff`, `HStar_eq_one_iff` | `Results/LowComplexity.lean` |
 | 12 | symmetric `H*=C(F)` (sign changes) | `HStar_symmetricFn` | `Results/SymmetricComplexity.lean` |
 | 13 | explicit strict separation `deg±<H*` | `f10_strict_separation` | `Results/StrictSeparation.lean` |
+| 14 | rotary scalar comparison and symmetric equality | `pureRoPEHStar_le_vanilla`, `retainedRoPEHStar_le_pure`, `thresholdDeg_le_retainedRoPEHStar`, `ropeHStar_symmetric` | `Atoms/RoPE.lean`, `Results/RoPEComparison.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
