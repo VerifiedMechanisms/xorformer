@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\begin{document}
+\title{Deep Real Memory and the Cost of a Flat Rational Decoder}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a primary-source transfer audit with complete written proofs
+of the stated scalar-decoder obstructions. It contains no Lean proof
+and gives no new unrestricted head-complexity lower bound. In
+particular, an arbitrary reparameterization of all head weights,
+or a joint multivariate code, is outside the obstruction.
+
+\section{What the quadratic-capacity construction actually uses}
+
+Koiran and Sontag, \emph{Neural Networks with Quadratic VC Dimension},
+JCSS 54 (1997), 190--198,
+\href{https://sontaglab.org/FTPDIR/quadratic-vc.pdf}{author-hosted paper},
+Proposition 1 and Theorems 2, 4, and 6, give two mechanisms.
+The first selects a stored real, repeatedly extracts a bit, updates
+the remainder, and finally selects an output bit. Its sigmoid
+simulation uses large weights for threshold gates and small weights
+for linear gates, preserving the sequential composition. The second
+uses iterates of $\phi(w)=4w(1-w)$, whose symbolic itineraries encode
+arbitrary words. Input and output selection use Lagrange interpolation,
+written as a product times a sum of reciprocals. Those reciprocal
+denominators have interior signed poles. The more general smooth
+activation result simulates multiplication by a second-order Taylor
+limit. None of these constructions is a single hidden layer of
+exterior affine reciprocals.
+
+The following statements isolate a precise cost of flattening the
+scalar decoder. They apply even when the coefficients of each
+individual query are otherwise unrestricted.
+
+\section{An exact oscillation obstruction}
+
+\begin{lemma}[Degree after clearing positive affine denominators]
+Let
+\[
+ R(w)=b+\sum_{h=1}^H\frac{a_h+c_hw}{d_h+e_hw},
+ \qquad d_h+e_hw>0\quad(0\le w\le1).
+\]
+If $R$ has alternating strict signs at ordered points
+$w_0<\cdots<w_m$ in $[0,1]$, then $H\ge m$.
+\end{lemma}
+\begin{proof}
+Multiplication by the positive product of the denominators preserves
+every sign and yields the polynomial
+\[
+ P(w)=b\prod_h(d_h+e_hw)
+       +\sum_h(a_h+c_hw)\prod_{g\ne h}(d_g+e_gw),
+\]
+of degree at most $H$. It is not the zero polynomial because its
+values at the specified points are nonzero. The intermediate value
+theorem gives a different zero in each of the $m$ disjoint intervals
+$(w_{j-1},w_j)$. Thus $\deg P\ge m$.
+\end{proof}
+
+\begin{theorem}[Flattening a logistic iterate costs exponentially]
+For every integer $k\ge0$, a sum of $H$ affine ratios with
+denominators positive on $[0,1]$ that agrees in strict sign with
+$\phi^{\circ k}(w)-1/2$ at all of its successive extrema must have
+$H\ge2^k$.
+\end{theorem}
+\begin{proof}
+The elementary double-angle identity gives
+\[
+ \phi(\sin^2t)=\sin^2(2t),\qquad
+ \phi^{\circ k}(\sin^2t)=\sin^2(2^kt).
+\]
+Put
+\[
+ w_j=\sin^2\left(\frac{j\pi}{2^{k+1}}\right),
+             \qquad 0\le j\le2^k.
+\]
+These points increase strictly from zero to one, and
+$\phi^{\circ k}(w_j)=\sin^2(j\pi/2)$ alternates between zero
+and one. Apply the preceding lemma to the $2^k$ resulting sign
+changes. The proof uses only this finite set of test points.
+\end{proof}
+
+This theorem permits arbitrary cancellation among all heads. Its
+hypothesis also follows if each affine denominator is positive only
+at the two endpoints, since an affine function positive at both
+endpoints is positive throughout the interval. It therefore cannot
+be evaded by putting a pole between the test points while retaining
+endpoint admissibility.
+
+For a decoder with $q$ successive logistic itinerary bits, the last
+bit uses $k=q-1$, so the same direct flat realization needs at least
+$2^{q-1}$ heads. This is a restriction on that decoder, not a claim
+that every possible $q$-bit code has its particular itinerary order.
+
+\section{Arbitrary scalar codes still require many scalar crossings}
+
+\begin{theorem}[A scalar-reader pattern bound]
+Suppose $q$ fixed query scores $R_1(w),\ldots,R_q(w)$ each have
+the form in the lemma with at most $H$ heads, and every denominator
+is positive on one common interval. If varying the scalar memory
+$w$ within that interval realizes all $2^q$ strict sign words, then
+\[
+                         2^q\le qH+1.
+\]
+\end{theorem}
+\begin{proof}
+Clear the positive denominators separately in each query, obtaining
+polynomials $P_i$ of degree at most $H$. An identically zero $P_i$
+would prevent strict shattering, so no $P_i$ is zero. Their combined
+real zero set in the interval has at most $qH$ points. On each of
+its at most $qH+1$ complementary intervals, all $q$ signs are
+constant. At a zero at least one sign is not strict. Thus at most
+$qH+1$ strict words can occur.
+\end{proof}
+
+The theorem permits query-specific affine coefficients and poles.
+It does not cover a memory map $w\mapsto\theta(w)$ whose coordinates
+are themselves unrestricted nonlinear functions of $w$. Such a
+map must be supplied and audited as a new construction; it is not
+part of a gate-by-gate transfer of the scalar decoder.
+
+\section{The local operation that does transfer}
+
+There is no obstruction to approximating one multiplication of
+affine input functions. For example, let $L$ be any fixed affine
+function on a finite Boolean cube, let
+$D_t=1+\sqrt t\sum_i x_i$, and take $t>0$ sufficiently small.
+Then both $D_t\pm tL$ are positive and have strictly positive
+slopes, and
+\[
+ \frac1{2t}\left(\frac{L}{D_t-tL}-\frac{L}{D_t+tL}\right)
+       =\frac{L^2}{D_t^2-t^2L^2}\longrightarrow L^2
+\]
+uniformly on the cube. Thus two admissible heads give an affine
+square in the limit. Polarization gives products of affine
+functions at constant cost. A later gate in the logistic decoder,
+however, receives a nonlinear polynomial, not an affine input.
+The exponential crossing theorem proves that recursively reusing
+this local identity cannot be flattened at constant cost per
+iteration.
+
+The interpolation reciprocals in Theorem 6 of the cited paper
+also fail a direct transfer: $j-\epsilon-i$ takes both signs as
+$j$ ranges over the interpolation nodes whenever $i$ is interior.
+No single sign change of that denominator makes it positive at
+all nodes. The accompanying product is an essential part of the
+value interpolation and is not an admissible affine numerator.
+
+\section{Smooth parameter dimension does not create a logarithm}
+
+Lee, Bartlett, and Williamson's 1997
+\href{https://doi.org/10.1162/neco.1997.9.4.765}{published correction}
+withdraws the generic boundary-uniqueness theorem used in their 1995
+article. The correction retains a lower bound proportional to the
+number of parameters for the tanh case, including small parameter
+ranges. The
+\href{https://www.researchgate.net/publication/242919186_Correction_to_Lower_Bounds_on_VC-Dimension_of_Smoothly_Parameterized_Function_Classes}{publisher preview}
+states the correction explicitly. It supplies no extra logarithmic
+factor and no flat rational bit decoder.
+
+A direct counterexample to the unqualified uniqueness principle is
+$F(a,x)=\|x-a\|^2$ with $a,x\in\mathbb R^d$, $d\ge2$. Its zero
+sets are distinct singletons for distinct $a$, but the classifiers
+$\mathbf1[F(a,x)>0]$ have VC dimension one: a singleton can receive
+either label, while two distinct points cannot both receive zero.
+The parameter manifold has dimension $d$. Under the stricter
+convention that all classified values must be nonzero, the same
+family has only the all-positive strict pattern.
+
+For comparison, the valid elementary local criterion is this:
+if the evaluation map
+\[
+ a\longmapsto(F(a,x_1),\ldots,F(a,x_m))
+\]
+vanishes at some parameter and has differential of rank $m$ there,
+then its image contains a neighborhood of zero, by restricting to
+an $m$-dimensional coordinate slice and applying the inverse
+function theorem. Hence it realizes all $2^m$ strict orthants
+locally. This criterion requires $m$ no larger than the parameter
+dimension. It cannot by itself prove the desired superlinear
+information per real parameter.
+
+\paragraph{Conclusion of the transfer audit.}
+The deep constructions are unconditional memory constructions,
+and their one-step Taylor simulation is compatible with the
+original affine-ratio model. Their repeated decoder and their
+interior interpolation poles do not transfer to one layer at
+comparable head cost. The missing step is a different joint memory
+decoder, not an omitted routine depth reduction. No global upper
+bound improvement follows from these sources.
+\end{document}
