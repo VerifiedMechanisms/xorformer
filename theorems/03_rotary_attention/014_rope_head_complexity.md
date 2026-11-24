@@ -19,6 +19,8 @@ Both rotary complexities are independent of whether the frequencies are fixed to
 
 **Equality cases.** All inequalities are equalities whenever $H_V(f)=\deg_{\pm}(f)$. In particular this covers every symmetric Boolean function, including parity and exact-count predicates, and every linear threshold function. Constants need zero heads.
 
+[Theorem 15](015_pure_rope_two_heads_complement_invariant.md) additionally proves that a function invariant under complementing every input bit cannot separate pure RoPE from vanilla with two pure heads.
+
 **Unresolved comparison.** This writeup does not prove $H_P(f)=H_V(f)$ or $H_A(f)=H_V(f)$ for every Boolean function, and does not provide a Boolean function with a strict head-count separation. It proves the non-strict inequalities and reduces the remaining questions to explicit scalar normal forms. The strict score separation below is not a head-count separation.
 
 ## Model conventions

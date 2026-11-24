@@ -8,6 +8,7 @@ import HeadComplexity.Results.LowComplexity
 import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.StrictSeparation
 import HeadComplexity.Results.RoPEComparison
+import HeadComplexity.Atoms.RoPEReorientation
 
 set_option linter.style.header false
 
