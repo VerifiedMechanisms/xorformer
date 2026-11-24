@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,fullpage}
+\begin{document}
+\title{A Cycle Test for the Paired Haar Decoder}
+\author{}\date{November 24, 2026}\maketitle
+
+\paragraph{Scope and status.}
+This is an exact rational and truncated power-series calculation, with an
+independently executable integer-arithmetic checker. It is not Lean checked.
+It disproves a particular proposed factorization of the query matrix, not
+the feasibility of the paired Haar sign decoder. It changes no model
+definition and proves no bound on worst-case head complexity.
+
+\paragraph{The proposed positive mechanism.}
+Use the paired Haar prescription from
+\texttt{butterfly-paired-offset-decoder.tex}. For $H=2^d$, let
+$\gamma_k=\varepsilon^{2^k}$,
+$p_y=\sum_k y_k\gamma_k$, $D_s=1-p_s$, and let $\pi$ be the butterfly
+permutation prescribed by the switch bits. With arbitrary residues
+$a_h$ and block biases $\beta_{kg}$, the query is
+\[
+ F_{ksg}=\beta_{kg}+\sum_h U_{kg}(h)
+ \left(\frac{a_h+\gamma_k}{D_s-p_{\pi(h)}}
+ -\frac{a_h-\gamma_k}{D_s+\gamma_k-p_{\pi(h)}}\right).
+\]
+Write its residue coefficient matrix as $A$, so that
+\[
+ A_{(k,s,g),h}=
+ \frac{U_{kg}(h)\gamma_k}
+ {(D_s-p_{\pi(h)})(D_s+\gamma_k-p_{\pi(h)})}.
+\]
+Let $B$ be the oriented incidence matrix on the original input paths:
+for switch $(k,s,g)$, its row is $-1$ on the path entering wire
+$(s,0,g)$ and $+1$ on the path entering $(s,1,g)$ immediately before
+stage $k$. Let $Z$ be the block-bias matrix, with one column per $(k,g)$.
+
+One possible proof of simultaneous feasibility would factor
+$A=BT+ZC$ for a suitable invertible vertex operator $T$. A vertex
+potential increasing in the lexicographic output-token order has the
+correct sign on every oriented switch edge. If this factorization held,
+applying $T^{-1}$ and adjusting block biases would recover those edge
+signs. The following cycle excludes this exact route for the literal
+query prescription.
+
+\paragraph{An eight-token counterexample.}
+Use the checker switch order, increasing $k$, then $s$, then $g$, and
+choose
+\[
+ \theta=(1,0,1,0,\ 1,1,1,1,\ 1,1,1,1),
+ \qquad
+ \lambda=(0,0,0,0,\ 1,-1,-1,1,\ 1,-1,-1,1).
+\]
+Direct integer evaluation gives
+$\lambda^{\mathsf T}B=0$ and $\lambda^{\mathsf T}Z=0$.
+Nevertheless, at residue column zero,
+\[
+ (\lambda^{\mathsf T}A)_0=-2\varepsilon^3+O(\varepsilon^4).
+\]
+All denominator polynomials have constant coefficient one. Thus their
+power series exist in a neighborhood of zero, and the nonzero leading
+coefficient proves that $A=BT+ZC$ is impossible for every sufficiently
+small positive $\varepsilon$. At $\varepsilon=1/100$ the checker also
+computes a nonzero negative rational value directly.
+
+The checker \texttt{JointFamilyHaarCycle.py} uses only Python integers
+and fractions. It constructs the paths and incidence matrix, checks both
+annihilations, and computes the displayed Taylor coefficients by truncated
+unit-series inversion. Its exact output is stored in
+\texttt{joint-family-haar-cycle.json}.
+
+\paragraph{What remains possible.}
+The cycle has both signs and is not a nonnegative Farkas certificate for
+the desired query inequalities. It therefore does not refute the paired
+Haar decoder, even for this particular switch table. An inequality-based
+energy comparison, modified query times, or an additional correction
+matrix may evade the factorization obstruction. Any such correction must
+be charged across independently labelled table columns and verified for
+full-cube positivity before it contributes an upper bound in the original
+model.
+\end{document}
