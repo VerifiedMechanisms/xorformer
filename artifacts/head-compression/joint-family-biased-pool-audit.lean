@@ -1,0 +1,3 @@
+import HeadComplexity.Results.JointFamilyBiasedCauchyPool
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_biased_pool_identity
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_no_biased_cauchy_pool

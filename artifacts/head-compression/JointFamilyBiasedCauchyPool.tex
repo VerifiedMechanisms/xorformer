@@ -1,0 +1,77 @@
+\section{A shared leading residue pool fails even with node biases}
+
+This checkpoint concerns one proposed inductive invariant for the paired Haar
+decoder.  It is not a lower bound for the original xorformer model, nor a
+counterexample to the full paired decoder.
+
+Let $K_{ij}=(1-p_i-p_j)^{-2}$.  A shared leading residue vector $v$ for two
+child words $\sigma,\tau\in\{-1,1\}^q$ would require real biases $b,c$ with
+\[
+ \sigma_i((K\operatorname{diag}(\sigma)v)_i+b)>0,
+ \qquad
+ \tau_i((K\operatorname{diag}(\tau)v)_i+c)>0
+ \quad(0\leq i<q).
+\]
+The entries of $v$ are unrestricted real numbers.  Separate biases therefore
+do not rescue this particular shared-pool invariant.
+
+\paragraph{Kernel-checked finite counterexample.}
+Take $q=5$, $p_i=i/20$,
+$\sigma=(1,-1,-1,1,-1)$ and $\tau=(1,-1,1,-1,1)$.
+Eliminate the bias by subtracting a negative query from a positive query in
+each word.  The six rows with indices
+\[
+ (\sigma,0,2), (\sigma,3,1), (\sigma,3,4),
+ (\tau,0,3), (\tau,2,1), (\tau,4,1)
+\]
+have a strictly positive integer dependence.  The coefficients are recorded
+as \texttt{jointFamilyPoolWeights} in
+\texttt{JointFamilyBiasedCauchyPool.lean}; the exact identity is
+\texttt{jointFamily\_biased\_pool\_identity}.  Consequently their six
+evaluations cannot all be positive.  The declaration
+\texttt{jointFamily\_no\_biased\_cauchy\_pool} proves the impossibility
+with arbitrary real $v,b,c$.
+
+\paragraph{The original compact pole hierarchy also fails.}
+For $q=8$, let
+$p_y=y_0\varepsilon+y_1\varepsilon^2+y_2\varepsilon^4$ and use
+\[
+ \sigma=(1,1,1,1,-1,1,-1,-1),\qquad
+ \tau=(1,-1,-1,-1,1,1,1,1).
+\]
+Write $R_{w,a,b}=(K_{a,*}-K_{b,*})\operatorname{diag}(w)$.
+The nine rows
+\[
+ R_{\sigma,0,6}, R_{\sigma,0,7}, R_{\sigma,1,4},
+ R_{\sigma,2,4}, R_{\sigma,2,6}, R_{\sigma,3,4},
+ R_{\tau,0,3}, R_{\tau,5,1}, R_{\tau,5,2}
+\]
+have a positive dependence for every sufficiently small
+$\varepsilon>0$.  Define its last weight to be $1$ and solve the first
+eight transposed columns for the remaining weights over
+$\mathbb Q(\varepsilon)$.  Exact Gaussian elimination gives the leading
+terms
+\[
+ \left(\frac{135}{7},\frac{8}{3\varepsilon},1,
+ \frac{128}{7},\frac{8}{3\varepsilon},\frac{8}{3\varepsilon},
+ 1,\frac{8}{3\varepsilon},1\right).
+\]
+All are positive.  The eight pivot leading terms are nonzero, so the
+rational functions are defined on a punctured neighborhood of zero.
+Their defining equations give an exact zero linear combination of the
+nine rows.  Each row would have strictly positive evaluation under the
+claimed inequalities, a contradiction.
+
+The file \texttt{JointFamilyBiasedPoolGerm.py} independently reconstructs
+the rational-function linear system and verifies its pivot and weight
+leading terms using exact truncated formal series, with 332 coefficients
+of final precision.  This is an exact finite computation supporting the
+written rational-function proof, not a kernel-checked Lean theorem.
+
+\paragraph{What remains possible.}
+The full paired Haar system has separate residues on the two poles in
+each split pair.  Their sums can diverge as the split gap tends to zero,
+creating additional higher-order terms.  The obstruction above assumes
+one common leading residue difference; it does not constrain those
+extra terms.  It also leaves label-dependent pole locations, different
+query times, and different simultaneous decoding constructions open.

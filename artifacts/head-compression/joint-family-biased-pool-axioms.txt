@@ -1,0 +1,6 @@
+'HeadComplexity.AxisZeroGluing.jointFamily_biased_pool_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_no_biased_cauchy_pool' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
