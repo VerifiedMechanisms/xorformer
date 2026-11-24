@@ -119,7 +119,17 @@ signs of $\mu_k(S)$.
 For a binary tree with $H-1$ proper right-child masks, a fixed numerator
 therefore supplies at most $[2(d+1)]^{H-1}$ descendant patterns in this
 generic germ regime. The bound is independent of how many fixed times
-are queried at each mask. Even allowing $N$ to vary, the full collection
+are queried at each mask. In fact the fixed-numerator bound improves to
+$\exp(O(H))$: a mask of cardinality $M$ can only have valuation
+$2^j-1$ when $2^j\leq M$, since it is then a union of blocks of size
+$2^j$. There are $H/(2M)$ right-child masks of size $M$ in the complete
+tree. Consequently the logarithm of the profile-count product is at most
+\[
+ \sum_{j=0}^{d-1}\frac{H}{2^{j+1}}\log(2(j+1))=O(H),
+\]
+because the corresponding infinite series converges. This refinement
+was identified independently by the companion decoder audit.
+Even allowing $N$ to vary, the full collection
 of master signs $\operatorname{sgn}N_{\leq 2^j-1}(t)$ is determined by
 at most $q(d+1)$ linear forms in the $H$ coefficients of $N$, where $q$
 is the total number of queries. The elementary central-hyperplane
