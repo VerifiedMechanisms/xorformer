@@ -242,6 +242,69 @@ Analogous sampled rays for targeted $(k,H)=(4,4)$ banks covered only about
 55000 of 65536 patterns. Incomplete sampling is not an impossibility
 certificate. A recursive or asymptotic coverage theorem remains open.
 
+\section{Uniform compactification of the targeted three-bit bank}
+There is also an exact computational proof that the preceding success
+persists at arbitrarily small width. The symbolic data in
+\texttt{LargeDomainCompactCoverage.json} give twelve integer polynomials
+$\Delta_{h,i}(q)$ of degree at most twelve, an integer multiplier matrix
+\[
+ M=\begin{pmatrix}0&0&3&5\\-5&-4&4&5\\-3&-2&4&-1\end{pmatrix},
+\]
+and the positive polynomial
+$P(q)=12(4q^4+80q^3+584q^2+1840q+2095)$.
+Use zero-based head indices and put
+\[
+ U_{h,i}(q)=M_{h,i}\Delta_{1,0}(q),\qquad
+ V_{h,i}(q)=U_{h,i}(q)+\Delta_{h,i}(q).
+\]
+For every real $q\geq300$, these two banks, with
+$b_h=1+(h+1)/q$ and $w_i=2^i/q$, realize every strict labeling of the
+three-dimensional cube through the weighted tangent score.
+Consequently, for every $s$ the proposition
+\texttt{HasCompactWeightedPermutationTangentDecoder 3 s 3}
+has a written proof backed by the exact polynomial certificate. This
+particular existence statement has not been formalized in Lean.
+
+Here is the complete algebraic verification scheme. The third difference
+form is zero, and the first two satisfy on every cube row $x$
+\[
+ \frac{\Delta_0(x;q)}{(q+x+1)^2}
+ +\frac{\Delta_1(x;q)}{(q+x+2)^2}
+ =P(q)(-1)^{|x|}.
+\]
+The row number $x$ on the denominators is its binary integer address.
+After clearing denominators this is a polynomial identity of degree at
+most fourteen, verified at fifteen distinct integers.
+
+For each of the eighteen rays, clear the positive row denominator
+$R_x=\prod_{h=0}^2(q+x+h+1)^2$. Its three square-kernel columns are
+polynomials of degree at most sixteen, and its three reciprocal columns
+have degree five. Every relevant six-row determinant therefore has degree
+at most $3\cdot16+3\cdot5=63$. The data supply all fifty-four determinant
+polynomials in the shifted variable $q-300$. The verifier checks each
+identity at sixty-four distinct integers, which proves the identity.
+Every coefficient of each shifted polynomial has the same weak sign and
+its constant coefficient has that sign strictly. Each determinant thus
+has its certified strict sign for every real $q\geq300$.
+
+A nonzero six-row determinant implies that the selected five zero rows
+are independent. Cofactor expansion then supplies their null vector;
+its three remaining signs are the certified determinant signs, up to a
+common orientation. The same perturbation and finite-union argument as
+above proves all 256 strict patterns for every such $q$. Given any
+$\eta>0$, choose $q>\max(300,3/\eta)$; all poles lie strictly in
+$(1,1+\eta)$ and all row weights are positive. Independent columns select
+their branches and residues independently from this one shared bank.
+
+The verifier uses only integer arithmetic and fraction-free elimination:
+\begin{verbatim}
+python3 artifacts/head-compression/LargeDomainCompactCoverageVerify.py \
+  artifacts/head-compression/LargeDomainCompactCoverage.json
+\end{verbatim}
+This is an exact computational proof with a uniform real-parameter
+conclusion. It is not a growing-dimension construction and yields no
+asymptotic improvement over the existing logarithmic saving.
+
 \section{The first unresolved lemma}
 For fixed $F$ and a shared coefficient array $v$, the possible column
 vectors form the projected permutation orbit $\{F(P_\pi v):\pi\in S_H\}$.
