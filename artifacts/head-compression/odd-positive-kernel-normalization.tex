@@ -199,6 +199,87 @@ remains. The converse theorem realizes its signs using four strict
 original heads after an arbitrarily small perturbation. No positivity
 of a kernel's Taylor coefficients excludes these signed cancellations.
 
+\section{Balanced layers and common-direction cancellations}
+
+The following statements are written proofs, with additional exact
+rational checks. They are not yet Lean declarations and are not an
+asymptotic head bound.
+
+\begin{lemma}[The uniform-shift gauge on the balanced layer]
+Let $n$ be positive and even, and let
+$\mathcal B=\{t\in\{-1,1\}^n:\sum_i t_i=0\}$.
+For every $v\in\mathbb R^n$ and every sufficiently small $\epsilon>0$,
+the vector $w=(2n)^{-1}\mathbf1+\epsilon v$ has strictly positive
+coordinates and $\sum_iw_i<1$. On $\mathcal B$ it satisfies
+$w\cdot t=\epsilon v\cdot t$.
+\end{lemma}
+
+\begin{proof}
+If $M=\max_i|v_i|$ is positive, take
+$0<\epsilon<1/(2nM)$. Then
+$w_i\geq1/(2n)-\epsilon M>0$ and
+$\sum_iw_i\leq1/2+n\epsilon M<1$.
+For $M=0$ any positive $\epsilon$ works. The equality follows from
+$\mathbf1\cdot t=0$.
+\end{proof}
+
+Thus positivity alone does not restrict infinitesimal direction vectors
+on a balanced layer. Nevertheless, a high cancellation order is not by
+itself evidence of many independent strict signs.
+
+\begin{lemma}[Exact common-direction cancellation]
+Let $H\geq1$ and let $\lambda_1,\ldots,\lambda_H$ be distinct positive
+numbers. Set
+\[
+ c_h=\prod_{k\ne h}(\lambda_h-\lambda_k)^{-1}.
+\]
+Whenever all $1-\lambda_hq$ are nonzero,
+\[
+ \sum_{h=1}^H\frac{c_h}{1-\lambda_hq}
+ =\frac{q^{H-1}}{\prod_{h=1}^H(1-\lambda_hq)}.
+\]
+Consequently, if all $1-\lambda_h(v\cdot t)^2$ are positive, then
+\[
+ \sum_h\frac{c_h(u\cdot t)}{1-\lambda_h(v\cdot t)^2}
+ =\frac{(u\cdot t)(v\cdot t)^{2H-2}}
+        {\prod_h(1-\lambda_h(v\cdot t)^2)}.
+\]
+For $H>1$ its strict sign away from $v\cdot t=0$ is exactly the sign
+of $u\cdot t$, and it vanishes on $v\cdot t=0$.
+\end{lemma}
+
+\begin{proof}
+After multiplication by the common denominator, the first identity
+equates two polynomials in $q$ of degree at most $H-1$. At
+$q=1/\lambda_j$, the left side has only its $j$th summand left,
+whose value is
+\[
+ c_j\prod_{k\ne j}(1-\lambda_k/\lambda_j)
+ =\lambda_j^{-(H-1)}.
+\]
+This is the value of the right polynomial $q^{H-1}$. The $H$ evaluation
+points are distinct, so the polynomials agree. Substitution and
+positivity prove the remaining assertions. For $H=1$ the score is just
+one kernel, with the same strict sign as its numerator everywhere.
+\end{proof}
+
+More generally, for fixed $v$ and these fixed $\lambda_h$, the scores
+with arbitrary numerator vectors $u_h$, after multiplication by their
+positive common denominator, are exactly the vector space
+\[
+ \left\{\sum_{j=0}^{H-1}(v\cdot t)^{2j}(U_j\cdot t):
+                 U_0,\ldots,U_{H-1}\in\mathbb R^n\right\}.
+\]
+Indeed the $H$ polynomials
+$\prod_{k\ne h}(1-\lambda_kq)$ form a basis of the polynomials in $q$
+of degree at most $H-1$, by the same evaluations at $1/\lambda_j$.
+Apply this invertible change of basis separately to every numerator
+coordinate. For fixed $v$ this gives at most $nH$ linear features,
+even when many Taylor coefficients vanish. Allowing arbitrary distinct
+direction vectors for different heads is a materially larger family;
+the argument gives no bound on that family and no bound for the
+original unrestricted model.
+
 \paragraph{Remaining lower-bound problem.}
 An eventual lower bound of order $2^n/n$ for this positive-kernel class
 on odd targets would imply the requested unrestricted lower bound,
