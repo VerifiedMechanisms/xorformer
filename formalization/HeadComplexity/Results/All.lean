@@ -14,6 +14,7 @@ import HeadComplexity.Results.CalibratedThresholdVote
 import HeadComplexity.Results.ClearedNormalForm
 import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.CountingLowerBound
+import HeadComplexity.Research.NormalizedCounting
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
@@ -718,5 +719,10 @@ alias theorem198_worst_case_upper_bound :=
 
 /-- **Theorem 198.** Worst-case cost divided by truth-table size tends to zero. -/
 alias theorem198_normalized_worst_case_limit := tendsto_worstCaseHeadComplexity_div_two_pow
+
+/-- Exact score normalization gives the unconditional finite lower bound
+`(2^n - 1)/(2*n^2) ≤ W(n)` for every `n ≥ 8`. -/
+alias normalized_counting_worst_case_lower_bound :=
+  NormalizedCounting.worstCase_real_lower
 
 end HeadComplexity
