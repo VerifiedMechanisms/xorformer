@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{theorem}{Theorem}
+\title{M\"obius Changes of Separable Fraction Parameters}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The identities and geometric budget bounds below are complete elementary
+written proofs. They are not Lean checked. They do not provide a
+superconstant saving, nor do they by themselves supply axis-zero
+extensions. The distinction between a bound for a whole parameter box
+and the actual sum of a finite table's slopes is essential.
+
+\begin{theorem}[Exact change of parameters]
+Let $g(t)=\gamma t+\delta$, $\Delta=\alpha\delta-\beta\gamma\ne0$,
+and $\phi(t)=(\alpha t+\beta)/g(t)$. Assume $d\ne p$ and
+$g(d)g(p)\ne0$. Set
+\[
+ p'=\phi(p),\quad d'=\phi(d),\quad
+ a'=\frac{\Delta a}{g(p)^2},\quad
+ b'=\frac{\Delta b}{g(d)^2}.
+\]
+Then
+\[
+ \frac{a'+b'}{d'-p'}
+ =\frac{a+b}{d-p}+\frac{\gamma a}{g(p)}
+                  -\frac{\gamma b}{g(d)}.                 \tag{1}
+\]
+\end{theorem}
+\begin{proof}
+The determinant identity gives
+$d'-p'=\Delta(d-p)/(g(d)g(p))$. The transformed $a$ term is
+$a g(d)/(g(p)(d-p))=a/(d-p)+\gamma a/g(p)$.
+The transformed $b$ term is
+$b g(p)/(g(d)(d-p))=b/(d-p)-\gamma b/g(d)$.
+Adding proves (1).
+\end{proof}
+For a grid score $F_{ij}=\sum_h(a_{hi}+b_{hj})/(d_{hj}-p_{hi})$,
+each head may use its own transformation. All discrepancies in (1)
+add to one row function plus one column function. Consequently one
+additive affine grid correction restores the original scores exactly.
+This assertion is about grid values. A constant denominator realizes
+the correction with weak slopes; sufficiently small strictly negative
+slopes preserve all finitely many strict grid signs. An axis-zero
+construction still has to be applied separately and audited.
+
+\paragraph{A small exact check.}
+For $\phi(t)=t/(2-t)$, $\Delta=2$, $p=1/4$, $d=3/4$, $a=2$, and
+$b=-1$, the original score is $2$. The transformed parameters are
+$p'=1/7$, $d'=3/5$, $a'=64/49$, and $b'=-32/25$. Their fraction is
+$2/35$. The row and column discrepancy in (1) is
+$-8/7-4/5=-68/35$, as required. This example checks both the sign of
+the column correction and the square in each numerator rescaling.
+
+\begin{theorem}[Uniform box compactification]
+Suppose all row parameters belong to $[p_-,p_+]$ and all column
+parameters belong to $[d_-,d_+]$, with
+$p_-<p_+<d_-<d_+$. Define the invariant
+\[
+ \chi=\frac{(p_+-p_-)(d_+-d_-)}{(d_--p_+)(d_+-p_-)}>0.
+                                                               \tag{2}
+\]
+An increasing M\"obius map, finite on the whole interval, can send
+$p_-$ to $0$, $d_+$ to $1$, $p_+$ to $P$, and $d_-$ to $1-Q$
+if and only if
+\[
+ 0<P,\quad0<Q,\quad P+Q<1,\qquad
+ PQ=\chi(1-P-Q).                                             \tag{3}
+\]
+For $r,s\geq2$, the existence of such a map with the uniform
+full-cube budget $rP+sQ<1$ is equivalent to
+\[
+ \chi<\frac{1}
+ {(\sqrt{r(s-1)}+\sqrt{s(r-1)})^2}.                           \tag{4}
+\]
+In particular, $\chi<1/(8rs)$ is sufficient, and $\chi<1/(rs)$
+is necessary.
+\end{theorem}
+\begin{proof}
+Differences under a M\"obius map acquire one determinant factor and
+one factor $g(x)g(y)$ in their denominators. These factors cancel
+from (2), proving invariance. In the normalized coordinates (2)
+becomes $PQ/(1-P-Q)$, proving necessity of (3).
+
+For sufficiency put $u=p_+-p_-$ and $L=d_+-p_-$. Given any
+$P\in(0,1)$, define
+\[
+ C=\frac{PL-u}{Lu(1-P)},\qquad
+ \phi(t)=\frac{(CL+1)(t-p_-)}{L(C(t-p_-)+1)}.
+\]
+Since $CL+1=P(L-u)/(u(1-P))>0$, this map is finite and strictly
+increasing throughout $[p_-,d_+]$. It has the three specified
+endpoint values, and invariance fixes the fourth. Equivalently,
+$Q=\chi(1-P)/(P+\chi)$.
+
+For completeness, maximize $PQ/(1-P-Q)$ over the line
+$rP+sQ=1$ in the positive quadrant. Substitute
+$Q=(1-rP)/s$. The resulting function is
+\[
+ \frac{P(1-rP)}{s-1+(r-s)P},\qquad 0<P<1/r.
+\]
+It tends to zero at both endpoints. Differentiation shows its
+unique interior maximum is the right side of (4). One can verify
+the value without solving for $P$: the equation
+$PQ=\chi(1-P-Q)$ and $rP+sQ=1$ has a double positive root exactly
+when
+\[
+ (r-s)^2\chi^2-2(2rs-r-s)\chi+1=0.
+\]
+Its smaller root is
+$[2rs-r-s+2\sqrt{rs(r-1)(s-1)}]^{-1}$, which is (4).
+The graph (3) lies strictly below some point of the budget line
+exactly when $\chi$ is smaller than that maximum. This proves (4).
+
+For the simpler sufficient bound choose $P=1/(2r)$. Then
+$Q=\chi(1-P)/(P+\chi)<2r\chi<1/(4s)$, so the budget is less than
+$3/4$. Conversely, $rP+sQ<1$ implies $PQ<1/(4rs)$ by AM--GM and
+$P+Q<1/2$ because $r,s\geq2$. Thus
+$\chi=PQ/(1-P-Q)<1/(2rs)<1/(rs)$, which proves the stated weaker
+necessary bound as well.
+\end{proof}
+
+\paragraph{Relation to original denominators.}
+For the normalized parameters define
+\[
+ B(z,w)=1-\sum_{i=1}^r p'_i z_i
+          -\sum_{j=1}^s(1-d'_j)w_j.
+\]
+Its value at $(e_i,e_j)$ is $d'_j-p'_i$. The box budget ensures
+positivity on the full cube. A strict budget leaves room to replace
+zero slopes by small negative slopes while preserving all finite
+strict signs. The actual finite-table budget is
+$\sum_i p'_i+\sum_j(1-d'_j)<1$; it can be much smaller than the
+uniform box bound $rP+sQ<1$. Thus failure of (4) is not a barrier to
+all table-specific compactifications. Conversely, compactifying a
+fixed finite inventory once does not authorize arbitrarily many
+copies of its largest row slope. A growing-table compiler still
+requires quantitative control as $r,s$ grow.
+\end{document}
