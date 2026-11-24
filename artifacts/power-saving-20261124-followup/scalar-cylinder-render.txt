@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_mixed_point.md",
+    "source_spans": 48,
+    "rendered_spans": 48,
+    "findings": [],
+    "notes": []
+  }
+]
