@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{An underloaded positive Haar obstruction with fixed auxiliary routing}
+\author{}\date{}\maketitle
+\paragraph{Status and scope.}
+The following is a complete written finite-dimensional obstruction,
+certified by exact rational and guarded Laurent arithmetic. It is not
+Lean-checked. It excludes one target and one auxiliary completion in a
+particular positive-residue family. It excludes neither other routing
+completions, signed residues, block biases, moving poles, positive-density
+decoders, nor either global HeadComplexity target.
+
+Use $H=32$ and the switch notation of
+\texttt{butterfly-auxiliary-switch-germ.tex}. Set
+\[
+ p_y(\epsilon)=\sum_{j=0}^4y_j\epsilon^{2^j},\qquad
+ t_{k,s}=1-p_s(\epsilon).
+\]
+Retain exactly the $49$ switches with $s<2^k-1$. At a retained switch
+set its target and routing bit to
+\[
+ \theta_{k,s,g}=\left\lfloor s/2^{k-1}\right\rfloor\bmod2
+ \quad(k\geq1),
+\]
+and set every omitted routing bit to zero. For sufficiently small
+$\epsilon$, the retained labels alternate in the actual increasing
+pole order within each block. Alternating the ordinary integer prefix
+index instead would describe a different, much less oscillatory word.
+
+\begin{proposition}
+For every sufficiently small $\epsilon>0$, no nonnegative residue vector
+$c\in\mathbb R^{32}$ makes all $49$ retained signed Haar scores strictly
+positive. The same infeasibility holds at $\epsilon=1/100$.
+\end{proposition}
+\begin{proof}
+Let $A(\epsilon)$ contain the signed query rows, indexed by the original
+$80$-switch numbering, followed by the $32$ coordinate rows, indexed
+$80,\ldots,111$. Select the following $33$ rows:
+\[
+\begin{gathered}
+16,32,36,39,41,42,48,50,51,52,53,54,56,57,58,61,\\
+64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,82,84.
+\end{gathered}
+\]
+The last two are the nonnegativity constraints for residue coordinates
+$2$ and $4$; all other selected rows are retained query constraints.
+Let $B(\epsilon)$ have these rows as columns and append a final row of
+ones. Solve
+\[
+ B(\epsilon)\lambda(\epsilon)=(0,\ldots,0,1)^{\mathsf T}.
+\]
+The exact checker verifies nonsingularity and strict positivity of all
+$33$ coordinates at $\epsilon=1/100$. It separately verifies the positive
+leading Laurent coefficient of every coordinate. The elimination pivot
+orders are
+\[
+\begin{gathered}
+0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,6,6,6,8,8,11,16,16,\\
+18,18,22,26,40,45,48,56,64,69.
+\end{gathered}
+\]
+The normalized dual coefficients have leading orders between zero and
+$72$. Thus the determinant is not the zero rational function and all
+coordinates of $\lambda$ are positive on a common punctured interval.
+On that interval they give a nonzero nonnegative dependence of the
+selected constraint rows. Its evaluation on a putative residue vector
+would be strictly positive, since it uses $31$ strict query constraints
+and two nonnegative coordinate constraints, but the dependence evaluates
+to zero. This is a contradiction.
+
+The companion JSON stores the support and the exact leading coefficients,
+not a solver verdict. The checker reconstructs all Cauchy rows, solves
+the finite rational system independently, and checks the normalized
+Laurent system with precision $1024$. It inverts only pivots whose leading
+coefficient is known, guards the remaining precision, and verifies the
+matrix residuals and every positive leading coefficient.
+\end{proof}
+
+\paragraph{Consequence for the ongoing construction.}
+The twenty random positive examples in
+\texttt{butterfly-underloaded-h32-samples.tex} cannot support a universal
+fixed-zero auxiliary theorem. The excluded word is highly structured,
+so this obstruction gives no upper bound on the density of realizable
+words. Existential auxiliary completion and lower selected loads remain
+separate questions.
+\end{document}
