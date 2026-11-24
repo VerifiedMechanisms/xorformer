@@ -4,7 +4,7 @@
 
 This appendix establishes the averaging step needed to turn a quantitative cubic coefficient obstruction into a finite Boolean obstruction. It does not by itself choose a sufficient replication count or prove the quantitative sign-rigidity estimate. Those are separate inputs.
 
-The identities `ThreeHeadReplication.coefficient_sum_three_groups` and `ThreeHeadReplication.uniform_group_sum` are checked in `formalization/HeadComplexity/Polynomial/ThreeHeadReplication.lean`. The permutation averaging and finite-population formulas below are mathematical proofs, not claimed to be Lean-formalized.
+The identities `ThreeHeadReplication.coefficient_sum_three_groups` and `ThreeHeadReplication.uniform_group_sum` are checked in `formalization/HeadComplexity/Polynomial/ThreeHeadReplication.lean`. The permutation averaging and finite-population formulas are now checked in `Polynomial/MeanGridSymmetrization.lean` and `Polynomial/MeanGridCubic.lean`. In particular, `MeanGridCubic.cubic_mean_polynomial_exists` constructs the degree-at-most-three polynomial for every arbitrary, untied raw cubic; `cubic_mean_sign_exists` proves its sign agreement on the full mean grid. The distinct-group coefficient identification with the polynomial so constructed is justified below, while the separate group-sum factorization identity is formalized.
 
 ## Replicated pure function
 
@@ -72,4 +72,4 @@ The declarations `explicitFunction_pure_three` and `explicitFunction_full_cube_s
 
 The separate module `Results/PureRoPEReplicationStrict.lean` formally proves the complete integer-lattice tie-removal argument. Its `scaled_cubic_integer` identifies the scaled unshifted cubic with an explicit integer expression on every input; `full_cube_strict` proves sign preservation and the uniform rational margin. The declarations `explicitUnshiftedFunction_pure_three`, `explicitUnshiftedFunction_eq`, and `explicitUnshiftedFunction_margin` give the actual unshifted classifier $[F\gt0]$ its pure three-head upper bound, its equality to the biased implementation, and its full-cube strict score margin. The exact token and query parameters are also checked. `explicitUnshiftedFunction_not_complement_invariant` proves that the all-zero and all-one inputs have different labels. These declarations use only the standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`.
 
-No lower bound for this explicit replicated function is asserted by these upper-bound modules. The finite Boolean lower bound in the main separation note remains a mathematical proof.
+No lower bound for this explicit replicated function is asserted by these upper-bound modules. The averaging existence, degree, and sign-preservation steps are additionally formalized in the two mean-grid modules above. The complete finite Boolean lower bound in the main separation note remains a mathematical proof.

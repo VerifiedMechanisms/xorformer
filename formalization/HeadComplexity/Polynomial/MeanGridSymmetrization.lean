@@ -42,6 +42,18 @@ theorem average_sum {α β : Type*} [Fintype α] [Fintype β] (f : α → β →
   simp only [average, ← Finset.sum_div]
   rw [Finset.sum_comm]
 
+theorem average_finset_sum {α β : Type*} [Fintype α]
+    (s : Finset β) (f : α → β → ℝ) :
+    average (fun a ↦ ∑ b ∈ s, f a b) = ∑ b ∈ s, average (fun a ↦ f a b) := by
+  simp only [average, ← Finset.sum_div]
+  rw [Finset.sum_comm]
+
+theorem average_product {ι α : Type*} [Fintype ι] [DecidableEq ι] [Fintype α]
+    (f : ι → α → ℝ) :
+    average (fun σ : ι → α ↦ ∏ i, f i (σ i)) = ∏ i, average (f i) := by
+  unfold average
+  rw [← Fintype.prod_sum, Fintype.card_pi, Nat.cast_prod, Finset.prod_div_distrib]
+
 theorem average_equiv {α : Type*} [Fintype α] (e : α ≃ α) (f : α → ℝ) :
     average (fun a ↦ f (e a)) = average f := by
   unfold average
