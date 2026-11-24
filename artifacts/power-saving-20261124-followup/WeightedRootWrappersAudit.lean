@@ -1,0 +1,5 @@
+import HeadComplexity.Polynomial.WeightedRootWrappers
+#print axioms HeadComplexity.PolynomialRootCount.weighted_regular_roots_card_le
+#print axioms HeadComplexity.PolynomialRootCount.weighted_dense_polynomial_boundedFibers
+#print axioms HeadComplexity.PolynomialRootCount.weighted_polynomial_boundary_minima_card_le
+#print axioms HeadComplexity.PolynomialRootCount.weighted_constrained_minima_card_le

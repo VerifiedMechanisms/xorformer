@@ -1,0 +1,12 @@
+'HeadComplexity.PolynomialRootCount.weighted_regular_roots_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weighted_dense_polynomial_boundedFibers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weighted_polynomial_boundary_minima_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weighted_constrained_minima_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
