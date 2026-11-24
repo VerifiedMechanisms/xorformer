@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\begin{document}
+\title{Independent audit of the affine-plane encoding and cancellation}
+\author{Continuation on branch ar/1c1556983291}
+\date{24 November 2026}
+\maketitle
+
+\paragraph{Provenance and scope.}
+This audit independently read the finite construction published at commit
+\texttt{7065e81} of \texttt{ar/0f08fe6fb98a}, then reconstructed its actual
+affine heads with rational arithmetic. The audited Lean sources are
+\texttt{AffinePlaneEncoding.lean}, \texttt{AffinePlaneIncidence.lean},
+\texttt{AffinePlaneCompiler.lean}, \texttt{CauchyGridDecoder.lean}, and
+\texttt{CompactReverseCauchy.lean}. The existing rank compiler and exact
+strictification interface were also read. No gap was found in the finite
+universal construction. The final global reduction and its kernel build are
+audited separately by the parent run; this note does not substitute finite
+tests for the universal proof.
+
+\paragraph{Universal binary encoding.}
+For every integer $a\geq1$, mathlib's finite field
+$F=\operatorname{GF}(2^a)$ has exactly $q=2^a$ elements. A cardinality
+bijection $F\simeq\{0,1\}^{a}$ is sufficient; it need not preserve any
+field operation. The set $F^2\times\{1,\ldots,a\}$ has cardinality
+$aq^2=a4^a$. The Lean embedding of $r\leq aq^2$ rows is injective.
+\texttt{Function.extend} assigns arbitrary unused labels, so the $a$ labels
+at every point and every column are independently realizable by one token.
+There is no consistency constraint between different points or columns.
+
+\paragraph{Cauchy decoder and its bias.}
+The real poles and tokens occupy disjoint intervals
+$(1-\delta,1)$ and $(0,\delta)$, with
+$\delta=1/[4(r+s+1)]$. The checked decoder uses polynomial interpolation
+and the existing proved partial-fraction identity to obtain
+\[
+ c_b+\sum_{\alpha\in F}
+ \frac{\eta_{b,\alpha}}{d_\alpha-t_z}=\sigma_b(z).
+\]
+Its constant $c_b$ is explicitly passed as a row-only addition to the rank
+compiler. Thus allowing this constant, in contrast with the written
+zero-constant Cauchy inverse formulation, costs no additional head.
+The written zero-constant formulation is itself correct because the square
+Cauchy matrix is invertible. Coefficients may have arbitrarily large
+magnitude and precision, as permitted by the original model.
+
+\paragraph{Exact incidence cancellation.}
+Only the $q^2$ nonvertical lines $y=\alpha x+c$ are used. In the pencil
+through a queried point $h$, the point $h$ appears at all $q$ slopes. A
+different point $g$ with $g_1=h_1$ appears at no slope. Every point with
+$g_1\ne h_1$ appears at exactly one slope
+$\alpha(h,g)=(g_2-h_2)/(g_1-h_1)$. Therefore the pencil sum equals the
+desired Cauchy decoder plus one unwanted reciprocal term per point $g$
+with $g_1\ne h_1$. The correction for a fixed $g$ is a single head:
+its row coefficients independently choose the slope $\alpha(h,g)$ and
+the corresponding numerator $-\eta_{b,\alpha(h,g)}$.
+The column coefficients contain only the token of that fixed $g$.
+This is an affine numerator divided by an affine denominator, with no
+products of Boolean input variables. When $g_1=h_1$, Lean's total field
+division makes $\alpha(h,g)$ well defined even though its denominator is
+zero; the numerator is separately set to zero, and the selected real pole
+still lies in the permitted interval. This branch creates no division by
+zero in any real head.
+
+\paragraph{Complete finite head budget and admissibility.}
+The line aggregate table has a displayed rank factorization through $q^2$
+lines. The exact reverse rank compiler uses $q^2$ factor heads and one
+shared column correction head. Its arbitrary row bias is included in that
+same correction head. There are then exactly $q^2$ point correction heads,
+for a total of $2q^2+1$. Their denominator minima are positive on the full
+Boolean cube, rather than only on the grid. The point corrections have
+minimum greater than $1-(r+s)\delta>3/4$.
+
+The rank heads initially have nonpositive slopes. The proved weight-two
+gauge replaces a denominator $D(x)$ by
+$D(x)+\epsilon(2-\sum_i x_i)$, where
+$\epsilon=D(1,\ldots,1)/(r+s+1)>0$. This makes every slope strictly
+negative, retains positive full-cube minimum, and leaves every grid value
+unchanged. It costs no heads. Thus the central theorem supplies a strict
+reverse compiler with $2q^2+1$ heads, and the existing exact axis repair
+gives $3(2q^2+1)+3=6q^2+6$ heads with exact zeros on both Boolean axes.
+
+\paragraph{Independent exact test.}
+The new script \texttt{affine-plane-independent-recheck.py} uses its own
+finite-field arithmetic, rational Gaussian elimination, line aggregation,
+rank-head construction, common correction, strictification, and point
+corrections. It checks all $256$ binary $4\times2$ tables over $F_2$,
+five examples each at $(q,r,s)=(4,7,3),(4,17,1),(4,32,3)$, and two at
+$(8,192,2)$. In total it checks $273$ tables, $3486$ exact target scores,
+and $3057$ actual strict heads. Every slope is negative and every exact
+whole-cube affine denominator minimum is positive; the small cases also
+enumerate the entire cube. The checker passed. It does not test axis
+repair, which is an independent exact theorem. These finite tests are
+supplementary evidence for the implementation, not the universality proof.
+
+\paragraph{Conclusion of this audit.}
+The construction supplies the previously missing superconstant local
+saving. Its compatibility mechanism is exact finite-field incidence, not
+a conjectural recursive decoder, a numerical shattering test, a
+per-vote reversal, or a restricted-model obstruction. The choice of
+$a$ minimal with $r\leq a4^a$ gives $2q^2+1=O(r/\log r)$.
+Subject only to the separately audited existing global transfer, this
+establishes the stronger requested logarithmic saving in the unchanged
+model. No additional hypothesis was identified in the finite compiler.
+\end{document}
