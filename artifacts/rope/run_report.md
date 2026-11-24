@@ -8,13 +8,15 @@ The stronger universal equality with vanilla is unresolved in this run. No Boole
 
 The full definitions and proofs are in [the theorem writeup](../../theorems/03_rotary_attention/014_rope_head_complexity.md). The proved comparison is threshold degree at most retained-RoPE complexity, at most pure-RoPE complexity, at most vanilla complexity. Equality holds throughout for symmetric functions and whenever vanilla attains threshold degree.
 
+A further handwritten construction shows that every two-head rotary classifier has a three-head vanilla realization. Thus any strict improvement using two rotary heads must be exactly two versus three.
+
 ## Machine-checked results
 
 - [Atoms/RoPE.lean](../../formalization/HeadComplexity/Atoms/RoPE.lean): `AffineFraction.exists_pure` simulates every vanilla-admissible ratio exactly using one pure rotary scalar atom. `pureRoPEComputable_of_vanilla` lifts this to the existing shared-embedding vanilla classifier at each head count.
 - [Results/RoPEComparison.lean](../../formalization/HeadComplexity/Results/RoPEComparison.lean): `pureRoPEHStar_le_vanilla`, `retainedRoPEHStar_le_pure`, and `thresholdDeg_le_retainedRoPEHStar` prove the scalar complexity chain. `ropeHStar_eq_vanilla_of_degree_tight` and `ropeHStar_symmetric` prove equality cases. Both one-head scalar classes are characterized as linear threshold functions.
 - [Examples/RoPE.lean](../../formalization/HeadComplexity/Examples/RoPE.lean): `RoPEExamples.mixedReciprocal_no_vanilla_one_head_score` proves that one pure scalar head can realize an exact score unavailable to one vanilla head, even with a free constant. Every classifier obtained by thresholding that score still has vanilla complexity at most one.
 
-The literal rotary matrices, the trigonometric Vandermonde interpolation proof, and the unrestricted-positive-denominator characterization of retained RoPE are handwritten, not Lean-checked. In particular, the formal minimum-count definitions are explicitly scalar models; the writeup supplies their architectural interpretation.
+The literal rotary matrices, the trigonometric Vandermonde interpolation proof, the unrestricted-positive-denominator characterization of retained RoPE, and the three-head vanilla upper bound for two-head rotary classifiers are handwritten, not Lean-checked. In particular, the formal minimum-count definitions are explicitly scalar models; the writeup supplies their architectural interpretation.
 
 ## Approaches that did not settle strictness
 
@@ -31,8 +33,8 @@ Added `PureRoPEAtom`, `RetainedRoPEAtom`, their computability predicates and min
 ## Validation
 
 - `bash artifacts/scripts/validate.sh`: all 47 tracked Lean modules built; 953 theorem declarations audited; only `propext`, `Classical.choice`, and `Quot.sound` occur as axioms; no proof placeholders.
-- Static Markdown and KaTeX checks passed for the theorem and ledger: 242 math spans.
-- GitHub's real Markdown API recognized all 161 theorem spans and all 81 ledger spans, with no residual math or escaped-payload errors. Authentication used the supplied repository token helper without printing the token.
+- Static Markdown and KaTeX checks passed for the theorem and ledger: 255 math spans.
+- GitHub's real Markdown API recognized all 174 theorem spans and all 81 ledger spans, with no residual math or escaped-payload errors. Authentication used the supplied repository token helper without printing the token.
 - GitLab rendering was not audited because `glab` is unavailable in this environment.
 - `git diff --check` passed.
 

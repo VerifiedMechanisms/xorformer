@@ -157,6 +157,30 @@ for symmetric $f$. The [one-head characterization](../01_foundations_and_normal_
 
 The ten-bit rank obstruction in [Theorem 13](../02_separations_and_counterexamples/013_strict_threshold_degree_separation.md) also applies to all rotary variants: its exclusion of two heads uses only the sum-of-two-affine-products form after clearing denominators. It therefore does not furnish a separation between vanilla and RoPE.
 
+### Theorem 6. Two rotary heads require at most three vanilla heads
+
+For either rotary variant,
+
+$$ H_A(f)\leq2\quad\Longrightarrow\quad H_V(f)\leq3. $$
+
+In particular, if a two-head rotary model strictly improves on vanilla, the exact counts must be two versus three.
+
+**Proof.** A two-head retained score can first be made strict by adjusting its constant. Clearing its positive denominators gives a strict sign representation
+
+$$ P(x)=L_1(x)R_1(x)+L_2(x)R_2(x) $$
+
+with affine factors. Set $B(x)=1+\sum_i x_i$. For sufficiently small $\varepsilon\gt0$, each of $B$, $B+\varepsilon R_1$, and $B+\varepsilon R_2$ is positive on the cube and has all denominator slopes strictly positive. Consider the three-head vanilla score
+
+$$ S_\varepsilon(x)=\frac{L_1(x)+L_2(x)}{\varepsilon B(x)}-\frac{L_1(x)}{\varepsilon(B(x)+\varepsilon R_1(x))}-\frac{L_2(x)}{\varepsilon(B(x)+\varepsilon R_2(x))}. $$
+
+All three ratios are admissible by the vanilla normal form. Direct cancellation gives
+
+$$ S_\varepsilon(x)=\frac{L_1(x)R_1(x)}{B(x)(B(x)+\varepsilon R_1(x))}+\frac{L_2(x)R_2(x)}{B(x)(B(x)+\varepsilon R_2(x))}. $$
+
+As $\varepsilon\to0$, this converges to $P(x)/B(x)^2$, whose sign is strict at every cube point. Finiteness of the cube ensures a single sufficiently small positive $\varepsilon$ preserves all signs simultaneously. This gives three vanilla heads. Zero- and one-head cases are already covered by the constant and linear-threshold characterizations. $\blacksquare$
+
+This argument is an upper bound, not a construction of a function that actually needs the third vanilla head.
+
 ## A strict score separation that does not settle head complexity
 
 On three bits consider
@@ -183,6 +207,6 @@ The new Lean scalar model is `PureRoPEAtom` in [Atoms/RoPE.lean](../../formaliza
 
 [Examples/RoPE.lean](../../formalization/HeadComplexity/Examples/RoPE.lean) defines `RoPEExamples.mixedReciprocal`. `RoPEExamples.mixedReciprocal_no_vanilla_one_head_score` checks the exact-score obstruction against the existing shared-embedding vanilla architecture, including a free threshold constant.
 
-The literal rotation matrices, the Vandermonde interpolation argument, the bridge from scalar atoms to literal rotary attention, and Theorem 4's unrestricted-denominator equivalence are handwritten proofs here, not Lean-checked statements. No existing vanilla definition or theorem is changed.
+The literal rotation matrices, the Vandermonde interpolation argument, the bridge from scalar atoms to literal rotary attention, Theorem 4's unrestricted-denominator equivalence, and Theorem 6's three-head upper bound are handwritten proofs here, not Lean-checked statements. No existing vanilla definition or theorem is changed.
 
 The remaining head-count question is whether either scalar class in Theorem 2 realizes a Boolean function with fewer atoms than the vanilla-admissible class. Theorem 4 makes the retained case particularly concrete: decide whether unrestricted positive affine denominators ever reduce the minimum count. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves answer this question.
