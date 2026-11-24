@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Independent Prefix Chains Cover the Boolean Cube}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status and scope.}
+The covering theorem and the Cauchy product identity below have complete
+written proofs and an exact small-instance checker, but are not Lean
+formalized. Neither gives a HeadComplexity improvement: the missing
+step is a linear-head rational implementation of products whose factors
+use independent query orders. The Cauchy identity proved here gives
+only one common order.
+
+For a permutation $\pi$ of $[q]$, its prefix chain is
+$\mathcal C_\pi=\{\mathbf 1_{\{\pi(1),\ldots,\pi(t)\}}:0\leq t\leq q\}$,
+as a subset of $\mathbb F_2^q$. Addition in this paragraph is XOR.
+
+\begin{theorem}[A covering by sums of independent chains]
+For every integer $q\geq 65536$, there exist
+\[
+ H=\left\lceil\frac{8q}{\log q}\right\rceil
+\]
+permutations $\pi_1,\ldots,\pi_H$ such that
+$\mathcal C_{\pi_1}+\cdots+\mathcal C_{\pi_H}=\mathbb F_2^q$.
+Here and throughout the note $\log$ is the natural logarithm.
+\end{theorem}
+
+\begin{proof}
+For each permutation let $\mu_\pi$ be the uniform probability measure
+on its $q+1$ prefixes. For $S\subseteq[q]$ write
+$\widehat\mu(S)=\mathbb E_{x\sim\mu}(-1)^{\sum_{i\in S}x_i}$.
+Fix nonempty $S$ with $k=|S|$. In a uniformly random permutation the
+positions of its marked elements are a uniform $k$-subset of $[q]$.
+The successive gaps $g_0,\ldots,g_k$ form a uniform positive composition
+of $n=q+1$ into $m=k+1$ parts. Consequently
+\[
+ \widehat\mu_\pi(S)=\frac1n\sum_{i=0}^k(-1)^i g_i. \tag{1}
+\]
+For a uniform positive composition, put $R=n-m$. Directly from the
+stars-and-bars generating function $(1-z)^{-m}$ one obtains
+\[
+ \mathbb E g_i=\frac nm,\quad
+ \operatorname{Var}(g_i)=\frac{Rn(m-1)}{m^2(m+1)},\quad
+ \operatorname{Cov}(g_i,g_j)=-\frac{Rn}{m^2(m+1)}\quad(i\ne j).
+ \tag{2}
+\]
+For completeness, writing $y_i=g_i-1$, the coefficient identities
+for $\mathbb E y_i(y_i-1)$ and $\mathbb E y_i y_j$ give respectively
+$2R(R-1)/(m(m+1))$ and $R(R-1)/(m(m+1))$, while
+$\mathbb E y_i=R/m$; these imply (2).
+Applying (2) to (1) gives the exact second moments
+\[
+ \mathbb E\widehat\mu_\pi(S)^2=
+ \begin{cases}
+ \dfrac{q-k}{(q+1)(k+2)},&k\text{ odd},\\[4pt]
+ \dfrac{q-k+1}{(q+1)(k+1)},&k\text{ even}.
+ \end{cases}
+ \tag{3}
+\]
+In particular, by Cauchy--Schwarz,
+$\mathbb E|\widehat\mu_\pi(S)|\leq(k+1)^{-1/2}$.
+
+Take $H$ independent uniformly random permutations and convolve their
+prefix measures to obtain $\nu$. Independence and the product formula
+for Fourier transforms give
+\[
+ \mathbb E\sum_{S\ne\varnothing}|\widehat\nu(S)|
+ \leq\sum_{k=1}^q\binom qk(k+1)^{-H/2}. \tag{4}
+\]
+We check explicitly that the right side is less than one at the stated
+threshold. Split the sum at $k=\sqrt q$. The part with $k\leq\sqrt q$
+is at most
+\[
+ \exp\left(\log q+\sqrt q\log q-
+       \frac{4q\log2}{\log q}\right)
+ \leq \exp\left(-\frac q{\log q}\right). \tag{5}
+\]
+For the last inequality, first note that
+$\log q+\sqrt q\log q\leq q/\log q$ for $q\geq2^{16}$.
+Indeed, for $x=\log q$, both $x^2e^{-x}$ and $x^2e^{-x/2}$ decrease
+for $x\geq16\log2>4$, and at the left endpoint their sum is at most
+$(56/5)^2(2^{-16}+2^{-8})<1$, using $\log2<7/10$.
+Now use $\log2>1/2$ in (5). The part with $k>\sqrt q$ is at most
+\[
+ 2^q q^{-H/4}\leq\exp((\log2-2)q)<e^{-q}. \tag{6}
+\]
+The sum of (5) and (6) is less than one. Some choice of the
+permutations therefore has $\sum_{S\ne\varnothing}|\widehat\nu(S)|<1$.
+Fourier inversion gives
+\[
+ \nu(x)=2^{-q}\left(1+
+   \sum_{S\ne\varnothing}\widehat\nu(S)(-1)^{\sum_{i\in S}x_i}\right)>0
+\]
+for every $x$. Positivity is exactly the asserted sumset coverage.
+\end{proof}
+
+\paragraph{Threshold interpretation.}
+Give query $j$ its position in each of the $H$ chosen permutations.
+Each target sign word is the product of $H$ threshold words, one in
+each of these fixed orders. A threshold is placed strictly between
+successive integer positions (or outside the range), so no zero
+occurs. This uses $O(q/\log q)$ independently ordered factors. It
+would be useful for an unbalanced local compiler if those products
+could be realized with $O(H)$ admissible reverse rational heads,
+uniformly for all prescribed rows. That implementation has not been
+constructed; in particular the statement does not license adding
+products of rational atoms to the original model.
+
+\begin{lemma}[A common-order Cauchy product]
+Let $K(x,y)=(T-x-y)^{-1}$. For a finite set $A$ of distinct real
+numbers, assume every denominator below is nonzero and all pivots
+used by Schur elimination are nonzero. Eliminating the rows and
+columns indexed by $A$ gives the kernel
+\[
+ K_A(x,y)=\frac1{T-x-y}
+  \prod_{a\in A}\frac{x-a}{T-x-a}
+  \prod_{a\in A}\frac{y-a}{T-a-y}. \tag{7}
+\]
+In particular, for fixed $y$, this kernel is a linear combination
+of $|A|+1$ simple reciprocals with poles $A\cup\{y\}$ in the
+variable $t=T-x$.
+\end{lemma}
+
+\begin{proof}
+For a single pivot $a$, direct expansion gives
+\[
+ \frac1{T-x-y}-\frac{T-2a}{(T-x-a)(T-a-y)}
+ =\frac{(x-a)(y-a)}{(T-x-y)(T-x-a)(T-a-y)}. \tag{8}
+\]
+Suppose (7) holds for $A$, and write its product factors as
+$f_A(x)f_A(y)K(x,y)$. In the next Schur step at $b\notin A$,
+$f_A(b)^2$ cancels from the quotient. Formula (8) then adds the two
+factors indexed by $b$, proving (7) by induction. Each Schur step
+subtracts a linear combination of the original columns $K(x,a)$,
+so the resulting column is in the span of $K(x,y)$ and
+$\{K(x,a):a\in A\}$. Equivalently, partial fractions in $t$ give
+the stated reciprocal representation when $y\notin A$; if $y\in A$
+the eliminated column is zero. Positivity assumptions such as all
+$x,y,a<T/2$ make the denominators and diagonal pivots positive;
+distinct pivot locations make the remaining factors nonzero.
+\end{proof}
+
+\paragraph{The independent-order gap.}
+If the denominators in (7) are positive, its signs as a function of
+query $x$ are, up to a constant sign, the product of $|A|$ threshold
+factors $x-a$. All factors use the same ordering of the queries.
+Thus it supplies only sign words with at most $|A|$ changes in that
+common order. The covering theorem instead needs independent orders
+for its factors. Replacing $x$ separately in each factor does not
+preserve (8) or the linear-combination conclusion, and no such
+replacement is asserted. Model admissibility, exact axis vanishing,
+and the global head budget would also need to be proved for any new
+independent-order identity.
+
+\paragraph{Exact checks.}
+The companion \texttt{xor-prefix-chains-and-cauchy-products-check.py}
+checks (3) by enumerating all marked-position subsets for
+$1\leq k\leq q\leq12$, verifies Fourier multiplication and full
+sumset coverage in small examples, and checks (7) against exact
+rational Schur elimination. These tests support the identities;
+the proofs above establish their general statements.
+\end{document}
