@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Shared Partial Fractions and Selector Flows}
+\author{}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+These are complete written identities and interaction restrictions, not
+Lean-checked results and not an asymptotic upper bound. The denominator
+conditions of the original attention model are retained. In particular,
+the explicit examples below have strictly positive slopes in every
+original input coordinate and are positive on the whole cube.
+
+\section{Which affine differences have affine reciprocals?}
+
+Write the cube in centered coordinates $z_i\in\{-1,1\}$.
+
+\begin{proposition}\label{prop:inverse}
+Suppose the affine function $L=c+\sum_i a_i z_i$ never vanishes on the
+cube. Its reciprocal is affine on the cube if and only if one of the
+following holds:
+\begin{enumerate}
+\item $L$ depends on at most one coordinate;
+\item $L=a_i z_i+a_j z_j$ for distinct $i,j$, where
+      $a_i a_j\ne0$ and $a_i^2\ne a_j^2$.
+\end{enumerate}
+In the second case,
+\[
+ L^{-1}=\frac{a_i z_i-a_j z_j}{a_i^2-a_j^2}.
+\]
+\end{proposition}
+\begin{proof}
+Suppose $L(d+\sum_i b_i z_i)=1$. Comparing the distinct multilinear
+coefficients gives
+\[
+ cb_i+da_i=0,\qquad a_i b_j+a_j b_i=0\quad(i\ne j).
+\]
+If $a_i=0$ and some $a_j\ne0$, the second equation gives $b_i=0$.
+On the support of $a$, put $t_i=b_i/a_i$. Distinct supported indices
+satisfy $t_i+t_j=0$. Three supported indices therefore force all
+$t_i=0$, then $d=0$, contradicting the constant coefficient equation.
+Thus the support has size at most two. If it has exactly two, write
+$t_i=t$ and $t_j=-t$. The linear equations imply $ct+d=0$ and
+$-ct+d=0$. If $c\ne0$, this again gives $t=d=0$, a contradiction.
+Hence $c=d=0$, and the constant equation is
+$t(a_i^2-a_j^2)=1$, giving the stated formula. A nonvanishing function
+of one Boolean coordinate has an affine reciprocal by interpolation.
+\end{proof}
+
+\section{A general flow identity}
+
+Let $G=(V,E)$ be a finite oriented graph. Give every vertex an admissible
+affine denominator $D_v$. For an edge $e=(u,v)$ suppose the difference
+$D_v-D_u$ is nonzero on the cube and has an affine reciprocal
+\[
+ R_e=r_{e0}+\sum_i r_{ei}x_i.
+\]
+Give each edge an arbitrary affine weight
+$L_e=l_{e0}+\sum_i l_{ei}x_i$. Let $B_{ve}$ be $+1$ at the tail of
+an edge, $-1$ at its head, and zero otherwise.
+
+\begin{theorem}[Exact quadratic flow criterion]\label{thm:flow}
+On the Boolean cube,
+\[
+ \sum_{e=(u,v)}\frac{L_e}{D_uD_v}
+ =\sum_{v\in V}\frac{N_v}{D_v},\qquad
+ N_v=\sum_e B_{ve}R_eL_e.
+ \tag{1}
+\]
+The displayed numerators $N_v$, after Boolean reduction, are all affine
+if and only if for every vertex $v$ and every pair $i<j$,
+\[
+ \sum_e B_{ve}(r_{ei}l_{ej}+r_{ej}l_{ei})=0.
+ \tag{2}
+\]
+When (2) holds, the score in (1) uses at most $|V|$ admissible heads,
+regardless of the number of edge products.
+\end{theorem}
+\begin{proof}
+The identity $R_e(D_v-D_u)=1$ gives
+$L_e/(D_uD_v)=R_eL_e/D_u-R_eL_e/D_v$. Sum over the edges.
+The reduced product of two affine polynomials has degree at most two;
+its coefficient of $x_i x_j$ is exactly
+$r_{ei}l_{ej}+r_{ej}l_{ei}$. This proves necessity and sufficiency
+for the displayed numerators to be affine. Their constant coefficients
+are $\sum_e B_{ve}r_{e0}l_{e0}$, and their coefficients of $x_i$ are
+\[
+ \sum_e B_{ve}
+ (r_{e0}l_{ei}+r_{ei}l_{e0}+r_{ei}l_{ei}).
+\]
+No denominator was changed. The criterion concerns this particular
+partial-fraction construction; it does not assert uniqueness of all
+possible representations using the same denominators.
+\end{proof}
+
+The theorem is algebraic for every allowed choice of the denominator
+geometry, including geometry chosen after the target truth table.
+It does not assume the denominators are fixed independently of that
+table. Condition (2) says that every quadratic coefficient separately
+forms a conserved edge flow.
+
+\section{An explicit nonzero triangle}
+
+Take any number of Boolean coordinates, one of which is $x$, and put
+$D=1+\sum_i x_i$. Define
+\[
+ D_0=D+1+x,\qquad D_1=D+2+3x,\qquad D_2=D+4+6x.
+\]
+Every denominator is strictly positive and every slope is positive.
+For every affine function $L$ of all the inputs,
+\[
+ -\frac{3L}{2D_0D_1}-\frac{10L}{3D_1D_2}
+ +\frac{24L}{5D_2D_0}
+ =\frac{L}{10D_0}-\frac{L}{6D_1}+\frac{L}{15D_2}.
+ \tag{3}
+\]
+To verify this without division, multiply by $D_0D_1D_2$. The left
+numerator minus the right numerator is $Lx(1-x)$, which vanishes
+on the cube. The cancellation can also be read as a circulation.
+For the oriented edges $01,12,20$, the affine reciprocals of the
+denominator differences have constant coefficients
+$1,1/2,-1/3$ and $x$ coefficients $-2/3,-3/10,5/24$.
+The edge weights $-3/2,-10/3,24/5$ make their $x$ coefficients all
+equal to one. Their divergence vanishes at each vertex, leaving the
+constant residues $1/10,-1/6,1/15$ in (3).
+
+\section{Several one-coordinate selectors}
+
+Suppose each reciprocal $R_e$ depends on a single coordinate
+$x_{c(e)}$, with a nonzero coefficient in that coordinate. Regard
+$c(e)$ as the edge color. For $i<j$, let $G_{ij}$ consist of the edges
+whose colors belong to $\{i,j\}$.
+
+\begin{proposition}[Only bichromatic cycles carry quadratic cancellation]
+For every $i<j$, equation (2) is a conserved scalar flow supported
+on $G_{ij}$. If $G_{ij}$ is a forest, every edge contribution to the
+coefficient of $x_i x_j$ is zero individually. More generally, that
+coefficient flow is a linear combination of cycles in $G_{ij}$.
+\end{proposition}
+\begin{proof}
+An edge of any other color has $r_{ei}=r_{ej}=0$. Thus the relevant
+coefficient flow is supported on $G_{ij}$ and has zero divergence.
+A nonzero flow on a finite forest would have a nonzero edge incident
+to a leaf of its nonzero support, contradicting zero divergence there.
+For the general statement, subtract a suitable multiple of a cycle
+through a nonzero edge until fewer nonzero edges remain, and induct.
+Equivalently, this is the usual cycle-space description of the kernel
+of a graph's oriented incidence matrix.
+\end{proof}
+
+In particular, on a simple cycle using at least three different
+coordinate colors, no quadratic terms can cancel across the whole
+cycle. Each two-color subgraph is a proper subgraph of that cycle and
+is a forest. This is an interaction restriction on this exact flow
+mechanism, not on arbitrary attention scores.
+
+\section{A genuine three-coordinate cycle}
+
+Centered two-coordinate differences from Proposition~\ref{prop:inverse}
+escape the preceding one-coordinate restriction. The following example
+has a nonzero quadratic flow involving three coordinates.
+
+Choose positive pairwise distinct $a,b,c$, and set $z_i=2x_i-1$ for
+$i=1,2,3$. Let
+\[
+ D_1=T,\qquad D_2=T+az_1+bz_2,\qquad
+ D_3=T+az_1+cz_3.
+\]
+Here $T=C+K\sum_i x_i$, where $K>0$ and $C>a+b+c$, makes all three
+denominators positive with strictly positive slopes in every coordinate.
+Put
+\[
+ \begin{split}
+ L_{12}&=(a^2-b^2)(bz_2+cz_3),\\
+ L_{23}&=(b^2-c^2)(-az_1+cz_3),\\
+ L_{31}&=(a^2-c^2)(az_1-bz_2).
+ \end{split}
+\]
+Then the exact identity
+\[
+ \frac{L_{12}}{D_1D_2}+\frac{L_{23}}{D_2D_3}
+ +\frac{L_{31}}{D_3D_1}
+ =\frac{a^2-b^2}{D_1}+\frac{b^2-c^2}{D_2}
+ +\frac{c^2-a^2}{D_3}
+ \tag{4}
+\]
+holds on the whole cube. Indeed the reciprocal differences are
+\[
+ R_{12}=\frac{az_1-bz_2}{a^2-b^2},\quad
+ R_{23}=\frac{-bz_2-cz_3}{b^2-c^2},\quad
+ R_{31}=\frac{-az_1+cz_3}{a^2-c^2}.
+\]
+If $Q=abz_1z_2+acz_1z_3-bcz_2z_3$, their products with the edge
+weights are respectively $Q-b^2$, $Q-c^2$, and $Q-a^2$.
+The common quadratic part cancels by circulation, yielding (4).
+Multiplying every term of (4) by an arbitrary affine function $M$
+still leaves exactly three affine-ratio heads on the right. Thus a
+shared cancellation can remove higher-degree edge numerators jointly;
+it need not remove them separately on each product term.
+
+\section{Scope of the remaining problem}
+
+The identities provide exact assembly rules with original admissible
+denominators. They do not provide a family with enough independent
+strict sign choices to improve the universal head bound. In particular,
+counting all edge weights as independent output information is invalid:
+the conserved quadratic parts disappear from the score. A successful
+extension must exploit target-dependent choices of denominators or
+graph geometry while exhibiting the actual surviving strict cube signs.
+The bichromatic-cycle restriction is uniform over such choices for
+one-coordinate reciprocal differences, but the three-coordinate
+example shows that it cannot be extended unchanged to all affine
+reciprocal differences.
+
+\end{document}
