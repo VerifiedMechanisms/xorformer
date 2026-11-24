@@ -1,0 +1,18 @@
+{
+  "scope": "Finite exact arithmetic only; no asymptotic head lower bound",
+  "occupancy_max_k": 14,
+  "identity_checks": 5342,
+  "nonvanishing_checks": 5342,
+  "valuation_checks": 130560,
+  "valuation_max_k": 256,
+  "primes": [
+    2,
+    3,
+    5,
+    7
+  ],
+  "files": {
+    "permutation-moment-divisibility.md": "9dfdcb03de7731109e4ec44fff69a6a8aefa3b099a10538b88be0674cde5618c",
+    "verify_permutation_moment_divisibility.py": "22f658a4f41c645df938f6aee4635130acfa0a69c302278d627d9f94e6a13950"
+  }
+}

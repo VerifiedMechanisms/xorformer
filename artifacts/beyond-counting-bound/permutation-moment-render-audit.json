@@ -1,0 +1,30 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/permutation-moment-divisibility.md",
+    "source_math_spans": 143,
+    "rendered_math_spans": 143,
+    "findings": 0,
+    "sha256": "9dfdcb03de7731109e4ec44fff69a6a8aefa3b099a10538b88be0674cde5618c"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/distinct-level-deep-cancellation.md",
+    "source_math_spans": 143,
+    "rendered_math_spans": 143,
+    "findings": 0,
+    "sha256": "216d084ef9b92562848d177b96548c6d07d0cd141130e125fa6614a003f6df43"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "source_math_spans": 128,
+    "rendered_math_spans": 128,
+    "findings": 0,
+    "sha256": "317bbdb4ca8581cecf96a042be7791e1f59c9c91bfe013ebb8cb588cebdc942d"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/audit-index.md",
+    "source_math_spans": 7,
+    "rendered_math_spans": 7,
+    "findings": 0,
+    "sha256": "0ceaf9c7ffb3b990ba10fc632c9a14fc77dc5ae4fd58353852a32e9a52eead88"
+  }
+]

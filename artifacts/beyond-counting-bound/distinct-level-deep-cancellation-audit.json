@@ -1,0 +1,67 @@
+{
+  "scope": "Exact finite Jacobian checks; analytic deformation is a written proof, not a numerical certificate",
+  "method": "Multiply the rational Jacobian by q; full row rank modulo the trial-division-verified prime proves full row rank over the rationals. Augmented row ranks certify tangent exclusions.",
+  "prime": 1000000007,
+  "cases": [
+    {
+      "m": 2,
+      "q": 4,
+      "H": 16,
+      "low_rank": 1,
+      "rank_with_next_moment": 2,
+      "collision_functionals_checked": 24
+    },
+    {
+      "m": 3,
+      "q": 4,
+      "H": 16,
+      "low_rank": 2,
+      "rank_with_next_moment": 3,
+      "collision_functionals_checked": 24
+    },
+    {
+      "m": 5,
+      "q": 4,
+      "H": 16,
+      "low_rank": 4,
+      "rank_with_next_moment": 5,
+      "collision_functionals_checked": 24
+    },
+    {
+      "m": 9,
+      "q": 4,
+      "H": 16,
+      "low_rank": 8,
+      "rank_with_next_moment": 9,
+      "collision_functionals_checked": 24
+    },
+    {
+      "m": 10,
+      "q": 8,
+      "H": 64,
+      "low_rank": 9,
+      "rank_with_next_moment": 10,
+      "collision_functionals_checked": 224
+    },
+    {
+      "m": 20,
+      "q": 8,
+      "H": 64,
+      "low_rank": 19,
+      "rank_with_next_moment": 20,
+      "collision_functionals_checked": 224
+    },
+    {
+      "m": 35,
+      "q": 8,
+      "H": 64,
+      "low_rank": 34,
+      "rank_with_next_moment": 35,
+      "collision_functionals_checked": 224
+    }
+  ],
+  "files": {
+    "distinct-level-deep-cancellation.md": "216d084ef9b92562848d177b96548c6d07d0cd141130e125fa6614a003f6df43",
+    "verify_distinct_level_cancellation.py": "53067f38557fce2e45b4fa236176384f1fe600e6adec77d53603990bd21c1252"
+  }
+}

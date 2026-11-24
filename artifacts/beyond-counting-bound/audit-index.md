@@ -14,6 +14,8 @@ The [address-budget audit](critical-scale-address-audit.md) checks both factoria
 
 The asker's [critical-width capacity lower bound](critical-width-capacity-lower.md) is now audited as a complete written actual-model construction. It excludes a full-table upper count of order $nH$ in that range, and is compatible with the candidate order $nH\log n$. It is neither a worst-case head lower bound nor a VC lower bound of the same order.
 
+The latest permutation-family audit separates [generic fixed-level endpoint nonvanishing](permutation-moment-divisibility.md) from [distinct exceptional levels with linear Taylor depth](distinct-level-deep-cancellation.md). The latter construction disproves every uniform sublinear truncation in head count, even on two input bits. Both proofs are written and supplemented by exact finite arithmetic. They do not prove the unrestricted target and have not been formalized in Lean.
+
 ## Exact results useful for auditing proposed proofs
 
 | Result | Verification scope | Source |
