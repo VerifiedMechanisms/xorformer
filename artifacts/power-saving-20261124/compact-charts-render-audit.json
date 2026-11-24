@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/compact_denominator_charts.md",
+    "source_spans": 49,
+    "rendered_spans": 49,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124/conditioned_approximation_independent_audit.md",
+    "source_spans": 14,
+    "rendered_spans": 14,
+    "findings": [],
+    "notes": []
+  }
+]
