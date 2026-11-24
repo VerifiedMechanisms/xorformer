@@ -73,5 +73,21 @@ theorem thresholdDeg_eq_three : thresholdDeg explicitUnshiftedFunction = 3 := by
   obtain ⟨P, hPdeg, hPsign⟩ := Nat.find_spec hex
   exact not_thresholdDegLE_two ⟨P, hPdeg.trans hfind, hPsign⟩
 
+
+/-- An independent exact pure count from the threshold-degree lower bound. This
+proof does not use the universal two-head reorientation theorem. -/
+theorem pureHStar_eq_three_from_degree :
+    PureRoPEHStar (14 * replicationCount) explicitUnshiftedFunction = 3 := by
+  classical
+  have hupper : PureRoPEHStar (14 * replicationCount) explicitUnshiftedFunction ≤ 3 := by
+    unfold PureRoPEHStar
+    exact Nat.find_min' _ explicitUnshiftedFunction_pure_three
+  apply Nat.le_antisymm hupper
+  by_contra hlow
+  have htwo : PureRoPEHStar (14 * replicationCount) explicitUnshiftedFunction ≤ 2 := by omega
+  obtain ⟨P, hPdeg, hPsign⟩ := thresholdDegLE_of_pureRoPEComputable
+    (pureRoPEHStar_computable explicitUnshiftedFunction)
+  exact not_thresholdDegLE_two ⟨P, hPdeg.trans htwo, hPsign⟩
+
 end
 end HeadComplexity.PureRoPEExplicitThreshold
