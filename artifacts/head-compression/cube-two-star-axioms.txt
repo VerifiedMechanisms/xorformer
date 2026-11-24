@@ -10,7 +10,9 @@
 'HeadComplexity.AxisZeroGluing.jointCell_exists_downward_layer_log_cost' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-../artifacts/head-compression/cube-two-star-audit.lean:10:14: error(lean.unknownIdentifier): Unknown constant `HeadComplexity.AxisZeroGluing.compact_regular_dictionary_obstruction`
+'HeadComplexity.AxisZeroGluing.jointFamily_compact_regular_dictionary_obstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
 'HeadComplexity.LargeDomain.affine_product_pair_preserves_signs' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
