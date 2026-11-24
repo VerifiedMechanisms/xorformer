@@ -62,3 +62,13 @@ The last module invokes the repository's exact affine-fraction equivalence. Its 
 Three genuine pure atoms can realize a cubic coefficient matrix with all the required off-diagonal and column-sum signs. [exact_tripartite_projection.json](../../artifacts/rope/counterexample_search/exact_tripartite_projection.json) contains exact rational denominator and mass directions, token values, fixed-query parameters, and the coefficient matrix. [verify_tripartite_projection.py](../../artifacts/rope/counterexample_search/verify_tripartite_projection.py) checks every pure positivity constraint and all $36$ coefficient inequalities using rational arithmetic.
 
 This certifies that the coefficient-level obstruction alone does not also exclude pure three heads. It does not show that the complete score meets the prescribed parity faces. Controlling the lower-degree score components, or finding different compatible face backgrounds, remains necessary before this route can establish a Boolean separation.
+
+## Replacing singleton rows by regular coordinate blocks
+
+The same lower bound permits a larger family of finite witnesses. Replace each singleton $x_i$ in the negative faces by a nonempty subset $I_i$ of the six $X$ coordinates, all moving together. Suppose the six subsets form a regular cover: each $X$ coordinate occurs in the same positive number $r$ of subsets. Keep the positive faces tying all six $X$ coordinates.
+
+The new row coefficient is the sum over $I_i$ of the former row coefficients. Its distinguished denominator factor remains uniformly signed, because it is a nonempty sum of uniformly signed entries. The new column sum is $r$ times the original tied-block coefficient, so it remains positive. The same cross-matrix contradiction applies.
+
+[ThreeHeadRegularBlockPattern.lean](../../formalization/HeadComplexity/Results/ThreeHeadRegularBlockPattern.lean) proves `not_computable_three` and `HStar_ge_four` for arbitrary such covers and arbitrary face backgrounds. Two verified choices are the six complements $I_i=X\setminus\lbrace i\rbrace$, each of size five, and the cyclic blocks $I_i=\lbrace i,i+1,i+3\rbrace$ with indices modulo six, each of size three. Their regularity declarations are `complementBlocks_regular` and `cyclicBlocks_regular`.
+
+This extension adds certified lower-bound targets. It does not assert that any pure three-head function meets them.
