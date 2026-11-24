@@ -1,0 +1,77 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\title{A Fixed-Pool Coalescing-Query Audit}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+This short written lemma excludes one compact-limit shortcut. It does
+not exclude scale-dependent poles or residues, does not bound the number
+of patterns for arbitrary fixed query intervals, and does not establish
+either requested HeadComplexity asymptotic result. It is not Lean checked.
+
+\begin{lemma}
+Let $\mathcal F$ be a finite family of real-analytic functions in a
+neighborhood of $T$. Fix nonzero real numbers $u_1,\ldots,u_q$.
+For all sufficiently small $\eta>0$, the strict sign vectors
+\[
+ \bigl(\operatorname{sgn}f(T+\eta u_j)\bigr)_{j=1}^q,
+ \qquad f\in\mathcal F,
+\]
+belong to a set of at most four patterns: the two constant patterns and
+the two patterns $\pm(\operatorname{sgn}u_j)_j$.
+\end{lemma}
+\begin{proof}
+An identically zero function supplies no strict sign vector. Otherwise,
+let $k$ be the order of its first nonzero Taylor coefficient $a$ at $T$.
+For each fixed nonzero $u_j$,
+\[
+ f(T+\eta u_j)=a\eta^ku_j^k+o(\eta^k).
+\]
+The leading coefficient is nonzero. Thus for sufficiently small positive
+$\eta$ its sign is $\operatorname{sgn}(a)\operatorname{sgn}(u_j)^k$.
+Take a common positive threshold over the finitely many functions and
+queries. Even $k$ gives a constant pattern; odd $k$ gives the signed
+$u$ pattern.
+\end{proof}
+
+In particular, fix poles $p_h<T$ and real weights $a_h$. Applying the
+lemma to all $2^M$ functions
+$f_s(t)=\sum_{h=1}^M s_h a_h/(t-p_h)$ shows that a fixed weighted
+Cauchy sign cube has at most four strict output patterns as the query
+interval contracts to $T$. Letting the pool itself depend on the query
+scale invalidates this application, and is permitted in the research
+problem. Likewise, sending poles to zero while holding a nonzero query
+interval fixed is a different limit: its leading coefficient can be a
+nonconstant rational function of the query time.
+
+\paragraph{Exact finite diagnostic.}
+The accompanying script \texttt{compact-cauchy-signcube-probe.py}
+exhausts all $2^M$ sign choices for $M=4,6,8,10,12,14,16$.
+It uses rational equally spaced poles and query times, and six displayed
+weight choices: equal weights; $T-p_h$; a small perturbation thereof;
+barycentric weights; and two barycentric weights multiplied by prescribed
+polynomial values. Every denominator is positive. Each rational row is
+cleared to integers, and Gray-code updates evaluate signs with exact
+integer arithmetic. In these configurations the counts are always two
+or four. This is computational evidence for those explicit families,
+not a bound over all scale-dependent pools.
+
+\paragraph{Entropy budget warning.}
+If a proposed recursive decoder gives $\exp(cH\log H)$ distinct
+patterns on $O(H\log H)$ queries, Sauer's lemma does imply a shattered
+subset of size $\Omega(H\log H)$. However,
+$\exp(cH\log\log H)$ patterns on the same query count do not by
+themselves imply a superconstant ratio of shattered size to $H$.
+Indeed a class of VC dimension $d=\Theta(H)$ can already have up to
+\[
+ (eq/d)^d=\exp(\Theta(H\log\log H)),
+ \qquad q=\Theta(H\log H).
+\]
+A weaker entropy recurrence must therefore also reduce the retained query
+count, or prove a further distance or projection property. Merely counting
+permutations or distinct scalar states does not supply this missing step.
+\end{document}
