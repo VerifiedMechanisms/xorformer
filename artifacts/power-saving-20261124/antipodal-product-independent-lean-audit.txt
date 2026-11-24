@@ -1,0 +1,12 @@
+'HeadComplexity.AntipodalProductRank.rank_eq_card_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AntipodalProductRank.signRank_eq_card_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AntipodalProductRank.productScoreMatrix_rank_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AntipodalProductRank.product_width_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

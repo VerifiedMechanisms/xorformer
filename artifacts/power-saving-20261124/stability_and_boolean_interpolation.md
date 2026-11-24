@@ -4,7 +4,7 @@
 
 This note tests a possible use of real stability for the unrestricted head model. The denominator product is real stable, and the original score is a tangent derivative of its logarithm. However, Boolean multilinear interpolation does not preserve real stability, even for a product of two strictly positive coherent affine denominators. Logarithmic concavity and submodularity alone do not constrain the signs of arbitrary tangents.
 
-These are elementary written observations and an exact counterexample. They do not prove an improved head lower bound. No Lean verification is claimed.
+These are elementary written observations and an exact counterexample. They do not prove an improved head lower bound. The stability counterexample, cube agreement, and original product stability are Lean verified as recorded below; the general tangent and cone discussion is a written proof.
 
 ## The exact tangent interpretation
 
@@ -47,6 +47,12 @@ Here $bc-ad=-12243$, so this root has strictly positive imaginary part. The deno
 This is also an explicit violation of the necessary Rayleigh inequality for multiaffine stable polynomials. That general criterion appears in [Wagner, Multivariate stable polynomials, Section 3](https://www.math.uwaterloo.ca/~dgwagner/ceb_wagner.pdf), but the direct root calculation above proves the needed failure without relying on the criterion.
 
 The stability-preserving operation that discards every nonsquarefree monomial is different from Boolean interpolation, which identifies every positive power of a coordinate with that coordinate. The former operation cannot be substituted for the latter when preserving cube evaluations or labels.
+
+The file `formalization/HeadComplexity/Research/BooleanInterpolationStability.lean` verifies three statements in namespace `HeadComplexity.BooleanInterpolationStability`: `denominator_product_upperStable`, `interpolation_agrees_on_boolean_cube`, and `multilinear_not_upperStable`. Its exact complex zero uses
+
+$$ x_1=\frac{-1518114267+116143413i}{1808988641},\qquad x_2=i,\qquad x_3=-1+\frac{i}{100}. $$
+
+The file compiles, and each displayed theorem's axiom audit reports only `propext`, `Classical.choice`, and `Quot.sound`. This is a finite exact algebraic certificate of the counterexample, not formal verification of an unrestricted lower bound.
 
 ## Why the cone properties alone do not give a sign bound
 

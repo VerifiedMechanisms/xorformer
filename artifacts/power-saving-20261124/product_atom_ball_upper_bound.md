@@ -46,6 +46,32 @@ $$ 0\lt\varepsilon\lt\frac1{2T(2k+1)}. $$
 
 At any vertex, its own patch contributes exactly its desired sign, while the total absolute contribution of every other patch is less than $1/2$. Thus the sum has sign $F$ everywhere, with signed margin greater than $1/2$. This proves the stated bound. $\blacksquare$
 
+## A fixed dictionary spans every real table
+
+The same construction gives an exact linear-algebraic strengthening. There is a choice of $T$ positive product weights, depending only on $n$, such that their affine multiples span every real-valued table on the cube.
+
+For each patch, keep its product weight $W_{c,z}$ and use the following $k+1$ affine prefactors:
+
+$$ L_0=1-\sum_{i=1}^k y_i,\qquad L_i=y_i/\varepsilon\quad(1\leq i\leq k). $$
+
+The resulting weighted functions equal the coordinate delta functions on their own patch. There are exactly $T(k+1)=N$ such functions in total. Index each by its designated vertex and let $E$ be their square evaluation matrix, with rows indexed by cube vertices. Every diagonal entry is one, and entries corresponding to other vertices of the same patch are zero.
+
+At a vertex outside a function's patch, its product weight is at most $\varepsilon^2$. The center prefactor has absolute value at most $k$, while a neighbor prefactor has absolute value at most $1/\varepsilon$. Thus every off-diagonal matrix entry has absolute value at most $k\varepsilon$ when $0\lt\varepsilon\lt1$.
+
+Choose $\varepsilon=1/(2Nk)$. Every row has sum of absolute off-diagonal entries strictly less than one. The matrix is invertible: if $Ea=0$, choose a coordinate of $a$ having largest absolute value; the equation in that row and strict diagonal dominance force that value to be zero. Consequently every real table has a unique expansion in these $N$ weighted affine basis functions.
+
+Grouping the $k+1$ terms for each patch gives one affine prefactor multiplying its fixed positive product weight. This proves exact representation of every real table with the same $T$-atom dictionary. The factor choices are independent of the target, and only the affine numerators vary. The construction remains a statement about the product comparison class.
+
+## A matching fixed-dictionary dimension obstruction
+
+Suppose $K$ product weights are fixed independently of the target, and every Boolean sign table is represented strictly by affine multiples of these weights, without a separate free bias. Their attainable real tables form a linear space $V$ of dimension at most $(n+1)K$. In fact $V$ must equal the entire $N$-dimensional table space.
+
+Otherwise choose a nonzero table $w$ orthogonal to $V$. Define a Boolean target to have the sign of $w$ at every nonzero coordinate, with arbitrary signs at its zero coordinates. Every real table strictly representing this target has strictly positive inner product with $w$, whereas every member of $V$ has inner product zero. This contradicts universality. Therefore
+
+$$ K\geq\frac{N}{n+1}. $$
+
+If a separate free bias is allowed, the same proof gives $(n+1)K+1\geq N$. Thus the fixed positive dictionary constructed above is within a factor two of the minimum possible dictionary size, even if only all strict Boolean signs are required. This lower bound does not apply when the product weights depend on the target.
+
 ## Verification boundary
 
 This is an elementary written proof. No finite computation or Lean verification is claimed. The product factors are positive, but their coordinate directions may differ from atom to atom. The construction therefore does not assert any corresponding coherent affine-denominator representation or resolve the requested original head lower bound.

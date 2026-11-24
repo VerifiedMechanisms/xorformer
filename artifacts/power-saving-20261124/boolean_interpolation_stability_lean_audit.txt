@@ -1,0 +1,9 @@
+'HeadComplexity.BooleanInterpolationStability.denominator_product_upperStable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanInterpolationStability.interpolation_agrees_on_boolean_cube' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanInterpolationStability.multilinear_not_upperStable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

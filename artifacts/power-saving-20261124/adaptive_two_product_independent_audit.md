@@ -4,7 +4,7 @@
 
 I independently read `adaptive_two_product_separation.md` and its exact checker, then reran `check_two_head_adaptive_product_separation.py`. The finite certificate and the general rank proof are correct. They give a strict Boolean target on $38$ bits with original head complexity exactly two, which requires at least three arbitrary affine-times-product atoms even when a free bias is allowed.
 
-This is a written proof supported by exact rational computation. It is not Lean kernel verification and does not prove an asymptotic head lower bound. It rules out a same-width compiler at width two, while allowing a compiler with any larger constant factor.
+The finite separation is a written proof supported by exact rational computation. It is not an end-to-end Lean theorem and does not prove an asymptotic head lower bound. It rules out a same-width compiler at width two, while allowing a compiler with any larger constant factor. A later independent fresh build also checked the general rank ingredients in `AntipodalProductRank.lean` and the universal three-atom upper bound in `TwoHeadProductCompilation.lean`, with only the standard foundational axioms.
 
 ## Checks
 

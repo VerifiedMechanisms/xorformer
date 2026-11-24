@@ -1,0 +1,3 @@
+'HeadComplexity.FiniteDifferenceCompilation.uniform_finite_head_sign_compilation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

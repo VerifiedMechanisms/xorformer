@@ -1,0 +1,11 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/constant_pencil_antipodal_rank.md",
+    "source_spans": 35,
+    "rendered_spans": 35,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124/constant_pencil_antipodal_rank.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ V=\\\\mathrm{span}\\\\left(\\\\lbrace1\\\\rbrace\\\\cup\\\\lbrace z_i s^j:1\\\\leq i\\\\leq n,\\\\ 0\\\\leq'"
+    ]
+  }
+]

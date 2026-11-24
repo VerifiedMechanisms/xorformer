@@ -1,0 +1,23 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/signed_quadrature_independent_audit.md",
+    "source_spans": 26,
+    "rendered_spans": 26,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124/adaptive_two_product_independent_audit.md",
+    "source_spans": 12,
+    "rendered_spans": 12,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124/adaptive_product_log_obstruction_independent_audit.md",
+    "source_spans": 37,
+    "rendered_spans": 37,
+    "findings": [],
+    "notes": []
+  }
+]

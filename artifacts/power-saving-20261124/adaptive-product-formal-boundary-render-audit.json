@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/adaptive_two_product_separation.md",
+    "source_spans": 70,
+    "rendered_spans": 70,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124/adaptive_product_compiler_logarithmic_obstruction.md",
+    "source_spans": 166,
+    "rendered_spans": 166,
+    "findings": [],
+    "notes": []
+  }
+]

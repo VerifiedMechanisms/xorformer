@@ -4,7 +4,7 @@
 
 I independently checked `adaptive_product_compiler_logarithmic_obstruction.md`, including the prior Hall-selector proof, the exact coherent embeddings, both dimension reductions, and the sign-rank argument. The result is correct: along an unbounded sequence with $n=\Theta(H\log H)$, some strict original $H$-head targets require $\Omega(H\log n)$ affine-times-product atoms even with a free bias and arbitrary target-dependent factors.
 
-The proof rules out a universal constant-factor adaptive compiler. It does not rule out logarithmic or sublinear polynomial overhead in $n$, and does not prove the requested worst-case head lower bound. The new consequences are written proofs, not new Lean declarations.
+The proof rules out a universal constant-factor adaptive compiler. It does not rule out logarithmic or sublinear polynomial overhead in $n$, and does not prove the requested worst-case head lower bound. The complete compiler obstruction is a written proof, not one end-to-end Lean declaration. The general matrix-rank ingredients were subsequently checked in a fresh independent build of `AntipodalProductRank.lean`, with only the standard foundational axioms.
 
 ## Checks
 
