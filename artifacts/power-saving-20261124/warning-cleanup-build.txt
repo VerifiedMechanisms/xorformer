@@ -1,0 +1,103 @@
+ℹ [3137/3243] Replayed HeadComplexity.Research.AffineBooleanZeroDivisors
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:207:0: 'HeadComplexity.AffineBooleanZeroDivisors.coefficient_relations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:208:0: 'HeadComplexity.AffineBooleanZeroDivisors.three_nonzero_slopes_force_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:209:0: 'HeadComplexity.AffineBooleanZeroDivisors.support_card_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:210:0: 'HeadComplexity.AffineBooleanZeroDivisors.two_slope_classification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AffineBooleanZeroDivisors.lean:211:0: 'HeadComplexity.AffineBooleanZeroDivisors.one_slope_classification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3140/3243] Replayed HeadComplexity.Research.BooleanInterpolationStability
+info: HeadComplexity/Research/BooleanInterpolationStability.lean:76:0: 'HeadComplexity.BooleanInterpolationStability.denominator_product_upperStable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/BooleanInterpolationStability.lean:77:0: 'HeadComplexity.BooleanInterpolationStability.interpolation_agrees_on_boolean_cube' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/BooleanInterpolationStability.lean:78:0: 'HeadComplexity.BooleanInterpolationStability.multilinear_not_upperStable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3141/3243] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:128:0: 'HeadComplexity.ConditionedReciprocalApproximation.geometric_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:129:0: 'HeadComplexity.ConditionedReciprocalApproximation.exponential_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'HeadComplexity.ConditionedReciprocalApproximation.sign_preserved_of_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3143/3243] Replayed HeadComplexity.Research.RadialMomentTransfer
+info: HeadComplexity/Research/RadialMomentTransfer.lean:281:0: 'HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3223/3243] Replayed HeadComplexity.Research.RadialJetAlgebra
+info: HeadComplexity/Research/RadialJetAlgebra.lean:76:0: 'HeadComplexity.RadialJetAlgebra.tail_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/RadialJetAlgebra.lean:77:0: 'HeadComplexity.RadialJetAlgebra.moment_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3224/3243] Replayed HeadComplexity.Research.RadialMovingNumeratorTransfer
+info: HeadComplexity/Research/RadialMovingNumeratorTransfer.lean:250:0: 'HeadComplexity.RadialMovingNumeratorTransfer.uniform_moving_numerator_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3225/3243] Replayed HeadComplexity.Research.TwoHeadBooleanDegeneracy
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:181:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.diagonal_support_card_le_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:182:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.exists_zero_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:183:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.factor_at_zero_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean:184:0: 'HeadComplexity.TwoHeadBooleanDegeneracy.denominator_difference_support_le_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3235/3243] Replayed HeadComplexity.Research.TwoHeadProductCompilation
+info: HeadComplexity/Research/TwoHeadProductCompilation.lean:85:0: 'HeadComplexity.TwoHeadProductCompilation.uniform_two_head_sign_compilation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/TwoHeadProductCompilation.lean:86:0: 'HeadComplexity.TwoHeadProductCompilation.affine_exponential_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3236/3243] Replayed HeadComplexity.Research.FiniteDifferenceCompilation
+info: HeadComplexity/Research/FiniteDifferenceCompilation.lean:75:0: 'HeadComplexity.FiniteDifferenceCompilation.uniform_finite_head_sign_compilation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3237/3243] Replayed HeadComplexity.Research.RadialContraction
+info: HeadComplexity/Research/RadialContraction.lean:130:0: 'HeadComplexity.RadialContraction.target_computableWith_two_heads' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RadialContraction.lean:131:0: 'HeadComplexity.RadialContraction.not_small_scale_represents_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3238/3243] Replayed HeadComplexity.Research.RadialSpanSeparation
+info: HeadComplexity/Research/RadialSpanSeparation.lean:135:0: 'HeadComplexity.RadialSpanSeparation.target_computableWith_two_heads' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RadialSpanSeparation.lean:136:0: 'HeadComplexity.RadialSpanSeparation.not_exponentialScore_represents_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3242/3243] Replayed HeadComplexity.Research.TwoHeadOriginalProductBridge
+info: HeadComplexity/Research/TwoHeadOriginalProductBridge.lean:89:0: 'HeadComplexity.TwoHeadOriginalProductBridge.original_two_heads_have_three_affine_exponential_terms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3243/3243] Built HeadComplexity.Research.AntipodalProductRank (1.6s)
+info: HeadComplexity/Research/AntipodalProductRank.lean:123:0: 'HeadComplexity.AntipodalProductRank.rank_eq_card_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/AntipodalProductRank.lean:124:0: 'HeadComplexity.AntipodalProductRank.product_width_of_antipodal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3243 jobs).

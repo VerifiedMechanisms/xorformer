@@ -87,7 +87,7 @@ def transferScore (a : ι → ℕ → ℝ) (C : ι → ℝ) (B t : ℝ) (r : ℕ
     (RadialMomentTransfer.exponential (tailWeight a C B r) (fun h => -C h)) t
 
 lemma jetScore_decomposition (a : ι → ℕ → ℝ) (C : ι → ℝ) (B t : ℝ) (r : ℕ)
-    (hB : B ≠ 0) (hD : ∀ h, B+t*C h ≠ 0) :
+    (hB : B ≠ 0) (hD : ∀ h, B + t * C h ≠ 0) :
     jetScore a C B t r = polynomialTail
       (fun j => jetMoment a C B j / B^(j+1)) r
       (fun t => RadialMomentTransfer.reciprocal (tailWeight a C B r)
@@ -222,7 +222,7 @@ theorem eventually_transfer_same_sign (a : ι → ℕ → ℝ) (C : ι → ℝ)
     exact eventually_transfer_same_sign_of_low_zero a C B r hB hz
 
 /-- One positive scale interval works on every point of a finite query set. -/
-theorem uniform_moving_numerator_sign_transfer {X : Type*} [Fintype X]
+theorem uniform_moving_numerator_sign_transfer {X : Type*} [Finite X]
     (a : X → ι → ℕ → ℝ) (C : X → ι → ℝ) (B : X → ℝ) (r : ℕ)
     (hB : ∀ x, 0 < B x) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ t : ℝ, 0 < t → t < ε → ∀ x,

@@ -52,9 +52,9 @@ theorem cleared_eq_score_mul_product (A B : ι → ℝ) (hB : ∀ h, B h ≠ 0) 
   rw [he]
   field_simp [hB h]
 
-theorem uniform_finite_head_sign_compilation {X : Type*} [Fintype X]
+theorem uniform_finite_head_sign_compilation {X : Type*} [Finite X]
     (A B : ι → X → ℝ) (hB : ∀ h x, 0 < B h x)
-    (hs : ∀ x, (∑ h, A h x/B h x) ≠ 0) :
+    (hs : ∀ x, (∑ h, A h x / B h x) ≠ 0) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ t : ℝ, 0 < t → t < ε → ∀ x,
       0 < (∑ h, A h x/B h x) * compiled (fun h => A h x) (fun h => B h x) t := by
   have hev : ∀ᶠ t : ℝ in 𝓝[>] 0, ∀ x,

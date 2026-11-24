@@ -37,10 +37,10 @@ theorem compiled_scaled_limit (a b u v : ℝ) :
 
 /-- The three exponential directions are the two original denominators and
 the zero direction. The bias is first absorbed into one numerator. -/
-theorem uniform_two_head_sign_compilation {X : Type*} [Fintype X]
+theorem uniform_two_head_sign_compilation {X : Type*} [Finite X]
     (A D B C : X → ℝ) (c : ℝ)
     (hB : ∀ x, 0 < B x) (hC : ∀ x, 0 < C x)
-    (hstrict : ∀ x, c + A x/B x + D x/C x ≠ 0) :
+    (hstrict : ∀ x, c + A x / B x + D x / C x ≠ 0) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ t : ℝ, 0 < t → t < ε → ∀ x,
       0 < (c + A x/B x + D x/C x) *
         compiled (A x+c*B x) (D x) (B x) (C x) t := by
@@ -80,7 +80,7 @@ theorem affine_exponential_product {n : ℕ} (b₀ : ℝ) (b : Fin n → ℝ)
   congr 1
   apply prod_congr rfl
   intro i hi
-  cases hx : x i <;> simp [boolToReal, hx]
+  cases x i <;> simp [boolToReal]
 
 #print axioms uniform_two_head_sign_compilation
 #print axioms affine_exponential_product

@@ -15,7 +15,7 @@ namespace HeadComplexity.AffineBooleanZeroDivisors
 open Finset
 open scoped BigOperators
 
-variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+variable {ι : Type*}
 
 def value (a₀ : ℝ) (a : ι → ℝ) (s : Finset ι) : ℝ := a₀ + ∑ i ∈ s, a i
 
@@ -24,6 +24,7 @@ theorem coefficient_relations (a₀ b₀ : ℝ) (a b : ι → ℝ)
     a₀*b₀ = 0 ∧
     (∀ i, a₀*b i + b₀*a i + a i*b i = 0) ∧
     (∀ i j, i ≠ j → a i*b j + a j*b i = 0) := by
+  classical
   have he := h ∅
   simp only [value, sum_empty, add_zero] at he
   have hs (i : ι) := h {i}
@@ -64,7 +65,7 @@ theorem three_nonzero_slopes_force_zero (a₀ b₀ : ℝ) (a b : ι → ℝ)
     exact (mul_eq_zero.mp ht).resolve_right hai
   exact ⟨hb₀, hb⟩
 
-theorem support_card_le_two (a₀ b₀ : ℝ) (a b : ι → ℝ)
+theorem support_card_le_two [Fintype ι] (a₀ b₀ : ℝ) (a b : ι → ℝ)
     (h : ∀ s : Finset ι, value a₀ a s * value b₀ b s = 0)
     (hb : b₀ ≠ 0 ∨ ∃ i, b i ≠ 0) :
     (univ.filter (fun i => a i ≠ 0)).card ≤ 2 := by

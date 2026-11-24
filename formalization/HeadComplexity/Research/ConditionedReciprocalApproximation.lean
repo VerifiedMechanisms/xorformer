@@ -50,7 +50,7 @@ theorem exact_error (A B q m : ℝ) (d : ℕ)
         _ = _ := by rw [pow_succ]; ring
 
 theorem geometric_relative_error (A B q m : ℝ) (d : ℕ)
-    (hq : 0 < q) (hm : 1 ≤ m) (hlo : q ≤ B) (hhi : B ≤ m*q) :
+    (hq : 0 < q) (hm : 1 ≤ m) (hlo : q ≤ B) (hhi : B ≤ m * q) :
     |A/B-headApprox A B q m d| ≤ |A/B| *(1-1/m)^(d+1) := by
   have hm0 : 0 < m := lt_of_lt_of_le zero_lt_one hm
   have hB : 0 < B := lt_of_lt_of_le hq hlo
@@ -68,7 +68,7 @@ theorem geometric_relative_error (A B q m : ℝ) (d : ℕ)
   exact mul_le_mul_of_nonneg_left (pow_le_pow_left₀ hr0 hr _) (abs_nonneg _)
 
 theorem exponential_relative_error (A B q m : ℝ) (d : ℕ)
-    (hq : 0 < q) (hm : 1 ≤ m) (hlo : q ≤ B) (hhi : B ≤ m*q) :
+    (hq : 0 < q) (hm : 1 ≤ m) (hlo : q ≤ B) (hhi : B ≤ m * q) :
     |A/B-headApprox A B q m d| ≤ |A/B| *Real.exp (-((d+1 : ℕ) : ℝ)/m) := by
   have hm0 : 0 < m := lt_of_lt_of_le zero_lt_one hm
   have hr0 : 0 ≤ 1-1/m := by
@@ -89,8 +89,8 @@ theorem sign_preserved_of_relative_error {ι : Type*} [Fintype ι]
     (a g M : ι → ℝ) (c F gamma : ℝ)
     (hF : |F| = 1) (hgamma : 0 < gamma)
     (hM : 0 < |c| + ∑ h, M h)
-    (hmargin : gamma*(|c|+∑ h, M h) ≤ F*(c+∑ h, a h))
-    (herror : ∀ h, |a h-g h| ≤ gamma/2*M h) :
+    (hmargin : gamma * (|c| + ∑ h, M h) ≤ F * (c + ∑ h, a h))
+    (herror : ∀ h, |a h - g h| ≤ gamma / 2 * M h) :
     0 < F*(c+∑ h, g h) := by
   have herr : |(c+∑ h, a h)-(c+∑ h, g h)| ≤ gamma/2*(∑ h, M h) := by
     rw [add_sub_add_left_eq_sub, ← sum_sub_distrib]
@@ -109,11 +109,11 @@ theorem conditioned_score_preserves_sign {ι : Type*} [Fintype ι]
     (A B q M : ι → ℝ) (c F gamma m : ℝ) (d : ℕ)
     (hF : |F| = 1) (hgamma : 0 < gamma) (hm : 1 ≤ m)
     (hq : ∀ h, 0 < q h) (hlo : ∀ h, q h ≤ B h)
-    (hhi : ∀ h, B h ≤ m*q h)
-    (hamp : ∀ h, |A h/B h| ≤ M h)
+    (hhi : ∀ h, B h ≤ m * q h)
+    (hamp : ∀ h, |A h / B h| ≤ M h)
     (hM : 0 < |c| + ∑ h, M h)
-    (hmargin : gamma*(|c|+∑ h, M h) ≤ F*(c+∑ h, A h/B h))
-    (hdegree : Real.exp (-((d+1 : ℕ) : ℝ)/m) ≤ gamma/2) :
+    (hmargin : gamma * (|c| + ∑ h, M h) ≤ F * (c + ∑ h, A h / B h))
+    (hdegree : Real.exp (-((d + 1 : ℕ) : ℝ) / m) ≤ gamma / 2) :
     0 < F*(c+∑ h, headApprox (A h) (B h) (q h) m d) := by
   apply sign_preserved_of_relative_error _ _ M c F gamma hF hgamma hM hmargin
   intro h

@@ -28,7 +28,7 @@ def exponential (a C : ι → ℝ) (t : ℝ) : ℝ := ∑ h, a h * Real.exp (t *
 
 /-- Exact geometric remainder, with no asymptotic interchange. -/
 lemma reciprocal_remainder (B C t : ℝ) (k : ℕ) (hB : B ≠ 0)
-    (hD : B-t*C ≠ 0) :
+    (hD : B - t * C ≠ 0) :
     1/(B-t*C) = (∑ j ∈ range k, C^j/B^(j+1)*t^j) +
       t^k * (C^k/B^k) / (B-t*C) := by
   induction k with
@@ -40,7 +40,7 @@ lemma reciprocal_remainder (B C t : ℝ) (k : ℕ) (hB : B ≠ 0)
       ring
 
 lemma reciprocal_moment_remainder (a C : ι → ℝ) (B t : ℝ) (k : ℕ)
-    (hB : B ≠ 0) (hD : ∀ h, B-t*C h ≠ 0) :
+    (hB : B ≠ 0) (hD : ∀ h, B - t * C h ≠ 0) :
     reciprocal a C B t =
       (∑ j ∈ range k, moment a C j / B^(j+1)*t^j) +
       t^k * ∑ h, (a h * C h^k / B^k)/(B-t*C h) := by
@@ -222,14 +222,14 @@ theorem eventually_same_sign_or_zero (a C : ι → ℝ) (B : ℝ) (hB : 0 < B) :
     exact (eventually_product_pos a C B hB k hl hn).mono (fun _ h => Or.inl h)
 
 
-lemma sign_eq_of_product_pos {u v : ℝ} (h : 0 < u*v) :
+lemma sign_eq_of_product_pos {u v : ℝ} (h : 0 < u * v) :
     SignType.sign u = SignType.sign v := by
   rcases mul_pos_iff.mp h with ⟨hu, hv⟩ | ⟨hu, hv⟩
   · rw [sign_pos hu, sign_pos hv]
   · rw [sign_neg hu, sign_neg hv]
 
 /-- One scale works on an arbitrary finite set, at every cancellation order. -/
-theorem uniform_kernel_sign_transfer {X : Type*} [Fintype X]
+theorem uniform_kernel_sign_transfer {X : Type*} [Finite X]
     (a C : X → ι → ℝ) (B : X → ℝ) (hB : ∀ x, 0 < B x) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ t : ℝ, 0 < t → t < ε → ∀ x,
       (∀ h, 0 < B x-t*C x h) ∧
@@ -259,7 +259,7 @@ theorem uniform_kernel_sign_transfer {X : Type*} [Fintype X]
 /-- The written fixed-radial theorem, including its arbitrary fixed bias.
 There are no coherence, distinctness, margin, or noncancellation assumptions.
 All numerator and shift functions are fixed independently of the scale. -/
-theorem uniform_radial_sign_transfer {X : Type*} [Fintype X]
+theorem uniform_radial_sign_transfer {X : Type*} [Finite X]
     (A C : X → ι → ℝ) (B : X → ℝ) (c : ℝ) (hB : ∀ x, 0 < B x) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ t : ℝ, 0 < t → t < ε → ∀ x,
       (∀ h, 0 < B x+t*C x h) ∧

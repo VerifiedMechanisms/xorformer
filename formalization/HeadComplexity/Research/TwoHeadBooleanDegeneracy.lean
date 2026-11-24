@@ -16,7 +16,7 @@ open Finset
 open scoped BigOperators
 open AffineBooleanZeroDivisors
 
-variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+variable {ι : Type*}
 
 theorem cross_coefficient_relations (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι → ℝ)
     (h : ∀ s : Finset ι,
@@ -24,6 +24,7 @@ theorem cross_coefficient_relations (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι �
     a₀*c₀+d₀*b₀ = 0 ∧
     (∀ i, a₀*c i + c₀*a i + d₀*b i + b₀*d i + a i*c i+d i*b i = 0) ∧
     (∀ i j, i ≠ j → a i*c j+a j*c i+d i*b j+d j*b i = 0) := by
+  classical
   have he := h ∅
   simp only [value, sum_empty, add_zero] at he
   have hs (i : ι) := h {i}
@@ -37,8 +38,8 @@ theorem cross_coefficient_relations (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι �
       sum_singleton] at hp
     nlinarith [hs i, hs j]
 
-theorem diagonal_support_card_le_four (a b c d : ι → ℝ)
-    (h : ∀ i j, i ≠ j → a i*c j+a j*c i+d i*b j+d j*b i = 0) :
+theorem diagonal_support_card_le_four [Fintype ι] (a b c d : ι → ℝ)
+    (h : ∀ i j, i ≠ j → a i * c j + a j * c i + d i * b j + d j * b i = 0) :
     (univ.filter (fun i => a i*c i+d i*b i ≠ 0)).card ≤ 4 := by
   classical
   let M : Matrix ι (Fin 4) ℝ := fun i => ![a i, c i, d i, b i]
@@ -62,11 +63,12 @@ theorem diagonal_support_card_le_four (a b c d : ι → ℝ)
   rw [Matrix.rank_diagonal] at hr
   simpa only [Fintype.card_subtype, Finset.mem_filter, Finset.mem_univ, true_and] using hr
 
-theorem exists_zero_diagonal (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι → ℝ)
+theorem exists_zero_diagonal [Fintype ι] (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι → ℝ)
     (hn : 5 ≤ Fintype.card ι)
     (h : ∀ s : Finset ι,
       value a₀ a s * value c₀ c s + value d₀ d s * value b₀ b s = 0) :
     ∃ j, a j*c j+d j*b j = 0 := by
+  classical
   obtain ⟨_, _, hp⟩ := cross_coefficient_relations a₀ b₀ c₀ d₀ a b c d h
   have hc := diagonal_support_card_le_four a b c d hp
   by_contra he
@@ -135,7 +137,7 @@ theorem factor_at_zero_diagonal (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι → �
 /-- A nonconstant common two-head table forces the denominators to agree,
 up to a positive scalar, outside at most two input coordinates.  This is
 an exact cancellation theorem, not a sign-capacity theorem. -/
-theorem denominator_difference_support_le_two
+theorem denominator_difference_support_le_two [Fintype ι]
     (a₀ b₀ c₀ d₀ : ℝ) (a b c d : ι → ℝ)
     (hn : 5 ≤ Fintype.card ι)
     (h : ∀ s : Finset ι,

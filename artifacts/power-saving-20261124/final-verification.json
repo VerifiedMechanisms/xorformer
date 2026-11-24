@@ -163,19 +163,32 @@
     }
   ],
   "source_sha256": {
-    "formalization/HeadComplexity/Research/AffineBooleanZeroDivisors.lean": "76bdfd491b640b8c25e8c7ccd114c7e0ffb15a42fcc4a7d19851a2d5fa086508",
-    "formalization/HeadComplexity/Research/AntipodalProductRank.lean": "ea7e20855a772c33265dd2e7876bf79d6c8637bdaa1bf3076a327428e63dc4c6",
+    "formalization/HeadComplexity/Research/AffineBooleanZeroDivisors.lean": "18a5b6434842ec3bad07470e3ad356739b24004203e75b942c2879ed30fbaed2",
+    "formalization/HeadComplexity/Research/AntipodalProductRank.lean": "0677b2e13a7ce28f21453a7d7b66e11a108685fe1def4a5a4b381968cb21fd7d",
     "formalization/HeadComplexity/Research/BooleanInterpolationStability.lean": "c1c759178efd81fb863531cf20f33a5f8d8fdcf54bf06656a24b77952c11a122",
-    "formalization/HeadComplexity/Research/ConditionedReciprocalApproximation.lean": "d237436d2b7515d5c59cef68dd443ef6eeec0eae5f7843869f72149b6422403c",
-    "formalization/HeadComplexity/Research/FiniteDifferenceCompilation.lean": "ac6ee6d9e65d0be08c8d875a741fbf88b977ee5f0b326d1659ccfe1c619a8239",
+    "formalization/HeadComplexity/Research/ConditionedReciprocalApproximation.lean": "e7df392048e5bcc16f24051a4bb805f0a8d70d395c44421f21f16f64c60fd351",
+    "formalization/HeadComplexity/Research/FiniteDifferenceCompilation.lean": "7226a9c4348cec0ee899c62eac4f3a2dfae4b17abbfe2951f7c62be22fcd5b6a",
     "formalization/HeadComplexity/Research/RadialContraction.lean": "d4833b4ae3abc9d019e1da0704e97390351b3ebb761ff1daadb64520966f7539",
     "formalization/HeadComplexity/Research/RadialJetAlgebra.lean": "596b8bb9f39471e000a318d37097f9251d0ac73442adac2deae5b5082e069ad7",
-    "formalization/HeadComplexity/Research/RadialMomentTransfer.lean": "bc63e944778a71b451e13f76365622dd38abe9aebe4e9308ca0e67cab75b1b42",
-    "formalization/HeadComplexity/Research/RadialMovingNumeratorTransfer.lean": "8b077eb5b09e51b5c2941dec44d038914e1c3dd6465fb1885a9a75c9705d2171",
+    "formalization/HeadComplexity/Research/RadialMomentTransfer.lean": "7934d026f2af11228432668f539ab1d01b3122648de33862348e421553ea79d9",
+    "formalization/HeadComplexity/Research/RadialMovingNumeratorTransfer.lean": "f6abe1b5925ade75e1f12ad0bbdb414de1cf0497c661a849e6a4b8a8b998ea06",
     "formalization/HeadComplexity/Research/RadialSpanSeparation.lean": "b465264b9e7ce07080942d1a527cd55359f936bf4b4663f8ecf1fffb2c6833fb",
-    "formalization/HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean": "04535dd41ad7dc9a5c7f6d10e21c8a281e721461bfd19ce3ba5fc5a9d6a6526f",
+    "formalization/HeadComplexity/Research/TwoHeadBooleanDegeneracy.lean": "55ec2690dab635d820f604317c5e9f9d1ebd28629e7e647abf1dd49699743a75",
     "formalization/HeadComplexity/Research/TwoHeadOriginalProductBridge.lean": "54e9d421497763ed4fd1e28e1e69492fa2785b3c9450fabd2c9c18c0975aecf9",
-    "formalization/HeadComplexity/Research/TwoHeadProductCompilation.lean": "c0bff576f31766e037d9fcbf1187852dd8bea5d9a31ab978ee956b958d638d7c"
+    "formalization/HeadComplexity/Research/TwoHeadProductCompilation.lean": "595b7620e1acd8f4879b59baea35bb4a2ee1eb8047c185fd3a7da3fa21200dfb"
   },
-  "audit_sha256": "6da559ee8b33ebb77e2ec56855ef28624f274325495f7568722084618c2f403b"
+  "audit_sha256": "6da559ee8b33ebb77e2ec56855ef28624f274325495f7568722084618c2f403b",
+  "warning_cleanup": {
+    "checked_at_utc": "2026-11-24T13:13:35.698568+00:00",
+    "default_build_command": "lake --wfail build",
+    "research_build_command": "lake --wfail build HeadComplexity.Research.AffineBooleanZeroDivisors HeadComplexity.Research.AntipodalProductRank HeadComplexity.Research.BooleanInterpolationStability HeadComplexity.Research.ConditionedReciprocalApproximation HeadComplexity.Research.FiniteDifferenceCompilation HeadComplexity.Research.RadialContraction HeadComplexity.Research.RadialJetAlgebra HeadComplexity.Research.RadialMomentTransfer HeadComplexity.Research.RadialMovingNumeratorTransfer HeadComplexity.Research.RadialSpanSeparation HeadComplexity.Research.TwoHeadBooleanDegeneracy HeadComplexity.Research.TwoHeadOriginalProductBridge HeadComplexity.Research.TwoHeadProductCompilation",
+    "build_logs_sha256": {
+      "warning-cleanup-build.txt": "e1dbb20d95e3fe6bcb77361aaad2b6be551bb4eed2b3a9da7cbb3e70e6ecaa65",
+      "warning-cleanup-full-build.txt": "0d5397f26d38afd36b390b6854dc549f74bf249a71f4e38c594b59721622ffce"
+    },
+    "warnings": 0,
+    "research_module_count": 13,
+    "new_sorry_or_axiom_declarations": 0,
+    "preexisting_formalization_files_changed_or_deleted_relative_to_f4781ed": []
+  }
 }
