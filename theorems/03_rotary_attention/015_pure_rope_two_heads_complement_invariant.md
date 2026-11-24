@@ -2,6 +2,8 @@
 
 ## Statement
 
+> **Stronger result.** [Theorem 16](016_pure_rope_two_heads.md) removes complement invariance entirely and formalizes the complete two-head result in Lean. The argument below is retained as an independent symmetric construction.
+
 Let $H_P$ and $H_V$ denote pure rotary and vanilla head complexity under the conventions of [Theorem 14](014_rope_head_complexity.md). Suppose $f$ is invariant under complementing every input bit:
 
 $$ f(1-x)=f(x). $$
@@ -10,7 +12,7 @@ Then
 
 $$ H_P(f)\leq2\quad\Longrightarrow\quad H_P(f)=H_V(f). $$
 
-This holds with either fixed standard rotary frequencies or freely chosen frequencies. Consequently a strict two-head pure-RoPE improvement, if one exists, must be a function that is not invariant under simultaneous input complementation, and its counts must be exactly two versus three.
+This holds with either fixed standard rotary frequencies or freely chosen frequencies. The stronger Theorem 16 now excludes a strict two-head pure-RoPE improvement even without simultaneous input-complement invariance.
 
 This does not supply a strict Boolean head-count example. It excludes a substantial candidate class beyond the fully symmetric functions already covered by Theorem 14.
 
@@ -104,7 +106,7 @@ Both denominators are positive on the cube. In bit coordinates their constants a
 - `RoPEReorientation.exists_positive_direction` and `exists_positive_direction_of_ne_zero` prove Lemma 2, including the strict positivity and sum bound.
 - `RoPEReorientation.weighted_antipodal_average` and `quadric_reorientation` verify the two polynomial identities.
 
-The complete head-count theorem in this note remains handwritten. In particular, the finite strictness-preserving perturbation and the assembly of these identities with the two-head vanilla construction are not a Lean declaration. No existing architectural definition has been changed.
+This particular antipodal proof is not assembled as a Lean declaration. Its stronger conclusion without complement invariance is now proved by `pureRoPEComputable_iff_vanilla_of_le_two` in [Results/RoPETwoHeads.lean](../../formalization/HeadComplexity/Results/RoPETwoHeads.lean), using the endpoint construction of Theorem 16. The finite strictness-preserving perturbation is proved in [Atoms/RoPEStrictness.lean](../../formalization/HeadComplexity/Atoms/RoPEStrictness.lean). No existing architectural definition has been changed.
 
 The weighted-average method and positive-direction two-head construction were informed by [Theorem 199 in run 15dee8652f45](https://github.com/VerifiedMechanisms/xorformer-runs/blob/af33133c22d338a09062e394ff5d0643a6687e21/theorems/06_strict_separations/199_complement_invariant_two_head_criterion.md). The pure-head pencil relation and its reorientation supply the additional argument needed here.
 
@@ -124,4 +126,4 @@ The function is invariant under simultaneous negation of all seven signs. The pr
 
 The exact integer data in [retained_f7.json](../../artifacts/rope/search/retained_f7.json) supplies two affine numerators and positive affine denominators whose sum has the target sign on all 128 inputs. All denominator slopes are nonzero. [verify_retained_f7.py](../../artifacts/rope/search/verify_retained_f7.py) checks these signs and explicitly constructs the corresponding retained atoms with rational parameters, using the construction from Theorem 14. Hence $H_A(f_7)\leq2$. The threshold-degree bound gives the reverse inequality. $\blacksquare$
 
-This corollary settles strictness for retained positional embeddings. It is not an example with different pure-RoPE and vanilla head counts. The existing vanilla lower bound is taken from the cited run, the new retained upper bound is checked in exact Python arithmetic, and the new pure lower bound uses this note's handwritten theorem.
+This corollary settles strictness for retained positional embeddings. It is not an example with different pure-RoPE and vanilla head counts. The existing vanilla lower bound is taken from the cited run, the retained upper bound is checked in exact Python arithmetic, and the pure lower bound now also follows from the Lean-checked Theorem 16.

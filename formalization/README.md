@@ -3,7 +3,7 @@
 Lean 4 formalization of the head-complexity results for one-layer attention. The
 definitions and theorems mirror the informal proofs in the top-level `theorems/` writeups.
 
-## Status: vanilla results and rotary scalar comparisons
+## Status: vanilla results and literal rotary comparisons
 
 Every theorem in `theorems/01_foundations_and_normal_form/` (L1–L12) is machine-checked
 for **general `n`**, with no `sorry`/`admit`, depending only on the three standard
@@ -23,11 +23,13 @@ The numerator constant is unrestricted.
 Theorem 14 adds `PureRoPEAtom` and `RetainedRoPEAtom`, their minimum counts,
 the scalar comparison with vanilla, and exact symmetric-family results.
 The scalar statements and an exact-score separation are machine-checked.
-The finite-frequency interpolation connecting these atoms to literal rotary
-attention is a handwritten proof in the
-[RoPE writeup](../theorems/03_rotary_attention/014_rope_head_complexity.md).
-Universal equality with vanilla, or a strict Boolean head-count separation,
-remains unresolved here.
+Theorem 16 proves the reverse implication at every head count at most two,
+without complement invariance. Theorem 18 formalizes the finite-frequency
+interpolation and the exact rectangular rotary architecture, including separate
+model and head dimensions, explicit output projections, shared embeddings,
+and the fixed query's self attention. Fixed and free frequencies have the same
+exact scalar score class. Universal equality with vanilla remains unresolved
+starting at three pure heads.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -45,6 +47,9 @@ remains unresolved here.
 | 12 | symmetric `H*=C(F)` (sign changes) | `HStar_symmetricFn` | `Results/SymmetricComplexity.lean` |
 | 13 | explicit strict separation `deg±<H*` | `f10_strict_separation` | `Results/StrictSeparation.lean` |
 | 14 | rotary scalar comparison and symmetric equality | `pureRoPEHStar_le_vanilla`, `retainedRoPEHStar_le_pure`, `thresholdDeg_le_retainedRoPEHStar`, `ropeHStar_symmetric` | `Atoms/RoPE.lean`, `Results/RoPEComparison.lean` |
+| 16 | unconditional two-head pure equivalence | `pureRoPEComputable_iff_vanilla_of_le_two`, `pureRoPEHStar_eq_vanilla_of_le_two` | `Results/RoPETwoHeads.lean` |
+| 17 | arbitrary affine-statistic polynomial bound | `AffineStatistic.computable_of_polynomial` | `Results/AffineStatisticUpperBound.lean` |
+| 18 | literal rectangular rotary bridge | `rectangularStandardPureRotaryComputable_iff_scalar`, `rectangularFreePureRotaryComputable_iff_scalar` | `Model/RotaryInterpolation.lean`, `Model/RectangularPureRoPE.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
@@ -62,4 +67,10 @@ results are axiom-clean — see [`BUILDING.md`](BUILDING.md).
 
 See the [repository README](../README.md) for the wider project context.
 
-The follow-up module `Atoms/RoPEReorientation.lean` checks the pure-head coefficient relation, `RoPEReorientation.exists_positive_direction_of_ne_zero`, and the two quadratic identities used in Theorem 15. The full assertion that complement-invariant two-head pure classifiers have two-head vanilla realizations is proved in the theorem writeup, not yet assembled as a Lean theorem.
+`Atoms/RoPEReorientation.lean` checks the coefficient and antipodal identities
+of the original Theorem 15. The stronger Theorem 16 uses a token-endpoint
+construction in `Results/RoPETwoHeads.lean`. Its strict perturbations are proved
+in `Atoms/RoPEStrictness.lean`, including a nondegenerate representation at every
+head count. `Results/RoPEArchitecturalComparison.lean` composes the two-head
+result with the literal bridge and defines the architectural minimum counts.
+No existing vanilla definition is changed.

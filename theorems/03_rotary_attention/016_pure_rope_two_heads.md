@@ -97,7 +97,7 @@ Zero-head and one-head equivalence were already proved in Theorem 14. Together w
 
 [Atoms/RoPEStrictness.lean](../../formalization/HeadComplexity/Atoms/RoPEStrictness.lean) proves the strictness-preserving token-value perturbation used in Theorem 2. These Lean results use the existing scalar `PureRoPEAtom` definition and conclude computability in the existing shared-embedding vanilla architecture. They introduce no modified model, `sorry`, or new axioms.
 
-For literal rotary attention, the passage to and from pure scalar atoms uses the fixed-frequency interpolation and shared-embedding construction in Theorem 14. That architectural bridge is a separate handwritten argument there; the declarations above do not claim that rotation matrices have been formalized. Subject to that bridge, the result applies to both fixed standard and freely chosen rotary frequencies, with unrotated token-only values.
+For literal rotary attention, [Theorem 18](018_pure_rope_architectural_bridge.md) now formalizes both directions of the scalar bridge, with separate model and head dimensions, explicit output projections, and the standard rotary schedule. [Results/RoPEArchitecturalComparison.lean](../../formalization/HeadComplexity/Results/RoPEArchitecturalComparison.lean) composes that bridge with this theorem. Its declarations `standardPureRotaryComputable_iff_vanilla_of_le_two` and `freePureRotaryComputable_iff_vanilla_of_le_two` establish the architectural result for both frequency conventions. Unrotated token-only values and the original vanilla definitions are preserved.
 
 ## Remaining gap for arbitrary head counts
 

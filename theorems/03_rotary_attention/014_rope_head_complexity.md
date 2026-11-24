@@ -19,7 +19,7 @@ Both rotary complexities are independent of whether the frequencies are fixed to
 
 **Equality cases.** All inequalities are equalities whenever $H_V(f)=\deg_{\pm}(f)$. In particular this covers every symmetric Boolean function, including parity and exact-count predicates, and every linear threshold function. Constants need zero heads.
 
-[Theorem 15](015_pure_rope_two_heads_complement_invariant.md) additionally proves that a function invariant under complementing every input bit cannot separate pure RoPE from vanilla with two pure heads.
+[Theorem 16](016_pure_rope_two_heads.md) proves equality whenever pure RoPE uses at most two heads, without any complement-invariance assumption. It strengthens the earlier [Theorem 15](015_pure_rope_two_heads_complement_invariant.md).
 
 **Strict retained comparison.** The seven-bit function in [Theorem 15's corollary](015_pure_rope_two_heads_complement_invariant.md) satisfies $H_A(f)=2\lt3=H_P(f)=H_V(f)$. Thus retaining positional embeddings alongside RoPE can strictly reduce head count.
 
@@ -167,7 +167,7 @@ For either rotary variant,
 
 $$ H_A(f)\leq2\quad\Longrightarrow\quad H_V(f)\leq3. $$
 
-In particular, if a two-head rotary model strictly improves on vanilla, the exact counts must be two versus three.
+For retained RoPE, a strict improvement with two heads therefore has exact counts two versus three. Theorem 16 rules out such a pure-RoPE improvement.
 
 **Proof.** A two-head retained score can first be made strict by adjusting its constant. Clearing its positive denominators gives a strict sign representation
 
@@ -211,6 +211,6 @@ The new Lean scalar model is `PureRoPEAtom` in [Atoms/RoPE.lean](../../formaliza
 
 [Examples/RoPE.lean](../../formalization/HeadComplexity/Examples/RoPE.lean) defines `RoPEExamples.mixedReciprocal`. `RoPEExamples.mixedReciprocal_no_vanilla_one_head_score` checks the exact-score obstruction against the existing shared-embedding vanilla architecture, including a free threshold constant.
 
-The literal rotation matrices, the Vandermonde interpolation argument, the bridge from scalar atoms to literal rotary attention, Theorem 4's unrestricted-denominator equivalence, and Theorem 6's three-head upper bound are handwritten proofs here, not Lean-checked statements. No existing vanilla definition or theorem is changed.
+The literal rotation matrices, standard-frequency Vandermonde interpolation, and the complete scalar bridge are now Lean-checked in [Theorem 18](018_pure_rope_architectural_bridge.md), including separate model and head dimensions and explicit output projections. Theorem 4's unrestricted-denominator equivalence and Theorem 6's retained three-head upper bound remain handwritten. No existing vanilla definition is changed.
 
-The remaining head-count question is whether the pure scalar class in Theorem 2 realizes a Boolean function with fewer atoms than the vanilla-admissible class. Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves answer the pure question.
+The remaining head-count question is whether the pure scalar class in Theorem 2 realizes a Boolean function with fewer atoms than the vanilla-admissible class when at least three pure heads are needed. Theorem 16 excludes every two-head pure separation. Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves answer the pure question.

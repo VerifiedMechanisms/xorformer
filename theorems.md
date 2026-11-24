@@ -263,15 +263,33 @@ $$ \deg_{\pm}(f)\leq H_A(f)\leq H_P(f)\leq H^{\ast}(f). $$
 
 Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE remains unresolved here. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
 
-The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. The connection to literal rotary attention uses a handwritten finite trigonometric interpolation proof. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
+The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. Theorem 18 now also checks the literal rotary bridge using finite complex Vandermonde interpolation. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
 
 **Proof.** [theorems/03_rotary_attention/014_rope_head_complexity.md](theorems/03_rotary_attention/014_rope_head_complexity.md)
 
 ### Theorem 15. Two pure rotary heads and complement invariance
 
-If $f(1-x)=f(x)$ and $H_P(f)\leq2$, then $H_P(f)=H^{\ast}(f)$. Thus a two-versus-three pure-RoPE separation must fail simultaneous input-complement invariance. The complete head-count proof is handwritten; the special pure-head coefficients, positive-direction lemma, and polynomial identities are Lean-checked.
+If $f(1-x)=f(x)$ and $H_P(f)\leq2$, then $H_P(f)=H^{\ast}(f)$. The special pure-head coefficients, positive-direction lemma, and antipodal identities are Lean-checked. The stronger Theorem 16 removes complement invariance and formalizes the full head-count conclusion by a different argument.
 
 **Proof.** [theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md](theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md)
+
+### Theorem 16. Unconditional two-head pure equivalence
+
+For every input length and every Boolean function, pure rotary and vanilla computability agree at each head count at most two. More strongly, a pure atom plus any positive affine fraction can be simulated by two vanilla heads for Boolean classification. All statements are Lean-checked, including the finite strictness perturbation and the literal rotary interpretation. Any strict pure improvement must use at least three pure heads.
+
+**Proof.** [theorems/03_rotary_attention/016_pure_rope_two_heads.md](theorems/03_rotary_attention/016_pure_rope_two_heads.md)
+
+### Theorem 17. Polynomial thresholds of arbitrary affine statistics
+
+A Boolean function represented by a polynomial of degree at most $H$ in any real affine statistic has a vanilla realization with $H$ heads. The statistic may have positive, negative, and zero coefficients. The Lean proof uses a projective perturbation that preserves all strict cube signs, followed by partial fractions with positive denominator slopes.
+
+**Proof.** [theorems/03_rotary_attention/017_affine_statistic_projective_upper_bound.md](theorems/03_rotary_attention/017_affine_statistic_projective_upper_bound.md)
+
+### Theorem 18. Exact literal pure rotary bridge
+
+Pure scalar atoms are exactly the scores of literal pure rotary attention at every head count. The complete Lean bridge includes separate model and head dimensions, explicit output projections, shared embeddings, the fixed query's self attention, and unrotated token-only values. Standard frequencies realize any scalar score at common finite width $2(n+2)$; free frequencies give the same score class. Both zero-input and zero-head cases are included.
+
+**Proof.** [theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md](theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md)
 
 ## Dependency Order
 

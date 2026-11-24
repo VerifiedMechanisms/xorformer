@@ -9,6 +9,8 @@ import HeadComplexity.Results.SymmetricComplexity
 import HeadComplexity.Results.StrictSeparation
 import HeadComplexity.Results.RoPEComparison
 import HeadComplexity.Atoms.RoPEReorientation
+import HeadComplexity.Results.RoPEArchitecturalComparison
+import HeadComplexity.Results.AffineStatisticUpperBound
 
 set_option linter.style.header false
 
@@ -112,7 +114,7 @@ alias theorem13_strict_separation := f10_strict_separation
 /-! ## Rotary scalar models -/
 
 /-- **Theorem 14.** Exact vanilla-to-pure-rotary scalar simulation, at every
-head count. The literal fixed-frequency interpolation bridge is handwritten. -/
+head count. Theorem 18 supplies the literal fixed-frequency bridge. -/
 alias theorem14_pure_simulation := pureRoPEComputable_of_vanilla
 
 /-- **Theorem 14.** Pure rotary scalar head complexity is at most vanilla. -/
@@ -126,5 +128,26 @@ alias theorem14_degree_lower_bound := thresholdDeg_le_retainedRoPEHStar
 
 /-- **Theorem 14.** Both rotary scalar complexities equal sign changes on symmetric functions. -/
 alias theorem14_symmetric := ropeHStar_symmetric
+
+/-- **Theorem 16.** Pure and vanilla computability agree at every head budget
+at most two, without complement invariance. -/
+alias theorem16_pure_two_heads := pureRoPEComputable_iff_vanilla_of_le_two
+
+/-- **Theorem 16.** The same result for literal rectangular rotary attention. -/
+alias theorem16_architectural_two_heads :=
+  standardPureRotaryComputable_iff_vanilla_of_le_two
+
+/-- **Theorem 17.** A polynomial in an arbitrary affine statistic requires at
+most its degree bound many vanilla heads. -/
+alias theorem17_affine_statistic := AffineStatistic.computable_of_polynomial
+
+/-- **Theorem 18.** The exact rectangular pure rotary architecture has the
+existing scalar normal form at every head count. -/
+alias theorem18_rotary_scalar_bridge :=
+  rectangularStandardPureRotaryComputable_iff_scalar
+
+/-- **Theorem 18.** Fixed and free shared frequencies give identical Boolean
+head budgets in the exact rectangular architecture. -/
+alias theorem18_fixed_free := rectangularStandardPureRotaryComputable_iff_free
 
 end HeadComplexity

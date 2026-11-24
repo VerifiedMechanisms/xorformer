@@ -7,9 +7,9 @@ set_option linter.style.header false
 /-!
 # Head-count comparisons for rotary scalar normal forms
 
-The connection to literal fixed-frequency rotary matrices is handwritten in
-the accompanying writeup. All declarations here concern the explicitly defined
-scalar atoms and the repository's existing vanilla model.
+All declarations here concern the explicitly defined scalar atoms and the
+repository's existing vanilla model. The separate rectangular rotary model
+and interpolation modules establish the literal architectural bridge.
 -/
 
 namespace HeadComplexity
