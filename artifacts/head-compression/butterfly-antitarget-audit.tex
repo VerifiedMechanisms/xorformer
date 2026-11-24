@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Anti-Target Butterfly Routing: Exact Equivalence and Finite Repairs}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The routing identity below has an elementary complete proof. The finite
+feasibility statements and the one all-small-parameter repair have exact
+rational certificates checked without a feasibility solver. None is
+Lean formalized. No universal asymptotic decoder or global bound is
+claimed, and no model definition changes.
+
+Write $H=2^d$ and index switches by $(k,s,g)$, where $k$ is the updated
+bit, $s$ is the already-updated lower prefix, and $g$ is the unchanged
+higher input block. Let $T_{k,s,g}\in\{0,1\}$ be target labels.
+Direct routing uses switch bits $T$; anti-target routing uses $1-T$.
+In both cases the requested sign remains $1-2T_{k,s,g}$.
+
+\begin{theorem}[Input-complement identity]
+Put $\overline g=g\mathbin{\mathrm{xor}}(2^{d-k-1}-1)$ and
+$S_{k,s,g}=T_{k,s,\overline g}$. Then
+\[
+ \pi_{1-T}(h)=\pi_S(h\mathbin{\mathrm{xor}}(H-1)).
+ \tag{1}
+\]
+For the signed Haar query matrices on any fixed output-pole pool and
+query times depending only on $(k,s)$,
+\[
+ A^{\rm anti}(T)_{(k,s,g),y}
+ =-A^{\rm direct}(S)_{(k,s,\overline g),y}.
+ \tag{2}
+\]
+Consequently the two families have identical feasible-pattern counts
+when arbitrary signed residues are allowed, after relabeling blocks.
+Positive anti-target residues correspond to negative direct residues.
+\end{theorem}
+\begin{proof}
+Compare the anti-target run from $h$ with the $S$ run from its bitwise
+complement. Before stage $k$, the lower bits agree and the remaining
+bits are complementary. Their switch indices are $(k,s,g)$ and
+$(k,s,\overline g)$. The first flips by $1-T_{k,s,g}$ and the second
+by $S_{k,s,\overline g}=T_{k,s,g}$. Complementary incoming bits
+therefore become equal. This proves the invariant inductively and
+gives (1).
+
+Input complementation sends the Haar vector $u_{k,g}$ to
+$-u_{k,\overline g}$. The target signs at the corresponding relabeled
+queries agree. Substituting (1) into each matrix entry gives (2).
+Multiplying all residues and, if present, all block biases by $-1$
+proves the feasibility assertion. Retaining queries by a condition
+depending only on $(k,s)$ preserves this equivalence.
+\end{proof}
+
+\paragraph{Exact positive finite repairs.}
+Use
+\[
+ p_y(\epsilon)=\sum_{j=0}^{d-1}y_j\epsilon^{2^j},
+ \qquad t_{k,s}=1-p_s(\epsilon).
+\]
+At $\epsilon=1/100$, all 4096 target words for $H=8$ have strictly
+positive residues realizing all 12 queries under anti-target routing,
+without block biases. The saved certificate has 256 square active
+bases. For every one of the 16 choices of the four bottom target bits,
+the signed query matrix is exactly unchanged; the checker verifies
+all of these equalities and all square-basis witnesses.
+
+At $H=16$ the saved old direct-routing positive obstruction, and 19
+additional random target words, all have positive anti-target witnesses
+at the same finite parameter. Each witness satisfies all 32 signed
+query scores and all 16 residue inequalities with margin at least one.
+The random sample is not an estimate certified for growing $H$.
+
+\paragraph{The old sixteen-pole word has an all-small repair.}
+For the target in
+\texttt{butterfly-adaptive-haar-positive-h16-dual.json}, the first
+saved anti-target active basis is a square rational matrix in
+$\epsilon$. Guarded exact series elimination at precision 768 gives
+nonzero pivot orders
+\[
+ 0,0,0,0,0,0,0,2,2,2,6,6,8,17,19,28.
+\]
+All 32 query scores and all 16 residues have positive Laurent leading
+coefficients. The companion checker independently reconstructs the
+finite basis, checks the guards and residuals, and compares every
+leading term with the saved certificate. Invertibility over the
+rational-function field and positivity of these finitely many leading
+coefficients give a common punctured interval on which the repair is
+strict. This is a repair of one target, not a universal sixteen-pole
+or growing-order theorem.
+
+\paragraph{Why the sign audit matters.}
+A symmetric root-pair difference has a positive-definite Cauchy
+kernel after reversing its routing orientation. That single-node fact
+does not automatically preserve descendant signs. More generally,
+(2) shows that complementing every routing bit is not a new signed
+decoder family. Positive-only success or failure must be separated
+from feasibility in the original model, which permits signed
+numerator amplitudes.
+
+\paragraph{A positive anti-target obstruction at thirty-two poles.}
+Take the same 49 retained target labels as
+\texttt{butterfly-underloaded-h32-signed.tex}, and complement every
+routing bit while preserving those labels. For every sufficiently
+small positive $\epsilon$, this fixed anti-target routing has no
+nonnegative-residue solution, without block biases. The companion
+\texttt{butterfly-antitarget-h32-obstruction-check.py} verifies a
+strictly positive dependence among 31 retained signed query rows and
+the two coordinate rows for $c_0\geq0$ and $c_1\geq0$.
+
+The saved 33-column support has rank 32. Appending the normalization
+that the coefficients sum to one gives a square rational system.
+The checker reconstructs its positive rational solution at
+$\epsilon=1/100$ and independently verifies the zero weighted sum.
+Guarded precision-1536 elimination then gives 33 positive Laurent
+leading coefficients, of orders between zero and 72. Exactly as for
+the primal continuation above, this proves a positive dependence
+on a common punctured interval. Taking its inner product with a
+hypothetical nonnegative residue vector contradicts the 31 strict
+query inequalities.
+
+This excludes neither signed residues nor other auxiliary routing
+completions. In particular, the direct routing for these same target
+labels has a signed all-small-parameter solution, certified in
+\texttt{butterfly-underloaded-h32-signed.tex}. Thus neither uniform
+choice of direct or anti-target routing supplies a universal positive
+pool by the root positive-definiteness argument alone.
+\end{document}
