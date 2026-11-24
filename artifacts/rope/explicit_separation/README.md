@@ -14,8 +14,11 @@ heavy python3 artifacts/rope/explicit_separation/verify.py
 
 Only the Python standard library is required. The driver calls the three exact certificates below and then checks the rational denominator gap, replicated atom identities, strict-margin constants, and finite-grid inequalities. It does not enumerate an astronomical cube. The full-cube verification is symbolic: the cleared polynomial has a common rational denominator, every attention denominator is positive, and a fixed negative rational readout shift handles zero values.
 
+[construction.json](construction.json) is the machine-readable function and scalar-parameter certificate. It stores the input length as a power expression, all 42 integer numerator coefficients, all 42 integer denominator coefficients, rational base masses and biases, all three atom parameter lists, and the replication rules. The driver checks these data against the defining formulas without printing or enumerating the enormous input dimension. The head-count claims in the JSON refer to the mathematical theorem; the driver checks their arithmetic ingredients, not the full lower-bound argument.
+
 | Artifact | Exact checks |
 | --- | --- |
+| [Construction data](construction.json) | Explicit coefficient arrays, rational atoms, replication count, classifier formula, and threshold shift |
 | [Generic cubic verifier](../generic_cubic_completion/verify.py) | Pure mass bounds, all 3003 six-row Vandermonde minors, and 182 cross-Hessian minors |
 | [Chart verifier](../generic_cubic_completion/verify_chart.py) | Rational coordinate inverse, zero-chart bounds, denominator bounds, graph-restriction rank 679, interpolation constants, and cleared polynomial bounds |
 | [Gap verifier](../quantitative_cubic_gap/verify_gap.py) | Every rational inequality in the uniform tensor exclusion radius |

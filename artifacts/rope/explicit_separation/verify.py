@@ -9,6 +9,7 @@ Only the Python standard library is required.
 
 from fractions import Fraction as F
 import importlib.util
+import json
 from pathlib import Path
 
 
@@ -30,6 +31,48 @@ def full_cube_arithmetic(chart, gap):
     w = 32 * 10**9
     denominator_base = 10000 * w**2
     epsilon = F(1, 16 * denominator_base * m**3)
+    construction = json.loads((ROOT / 'explicit_separation/construction.json').read_text())
+    assert construction['format_version'] == 1
+    assert construction['replication_count'] == {'base': 2, 'exponent': 400000}
+    assert construction['input_count'] == {'multiplier': 14, 'factor': 'replication_count'}
+    assert construction['indices'] == {
+        'head_h': [0, 1, 2], 'group_i': {'first': 1, 'last': 14},
+        'copy_r': {'first': 0, 'last': 'm-1'}, 'flat_bit_index': '(i-1)*m+r'}
+    assert construction['centered_group_mean'] == 'z_i=(sum_{r=0}^{m-1}(2*x_{i,r}-1))/m'
+    assert construction['s_denominator'] == 10000
+    assert construction['b_denominator'] == w
+    assert int(construction['grid_polynomial_denominator_base']) == denominator_base
+    assert construction['integer_s_coefficients'] == [
+        [i**h for i in range(1, 15)] for h in range(3)]
+    assert construction['integer_b_coefficients'] == [
+        [32 * i**(h + 3) - 2**(2 - h) * 15**(h + 3) for i in range(1, 15)]
+        for h in range(3)]
+    assert [[F(x) for x in row] for row in construction['base_s']] == s
+    assert [[F(x) for x in row] for row in construction['base_b']] == b
+    assert construction['linear_forms'] == {
+        'S_h': 'sum_{i=1}^{14} base_s[h][i-1]*z_i',
+        'B_h': 'sum_{i=1}^{14} base_b[h][i-1]*z_i', 'D_h': '1+B_h'}
+    assert construction['cleared_polynomial']['formula'] == (
+        'F=S_0*D_1*D_2+S_1*D_0*D_2+S_2*D_0*D_1')
+    assert construction['cleared_polynomial']['terms'] == [
+        {'numerator_head': h, 'denominator_heads': [j for j in range(3) if j != h]}
+        for h in range(3)]
+    assert construction['function'] == {'true_iff': 'F(z)>0', 'false_iff': 'F(z)<=0'}
+    assert construction['readout_constant'] == '-1/(16*A*m^3)'
+    assert construction['strict_margin_lower_bound'] == '1/(16*A*m^3)'
+    for h, atom in enumerate(construction['pure_atoms']):
+        assert atom['head'] == h
+        assert [F(x) for x in atom['token_zero_weight_base']] == [
+            si - bi for si, bi in zip(s[h], b[h])]
+        assert [F(x) for x in atom['token_one_weight_base']] == [
+            si + bi for si, bi in zip(s[h], b[h])]
+        assert F(atom['query_weight']) == 1 - sum(s[h])
+        assert F(atom['query_numerator']) == -sum(b[h])
+        assert F(atom['token_zero_value']) == -1
+        assert F(atom['token_one_value']) == 1
+        assert atom['input_weight_replication_rule'] == (
+            'each stored base weight is divided by m at every copy r')
+    assert len(construction['pure_atoms']) == 3
     for sh, bh in zip(s, b):
         assert all(si > abs(bi) for si, bi in zip(sh, bh))
         assert sum(sh) < 1
@@ -71,6 +114,7 @@ def full_cube_arithmetic(chart, gap):
     assert denominator_base < 2**84
     assert error < F(1, 2**85)
     print('exact symbolic cube checks passed: n=14*2^400000, three pure atoms,')
+    print('  construction.json matches every integer coefficient and rational atom parameter')
     print('  strict margin >=1/(16*A*m^3), A=10240000000000000000000000')
     print('  interpolation error <2^-99933, tensor exclusion radius >2^-2000')
 
