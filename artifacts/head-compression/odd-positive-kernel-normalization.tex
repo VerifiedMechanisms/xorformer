@@ -10,11 +10,17 @@
 \maketitle
 
 \paragraph{Status and scope.}
-This is a complete written normalization for all representations of odd
-Boolean targets in the unchanged fractional-atom model. It includes mixed
-atom orientations and constant denominators. The attached rational checker
-tests the identities, but this note is not a Lean proof. No improved
-head-count lower bound or upper bound follows here. In particular, the
+The forward normalization for all original representations of odd Boolean
+targets is checked in \texttt{Results/OddKernelNormalization.lean}, with
+main declaration \texttt{HeadComplexity.OddKernel.of\_fracComputable}.
+The exact atom identity is \texttt{atom\_odd\_identity}, positivity of
+the kernel denominator is \texttt{value\_den\_pos}, and strictification
+under oddness is \texttt{strict\_odd\_part}, all in the same namespace.
+Their axiom audits report only \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}. Mixed atom orientations and constant denominators
+are included. The converse and the Fourier statements below are complete
+written proofs, with additional exact rational checks, but are not formalized.
+No improved head-count lower bound or upper bound follows here. In particular, the
 positivity statements below do not control arbitrary signed numerator
 directions or cancellations between heads.
 
