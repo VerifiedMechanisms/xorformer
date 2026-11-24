@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\begin{document}
+\title{Priority Jets, Tail-Free Chain Extensions, and a Cover Obstruction}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status and scope.}
+The identities and theorems below are complete written proofs, not
+Lean-checked. They preserve the original admissible affine-ratio model.
+They give a new three-head limiting compiler and an obstruction to a
+specific proposed use of that compiler. They do not prove an improved
+upper bound or a stronger lower bound for unrestricted head complexity.
+The obstruction permits arbitrary adaptive priority orders and full
+triangular supports, rather than merely rectangular supports.
+
+\section{An exact two-head covariance jet}
+
+Fix an order of the coordinates, initially the identity order, and write
+$z_i=1-x_i$. Let $a_i,b_i$ be arbitrary real numbers, and let
+$0<\epsilon<1$. Put
+\[
+ w_i=\epsilon^{i-1},\qquad
+ D=\epsilon^n+\sum_{i=1}^n w_i z_i,\qquad
+ A=\sum_{i=1}^n a_i w_i^2z_i,\qquad
+ B=\sum_{i=1}^n b_i z_i,\qquad
+ C=\sum_{i=1}^n a_i b_i w_i z_i.                 \tag{1}
+\]
+All four expressions are affine functions on the cube. Direct
+subtraction gives the exact identity
+\[
+ J_{\epsilon,t}
+ =\frac1t\left(\frac{A+tC}{D+tB}-\frac A D\right)
+ =\frac{CD-AB}{D(D+tB)}.                         \tag{2}
+\]
+For fixed $\epsilon$, take $t>0$ sufficiently small that
+$w_i+t b_i>0$ for every $i$. Both denominators then have strictly
+negative slopes in the original variables $x_i$, and their minimum
+on the entire cube is $\epsilon^n>0$. Thus (2) is the sum of two
+actual admissible affine ratios. No coordinatewise-complement
+symmetry of the model is assumed: the slopes have been checked
+directly in the original variables.
+
+As $t\downarrow0$, (2) converges uniformly on the finite cube to
+$C/D-AB/D^2$. If the first missing coordinate is $i$, division by
+$w_i$ and $w_i^2$, respectively, gives
+\[
+ \frac C D\longrightarrow a_i b_i,
+ \qquad \frac A{D^2}\longrightarrow a_i
+ \qquad(\epsilon\downarrow0).
+\]
+At the all-one input, $A=B=C=0$ for every parameter value.
+Consequently the successive limits give the following exact limiting
+function:
+\[
+ F(x)=
+ \begin{cases}
+ -a_i\displaystyle\sum_{j>i} b_j(1-x_j),
+       &i\text{ is the first missing coordinate},\\
+ 0,    &x=(1,\ldots,1).
+ \end{cases}                                      \tag{3}
+\]
+Given any desired positive error tolerance, first choose $\epsilon$
+small enough for the second limit and then choose $t$ small enough
+for the first limit and the strict slope inequalities. This realizes
+that tolerance with two heads.
+
+\paragraph{Two-missing-coordinate specialization.}
+If the only missing coordinates are $i<j$, then $F=-a_i b_j$.
+If one block precedes another, the mixed table therefore has rank one.
+If the two blocks are interleaved, setting every $b_i=1$ and setting
+$a_i=1$ on one block and $a_i=-1$ on the other gives a saturated
+comparison of which missing coordinate appears first. This is a
+forward comparison in deletion coordinates. It does not supply the
+opposite orientation required by the existing reverse-grid gluing
+theorem.
+
+\section{Removing every unwanted coefficient}
+
+Write $P_i=x_1\cdots x_i$, with $P_0=1$. Formula (3) is equivalently
+\[
+ F=-\sum_{1\le i<j\le n}a_i b_j
+                      P_{i-1}(1-x_i)(1-x_j).       \tag{4}
+\]
+Set $a_0=0$. Expanding (4), the coefficient of the off-chain monomial
+$P_i x_j$, where $0\le i\le n-2$ and $j\ge i+2$, is
+\[
+                         (a_{i+1}-a_i)b_j.          \tag{5}
+\]
+Indeed the positive contribution comes from the pair $(i+1,j)$,
+and, when $i>0$, the negative contribution comes from $(i,j)$.
+There are no other contributions. Every remaining monomial is one
+of $P_0,\ldots,P_n$. For completeness, its coefficient is
+\[
+ c_0=-a_1\sum_{j>1}b_j,
+ \qquad
+ c_k=a_k\sum_{j>k}b_j-a_{k+1}\sum_{j>k+1}b_j
+                  -\mathbf1_{k\ge2}a_{k-1}b_k
+       \quad(1\le k\le n),                         \tag{6}
+\]
+where the expression involving $a_{n+1}$ is defined to be zero.
+
+Any chain polynomial $\sum_{k=0}^n d_kP_k$ is a one-head limit.
+Explicitly put $v_j=\sum_{k<j}d_k$ and use
+\[
+ \frac{\eta^n v_{n+1}+
+             \sum_{j=1}^n\eta^{j-1}v_j(1-x_j)}
+      {\eta^n+\sum_{j=1}^n\eta^{j-1}(1-x_j)}.        \tag{7}
+\]
+The denominator has strictly negative slopes and minimum $\eta^n$;
+the ratio converges to the desired value at each first missing
+coordinate and at the all-one input.
+
+\begin{theorem}[Tail-free chain-extension compiler]\label{thm:compiler}
+For arbitrary real arrays $u_0,\ldots,u_{n-2}$ and $b_1,\ldots,b_n$,
+the polynomial
+\[
+ G(x)=\sum_{i=0}^{n-2}\sum_{j=i+2}^n
+                                  u_i b_j P_i x_j                 \tag{8}
+\]
+is a uniform limit on the Boolean cube of sums of three admissible
+heads. The same holds for every permutation of the coordinate order.
+There are exactly the displayed coefficients and no other tails.
+\end{theorem}
+
+\begin{proof}
+Choose $a_1=u_0$ and successively $a_{i+1}=a_i+u_i$.
+By (5), the off-chain part of $F$ is exactly $G$. Subtract the
+chain polynomial (6) using (7). Approximate $F$ by (2), and take
+$\eta$ sufficiently small for the chain correction. The cube is
+finite, so all errors are uniform. Relabeling the coordinates in
+the displayed formulas preserves the checked common slope sign.
+\end{proof}
+
+As a check on indexing, direct exact Boolean inversion for arbitrary
+integer arrays in dimensions $2$ through $7$ agrees with (5) and
+(6). This finite calculation is not needed for the proof.
+
+\section{A valid coefficient-to-value bridge}
+
+There is a useful distinction between (8) and an earlier coefficient
+kernel proposal. Here all unlisted coefficients have been removed
+exactly in the limiting polynomial. Thus degree rescaling can be
+implemented by resynthesizing the coefficient parameters, without
+substituting non-Boolean inputs into a rational function.
+
+\begin{lemma}[Compatible covers give strict signs]\label{lem:bridge}
+Suppose a sum of $H$ polynomials of form (8) and $K$ chain
+polynomials has a nonzero coefficient $c_S$ for every $S\subseteq[n]$.
+Let $\sigma(S)=\operatorname{sgn}(c_S)$. Then a sum of at most
+$3H+K$ actual admissible heads strictly has sign $\sigma(T)$ at
+every Boolean input $\mathbf1_T$.
+\end{lemma}
+
+\begin{proof}
+For $M>1$ multiply every coefficient of degree $k$ by $M^k$.
+In (8), this is accomplished by replacing $u_i$ by $M^{i+1}u_i$;
+chain coefficients can be scaled individually in (7). Thus the
+rescaled polynomial is still in the same limiting family.
+Let $a=\min_S|c_S|>0$ and $b=\max_S|c_S|$. At $\mathbf1_T$ its
+value is $c_TM^{|T|}+\sum_{S\subsetneq T}c_SM^{|S|}$. For nonempty
+$T$, the absolute value of the latter sum is at most
+$2^n b M^{|T|-1}$. Choose $M>2^n b/a$. The leading term then
+strictly determines the sign; the empty input has value $c_\varnothing$.
+There is a positive minimum sign margin on the finite cube.
+Theorem~\ref{thm:compiler} and (7), with total approximation error
+smaller than that margin, give the claimed actual heads.
+\end{proof}
+
+In particular a cover of the monomials by modules whose nonzero
+coefficients all agree with a prescribed sign table would give
+such a representation. The next section shows that this
+noncancelling cover strategy cannot supply an extra logarithm,
+even using the entire triangular support of (8).
+
+\section{An adversarial sign table for all adaptive orders}
+
+Call a subset of entries of an $n$ by $n$ matrix an ordered-prefix
+support if a subset $I$ of the rows is chosen, kept in its original
+order, and each column contains a prefix of those selected rows.
+Different columns may have different prefix lengths, including zero.
+Call its signs compatible if, on all selected entries, they have
+the form $\alpha_i\beta_j$ for row and column signs.
+
+\begin{lemma}\label{lem:random}
+For every positive integer $n$, there exists an $n$ by $n$ sign
+matrix $h$ for which every compatible ordered-prefix support
+contains fewer than $8n$ entries.
+\end{lemma}
+
+\begin{proof}
+Choose all entries of $h$ independently and uniformly from
+$\{-1,1\}$. Set $m=8n$. There are at most $2^n$ choices of the
+selected row set and at most $2^{2n}$ choices of the row and column
+signs, using arbitrary extensions of the row signs outside $I$.
+A support with $m$ entries is specified by nonnegative prefix
+lengths $r_1,\ldots,r_n$ with sum $m$, of which there are
+$\binom{m+n-1}{n-1}$. This overcounts invalid lengths exceeding
+$|I|$, which is harmless. For each valid fixed support and signs,
+the probability of agreement is $2^{-m}$, since the constrained
+matrix entries are distinct independent signs. The union bound
+is therefore at most
+\[
+ 2^{3n}\binom{9n-1}{n-1}2^{-8n}
+ \le \left(\frac{8\cdot9e}{256}\right)^n
+ < \left(\frac{216}{256}\right)^n <1,             \tag{9}
+\]
+using $\binom{9n}{n}\le(9e)^n$ and $e<3$.
+There is consequently an $h$ with no such support of exactly $8n$
+entries. A compatible larger support can have its column prefix
+lengths reduced until their sum is $8n$, while retaining
+compatibility. Thus it also cannot exist.
+\end{proof}
+
+The prefix encoding in this proof is essential. A union bound
+over the $n!$ priority permutations loses a logarithm unnecessarily.
+When there are only $m$ constrained entries, the prefix lengths
+encode the relevant support in $\binom{m+n-1}{n-1}$ possibilities.
+
+Fix a matrix $h$ from Lemma~\ref{lem:random} and define a sign
+table on all subsets by
+\[
+ \sigma(\varnothing)=1,\qquad
+ \sigma(S)=\prod_{j\in S}h_{|S|,j}
+                   \quad(S\ne\varnothing).        \tag{10}
+\]
+
+\begin{theorem}[Noncancelling chain-extension cover obstruction]
+Every polynomial of form (8), in any coordinate order, whose
+nonzero coefficient signs agree with (10), has fewer than $8n$
+nonzero coefficients. Hence a coefficientwise sign-compatible
+cover of (10) using $H$ such modules and $K$ arbitrary chain
+polynomials must satisfy
+\[
+                         8nH+(n+1)K\ge2^n.          \tag{11}
+\]
+\end{theorem}
+
+\begin{proof}
+Let the order be $\pi$, and write
+$P_i=\{\pi(1),\ldots,\pi(i)\}$ in set notation. The off-chain
+support consists of sets $P_i\cup\{j\}$ with
+$\operatorname{pos}_\pi(j)>i+1$. By (10),
+\[
+ \sigma(P_i\cup\{j\})
+ =\left(\prod_{\ell\in P_i}h_{i+1,\ell}\right)h_{i+1,j}.
+                                                        \tag{12}
+\]
+Select row $i+1$ precisely when $u_i\ne0$, and select a column
+precisely when $b_j\ne0$. For any fixed column $j$, the selected
+rows appearing in its support are exactly those with
+$i+1<\operatorname{pos}_\pi(j)$, a prefix of the selected rows.
+Agreement of the coefficient signs $\operatorname{sgn}(u_i b_j)$
+with (12) says that the entries of $h$ on this support equal a
+product of row and column signs. Lemma~\ref{lem:random} bounds its
+size by $8n$. The mapping from pairs $(i,j)$ to monomials is
+injective: the degree fixes $i$, and then $j$ is the unique
+coordinate outside $P_i$. Finally each chain polynomial supports
+at most $n+1$ coefficients. Covering all $2^n$ monomials yields
+(11), even when compatible supports overlap.
+\end{proof}
+
+\paragraph{Exact remaining scope.}
+The compiler itself is valid and has only three heads per module.
+The obstruction rules out the proposed strategy that directly covers
+the desired Boolean sign table by coefficientwise compatible modules
+and then applies Lemma~\ref{lem:bridge}. It does not rule out signed
+cancellations between modules, choosing a different coefficient sign
+table that nevertheless represents the desired output signs, higher
+priority jets, or general finite-scale affine ratios. Any of those
+would be a materially different global construction. In particular,
+(11) is not a lower bound on unrestricted $H^*$ or on the minimum
+number of arbitrary chain-extension modules in a sign representation.
+
+\end{document}
