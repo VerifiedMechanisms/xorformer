@@ -1,0 +1,32 @@
+[
+  {
+    "r": 1,
+    "weight_classes": 4,
+    "exact_margin": "1/75",
+    "proved_lower_bound": "1/105"
+  },
+  {
+    "r": 3,
+    "weight_classes": 16,
+    "exact_margin": "11/6885",
+    "proved_lower_bound": "1/7905"
+  },
+  {
+    "r": 5,
+    "weight_classes": 36,
+    "exact_margin": "29/84175",
+    "proved_lower_bound": "1/91945"
+  },
+  {
+    "r": 9,
+    "weight_classes": 100,
+    "exact_margin": "89/1889811",
+    "proved_lower_bound": "1/1989801"
+  },
+  {
+    "r": 21,
+    "weight_classes": 484,
+    "exact_margin": "461/221370975",
+    "proved_lower_bound": "1/226524585"
+  }
+]

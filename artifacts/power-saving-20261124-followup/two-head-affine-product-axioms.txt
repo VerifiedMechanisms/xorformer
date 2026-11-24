@@ -1,0 +1,3 @@
+'HeadComplexity.TwoHeadAffineProduct.positiveAffineAtom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoHeadAffineProduct.productAtoms_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoHeadAffineProduct.product_fracComputable' depends on axioms: [propext, Classical.choice, Quot.sound]
