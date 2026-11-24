@@ -1,0 +1,6 @@
+import HeadComplexity.Research.GenericOneHeadBasisNonuniqueness
+#print axioms HeadComplexity.GenericOneHeadBasisNonuniqueness.basis_affine_injective
+#print axioms HeadComplexity.GenericOneHeadBasisNonuniqueness.basis_ratio_injective
+#print axioms HeadComplexity.GenericOneHeadBasisNonuniqueness.neighborhood_signed_gap
+#print axioms HeadComplexity.GenericOneHeadBasisNonuniqueness.neighborhood_basis_values
+#print axioms HeadComplexity.GenericOneHeadBasisNonuniqueness.two_open_feasible_branches

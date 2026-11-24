@@ -1,0 +1,15 @@
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.basis_affine_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.basis_ratio_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.neighborhood_signed_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.neighborhood_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GenericOneHeadBasisNonuniqueness.two_open_feasible_branches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
