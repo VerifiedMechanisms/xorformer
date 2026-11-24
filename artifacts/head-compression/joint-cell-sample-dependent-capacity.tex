@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Sample-dependent pole pencils still have a logarithmic word budget}
+\date{24 November 2026}
+\author{Label audit research checkpoint}
+\begin{document}
+\maketitle
+
+\paragraph{The proposed finite-sample escape.}
+Only $s$ columns occur in a local table, so a decoder need not represent
+all $2^a$ bit words at fixed, previously selected tokens. Its poles,
+residues, and tokens might instead be selected after seeing the actual
+labels. This is a real freedom: the exact affine-plane compiler in
+\texttt{JointCellSampleDependentPoles.lean} permits a different pole
+pencil at every memory point. The following count tests that freedom
+without assuming a universal preselected token alphabet.
+
+\section{The checked shared-residue family}
+
+Let $g$ range over $M$ memory points, $b$ over $a$ query bits, $j$ over
+$s$ columns, and $\alpha$ over $q$ poles. Permit the score
+\[
+ F_{g,b,j}=\gamma_{g,b}
+    +\sum_{\alpha=1}^{q}\frac{\eta_{b,\alpha}}
+                                    {p_{g,\alpha}-t_{g,j}},
+ \qquad p_{g,\alpha}-t_{g,j}>0.
+\]
+Every displayed parameter may be chosen jointly after all $Mas$ labels
+are given. The only sharing restriction is that the residue matrix
+$\eta$ is common to the memory points. Even the point-bit biases are
+arbitrary. There is no compactness or whole-cube positivity requirement
+in this relaxed counting family.
+
+There are exactly
+\[
+ P=aq+M(q+s+a)
+\]
+real parameters. Multiplication by the positive denominator product
+gives one polynomial of degree at most $q+1$ per required sign. Hence,
+if the family realizes every strict sign table and $0<P\leq Mas$,
+\[
+ 2^{Mas}\leq
+ \left(\frac{4e(q+1)Mas}{P}\right)^P.
+\]
+This statement is kernel checked as
+\texttt{jointCell\_adaptivePole\_universal\_capacity} in
+\texttt{JointCellAdaptivePoleCapacity.lean}. It invokes the repository's
+proved unconditional Warren theorem.
+
+\begin{theorem}
+Suppose $M,s>0$, $a,q\leq s$, and $q\leq M$. If the shared-residue
+family realizes every strict sign table, then
+\[
+ a\leq28+8\lfloor\log_2s\rfloor.
+\]
+\end{theorem}
+
+The theorem is kernel checked as
+\texttt{jointCell\_adaptivePole\_log2\_limit} in the same file.
+The targeted \texttt{lake build} completed successfully with 3427 jobs.
+The three capacity and logarithmic-budget declarations have only the
+transitive axioms \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}.
+For completeness, the elementary estimate is as follows. If $a\leq4$
+there is nothing to prove. Otherwise
+$Ms\leq P\leq4Ms\leq Mas$. The Warren base is at most $24s^2$.
+Taking $s\leq2^l$ and using $24\leq32$ gives
+\[
+ 2^{Mas}\leq (2^{5+2l})^{4Ms},
+ \qquad a\leq20+8l.
+\]
+Set $l=\lfloor\log_2s\rfloor+1$. Thus allowing the point poles and
+the observed tokens to depend on all labels does not give
+superlogarithmic word length when $s$ is of order the ambient dimension.
+This is a theorem about the displayed decoder family, not the original
+unrestricted head class.
+
+\section{Charging low-rank residue channels}
+
+A possible enlargement is
+\[
+ \eta_{g,b,\alpha}=\sum_{h=1}^{H}
+          U_h(g,\alpha)V_h(b,\alpha).
+\]
+The affine-plane line sum now has $H$ independently stored column
+aggregates per line:
+\[
+ Z_{L,h}(j)=\sum_{g\in L}
+       \frac{U_h(g,\operatorname{slope}L)}
+            {p_{g,\operatorname{slope}L}-t_{g,j}}.
+\]
+This gives $Hq^2$ rank terms. On the original one-hot point-bit rows,
+the generic point correction still has one arbitrary row numerator per
+memory point. The joint axis repair therefore gives the budget
+\[
+ Hq^2+2q^2+4.
+\]
+Sharing the point corrections does not remove the $H$ line aggregates.
+
+The corresponding parameter count is
+$H(Mq+aq)+M(q+s+a)$, and the cleared degree is at most $q+2$.
+Under the same size conditions it is at most $(2H+3)Ms$.
+The same Warren calculation consequently gives
+$a=O((H+1)\log s)$. Since the head budget is proportional to
+$(H+2)M$, the number of bits gained per head stays $O(\log s)$.
+This channel extension and its asymptotic deduction are written
+arguments, not additional Lean declarations in the present checkpoint.
+
+\section{A different first failing equation}
+
+Using a common residue vector and bit-dependent pole shifts would make
+the generic point correction attractive:
+\[
+ F_b(t)=\sum_\alpha\frac{\eta_\alpha}{p_\alpha-\beta_b-t}.
+\]
+Its denominator is affine in separate one-hot point, bit, and column
+coordinates. But its line aggregate becomes
+\[
+ Z_L(b,j)=\sum_{g\in L}
+               \frac1{p_L-\beta_b-t_{g,j}}.
+\]
+For arbitrary independent point tokens this depends jointly on the bit
+and column. A single stored column vector cannot represent it. Expanding
+it into separate bit vectors or separate point fractions reintroduces
+the cost that the proposal intended to save. A new joint representation
+of this two-variable line aggregate remains possible; it has not been
+constructed here.
+
+\end{document}
