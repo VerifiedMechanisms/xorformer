@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\title{Layer-Preserving Affine Extension Audit}
+\author{}
+\date{November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+These are complete finite written calculations. They do not supply an
+upper bound beyond the existing linear saving. They settle the proposed
+repair that adds arbitrary multiples of the two layer equations to an
+individual denominator while preserving its values on a product of open
+downward stars. In particular, allowing separate headwise baselines does
+not remove the stated obstruction.
+
+\begin{theorem}[Exact extension criterion]
+Let $r,s\geq2$, let $w_1,\ldots,w_r$ and
+$v_1,\ldots,v_s$ be real numbers, and let $\varepsilon\in\mathbb R$.
+On the product of the two co-one-hot sets, prescribe the denominator
+values
+\[
+ d_{ij}=\varepsilon+w_i+v_j.
+\]
+There is an affine function $B(x,y)$ with nonnegative coefficients,
+strictly positive constant coefficient, and these prescribed values at
+$(\mathbf1-e_i,\mathbf1-e_j)$ if and only if
+\[
+ \varepsilon+\sum_i w_i+\sum_j v_j
+ -(r-1)\max_iw_i-(s-1)\max_jv_j>0.
+ \tag{1}
+\]
+The coefficient nonnegativity and positive constant ensure positivity
+on the entire Boolean cube, not merely on the prescribed layer.
+\end{theorem}
+\begin{proof}
+Write $B=b_0+\sum_i b_i x_i+\sum_j c_jy_j$ and set
+$D=b_0+\sum_i b_i+\sum_j c_j$. The prescribed values say
+$D-b_i-c_j=\varepsilon+w_i+v_j$. Comparing two rows and
+then two columns gives constants $\alpha,\beta$ such that
+\[
+ b_i=\alpha-w_i,\qquad c_j=\beta-v_j.
+\]
+Substituting in any one prescribed value gives
+\[
+ b_0=\varepsilon+\sum_iw_i+\sum_jv_j
+       -(r-1)\alpha-(s-1)\beta.
+\]
+Nonnegative slopes require $\alpha\geq\max_iw_i$ and
+$\beta\geq\max_jv_j$. As $r,s\geq2$, the largest possible
+constant coefficient is exactly the left side of (1). Thus (1) is
+necessary. For sufficiency, choose $\alpha=\max_iw_i$ and
+$\beta=\max_jv_j$. These choices give the required slopes and
+strictly positive constant. If strict positive slopes are desired, both
+constants can be increased by sufficiently small positive amounts while
+retaining the strict inequality.
+\end{proof}
+
+\paragraph{Interpretation.}
+Starting with
+$\varepsilon+\sum_iw_i(1-x_i)+\sum_jv_j(1-y_j)$, the most
+general affine alteration vanishing on this product layer is
+\[
+ \alpha\left(\sum_i x_i-(r-1)\right)
+ +\beta\left(\sum_j y_j-(s-1)\right).
+\]
+Thus the theorem includes arbitrary separate row and column layer
+shifts; a shift using only total Hamming weight is a special case.
+The freedom to choose another additive splitting of $d_{ij}$ does not
+help: replacing $w_i$ by $w_i+a$, $v_j$ by $v_j+b$, and
+$\varepsilon$ by $\varepsilon-a-b$ leaves (1) unchanged.
+
+\begin{corollary}[A geometric equality denominator fails the repair]
+Let $r=s=m\geq3$, $B\geq4$, and $w_i=v_i=B^{i-1}$.
+If $0<\varepsilon\leq1$, the denominator values
+$\varepsilon+w_i+v_j$ have no extension of the kind above.
+\end{corollary}
+\begin{proof}
+Set $W=B^{m-1}$. The geometric sum satisfies
+\[
+ \sum_{i=1}^mB^{i-1}<\frac{B}{B-1}W\leq\frac43W.
+\]
+Consequently the left side of (1) is strictly less than
+$1+\frac83W-2(m-1)W\leq1-\frac43W<0$.
+\end{proof}
+
+\paragraph{What this does not exclude.}
+The conclusion concerns preserving each denominator's local values.
+It does not exclude resynthesis of the whole signed sum, additional
+heads, a new nonnegative equality kernel, or a different covering and
+gluing scheme. Such a mechanism must be constructed separately; it
+does not follow from a layer shift or a headwise additive gauge.
+
+\end{document}
