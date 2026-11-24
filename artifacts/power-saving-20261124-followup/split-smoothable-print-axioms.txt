@@ -1,0 +1,16 @@
+'HeadComplexity.SplitSmoothableCapacity.structureNumerator_weightedDegreeLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableCapacity.scorePoly_weightedDegreeLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableCapacity.eval_scorePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SplitSmoothableCapacity.mem_represented_of_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableCapacity.mem_represented_of_closure_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplitSmoothableCapacity.card_smoothableFunctions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

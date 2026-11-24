@@ -1,0 +1,7 @@
+import HeadComplexity.Research.SplitSmoothableCapacity
+#print axioms HeadComplexity.SplitSmoothableCapacity.structureNumerator_weightedDegreeLE
+#print axioms HeadComplexity.SplitSmoothableCapacity.scorePoly_weightedDegreeLE
+#print axioms HeadComplexity.SplitSmoothableCapacity.eval_scorePoly
+#print axioms HeadComplexity.SplitSmoothableCapacity.mem_represented_of_closure
+#print axioms HeadComplexity.SplitSmoothableCapacity.mem_represented_of_closure_score
+#print axioms HeadComplexity.SplitSmoothableCapacity.card_smoothableFunctions_le

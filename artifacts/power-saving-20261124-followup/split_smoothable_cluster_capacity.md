@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This is a written proof, independently audited by the margin-repair agent. The only sign-count input is the kernel-checked `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le`. The rational matrix substitution and smoothable-limit argument below are not yet Lean declarations.
+The uniform-length finite theorem is kernel checked as `HeadComplexity.SplitSmoothableCapacity.card_smoothableFunctions_le`. Its proof includes the adjugate matrix substitution, the exact positive determinant-clearing identity, and preservation of a full strict truth table in the real-topological closure of the split orbit. The Lean parameter `q` counts nonidentity vectors, so each cluster has length `q + 1`. The nonuniform-length formula, the simplified product-of-weights bound, and the asymptotic estimates below are written proofs, independently audited by the margin-repair agent. The sign-count input is the unconditional kernel-checked `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le`.
 
 The result improves the [filtered local algebra count](filtered_local_algebra_capacity.md) for algebras that are Euclidean limits of the split semisimple algebra. It reaches the requested power scale for this comparison class. It does not prove that every unrestricted xorformer truth table, or every universally low-margin table at comparable width, admits such a clustered representation.
 
