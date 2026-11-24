@@ -49,10 +49,10 @@ theorem not_quadratic_grid_classifier (Q : MvPolynomial (Fin 14) ℝ)
 
 
 theorem replication_gt_two : 2 < replicationCount := by
-  have h : 4 ≤ replicationCount := by
-    change 2 ^ 2 ≤ 2 ^ 400000
-    exact Nat.pow_le_pow_right (n := 2) (i := 2) (j := 400000) (by decide) (by decide)
-  omega
+  unfold replicationCount
+  have bound (k : ℕ) (hk : 2 < k) : 2 < 2 ^ k :=
+    lt_trans hk Nat.lt_two_pow_self
+  exact bound 400000 (by decide)
 
 /-- The lower bound quantifies over all real threshold polynomials on all
 fourteen replicated bit groups, without a symmetry restriction. -/

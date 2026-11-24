@@ -25,10 +25,10 @@ open ThreeHeadMeanGap ThreeHeadMeanSign PureCubicFiniteRigidity
 open PureRoPEReplicationBounds
 
 theorem replicationCount_gt_two : 2 < replicationCount := by
-  have h : 4 ≤ replicationCount := by
-    change 2 ^ 2 ≤ 2 ^ 400000
-    exact Nat.pow_le_pow_right (n := 2) (i := 2) (j := 400000) (by decide) (by decide)
-  exact lt_of_lt_of_le (by norm_num : (2 : ℕ) < 4) h
+  unfold replicationCount
+  have bound (k : ℕ) (hk : 2 < k) : 2 < 2 ^ k :=
+    lt_trans hk Nat.lt_two_pow_self
+  exact bound 400000 (by decide)
 
 /-- The lower bound applies to the literal original vanilla architecture. -/
 theorem not_vanilla_three :
