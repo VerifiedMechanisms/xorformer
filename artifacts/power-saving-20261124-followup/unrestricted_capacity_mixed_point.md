@@ -32,7 +32,7 @@ uniformly on the full cube. Each denominator has a positive intercept and strict
 
 ## A proved obstruction when all orientations agree
 
-The following elementary statement is a written proof, not yet a Lean declaration in this checkpoint.
+The quantitative error bound below is a written proof. Its arbitrary-precision consequence, including coordinate-face restrictions, is kernel checked in `formalization/HeadComplexity/Research/MonotonePoleLocalization.lean`. The declarations `dimension_le_of_positive_atom_approximation` and `dimension_le_of_negative_atom_approximation` give the endpoint statements; `face_dimension_le_of_positive_atom_approximation` and its negative counterpart give the mixed-point restrictions. The proof uses closedness of the finite-dimensional Boolean polynomial space, so it imposes no bounds on the approximating coefficients.
 
 **Claim.** Let $q\lt r$. A sum of $q$ positive-orientation heads and a bias cannot approximate the all-one point indicator on an $r$-cube with uniform error smaller than $2^{-r}$. The analogous statement holds for negative-orientation heads at the all-zero point.
 
@@ -63,3 +63,5 @@ Even a proof of this two-head obstruction would be a structural checkpoint. It w
 ## Verification
 
 The scalar compiler build completed successfully with 2553 jobs. Its five exported declarations have transitive axioms `propext`, `Classical.choice`, and `Quot.sound`. Exact logs are `scalar-cylinder-build.txt` and `scalar-cylinder-axioms.txt`.
+
+The monotone localization build completed successfully with 2541 jobs. Its seven exported declarations have transitive axioms `propext`, `Classical.choice`, and `Quot.sound`; see `monotone-pole-build.txt` and `monotone-pole-axioms.txt`. The intermediate `dimension_le_of_maximal_denominator_approximation` assumes only that the product of denominators is maximal at the target vertex.
