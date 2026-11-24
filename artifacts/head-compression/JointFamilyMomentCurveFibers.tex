@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Shared moment-curve fibers and admissible permutation differences}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The finite fiber bound, equality of all stated jets, exact reciprocal
+remainder, and the joint reverse-admissible construction are Lean checked
+in \texttt{JointFamilyMomentCurve.lean} and
+\texttt{JointFamilyPermutationData.lean}. The asymptotic estimates below
+are written deductions. No orthant-covering theorem is proved, and no
+improvement of \texttt{HeadComplexity.worstCaseHeadComplexity} follows
+yet. The original model and all its definitions are unchanged.
+
+\section{A polynomial-sized common signature}
+Number the heads by $h=1,\ldots,H$, and let $\pi$ be a permutation of
+these integers. Define
+\[
+ M_{a,b}(\pi)=\sum_{h=1}^H h^a\pi(h)^b,
+ \qquad 0\leq a\leq kd,\quad 0\leq b\leq d.
+\]
+Every component is a natural number at most $H^E$, where
+$E=(k+1)d+1$. There are $S=(kd+1)(d+1)$ components.
+
+\begin{theorem}
+If $(H^E+1)^S L\leq H!$, there is a set $\mathcal C$ of at least
+$L$ permutations on which every displayed mixed moment is constant.
+For every real polynomial $P$ of degree at most $k$, every
+$0\leq r\leq d$, and every $\pi,\sigma\in\mathcal C$,
+\[
+ \sum_h(P(h)+\pi(h))^r=\sum_h(P(h)+\sigma(h))^r.
+\]
+\end{theorem}
+\begin{proof}
+The fiber assertion is the pigeonhole principle applied to at most
+$(H^E+1)^S$ signatures. Expand the power with the binomial theorem.
+Each summand is a polynomial in $h$ of degree at most $kr\leq kd$
+times a memory power at most $d$, and is therefore determined by the
+signature. The Lean declarations are
+\texttt{jointFamily\_large\_moment\_fiber} and
+\texttt{jointFamily\_same\_signature\_power\_sums}.
+\end{proof}
+
+The logarithm of the number of signatures is at most
+\[
+ S(E\log H+\log 2)=O(k^2d^3\log H)
+\]
+when $k,d\geq1$. In particular, for $H$ exponential in $k$ and $d$
+bounded by any fixed power of $k$, a fiber has
+$\exp((1-o(1))H\log H)$ elements. This removes the exponential-in-$k$
+signature cost of recording a separate jet at each Boolean input.
+It is an entropy statement, not a sign-decoding statement.
+
+\section{Exact remainders and full-cube admissibility}
+For Boolean row addresses $x\in\{0,1\}^k$, put
+\[
+ P_x(h)=\sum_{i=1}^k x_i h^i.
+\]
+The polynomial $P_x$ has degree at most $k$. For any $B\neq0$ and
+nonzero denominators, equality of the moments through order $d$ gives
+the exact identity
+\[
+\begin{split}
+ &\sum_h\frac1{B-\varepsilon(P_x(h)+\pi(h))}
+ -\sum_h\frac1{B-\varepsilon(P_x(h)+\sigma(h))}\\
+ &=\left(\frac\varepsilon B\right)^{d+1}
+ \left(\sum_h\frac{(P_x(h)+\pi(h))^{d+1}}
+ {B-\varepsilon(P_x(h)+\pi(h))}
+ -\sum_h\frac{(P_x(h)+\sigma(h))^{d+1}}
+ {B-\varepsilon(P_x(h)+\sigma(h))}\right).
+\end{split}
+\]
+This is \texttt{jointFamily\_same\_signature\_remainder}; it uses the
+inherited exact geometric-remainder identity, not a formal power-series
+argument.
+
+For $s$ independently labelled columns, choose a permutation $\pi_j$
+independently for every column $j$, and one shared reference $\sigma$.
+More generally let $d_{hi}>0$ be arbitrary fixed row weights, and set
+\[
+ R=\sum_{h,i}d_{hi}+sH,\qquad B=1+\varepsilon R,
+ \qquad \varepsilon>0.
+\]
+Use two banks of $H$ heads, with numerators $\sum_jz_j$ and
+$-\sum_jz_j$ respectively, and denominators
+\[
+ B-\varepsilon\sum_i d_{hi}x_i
+   -\varepsilon\sum_j\pi_j(h)z_j,
+ \qquad
+ B-\varepsilon\sum_i d_{hi}x_i
+   -\varepsilon\sum_j\sigma(h)z_j.
+\]
+All slopes are strictly negative. Every denominator is at least one
+on the entire ambient Boolean cube, including multihot column inputs,
+since each row sum is at most $\sum_{h,i}d_{hi}$ and each column sum
+is at most $sH$. Numerators are affine. On the zero-column axis they
+vanish exactly. At column $j$ the score is exactly the displayed
+reciprocal difference, with $P_x(h)=\sum_i d_{hi}x_i$.
+
+These assertions, with the exact head count $H+H$, are the declarations
+\texttt{jointFamilyPermutationDifferenceData} and
+\texttt{jointFamilyPermutationDifferenceData\_score}. The permutations
+in distinct columns have no consistency condition. At the all-zero row,
+every difference is zero because both banks have the same reciprocal
+histogram; this additional identity is
+\texttt{jointFamilyPermutationDifferenceData\_zero\_row}.
+
+If strict signs on all nonzero rows were obtained, one additional head
+would repair the zero row: use an independently signed, sufficiently
+small column numerator and any everywhere-positive denominator with
+strictly negative slopes. Finiteness gives a positive margin, so this
+head preserves all previously strict local signs. This last repair
+statement is a written argument here; it is not part of the new formal
+declarations.
+
+\section{The exact missing lemma}
+For $M=2^k-1$, a sufficient next statement is that a fiber
+$\mathcal C$, a reference $\sigma$, and a sufficiently small
+$\varepsilon>0$ can be chosen such that the vectors
+\[
+ \left(\sum_h\frac1{B-\varepsilon(P_x(h)+\pi(h))}
+ -\sum_h\frac1{B-\varepsilon(P_x(h)+\sigma(h))}\right)_{x\neq0},
+ \qquad \pi\in\mathcal C,
+\]
+meet every strict orthant, with $H=o(2^k/\log k)$. For the fixed-power
+goal, $H=O(2^k/\sqrt{k})$ would suffice in the existing conditional
+full-cube transfer, with its documented covering costs. No version of
+this assertion has been proved.
+
+The fiber cardinality is compatible with that width, but cardinality
+alone does not imply orthant coverage. Nor does an interior point in the
+convex hull of these vectors: averaging permutations is not one
+permutation. Existing exact counterexamples to other prescribed
+permutation dictionaries remain relevant warnings. The present
+construction only makes the shared cancellation and full admissibility
+costs concrete; cell selection, prior-sign preservation, overlaps and
+exceptions still require the original global transfer once a universal
+local strict-sign theorem is available.
+
+\end{document}
