@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T04:13:24.679333+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/boolean-difference-kernel.md",
+      "source_math_spans": 52,
+      "rendered_math_spans": 52,
+      "findings": 0,
+      "notes": [],
+      "sha256": "c10c98f61cc7e83544dd17530450e6e67b21f34c7a2036c3f2f80dc6be8b7686"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

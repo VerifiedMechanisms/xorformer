@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "checked_utc": "2026-11-24T04:13:21.500630+00:00",
+  "declarations": [
+    "HeadComplexity.BooleanDifferenceBarrier.second_difference_identity",
+    "HeadComplexity.BooleanDifferenceBarrier.difference_values",
+    "HeadComplexity.BooleanDifferenceBarrier.difference_signs",
+    "HeadComplexity.BooleanDifferenceBarrier.no_affine_sign_representation",
+    "HeadComplexity.BooleanDifferenceBarrier.exists_actual_atom"
+  ],
+  "build": "boolean-difference-build.txt",
+  "axiom_log": "boolean-difference-axioms.txt",
+  "written_only": [
+    "general positive weight integral identity",
+    "two by two determinant positivity",
+    "continuous derivative identity"
+  ],
+  "main_target_proved": false,
+  "model_changes": []
+}

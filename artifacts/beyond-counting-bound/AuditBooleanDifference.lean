@@ -1,0 +1,6 @@
+import HeadComplexity.Atoms.BooleanDifferenceBarrier
+#print axioms HeadComplexity.BooleanDifferenceBarrier.second_difference_identity
+#print axioms HeadComplexity.BooleanDifferenceBarrier.difference_values
+#print axioms HeadComplexity.BooleanDifferenceBarrier.difference_signs
+#print axioms HeadComplexity.BooleanDifferenceBarrier.no_affine_sign_representation
+#print axioms HeadComplexity.BooleanDifferenceBarrier.exists_actual_atom

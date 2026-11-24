@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T04:17:44.931898+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/boolean-difference-kernel.md",
+      "source_math_spans": 52,
+      "rendered_math_spans": 52,
+      "findings": 0,
+      "notes": [],
+      "sha256": "c10c98f61cc7e83544dd17530450e6e67b21f34c7a2036c3f2f80dc6be8b7686"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/difference-kernel-total-positivity.md",
+      "source_math_spans": 68,
+      "rendered_math_spans": 68,
+      "findings": 0,
+      "notes": [],
+      "sha256": "9877c4bd2f6f0e7ce5d60d182b62d03ec0ca0c8f98c9030b5c5ef84570ecb304"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "1e7bb38f61c46ca40cd34bad50e76503337292643a073944c1d236352e5a5ce6"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "d4ade3af944da7a2502d78c6714d9a18e36faacc223df8578bf762f8b4e0a3e4"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

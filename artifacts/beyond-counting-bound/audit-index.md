@@ -66,3 +66,6 @@ Generic coordinate uniqueness, uniformly small critical-point counts, a head-ind
 - [Sparse-sign compiler obstruction](sparse-sign-compiler-audit.json): eleven Lean declarations, including `HeadComplexity.HStar_affineTriple_le`; complete written general construction and spectral proof. Both standard polynomial dictionaries fail to provide a polynomial-size universal conversion. This is not a worst-case head lower bound.
 
 - [Tensor sign conversion audit](tensor-sign-conversion-audit.md): a complete written obstruction to a constant-cost conversion, using the earlier checked bipartite construction and Warren's theorem. The weaker sufficient conversion remains unproved; neither asymptotic head target is established.
+
+- [Boolean difference kernel](boolean-difference-kernel.md): five Lean-checked identities, signs, exclusion, and actual-atom realization; general positive-weight and order-two determinant formulas proved in writing.
+- [Failure of higher-order total positivity](difference-kernel-total-positivity.md): complete written number-theoretic obstruction and concentration transfer, with independent exact arithmetic certificates for concrete minors. No asymptotic head lower bound.

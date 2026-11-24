@@ -1,0 +1,2 @@
+✔ [3226/3226] Built HeadComplexity.Atoms.BooleanDifferenceBarrier (1.7s)
+Build completed successfully (3226 jobs).

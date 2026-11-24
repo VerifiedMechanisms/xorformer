@@ -1,0 +1,9 @@
+'HeadComplexity.BooleanDifferenceBarrier.second_difference_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.difference_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.difference_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.no_affine_sign_representation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanDifferenceBarrier.exists_actual_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
