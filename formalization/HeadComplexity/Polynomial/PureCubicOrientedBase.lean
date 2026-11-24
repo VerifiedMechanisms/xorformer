@@ -20,7 +20,7 @@ theorem centeredForm_eval {n : ℕ} (c : ℝ) (v : Fin n → ℝ)
     (centeredForm c v).eval x = c + PureRoPECenteredConstruction.linear v x := by
   have hi (i : Fin n) : v i * PureRoPECenteredConstruction.spin (x i) =
       2 * v i * boolToReal (x i) - v i := by
-    cases x i <;> simp [PureRoPECenteredConstruction.spin, boolToReal] <;> ring
+    cases x i <;> (simp [PureRoPECenteredConstruction.spin, boolToReal]; ring)
   simp only [Form.eval, centeredForm, PureRoPECenteredConstruction.linear,
     hi, Finset.sum_sub_distrib]
   ring
