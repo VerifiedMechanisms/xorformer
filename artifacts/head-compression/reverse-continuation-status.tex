@@ -140,23 +140,25 @@ The budget remains a hypothesis; grid positivity alone is insufficient.
 independently moving row poles satisfying its explicit sum budget have
 an exact strictly admissible axis-zero realization with two heads per
 pole. No extra axis repair is needed. The aggregate build passes
-9240 jobs, and the new declarations use only the standard Lean axioms.
+9243 jobs after the further modules below, and the new declarations use
+only the standard Lean axioms.
 
 \paragraph{Compact local constructions and a failed induction.}
 \texttt{reverse-unbalanced-h2-local.tex} gives a complete written
 two-head construction for every sign table with five columns and any
 number of rows, with strict full-cube denominators whose slope sums
 can be arbitrarily small. An exact rational checker verifies the formulas
-on all 32 column patterns at several scales. This theorem is not Lean
-formalized. A second complete written construction in
+on all 32 column patterns at several scales. Its five-column compiler
+is now Lean checked as recorded above; the additional arbitrary-small-slope
+claim is written only. A second complete written construction in
 \texttt{tree-shared-pool-four.tex} gives an axis-zero compiler with
 16 strict heads for every table with 20 columns. Its four-pole shared
 pool and the Cauchy/Hermite perturbation argument were independently
 audited. These are finite constant-factor results, not either target.
 The attempted direct eight-pole shared-pool induction fails on the
-tested pools. The current research asks whether sufficiently many
-distinct patterns, followed by Sauer's lemma, can replace full pool
-universality; the required growing entropy bound is unproved.
+tested pools. The original entropy approach for generic fixed scaled
+pole trees now has a scoped linear VC obstruction, recorded below.
+Degenerate query times and perturbed poles remain outside that argument.
 
 \paragraph{New full-cube identities and tangent spaces.}
 \texttt{reciprocal-histogram-fibers.tex} gives complete elementary
@@ -247,6 +249,74 @@ control all strict orthants without a margin hypothesis. These are
 scoped failures of arguments, not a proof that the matching lower bound
 is false. No restriction to a subclass of atoms is used to claim a
 lower bound for the unrestricted model.
+
+\paragraph{Exterior query centers and exact moment remainders, Lean checked.}
+\texttt{Results/ReverseCauchyCompactification.lean} proves
+\texttt{exists\_compactified\_maskedCauchy\_reverseAxisData} and
+\texttt{exists\_compactified\_maskedCauchy\_of\_small\_poles}.
+The common map $x\mapsto x/(x+\varepsilon)$ combines with the paired
+axis construction so that the grid score is exactly $\varepsilon$
+times the original masked Cauchy sum, with the same two heads per pole.
+The full-cube sum budget is explicit. Poles bounded by
+$\varepsilon^2 C$ and fixed positive query centers bounded below by
+$b$ satisfy it whenever $\varepsilon(rC+s/b)<1$ and
+$\varepsilon^2C<b$. This removes an unnecessary requirement that the
+queries cluster near one; it does not allow unproved pole/query gaps.
+\texttt{Results/ReverseMomentGerms.lean} checks
+\texttt{cauchy\_moment\_remainder} at every cancellation order and
+\texttt{cauchy\_cubic\_remainder} for the newer cubic family.
+The note \texttt{reverse-cauchy-compactification.tex} was independently
+audited. The integrated build and standard-axiom checks passed.
+
+\paragraph{Higher finite germs, written and exactly checked.}
+\texttt{reverse-unbalanced-h3-local.tex} gives three strict reverse
+grid heads for every eight-column sign table. The newer
+\texttt{reverse-unbalanced-h4-cubic.tex} gives four for every ten-column
+sign table, with any finite number of rows. Its cubic leading term uses
+a quadratic null cone, not an assumed independence of linear votes.
+Exact rational certificates verify all 1024 row patterns, the moment
+cancellations, and the cube budgets. The written argument and checker
+were independently audited. These two compiler theorems have not been
+formalized in Lean, and their constant ratios do not imply a growing
+saving. The exact remainder identity used by the latter is checked
+separately in \texttt{ReverseMomentGerms.lean}.
+
+\paragraph{Shared moments and joint zero families.}
+\texttt{reverse-shared-moment-germs.tex} proves barycentric and Walsh
+identities with many shared vanishing orders. Their next coefficients
+remain correlated; the note states the missing independent-readout
+condition. \texttt{chebyshev-joint-zero-family.tex} constructs strict
+full-cube grid-zero representations with $(k!)^{s-1}$ independent
+column-permutation branches and $k+1$ heads, and derives their full
+first-order perturbation family. This is a written zero-family theorem,
+not a sign-table compiler. The primary unresolved question is whether
+target-adaptive row and column choices can cover all balanced sign
+tables with a superconstant saving.
+
+\texttt{tree-chebyshev-moment-audit.tex} now bounds the generic tree
+family by VC dimension less than $8H$. The argument applies to any
+distinct fixed scaled real pole set, not just Chebyshev roots. It allows
+the fixed numerator to depend on the target, but excludes moving query
+times, queries at zeros of the leading truncations, parameter-dependent
+numerators, and perturbed poles. It therefore redirects the tree search
+to genuinely degenerate constructions rather than disproving the local
+compiler. The written \texttt{cauchy-krylov-leading-audit.tex} treats
+analytic parameter-dependent weights in a different fixed-scaled-pole
+sign-cube family. It likewise excludes moving or exact-root queries
+and pole deformations. Neither audit is an unrestricted lower bound.
+
+\paragraph{New unrestricted normalizations, written only.}
+\texttt{positive-perspective-reformulation.tex} gives an exact
+positive-numerator normalization and a convex quadratic-perspective
+extension, together with an affine arrowhead matrix description.
+Its Boolean-vanishing gauge shows why convexity away from the vertices
+does not by itself bound strict Boolean labels. The written
+\texttt{odd-positive-kernel-normalization.tex} treats all odd targets
+and both original orientations exactly, including constant denominators.
+It reduces them, within a factor two in head count, to sums of kernels
+$u\cdot t/(1-(w\cdot t)^2)$ with $w$ nonnegative and
+$\|w\|_1<1$. Arbitrary numerator directions remain, and no sharper
+global sign count for these kernels is proved.
 
 \paragraph{Verification and external hypotheses.}
 The aggregate \texttt{lake build HeadComplexity.Results.All} completed
