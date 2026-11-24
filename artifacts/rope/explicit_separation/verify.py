@@ -3,7 +3,7 @@
 
 No Boolean cube of astronomical size is enumerated. The finite checks verify
 the coefficient identities and bounds used in the symbolic all-input proof.
-The analytic tensor exclusion and sign-rigidity arguments remain handwritten.
+The complete tensor exclusion and sign-rigidity proof is separately Lean-certified.
 Only the Python standard library is required.
 """
 
@@ -154,7 +154,7 @@ def main():
     full_cube_arithmetic(chart, gap)
     print('All exact arithmetic checks supporting Theorem 22 passed.')
     print('Scope: arithmetic certificates plus symbolic cube identities;')
-    print('the full separation proof is mathematical, not a Lean theorem.')
+    print('the full Boolean separation is separately certified by PureRoPEExplicitSeparation.strict_separation.')
 
 
 if __name__ == '__main__':

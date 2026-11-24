@@ -12,7 +12,7 @@ $$ \deg_{\pm}(f)=H_P(f)=3\lt4\leq H_V(f)\leq7. $$
 
 The function is not invariant under complementing every input bit. The vanilla lower bound allows all parameters, all finite widths, and arbitrary differences between positions within the groups used in the construction. It concerns Boolean signs, not equality of scores.
 
-This theorem is a mathematical proof with exact rational certificates for its numerical constants. The complete separation is **not Lean-formalized**. The formalized supporting results and the scope of each certificate are listed below. The model definitions are unchanged.
+The strict inequality between `PureRoPEHStar` and the original vanilla `HStar` is **Lean-certified**, including the lower bound against every vanilla representation. Exact rational certificates independently verify the numerical constants. The realization of pure atoms by literal rotary matrices uses the mathematical bridge in Theorem 14. The model definitions are unchanged.
 
 ## The function and its pure atoms
 
@@ -128,7 +128,7 @@ In this display the product is ordinary multiplication. The bound follows direct
 
 The exact map, denominator bounds, coefficient bounds, and polynomial identities are checked in [verify_chart.py](../../artifacts/rope/generic_cubic_completion/verify_chart.py). Its additional finite-field rank check is corroborating evidence; the interpolation proof supplies the full-grid rank statement used here.
 
-The displayed rational inverse, its denominator and row bounds are also Lean-checked in `PureCubicChart.lean`. The ten-point product-grid interpolation step is `PureCubicGraph.eq_zero_of_chartGrid`. The graph-divisibility and evaluation-minor bounds in this theorem remain handwritten.
+The displayed rational inverse, its denominator and row bounds are also Lean-checked in `PureCubicChart.lean`. The ten-point product-grid interpolation step is `PureCubicGraph.eq_zero_of_chartGrid`. Graph divisibility, the exact finite kernel, bounded integer row denominators, and evaluation-minor recovery are all checked in `PureCubicRawKernel.lean`, `PureCubicNodeBounds.lean`, and `PureCubicInterpolation.lean`.
 
 ### Theorem 4. Quantitative sign rigidity on the mean grid
 
@@ -222,7 +222,9 @@ To verify the estimate, integrate the mixed derivative $2D_jD_k/(R+uD_j+vD_k)^3$
 
 The explicit atom parameters, all-input sign identity and margin, finite interpolation argument, untied vanilla lower bound, and scalar-to-architecture bridge together prove the stated Boolean separation. No fitting failure or restricted-family infeasibility is used as a lower bound.
 
-The quantitative lower bound and the literal rotary-matrix bridge are handwritten, not Lean-certified. The actual unshifted function's pure upper bound, exact atom parameters, integer-cubic identity, rational tie removal, full-cube margin, and non-complement-invariance are Lean-certified. The general seven-head vanilla upper compiler is also Lean-certified; the particular numerical choice $a=\varepsilon/4096$ is justified by the estimate above.
+The complete scalar/original-vanilla Boolean separation is Lean-certified in [PureRoPEExplicitSeparation.lean](../../formalization/HeadComplexity/Results/PureRoPEExplicitSeparation.lean). The declarations `not_vanilla_three`, `vanillaHStar_ge_four`, `pureHStar_eq_three`, `strict_separation`, `shared_strict_separation`, and `not_universal_equality` have no unproved hypotheses. They include arbitrary real parameters, untied replicas, constant heads, and zero scores on false inputs. The exact threshold degree is checked by `PureRoPEExplicitThreshold.thresholdDeg_eq_three` in [PureRoPEExplicitThreshold.lean](../../formalization/HeadComplexity/Results/PureRoPEExplicitThreshold.lean), quantifying over every real threshold polynomial.
+
+The exact atom parameters, integer-cubic identity, rational tie removal, full-cube margin, and non-complement-invariance are also Lean-certified. The literal rotary-matrix realization remains a mathematical proof in Theorem 14. The general seven-head vanilla compiler is Lean-certified; the particular numerical choice $a=\varepsilon/4096$ is justified by the estimate above.
 
 Further supporting Lean results include the following:
 
@@ -234,7 +236,11 @@ Further supporting Lean results include the following:
 
 - `ExplicitCubicRawObstruction.cubic_ne_oriented_with_readout` instantiates the exact raw obstruction with the displayed rational fourteen-variable target. `FiniteGridPole.explicit_bounded_pole_point` and `ExplicitCubicQuantitativeBounds.exists_pole_with_bounded_nonsingular_minor` check the quantitative finite point selection and target minor bound.
 
-- `PureCubicChart.chart_inverse_mul`, `PureCubicChart.inverse_row_bound`, and `PureCubicGraph.eq_zero_of_chartGrid` check the rational coordinate map and finite interpolation step.
+- `ExplicitCubicSquarefreeGap.squarefree_coefficient_gap_with_readout` checks the full uniform squarefree exclusion with its explicit radius. `ThreeHeadMeanGap.not_meanCleared_close` connects this exclusion to every admissible untied vanilla representation.
+
+- `PureCubicInterpolation.coefficient_recovery` checks coefficient recovery from the actual finite rational zero chart, including its kernel, denominator bounds, and the existence and conditioning of the required minor. `PureCubicFiniteRigidity.finite_sign_rigidity` checks the complete finite-grid sign-rigidity argument for every nonzero real cubic.
+
+- `ThreeHeadMeanSign.meanCleared_sign` and `ReplicatedMeanGrid.rawTarget_classifier_grid` connect the original Boolean cube, exact untied averaging, and the entire finite mean grid, including ties.
 
 - `PureRoPEReplicationBounds.explicit_sharedHStar_le_seven` checks the seven-head upper bound for the actual explicit function in the literal shared-embedding vanilla architecture.
 

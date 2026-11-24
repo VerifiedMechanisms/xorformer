@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Audit the axioms of every headline alias in Results/All.lean.
 
-Build the repository first. This checks the formalized statements only; it
-does not turn the handwritten quantitative lower bound into a Lean theorem.
+Build the repository first. This checks the complete scalar/original-vanilla
+Boolean separation and all other headline declarations. The literal rotary
+matrix interpolation bridge is documented separately in Theorem 14.
 The lake/lean launcher acquires its own compute slot on the shared machine.
 """
 
@@ -31,10 +32,15 @@ def main():
         result = subprocess.run(
             ["lake", "env", "lean", str(path)],
             cwd=FORMALIZATION,
-            check=True,
+            check=False,
             capture_output=True,
             text=True,
         )
+        if result.returncode:
+            raise RuntimeError(
+                "Lean axiom audit failed; rebuild Results.All first.\n"
+                + result.stdout + result.stderr
+            )
     found = {}
     for name, axioms in re.findall(
         r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", result.stdout
@@ -50,7 +56,7 @@ def main():
         assert axioms <= ALLOWED, (name, axioms - ALLOWED)
     print(f"Axiom audit passed for all {len(names)} Results.All headline aliases.")
     print("Only propext, Classical.choice, and Quot.sound occur.")
-    print("Scope: formalized supporting results; Theorem 22's lower bound is handwritten.")
+    print("Scope: complete scalar/original-vanilla Boolean separation and all headline results.")
 
 
 if __name__ == "__main__":

@@ -32,6 +32,19 @@ import HeadComplexity.Polynomial.PureCubicGraph
 import HeadComplexity.Polynomial.CubeTopCoefficients
 import HeadComplexity.Polynomial.ExplicitCubicRawObstruction
 import HeadComplexity.Polynomial.FiniteGridPole
+import HeadComplexity.Polynomial.ExplicitCubicRawGap
+import HeadComplexity.Polynomial.ExplicitCubicQuantitativeBounds
+import HeadComplexity.Polynomial.PureCubicFiniteKernel
+import HeadComplexity.Polynomial.PolynomialCubeLipschitz
+import HeadComplexity.Polynomial.FiniteKernelMinor
+import HeadComplexity.Polynomial.SignRigidityNormalization
+import HeadComplexity.Polynomial.QuantitativeCubicRecovery
+import HeadComplexity.Polynomial.ExplicitCubicSquarefreeGap
+import HeadComplexity.Polynomial.PureCubicInterpolation
+import HeadComplexity.Polynomial.PureCubicFiniteRigidity
+import HeadComplexity.Polynomial.ThreeHeadMeanSign
+import HeadComplexity.Results.PureRoPEExplicitSeparation
+import HeadComplexity.Results.PureRoPEExplicitThreshold
 
 set_option linter.style.header false
 
@@ -256,14 +269,86 @@ alias theorem22_chart_grid_interpolation := PureCubicGraph.eq_zero_of_chartGrid
 polynomial has exactly the raw group-summed squarefree cubic coefficients. -/
 alias theorem22_untied_mean_coefficient := CubeTopCoefficients.meanPolynomial_cubic_coefficient
 
-/-- **Theorem 22, raw obstruction only.** The exact fourteen-variable cubic
-differs from every oriented three-pole cubic, including a readout term.
-The quantitative Boolean lower bound remains handwritten. -/
+/-- **Theorem 22, raw obstruction.** The exact fourteen-variable cubic
+differs from every oriented three-pole cubic, including a readout term. -/
 alias theorem22_explicit_raw_obstruction :=
   ExplicitCubicRawObstruction.cubic_ne_oriented_with_readout
 
 /-- **Theorem 22, finite pole selection.** Every normalized nonnegative
 denominator has a bounded kernel point uniformly avoiding the three target poles. -/
 alias theorem22_explicit_pole_point := FiniteGridPole.explicit_bounded_pole_point
+
+/-- **Theorem 22, quantitative raw obstruction.** An explicit positive
+ordinary-coefficient gap separates the target cubic from every oriented
+three-pole cubic. This alone is not a Boolean separation. -/
+alias theorem22_raw_coefficient_gap := ExplicitCubicRawGap.raw_coefficient_gap_with_readout
+
+/-- **Theorem 22, quantitative recovery.** Squarefree cubic tensor errors
+control all entries under the explicit cross-minor hypotheses. -/
+alias theorem22_quantitative_tensor_recovery := QuantitativeCubicRecovery.all_entries_error_bound
+
+/-- **Theorem 22, target minor.** Every normalized nonnegative direction
+has a bounded pole point with a uniformly nonzero target Hessian minor. -/
+alias theorem22_quantitative_target_minor :=
+  ExplicitCubicQuantitativeBounds.exists_pole_with_bounded_nonsingular_minor
+
+/-- **Theorem 22, finite zero-chart kernel.** Cubics vanishing on the finite
+ten-point rational graph grid are precisely scalar multiples of the target
+coordinate cubic. -/
+alias theorem22_finite_chart_kernel := PureCubicFiniteKernel.finite_chart_kernel_iff
+
+/-- **Theorem 22, cube estimate.** Cubics in fourteen variables with unit
+coefficient bound have Lipschitz constant at most 2040 on the unit cube. -/
+alias theorem22_cubic_lipschitz := PolynomialCubeLipschitz.cubic_fourteen_lipschitz
+
+/-- **Theorem 22, interpolation recovery.** A finite rational evaluation
+matrix with the specified one-dimensional kernel controls coefficient error
+by the explicit power-of-two bound. -/
+alias theorem22_quantitative_interpolation := FiniteKernelMinor.quantitative_kernel_recovery
+
+/-- **Theorem 22, normalization.** Coefficient closeness and the positive
+all-one label force the recovered scalar to be positive and at least one half. -/
+alias theorem22_positive_normalization := SignRigidityNormalization.positive_scalar
+
+/-- **Theorem 22, uniform squarefree exclusion.** Every oriented three-head
+cubic differs in a distinct-variable ordinary coefficient by more than 2^-2000. -/
+alias theorem22_uniform_squarefree_gap :=
+  ExplicitCubicSquarefreeGap.squarefree_coefficient_gap_with_readout
+
+/-- **Theorem 22, actual finite interpolation.** Small values on the explicit
+rational zero chart force coefficient closeness to the actual target. -/
+alias theorem22_actual_interpolation := PureCubicInterpolation.coefficient_recovery
+
+/-- **Theorem 22, finite sign rigidity.** Every nonzero cubic with the correct
+labels on the explicit finite mean grid is relatively closer to a scalar target
+than the uniform oriented exclusion radius. -/
+alias theorem22_finite_sign_rigidity := PureCubicFiniteRigidity.finite_sign_rigidity
+
+/-- **Theorem 22, all vanilla parameters.** Centering, clearing positive
+denominators and averaging preserve the actual classifier for every admissible
+three-head vanilla representation, including untied positions and score ties. -/
+alias theorem22_all_vanilla_mean_sign := ThreeHeadMeanSign.meanCleared_sign
+
+/-- **Theorem 22.** The explicit finite Boolean function strictly separates
+the pure rotary scalar minimum from the original vanilla architectural minimum. -/
+alias theorem22_strict_separation := PureRoPEExplicitSeparation.strict_separation
+
+/-- **Theorem 22.** The explicit function has exactly three pure heads. -/
+alias theorem22_exact_pure_count := PureRoPEExplicitSeparation.pureHStar_eq_three
+
+/-- **Theorem 22.** Every original vanilla representation needs at least four
+heads, and a shared-embedding realization exists with seven heads. -/
+alias theorem22_vanilla_bounds := PureRoPEExplicitSeparation.vanillaHStar_bounds
+
+/-- **Theorem 22.** Strict separation also uses the literal shared-embedding
+vanilla model on the right-hand side. -/
+alias theorem22_shared_strict_separation := PureRoPEExplicitSeparation.shared_strict_separation
+
+/-- **Theorem 22.** Universal equality of pure and vanilla minima is false. -/
+alias theorem22_not_universal_equality := PureRoPEExplicitSeparation.not_universal_equality
+
+/-- **Theorem 22.** The same explicit Boolean function has threshold degree
+exactly three, quantifying over all real sign-representing polynomials. -/
+alias theorem22_exact_threshold_degree := PureRoPEExplicitThreshold.thresholdDeg_eq_three
 
 end HeadComplexity

@@ -27,18 +27,17 @@ The finite-frequency interpolation connecting these atoms to literal rotary
 attention is a handwritten proof in the
 [RoPE writeup](../theorems/03_rotary_attention/014_rope_head_complexity.md).
 [Theorem 22](../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md)
-now gives an explicit Boolean pure/vanilla separation. Its quantitative vanilla
-lower bound is handwritten with exact rational certificates, not Lean-formalized.
-The actual unshifted formula's pure scalar upper construction, integer-cubic
-identity, rational tie removal, strict full-cube margin, and non-complement
-invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`.
-The seven-head vanilla upper compiler is also Lean-checked.
-Supporting Lean modules now also check the raw cubic obstruction, the bounded
-pole point and its target Hessian minor, exact squarefree recovery, the rational
-coordinate inverse, finite product-grid interpolation, and untied averaging
-with preservation of the distinct-group cubic coefficients. These components
-do not yet constitute a complete Lean proof of the quantitative Boolean lower
-bound.
+now gives an explicit Boolean pure/vanilla separation whose complete quantitative
+vanilla lower bound is Lean-checked. `PureRoPEExplicitSeparation.strict_separation`
+proves strict inequality for the explicit function, `pureHStar_eq_three` proves
+its exact pure count, and `vanillaHStar_bounds` places its vanilla count between
+four and seven. The proof allows every admissible vanilla representation,
+including arbitrary real parameters, untied replicas, and ties on false inputs.
+The actual unshifted formula's exact pure atoms, integer-cubic identity,
+rational tie removal, strict full-cube margin, and non-complement invariance are
+checked in `Results/PureRoPEReplicationStrict.lean`. The seven-head vanilla
+compiler is also checked. The literal rotary matrix interpolation bridge
+remains the mathematical proof in Theorem 14.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -63,6 +62,11 @@ bound.
 | 19 | original local pattern also excludes four pure heads | `PureFourHeadLocalPattern.pureRoPEHStar_ge_five` | `Results/PureFourHeadLocalPattern.lean` |
 | 20 | cubic parity faces exclude all vanilla three-head models | `ThreeHeadTripartitePattern.HStar_ge_four`, `ThreeHeadEmbeddedPattern.HStar_ge_four` | `Results/ThreeHeadTripartitePattern.lean`, `Results/ThreeHeadEmbeddedPattern.lean` |
 | 21 | quartic parity faces exclude all vanilla four-head models | `FourHeadQuarticPattern.HStar_ge_five` | `Results/FourHeadQuarticPattern.lean` |
+| 22, complete Boolean separation | `PureRoPEExplicitSeparation.strict_separation`, `pureHStar_eq_three`, `vanillaHStar_bounds`, `not_universal_equality` | `Results/PureRoPEExplicitSeparation.lean` |
+| 22, exact threshold degree | `PureRoPEExplicitThreshold.thresholdDeg_eq_three` | `Results/PureRoPEExplicitThreshold.lean` |
+| 22, finite sign rigidity | `PureCubicFiniteRigidity.finite_sign_rigidity` | `Polynomial/PureCubicFiniteRigidity.lean` |
+| 22, uniform squarefree gap | `ExplicitCubicSquarefreeGap.squarefree_coefficient_gap_with_readout` | `Polynomial/ExplicitCubicSquarefreeGap.lean` |
+| 22, actual finite interpolation | `PureCubicInterpolation.coefficient_recovery` | `Polynomial/PureCubicInterpolation.lean` |
 | 22, upper component | exact replicated pure atoms and their cleared classifier | `PureRoPEReplication.explicitFunction_pure_three`, `PureRoPEReplication.explicitFunction_full_cube_sign` | `Results/PureRoPEReplication.lean` |
 | 22, averaging component | exact distinct-group cubic coefficient identity | `ThreeHeadReplication.coefficient_sum_three_groups`, `ThreeHeadReplication.uniform_group_sum` | `Polynomial/ThreeHeadReplication.lean` |
 | 22, full-cube component | exact unshifted formula, rational tie removal, strict margin, asymmetry | `PureRoPEReplicationStrict.explicitUnshiftedFunction_pure_three`, `PureRoPEReplicationStrict.explicitUnshiftedFunction_margin`, `PureRoPEReplicationStrict.explicitUnshiftedFunction_not_complement_invariant` | `Results/PureRoPEReplicationStrict.lean` |

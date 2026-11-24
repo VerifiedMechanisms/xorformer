@@ -6,9 +6,9 @@ set_option linter.style.header false
 /-!
 # Formalized upper bounds for the explicit replicated function
 
-These are unconditional upper bounds in the existing models. The vanilla
-lower bound, and consequently equality of the pure minimum with three, are
-proved in the handwritten Theorem 22 and are not asserted in this file.
+These are unconditional upper bounds in the existing models. The complete
+vanilla lower bound and exact pure minimum are proved in
+Results/PureRoPEExplicitSeparation.lean, which imports this module.
 -/
 
 namespace HeadComplexity.PureRoPEReplicationBounds

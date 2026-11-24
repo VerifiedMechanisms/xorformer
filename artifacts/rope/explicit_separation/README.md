@@ -24,7 +24,7 @@ Only the Python standard library is required. The driver calls the three exact c
 | [Gap verifier](../quantitative_cubic_gap/verify_gap.py) | Every rational inequality in the uniform tensor exclusion radius |
 | [Combined verifier](verify.py) | The preceding checks, exact atom constant identities under replication, full-cube arithmetic gap, and comparison of interpolation error with the tensor exclusion radius |
 
-These scripts certify the arithmetic used in the mathematical proof. They are not a formal proof of the complete lower-bound argument. In particular, the quantitative stability and sign-rigidity steps remain handwritten. The raw gap uses finite determinant estimates, with no spectral argument. The theorem note identifies the supporting Lean declarations and the current formalization boundary.
+These scripts independently certify the arithmetic used in the proof. The complete Boolean lower bound is separately Lean-certified, including quantitative tensor recovery, finite sign rigidity, and averaging every admissible untied vanilla representation. The raw gap uses finite determinant estimates, with no spectral argument. The scalar-to-literal-RoPE matrix realization remains the mathematical proof in Theorem 14.
 
 The actual unshifted formula's pure upper bound, rational tie removal, strict full-cube margin, and non-complement-invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`. The seven-head vanilla upper compiler is checked in `Results/ThreeFractionsSevenHeads.lean`. To rebuild the formalized results and audit the axioms of every headline declaration, run from the repository root:
 
@@ -35,7 +35,7 @@ cd ..
 python3 artifacts/rope/explicit_separation/audit_lean.py
 ```
 
-The audit permits only `propext`, `Classical.choice`, and `Quot.sound`. It does not assert that the handwritten lower bound is formalized.
+The audit permits only `propext`, `Classical.choice`, and `Quot.sound`. The complete separation is `HeadComplexity.PureRoPEExplicitSeparation.strict_separation` in [PureRoPEExplicitSeparation.lean](../../../formalization/HeadComplexity/Results/PureRoPEExplicitSeparation.lean). That file also proves `not_vanilla_three`, `pureHStar_eq_three`, `vanillaHStar_bounds`, `shared_strict_separation`, and `not_universal_equality` without unproved hypotheses. The exact threshold degree three is `PureRoPEExplicitThreshold.thresholdDeg_eq_three` in [PureRoPEExplicitThreshold.lean](../../../formalization/HeadComplexity/Results/PureRoPEExplicitThreshold.lean).
 
 ## Research track and artifact manifest
 
@@ -58,4 +58,4 @@ The original model definitions, strict threshold convention, and admissibility c
 
 ## Remaining questions
 
-The exact vanilla count of the explicit function is between four and seven. A substantially smaller separating truth table and a complete Lean proof of the quantitative lower bound remain open. The earlier small face-pattern targets also remain unresolved where their documentation says no pure realization was certified.
+The exact vanilla count of the explicit function is between four and seven. A substantially smaller separating truth table and a Lean proof of the literal rotary interpolation bridge remain open. The earlier small face-pattern targets also remain unresolved where their documentation says no pure realization was certified.

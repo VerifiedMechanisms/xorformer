@@ -23,7 +23,7 @@ Both rotary complexities are independent of whether the frequencies are fixed to
 
 **Strict retained comparison.** The seven-bit function in [Theorem 15's corollary](015_pure_rope_two_heads_complement_invariant.md) satisfies $H_A(f)=2\lt3=H_P(f)=H_V(f)$. Thus retaining positional embeddings alongside RoPE can strictly reduce head count.
 
-**Strict pure comparison.** [Theorem 22](022_explicit_pure_rope_separation.md) supplies an explicit finite Boolean function with $H_P(f)=3$ and $4\leq H_V(f)\leq7$. Its lower bound combines a quantitative coefficient obstruction with a finite replication and sign-rigidity argument. The full separation proof is handwritten, with exact rational certificates; its supporting pure upper construction is Lean-checked. The separate score example below does not itself establish this Boolean separation.
+**Strict pure comparison.** [Theorem 22](022_explicit_pure_rope_separation.md) supplies an explicit finite Boolean function with $H_P(f)=3$ and $4\leq H_V(f)\leq7$. Its lower bound combines a quantitative coefficient obstruction with a finite replication and sign-rigidity argument. The complete scalar/original-vanilla Boolean separation is Lean-checked, with independent exact rational certificates. The literal rotary interpolation bridge remains the mathematical proof given here. The separate score example below does not itself establish this Boolean separation.
 
 ## Model conventions
 
@@ -199,7 +199,7 @@ $$ A_1+A_2=0, \qquad A_3-A_1=0, \qquad A_3-A_2=0. $$
 
 Thus every $A_i=0$, so $E=bD$. Positivity gives $b\gt0$, and the slopes of $E$ have mixed signs, contradicting vanilla admissibility.
 
-Nevertheless every threshold of $g$ is a linear threshold function: multiply the threshold inequality by the positive $D$. Consequently these classifiers all have vanilla head complexity at most one. The example proves that exact score simulation in the reverse direction is impossible, while leaving the Boolean head-count equality question open.
+Nevertheless every threshold of $g$ is a linear threshold function: multiply the threshold inequality by the positive $D$. Consequently these classifiers all have vanilla head complexity at most one. The example proves that exact score simulation in the reverse direction is impossible, and by itself does not answer the Boolean head-count equality question. Theorem 22 supplies a separate strict Boolean separation.
 
 ## Formalization and remaining work
 
@@ -213,4 +213,4 @@ The new Lean scalar model is `PureRoPEAtom` in [Atoms/RoPE.lean](../../formaliza
 
 The literal rotation matrices, the Vandermonde interpolation argument, the bridge from scalar atoms to literal rotary attention, Theorem 4's unrestricted-denominator equivalence, and Theorem 6's three-head upper bound are handwritten proofs here, not Lean-checked statements. No existing vanilla definition or theorem is changed.
 
-Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Theorem 16 rules out every two-head pure separation. The explicit replicated construction in Theorem 22 achieves a strict pure separation with three pure heads and at least four vanilla heads. Its exact vanilla count within the range four through seven, a substantially smaller example, and a complete Lean formalization of the quantitative lower bound remain open. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves prove any Boolean separation.
+Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Theorem 16 rules out every two-head pure separation. The explicit replicated construction in Theorem 22 achieves a strict pure separation with three pure heads and at least four vanilla heads. Its exact vanilla count within the range four through seven, a substantially smaller example, and a Lean formalization of the literal rotary interpolation bridge remain open. The quantitative Boolean lower bound is now Lean-checked in `PureRoPEExplicitSeparation.strict_separation`. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves prove any Boolean separation.

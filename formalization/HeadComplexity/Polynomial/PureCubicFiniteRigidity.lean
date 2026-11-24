@@ -63,13 +63,23 @@ theorem normalized_rigidity (Q : MvPolynomial (Fin 14) ℝ)
   have habs : 1 - e ≤ |c| := SignRigidityNormalization.scalar_abs_lower
     (coefficients rawTarget) (coefficients Q) c e
     (fun j ↦ rawTarget_coefficient_bound _) hQmax (fun j ↦ (hc _).le)
-  have hcabs : 1 / 2 ≤ |c| := by linarith only [habs, hehalf]
+  have hcabs : 1 / 2 ≤ |c| := by
+    calc
+      (1 / 2 : ℝ) = 1 - 1 / 2 := by norm_num
+      _ ≤ 1 - e := sub_le_sub_left hehalf 1
+      _ ≤ |c| := habs
   refine ⟨c, hcabs, ?_⟩
   intro d
   apply (hc d).trans
   have hmul := mul_le_mul_of_nonneg_right hcabs squarefreeRadius_pos.le
   change e < |c| * squarefreeRadius
-  linarith only [he, hmul, squarefreeRadius_pos]
+  calc
+    e < squarefreeRadius / 4 := he
+    _ ≤ (1 / 2) * squarefreeRadius := by
+      rw [div_eq_mul_inv, mul_comm]
+      exact mul_le_mul_of_nonneg_right (by norm_num : (4 : ℝ)⁻¹ ≤ 1 / 2)
+        squarefreeRadius_pos.le
+    _ ≤ |c| * squarefreeRadius := hmul
 
 /-- This theorem quantifies over every real cubic, without a normalization
 hypothesis or a restriction on the sign of the recovered scalar. -/

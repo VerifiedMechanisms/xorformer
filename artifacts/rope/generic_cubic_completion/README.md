@@ -2,7 +2,7 @@
 
 ## Scope
 
-This note gives a mathematical closure obstruction for the *cubic coefficients of cleared three-head scores*. It also gives an exact fourteen-coordinate pure-atom instance meeting the hypotheses. It does not give a Boolean head-count separation: another polynomial with different cubic coefficients may have the same Boolean signs. The mathematical arguments in this note are not claimed to be Lean-formalized. The accompanying `verify.py` checks the finite rational mass and matrix-minor certificates.
+This note gives a mathematical closure obstruction for the *cubic coefficients of cleared three-head scores*. It also gives an exact fourteen-coordinate pure-atom instance meeting the hypotheses. It does not give a Boolean head-count separation: another polynomial with different cubic coefficients may have the same Boolean signs. The exact obstruction and its quantitative extension are now Lean-checked; see the [quantitative appendix](../quantitative_cubic_gap/README.md) and [complete Boolean separation](../explicit_separation/README.md) for the final declarations. The accompanying `verify.py` checks the finite rational mass and matrix-minor certificates.
 
 Unlike the earlier product-of-three-forms obstruction, the target here uses six independent linear forms. Its raw cubic can consequently be recovered from its squarefree coefficients, even when a competing representation has unrelated, untied coordinate parameters.
 

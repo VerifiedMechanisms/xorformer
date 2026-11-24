@@ -398,7 +398,7 @@
     "threshold_degree": 3,
     "globally_complement_invariant": false
   },
-  "scope": "Exact scalar construction. Theorem22 proves the all-vanilla lower bound mathematically; supporting Lean declarations do not yet formalize that complete lower bound.",
+  "scope": "Exact scalar construction. PureRoPEExplicitSeparation.strict_separation certifies the complete Boolean separation in Lean against the original vanilla architecture. The literal rotary matrix bridge is proved mathematically in Theorem14.",
   "vanilla_seven_upper": {
     "epsilon": "1/(16*A*m^3)",
     "a": "epsilon/4096",
