@@ -357,4 +357,68 @@ iteration and asymptotic summation are written only. No growing
 half-dense decoder is supplied. This refinement also shows why a
 suitable finite size-dependent pole scale could suffice: the decoder
 need not support arbitrarily many opposite-block coordinates.
+
+\paragraph{Additional checkpoints at 07:45 UTC.}
+The full aggregate build of \texttt{Results/All.lean} passed after
+\texttt{ReverseGridEmbedding.lean} was added, with 9251 build jobs.
+Its public embedding and masking declarations use only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The other upper-bound branch was fetched again at 07:24 UTC and
+remained at \texttt{ad4b30e10e5a}. Neither active run branch occurs
+in the separately inspected \texttt{xorformer-runs} archive; the
+configured \texttt{xorformer} origin remains the relevant remote.
+\begin{itemize}
+\item \texttt{91fdacb}, \texttt{spectral-factor-root-signs.tex},
+gives a complete written fixed-norm construction. For prescribed
+root signs $\sigma_j$, put
+\[
+ A_\sigma+iB_\sigma=(1+i)\prod_{j=1}^D
+                    (t-\tau_j+i\sigma_j\eta).
+\]
+Then $A_\sigma^2+B_\sigma^2$ is independent of the signs, whereas
+$( (A_\sigma^2-B_\sigma^2)/P)'(\tau_j)$ has sign $-\sigma_j$
+for fixed $P(\tau_j)>0$ and small $\eta$. Perturbing a compact
+real-rooted $U$ gives four real-rooted child polynomials
+$U\pm\delta A_\sigma,U\pm\delta B_\sigma$ with compatible means
+and the desired parent signs. The child split signs are not
+independently prescribed. All 510 finite certificates are exact;
+there is no recursive or Lean universality theorem.
+\item \texttt{9bdb44b},
+\texttt{butterfly-underloaded-h32-samples.tex}, checks twenty
+positive-residue samples with 32 poles and 49 retained queries at
+$\epsilon=1/100$. One all-one prefix query per block is omitted,
+leaving 31 free switches, which form a tournament of surviving inputs.
+All twenty samples work with those switches zero; their 1620 exact
+inequalities are independently reconstructible. A later adversarial
+word fails for that fixed completion, so the random evidence cannot
+be promoted to a fixed-zero universal decoder. Free completions and
+the density of attainable words remain under investigation.
+\item \texttt{6055d88}, \texttt{auxiliary-root-pool.tex}, proves
+root-only common-pool compatibility. With $M$ adjacent pole pairs,
+$q$ prescribed routing positions, and $K$ words, the condition
+\[
+ M-q\geq K\lceil(q+1)/2\rceil
+\]
+suffices for arbitrary real query values for all $K$ words with one
+strictly positive residue pool and individually chosen auxiliary
+completions. The proof uses the strictly positive kernel of $q+1$
+alternating signed Cauchy columns. All 1962 rational certificates
+pass. Preserving descendant constraints is an explicit open step;
+stacking all values merely spends one residue dimension per value.
+\item \texttt{63678d1},
+\texttt{histogram-confluent-density-audit.tex}, proves a scoped
+compactness test. If the grouped moment map through degree $L$ is
+injective, every sufficiently small-scale tangent direction has a
+group with at most $L$ sign changes. For $g$ groups of $q$ queries,
+the union of any fixed finite collection of such tangent sheets has
+density at most
+\[
+ g\,2^{1-q}\sum_{j=0}^{\min(L,q-1)}\binom{q-1}{j}.
+\]
+The bound is independent of the branch count. Its scale threshold is
+not quantitative in the number of heads; finite size-dependent
+compact scales and nonlinear perturbations are not excluded.
+\end{itemize}
+These checkpoints add audited mechanisms and clarify their gaps.
+They do not prove either requested unconditional asymptotic target.
 \end{document}
