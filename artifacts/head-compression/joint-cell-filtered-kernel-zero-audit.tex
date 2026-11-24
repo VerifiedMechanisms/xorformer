@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\title{Filtered reciprocal kernels and a failed Chebyshev shortcut}
+\date{24 November 2026}
+\author{Label audit research checkpoint}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The Laplace identities and reductions below are written proofs. The
+counterexample is an exact finite rational interval computation with a
+short continuity consequence. No statement in this note is Lean checked.
+No polynomial or linear general zero bound for the product ratios is
+claimed, and the requested asymptotic upper bound remains open.
+
+\section{The exact one-variable question}
+
+For positive weights $w_1,\ldots,w_c$ and $d>\sum_iw_i$, the full Boolean
+reciprocal filter satisfies
+\[
+ K_w(d)=\sum_{S\subseteq[c]}\frac{(-1)^{c-|S|}}{d-\sum_{i\in S}w_i}
+       =\int_0^\infty e^{-dt}\prod_i(e^{w_it}-1)\,dt.
+\]
+This follows by expanding the finite product and integrating each
+exponential. Thus a difference of two shifted filters is the Laplace
+transform of
+\[
+ G(t)=A e^{ut}\prod_i(e^{w_it}-1)
+      -B e^{vt}\prod_i(e^{z_it}-1),\qquad A,B>0.
+\]
+On $t>0$ the sign changes of $G$ are the crossings of one positive
+product ratio through a constant. Centering each exponential factor
+reduces its logarithm to
+\[
+ R(t)=C+\gamma t+\sum_i\log\sinh(a_it)
+                         -\sum_i\log\sinh(b_it),
+ \qquad a_i,b_i>0.
+\]
+Its derivative is
+\[
+ R'(t)=\gamma+\sum_i a_i\coth(a_it)-\sum_i b_i\coth(b_it).
+\]
+
+If $G$ has at most $k$ sign changes, its Laplace transform has at most
+$k$ distinct zeros on any common interval of convergence. One proof
+assumes $k+1$ distinct zeros and takes a linear combination of the
+corresponding $k+1$ exponential functions with zeros at the $k$ sign
+changes of $G$. The exponential Chebyshev property, proved by induction
+using Rolle's theorem, makes those zeros the only zeros and makes them
+simple. Multiplying the combination by $-1$ if necessary, its product
+with $G$ has a constant nonnegative sign and is positive on an interval.
+Its integral is positive, whereas each of the assumed Laplace zeros
+makes the same integral zero. This is a contradiction. The zero function
+is excluded from the zero-count statement.
+
+Consequently an $O(c)$ or $O(c^C)$ bound for the sign changes of $R$
+would give a polynomial zero bound for a difference of two filtered
+kernels. Such a bound would obstruct the proposed constant-family
+scalar decoder with superlogarithmic word length. The reduction does
+not supply the bound.
+
+\section{The scaling family is not Chebyshev in all orders}
+
+A tempting first lemma is that the functions
+\[
+ t\longmapsto a\coth(at)-\frac1t
+\]
+form a Chebyshev system for arbitrary distinct positive scales $a$.
+That lemma is false. Put $g(x)=x\coth x-1$ and fix the ten rational
+scales
+\[
+ a_j=1+\frac{j}{1000},\qquad 0\leq j<10.
+\]
+For $T>0$, form the ten by ten matrix
+\[
+ M(T)_{ij}=g\left(T\left(1+\frac{i}{1000}\right)
+                         \left(1+\frac{j}{1000}\right)\right).
+\]
+The companion verifier
+\texttt{JointCellCothChebyshevCertificate.py} proves by rational interval
+arithmetic that
+\[
+ \det M(1)<0,\qquad \det M(4)>0.
+\]
+The approximate magnitudes, not used in verification, are respectively
+$-1.56178\cdot10^{-256}$ and $1.31084\cdot10^{-228}$.
+
+Every exponential in the verifier has a positive rational argument below
+$9$. It is enclosed by its Taylor sum through degree $600$ and the
+geometric upper bound on the remaining positive terms. All subsequent
+arithmetic uses outward rounded rational intervals with denominator
+$10^{700}$. Interval Gaussian elimination gives determinants separated
+strictly from zero. The assertions use no floating point arithmetic.
+
+By continuity there is $T_0\in(1,4)$ for which $M(T_0)$ is singular.
+The ten sample points $T_0(1+i/1000)$ remain strictly increasing. A
+nonzero coefficient vector in the nullspace gives a nonzero linear
+combination of the ten fixed functions $g(a_jt)$ with ten distinct
+positive zeros. It is not the zero function, because the nonsingular
+matrix $M(1)$ already proves linear independence. Dividing by the
+positive factor $t$ gives the same counterexample for
+$a_j\coth(a_jt)-1/t$.
+
+\paragraph{Scope of the failure.}
+This refutes the dimension-minus-one zero bound and the direct
+all-orders Chebyshev shortcut. In a product ratio the logarithmic
+derivative has unit positive and negative multiplicities, whereas a
+general Chebyshev linear combination has arbitrary real coefficients.
+The certificate therefore does not refute an $O(c)$ bound with a larger
+constant, an $O(c^C)$ bound, or a bound specialized to the product ratios
+above. None of those bounds has been proved here.
+
+\end{document}
