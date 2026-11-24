@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\title{An adaptive barycentric root decoder with exact total moments}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status.}
+This is a complete written, root-only construction. Its signed
+barycentric residues have exact vanishing moments through order
+$2M-2$, while target-dependent adjacent pole gaps encode arbitrary
+$M$ root signs. All parameters may be rational. The construction
+has only a constant ratio of queries to poles and does not prove a
+recursive compiler. The exact child limits below identify the
+remaining shared-numerator compatibility problem. The accompanying
+checker verifies finite rational instances; this note is not
+Lean-checked.
+
+Fix centers and exterior queries satisfying
+\[
+ x_1<\cdots<x_M<t_M<\cdots<t_1,\qquad
+ P(t)=\prod_{s=1}^M(t-x_s).                                  \tag{1}
+\]
+
+\begin{lemma}[A polynomial with matched exterior signs]
+For every $\sigma\in\{-1,1\}^M$, there is a polynomial $R$ of
+degree $M-1$, nonzero at all points in (1), such that
+\[
+ \operatorname{sgn}R(x_s)=\sigma_s\operatorname{sgn}P'(x_s),
+ \qquad \operatorname{sgn}R(t_s)=\sigma_s.                    \tag{2}
+\]
+If the points in (1) are rational, $R$ may have rational coefficients.
+\end{lemma}
+\begin{proof}
+Let $v$ be the number of sign changes in $\sigma_1,\ldots,\sigma_M$.
+Since $\operatorname{sgn}P'(x_s)=(-1)^{M-s}$, the required signs
+along $x_1,\ldots,x_M$ have $M-1-v$ changes. The last sign is
+$\sigma_M$, which agrees with the sign at the next point $t_M$.
+The signs along $t_M,\ldots,t_1$ have $v$ changes. Thus there are
+exactly $M-1$ changes along the ordered $2M$ points. Put one simple
+root in each gap with a sign change and no other roots. Choose the
+overall sign to match the final point. Midpoints give rational roots
+when the data are rational.
+\end{proof}
+
+Set $L=PR$ and
+\[
+ d_s=\frac1{|L'(x_s)|},\qquad
+ p_s^\pm(\lambda)=x_s\pm\frac{d_s}{\lambda},\qquad
+ Q_\lambda(t)=\prod_s(t-p_s^-)(t-p_s^+),\qquad
+ c_s^\pm(\lambda)=\frac1{Q_\lambda'(p_s^\pm)}.                \tag{3}
+\]
+For all sufficiently large positive $\lambda$, the poles are
+distinct, their pairs are ordered as their centers, and all are
+smaller than $t_M$. Give pair $s$ the mask values
+\[
+                  u_s^-=-\sigma_s,\qquad u_s^+=\sigma_s.     \tag{4}
+\]
+Thus its routing sign is the negative of the requested query sign.
+
+\begin{theorem}[Root signs and exact total cancellation]
+For every sufficiently large $\lambda$, the score
+\[
+ F_\lambda(t)=\sum_s\left(
+       \frac{-\sigma_s c_s^-}{t-p_s^-}
+       +\frac{\sigma_s c_s^+}{t-p_s^+}\right)                 \tag{5}
+\]
+satisfies $\sigma_sF_\lambda(t_s)>0$ for every $s$. Independently
+of the masks, the same poles and residues satisfy the exact identities
+\[
+ \sum_{s,\nu\in\{-,+\}}\frac{c_s^\nu}{t-p_s^\nu}
+       =\frac1{Q_\lambda(t)},\qquad
+ \sum_{s,\nu}c_s^\nu(p_s^\nu)^j=0\quad(0\leq j\leq2M-2).
+                                                               \tag{6}
+\]
+For $j=2M-1$, the moment in (6) equals one. Rational data and a
+sufficiently large positive integer $\lambda$ give rational poles
+and residues.
+\end{theorem}
+\begin{proof}
+Distinctness and ordering follow from $p_s^\pm\longrightarrow x_s$.
+Directly differentiating the product in (3) gives
+\[
+ \frac{c_s^\pm}{\lambda}
+       \longrightarrow \frac{\pm1}{2d_s P'(x_s)^2}.
+                                                               \tag{7}
+\]
+By (2), $\operatorname{sgn}L'(x_s)=\sigma_s$. Therefore
+$\sigma_s/d_s=L'(x_s)$, and (5)--(7) imply, at every fixed
+exterior query,
+\[
+ \frac{F_\lambda(t)}{\lambda}
+ \longrightarrow
+ \sum_s\frac{L'(x_s)}{P'(x_s)^2(t-x_s)}
+ =\sum_s\frac{R(x_s)}{P'(x_s)(t-x_s)}
+ =\frac{R(t)}{P(t)}.                                        \tag{8}
+\]
+The last identity is ordinary partial fractions for $\deg R<M$.
+Its sign at $t_s$ is $\sigma_s$, since $P$ is positive to the
+right of its roots. Finiteness of the queries makes one sufficiently
+large $\lambda$ work for all of them.
+
+The first identity in (6) is the partial fraction decomposition of
+$1/Q_\lambda$ at its distinct simple roots. Expanding at infinity
+gives the stated moments. Equivalently, compare the leading
+coefficients in the Lagrange interpolation identities for the
+monomials of degrees zero through $2M-1$. These are exact identities
+for every admissible $\lambda$, not merely asymptotic cancellations.
+\end{proof}
+
+\paragraph{Exact limiting data inherited by the children.}
+Let the left child receive the pole whose mask in (4) is $+1$, and
+the right child the other pole. Consequently the left child receives
+$p_s^+$ if $\sigma_s=1$ and $p_s^-$ if $\sigma_s=-1$. Formula (7)
+gives the limiting signed residue pools
+\[
+ \frac{c_{s,\mathrm{left}}}{\lambda}
+       \longrightarrow \frac{R(x_s)}{2P'(x_s)},\qquad
+ \frac{c_{s,\mathrm{right}}}{\lambda}
+       \longrightarrow -\frac{R(x_s)}{2P'(x_s)}.              \tag{9}
+\]
+Both children therefore inherit the same rational numerator $R$,
+with opposite overall signs. In particular, for any fixed child
+profile $v_s$ and exterior child query $z$, the normalized child
+scores converge to
+\[
+       \pm\frac12\sum_s\frac{v_sR(x_s)}{P'(x_s)(z-x_s)}.
+                                                               \tag{10}
+\]
+Any already strict finite collection of inequalities for (10)
+persists for sufficiently large $\lambda$. But (2) alone does not
+give those child inequalities. Choosing one $R$ and suitable child
+pole assignments to satisfy two prescribed descendant tables is the
+unproved recursive compatibility statement. Exact total moments in
+(6) do not establish it.
+
+\paragraph{Underloaded root constraints.}
+If only $q$ matched center and query indices are prescribed, the
+conditions on $R\in\mathbb R[t]_{<M}$ are just the $2q$ strict
+linear inequalities
+\[
+            \sigma_sP'(x_s)R(x_s)>0,\qquad
+            \sigma_sR(t_s)>0.                               \tag{11}
+\]
+When $2q\leq M$, arbitrary real values may be prescribed at these
+$2q$ points by polynomial interpolation, leaving an affine space of
+dimension $M-2q$. A generic arbitrarily small perturbation makes
+$R$ nonzero at every other center without changing (11); their
+routing signs can then be chosen from $\operatorname{sgn}L'(x_s)$.
+This is genuine algebraic freedom, but no intersection theorem with
+both descendant sign cones is asserted.
+
+\paragraph{Verification.}
+The checker tests all sign words for $1\leq M\leq6$, constructs
+rational polynomials and sufficiently separated rational poles,
+verifies every root sign, every exact moment in (6), and the child
+limits to a stated finite tolerance. The tolerance check is only
+computational evidence for selected instances; (7)--(10) are proved
+above by exact limiting identities.
+\end{document}
