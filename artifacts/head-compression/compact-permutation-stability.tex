@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{When compact pole permutations have the same sign family}
+\author{}\date{}\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written audit of a proposed generic-query construction.
+It is not a lower bound for the original HeadComplexity model and does not
+settle either accepted asymptotic target. In particular, the query offsets
+in this note are fixed while the pole scale tends to zero. Degenerate or
+scale-dependent offsets, adaptive residue bases, and a construction at a
+specified positive compact scale are outside its conclusion. The exact
+companion checker tests a small instance; no Lean theorem is asserted.
+
+Fix positive offsets $D_{hj}$, pole labels $p_1,\ldots,p_H$, and a
+permutation $\pi$. Consider the linear score family on $q$ queries
+\[
+ F_j=c+\sum_{h=1}^H\frac{a_h}{D_{hj}-\epsilon p_{\pi(h)}}.
+ \tag{1}
+\]
+Write $d=H+1$ and let $M_\pi(\epsilon)$ be its $q$ by $d$
+coefficient matrix, including the constant column. Its common limit is
+\[
+ M_0(j,:)=(1,D_{1j}^{-1},\ldots,D_{Hj}^{-1}).
+ \tag{2}
+\]
+
+\begin{theorem}[Uniform-minor stability]
+Suppose $q\geq d$ and every $d$ by $d$ row minor of $M_0$ is nonzero.
+There is $\epsilon_0>0$ such that, for every
+$0<\epsilon<\epsilon_0$ and every pole permutation, the strict sign
+vectors realized by (1) are exactly those realized by $M_0$.
+Their number is
+\[
+ 2\sum_{k=0}^{d-1}\binom{q-1}{k}.                 \tag{3}
+\]
+Consequently, taking the union over all $H!$ permutations produces no
+additional strict sign vector in this interval.
+\end{theorem}
+\begin{proof}
+First restrict $\epsilon$ so that all displayed denominators stay
+positive. Each maximal minor is then continuous. There are finitely
+many minors and permutations, and all their limits are nonzero.
+Shrink the interval so that every minor retains its limiting sign.
+
+Here is why these signs determine strict feasibility. Given a desired
+sign vector $s$, Gordan's alternative says that
+$\operatorname{diag}(s)Mv>0$ is infeasible exactly when there is a
+nonzero $\lambda\geq0$ with
+$\lambda^{\mathsf T}\operatorname{diag}(s)M=0$.
+Choose a certificate of minimal support. Its support is a circuit:
+otherwise a nonproportional dependence can be added with a small real
+coefficient until one positive entry becomes zero, contradicting
+minimality. Every $d$ rows are independent, so every circuit has
+exactly $d+1$ rows. On an ordered support $i_0,\ldots,i_d$, its
+dependence coefficients, up to a common nonzero factor, are
+\[
+ (-1)^k\det M_{\{i_0,\ldots,i_d\}\setminus\{i_k\}}.
+\]
+Whether multiplication by the desired signs makes these coefficients
+all positive depends only on the maximal-minor signs. Thus strict
+feasibility is unchanged. When $q=d$ the matrix is invertible and all
+sign vectors are feasible, without any circuit test.
+
+For completeness, the number in (3) is the number of chambers of the
+$q$ central hyperplanes defined by the rows in $\mathbb R^d$.
+The nonzero-minor assumption puts them in general position. Adding a
+hyperplane creates as many chambers as the previous hyperplanes induce
+on it, giving the recurrence
+$R(q,d)=R(q-1,d)+R(q-1,d-1)$, with
+$R(q,1)=2$ and $R(q,d)=2^q$ for $q\leq d$.
+Pascal's identity gives (3). A strict sign cone is convex, so it cannot
+contain two different chambers with the same sign vector.
+\end{proof}
+
+\paragraph{A fully explicit generic baseline.}
+Choose $0<t_1<\cdots<t_q<1$ and
+$D_{hj}=1/(1+t_j^h)$. Subtracting the constant column from the other
+columns makes every maximal minor a Vandermonde determinant. Thus
+the theorem applies to this positive, bounded family of offsets.
+For $t_j=j/(q+1)$, $P=\max(1,\max_h|p_h|)$, and
+$d=H+1$, one sufficient interval is
+\[
+ 0<\epsilon<\min\left\{\frac1{8P},
+ \frac{(q+1)^{-H(H+1)/2}}{16P\,d!\,d\,3^{d-1}}\right\}.
+ \tag{4}
+\]
+Indeed the absolute value of every baseline minor is at least
+$(q+1)^{-H(H+1)/2}$. Since $D_{hj}>1/2$, every perturbed reciprocal
+differs from its baseline by at most $8\epsilon P$. If the maximum
+entry error is $E\leq1$, expanding determinants as sums of products
+and telescoping each product bounds their difference by
+$d!dE3^{d-1}$. Formula (4) makes this less than half the lower bound.
+The bias column has no error, so including it in this estimate only
+enlarges the bound.
+
+\paragraph{Asymptotic implication for this attempted construction.}
+For $q$ of order $H\log H$, the fraction in (3), divided by $2^q$,
+tends to zero. For example the elementary bound
+$\sum_{k=0}^{d-1}\binom{q-1}{k}\leq
+(e(q-1)/(d-1))^{d-1}$ applies when $1\leq d-1\leq q-1$.
+The logarithm of the fraction is at most
+$-q\log2+O(H\log\log H)$.
+Thus a generic fixed-offset, arbitrarily-compact branch argument does
+not provide the uniformly dense decoder needed by the checked batching
+theorem. The very small interval (4) must not be confused with a bound
+at every full-cube-admissible positive scale. Structured singular
+limits, including the butterfly constructions investigated separately,
+are not covered by this audit.
+\end{document}
