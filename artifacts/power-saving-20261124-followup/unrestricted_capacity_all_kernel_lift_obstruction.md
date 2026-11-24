@@ -106,6 +106,22 @@ $$ 3D+1=H\leq m^2+8s^2. $$
 
 For fixed $C$, the right side is constant. Choosing $D$ larger gives the required contradiction. $\blacksquare$
 
+## A quantitative superlinear consequence
+
+The proof gives more than failure of a uniform constant. For the same generic cloud, take $D\geq100$ and $H=3D+1$. Every all-kernel ordinary-moment lift has
+
+$$ L\geq\frac{D H^{1/6}}{10}. $$
+
+First, a nonzero measure annihilating all ordinary polynomials through degree $D$ has $L\geq D+2$. Indeed a product of at most $L-1$ affine linear forms separates any specified point from the others. Thus $q=L/D\geq1$.
+
+If $L\leq D^2/24$, take $s=\lceil4q\rceil+2\leq4q+3\leq7q$. Then $3(s+1)\leq D/2+12\leq D$, so the curve argument applies. Also
+
+$$ m=\binom{s+3}{3}\leq\frac{(10q)^3}{6},\qquad m^2+8s^2\leq30000q^6. $$
+
+Hence $H\leq30000(L/D)^6\lt10^6(L/D)^6$, which proves the displayed lower bound. If $L\gt D^2/24$, the same conclusion follows from $H\leq4D$ and $D\geq100$; for example $D^5\geq100^5\gt4(12/5)^6$ implies $D/24\geq H^{1/6}/10$.
+
+Since $D$ and $H$ are comparable, the obstruction is $L=\Omega(H^{7/6})$. This remains a statement about all four entire projected measures, with fixed input dimension two. It does not obstruct the fixed-score construction below.
+
 ## Why fixed-score access remains possible
 
 The four-measure requirement cannot be weakened silently to equality of one reciprocal score. In fact, for any $M$ distinct positive query values $t_1,\ldots,t_M$ and arbitrary desired real scores $y_1,\ldots,y_M$, there exist residues on $D+M+1$ distinct positive scalar poles $a_j$ such that

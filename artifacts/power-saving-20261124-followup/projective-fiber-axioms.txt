@@ -1,0 +1,42 @@
+'HeadComplexity.ProjectiveFiberCapacity.partitionPoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.card_partitionPatterns_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.card_represented_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.gram_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.observationRelation_eq_true' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.observationRelation_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.mem_represented_of_fiber_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.affineValue_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.denominatorWedge_dot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.denominator_relation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.denominator_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.exists_projective_fiber_affine_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.mem_represented_of_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.originalFunctions_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.card_originalFunctions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.card_represented_le_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.card_originalFunctions_le_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProjectiveFiberCapacity.card_originalFunctions_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,18 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_projective_fibers.md",
+    "source_spans": 49,
+    "rendered_spans": 49,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_all_kernel_lift_obstruction.md",
+    "source_spans": 149,
+    "rendered_spans": 149,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124-followup/unrestricted_capacity_all_kernel_lift_obstruction.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ \\\\sum_{i=1}^H c_i\\\\ell_j(w_i)^k=0\\\\qquad(j\\\\in\\\\lbrace0,x,y,s\\\\rbrace,\\\\ 0\\\\leq k\\\\leq'"
+    ]
+  }
+]
