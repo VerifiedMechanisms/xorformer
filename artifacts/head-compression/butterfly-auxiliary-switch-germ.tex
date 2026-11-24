@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{An auxiliary butterfly switch repairs a strict positive obstruction}
+\author{}\date{}\maketitle
+\paragraph{Status.}
+This is an exact finite-dimensional construction and an all-small-scale
+continuation certified by rational arithmetic. It is not Lean formalized,
+not an asymptotic compiler, and not a universality theorem for underloaded
+butterflies. It shows that freeing a routing switch can be strictly
+stronger than deleting its sign constraint at the original routing.
+
+Use the binary butterfly with $H=16$ wires and switches $(k,s,g)$ as in
+\texttt{butterfly-rectangle-decoder.tex}, ordered by increasing stage $k$,
+then the order in its companion checker. Let
+\[
+ p_y(\epsilon)=\sum_{j=0}^3 y_j\epsilon^{2^j},\qquad
+ t_{k,s}=1-p_s(\epsilon).
+\]
+For a switch word $\theta$, let $\pi_\theta$ be its routed permutation and
+\[
+ u_{k,g}(h)=\begin{cases}
+  1,&h\mathbin{\mathrm{div}}2^{k+1}=g,\ h_k=0,\\
+ -1,&h\mathbin{\mathrm{div}}2^{k+1}=g,\ h_k=1,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\]
+For residues $c_y$, the signed query at switch $e=(k,s,g)$ is
+\[
+ S_e(\theta,c)=
+ (1-2\theta_e)\sum_{y=0}^{15}
+ \frac{u_{k,g}(\pi_\theta^{-1}(y))c_y}{1-p_s-p_y}.
+\]
+The following statement uses no block biases.
+
+\begin{proposition}
+Let the four consecutive stage words be
+\[
+ \theta=(10001101\ ;\ 11011111\ ;\ 00001111\ ;\ 00011110).
+\]
+Omit the query at the auxiliary switch $e_*=(3,3,0)$, which has index
+$27$ when indices start at zero. For every sufficiently small positive
+$\epsilon$, there is no nonnegative residue vector making all remaining
+$31$ scores $S_e(\theta,c)$ strictly positive.
+
+Let $\widehat\theta$ differ only at $e_*$, changing that unused routing
+bit from $1$ to $0$. For every sufficiently small positive $\epsilon$,
+there is a strictly positive residue vector $c(\epsilon)$ making all
+$31$ retained scores $S_e(\widehat\theta,c(\epsilon))$ strictly positive.
+The labels at all retained queries are unchanged.
+\end{proposition}
+\begin{proof}
+The first assertion is already certified by
+\texttt{butterfly-adaptive-haar-positive-h16-dual.json} and
+\texttt{butterfly-adaptive-haar-positive-dual-check.py}.
+Its nonnegative dependence uses query indices
+\[
+ 5,10,12,17,18,19,20,21,23,24,25,26,28,29,30,31
+\]
+and the nonnegative-residue row for coordinate $1$. In particular it
+omits query $27$. Its exact positive leading Laurent coefficients prove
+infeasibility on an entire punctured interval, as established in the
+existing obstruction writeup.
+
+For the second assertion, form the $31\times16$ rational matrix $A$
+whose rows are the retained signed queries for $\widehat\theta$.
+Select its rows with original query indices
+\[
+ 5,14,15,17,18,19,20,21,22,24,25,26,28,29,30,31
+\]
+to form a square matrix $B(\epsilon)$. Define
+$c(\epsilon)=B(\epsilon)^{-1}\boldsymbol1$.
+The saved checker verifies an exact rational witness at
+$\epsilon=1/100$, and separately computes the leading Laurent terms
+of this rational-function solution. The elimination pivot orders are
+\[
+ 0,0,0,0,0,0,2,2,2,6,6,6,8,18,20,25.
+\]
+In particular the determinant is not identically zero. Every one of
+the $31$ coordinates of $A c$ and the $16$ coordinates of $c$ has a
+strictly positive leading Laurent coefficient. Therefore they are all
+strictly positive for sufficiently small positive $\epsilon$.
+
+The companion JSON records the exact finite witness, the chosen basis,
+and every leading coefficient and exponent. The checker reconstructs
+all matrix entries independently, verifies the finite inequalities,
+and recomputes the rational-function leading coefficients using guarded
+exact power-series arithmetic at precision $512$. Only pivots with a
+known nonzero leading term are inverted. Unresolved series entries
+are required to have sufficient remaining precision before choosing a
+pivot, and the final coefficients and matrix residuals are checked.
+Thus the continuation does not follow from numerical sampling.
+\end{proof}
+
+\paragraph{Remaining question.}
+This example retains $31$ of $32$ switch queries, but concerns one
+particular word. A growing construction would need a fixed selected
+set of order $H\log H$ switches such that every assignment of labels
+on that set admits auxiliary switch completions and suitable residues.
+The example establishes neither that property nor a positive-density
+version. It motivates testing the existential completion formulation
+instead of requiring every full routing word to work.
+\end{document}
