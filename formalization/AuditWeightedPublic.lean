@@ -1,0 +1,3 @@
+import HeadComplexity.Results.All
+#print axioms HeadComplexity.weighted_normalized_counting_worst_case_lower_bound
+#print axioms HeadComplexity.weighted_normalized_counting_worst_case_log_lower_bound

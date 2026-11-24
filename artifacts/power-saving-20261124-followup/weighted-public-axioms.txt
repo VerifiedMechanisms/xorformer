@@ -1,0 +1,6 @@
+'HeadComplexity.weighted_normalized_counting_worst_case_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.weighted_normalized_counting_worst_case_log_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

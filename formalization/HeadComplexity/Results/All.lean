@@ -16,6 +16,7 @@ import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Research.NormalizedCounting
 import HeadComplexity.Research.NormalizedLogCounting
+import HeadComplexity.Research.WeightedNormalizedCounting
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
@@ -730,5 +731,14 @@ alias normalized_counting_worst_case_lower_bound :=
 count. This strengthens the finite estimate without changing its order. -/
 alias normalized_counting_worst_case_log_lower_bound :=
   NormalizedLogCounting.worstCase_real_log_lower
+
+/-- Weighted numerator parameters give the unconditional finite lower bound
+`(2^n - 1)/(n*(n+8)) ≤ W(n)` for every `n ≥ 8`. -/
+alias weighted_normalized_counting_worst_case_lower_bound :=
+  WeightedNormalizedCounting.worstCase_real_lower
+
+/-- The sharper logarithmic denominator for the weighted unrestricted count. -/
+alias weighted_normalized_counting_worst_case_log_lower_bound :=
+  WeightedNormalizedCounting.worstCase_real_log_lower
 
 end HeadComplexity
