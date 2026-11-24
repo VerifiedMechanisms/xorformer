@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Exact two-head sign coalescence and its three-head limit}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+Theorem~\ref{thm:two} is a complete written statement in the unchanged
+affine-ratio model. It has an exact finite checker, but no new Lean
+declaration in this note. Proposition~\ref{prop:three} blocks only the
+extension that preserves the cleared score values along one prescribed
+denominator path. It does not obstruct a path that preserves signs only,
+nor either proposed asymptotic bound for worst-case head complexity.
+
+\begin{theorem}[Two-head sign coalescence]\label{thm:two}
+Let $n\geq1$, let $A_1,A_2,B_1,B_2$ be affine functions, and suppose
+$B_1,B_2$ are positive on the Boolean $n$-cube. Suppose the slopes of
+$B_1$ are all strictly positive or all strictly negative. For $0<t\leq1$
+put
+\[
+ C_1=B_1,\qquad C_2(t)=(1-t)B_1+tB_2,
+ \qquad N_1(t)=A_1/t,\qquad N_2(t)=A_1+A_2-A_1/t.
+\]
+Then $C_1,C_2(t)$ are positive on the whole cube, and
+\[
+ \frac{N_1(t)}{C_1}+\frac{N_2(t)}{C_2(t)}
+ =\frac{B_2}{C_2(t)}
+   \left(\frac{A_1}{B_1}+\frac{A_2}{B_2}\right).
+ \tag{1}
+\]
+In particular all signs, including zero values, agree. For every
+sufficiently small $t>0$, all slopes of $C_2(t)$ have the strict
+orientation of $B_1$. Both new atoms are therefore admissible in the
+original model, with unrestricted affine numerators, and their
+denominator coefficient vectors approach the same coefficient vector.
+The hypothesis puts no slope restriction on $B_2$ beyond its original
+admissibility, so opposite original orientations are permitted.
+\end{theorem}
+
+\begin{proof}
+Convexity gives positivity of $C_2(t)$ on the whole cube. The exact
+cleared identity is
+\[
+ \begin{aligned}
+ N_1(t)C_2(t)+N_2(t)B_1
+ &=\frac{A_1}{t}\big((1-t)B_1+tB_2\big)
+   +\left(A_1+A_2-\frac{A_1}{t}\right)B_1\\
+ &=A_1B_2+A_2B_1.
+ \end{aligned}
+\]
+Division by $B_1C_2(t)$ proves (1). Its multiplying factor is strictly
+positive. If $b_{hi}$ is the slope of $B_h$ in coordinate $i$, then the
+new slope is $b_{1i}+t(b_{2i}-b_{1i})$. Finitely many nonzero $b_{1i}$
+retain their strict common sign for all sufficiently small positive
+$t$. The affine-ratio normal form of the original model admits every
+affine numerator when denominator slopes have a strict common sign.
+\end{proof}
+
+\paragraph{Bias and constant-denominator cases.}
+A free score bias $c$ is absorbed by replacing $A_1$ with $A_1+cB_1$
+before the construction. If only one original denominator is
+nonconstant, relabel it as $B_1$. If both denominators are constant,
+the entire biased score is affine, say $L$; its signs are represented
+by the single admissible atom
+$L/(1+\varepsilon\sum_i x_i)$ for any $\varepsilon>0$.
+Thus every original representation with at most two heads has, at no
+increase in head count, a sign-equivalent representation with strict
+common denominator orientation and arbitrarily close denominator
+coefficient vectors. This is a sign statement; (1) does not preserve
+the numerical score itself.
+
+\begin{proposition}[A finite-cube obstruction to fixed-cleared-score
+coalescence with three heads]\label{prop:three}
+On the three-dimensional Boolean cube write
+\[
+ B=1+x+y+z,\quad B_2=B+x,\quad B_3=B+y,
+ \quad C_2=B+tx,\quad C_3=B+ty.
+\]
+All these denominators have strictly positive slopes and are positive
+on the whole cube whenever $t>0$. For every $t>0$ with $t\neq1$,
+there are no affine $L_1,L_2,L_3$ such that
+\[
+ L_1C_2C_3+L_2BC_3+L_3BC_2=(B+x)(B+y)
+ \quad\hbox{on all eight Boolean inputs}.                 \tag{2}
+\]
+The right side is the cleared score of the original three-head
+representation $1/B+0/B_2+0/B_3$.
+\end{proposition}
+
+\begin{proof}
+Order the cube lexicographically as $000,001,010,011,100,101,110,111$.
+Define the linear functional on cube functions by its weight vector
+\[
+ \lambda_t=\left(
+ -(t+1)(t+4),\frac{(t+2)(t+4)}4,
+ \frac{t+4}2,-\frac{t+4}3,
+ \frac{t+4}2,-\frac{t+4}3,
+ -\frac{t+4}{t+3},1\right).
+\]
+Direct substitution gives, for each $v\in\{1,x,y,z\}$,
+\[
+ \langle\lambda_t,vC_2C_3\rangle
+ =\langle\lambda_t,vBC_3\rangle
+ =\langle\lambda_t,vBC_2\rangle=0.                     \tag{3}
+\]
+These twelve rational identities also hold symbolically in $t$, as
+checked independently by the supplied script. A further substitution
+gives
+\[
+ \langle\lambda_t,(B+x)(B+y)\rangle
+ =-\frac{(t-1)^2}{t+3}.                               \tag{4}
+\]
+The right side is nonzero under the stated hypotheses. Affineness and
+(3) show that the functional annihilates the left side of (2), whereas
+(4) shows that it does not annihilate the right side. This contradiction
+proves the claim entirely on the finite cube, allowing all Boolean
+identities such as $x^2=x$.
+\end{proof}
+
+\paragraph{What remains open.}
+The counterexample is deliberately not a sign obstruction: the score
+$1/B$ itself retains its positive signs along this denominator path by
+keeping its first numerator equal to $1$ and the others zero. More
+generally, the same calculation for the nonconstant original score
+$(2x-1)/B$ still rules out preserving its original cleared values, but
+does not prevent its trivial sign-preserving realization. A many-head
+sign-coalescence theorem would have to allow the cleared score to vary,
+or use a different denominator path. Neither such a theorem nor a
+counterexample to it is proved here.
+
+\paragraph{Verification.}
+\texttt{two-head-sign-coalescence-check.py} checks (1) with exact rational
+arithmetic on small cubes, including mixed original orientations and
+constant second denominators. It checks all twelve identities (3) and
+both versions of (4) symbolically, and checks the resulting rank gap at
+$t=1/2$. The written proof supplies the universal quantifiers; finite
+sampling alone is not used to assert universality.
+\end{document}

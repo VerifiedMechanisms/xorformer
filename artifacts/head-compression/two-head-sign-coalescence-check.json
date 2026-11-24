@@ -1,0 +1,10 @@
+{
+  "status": "exact checks passed; universal claims have written proofs, not Lean formalization",
+  "two_head_cube_point_checks": 2268,
+  "strict_common_orientation_checks": 108,
+  "symbolic_annihilator_identities": 12,
+  "symbolic_target_separations": 2,
+  "three_head_rank_at_half": 7,
+  "three_head_augmented_rank_at_half": 8,
+  "scope": "H3 obstruction preserves cleared cube values only, not signs"
+}
