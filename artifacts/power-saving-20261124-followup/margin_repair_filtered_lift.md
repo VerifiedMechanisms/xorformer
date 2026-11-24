@@ -2,11 +2,11 @@
 
 ## Status and scope
 
-This is a written unconditional finite-dimensional theorem about signed direction clouds. It is not a theorem that repairs the relative margin of an arbitrary original-model score. In particular, adding the exact zero-score correction below need not increase the margin. The theorem permits arbitrary real direction coordinates and arbitrary signed real residues.
+This is an unconditional finite-dimensional theorem about signed direction clouds. Its polynomial interpolation, exact ghost identity, and exact grid cardinality are kernel checked. It is not a theorem that repairs the relative margin of an arbitrary original-model score. In particular, adding the exact zero-score correction below need not increase the margin. The theorem permits arbitrary real direction coordinates and arbitrary signed real residues.
 
 The correction preserves every scalar function of every Boolean projection, not only finitely many moments. Its additional directions belong to a fixed positive integer grid. Its width cost is negligible compared with the critical exponential widths when the order is at most a suitable positive constant times the input dimension.
 
-The proof is elementary polynomial interpolation. The accompanying rational computation checks one instance. The finite-moment-to-arbitrary-kernel implication is kernel checked in `FilteredMomentLift.lean`; the simplex interpolation construction and its asymptotic consequence remain written proofs.
+The proof is elementary polynomial interpolation. `SimplexPolynomialInterpolation.lean` checks the cardinal polynomials, their degree bounds, unisolvence, translation, and the exact grid cardinality. `FilteredMomentLift.lean` checks moment matching and the exact ghost identity. The original-head admissibility discussion, coefficient estimate, and asymptotic consequence remain written proofs. The accompanying rational computation checks one instance independently.
 
 ## The finite theorem
 
@@ -136,6 +136,6 @@ The required unrestricted lower bound still needs a mechanism beyond this theore
 
 `HeadComplexity.FilteredMomentLift.sum_kernel_eq_zero_of_finite_moments` proves that vanishing moments through order $r$, on any prescribed $r+1$ distinct projection values, annihilate every scalar function. `sum_kernel_eq_zero_of_integer_projection` specializes this to values in a translated integer interval. The hypotheses allow arbitrary real residues, multiplicities, and an entirely arbitrary scalar kernel.
 
-The module build completed successfully with 3139 jobs. The transitive axiom audit for both declarations reports only `propext`, `Classical.choice`, and `Quot.sound`. The build and audit logs are `filtered_moment_lift_build.txt` and `filtered_moment_lift_axioms.txt`.
+The strengthened module build completed successfully with 3141 jobs. `SimplexPolynomialInterpolation.translated_interpolation_eval` verifies interpolation on the translated grid, and `card_grid` verifies its cardinality. `FilteredMomentLift.gridResidue_matches_polynomial` proves every ordinary moment identity, while `gridResidue_is_exact_ghost` proves the all-kernel identity from the Boolean moment hypotheses. `gridNode_positive` checks strict positivity of the new direction coordinates. The transitive axiom audit for every theorem in both modules reports only `propext`, `Classical.choice`, and `Quot.sound`. The build and audit logs are `filtered_moment_lift_build.txt` and `filtered_moment_lift_axioms.txt`.
 
 The script `filtered_lift_certificate.py` computes the simplex basis and correction for the seven-point order-three plateau. Its exact rational checks verify the cardinal interpolation matrix, all ordinary moments through degree three, and the zero grouped auxiliary residues at every Boolean query. The ten-point grid has only six nonzero correction residues in this instance. Its output is `filtered_lift_certificate.json`.

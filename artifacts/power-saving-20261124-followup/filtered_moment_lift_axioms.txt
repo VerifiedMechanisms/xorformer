@@ -1,6 +1,59 @@
+'HeadComplexity.SimplexPolynomialInterpolation.eval_falling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.totalDegree_falling_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.eval_choosePoly_nat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.totalDegree_choosePoly_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.card_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.totalDegree_cardinalPoly_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.eval_cardinalPoly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.evaluateGrid_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.evaluateGrid_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.interpolation_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.interpolation_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.eval_translate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.totalDegree_translate_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SimplexPolynomialInterpolation.translated_interpolation_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
 'HeadComplexity.FilteredMomentLift.sum_kernel_eq_zero_of_finite_moments' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
 'HeadComplexity.FilteredMomentLift.sum_kernel_eq_zero_of_integer_projection' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'HeadComplexity.FilteredMomentLift.gridResidue_matches_polynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredMomentLift.eval_projectionPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FilteredMomentLift.totalDegree_projectionPoly_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredMomentLift.gridNode_projection_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FilteredMomentLift.gridResidue_matches_projection_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredMomentLift.gridResidue_is_exact_ghost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FilteredMomentLift.gridNode_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
