@@ -34,7 +34,7 @@ def state_table(heads):
     return descriptors, signs, permutations
 
 
-def constraint_matrix(poles, probes, signs, permutations, anchor_probes=None):
+def constraint_matrix(poles, probes, signs, permutations, anchor_probes=None, base_probe=None):
     states, queries = signs.shape
     heads = len(poles)
     variables = queries * heads + heads * heads + queries
@@ -48,13 +48,15 @@ def constraint_matrix(poles, probes, signs, permutations, anchor_probes=None):
         rows = np.arange(states) * queries + q
         kernels = 1 / (probe - poles[permutations])
         matrix[rows, q * heads:(q + 1) * heads] = kernels
+        residue_kernels = kernels if base_probe is None else (
+            kernels - 1 / (base_probe - poles[permutations]))
         if anchor_probes is None:
             for h in range(heads):
-                matrix[rows, queries * heads + h * heads + permutations[:, h]] = -kernels[:, h]
+                matrix[rows, queries * heads + h * heads + permutations[:, h]] = -residue_kernels[:, h]
         else:
             # c_slot = -sum_anchor Cinv[token_at_slot,anchor]
             #                  * sum_g a[anchor,g] C[anchor,token_at_g].
-            height = np.einsum("sh,shi->si", kernels, inverse[permutations])
+            height = np.einsum("sh,shi->si", residue_kernels, inverse[permutations])
             matrix[rows, queries * heads:queries * heads + heads * heads] = (
                 -height[:, :, None] * anchor_kernel).reshape(states, heads * heads)
         matrix[rows, queries * heads + heads * heads + q] = 1
@@ -73,6 +75,8 @@ def main():
                         help="Allow a different fixed probe for each query/head pair.")
     parser.add_argument("--solved-anchors", action="store_true",
                         help="Use residues solved at virtual Cauchy anchors, not an edge table.")
+    parser.add_argument("--subtract-base", action="store_true",
+                        help="Use a column bias canceling the residue readout at probe 1.")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     descriptors, signs, permutations = state_table(args.heads)
@@ -94,7 +98,8 @@ def main():
             # Place each anchor near its pole to control inverse conditioning.
             clearance = np.min(np.diff(poles))
             anchor_probes = poles + rng.uniform(0.2, 0.8, args.heads) * clearance
-        matrix = constraint_matrix(poles, probes, signs, permutations, anchor_probes)
+        matrix = constraint_matrix(poles, probes, signs, permutations, anchor_probes,
+                                   1 if args.subtract_base else None)
         # Orthonormal columns remove scale and exact gauge degeneracies.
         Q, R, pivots = qr(matrix, mode="economic", pivoting=True)
         diagonal = np.abs(np.diag(R))
@@ -117,6 +122,7 @@ def main():
                   "heads": args.heads, "queries": len(descriptors),
                   "head_probes": args.head_probes,
                   "solved_anchors": args.solved_anchors,
+                  "subtract_base": args.subtract_base,
                   "states": len(signs), "compactness": compactness,
                   "rank": rank, "generation": generation, "active": len(active),
                   "status": int(result.status), "message": result.message}
