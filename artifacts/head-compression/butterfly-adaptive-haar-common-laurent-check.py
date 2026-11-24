@@ -40,15 +40,16 @@ assert len(basis)==H
 A=[values+[x**shift] for values in basis];columns=list(range(H));pivots=[]
 for k in range(H):
     valuation,i,j=min((A[i][j].valuation(),i,j) for i in range(k,H) for j in range(k,H) if A[i][j].valuation()>=0)
+    assert all(A[ii][jj].valuation()>=0 or A[ii][jj].prec>=valuation for ii in range(k,H) for jj in range(k,H))
     pivots.append(valuation);A[k],A[i]=A[i],A[k]
     for values in A:values[k],values[j]=values[j],values[k]
     columns[k],columns[j]=columns[j],columns[k];pivot=A[k][k]
-    assert all(v.valuation()<0 or v.valuation()>=valuation for v in A[k])
+    assert all((v.prec>=valuation if v.valuation()<0 else v.valuation()>=valuation) for v in A[k])
     A[k]=[v/pivot for v in A[k]]
     for i in range(H):
         if i!=k:
             multiplier=A[i][k]
-            if multiplier.valuation()>=0:A[i]=[v-multiplier*w for v,w in zip(A[i],A[k])]
+            A[i]=[v-multiplier*w for v,w in zip(A[i],A[k])]
 c=[None]*H
 for k in range(H):c[columns[k]]=A[k][-1]
 for values in basis:

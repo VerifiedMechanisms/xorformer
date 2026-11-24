@@ -72,17 +72,17 @@ for k in range(H):
                 if A[i][j].valuation()>=0]
     assert candidates, 'Insufficient precision, or singular basis'
     valuation,i,j=min(candidates);pivots.append(valuation)
+    assert all(A[ii][jj].valuation()>=0 or A[ii][jj].prec>=valuation for ii in range(k,H) for jj in range(k,H)), 'Increase coefficient precision'
     A[k],A[i]=A[i],A[k]
     for row in A:row[k],row[j]=row[j],row[k]
     columns[k],columns[j]=columns[j],columns[k]
     pivot=A[k][k]
-    assert all(v.valuation()<0 or v.valuation()>=valuation for v in A[k]), 'Increase RHS shift'
+    assert all((v.prec>=valuation if v.valuation()<0 else v.valuation()>=valuation) for v in A[k]), 'Increase RHS shift or precision'
     A[k]=[v/pivot for v in A[k]]
     for i in range(H):
         if i!=k:
             multiplier=A[i][k]
-            if multiplier.valuation()>=0:
-                A[i]=[v-multiplier*w for v,w in zip(A[i],A[k])]
+            A[i]=[v-multiplier*w for v,w in zip(A[i],A[k])]
 coefficients=[None]*H
 for k in range(H):coefficients[columns[k]]=A[k][-1]
 # Independently substitute into the uneliminated equations.
