@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_projection_chain.md",
+    "source_spans": 51,
+    "rendered_spans": 51,
+    "findings": [],
+    "notes": []
+  }
+]

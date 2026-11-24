@@ -1,0 +1,15 @@
+'HeadComplexity.BooleanProjectionChainCircuit.scalar_function_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionChainCircuit.all_projection_moments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionChainCircuit.reciprocal_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionChainCircuit.coefficients_eq_of_zero_singleton_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionChainCircuit.constant_residue_identity_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,6 @@
+import HeadComplexity.Research.BooleanProjectionChainCircuit
+#print axioms HeadComplexity.BooleanProjectionChainCircuit.scalar_function_identity
+#print axioms HeadComplexity.BooleanProjectionChainCircuit.all_projection_moments
+#print axioms HeadComplexity.BooleanProjectionChainCircuit.reciprocal_identity
+#print axioms HeadComplexity.BooleanProjectionChainCircuit.coefficients_eq_of_zero_singleton_rows
+#print axioms HeadComplexity.BooleanProjectionChainCircuit.constant_residue_identity_unique
