@@ -1,0 +1,217 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,geometry}
+\geometry{margin=1in}
+\newcommand{\HC}{\operatorname{HStar}}
+\newcommand{\W}{\operatorname{worstCaseHeadComplexity}}
+\begin{document}
+\title{Independent model and assembly audit of the affine-plane compiler}
+\author{Resumed run \texttt{ar/1c1556983291}}
+\date{24 November 2026}
+\maketitle
+
+\paragraph{Scope and conclusion.}
+This is an independent semantic audit of the construction published at
+\texttt{origin/ar/0f08fe6fb98a}, commit \texttt{7065e81}, and imported into
+the current run.  The files examined are \texttt{AffinePlaneCompiler},
+\texttt{CompactReverseCauchy}, \texttt{ReverseRankCorrection},
+\texttt{ReverseGridAxisRepair}, \texttt{AxisZeroGluing},
+\texttt{AxisZeroCover}, \texttt{AxisZeroTransfer}, and
+\texttt{AxisZeroFaces}, all under
+\texttt{formalization/HeadComplexity/Results/}.
+The audit found no gap in the whole-cube denominator budget, restoration of
+strict slopes, exact axis repair, bias handling, ordering, preservation of
+strict signs, face repair, or transfer to the original complexity invariant.
+The independent incidence and finite rational reconstruction audit is
+recorded separately.  A fresh Lean build and declaration-axiom audit are
+being performed by the parent run; this note does not substitute a numerical
+test or a written argument for that check.
+
+\paragraph{The original model is unchanged.}
+In \texttt{Atoms/FracAtom.lean}, an atom remains
+\[
+ \frac{\eta+\sum_i\rho_i\alpha^{x_i}(m_i+\delta x_i)}
+ {\gamma+\sum_i\rho_i\alpha^{x_i}},
+ \qquad \gamma>0,\quad\alpha>0,\quad\rho_i>0.
+\]
+There is no bound on numerator magnitudes or parameter precision.  The
+positive and negative affine-ratio conversion theorems construct these
+atoms exactly.  Positive denominator slopes use $\alpha>1$; strictly
+negative slopes with a positive whole-cube minimum use $0<\alpha<1$.
+No coordinate is appended.  The definitions of \texttt{HStar} in
+\texttt{Model/Head.lean} and \texttt{worstCaseHeadComplexity} in
+\texttt{Results/CountingLowerBound.lean} are unchanged.  The latter is
+still the finite supremum of the former over all Boolean functions.
+The comparison of the two branches shows no modification of these model
+or invariant definitions.
+
+\paragraph{One compact correction really is one reverse head.}
+For a prescribed row numerator $A_i$, row pole $d_i\in(1-\delta,1)$,
+and column token $t_j\in(0,\delta)$, use
+\[
+ A(z,w)=\sum_i A_i z_i,\qquad
+ B(z,w)=1-\sum_i(1-d_i)z_i-\sum_jt_jw_j.
+\]
+Every denominator slope is strictly negative, and on the entire Boolean
+$(r+s)$-cube,
+\[
+ B(z,w)>1-(r+s)\delta>0.
+\]
+At $(e_i,e_j)$ its value is exactly $A_i/(d_i-t_j)$.  In the affine-plane
+construction, the row pole for the correction associated with point $g$
+is the pole of the slope joining $g$ to the queried point.  When their
+first coordinates agree, the numerator is zero; the arbitrary totalized
+slope in that case does not affect the identity or admissibility.
+The choice $\delta=1/[4(r+s+1)]$ meets the stated budget.  This is a
+whole-cube proof, not a verification only at weight-two inputs.
+
+\paragraph{The rank correction has its claimed cost.}
+For one arbitrary real rank-one table $f_i g_j$, choose
+$C=1+\sum_i|f_i|$, $u_i=C+f_i$, and $M=4(r+1)C$.
+Then $0<u_i<2C$ and the weak reverse head
+\[
+ \frac{M\sum_jg_jw_j}
+ {1-\sum_i\frac{u_i}{M+u_i}z_i}
+\]
+has grid value $(M+C+f_i)g_j$.  Its denominator is positive on the
+whole cube, since the sum of all its drops is less than $1/2$.
+For $L$ rank factors, a single additional affine numerator over the
+constant denominator $1$ subtracts all $L$ column shifts and adds all
+desired row and column biases.  The total is $L+1$ weak reverse heads,
+not $2L$ or $L$ times the number of columns.
+
+\paragraph{Weak slopes are repaired without head loss.}
+If $D$ is a weak reverse denominator on $N=r+s$ bits and
+$m_0=D(1,\ldots,1)>0$, set $\varepsilon=m_0/(N+1)$ and
+\[
+ D'(x)=D(x)+\varepsilon\left(2-\sum_i x_i\right).
+\]
+All slopes become strictly negative.  Its minimum is attained at the
+all-one vertex and equals $3\varepsilon>0$.  At each grid point the
+weight is exactly two, so $D'=D$ there.  This exact grid-preserving
+operation applies to the rank heads and their single correction head;
+it adds no heads and requires no sign perturbation argument.
+
+\paragraph{Finite compiler and exact axis repair.}
+For a field of order $q=2^k$, there are $q^2$ affine-plane points and
+$q^2$ nonvertical lines.  The line aggregates have rank at most $q^2$,
+so the preceding construction costs $q^2+1$ heads.  One compact
+correction per point costs a further $q^2$ heads.  The shared-line
+identity leaves exactly the Cauchy decoder of the token at the queried
+point.  A token stores $k$ bits, yielding
+\[
+ r\leq k4^k\quad\Longrightarrow\quad
+ H_{\rm grid}\leq2\cdot4^k+1
+\]
+for every number of columns.  The statement is
+\texttt{hasStrictReverseGridCompiler\_affinePlane}.
+
+The exact axis repair in \texttt{ReverseGridAxisRepair.lean} replaces
+each strict reverse ratio by three such ratios, cancelling its values
+on both complete Boolean axes.  Concretely, subtract the ratio's value
+at the origin times its denominator from its numerator, then subtract
+its row-only and column-only restrictions using denominators whose
+missing-coordinate slopes are a common negative upper bound on the
+original slopes.  These denominators dominate the original denominator
+and hence remain positive.  The grid discrepancy is a row term plus a
+column term.  All discrepancies, including the original scalar bias,
+are aggregated and corrected by three further strict reverse heads.
+Thus \texttt{exists\_reverse\_axis\_repair} gives exactly
+$3H_{\rm grid}+3$ heads with the same grid values and zero values on
+\emph{every} point of each axis.  The resulting data has no unattached
+scalar bias.  More generally, \texttt{absorb\_bias\_family} absorbs a
+bias into one numerator as $A\mapsto A+cB$ before localization, with
+unchanged denominators and head count.
+
+\paragraph{The gluing order and admissibility.}
+For center $(S,T)$ the cell consists of
+$(S\setminus\{i\},T\setminus\{j\})$, and the containing downset is
+$X\subseteq S$, $Y\subseteq T$.  Centers are ordered by decreasing
+$|S|+|T|$, with arbitrary ties.  On a center downset, local deletion
+coordinates are $z_i=1-x_i$ on the center and zero off it.  Negative
+local slopes therefore become strictly positive ambient slopes on
+center coordinates.  Choose slope $1$ outside the center.  The ambient
+constant denominator is the local denominator at the center and is
+strictly positive.  Adding a nonnegative multiple of
+\[
+ q_{S,T}(x)=\sum_{i\notin S\cup T}x_i
+\]
+preserves strictly positive ambient slopes, vanishes on the downset,
+and is strictly positive outside it.  These are exact original-model
+atoms through \texttt{FracAtom.ofPositiveAffineRatio}.
+
+If an earlier cell vertex $(X,Y)$ lies in a later downset, then its
+earlier center has size $|X|+|Y|+2$.  The order gives
+$|S|+|T|\leq|X|+|Y|+2$.  Thus either $X=S$, or $Y=T$, or both deletion
+counts equal one.  In the first two cases the later module is exactly
+zero by the axis identities.  In the third case it already has the
+desired sign.  This proves the nonnegative signed compatibility needed
+on every earlier vertex inside the later downset, including overlaps.
+
+At each finite gluing step, a positive numerator scale makes the new
+module dominate the old score on its new cell.  On protected vertices
+inside its downset the contribution is nonnegative in the target sign.
+On protected vertices outside the downset, the localized module tends
+to zero as its penalty tends to infinity.  A sufficiently large finite
+penalty preserves all their earlier strict signs simultaneously.
+The dependence on finite strict margins is legitimate and costs no
+heads.  This is implemented by \texttt{glue\_step},
+\texttt{glue\_finite}, and \texttt{glue\_reverse\_axis\_modules}.
+
+\paragraph{Cover transfer and exact total budget.}
+Complement a checked closed upward-star cover in dimension $a$.
+Whenever its complemented center itself needs covering, add one parent
+of that proper center.  This produces an open downward cover of all
+proper vertices with at most twice as many centers.  The existing
+checked constant-eleven bound therefore gives at most
+$22\cdot2^a/a$ centers.  The product of two such covers uses at most
+\[
+ 484\frac{2^{a+b}}{ab}
+\]
+local modules and covers every vertex except the two faces on which
+one entire block is one.  This proves the required
+$O(2^n/n^2)$ module count after a balanced split.
+
+An arbitrary real residual on a positive coordinate face with $m$
+free coordinates has an exact squarefree expansion with $2^m$ terms.
+Multiplication by the fixed-face monomial makes every term an ambient
+positive monomial.  Each signed monomial is uniformly approximable by
+one original atom: its denominator is
+$1+\sum_i w_i(1-x_i)$, with large positive $w_i$ on the monomial's
+support and small positive $w_i$ elsewhere.  This is the negative
+orientation converter, with admissible $0<\alpha<1$.
+
+First add the exact residual on the first exceptional face.  Define
+the second residual against this already corrected score.  It is
+therefore zero on the intersection of the faces, so the second exact
+correction preserves the first.  The resulting finite-cube score has
+strict desired signs everywhere.  Approximate the two residuals
+uniformly closely enough to preserve its minimum strict margin.
+The total face cost is exactly $2^a+2^b$, including the intersection
+without a third repair.  Consequently, for a proved axis compiler
+budget $M$,
+\[
+ \W(a+b)\leq484\frac{2^{a+b}M}{ab}+2^a+2^b.
+\]
+This is \texttt{worstCaseHeadComplexity\_real\_le\_of\_reverse\_axis\_compiler},
+with the original invariant.  For $a=\lfloor n/2\rfloor$ and
+$b=\lceil n/2\rceil$, the exceptional cost is
+$O(2^{\lceil n/2\rceil})$.
+
+\paragraph{Final statement and remaining verification distinction.}
+The finite compiler supplies the previously missing hypothesis in
+the existing audited transfer.  The published Lean declarations
+\texttt{worstCaseHeadComplexity\_real\_le\_log\_saving} and
+\texttt{worstCaseHeadComplexity\_isBigO\_two\_pow\_div\_mul\_log}
+state, respectively,
+\[
+ n\geq32\ \Longrightarrow\
+ \W(n)\leq2323202\frac{2^n}{n\log n},\qquad
+ \W(n)=O\left(\frac{2^n}{n\log n}\right).
+\]
+Here $\log$ is the natural logarithm.  The explicit constant includes
+axis restoration and both exceptional faces.  No local compiler,
+cover-transfer, repair, or numerical universality hypothesis remains
+in these final declarations.  The audit in this note is affirmative
+on model semantics and assembly; the separately recorded fresh Lean
+build and axiom output determine their kernel-verification status.
+\end{document}
