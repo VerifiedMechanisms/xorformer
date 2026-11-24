@@ -12,10 +12,17 @@
 \maketitle
 
 \paragraph{Status.} This file gives a complete written finite construction and its
-asymptotic consequence, using the existing checked reverse-grid assembly and
-rank-correction theorems. The new construction is being formalized separately.
-It does not change the attention model, head resource, or whole-cube denominator
-admissibility. All displayed grid outputs equal their target signs exactly.
+asymptotic consequence. The finite construction is Lean-checked as
+\texttt{AxisZeroGluing.hasStrictReverseGridCompiler\_affinePlane} in
+\texttt{Results/AffinePlaneCompiler.lean}. The unconditional asymptotic conclusion
+is Lean-checked in \texttt{Results/UniversalLogSaving.lean} as
+\texttt{worstCaseHeadComplexity\_isBigO\_two\_pow\_div\_mul\_log} and
+\texttt{worstCaseHeadComplexity\_exists\_log\_saving}. The declaration
+\texttt{worstCaseHeadComplexity\_real\_le\_log\_saving} additionally proves the
+bound with constant $2323202$ for every $n\geq32$. There are no \texttt{sorry}
+declarations or new axioms. The construction does not change the attention
+model, head resource, or whole-cube denominator admissibility. All displayed
+grid outputs equal their target signs exactly.
 
 \begin{lemma}[Compact Cauchy decoding]
 Let $q=2^k$, let $0<\tau<1-\delta$ and $0<\delta<1$, and let $A$ be any set
