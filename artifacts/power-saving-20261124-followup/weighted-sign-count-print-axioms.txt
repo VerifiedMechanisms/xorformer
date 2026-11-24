@@ -1,0 +1,10 @@
+'HeadComplexity.PolynomialRootCount.weighted_strict_sign_realizations_card_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weighted_strict_sign_realizations_mul_weights_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weighted_strict_sign_realizations_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.weightedStrictPolynomialSignPatterns_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]

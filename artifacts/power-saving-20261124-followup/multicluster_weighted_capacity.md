@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This is a written proof, not a Lean declaration. It applies the inherited written [weighted-degree sign-count theorem](../power-saving-20261124/weighted_degree_sign_capacity.md). That theorem uses generic regular values and isolated-root Bezout, and has not been formalized in Lean. The ordinary Warren theorem imported during this run does not by itself supply the weighted estimate below.
+The cluster parameterization and its count below are a written proof, not a Lean declaration. The weighted sign-count ingredient is now kernel checked as `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le` in [WeightedPolynomialSignCount.lean](../../formalization/HeadComplexity/Polynomial/WeightedPolynomialSignCount.lean). It proves the stronger factor $4eD$ where the inherited written [weighted-degree theorem](../power-saving-20261124/weighted_degree_sign_capacity.md) used $8eD$. The weaker constant is retained below. The new formal chain uses weighted diagonal quotient reduction and the existing generic-minimum wrappers; it assumes no sign-pattern bound.
 
 The new bookkeeping gives the base denominator coefficients much smaller weights than the higher jet coefficients. Uniformly scaling all these rational weights converts them to positive integer weights, so the inherited theorem applies without changing its degree-to-weight ratio. This avoids charging the total cluster length to every higher jet parameter.
 

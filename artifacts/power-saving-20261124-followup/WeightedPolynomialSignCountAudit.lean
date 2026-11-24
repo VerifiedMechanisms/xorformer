@@ -1,0 +1,6 @@
+import HeadComplexity.Polynomial.WeightedPolynomialSignCount
+
+#print axioms HeadComplexity.PolynomialRootCount.weighted_strict_sign_realizations_card_le
+#print axioms HeadComplexity.PolynomialRootCount.weighted_strict_sign_realizations_mul_weights_le
+#print axioms HeadComplexity.PolynomialRootCount.weighted_strict_sign_realizations_bound
+#print axioms HeadComplexity.weightedStrictPolynomialSignPatterns_card_le
