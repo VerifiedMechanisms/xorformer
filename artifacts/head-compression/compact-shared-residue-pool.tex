@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\title{A Compact Shared-Residue Pool Cannot Supply Two Arbitrary Words}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written proof, not a Lean-checked result. It concerns
+a square exterior Cauchy decoder with shared absolute residues, and
+does not give a lower bound for unrestricted HeadComplexity. It extends
+the explicit three-pole calculation in
+\texttt{common-cauchy-amplitude-obstruction.tex}. The compactness
+threshold below depends on the fixed number of poles and the fixed
+query grids; no quantitative threshold uniform in their sizes is
+claimed.
+
+Fix an integer $q\geq3$ and two strictly increasing positive query
+grids $u_1<\cdots<u_q$ and $v_1<\cdots<v_q$. For distinct poles
+$0<p_1<\cdots<p_q$, write
+\[
+ P(t)=\prod_{h=1}^q(t-p_h),\qquad
+ F(t)=\sum_{h=1}^q\frac{a_h}{t-p_h}=\frac{N(t)}{P(t)}.
+ \tag{1}
+\]
+The numerator in (1) has degree at most $q-1$. A sign change of a
+strict sign word means an adjacent pair of entries with opposite
+signs.
+
+\begin{theorem}[Proper flips lose exterior oscillations]
+There is a $\delta>0$, depending only on $q,u,v$, with the following
+property. Suppose $p_q<\delta$ and $F(u_i)$ has $q-1$ sign changes.
+For any $\epsilon_h\in\{-1,1\}$ which are not all equal, put
+\[
+ F_\epsilon(t)=\sum_{h=1}^q\frac{\epsilon_h a_h}{t-p_h}.
+ \tag{2}
+\]
+If all $F_\epsilon(v_i)$ are nonzero, their sign word has at most
+$\lfloor q/2\rfloor-1$ sign changes. This conclusion is uniform
+over the poles and the residues $a_h$.
+\end{theorem}
+
+\begin{proof}
+Shrink $\delta$ so all poles are below both query grids. The
+denominator $P$ is positive on both grids. Full alternation at $u$
+forces $N$ to have exactly $q-1$ real roots, one in each open interval
+$(u_i,u_{i+1})$, and to have degree $q-1$. Multiplying every residue
+by the same nonzero scalar does not change either number of sign
+changes, so normalize $N$ to be monic. Thus
+\[
+ N(t)=\prod_{i=1}^{q-1}(t-\rho_i),\qquad
+ u_i<\rho_i<u_{i+1}.
+ \tag{3}
+\]
+These normalized polynomials lie in a compact set of coefficient
+vectors, and their constant coefficients are uniformly bounded away
+from zero. Residue evaluation gives
+\[
+ a_h=\frac{N(p_h)}{P'(p_h)}.
+ \tag{4}
+\]
+
+Suppose the theorem were false. There would be a sequence of such
+configurations with $p_q\longrightarrow0$ and proper flips producing
+at least $k=\lfloor q/2\rfloor$ sign changes at $v$. Pass to
+subsequences so the flip vector is fixed, the set of $k$ adjacent
+intervals with a sign change is fixed, and $N$ converges in
+coefficients to a monic polynomial $N_0$ of the form (3) with closed
+root intervals. In particular $N_0(0)\neq0$.
+
+Let $R$ be the numerator of $F_\epsilon$. Then
+\[
+ R(p_h)=\epsilon_h N(p_h),\qquad
+ P\mid(R^2-N^2),\qquad \deg R\leq q-1.
+ \tag{5}
+\]
+The coefficient norm $\|R\|_\infty$ tends to infinity along this
+subsequence. Otherwise a further bounded subsequence would converge
+to a polynomial $R_*$. Evaluating at all $p_h\longrightarrow0$
+would give $R_*(0)=\epsilon_h N_0(0)$ for every $h$, impossible
+because both signs occur in $\epsilon$.
+
+Normalize $\widetilde R=R/\|R\|_\infty$. Pass to a further
+subsequence with coefficient limit $R_0$ of norm one. The remainders
+in division by a monic polynomial are continuous functions of all
+coefficients. Divide (5) by $\|R\|_\infty^2$ and let the poles
+tend to zero. Since $P\longrightarrow t^q$ and
+$N/\|R\|_\infty\longrightarrow0$, this gives
+\[
+ t^q\mid R_0(t)^2,
+ \qquad
+ t^{\lceil q/2\rceil}\mid R_0(t).
+ \tag{6}
+\]
+Consequently the nonzero polynomial $R_0$ has at most
+$q-1-\lceil q/2\rceil=\lfloor q/2\rfloor-1$ roots away from
+zero, counted with multiplicity.
+
+For completeness, the $k$ strict sign changes cannot disappear when
+passing to the limit. Choose one root of $R$ in each of the fixed
+$k$ open adjacent query intervals. Their monic product $J$ has degree
+$k$ and divides $\widetilde R$. Pass to a subsequence on which all
+chosen roots converge. Then $J$ converges to a monic polynomial
+$J_0$ whose $k$ roots, counted with multiplicity, belong to
+$[v_1,v_q]$. Monic division makes the quotient coefficients bounded
+and continuous, so $J_0\mid R_0$. This argument retains multiplicity
+when roots from neighboring intervals converge to the same shared
+endpoint. Since $v_1>0$, it contradicts (6).
+\end{proof}
+
+\begin{corollary}[Two words on one grid already fail]
+Fix $q\geq3$ and $0<u_1<\cdots<u_q$. For all sufficiently small
+distinct positive poles $p_h$, there are two strict sign words on
+this grid which cannot both be obtained from
+\[
+ \left(\sum_{h=1}^q\frac{\eta_h v_h}{u_i-p_h}\right)_{i=1}^q,
+ \qquad \eta_h\in\{-1,1\},
+ \tag{7}
+\]
+using any single positive amplitude vector $(v_h)$. The amplitude
+vector is allowed to depend on the requested pair of words.
+\end{corollary}
+
+\begin{proof}
+Request a fully alternating word and a word with exactly $q-2$
+sign changes. If the first is represented, let $a_h$ be its signed
+residues. Every representation of the second from the same amplitude
+vector is a flip (2). A constant flip gives the first word or its
+negative and therefore still has $q-1$ changes on this same grid.
+A proper flip has at most $\lfloor q/2\rfloor-1$ changes by the
+theorem. Both alternatives exclude the second word because
+$q-2>\lfloor q/2\rfloor-1$ for $q\geq3$.
+\end{proof}
+
+\paragraph{Why the scope matters.}
+The theorem's proper-flip bound permits a different second fixed
+query grid. The two-word corollary uses the same grid: on arbitrary
+different grids the unflipped numerator itself can have different
+numbers of sign changes, so the corollary does not automatically
+extend to that setting. Neither statement covers a rectangular pool
+with more poles than queries, group-dependent absolute residues,
+independently chosen numerator profiles, or noncompact pole
+geometry. Even for square pools, the theorem alone supplies no
+uniform compactness rate as $q$ grows. These are restrictions of a
+specific proposed decoder, not obstructions to all admissible head
+representations.
+\end{document}
