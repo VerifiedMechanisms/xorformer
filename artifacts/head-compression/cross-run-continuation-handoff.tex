@@ -190,4 +190,84 @@ construction achieving the latest target. The unrestricted matching
 lower bound also lacks a cancellation-safe sign count. All finite
 certificates, checked transfers, and scoped obstructions above must
 be kept separate from those unresolved assertions.
+
+\paragraph{Additional checkpoints at 06:10 UTC.}
+The other upper-bound branch was checked again at 06:07 UTC and remains
+at \texttt{ad4b30e10e5a}. The remote branch for this run still remains at
+\texttt{2672bc2f68e8}; the publication permission failure has not been
+resolved. The following later local checkpoints are included in the
+refreshed incremental bundle.
+\begin{itemize}
+\item \texttt{80f6c79}, \texttt{butterfly-positive-root.tex}, proves a
+one-node positive-residue construction. For ordered pairs of poles
+$p_{s,0}<p_{s,1}<T/2$, choose a polynomial $P$ whose roots lie in exactly
+the gaps where the requested word $\sigma$ changes sign. With the
+appropriate sign $\eta$, set
+\[
+ Q(t)=\prod_{s,e}(t-p_{s,e}),\qquad
+ N(t)=\eta(t-T/2)P(t)P(T-t).
+\]
+The residues of $N/Q$ have signs $(\sigma_s,-\sigma_s)$ within each
+pair, and its signs on the reflected query intervals are $\sigma_s$.
+Thus positive magnitudes realize every root word. Exact checks cover
+all $126$ words through six pairs. The linear subfamily
+$N(t)=(t-T/2)R(t(T-t))$ has $\deg R\leq q-1$ and supplies smaller
+exact feasibility systems. \texttt{3f2d831} checks two individual
+nested targets at sixteen and thirty-two wires in this family by
+guarded Laurent arithmetic. Universality of nested constraints is open.
+\item \texttt{f93a0d7} excludes a common signed sixteen-wire pool for
+all targets on the fast hierarchy, even with separate block biases.
+\texttt{f9f6272} gives a stronger positive-pool obstruction with just
+two root words: a shared nonnegative residue vector cannot realize both
+words, with separate biases, for all sufficiently small scales. These
+are common-pool obstructions, not single-target signed-decoder
+obstructions. \texttt{fe7fc58} separately excludes a particular
+positive quadratic-profile bridge at a fixed rational scale.
+\item \texttt{b0a7137} gives a complete local positive moment-split
+argument using the Hermite Jacobian and the inverse function theorem.
+It controls arbitrary exterior differences locally. However,
+\texttt{1fc9b9b} proves that matching the first half of the moments at
+\emph{every} binary split forces equal leaf weights and child pole
+polynomials of the form $R-b,R+b$. Their exterior Stieltjes difference
+is $2wbR'/(R^2-b^2)$, of constant sign and monotone; a scalar bias
+then allows at most one sign change. The proposed full recursive
+moment invariant therefore cannot encode arbitrary root words.
+\item \texttt{207d4e2} records a failure of one selected sixty-four-wire
+active basis to continue to small scales: one original signed query
+has leading term $-(8/5)\epsilon^{-84}$. This leaves other bases and
+the target's feasibility open. \texttt{9b4cbd3} audits antisymmetry
+under literal partial-fraction splitting. Its identity does not apply
+unchanged to descendant Haar readouts, which introduce new masks.
+\item \texttt{0b7c9c3} gives a three-head orientation transfer for any
+strict two-fraction score on a finite cube. For a prescribed oriented
+positive affine $L$, the exact cleared numerator of
+\[
+ \epsilon^{-1}\left[
+ \frac{A_1}{L-\epsilon B_2}+\frac{A_2}{L-\epsilon B_1}
+ -\frac{A_1+A_2}{L}\right]
+\]
+is $L(A_1B_2+A_2B_1)-\epsilon(A_1+A_2)B_1B_2$.
+Finite positivity, strict slopes, and strict signs hold for sufficiently
+small positive $\epsilon$. No growing-head extension or axis identity
+is supplied. \texttt{13ed958} instead converts a separated majority
+jointly into two products, $\prod_h(2u_h+v_h)$ and
+$\prod_h(u_h+2v_h)$, whose ratio is at least $3/2$ or at most $2/3$.
+An economical reverse-head realization of their difference is open.
+\end{itemize}
+All results in this additional list are complete written arguments
+or exact finite/Laurent computational certificates, with their scopes
+as stated; they are not newly Lean-checked theorems. No original model
+definition or asymptotic target statement has been weakened.
+
+\paragraph{Other branches read without merging.}
+The lower-bound branch \texttt{ar/7485202da367} was read at
+\texttt{4216833b2239}. Its typical-label amplitude theorem shows that
+almost every label table has exponentially small normalized margin
+for every finite head sum, independent of the number of heads. This
+does not bound the head count; it blocks an assumed uniform
+conditioning repair. The branch \texttt{ar/f4615fbe7181}, read at
+\texttt{834436ca6342}, reports no requested asymptotic improvement
+and records further scoped first-variation and Laplace obstructions.
+Neither branch supplies the missing universal construction or matching
+lower bound used by this run.
 \end{document}
