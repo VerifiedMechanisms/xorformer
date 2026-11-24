@@ -4,7 +4,7 @@
 
 The finite theorem in [the inherited note](../power-saving-20261124/margin_sensitive_polynomial_capacity.md) is valid. Both requested high-margin counting estimates follow from that theorem, with explicit constants and a common sufficient threshold. Neither estimate bounds the number of all unrestricted representable truth tables.
 
-The arguments below are written proofs. The table of Lean ingredients identifies what the kernel checks already establish. In particular, neither Warren's theorem nor the whole finite margin count is currently a kernel-checked theorem.
+The explicit estimates below are written proofs. The full finite margin count is now kernel checked as `HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le`, using the independently rebuilt Warren proof imported during this follow-up. The table below distinguishes ingredients present at the starting revision from the new formalization. The finite count retains its relative-margin hypothesis.
 
 All logarithms in this note are natural. Write $N=2^n$. The margin denominator is exactly
 
@@ -136,7 +136,7 @@ The following declarations are present in the required starting revision. The li
 
 The selected maximum theorem does not by itself construct coefficient-order charts from an original atom. The approximation declarations do not define the full-cube supremum, quantify over all representations, count charts, prove Warren, or derive either asymptotic lower bound. Their hypotheses are precisely where the written proof supplies these objects and inequalities.
 
-The existing lower bound declaration is kernel checked as an implication with the stated Warren premise. That premise is a proposition argument, not a new Lean axiom, so a clean transitive axiom list does not mean that Warren or an unconditional exponential lower bound has been formalized.
+At the starting revision, the existing lower bound declaration is kernel checked as an implication with the stated Warren premise. That premise is a proposition argument, not a new Lean axiom, so a clean transitive axiom list does not mean that Warren or an unconditional exponential lower bound has been formalized.
 
 ## Quantifiers still needed for an unrestricted conclusion
 
@@ -149,6 +149,14 @@ Here representations in the universal quantifier may use completely new denomina
 $$ \mathcal R_H=(\mathcal R_H\cap\mathcal G_{K,\gamma})\mathbin{\dot\cup}\mathcal B_{H,K,\gamma},\qquad |\mathcal R_H|\leq T(n,K,\gamma)+|\mathcal B_{H,K,\gamma}|. $$
 
 The high-margin count controls only the first term. A same-truth-table repair with constant head overhead would make the second set empty. A separate bound strictly below $2^N-2^{N/2}$ would also suffice. No such repair or bound is established here. An arbitrarily ill-conditioned individual representation, a small-margin family with one label table, or a count that fixes the denominators does not estimate this second term.
+
+## New kernel-checked finite theorem
+
+The follow-up adds `Research/MarginSensitiveCapacity.lean`, `Research/CoefficientOrderChart.lean`, and `Research/OriginalMarginCapacity.lean`. Their declarations prove the exact parameter count, degree bound, approximation evaluation, sign transfer, finite chart cardinality, original-atom orientation, and inclusion of every high-margin original representation in the polynomial union. `OriginalMarginCapacity.approximationDegree_error` checks the ceiling choice.
+
+`OriginalMarginCapacity.card_highMarginFunctions_le` proves the full displayed finite formula without a Warren hypothesis. It uses `HeadComplexity.warrenStrictSignPatternBound` from the imported proof chain, whose provenance and independent checks are recorded in [the Warren audit](warren-provenance.md). The original definitions and admissible representations are unchanged.
+
+The targeted build of `HeadComplexity.Research.OriginalMarginCapacity` passed with 4023 jobs. Transitive `#print axioms` for the original-model inclusion and unconditional finite count lists only `propext`, `Classical.choice`, and `Quot.sound`. The explicit large-dimension estimates in Theorem 1 and its corollaries remain written proofs at this checkpoint.
 
 ## Render verification
 
