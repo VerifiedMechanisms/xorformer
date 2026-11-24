@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\begin{document}
+\title{Symmetric Corrections Do Not Repair Priority-Chain Compression}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Scope.}
+This note audits a new proposed restricted construction: a sum of
+priority-chain heads together with an arbitrary symmetric correction.
+It proves that this construction needs exponentially more than the
+desired number of heads even for parity with one unused coordinate.
+The proof is written only, not Lean-checked. It is not a lower bound
+for the original unrestricted attention model, and changes none of
+that model's definitions or admissibility conditions.
+
+\section{The exact limiting family of a priority head}
+
+For a permutation $\pi$ of $[n]$, call
+\[
+ C_\pi(x)=c_0+\sum_{k=1}^n c_k
+                              \prod_{\ell=1}^k x_{\pi(\ell)}
+                                                        \tag{1}
+\]
+a chain polynomial. Its coefficients are arbitrary real numbers.
+On a Boolean input whose first zero in order $\pi$ occurs at position
+$j$, its value is $v_j=\sum_{k=0}^{j-1}c_k$. At the all-one input
+its value is $v_{n+1}=\sum_{k=0}^n c_k$.
+
+For $0<\eta<1$, the single affine ratio
+\[
+ R_{\pi,\eta}(x)=
+ \frac{\eta^n v_{n+1}+
+       \sum_{j=1}^n\eta^{j-1}v_j(1-x_{\pi(j)})}
+      {\eta^n+\sum_{j=1}^n\eta^{j-1}(1-x_{\pi(j)})}
+                                                        \tag{2}
+\]
+converges to $C_\pi$ on every Boolean input as $\eta\downarrow0$.
+At a first zero in position $j$, divide numerator and denominator by
+$\eta^{j-1}$; all later terms vanish in the limit. The all-one input
+has exactly the value $v_{n+1}$ for every $\eta$. Since the cube is
+finite, the convergence is uniform. Every denominator in (2) has
+strictly negative slopes and minimum $\eta^n>0$ on the whole cube.
+It is consequently admissible in the original affine-ratio normal
+form. Thus any strict sign representation by a sum of $H$ chain
+polynomials transfers to $H$ actual heads by choosing their parameters
+sufficiently small.
+
+An arbitrary symmetric correction is a function $Q(|x|)$ on the cube.
+Its unique multilinear interpolant has one common coefficient
+$\beta_k$ on every monomial of degree $k$. This follows by permuting
+coordinates and using uniqueness of multilinear interpolation. Such
+a correction is itself available with $O(n)$ heads, for example by
+interpolating its $n+1$ values with reciprocals $1/(b_j+|x|)$ at
+distinct positive $b_j$. The corresponding square Cauchy matrix is
+invertible. The obstruction below permits the symmetric correction
+at no cost, so this implementation detail cannot weaken it.
+
+\section{A stronger coefficient-sparsity obstruction}
+
+\begin{theorem}\label{thm:sparse}
+Let $n\ge2$, distinguish coordinate $1$, and put
+$k=\lfloor(n-2)/2\rfloor$. Suppose a multilinear polynomial
+\[
+                         P(x)=\sum_{S\subseteq[n]}c_S x^S
+\]
+satisfies the strict signs
+\[
+              (-1)^{x_2+\cdots+x_n}P(x)>0
+                    \qquad\text{for every }x\in\{0,1\}^n.       \tag{3}
+\]
+Suppose also that there are real numbers $\beta_0,\ldots,\beta_n$
+such that, in each degree, at most $H$ coefficients $c_S$ differ from
+$\beta_{|S|}$. Then
+\[
+                  H\ge\frac12\binom{n-1}{k}.                   \tag{4}
+\]
+\end{theorem}
+
+\begin{proof}
+Write $U=[n]\setminus\{1\}$. For $T\subseteq U$, let
+$a_T=(-1)^{|T|}P(0,\mathbf1_T)>0$. Boolean inversion on the face
+$x_1=0$ gives, for every $S\subseteq U$,
+\[
+ c_S=\sum_{T\subseteq S}(-1)^{|S|-|T|}P(0,\mathbf1_T)
+       =(-1)^{|S|}\sum_{T\subseteq S}a_T.                       \tag{5}
+\]
+In particular, $(-1)^{|S|}c_S>0$. If $j\in U\setminus S$, then
+\[
+ (-1)^{|S|+1}c_{S\cup\{j\}}
+       =\sum_{T\subseteq S\cup\{j\}}a_T
+       >\sum_{T\subseteq S}a_T
+       =(-1)^{|S|}c_S.                                         \tag{6}
+\]
+The strict inequality uses the positive terms with $j\in T$.
+Applying the same inversion argument on the face $x_1=1$ yields
+\[
+              (-1)^{|S|}(c_S+c_{S\cup\{1\}})>0.               \tag{7}
+\]
+
+Call $S$ exceptional when $c_S\ne\beta_{|S|}$. For every
+$k$-element $S\subseteq U$ and every $j\in U\setminus S$, at
+least one of the three sets
+\[
+                         S,\quad S\cup\{j\},\quad S\cup\{1\}
+                                                                    \tag{8}
+\]
+is exceptional. Otherwise (5) and (6) say that $\beta_k$ has sign
+$(-1)^k$, that $\beta_{k+1}$ has the opposite sign, and that
+$|\beta_{k+1}|>|\beta_k|$. Therefore
+$\beta_k+\beta_{k+1}$ has sign $(-1)^{k+1}$, contrary to (7).
+
+There are $B d$ pairs $(S,j)$ in (8), where
+$B=\binom{n-1}{k}$ and $d=n-1-k$. An exceptional set of degree
+$k$ occurs in at most $d$ pairs. An exceptional set of degree
+$k+1$ containing coordinate $1$ occurs as $S\cup\{1\}$ in at
+most $d$ pairs. One not containing coordinate $1$ occurs as
+$S\cup\{j\}$ in exactly $k+1$ possible pairs. Our choice of $k$
+ensures $k+1\le d$. Since there are at most $H$ exceptions in each
+of these two degrees, all exceptions together cover at most $2Hd$
+pairs. Every pair must be covered by the preceding paragraph, so
+$Bd\le2Hd$. Since $d>0$, this proves (4).
+\end{proof}
+
+\begin{theorem}[Failure of the hybrid proposal]
+If an arbitrary symmetric correction plus $H$ chain polynomials
+strictly sign-represents parity on coordinates $2,\ldots,n$, then
+\[
+                  H\ge\frac12\binom{n-1}{\lfloor(n-2)/2\rfloor}
+                    =\Omega(2^n/\sqrt n).                     \tag{9}
+\]
+\end{theorem}
+
+\begin{proof}
+Every chain contains at most one monomial in each degree. Thus the
+sum of $H$ chain polynomials changes at most $H$ coefficients per
+degree from the common coefficient supplied by the symmetric part.
+Theorem~\ref{thm:sparse} applies. The final estimate is the usual
+central-binomial estimate; the index in (9) is central or one below
+central and hence differs only by a bounded factor.
+\end{proof}
+
+\paragraph{What this excludes and what it does not.}
+The proposed construction used the $n!$ possible priority orders per
+head to seek an additional logarithmic saving, with a symmetric term
+intended to remove the parity obstruction. Parity on all but one
+coordinate defeats that repair. The proof even allows arbitrary
+exception locations in each degree, without requiring them to join
+into chains. It does not apply to finite nonzero values of $\eta$ in
+(2) with cancellation of leading terms, to arbitrary admissible
+affine ratios, or to symmetric corrections on arbitrarily chosen
+coordinate subsets. Those would be different mechanisms and would
+require a new argument.
+
+\end{document}
