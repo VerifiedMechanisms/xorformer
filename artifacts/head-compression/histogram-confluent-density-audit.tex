@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A confluent density test for local histogram tangent sheets}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is a complete written compactness argument, not a Lean theorem.
+It concerns the first-order tangent sheets of
+\texttt{local-histogram-zero-branches.tex} at a fixed finite collection
+of pole profiles. It does not bound the original head model, and it
+does not give a quantitative threshold at a polynomially small pole
+scale. In particular it does not exclude the balanced construction
+at a scale chosen separately for each number of heads.
+
+Fix real numbers $x_{lh}$, with $1\leq l\leq g$ and
+$1\leq h\leq H$. For $v=(a,c)\in\mathbb R^{2H}$ define
+\[
+ M_{l0}(v)=\sum_h a_h,\qquad
+ M_{lj}(v)=\sum_h\bigl(a_hx_{lh}^{j}
+                  +j c_hx_{lh}^{j-1}\bigr)\quad(j\geq1).
+                                                               \tag{1}
+\]
+Let $I=[u,v_0]\subset(0,\infty)$ be a fixed compact interval.
+For small positive $\epsilon$ put
+\[
+ T_l(\epsilon;a,c;t)=\sum_h\left(
+       \frac{a_h}{t-\epsilon x_{lh}}
+       +\frac{\epsilon c_h}{(t-\epsilon x_{lh})^2}\right).
+                                                               \tag{2}
+\]
+The factor $\epsilon$ in the second term does not restrict its
+coefficient space for any fixed positive $\epsilon$.
+
+\begin{theorem}[An injective moment cutoff]
+Suppose the linear map
+\[
+ v\longmapsto\bigl(M_{lj}(v):1\leq l\leq g,\ 0\leq j\leq L\bigr)
+                                                               \tag{3}
+\]
+is injective. There is $\epsilon_0>0$ such that, whenever
+$0<\epsilon<\epsilon_0$ and $(a,c)\ne0$, at least one function
+$T_l(\epsilon;a,c;\cdot)$ has at most $L$ distinct zeros in $I$.
+Consequently, on any increasing list of queries in $I$, its strict
+sign word has at most $L$ sign changes.
+\end{theorem}
+\begin{proof}
+Injectivity in finite dimension gives a constant $C$ with
+\[
+ \|v\|\leq C\max_{l,j\leq L}|M_{lj}(v)|.                    \tag{4}
+\]
+For nonzero $v$ normalize by
+$\alpha=\max_{l,j\leq L}\epsilon^j|M_{lj}(v)|>0$.
+For $0<\epsilon\leq1$, (4) implies
+$\|v/\alpha\|\leq C\epsilon^{-L}$.
+The geometric series and its derivative give
+\[
+ T_l(\epsilon;v/\alpha;t)
+   =\sum_{j=0}^L\epsilon^jM_{lj}(v/\alpha)t^{-j-1}
+       +E_l(\epsilon;t),                                    \tag{5}
+\]
+where $\|E_l(\epsilon;\cdot)\|_{C^L(I)}=O(\epsilon)$,
+uniformly in the normalized vector. Indeed the unnormalized
+remainder, including each of its first $L$ derivatives in $t$, is
+$O(\epsilon^{L+1}\|v/\alpha\|)$ on $I$. All pole profiles are
+fixed and $u>0$.
+
+If the assertion were false, there would be $\epsilon_n\to0$ and
+normalized vectors for which every group has at least $L+1$
+distinct zeros in $I$. The finitely many coefficients
+$\epsilon_n^jM_{lj}(v_n/\alpha_n)$ lie in $[-1,1]$ and their
+maximum absolute value is one. Pass to a convergent subsequence.
+For at least one group $l$, multiplication of (5) by $t^{L+1}$
+then converges in $C^L(I)$ to a nonzero polynomial $P$ of degree
+$d\leq L$. Its $d$th derivative is a nonzero constant, so for
+large $n$ the $d$th derivative of
+$t^{L+1}T_l(\epsilon_n;v_n/\alpha_n;t)$ has no zero in $I$.
+Rolle's theorem implies that this function has at most $d$ distinct
+zeros in $I$, a contradiction. Multiplication by $t^{L+1}>0$
+preserves zeros and signs. Finally every adjacent strict sign change
+gives a distinct zero by the intermediate value theorem.
+\end{proof}
+
+\paragraph{Finite families and sign density.}
+The same conclusion holds uniformly over any finite family of profiles
+for which (3) is injective with the same cutoff $L$: take the minimum
+of the finitely many positive scale bounds. If there are $q$ queries
+in each group, the proportion of strict sign words attained by the
+union of all these tangent sheets is therefore at most
+\[
+ g\,2^{1-q}\sum_{j=0}^{\min(L,q-1)}\binom{q-1}{j}.            \tag{6}
+\]
+This is a union bound over the group having few sign changes. It is
+independent of the number of sheets. A length-$q$ word with exactly
+$j$ sign changes is specified by its initial sign and its $j$
+change locations, which proves the count used in (6).
+For example, if $L\leq(q-1)/4$, the usual binomial entropy estimate
+makes (6) at most $g\,2^{-c(q-1)}$ for an absolute $c>0$.
+
+For the histogram sheets take
+$x_{lh}=\pi(h)+\rho_l(h)$. The derivative in the previous note is
+exactly (2), after writing its pole perturbation as $\epsilon c$.
+The theorem is applicable only after the stated moment rank has been
+checked or proved for the chosen branches. Branch counting does not
+establish that hypothesis, and no generic rank assertion is needed
+for the theorem.
+
+\paragraph{Why this does not settle a balanced finite-scale decoder.}
+Neither (4) nor the compactness proof gives a scale bound uniform in
+$H$, the profiles, or the query interval. Inverting a moment matrix
+can introduce very large constants. The argument therefore does not
+show that a whole-cube admissible scale of order
+$1/(H^2\log H)$ lies below $\epsilon_0$. A proof at such a finite
+scale, a family with delayed moment rank growth, or query locations
+that themselves degenerate with $\epsilon$ remains outside this
+audit. Nor does this first-order statement exclude nonlinear
+perturbations of the zero branches.
+
+\paragraph{Exact checks.}
+The companion program verifies the moment coefficients of (2),
+the injectivity cutoff for the three saved four-head branches,
+and several higher-group examples. These are rank diagnostics,
+not numerical estimates of $\epsilon_0$ or sign universality.
+\end{document}
