@@ -2,6 +2,7 @@
 \usepackage{amsmath,amssymb,amsthm,hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
 \begin{document}
 \title{Exact One-Head Transport of a Positive Cauchy Kernel}
 \author{}
@@ -199,5 +200,113 @@ cannot transfer that library: already four separated levels obstruct
 it. Iterating the scalar fold alone is not an identity for the kernel,
 because its separate $q$ coordinate must also be transported. No
 bounded-cost iteration accomplishing that transport is established.
+
+\section{A new mechanism after allowing row and column corrections}
+
+The preceding classification deliberately excludes separate row and
+column corrections. Allowing them changes the transport mechanism.
+
+\begin{theorem}[Universal denominator inversion]
+For nonzero $d,e$ with $d+e\ne0$ and arbitrary $a,b$,
+\[
+ \frac{a+b}{d+e}
+ =\frac a d+\frac b e
+   -\frac{a/d^2+b/e^2}{1/d+1/e}.
+\]
+Consequently a sum of $H$ additive grid ratios admits a termwise
+inversion of its row and column denominator profiles with only one
+additional additive row-plus-column correction in total.
+\end{theorem}
+
+\begin{proof}
+The fraction on the right equals
+$(ae/d+bd/e)/(d+e)$. Subtracting it from $a/d+b/e$ gives
+$(a+b)/(d+e)$. For head $h$, substitute arbitrary row values
+$a_{hi},d_{hi}$ and column values $b_{hj},e_{hj}$. The corrections
+sum to the single additive function
+\[
+ R_i+C_j,
+ \qquad R_i=\sum_h a_{hi}/d_{hi},
+ \qquad C_j=\sum_h b_{hj}/e_{hj}.
+\]
+There is no multiplication of the correction cost by $H$.
+\end{proof}
+
+On a one-hot grid with $r+s$ coordinates the additive correction is
+itself exactly one reverse-oriented head. Choose $\eta>0$ with
+$1-(r+s-2)\eta>0$, use the denominator
+\[
+ 1+2\eta-\eta\sum_i x_i-\eta\sum_j z_j,
+\]
+and numerator $\sum_iR_ix_i+\sum_jC_jz_j$. The denominator is one
+on the grid, is positive on the entire cube, and has all slopes
+strictly negative.
+
+\begin{lemma}[The asymmetric whole-cube budget]
+For finite nonempty row and column lists $D_i,E_j$, with respectively
+$r,s\ge2$ entries, the grid denominator $D_i+E_j$ has a strictly
+positive full-cube extension with nonpositive slopes if and only if
+\[
+ \sum_iD_i+\sum_jE_j
+   >(r-1)\max_iD_i+(s-1)\max_jE_j.
+\]
+When this holds all slopes can be made strictly negative while
+preserving the grid values exactly.
+\end{lemma}
+
+\begin{proof}
+Every extension has slopes of magnitudes $U-D_i$ and $V-E_j$,
+constant $U+V$, and $U\ge\max D$, $V\ge\max E$. Its minimum is
+\[
+ \sum_iD_i+\sum_jE_j-(r-1)U-(s-1)V.
+\]
+Choosing both maxima is optimal. Strictify all magnitudes by
+$\eta>0$ and increase the constant by $2\eta$; the minimum decreases
+by $(r+s-2)\eta$.
+\end{proof}
+
+Thus the inversion identity supplies an admissible reverse transport
+whenever this budget holds for $D_i=1/d_i$ and $E_j=1/e_j$.
+Positivity of the original grid denominators alone is insufficient.
+In particular transformed positivity requires $d_ie_j>0$ on the
+grid, because $1/d_i+1/e_j=(d_i+e_j)/(d_ie_j)$.
+
+\begin{corollary}[Inverse Joukowski with an additive correction]
+For $a>0$, define
+\[
+ d(t)=\frac{t}{t^2+a^2},\qquad
+ v(t)=\frac{t^2}{t^2+a^2}.
+\]
+For all positive $p,t$,
+\[
+ \frac p{p+t}
+ =1+v(p)-v(t)
+  -\frac{v(p)d(p)+(1-v(t))d(t)}{d(p)+d(t)}.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply universal inversion to the exact Joukowski transport with
+row numerator $p$, column numerator $a^2/t$, and denominator
+profiles $p+a^2/p$ and $t+a^2/t$. The row correction is $v(p)$
+and the column correction is $1-v(t)$.
+\end{proof}
+
+The denominator profile now equals $1/(t+a^2/t)$, which is not among
+the profiles in the one-head classification. This illustrates why
+the four-level obstruction there cannot be applied after silently
+introducing row and column corrections.
+
+\paragraph{Iteration and the exact remaining issue.}
+The universal inversion formula itself is involutive. Combining it
+with gauge changes $d_i\mapsto d_i+c$, $e_j\mapsto e_j-c$ yields
+common fractional linear transformations of the two profiles.
+It does not create repeated nonlinear Joukowski folds. The first
+Joukowski step used a special Cauchy numerator; after inversion the
+new numerator is $v(p)d(p)+(1-v(t))d(t)$, so a further fold must
+transport that numerator as well. No bounded-cost identity doing
+so with an eventually admissible profile is proved here. However,
+any additive corrections arising from a valid simultaneous
+transport can be summed across all heads at constant total cost.
 
 \end{document}
