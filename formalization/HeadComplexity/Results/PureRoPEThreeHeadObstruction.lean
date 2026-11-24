@@ -169,7 +169,7 @@ theorem exists_quadratic {n : ℕ} (f : (Fin n → Bool) → Bool)
         have := (hP (flip x)).mp h
         rw [heven x, hx] at this
         contradiction)
-      exact iff_of_false (by linarith) (by simp [hx])
+      exact iff_of_false (by linarith) (by simp)
 
 def face {n : ℕ} (x : Fin n → Bool) (i j : Fin n) (s t : Bool) : Fin n → Bool :=
   Function.update (Function.update x i s) j t
@@ -225,6 +225,7 @@ def function (x : Fin 12 → Bool) : Bool := decide (0 < scoreInt x)
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
+-- Check global complementation on the full finite cube by kernel reduction.
 theorem function_even : ∀ x, function (flip x) = function x := by decide +kernel
 
 def zeroInput : Fin 12 → Bool := fun _ ↦ false
@@ -234,12 +235,14 @@ def doubleInput (j k : Fin 6) : Fin 12 → Bool :=
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
+-- Check the base, singleton, and doubleton integer labels in the kernel.
 theorem slice_labels : function zeroInput = false ∧
     (∀ j, function (singletonInput j) = true) ∧
     (∀ j k, j ≠ k → function (doubleInput j k) = false) := by decide +kernel
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
+-- Check the thirty off-diagonal cross faces by integer kernel reduction.
 theorem cross_faces : ∀ i j : Fin 6, i ≠ j → ∀ s t : Bool,
     function (face zeroInput (left i) (right j) s t) = decide (s ≠ t) := by decide +kernel
 
@@ -261,6 +264,7 @@ theorem product_face_difference (c : ℝ) (A V : Fin 3 → Fin 12 → ℝ)
   ring
 
 set_option maxHeartbeats 8000000 in
+-- Normalize six identities among quadratic polynomials in the coefficients.
 theorem column_identity (c : ℝ) (A V : Fin 3 → Fin 12 → ℝ) (j : Fin 6) :
     4 * (∑ i, crossCoefficient A V i j) =
       3 * productScore c A V (singletonInput j) - 3 * productScore c A V zeroInput +

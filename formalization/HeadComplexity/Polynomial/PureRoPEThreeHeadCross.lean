@@ -158,11 +158,11 @@ theorem no_three_negative_products (k : Fin 3 → ℝ)
 
 /-- The upper-left block of the inverse pure-head coefficient matrix cannot
 be entrywise positive. -/
-theorem inverseA_not_positive (k l : Fin 3 → ℝ) (hk : ∀ i, k i ≠ 0)
+theorem inverseA_not_positive (k l : Fin 3 → ℝ) (_hk : ∀ i, k i ≠ 0)
     (hp : ∀ i j, 0 < inverseA k l j i) : False := by
   have hl (i : Fin 3) : 0 < l i := by
     have h := hp i i
-    simp only [inverseA, if_pos rfl] at h
+    simp only [inverseA] at h
     exact (div_pos_iff.mp h).resolve_right (by
       intro hn
       exact (not_lt_of_ge (sq_nonneg (k i))) hn.2) |>.1
@@ -196,7 +196,7 @@ theorem factorization (k l : Fin 3 → ℝ) (S B T D : Fin 3 → Fin 6 → ℝ)
 theorem columns_unit (T D : Fin 3 → Fin 6 → ℝ) (j : Fin 3) :
     (columns T D).mulVec (unit j) = T j := by
   funext i
-  fin_cases j <;> simp [columns, unit, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  fin_cases j <;> simp [columns, unit, Matrix.mulVec, dotProduct]
 
 /-- A six-by-six cross matrix from three pure heads cannot have nonpositive
 off-diagonal entries and strictly positive column sums. This does not assume
