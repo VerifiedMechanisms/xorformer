@@ -73,6 +73,31 @@ Twelve random fitting restarts failed for the 24-bit example. Continuing from th
 
 `search_mixed_tribes_active.py` continues a smaller certificate on a larger count grid, repeatedly adding violating inputs. The tested continuations at $m=5$ and $m=6$ did not produce a certificate. These are unresolved searches, including unrestricted vanilla representations that need not share coefficients within literal groups.
 
+## Balanced parity extensions
+
+`search_balanced_extension.py` extends a three-bit parity realization to ten or twelve bits. Every head has mixed denominator slopes whose sum is zero, so their span contains no strictly oriented slope vector. The extra slopes are chosen close to the denominator positivity boundary. This excludes a simple exact-score reorientation argument but does not itself imply a Boolean head lower bound.
+
+The starting identity is the partial-fraction expansion
+
+$$ \frac{s^3-4s}{\prod_{h=1}^{3}(1+t_hs)}=c_0+\sum_{h=1}^{3}\frac{\rho_h}{1+t_hs}. $$
+
+At $s=z_1+z_2+z_3$ on three spins, the numerator is $6z_1z_2z_3$. The generator uses integer centered denominator slopes $\beta_{h1}=\beta_{h2}=\beta_{h3}=1000t_h$ and balances the remaining slopes so their total sum is zero. The denominator restricted to the face where every extra bit is zero is exactly $1000(1+t_hs)$.
+
+Twenty-four of the certificates also use unequal token values $v_0=-k_h$ and $v_1=k_h$. Let $p_h=1000t_h$, choose centered masses $s_{hi}=|\beta_{hi}|+1$, and put $r_h=k_h(p_h+1)/p_h$. The query numerator is
+
+$$ \eta_h=1000\rho_h+1000r_h+k_h\sum_{i\gt3}s_{hi},\qquad c=c_0-\sum_h r_h. $$
+
+The balanced slopes give the restricted numerator $1000\rho_h+r_hD_h$, so the same parity restriction remains exact. All atom weights, query weights, query numerators, and readout constants are rational and stored explicitly.
+
+`exact_balanced_extensions.jsonl` contains 56 matching pure and vanilla three-head certificates: eight ten-bit functions and 48 twelve-bit functions. Exact verification covers 204,800 cube vertices. The parity restriction proves threshold degree at least three: averaging a hypothetical degree-at-most-two sign polynomial against parity gives zero, whereas every signed summand would be strictly positive. Clearing the three positive denominators proves the matching degree upper bound. Thus every stored function has exactly three heads in both scalar models, and the established scalar-to-architecture bridges give the same architectural counts.
+
+```bash
+python3 artifacts/rope/higher_search/verify_small.py \
+  artifacts/rope/counterexample_search/exact_balanced_extensions.jsonl
+```
+
+`certify_balanced_extension.py` rounds proposed vanilla coefficients and accepts only exact integer sign verification. It and the verifier use only the Python standard library. Six cases initially lacked numerical fits. One also timed out in all four complete real-algebraic orientation searches. Additional fitting produced exact vanilla certificates for all six, so neither the failed fits nor those timeouts supply a lower bound.
+
 ## Other targeted searches
 
 `search_g12_pure_three.py` explored the twelve-bit four-vanilla-head quadratic and a fresh-bit XOR of the seven-bit retained example. The twelve-bit search was stopped when the symbolic pure-three obstruction was obtained. No certificate was found for the XOR target; its search status remains inconclusive.
