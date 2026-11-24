@@ -1,0 +1,11 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124/signed_exponential_quadrature_obstruction.md",
+    "source_spans": 127,
+    "rendered_spans": 127,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124/signed_exponential_quadrature_obstruction.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ C=\\\\left\\\\lbrace a\\\\in\\\\mathbb R^M:|a|_2=1,\\\\ \\\\sum_i a_i e^{-s_i t}\\\\geq0\\\\text{ for'"
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "all_192_signs_verified": true,
+  "all_32_antipodal_classes_verified": true,
+  "cube_dimension": 38,
+  "original_head_count": 2,
+  "sign_rank_lower_bound": 6,
+  "two_affine_product_atoms_plus_bias_rank_upper_bound": 5,
+  "strictly_positive_denominator_constants": [
+    "1/2048",
+    "4077/38912"
+  ],
+  "smallest_denominator_slope": "1/4096",
+  "selected_point_margin": "1/20670",
+  "irrational_bias_coefficient_delta": "1/82680",
+  "bias": "delta*sqrt(2)",
+  "numerical_solver_used_by_checker": false
+}

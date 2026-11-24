@@ -1,0 +1,819 @@
+{
+  "status": "exploratory floating-point LP, failure is not impossibility",
+  "n": 7,
+  "heads": 2,
+  "seed": 912,
+  "elapsed_seconds": 1.1494495868682861,
+  "records": [
+    {
+      "trial": 0,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.004456021346901623,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": {
+            "factors": [
+              0.75,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999999971
+          }
+        }
+      ]
+    },
+    {
+      "trial": 1,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 4.953608246103039e-07,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.03,
+              0.75
+            ],
+            "minimum_computed_margin": 0.9999999999997087
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 1.0
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999998863
+          }
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 0.0019968916080885003,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": null
+        },
+        {
+          "K": 7,
+          "found": null
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.000567167363524107,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.75,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999999716
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.999999999990905
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999954525
+          }
+        }
+      ]
+    },
+    {
+      "trial": 4,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 1.7276279522360216e-05,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999997726
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999997726
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999999432
+          }
+        }
+      ]
+    },
+    {
+      "trial": 5,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 1.5468737366685609e-09,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999126885
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999708962
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "trial": 6,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.00037993012573540874,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.03,
+              0.75
+            ],
+            "minimum_computed_margin": 0.9999999999986358
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999417923
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999977263
+          }
+        }
+      ]
+    },
+    {
+      "trial": 7,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 0.0003124458285434711,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": {
+            "factors": [
+              75.0,
+              3.0
+            ],
+            "minimum_computed_margin": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "trial": 8,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 2.1345996465414478e-10,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": {
+            "factors": [
+              75.0,
+              3.0
+            ],
+            "minimum_computed_margin": 0.9999999999999982
+          }
+        }
+      ]
+    },
+    {
+      "trial": 9,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.00303127880593701,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999998522071
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.999999999997101
+          }
+        }
+      ]
+    },
+    {
+      "trial": 10,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 0.0030130532673005583,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.75,
+              3.0
+            ],
+            "minimum_computed_margin": 0.999999999997689
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999105930328
+          }
+        }
+      ]
+    },
+    {
+      "trial": 11,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 8.75518106638211e-11,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": {
+            "factors": [
+              75.0,
+              75.0
+            ],
+            "minimum_computed_margin": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "trial": 12,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.001844151431415031,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.15
+            ],
+            "minimum_computed_margin": 0.9999999997162377
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999994543032
+          }
+        }
+      ]
+    },
+    {
+      "trial": 13,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 0.0003709930397334388,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              15.0,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999998926796
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999981977671268
+          }
+        }
+      ]
+    },
+    {
+      "trial": 14,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 3.3884726492058036e-08,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              75.0
+            ],
+            "minimum_computed_margin": 0.9999980926513672
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              15.0
+            ],
+            "minimum_computed_margin": 0.9990785821870681
+          }
+        }
+      ]
+    },
+    {
+      "trial": 15,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.0030601065449596676,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999979821
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999995417
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999999787
+          }
+        }
+      ]
+    },
+    {
+      "trial": 16,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 1.3783899348255874e-05,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": null
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.15,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999966916846
+          }
+        }
+      ]
+    },
+    {
+      "trial": 17,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 3.0050608002406016e-05,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": {
+            "factors": [
+              0.03,
+              0.75
+            ],
+            "minimum_computed_margin": 0.9999999999998881
+          }
+        }
+      ]
+    },
+    {
+      "trial": 18,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.0010284521890024378,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999995407052
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999428297
+          }
+        }
+      ]
+    },
+    {
+      "trial": 19,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 0.0002504454935250717,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              3.0,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999861302
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.75,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999997939
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999998127649
+          }
+        }
+      ]
+    },
+    {
+      "trial": 20,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 3.4844463058608436e-08,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              75.0
+            ],
+            "minimum_computed_margin": 0.9999999999998863
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.75
+            ],
+            "minimum_computed_margin": 0.9999999403953552
+          }
+        }
+      ]
+    },
+    {
+      "trial": 21,
+      "range_scale": 2.0,
+      "minimum_original_abs_score": 0.0039900305579311235,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              0.75,
+              0.75
+            ],
+            "minimum_computed_margin": 0.9999999999998153
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999854481
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.999999999998181
+          }
+        }
+      ]
+    },
+    {
+      "trial": 22,
+      "range_scale": 8.0,
+      "minimum_original_abs_score": 5.090437782351515e-07,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": null
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.03,
+              3.0
+            ],
+            "minimum_computed_margin": 0.9999999999563443
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.999999999749889
+          }
+        }
+      ]
+    },
+    {
+      "trial": 23,
+      "range_scale": 25.0,
+      "minimum_original_abs_score": 7.197108237591821e-07,
+      "positive_labels": 64,
+      "fits": [
+        {
+          "K": 1,
+          "found": null
+        },
+        {
+          "K": 2,
+          "found": {
+            "factors": [
+              3.0,
+              0.75
+            ],
+            "minimum_computed_margin": 0.9999999999974158
+          }
+        },
+        {
+          "K": 3,
+          "found": {
+            "factors": [
+              0.15,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999708962
+          }
+        },
+        {
+          "K": 7,
+          "found": {
+            "factors": [
+              0.03,
+              0.03
+            ],
+            "minimum_computed_margin": 0.9999999999902229
+          }
+        }
+      ]
+    }
+  ]
+}
