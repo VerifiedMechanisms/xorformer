@@ -72,3 +72,9 @@ The new row coefficient is the sum over $I_i$ of the former row coefficients. It
 [ThreeHeadRegularBlockPattern.lean](../../formalization/HeadComplexity/Results/ThreeHeadRegularBlockPattern.lean) proves `not_computable_three` and `HStar_ge_four` for arbitrary such covers and arbitrary face backgrounds. Two verified choices are the six complements $I_i=X\setminus\lbrace i\rbrace$, each of size five, and the cyclic blocks $I_i=\lbrace i,i+1,i+3\rbrace$ with indices modulo six, each of size three. Their regularity declarations are `complementBlocks_regular` and `cyclicBlocks_regular`.
 
 This extension adds certified lower-bound targets. It does not assert that any pure three-head function meets them.
+
+## Auxiliary coordinates
+
+The core eleven coordinates may be embedded into any larger cube. Each parity face may fix all auxiliary coordinates independently. The cubic alternating difference is independent of these fixed coordinates, because a polynomial of degree at most three has no term containing the three varying coordinates and an auxiliary coordinate.
+
+The Lean declarations `ThreeHeadEmbeddedPattern.not_computable_three` and `ThreeHeadEmbeddedPattern.HStar_ge_four` prove the same lower bound for every input dimension at least eleven. This permits one separate auxiliary control coordinate for each of the thirty-six faces, without changing the obstruction or assuming that the model ignores those coordinates.
