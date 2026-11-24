@@ -1,0 +1,18 @@
+'HeadComplexity.OriginalMarginCapacity.highMarginFunctions_subset_orderedPatterns' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

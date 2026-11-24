@@ -1,0 +1,6 @@
+HeadComplexity.Research.MarginSensitiveCapacity: audited 20 theorem declarations
+HeadComplexity.Research.CoefficientOrderChart: audited 18 theorem declarations
+HeadComplexity.Research.OriginalMarginCapacity: audited 28 theorem declarations
+HeadComplexity.Research.MarginCapacityEstimates: audited 25 theorem declarations
+Audited 91 theorem declarations across 4 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].
