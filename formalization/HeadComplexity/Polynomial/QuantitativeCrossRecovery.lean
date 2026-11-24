@@ -1,4 +1,5 @@
 import HeadComplexity.Polynomial.LowRankCrossRecovery
+import HeadComplexity.Polynomial.DeterminantPerturbation
 
 set_option linter.style.header false
 
@@ -12,6 +13,69 @@ they do not assume bounded numerator parameters in a competing representation.
 namespace HeadComplexity.QuantitativeCrossRecovery
 noncomputable section
 open scoped BigOperators Matrix
+
+/-- The cofactor formula gives the explicit inverse bound used in the appendix. -/
+theorem inverse_entry_le (A : Matrix (Fin 6) (Fin 6) ℝ) (M d : ℝ)
+    (hM : 0 ≤ M) (hd : 0 < d) (hA : ∀ i j, |A i j| ≤ M)
+    (hdet : d ≤ |A.det|) (i j : Fin 6) : |A⁻¹ i j| ≤ 120 * M ^ 5 / d := by
+  have hcof : |A.adjugate i j| ≤ 120 * M ^ 5 := by
+    rw [Matrix.adjugate_fin_succ_eq_det_submatrix]
+    simp only [abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul]
+    have hh := Matrix.det_le (abv := AbsoluteValue.abs)
+      (A := A.submatrix j.succAbove i.succAbove) (fun p q ↦ hA _ _)
+    norm_num at hh
+    exact hh
+  rw [Matrix.inv_def, Matrix.smul_apply, smul_eq_mul, Ring.inverse_eq_inv, abs_mul, abs_inv]
+  calc
+    _ ≤ |A.det|⁻¹ * (120 * M ^ 5) :=
+      mul_le_mul_of_nonneg_left hcof (inv_nonneg.mpr (abs_nonneg _))
+    _ ≤ d⁻¹ * (120 * M ^ 5) :=
+      mul_le_mul_of_nonneg_right (inv_anti₀ hd hdet) (by positivity)
+    _ = _ := by ring
+
+def inverseBound (d : ℝ) : ℝ := 1 + 240 * 19 ^ 5 / d
+
+theorem inverseBound_ge_one (d : ℝ) (hd : 0 < d) : 1 ≤ inverseBound d := by
+  have hh : 0 ≤ (240 * (19 : ℝ) ^ 5) / d := by positivity
+  unfold inverseBound
+  linarith
+
+/-- Squarefree entry perturbations preserve the selected cross blocks and
+bound both inverses by the same explicit constant, without a parameter bound. -/
+theorem cross_block_stability (A B : Matrix (Fin 6) (Fin 6) ℝ) (d e : ℝ)
+    (hd : 0 < d) (he : 0 ≤ e) (he1 : e ≤ 1)
+    (hA : ∀ i j, |A i j| ≤ 18) (hAB : ∀ i j, |A i j - B i j| ≤ e)
+    (hdet : d ≤ |A.det|) (hsmall : 4320 * (19 : ℝ) ^ 5 * e < d / 2) :
+    A.det ≠ 0 ∧ B.det ≠ 0 ∧
+      (∀ i j, |A⁻¹ i j| ≤ inverseBound d) ∧
+      (∀ i j, |B⁻¹ i j| ≤ inverseBound d) := by
+  have hA19 (i j) : |A i j| ≤ 19 := (hA i j).trans (by norm_num)
+  have hB19 (i j) : |B i j| ≤ 19 := by
+    have ht : |B i j| ≤ |A i j| + |A i j - B i j| := by
+      simpa [abs_sub_comm, add_comm] using abs_sub_le (B i j) (A i j) 0
+    linarith [hA i j, hAB i j]
+  have hg := DeterminantPerturbation.det_sub_det_le (by simp) A B 19 e
+    (by norm_num) he hA19 hB19 hAB
+  have hBdet : d / 2 < |B.det| := by
+    have ht : |A.det| ≤ |A.det - B.det| + |B.det| := by
+      simpa using abs_sub_le A.det B.det 0
+    linarith
+  have hAn : A.det ≠ 0 := by intro hz; simp [hz] at hdet; linarith
+  have hBn : B.det ≠ 0 := by intro hz; simp [hz] at hBdet; linarith
+  refine ⟨hAn, hBn, ?_, ?_⟩
+  · intro i j
+    have hh := inverse_entry_le A 19 d (by norm_num) hd hA19 hdet i j
+    have hp : 0 ≤ (120 * (19 : ℝ) ^ 5) / d := by positivity
+    have heq : 240 * (19 : ℝ) ^ 5 / d = 2 * (120 * 19 ^ 5 / d) := by ring
+    unfold inverseBound
+    rw [heq]
+    linarith
+  · intro i j
+    have hh := inverse_entry_le B 19 (d / 2) (by norm_num) (by linarith) hB19 hBdet.le i j
+    have heq : (120 * (19 : ℝ) ^ 5) / (d / 2) = 240 * 19 ^ 5 / d := by ring
+    rw [heq] at hh
+    unfold inverseBound
+    linarith
 
 theorem inverse_difference (A B : Matrix (Fin 6) (Fin 6) ℝ)
     (hA : A.det ≠ 0) (hB : B.det ≠ 0) :
