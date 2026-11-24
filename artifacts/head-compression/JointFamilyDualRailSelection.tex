@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Complementary-rail lifting does not supply an affine selector}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The obstruction below is Lean checked in
+\texttt{JointFamilyDualRailPenalty.lean}. It does not modify or contradict
+the inherited exact lifting theorem in \texttt{DualRailLift.lean}.
+It rules out one proposed use of that lift in the affine-penalty gluing
+construction, not nonlinear selection or the original upper-bound target.
+
+\begin{theorem}
+Let $L$ be an affine function nonnegative on the Boolean cube. If
+$L(x)=L(1-x)=0$ for one antipodal pair, then $L$ vanishes everywhere
+on the cube. Consequently, if $L$ vanishes on all complementary-rail
+points $(x,1-x)$, it cannot suppress any other Boolean input.
+\end{theorem}
+\begin{proof}
+Writing $L(y)=c+\sum_i b_i y_i$ gives
+\[
+ L(y)+L(1-y)=2c+\sum_i b_i=L(x)+L(1-x)=0.
+\]
+Both terms are nonnegative, so each is zero. Complementing every
+coordinate of $(x,1-x)$ gives another complementary-rail point.
+The Lean declarations are
+\texttt{jointFamily\_nonnegative\_affine\_antipodal\_zeros} and
+\texttt{jointFamily\_dualRail\_affine\_penalty\_zero}.
+\end{proof}
+
+Already on one pair, the affine parallelogram identity is
+$L(00)+L(11)=L(01)+L(10)$. Nonnegativity and zeros at $01,10$ force
+zeros at $00,11$. This is separately checked as
+\texttt{jointFamily\_nonnegative\_affine\_pair\_obstruction}.
+
+\paragraph{What the matching cover would have supplied.}
+In a layer of weight $k$ on $2k$ coordinates, a perfect matching
+selects the $2^k$ points having exactly one one in each pair. Each
+layer point belongs to exactly $k!$ matchings, out of $(2k-1)!!$
+total matchings. This regular incidence gives an explicit fractional
+cover and standard random partial covers. These are combinatorial
+facts only: a score fitting one matching cube still has uncontrolled
+signs at other layer points. The affine penalty used by the existing
+global transfer cannot remove those values, by the theorem above.
+
+On the fixed weight-$k$ layer, the number of violated matching pairs
+equals twice the number of pairs equal to $11$, so a natural penalty
+is a sum of quadratic products. Implementing its conjunction or
+composition by a small sum of admissible affine ratios is a separate
+problem. Expanding a product over all $k$ pairs gives an exponential
+cost and supplies no saving. A positive continuation must either
+control signs across the entire layer, construct a cheaper nonlinear
+selector, or change the gluing geometry.
+
+\end{document}
