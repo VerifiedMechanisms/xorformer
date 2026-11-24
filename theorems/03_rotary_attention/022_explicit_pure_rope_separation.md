@@ -66,6 +66,8 @@ $$ T(x)\gt0\Longleftrightarrow f(x)=1,\qquad |T(x)|\geq\varepsilon. $$
 
 This is a symbolic full-cube sign verification, including ties; it does not rely on enumerating the cube. At the all-one input every $S_h$ is positive, while at the all-zero input every $S_h$ is negative. Hence these complementary inputs have different labels.
 
+The integer identity, strict sign equivalence, margin, actual unshifted function's pure upper bound, and failure of global complement invariance are Lean-checked in [PureRoPEReplicationStrict.lean](../../formalization/HeadComplexity/Results/PureRoPEReplicationStrict.lean). The relevant declarations are `scaled_cubic_integer`, `full_cube_strict`, `explicitUnshiftedFunction_pure_three`, `explicitUnshiftedFunction_margin`, and `explicitUnshiftedFunction_not_complement_invariant`.
+
 ### Theorem 2. Realization in the specified architecture
 
 The parameters above are pure atoms with token-only values. The fixed-query, fixed-frequency interpolation theorem in [Theorem 14](014_rope_head_complexity.md) realizes any finite list of their positive weights: interpolate the logits $\log a_{h,i,r}$ and $\log\widehat b_{h,i,r}$ with standard rotary features, set the query self-logit to $\log\gamma_h$, and set its value to $\eta_h/\gamma_h$. Shared independent embeddings for tokens $0,1,=$ and an output direction realize all three heads simultaneously. The output constant is $-\varepsilon$.
@@ -84,7 +86,7 @@ $$ R=N_0E_1E_2+N_1E_0E_2+N_2E_0E_1 $$
 
 is a homogeneous cubic in fourteen variables, each $N_h$ is arbitrary, and each $E_h$ has strictly positive coefficients, strictly negative coefficients, or is zero, then some squarefree cubic coefficient of $R-F_3$ has magnitude greater than $2^{-2000}$. The statement also holds for limits of such tensors.
 
-For clarity, the mechanism is summarized here. The six forms $S_h,B_h$ are independent, and every six-row minor of their coefficient matrix is nonzero. Every $B_h$ has both signs. On the kernel of a nonnegative denominator direction, the target cubic has a Hessian with at least two positive and two negative eigenvalues bounded away from zero. A vanilla cubic restricted to one of its denominator kernels is a product of three linear forms and has Hessian rank at most three. This gives a uniform gap for the complete cubic coefficients. Finally, a cubic depending on at most six linear forms has Hessian rank at most six. Invertible disjoint cross blocks of the target Hessians recover every repeated-index coefficient continuously from its squarefree coefficients, with explicit bounds. This gives the stated squarefree gap, including unbounded numerators, colliding denominators, zero directions, and arbitrary untied competitors.
+For clarity, the mechanism is summarized here. The six forms $S_h,B_h$ are independent, and every six-row minor of their coefficient matrix is nonzero. Every $B_h$ has both signs. On the kernel of a nonnegative denominator direction, one can choose a bounded point where the target cubic's Hessian has a six-by-six minor with determinant bounded away from zero. The competing vanilla cubic has Hessian rank at most five at that point, because one of its denominator forms vanishes. A finite determinant perturbation estimate gives a uniform gap for the complete cubic coefficients. Finally, a cubic depending on at most six linear forms has Hessian rank at most six. Invertible disjoint cross blocks of the target Hessians recover every repeated-index coefficient continuously from its squarefree coefficients, with explicit bounds. This gives the stated squarefree gap, including unbounded numerators, colliding denominators, zero directions, and arbitrary untied competitors.
 
 The rational constants and every numerical inequality in this argument are checked by [verify_gap.py](../../artifacts/rope/quantitative_cubic_gap/verify_gap.py). The mass bounds, all 3003 six-row minors, and all 182 required cross-Hessian minors are independently checked by [verify.py](../../artifacts/rope/generic_cubic_completion/verify.py).
 
@@ -125,6 +127,8 @@ $$ 679!\cdot2^{414\cdot679}\lt2^{300000}. $$
 In this display the product is ordinary multiplication. The bound follows directly from $679!\leq1024^{679}$. No choice of the minor needs to be computed: every nonzero minor obeys this bound, and the interpolation argument proves that one exists.
 
 The exact map, denominator bounds, coefficient bounds, and polynomial identities are checked in [verify_chart.py](../../artifacts/rope/generic_cubic_completion/verify_chart.py). Its additional finite-field rank check is corroborating evidence; the interpolation proof supplies the full-grid rank statement used here.
+
+The displayed rational inverse, its denominator and row bounds are also Lean-checked in `PureCubicChart.lean`. The ten-point product-grid interpolation step is `PureCubicGraph.eq_zero_of_chartGrid`. The graph-divisibility and evaluation-minor bounds in this theorem remain handwritten.
 
 ### Theorem 4. Quantitative sign rigidity on the mean grid
 
@@ -206,10 +210,32 @@ As the positive scalar $a$ tends to zero, $\Delta_{jk}(a)/a^2$ tends to $2D_jD_k
 
 $$ a^{-2}\bigl(U_0\Delta_{12}(a)+U_1\Delta_{02}(a)+U_2\Delta_{01}(a)\bigr)\longrightarrow\frac{2G}{R^3}. $$
 
-There are only seven distinct denominators: $R$, the three $R+aD_j$, and the three $R+a(D_j+D_k)$. For sufficiently small positive $a$, each denominator is positive and has strictly positive coefficients in the original bit variables, hence admits an arbitrary affine numerator in the vanilla model. Because the cube is finite and the limiting signs are strict, one such $a$ preserves all labels simultaneously. Combining terms with the same denominator gives seven vanilla heads. This proves the advertised range without claiming that four heads suffice. $\blacksquare$
+There are only seven distinct denominators: $R$, the three $R+aD_j$, and the three $R+a(D_j+D_k)$. For sufficiently small positive $a$, each denominator is positive and has strictly positive coefficients in the original bit variables, hence admits an arbitrary affine numerator in the vanilla model. Because the cube is finite and the limiting signs are strict, one such $a$ preserves all labels simultaneously. Combining terms with the same denominator gives seven vanilla heads. This general compilation is Lean-checked as `vanilla_seven_of_pureRoPE_three` in [ThreeFractionsSevenHeads.lean](../../formalization/HeadComplexity/Results/ThreeFractionsSevenHeads.lean).
+
+For this example one can choose the explicit rational value $a=\varepsilon/4096$. Since $1/2\lt D_j\lt2$, $R\geq1$, and $|U_j|\lt2$, the reciprocal second-difference estimate gives
+
+$$ \left|\frac{\Delta_{jk}(a)}{a^2}-\frac{2D_jD_k}{R^3}\right|\leq\frac{96a}{R^4}. $$
+
+To verify the estimate, integrate the mixed derivative $2D_jD_k/(R+uD_j+vD_k)^3$ over $0\leq u,v\leq a$ and use the derivative bound $3/R^4$ for the reciprocal cube. The total score error is at most $576a/R^3$. On the other hand, $|G|\gt\varepsilon/8$ by the pure score margin and the denominator product bound, so the limiting score has magnitude greater than $\varepsilon/(4R^3)$. The chosen $a$ makes the error smaller than this magnitude. Each denominator slope in the original bit variables differs from one by less than $4a$, so it remains positive. This also makes the seven-head upper construction explicit. It does not establish that four heads suffice. $\blacksquare$
 
 ## Certification scope
 
 The explicit atom parameters, all-input sign identity and margin, finite interpolation argument, untied vanilla lower bound, and scalar-to-architecture bridge together prove the stated Boolean separation. No fitting failure or restricted-family infeasibility is used as a lower bound.
 
-The quantitative analytic proof and the literal rotary-matrix bridge are handwritten, not Lean-certified. The repository's supporting Lean results include `pureRoPEComputable_two_iff_vanilla`, `pureRoPEHStar_eq_vanilla_of_le_two`, the exact centered-atom construction `PureRoPECenteredConstruction.atom_eval`, and the original vanilla affine-fraction normal form. The new exact arithmetic scripts use rational arithmetic and report their precise scope. The original model, its admissibility conditions, and its head-count definitions have not been modified.
+The quantitative lower bound and the literal rotary-matrix bridge are handwritten, not Lean-certified. The actual unshifted function's pure upper bound, exact atom parameters, integer-cubic identity, rational tie removal, full-cube margin, and non-complement-invariance are Lean-certified. The general seven-head vanilla upper compiler is also Lean-certified; the particular numerical choice $a=\varepsilon/4096$ is justified by the estimate above.
+
+Further supporting Lean results include the following:
+
+- `pureRoPEComputable_two_iff_vanilla` and `pureRoPEHStar_eq_vanilla_of_le_two` exclude the requested two-versus-three route universally.
+
+- `MeanGridCubic.cubic_mean_sign_exists` proves that averaging arbitrary untied cubic parameters gives a degree-at-most-three mean polynomial with the same strict-positive and weak-negative labels. `CubeTopCoefficients.meanPolynomial_cubic_coefficient` proves that its coefficients on three distinct groups equal the raw group-summed coefficients. `ThreeHeadReplication.coefficient_sum_three_groups` and `ThreeHeadReplication.uniform_group_sum` check the corresponding coefficient identities for products of forms.
+
+- `GenericCubicHessianPullback.hessian_rank_eq_six` and `ThreeHeadPoleHessian.mixed_independent_cubic_ne_oriented` check the exact Hessian-rank obstruction, including all oriented competitors. `SymmetricCubicRecovery.eq_of_squarefree` checks exact recovery from squarefree data under the rank and cross-minor hypotheses.
+
+- `ExplicitCubicRawObstruction.cubic_ne_oriented_with_readout` instantiates the exact raw obstruction with the displayed rational fourteen-variable target. `FiniteGridPole.explicit_bounded_pole_point` and `ExplicitCubicQuantitativeBounds.exists_pole_with_bounded_nonsingular_minor` check the quantitative finite point selection and target minor bound.
+
+- `PureCubicChart.chart_inverse_mul`, `PureCubicChart.inverse_row_bound`, and `PureCubicGraph.eq_zero_of_chartGrid` check the rational coordinate map and finite interpolation step.
+
+- `PureRoPEReplicationBounds.explicit_sharedHStar_le_seven` checks the seven-head upper bound for the actual explicit function in the literal shared-embedding vanilla architecture.
+
+All audited declarations use only `propext`, `Classical.choice`, and `Quot.sound`. No `sorry` or new axiom is used. The original model, its admissibility conditions, and its head-count definitions have not been modified. The [certificate package](../../artifacts/rope/explicit_separation/README.md) gives the exact verification command, research manifest, unsuccessful approaches, and remaining questions.

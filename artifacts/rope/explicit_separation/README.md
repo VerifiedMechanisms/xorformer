@@ -24,7 +24,18 @@ Only the Python standard library is required. The driver calls the three exact c
 | [Gap verifier](../quantitative_cubic_gap/verify_gap.py) | Every rational inequality in the uniform tensor exclusion radius |
 | [Combined verifier](verify.py) | The preceding checks, exact atom constant identities under replication, full-cube arithmetic gap, and comparison of interpolation error with the tensor exclusion radius |
 
-These scripts certify the arithmetic used in the mathematical proof. They are not a formal proof of the analytic arguments. In particular, the Hessian spectral argument and quantitative sign-rigidity lower bound are handwritten. The theorem note identifies the supporting Lean declarations and the current formalization boundary.
+These scripts certify the arithmetic used in the mathematical proof. They are not a formal proof of the complete lower-bound argument. In particular, the quantitative stability and sign-rigidity steps remain handwritten. The raw gap uses finite determinant estimates, with no spectral argument. The theorem note identifies the supporting Lean declarations and the current formalization boundary.
+
+The actual unshifted formula's pure upper bound, rational tie removal, strict full-cube margin, and non-complement-invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`. The seven-head vanilla upper compiler is checked in `Results/ThreeFractionsSevenHeads.lean`. To rebuild the formalized results and audit the axioms of every headline declaration, run from the repository root:
+
+```bash
+cd formalization
+lake build HeadComplexity.Results.All
+cd ..
+python3 artifacts/rope/explicit_separation/audit_lean.py
+```
+
+The audit permits only `propext`, `Classical.choice`, and `Quot.sound`. It does not assert that the handwritten lower bound is formalized.
 
 ## Research track and artifact manifest
 

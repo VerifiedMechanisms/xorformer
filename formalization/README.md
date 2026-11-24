@@ -29,8 +29,16 @@ attention is a handwritten proof in the
 [Theorem 22](../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md)
 now gives an explicit Boolean pure/vanilla separation. Its quantitative vanilla
 lower bound is handwritten with exact rational certificates, not Lean-formalized.
-The replicated pure scalar upper construction and cleared-score identity are
-Lean-checked in `Results/PureRoPEReplication.lean`.
+The actual unshifted formula's pure scalar upper construction, integer-cubic
+identity, rational tie removal, strict full-cube margin, and non-complement
+invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`.
+The seven-head vanilla upper compiler is also Lean-checked.
+Supporting Lean modules now also check the raw cubic obstruction, the bounded
+pole point and its target Hessian minor, exact squarefree recovery, the rational
+coordinate inverse, finite product-grid interpolation, and untied averaging
+with preservation of the distinct-group cubic coefficients. These components
+do not yet constitute a complete Lean proof of the quantitative Boolean lower
+bound.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -57,6 +65,14 @@ Lean-checked in `Results/PureRoPEReplication.lean`.
 | 21 | quartic parity faces exclude all vanilla four-head models | `FourHeadQuarticPattern.HStar_ge_five` | `Results/FourHeadQuarticPattern.lean` |
 | 22, upper component | exact replicated pure atoms and their cleared classifier | `PureRoPEReplication.explicitFunction_pure_three`, `PureRoPEReplication.explicitFunction_full_cube_sign` | `Results/PureRoPEReplication.lean` |
 | 22, averaging component | exact distinct-group cubic coefficient identity | `ThreeHeadReplication.coefficient_sum_three_groups`, `ThreeHeadReplication.uniform_group_sum` | `Polynomial/ThreeHeadReplication.lean` |
+| 22, full-cube component | exact unshifted formula, rational tie removal, strict margin, asymmetry | `PureRoPEReplicationStrict.explicitUnshiftedFunction_pure_three`, `PureRoPEReplicationStrict.explicitUnshiftedFunction_margin`, `PureRoPEReplicationStrict.explicitUnshiftedFunction_not_complement_invariant` | `Results/PureRoPEReplicationStrict.lean` |
+| 22, vanilla upper component | every three-pure-head classifier admits seven vanilla heads | `vanilla_seven_of_pureRoPE_three` | `Results/ThreeFractionsSevenHeads.lean` |
+| 22, explicit vanilla upper | the actual explicit function has at most seven shared vanilla heads | `PureRoPEReplicationBounds.explicit_sharedHStar_le_seven` | `Results/PureRoPEReplicationBounds.lean` |
+| 22, untied averaging | actual mean polynomial preserves signs and squarefree cubic coefficients | `MeanGridCubic.cubic_mean_sign_exists`, `CubeTopCoefficients.meanPolynomial_cubic_coefficient` | `Polynomial/MeanGridCubic.lean`, `Polynomial/CubeTopCoefficients.lean` |
+| 22, raw obstruction | exact rational target differs from every oriented three-pole cubic | `ExplicitCubicRawObstruction.cubic_ne_oriented_with_readout` | `Polynomial/ExplicitCubicRawObstruction.lean` |
+| 22, quantitative pole | bounded pole point and uniformly nonzero target Hessian minor | `ExplicitCubicQuantitativeBounds.exists_pole_with_bounded_nonsingular_minor` | `Polynomial/ExplicitCubicQuantitativeBounds.lean` |
+| 22, squarefree recovery | symmetric cubic tensors are determined by squarefree data under cross-minor hypotheses | `SymmetricCubicRecovery.eq_of_squarefree` | `Polynomial/SymmetricCubicRecovery.lean` |
+| 22, rational chart | exact inverse, row bounds, and finite product-grid interpolation | `PureCubicChart.chart_inverse_mul`, `PureCubicGraph.eq_zero_of_chartGrid` | `Polynomial/PureCubicChart.lean`, `Polynomial/PureCubicGraph.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
