@@ -1,0 +1,6 @@
+ℹ [3138/3139] Replayed HeadComplexity.Research.RadialMomentTransfer
+info: HeadComplexity/Research/RadialMomentTransfer.lean:281:0: 'HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [3139/3139] Built HeadComplexity.Research.FilteredMomentLift (1.9s)
+Build completed successfully (3139 jobs).

@@ -1,0 +1,3 @@
+import HeadComplexity.Research.FilteredMomentLift
+#print axioms HeadComplexity.FilteredMomentLift.sum_kernel_eq_zero_of_finite_moments
+#print axioms HeadComplexity.FilteredMomentLift.sum_kernel_eq_zero_of_integer_projection
