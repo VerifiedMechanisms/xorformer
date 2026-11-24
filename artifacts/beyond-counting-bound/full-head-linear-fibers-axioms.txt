@@ -1,0 +1,8 @@
+'HeadComplexity.FullHeadLinearFibers.pair_kernel_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.odd_triangle_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.triangle_star_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.selector_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.rational_roots' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.rational_simple' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.anchor_inverse_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullHeadLinearFibers.table_positive' depends on axioms: [propext, Classical.choice, Quot.sound]

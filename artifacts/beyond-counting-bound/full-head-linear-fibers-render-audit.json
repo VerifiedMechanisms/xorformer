@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T00:21:35.762241+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/full-head-linear-fibers.md",
+      "source_math_spans": 58,
+      "rendered_math_spans": 58,
+      "findings": 0,
+      "notes": [],
+      "sha256": "9d49cda44ba0feb2b577b6ca244f930f6511fc40c74051fa360c4531481b7f64"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "db588256bc850d8f8af26b90442ad52bb00dd8aab0365f7b671962824bfffb10"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "882ab8165fb2dfbd3abbc5a673bfc68b67c409ceb389e3cc877cffeb8363faba"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

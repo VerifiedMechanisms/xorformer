@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T00:20:45.923308+00:00",
+  "build": "full-head-linear-fibers-build.txt",
+  "build_jobs": 3137,
+  "declarations": [
+    "HeadComplexity.FullHeadLinearFibers.pair_kernel_factor",
+    "HeadComplexity.FullHeadLinearFibers.odd_triangle_zero",
+    "HeadComplexity.FullHeadLinearFibers.triangle_star_zero",
+    "HeadComplexity.FullHeadLinearFibers.selector_det",
+    "HeadComplexity.FullHeadLinearFibers.rational_roots",
+    "HeadComplexity.FullHeadLinearFibers.rational_simple",
+    "HeadComplexity.FullHeadLinearFibers.anchor_inverse_mul",
+    "HeadComplexity.FullHeadLinearFibers.table_positive"
+  ],
+  "axiom_audit": "full-head-linear-fibers-axioms.txt",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "lean_sha256": "553aa0b3ca3f7ef863c920183bd57a4738c40b93d44bae135ef0c88f6b79d087",
+  "writeup_sha256": "9d49cda44ba0feb2b577b6ca244f930f6511fc40c74051fa360c4531481b7f64",
+  "rational_audit": "full-head-linear-fibers-rational-audit.json",
+  "scope": "Eight kernel-checked algebraic ingredients and finite certificate. General regular-fiber construction and local embedding are complete written proofs. All constructed labels are positive. No Boolean head lower bound.",
+  "model_changes": [],
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}

@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "dimension": 6,
+  "isolated_regular_points": 343,
+  "distinct_full_positive_tables": 343,
+  "cube_value_positivity_checks": 21952,
+  "selector_observation_checks": 2058,
+  "literal_full_observation_jacobians_checked": 343,
+  "literal_full_determinant_checks": 3,
+  "anchor_jacobian_determinant": "1/1587600",
+  "lambda": [
+    "-8",
+    "252",
+    "-2520",
+    "11550",
+    "-27720",
+    "36036",
+    "-24024",
+    "6435"
+  ],
+  "mu": [
+    "28",
+    "-756",
+    "6300",
+    "-23100",
+    "41580",
+    "-36036",
+    "12012"
+  ],
+  "R_derivatives_at_roots": [
+    "1/504",
+    "-1/15120",
+    "1/138600",
+    "-1/554400",
+    "1/1081080",
+    "-1/1009008",
+    "1/360360"
+  ],
+  "script_sha256": "20f4661a2334115e5f11eae51153764c3c494f7466953af3d5b0d7f71531b1e3",
+  "scope": "Exact finite replay and block Jacobian certificate. General family is a written theorem. No Boolean lower bound.",
+  "main_target_proved": false,
+  "stronger_target_proved": false
+}

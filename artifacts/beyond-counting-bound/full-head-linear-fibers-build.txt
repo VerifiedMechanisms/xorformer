@@ -1,0 +1,155 @@
+⚠ [3137/3137] Built HeadComplexity.Atoms.FullHeadLinearFibers (1.7s)
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:13:42: The following tactic starts with 2 goals and ends with 1 goal, 1 of which is not operated on.
+  linarith
+Please focus on the current goal, for instance using `·` (typed as "\.").
+
+Note: This linter can be disabled with `set_option linter.style.multiGoal false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:12:12: missing space in the source
+
+This part of the code
+  'v₀+v₁=0)'
+should be written as
+  'v₀ + v₁'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:12:15: missing space in the source
+
+This part of the code
+  'v₀+v₁=0) (h₂'
+should be written as
+  'v₁ = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:12:27: missing space in the source
+
+This part of the code
+  'v₁+v₂=0)'
+should be written as
+  'v₁ + v₂'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:12:30: missing space in the source
+
+This part of the code
+  'v₁+v₂=0) (h₃'
+should be written as
+  'v₂ = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:12:42: missing space in the source
+
+This part of the code
+  'v₂+v₀=0)'
+should be written as
+  'v₂ + v₀'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:12:45: missing space in the source
+
+This part of the code
+  'v₂+v₀=0) :'
+should be written as
+  'v₀ = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:15:8: `triangle_star_zero` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:17:14: missing space in the source
+
+This part of the code
+  'i₀+v i₁=0)'
+should be written as
+  'i₀ + v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:17:19: missing space in the source
+
+This part of the code
+  'i₁=0) (h₂'
+should be written as
+  'i₁ = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:17:33: missing space in the source
+
+This part of the code
+  'i₁+v i₂=0)'
+should be written as
+  'i₁ + v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:17:38: missing space in the source
+
+This part of the code
+  'i₂=0) (h₃'
+should be written as
+  'i₂ = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:17:52: missing space in the source
+
+This part of the code
+  'i₂+v i₀=0)'
+should be written as
+  'i₂ + v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:17:57: missing space in the source
+
+This part of the code
+  'i₀=0)
+ '
+should be written as
+  'i₀ = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:18:46: missing space in the source
+
+This part of the code
+  'i₀+v i=0)'
+should be written as
+  'i₀ + v'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:18:50: missing space in the source
+
+This part of the code
+  'i=0) :'
+should be written as
+  'i = 0)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:33:32: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:33:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:40:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:42:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Atoms/FullHeadLinearFibers.lean:43:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Build completed successfully (3137 jobs).

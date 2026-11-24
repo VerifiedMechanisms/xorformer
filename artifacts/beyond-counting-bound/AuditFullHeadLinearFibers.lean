@@ -1,0 +1,9 @@
+import HeadComplexity.Atoms.FullHeadLinearFibers
+#print axioms HeadComplexity.FullHeadLinearFibers.pair_kernel_factor
+#print axioms HeadComplexity.FullHeadLinearFibers.odd_triangle_zero
+#print axioms HeadComplexity.FullHeadLinearFibers.triangle_star_zero
+#print axioms HeadComplexity.FullHeadLinearFibers.selector_det
+#print axioms HeadComplexity.FullHeadLinearFibers.rational_roots
+#print axioms HeadComplexity.FullHeadLinearFibers.rational_simple
+#print axioms HeadComplexity.FullHeadLinearFibers.anchor_inverse_mul
+#print axioms HeadComplexity.FullHeadLinearFibers.table_positive
