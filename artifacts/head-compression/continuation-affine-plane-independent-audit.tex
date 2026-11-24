@@ -1,0 +1,281 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Independent Audit of the Affine-Plane Head Compiler}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a complete written derivation of a logarithmic universal saving
+from the new affine-plane compiler. It independently expands every head
+used by the construction, including the rank correction. The incidence
+identities are Lean-checked in
+\texttt{Results/AffinePlaneIncidence.lean}; the rank, strictification,
+axis-repair, and global-transfer results used below are existing checked
+declarations. The finite compiler is now checked as
+\texttt{hasStrictReverseGridCompiler\_affinePlane} in
+\texttt{Results/AffinePlaneCompiler.lean}. The final unconditional
+asymptotic theorem is being assembled in a separate Lean file.
+This note does not change the model or assert that its entire argument
+has already been formalized.
+
+\section{The exact finite compiler}
+
+\begin{theorem}\label{thm:finite}
+Let $k\ge1$, $q=2^k$, $r=q^2k$, and $s\ge1$. Every sign matrix
+$Y\in\{-1,1\}^{r\times s}$ has an exact realization on the one-hot
+row by one-hot column grid by $2q^2+1$ affine-ratio heads. Every
+denominator is positive on the whole $(r+s)$-dimensional Boolean cube,
+and every slope can be made strictly negative without changing any grid
+value. The realized values equal $Y$, not merely its signs.
+\end{theorem}
+
+\subsection{A common Cauchy decoder}
+Fix a field $F$ of $q$ elements, and identify its elements with the
+$q$ binary words of length $k$. Write $\beta_b(z)\in\{-1,1\}$
+for bit $b$ of word $z$. Choose positive numbers $\delta,\tau$ with
+\[
+ r\delta+s\tau<1,
+ \qquad \delta+\tau<1.
+ \tag{1}
+\]
+Choose pairwise distinct real poles $d_a\in(1-\delta,1)$ for
+$a\in F$, and pairwise distinct tokens $t_z\in(0,\tau)$ for
+$z\in F$. Thus every $d_a-t_z$ is strictly positive.
+
+The square matrix $C_{z,a}=1/(d_a-t_z)$ is invertible. Indeed, a
+linear combination $\sum_a c_a/(d_a-t)$ vanishing at all $q$ tokens
+has, after multiplication by $\prod_a(d_a-t)$, a polynomial numerator
+of degree at most $q-1$ with $q$ distinct roots. That numerator is
+zero. Evaluation at $t=d_a$ gives
+$c_a\prod_{a'\ne a}(d_{a'}-d_a)=0$, hence $c_a=0$ for every $a$.
+Therefore, for each bit $b$, there are real numbers $\eta_{b,a}$ with
+\[
+ \sum_{a\in F}\frac{\eta_{b,a}}{d_a-t_z}=\beta_b(z)
+ \quad\text{for every }z\in F.
+ \tag{2}
+\]
+These coefficients can be arbitrarily large. The unchanged model
+places no bound on numerator size or parameter precision.
+
+\subsection{Point states and shared line values}
+Use points $P=F^2$ and only nonvertical lines, indexed by
+$\mathcal L=F^2$:
+\[
+ L_{a,c}=\{(x,y):y=ax+c\}.
+ \tag{3}
+\]
+There are $q^2$ points and $q^2$ lines. Each point lies on one line
+of each slope $a$. Distinct points with different first coordinates
+share exactly one line, of slope
+\[
+ a(h,g)=\frac{g_2-h_2}{g_1-h_1}.
+ \tag{4}
+\]
+Distinct points with the same first coordinate share no nonvertical
+line. All arithmetic in (3)--(4) is in $F$; the poles, tokens, and
+head coefficients are real numbers.
+
+Index rows by $(h,b)\in P\times\{1,\ldots,k\}$. For every point
+$g$ and table column $j$, select $z_{g,j}\in F$ whose $k$ bits are
+the prescribed labels $Y_{(g,b),j}$. This is possible for every
+label vector because the identification $F\cong\{0,1\}^k$ is a
+bijection. Put $T_{g,j}=t_{z_{g,j}}$ and define real constants
+\[
+ Z_{(a,c),j}=\sum_{g\in L_{a,c}}\frac1{d_a-T_{g,j}}.
+ \tag{5}
+\]
+The word ``constants'' is important: the complete table is fixed before
+the heads are built. The right side of (5) computes parameters; it is
+not an operation performed on the Boolean input.
+
+Define the selector matrix
+\[
+ R_{(h,b),(a,c)}=
+ \begin{cases}\eta_{b,a},&c=h_2-ah_1,\\0,&\text{otherwise.}\end{cases}
+ \tag{6}
+\]
+The rank-factorized table
+\[
+ A_{(h,b),j}=\sum_{(a,c)\in\mathcal L}
+               R_{(h,b),(a,c)}Z_{(a,c),j}
+ \tag{7}
+\]
+has $q^2$ displayed factors. Expanding (5) and exchanging the two
+finite sums gives the exact identity
+\[
+ A_{(h,b),j}=Y_{(h,b),j}
+ +\sum_{\substack{g\in P\\g_1\ne h_1}}
+ \frac{\eta_{b,a(h,g)}}{d_{a(h,g)}-T_{g,j}}.
+ \tag{8}
+\]
+The diagonal point $g=h$ contributes (2). Every other point occurs
+once or not at all, by (4). This is the essential incidence saving.
+The checked declaration
+\texttt{affinePlane\_weighted\_pencil\_identity} is precisely this
+finite-sum identity for an arbitrary real kernel. The checked
+\texttt{affinePlane\_line\_rank\_identity} gives (6)--(7).
+
+\subsection{One correction head per point}
+Let $u_{h,b}$ and $v_j$ be the row and column Boolean input bits.
+For each $g\in P$, define real row constants
+\[
+ e_{(h,b),g}=
+ \begin{cases}\eta_{b,a(h,g)},&h_1\ne g_1,\\0,&h_1=g_1,\end{cases}
+\]
+and choose $p_{(h,b),g}=d_{a(h,g)}$ when $h_1\ne g_1$.
+When $h_1=g_1$, choose any one of the same poles for $p_{(h,b),g}$.
+The correction head is the single admissible affine ratio
+\[
+ -\frac{\sum_{h,b}e_{(h,b),g}u_{h,b}}
+ {1-\sum_{h,b}(1-p_{(h,b),g})u_{h,b}-\sum_jT_{g,j}v_j}.
+ \tag{9}
+\]
+On the grid input $u=e_{(h,b)},v=e_j$, it equals the negative
+summand for $g$ in (8), or zero if $h_1=g_1$. The numerator of (9)
+is affine: in particular there is no product of a row bit with a
+column bit or with another input bit. Every denominator slope is
+strictly negative, and on the entire cube its denominator exceeds
+\[
+ 1-r\delta-s\tau>0.
+ \tag{10}
+\]
+The zero numerator in some rows imposes no exception to this global
+admissibility assertion. The $q^2$ heads (9) cancel all unwanted
+terms of (8) exactly.
+
+\subsection{The exact rank compiler, expanded}
+For completeness, consider one arbitrary factor $f_i g_j$ on an
+$r\times s$ grid. Choose
+\[
+ C=1+\sum_i|f_i|,\quad u_i=C+f_i>0,
+ \quad M=4(r+1)C.
+\]
+The head
+\[
+ \frac{M\sum_jg_jv_j}
+ {1-\sum_i\frac{u_i}{M+u_i}u^{\rm row}_i}
+ \tag{11}
+\]
+has grid value $(M+C+f_i)g_j$. Since $0<u_i<2C$,
+\[
+ \sum_i\frac{u_i}{M+u_i}<\frac{2rC}{M}<\frac12,
+\]
+so its denominator is positive on the whole cube. Its row slopes are
+negative and its column slopes zero. Applying (11) to each of the
+$q^2$ factors in (7), one additional denominator-one affine head
+subtracts the column-only sum $\sum_L(M_L+C_L)Z_{L,j}$.
+Thus (7) costs exactly $q^2+1$ weak reverse heads. There is no
+restriction on the sizes or signs of the matrix entries.
+
+To restore strict slopes, consider any weak denominator
+$D(w)=b_0+\sum_i b_iw_i$ with $b_i\le0$ and positive full-cube
+minimum $m=D(1,\ldots,1)$. With $N=r+s$ and
+$\epsilon=m/(N+1)$, replace it by
+\[
+ D'(w)=D(w)+\epsilon\left(2-\sum_iw_i\right).
+ \tag{12}
+\]
+Every slope is now strictly negative. On the whole cube,
+$D'\ge m+2\epsilon-N\epsilon=3\epsilon>0$.
+Every grid input has weight two, so its denominator is unchanged.
+The numerator is unchanged as well. This is the checked
+\texttt{weak\_reverse\_ratio\_strictify} construction.
+
+Combining the $q^2+1$ rank heads with the $q^2$ correction heads
+proves Theorem~\ref{thm:finite}. No limit, approximate sign, product
+gate, or implicit determinant evaluator is used.
+
+\section{Arbitrary row counts and the global bound}
+For any integer $a\ge5$, take the least $k\ge1$ with
+$a\le k4^k$, and put $q=2^k$. The finite compiler may be restricted
+to any $a$ of its $r=k4^k$ rows by setting all unused row input bits
+to zero. This retains strict negativity for every remaining slope
+and full-cube positivity. Extend the target table arbitrarily on
+the unused rows before constructing the heads. Thus it gives every
+$a\times b$ table, for every $b\ge1$, with
+\[
+ H=2\cdot4^k+1\le17a/k.
+ \tag{13}
+\]
+Indeed minimality gives $(k-1)4^{k-1}<a$, $k\ge2$, and hence
+$4^k<4a/(k-1)\le8a/k$; also $k\le a$.
+Since $k\le2^k$, the inequality $a\le k4^k\le8^k$ gives
+\[
+ k\ge\frac{\log a}{3\log2}.
+ \tag{14}
+\]
+
+The already checked axis repair converts $H$ strict reverse grid
+heads into $3H+3$ reverse heads that vanish identically on both
+Boolean axes, with exactly the same grid values. The already checked
+global transfer then gives, for positive $a,b$,
+\[
+ W(a+b)\le
+ \frac{484\,2^{a+b}(3H+3)}{ab}+2^a+2^b.
+ \tag{15}
+\]
+This is
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_strictReverseGridCompiler}
+against the original \texttt{worstCaseHeadComplexity} definition.
+
+Set $a=\lfloor n/2\rfloor$, $b=n-a$. For sufficiently large $n$,
+$b\ge n/2$, $a\ge\sqrt n$, and (13) implies $3H+3\le54a/k$.
+Combining (14)--(15) yields
+\[
+ W(n)\le
+ (313632\log2)\frac{2^n}{n\log n}+2^a+2^b.
+ \tag{16}
+\]
+The last two terms are negligible on this scale. Here is an explicit
+elementary justification, avoiding an unproved comparison of rates.
+For $a\ge6$, the binomial theorem gives
+$2^a\ge\binom a4\ge a^4/384$. Since $a\ge n/3$ and
+$\log n\le n$ for large $n$,
+\[
+ \frac{(2^a+2^b)n\log n}{2^n}
+ \le\frac{2n\log n}{2^a}
+ \le\frac{768n^2}{a^4}
+ \le\frac{62208}{n^2}\longrightarrow0.
+\]
+Therefore (16) proves the unconditional eventual bound
+\[
+ \boxed{W(n)=O\!\left(\frac{2^n}{n\log n}\right).}
+ \tag{17}
+\]
+The construction depends on the full truth table through the tokens
+$T_{g,j}$ and the precomputed line constants $Z_{L,j}$. It therefore
+does not fall under the fixed-denominator obstruction. Arbitrarily
+high parameter precision is allowed and is used by the compact
+Cauchy interpolation. No claim of a positive fixed exponent
+improvement follows from (17).
+
+\section{Independent finite and formal checks}
+The script \texttt{audit\_affine\_plane\_decoder.py} constructs
+$F_8=\mathbb F_2[X]/(X^3+X+1)$, computes all Cauchy coefficients
+with rational arithmetic, and checks (8) for a $192\times8$ table
+with nonconstant point states. All 1536 resulting values are exactly
+the requested $\pm1$. The raw budget is 129 heads. It chooses
+$\delta=1/(8r)$ and $\tau=1/(8s)$, giving the common correction
+denominator lower bound $3/4$. This test supplements the symbolic
+identity; it is not the proof of universality.
+
+The independent Lean incidence file proves
+\texttt{affinePlane\_incident\_iff},
+\texttt{affinePlane\_incident\_same\_first},
+\texttt{affinePlane\_weighted\_pencil\_identity}, and
+\texttt{affinePlane\_line\_rank\_identity}. It is generic over
+every finite field and permits arbitrary real kernel values.
+The original head model, resource, and denominator admissibility
+conditions are unchanged.
+
+Independent \texttt{\#print axioms} checks for the incidence identities,
+the exact rank compiler, strictification, axis repair, global transfer,
+and the complete finite affine-plane compiler report only Lean's
+standard \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. In particular, none of these declarations depends
+on \texttt{sorryAx} or a new axiom.
+\end{document}
