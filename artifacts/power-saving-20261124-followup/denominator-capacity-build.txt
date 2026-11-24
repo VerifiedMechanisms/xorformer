@@ -1,0 +1,2 @@
+✔ [3748/3748] Built HeadComplexity.Research.DenominatorCapacity (2.3s)
+Build completed successfully (3748 jobs).

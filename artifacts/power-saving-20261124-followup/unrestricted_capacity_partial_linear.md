@@ -2,7 +2,7 @@
 
 ## Status
 
-The active row certificate and Cramer sign reconstruction below are kernel checked in `formalization/HeadComplexity/Research/PartialLinearCertificate.lean`. The finite partially linear polynomial count is kernel checked as `HeadComplexity.PartialLinearCapacity.card_patterns_le` in `formalization/HeadComplexity/Research/PartialLinearCapacity.lean`. Its application to denominator families is a written proof. They do not yet give a smaller unrestricted bound for `HeadComplexity.worstCaseHeadComplexity`.
+The active row certificate and Cramer sign reconstruction below are kernel checked in `formalization/HeadComplexity/Research/PartialLinearCertificate.lean`. The finite partially linear polynomial count is kernel checked as `HeadComplexity.PartialLinearCapacity.card_patterns_le` in `formalization/HeadComplexity/Research/PartialLinearCapacity.lean`. The finite positive-denominator chart count and its affine slope specialization are kernel checked in `formalization/HeadComplexity/Research/DenominatorCapacity.lean`. The asymptotic consequences below are written proofs. They do not yet give a smaller unrestricted bound for `HeadComplexity.worstCaseHeadComplexity`.
 
 The count handles arbitrary real coefficients, arbitrary signed cancellation, and arbitrarily small margin. The outstanding obstruction is the number of independent denominator parameters.
 
@@ -62,11 +62,11 @@ $$ b_h=b_0+\sum_{j=1}^d t_{hj}c_j. $$
 
 There are $q=n(d+1)+dH$ nonlinear parameters. Every $B_h(x)$ is a polynomial of degree at most two in these parameters. After the exact numerator normalization from `NormalizedCounting.lean`, use $L=nH+1$ unrestricted linear numerator and bias coefficients. Clearing the positive denominators gives feature polynomials of degree at most $D=2H$.
 
-The preceding theorem gives the explicit bound
+The Lean declaration `HeadComplexity.DenominatorCapacity.card_affineSlope_le` gives the explicit bound
 
 $$ 2^{nH+1}{N+2nH+2\choose nH+1}\left(\frac{4e(4H(nH+1)+1)N}{n(d+1)+dH+1}\right)^{n(d+1)+dH+1},\qquad N=2^n. $$
 
-It is valid whenever $n(d+1)+dH+1\leq N$. An overparameterization by $b_0,c_j,t_{hj}$ causes no difficulty: every permitted original representation lies in the counted family. Allowing all signs of these parameters enlarges the family and therefore also causes no difficulty for the upper count. Positivity is used only to transfer signs when clearing the original denominators.
+It is valid whenever $n(d+1)+dH+1\leq N$. The declaration `represented_of_affine` transfers an original positive affine-fraction certificate into the counted chart after exact normalization, with no head overhead. The declaration `card_represented_le` applies more generally to any polynomial chart of positive denominators. An overparameterization by $b_0,c_j,t_{hj}$ causes no difficulty: every permitted original representation lies in the counted family. Allowing all signs of these parameters enlarges the family and therefore also causes no difficulty for the upper count. Positivity is used only to transfer signs when clearing the original denominators.
 
 For $1\leq d\leq n$ and $n\leq H\leq N/(2n)$, taking logarithms and using the standard binomial estimate gives
 

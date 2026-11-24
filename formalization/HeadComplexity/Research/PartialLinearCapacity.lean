@@ -390,6 +390,7 @@ theorem exists_certificate_pattern (P : Matrix ι κ (MvPolynomial ν ℝ))
   · exact mul_pos hp hi
 
 
+omit [DecidableEq κ] in
 /-- The finite partially linear polynomial capacity bound. Arbitrary linear coefficients
 are replaced by an unordered active-row subset, selected labels, and one box variable. -/
 theorem card_patterns_le [Fintype ν] (P : Matrix ι κ (MvPolynomial ν ℝ))

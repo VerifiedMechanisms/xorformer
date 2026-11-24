@@ -1,0 +1,9 @@
+'HeadComplexity.DenominatorCapacity.eval_clearedFeatures' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DenominatorCapacity.card_represented_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DenominatorCapacity.card_affineSlope_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.DenominatorCapacity.represented_of_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+HeadComplexity.DenominatorCapacity.card_affineSlope_le {n H d : ℕ} (hK : n * (d + 1) + d * H + 1 ≤ 2 ^ n) :
+  ↑(HeadComplexity.DenominatorCapacity.represented HeadComplexity.DenominatorCapacity.affineSlopeDen).ncard ≤
+    ↑((2 ^ n + 2 * (n * H + 1)).choose (n * H + 1)) * 2 ^ (n * H + 1) *
+      (4 * Real.exp 1 * (4 * ↑H * (↑n * ↑H + 1) + 1) * 2 ^ n / (↑n * (↑d + 1) + ↑d * ↑H + 1)) ^
+        (n * (d + 1) + d * H + 1)

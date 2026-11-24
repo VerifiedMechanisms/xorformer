@@ -1,0 +1,6 @@
+import HeadComplexity.Research.DenominatorCapacity
+#print axioms HeadComplexity.DenominatorCapacity.eval_clearedFeatures
+#print axioms HeadComplexity.DenominatorCapacity.card_represented_le
+#print axioms HeadComplexity.DenominatorCapacity.card_affineSlope_le
+#print axioms HeadComplexity.DenominatorCapacity.represented_of_affine
+#check HeadComplexity.DenominatorCapacity.card_affineSlope_le
