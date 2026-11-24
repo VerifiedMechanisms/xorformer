@@ -1,3 +1,8 @@
+import HeadComplexity.Results.IndependentCellSize
+import HeadComplexity.Results.JointCellVectorMemoryCapacity
+import HeadComplexity.Results.LargeDomainBinaryTensor
+import HeadComplexity.Results.JointFamilyBiasedCauchyPool
+import HeadComplexity.Results.JointFamilyPairedCompatibility
 import HeadComplexity.Results.JointFamilyHaarSplit
 import HeadComplexity.Results.LargeDomainLatinCancellation
 import HeadComplexity.Results.JointCellRootProduct

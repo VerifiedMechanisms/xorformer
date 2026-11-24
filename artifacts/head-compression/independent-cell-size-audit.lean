@@ -1,0 +1,5 @@
+import HeadComplexity.Results.IndependentCellSize
+#print axioms HeadComplexity.cellShatteredByHeads_warren
+#print axioms HeadComplexity.cellShatteredByHeads_log_size
+#print axioms HeadComplexity.cellShatteredByHeads_exponential_size
+#print axioms HeadComplexity.independentCellFamily_budget

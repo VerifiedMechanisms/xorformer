@@ -1,0 +1,52 @@
+\section{An explicit size test for independent cells}
+
+The original model and its definition of head count are unchanged.
+Let a fixed cell consist of $M$ Boolean inputs in dimension $n$.
+Suppose that every independent assignment of signs on that cell is the
+restriction of a function computed by $H$ original heads.  Parameters may
+be chosen after seeing all labels.  Assume $n,H\geq1$ and $H\leq M$.
+Then the kernel-checked theorem
+\texttt{cellShatteredByHeads\_log\_size} gives
+\[
+ M\leq30nH\log(8eM).
+\]
+The proof restricts the original cleared score polynomials to the cell.
+Their degree is at most $H+1$ in $1+2H(n+1)$ real parameters, and every
+strict sign pattern occurs.  The repository's proved Warren bound gives
+the displayed inequality; no new axiom or alternative head class is used.
+The parameter-larger-than-sample case follows directly and is included.
+
+Consequently, if $nHG\leq M$ and $G\geq60\log(8e)$, then
+\[
+ \exp(G/60)\leq M.
+\]
+This is \texttt{cellShatteredByHeads\_exponential\_size}.
+A gain $G=n^\delta$ therefore requires an exponentially large local
+domain in $n^\delta$.  A gain $G=\log(n)g(n)$ requires
+$M\geq n^{g(n)/60}$ in the same explicit range.  In particular, a
+uniform polynomial bound on the local domain cannot produce an
+unbounded improvement beyond the logarithmic saving by independent
+compilation alone.
+
+For a finite family of cells with sizes $M_j\leq L$, suppose their union
+covers the cube, and every cell independently admits all labels using
+$H_j$ heads with $1\leq H_j\leq M_j$.  Even with overlaps,
+\[
+ 2^n\leq\sum_jM_j
+ \leq30n\log(8eL)\sum_jH_j.
+\]
+The theorem \texttt{independentCellFamily\_budget} checks the second
+inequality and takes the first as its explicit cover-count hypothesis.
+Overlaps can only increase the sum of cell sizes; they are not silently
+counted as new inputs.
+
+These statements are necessary conditions for the stated independent
+cell scheme.  They do not lower-bound a construction whose heads jointly
+serve different cells, whose encoding changes with labels, or whose
+subproblems have correlated target labels.  The present run continues to
+investigate precisely those possibilities.
+
+All four declarations are in
+\texttt{formalization/HeadComplexity/Results/IndependentCellSize.lean}.
+Their transitive axiom output contains exactly \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.

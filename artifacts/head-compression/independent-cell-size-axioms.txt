@@ -1,0 +1,4 @@
+'HeadComplexity.cellShatteredByHeads_warren' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.cellShatteredByHeads_log_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.cellShatteredByHeads_exponential_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.independentCellFamily_budget' depends on axioms: [propext, Classical.choice, Quot.sound]

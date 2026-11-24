@@ -1,0 +1,347 @@
+⚠ [3427/3800] Replayed HeadComplexity.Results.JointSparseInteractionCapacity
+warning: HeadComplexity/Results/JointSparseInteractionCapacity.lean:95:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Results/JointSparseInteractionCapacity.lean:116:19: missing space in the source
+
+This part of the code
+  'ℝ)^M ≤ (4'
+should be written as
+  'ℝ) ^ M'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/JointSparseInteractionCapacity.lean:116:52: missing space in the source
+
+This part of the code
+  'P)^P) :'
+should be written as
+  'P) ^ P)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/JointSparseInteractionCapacity.lean:185:28: This simp argument is unused:
+  Fintype.card_fun
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Set.ncard_univ]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Results/JointSparseInteractionCapacity.lean:195:19: missing space in the source
+
+This part of the code
+  'ℝ)^M ≤ T'
+should be written as
+  'ℝ) ^ M'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/JointSparseInteractionCapacity.lean:195:56: missing space in the source
+
+This part of the code
+  'P)^P) :'
+should be written as
+  'P) ^ P)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [4059/4256] Replayed HeadComplexity.Results.JointFamilyGatedDifferences
+warning: HeadComplexity/Results/JointFamilyGatedDifferences.lean:70:69: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Results/JointFamilyGatedDifferences.lean:70:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Results/JointFamilyGatedDifferences.lean:142:36: This simp argument is unused:
+  Fin.addCases_right
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fin.addCases_left]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Results/JointFamilyGatedDifferences.lean:151:17: This simp argument is unused:
+  Fin.addCases_left
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fin.addCases_right]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Results/JointFamilyGatedDifferences.lean:240:8: `jointFamily_gated_difference_with_correction_preserves_signs` does not use the following hypothesis in its type:
+  • [Fintype Q] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+⚠ [4062/4256] Replayed HeadComplexity.Results.JointFamilyPairedCompatibility
+warning: HeadComplexity/Results/JointFamilyPairedCompatibility.lean:65:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: HeadComplexity/Results/JointFamilyPairedCompatibility.lean:67:20: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: HeadComplexity/Results/JointFamilyPairedCompatibility.lean:75:20: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: HeadComplexity/Results/JointFamilyPairedCompatibility.lean:80:20: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: HeadComplexity/Results/JointFamilyPairedCompatibility.lean:97:2: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Results/JointFamilyPairedCompatibility.lean:97:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [9152/9322] Replayed HeadComplexity.Results.ScalarDecoderRootBound
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:36:35: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:68:15: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:81:15: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+warning: HeadComplexity/Results/ScalarDecoderRootBound.lean:117:15: missing space in the source
+
+This part of the code
+  '(m+1) →'
+should be written as
+  '(m + 1)'
+
+
+Note: This linter can be disabled with `set_option linter.style.whitespace false`
+⚠ [9205/9322] Replayed HeadComplexity.Results.JointCellFilteredKernels
+warning: HeadComplexity/Results/JointCellFilteredKernels.lean:52:8: `jointCell_filtered_reciprocal_eq` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointCellFilteredKernels.lean:123:8: `jointCell_filtered_kernel_pos` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointCellFilteredKernels.lean:154:8: `jointCell_exists_shared_reciprocal_basis` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [9217/9322] Replayed HeadComplexity.Results.JointCellAffineFilteredNumerators
+warning: HeadComplexity/Results/JointCellAffineFilteredNumerators.lean:58:8: `jointCell_affine_filtered_kernel_pos` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [9223/9322] Replayed HeadComplexity.Results.OrthantRankDistance
+warning: HeadComplexity/Results/OrthantRankDistance.lean:56:8: `injective_rank_distance_card_bound` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/OrthantRankDistance.lean:65:8: `multidimensional_rank_distance_card_bound` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/OrthantRankDistance.lean:77:8: `rank_ball_card_bound` does not use the following hypothesis in its type:
+  • [DecidableEq α] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [9230/9322] Replayed HeadComplexity.Results.ConditionalFractionCompletion
+warning: HeadComplexity/Results/ConditionalFractionCompletion.lean:17:16: `positive_uniform_slack` does not use the following hypothesis in its type:
+  • [Fintype ι] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/ConditionalFractionCompletion.lean:76:8: `strictFractionCompletion_iff_positiveSlack` does not use the following hypothesis in its type:
+  • [Fintype X] (#3)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+⚠ [9304/9322] Replayed HeadComplexity.Results.JointFamilyIncidenceObstruction
+warning: HeadComplexity/Results/JointFamilyIncidenceObstruction.lean:65:8: `jointFamily_augmented_features_independent` does not use the following hypothesis in its type:
+  • [Fintype F] (#3)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/JointFamilyIncidenceObstruction.lean:99:4: `simp [Fintype.sum_prod_type, hwu] at he` is a flexible tactic modifying `he`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Results/JointFamilyIncidenceObstruction.lean:100:4: `exact he`
+uses `he`, which was modified by the flexible tactic `simp` on line 99!
+⚠ [9305/9322] Replayed HeadComplexity.Results.JointFamilyActiveDirections
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:16:8: automatically included section variable(s) unused in theorem `_private.HeadComplexity.Results.JointFamilyActiveDirections.0.HeadComplexity.AxisZeroGluing.sum_affine_argument`:
+  [DecidableEq F]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq F] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:16:16: `sum_affine_argument` does not use the following hypothesis in its type:
+  • [DecidableEq F] (#4)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:20:16: `direction_pencil_sum` does not use the following hypothesis in its type:
+  • [DecidableEq F] (#5)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:47:8: `jointFamily_active_direction_relation` does not use the following hypotheses in its type:
+  • [DecidableEq F] (#5)
+  • [DecidableEq A] (#7)
+
+Consider removing these hypotheses and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:47:8: `jointFamily_active_direction_relation` does not use the following hypothesis in its type:
+  • [Fintype F] (#4)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:100:12: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:101:22: `dif_pos` has been deprecated: Use `dite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  d̵i̵f̵_̵p̵o̵s̵d̲i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:73:8: `jointFamily_active_direction_independent` does not use the following hypothesis in its type:
+  • [DecidableEq A] (#7)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:73:8: `jointFamily_active_direction_independent` does not use the following hypotheses in its type:
+  • [Fintype F] (#4)
+  • [Fintype A] (#6)
+
+Consider replacing these hypotheses with the corresponding instances of `Finite` and using `Fintype.ofFinite` in the proof, or removing them entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:130:8: `jointFamily_active_direction_feature_dimension` does not use the following hypothesis in its type:
+  • [DecidableEq A] (#7)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:174:8: `jointFamily_active_affine_selectors_dimension` does not use the following hypothesis in its type:
+  • [DecidableEq A] (#7)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyActiveDirections.lean:196:8: `jointFamily_active_weighted_affine_selectors_dimension` does not use the following hypothesis in its type:
+  • [DecidableEq A] (#7)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [9306/9322] Replayed HeadComplexity.Results.JointFamilyScalarCapacity
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:32:8: automatically included section variable(s) unused in theorem `_private.HeadComplexity.Results.JointFamilyScalarCapacity.0.HeadComplexity.AxisZeroGluing.cauchy_product_degree`:
+  [Fintype I]
+  [DecidableEq I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype I] [DecidableEq I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:32:16: `cauchy_product_degree` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:32:16: `cauchy_product_degree` does not use the following hypothesis in its type:
+  • [Fintype I] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:45:8: `jointFamilyCauchyPolynomial_degree` does not use the following hypothesis in its type:
+  • [Fintype I] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:60:0: automatically included section variable(s) unused in theorem `HeadComplexity.AxisZeroGluing.jointFamilyCauchyPolynomial_eval`:
+  [Fintype I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:60:8: `jointFamilyCauchyPolynomial_eval` does not use the following hypothesis in its type:
+  • [Fintype I] (#2)
+
+Consider replacing this hypothesis with the corresponding instance of `Finite` and using `Fintype.ofFinite` in the proof, or removing it entirely.
+
+Note: This linter can be disabled with `set_option linter.unusedFintypeInType false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:149:8: `jointFamily_cauchy_active_pole_budget` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointFamilyScalarCapacity.lean:241:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [9314/9322] Replayed HeadComplexity.Results.JointCellEqualStepCapacity
+warning: HeadComplexity/Results/JointCellEqualStepCapacity.lean:19:8: `jointCell_filtered_kernel_equal_steps` does not use the following hypothesis in its type:
+  • [DecidableEq ι] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Results/JointCellEqualStepCapacity.lean:43:8: `jointCell_bitwise_cauchy_word_budget` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+⚠ [9320/9322] Replayed HeadComplexity.Results.OrthantSignEnergy
+warning: HeadComplexity/Results/OrthantSignEnergy.lean:53:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+✔ [9322/9322] Built HeadComplexity.Results.All (6.6s)
+Build completed successfully (9322 jobs).
