@@ -1,0 +1,9 @@
+import HeadComplexity.Research.WeakApproximationCounting
+
+#print axioms HeadComplexity.WeakApproximationCounting.signedAgreement_eq
+#print axioms HeadComplexity.WeakApproximationCounting.sum_exp_signedAgreement
+#print axioms HeadComplexity.WeakApproximationCounting.card_agreementBall_le
+#print axioms HeadComplexity.WeakApproximationCounting.card_nearbyTables_le
+#print axioms HeadComplexity.WeakApproximationCounting.card_nearbyTables_lt
+#print axioms HeadComplexity.WeakApproximationCounting.worstCase_gt_of_weak_approximation
+#print axioms HeadComplexity.WeakApproximationCounting.worstCase_gt_of_weak_margin_repair

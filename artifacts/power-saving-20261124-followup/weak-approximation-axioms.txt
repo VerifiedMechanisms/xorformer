@@ -1,0 +1,19 @@
+'HeadComplexity.WeakApproximationCounting.signedAgreement_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeakApproximationCounting.sum_exp_signedAgreement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeakApproximationCounting.card_agreementBall_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeakApproximationCounting.card_nearbyTables_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeakApproximationCounting.card_nearbyTables_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeakApproximationCounting.worstCase_gt_of_weak_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeakApproximationCounting.worstCase_gt_of_weak_margin_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
