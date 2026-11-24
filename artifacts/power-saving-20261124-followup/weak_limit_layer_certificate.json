@@ -1,0 +1,179 @@
+{
+  "arithmetic": "exact fractions.Fraction",
+  "dimension": 4,
+  "heads": 2,
+  "orders": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "truth_table": "constant true",
+  "inputs": [
+    {
+      "bits": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "order": 9,
+      "leading_coefficient": "1"
+    },
+    {
+      "bits": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "order": 6,
+      "leading_coefficient": "1/4"
+    },
+    {
+      "bits": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "order": 3,
+      "leading_coefficient": "1/4"
+    },
+    {
+      "bits": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "order": 3,
+      "leading_coefficient": "1/9"
+    },
+    {
+      "bits": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "order": 8,
+      "leading_coefficient": "1/4"
+    },
+    {
+      "bits": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "order": 5,
+      "leading_coefficient": "1/9"
+    },
+    {
+      "bits": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "order": 2,
+      "leading_coefficient": "1/9"
+    },
+    {
+      "bits": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "order": 2,
+      "leading_coefficient": "1/16"
+    },
+    {
+      "bits": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "order": 7,
+      "leading_coefficient": "1/4"
+    },
+    {
+      "bits": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "order": 4,
+      "leading_coefficient": "1/9"
+    },
+    {
+      "bits": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "order": 1,
+      "leading_coefficient": "1/9"
+    },
+    {
+      "bits": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "order": 1,
+      "leading_coefficient": "1/16"
+    },
+    {
+      "bits": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "order": 7,
+      "leading_coefficient": "1/9"
+    },
+    {
+      "bits": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "order": 4,
+      "leading_coefficient": "1/16"
+    },
+    {
+      "bits": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "order": 1,
+      "leading_coefficient": "1/16"
+    },
+    {
+      "bits": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": 1,
+      "leading_coefficient": "1/25"
+    }
+  ]
+}
