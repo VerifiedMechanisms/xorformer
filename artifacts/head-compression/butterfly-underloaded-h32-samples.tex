@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{Exact samples for a butterfly with one unused prefix per block}
+\author{}\date{}\maketitle
+\paragraph{Scope.}
+This is finite computational evidence, independently checkable over the
+rationals. It is not an all-small-scale result, a universality theorem,
+or a growing compiler.
+
+Use the switch order and Haar scores of
+\texttt{butterfly-auxiliary-switch-germ.tex}. Set $H=32$, $d=5$,
+$\epsilon=1/100$, and
+\[
+ p_y=\sum_{j=0}^4y_j\epsilon^{2^j},\qquad t_{k,s}=1-p_s.
+\]
+Retain the switches $(k,s,g)$ with $s<2^k-1$. There are
+$Hd/2-(H-1)=49$ retained switches. Set every other routing bit to zero.
+The companion JSON specifies twenty retained words, generated using
+seed $3317$. Every saved word has a strictly positive residue vector
+whose forty-nine signed query scores are strictly positive.
+
+The certificate stores only a square active basis for each word, not
+large numerator and denominator strings for the residues. The checker
+reconstructs the rational score rows, adjoins the coordinate rows,
+solves the specified thirty-two-row system with right side one, and
+checks all forty-nine score inequalities and all thirty-two positive
+coordinate inequalities with lower bound one. Thus neither a numerical
+LP answer nor a solver's infeasibility judgment is used by the checker.
+The total is $20\cdot81=1620$ exact inequalities.
+
+\paragraph{Routing structure.}
+The omitted switches are exactly those at the all-one prefix of each
+block. In a block of $2^{k+1}$ input wires, precisely one input from
+each child has acquired the low $k$ bits all equal to one. Its omitted
+switch decides which of these two inputs acquires bit $k=1$, and hence
+which continues with the all-one prefix. Induction therefore identifies
+the $H-1$ omitted switches with the choices of a surviving input at the
+internal nodes of a complete binary tournament tree. This observation
+does not prove simultaneous sign interpolation.
+
+The stronger finite example in
+\texttt{butterfly-auxiliary-switch-germ.tex} requires a nonzero auxiliary
+completion to repair a particular positive-residue obstruction. All
+twenty samples here succeeded with the initial zero completion, so this
+new check by itself gives no additional evidence about the power of
+searching over auxiliary completions.
+\end{document}
