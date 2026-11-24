@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Stage Windows and the Cost of Literal Butterfly Masks}
+\author{}\date{November 24, 2026}\maketitle
+
+\paragraph{Status.}
+The feature-dimension statement and its numerical stage-window consequence
+are kernel checked in
+\texttt{JointFamilyButterflyMaskDimension.lean}. The description of the
+butterfly masks and the higher-jet alternative below are written arguments.
+No improved bound on the original worst-case head complexity is claimed.
+All model definitions remain unchanged.
+
+\paragraph{The exact rank test.}
+Suppose selectors $f_i$ have representatives $x_j$ with
+$f_i(x_j)=\delta_{ij}$. If all selectors are linear combinations of
+$d$ common features, their coefficient vectors are linearly independent,
+so there are at most $d$ selectors. In particular, an affine realization
+using $n$ real coordinates requires at least one fewer coordinate than
+selectors. This allows arbitrary, label-adaptive real address embeddings;
+it does not assume ordinary binary coordinates.
+The Lean declarations are
+\texttt{jointFamily\_partition\_selector\_feature\_dimension},
+\texttt{jointFamily\_partition\_selector\_affine\_dimension}, and
+\texttt{jointFamily\_binary\_partition\_affine\_dimension}.
+
+\paragraph{Applying the test to a growing stage window.}
+Let $H=2^a$ and number butterfly stages $k=0,\ldots,a-1$ as in
+\texttt{butterfly-rectangle-decoder.tex}. At stage $k$, the source masks
+are supported on the $2^{a-k-1}$ disjoint upper-address blocks, with
+one prescribed value of bit $k$. The target masks are supported on the
+$2^k$ disjoint lower-address blocks, again with one prescribed value of
+bit $k$. Choosing a representative in each support gives the identity
+submatrix required above. Signed Haar versions have the same identity
+submatrix after choosing the positive half of each support.
+
+Consider $L\geq2$ consecutive stages $k_0,\ldots,k_1$, where
+$k_1=k_0+L-1$. If all source masks and all target masks are affine in
+common $n$-coordinate embeddings (the two embeddings may differ), then
+\[
+ 2^{a-k_0-1}\leq n+1,\qquad 2^{k_1}\leq n+1,
+ \qquad H2^{L-2}\leq(n+1)^2.                 \tag{1}
+\]
+The last implication is
+\texttt{jointFamily\_butterfly\_affine\_stage\_count}; its depth-sum
+premise records $a-k_0-1+k_1=a+L-2$ explicitly.
+Thus this literal mask construction cannot access more than
+$2+2\log_2(n+1)-\log_2 H$ consecutive stages. In particular it cannot
+obtain a superlogarithmic number of independently readable bits per wire
+by substituting binary or constant-weight addresses for the one-hot mask
+coordinates. Making only one mask family nonlinear still leaves the
+other family's displayed exponential dimension requirement.
+
+\paragraph{A different higher-jet realization and its first cost.}
+There is an algebraic way to represent a rectangle without an affine
+mask. Give input and output bit values separate rails. A switch query
+selects input rails for positions above $k$, output rails for positions
+below $k$, and the two tested-bit rails. This uses at most $4a$ physical
+coordinates. For a source wire $h$ and a target wire $y$, assign a
+nonnegative affine form whose weight at a selected rail is one precisely
+when that wire satisfies the corresponding bit constraint. The top
+multilinear coefficient of a power of this affine form is a factorial
+multiple of the rectangle indicator. Consequently a high mixed jet of
+permutation-paired reciprocals can produce the desired rectangle counts.
+Zero weights may be replaced by small positive weights and handled by a
+strict limiting argument if the rest of a decoder is established.
+
+This observation is not yet an admissible compiler. Generic cancellation
+of all proper monomials for these queries uses the downward closure of
+$2^a$ rail words, whose size grows like $3^a$, before the stage factor.
+That exceeds the proposed $O(H)$ budget. More significantly, even the
+special butterfly structure does not make every lower term constant.
+Terms omitting one of the two tested-bit rails count unconstrained paths
+and are independent of that stage's switches. Terms retaining both rails
+and omitting some address rails are proper marginals of the arbitrary
+switch array on $a-1$ address bits.
+
+For one stage, the combined space of all proper marginals has dimension
+$2^{a-1}-1$. Indeed, in the Boolean Fourier basis these marginals retain
+exactly the characters whose support is a proper subset of the address
+coordinates; only the full parity character is missing. The stage arrays
+are independently chosen, so their direct-sum dimension is
+$a(2^{a-1}-1)$. Thus a fixed linear correction bank with one arbitrary
+coefficient per head and per table column cannot cancel all such marginal
+information using $o(aH)$ heads. This is a limitation of that correction
+interface, not a lower bound for nonlinear or label-adaptive corrections.
+
+\paragraph{What remains possible.}
+A useful next lemma must either realize the rectangle readouts without
+literal affine masks, retain lower-order terms while proving that the
+result has the requested strict signs, or compress the stage-marginal
+corrections by a genuinely nonlinear shared construction. Independently
+chosen table columns cannot each change the shared row directions of a
+head. The new distinct-pole paired tangent construction does permit each
+column to permute a common vector bank and choose scalar amplitudes;
+its union of permutation-indexed linear spans is not excluded by (1).
+All full-cube positivity, strict slope, column-axis, and global gluing
+charges remain necessary for any such continuation.
+\end{document}
