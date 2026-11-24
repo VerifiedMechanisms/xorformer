@@ -1,0 +1,2 @@
+import HeadComplexity.Research.AffineTwoPatternRank
+#print axioms HeadComplexity.AffineTwoPatternRank.card_le_of_two_patterns
