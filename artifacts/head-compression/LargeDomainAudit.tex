@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\begin{document}
+\title{Growing Product Domains and Affine Selector Rigidity}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The selector rigidity theorem below is kernel checked in
+\texttt{Results/LargeDomainSelectors.lean}. The budget analysis is a written
+audit, not a new upper bound for the original worst-case head complexity.
+The original model, admissibility conditions, and complexity definitions
+are unchanged. The analysis compares the checked affine-plane compiler with
+the independent-cell argument in \texttt{exponent-mechanisms.tex} at
+\texttt{origin/ar/0f08fe6fb98a}.
+
+\section{The size test before constructing a decoder}
+
+Let an independently programmable local domain have $M$ inputs in an
+ambient Boolean cube of dimension $n$. The referenced independent-cell
+argument gives the necessary condition
+\[
+ H\leq \frac{CM}{nG(n)},\quad G(n)\longrightarrow\infty
+ \quad\Longrightarrow\quad
+ \liminf\frac{\log_2 M}{G(n)}\geq\frac1{2C}.
+\]
+This uses Warren's analytic sign-pattern theorem. It is a written necessary
+condition for independent universal cells, not a new unconditional Lean
+lower bound. In particular, a fixed-power gain $G(n)=n^\delta$ requires
+$M\geq\exp(\Omega(n^\delta))$. An unbounded improvement $g(n)$ beyond the
+existing logarithmic saving requires $G(n)=\log n\,g(n)$, hence
+$M\geq n^{\Omega(g(n))}$. Every fixed-degree polynomial-size local domain
+fails the latter test.
+
+Split $n=km$ coordinates into $k$ blocks. The product of $k$ one-hot sets
+has $M=m^k$ points and therefore passes the size test only if
+\[
+ k\log m=\Omega(n^\delta)
+ \quad\hbox{or, respectively,}\quad
+ k\log m=\Omega(\log n\,g(n)).
+\]
+Thus growing products are legitimate candidate domains, whereas every
+fixed number of one-hot blocks is ruled out at the requested rates.
+
+\section{Two charges that the larger cardinality does not remove}
+
+Compiling $m^{k-2}$ independent two-dimensional slices with the inherited
+affine-plane compiler costs
+\[
+ O\left(m^{k-2}\frac m{\log m}\right)
+ =O\left(\frac{M}{m\log m}\right).
+\]
+Its inputs-per-head scale is $m\log m=(n/k)\log(n/k)$. The enlarged
+domain therefore gives no improvement by this compilation method. This
+calculation does not rule out a joint decoder for the full tensor.
+
+There is also a separate cover cost. The inherited formal theorem
+\texttt{exists\_openDownwardCover} bounds one block's cover by
+$22\cdot2^m/m$ centers. Its direct $k$-fold product has the certified bound
+\[
+ 22^k\frac{2^n}{m^k}.
+\]
+Even granting an ideal local decoder of cost
+$C_0M/(n\log M)$, multiplication of these bounds gives only
+\[
+ C_0\,22^k\frac{2^n}{n k\log m}.
+\]
+Relative to $2^n/(n\log n)$, the putative saving factor certified by this
+calculation is $k\log m/(22^k\log n)\leq k/22^k$, which cannot diverge.
+This is a failure of the inherited cover estimate as a growing-product
+proof, not a lower bound on the optimal cover. Axis repair and gluing on
+all lower-dimensional boundary faces would be additional charges. No
+general $k$-block gluing theorem is asserted here.
+
+\section{The first failed lemma in direct affine-plane enlargement}
+
+For a field $F$, put
+$\ell_a(u,v)=v-au$. The indicator of the nonvertical line with slope
+$a$ and intercept $b$ is $\mathbf1_{\{\ell_a(u,v)=b\}}$.
+For a memory-address map $g:A\times B\to F^2$, call its line selectors
+additive if, for every $a,b\in F$, there are real functions $U_{a,b}$,
+$V_{a,b}$ and a real constant $c_{a,b}$ such that
+\[
+ \mathbf1_{\{\ell_a(g(x,y))=b\}}
+ =c_{a,b}+U_{a,b}(x)+V_{a,b}(y).
+ \tag{1}
+\]
+These are exactly the values an affine numerator can take on a product
+of two one-hot sets. They are not the values of a general rational score.
+
+\begin{theorem}[Three-direction rigidity]
+Suppose $A,B$ are nonempty and $F$ contains three distinct slopes.
+If (1) holds, then $g$ depends on only one coordinate: either
+$g(x,y)=u(x)$ for some $u:A\to F^2$, or $g(x,y)=v(y)$ for some
+$v:B\to F^2$. In particular, if both factors have at least two elements,
+an injective address assignment cannot satisfy (1).
+\end{theorem}
+\begin{proof}
+Every additive function has zero mixed rectangle difference. Fix a
+rectangle and abbreviate its corners by $p=g(x,y)$, $q=g(x,y')$,
+$r=g(x',y)$, and $s=g(x',y')$. Apply the rectangle identity to the line
+of slope $a$ through $p$. Its left side contains the contribution $1$
+from $p$, so at least one of $q,r$ lies on this line. Therefore
+\[
+ \ell_a(p)=\ell_a(q)\quad\hbox{or}\quad\ell_a(p)=\ell_a(r).
+ \tag{2}
+\]
+Two distinct slopes determine a point: subtracting the two intercept
+equalities gives $(a-b)(p_1-q_1)=0$, then $p_1=q_1$ and $p_2=q_2$.
+Among three instances of (2), two choose the same neighboring corner.
+Consequently every rectangle satisfies $p=q$ or $p=r$.
+
+If every row is constant there is nothing to prove. Otherwise choose
+$x_0,y_0,y_1$ with $g(x_0,y_0)\ne g(x_0,y_1)$. For any $y$, its value
+$g(x_0,y)$ differs from at least one of these two values. Apply the
+corner property with that column and any row $x$. It forces
+$g(x,y)=g(x_0,y)$. Thus every column is constant across rows.
+Injectivity is then impossible when both factors have two elements.
+\end{proof}
+
+The three-direction hypothesis is sharp for this statement. Over
+$F=\mathbb F_2$, take $g(x,y)=(x+y,y)$ on $\mathbb F_2^2$. The map is
+injective, but its slope-zero intercept is $y$ and its slope-one intercept
+is $x$. Every nonvertical line indicator depends on just one coordinate.
+
+The current compiler uses weighted selectors
+$\eta_b(a)\mathbf1_{\{\ell_a(g)=c\}}$. For a fixed bit query, three
+nonzero weights on distinct slopes suffice for the same proof: divide
+the corresponding additive formulas by those weights. This observation
+does not assume that all fixed Cauchy residue choices are nonzero.
+It also does not cover architectures that change the bit query jointly
+with the product coordinates, use nonlinear selector scores, cancel
+selector errors globally, or ask only for the final strict signs.
+
+\section{Checked declarations and remaining opportunity}
+
+The namespace is \texttt{HeadComplexity.LargeDomain}. The main declarations
+are \texttt{additive\_line\_selectors\_depend\_on\_one\_axis} and
+\texttt{not\_additive\_line\_selectors\_of\_injective}. Their assumptions
+are explicit, and their proofs use no added axiom or \texttt{sorry}.
+The supporting theorem \texttt{depends\_on\_one\_axis\_of\_corner\_property}
+is purely set theoretic.
+
+The obstruction identifies the first failed lemma in the direct proposal
+to reuse the old affine line-rank factors on a larger Cartesian row
+domain. It does not prohibit a large-domain rational decoder with
+nonlinear intermediate selectors. The remaining task is to construct
+such a decoder at cost $O(M/(n\log M))$ or better, with a cover and
+gluing density small enough to preserve the larger logarithm. Interaction
+across many original cells is another possible escape because their
+individual selectors need not then be represented exactly.
+\end{document}

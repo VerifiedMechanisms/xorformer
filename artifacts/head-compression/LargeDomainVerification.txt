@@ -1,0 +1,21 @@
+Checked 2026-11-24 on branch ar/027ac8030b43.
+
+Command:
+  cd formalization
+  lake build HeadComplexity.Results.LargeDomainSelectors
+
+Result:
+  Built HeadComplexity.Results.LargeDomainSelectors (3.1s)
+  Build completed successfully (9048 jobs).
+
+Transitive #print axioms output:
+
+'HeadComplexity.LargeDomain.eq_of_two_lineCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.corner_eq_of_three_lineCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.lineCoordinate_corner_or_of_additive_selectors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.depends_on_one_axis_of_corner_property' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.additive_line_selectors_depend_on_one_axis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.not_additive_line_selectors_of_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+No original model definition, admissibility condition, or bound statement changed.
+These are auxiliary obstruction theorems. They do not improve W(n).
