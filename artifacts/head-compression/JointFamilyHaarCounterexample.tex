@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{A fixed geometric Haar prescription fails at thirty-two tokens}
+\maketitle
+
+\paragraph{Verification status.}
+This is an exact finite rational infeasibility certificate, independently
+checked using Python's standard-library fractions.  It is not Lean
+checked.  It does not establish a failure for arbitrarily compact pole
+scales, the original doubly exponential hierarchy, adaptive query times,
+adaptive pole locations, or a different permutation encoding.
+
+\paragraph{The exact failed inequality.}
+Use $H=2^d$ butterfly wires, stages $0\leq k<d$, prefixes
+$0\leq s<2^k$, and source tails $0\leq g<2^{d-k-1}$.
+For the switch word $\theta$, let $\pi_\theta$ be its butterfly permutation.
+Let $U_{k,g}(h)$ be $+1$ on the left child of the source block $(k,g)$,
+$-1$ on its right child, and zero outside that block.
+Fix
+\[
+ d=5,\qquad \gamma_k=4^{-(k+1)},\qquad
+ p_y=\sum_{k=0}^4 y_k\gamma_k,\qquad D_s=1-p_s.
+\]
+All denominators below are positive.  In fact
+$\sum_k\gamma_k<1/3$, so $D_s-p_y>1/3$.
+Define the paired Haar scores
+\[
+ F_{k,s,g}=\beta_{k,g}+\sum_h U_{k,g}(h)
+ \left(\frac{a_h+\gamma_k}{D_s-p_{\pi_\theta(h)}}
+ -\frac{a_h-\gamma_k}{D_s+\gamma_k-p_{\pi_\theta(h)}}\right).
+\]
+The prescribed target has bottom-stage bits zero and, for $k\geq1$,
+\[
+ \theta_{k,s,g}=1_{s\geq2^{k-1}}.
+\]
+It is independent of $g$.
+
+\begin{theorem}
+There are no real residues $a_h$ and block biases $\beta_{k,g}$ satisfying
+$(1-2\theta_{k,s,g})F_{k,s,g}>0$ at all eighty switches.
+\end{theorem}
+\begin{proof}
+For each block, subtract every negatively labeled query from every
+positively labeled query.  The block bias disappears.  Writing the
+result as $L_i(a)=A_i\cdot a+B_i$, the original strict inequalities imply
+$L_i(a)>0$ for each of the $120$ reduced inequalities.
+The accompanying file
+\texttt{joint-family-haar-h32-geometric-dual.json}
+gives a vector $\lambda\in\mathbb Q^{120}$ with $34$ positive coordinates
+and all other coordinates zero.  Direct rational substitution verifies
+\[
+ \lambda_i\geq0,\qquad \sum_i\lambda_i=1,\qquad
+ \sum_i\lambda_i A_i=0,\qquad \sum_i\lambda_i B_i=0.
+\]
+Consequently $\sum_i\lambda_iL_i(a)=0$ for every real residue vector,
+contradicting the required strict positivity.
+\end{proof}
+
+\paragraph{Reproduction and limitations.}
+Run \texttt{python3 artifacts/head-compression/JointFamilyHaarCounterexample.py}.
+The verifier regenerates the permutation, every reduced rational
+inequality, and every cancellation.  It needs no solver.  The certificate
+was discovered with an exact rational linear program; discovery is not
+part of its verification.
+
+The same geometric prescription passed $64$ reproducible random
+thirty-two-token targets before this structured word was tested.  Those
+finite successes did not imply a universal decoder.  Conversely, the
+present failure at scale $1/4$ does not imply failure at all sufficiently
+small scales.  Continuing this particular $34$-element support to the
+original hierarchy $\gamma_k=(1/100)^{2^k}$ produces mixed-sign
+multipliers, so that continuation does not supply a compactness
+obstruction.  The first failed lemma is universality of this fixed
+geometric scalar readout at this fixed scale, with all residues and biases
+allowed to adapt to the target.
+\end{document}
