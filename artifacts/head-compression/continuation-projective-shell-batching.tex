@@ -1,0 +1,241 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Projective Cube Lifts and Exact Thin-Shell Supports}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+All results here have complete written proofs. They have not been
+formalized in Lean. They repair the geometric support premise of a
+Schmitt-style batching argument on the full Boolean cube, but do not
+provide flat attention votes and do not prove an improved head bound.
+The attention model and its admissibility conditions are unchanged.
+
+\section{One generic positive denominator removes cospherical circuits}
+
+For a finite set $V\subset\mathbb R^m$, write
+$\widehat v=(1,v)\in\mathbb R^{m+1}$ and
+$Q(v)=\|\widehat v\|^2=1+\|v\|^2$.
+An affine circuit is a minimally affinely dependent subset $C$ of $V$.
+Fix, for each such $C$, one nonzero dependency
+\[
+ \sum_{v\in C}\lambda_v\widehat v=0.
+\]
+Every $\lambda_v$ is nonzero, by minimality, and the dependency space
+is one-dimensional. There are finitely many circuits.
+
+\begin{lemma}[Reciprocal linear forms are independent]
+Let $u_1,\ldots,u_k$ be pairwise nonproportional nonzero vectors in
+$\mathbb R^d$. Then the rational functions
+$b\mapsto1/\langle b,u_i\rangle$ are linearly independent over
+$\mathbb R$.
+\end{lemma}
+\begin{proof}
+Suppose that their linear combination with coefficients $a_i$ is
+zero. Multiplication by the product of the linear forms gives the
+polynomial identity
+\[
+ \sum_i a_i\prod_{j\ne i}\langle b,u_j\rangle=0.
+\]
+For each $i$, choose $b$ in the hyperplane
+$\langle b,u_i\rangle=0$ but in none of the other hyperplanes. Such
+a point exists: each other hyperplane intersects this one in a proper
+linear subspace, and a real vector space is not a finite union of
+proper linear subspaces. Evaluation gives $a_i=0$.
+\end{proof}
+
+\begin{theorem}[Generic projective sphere isolation]
+Let $V\subset\mathbb R^m$ be finite, and let $\mathcal U$ be a
+nonempty open subset of the coefficient vectors $b$ for which
+$B_b(v)=\langle b,\widehat v\rangle>0$ for every $v\in V$.
+There exists $b\in\mathcal U$ such that the projective points
+\[
+ y(v)=\frac{\widehat v}{B_b(v)}\in\mathbb R^{m+1}
+\]
+have the following property: every nonempty affinely independent
+subset $S\subset V$ lies on a positive-radius Euclidean sphere
+containing no point $y(v)$ with $v\in V\setminus S$.
+In particular, for $V=\{0,1\}^m$, $b$ may be chosen with its constant
+coefficient and every slope strictly positive.
+\end{theorem}
+
+\begin{proof}
+For each circuit $C$, the rational function
+\[
+ F_C(b)=\sum_{v\in C}\frac{\lambda_v Q(v)}{B_b(v)}
+\]
+is nonzero by the preceding lemma: the vectors $\widehat v$ are
+nonproportional and every coefficient $\lambda_vQ(v)$ is nonzero.
+After clearing denominators its numerator is a nonzero polynomial.
+A nonzero real polynomial vanishes on no nonempty open set. The
+product of the finitely many nonzero numerators is nonzero, so some
+$b\in\mathcal U$ makes every $F_C(b)$ nonzero.
+
+All $y(v)$ lie in the affine hyperplane $\langle b,y\rangle=1$.
+Projective scaling by the nonzero factors $B_b(v)$ preserves the
+affine dependence matroid: an original affine dependency with
+coefficients $\lambda_v$ becomes the dependency with coefficients
+$\mu_v=\lambda_v B_b(v)$, and conversely. In fact
+\[
+ \sum_v\mu_v=\sum_v\lambda_v B_b(v)=0,
+ \qquad \sum_v\mu_v y(v)=\sum_v\lambda_v\widehat v=0.
+\]
+No transformed circuit is cospherical. If all its points lay on a
+sphere with center $c$ and squared radius $r^2$, summing
+$\|y(v)\|^2-2\langle c,y(v)\rangle+\|c\|^2-r^2=0$ with weights
+$\mu_v$ would give
+\[
+ 0=\sum_v\mu_v\|y(v)\|^2
+   =\sum_v\frac{\lambda_vQ(v)}{B_b(v)}=F_C(b),
+\]
+a contradiction.
+
+Now fix an independent $S$ and one point $v_0\in S$.
+Centers of spheres through $y(S)$ are the solutions of the
+consistent affine system
+\[
+ 2\langle c,y(v)-y(v_0)\rangle
+   =\|y(v)\|^2-\|y(v_0)\|^2\quad(v\in S\setminus\{v_0\}).
+\]
+Consistency follows from linear independence of the difference
+vectors. For $w\notin S$ outside the affine span of $y(S)$,
+requiring its inclusion imposes one additional independent affine
+equation on this center space, hence excludes a proper affine
+hyperplane of centers. For $w$ inside that affine span, $S\cup\{w\}$
+contains an affine circuit, and inclusion of $w$ is impossible by
+the preceding paragraph. Choose a center outside the finitely many
+proper hyperplanes. If $S$ has at least two points, the resulting
+radius is automatically positive. If $S$ is a singleton, also avoid
+its center point, which is possible in the positive-dimensional
+ambient center space. This produces the required sphere.
+
+For the final assertion take $\mathcal U$ to be the strictly
+positive coefficient orthant. Every associated $B_b$ is strictly
+positive on the cube.
+\end{proof}
+
+The theorem does not say that the projective image is in affine
+general position. Its affine dependencies are exactly those of the
+original cube. It says that no affine circuit is cospherical, which
+is precisely the weaker condition needed to isolate an independent
+batch by a sphere.
+
+\section{An equivalent rational lift}
+
+\begin{proposition}[Two-ratio exact zero sets]
+Let $V\subset\mathbb R^m$ be finite. Fix a function $q:V\to(0,\infty)$
+and a positive affine function $D$ on $V$. For generic $B$ in any
+nonempty open set of affine functions positive on $V$, every
+nonempty affinely independent $S\subset V$ admits an affine $L_S$
+such that
+\[
+ T_S(v)=\frac{q(v)}{B(v)}-\frac{L_S(v)}{D(v)}=0
+ \quad\Longleftrightarrow\quad v\in S.
+\]
+If $q$ is affine and $V$ is the Boolean cube, both terms are actual
+admissible affine ratios when $B$ and $D$ have positive constant
+coefficients and strictly positive slopes.
+\end{proposition}
+
+\begin{proof}
+Apply the same reciprocal-independence proof to the finitely many
+circuit sums
+$\sum_{v\in C}\lambda_v q(v)D(v)/B(v)$, whose coefficients are
+nonzero. Put $Z(v)=q(v)D(v)/B(v)$. Since $S$ is affinely independent,
+there exist affine functions $L$ interpolating $Z$ on $S$.
+For an excluded $w$ outside $\operatorname{aff}(S)$, the additional
+equation $L(w)=Z(w)$ cuts a proper affine hyperplane from this
+interpolation space. For an excluded $w$ inside the span, that
+equation would contradict the nonzero circuit sum. Avoiding the
+finitely many proper hyperplanes gives $L_S$. Division by positive
+$D(v)$ proves the zero-set statement.
+\end{proof}
+
+Thus exact zero sets of arbitrary independent batches cost two
+admissible ratios. This is a zero certificate, not an approximate
+indicator. Its values away from the batch can have both signs and
+arbitrary magnitudes.
+
+\section{A full-cube batching bound}
+
+\begin{lemma}[Vertices in an affine flat]
+An affine subspace of dimension $d$ contains at most $2^d$ vertices
+of $\{0,1\}^m$.
+\end{lemma}
+\begin{proof}
+On its $d$-dimensional direction space, choose $d$ coordinate
+functionals whose restrictions form a basis of the dual space.
+Projection onto these coordinates is injective on the affine
+subspace. Every Boolean vertex projects into $\{0,1\}^d$.
+\end{proof}
+
+\begin{theorem}[Independent monochromatic batch partition]
+For $m\ge2$, color the Boolean cube with at most $\kappa$ colors.
+Put $k=\lfloor m/2\rfloor+1$. There is a partition into nonempty
+monochromatic affinely independent batches, each of size at most
+$k$, with total number $K$ satisfying
+\[
+ K\le\frac{2^m}{k}+\kappa 2^{\lfloor m/2\rfloor}.
+\]
+For any fixed $a$, if $\kappa\le m^a$ for sufficiently large $m$,
+then $K=O(2^m/m)$.
+\end{theorem}
+\begin{proof}
+While a color class has more than $2^{k-2}$ remaining points, its
+affine dimension is at least $k-1$, by the flat cardinality lemma,
+so it contains $k$ affinely independent points. Remove these as a
+batch. There are at most $2^m/k$ such batches. Once no such removal
+is possible, each color has at most $2^{k-2}$ points; use singleton
+batches for all remaining points. Their total is at most
+$\kappa2^{k-2}\le\kappa2^{\lfloor m/2\rfloor}$.
+The asymptotic assertion follows because
+$m^{a+1}2^{-\lceil m/2\rceil}\to0$.
+\end{proof}
+
+Combining this theorem with generic projective sphere isolation
+gives a complete geometric repair of the general-position batching
+premise for any polynomial number of row colors. Combining it with
+the rational-lift proposition gives exact two-ratio zero
+certificates for every batch in the same partition.
+
+\section{The remaining vote problem, without changing the input model}
+
+On the Boolean cube, $Q(x)=1+\sum_i x_i$ is affine. A sphere in the
+projective image has residual
+\[
+ \|y(x)-c\|^2-r^2
+ =\frac{Q(x)-2B(x)L(x)+\gamma B(x)^2}{B(x)^2},
+ \quad L(x)=\langle c,(1,x)\rangle,\quad
+ \gamma=\|c\|^2-r^2.
+\]
+Multiplying by positive $B$ yields
+$Q/B-2L+\gamma B$. This exact algebraic simplification explains why
+membership signs are inexpensive. It does not flatten those signs.
+
+For the two-ratio version, write
+$T_S=q/B-L_S/D$ and
+$P_S=qD-L_SB$. A standard narrow bump would require a function of
+\[
+ T_S^2=\frac{P_S^2}{B^2D^2},
+\]
+or a reciprocal of $P_S$ when a one-sided construction is possible.
+The numerator $P_S$ is generically quadratic, and its reciprocal is
+not an affine-ratio head. A simple attempted factor completion
+$B(M+\beta)+\alpha(M+\beta)$ can absorb a linear remainder only when
+that remainder lies in the span of $1,B,M$; no such condition is
+supplied by interpolation of arbitrary batches.
+
+For $K$ batches, flat approximations with absolute error below
+$1/(4K)$ would suffice for strict output signs after summation at
+threshold $1/2$, as proved in
+\texttt{continuation-thin-shell-audit.tex}. Neither genericity nor
+the independent-batch partition supplies these approximations.
+The common $B,D,q$ across batches could permit a joint cancellation
+construction, but no such construction is asserted here.
+
+\end{document}
