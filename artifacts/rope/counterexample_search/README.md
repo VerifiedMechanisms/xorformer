@@ -161,4 +161,27 @@ python3 artifacts/rope/counterexample_search/verify_tripartite_projection.py
 
 This is only a coefficient relaxation. Exact-score restrictions do not imply the same restrictions on every polynomial with the same Boolean signs. The unresolved step is to force these coefficient signs using strict parity-face labels of the actual pure score.
 
+`exact_tripartite_projection_improved.json` is a second exact certificate obtained by minimizing the required pure masses. Its three normalized denominator slope norms are approximately 0.387, 0.074, and 0.306, and both matrix sign margins exceed $8.79\cdot10^{-8}$. Its minimum pure mass slack exceeds $7.4\cdot10^{-7}$ and its minimum query weight exceeds 0.074. Pass this file as an argument to the same verifier. `improve_tripartite_projection.py` records the optimization used to obtain the proposal; the certificate does not depend on floating optimization.
+
 `search_tripartite_faces.py` tests that step without imposing a global symmetry. Each off-diagonal coefficient may use its own ordinary three-dimensional parity face. Each column sum may use a parity face where all six left coordinates are tied to one bit, while the chosen middle and right coordinates are the other two bits. It tests every six-two-three partition and every matching of rows to column pairs. Any discovered witness still needs exact parameter and sign verification before it can support the all-vanilla lower bound.
+
+`search_inverse_tripartitions.py` first tests whether a candidate's cubic matrix has an inverse of one strict sign. This is necessary even if the intended obstruction uses positive row and column transformations: if $M=PCQ$ and all entries of $P$, $Q$, and $M^{-1}$ are positive, then $C^{-1}=QM^{-1}P$ is positive. The tool can then search for linear-programming duals that force transformed coefficient inequalities from all Boolean labels. No complete dual certificate was found.
+
+`search_local_contexts.py` allows each desired parity face its own numerator and denominator intercepts. This is a relaxation of adding auxiliary bits. Independent context solutions must additionally satisfy the shared pure token-value and positive-mass constraints before they define one architecture. The implementation was checked on the known three-bit Cauchy parity realization, and its intercept derivative was compared with finite differences. The tested coefficient seed did not supply all local parity faces. This failed numerical search is inconclusive.
+
+## Larger coefficient margins and quartic relaxation
+
+`maximize_projection_margin.py` maximizes the smallest required coefficient sign margin subject to the bounded value scale $\sum_h|k_h|+|\lambda|\leq1$. It keeps the strict pure mass inequalities. The optimization proposal is subsequently rounded and checked with rational arithmetic.
+
+`exact_tripartite_projection_margin.json` has a six-by-six cubic matrix whose negative off-diagonal margins and positive column sums all exceed $5.53\cdot10^{-5}$. Its denominator slope norms are approximately 0.535, 0.476, and 0.528. This is a stronger coefficient relaxation, but the independent-context search found only one of the 36 requested parity faces at these fixed slopes and values.
+
+The quartic construction partitions fourteen bits into blocks of sizes eight, two, two, and two. The coefficient of $X_iY_jZ_kW_l$ gives an eight-by-eight matrix. `exact_quartic_projection.json` and `exact_quartic_projection_margin.json` contain exact four-pure-head coefficient relaxations. The latter has all 64 required matrix margins greater than $1.21\cdot10^{-5}$, with denominator slope norms approximately 0.77, 0.69, 0.72, and 0.78. Every atom has positive token weights and positive query weight.
+
+```bash
+python3 artifacts/rope/counterexample_search/verify_multilinear_projection.py \
+  artifacts/rope/counterexample_search/exact_tripartite_projection_margin.json \
+  artifacts/rope/counterexample_search/exact_quartic_projection.json \
+  artifacts/rope/counterexample_search/exact_quartic_projection_margin.json
+```
+
+`improve_multilinear_projection.py` records the preliminary mass minimization, including variation of the relative token-value differences. These exact coefficient certificates do not assert any Boolean separation. The remaining obligation is to verify enough actual parity-face score signs to force the matrix obstruction on every vanilla-admissible representation.

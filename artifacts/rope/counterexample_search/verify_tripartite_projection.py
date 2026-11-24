@@ -5,6 +5,7 @@ It does not certify the required Boolean parity-face witnesses.
 """
 from fractions import Fraction as Q
 from itertools import permutations, product
+import argparse
 import json
 from pathlib import Path
 
@@ -62,5 +63,9 @@ def verify(record):
 
 
 if __name__ == '__main__':
-    path = Path(__file__).with_name('exact_tripartite_projection.json')
-    print(json.dumps(verify(json.loads(path.read_text())), sort_keys=True))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('files', nargs='*', type=Path)
+    args = parser.parse_args()
+    paths = args.files or [Path(__file__).with_name('exact_tripartite_projection.json')]
+    for path in paths:
+        print(json.dumps({'file': str(path), **verify(json.loads(path.read_text()))}, sort_keys=True))
