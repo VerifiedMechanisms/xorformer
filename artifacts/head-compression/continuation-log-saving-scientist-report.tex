@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Universal Logarithmic Saving: Scientist Report}
+\author{}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Resolution.}
+The latest upper-bound target is proved unconditionally, including the full
+Lean proof against the original worst-case head complexity:
+\[
+ W(n)=O\!\left(\frac{2^n}{n\log n}\right).
+\]
+Here $\log$ is the natural logarithm. This resolves the requested logarithmic
+alternative. It does not establish $O(2^n/n^{1+\delta})$ for any fixed
+$\delta>0$, which remains open.
+
+\paragraph{Final Lean declarations.}
+All three declarations below are in namespace \texttt{HeadComplexity}, in
+\texttt{formalization/HeadComplexity/Results/UniversalLogSaving.lean}:
+\begin{itemize}
+\item \texttt{worstCaseHeadComplexity\_isBigO\_two\_pow\_div\_mul\_log}
+proves the unconditional \texttt{IsBigO} statement along \texttt{atTop}.
+\item \texttt{worstCaseHeadComplexity\_real\_le\_log\_saving}
+proves
+\[
+ W(n)\le2323202\frac{2^n}{n\log n}\quad\text{for every }n\ge32.
+\]
+\item \texttt{worstCaseHeadComplexity\_exists\_log\_saving}
+gives the equivalent existence of $C>0$ and an eventual threshold.
+\end{itemize}
+The final module is exported by \texttt{Results/All.lean}.
+No theorem-strength premise remains in these statements.
+
+\paragraph{New construction.}
+For $q=2^k$, put $q^2$ memory points in the finite affine plane
+$\mathbb F_q^2$. A real token at each point and column encodes $k$ arbitrary
+output bits. An exact Cauchy interpolant reads each bit from that token.
+The sums of the token kernels on the $q^2$ nonvertical lines have a displayed
+rank factorization, which costs $q^2+1$ reverse heads. Distinct points with
+different first coordinates share exactly one nonvertical line. This identity
+allows one affine-ratio head per point to cancel all its off-target
+contributions. The resulting $2q^2+1$ heads realize every sign table with at
+most $kq^2$ rows, independently of its number of columns. Grid values are
+exactly $+1$ or $-1$.
+
+\paragraph{Admissibility and global transfer.}
+The correction denominator is
+\[
+ 1-\sum_i(1-D_{i,g})u_i-\sum_jt_{g,j}v_j,
+ \quad 1-\epsilon<D_{i,g}<1,\quad 0<t_{g,j}<\epsilon,
+ \quad \epsilon=\frac1{4(r+s+1)}.
+\]
+It exceeds $3/4$ on the entire Boolean cube and every slope is negative.
+The rank heads are also positive on the whole cube; an exact weight-two
+gauge makes their slopes strictly negative without altering any grid value.
+The existing checked axis repair costs $3H+3$ heads. The checked downward
+product-cover assembly then yields
+\[
+ W(a+b)\le484\frac{2^{a+b}(3H+3)}{ab}+2^a+2^b.
+\]
+Choosing the least $k$ with $a\le k4^k$ gives $H=O(a/\log a)$.
+Balanced blocks finish the claimed logarithmic bound. Integer rounding,
+exceptional faces, positivity, and strict output signs are all included in
+the Lean proof.
+
+\paragraph{Key checked components.}
+The finite universal compiler is
+\texttt{AxisZeroGluing.hasStrictReverseGridCompiler\_affinePlane} in
+\texttt{Results/AffinePlaneCompiler.lean}. Its underlying exact score identity
+is \texttt{AxisZeroGluing.exists\_affinePlane\_reverse\_grid}.
+Supporting new modules are \texttt{AffinePlaneIncidence.lean},
+\texttt{AffinePlaneEncoding.lean}, \texttt{CauchyGridDecoder.lean},
+\texttt{CompactReverseCauchy.lean}, and
+\texttt{AffinePlaneSavingAsymptotics.lean}.
+The previously imported reverse rank, axis-repair, and global gluing
+results supply the head-preserving assembly.
+
+\paragraph{Verification.}
+The integrated \texttt{lake build} passed with 9249 jobs.
+The reproducible audit
+\texttt{artifacts/head-compression/audit\_universal\_log\_saving.lean}
+checks the exact final types and prints the transitive axioms;
+its output is saved in the matching \texttt{.txt} file.
+All final declarations and the new compiler use only \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
+There is no \texttt{sorryAx} and no new axiom.
+An independent exact rational test in
+\texttt{audit\_affine\_plane\_decoder.py} checks all 1536 grid entries
+of a $192$ by $8$ example with $129$ heads. This computation supplements
+the universal kernel proof and is not used as a substitute for it.
+
+\paragraph{Written proofs and audits.}
+\texttt{continuation-affine-plane-decoder.tex} gives the construction and
+asymptotic proof. \texttt{continuation-affine-plane-independent-audit.tex}
+expands the rank heads, compact denominators, finite-field incidence,
+padding, and full head budget independently. These are TeX sources;
+no TeX compilation is claimed. The entire target proof is Lean-checked,
+so there is no written-only mathematical gap.
+
+\paragraph{Routes that did not resolve the target.}
+Fixed-denominator universality, bounded atoms, saturated priority lists,
+isolated token readers, low-order jet constructions, and direct neural
+network memory transfers did not supply the universal saving.
+Forward equality-cover compilers were confined to their one-hot grid
+because their global orientation transfer was missing.
+Finite Cauchy and reflection examples supplied only constant improvements.
+The successful construction uses shared line aggregates and exact
+off-target cancellation, rather than assuming that an isolated bit decoder
+or a large VC dimension transfers to this cube.
+
+\paragraph{Definitions and scope.}
+The original model, \texttt{HStar}, \texttt{worstCaseHeadComplexity},
+head resource, and denominator admissibility conditions are unchanged.
+A source comparison with the branch-start commit \texttt{3e04fbf} confirms
+no changes to \texttt{Model/}, \texttt{Atoms/}, or
+\texttt{CountingLowerBound.lean}. The continuation adds auxiliary
+constructions and theorems, together with their public import.
+Denominators depend on the truth table, and arbitrarily precise real
+parameters are used, as permitted by the original model.
+
+\end{document}

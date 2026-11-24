@@ -90,6 +90,7 @@ import HeadComplexity.Results.TopThresholdDegree
 import HeadComplexity.Results.TorusPrismDecoder
 import HeadComplexity.Results.TwoBlockAffineGridStrip
 import HeadComplexity.Results.UniversalLinearSaving
+import HeadComplexity.Results.UniversalLogSaving
 import HeadComplexity.Results.WeightedFaceExact
 import HeadComplexity.Results.WeightedUpperBound
 import HeadComplexity.Results.AxisZeroAsymptotics
