@@ -1,0 +1,1285 @@
+{
+  "status": "finite exact modular computation",
+  "ranks": [
+    {
+      "k": 1,
+      "size": 2,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 2,
+          "increment": 2
+        }
+      ]
+    },
+    {
+      "k": 2,
+      "size": 4,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 3,
+          "increment": 3
+        },
+        {
+          "degree": 1,
+          "rank": 4,
+          "increment": 1
+        }
+      ]
+    },
+    {
+      "k": 3,
+      "size": 8,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 4,
+          "increment": 4
+        },
+        {
+          "degree": 1,
+          "rank": 7,
+          "increment": 3
+        },
+        {
+          "degree": 2,
+          "rank": 8,
+          "increment": 1
+        }
+      ]
+    },
+    {
+      "k": 4,
+      "size": 16,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 5,
+          "increment": 5
+        },
+        {
+          "degree": 1,
+          "rank": 9,
+          "increment": 4
+        },
+        {
+          "degree": 2,
+          "rank": 13,
+          "increment": 4
+        },
+        {
+          "degree": 3,
+          "rank": 16,
+          "increment": 3
+        }
+      ]
+    },
+    {
+      "k": 5,
+      "size": 32,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 6,
+          "increment": 6
+        },
+        {
+          "degree": 1,
+          "rank": 11,
+          "increment": 5
+        },
+        {
+          "degree": 2,
+          "rank": 16,
+          "increment": 5
+        },
+        {
+          "degree": 3,
+          "rank": 21,
+          "increment": 5
+        },
+        {
+          "degree": 4,
+          "rank": 26,
+          "increment": 5
+        },
+        {
+          "degree": 5,
+          "rank": 31,
+          "increment": 5
+        },
+        {
+          "degree": 6,
+          "rank": 32,
+          "increment": 1
+        }
+      ]
+    },
+    {
+      "k": 6,
+      "size": 64,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 7,
+          "increment": 7
+        },
+        {
+          "degree": 1,
+          "rank": 13,
+          "increment": 6
+        },
+        {
+          "degree": 2,
+          "rank": 19,
+          "increment": 6
+        },
+        {
+          "degree": 3,
+          "rank": 25,
+          "increment": 6
+        },
+        {
+          "degree": 4,
+          "rank": 31,
+          "increment": 6
+        },
+        {
+          "degree": 5,
+          "rank": 37,
+          "increment": 6
+        },
+        {
+          "degree": 6,
+          "rank": 43,
+          "increment": 6
+        },
+        {
+          "degree": 7,
+          "rank": 49,
+          "increment": 6
+        },
+        {
+          "degree": 8,
+          "rank": 55,
+          "increment": 6
+        },
+        {
+          "degree": 9,
+          "rank": 61,
+          "increment": 6
+        },
+        {
+          "degree": 10,
+          "rank": 63,
+          "increment": 2
+        },
+        {
+          "degree": 11,
+          "rank": 64,
+          "increment": 1
+        }
+      ]
+    },
+    {
+      "k": 7,
+      "size": 128,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 8,
+          "increment": 8
+        },
+        {
+          "degree": 1,
+          "rank": 15,
+          "increment": 7
+        },
+        {
+          "degree": 2,
+          "rank": 22,
+          "increment": 7
+        },
+        {
+          "degree": 3,
+          "rank": 29,
+          "increment": 7
+        },
+        {
+          "degree": 4,
+          "rank": 36,
+          "increment": 7
+        },
+        {
+          "degree": 5,
+          "rank": 43,
+          "increment": 7
+        },
+        {
+          "degree": 6,
+          "rank": 50,
+          "increment": 7
+        },
+        {
+          "degree": 7,
+          "rank": 57,
+          "increment": 7
+        },
+        {
+          "degree": 8,
+          "rank": 64,
+          "increment": 7
+        },
+        {
+          "degree": 9,
+          "rank": 71,
+          "increment": 7
+        },
+        {
+          "degree": 10,
+          "rank": 78,
+          "increment": 7
+        },
+        {
+          "degree": 11,
+          "rank": 85,
+          "increment": 7
+        },
+        {
+          "degree": 12,
+          "rank": 92,
+          "increment": 7
+        },
+        {
+          "degree": 13,
+          "rank": 99,
+          "increment": 7
+        },
+        {
+          "degree": 14,
+          "rank": 106,
+          "increment": 7
+        },
+        {
+          "degree": 15,
+          "rank": 113,
+          "increment": 7
+        },
+        {
+          "degree": 16,
+          "rank": 120,
+          "increment": 7
+        },
+        {
+          "degree": 17,
+          "rank": 127,
+          "increment": 7
+        },
+        {
+          "degree": 18,
+          "rank": 128,
+          "increment": 1
+        }
+      ]
+    },
+    {
+      "k": 8,
+      "size": 256,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 9,
+          "increment": 9
+        },
+        {
+          "degree": 1,
+          "rank": 17,
+          "increment": 8
+        },
+        {
+          "degree": 2,
+          "rank": 25,
+          "increment": 8
+        },
+        {
+          "degree": 3,
+          "rank": 33,
+          "increment": 8
+        },
+        {
+          "degree": 4,
+          "rank": 41,
+          "increment": 8
+        },
+        {
+          "degree": 5,
+          "rank": 49,
+          "increment": 8
+        },
+        {
+          "degree": 6,
+          "rank": 57,
+          "increment": 8
+        },
+        {
+          "degree": 7,
+          "rank": 65,
+          "increment": 8
+        },
+        {
+          "degree": 8,
+          "rank": 73,
+          "increment": 8
+        },
+        {
+          "degree": 9,
+          "rank": 81,
+          "increment": 8
+        },
+        {
+          "degree": 10,
+          "rank": 89,
+          "increment": 8
+        },
+        {
+          "degree": 11,
+          "rank": 97,
+          "increment": 8
+        },
+        {
+          "degree": 12,
+          "rank": 105,
+          "increment": 8
+        },
+        {
+          "degree": 13,
+          "rank": 113,
+          "increment": 8
+        },
+        {
+          "degree": 14,
+          "rank": 121,
+          "increment": 8
+        },
+        {
+          "degree": 15,
+          "rank": 129,
+          "increment": 8
+        },
+        {
+          "degree": 16,
+          "rank": 137,
+          "increment": 8
+        },
+        {
+          "degree": 17,
+          "rank": 145,
+          "increment": 8
+        },
+        {
+          "degree": 18,
+          "rank": 153,
+          "increment": 8
+        },
+        {
+          "degree": 19,
+          "rank": 161,
+          "increment": 8
+        },
+        {
+          "degree": 20,
+          "rank": 169,
+          "increment": 8
+        },
+        {
+          "degree": 21,
+          "rank": 177,
+          "increment": 8
+        },
+        {
+          "degree": 22,
+          "rank": 185,
+          "increment": 8
+        },
+        {
+          "degree": 23,
+          "rank": 193,
+          "increment": 8
+        },
+        {
+          "degree": 24,
+          "rank": 201,
+          "increment": 8
+        },
+        {
+          "degree": 25,
+          "rank": 209,
+          "increment": 8
+        },
+        {
+          "degree": 26,
+          "rank": 217,
+          "increment": 8
+        },
+        {
+          "degree": 27,
+          "rank": 225,
+          "increment": 8
+        },
+        {
+          "degree": 28,
+          "rank": 233,
+          "increment": 8
+        },
+        {
+          "degree": 29,
+          "rank": 241,
+          "increment": 8
+        },
+        {
+          "degree": 30,
+          "rank": 249,
+          "increment": 8
+        },
+        {
+          "degree": 31,
+          "rank": 256,
+          "increment": 7
+        }
+      ]
+    },
+    {
+      "k": 9,
+      "size": 512,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 10,
+          "increment": 10
+        },
+        {
+          "degree": 1,
+          "rank": 19,
+          "increment": 9
+        },
+        {
+          "degree": 2,
+          "rank": 28,
+          "increment": 9
+        },
+        {
+          "degree": 3,
+          "rank": 37,
+          "increment": 9
+        },
+        {
+          "degree": 4,
+          "rank": 46,
+          "increment": 9
+        },
+        {
+          "degree": 5,
+          "rank": 55,
+          "increment": 9
+        },
+        {
+          "degree": 6,
+          "rank": 64,
+          "increment": 9
+        },
+        {
+          "degree": 7,
+          "rank": 73,
+          "increment": 9
+        },
+        {
+          "degree": 8,
+          "rank": 82,
+          "increment": 9
+        },
+        {
+          "degree": 9,
+          "rank": 91,
+          "increment": 9
+        },
+        {
+          "degree": 10,
+          "rank": 100,
+          "increment": 9
+        },
+        {
+          "degree": 11,
+          "rank": 109,
+          "increment": 9
+        },
+        {
+          "degree": 12,
+          "rank": 118,
+          "increment": 9
+        },
+        {
+          "degree": 13,
+          "rank": 127,
+          "increment": 9
+        },
+        {
+          "degree": 14,
+          "rank": 136,
+          "increment": 9
+        },
+        {
+          "degree": 15,
+          "rank": 145,
+          "increment": 9
+        },
+        {
+          "degree": 16,
+          "rank": 154,
+          "increment": 9
+        },
+        {
+          "degree": 17,
+          "rank": 163,
+          "increment": 9
+        },
+        {
+          "degree": 18,
+          "rank": 172,
+          "increment": 9
+        },
+        {
+          "degree": 19,
+          "rank": 181,
+          "increment": 9
+        },
+        {
+          "degree": 20,
+          "rank": 190,
+          "increment": 9
+        },
+        {
+          "degree": 21,
+          "rank": 199,
+          "increment": 9
+        },
+        {
+          "degree": 22,
+          "rank": 208,
+          "increment": 9
+        },
+        {
+          "degree": 23,
+          "rank": 217,
+          "increment": 9
+        },
+        {
+          "degree": 24,
+          "rank": 226,
+          "increment": 9
+        },
+        {
+          "degree": 25,
+          "rank": 235,
+          "increment": 9
+        },
+        {
+          "degree": 26,
+          "rank": 244,
+          "increment": 9
+        },
+        {
+          "degree": 27,
+          "rank": 253,
+          "increment": 9
+        },
+        {
+          "degree": 28,
+          "rank": 262,
+          "increment": 9
+        },
+        {
+          "degree": 29,
+          "rank": 271,
+          "increment": 9
+        },
+        {
+          "degree": 30,
+          "rank": 280,
+          "increment": 9
+        },
+        {
+          "degree": 31,
+          "rank": 289,
+          "increment": 9
+        },
+        {
+          "degree": 32,
+          "rank": 298,
+          "increment": 9
+        },
+        {
+          "degree": 33,
+          "rank": 307,
+          "increment": 9
+        },
+        {
+          "degree": 34,
+          "rank": 316,
+          "increment": 9
+        },
+        {
+          "degree": 35,
+          "rank": 325,
+          "increment": 9
+        },
+        {
+          "degree": 36,
+          "rank": 334,
+          "increment": 9
+        },
+        {
+          "degree": 37,
+          "rank": 343,
+          "increment": 9
+        },
+        {
+          "degree": 38,
+          "rank": 352,
+          "increment": 9
+        },
+        {
+          "degree": 39,
+          "rank": 361,
+          "increment": 9
+        },
+        {
+          "degree": 40,
+          "rank": 370,
+          "increment": 9
+        },
+        {
+          "degree": 41,
+          "rank": 379,
+          "increment": 9
+        },
+        {
+          "degree": 42,
+          "rank": 388,
+          "increment": 9
+        },
+        {
+          "degree": 43,
+          "rank": 397,
+          "increment": 9
+        },
+        {
+          "degree": 44,
+          "rank": 406,
+          "increment": 9
+        },
+        {
+          "degree": 45,
+          "rank": 415,
+          "increment": 9
+        },
+        {
+          "degree": 46,
+          "rank": 424,
+          "increment": 9
+        },
+        {
+          "degree": 47,
+          "rank": 433,
+          "increment": 9
+        },
+        {
+          "degree": 48,
+          "rank": 442,
+          "increment": 9
+        },
+        {
+          "degree": 49,
+          "rank": 451,
+          "increment": 9
+        },
+        {
+          "degree": 50,
+          "rank": 460,
+          "increment": 9
+        },
+        {
+          "degree": 51,
+          "rank": 469,
+          "increment": 9
+        },
+        {
+          "degree": 52,
+          "rank": 478,
+          "increment": 9
+        },
+        {
+          "degree": 53,
+          "rank": 487,
+          "increment": 9
+        },
+        {
+          "degree": 54,
+          "rank": 496,
+          "increment": 9
+        },
+        {
+          "degree": 55,
+          "rank": 505,
+          "increment": 9
+        },
+        {
+          "degree": 56,
+          "rank": 509,
+          "increment": 4
+        },
+        {
+          "degree": 57,
+          "rank": 512,
+          "increment": 3
+        }
+      ]
+    },
+    {
+      "k": 10,
+      "size": 1024,
+      "prime": 65521,
+      "history": [
+        {
+          "degree": 0,
+          "rank": 11,
+          "increment": 11
+        },
+        {
+          "degree": 1,
+          "rank": 21,
+          "increment": 10
+        },
+        {
+          "degree": 2,
+          "rank": 31,
+          "increment": 10
+        },
+        {
+          "degree": 3,
+          "rank": 41,
+          "increment": 10
+        },
+        {
+          "degree": 4,
+          "rank": 51,
+          "increment": 10
+        },
+        {
+          "degree": 5,
+          "rank": 61,
+          "increment": 10
+        },
+        {
+          "degree": 6,
+          "rank": 71,
+          "increment": 10
+        },
+        {
+          "degree": 7,
+          "rank": 81,
+          "increment": 10
+        },
+        {
+          "degree": 8,
+          "rank": 91,
+          "increment": 10
+        },
+        {
+          "degree": 9,
+          "rank": 101,
+          "increment": 10
+        },
+        {
+          "degree": 10,
+          "rank": 111,
+          "increment": 10
+        },
+        {
+          "degree": 11,
+          "rank": 121,
+          "increment": 10
+        },
+        {
+          "degree": 12,
+          "rank": 131,
+          "increment": 10
+        },
+        {
+          "degree": 13,
+          "rank": 141,
+          "increment": 10
+        },
+        {
+          "degree": 14,
+          "rank": 151,
+          "increment": 10
+        },
+        {
+          "degree": 15,
+          "rank": 161,
+          "increment": 10
+        },
+        {
+          "degree": 16,
+          "rank": 171,
+          "increment": 10
+        },
+        {
+          "degree": 17,
+          "rank": 181,
+          "increment": 10
+        },
+        {
+          "degree": 18,
+          "rank": 191,
+          "increment": 10
+        },
+        {
+          "degree": 19,
+          "rank": 201,
+          "increment": 10
+        },
+        {
+          "degree": 20,
+          "rank": 211,
+          "increment": 10
+        },
+        {
+          "degree": 21,
+          "rank": 221,
+          "increment": 10
+        },
+        {
+          "degree": 22,
+          "rank": 231,
+          "increment": 10
+        },
+        {
+          "degree": 23,
+          "rank": 241,
+          "increment": 10
+        },
+        {
+          "degree": 24,
+          "rank": 251,
+          "increment": 10
+        },
+        {
+          "degree": 25,
+          "rank": 261,
+          "increment": 10
+        },
+        {
+          "degree": 26,
+          "rank": 271,
+          "increment": 10
+        },
+        {
+          "degree": 27,
+          "rank": 281,
+          "increment": 10
+        },
+        {
+          "degree": 28,
+          "rank": 291,
+          "increment": 10
+        },
+        {
+          "degree": 29,
+          "rank": 301,
+          "increment": 10
+        },
+        {
+          "degree": 30,
+          "rank": 311,
+          "increment": 10
+        },
+        {
+          "degree": 31,
+          "rank": 321,
+          "increment": 10
+        },
+        {
+          "degree": 32,
+          "rank": 331,
+          "increment": 10
+        },
+        {
+          "degree": 33,
+          "rank": 341,
+          "increment": 10
+        },
+        {
+          "degree": 34,
+          "rank": 351,
+          "increment": 10
+        },
+        {
+          "degree": 35,
+          "rank": 361,
+          "increment": 10
+        },
+        {
+          "degree": 36,
+          "rank": 371,
+          "increment": 10
+        },
+        {
+          "degree": 37,
+          "rank": 381,
+          "increment": 10
+        },
+        {
+          "degree": 38,
+          "rank": 391,
+          "increment": 10
+        },
+        {
+          "degree": 39,
+          "rank": 401,
+          "increment": 10
+        },
+        {
+          "degree": 40,
+          "rank": 411,
+          "increment": 10
+        },
+        {
+          "degree": 41,
+          "rank": 421,
+          "increment": 10
+        },
+        {
+          "degree": 42,
+          "rank": 431,
+          "increment": 10
+        },
+        {
+          "degree": 43,
+          "rank": 441,
+          "increment": 10
+        },
+        {
+          "degree": 44,
+          "rank": 451,
+          "increment": 10
+        },
+        {
+          "degree": 45,
+          "rank": 461,
+          "increment": 10
+        },
+        {
+          "degree": 46,
+          "rank": 471,
+          "increment": 10
+        },
+        {
+          "degree": 47,
+          "rank": 481,
+          "increment": 10
+        },
+        {
+          "degree": 48,
+          "rank": 491,
+          "increment": 10
+        },
+        {
+          "degree": 49,
+          "rank": 501,
+          "increment": 10
+        },
+        {
+          "degree": 50,
+          "rank": 511,
+          "increment": 10
+        },
+        {
+          "degree": 51,
+          "rank": 521,
+          "increment": 10
+        },
+        {
+          "degree": 52,
+          "rank": 531,
+          "increment": 10
+        },
+        {
+          "degree": 53,
+          "rank": 541,
+          "increment": 10
+        },
+        {
+          "degree": 54,
+          "rank": 551,
+          "increment": 10
+        },
+        {
+          "degree": 55,
+          "rank": 561,
+          "increment": 10
+        },
+        {
+          "degree": 56,
+          "rank": 571,
+          "increment": 10
+        },
+        {
+          "degree": 57,
+          "rank": 581,
+          "increment": 10
+        },
+        {
+          "degree": 58,
+          "rank": 591,
+          "increment": 10
+        },
+        {
+          "degree": 59,
+          "rank": 601,
+          "increment": 10
+        },
+        {
+          "degree": 60,
+          "rank": 611,
+          "increment": 10
+        },
+        {
+          "degree": 61,
+          "rank": 621,
+          "increment": 10
+        },
+        {
+          "degree": 62,
+          "rank": 631,
+          "increment": 10
+        },
+        {
+          "degree": 63,
+          "rank": 641,
+          "increment": 10
+        },
+        {
+          "degree": 64,
+          "rank": 651,
+          "increment": 10
+        },
+        {
+          "degree": 65,
+          "rank": 661,
+          "increment": 10
+        },
+        {
+          "degree": 66,
+          "rank": 671,
+          "increment": 10
+        },
+        {
+          "degree": 67,
+          "rank": 681,
+          "increment": 10
+        },
+        {
+          "degree": 68,
+          "rank": 691,
+          "increment": 10
+        },
+        {
+          "degree": 69,
+          "rank": 701,
+          "increment": 10
+        },
+        {
+          "degree": 70,
+          "rank": 711,
+          "increment": 10
+        },
+        {
+          "degree": 71,
+          "rank": 721,
+          "increment": 10
+        },
+        {
+          "degree": 72,
+          "rank": 731,
+          "increment": 10
+        },
+        {
+          "degree": 73,
+          "rank": 741,
+          "increment": 10
+        },
+        {
+          "degree": 74,
+          "rank": 751,
+          "increment": 10
+        },
+        {
+          "degree": 75,
+          "rank": 761,
+          "increment": 10
+        },
+        {
+          "degree": 76,
+          "rank": 771,
+          "increment": 10
+        },
+        {
+          "degree": 77,
+          "rank": 781,
+          "increment": 10
+        },
+        {
+          "degree": 78,
+          "rank": 791,
+          "increment": 10
+        },
+        {
+          "degree": 79,
+          "rank": 801,
+          "increment": 10
+        },
+        {
+          "degree": 80,
+          "rank": 811,
+          "increment": 10
+        },
+        {
+          "degree": 81,
+          "rank": 821,
+          "increment": 10
+        },
+        {
+          "degree": 82,
+          "rank": 831,
+          "increment": 10
+        },
+        {
+          "degree": 83,
+          "rank": 841,
+          "increment": 10
+        },
+        {
+          "degree": 84,
+          "rank": 851,
+          "increment": 10
+        },
+        {
+          "degree": 85,
+          "rank": 861,
+          "increment": 10
+        },
+        {
+          "degree": 86,
+          "rank": 871,
+          "increment": 10
+        },
+        {
+          "degree": 87,
+          "rank": 881,
+          "increment": 10
+        },
+        {
+          "degree": 88,
+          "rank": 891,
+          "increment": 10
+        },
+        {
+          "degree": 89,
+          "rank": 901,
+          "increment": 10
+        },
+        {
+          "degree": 90,
+          "rank": 911,
+          "increment": 10
+        },
+        {
+          "degree": 91,
+          "rank": 921,
+          "increment": 10
+        },
+        {
+          "degree": 92,
+          "rank": 931,
+          "increment": 10
+        },
+        {
+          "degree": 93,
+          "rank": 941,
+          "increment": 10
+        },
+        {
+          "degree": 94,
+          "rank": 951,
+          "increment": 10
+        },
+        {
+          "degree": 95,
+          "rank": 961,
+          "increment": 10
+        },
+        {
+          "degree": 96,
+          "rank": 971,
+          "increment": 10
+        },
+        {
+          "degree": 97,
+          "rank": 981,
+          "increment": 10
+        },
+        {
+          "degree": 98,
+          "rank": 991,
+          "increment": 10
+        },
+        {
+          "degree": 99,
+          "rank": 1001,
+          "increment": 10
+        },
+        {
+          "degree": 100,
+          "rank": 1011,
+          "increment": 10
+        },
+        {
+          "degree": 101,
+          "rank": 1021,
+          "increment": 10
+        },
+        {
+          "degree": 102,
+          "rank": 1023,
+          "increment": 2
+        },
+        {
+          "degree": 103,
+          "rank": 1024,
+          "increment": 1
+        }
+      ]
+    }
+  ]
+}

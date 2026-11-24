@@ -1,0 +1,24 @@
+'HeadComplexity.worstCaseHeadComplexity_real_le_joint_log_saving' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.reverseCubeStar_add_column_bias' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.hasReverseCubeStarCompiler_of_compact_biased_paired' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_of_compact_biased_paired_cube_decoder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_nonnegative_affine_antipodal_zeros' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_polynomial_ridge_family_correction_preserves_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.worstCaseHeadComplexity_real_le_of_permutationTangent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LargeDomain.worstCaseHeadComplexity_real_le_of_weightedPermutationTangent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
