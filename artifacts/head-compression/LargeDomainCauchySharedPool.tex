@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A compact Cauchy obstruction to a common amplitude pool}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+The obstruction below is kernel checked in
+\texttt{HeadComplexity/Results/LargeDomainCauchySharedPool.lean}.
+It concerns one proposed induction for a growing permutation decoder.
+It does not rule out target-adaptive residues, a full joint decoder,
+or any upper bound for the original quantity $W(n)$.
+No original model definition is changed.
+
+For $q\geq10$, let
+\[
+ K_{ij}=\frac1{(q-i-j)^2},\qquad 0\leq i,j\leq2,
+ \qquad \sigma=(-1,1,1),\quad\tau=(1,-1,1).
+\]
+For a sign vector $v$, write $D_v$ for the corresponding diagonal matrix.
+
+\begin{theorem}
+There is no vector $z$ with all coordinates positive such that both
+$D_\sigma K D_\sigma z$ and $D_\tau K D_\tau z$ have all coordinates
+strictly positive. This remains true for arbitrarily large $q$, hence
+for arbitrarily compact normalized poles $0,1/q,2/q$.
+\end{theorem}
+\begin{proof}
+Put
+\[
+ a=K_{00},\quad b=K_{01},\quad c=K_{02}=K_{11},
+ \quad e=K_{12},\quad f=K_{22},\quad\Delta=cf-e^2.
+\]
+All five entries are positive, and
+\[
+ \Delta=\frac{2q^2-12q+17}{(q-4)^2(q-3)^4(q-2)^2}>0.
+\]
+The proposed inequalities include the following three:
+\[
+ az_0-bz_1-cz_2>0,\qquad
+ -bz_0+cz_1-ez_2>0,\qquad
+ cz_0-ez_1+fz_2>0.
+\]
+Multiply them respectively by the positive quantities
+$\Delta$, $bf+ce$, and $c^2+be$. Their sum is exactly
+\[
+ \bigl(a\Delta-b^2f+c^3\bigr)z_0.
+\]
+But
+\[
+ a\Delta-b^2f+c^3=
+ \frac{-2P(q)}{q^2(q-4)^2(q-3)^4(q-2)^6(q-1)^4}<0,
+\]
+where
+\[
+ P(q)=2q^{10}-40q^9+339q^8-1584q^7+4432q^6-7488q^5
+       +7135q^4-2808q^3-756q^2+912q-136.
+\]
+To verify the last sign without an asymptotic argument, put $r=q-10\geq0$.
+Then
+\[
+\begin{split}
+ P(q)={}&2r^{10}+160r^9+5739r^8+121536r^7+1682752r^6
+ +15916032r^5\\
+ &+104140735r^4+465434592r^3+1359716004r^2
+ +2344483392r+1811675384>0.
+\end{split}
+\]
+Thus the same sum is strictly negative because $z_0>0$, a contradiction.
+The Lean declaration is
+\texttt{HeadComplexity.LargeDomain.no\_shared\_positive\_cauchy\_pool}.
+It assumes only $z_0>0$ and these three selected inequalities.
+\end{proof}
+
+\paragraph{Why separate one-level success is insufficient.}
+The matrix $K$ is positive definite: it is the Gram matrix of the three
+functions $e^{it}$ in the positive integral
+\[
+ K_{ij}=\int_0^\infty t e^{-qt}e^{it}e^{jt}\,dt.
+\]
+Linear independence of the exponentials gives strict definiteness.
+Every positive definite real symmetric matrix $A$ admits some $z>0$
+with $Az>0$. For example, minimize
+$\frac12z^{\mathsf T}Az-\sum_i\log z_i$ on the positive orthant;
+coercivity and the logarithmic barrier give an interior minimizer, whose
+stationarity equation is $(Az)_i=1/z_i>0$.
+Apply this separately to $D_\sigma K D_\sigma$ and
+$D_\tau K D_\tau$. Thus each of the two sign problems has positive
+amplitudes, but the amplitudes cannot be shared. This last explanatory
+argument is a written proof, not part of the Lean declaration.
+
+\paragraph{Consequence for the attempted induction.}
+A one-level positive definite Cauchy argument can choose amplitudes after
+seeing that level's signs. A recursive decoder cannot silently reuse those
+amplitudes for a second independently specified sign problem. Already
+three compact nodes give a counterexample to that intermediate lemma.
+The theorem leaves open joint choices with signed residues, independent
+per-column amplitudes, different source gates, or cancellation involving
+several levels at once.
+\end{document}

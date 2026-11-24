@@ -1,0 +1,15 @@
+Command (working directory /work/formalization):
+  lake build HeadComplexity.Results.LargeDomainCauchySharedPool
+Result:
+  Build completed successfully (3319 jobs).
+
+Transitive axiom check:
+  lake env lean /tmp/LargeDomainSharedPoolAxioms.lean
+'HeadComplexity.LargeDomain.sharedPoolPolynomial_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.sharedPool_cauchy_minor_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.no_shared_positive_cauchy_pool' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Scope:
+  A counterexample to one shared-positive-amplitude intermediate lemma.
+  No change to HeadComplexity.worstCaseHeadComplexity or its model.
+  No stronger unconditional asymptotic upper bound is asserted.
