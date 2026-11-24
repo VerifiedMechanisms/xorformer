@@ -1,0 +1,2 @@
+PASS: H=128, 448 strict comparisons, 144 positive integer dual coefficients, 19 Gram-plus-identity blocks.
+The positive weighted sum of all requested strict inequalities is exactly 0.

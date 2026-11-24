@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,hyperref}
+\begin{document}
+\section*{A finite obstruction to arbitrary SPD butterfly preconditioning}
+
+This note records an exact finite computation, not a Lean theorem. It rules out
+an auxiliary routing statement in which arbitrary symmetric positive definite
+blocks replace the Cauchy blocks. It does not rule out the Cauchy statement,
+weighted permutation tangent decoders, or an improvement for the original
+attention model.
+
+Let $H=2^d$. Index switches by triples $(k,s,g)$ with
+$0\leq k<d$, $0\leq s<2^k$, and $0\leq g<2^{d-k-1}$, in that lexicographic
+order. Given a bit $\theta_e$ at every switch, start with the original input
+wire labels $0,\ldots,H-1$. At switch $e=(k,s,g)$, let $u_e,v_e$ be the
+original labels currently at positions $s+2^{k+1}g$ and
+$s+2^{k+1}g+2^k$. The row $B_e$ is $e_{u_e}^{\mathsf T}-e_{v_e}^{\mathsf T}$.
+Swap those positions if $\theta_e=1$. Thus $B=B_\theta$ depends on the entire
+chosen switch pattern.
+
+For each node $(k,g)$ choose an SPD matrix $K_{k,g}$ of size $2^k$. Let $K$ be
+the block operator that mixes the $s$ queries separately within each node.
+The proposed auxiliary statement was that, for every $\theta$ and every such
+choice of SPD blocks, there exist residues $a\in\mathbb R^H$ and a free bias
+$\beta_{k,g}$ at each node such that
+\[
+ (1-2\theta_e)\bigl((KB_\theta a)_e+\beta_{k,g}\bigr)>0
+ \quad\text{for every }e=(k,s,g).
+\]
+
+\paragraph{Exact counterexample.}
+The attached file \texttt{LargeDomainSPDPreconditioner.json} specifies $d=7$,
+all $448$ switch bits, and $19$ nonidentity blocks. Each listed block is given
+as an integer matrix $R$ and means $K_{k,g}=RR^{\mathsf T}+I$; all other
+blocks are the identity. Hence every block is SPD without a numerical spectral
+calculation. It also specifies $144$ strictly positive integer coefficients
+$\lambda_e$, with all unlisted coefficients zero. Put
+$\mu_e=(1-2\theta_e)\lambda_e$. Direct integer calculation verifies
+\[
+ \sum_{s=0}^{2^k-1}\mu_{k,s,g}=0
+ \quad\text{for every node},
+ \qquad B_\theta^{\mathsf T}K\mu=0.
+\]
+The positive weighted sum, with weights $\lambda_e$, of the requested strict
+inequalities is consequently zero. The system is infeasible, including all
+$127$ free node biases.
+
+The verifier \texttt{LargeDomainSPDPreconditionerVerify.py} uses only Python
+integer arithmetic. It reconstructs the wire routing and applies each block
+as $R(R^{\mathsf T}\mu)+\mu$. Discovery used floating linear programming to
+find a support, followed by exact rational row reduction; the final verifier
+does not trust either the floating solver or the row-reduction package.
+
+\paragraph{Why the earlier tests were inconclusive.}
+For $H=16$ there are only $32$ switch queries and at most $31$ residue and
+node-bias dimensions. At $H=32$ there are $80$ queries and at most $63$ such
+dimensions. Many random sign patterns can therefore be feasible even for a
+model that is not universally feasible. Small random successes did not prove
+an SPD routing theorem. At $H=128$, the exact certificate above settles the
+arbitrary-SPD version negatively. A Cauchy proof, if one exists, must use more
+than positive definiteness, such as the special total positivity or the
+relation between its evaluation points.
+\end{document}
