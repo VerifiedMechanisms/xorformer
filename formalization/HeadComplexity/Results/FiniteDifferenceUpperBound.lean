@@ -143,7 +143,7 @@ theorem computable_of_strict_cleared (hH : 0 < H)
   rw [zero_add, hsum, hscore]
   exact (hstable x).1.trans (by rw [hT0, div_pos_iff_of_pos_right (pow_pos (hB x) H)]; exact hf x)
 
-/-- Positive affine ratios, without any slope restrictions, admit Boolean
+/-- Positive affine ratios, without any slope restrictions, have Boolean
 simulation by 2^H - 1 vanilla heads. Zero heads and zero input bits are included. -/
 theorem computable_of_positive_denominators
     (r : Fin H → AffineFraction n) (c : ℝ)

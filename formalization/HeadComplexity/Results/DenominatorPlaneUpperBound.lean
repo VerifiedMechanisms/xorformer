@@ -20,7 +20,7 @@ namespace AffineStatistic
 
 variable {n H m : ℕ}
 
-/-- Proper polynomial sums in a projective affine statistic admit H vanilla
+/-- Proper polynomial sums in a projective affine statistic have H vanilla
 heads when the base is positive and has uniformly strict slopes. -/
 theorem computable_of_projective_affine_polynomial_sum
     (v w : Fin n → ℝ) (d b : ℝ)
@@ -196,7 +196,7 @@ theorem computable_of_denominator_plane
 end AffineStatistic
 
 /-- Pure rotary families in a denominator plane with an oriented positive
-base admit vanilla simulation at the same head count. -/
+base have vanilla simulation at the same head count. -/
 theorem pureRoPEFamily_vanilla_of_denominator_plane {n H : ℕ}
     (p : Fin H → PureRoPEAtom n) (c : ℝ)
     (v w : Fin n → ℝ) (d b : ℝ) (α β : Fin H → ℝ)

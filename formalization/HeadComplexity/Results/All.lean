@@ -17,6 +17,10 @@ import HeadComplexity.Results.RoPESmallInputs
 import HeadComplexity.Results.RoPEThreeComplement
 import HeadComplexity.Atoms.RoPEProjectiveObstruction
 import HeadComplexity.Atoms.RoPEShearObstruction
+import HeadComplexity.Atoms.CubicPencilObstruction
+import HeadComplexity.Results.RoPEGeneralBounds
+import HeadComplexity.Results.ReciprocalUpperBound
+import HeadComplexity.Atoms.RoPEArrowhead
 
 set_option linter.style.header false
 
@@ -163,12 +167,12 @@ alias theorem18_rotary_scalar_bridge :=
 head budgets in the exact rectangular architecture. -/
 alias theorem18_fixed_free := rectangularStandardPureRotaryComputable_iff_free
 
-/-- **Theorem 19.** Arbitrary positive affine ratios admit a general exponential
+/-- **Theorem 19.** Arbitrary positive affine ratios have a general exponential
 vanilla head bound. This is not the same-head conjecture. -/
 alias theorem19_finite_difference := FiniteDifference.computable_of_positive_denominators
 
-/-- **Theorem 20.** All head budgets agree for at most three input bits. -/
-alias theorem20_small_inputs := pureRoPEComputable_iff_vanilla_of_input_le_three
+/-- **Theorem 20.** All head budgets agree for at most four input bits. -/
+alias theorem20_small_inputs := pureRoPEComputable_iff_vanilla_of_input_le_four
 
 /-- **Theorem 21.** Complement-invariant three-head pure classifiers need at
 most four vanilla heads. No three-head equality is asserted here. -/

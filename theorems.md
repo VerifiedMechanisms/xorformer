@@ -275,13 +275,15 @@ If $f(1-x)=f(x)$ and $H_P(f)\leq2$, then $H_P(f)=H^{\ast}(f)$. The special pure-
 
 ### Theorem 16. Unconditional two-head pure equivalence
 
-For every input length and every Boolean function, pure rotary and vanilla computability agree at each head count at most two. More strongly, a pure atom plus any positive affine fraction can be simulated by two vanilla heads for Boolean classification. All statements are Lean-checked, including the finite strictness perturbation and the literal rotary interpretation. Any strict pure improvement must use at least three pure heads.
+For every input length and every Boolean function, pure rotary and vanilla computability agree at each head count at most two. More strongly, a pure atom plus any positive affine fraction can be simulated by two vanilla heads for Boolean classification. All statements are Lean-checked, including the finite strictness perturbation and the literal rotary interpretation. Minimum counts also agree whenever the vanilla minimum is at most three. Any strict pure improvement must use at least three pure heads and require at least four vanilla heads.
 
 **Proof.** [theorems/03_rotary_attention/016_pure_rope_two_heads.md](theorems/03_rotary_attention/016_pure_rope_two_heads.md)
 
 ### Theorem 17. Polynomial thresholds of arbitrary affine statistics
 
 A Boolean function represented by a polynomial of degree at most $H$ in any real affine statistic has a vanilla realization with $H$ heads. The statistic may have positive, negative, and zero coefficients. The Lean proof uses a projective perturbation that preserves all strict cube signs, followed by partial fractions with positive denominator slopes.
+
+The same head count suffices for arbitrary affine numerators with collinear positive-denominator slopes. More generally, it suffices when all denominators lie in the span of two affine forms and that span contains a positive form with strictly uniform slopes. These extensions are Lean-checked.
 
 **Proof.** [theorems/03_rotary_attention/017_affine_statistic_projective_upper_bound.md](theorems/03_rotary_attention/017_affine_statistic_projective_upper_bound.md)
 
@@ -290,6 +292,26 @@ A Boolean function represented by a polynomial of degree at most $H$ in any real
 Pure scalar atoms are exactly the scores of literal pure rotary attention at every head count. The complete Lean bridge includes separate model and head dimensions, explicit output projections, shared embeddings, the fixed query's self attention, and unrotated token-only values. Standard frequencies realize any scalar score at common finite width $2(n+2)$; free frequencies give the same score class. Both zero-input and zero-head cases are included.
 
 **Proof.** [theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md](theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md)
+
+### Theorem 19. General finite-difference simulation
+
+A sum of $H$ affine fractions with positive cube denominators has a Boolean realization using $2^H-1$ vanilla heads. This applies to pure and retained scalar rotary families, and the literal pure architecture through Theorem 18. The complete finite-difference argument is Lean-checked, including zero inputs and zero heads. It is an upper bound with extra heads, not universal equality.
+
+A zero-constant sum of $H+1$ constant-numerator reciprocals needs at most $2^H-1$ vanilla heads. In particular, three such reciprocal heads can be simulated with three vanilla heads.
+
+**Proof.** [theorems/03_rotary_attention/019_finite_difference_vanilla_simulation.md](theorems/03_rotary_attention/019_finite_difference_vanilla_simulation.md)
+
+### Theorem 20. All head counts on at most four inputs
+
+For every input length at most four, every Boolean function, and every head count, pure rotary and unchanged vanilla computability agree. Three fixed denominator families and 24 exact integer templates cover all 65534 four-bit truth tables other than parity and its complement. The finite coverage and template checks are proved in the Lean kernel. Parity is handled by the existing symmetric theory, and lower head counts by Theorem 16. Standard and free rotary frequencies are both covered.
+
+**Proof.** [theorems/03_rotary_attention/020_pure_rope_small_inputs.md](theorems/03_rotary_attention/020_pure_rope_small_inputs.md)
+
+### Theorem 21. Four-head bound for complement-invariant three-head classifiers
+
+A complement-invariant Boolean function computed by three positive affine fractions needs at most four vanilla heads. This includes pure and retained rotary atoms. The Lean proof averages the cleared cubic over antipodal inputs and compiles the resulting three-product quadratic into four heads. A three-head conclusion is not established.
+
+**Proof.** [theorems/03_rotary_attention/021_three_heads_complement_invariant.md](theorems/03_rotary_attention/021_three_heads_complement_invariant.md)
 
 ## Dependency Order
 

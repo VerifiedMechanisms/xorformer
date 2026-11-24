@@ -28,8 +28,11 @@ without complement invariance. Theorem 18 formalizes the finite-frequency
 interpolation and the exact rectangular rotary architecture, including separate
 model and head dimensions, explicit output projections, shared embeddings,
 and the fixed query's self attention. Fixed and free frequencies have the same
-exact scalar score class. Universal equality with vanilla remains unresolved
-starting at three pure heads.
+exact scalar score class. Theorem 20 proves equality at every head count for
+all input lengths at most four. Theorems 17, 19, and 21 give structured
+head-preserving cases and general bounds with extra heads. Universal equality
+remains unresolved; a strict improvement would require at least five input
+bits, at least three pure heads, and at least four vanilla heads.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -50,6 +53,9 @@ starting at three pure heads.
 | 16 | unconditional two-head pure equivalence | `pureRoPEComputable_iff_vanilla_of_le_two`, `pureRoPEHStar_eq_vanilla_of_le_two` | `Results/RoPETwoHeads.lean` |
 | 17 | arbitrary affine-statistic polynomial bound | `AffineStatistic.computable_of_polynomial` | `Results/AffineStatisticUpperBound.lean` |
 | 18 | literal rectangular rotary bridge | `rectangularStandardPureRotaryComputable_iff_scalar`, `rectangularFreePureRotaryComputable_iff_scalar` | `Model/RotaryInterpolation.lean`, `Model/RectangularPureRoPE.lean` |
+| 19 | general exponential simulation bound | `FiniteDifference.computable_of_positive_denominators`, `architecturalPureRoPEHStar_general_bounds` | `Results/FiniteDifferenceUpperBound.lean`, `Results/RoPEGeneralBounds.lean` |
+| 20 | every head count on at most four input bits | `pureRoPEComputable_iff_vanilla_of_input_le_four`, `vanilla_three_computes_fourBit_nonparity` | `Results/RoPEFourInputs.lean` |
+| 21 | complement-invariant three-head classifiers use at most four vanilla heads | `vanilla_four_of_pureRoPE_three_complement` | `Results/RoPEThreeComplement.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
@@ -61,9 +67,9 @@ lake build HeadComplexity.Examples.All   # optional build for just examples
 lake build HeadComplexity.Results.All   # optional build for just results
 ```
 
-For **exact, reproducible** build/verify instructions — including the
+For **exact, reproducible** build/verify instructions, including the
 mathlib-cache `curl` fix, the Snellius SLURM job scripts, and how to confirm the
-results are axiom-clean — see [`BUILDING.md`](BUILDING.md).
+results are axiom-clean, see [`BUILDING.md`](BUILDING.md).
 
 See the [repository README](../README.md) for the wider project context.
 
@@ -74,3 +80,14 @@ in `Atoms/RoPEStrictness.lean`, including a nondegenerate representation at ever
 head count. `Results/RoPEArchitecturalComparison.lean` composes the two-head
 result with the literal bridge and defines the architectural minimum counts.
 No existing vanilla definition is changed.
+
+The all-head structured results are
+`AffineStatistic.computable_of_collinear_denominators` and
+`AffineStatistic.computable_of_denominator_plane`. The reciprocal specialization
+`vanilla_three_of_zero_constant_reciprocals` is in
+`Results/ReciprocalUpperBound.lean`. The route obstructions in
+`Atoms/RoPEShearObstruction.lean`, `Atoms/RoPEProjectiveObstruction.lean`,
+`Atoms/CubicPencilObstruction.lean`, and `Atoms/RoPEArrowhead.lean` concern
+specific transformations. None establishes a Boolean head-count separation.
+`Examples/RoPEApproximation.lean` proves a positive uniform one-head score gap,
+which likewise does not separate Boolean classifications.

@@ -5,8 +5,9 @@ set_option linter.style.header false
 /-!
 # A positive direction in the pencil of a pure rotary head
 
-This is the new algebraic step in the handwritten two-head equivalence for
-complement-invariant Boolean functions. It does not formalize that full bridge.
+This records the original centered-coordinate reorientation step. The stronger
+`Results/RoPETwoHeads` theorem uses token endpoints and removes complement
+invariance; the architectural bridge is formalized separately.
 -/
 
 namespace HeadComplexity

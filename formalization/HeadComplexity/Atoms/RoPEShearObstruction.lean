@@ -6,7 +6,7 @@ set_option linter.style.header false
 # Limitations of independent output shears
 
 These identities audit a proposed proof route. They are not lower bounds for
-Boolean head complexity. A finite Boolean cube may admit wholly different
+Boolean head complexity. A finite Boolean cube may have wholly different
 numerators and denominators, even when a universal algebraic substitution fails.
 -/
 
