@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Asymmetric Anchors and Their Readout Dimension}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+These are complete written finite statements, not Lean declarations.
+They audit a proposed compact reciprocal decoder. They neither change
+the attention model nor establish an asymptotic head bound.
+
+\section{An arbitrary assignment height from asymmetric zero anchors}
+
+Fix distinct poles $\lambda_1,\ldots,\lambda_H$ and distinct anchor
+arguments $d_1,\ldots,d_H$, all strictly above every pole. Fix a further
+argument $D$ strictly above every pole and distinct from all anchors.
+For every permutation $\pi$, consider the unique residue vector $c(\pi)$
+solving
+\[
+ \sum_{h=1}^H\frac{a_{ih}+c_h(\pi)}{d_i-\lambda_{\pi(h)}}=0,
+ \qquad 1\leq i\leq H. \tag{1}
+\]
+Here the anchor numerators $a_{ih}$ are fixed independently of $\pi$.
+
+\begin{theorem}[Exact assignment-height realization]
+For every real cost matrix $K=(K_{hj})$, the anchor numerators can be
+chosen so that the unique solutions of (1) satisfy
+\[
+ \sum_h\frac{c_h(\pi)}{D-\lambda_{\pi(h)}}
+ =-\sum_h K_{h,\pi(h)}
+ \qquad\hbox{for every permutation }\pi. \tag{2}
+\]
+This statement remains true when all poles and all arguments are confined
+to arbitrarily small, disjoint compact intervals with the argument
+interval above the pole interval.
+\end{theorem}
+
+\begin{proof}
+Put $P(t)=\prod_j(t-\lambda_j)$, and let $L_i(t)$ be the Lagrange
+polynomial of degree $H-1$ with $L_i(d_k)=\mathbf1_{i=k}$.
+For any residues $z_h$, the numerator of
+$\sum_hz_h/(t-\lambda_{\pi(h)})$ has degree at most $H-1$.
+Polynomial interpolation therefore gives
+\[
+ \sum_h\frac{z_h}{D-\lambda_{\pi(h)}}
+ =\sum_i t_i\sum_h\frac{z_h}{d_i-\lambda_{\pi(h)}},
+ \qquad t_i=\frac{P(d_i)L_i(D)}{P(D)}. \tag{3}
+\]
+Every $t_i$ is nonzero by the stated distinctness conditions.
+The Cauchy matrix $M_{ij}=1/(d_i-\lambda_j)$ is invertible:
+a linear combination of its columns vanishing at all $d_i$ has a
+numerator of degree at most $H-1$ with $H$ distinct roots, hence is
+zero; its residues at the distinct poles then vanish.
+Consequently, for each $h$ there are unique $a_{ih}$ solving
+\[
+ K_{hj}=\sum_i\frac{t_i a_{ih}}{d_i-\lambda_j}
+ \quad\hbox{for all }j.
+\]
+The matrix in (1) is a column permutation of $M$, so (1) has a unique
+solution. Substitute (1) into (3) to obtain (2). Nothing in the argument
+requires a lower bound on pole spacing or interval separation beyond
+strict separation and distinctness.
+\end{proof}
+
+\section{One common height does not read superlinearly many bits}
+
+The preceding theorem makes an arbitrary assignment cost available,
+but that cost is shared by all additional rows using the same argument.
+This distinction gives an exact obstruction.
+
+\begin{theorem}[Fixed-probe bound]
+Let $v_1,\ldots,v_H$ be fixed real numbers. Let $B$ be any function
+on the permutations of $H$ symbols; no assignment-cost restriction
+on $B$ is needed. For $1\leq q\leq m$, let
+\[
+ F_q(\pi)=b_q+\sum_h A_{qh}v_{\pi(h)}-B(\pi).
+\]
+If the strict sign vectors $(\operatorname{sgn}F_q(\pi))_{q=1}^m$
+include every element of $\{-1,1\}^m$, then $m\leq H$.
+In particular, the asymmetric-anchor construction at one common
+extra argument cannot read more than $H$ independent strict bits.
+\end{theorem}
+
+\begin{proof}
+The vectors
+\[
+ (v_{\pi(1)},\ldots,v_{\pi(H)},B(\pi))
+\]
+lie in the affine hyperplane $\sum_hx_h=\sum_jv_j$, whose dimension
+is $H$. Each $F_q$ is an affine function on that hyperplane.
+More generally, $m$ affine functions $\ell_q(x)=a_q\cdot x+b_q$
+on a $d$-dimensional affine space cannot realize all $2^m$ strict
+signs if $m>d$. Indeed, choose a nonzero dependence
+$\sum_q\alpha_q a_q=0$ and put $k=\sum_q\alpha_q b_q$.
+If $k\geq0$, request signs opposite to $\alpha_q$ whenever
+$\alpha_q\ne0$; their realization would give
+$k=\sum_q\alpha_q\ell_q(x)<0$. If $k<0$, request signs equal to
+$\alpha_q$ instead, forcing the same sum to be positive. Assign
+arbitrary signs where $\alpha_q=0$. Both cases are contradictions.
+Apply this fact with $d=H$.
+\end{proof}
+
+\begin{proposition}[A bounded number of common probes]
+Suppose the extra rows use arguments from a set of $T$ distinct
+values, and for each argument the rows have the preceding form with
+one arbitrary shared height and a permutation of one fixed reciprocal
+value vector. If every $m$-bit strict sign word occurs, then
+$m\leq TH$.
+\end{proposition}
+
+\begin{proof}
+Concatenate the $T$ lifted value vectors. Each block lies in an affine
+space of dimension at most $H$, so their concatenation lies in an
+affine space of dimension at most $TH$. Every query is affine on
+this space. Apply the dependence argument above. No independence
+between the heights or between the blocks is assumed.
+\end{proof}
+
+\paragraph{Exact remaining distinction.}
+Allowing a growing number of distinct extra arguments evades this
+dimension bound. It does not itself supply a decoder. The anchor
+contribution at a variable argument is constrained by (3), so it is
+not a freely chosen assignment cost at every extra row. A proof of
+superlinear decoding must exploit those simultaneous constraints,
+rather than replace each row's common height by an independent cost
+matrix. This fixed-probe route is therefore blocked as an asymptotic
+mechanism, even though its arbitrary-height algebra is valid.
+
+\end{document}
