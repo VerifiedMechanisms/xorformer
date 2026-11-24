@@ -66,6 +66,16 @@ The right side is a fixed finite nonnegative number times $\varepsilon$ at each 
 
 Every head has finite real parameters at this selected $\varepsilon$. The vanilla affine-fraction normal form realizes $R_\varepsilon$ with $2^H-1$ heads. The argument also works when $n=0$, where the cube has one point and denominator-slope conditions are vacuous. This proves the bound. $\blacksquare$
 
+## Zero-constant reciprocal improvement
+
+If the score is a sum of $H+1$ constant-numerator reciprocals with no free constant, multiplying by the last positive denominator gives
+
+$$ D_{H+1}(x)\sum_{h=1}^{H+1}\frac{a_h}{D_h(x)}=a_{H+1}+\sum_{h=1}^H\frac{a_hD_{H+1}(x)}{D_h(x)}. $$
+
+The right side has $H$ arbitrary positive affine ratios. Consequently the original classifier requires at most $2^H-1$ vanilla heads. In particular, three zero-constant reciprocal heads require at most three vanilla heads. The coefficient signs are unrestricted, and zero scores on negative inputs are allowed.
+
+This reduction is Lean-checked in `Results/ReciprocalUpperBound.lean` as `vanilla_of_zero_constant_reciprocals` and `vanilla_three_of_zero_constant_reciprocals`. It does not settle three reciprocal heads with a nonzero free constant: multiplication by the last denominator then adds an affine term whose incorporation into the remaining affine-ratio numerators is not established.
+
 ## Architectural and formalization scope
 
 The scalar result applies to every architectural rotary family whose scores have the stated positive affine-ratio form. The pure architectural-to-scalar direction, including the self-query token and arbitrary rotary frequency tables, is addressed separately in Theorem 18. No fixed-width or bounded-precision claim is made here.
