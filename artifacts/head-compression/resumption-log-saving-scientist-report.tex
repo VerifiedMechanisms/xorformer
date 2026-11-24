@@ -1,0 +1,128 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\begin{document}
+\title{Audited Resolution of the Logarithmic Head-Complexity Target}
+\author{Resumed run ar/1c1556983291}
+\date{24 November 2026}
+\maketitle
+
+\paragraph{Result and provenance.}
+The requested logarithmic alternative is now proved unconditionally:
+\[
+ W(n)\leq2323202\frac{2^n}{n\log n}\qquad(n\geq32).
+\]
+Logarithms are natural. The decisive affine-plane construction and seven
+Lean modules were developed by the simultaneous upper-bound run
+\texttt{0f08fe6fb98a}. This run fetched its published commit
+\texttt{7065e81f2c6bb6733a077b9e6b671d079c707b03}, independently audited the
+construction and its model transfer, and copied those seven new modules
+unchanged into this branch in commit \texttt{f11c39b}. No branches were
+merged. The mathematical attribution is to that run; independent audits,
+additional local and per-function corollaries, and the checkpoints below
+belong to this resumed run.
+
+\paragraph{Final checked declarations.}
+In \texttt{Results/UniversalLogSaving.lean}, namespace
+\texttt{HeadComplexity}, the declarations
+\texttt{worstCaseHeadComplexity\_isBigO\_two\_pow\_div\_mul\_log},
+\texttt{worstCaseHeadComplexity\_real\_le\_log\_saving}, and
+\texttt{worstCaseHeadComplexity\_exists\_log\_saving} prove the asymptotic,
+explicit, and eventual-inequality versions, respectively.
+The new \texttt{Results/UniversalLogConsequences.lean} gives
+\texttt{HStar\_real\_le\_log\_saving} for every Boolean function, and
+\texttt{not\_worstCaseHeadComplexity\_eventual\_linear\_lower}, which
+rules out the previously proposed matching lower alternative for every
+fixed positive constant.
+
+The original local request is also checked for every $r,s\geq1$.
+In \texttt{Results/UniversalAxisLogCompiler.lean}, namespace
+\texttt{HeadComplexity.AxisZeroGluing}, the declarations
+\texttt{exists\_reverse\_axis\_compiler\_log\_budget} and
+\texttt{exists\_reverse\_axis\_log\_data} provide
+\[
+ H\leq1200\frac{r+s}{\log(r+s)}.
+\]
+The returned \texttt{ReverseAxisData} has affine numerators and denominators,
+strictly negative denominator slopes, positivity on the entire Boolean
+cube, both full axis identities, and every requested strict grid sign.
+Its scalar bias is zero. There is no residual compiler hypothesis.
+
+\paragraph{Construction and exact budget.}
+For $q=2^k$, encode $k$ requested bits in one field-valued token at each
+point of $\mathbb F_q^2$, independently for every data column.
+A $q$-pole exterior Cauchy interpolant decodes every bit exactly.
+The $q^2$ nonvertical affine lines store sums of these reciprocal kernels.
+Their displayed matrix-rank factorization costs $q^2+1$ reverse heads.
+Two distinct points with different first coordinates share exactly one
+nonvertical line. Thus one correction head per point cancels all that
+point's unwanted contributions, with a row-dependent pole and a
+column-dependent token. The total is $2q^2+1$ strict grid heads for
+$kq^2$ arbitrary row queries, independently of the column count.
+The line aggregates are real parameter constants chosen from the table;
+they are not additional computational layers.
+
+Poles lie in $(1-\delta,1)$, tokens in $(0,\delta)$, and
+$\delta=1/[4(r+s+1)]$. Every correction denominator is
+\[
+ 1-\sum_i(1-D_{i,g})z_i-\sum_jt_{g,j}w_j>
+ 1-(r+s)\delta>\tfrac34
+\]
+on the entire cube. Rank-head strictification preserves each weight-two
+value exactly. Exact axis repair costs $3H+3$, giving $6q^2+6$ heads.
+Choosing the least $k$ with $r\leq k4^k$ gives the logarithmic local saving.
+
+The independently audited global reduction uses
+$O(2^n/n^2)$ local modules and retains the full correction cost:
+\[
+ W(a+b)\leq484\frac{2^{a+b}(3H+3)}{ab}+2^a+2^b.
+\]
+Descending center order, absorbed biases, strict-sign preservation, and
+both exceptional-face repairs are covered by the checked reduction.
+Balanced blocks yield the final bound, including all integer rounding.
+
+\paragraph{Verification on this branch.}
+A fresh integrated \texttt{lake build} passed with 9272 jobs. The reproducible
+\texttt{resumption-log-saving-audit.lean} and its saved \texttt{.txt} output
+check the final statements and their transitive axioms. They contain only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+There is no \texttt{sorryAx}, new axiom, or external theorem-strength premise.
+The construction and final bound are Lean checked, not merely written.
+
+Three independent semantic audits are saved in
+\texttt{resumption-affine-plane-audit.tex},
+\texttt{affine-plane-encoding-cold-audit.tex}, and
+\texttt{resumption-affine-plane-model-audit.tex}.
+Two newly written exact rational reconstructions checked 1190 and 3486 grid
+scores respectively, including nonbinary finite fields and partial row
+embeddings. Replaying the published full-head test passed all 274 cases,
+4228 grid checks, 5324 axis checks, 760881 cube-denominator checks, and
+583626 original-atom normalization checks. These computations supplement,
+and are not assumptions of, the universal Lean proof.
+
+\paragraph{Earlier work and remaining scope.}
+The Cauchy/Haar route produced finite exact certificates and scoped
+obstructions, but no growing decoder theorem. Per-vote orientation
+reversal lost the required saving. Shared-residue and spectral-factor
+recursions lacked a descendant compatibility theorem. The new quadratic
+interleaving construction gave only a constant ratio. The finite alternating
+half-density assembly and its dyadic budget were fully checked in
+\texttt{ReverseAlternatingAssembly.lean}, but their decoder premise was
+not supplied by those investigations. The successful affine-plane
+construction bypasses all these gaps by exact shared-aggregate cancellation.
+
+No definitions in \texttt{Model/}, \texttt{Atoms/}, or
+\texttt{CountingLowerBound.lean} were changed relative to the supplied
+remote branch. In particular the input dimension, admissibility,
+\texttt{HStar}, and \texttt{worstCaseHeadComplexity} are unchanged.
+A fixed exponent $x>1$ improvement remains open. The matching
+$\Omega(2^n/n)$ alternative is now disproved by the checked upper bound.
+
+\paragraph{Publication.}
+All checkpoints are committed on the existing local
+\texttt{ar/1c1556983291} branch. Direct pushes to its configured origin have
+been rejected with HTTP 403 because the available repository credential
+is read-only. The verified incremental bundle
+\texttt{/out/head-compression-1c1556983291.bundle} contains the committed
+continuation for transfer without merging another branch. A push failure
+is not reported as successful publication.
+\end{document}

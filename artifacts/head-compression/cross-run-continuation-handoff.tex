@@ -4,13 +4,20 @@
 \title{Continuation handoff and comparison with the upper-bound run}
 \author{}\date{24 November 2026}\maketitle
 
-\paragraph{Current objective and status.}
-The latest requested upper bound is $W(n)=O(2^n/(n\log n))$, or
-$O(2^n/n^x)$ for a fixed $x>1$. A logarithmic-logarithmic saving is
-now intermediate progress only. No requested asymptotic improvement
-has been established. The earlier matching-lower-bound alternative
-also remains unproved. All definitions of the model, admissibility,
-\texttt{HStar}, and \texttt{worstCaseHeadComplexity} are unchanged.
+\paragraph{Resolved status, 24 November 2026.}
+The latest logarithmic target is now proved, including the explicit
+$W(n)\leq2323202\,2^n/(n\log n)$ for every $n\geq32$.
+Run \texttt{0f08fe6fb98a} supplied the affine-plane construction and
+Lean proof, imported unchanged from \texttt{7065e81} in commit
+\texttt{f11c39b}. This run independently audited the construction and
+model transfer, rebuilt the theorem closure, and added checked all-positive
+$r,s$ axis-zero and per-function corollaries. See
+\texttt{resumption-log-saving-scientist-report.tex} for exact declaration
+names, proof status, attribution, and verification. The matching linear-rate
+lower alternative is ruled out. Fixed exponent improvement remains open.
+The investigations listed below are historical checkpoints; their earlier
+open-status statements are superseded by this resolution. Model definitions
+remain unchanged.
 
 \paragraph{Publication status.}
 The local run branch is \texttt{ar/1c1556983291}. At 04:25 UTC on
@@ -26,8 +33,8 @@ objects can be transported without merging another branch.
 
 \paragraph{Checked local checkpoints.}
 The following results were built with Lean, and their reported axiom
-audits contain only the existing standard foundations. None establishes
-an unconditional saving.
+audits contain only the existing standard foundations. These earlier
+checkpoints alone did not establish an unconditional saving.
 \begin{itemize}
 \item \texttt{9533e7f}: \texttt{ReverseSignedCauchy.lean} and
 \texttt{ReverseCauchyBiasAssembly.lean}. For pole $p$, query $t$ and

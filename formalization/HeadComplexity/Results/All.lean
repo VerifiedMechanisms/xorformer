@@ -34,6 +34,8 @@ import HeadComplexity.Results.ReverseCauchyCompactification
 import HeadComplexity.Results.ExteriorCauchyInterpolation
 import HeadComplexity.Results.SharedCauchyPair
 import HeadComplexity.Results.UniversalLogSaving
+import HeadComplexity.Results.UniversalAxisLogCompiler
+import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms
 import HeadComplexity.Results.ReverseFiveQueries
 import HeadComplexity.Results.CalibratedThresholdVote

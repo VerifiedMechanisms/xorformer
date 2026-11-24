@@ -1,0 +1,2 @@
+{"counts": {"axis_checks": 5120, "full_cube_denominator_checks": 638976, "grid_checks": 4096, "reversed_atom_checks": 491520, "tables": 256}, "stage": "exhaustive_q2"}
+{"counts": {"axis_checks": 5324, "full_cube_denominator_checks": 760881, "grid_checks": 4228, "reversed_atom_checks": 583626, "tables": 274}, "stage": "final", "status": "passed"}

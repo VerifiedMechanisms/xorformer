@@ -1,0 +1,25 @@
+HeadComplexity.worstCaseHeadComplexity_real_le_log_saving {n : ℕ} (hn : 32 ≤ n) :
+  ↑(HeadComplexity.worstCaseHeadComplexity n) ≤ 2323202 * 2 ^ n / (↑n * Real.log ↑n)
+HeadComplexity.HStar_real_le_log_saving {n : ℕ} (hn : 32 ≤ n) (f : (Fin n → Bool) → Bool) :
+  ↑(HeadComplexity.HStar n f) ≤ 2323202 * 2 ^ n / (↑n * Real.log ↑n)
+HeadComplexity.AxisZeroGluing.exists_reverse_axis_compiler_log_budget {r s : ℕ} (hr : 1 ≤ r) (hs : 1 ≤ s) :
+  ∃ M, ↑M ≤ 1200 * (↑r + ↑s) / Real.log (↑r + ↑s) ∧ HeadComplexity.AxisZeroGluing.HasReverseAxisCompiler r s M
+HeadComplexity.AxisZeroGluing.exists_reverse_axis_log_data {r s : ℕ} (hr : 1 ≤ r) (hs : 1 ≤ s)
+  (table : Fin r → Fin s → Bool) :
+  ∃ H,
+    ↑H ≤ 1200 * (↑r + ↑s) / Real.log (↑r + ↑s) ∧
+      ∃ L,
+        ∀ (i : Fin r) (j : Fin s),
+          0 <
+            HeadComplexity.AxisZeroGluing.outputSign (table i j) * L.score (HeadComplexity.AxisZeroGluing.localGrid i j)
+HeadComplexity.not_worstCaseHeadComplexity_eventual_linear_lower :
+  ¬∃ c, 0 < c ∧ ∃ N, ∀ n ≥ N, c * 2 ^ n / ↑n ≤ ↑(HeadComplexity.worstCaseHeadComplexity n)
+'HeadComplexity.worstCaseHeadComplexity_isBigO_two_pow_div_mul_log' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.worstCaseHeadComplexity_real_le_log_saving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.HStar_real_le_log_saving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_reverse_axis_log_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.not_worstCaseHeadComplexity_eventual_linear_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
