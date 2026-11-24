@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{An Exact Finite Audit of Non-Cauchy Zero Anchors}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope.}
+These are written algebra and one exact rational finite certificate.
+They do not give an asymptotic lower bound. The common-row Cauchy
+two-token obstruction does not apply to the head-dependent anchor
+arguments considered here. A bounded exploratory search was stopped
+after generic compact probes, a perturbative Cauchy family, and a
+broader positive-denominator family produced no parity reader. The
+certificate below is independent of floating-point infeasibility tests.
+
+Let $D_{ih}$ be fixed anchor arguments, let $Q_h$ be fixed query
+arguments, and let $q_h(s)$ be token parameters indexed by a finite
+state set. Assume every displayed denominator is positive and each
+anchor matrix $M(s)_{ih}=1/(D_{ih}-q_h(s))$ is invertible. Given
+arbitrary fixed anchor numerators $A_{ih}$, solve
+\[
+ \sum_h\frac{A_{ih}+c_h(s)}{D_{ih}-q_h(s)}=0
+ \qquad(1\leq i\leq H).
+\]
+The query has arbitrary fixed numerators $a_h$ and a bias:
+\[
+ F(s)=b+\sum_h\frac{a_h+c_h(s)}{Q_h-q_h(s)}.
+ \tag{1}
+\]
+
+\begin{proposition}[Numerator-space dimension]
+For fixed arguments and token states, the vectors $(F(s))_s$ form
+a linear space of dimension at most $H^2-H+2$.
+\end{proposition}
+\begin{proof}
+There are $H^2+H+1$ numerator and bias parameters. For each head,
+adding a constant $k_h$ to all its anchor and query numerators and
+subtracting $k_h$ from its solved residue leaves all ratios unchanged.
+These give $H$ independent kernel directions.
+
+There are a further $H-1$ kernel directions: choose numbers
+$\alpha_h$ with $\sum_h\alpha_h=0$, set
+$A_{ih}=\alpha_hD_{ih}$ and $a_h=\alpha_hQ_h$, and choose
+$c_h(s)=-\alpha_hq_h(s)$. Every summand is then $\alpha_h$, so
+all anchors and the query are zero. These directions are independent
+of the first $H$. Indeed, if their sum agrees with a constant
+headwise numerator direction, then
+$\alpha_hD_{ih}=k_h=\alpha_hQ_h$ at all rows. For any nonzero
+$\alpha_h$, that column of the anchor matrix is constant across
+rows, and its query value equals that same constant. If several
+such columns occur, the anchor matrix is singular. Thus at most one
+$\alpha_h$ is nonzero; its sum-zero condition makes it zero as well.
+The kernel therefore has dimension at least $2H-1$, giving the bound.
+\end{proof}
+
+\begin{proposition}[A concrete four-head failure]
+Put $e=1/1000$, and let $p$ range over all 24 permutations of
+$(1,2,3,4)$. Set $q_h(p)=ep(h)$,
+$D_{ih}=1-eR_{ih}$, and $Q_h=1-eT_h$, where
+\[
+ R=\begin{pmatrix}8&1&9&4\\8&1&1&1\\2&5&9&5\\7&3&7&3\end{pmatrix},
+ \qquad T=(6,1,8,5).
+ \tag{2}
+\]
+No choices of the fixed numerators and bias in (1) give the strict
+full-permutation parity signs on all 24 states.
+The five row profiles and all 24 memory states have a simultaneous
+original reverse-grid realization whose denominators exceed $9/10$
+on the whole Boolean cube.
+\end{proposition}
+\begin{proof}
+The exact script \texttt{audit\_noncauchy\_anchor\_parity.py} constructs
+the $24\times21$ rational feature matrix $E$ of (1). If
+$v_h(p)=1/(Q_h-q_h(p))$ and $w(p)=v(p)^{\mathsf T}M(p)^{-1}$,
+its anchor-numerator entry is $-w_i(p)M(p)_{ih}$, its query-numerator
+entry is $v_h(p)$, and its bias entry is one.
+
+Rational elimination verifies that $E$ has rank 14 and constructs
+a vector $z$ satisfying
+\[
+ 99/100<z_p<101/100,\qquad
+ E^{\mathsf T}\operatorname{diag}(\operatorname{sgn}p)z=0.
+ \tag{3}
+\]
+The construction is reproducible without a linear-programming
+solver: row-reduce the transpose of any exact column basis of $E$
+after multiplying its columns by parity, set all free unknowns to
+one, and solve for the pivot unknowns. The script verifies (3)
+against all 21 original feature columns with exact rational arithmetic.
+If every parity-weighted score were positive, its inner product with
+the positive vector $z$ would be positive, contradicting (3).
+
+On five row bits $x_i$ and 24 memory bits $y_p$, the denominator
+of head $h$ is
+\[
+ 1-e\sum_{i=1}^4R_{ih}x_i-eT_hx_5-e\sum_p p(h)y_p.
+\]
+All slopes are strictly negative. Its minimum is at the all-one
+vertex; the least of the four minima is $453/500>9/10$. Hence the
+usual exact affine-ratio parameter conversion applies in the unchanged
+model. The certificate is about this one fixed reader, not every
+four-head reader or every non-Cauchy anchor choice.
+\end{proof}
+\end{document}
