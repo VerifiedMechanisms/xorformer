@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{Literal Differences and Their Sharing Cost}
+\author{}
+\date{November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+These are complete written finite calculations, not Lean declarations.
+They audit one proposed global assembly operation. They neither bound
+the minimum number of heads for an AND sign pattern nor exclude a
+different joint compiler. In particular, an AND sign pattern alone has
+an affine threshold representation. The issue here is multiplication
+of an existing ratio while retaining its values.
+
+\begin{proposition}[One literal and iterated literal differences]
+Let $B>0$ on a finite Boolean cube and let $N$ be affine. Suppose $B$
+does not depend on $k$ designated variables $z_1,\ldots,z_k$. For
+positive $M_1,\ldots,M_k$, put
+\[
+ F_M(z)=\sum_{S\subseteq[k]}(-1)^{|S|}
+       \frac{N}{B+\sum_{i\in S}M_i z_i}.
+ \tag{1}
+\]
+The score is exactly zero whenever some $z_i=0$. As all $M_i$ tend to
+infinity, uniformly on the finite cube,
+\[
+ F_M(z)\longrightarrow
+ \frac{N}{B}\prod_{i=1}^k z_i.
+ \tag{2}
+\]
+For $k=1$, the score uses two heads. If the $z_i$ are positive literals
+and $B$ has nonnegative slopes, all displayed denominators have that
+orientation and are positive on the whole cube. The same assertion
+holds for negative literals $z_i=1-x_i$ and a denominator $B$ with
+nonpositive slopes in the original coordinates.
+\end{proposition}
+\begin{proof}
+If $z_i=0$, pair a subset not containing $i$ with the subset obtained
+by adding $i$. Their denominators agree and their coefficients have
+opposite signs. At $z_1=\cdots=z_k=1$, the empty subset contributes
+$N/B$, and each other summand tends to zero. There are finitely many
+cube points and finitely many terms, which proves uniform convergence.
+Adding the indicated nonnegative literal penalties preserves positivity
+and preserves the common slope orientation. Thus the construction is
+valid before the usual final strict-slope perturbation. No positivity
+claim about a sum of heads is needed for denominator admissibility.
+\end{proof}
+
+\begin{proposition}[No linear compression within the shifted family]
+Fix $b>0$ and $M_i>0$. The $2^k$ functions on $\{0,1\}^k$
+\[
+ h_S(z)=\frac1{b+\sum_{i\in S}M_i z_i},
+ \qquad S\subseteq[k],
+ \tag{3}
+\]
+are linearly independent. Consequently, the exact finite-$M$ score
+$\sum_S(-1)^{|S|}h_S$ cannot be expressed as a linear combination of a
+proper subfamily of these particular heads. The coefficients in this
+statement may be arbitrary real numbers.
+\end{proposition}
+\begin{proof}
+Index a cube point by $T=\{i:z_i=1\}$ and define
+\[
+ f(U)=\frac1{b+\sum_{i\in U}M_i},
+ \qquad
+ g(U)=\sum_{V\subseteq U}(-1)^{|U|-|V|}f(V).
+\]
+The evaluation matrix is $A_{S,T}=f(S\cap T)$. Let
+$Z_{S,U}=1$ when $U\subseteq S$ and $Z_{S,U}=0$ otherwise. Boolean
+M\"obius inversion gives
+\[
+ A=Z\,\operatorname{diag}(g(U))\,Z^{\mathsf T}.
+ \tag{4}
+\]
+Order subsets by nondecreasing cardinality, breaking ties in any fixed
+way. The matrix $Z$ is triangular with diagonal entries one.
+Each diagonal entry in (4) is nonzero: the elementary reciprocal
+integral gives
+\[
+ g(U)=\int_0^\infty e^{-bt}
+           \prod_{i\in U}(e^{-M_i t}-1)\,dt.
+ \tag{5}
+\]
+For every $t>0$, the integrand has strict sign $(-1)^{|U|}$.
+It is integrable because the absolute value of each product factor
+is at most one and $b>0$. Hence $g(U)\ne0$ for every $U$.
+Both factors $Z$ and the diagonal factor in (4) are invertible, so
+$A$ is invertible. The final assertion follows from uniqueness of
+coordinates in an independent family and the fact that every
+coefficient $(-1)^{|S|}$ is nonzero.
+\end{proof}
+
+\paragraph{What a tree would have to share.}
+For a negative-orientation ratio $N/B$ independent of $x_i$, the valid
+downset-literal gate is
+\[
+ \frac{N}{B}-\frac{N}{B+M(1-x_i)}.
+ \tag{6}
+\]
+The second term tends to the inherited function $(N/B)x_i$.
+In a center tree, it therefore carries the entire child function on
+the larger face, not just its values on the parent's one-hot grid.
+An arbitrary parent grid compiler cannot be substituted for this
+residual solely because their grid values agree. For example, the
+function $z_1z_2$ is zero on the zero vector and every one-hot vector,
+but is not zero at $(1,1)$. This elementary example isolates the
+logical gap in the proposed substitution; it does not assert that
+this particular polynomial is a hard head-complexity instance.
+
+The independence proposition rules out telescoping the literal
+differences within their own fixed shifted family. It leaves open
+the use of new denominators, approximate cancellation with a proved
+uniform error bound, or a global construction that constrains all
+multihot values from the outset. No such construction is claimed here.
+
+\end{document}
