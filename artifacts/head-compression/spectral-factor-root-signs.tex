@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\title{Independent exterior signs under a fixed polynomial sum of squares}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status.}
+This is a complete written single-layer construction, with exact finite
+rational checks. It is not Lean-checked. The four-child corollary is a
+compatible two-level polynomial construction, but it does not prescribe
+independent signs at its two child splits. No recursive compiler or
+asymptotic head bound is claimed.
+
+Fix distinct real query centers $\tau_1,\ldots,\tau_D$, with $D\geq1$.
+For a sign word $\sigma\in\{-1,1\}^D$ and a positive parameter $\eta$,
+put
+\[
+ Z_\sigma(t)=\prod_{j=1}^D(t-\tau_j+i\sigma_j\eta),\qquad
+ C_\sigma=(1+i)Z_\sigma=A_\sigma+iB_\sigma,
+ \qquad R_\sigma=A_\sigma^2-B_\sigma^2.
+                                                               \tag{1}
+\]
+The real polynomials $A_\sigma,B_\sigma$ are both monic of degree $D$.
+In particular $\deg R_\sigma\leq2D-1$. Their sum of squares is fixed:
+\[
+ A_\sigma^2+B_\sigma^2
+       =2\prod_{j=1}^D\bigl((t-\tau_j)^2+\eta^2\bigr)
+       =:S_\eta(t),                                           \tag{2}
+\]
+independently of $\sigma$. Thus the binary choices in (1) change the
+real difference of the squares while preserving their sum.
+
+\begin{theorem}[Fixed-norm spectral signs]
+Let $P$ be any fixed real polynomial with $P(\tau_j)>0$ for every
+$j$. For all sufficiently small $\eta>0$, uniformly over all sign
+words $\sigma$, the polynomials in (1) satisfy
+\[
+ -\sigma_j R_\sigma(\tau_j+\eta)>0,
+ \qquad
+ -\sigma_j(R_\sigma/P)'(\tau_j)>0
+                         \quad(1\leq j\leq D).                \tag{3}
+\]
+\end{theorem}
+\begin{proof}
+Fix $k$ and write
+\[
+ G_k(t)=\prod_{j\ne k}(t-\tau_j+i\sigma_j\eta),\qquad
+ g_k=\prod_{j\ne k}(\tau_k-\tau_j)\ne0.
+\]
+Since $C_\sigma^2=2iZ_\sigma^2$, one has
+$R_\sigma=-2\operatorname{Im}(Z_\sigma^2)$. At $t=\tau_k+\eta$,
+\[
+ R_\sigma(t)=-4\sigma_k\eta^2\operatorname{Re}(G_k(t)^2).
+                                                               \tag{4}
+\]
+The last real part tends to $g_k^2>0$ as $\eta\to0$.
+This proves the first inequality.
+
+At the center $t=\tau_k$, direct differentiation gives
+\[
+ \begin{aligned}
+ R_\sigma(\tau_k)&=2\eta^2\operatorname{Im}(G_k(\tau_k)^2),\\
+ R_\sigma'(\tau_k)
+ &=-4\sigma_k\eta\operatorname{Re}(G_k(\tau_k)^2)
+       +4\eta^2\operatorname{Im}(G_k(\tau_k)G_k'(\tau_k)).
+ \end{aligned}                                                 \tag{5}
+\]
+The coefficients of $G_k$ are polynomial in $\eta$ with real
+constant terms. Their real parts are even in $\eta$ and their
+imaginary parts are odd. Consequently (5) implies
+\[
+ R_\sigma(\tau_k)=O(\eta^3),\qquad
+ R_\sigma'(\tau_k)=-4\sigma_k g_k^2\eta+O(\eta^3).
+\]
+The quotient rule now yields
+\[
+ (R_\sigma/P)'(\tau_k)
+       =-\frac{4\sigma_k g_k^2}{P(\tau_k)}\eta+O(\eta^3),
+                                                               \tag{6}
+\]
+which has the required strict sign. There are only finitely many
+pairs $(\sigma,k)$, so a common positive upper bound on $\eta$
+works for all of them. This uniformity is for each fixed $D$, query
+set, and $P$; no dimension-independent numerical bound is asserted.
+\end{proof}
+
+\begin{corollary}[Four compact real-rooted child blocks]
+Let $U$ be monic of degree $M>D$, with $M$ distinct real roots in
+an interval $(a,b)$ lying strictly below every $\tau_j$. There is an
+$\eta>0$ such that the following holds. For every sufficiently small
+$\delta>0$, uniformly over all $\sigma$, the four polynomials
+\[
+ U+\delta A_\sigma,\quad U-\delta A_\sigma,\quad
+ U+\delta B_\sigma,\quad U-\delta B_\sigma                  \tag{7}
+\]
+are monic and have $M$ distinct real roots in $(a,b)$. Let
+\[
+ G_A=U^2-\delta^2 A_\sigma^2,\quad
+ G_B=U^2-\delta^2 B_\sigma^2,\quad
+ P_\delta=U^2-\delta^2S_\eta/2.
+\]
+Their mean $P_\delta=(G_A+G_B)/2$ is independent of $\sigma$, both
+pairs in (7) have common mean $U$, and the root transforms satisfy
+\[
+ \sigma_j\left(\frac{G_A'(\tau_j)}{G_A(\tau_j)}
+                   -\frac{G_B'(\tau_j)}{G_B(\tau_j)}\right)>0
+                      \quad(1\leq j\leq D).                  \tag{8}
+\]
+Each logarithmic derivative is the Stieltjes transform of the roots
+of its polynomial, with all weights equal to one and multiplicities
+counted.
+\end{corollary}
+\begin{proof}
+Apply the theorem to $P=U^2$ and fix a sufficiently small $\eta$.
+Choose $M$ disjoint closed intervals around the roots of $U$,
+contained in $(a,b)$, with nonroot endpoints. For small $\delta$,
+every polynomial in (7) has the sign of $U$ at each endpoint.
+The intermediate value theorem gives a root in every interval;
+monicity and degree $M$ imply that these are all the roots and are
+simple. Finite uniformity over $\sigma$ gives a common $\delta$
+bound. Different polynomials in (7) may share roots.
+
+Direct expansion gives
+\[
+ \frac{G_A'}{G_A}-\frac{G_B'}{G_B}
+     =-\delta^2\frac{R_\sigma'P_\delta-R_\sigma P_\delta'}
+                         {G_A G_B}.                            \tag{9}
+\]
+At each query the denominator is positive. As $\delta\to0$,
+the numerator in (9) tends to
+$R_\sigma'(U^2)-R_\sigma(U^2)'$, which by (3) has sign
+$-\sigma_j$. Thus (8) follows for sufficiently small positive
+$\delta$, uniformly over the finite sign family. The logarithmic
+ derivative identity follows by differentiating the product of
+linear factors, including repeated factors if present.
+\end{proof}
+
+\paragraph{The remaining recursive gap.}
+The corollary prescribes $D$ root bits using $4M$ unit-weight poles.
+It does not give a ratio of queries to poles growing with $M$.
+At the centers, as $\eta\to0$, both $A_\sigma'$ and $B_\sigma'$
+have the same leading value $g_k$. The two child split transforms
+in (7) therefore have leading signs fixed by $g_k$ and $U$, rather
+than independently prescribed child words. An induction would need
+additional freedom that simultaneously preserves the common sums
+of squares and realizes the required descendant differences.
+
+Factoring an arbitrary child remainder as a difference of squares
+does not by itself close this gap: the corresponding sum of squares
+changes its ancestor's mean. Nor does counting the $2^D$ spectral
+factors prove coverage of more than these $D$ explicitly read bits.
+The constant-remainder collapse in
+\texttt{underloaded-equal-weight-split.tex} is avoided here because
+$R_\sigma$ is allowed degree $2D-1$; that observation is only local.
+
+\paragraph{Exact finite verification.}
+\texttt{spectral-factor-root-signs-check.py} takes rational centers,
+width, poles, and perturbation size. For every $1\leq D\leq8$ and
+every sign word, it checks the norm identity (2), the degree drop,
+both strict signs in (3), isolating endpoint certificates for the
+four polynomials (7), their products and common means, and the
+identity and strict signs in (9). There are $510$ complete rational
+certificates. No numerical root solver or floating-point sign test
+is used, and no recursive sign-coverage assertion is tested.
+\end{document}
