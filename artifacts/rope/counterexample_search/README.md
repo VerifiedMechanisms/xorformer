@@ -1,6 +1,6 @@
 # Exact Compilers And Targeted Pure Rotary Searches
 
-No pure-RoPE versus vanilla Boolean separation is certified here.
+The searches in this directory produced the certified compilers, matching upper bounds, and coefficient relaxations described below. The successful Boolean separation is the separate replicated construction in [Theorem 22](../../../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md); its [certificate package and research manifest](../explicit_separation/README.md) explain the distinction.
 
 ## Exact two-head compilation
 
