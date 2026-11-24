@@ -144,6 +144,81 @@ square remainders can erase the apparent slack of the underloaded
 local theorem. An actual recursion must keep additional polynomial
 freedom or justify an adaptive partition of the poles.
 
+\begin{theorem}[A specific underloaded hierarchy still collapses]
+Consider a balanced tree with $32$ unit-weight real poles. Let the
+polynomial of each node be the product of the linear factors at its
+descendant poles. Suppose every split into two quartic children has
+child-polynomial difference of degree at most one, and every split
+into two degree-eight children also has difference of degree at most
+one. If the root's degree-sixteen children have difference of degree
+at most seven, their difference is in fact constant.
+
+Consequently their unbiased exterior Stieltjes difference has one
+constant sign, or is identically zero. In particular this exact
+moment hierarchy cannot realize an alternating two-query root word.
+The schedule $q(4)=q(8)=2$ and $2\leq q(16)\leq8$, with moment
+preservation (4) imposed at every split, is covered.
+\end{theorem}
+\begin{proof}
+Every degree-eight node has the form $Q^2-L^2$, with $Q$ monic
+quartic and $L$ linear or constant. At a degree-sixteen node, its
+degree-eight children differ by at most a linear polynomial. Their
+two quartic means must therefore agree: a nonzero difference of
+their squares has degree at least four, whereas the difference of
+the two squared linear remainders has degree at most two.
+Thus this degree-sixteen node has the form
+\[
+ U^2-V^2,\qquad
+ U=Q^2-(L_1^2+L_2^2)/2,\qquad
+ V=(L_1^2-L_2^2)/2,
+                                                               \tag{7}
+\]
+where $V$ is linear or constant. Signs of $V$ do not matter.
+
+Apply (7) to the two degree-sixteen children of the root. Since
+their difference has degree at most seven, their monic degree-eight
+means $U$ agree: otherwise their square difference has degree at
+least eight and cannot be canceled by the degree-two difference of
+the $V^2$ terms. Equality of the two $U$ expressions in (7), in
+turn, forces equality of their quartic $Q$ polynomials and of their
+quadratic sums $L_1^2+L_2^2$.
+
+It remains to examine two representations of this same quadratic
+sum. Write $L_i=a_it+b_i$. The fact that $L_1^2-L_2^2$ is linear
+says $a_1^2=a_2^2=:u$. The common sum is
+\[
+             L_1^2+L_2^2=2ut^2+2vt+w,
+ \quad v=a_1b_1+a_2b_2,\quad w=b_1^2+b_2^2.
+\]
+If $u=0$, both $L_i$ are constant. If $u>0$, direct coefficient
+calculation gives
+\[
+ (L_1^2-L_2^2)^2
+       =(2uw-v^2)(2t+v/u)^2.                              \tag{8}
+\]
+Thus for $u>0$ the squared difference is determined by the common
+sum. The two $V^2$ terms in (7) agree. If $u=0$, both $V^2$ terms
+are constant. In either case the degree-sixteen child polynomials
+differ only by a constant.
+
+Finally write those polynomials as $A,B$ with $A-B=c$ constant.
+Their logarithmic-derivative difference is
+\[
+                 A'/A-B'/B=-cA'/(AB).
+\]
+On the exterior interval $A,B,A'$ are strictly positive, because
+both polynomials are monic with all real roots below it. The claimed
+constant sign follows.
+\end{proof}
+
+This theorem does not cover moment constraints imposed only
+approximately, independently varying positive weights, or omitted
+routing completions that dispense with the stated exact moment equalities. It also does not
+cover a different load schedule. For example $q(8)=3$ permits a
+quadratic difference of the two degree-eight children; the
+equal-squared-slope step used in (8) then fails. The local theorem
+does not select among these possible recursive mechanisms.
+
 \paragraph{Exact checks.}
 \texttt{underloaded-equal-weight-split-check.py} uses rational poles,
 queries, polynomials, and linear algebra. For $1\leq M\leq8$ and
@@ -151,5 +226,7 @@ every $1\leq q\leq M$, it checks (2) at a rational exterior point,
 solves (1) for every sign word, chooses a rational $\delta$ by the
 endpoint bound above, checks every endpoint sign and query sign,
 and verifies the shared power sums through degree $M-q$ by Newton's
-identities. No numerical root solver is used.
+identities. It also verifies the polynomial identity underlying (8)
+symbolically for both signs of $a_2/a_1$. No numerical root solver
+is used.
 \end{document}

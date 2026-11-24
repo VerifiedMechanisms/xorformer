@@ -131,6 +131,13 @@ def product_factorials(q):
 
 
 if __name__ == "__main__":
+    from sympy import symbols, expand
+    a, b, c, t = symbols("a b c t")
+    for orientation in (-1, 1):
+        l1, l2 = a*t+b, orientation*a*t+c
+        u, v, w = a*a, a*b+orientation*a*c, b*b+c*c
+        assert expand(u*u*(l1*l1-l2*l2)**2
+                      -(2*u*w-v*v)*(2*u*t+v)**2) == 0
     total = sum(check_degree(m) for m in range(1, 9))
     assert total == sum(2**(m+1)-2 for m in range(1, 9))
     print(f"All {total} exact certificates passed; no recursive assertion tested.")
