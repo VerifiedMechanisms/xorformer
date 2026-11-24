@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Exact shared amplitudes at half load}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status.}
+This is a complete written interpolation lemma, with an exact rational
+checker. It is not Lean-checked. It supplies two requested root words
+using one absolute residue pool and independently chosen signs. It
+does not supply two arbitrary descendant tables and proves neither
+accepted asymptotic HeadComplexity target.
+
+Fix $q\geq1$, distinct real poles $p_1,\ldots,p_{2q}$, and distinct
+real query points $t_1,\ldots,t_q$ different from every pole. Write
+\[
+ P=P_S P_T,\qquad
+ P_S(t)=\prod_{h=1}^q(t-p_h),\qquad
+ P_T(t)=\prod_{h=q+1}^{2q}(t-p_h).
+\]
+
+\begin{theorem}[A rectangular shared pool]
+For every two real vectors $v,w\in\mathbb R^q$, there are polynomials
+$N_1,N_2$ of degree less than $2q$ such that
+\[
+ \frac{N_1(t_i)}{P(t_i)}=v_i,\qquad
+ \frac{N_2(t_i)}{P(t_i)}=w_i,
+ \qquad N_2(p_h)=\begin{cases}-N_1(p_h)&h\leq q,\\
+                              N_1(p_h)&h>q.\end{cases}       \tag{1}
+\]
+Consequently the two rational functions have shared absolute residues
+at all $2q$ poles. For every two strict sign words on the query grid,
+one can arrange for all these absolute residues to be strictly positive.
+All data may be rational when the poles and queries are rational.
+\end{theorem}
+\begin{proof}
+Interpolate polynomials $a,b$ of degree less than $q$ at the query
+points, prescribing
+\[
+ a(t_i)=\frac{P_T(t_i)(v_i+w_i)}2,\qquad
+ b(t_i)=\frac{P_S(t_i)(v_i-w_i)}2.
+\]
+Set $A=P_Sa$, $B=P_Tb$, $N_1=A+B$, and $N_2=A-B$.
+Their degrees are less than $2q$, and direct substitution proves
+(1). Since the poles are simple, partial fractions give
+\[
+ \frac{N_\ell(t)}{P(t)}
+   =\sum_{h=1}^{2q}\frac{N_\ell(p_h)}{P'(p_h)(t-p_h)}.
+\]
+The last equality in (1) proves equality of the absolute residues.
+
+For strict sign words, initially take $v_i,w_i\in\{-1,1\}$.
+As $(v,w)$ varies in a sufficiently small open neighborhood, its
+signs do not change. The interpolation construction is a linear
+isomorphism from $(v,w)$ to the coefficient vectors of $(a,b)$.
+For each $h\leq q$, $N_1(p_h)=P_T(p_h)b(p_h)$ is a nonzero
+linear functional of these vectors. For each $h>q$, the same holds
+for $N_1(p_h)=P_S(p_h)a(p_h)$. Avoiding these finitely many proper
+hyperplanes makes every residue nonzero without changing any query
+sign. Rational perturbations suffice for rational data, because a
+finite union of proper rational hyperplanes cannot contain a rational
+open box. Taking absolute values then gives a strictly positive pool.
+\end{proof}
+
+\paragraph{How this enters a coalescing root construction.}
+For a signed incoming numerator $N$, the adaptive-pole calculation
+from \texttt{adaptive-barycentric-root.tex} has the following exact
+extension. Let $P(t)=\prod_s(t-x_s)$, choose $R$ of degree less
+than the number of centers, and suppose $N(x_s)R(x_s)\ne0$.
+Choose a mask sign $\eta_s$ so that
+\[
+ d_s=\frac{\eta_sN(x_s)}{R(x_s)P'(x_s)}>0.
+\]
+Put $p_s^\pm=x_s\pm d_s/\lambda$, $Q_\lambda=
+\prod_s(t-p_s^-)(t-p_s^+)$, and
+$c_s^\pm=N(p_s^\pm)/Q_\lambda'(p_s^\pm)$.
+Then the masked score with coefficients
+$(-\eta_s c_s^-,\eta_s c_s^+)$ satisfies
+\[
+ \frac1\lambda\sum_s\left(
+ \frac{-\eta_s c_s^-}{t-p_s^-}
+ +\frac{\eta_s c_s^+}{t-p_s^+}\right)
+ \longrightarrow \frac{R(t)}{P(t)}.                         \tag{2}
+\]
+The child receiving the mask-positive pole inherits residues
+$R(x_s)/(2P'(x_s))$ after division by $\lambda$; the other child
+inherits their negatives. Indeed,
+\[
+ c_s^\pm/\lambda\longrightarrow
+ \frac{\pm N(x_s)}{2d_sP'(x_s)^2},
+\]
+and substitution proves both assertions. Thus an incoming numerator
+need not be constant. But the same $R$ still reaches both children;
+changing the incoming numerator does not remove the compatibility
+problem.
+
+\paragraph{Scope and exact-value cost.}
+The theorem escapes the square shared-pool obstruction by using twice
+as many poles as queries. It permits the pool to depend on the two
+requested words. It does not produce one pool for all words.
+Its value interpolation uses exactly $2q$ continuous coefficients.
+Applying it to all descendant queries would require counting all of
+them against these coefficients. No logarithmic saving follows from
+repeating this exact-value construction.
+
+The checker verifies all ordered pairs of words for $1\leq q\leq4$,
+using exact rational arithmetic. It perturbs the query values inside
+their requested orthants, checks that every residue is nonzero, checks
+the prescribed relative residue signs, and checks both partial
+fraction scores at every query.
+\end{document}
