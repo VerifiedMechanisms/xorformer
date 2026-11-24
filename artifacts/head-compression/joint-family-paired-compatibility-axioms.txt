@@ -1,0 +1,6 @@
+'HeadComplexity.AxisZeroGluing.jointFamily_two_word_compatibility' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_paired_square_cube_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

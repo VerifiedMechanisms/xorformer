@@ -1,0 +1,3 @@
+import HeadComplexity.Results.JointFamilyPairedCompatibility
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_two_word_compatibility
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_paired_square_cube_identity

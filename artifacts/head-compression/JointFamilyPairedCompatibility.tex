@@ -1,0 +1,110 @@
+\section{Two top words share paired residues}
+
+This is a positive, local compatibility theorem.  It concerns one Haar
+level, not a complete multilevel decoder.  In particular, it does not by
+itself improve the worst-case head bound.
+
+\paragraph{Statement.}
+Fix distinct real prefix poles $p_1,\ldots,p_q$ and distinct exterior
+query positions $D_1,\ldots,D_q$, with $D_i>\max_r p_r$.
+For all sufficiently small $t>0$, every two sign words
+$\sigma,\tau\in\{-1,1\}^q$ admit one common collection of paired
+residues $(a_r,b_r)_{r=1}^q$ such that both words have their prescribed
+strict signs under the top-level paired Haar reader.  No node bias is
+needed.  The allowed smallness threshold for $t$ can depend only on the
+fixed poles and queries, not on the two words.
+
+\paragraph{The extra cubic feature.}
+Writing $x=D_i-p_r$, the paired readout divided by its positive gap $t$
+has the exact form
+\[
+ \frac{a_r}{x(x+t)}-\frac{b_r}{x(x-t)}-\frac{2}{x^2-t^2}
+ =\frac{a_r-b_r-2}{x^2-t^2}
+  -\frac{t(a_r+b_r)}{x(x^2-t^2)}.
+\]
+Thus it is $K_t\operatorname{diag}(w)v+
+L_t\operatorname{diag}(w)u$ for the queried word $w$, where
+\[
+ (K_t)_{ir}=\frac1{(D_i-p_r)^2-t^2},\qquad
+ (L_t)_{ir}=\frac1{(D_i-p_r)((D_i-p_r)^2-t^2)},
+\]
+and $v_r=a_r-b_r-2$, $u_r=-t(a_r+b_r)$ are independent real
+parameters when $t\neq0$.  In particular, bounded $u_r$ can require
+paired residue sums of order $1/t$.  The shared-leading-difference
+obstruction in \texttt{JointFamilyBiasedCauchyPool.tex} therefore does
+not apply to this two-feature system.
+
+\paragraph{Interpolation on half the source points.}
+At $t=0$, the columns associated with any source subset $Q$ are
+\[
+ \left[\frac1{(D_i-p_r)^2},\frac1{(D_i-p_r)^3}\right]_{r\in Q}.
+\]
+If $2|Q|\geq q$, this matrix has full row rank.  To verify strictness,
+choose $q$ columns consisting of paired value/derivative columns and
+possibly one unpaired value column.  Separate each paired pole to
+$p_r,p_r+h_r$.  Borchardt's identity for the resulting square Cauchy
+matrix $C$ says
+\[
+ \det(C\mathbin{\circ}C)=\det(C)\operatorname{perm}(C).
+\]
+Divide by the product of the within-pair gaps and let every $h_r$ tend
+to zero.  The Cauchy determinant formula supplies a nonzero limit:
+its only vanishing Vandermonde factors are exactly those within-pair
+gaps.  The permanent has a strictly positive limit because all entries
+are positive.  The derivative columns are twice the displayed cubic
+columns.  Hence the selected minor is nonzero.  The same argument
+without confluent columns shows that every principal square submatrix
+of $K_0$ is nonsingular.  Continuity preserves these finitely many
+nonzero minors for all sufficiently small positive $t$.
+
+\paragraph{Simultaneous signs.}
+Replacing the second word $\tau$ by $-\tau$ leaves its requested sign
+inequalities unchanged, since its entire readout changes sign.
+Therefore assume that the disagreement class
+$Q=\{r:\sigma_r\neq\tau_r\}$ has at least $q/2$ elements.
+Put $P=Q^{\mathrm c}$.
+
+Choose coefficients supported on $P$, using only $K_t$, whose first-word
+readout $f$ equals $\sigma_i$ for $i\in P$.  This is possible by the
+principal-submatrix nonsingularity.  Those coefficients contribute the
+same readout $f$ for the second word, since the source signs agree on
+$P$.
+
+By the full-row-rank property for $Q$, choose coefficients supported on
+$Q$ whose first-word readout is
+\[
+ y_i=\begin{cases}
+ 0,&i\in P,\\
+ \sigma_i(|f_i|+1),&i\in Q.
+ \end{cases}
+\]
+Their second-word readout is $-y$.  The combined readouts are therefore
+$f+y$ and $f-y$.  On $P$ both have the requested sign, with signed
+margin one.  On $Q$,
+\[
+ \sigma_i(f_i+y_i)=\sigma_i f_i+|f_i|+1\geq1,\qquad
+ \tau_i(f_i-y_i)=-\sigma_i f_i+|f_i|+1\geq1.
+\]
+This proves the claim, uniformly over the finite collection of pairs of
+words.  All scalar denominators stay positive when
+$0<t<\min_{i,r}(D_i-p_r)$.
+
+\paragraph{Formal and written parts.}
+The exact paired algebra is kernel-checked as
+\texttt{jointFamily\_paired\_square\_cube\_identity}.
+The support decomposition and simultaneous strict-sign conclusion are
+kernel-checked as \texttt{jointFamily\_two\_word\_compatibility},
+with the stated interpolation hypotheses.  The Cauchy rank argument
+above is a written proof; it has not been imported as an axiom into
+Lean.  Both declarations are in
+\texttt{HeadComplexity/Results/JointFamilyPairedCompatibility.lean}.
+
+\paragraph{The recursive gap.}
+A full child decoder must also retain all lower-level inequalities.
+The residues constructed here can diverge as $t$ tends to zero, so
+their effect on those lower levels cannot be dismissed by continuity.
+The checked split theorem in \texttt{JointFamilyHaarSplit.lean}
+instead begins with compatible full child residues and makes bounded
+perturbations.  Proving compatibility of two arbitrary full child
+systems, or controlling the divergent higher-order corrections across
+all levels, remains open.
