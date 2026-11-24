@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\begin{document}
+\title{Exact One-Head Transport of a Positive Cauchy Kernel}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Scope.}
+This note gives a new exact change of coordinates for positive Cauchy
+kernels, and classifies every transport of the specified one-head form.
+It is a complete written proof. It has not been formalized in Lean.
+It neither constructs a sublinear reverse-grid compiler nor proves a
+new asymptotic bound on worst-case head complexity. In particular,
+this classification does not cover a sum of several heads or arbitrary
+additional row and column correction functions.
+
+\section{Classification with arbitrary additive numerators}
+
+\begin{theorem}[All exact additive one-head transports]
+Let $P,T$ be subsets of $(0,\infty)$, each containing at least two
+points. Suppose functions $A,D:P\to\mathbb R$ and
+$B,C:T\to\mathbb R$ satisfy $D(p)-B(t)\ne0$ and
+\[
+ \frac{p}{p+t}=\frac{A(p)+C(t)}{D(p)-B(t)}
+ \qquad(p\in P,\ t\in T).
+\]
+There are real constants $a,e,\beta,k$ such that
+\[
+ \begin{aligned}
+ A(p)&=-a+kp,&D(p)&=e+\beta/p+kp,\\
+ C(t)&=a+\beta/t,&B(t)&=e-\beta/t-kt.
+ \end{aligned}
+\]
+Conversely these formulas give the displayed identity whenever their
+denominator is nonzero.
+\end{theorem}
+
+\begin{proof}
+Cross multiplication and collection of the terms depending on $t$ give
+\[
+ tC(t)+p(C(t)+B(t))=pD(p)-(t+p)A(p).
+\]
+Subtract this equation for two distinct elements of $P$. Its right
+side is affine in $t$. Consequently $C(t)+B(t)=\gamma t+\delta$
+for some constants $\gamma,\delta$. Substitution at any one $p$
+shows that $tC(t)$ is affine in $t$; write $tC(t)=at+\beta$.
+Thus
+\[
+ C(t)=a+\beta/t,\qquad
+ B(t)=\gamma t+\delta-a-\beta/t.
+\]
+Substitute again in the cross-multiplied identity. Comparing the
+coefficients of the affine functions of $t$, which is legitimate
+because $T$ has at least two distinct points, yields
+\[
+ A(p)=-a-\gamma p,\qquad
+ D(p)=\beta/p+\delta-a-\gamma p.
+\]
+Set $k=-\gamma$ and $e=\delta-a$.
+For the converse, the numerator and denominator are respectively
+\[
+ kp+\frac\beta t
+   =p\left(k+\frac\beta{pt}\right),\qquad
+ \left(\frac\beta p+kp\right)+
+ \left(\frac\beta t+kt\right)
+   =(p+t)\left(k+\frac\beta{pt}\right).
+\]
+Their quotient is $p/(p+t)$.
+\end{proof}
+
+A global constant bias is included: multiplying such a bias by
+$D(p)-B(t)$ adds one row function and one column function to the
+numerator. The conclusion is much broader than a common fractional
+linear change of the poles. For $\beta,k>0$, the relevant coordinate is
+\[
+ d(t)=\frac\beta t+kt
+      =2\sqrt{\beta k}\cosh\!\left(\log t-
+                   \frac12\log\frac\beta k\right).
+\]
+The corresponding antisymmetric coordinate is
+$q(t)=kt-\beta/t$. In these coordinates
+\[
+ \frac{p}{p+t}=\frac12+
+       \frac{q(p)-q(t)}{2(d(p)+d(t))}.
+\]
+The second coordinate is necessary: the fold $d(t)$ is not injective,
+and the numerator distinguishes its two branches.
+
+\section{The exact whole-cube condition}
+
+\begin{theorem}[Symmetric-grid admissibility]
+Let $S=\{t_1,\ldots,t_m\}\subset(0,\infty)$ consist of $m\ge2$
+distinct points. Put $d_i=\beta/t_i+kt_i$, and suppose $d_i>0$.
+The grid denominator $d_i+d_j$ has an extension of the form
+\[
+ B(x,z)=b_0-\sum_{i=1}^m u_i x_i-\sum_{j=1}^m v_jz_j,
+ \qquad u_i,v_j\ge0,
+\]
+which agrees on $(e_i,e_j)$ and is strictly positive on the whole
+$2m$-dimensional Boolean cube, if and only if
+\[
+ \sum_{i=1}^m d_i>(m-1)\max_i d_i.
+\]
+If such an extension exists, it can also be chosen with all slopes
+strictly negative while preserving every grid denominator exactly.
+\end{theorem}
+
+\begin{proof}
+Write $d_{\max}=\max_i d_i$. Agreement on the grid forces
+$b_0-u_i-v_j=d_i+d_j$. Subtracting two row equations and then two
+column equations shows that $u_i=U-d_i$, $v_j=V-d_j$, and
+$b_0=U+V$. Nonnegativity of the slopes' magnitudes implies
+$U,V\ge d_{\max}$. The minimum on the full cube is therefore
+\[
+ b_0-\sum_i u_i-\sum_jv_j
+ =2\sum_i d_i-(m-1)(U+V)
+ \le 2\sum_i d_i-2(m-1)d_{\max}.
+\]
+This proves necessity. Equality in the bound is attained by
+$U=V=d_{\max}$, proving sufficiency.
+If the resulting minimum is $\mu>0$, replace every $u_i,v_j$ by
+$u_i+\varepsilon,v_j+\varepsilon$ and replace $b_0$ by
+$b_0+2\varepsilon$. Grid values stay unchanged. The full-cube
+minimum becomes $\mu-(2m-2)\varepsilon>0$ whenever
+$0<\varepsilon<\mu/(2m-2)$.
+\end{proof}
+
+Together the two theorems classify all exact one-head reverse-grid
+realizations of the symmetric kernel $t_i/(t_i+t_j)$. Indeed the first
+theorem forces the profile $d$, and positivity on diagonal grid points
+forces $d_i>0$. An affine numerator with the required grid values is
+\[
+ N(x,z)=k\sum_i t_i x_i+\beta\sum_j t_j^{-1}z_j.
+\]
+The denominator supplied above has strictly negative slopes and is
+positive on the whole cube. It is therefore admissible in the unchanged
+model by the existing negative-affine-ratio interface.
+
+\section{Three separated levels work, but four do not}
+
+\begin{corollary}[A reverse one-head three-level Cauchy kernel]
+For every $R>1$, the $3$ by $3$ kernel
+$t_i/(t_i+t_j)$ with $(t_1,t_2,t_3)=(1,R,R^2)$ is represented exactly
+by a single admissible head on six Boolean input coordinates.
+\end{corollary}
+
+\begin{proof}
+Take $\beta=1$ and $k=R^{-2}$. Then
+\[
+ (d_1,d_2,d_3)=(1+R^{-2},\ 2/R,\ 1+R^{-2}).
+\]
+Since $R>1$, the maximum is $1+R^{-2}$. The weak-slope extension
+has only the middle row and column slopes nonzero, and its full-cube
+minimum is
+\[
+ 2\sum_i d_i-4d_{\max}=4/R>0.
+\]
+The preceding strictification leaves all nine values exact. For
+example any $0<\varepsilon<1/R$ suffices. The numerator in the
+preceding display realizes the kernel exactly.
+\end{proof}
+
+\begin{corollary}[Four geometric levels obstruct every one-head transport]
+Let $R\ge3$ and $S=\{1,R,R^2,R^3\}$. There is no exact
+representation of $t_i/(t_i+t_j)$ by one reverse-oriented admissible
+affine ratio on the $4$ by $4$ one-hot grid, even with an arbitrary
+additive row-plus-column numerator and a global bias.
+\end{corollary}
+
+\begin{proof}
+Any such representation has the profile of the first theorem. Write
+$d_j=\beta R^{-j}+kR^j$ for $j=0,1,2,3$. Direct calculation gives
+\[
+ d_1+d_2=\frac{R}{R^2-R+1}(d_0+d_3).
+\]
+The coefficient is at most $1/2$ when $R\ge3$: equivalently
+$R^2-3R+1\ge0$, which follows from $R(R-3)+1>0$.
+All $d_j$ are positive, by positivity of the diagonal grid values.
+It follows that
+\[
+ \sum_{j=0}^3 d_j
+ \le\frac32(d_0+d_3)
+ \le3\max_jd_j.
+\]
+This contradicts the necessary whole-cube condition for $m=4$.
+The same argument works for every $R\ge(3+\sqrt5)/2$.
+\end{proof}
+
+\paragraph{Consequences for the attempted transfer.}
+The reciprocal Hall-selector construction in branch
+\texttt{ar/7485202da367} uses arbitrarily many geometrically separated
+levels. A general claim that every additive one-head reparameterization
+fails is false, as shown by the three-level construction. However,
+replacing each positive Cauchy term individually by one reverse term
+cannot transfer that library: already four separated levels obstruct
+it. Iterating the scalar fold alone is not an identity for the kernel,
+because its separate $q$ coordinate must also be transported. No
+bounded-cost iteration accomplishing that transport is established.
+
+\end{document}
