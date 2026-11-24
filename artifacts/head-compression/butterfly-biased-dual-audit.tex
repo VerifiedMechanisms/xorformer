@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\title{The Biased Butterfly Dual and a One-Level Estimate}
+\author{}\date{}\begin{document}\maketitle
+
+\paragraph{Status.}
+This is a complete written audit of several exact identities and one
+quantitative necessary condition on an infeasibility certificate. It
+does not exclude all certificates, prove a density theorem, or give a
+new asymptotic HeadComplexity bound. The gap after the estimate is stated
+explicitly below. The companion checker verifies the finite algebra,
+not the missing induction.
+
+\paragraph{Notation.}
+There are $H=2^d$ wires and butterfly layers $k=0,\ldots,d-1$.
+At layer $k$, a block $g$ fixes the input bits above $k$; its queries
+are indexed by lower output prefixes $s<2^k$. A switch word
+$\theta_{k,g,s}$ determines the routed permutation $\pi$.
+Write $\sigma_{k,g,s}=1-2\theta_{k,g,s}$ and
+\[
+ u_{k,g}(h)=\mathbf1_{\{\lfloor h/2^{k+1}\rfloor=g\}}
+             (1-2h_k).
+\]
+Choose positive digit sizes $\eta_0,\ldots,\eta_{d-1}$ and put
+$p_y=\sum_j y_j\eta_j$, $P=\sum_j\eta_j<1/2$,
+$b=1-2P>0$. The query time for prefix $s$ is $1-p_s$.
+For residues $c_y$ and an independent bias $\beta_{k,g}$ at each block,
+the desired inequalities are
+\[
+ \sigma_{k,g,s}\left(\beta_{k,g}+
+ \sum_y u_{k,g}(\pi^{-1}y)\frac{c_y}{1-p_s-p_y}\right)>0.
+ \tag{1}
+\]
+All residues and biases here are unrestricted real numbers.
+
+\paragraph{Exact dual.}
+The strict homogeneous system (1) is infeasible if and only if there is
+a nonzero family $\lambda_{k,g,s}\geq0$ such that, with
+$v_{k,g,s}=\sigma_{k,g,s}\lambda_{k,g,s}$ and
+\[
+ R_{k,g}(x)=\sum_s\frac{v_{k,g,s}}{1-p_s-x},
+\]
+one has
+\[
+ \sum_s v_{k,g,s}=0,\qquad
+ \sum_{k,g}u_{k,g}(h)R_{k,g}(p_{\pi(h)})=0
+       \quad\hbox{for every input }h.                 \tag{2}
+\]
+This is the strict linear alternative applied to the variables
+$(c,\beta)$. The first equations are exactly the bias coordinates.
+In particular every level-zero dual block is zero, since it has one
+query. A constant-sign target block also has zero dual mass.
+
+\paragraph{Bias elimination in the primal.}
+For a fixed block, an admissible bias exists exactly when every score
+at a positive-labelled query exceeds every score at a negative-labelled
+query. If $a$ is positive and $b'$ negative, this is
+\[
+ (p_a-p_{b'})\sum_y
+ \frac{u_{k,g}(\pi^{-1}y)c_y}
+ {(1-p_a-p_y)(1-p_{b'}-p_y)}>0.                       \tag{3}
+\]
+The denominator factors are positive. Formula (3) follows by subtracting
+the two simple reciprocals. Pure blocks impose no reduced inequalities.
+
+\begin{lemma}[Positive kernel energy]
+For distinct $x_1,\ldots,x_q$ in $[0,P]$, the matrix
+$C_{ij}=1/(1-x_i-x_j)$ is positive definite. Consequently a nonzero
+block vector $v$ has $v^TCv>0$, including when $\sum_i v_i=0$.
+\end{lemma}
+\begin{proof}
+The quadratic form is
+\[
+ \int_0^\infty e^{-t}\left(\sum_i v_i e^{x_it}\right)^2\,dt.
+\]
+The integral converges since $2P<1$. If it is zero, the continuous
+integrand is identically zero. Its first $q$ derivatives at zero give
+a Vandermonde system, forcing every $v_i=0$.
+\end{proof}
+
+\begin{lemma}[Exact paired-leaf identity]
+Fix a block $(k,g)$ and a lower output prefix $s<2^k$. There are unique
+inputs $h_0,h_1$ in its two children whose final outputs have lower
+prefix $s$. Their input bit $k$ is respectively zero and one. Put
+$y_i=\pi(h_i)$, and let $L(h)$ denote the sum in (2) over levels below
+$k$. For each strict ancestor block $a$ of $(k,g)$ its Haar sign
+$u_a$ is the same at $h_0,h_1$. The difference of the two leaf equations
+is
+\[
+ 0=R_{k,g}(p_{y_0})+R_{k,g}(p_{y_1})
+   +L(h_0)-L(h_1)
+   +\sum_{a\text{ strict ancestor}}u_a
+       \bigl(R_a(p_{y_0})-R_a(p_{y_1})\bigr).        \tag{4}
+\]
+\end{lemma}
+\begin{proof}
+Before layer $k$, routing is a permutation of the lower $k$ bits
+within each fixed higher-bit string. The two inputs reaching the
+layer-$k$ gate with prefix $s$ are therefore unique. Later layers
+preserve bits below $k$. They have opposite signs in the block's Haar
+function and equal signs in every strict ancestor. Subtracting the two
+leaf equations proves (4).
+\end{proof}
+
+\begin{lemma}[Minimal-active-level estimate]
+Suppose a dual certificate satisfies (2), and every block below level
+$k\geq1$ is zero. Fix a block $g$ at level $k$, put $q=2^k$,
+$M_g=\sum_s|v_{k,g,s}|$, and
+$\Delta=\min_{s\ne t<q}|p_s-p_t|>0$.
+Let $\delta_k=\sum_{j\geq k}\eta_j$, and set
+\[
+ \alpha_k=\frac{q^2\delta_k}{b^3\Delta^{2q-2}}.
+\]
+Then
+\[
+ M_g\leq\alpha_k\left(M_g+
+                  \tfrac12\sum_{a\text{ strict ancestor}}M_a\right).
+                                                               \tag{5}
+\]
+In particular, if $\alpha_k\leq1/2$, then
+$M_g\leq\alpha_k\sum_aM_a$.
+\end{lemma}
+\begin{proof}
+Every $p_{y_i}$ in (4) lies in $[p_s,p_s+\delta_k]$ and the two
+points are at distance at most $\delta_k$.
+On $[0,P]$ one has $|R_a'(x)|\leq M_a/b^2$.
+Since $L=0$, (4) and the mean value theorem give
+\[
+ |R_{k,g}(p_s)|\leq\frac{\delta_k}{b^2}
+       \left(M_g+\tfrac12\sum_aM_a\right).          \tag{6}
+\]
+The vector of these values equals $Cv_g$. The explicit inverse Cauchy
+formula implies
+\[
+ |(C^{-1})_{ij}|
+ =\frac{\prod_\ell(1-p_i-p_\ell)
+             \prod_\ell(1-p_j-p_\ell)}
+ {(1-p_i-p_j)\prod_{\ell\ne i}|p_i-p_\ell|
+                  \prod_{\ell\ne j}|p_j-p_\ell|}
+ \leq\frac1{b\Delta^{2q-2}}.
+\]
+Thus $\|C^{-1}x\|_1\leq q^2\|x\|_\infty/
+(b\Delta^{2q-2})$. Applying this to (6) proves (5), and absorbing
+the $\alpha_kM_g$ term proves the last assertion.
+\end{proof}
+
+\paragraph{The remaining compatibility gap.}
+Estimate (5) is a one-level statement, not a triangular elimination of
+all levels. After a lower block is bounded rather than exactly zero,
+the term $L(h_0)-L(h_1)$ returns in (4). Later inverse-Cauchy norms
+depend on the very small earlier digit gaps and can amplify that term.
+Choosing each next digit small does not by itself establish that these
+products are small. Likewise, the positive kernel energy does not yet
+give a positive energy for the full masked leaf system.
+An exact signed Schur-complement elimination, an appropriate weighted
+energy identity, or a probabilistic control of these coupled equations
+would be new work. Neither an all-target theorem nor a constant-density
+theorem is asserted here.
+
+\end{document}
