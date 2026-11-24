@@ -1,0 +1,16 @@
+'HeadComplexity.UniversalCubeMargin.vertex_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UniversalCubeMargin.cube_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UniversalCubeMargin.vertex_coefficient_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UniversalCubeMargin.cube_coefficient_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UniversalCubeMargin.hasRelativeMargin_universal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniversalCubeMargin.hasRelativeMargin_universal_at_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniversalCubeMargin.hasRelativeMargin_of_junta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniversalCubeMargin.allRepresentationsLowMargin_eq_empty_of_full_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

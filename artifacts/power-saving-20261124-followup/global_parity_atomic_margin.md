@@ -106,7 +106,11 @@ The coefficient formula is Boolean Möbius inversion. The final inequality is $\
 
 $$ \Gamma_\infty(f)\geq3^{-n} $$
 
-for every table. More concretely, applying the already kernel-checked uniform-margin compiler to these written coefficient bounds gives width $N$ and margin at least $1/(2\cdot3^n+1)$. The specialized coefficient calculation is written here, not a new Lean declaration.
+for every table. The specialized finite compiler is now kernel checked in `Research/UniversalCubeMargin.lean`: `cube_coefficient_mass` proves the coefficient mass bound, and `hasRelativeMargin_universal` gives width $N$ and margin at least $1/(2\cdot3^n+1)$. The proof expands every point indicator into products of one-variable affine factors, exchanges the finite sums, and bounds the total absolute coefficient mass by the tensor product $(1+2)^n$.
+
+The theorem `hasRelativeMargin_of_junta` gives width $2^k$ and margin at least $1/(2\cdot3^k+1)$ for every function of $k$ selected coordinates inside the full $n$-cube. The approximating heads remain admissible on the entire larger cube, and their norms are measured there. The theorem `allRepresentationsLowMargin_eq_empty_of_full_width` proves that the universally quantified low-margin class is empty when the comparison width is at least $N$ and the tested margin is at most $1/(2\cdot3^n+1)$.
+
+All eight theorem declarations in the module are audited by `AuditUniversalCubeMargin.lean`, with transitive axioms `propext`, `Classical.choice`, and `Quot.sound` only. The build and audit logs are `universal-cube-margin-build.txt` and `universal-cube-margin-axioms.txt`. The convex minimax formulation and limiting value $\Gamma_\infty\geq3^{-n}$ remain written mathematics; the explicit finite-width margin guarantee is kernel checked.
 
 Both requested test margins are eventually much smaller than $3^{-n}$. Thus no dual certificate for the width-unconstrained convex atomic problem can establish that a table fails either test margin. Such a certificate must retain the comparison-width constraint.
 

@@ -1,0 +1,10 @@
+import HeadComplexity.Research.UniversalCubeMargin
+
+#print axioms HeadComplexity.UniversalCubeMargin.vertex_expansion
+#print axioms HeadComplexity.UniversalCubeMargin.cube_expansion
+#print axioms HeadComplexity.UniversalCubeMargin.vertex_coefficient_mass
+#print axioms HeadComplexity.UniversalCubeMargin.cube_coefficient_mass
+#print axioms HeadComplexity.UniversalCubeMargin.hasRelativeMargin_universal
+#print axioms HeadComplexity.UniversalCubeMargin.hasRelativeMargin_universal_at_width
+#print axioms HeadComplexity.UniversalCubeMargin.hasRelativeMargin_of_junta
+#print axioms HeadComplexity.UniversalCubeMargin.allRepresentationsLowMargin_eq_empty_of_full_width

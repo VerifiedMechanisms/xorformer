@@ -1,0 +1,59 @@
+ℹ [3281/3722] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:289:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3284/3722] Replayed HeadComplexity.Research.UniformMarginCompiler
+info: HeadComplexity/Research/UniformMarginCompiler.lean:93:0: 'HeadComplexity.UniformMarginCompiler.atomSup_le_of_uniform_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/UniformMarginCompiler.lean:94:0: 'HeadComplexity.UniformMarginCompiler.hasRelativeMargin_of_uniformlyOneAtomApproximable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9082/9086] Replayed HeadComplexity.Research.MarginInvariance
+info: HeadComplexity/Research/MarginInvariance.lean:191:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:192:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:193:0: 'HeadComplexity.RelativeMarginQuantifiers.hasRelativeMargin_mono_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:194:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_width_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9084/9086] Replayed HeadComplexity.Research.IntegerSeparatorMarginRepair
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:541:0: 'HeadComplexity.IntegerSeparatorMarginRepair.exists_bounded_integer_separator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:542:0: 'HeadComplexity.IntegerSeparatorMarginRepair.exists_bounded_integer_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:543:0: 'HeadComplexity.IntegerSeparatorMarginRepair.hasRelativeMargin_of_isLTF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:544:0: 'HeadComplexity.IntegerSeparatorMarginRepair.one_head_repair' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:545:0: 'HeadComplexity.IntegerSeparatorMarginRepair.repair_of_HStar_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [9085/9086] Replayed HeadComplexity.Research.LowDegreeMarginRepair
+warning: HeadComplexity/Research/LowDegreeMarginRepair.lean:24:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+info: HeadComplexity/Research/LowDegreeMarginRepair.lean:203:0: 'HeadComplexity.LowDegreeMarginRepair.exists_integer_monomial_separator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9086/9086] Built HeadComplexity.Research.UniversalCubeMargin (3.4s)
+Build completed successfully (9086 jobs).
