@@ -45,6 +45,10 @@ import HeadComplexity.Results.JointFamilyCompactZeros
 import HeadComplexity.Results.JointFamilyMonomialCorrections
 import HeadComplexity.Results.LargeDomainFiniteLevels
 import HeadComplexity.Results.JointCellEqualStepCapacity
+import HeadComplexity.Results.CubeTwoStarTransfer
+import HeadComplexity.Results.JointCellWeightedCover
+import HeadComplexity.Results.JointFamilyCompactRank
+import HeadComplexity.Results.LargeDomainProducts
 import HeadComplexity.Results.UniversalAxisLogCompiler
 import HeadComplexity.Results.UniversalLogConsequences
 import HeadComplexity.Results.ReverseMomentGerms

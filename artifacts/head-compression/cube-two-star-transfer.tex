@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{Joint full-cube and two-star transfer}
+\maketitle
+The original model and worst-case quantity are unchanged.  The kernel-checked
+interface \texttt{HasReverseCubeTwoStarCompiler k a b M} requires every table
+on $\{0,1\}^k\times[a]\times[b]$, with arbitrary independent labels, to have a
+single score using at most $M$ affine fractions.  Every denominator is positive
+on the entire $(k+a+b)$-cube and has strictly negative slopes.  The complete
+score vanishes on either star's zero axis for every row input and every input
+of the other star, including multihot inputs.
+
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_cube\_two\_star\_compiler}
+proves, for $a,b>0$,
+\[
+ W(k+a+b)\leq \frac{484\,2^{a+b}M}{ab}+2^{k+a}+2^{k+b}.
+\]
+The exact finite cover bound is $|D\times E|M+2^{k+a}+2^{k+b}$.
+The cover centers are ordered by decreasing rank.  Previously treated inputs
+inside a new downset lie in its current cell or one of its two axes.  Exact
+axis zeros preserve their signs; inputs outside the downset are protected by
+a common affine suppression penalty and a finite strict margin.  Complementing
+the local coordinates gives strictly positive global slopes.  The two positive
+faces omitted by the open covers are repaired at the displayed costs.
+
+This theorem supplies the outer stage of the filtered weight-layer proposal.
+Its inner stage must first combine all row cells for one fixed pair of star
+centers.  Lower-face cancellation on one-hot bit and column inputs alone does
+not justify simultaneous gluing over all three sets of centers.  The full-cube
+row interface avoids that invalid inference.  No improved local compiler is
+asserted by this transfer theorem.
+\end{document}

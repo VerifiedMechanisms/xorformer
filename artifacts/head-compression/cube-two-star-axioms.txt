@@ -1,0 +1,16 @@
+'HeadComplexity.AxisZeroGluing.glue_reverse_cube_two_star_modules' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.HStar_le_cube_two_star_cover_of_compiler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_of_cube_two_star_compiler' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointCell_exists_downward_layer_log_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+../artifacts/head-compression/cube-two-star-audit.lean:10:14: error(lean.unknownIdentifier): Unknown constant `HeadComplexity.AxisZeroGluing.compact_regular_dictionary_obstruction`
+'HeadComplexity.LargeDomain.affine_product_pair_preserves_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

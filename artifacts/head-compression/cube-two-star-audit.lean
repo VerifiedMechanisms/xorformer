@@ -1,0 +1,11 @@
+import HeadComplexity.Results.CubeTwoStarTransfer
+import HeadComplexity.Results.JointCellWeightedCover
+import HeadComplexity.Results.JointFamilyCompactRank
+import HeadComplexity.Results.LargeDomainProducts
+
+#print axioms HeadComplexity.AxisZeroGluing.glue_reverse_cube_two_star_modules
+#print axioms HeadComplexity.AxisZeroGluing.HStar_le_cube_two_star_cover_of_compiler
+#print axioms HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_of_cube_two_star_compiler
+#print axioms HeadComplexity.AxisZeroGluing.jointCell_exists_downward_layer_log_cost
+#print axioms HeadComplexity.AxisZeroGluing.compact_regular_dictionary_obstruction
+#print axioms HeadComplexity.LargeDomain.affine_product_pair_preserves_signs
