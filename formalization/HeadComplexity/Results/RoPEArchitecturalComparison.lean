@@ -96,4 +96,11 @@ theorem architecturalPureRoPEHStar_eq_vanilla_of_le_two {n : ℕ}
   exact ⟨pureRoPEHStar_eq_vanilla_of_le_two f hf,
     pureRoPEHStar_eq_vanilla_of_le_two f hf⟩
 
+theorem architecturalPureRoPEHStar_eq_vanilla_of_vanilla_le_three {n : ℕ}
+    (f : (Fin n → Bool) → Bool) (hf : HStar n f ≤ 3) :
+    StandardPureRoPEHStar n f = HStar n f ∧ FreePureRoPEHStar n f = HStar n f := by
+  rw [standardPureRoPEHStar_eq_scalar, freePureRoPEHStar_eq_scalar]
+  exact ⟨pureRoPEHStar_eq_vanilla_of_vanilla_le_three f hf,
+    pureRoPEHStar_eq_vanilla_of_vanilla_le_three f hf⟩
+
 end HeadComplexity

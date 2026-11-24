@@ -268,4 +268,25 @@ theorem pureRoPEHStar_eq_vanilla_of_le_two {n : ℕ}
   rw [dif_pos (exists_computable f)]
   exact Nat.find_min' _ hc
 
+/-- Equality also follows whenever the vanilla minimum is at most three:
+a smaller pure minimum would be at most two and hence already equal. -/
+theorem pureRoPEHStar_eq_vanilla_of_vanilla_le_three {n : ℕ}
+    (f : (Fin n → Bool) → Bool) (hf : HStar n f ≤ 3) :
+    PureRoPEHStar n f = HStar n f := by
+  have hle := pureRoPEHStar_le_vanilla f
+  by_cases hp : PureRoPEHStar n f ≤ 2
+  · exact pureRoPEHStar_eq_vanilla_of_le_two f hp
+  · omega
+
+/-- Any strict improvement must start at three pure heads and four vanilla
+heads. This is a necessary condition, not an existence assertion. -/
+theorem pureRoPE_strict_improvement_lower_bounds {n : ℕ}
+    (f : (Fin n → Bool) → Bool) (hf : PureRoPEHStar n f < HStar n f) :
+    3 ≤ PureRoPEHStar n f ∧ 4 ≤ HStar n f := by
+  have hp : ¬ PureRoPEHStar n f ≤ 2 := by
+    intro h
+    have he := pureRoPEHStar_eq_vanilla_of_le_two f h
+    omega
+  omega
+
 end HeadComplexity
