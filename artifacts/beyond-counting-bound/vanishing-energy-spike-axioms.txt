@@ -7,3 +7,10 @@
 'HeadComplexity.VanishingEnergySpike.origin_norm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.VanishingEnergySpike.small_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
 'HeadComplexity.VanishingEnergySpike.spikeAtom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.VanishingEnergySpike.spikeFamily_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.VanishingEnergySpike.label_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.VanishingEnergySpike.spike_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.VanishingEnergySpike.spikeFamily_preserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.VanishingEnergySpike.exists_spike_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

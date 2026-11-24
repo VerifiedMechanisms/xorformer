@@ -1,5 +1,6 @@
 import HeadComplexity.Atoms.HeadEllipticEnergy
 import HeadComplexity.Atoms.PositiveAffineRatio
+import HeadComplexity.Atoms.OriginMarginRepair
 
 set_option linter.style.header false
 noncomputable section
@@ -158,5 +159,84 @@ def spikeAtom {n : ℕ} (s t : ℝ) (ht : 0 < t) : FracAtom n :=
 theorem spikeAtom_eval {n : ℕ} (s t : ℝ) (ht : 0 < t) (x : Fin n → Bool) :
     (spikeAtom s t ht).eval x = s*t/(t+∑ i, boolToReal (x i)) := by
   simp [spikeAtom, FracAtom.ofPositiveAffineRatio_eval, affineValue]
+
+def spikeFamily {n H : ℕ} (phi : Fin H → FracAtom n)
+    (f : (Fin n → Bool) → Bool) (ε t : ℝ) (ht : 0 < t) : Fin (H+1) → FracAtom n :=
+  Fin.cons (spikeAtom (signedLabel f (fun _ ↦ false)) t ht)
+    (fun h ↦ (phi h).scale ε)
+
+theorem spikeFamily_eval {n H : ℕ} (phi : Fin H → FracAtom n)
+    (f : (Fin n → Bool) → Bool) (c ε t : ℝ) (ht : 0 < t) (x : Fin n → Bool) :
+    ε*c + ∑ h, (spikeFamily phi f ε t ht h).eval x =
+      signedLabel f (fun _ ↦ false)*t/(t+OriginMarginRepair.weight x) +
+        ε*(c + ∑ h, (phi h).eval x) := by
+  rw [Fin.sum_univ_succ]
+  simp only [spikeFamily, Fin.cons_zero, Fin.cons_succ, FracAtom.scale_eval]
+  rw [spikeAtom_eval, ← mul_sum]
+  unfold OriginMarginRepair.weight
+  ring
+
+theorem label_sq {n : ℕ} (f : (Fin n → Bool) → Bool) (x : Fin n → Bool) :
+    (signedLabel f x)^2 = 1 := by
+  unfold signedLabel
+  split <;> norm_num
+
+theorem spike_abs_le (s t k : ℝ) (hs : s^2 = 1) (ht : 0 < t) (hk : 1 ≤ k) :
+    |s*t/(t+k)| ≤ t := by
+  have ha : |s| = 1 := by nlinarith [sq_abs s, abs_nonneg s]
+  have hd : 0 < t+k := by linarith
+  rw [abs_div, abs_mul, ha, abs_of_pos ht, abs_of_pos hd, one_mul]
+  apply (div_le_iff₀ hd).mpr
+  nlinarith
+
+theorem spikeFamily_preserves {n H : ℕ} (phi : Fin H → FracAtom n)
+    (f : (Fin n → Bool) → Bool) (c ε t m : ℝ)
+    (hε : 0 < ε) (ht : 0 < t) (hm : 0 < m) (hsmall : t ≤ ε*m/2)
+    (hmargin : ∀ x, m ≤ signedLabel f x*(c+∑ h, (phi h).eval x)) :
+    (∀ x, 0 < signedLabel f x*(ε*c+∑ h, (spikeFamily phi f ε t ht h).eval x)) ∧
+    1 ≤ ∑ x, (ε*c+∑ h, (spikeFamily phi f ε t ht h).eval x)^2 := by
+  classical
+  let z : Fin n → Bool := fun _ ↦ false
+  have hzero : 1 ≤ signedLabel f z*
+      (ε*c+∑ h, (spikeFamily phi f ε t ht h).eval z) := by
+    rw [spikeFamily_eval]
+    simp only [z, OriginMarginRepair.weight_origin, add_zero, mul_div_cancel_right₀ _ ht.ne']
+    have hl := label_sq f z
+    have hm' := hmargin z
+    have hpos := mul_pos hε hm
+    have hmul := mul_le_mul_of_nonneg_left hm' hε.le
+    dsimp [z] at hl hm' hmul
+    nlinarith
+  constructor
+  · intro x
+    by_cases hx : x = z
+    · subst x
+      linarith
+    · rw [spikeFamily_eval]
+      exact preserve_sign _ _ _ ε m t (label_sq f x) hm (hmargin x) hε
+        (spike_abs_le _ _ _ (label_sq f z) ht (OriginMarginRepair.one_le_weight x hx))
+        hsmall
+  · apply origin_norm_bound _ z
+    have hs := label_sq f z
+    have hsq := sq_nonneg (signedLabel f z*
+      (ε*c+∑ h, (spikeFamily phi f ε t ht h).eval z)-1)
+    have he : (signedLabel f z*
+      (ε*c+∑ h, (spikeFamily phi f ε t ht h).eval z))^2 =
+        (ε*c+∑ h, (spikeFamily phi f ε t ht h).eval z)^2 := by rw [mul_pow, hs, one_mul]
+    nlinarith
+
+/-- Actual admissible head assembly with an arbitrarily small raw-energy bound.
+The writeup identifies K with the old head-gradient energy. -/
+theorem exists_spike_certificate {n H : ℕ} (phi : Fin H → FracAtom n)
+    (f : (Fin n → Bool) → Bool) (c m K η : ℝ)
+    (hm : 0 < m) (hK : 0 ≤ K) (hη : 0 < η)
+    (hmargin : ∀ x, m ≤ signedLabel f x*(c+∑ h, (phi h).eval x)) :
+    ∃ (ε t : ℝ) (ht : 0 < t), 0 < ε ∧
+      (∀ x, 0 < signedLabel f x*(ε*c+∑ h, (spikeFamily phi f ε t ht h).eval x)) ∧
+      (1 ≤ ∑ x, (ε*c+∑ h, (spikeFamily phi f ε t ht h).eval x)^2) ∧
+      (2:ℝ)^n*t^2+ε^2*K < η := by
+  obtain ⟨ε, t, hε, ht, hsmall, hb⟩ := small_scale K ((2:ℝ)^n) m η hK (by positivity) hm hη
+  obtain ⟨hs, hn⟩ := spikeFamily_preserves phi f c ε t m hε ht hm hsmall hmargin
+  exact ⟨ε, t, ht, hε, hs, hn, hb⟩
 
 end HeadComplexity.VanishingEnergySpike

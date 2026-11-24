@@ -8,3 +8,8 @@ import HeadComplexity.Atoms.VanishingEnergySpike
 #print axioms HeadComplexity.VanishingEnergySpike.origin_norm_bound
 #print axioms HeadComplexity.VanishingEnergySpike.small_scale
 #print axioms HeadComplexity.VanishingEnergySpike.spikeAtom_eval
+#print axioms HeadComplexity.VanishingEnergySpike.spikeFamily_eval
+#print axioms HeadComplexity.VanishingEnergySpike.label_sq
+#print axioms HeadComplexity.VanishingEnergySpike.spike_abs_le
+#print axioms HeadComplexity.VanishingEnergySpike.spikeFamily_preserves
+#print axioms HeadComplexity.VanishingEnergySpike.exists_spike_certificate
