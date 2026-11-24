@@ -34,17 +34,29 @@ def state_table(heads):
     return descriptors, signs, permutations
 
 
-def constraint_matrix(poles, probes, signs, permutations):
+def constraint_matrix(poles, probes, signs, permutations, anchor_probes=None):
     states, queries = signs.shape
     heads = len(poles)
     variables = queries * heads + heads * heads + queries
     matrix = np.zeros((states * queries, variables))
+    if anchor_probes is not None:
+        cauchy = 1 / (anchor_probes[:, None] - poles[None, :])
+        inverse = np.linalg.inv(cauchy)
+        # Shape state, anchor, slot for the anchor right-hand side.
+        anchor_kernel = cauchy[:, permutations].transpose(1, 0, 2)
     for q, probe in enumerate(probes):
         rows = np.arange(states) * queries + q
         kernels = 1 / (probe - poles[permutations])
         matrix[rows, q * heads:(q + 1) * heads] = kernels
-        for h in range(heads):
-            matrix[rows, queries * heads + h * heads + permutations[:, h]] = -kernels[:, h]
+        if anchor_probes is None:
+            for h in range(heads):
+                matrix[rows, queries * heads + h * heads + permutations[:, h]] = -kernels[:, h]
+        else:
+            # c_slot = -sum_anchor Cinv[token_at_slot,anchor]
+            #                  * sum_g a[anchor,g] C[anchor,token_at_g].
+            height = np.einsum("sh,shi->si", kernels, inverse[permutations])
+            matrix[rows, queries * heads:queries * heads + heads * heads] = (
+                -height[:, :, None] * anchor_kernel).reshape(states, heads * heads)
         matrix[rows, queries * heads + heads * heads + q] = 1
     matrix *= signs.reshape(-1, 1)
     return matrix
@@ -57,6 +69,10 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=240411)
     parser.add_argument("--seconds", type=float, default=1800)
+    parser.add_argument("--head-probes", action="store_true",
+                        help="Allow a different fixed probe for each query/head pair.")
+    parser.add_argument("--solved-anchors", action="store_true",
+                        help="Use residues solved at virtual Cauchy anchors, not an edge table.")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     descriptors, signs, permutations = state_table(args.heads)
@@ -69,8 +85,16 @@ def main():
         # large-column libraries. Later regimes test compact choices.
         compactness = (0.8, 0.5, 0.1, 0.01)[trial % 4]
         poles = np.sort(rng.uniform(0, compactness, args.heads))
-        probes = 1 + rng.uniform(0, compactness, len(descriptors))
-        matrix = constraint_matrix(poles, probes, signs, permutations)
+        probe_shape = ((len(descriptors), args.heads) if args.head_probes
+                       else len(descriptors))
+        probes = 1 + rng.uniform(0, compactness, probe_shape)
+        anchor_probes = None
+        if args.solved_anchors:
+            # Virtual equations impose no denominator admissibility condition.
+            # Place each anchor near its pole to control inverse conditioning.
+            clearance = np.min(np.diff(poles))
+            anchor_probes = poles + rng.uniform(0.2, 0.8, args.heads) * clearance
+        matrix = constraint_matrix(poles, probes, signs, permutations, anchor_probes)
         # Orthonormal columns remove scale and exact gauge degeneracies.
         Q, R, pivots = qr(matrix, mode="economic", pivoting=True)
         diagonal = np.abs(np.diag(R))
@@ -91,6 +115,8 @@ def main():
             active = np.unique(np.concatenate((active, worst)))
         report = {"trial": trial, "seconds": time.monotonic() - start,
                   "heads": args.heads, "queries": len(descriptors),
+                  "head_probes": args.head_probes,
+                  "solved_anchors": args.solved_anchors,
                   "states": len(signs), "compactness": compactness,
                   "rank": rank, "generation": generation, "active": len(active),
                   "status": int(result.status), "message": result.message}
@@ -100,6 +126,7 @@ def main():
             margins = matrix @ coefficient
             report["minimum_margin"] = float(np.min(margins))
             np.savez(args.out / f"candidate-{trial}.npz", poles=poles, probes=probes,
+                     anchor_probes=anchor_probes,
                      coefficient=coefficient, signs=signs, permutations=permutations)
         print(json.dumps(report), flush=True)
         with (args.out / "search.jsonl").open("a") as stream:

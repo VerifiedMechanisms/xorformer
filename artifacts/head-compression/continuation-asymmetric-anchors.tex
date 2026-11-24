@@ -235,4 +235,136 @@ and choosing the unread bits adaptively. Such redundancy destroys the
 independent averaging step; it still requires a new simultaneous
 readout construction.
 
+
+\section{Head-dependent probes and the exact Loewner constraint}
+
+Virtual anchor arguments need only be distinct and avoid all poles in
+this section. They need not be admissible attention denominators:
+their equations specify a residue encoder, while every actual query
+argument must separately satisfy the unchanged admissibility conditions.
+Let $C_{ij}=1/(d_i-\lambda_j)$ and write $C^{-1}$ for its inverse.
+
+\begin{proposition}[Solved-anchor formula]
+For arbitrary anchor data $a_{ig}$ and a permutation $\pi$, the residues
+solving (1) satisfy
+\[
+ c_h(\pi)=-\sum_g
+ \left[C^{-1}\operatorname{diag}(a_{1g},\ldots,a_{Hg})C\right]
+ _{\pi(h),\pi(g)}. \tag{7}
+\]
+Consequently a query with head-dependent arguments $D_h$ has anchor
+contribution
+\[
+ \sum_h\frac{c_h(\pi)}{D_h-\lambda_{\pi(h)}}
+ =-\sum_{i,g}a_{ig}C_{i,\pi(g)}
+       \sum_h\frac{(C^{-1})_{\pi(h),i}}{D_h-\lambda_{\pi(h)}}. \tag{8}
+\]
+In general (8) is quadratic in the permutation assignment indicators;
+the common-probe assignment-height simplification need not hold.
+\end{proposition}
+
+\begin{proof}
+Index the unknown residues by tokens, so that $z_{\pi(h)}=c_h$.
+The anchor equations become
+$Cz=-\sum_g \operatorname{diag}(a_{1g},\ldots,a_{Hg})Ce_{\pi(g)}$.
+Multiply by $C^{-1}$ and read entry $\pi(h)$ to obtain (7).
+Multiply this identity by the query kernels and interchange the finite
+sums to obtain (8).
+\end{proof}
+
+\begin{proposition}[Loewner form of the anchor matrices]
+There are nonzero numbers $u_j,v_i$, depending only on the anchors and
+poles, such that
+\[
+ (C^{-1})_{ji}=\frac{u_jv_i}{d_i-\lambda_j}.
+\]
+For any real vector $a=(a_i)$, put
+$F_a(z)=\sum_i v_i a_i/(d_i-z)$ and
+$K_a=C^{-1}\operatorname{diag}(a_i)C$. Then
+\[
+ (K_a)_{jk}=
+ \begin{cases}
+ u_j\dfrac{F_a(\lambda_j)-F_a(\lambda_k)}{\lambda_j-\lambda_k},&j\ne k,\\[6pt]
+ u_jF_a'(\lambda_j),&j=k.
+ \end{cases} \tag{9}
+\]
+In particular, on disjoint sets of $R$ reference tokens and $M$ variable
+tokens, the off-diagonal lookup matrix depends on only $R+M$ scalar
+values of $F_a$. It is not an arbitrary $R$ by $M$ matrix.
+\end{proposition}
+
+\begin{proof}
+For completeness let
+$P(z)=\prod_j(z-\lambda_j)$ and $Q(z)=\prod_i(z-d_i)$.
+The rational function whose values at the anchors are $e_i$ has
+numerator $P(d_i)L_i(z)$, where
+$L_i(z)=Q(z)/((z-d_i)Q'(d_i))$.
+Its residue at $\lambda_j$ is
+\[
+ (C^{-1})_{ji}
+ =\frac{P(d_i)Q(\lambda_j)}
+        {(\lambda_j-d_i)Q'(d_i)P'(\lambda_j)}.
+\]
+Thus take $u_j=-Q(\lambda_j)/P'(\lambda_j)$ and
+$v_i=P(d_i)/Q'(d_i)$; all are nonzero. Substitution gives
+\[
+ (K_a)_{jk}=u_j\sum_i
+ \frac{v_i a_i}{(d_i-\lambda_j)(d_i-\lambda_k)}.
+\]
+For $j\ne k$, use
+$(d_i-\lambda_j)^{-1}-(d_i-\lambda_k)^{-1}
+=(\lambda_j-\lambda_k)/((d_i-\lambda_j)(d_i-\lambda_k))$.
+For $j=k$, differentiate the defining rational function $F_a$.
+The dimension assertion follows directly from the off-diagonal formula.
+\end{proof}
+
+\begin{proposition}[Separate reference tests have planar sign capacity]
+Fix a variable slot $g$ and $R$ distinct reference tokens $r$, disjoint
+from its possible variable tokens $j$. Suppose $R$ proposed bits are
+read separately as
+\[
+ \operatorname{sgn}\bigl(\alpha_r(K_{a_g})_{rj}+\beta_r\bigr),
+\]
+where every possible variable token lies in one interval containing no
+reference pole. Then these tests produce at most
+$1+R+\binom R2$ strict sign words as $j$ varies. In particular they
+cannot realize every $R$-bit word when $R\geq3$.
+\end{proposition}
+
+\begin{proof}
+Formula (9) and multiplication by the fixed sign of
+$\lambda_r-\lambda_j$ convert each test into an affine linear
+inequality in the two coordinates
+$(\lambda_j,F_{a_g}(\lambda_j))$.
+An arrangement of $R$ affine lines in the plane has at most
+$1+R+\binom R2$ regions: on insertion of the $r$th line, its at most
+$r-1$ intersection points split it into at most $r$ segments, each
+of which adds at most one region. A strict sign word is constant on
+each region. Finally $2^3>1+3+\binom32$, and the strict inequality
+persists on increasing $R$, since the region bound increases by $R+1$
+while $2^R>R+1$ for $R\geq3$.
+\end{proof}
+
+\paragraph{Scope of this obstruction.}
+The proposition concerns separate reference-coordinate tests after
+all other slot contributions have already been canceled. It neither
+assumes nor proves that this cancellation can be performed. Mixtures
+of reference coordinates, or the diagonal derivative in (9), are not
+covered by the planar bound. They require a simultaneous construction;
+the off-diagonal entries cannot be chosen as independent lookup bits.
+
+\paragraph{Finite computational audit.}
+The companion script
+\texttt{search\_asymmetric\_anchor\_butterfly.py} implements (8), as
+well as the simpler edge-residue reader. An exact rational check for
+three poles verified (7)--(9) for all six permutations. Searches for
+the full eight-head, twelve-bit hierarchical reader found no candidate
+in 200 common-probe edge-table trials, 120 head-dependent edge-table
+trials, and 160 head-dependent solved-anchor trials. The LP solver
+reported infeasibility in 95, 39, and 46 trials respectively; most
+remaining trials had numerical errors, and one reached its time limit.
+These outcomes are numerical evidence only. Rank truncation and
+conditioning can discard relevant high-order directions, so no
+impossibility claim follows from these searches.
+
 \end{document}
