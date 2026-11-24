@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\title{Interleaved Ranking Votes Need Many M\"obius Exceptions}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and status.}
+This is a complete written obstruction to one proposed orientation
+repair, not a lower bound for arbitrary admissible heads. The proposal
+transports each forward Cauchy denominator separately by a fractional
+linear transformation, adds the associated affine numerator correction,
+and removes a few exceptional row or column vertices to obtain the
+whole-cube reverse denominator budget. For interleaved geometric
+ranking values, almost half the vertices must be removed from a single
+head. Joint changes to the denominator decomposition, interactions
+between tails, and arbitrary local compilers are not covered. Nothing
+here resolves either global asymptotic target. The results are not Lean
+formalized. The companion script makes exact rational checks of the
+identities and finite instances; the universal quantifiers are justified
+by the proof below.
+
+\begin{lemma}[The exact grid budget]
+Let $P=(p_i)_{i\in I}$ and $D=(d_j)_{j\in J}$ be nonempty finite
+lists with $\max P<\min D$, and put $r=|I|$, $s=|J|$, with $r+s>2$.
+There is an affine denominator on the Boolean $(r+s)$-cube with
+strictly negative slopes, positive on the whole cube, and values
+$d_j-p_i$ at $(e_i,e_j)$ if and only if
+\[
+ \sum_i(p_i-\min P)+\sum_j(\max D-d_j)<\max D-\min P.
+ \tag{1}
+\]
+The same criterion holds if an arbitrary positive common scale is
+permitted on the grid values.
+\end{lemma}
+\begin{proof}
+Write the desired denominator as
+$\beta-\sum_i u_i z_i-\sum_j v_j w_j$, with all $u_i,v_j>0$.
+Its grid values force
+$u_i=p_i-p_0$, $v_j=d_0-d_j$, and $\beta=d_0-p_0$ for constants
+$p_0<\min P$ and $d_0>\max D$. Its all-one value is
+\[
+ (\max D-\min P)-\sum_i(p_i-\min P)-\sum_j(\max D-d_j)
+ -(r-1)(\min P-p_0)-(s-1)(d_0-\max D).
+\]
+Positivity therefore implies (1). Conversely, if (1) has slack $\delta$,
+set $p_0=\min P-\eta$ and $d_0=\max D+\eta$ for
+$0<\eta<\delta/(r+s-2)$. All slopes are then strictly negative and
+the all-one value is positive. It is the minimum on the Boolean cube.
+Positive scaling preserves the criterion.
+\end{proof}
+
+\begin{lemma}[A cross-ratio contribution]
+Suppose $0\leq x,y<1$, $x+y<1$, and
+\[
+ \frac{xy}{(1-x)(1-y)}=\rho.
+\]
+Then $x+y\geq\rho$. If $R>1$, $U,V>0$ and
+$0<u,v\leq\min(U,V)/R$, then
+\[
+ \frac{(U-u)(V-v)}{(U+v)(V+u)}
+ \geq\left(\frac{R-1}{R+1}\right)^2.
+ \tag{2}
+\]
+The same bound holds whenever $U,V\geq R\max(u,v)>0$.
+\end{lemma}
+\begin{proof}
+Since $(1-x)(1-y)-xy=1-x-y$,
+$1-x-y=(1-\rho)(1-x)(1-y)\leq1-\rho$.
+For the second assertion each factor in the numerator is at least
+$1-1/R$ times its large variable, and each denominator factor is at
+most $1+1/R$ times that variable. The final hypotheses give the same
+four inequalities.
+\end{proof}
+
+\begin{theorem}[Linear exception cost for interleaved orders]
+Fix integers $k\geq3$ and a real $R\geq6$. Consider the forward
+denominator table
+\[
+ B_{ij}=u_i+v_j,\qquad
+ u_i=R^{2i},\quad v_j=R^{2j+1},\qquad 0\leq i,j<k.
+\]
+Retain row indices $I$ and column indices $J$, deleting at most $k-3$
+vertices in total. Let $\phi$ be any nonconstant real fractional linear
+map defined at all $-u_i$ and $v_j$ for retained indices. If
+\[
+ \phi(v_j)-\phi(-u_i)>0\qquad(i\in I,j\in J),
+\]
+then these transformed grid denominators cannot be extended to a
+whole-cube positive affine denominator with weakly nonpositive slopes.
+In particular they cannot satisfy strict reverse admissibility.
+Consequently this headwise M\"obius repair must delete at least $k-2$
+vertices from this table before strict admissibility can be possible.
+\end{theorem}
+\begin{proof}
+The deletion hypothesis says $|I|+|J|\geq k+3$, and hence both retained
+sets have at least three members.
+
+First suppose $\phi$ is affine or its pole is outside the interval
+from $-\max_{i\in I}u_i$ to $\max_{j\in J}v_j$. Positivity of every
+transformed difference forces $\phi$ to be increasing on this interval.
+Put $U=\max_{i\in I}u_i$, $V=\max_{j\in J}v_j$ and
+$M=\min(U,V)$. There are at least two retained row values and at least
+two retained column values at most $M/R$.
+To check this explicitly, put $a=\max I$, $b=\max J$. If $a\leq b$,
+then $M=R^{2a}$; all retained rows except $a$ qualify, and the number
+of retained columns $j\leq a-1$ is at least
+$|J|+a-k\geq|I|+|J|-k-1\geq2$.
+If $b<a$, then $M=R^{2b+1}$; all retained columns except $b$ qualify,
+and there are at least $|I|+b+1-k\geq|I|+|J|-k\geq3$ qualifying
+rows.
+
+Normalize the transformed endpoints $\phi(-U),\phi(V)$ to $0,1$ by
+an increasing affine map. For each qualifying row and column pair let
+$x$ be its normalized row value and let $y$ be one minus its normalized
+column value. Fractional linear invariance of the cross-ratio gives
+\[
+ \frac{xy}{(1-x)(1-y)}
+ =\frac{(U-u_i)(V-v_j)}{(U+v_j)(V+u_i)}.
+\]
+The preceding lemma yields
+$x+y\geq((R-1)/(R+1))^2$. Choose two distinct qualifying rows and
+two distinct qualifying columns and pair them arbitrarily. Their four
+contributions alone make the normalized left side of (1) at least
+\[
+ 2\left(\frac{R-1}{R+1}\right)^2
+ \geq\frac{50}{49}>1.
+ \tag{3}
+\]
+Thus the budget fails even with weak slopes.
+
+It remains to consider a pole between the retained negative and
+positive blocks. Positivity forces $\phi$ to be decreasing on each
+block. Put $u=\min_{i\in I}u_i$, $v=\min_{j\in J}v_j$ and
+$M=\max(u,v)$. There are at least two retained rows and two retained
+columns whose values are at least $RM$. Indeed, writing
+$a=\min I$, $b=\min J$, if $a\leq b$ then $M=R^{2b+1}$.
+All retained columns except $b$ qualify, and there are at least
+$|I|-b-1\geq|I|+|J|-k-1\geq2$ qualifying rows. If $b<a$, then
+$M=R^{2a}$; all rows except $a$ qualify, and at least
+$|J|-a\geq|I|+|J|-k\geq3$ columns qualify.
+
+Normalize $\phi(-u),\phi(v)$ to $0,1$. These are now respectively
+the smallest transformed row value and largest transformed column
+value. For a qualifying pair with original values $U=u_i,V=v_j$,
+the same cross-ratio formula is
+\[
+ \frac{xy}{(1-x)(1-y)}
+ =\frac{(U-u)(V-v)}{(U+v)(V+u)}.
+\]
+The final part of the lemma and two disjoint pairs again give (3).
+
+Finally no other pole location is possible. For
+$\phi(t)=(\alpha t+\beta)/(\gamma t+\delta)$,
+\[
+ \phi(d)-\phi(p)=
+ \frac{(\alpha\delta-\beta\gamma)(d-p)}
+ {(\gamma d+\delta)(\gamma p+\delta)}.
+\]
+A pole inside either retained block changes the sign of one denominator
+factor while the other block has fixed sign. The transformed grid
+differences could not then all be positive. This exhausts the cases.
+\end{proof}
+
+\paragraph{Interpretation.}
+The ranks in this example alternate between row and column vertices.
+Such an order already occurs in a paired-order representation of a
+bilevel graph consisting of disjoint directed edges. Affine row and
+column corrections can repair the transported numerators, but do not
+change the failed denominator budget. Therefore a theorem permitting
+only a constant number of exceptional vertices per transported vote
+cannot hold for all rankings. The result does not force a comparable
+exception count after replacing several votes jointly by a different
+family of heads.
+\end{document}
