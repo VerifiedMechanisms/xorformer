@@ -1,0 +1,191 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+\begin{document}
+\title{An affine-plane decoder with a logarithmic head saving}
+\author{Continuation research checkpoint}
+\date{24 November 2026}
+\maketitle
+
+\paragraph{Status.} This file gives a complete written finite construction and its
+asymptotic consequence. The finite construction is Lean-checked as
+\texttt{AxisZeroGluing.hasStrictReverseGridCompiler\_affinePlane} in
+\texttt{Results/AffinePlaneCompiler.lean}. The unconditional asymptotic conclusion
+is Lean-checked in \texttt{Results/UniversalLogSaving.lean} as
+\texttt{worstCaseHeadComplexity\_isBigO\_two\_pow\_div\_mul\_log} and
+\texttt{worstCaseHeadComplexity\_exists\_log\_saving}. The declaration
+\texttt{worstCaseHeadComplexity\_real\_le\_log\_saving} additionally proves the
+bound with constant $2323202$ for every $n\geq32$. There are no \texttt{sorry}
+declarations or new axioms. The construction does not change the attention
+model, head resource, or whole-cube denominator admissibility. All displayed
+grid outputs equal their target signs exactly.
+
+\begin{lemma}[Compact Cauchy decoding]
+Let $q=2^k$, let $0<\tau<1-\delta$ and $0<\delta<1$, and let $A$ be any set
+of cardinality $q$. There are distinct numbers $d_a\in(1-\delta,1)$,
+$t_z\in(0,\tau)$, indexed by $a,z\in A$, and coefficients
+$\eta_{b,a}\in\R$, indexed by $b\in\{1,\ldots,k\}$, such that
+\[
+ \sum_{a\in A}\frac{\eta_{b,a}}{d_a-t_z}=\sigma_b(z),
+\]
+where $\sigma:A\longrightarrow\{-1,1\}^k$ is any prescribed bijection.
+\end{lemma}
+\begin{proof}
+Choose any distinct poles and tokens in the indicated intervals. The square
+matrix $C_{z,a}=(d_a-t_z)^{-1}$ is nonsingular. Indeed, if
+$\sum_a c_a/(d_a-t_z)=0$ at all $q$ tokens, then the polynomial
+\[
+ P(T)=\sum_a c_a\prod_{a'\ne a}(d_{a'}-T)
+\]
+has degree at most $q-1$ and has $q$ distinct roots, so it vanishes identically.
+Evaluation at $T=d_a$ gives
+$c_a\prod_{a'\ne a}(d_{a'}-d_a)=0$, and hence $c_a=0$ for every $a$.
+Invert $C$ for each of the $k$ desired sign vectors.
+\end{proof}
+
+\begin{theorem}[Finite reverse-grid compiler]
+Let $q=2^k$, $k\geq1$, and let $r\leq kq^2$. For every $s\geq0$ and every
+Boolean $r$ by $s$ table, there is a weak reverse-grid representation with
+$2q^2+1$ heads whose output on every one-hot row and one-hot column is exactly
+its target sign. Every denominator is positive on the entire Boolean cube.
+The representation can be made strict without adding heads, or made strict
+and exactly zero on both coordinate axes with $6q^2+6$ heads.
+\end{theorem}
+\begin{proof}
+Let $\F_q$ be the field with $q$ elements, and identify the $r$ row queries
+with distinct pairs $(h,b)$, where $h=(x_h,y_h)\in P=\F_q^2$ and
+$b\in\{1,\ldots,k\}$. Extend the requested table arbitrarily to the unused
+queries. Choose
+\[
+ \delta=\tau=\frac1{4(r+s+1)}.
+\]
+Use the compact Cauchy decoder with both poles and tokens indexed by $\F_q$.
+For every point $g\in P$ and column $j$, choose the unique token label
+$z_{g,j}\in\F_q$ whose $k$ signs are the requested bits at the point $g$,
+and put $t_{g,j}=t_{z_{g,j}}$.
+
+Use only the nonvertical affine lines
+\[
+ L_{a,c}=\{(x,y):y=ax+c\},\qquad (a,c)\in\F_q^2.
+\]
+There are $q^2$ such lines, and every point lies on exactly one line of each
+slope. Store the following real number for every line and data column:
+\[
+ Z_{a,c,j}=\sum_{g\in L_{a,c}}\frac1{d_a-t_{g,j}}.
+\]
+At query $(h,b)$ form the line-sum score
+\[
+ T_{h,b,j}=\sum_{a\in\F_q}\eta_{b,a}Z_{a,y_h-ax_h,j}.
+\]
+As a matrix of query rows versus data columns, this has the rank factorization
+\[
+ T_{h,b,j}=\sum_{(a,c)\in\F_q^2}
+ \left(\eta_{b,a}\mathbf1_{\{c=y_h-ax_h\}}\right) Z_{a,c,j}.
+\]
+The checked theorem \texttt{exists\_weak\_reverse\_rank\_grid} therefore
+represents it exactly with $q^2+1$ weak reverse heads, all positive on the
+entire cube. This theorem places no restrictions on the magnitudes or signs
+of the rank factors.
+
+If $g\ne h$ and $x_g=x_h$, no nonvertical line contains both points. If
+$x_g\ne x_h$, exactly one does, with slope
+\[
+ a(h,g)=\frac{y_g-y_h}{x_g-x_h}.
+\]
+Consequently, expanding the line sums and separating $g=h$ gives the exact
+identity
+\[
+ T_{h,b,j}=
+ \sum_a\frac{\eta_{b,a}}{d_a-t_{h,j}}
+ +\sum_{g:\ x_g\ne x_h}
+       \frac{\eta_{b,a(h,g)}}{d_{a(h,g)}-t_{g,j}}.
+ \tag{1}
+\]
+The first sum is the requested sign by Cauchy decoding.
+
+For each point $g$, add one correction head. On query row $i=(h,b)$ set
+\[
+ A_{i,g}=
+ \begin{cases}-\eta_{b,a(h,g)}&x_g\ne x_h,\\0&x_g=x_h,\end{cases}
+ \qquad
+ D_{i,g}=
+ \begin{cases}d_{a(h,g)}&x_g\ne x_h,\\d_0&x_g=x_h,\end{cases}
+\]
+where $d_0$ is any one of the selected poles. On Boolean row variables
+$u_1,\ldots,u_r$ and column variables $v_1,\ldots,v_s$, the head is
+\[
+ R_g(u,v)=
+ \frac{\sum_i A_{i,g}u_i}
+ {1-\sum_i(1-D_{i,g})u_i-\sum_j t_{g,j}v_j}.
+ \tag{2}
+\]
+Its grid value is $A_{i,g}/(D_{i,g}-t_{g,j})$, so the sum of the $q^2$
+correction heads cancels exactly the second term of (1). Its denominator
+has strictly negative slopes and, on the \emph{entire} Boolean cube, is at least
+\[
+ 1-r\delta-s\tau
+ =1-\frac{r+s}{4(r+s+1)}>\frac34.
+\]
+There is no denominator condition imposed merely at the tested grid points.
+The total head count is $q^2+1+q^2=2q^2+1$. Every target score is exactly
+$+1$ or $-1$, so strictness is automatic.
+
+The checked theorem \texttt{exists\_strict\_reverse\_grid\_of\_weak} restores
+strict negative slopes at no additional head cost and without changing grid
+values. The checked theorem \texttt{exists\_reverse\_axis\_repair\_of\_weak}
+then supplies exact zeros on both axes with $3(2q^2+1)+3=6q^2+6$ heads.
+\end{proof}
+
+\begin{corollary}[Asymptotic compiler]
+There is a universal constant $C$ such that every Boolean $r$ by $s$ table,
+for all sufficiently large $r$ and every $s$, has a strict reverse-grid
+compiler with at most $Cr/\log r$ heads.
+\end{corollary}
+\begin{proof}
+Choose the least integer $k\geq1$ with $r\leq k4^k$, and put $q=2^k$.
+For large $r$ we have $k\geq2$ and $(k-1)4^{k-1}<r$. Thus
+\[
+ q^2=4^k<\frac{4r}{k-1}.
+\]
+Also $r\leq k4^k\leq8^k$, since $k\leq2^k$, so
+$k\geq(\log r)/(\log8)$. For sufficiently large $r$, this implies
+$k-1\geq(\log r)/(2\log8)$, and therefore
+$2q^2+1=O(r/\log r)$.
+\end{proof}
+
+\begin{corollary}[Worst-case head complexity]
+In the unchanged one-layer attention model,
+\[
+ W(n)=O\!\left(\frac{2^n}{n\log n}\right).
+\]
+\end{corollary}
+\begin{proof}
+Put $a=\lfloor n/2\rfloor$ and $b=n-a$. Apply the finite compiler and the
+checked theorem
+\texttt{worstCaseHeadComplexity\_real\_le\_of\_strictReverseGridCompiler}:
+\[
+ W(n)\leq
+ 484\frac{2^n(3M+3)}{ab}+2^a+2^b,
+ \qquad M=O(a/\log a).
+\]
+For sufficiently large $n$, both $a,b$ are bounded below by a positive
+constant times $n$, and $\log a$ is bounded below by a positive constant
+times $\log n$. The first term is therefore $O(2^n/(n\log n))$.
+The remaining terms are at most $2^{(n+1)/2+1}$ and satisfy the same bound,
+since $n\log n/2^{(n-1)/2}\longrightarrow0$. This completes the written proof.
+\end{proof}
+
+\paragraph{Why the earlier obstructions do not apply.}
+The token values $t_{g,j}$ depend on the target table, so the construction
+does not use a fixed universal denominator list. The stored line sums
+$Z_{a,c,j}$ and decoder coefficients may have arbitrarily large precision;
+no bounded-atom or bounded-precision assumption is made. The Cauchy decoder
+is not used as an isolated one-head bit reader: shared line aggregates
+supply the full decoder, while one reciprocal correction per point removes
+all unwanted token contributions. The incidence identity (1) is the exact
+compatibility mechanism.
+\end{document}
