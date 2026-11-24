@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{Two Positive Paired-Root Words Need Not Be Compatible}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is a finite exact obstruction to a proposed positive-residue
+interpolation principle. Its rational certificate is checked without
+an optimization solver. It is not a lower bound for the original
+HeadComplexity model, and does not concern the fast hierarchical pole
+grid used by the butterfly decoder. No Lean verification is asserted.
+
+Put $p_r=9r/100$ for $0\leq r<5$, $\delta=1/100$, and
+$t_s=1-p_s$. The ten poles are the ordered pairs
+$(p_r,p_r+\delta)$; they are all less than $1/2$, and all queries
+are greater than $1/2$. For a word $w\in\{-1,1\}^5$ and a shared
+residue vector $c\in\mathbb R^{10}$ write
+\[
+ F_w(t)=\sum_{r=0}^4 w_r\left(
+       \frac{c_r}{t-p_r}-\frac{c_{r+5}}{t-p_r-\delta}\right).
+\]
+\begin{proposition}
+For
+\[
+ \sigma=(1,-1,-1,1,-1),\qquad
+ \tau=(1,-1,1,-1,1),
+\]
+there are no nonnegative residues $c_r\geq0$ and separate real
+biases $\beta_\sigma,\beta_\tau$ such that
+\[
+ w_s\bigl(F_w(t_s)+\beta_w\bigr)>0
+ \quad\text{for all }s\text{ and both }w\in\{\sigma,\tau\}.
+\]
+\end{proposition}
+\begin{proof}
+Eliminating each bias requires $F_w(t_a)>F_w(t_b)$ whenever
+$w_a=1$ and $w_b=-1$. Since $t_s=1-p_s$, division by the
+strictly positive factor $|p_a-p_b|$ rewrites this as $R_{w,a,b}c>0$,
+where the first and second coordinates of each pole pair are
+\[
+ (R_{w,a,b})_r=
+ \frac{\operatorname{sgn}(p_a-p_b)w_r}
+ {(1-p_a-p_r)(1-p_b-p_r)},\qquad
+ (R_{w,a,b})_{r+5}=
+ \frac{-\operatorname{sgn}(p_a-p_b)w_r}
+ {(1-p_a-p_r-\delta)(1-p_b-p_r-\delta)}.
+\]
+There are twelve comparison rows. Append the ten coordinate rows
+$e_r^\top$, and call the resulting matrix $A$. The exact rational
+vector in \texttt{positive-paired-root-q5-dual.json} has twenty-two
+entries, eleven of them nonzero, and satisfies
+\[
+ \lambda\geq0,\qquad \sum_i\lambda_i=1,\qquad
+ \lambda^\top A=0,\qquad \sum_{i<12}\lambda_i>0.
+\]
+All these identities are independently verified by
+\texttt{positive-paired-root-q5-check.py}, which regenerates every
+row from the displayed poles and words using exact rational arithmetic.
+Under the proposed inequalities the first twelve entries of $Ac$
+would be strictly positive and the remaining entries nonnegative.
+Consequently $\lambda^\top Ac>0$, contradicting the exact zero
+identity. This proves the proposition.
+\end{proof}
+
+The certificate rules out a geometry-independent theorem asserting
+that every two root words admit a common nonnegative pole pool with
+separate biases. It does not exclude signed residues, target-dependent
+pole locations, a different ordered grid, or compatibility on the
+specific hierarchical grids. Each individual root word is realizable
+with strictly positive residues by the antisymmetric-numerator
+construction in \texttt{butterfly-positive-root.tex}.
+\end{document}
