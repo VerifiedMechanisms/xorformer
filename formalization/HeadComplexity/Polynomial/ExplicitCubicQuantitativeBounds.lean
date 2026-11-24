@@ -39,6 +39,7 @@ private theorem upper_triangular : upper.BlockTriangular id := by
   fin_cases i <;> fin_cases j <;> norm_num [upper] at *
 
 set_option maxHeartbeats 4000000 in
+-- Verify all 36 entries of the rational triangular factorization directly.
 private theorem firstMinor_factorization :
     firstMinor.submatrix finSumFinEquiv.symm finSumFinEquiv.symm = lower * upper := by
   ext i j
@@ -87,8 +88,8 @@ theorem latent_hessian_entry_le_two (s b : Fin 3 → ℝ)
     (hs : ∀ i, |s i| ≤ 2) (hb : ∀ i, |b i| ≤ 2) (i j : Fin 3 ⊕ Fin 3) :
     |GenericCubicHessian.hessian s b i j| ≤ 2 := by
   rcases i with i | i <;> rcases j with j | j <;> fin_cases i <;> fin_cases j <;>
-    simp [GenericCubicHessian.hessian, GenericCubicHessian.offDiagonal,
-      Matrix.fromBlocks, Matrix.transpose_apply] <;> first | exact hs _ | exact hb _
+    simp_all [GenericCubicHessian.hessian, GenericCubicHessian.offDiagonal,
+      Matrix.fromBlocks, Matrix.transpose_apply]
 
 theorem pullback_entry_le_seventy_two {n : ℕ}
     (V : Matrix (Fin n) (Fin 3 ⊕ Fin 3) ℝ)
