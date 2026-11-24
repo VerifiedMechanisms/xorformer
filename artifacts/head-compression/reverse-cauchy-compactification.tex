@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Exterior Query Compactification and Exact Moment Remainders}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The identities and the two cube-admissibility statements below are
+Lean-checked in \texttt{ReverseCauchyCompactification.lean} and
+\texttt{ReverseMomentGerms.lean}, in namespace
+\texttt{HeadComplexity.AxisZeroGluing}. They use the previously checked
+paired-axis construction in \texttt{ReverseMaskedCauchy.lean}.
+They do not assert a universal sign decoder. Neither accepted
+asymptotic target follows without a further theorem.
+
+Let $p_{hi}>0$ be row-dependent poles, $a_{hi}$ arbitrary residues,
+$t_j>p_{hi}$ positive query times, and $M_{hj}\in\{0,1\}$ masks.
+For $\varepsilon>0$, put
+\[
+ \phi(x)=\frac{x}{x+\varepsilon},\qquad
+ p'_{hi}=\phi(p_{hi}),\quad t'_j=\phi(t_j),\quad
+ a'_{hi}=\frac{\varepsilon a_{hi}}{p_{hi}+\varepsilon}.
+\]
+The exact scalar identities are
+\[
+ \phi(t)-\phi(p)
+ =\frac{\varepsilon(t-p)}{(t+\varepsilon)(p+\varepsilon)},
+ \qquad
+ (1-\phi(t))\frac{\varepsilon a/(p+\varepsilon)}{\phi(t)-\phi(p)}
+ =\varepsilon\frac a{t-p}.
+ \tag{1}
+\]
+The second identity includes the factor from the paired-axis
+construction. Consequently the net score scaling is independent of
+the query, not merely positive at each query.
+
+\begin{theorem}[Exact compactified axis realization]
+Suppose, for every head $h$,
+\[
+ \sum_i\frac{p_{hi}}{p_{hi}+\varepsilon}
+ +\sum_j M_{hj}\frac{\varepsilon}{t_j+\varepsilon}<1.
+ \tag{2}
+\]
+There are $2H$ affine-ratio heads with strictly negative denominator
+slopes and positive denominators on the entire Boolean $(r+s)$-cube.
+Their sum is exactly zero on both Boolean axes and has grid values
+\[
+ F(e_i,e_j)=\varepsilon\sum_h M_{hj}\frac{a_{hi}}{t_j-p_{hi}}.
+ \tag{3}
+\]
+\end{theorem}
+\begin{proof}
+All transformed poles satisfy $0<p'_{hi}<t'_j<1$.
+The strict inequality (2) persists, for sufficiently small $\eta>0$,
+as
+\[
+ \sum_i p'_{hi}+s\eta+\sum_jM_{hj}(1-t'_j)<1+\eta.
+\]
+There are only finitely many heads, so a common positive $\eta$ works.
+Apply the checked paired-axis construction with denominator scale
+one, strict padding $\eta$, poles $p'$, residues $a'$, and times $t'$.
+Its value is
+$(1-t'_j)\sum_h M_{hj}a'_{hi}/(t'_j-p'_{hi})$.
+Identity (1), term by term, proves (3). All axis and full-cube
+conditions are supplied by that construction.
+\end{proof}
+
+The Lean declaration is
+\texttt{exists\_compactified\_maskedCauchy\_reverseAxisData}.
+
+\begin{theorem}[A sufficient small-pole budget]
+Let $C,b,\varepsilon>0$. It is enough to have
+\[
+ 0<p_{hi}\leq\varepsilon^2 C<b\leq t_j,
+ \qquad \varepsilon(rC+s/b)<1.
+ \tag{4}
+\]
+\end{theorem}
+\begin{proof}
+One has $p/(p+\varepsilon)\leq\varepsilon C$ and
+$\varepsilon/(t+\varepsilon)\leq\varepsilon/b$.
+Summing proves (2). The strict separation of poles and queries also
+follows from (4).
+\end{proof}
+The declaration is
+\texttt{exists\_compactified\_maskedCauchy\_of\_small\_poles}.
+In particular, fixed positive query centers may be separated from
+one another. They need not cluster near one. This observation does
+not permit poles to approach interior query points: the budget
+(2), or a sufficient condition such as (4), must still be proved.
+
+\paragraph{Exact moments.}
+For $t\neq0$, $t-\delta p_h\neq0$, and vanishing moments
+$\sum_h a_hp_h^\ell=0$ for every $\ell<k$, the exact formula is
+\[
+ \sum_h\frac{a_h}{t-\delta p_h}
+ =\left(\frac\delta t\right)^k
+   \sum_h\frac{a_hp_h^k}{t-\delta p_h}.
+ \tag{5}
+\]
+The proof subtracts one geometric term and inducts on $k$.
+It is checked as \texttt{cauchy\_moment\_remainder}; its one-step
+form is \texttt{cauchy\_moment\_step}.
+
+For the cubic family used in the four-head, ten-query written
+construction, set $D_h=t-\delta P_h-\delta^2P_{2h}$.
+If $tD_h\neq0$, $\sum_hA_h=0$, and $\sum_hA_hP_h=0$, then
+\[
+ \sum_h\frac{\delta A_h+\delta^3 A_{3h}}{D_h}
+ =\delta^3\left(
+ \sum_h\frac{A_{3h}}{D_h}
+ +\frac{\sum_hA_hP_{2h}}{t^2}
+ +\sum_h\frac{A_h(P_h+\delta P_{2h})^2}{t^2D_h}
+ \right).
+ \tag{6}
+\]
+This is \texttt{cauchy\_cubic\_remainder}. Its proof is an exact
+per-head rational identity followed by the two cancellations.
+The ten-query sign certificates and their universality argument
+remain written and computational results, not a consequence claimed
+solely from (6).
+
+\paragraph{Verification boundary.}
+The aggregate \texttt{HeadComplexity.Results.All} builds successfully
+with these modules. No original model definition was changed.
+The central missing construction is still a sign-covering family
+whose number of queries per head tends to infinity at the required
+rate, or a balanced joint-table compiler with the corresponding
+saving. The compactification theorem reduces an admissibility issue;
+it does not prove that sign-covering statement.
+\end{document}
