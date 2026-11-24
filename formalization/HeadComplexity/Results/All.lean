@@ -11,6 +11,12 @@ import HeadComplexity.Results.RoPEComparison
 import HeadComplexity.Atoms.RoPEReorientation
 import HeadComplexity.Results.RoPEArchitecturalComparison
 import HeadComplexity.Results.AffineStatisticUpperBound
+import HeadComplexity.Results.DenominatorPlaneUpperBound
+import HeadComplexity.Results.FiniteDifferenceUpperBound
+import HeadComplexity.Results.RoPESmallInputs
+import HeadComplexity.Results.RoPEThreeComplement
+import HeadComplexity.Atoms.RoPEProjectiveObstruction
+import HeadComplexity.Atoms.RoPEShearObstruction
 
 set_option linter.style.header false
 
@@ -141,6 +147,13 @@ alias theorem16_architectural_two_heads :=
 most its degree bound many vanilla heads. -/
 alias theorem17_affine_statistic := AffineStatistic.computable_of_polynomial
 
+/-- **Theorem 17.** Collinear denominator slopes preserve the original head count. -/
+alias theorem17_collinear_denominators := AffineStatistic.computable_of_collinear_denominators
+
+/-- **Theorem 17.** A denominator plane containing a positive uniformly oriented
+affine form also preserves the original head count. -/
+alias theorem17_denominator_plane := AffineStatistic.computable_of_denominator_plane
+
 /-- **Theorem 18.** The exact rectangular pure rotary architecture has the
 existing scalar normal form at every head count. -/
 alias theorem18_rotary_scalar_bridge :=
@@ -149,5 +162,16 @@ alias theorem18_rotary_scalar_bridge :=
 /-- **Theorem 18.** Fixed and free shared frequencies give identical Boolean
 head budgets in the exact rectangular architecture. -/
 alias theorem18_fixed_free := rectangularStandardPureRotaryComputable_iff_free
+
+/-- **Theorem 19.** Arbitrary positive affine ratios admit a general exponential
+vanilla head bound. This is not the same-head conjecture. -/
+alias theorem19_finite_difference := FiniteDifference.computable_of_positive_denominators
+
+/-- **Theorem 20.** All head budgets agree for at most three input bits. -/
+alias theorem20_small_inputs := pureRoPEComputable_iff_vanilla_of_input_le_three
+
+/-- **Theorem 21.** Complement-invariant three-head pure classifiers need at
+most four vanilla heads. No three-head equality is asserted here. -/
+alias theorem21_three_head_complement := vanilla_four_of_pureRoPE_three_complement
 
 end HeadComplexity

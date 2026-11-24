@@ -3,6 +3,7 @@ import HeadComplexity.Examples.AffineFraction
 import HeadComplexity.Examples.TwoHeads
 import HeadComplexity.Examples.BooleanFunctions
 import HeadComplexity.Examples.RoPE
+import HeadComplexity.Examples.RoPEApproximation
 
 set_option linter.style.header false
 

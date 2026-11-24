@@ -64,6 +64,8 @@ More generally, arbitrary affine numerators with positive denominators whose slo
 
 The full statements are `AffineStatistic.computable_of_polynomial`, `AffineStatistic.computable_of_affine_polynomial_sum`, and `AffineStatistic.computable_of_collinear_denominators`. They are proved in `Results/AffineStatisticUpperBound.lean` and `Results/CollinearDenominatorUpperBound.lean`, with pure and retained specializations. The unrestricted problem allows independent denominator directions, so this reduction does not apply automatically.
 
+The stronger `AffineStatistic.computable_of_denominator_plane` handles denominators in the span of two affine forms, provided that span contains a positive form $B$ with strictly uniform slopes. Set $y=T/B$ and use proper partial fractions with denominators $T+a_hB$. Large positive poles make every denominator positive with the orientation of $B$. This construction preserves the signs exactly and needs no limiting argument. It is formalized in `Results/DenominatorPlaneUpperBound.lean`.
+
 ## 6. Finite differences give a general bound, with extra heads
 
 For arbitrary positive affine denominators, inclusion-exclusion over nonempty subsets yields $2^H-1$ admissible vanilla ratios. The alternating moments vanish through order $H-2$, and the first surviving coefficient is $(H-1)!$ times the original cleared numerator. An exact geometric-series remainder and a finite strict margin justify a finite parameter choice.
@@ -81,6 +83,8 @@ at every cube point, and the even quadratic $Q$ has the correct signs. Its quadr
 `Atoms/RoPEThreeEven.lean` checks the antipodal expansion, the strict domination equivalence, and the relevant pencil identities. The two-head inverse-pencil self-pairing is identically zero. The corresponding three-head expression is $Tt^2-2t$, which is generally nonzero.
 
 Finding a positive isotropic direction for the even quadratic alone is insufficient: a new three-head representation may introduce an odd part that violates the strict domination inequality. Scaling denominator directions to zero can make an uncancelled linear odd term diverge. No three-head equivalence follows from this argument as it stands.
+
+A four-head bound does follow and is fully formalized in `Results/RoPEThreeComplement.lean`. The generic compiler `CubeAffine.computable_of_strict_product_sum` realizes a strict score $c+\sum_{j=1}^m A_jB_j$ using $m+1$ vanilla heads. Applied to the three-product even quadratic, it gives `vanilla_four_of_pureRoPE_three_complement`, and also the stronger retained-atom version. [Theorem 21](../../theorems/03_rotary_attention/021_three_heads_complement_invariant.md) gives the full argument.
 
 ## 8. Uniform real-score approximation is too strong
 
