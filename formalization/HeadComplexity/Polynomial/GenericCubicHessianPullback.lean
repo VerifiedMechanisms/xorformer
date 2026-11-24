@@ -68,6 +68,41 @@ theorem hessian_rank_le_six {n : ℕ} (S B : Fin 3 → Fin n → ℝ) (z : Fin n
     _ ≤ (slopes S B).rank := Matrix.rank_mul_le_left _ _
     _ ≤ 6 := by simpa using Matrix.rank_le_card_width (slopes S B)
 
+theorem cross_hessian_pullback {n : ℕ} (S B : Fin 3 → Fin n → ℝ) (z : Fin n → ℝ)
+    (a b : Fin 3 ⊕ Fin 3 → Fin n) :
+    (polynomialHessian (cubic S B) z).submatrix a b =
+      (slopes S B).submatrix a id * GenericCubicHessian.hessian
+        (fun h ↦ linearValue (S h) z) (fun h ↦ linearValue (B h) z) *
+      ((slopes S B).submatrix b id)ᵀ := by
+  rw [hessian_pullback]
+  ext i j
+  simp [Matrix.mul_apply, Matrix.submatrix_apply, Matrix.transpose_apply]
+
+/-- The exact coordinate-cross determinant, including its sign and coefficient. -/
+theorem cross_hessian_det {n : ℕ} (S B : Fin 3 → Fin n → ℝ) (z : Fin n → ℝ)
+    (a b : Fin 3 ⊕ Fin 3 → Fin n) :
+    ((polynomialHessian (cubic S B) z).submatrix a b).det =
+      -4 * ((slopes S B).submatrix a id).det * ((slopes S B).submatrix b id).det *
+      (linearValue (B 0) z * linearValue (B 1) z * linearValue (B 2) z) ^ 2 := by
+  rw [cross_hessian_pullback, GenericCubicHessian.cross_hessian_det]
+
+theorem hessian_rank_eq_six {n : ℕ} (S B : Fin 3 → Fin n → ℝ) (z : Fin n → ℝ)
+    (a b : Fin 3 ⊕ Fin 3 → Fin n)
+    (ha : ((slopes S B).submatrix a id).det ≠ 0)
+    (hb : ((slopes S B).submatrix b id).det ≠ 0)
+    (hB : ∀ h, linearValue (B h) z ≠ 0) :
+    (polynomialHessian (cubic S B) z).rank = 6 := by
+  have hdet : ((polynomialHessian (cubic S B) z).submatrix a b).det ≠ 0 := by
+    rw [cross_hessian_pullback]
+    exact GenericCubicHessian.cross_hessian_det_ne_zero _ _ _ _ ha hb hB
+  have hu : IsUnit ((polynomialHessian (cubic S B) z).submatrix a b) :=
+    (Matrix.isUnit_iff_isUnit_det _).mpr (isUnit_iff_ne_zero.mpr hdet)
+  have hr : ((polynomialHessian (cubic S B) z).submatrix a b).rank = 6 := by
+    simpa using Matrix.rank_of_isUnit _ hu
+  apply le_antisymm (hessian_rank_le_six S B z)
+  rw [← hr]
+  exact Matrix.rank_submatrix_le _ _ _
+
 theorem linearPolynomial_add_smul {n : ℕ} (a b : Fin n → ℝ) (c : ℝ) :
     linearPolynomial (fun i ↦ a i + c * b i) =
       linearPolynomial a + C c * linearPolynomial b := by
