@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-The cluster parameterization and its count below are a written proof, not a Lean declaration. The weighted sign-count ingredient is now kernel checked as `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le` in [WeightedPolynomialSignCount.lean](../../formalization/HeadComplexity/Polynomial/WeightedPolynomialSignCount.lean). It proves the stronger factor $4eD$ where the inherited written [weighted-degree theorem](../power-saving-20261124/weighted_degree_sign_capacity.md) used $8eD$. The weaker constant is retained below. The new formal chain uses weighted diagonal quotient reduction and the existing generic-minimum wrappers; it assumes no sign-pattern bound.
+The unequal-length cluster parameterization and the exponential simplification below are written proofs. The equal-length parameterization, exact finite product count, and positive-denominator score bridge are now kernel checked in [UniformClusterCapacity.lean](../../formalization/HeadComplexity/Research/UniformClusterCapacity.lean). The weighted sign-count ingredient is now kernel checked as `HeadComplexity.weightedStrictPolynomialSignPatterns_card_le` in [WeightedPolynomialSignCount.lean](../../formalization/HeadComplexity/Polynomial/WeightedPolynomialSignCount.lean). It proves the stronger factor $4eD$ where the inherited written [weighted-degree theorem](../power-saving-20261124/weighted_degree_sign_capacity.md) used $8eD$. The weaker constant is retained below. The new formal chain uses weighted diagonal quotient reduction and the existing generic-minimum wrappers; it assumes no sign-pattern bound.
 
 The new bookkeeping gives the base denominator coefficients much smaller weights than the higher jet coefficients. Uniformly scaling all these rational weights converts them to positive integer weights, so the inherited theorem applies without changing its degree-to-weight ratio. This avoids charging the total cluster length to every higher jet parameter.
 
@@ -69,6 +69,16 @@ The weighted theorem, followed by $2dK=p-1\leq p$, now gives
 $$ \begin{aligned} T(q_1,\ldots,q_G)&\leq\left(\frac{16eN}{p}\right)^p e^{2dK}K^{dG}\cr &\leq\left(\frac{16e^2N}{p}\right)^p K^{dG}. \end{aligned} $$
 
 The positivity restriction on base denominators only decreases the set of parameter points relative to the polynomial sign-count theorem. No noncancellation condition was used. $\blacksquare$
+
+## Kernel-checked uniform cluster formula
+
+For $G\geq1$ clusters, each of length $q\geq1$, set $K=Gq$ and $p=1+2(n+1)Gq$. The declaration `UniformClusterCapacity.card_represented_le_product` proves the following exact finite bound whenever $p\leq N$:
+
+$$ T(q,\ldots,q)\leq\frac{(8eKN/p)^p}{K\left(\prod_{j=0}^{q-1}(Gj+1)\prod_{j=0}^{q-1}G(q-j)\right)^{(n+1)G}}. $$
+
+The formal polynomial family permits every real coefficient. The actual reciprocal coefficients satisfy the defining recurrence by `reciprocalCoefficient_succ`. The declaration `eval_scorePoly` proves exact multiplication by the common positive denominator, and `mem_represented_of_score` transfers every full strict truth table with positive base denominators into the counted class. The recurrence numerator has weighted degree $(G+1)r$; after the remaining base powers are inserted, the complete cleared score has degree $2Gq$ under the integer weights $Gj+1$, $G(q-r)$, and $Gq$.
+
+The finite product formula is kernel checked. The factorial simplification and the following two uniform asymptotic consequences remain written proofs. Neither form asserts an unrestricted compiler or a lower bound for the original worst-case head complexity.
 
 ## Explicit bounds at the two requested widths
 

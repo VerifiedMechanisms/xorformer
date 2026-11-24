@@ -1,0 +1,16 @@
+'HeadComplexity.UniformClusterCapacity.reciprocalCoefficient_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniformClusterCapacity.reciprocalNumerator_weightedDegreeLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniformClusterCapacity.scorePoly_weightedDegreeLE' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniformClusterCapacity.eval_scorePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UniformClusterCapacity.mem_represented_of_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UniformClusterCapacity.card_represented_le_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

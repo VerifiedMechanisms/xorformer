@@ -1,0 +1,7 @@
+import HeadComplexity.Research.UniformClusterCapacity
+#print axioms HeadComplexity.UniformClusterCapacity.reciprocalCoefficient_succ
+#print axioms HeadComplexity.UniformClusterCapacity.reciprocalNumerator_weightedDegreeLE
+#print axioms HeadComplexity.UniformClusterCapacity.scorePoly_weightedDegreeLE
+#print axioms HeadComplexity.UniformClusterCapacity.eval_scorePoly
+#print axioms HeadComplexity.UniformClusterCapacity.mem_represented_of_score
+#print axioms HeadComplexity.UniformClusterCapacity.card_represented_le_product
