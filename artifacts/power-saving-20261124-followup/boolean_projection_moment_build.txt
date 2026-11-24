@@ -1,2 +1,2 @@
-✔ [2535/2535] Built HeadComplexity.Research.BooleanProjectionMomentAliasing (1.6s)
+✔ [2535/2535] Built HeadComplexity.Research.BooleanProjectionMomentAliasing (2.1s)
 Build completed successfully (2535 jobs).

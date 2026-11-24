@@ -89,3 +89,33 @@ The simultaneous constraints over many partitions are stronger than one generic 
 There is a second algebraic caution. The direction-polynomial spaces $E_q=\mathrm{span}\lbrace(w\cdot x)^q:x\in\lbrace0,1\rbrace^n\rbrace$ are not a multiplicative filtration. In two coordinates, $w_1\in E_1$ and $w_1w_2\in E_2$, whereas $w_1^2w_2\notin E_3$. The last assertion follows either by expanding the four Boolean projections, or by applying the six-point functional above, which annihilates $E_3$ and takes value two on that monomial. Thus a Hilbert-growth theorem for graded algebras cannot be applied directly to the spaces $E_q$. They are dual spaces associated with the Boolean input quotient, not an algebra of direction polynomials.
 
 A related available structural result is the product-tensor splitting theorem: a circuit of $H$ product tensors can vary in at most $H-2$ tensor factors. Its hypotheses apply to a minimal Segre dependence, but the resulting inequality is too weak when $H$ is exponential in $n$. See [Lovitz and Petrov, A generalization of Kruskal's theorem on tensor decomposition, Corollary 21](https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/generalization-of-kruskals-theorem-on-tensor-decomposition/515357D904DD4AD1042F37BBCBC95B35). This external theorem is not used by any Lean declaration in this checkpoint.
+
+## A temporary rank plateau after exact ghosts are excluded
+
+Discarding exact zero-score relations does not by itself restore ordinary Veronese interpolation. Consider the seven positive points, with the listed signed residues:
+
+$$ ((1,1),(1,2),(1,3),(2,2),(2,3),(3,1),(3,3)),\qquad c=(1,-4,3,4,-4,-1,1). $$
+
+Their Boolean projection moments vanish through degree three, while their fourth moment is
+
+$$ \sum_h c_h(w_h\cdot x)^4=24x_1x_2\qquad (x\in\lbrace0,1\rbrace^2). $$
+
+These two claims are kernel checked as `plateau_moments_through_three` and `plateau_fourth_moment`. All direction coefficients are strictly positive.
+
+The exact rational computation in `collision_moment_plateau_certificate.py`, with output `collision_moment_plateau_certificate.json`, gives ranks $3,6,6,7$ for the evaluation matrices containing all Boolean projection powers through orders $1,2,3,4$. The quadratic feature rows $1,w_1,w_2,w_1^2,w_1w_2,w_2^2$ have six-column deletion determinants
+
+$$ (-4,-16,-12,16,16,-4,-4). $$
+
+Every deletion is independent, so the seven points form a circuit for the moments through order three. Their affine span has dimension two. They are not an exact ghost, since order four is nonzero. Thus the proposed direct analogue of the ordinary Veronese circuit inequality $H\geq r d+2$, for a circuit annihilating orders through $r$ and having affine span $d$, is false: here $7\lt3\cdot2+2$.
+
+This only refutes that precise inequality. A weaker growth theorem with additional structure or different constants remains possible. Also, the first nonzero Boolean jet here is simply a face indicator, so this example supplies no difficult unrestricted truth table. A successful replacement may have to charge both moment growth and the support of the first nonzero jet.
+
+There is a useful repair of this particular plateau if auxiliary directions are permitted. Subtracting $(1,1)$ from the seven points gives the exponential generating polynomial
+
+$$ P(u,v)=1-4v+3v^2+4uv-4uv^2-u^2+u^2v^2=2(u-1)(v-1)(u-v)+(u-1)^2(v-1)^2. $$
+
+The first summand is the six-point exact ghost. Consequently the seven-point cloud has the same Boolean projections as the nine-point tensor fourth difference represented by $(u-1)^2(v-1)^2$. Restoring the positive translation multiplies both sides by $uv$. The replacement has ordinary vanishing order four at $(1,1)$, as well as Boolean order four. This algebraic identity is an exact written calculation, separate from the Lean declarations above.
+
+The possible general interface is therefore a *sparse filtered lift*: replace an $H$-term exponential sum modulo all exact Boolean-projection ghosts by a sum with $O(H)$ terms whose ordinary order of vanishing is at least its first nonzero Boolean order. The seven-point example neither proves nor refutes such a statement. Auxiliary directions, rather than merely deleting dependent original directions, are necessary even in this example.
+
+This interface only treats straight collisions $B+\varepsilon D_h$ with constant residues. Fixed affine numerators give derivative, or tangent, generators and require a corresponding filtered lift. General parameter paths can have higher-order denominator and numerator coefficients, which mix in the first nonzero score jet. An unrestricted repair theorem would have to control those paths as well, or give an independent reason that straight constant-residue collisions suffice to count all remaining truth tables. No such reduction has been proved here.

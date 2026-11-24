@@ -8,3 +8,5 @@ import HeadComplexity.Research.BooleanProjectionMomentAliasing
 #print axioms HeadComplexity.BooleanProjectionMomentAliasing.positiveAtom_eval
 #print axioms HeadComplexity.BooleanProjectionMomentAliasing.negativeAtom_eval
 #print axioms HeadComplexity.BooleanProjectionMomentAliasing.six_genuine_heads_cancel
+#print axioms HeadComplexity.BooleanProjectionMomentAliasing.plateau_moments_through_three
+#print axioms HeadComplexity.BooleanProjectionMomentAliasing.plateau_fourth_moment

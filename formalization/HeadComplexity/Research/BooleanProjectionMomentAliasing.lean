@@ -117,4 +117,30 @@ theorem six_genuine_heads_cancel (ε : ℝ) (hε : 0 < ε) (x : Fin 2 → Bool) 
   rw [scalar_function_identity (fun t ↦ 1 / t) 1 ε x]
   ring
 
+/-! A nonzero jet can also exhibit a temporary rank plateau. -/
+
+def plateauFirst : Fin 7 → ℝ := ![1, 1, 1, 2, 2, 3, 3]
+def plateauSecond : Fin 7 → ℝ := ![1, 2, 3, 2, 3, 1, 3]
+def plateauWeight : Fin 7 → ℝ := ![1, -4, 3, 4, -4, -1, 1]
+
+/-- The seven-point example annihilates all Boolean projection powers through
+degree three. Unlike the six-point example, it does not annihilate all orders. -/
+theorem plateau_moments_through_three (q : ℕ) (hq : q ≤ 3)
+    (x : Fin 2 → Bool) :
+    (∑ h, plateauWeight h *
+      projection (plateauFirst h) (plateauSecond h) x ^ q) = 0 := by
+  interval_cases q <;> cases hx₀ : x 0 <;> cases hx₁ : x 1 <;>
+    norm_num [Fin.sum_univ_succ, plateauFirst, plateauSecond, plateauWeight,
+      projection, boolToReal, hx₀, hx₁]
+
+/-- The next Boolean projection moment is exactly a positive face indicator.
+Thus the plateau is not explained by an exact zero-score identity. -/
+theorem plateau_fourth_moment (x : Fin 2 → Bool) :
+    (∑ h, plateauWeight h *
+      projection (plateauFirst h) (plateauSecond h) x ^ 4) =
+        24 * boolToReal (x 0) * boolToReal (x 1) := by
+  cases hx₀ : x 0 <;> cases hx₁ : x 1 <;>
+    norm_num [Fin.sum_univ_succ, plateauFirst, plateauSecond, plateauWeight,
+      projection, boolToReal, hx₀, hx₁]
+
 end HeadComplexity.BooleanProjectionMomentAliasing

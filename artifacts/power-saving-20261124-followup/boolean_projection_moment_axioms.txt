@@ -22,3 +22,9 @@
 'HeadComplexity.BooleanProjectionMomentAliasing.six_genuine_heads_cancel' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.plateau_moments_through_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.plateau_fourth_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
