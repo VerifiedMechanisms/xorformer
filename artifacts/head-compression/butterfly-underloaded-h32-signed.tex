@@ -1,0 +1,86 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Signed Residues Repair the Underloaded Thirty-Two-Pole Stress Word}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is an exact finite-dimensional computational certificate, with a
+complete rational-function continuation argument. It is not Lean
+formalized. It repairs the particular positive-residue obstruction in
+\texttt{butterfly-underloaded-h32-obstruction.tex}; it does not prove a
+universal decoder, a density estimate, or either global asymptotic target.
+No original model definition is changed.
+
+Use the same $H=32$ butterfly, pole grid, retained queries, and routing
+as in that obstruction. Explicitly,
+\[
+ p_y(\epsilon)=\sum_{j=0}^4 y_j\epsilon^{2^j},
+ \qquad t_{k,s}=1-p_s(\epsilon).
+\]
+At switch $e=(k,s,g)$ retain the query exactly when $s<2^k-1$.
+There are 49 retained queries. Set
+\[
+ \theta_{k,s,g}=\left\lfloor s/2^{k-1}\right\rfloor\bmod2
+\]
+on retained queries, and set every omitted routing bit to zero. Write
+$\pi$ for this butterfly permutation, and
+$u_{k,g}(h)=1,-1,0$ on the lower half, upper half, and complement
+of its input block respectively.
+
+\begin{theorem}
+For every sufficiently small $\epsilon>0$, there are real residues
+$c_y$ such that every retained query satisfies
+\[
+ (1-2\theta_{k,s,g})
+ \sum_{y=0}^{31}\frac{u_{k,g}(\pi^{-1}(y))c_y}
+ {1-p_s(\epsilon)-p_y(\epsilon)}>0.
+ \tag{1}
+\]
+The routing and query set are unchanged. No block biases are needed.
+At $\epsilon=1/100$, the saved witness has all 49 signed scores at
+least one and has ten negative residue coordinates.
+\end{theorem}
+\begin{proof}[Certificate and continuation proof]
+Let $A(\epsilon)$ be the 49-row signed query matrix in (1).
+The companion JSON specifies a square system of 30 query equalities
+and the two coordinate equalities $c_0=c_8=0$. The query equalities
+have right-hand side one. Its coefficient matrix $B(\epsilon)$ has
+entries rational in $\epsilon$.
+
+The exact checker first solves this system over $\mathbb Q$ at
+$\epsilon=1/100$, and independently verifies every signed query score.
+For continuation it performs guarded elimination on formal series,
+with precision 1536 and the right-hand side multiplied by
+$\epsilon^{512}$. Every nonzero pivot has a certified leading term;
+the pivot orders are
+\[
+ 0,0,0,0,0,0,0,0,0,0,2,2,2,6,6,6,
+ 8,8,10,16,16,16,18,22,24,41,44,50,53,64,68,72.
+\]
+Thus $\det B$ is not the zero rational function. The unique rational
+solution $c(\epsilon)=B(\epsilon)^{-1}b$ is defined on a sufficiently
+small punctured interval. The checker obtains all 49 leading terms
+of $A(\epsilon)c(\epsilon)$, with positive coefficients and orders
+between $-68$ and $0$. The guards ensure that zero series truncated
+before a possible pivot are never used as exact zeros; the final
+residual precision is beyond the shifted constant term.
+
+A nonzero rational function with positive Laurent leading coefficient
+is positive on a sufficiently small positive interval. Intersect the
+finitely many intervals for these 49 scores and the nonzero determinant.
+This proves (1).
+\end{proof}
+
+\paragraph{Interpretation.}
+The earlier exact obstruction included the nonnegativity constraints
+on residues $c_2$ and $c_4$ in its positive dependence. It therefore
+never excluded this signed solution. Original admissible heads allow
+signed numerators. Any attempted universal positive-pool invariant is
+strictly stronger than what the original model requires, and its
+failure must not be treated as a failure of the signed underloaded
+construction.
+\end{document}
