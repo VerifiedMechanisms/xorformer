@@ -1,0 +1,24 @@
+Checked 2026-11-24 on branch ar/027ac8030b43.
+
+Command:
+  cd formalization
+  lake build HeadComplexity.Results.LargeDomainFiniteLevels
+
+Result:
+  Built HeadComplexity.Results.LargeDomainFiniteLevels (1.7s)
+  Build completed successfully (3137 jobs).
+
+Transitive #print axioms output:
+
+'HeadComplexity.LargeDomain.reciprocal_eq_level_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.finiteLevelScorePolynomial_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.finiteLevelScorePolynomial_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+Kernel-checked scope: denominator cancellation, a polynomial score family,
+its exact evaluation identity, and total-degree bound L.
+Written scope: Warren sign counting, the Omega(2^k/log k) obstruction for
+polynomial-level fixed-direction decoders, and necessary level growth.
+Warren's theorem is not introduced as a Lean axiom or an unconditional theorem.
+No original model definition, admissibility condition, or W(n) statement changed.

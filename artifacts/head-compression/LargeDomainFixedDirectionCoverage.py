@@ -52,11 +52,20 @@ def main():
     p.add_argument('--epsilon',type=float,default=.001)
     p.add_argument('--seed',type=int,default=2411)
     p.add_argument('--output')
+    p.add_argument('--johnson',action='store_true')
+    p.add_argument('--binary-perturbation',type=float,default=0.)
     args=p.parse_args()
     rng=np.random.default_rng(args.seed)
     bits=np.array(list(itertools.product((0,1),repeat=args.dimension)))
     # Keep directions fixed across ALL offsets and target labelings.
-    d=1+args.epsilon*rng.uniform(-1,1,(args.heads,args.dimension))
+    if args.johnson:
+        central=list(itertools.combinations(range(args.dimension),args.dimension//2))
+        assert args.heads==len(central), 'Johnson family has one head per central subset'
+        d=np.array([[1-args.epsilon*(i in S) for i in range(args.dimension)] for S in central])
+        assert np.min(d)>0
+    else:
+        d=1+args.epsilon*rng.uniform(-1,1,(args.heads,args.dimension))
+    d=d+args.binary_perturbation*np.exp2(np.arange(args.dimension))[None,:]
     subsets=np.array(list(itertools.combinations(range(len(bits)),args.heads)))
     signs=np.array(list(itertools.product((-1,1),repeat=args.heads)))
     seen=np.zeros(1 << (len(bits)-1),dtype=bool)

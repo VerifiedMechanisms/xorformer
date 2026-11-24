@@ -1,0 +1,167 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\newtheorem{proposition}{Proposition}
+\title{A distinct-level test for compact fixed-direction decoders}
+\author{Research checkpoint, branch ar/027ac8030b43}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\section{The degree is controlled by distinct input levels}
+
+Let $X$ be a finite set of $N$ row inputs and consider the family
+\[
+ F(x)=\tau+\sum_{h=1}^H\frac{a_h}{b_h+t_h(x)},
+ \qquad b_h+t_h(x)>0.
+\]
+Each map $t_h:X\to\mathbb R$ is fixed independently of the labels. Suppose
+its image $T_h$ has at most $L$ elements, where $L\geq1$. The offsets,
+residues, and bias may vary arbitrarily with the labels. Compactness of
+the offset range is unnecessary for the following obstruction.
+
+\begin{proposition}
+Every sign pattern of this reciprocal family belongs to a family of $N$
+polynomials of total degree at most $L$ in $p=2H+1$ real parameters.
+If it shatters $X$ and $N\geq p$, then
+\[
+ 2^N\leq\left(\frac{4eLN}{p}\right)^p,
+ \qquad
+ \frac Np\leq\log_2\left(4eL\frac Np\right).
+\]
+In particular, $p>N/(4\log_2(4eL))$.
+\end{proposition}
+\begin{proof}
+For each head put
+\[
+ Q_h(b)=\prod_{u\in T_h}(b+u),\qquad z_h=a_h/Q_h(b_h).
+\]
+The denominator positivity makes $Q_h(b_h)$ nonzero. At a row $x$,
+\[
+ \frac{a_h}{b_h+t_h(x)}
+   =z_h\prod_{u\in T_h\setminus\{t_h(x)\}}(b_h+u).
+\]
+The right side has total degree at most $|T_h|\leq L$ in $(z_h,b_h)$.
+Treating all $z_h,b_h,\tau$ as independent parameters only enlarges the
+family. Applying Warren's strict-sign bound to these $N$ polynomials
+proves the displayed inequality. Write $u=N/p\geq1$ and
+$A=\log_2(4eL)>3$. If $u\geq4A$, then $u>4$ and
+$\log_2u\leq u/2$, so
+$u\leq A+\log_2u\leq3u/4$, a contradiction.
+\end{proof}
+
+The algebraic cancellation, polynomial evaluation identity, and degree
+bound are kernel checked in
+\texttt{formalization/HeadComplexity/Results/LargeDomainFiniteLevels.lean}:
+\begin{itemize}
+\item \texttt{HeadComplexity.LargeDomain.reciprocal\_eq\_level\_product};
+\item \texttt{HeadComplexity.LargeDomain.finiteLevelScorePolynomial\_eval};
+\item \texttt{HeadComplexity.LargeDomain.finiteLevelScorePolynomial\_totalDegree\_le}.
+\end{itemize}
+The Lean formulation permits a list of $L$ levels with repetitions,
+which also permits padding smaller level sets to a common bound.
+Warren's theorem and the analytic counting consequences in this note
+are written proofs using that external theorem; they are not represented
+as unconditional Lean declarations here. No new bound on the original
+$W(n)$ is claimed. The strict-sign form used above is Theorem 2.1 of
+Goldberg and Jerrum, \emph{Bounding the Vapnik--Chervonenkis dimension
+of concept classes parameterized by real numbers}, available at
+\url{https://www.cs.ox.ac.uk/people/paul.goldberg/papers/goldbergjerrum.pdf};
+it attributes the theorem to Warren's 1968 paper,
+\href{https://doi.org/10.1090/S0002-9947-1968-0226281-1}{\emph{Lower bounds
+for approximation by nonlinear manifolds}}.
+
+\section{Fixed affine row numerators}
+
+The conclusion survives the broader family
+\[
+ F(x)=\tau+\sum_{h=1}^H\frac{A_h(x)+a_h}{b_h+t_h(x)},
+\]
+where each $A_h$ is fixed independently of the labels. It is irrelevant
+for this count whether $A_h$ is affine: its value at each row is a fixed
+coefficient. Put $u_h=1/Q_h(b_h)$ and $v_h=a_h/Q_h(b_h)$. Then
+\[
+ \frac{A_h(x)+a_h}{b_h+t_h(x)}
+  =(A_h(x)u_h+v_h)
+       \prod_{t\in T_h\setminus\{t_h(x)\}}(b_h+t).
+\]
+Allowing $u_h,v_h,b_h$ to be independent gives degree at most $L$ in
+$p=3H+1$ parameters. The same Warren inequality and lower bound on $p$
+follow. The restrictions $u_hQ_h(b_h)=1$ and
+$v_h=a_hu_h$ need not be counted because dropping them enlarges the
+polynomial family.
+
+This argument does not apply with $O(H)$ parameters when the $k$
+affine row coefficients of each $A_h$ may themselves vary independently
+with the labels. That case has $\Theta(Hk)$ numerator parameters. Nor
+may the fixed directions $t_h$ be silently allowed to depend on each
+independent column's labels.
+
+\section{The Johnson and Hamming-layer candidate fails the test}
+
+Take $X=\{0,1\}^k$ and one head for each central subset
+$S\subseteq[k]$, $|S|=\lfloor k/2\rfloor$, with
+\[
+ t_S(x)=T|x|-\epsilon|x\cap S|,\qquad T>\epsilon>0.
+\]
+All coordinate slopes are strictly positive. There are at most
+$(k+1)^2$ possible pairs $(|x|,|x\cap S|)$, hence at most that many
+levels for each direction. The proposition gives
+\[
+ H=\Omega\left(\frac{2^k}{\log k}\right)
+\]
+for universal sign decoding, even with fixed affine row numerators.
+Thus the apparent width-scale budget
+$H=\binom{k}{\lfloor k/2\rfloor}=\Theta(2^k/\sqrt{k})$
+cannot shatter the entire cube in this family for all large $k$.
+Exact interpolation on a single central layer does not overcome the
+independently chosen labels on all other layers.
+
+A finite numerical experiment at $k=4$, $H=6$, $T=1$,
+$\epsilon=0.01$, and offsets in $(1,9/8)$ observed $30437$ of the $32768$
+sign complement classes after $400$ offset samples. The arrangement
+calculation was floating point, not an exact certificate. Its missing
+patterns are not a finite impossibility proof. The asymptotic obstruction
+above is independent of this computation.
+
+More generally, if every head's coordinate weights take values in a
+fixed set of $r$ numbers, then $L\leq(k+1)^r$. A bounded number of
+weight classes therefore has the same obstruction. Integer weights in
+$\{1,\ldots,B\}$ give $L\leq kB+1$.
+
+\section{Required level growth and the next route}
+
+Suppose $H\leq C2^k/G(k)$ with $G(k)\to\infty$ and $G(k)=o(2^k)$.
+The exact inequality above implies
+\[
+ \log_2L\geq \frac{2^k}{p}
+             -\log_2\left(\frac{2^k}{p}\right)-\log_2(4e).
+\]
+Consequently
+\[
+ \liminf_{k\to\infty}\frac{\log_2L}{G(k)}\geq\frac1{2C}
+\]
+for constant row numerators, and the conservative constant is $1/(3C)$
+for fixed affine row numerators. In particular, a saving $G(k)=k^\delta$
+requires $L\geq\exp(\Omega(k^\delta))$. Improving the current
+$H=O(2^k/\log k)$ scale by an unbounded factor $g(k)$ requires
+$L\geq k^{\Omega(g(k))}$.
+
+The next construction must therefore use exponentially many distinct
+subset-sum levels for a fixed-power gain. Generic unequal positive
+weights meet this necessary condition. Arbitrarily small perturbations
+can already make all $2^k$ levels distinct, so the present theorem does
+not rule out perturbed Johnson or uniform-layer families. Replacing
+nearby levels by equal ones is unjustified when residues and precision
+are unrestricted. A successful perturbation argument must control those
+large coefficients and the strict margins explicitly.
+
+Merely making all levels distinct by choosing a common binary-weight
+linear form is also insufficient in the constant-numerator subfamily:
+if every $t_h$ is a scalar multiple of one common form, the score is a
+univariate rational function with numerator degree at most $H$. Alternating
+labels on $N$ distinct ordered levels require at least $N-1$ real zeros,
+so $H\geq N-1$. The remaining opportunity needs many distinct levels
+and enough nonparallel directions to avoid this one-dimensional bound.
+\end{document}
