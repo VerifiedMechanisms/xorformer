@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A Metric Audit of Finite Cauchy Token Features}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+\paragraph{Scope.}
+This written lemma concerns one proposed random-fingerprint argument.
+It is not a head-complexity lower bound, and it does not rule out
+small-margin or interacting-token constructions.
+
+\begin{theorem}
+Fix distinct real numbers $D_1,\ldots,D_L$ and an interval $I$
+containing none of them. Let $T:\mathbb R^L\to\mathbb R^d$ be any
+linear map, and put
+\[
+ v(t)=T\big((D_1-t)^{-1},\ldots,(D_L-t)^{-1}\big)^{\mathsf T}.
+\]
+For ordered points $t_1<\cdots<t_K$ in $I$ such that $v(t_j)\ne0$,
+let $u_j=v(t_j)/\|v(t_j)\|_2$. Then
+\[
+ \sum_{j=1}^{K-1}\arccos\langle u_j,u_{j+1}\rangle
+                  \le \pi(L-1). \tag{1}
+\]
+Consequently, if these unit vectors are pairwise separated by angle
+at least $\theta>0$, then
+\[
+                    K\le 1+\pi(L-1)/\theta. \tag{2}
+\]
+The same feature columns multiplied by arbitrary nonzero real scalars
+have at most $2+2\pi(L-1)/\theta$ pairwise $\theta$-separated normalized
+directions.
+\end{theorem}
+\begin{proof}
+Take a standard Gaussian vector $g\in\mathbb R^d$. For each specified
+nonzero $v(t_j)$, the event $g\cdot v(t_j)=0$ has probability zero.
+Outside the union of these finitely many null events, every sampled
+value is nonzero. Also,
+\[
+ g\cdot v(t)=\sum_{l=1}^L\frac{a_l}{D_l-t}
+   =\frac{P_g(t)}{\prod_{l=1}^L(D_l-t)},\qquad \deg P_g\le L-1.
+\]
+The denominator has constant nonzero sign on $I$. The polynomial is
+not identically zero, because at least one of its specified values is
+nonzero. A sign change between consecutive sampled values forces a
+distinct root of $P_g$ in the corresponding open interval. Thus the
+number of such sign changes is at most $L-1$.
+
+For any two nonzero vectors $v,w$, rotational symmetry of a standard
+Gaussian gives
+\[
+ \mathbb P\{\operatorname{sgn}(g\cdot v)\ne
+                  \operatorname{sgn}(g\cdot w)\}
+       =\frac{\arccos\langle v/\|v\|,w/\|w\|\rangle}{\pi}.
+\]
+Indeed, if the vectors are linearly independent, project onto their
+plane. The angle of the projection is uniform, and the two opposite
+wedges on which the signs differ have total angle twice the angle
+between the vectors. Parallel and antiparallel vectors give the same
+formula directly. Summing these probabilities over consecutive
+samples and using the preceding deterministic root bound proves (1).
+Every consecutive angle in a pairwise separated collection is at
+least $\theta$, which gives (2). Finally, divide arbitrary scalar
+multipliers into their positive and negative classes. In each class,
+normalization either preserves all directions or reverses all of
+them, so (2) applies separately and the two bounds add.
+\end{proof}
+
+\paragraph{Consequence for the proposed mechanism.}
+Suppose a token $t$ is represented by its values at $L$ common exterior
+Cauchy probes, followed by an arbitrary fixed linear transformation
+and a token-dependent scalar residue. A family of $H$ tokens cannot
+have a fixed positive pairwise angular separation when $L=O(\log H)$.
+It needs $L=\Omega(H)$. Thus a random-hyperplane fingerprint proof
+cannot obtain $H\log H$ independent bits merely by claiming that these
+$L$-probe token directions behave like an exponentially large
+spherical code. The argument leaves open fingerprints based on
+vanishing separation, query-dependent cancellations, or genuinely
+joint token invariants.
+
+\paragraph{Verification boundary.}
+The proof is written only. It changes no model definition, adds no
+Lean declaration, and proves no asymptotic bound for worst-case head
+complexity.
+\end{document}
