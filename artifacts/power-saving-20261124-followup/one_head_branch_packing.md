@@ -69,3 +69,29 @@ The original model allows $b_0/\sum_i b_i$ to be arbitrarily small. The packing 
 That boundary vector is not an admissible original head, because some denominator coefficients vanish. It is a limit obstruction to the proposed one-sign boundary lemma. Any recursive count must track the remaining affine sign problem on this face and prove that its entropy can be charged without repeatedly paying the full dimension.
 
 The current argument therefore controls only a denominator-balanced subfamily. It does not bound all universally low-margin truth tables, does not provide a constant-overhead repair, and does not improve the unrestricted lower bound.
+
+## A kernel-checked edge restriction
+
+For a coefficient-positive denominator $B=b_0+\sum_i b_ix_i$, write $A=a_0+\sum_i a_ix_i$. Suppose $|A(x)|\geq B(x)$ everywhere and $x_i=0$ at a unit contact $|A(x)|=B(x)$. Changing just this bit to one gives
+
+$$ B(x)+b_i\leq|A(x)+a_i|\leq|A(x)|+|a_i|=B(x)+|a_i|, $$
+
+so $b_i\leq|a_i|$. An affine spanning set of unit contacts has a point with $x_i=0$ for every coordinate; otherwise the nonzero affine form $x_i-1$ vanishes on the entire set. Thus every feasible actual affine-basis certificate satisfies $b_i\leq|a_i|$ for all variable coordinates.
+
+This implication is kernel checked as `HeadComplexity.UnitGapBasisGeometry.abs_slope_ge_of_affine_spanning_contacts` in [UnitGapBasisGeometry.lean](../../formalization/HeadComplexity/Research/UnitGapBasisGeometry.lean). The intermediate zero-contact lemma needs no positivity hypothesis. The module builds, and its four theorem declarations have only `propext`, `Classical.choice`, and `Quot.sound` as transitive axioms. This necessary condition does not constrain $b_0/\sum_i b_i$ and does not prove uniqueness or a branch count.
+
+## A weaker possible repair of the packing argument
+
+The already refuted constant-denominator deformation would require every branch to contain $b=e_0$. A weaker sufficient statement would be that every nonempty fully feasible branch contains some positive $b$ with
+
+$$ b_0\geq n^{-C}\sum_i b_i $$
+
+for an absolute constant $C$. Such a representative would permit the earlier packing bound without requiring a common representative or retaining an initially ill-conditioned one. No proof is known.
+
+The reproducible floating search `search_fixed_basis_balance.py` tested 89,384 random eight-variable candidate bases and 88,984 sampled feasible branches over 300 seconds. The smallest computed maximum of $b_0/\sum_i b_i$ was $1/4$. For a separate fixed basis supplied by the root agent, `analyze_fixed_basis_boundary.py` numerically enumerated four positive branches, with computed maxima $1/4$, $1/3$, $1/2$, and $1$. Its exact matrix is reconstructed from the Boolean basis before running the floating LP solver. These are finite exploratory computations, not exact feasibility or exhaustion certificates, and do not support an asymptotic upper bound.
+
+Another formulation makes the boundary issue explicit. Associate to each feasible $b$ the open box
+
+$$ Q_b=Tb+\mathrm{diag}(b)(-1,1)^d. $$
+
+Boxes belonging to different truth tables are disjoint: an intersection would imply $|(Tb-Tb')_i|\lt b_i+b'_i$ in every coordinate, contradicting the unit gaps at any Boolean row where the labels differ. Each box has opposite corners $(T-I)b$ and $(T+I)b$, lying in the two complementary eigenspaces of $T$. This formulation alone does not bound how many very thin boxes can approach the boundary. A successful argument must use the actual Boolean observation hyperplanes or prove the balanced-representative statement above.

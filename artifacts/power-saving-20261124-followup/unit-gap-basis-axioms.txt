@@ -1,0 +1,3 @@
+HeadComplexity.Research.UnitGapBasisGeometry: audited 4 theorem declarations
+Audited 4 theorem declarations across 1 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].

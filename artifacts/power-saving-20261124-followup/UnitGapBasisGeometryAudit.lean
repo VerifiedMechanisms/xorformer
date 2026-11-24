@@ -1,0 +1,6 @@
+import HeadComplexity.Research.UnitGapBasisGeometry
+
+#print axioms HeadComplexity.UnitGapBasisGeometry.affineValue_update_true
+#print axioms HeadComplexity.UnitGapBasisGeometry.abs_slope_ge_of_zero_contact
+#print axioms HeadComplexity.UnitGapBasisGeometry.exists_zero_coordinate_of_affine_spanning
+#print axioms HeadComplexity.UnitGapBasisGeometry.abs_slope_ge_of_affine_spanning_contacts

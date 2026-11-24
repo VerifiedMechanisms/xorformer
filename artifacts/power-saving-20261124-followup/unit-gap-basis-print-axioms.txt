@@ -1,0 +1,10 @@
+'HeadComplexity.UnitGapBasisGeometry.affineValue_update_true' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UnitGapBasisGeometry.abs_slope_ge_of_zero_contact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnitGapBasisGeometry.exists_zero_coordinate_of_affine_spanning' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnitGapBasisGeometry.abs_slope_ge_of_affine_spanning_contacts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
