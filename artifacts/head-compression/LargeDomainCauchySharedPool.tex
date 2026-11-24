@@ -9,7 +9,9 @@
 \paragraph{Status and scope.}
 The obstruction below is kernel checked in
 \texttt{HeadComplexity/Results/LargeDomainCauchySharedPool.lean}.
-It concerns one proposed induction for a growing permutation decoder.
+It concerns one proposed homogeneous, zero-bias induction for a growing
+permutation decoder. Independent node biases are not included in its
+inequalities and can evade this particular three-node obstruction.
 It does not rule out target-adaptive residues, a full joint decoder,
 or any upper bound for the original quantity $W(n)$.
 No original model definition is changed.
@@ -22,7 +24,7 @@ For $q\geq10$, let
 For a sign vector $v$, write $D_v$ for the corresponding diagonal matrix.
 
 \begin{theorem}
-There is no vector $z$ with all coordinates positive such that both
+There is no real vector $z$ such that both
 $D_\sigma K D_\sigma z$ and $D_\tau K D_\tau z$ have all coordinates
 strictly positive. This remains true for arbitrarily large $q$, hence
 for arbitrarily compact normalized poles $0,1/q,2/q$.
@@ -33,6 +35,16 @@ Put
  a=K_{00},\quad b=K_{01},\quad c=K_{02}=K_{11},
  \quad e=K_{12},\quad f=K_{22},\quad\Delta=cf-e^2.
 \]
+The two row-zero inequalities imply $az_0-bz_1>0$, and the two
+row-one inequalities imply $-bz_0+cz_1>0$. Since
+\[
+ ac-b^2=\frac{2q^2-4q+1}{q^2(q-1)^4(q-2)^2}>0,
+\]
+multiplying the first by $c$ and the second by $b$ gives $z_0>0$.
+Thus positivity of the first amplitude is forced by the two systems.
+In fact their row-two sum also forces $z_2>0$, and the leading
+principal inverse forces $z_1>0$.
+
 All five entries are positive, and
 \[
  \Delta=\frac{2q^2-12q+17}{(q-4)^2(q-3)^4(q-2)^2}>0.
@@ -69,9 +81,12 @@ Then
 \end{split}
 \]
 Thus the same sum is strictly negative because $z_0>0$, a contradiction.
-The Lean declaration is
-\texttt{HeadComplexity.LargeDomain.no\_shared\_positive\_cauchy\_pool}.
-It assumes only $z_0>0$ and these three selected inequalities.
+The original Lean declaration
+\texttt{HeadComplexity.LargeDomain.no\_shared\_positive\_cauchy\_pool}
+assumes $z_0>0$ and the three selected inequalities. The strengthened
+\texttt{HeadComplexity.LargeDomain.no\_shared\_cauchy\_pool}
+derives $z_0>0$ from five of the six rows and has no amplitude sign
+assumption.
 \end{proof}
 
 \paragraph{Why separate one-level success is insufficient.}
@@ -96,7 +111,7 @@ A one-level positive definite Cauchy argument can choose amplitudes after
 seeing that level's signs. A recursive decoder cannot silently reuse those
 amplitudes for a second independently specified sign problem. Already
 three compact nodes give a counterexample to that intermediate lemma.
-The theorem leaves open joint choices with signed residues, independent
+The theorem leaves open target-adaptive signed residues, independent
 per-column amplitudes, different source gates, or cancellation involving
 several levels at once.
 \end{document}

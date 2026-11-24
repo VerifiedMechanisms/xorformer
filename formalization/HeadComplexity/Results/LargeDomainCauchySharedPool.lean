@@ -107,4 +107,51 @@ theorem no_shared_positive_cauchy_pool {q z₀ z₁ z₂ : ℝ}
   rw [hid] at hsum
   exact (not_lt_of_ge (mul_nonpos_of_nonpos_of_nonneg hminor.le hz₀.le)) hsum
 
+/-- The leading two-by-two principal minor of the exterior square-Cauchy
+matrix is strictly positive. -/
+lemma sharedPool_principal_minor_pos {q : ℝ} (hq : 10 ≤ q) :
+    0 < (1 / q ^ 2) * (1 / (q - 2) ^ 2) - (1 / (q - 1) ^ 2) ^ 2 := by
+  have h0 : q ≠ 0 := by linarith
+  have h1 : q - 1 ≠ 0 := by linarith
+  have h2 : q - 2 ≠ 0 := by linarith
+  have hid : (1 / q ^ 2) * (1 / (q - 2) ^ 2) - (1 / (q - 1) ^ 2) ^ 2 =
+      (2 * q ^ 2 - 4 * q + 1) / (q ^ 2 * (q - 1) ^ 4 * (q - 2) ^ 2) := by
+    field_simp
+    ring
+  rw [hid]
+  apply div_pos
+  · nlinarith [sq_nonneg (q - 10)]
+  · positivity
+
+/-- No unrestricted real amplitude vector can solve both Cauchy sign systems
+`(-,+,+)` and `(+,-,+)`. Five of their six rows already give a contradiction;
+positivity of an amplitude is a consequence, not an assumption. -/
+theorem no_shared_cauchy_pool {q z₀ z₁ z₂ : ℝ} (hq : 10 ≤ q)
+    (hσ₀ : 0 < z₀ / q ^ 2 - z₁ / (q - 1) ^ 2 - z₂ / (q - 2) ^ 2)
+    (hσ₁ : 0 < -z₀ / (q - 1) ^ 2 + z₁ / (q - 2) ^ 2 + z₂ / (q - 3) ^ 2)
+    (hτ₀ : 0 < z₀ / q ^ 2 - z₁ / (q - 1) ^ 2 + z₂ / (q - 2) ^ 2)
+    (hτ₁ : 0 < -z₀ / (q - 1) ^ 2 + z₁ / (q - 2) ^ 2 - z₂ / (q - 3) ^ 2)
+    (hτ₂ : 0 < z₀ / (q - 2) ^ 2 - z₁ / (q - 3) ^ 2 + z₂ / (q - 4) ^ 2) :
+    False := by
+  let a : ℝ := 1 / q ^ 2
+  let b : ℝ := 1 / (q - 1) ^ 2
+  let c : ℝ := 1 / (q - 2) ^ 2
+  have h1 : q - 1 ≠ 0 := by linarith
+  have h2 : q - 2 ≠ 0 := by linarith
+  have hb : 0 < b := by dsimp [b]; positivity
+  have hc : 0 < c := by dsimp [c]; positivity
+  have hΔ : 0 < a * c - b ^ 2 := sharedPool_principal_minor_pos hq
+  have hA : 0 < a * z₀ - b * z₁ := by
+    have hsum : 0 < z₀ / q ^ 2 - z₁ / (q - 1) ^ 2 := by linarith
+    simpa [a, b, div_eq_mul_inv, mul_comm] using hsum
+  have hB : 0 < -b * z₀ + c * z₁ := by
+    have hsum : 0 < -z₀ / (q - 1) ^ 2 + z₁ / (q - 2) ^ 2 := by linarith
+    simpa [b, c, div_eq_mul_inv, mul_comm] using hsum
+  have hprod : 0 < (a * c - b ^ 2) * z₀ := by
+    calc
+      0 < c * (a * z₀ - b * z₁) + b * (-b * z₀ + c * z₁) := by positivity
+      _ = (a * c - b ^ 2) * z₀ := by ring
+  have hz₀ : 0 < z₀ := (mul_pos_iff_of_pos_left hΔ).mp hprod
+  exact no_shared_positive_cauchy_pool hq hz₀ hσ₀ hτ₁ hτ₂
+
 end HeadComplexity.LargeDomain

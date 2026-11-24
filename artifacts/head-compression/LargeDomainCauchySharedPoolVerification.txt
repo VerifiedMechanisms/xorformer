@@ -10,6 +10,16 @@ Transitive axiom check:
 'HeadComplexity.LargeDomain.no_shared_positive_cauchy_pool' depends on axioms: [propext, Classical.choice, Quot.sound]
 
 Scope:
-  A counterexample to one shared-positive-amplitude intermediate lemma.
+  A counterexample to a homogeneous shared-amplitude intermediate lemma.
+  Amplitudes may be arbitrary real numbers in the strengthened theorem.
+  Independent node biases are not covered.
   No change to HeadComplexity.worstCaseHeadComplexity or its model.
   No stronger unconditional asymptotic upper bound is asserted.
+
+Strengthening checked 2026-11-24 21:15 UTC:
+  lake build HeadComplexity.Results.LargeDomainCauchySharedPool
+  Build completed successfully (3319 jobs).
+
+HeadComplexity.LargeDomain.sharedPool_principal_minor_pos
+HeadComplexity.LargeDomain.no_shared_cauchy_pool
+Both depend on axioms: [propext, Classical.choice, Quot.sound].
