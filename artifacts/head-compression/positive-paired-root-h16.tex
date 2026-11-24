@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Positive Pair Compatibility Fails on the Hierarchical Pole Grid}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+This is a complete finite-certificate obstruction, verified by exact
+rational arithmetic and guarded formal power series. It is not Lean
+checked. It refutes a positive-residue induction invariant, not the
+reverse compiler or either requested global asymptotic statement.
+Signed residues, target-dependent poles, and other constructions remain
+outside its scope. The original model and its definitions are unchanged.
+
+Write $s=s_0+2s_1+4s_2$ and put
+\[
+ p_s=s_0\epsilon+s_1\epsilon^2+s_2\epsilon^4,
+ \qquad \delta=\epsilon^8,\qquad t_s=1-p_s.
+\]
+The sixteen poles are $p_s,p_s+\delta$, for $0\leq s<8$.
+For $0<\epsilon\leq1/4$ they are all below $1/2$, so the
+eight queries $t_s$ are strictly exterior. Given a word
+$w\in\{-1,1\}^8$ and a shared residue vector $c\in\mathbb R^{16}$,
+define
+\[
+ F_w(t)=\sum_{s=0}^7w_s\left(
+ \frac{c_s}{t-p_s}-\frac{c_{s+8}}{t-p_s-\delta}\right).
+\]
+\begin{theorem}
+Let
+\[
+ \sigma=(1,1,1,1,-1,-1,-1,-1),\qquad
+ \tau=(1,-1,1,1,-1,-1,1,1).
+\]
+For every sufficiently small $\epsilon>0$, there are no
+nonnegative shared residues $c_s\geq0$ and separate biases
+$\beta_\sigma,\beta_\tau$ satisfying
+\[
+ w_s\bigl(F_w(t_s)+\beta_w\bigr)>0
+ \quad\text{for all }s\text{ and }w\in\{\sigma,\tau\}.
+\]
+The same nonexistence holds at $\epsilon=1/100$.
+\end{theorem}
+\begin{proof}
+For each word, elimination of its bias gives the necessary inequalities
+$F_w(t_a)>F_w(t_b)$ for every $w_a=1,w_b=-1$. Dividing by
+$|p_a-p_b|>0$ gives a rational row $R_{w,a,b}$ with
+\[
+ (R_{w,a,b})_s=
+ \frac{\operatorname{sgn}(p_a-p_b)w_s}
+ {(1-p_a-p_s)(1-p_b-p_s)},\qquad
+ (R_{w,a,b})_{s+8}=
+ \frac{-\operatorname{sgn}(p_a-p_b)w_s}
+ {(1-p_a-p_s-\delta)(1-p_b-p_s-\delta)}.
+\]
+For $0<\epsilon\leq1/4$, the sign in this formula is determined
+by the least binary position where $a$ and $b$ differ; the later
+powers have smaller total magnitude. Thus the rows are fixed rational
+functions of $\epsilon$ throughout that interval.
+
+Take the following eleven comparison rows, in the displayed order:
+\[
+ \begin{split}
+ &(\sigma,0,5),(\sigma,0,7),(\sigma,1,4),(\sigma,1,6),
+   (\sigma,2,5),(\sigma,2,6),(\sigma,3,4),\\
+ &(\tau,0,1),(\tau,0,4),(\tau,2,4),(\tau,3,4).
+ \end{split}
+\]
+Append the six coordinate rows
+$e_0^\top,e_2^\top,e_4^\top,e_{13}^\top,e_{14}^\top,e_{15}^\top$.
+Call this $17$ by $16$ matrix $A(\epsilon)$. Define
+\[
+ M(\epsilon)=\begin{pmatrix} A(\epsilon)^\top\\
+                      1&\cdots&1\end{pmatrix},\qquad
+ \lambda(\epsilon)=M(\epsilon)^{-1}e_{17}.
+\]
+Here $e_{17}$ denotes the last coordinate vector in $\mathbb R^{17}$.
+Exact elimination verifies that $M$ is invertible over
+$\mathbb Q(\epsilon)$ and that the seventeen leading terms of
+$\lambda$, in this row order, are
+\[
+ \begin{split}
+ (&3\epsilon/2,1/4,3\epsilon/2,1/4,1/4,3\epsilon^4,1/4,\\
+ &\epsilon^{11}/8,\epsilon^{11}/8,
+   \epsilon^{11}/8,\epsilon^{11}/8,\\
+ &\epsilon^{28}/4,\epsilon^{26}/4,\epsilon^{28}/4,
+   \epsilon^{26}/4,\epsilon^{25}/4,\epsilon^{26}/4).
+ \end{split}
+\]
+Each leading coefficient is strictly positive. Consequently all
+entries of $\lambda(\epsilon)$ are positive for every sufficiently
+small positive $\epsilon$. Its defining equations give
+$\lambda^\top A=0$ and $\sum_i\lambda_i=1$ exactly.
+
+For reproducibility, \texttt{positive-paired-root-h16-check.py}
+regenerates all rows and verifies these leading terms using exact
+rational power series at precision $512$. It always pivots at the
+smallest detected valuation, guards every truncated zero before
+division, and propagates every multiplier, including truncated zeros.
+The pivot valuations are
+\[
+ (0,0,0,0,0,0,0,0,0,2,2,6,6,8,15,17,23).
+\]
+It scales the right side by $\epsilon^{170}$ during the calculation
+so that intermediate series have nonnegative valuation. Every
+displayed leading term is determined below the tracked precision.
+These guarded operations agree with elimination over the rational
+function field, so the resulting leading signs are exact, rather
+than numerical approximations. The saved rational vector at
+$\epsilon=1/100$ is checked separately without using a solver.
+
+Under the proposed strict root inequalities, the first eleven
+entries of $Ac$ would be positive, while its final six entries would
+be nonnegative. Thus $\lambda^\top Ac>0$, contradicting
+$\lambda^\top A=0$. This proves both assertions.
+\end{proof}
+
+\paragraph{Consequence for the proposed induction.}
+These are the root profiles of two sixteen-wire butterfly targets.
+Lower-layer routing preserves the highest input bit, so the root
+profile after routing is precisely $(w_s,-w_s)$, independently of
+the lower switches. In particular no two full targets with the
+displayed root words can share a nonnegative residue vector at
+sufficiently small scale, even when every block is allowed its own
+target-dependent bias. This refutes a universal positive child-cone
+pairing invariant at this fixed size.
+
+The dual argument permits residues of arbitrary size and arbitrary
+dependence on $\epsilon$. Diverging positive residue germs therefore
+do not evade it. The coordinate rows are essential to its scope:
+the result makes no assertion for shared signed residues, and makes
+no assertion against separately chosen residues for the two targets.
+\end{document}
