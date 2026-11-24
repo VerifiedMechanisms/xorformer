@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "finite exact rational checks, not Lean",
+  "counts": {
+    "extension_tables": 813,
+    "sample_equalities": 5778,
+    "gauge_checks": 2592,
+    "matching_checks": 3645
+  },
+  "sha256": {
+    "deletion-star-denominator-budget.md": "2f8389d71829578188ea758f2499a036ca72a69e7af42367569118c608b0c978",
+    "verify_deletion_star_budget.py": "2b8c102e4fbfb9055668d715c3d8d71885545572269b540f21ccbf6e2e42fbb8"
+  }
+}

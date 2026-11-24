@@ -16,6 +16,8 @@ The asker's [critical-width capacity lower bound](critical-width-capacity-lower.
 
 The latest permutation-family audit separates [generic fixed-level endpoint nonvanishing](permutation-moment-divisibility.md) from [distinct exceptional levels with linear Taylor depth](distinct-level-deep-cancellation.md). The latter construction disproves every uniform sublinear truncation in head count, even on two input bits. Both proofs are written and supplemented by exact finite arithmetic. They do not prove the unrestricted target and have not been formalized in Lean.
 
+The [deletion-star denominator criterion](deletion-star-denominator-budget.md) checks an attempted combination of the sparse bipartite shattering and dense cell constructions. It gives an exact positive-slope extension criterion and a small vertex cover for the entries with small denominators. Arbitrary reciprocal query tables fail that criterion. This blocks copying those tables unchanged; it does not bound signs of unrestricted signed sums.
+
 ## Exact results useful for auditing proposed proofs
 
 | Result | Verification scope | Source |
