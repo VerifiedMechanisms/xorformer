@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Finite Joint-Family Certificates with Exact Axis Cancellation}
+\author{Research checkpoint, branch ar/027ac8030b43}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+These are finite computations checked by exact rational arithmetic.
+They are not Lean declarations, a universal decoder theorem, or an
+asymptotic upper bound. Optimizer failures are not impossibility results.
+The original head model and worst-case complexity are unchanged.
+
+\section{The tested interface}
+
+For $x\in\{0,1\}^k$ and a one-hot column $j\in[s]$, the score is
+\[
+F_j(x)=\tau_j+\sum_{h=1}^{H}\left(
+\frac{A_h(x)+a_{hj}}{b_{hj}+d_h\cdot x}
+-\frac{A_h(x)}{B+d_h\cdot x}\right),\qquad
+A_h(x)=\sum_{i=1}^k\alpha_{hi}x_i.
+\tag{1}
+\]
+Every $d_{hi}>0$, and $1\leq b_{hj}\leq1+\delta$. The shared directions
+$d_h$ and row numerators $A_h$ may depend jointly on the entire family of
+column labels. They are not chosen separately for each column.
+
+To embed the pairs on the full Boolean cube, choose a common intercept
+$E>\max(B,1+\delta)$. Their denominators at arbitrary column bits $w$ are
+\[
+E+d_h\cdot x-\sum_j(E-b_{hj})w_j,
+\qquad
+E+d_h\cdot x-\sum_j(E-B)w_j.
+\tag{2}
+\]
+The first numerator is $A_h(x)+\sum_j a_{hj}w_j$, and the second is
+$-A_h(x)$. At $w=0$ their denominators agree and their numerators cancel
+exactly. Complementing all row bits converts the row slopes in (2) to
+strictly negative slopes, matching the reverse compiler orientation.
+All column slopes are already strictly negative. Full-cube positivity
+follows from the exact inequalities
+\[
+E-\sum_j(E-b_{hj})>0,\qquad E-s(E-B)>0.
+\tag{3}
+\]
+These conditions are checked separately for every certificate, not inferred
+from positivity only at the tested one-hot inputs. The column biases
+$\tau_j$ require the separate admissible bias realization used by the
+transfer. Thus the advertised local budget is $2H+1$ heads, not $H$.
+
+\section{Results and reproduction}
+
+The committed file \texttt{LargeDomainJointFamilyCertificates.json}
+contains 20 certified families with
+\[
+k=5,\quad s=5,\quad H=6,\quad
+\delta=\frac1{20},\quad B=\frac{11}{10},\quad E=\frac{23}{20}.
+\]
+The first target includes coordinate and full-parity columns. The other
+19 targets have independently sampled signs at every row and column.
+Each family specifies all rational parameters in (1), all 160 target
+signs, and its exact positive minimum margin. All 20 families pass.
+This gives 3200 strict signs in total, checked without a tolerance.
+The independently checked full-cube minimum denominator lower bound
+in (3) is positive for both members of every pair.
+
+Run the verifier from the repository root:
+\begin{verbatim}
+python3 artifacts/head-compression/LargeDomainJointFamilyVerify.py \
+  artifacts/head-compression/LargeDomainJointFamilyCertificates.json
+\end{verbatim}
+The verifier uses only Python integers and \texttt{fractions.Fraction};
+it does not import the search, a numerical linear algebra library, or an
+optimization package. It reconstructs every score, checks its sign,
+compares the exact minimum margin with the stored value, and checks (3).
+The general algebraic full-cube lift is described above; the global
+cover and preservation of previously assigned signs remain separate
+proof obligations handled by the transfer theorem.
+
+The generating script is \texttt{LargeDomainJointFamilySearch.py}. It
+uses variable projection for the linear numerator coefficients and
+optimizes the positive directions and compact offsets. Positive target
+magnitudes are also optimized, so the search asks for membership in a
+sign cone rather than exact fitting of the values $\pm1$. A numerical
+linear program proposes final coefficients. Decimal rationalization is
+then checked with exact arithmetic. The shared machine command is
+prefixed by \texttt{heavy}.
+
+The committed certificates were generated with the equivalent of:
+\begin{verbatim}
+heavy python3 artifacts/head-compression/LargeDomainJointFamilySearch.py \
+  --dimension 5 --heads 6 --columns 5 --targets 20 --restarts 20 \
+  --iterations 500 --affine-row --paired --sign-cone \
+  --baseline 1.1 --delta .05 --seed 241124 --output result.json
+\end{verbatim}
+The explicit baseline option was added immediately after this run; its
+original value was $1+2\delta=1.1$. This provenance is recorded in the
+certificate file. Subsequent searches can use baseline one, the form of
+the general paired compact-family transfer.
+
+\section{Limits of the evidence}
+
+These certificates show that sharing directions and row coefficients
+across several unrelated columns is feasible at this small size.
+They do not show that every five-column family has such a representation.
+Nor do they show $H(k)=o(2^k/\log k)$, which would be needed to improve the
+inherited asymptotic scale through a full-row-cube transfer.
+
+An earlier unpaired $k=4,H=3$ experiment failed on a column of full
+four-bit parity. That failure has an independent mathematical explanation:
+a sum of three affine ratios with positive denominators, plus a bias,
+has after clearing denominators an input polynomial of degree at most
+three; strict four-bit parity has threshold degree four. This observation
+does not apply to the paired six-head family in (1), and is not used as
+an interpretation of failures for the larger paired experiments.
+\end{document}
