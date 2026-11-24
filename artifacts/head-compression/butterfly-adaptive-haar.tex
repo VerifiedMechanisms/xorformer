@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{An exact compact eight-wire adaptive-residue decoder}
+\author{}
+\date{}
+\maketitle
+
+\paragraph{Verification status.}
+This is a finite, exact computational theorem, with an elementary written
+argument extending the certificate to every sufficiently small positive
+scale. The accompanying checker uses rational arithmetic and an explicit
+list of 256 active bases. It is not a Lean proof. The coefficient height
+argument and the full-cube embedding below are written proofs. No growing
+capacity theorem, logarithmic saving, or bound on worstCaseHeadComplexity
+is claimed. In particular this does not improve the older eight-pole,
+twenty-query finite construction; its additional feature is the fixed
+butterfly structure and strictly positive target-dependent residues.
+
+\paragraph{Notation.}
+There are eight wires numbered $0,\ldots,7$, whose binary bits have
+indices $0,1,2$. A butterfly layer $k$ switches bit $k$, independently
+for each lower prefix $s<2^k$ and higher block $g<2^{2-k}$. Let
+$\theta_{k,s,g}\in\{0,1\}$ be its twelve switch settings, and let
+$\pi_\theta$ be the resulting input-to-output permutation, with layers
+applied in order $0,1,2$. Set
+\[
+ u_{k,g}(h)={\bf1}_{\lfloor h/2^{k+1}\rfloor=g}(-1)^{h_k},\qquad
+ p_y(\epsilon)=\sum_{j=0}^2 y_j\epsilon^{j+1},\qquad
+ t_{k,s,g}(\epsilon)=1-p_s(\epsilon).
+\]
+The query times may repeat. Their Haar profiles distinguish the queries.
+
+\begin{theorem}[Positive adaptive residues]
+For every $0<\epsilon\leq2^{-240}$ and every butterfly setting $\theta$,
+there are strictly positive real numbers $c_0,\ldots,c_7$ such that
+\[
+ (1-2\theta_{k,s,g})\sum_{h=0}^7
+ \frac{u_{k,g}(h)c_{\pi_\theta(h)}}
+ {t_{k,s,g}(\epsilon)-p_{\pi_\theta(h)}(\epsilon)}>0
+ \qquad\hbox{for all twelve queries.}                 \tag{1}
+\]
+The poles and times are fixed functions of $\epsilon$, independent of
+$\theta$. The residues and permutation depend on the target.
+\end{theorem}
+\begin{proof}
+Let $A_\theta(\epsilon)$ be the $12$ by $8$ signed coefficient matrix
+in (1), with columns indexed by output wire $y$. Its entries are
+\[
+ \frac{(1-2\theta_{k,s,g})u_{k,g}(\pi_\theta^{-1}(y))}
+ {1-p_s(\epsilon)-p_y(\epsilon)}.                    \tag{2}
+\]
+This matrix does not depend on the four layer-zero switch bits. Indeed,
+flipping such a switch interchanges the two corresponding input wires
+before the unchanged later routing. All higher-layer Haar profiles are
+constant on this pair. The layer-zero profile of that block changes sign,
+and its desired sign changes sign too. Other layer-zero profiles vanish
+on the pair. Thus only the eight higher-layer bits matter.
+
+At $\epsilon_*=2^{-240}$, the file
+\texttt{butterfly-adaptive-haar-check.json} supplies one active basis for
+every one of the $256$ higher-layer words. A basis selects eight rows
+from the twenty inequalities
+\[
+ A_\theta(\epsilon_*)c\geq {\bf1},\qquad c\geq {\bf1}.
+\]
+The checker reconstructs the unique solution to the eight selected
+active equalities. It verifies that the basis is nonsingular, every
+coordinate of $c$ is positive, and every row of $A_\theta c$ is positive.
+It also checks the exact matrix equality for all sixteen choices of
+bottom-layer bits. This gives $49\,152$ strict signed-score checks.
+The certificate contains bases, not trusted LP answers: verification
+uses exact rational Gaussian elimination and does not invoke an LP solver.
+
+Here is a uniform extension from the certificate scale to all smaller
+scales. Each denominator
+$D_{ey}(\epsilon)=1-p_s(\epsilon)-p_y(\epsilon)$ is an integer
+polynomial whose coefficient $\ell^1$ norm is at most seven. It is
+positive for $0<\epsilon\leq1/10$. Multiply query row $e$ by
+$L_e=\prod_{y=0}^7D_{ey}$. The resulting coefficients have norm at most
+$7^7$, and the active-equality right side has norm at most $7^8$.
+Coordinate equalities have coefficient and right-side norm one.
+For any certified active basis, write the cleared system as
+$B(\epsilon)c=b(\epsilon)$ and use Cramer's rule
+$c_y=N_y(\epsilon)/\Delta(\epsilon)$.
+The determinant $\Delta$ and all eight Cramer numerators $N_y$ are
+integer polynomials with norm at most $8!7^{64}$. The numerator of any
+cleared score is a sum of eight products, so its norm is at most
+\[
+ 8\cdot8!\cdot7^{71}<2^{230}.                       \tag{3}
+\]
+The same bound covers $\Delta$ and every $N_y$.
+
+A nonzero integer polynomial of coefficient norm less than $K$ has no
+root in $(0,1/(K+1))$. Factor its lowest nonzero power; the remaining
+constant coefficient has absolute value at least one, whereas the
+absolute value of its tail is at most $Kx<1$ there. Apply this observation
+with $K=2^{230}$ to the determinant, all coordinate numerators, and all
+score numerators. Each is nonzero, since its value at $\epsilon_*$ is
+nonzero. None changes sign on $(0,\epsilon_*]$. Their certified signs
+therefore give positive coordinates and strict scores throughout this
+interval. This proves (1).
+\end{proof}
+
+\paragraph{Strict full-cube realization.}
+For every row count $r\geq1$, the theorem yields any $r$ by $12$ sign
+table with sixteen strictly admissible reverse heads and exact zeros
+on both Boolean axes. Here are the budget details, to keep grid positivity
+separate from full-cube positivity.
+Choose
+\[
+ 0<\epsilon<\min\{2^{-240},1/(100(r+12))\},\quad
+ \alpha=1-3\epsilon,\quad
+ \widetilde p_y=\alpha(p_y+\epsilon),\quad
+ \widetilde t_e=\alpha(t_e+\epsilon).
+\]
+Then $0<\widetilde p_y<3\epsilon$,
+$0<1-\widetilde t_e<4\epsilon$, and
+$\widetilde t_e-\widetilde p_y=\alpha(t_e-p_y)>0$.
+For each target row $i$, choose the theorem's permutation $\pi_i$ and
+residues $c_{iy}>0$. Put $q_{hi}=\widetilde p_{\pi_i(h)}$ and
+$a_{hi}=\alpha c_{i,\pi_i(h)}$. The query profile $u_e(h)$ is fixed,
+independent of the row. For each head index $h$, pair two denominators
+\[
+ B_h^\pm(z,w)=1+\epsilon-\sum_i q_{hi}z_i
+ -\sum_e\bigl(\epsilon+
+       {\bf1}_{u_e(h)=\pm1}(1-\widetilde t_e)\bigr)w_e.
+\]
+Both have strictly negative slopes. The total magnitude of their slopes
+is at most $3r\epsilon+12\epsilon+48\epsilon<1$, so they are positive
+on the entire Boolean cube. Give the two heads opposite affine
+numerators $\sum_i(1-q_{hi})a_{hi}z_i$.
+The numerators vanish on $z=0$. On $w=0$ the denominators coincide,
+so the pair cancels exactly. At a one-hot grid point, the paired identity
+\[
+ \frac{(1-q)a}{\widetilde t-q}-\frac{(1-q)a}{1-q}
+ =\frac{(1-\widetilde t)a}{\widetilde t-q}
+\]
+shows that the pair contributes
+$(1-\widetilde t_e)u_e(h)a_{hi}/(\widetilde t_e-q_{hi})$.
+The positive common query factor preserves (1). This is the signed-mask
+variant of the already Lean-checked pairedRowsAxisData construction in
+\texttt{formalization/HeadComplexity/Results/ReverseMaskedCauchy.lean}.
+The finite shattering theorem and this instantiated sixteen-head
+corollary have not themselves been formalized.
+
+\paragraph{What an induction still needs.}
+The same pole hierarchy at sixteen wires has target words with an exact
+Farkas obstruction at several tested scales. Faster bit scales can remove
+those examples, but that is not a universal theorem. Independent positive
+residue witnesses for two subtrees do not imply that their feasibility
+cones intersect. Neither a positive-residue induction, a faster-hierarchy
+induction, nor the version with one bias per input Haar block has been
+proved. These are the specific gaps between this finite certificate and
+an unbounded-capacity local compiler.
+\end{document}
