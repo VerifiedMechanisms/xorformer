@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Two Requested Words Already Obstruct a Shared Compact Cauchy Pool}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written argument and a finite exact rational check,
+not a Lean theorem. It concerns one fixed positive amplitude pool on
+three simple Cauchy poles. It does not permit more pole slots, varying
+amplitudes for different requested words, additive query biases, or
+query-dependent masks. It does not establish either accepted global
+HeadComplexity target.
+
+Fix $0\leq p_1<p_2<p_3\leq a$, where $a>0$, and positive query
+times $b\leq t_1<t_2<t_3$, where $b>3a$. For $v_h>0$ and
+$\tau\in\{-1,1\}^3$, write
+\[
+ F_\tau(t)=\sum_{h=1}^3\frac{\tau_hv_h}{t-p_h}.
+\]
+The amplitude vector $v$ is shared among all choices of $\tau$.
+
+\begin{theorem}[Alternation excludes every one-change word]
+If some $F_\tau$ has a strict alternating sign word on
+$(t_1,t_2,t_3)$, then the strict words supplied by the entire shared
+pool belong to the four-element set consisting of that alternating
+word, its negative, and the two constant words. In particular no
+shared amplitude vector can realize both an alternating word and a
+nonconstant word with exactly one sign change.
+\end{theorem}
+\begin{proof}
+Let $P(t)=\prod_h(t-p_h)$. The numerator $Q=P F_\tau$ has degree at
+most two. Strict alternation forces one zero in each of
+$(t_1,t_2)$ and $(t_2,t_3)$, since $P$ is positive there.
+Consequently $Q(t)=K(t-u)(t-v)$ for two distinct $u,v>b$ and
+$K\ne0$. Divide the score by $K$; this changes at most its overall
+sign and a common positive amplitude scale. Its residues are
+\[
+ (r_1,-r_2,r_3),\qquad
+ r_1=\frac{(u-p_1)(v-p_1)}{(p_2-p_1)(p_3-p_1)},\quad
+ r_2=\frac{(u-p_2)(v-p_2)}{(p_2-p_1)(p_3-p_2)},\quad
+ r_3=\frac{(u-p_3)(v-p_3)}{(p_3-p_1)(p_3-p_2)}.
+\]
+All three displayed magnitudes are positive. We claim that for every
+$t\geq b$,
+\[
+ \frac{r_2}{t-p_2}>\frac{r_1}{t-p_1},\qquad
+ \frac{r_2}{t-p_2}>\frac{r_3}{t-p_3}.                 \tag{1}
+\]
+
+For the first inequality, consider
+\[
+ f(p)=\frac{(u-p)(v-p)}{(p_3-p)(t-p)}
+ \quad (p_1\leq p\leq p_2).
+\]
+It is positive, and its logarithmic derivative satisfies
+\[
+ \frac{f'(p)}{f(p)}
+ =-\frac1{u-p}-\frac1{v-p}+\frac1{p_3-p}+\frac1{t-p}
+ >\frac1a-\frac2{b-a}>0.
+\]
+Thus $f(p_2)>f(p_1)$, which is the first inequality in (1) after
+division by $p_2-p_1$. For the second one, use
+\[
+ g(p)=\frac{(u-p)(v-p)}{(p-p_1)(t-p)}
+ \quad (p_2\leq p\leq p_3).
+\]
+Now
+\[
+ \frac{g'(p)}{g(p)}
+ =-\frac1{u-p}-\frac1{v-p}-\frac1{p-p_1}+\frac1{t-p}
+ < -\frac1a+\frac1{b-a}<0.
+\]
+Therefore $g(p_2)>g(p_3)$, giving the other inequality in (1).
+
+There are eight coefficient-sign choices. The two choices
+$(+,-,+)$ and $(-,+,-)$ give the original score and its negative.
+All-positive and all-negative choices give constant signs. In each
+of the remaining four choices, the middle contribution has the
+same sign as one outer contribution and, by (1), strictly dominates
+the other outer contribution. These four choices therefore also
+have constant sign for every $t\geq b$. This proves the theorem.
+\end{proof}
+
+\paragraph{Why the shared-amplitude formulation is exact.}
+For two requested sign words, one may instead choose an unrestricted
+real coefficient vector $c$ for the first word and ask the second
+word to use $\operatorname{diag}(S)c$, with $S_h\in\{-1,1\}$.
+When all coefficients are nonzero this is equivalent to the shared
+positive amplitude formulation, by setting $v_h=|c_h|$. Allowing
+zero coefficients cannot repair the alternating three-query word:
+two or fewer simple Cauchy terms have numerator degree at most one.
+
+\paragraph{Complete finite test.}
+The companion script uses
+\[
+ C_{ih}=\bigl(1-10^{-4}(i+h+2)\bigr)^{-p},
+ \qquad 0\leq i,h\leq2,
+\]
+for $p=1$ and $p=2$. For every $S\in\{-1,1\}^3$, it enumerates
+the strict output words of the stacked matrix
+$[C;C\operatorname{diag}(S)]$. The union contains exactly $48$
+of the $64$ ordered word pairs for either kernel power. For example,
+the first word $(-,+,-)$ and the second word $(+,-,-)$ are absent.
+The theorem above proves this absence uniformly for the simple
+Cauchy kernel in the stated compact geometry; the squared-kernel
+count is only the displayed finite exact result.
+
+Here is why the enumeration is complete even for degenerate
+hyperplane arrangements. The stacked matrix $A$ has full column
+rank because $C$ is invertible. Any strict word can be rescaled to
+make all its signed inequalities at least one. Starting from such
+a feasible point, if the active rows have rank below three, move
+along a direction annihilating all active rows until a new
+independent constraint becomes active. A finite endpoint exists in
+at least one direction because $A$ has full column rank. Repeating
+gives three independent active rows. The corresponding point solves
+$A_Ic=\eta$ for a three-element row set $I$ and
+$\eta\in\{-1,1\}^3$. The script enumerates all such nonsingular
+systems and directly checks every recorded rational score. It also
+checks (1) at $108$ rational configurations, supplementing the
+written inequalities rather than replacing them.
+
+\paragraph{Remaining route.}
+The obstruction is square and small: three poles and three queries,
+with exactly shared magnitudes. A rectangular pool with additional
+slots, a carefully controlled alphabet of magnitude changes, or a
+different decoder can escape its hypotheses. No asymptotic capacity
+claim follows from the finite count or from this theorem alone.
+\end{document}
