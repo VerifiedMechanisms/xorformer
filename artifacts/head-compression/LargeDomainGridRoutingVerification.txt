@@ -1,0 +1,14 @@
+Verification run 2026-11-24 19:29 UTC on ar/027ac8030b43.
+
+Command: cd formalization && lake build HeadComplexity.Results.LargeDomainGridRouting
+Result: Build completed successfully (3137 jobs).
+
+Command: lake env lean /tmp/LargeDomainGridRoutingAxioms.lean
+The file imports HeadComplexity.Results.LargeDomainGridRouting and prints both declarations.
+
+'HeadComplexity.LargeDomain.exists_interval_sign_injection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.exists_grid_sign_injection' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+The unpadded combinatorial injection is kernel checked. The padded variant and
+analytic stability estimate are written proofs. No source-localizing attention
+realization or improved unconditional W(n) estimate is claimed.

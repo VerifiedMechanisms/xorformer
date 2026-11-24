@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,hyperref}
+\begin{document}
+\section*{An exact grid catalog for independent orthant assignments}
+
+\paragraph{Kernel-checked combinatorial theorem.}
+For all integers $m,a\geq0$, put
+$U=\{\tfrac12,\tfrac32,\ldots,m-\tfrac12\}^a$ and
+$V=\{0,1,\ldots,m\}^a$.
+For every arbitrary function $\sigma:U\to\{-1,1\}^a$ there is an injection
+$\pi:U\hookrightarrow V$ such that
+\[
+ \sigma(u)_i\bigl(\pi(u)_i-u_i\bigr)\geq\tfrac12
+ \quad\text{for every }u\in U\text{ and }1\leq i\leq a.
+\]
+The Lean declaration is
+\texttt{HeadComplexity.LargeDomain.exists\_grid\_sign\_injection} in
+\texttt{formalization/HeadComplexity/Results/LargeDomainGridRouting.lean}.
+Its natural-number formulation gives exactly the displayed strict signs.
+The same fixed $U,V$ work for every column of any independently labeled family;
+only its injection changes. No assumption about the frequency of the words is
+made. The catalog/source ratio is $(1+1/m)^a$ for $m>0$.
+
+\paragraph{Proof.}
+First consider one coordinate. Let $N$ be the number of negative prescriptions.
+Send the negative source positions, in increasing order, to $0,\ldots,N-1$.
+Send the positive source positions, in increasing order, to $N+1,\ldots,m$.
+The first map sends each position $t+\tfrac12$ strictly to its left, and the
+second strictly to its right. Their images are disjoint, with $N$ unused.
+
+Induct on $a$. For each fixed suffix of a source point, perform this
+one-coordinate injection. In any resulting first-coordinate slice there is
+at most one source with a given suffix. Extend the remaining sign prescriptions
+arbitrarily to the missing suffixes, and use the induction hypothesis in that
+slice. Equal complete outputs have equal first coordinates, then equal suffixes
+by the inductive injection, and finally equal original first coordinates by
+the one-dimensional injection. This proves injectivity and all coordinate signs.
+
+\paragraph{A robust variant, currently written proof.}
+For an integer $r\geq0$, enlarge the catalog in each coordinate to
+$\{-r,-r+1,\ldots,m+r\}$. Send the negatives to the lowest available integers
+and the positives to the highest available integers in the same construction.
+Every signed displacement then has magnitude at least $r+\tfrac12$ and absolute
+value at most $m+r+\tfrac12$. The induction is unchanged. The head/source ratio
+would be
+\[
+ \frac{H}{G}=\left(1+\frac{2r+1}{m}\right)^a,
+ \qquad G=m^a.
+\]
+Taking $r$ comparable to $m/a$ and $m\gg a$ gives constant overhead and a
+normalized margin of order $1/a$.
+
+\paragraph{The missing admissible feature lemma.}
+This is a routing theorem for an ideal source selector, not yet an attention
+construction. In the ideal score, query $(u,i)$ reads only
+$D_{u,i}=\pi(u)_i-u_i$. Suppose an admissible shared bank instead produces
+$\sum_h K_{u,h}D_{h,i}$, with inactive dummy heads assigned zero amplitudes.
+A sufficient stability condition is
+\[
+ (m+r+\tfrac12)\max_u\sum_h|K_{u,h}-\delta_{u,h}|
+ <r+\tfrac12.
+\]
+Indeed the left side bounds the error in every query, uniformly over every
+independently chosen labeling. With the padded catalog this only requires a
+row absolute-sum error of order $1/a$.
+
+Raw positive exterior Cauchy columns cannot provide such source localization;
+\texttt{LargeDomainCauchyLocalization.lean} quantifies the obstruction. A
+successful construction must realize a suitable signed feature mixture or
+preconditioned catalog with only $O(G)$ admissible heads, while preserving the
+zero-column axis and whole-cube denominator positivity. Applying a dense inverse
+Cauchy matrix to the catalog does not by itself solve this: that linear map does
+not commute with the column-dependent catalog permutations. This is the first
+unproved analytic realization step. Neither a bound for the original worst-case
+head complexity nor an unbounded asymptotic saving follows from the routing
+lemma alone.
+\end{document}
