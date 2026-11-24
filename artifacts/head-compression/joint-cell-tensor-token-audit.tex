@@ -207,4 +207,83 @@ point. Its target is to realize roughly $a\gg H\log n$ independently
 specified bits per point and column, while charging the line part,
 partial diagonals, both axes, and all earlier signs.
 
+\section{Additive residues and the admissible exterior gap}
+
+An additive residue tensor
+\[
+ \eta_b(\alpha)=\eta_{b,0}+\sum_l\eta_{b,l}(\alpha_l)
+\]
+does give an affine numerator on generic row states. Its scalar decoder
+is a sum of $q^c$ reciprocals, but lies in a residue space of dimension
+$1+c(q-1)$. A dimension-only Chebyshev claim for this space on the whole
+positive exterior half-line is false. The exact rational certificate
+\texttt{joint-cell-additive-residue-certificate.json}, verified by
+\texttt{JointCellAdditiveResidueCertificate.py}, uses two pole blocks
+\[
+ \{0,1,139\},\qquad\{0,23,20737\}.
+\]
+It gives an additive residue tensor whose reciprocal sum takes six
+strictly alternating signs at six rational points in an interval of
+length $5$ centered near $220.6196884$. The five-dimensional derivative
+Wronskian has opposite signs at $200$ and $250$. These are exact finite
+rational computations. They are not Lean declarations and do not
+establish an admissible decoder or an asymptotic gain.
+
+The whole-cube slope budget prevents this particular example from being
+used directly. In one plane, fix a memory point $g$, write the slope
+poles as $0=p_0\leq p_1\leq\cdots\leq p_{q-1}=M$, and consider only
+generic row states whose first coordinate differs from that of $g$.
+Each slope occurs at $q-1$ such states. Give these coordinates denominator
+slopes $p_\alpha-M$. The other $q$ states can have slopes tending to zero
+from below because the generic numerator is required to vanish there.
+On a one-hot generic target the base $d+M$ then gives denominator
+$d+p_\alpha$. The infimum full-cube margin needed by this extension is
+\[
+ d>\bigl(q(q-1)-1\bigr)M-(q-1)\sum_\alpha p_\alpha.
+\]
+The contributions add over tensor blocks, before charging column tokens,
+bit slopes, and strict negative fillers. For $q=3$ and poles $0,A,B$ the
+contribution is $3B-2A$. The certificate therefore requires a gap above
+$62580$, far larger than its sample gaps. For $q=2$ the contribution is
+zero, so this particular margin argument does not exclude small-gap
+binary-plane kernels. It still leaves every other compiler cost to be
+charged.
+
+\section{The binary-plane product-selector equation}
+
+For $q=2$, let $\Delta_w f(d)=f(d-w)-f(d)$. At a fixed memory point in
+one plane, the query point has four possible states: the point itself,
+its vertical mate, and two generic states with the two defined slopes.
+Give the generic states weights $w_0,w_1$, the vertical state weight zero,
+and the matching state weight $w_0+w_1$. The full-block reciprocal filter
+then uses $\Delta_{w_\alpha}$ at a generic state and
+$\Delta_{w_0+w_1}$ at a matching state. The line sum instead uses
+$\Delta_{w_0}+\Delta_{w_1}$ at a matching state. The exact identity is
+\[
+ \Delta_{w_0+w_1}
+ =\Delta_{w_0}+\Delta_{w_1}+\Delta_{w_0}\Delta_{w_1}.
+\]
+Across $c$ blocks, the difference between the product filter and line sum
+therefore has one term for every nonempty subset of matching coordinates.
+Only the term matching all coordinates is a diagonal decoder. Direct
+termwise cancellation retains $2^c-2$ proper partial-diagonal families,
+each with independently chosen point memories. No saving follows from
+this identity alone. Solving the full interacting residual jointly is
+not ruled out.
+
+A different attempted selector jet starts with a row-dependent generic
+denominator $D_g(x)-t_g(j)$ and perturbs it by
+$-\varepsilon\sum_l h_{g,l}(x)$. Its top mixed coefficient is a product
+of the selectors divided by $(D_g(x)-t_g(j))^{c+1}$. However, every lower
+coefficient still has the row-dependent denominator. The shared
+lower-degree monomial correction theorem does not cover these terms.
+Making the original pole variation infinitesimal as well yields a common
+denominator, but collapses the desired many-pole scalar decoder at the
+same leading order. This is the first missing lemma for that proposal.
+
+Finally, the earlier proper-block-face repair has size $5^c-4^c$ when
+$q=2$, compared with $M=4^c$ tensor points. Its ratio $(5/4)^c-1$ is
+unbounded. A growing binary tensor family consequently needs a new face
+repair as well as a decoder and partial-diagonal treatment.
+
 \end{document}
