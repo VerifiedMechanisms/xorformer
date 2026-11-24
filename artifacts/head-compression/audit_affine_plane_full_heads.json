@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-24",
+  "arithmetic": "exact rational",
+  "exhaustive_case": {
+    "field_order": 2,
+    "rows": 4,
+    "columns": 2,
+    "truth_tables": 256,
+    "raw_heads_per_table": 9,
+    "axis_repaired_heads_per_table": 30
+  },
+  "additional_cases": {
+    "field_order": 4,
+    "dimensions": [[0, 0], [0, 2], [2, 0], [1, 1], [3, 2], [5, 3]],
+    "tables_per_dimension": 3,
+    "labels": "all zero, all one, seeded random",
+    "row_embedding": "seeded arbitrary restriction of point/bit pairs"
+  },
+  "counts": {
+    "tables": 274,
+    "grid_checks": 4228,
+    "axis_checks": 5324,
+    "full_cube_denominator_checks": 760881,
+    "reversed_atom_checks": 583626
+  },
+  "status": "passed"
+}
