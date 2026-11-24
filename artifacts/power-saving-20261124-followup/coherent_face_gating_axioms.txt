@@ -1,0 +1,6 @@
+'HeadComplexity.CoherentFaceGating.exists_atom_negativeFace_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentFaceGating.uniformlyOneAtomApproximable_negativeFace_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

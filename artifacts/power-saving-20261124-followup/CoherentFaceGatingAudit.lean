@@ -1,0 +1,4 @@
+import HeadComplexity.Research.CoherentFaceGating
+
+#print axioms HeadComplexity.CoherentFaceGating.exists_atom_negativeFace_ratio
+#print axioms HeadComplexity.CoherentFaceGating.uniformlyOneAtomApproximable_negativeFace_ratio
