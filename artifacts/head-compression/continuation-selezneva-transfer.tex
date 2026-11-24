@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Auditing the Product Expansion in Selezneva's Construction}
+\author{}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The real product decomposition below is a complete written theorem, not a
+new attention bound. The literature construction was inspected in full,
+rather than inferred from its gate count. Its remaining transfer step
+is identified explicitly. The original attention definitions are unchanged.
+
+\paragraph{Sources inspected.}
+S. N. Selezneva, ``Order of the length of Boolean functions in the class of
+exclusive-OR sums of pseudoproducts'', Moscow University Computational
+Mathematics and Cybernetics 40 (2016), 121--125,
+\href{https://doi.org/10.3103/S0278641916030043}{doi:10.3103/S0278641916030043}.
+The complete construction appears as Theorem 13.3, pages 154--155, in
+Igor Sergeev, \emph{Etudes on the methods of designing efficient circuits},
+\href{https://igorssergeev.github.io/papers/S-book_eng_280525.pdf}{author's book}.
+The immediately preceding Lemma 13.2 and Corollary 13.1 give the
+asymmetric hemisphere and quadrant covers used below. The circuit
+operations in the original result are over the field with two elements.
+In particular its input cube of monomial exponents must not be confused
+with a partition of the actual input vertices.
+
+\section*{A real version of the triangular elimination}
+For positive integers $r,s$ let $x\in\{0,1\}^r$ and
+$y\in\{0,1\}^s$. Identify a subset with its incidence vector and write
+$x^A=\prod_{i\in A}x_i$. For centers $A\subseteq[r]$, $B\subseteq[s]$
+define an exponent quadrant
+\[
+ Q(A,B)=\{(A\setminus\{i\},B\cup\{j\}):i\in A,\ j\notin B\}.
+\]
+Its covered exponents always belong to
+$\mathcal E=\{(S,T):S\ne[r],\ T\ne\varnothing\}$.
+Choose a family $\mathcal C$ of centers covering $\mathcal E$.
+Order its centers by decreasing $|A|+|B|$, and break ties by
+decreasing $|A|$. No particular ordering among the remaining ties is needed.
+
+\begin{theorem}[Exact real product decomposition]
+Every real function on the $(r+s)$-cube is the restriction of a sum of
+at most
+\[
+ 2|\mathcal C|+2^r+2^s
+\]
+scalar multiples of products of affine real forms. In each non-boundary
+summand the factors have the more specific form
+$y_j$ and $x_i+g_i(y)$, where $g_i$ is linear and uses only coordinates
+outside the corresponding set $B$.
+Consequently there is such a representation with $O(2^n/n^2)$ products
+when $r=\lfloor n/2\rfloor$ and $s=n-r$.
+\end{theorem}
+\begin{proof}
+Use the unique multilinear polynomial representing the given function.
+First set aside its monomials outside $\mathcal E$. There are at most
+$2^r+2^s$ such monomials, each already a product of affine forms.
+Maintain a remainder supported on the part of $\mathcal E$ not yet
+processed. At a center $(A,B)$ write its current coefficients on the
+quadrant as $c_{ij}$, using zero for any exponent already removed, and set
+\[
+ g_i(y)=\sum_{j\notin B}c_{ij}y_j,
+ \qquad
+ E_{A,B}(x,y)=y^B\left(\prod_{i\in A}(x_i+g_i(y))-x^A\right).
+ \tag{1}
+\]
+Expand the product. Terms choosing exactly one $g_i$ are precisely
+\[
+ \sum_{i\in A,\ j\notin B}c_{ij}x^{A\setminus\{i\}}y^{B\cup\{j\}},
+ \tag{2}
+\]
+so subtracting (1) removes the desired quadrant coefficients. Every
+remaining term chooses $k\ge2$ of the $g_i$. After replacing powers
+$y_j^a$ with $y_j$ for $a\ge1$, its exponent $(S,T)$ satisfies
+\[
+ |S|=|A|-k\le |A|-2,\qquad
+ |S|+|T|\le |A|+|B|,
+ \qquad S\ne[r],\quad T\ne\varnothing.
+ \tag{3}
+\]
+If this exponent belongs to another quadrant $Q(A',B')$, then
+$|A'|=|S|+1$ and $|A'|+|B'|=|S|+|T|$. Thus its center occurs strictly
+later in the stated order: either its total weight is smaller, or its
+total weight is equal and $|A'|\le |A|-1$. No earlier removed coefficient
+is changed. The maintained remainder condition follows by induction.
+Once all covering centers have been processed the remainder is zero.
+Each (1) is a difference of two products, proving the finite bound.
+
+For the asymptotic assertion, the positive-hemisphere cover of the
+$d$-cube excluding its zero vertex has $O(2^d/d)$ centers, as proved
+in the cited Lemma 13.2. Complementation gives the negative-hemisphere
+cover excluding the all-one vertex. Taking their Cartesian product
+gives $|\mathcal C|=O(2^{r+s}/(rs))$. For balanced $r,s$, the two boundary
+terms are $o(2^n/n^2)$, and $rs$ has order $n^2$.
+\end{proof}
+
+\section*{The actual cost of an exact ratio transfer}
+The theorem packs an arbitrary matrix of real coefficients into a
+product, which itself contains a linear number of independently
+parameterized factors. It does not pack that matrix into one affine ratio.
+This distinction has an exact parameter obstruction.
+
+\begin{proposition}[Exact conversion of one product needs linearly many heads]
+Let $r,s\ge1$ and put $n=r+s$. For matrices $c\in\mathbb R^{r\times s}$
+consider
+\[
+ P_c(x,y)=\prod_{i=1}^r\left(x_i+\sum_{j=1}^s c_{ij}y_j\right)-x^{[r]}.
+ \tag{4}
+\]
+If every $P_c$ has an exact representation on the Boolean cube by a
+bias plus $H$ affine ratios with nonzero denominators, then
+\[
+ rs\le 1+2nH.
+ \tag{5}
+\]
+This holds even without the attention denominator restrictions. In
+particular a uniformly exact conversion of these balanced products
+cannot use $o(n)$ heads.
+\end{proposition}
+\begin{proof}
+The coefficient of $x^{[r]\setminus\{i\}}y_j$ in the unique multilinear
+representative of (4) is exactly $c_{ij}$. Indeed the first-order terms
+in the expansion give these coefficients, and terms selecting two or
+more linear factors have strictly smaller $x$-degree.
+Multilinear coefficients are fixed linear combinations of cube values.
+
+Normalize each affine denominator to have constant term one. This is
+permitted because the denominator is nonzero at the zero vertex.
+Subtract each numerator's constant multiple of its denominator and
+absorb it in the common bias. The score then has the form
+\[
+ b+\sum_{h=1}^H\frac{\sum_{i=1}^n u_{hi}z_i}
+                            {1+\sum_{i=1}^n v_{hi}z_i},
+ \tag{6}
+\]
+with $1+2nH$ real parameters. Evaluating (6) on cube vertices and
+extracting the stated $rs$ coefficients gives a rational map in these
+parameters. If $rs>1+2nH$, its coordinate rational functions are
+algebraically dependent: after putting them over a common polynomial
+denominator, compare the $\binom{rs+k}{rs}$ monomials of total degree
+at most $k$ in the outputs with the $O(k^{1+2nH})$ possible monomials
+in the parameters. For sufficiently large $k$ there is a nontrivial
+linear dependence, giving a nonzero polynomial vanishing on the
+rational image. Such a polynomial cannot vanish on all of
+$\mathbb R^{rs}$. Exact conversion of every $P_c$ would make this map
+surjective, a contradiction. This proves (5).
+\end{proof}
+
+\section*{What a sign transfer would still have to prove}
+The preceding obstruction does not apply to signs. For example, if
+$|c_{ij}|<1/2$, then at the actual cube points
+$x=\boldsymbol1-e_i$, $y=e_j$, formula (4) gives
+\[
+ P_c(\boldsymbol1-e_i,e_j)
+     =c_{ij}\prod_{k\ne i}(1+c_{kj}).
+ \tag{7}
+\]
+All factors in the product on the right are positive. Arbitrary
+$r\times s$ signs are therefore already present in one of the products
+which would need to be compiled. This is only a test on a mixed
+co-one-hot and one-hot grid. It is not a global construction.
+
+Two separate unproved steps would be needed to turn (1) into the desired
+attention bound. First, one would need a sublinear-cost conversion that
+preserves appropriate signed values under the eventual sum, with every
+denominator positive on the entire cube and all its nonzero slopes of
+one strict sign. A sign test for each individual product does not
+preserve signs of a sum of products. Second, any errors must respect
+the triangular elimination despite the arbitrarily large and cancelling
+real coefficients introduced by earlier steps. Neither follows from
+the algebraic expansion. A theorem supplying both steps would itself
+be a new universal compression mechanism. Without it, this route is
+blocked at the conversion step, not close to an upper-bound proof.
+
+\end{document}
