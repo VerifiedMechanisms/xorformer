@@ -63,3 +63,9 @@ The corrections in $E_2$ and $E_3$ affect coefficients with repeated group indic
 ## Head-count consequence
 
 If a separate quantitative argument proves that some finite $f_m$ has vanilla head complexity at least four, the pure upper construction above has exactly three heads. A two-head pure realization would imply a two-head vanilla realization by `vanillaComputable_two_of_pureRoPE`, a contradiction. The formal conditional statement is `ThreeHeadReplication.exact_three_of_upper_and_vanilla_lower`.
+
+## Formal pure upper family
+
+`PureRoPEReplication.replicatedAtom_eval` proves the exact mean-coordinate score identity for arbitrary positive replication count. `base_mass` and `base_sum` verify the fourteen-coordinate rational parameters. `pureRoPEComputable_three` gives the three-head upper bound for every real readout bias.
+
+The declarations `explicitFunction_pure_three` and `explicitFunction_full_cube_sign` instantiate the count $m=2^{400000}$ and the negative rational bias used in the main separation note. The Lean function is defined by the biased score, and its full-cube theorem identifies it with the corresponding cleared cubic. Equality with the unshifted classifier $[F\gt0]$ uses the integer-lattice margin argument in the main note; that tie-removal argument is not included in this Lean module. No lower bound for this explicit replicated function is asserted by the upper-bound module.
