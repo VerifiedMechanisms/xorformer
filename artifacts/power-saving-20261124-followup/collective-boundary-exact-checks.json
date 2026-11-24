@@ -1,0 +1,2867 @@
+{
+  "status": "exact finite rational computation, not Lean proof",
+  "rounding_denominator": 10000000000,
+  "reports": [
+    {
+      "input": "artifacts/power-saving-20261124-followup/collective-boundary-margin-n5-h2.json",
+      "verified": 40,
+      "unresolved_numerical_indices": [],
+      "checks": [
+        {
+          "index": 0,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 998981,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 998199,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 187481,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 187481,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332552,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332552,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332701,
+            "active_boundary_slopes": [
+              4,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331376,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499559,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499557,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332877,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332289,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499083,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498795,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332556,
+            "active_boundary_slopes": [
+              4,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331890,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 173133,
+            "active_boundary_slopes": [
+              4,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 173133,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249039,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249039,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 497428,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 497428,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 998989,
+            "active_boundary_slopes": [
+              3,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 996995,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199999,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199999,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249999,
+            "active_boundary_slopes": [
+              1,
+              1
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249003,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 14,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332954,
+            "active_boundary_slopes": [
+              4,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332107,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 15,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499387,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499136,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 16,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 978255,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 977441,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 17,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 428448,
+            "active_boundary_slopes": [
+              3,
+              1
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 427737,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 18,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 194778,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 194674,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 19,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499777,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499777,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 20,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499500,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499251,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 21,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 330961,
+            "active_boundary_slopes": [
+              4,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 330418,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 22,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332322,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332422,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 23,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 497808,
+            "active_boundary_slopes": [
+              4,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 497807,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 24,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332774,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332774,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 25,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199362,
+            "active_boundary_slopes": [
+              4,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199244,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 26,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332445,
+            "active_boundary_slopes": [
+              3,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332556,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 27,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 493444,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 493445,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 28,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 436684,
+            "active_boundary_slopes": [
+              4,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 436916,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 29,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 323558,
+            "active_boundary_slopes": [
+              4,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 323558,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 30,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332216,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331689,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 31,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331224,
+            "active_boundary_slopes": [
+              5,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 330561,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 32,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 326054,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 326054,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 33,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332717,
+            "active_boundary_slopes": [
+              5,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332189,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 34,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 399476,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 399099,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 35,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332845,
+            "active_boundary_slopes": [
+              2,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331739,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 36,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 198172,
+            "active_boundary_slopes": [
+              3,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 198171,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 37,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 294790,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 294790,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 38,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 372747,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 372628,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 39,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499756,
+            "active_boundary_slopes": [
+              1,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498521,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "input": "artifacts/power-saving-20261124-followup/collective-boundary-margin-n6-h4.json",
+      "verified": 24,
+      "unresolved_numerical_indices": [],
+      "checks": [
+        {
+          "index": 0,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 14843,
+            "active_boundary_slopes": [
+              5,
+              5,
+              5,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 14843,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 29923,
+            "active_boundary_slopes": [
+              4,
+              5,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 29712,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 46243,
+            "active_boundary_slopes": [
+              6,
+              5,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 45948,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 21928,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 21945,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 59229,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 59229,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 42212,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 42212,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 53263,
+            "active_boundary_slopes": [
+              4,
+              6,
+              5,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 53285,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 17562,
+            "active_boundary_slopes": [
+              4,
+              5,
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 17312,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 37378,
+            "active_boundary_slopes": [
+              3,
+              6,
+              4,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 37398,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 26586,
+            "active_boundary_slopes": [
+              4,
+              3,
+              4,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 26422,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 40238,
+            "active_boundary_slopes": [
+              3,
+              6,
+              3,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 40238,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 46818,
+            "active_boundary_slopes": [
+              6,
+              6,
+              5,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 46818,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 8237,
+            "active_boundary_slopes": [
+              2,
+              5,
+              5,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 8072,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 31737,
+            "active_boundary_slopes": [
+              5,
+              6,
+              5,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 31737,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 14,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 51558,
+            "active_boundary_slopes": [
+              5,
+              4,
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 51468,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 15,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 15760,
+            "active_boundary_slopes": [
+              5,
+              6,
+              5,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 15760,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 16,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 33042,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 33042,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 17,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 43361,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 43361,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 18,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 26182,
+            "active_boundary_slopes": [
+              4,
+              3,
+              4,
+              4
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 26182,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 19,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 37362,
+            "active_boundary_slopes": [
+              6,
+              5,
+              6,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 37361,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 20,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 31014,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 31014,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 21,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 16589,
+            "active_boundary_slopes": [
+              6,
+              4,
+              5,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 16589,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 22,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 14232,
+            "active_boundary_slopes": [
+              6,
+              6,
+              5,
+              5
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 14232,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 23,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 27714,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 27714,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "input": "artifacts/power-saving-20261124-followup/collective-boundary-forced2-n5-h2.json",
+      "verified": 40,
+      "unresolved_numerical_indices": [],
+      "checks": [
+        {
+          "index": 0,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 998565,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 997497,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199861,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199697,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332946,
+            "active_boundary_slopes": [
+              1,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332335,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332997,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331681,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499999,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499001,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 206864,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 206586,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499893,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499786,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332280,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332221,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 157295,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 157026,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 211410,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 211410,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498491,
+            "active_boundary_slopes": [
+              2,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498119,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 999001,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 997008,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199999,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199999,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249687,
+            "active_boundary_slopes": [
+              1,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 248940,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 14,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 333255,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332896,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 15,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499555,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498354,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 16,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 989358,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 988606,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 17,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 428265,
+            "active_boundary_slopes": [
+              3,
+              1
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 427695,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 18,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 201490,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 201499,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 19,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 289175,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 289227,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 20,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499999,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498753,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 21,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332252,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331918,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 22,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331836,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 331946,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 23,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498477,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498436,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 24,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332445,
+            "active_boundary_slopes": [
+              2,
+              1
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332556,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 25,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199015,
+            "active_boundary_slopes": [
+              2,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 199018,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 26,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332445,
+            "active_boundary_slopes": [
+              3,
+              1
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332556,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 27,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249751,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249441,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 28,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 425638,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 425638,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 29,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 271408,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 271171,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 30,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332751,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332274,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 31,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 246850,
+            "active_boundary_slopes": [
+              2,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 246708,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 32,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 328921,
+            "active_boundary_slopes": [
+              3,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 328903,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 33,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332483,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332180,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 34,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332721,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332108,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 35,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332485,
+            "active_boundary_slopes": [
+              2,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332432,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 36,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 198483,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 198421,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 37,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249682,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 249478,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 38,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332445,
+            "active_boundary_slopes": [
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 332575,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        },
+        {
+          "index": 39,
+          "boundary": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 499999,
+            "active_boundary_slopes": [
+              2,
+              1
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 32,
+            "head_count": 2,
+            "margin_lower_millionths": 498753,
+            "active_boundary_slopes": [
+              5,
+              5
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "input": "artifacts/power-saving-20261124-followup/collective-boundary-forced3-n6-h4.json",
+      "verified": 22,
+      "unresolved_numerical_indices": [
+        7,
+        21
+      ],
+      "checks": [
+        {
+          "index": 0,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 3570,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 3570,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 11889,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 11889,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 35065,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 34499,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 404,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 404,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 27408,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 27563,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 33325,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 33325,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 48724,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 48723,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 31850,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 31591,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 8721,
+            "active_boundary_slopes": [
+              2,
+              3,
+              3,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 8584,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 36409,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 36325,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 34270,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 34280,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 1100,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 1100,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 22711,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 22527,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 14,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 40567,
+            "active_boundary_slopes": [
+              3,
+              2,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 40568,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 15,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 6813,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 6813,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 16,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 30985,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 30985,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 17,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 10376,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              2
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 10567,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 18,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 23659,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 23659,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 19,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 3453,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 3453,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 20,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 22755,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 22755,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 22,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 1200,
+            "active_boundary_slopes": [
+              3,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 1200,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        },
+        {
+          "index": 23,
+          "boundary": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 15525,
+            "active_boundary_slopes": [
+              2,
+              3,
+              3,
+              3
+            ]
+          },
+          "genuine_positive_slopes": {
+            "strict_rows": 64,
+            "head_count": 4,
+            "margin_lower_millionths": 15556,
+            "active_boundary_slopes": [
+              6,
+              6,
+              6,
+              6
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
