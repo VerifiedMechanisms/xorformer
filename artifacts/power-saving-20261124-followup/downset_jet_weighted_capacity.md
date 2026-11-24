@@ -54,6 +54,28 @@ $$ \prod_{\alpha\neq0}\omega(\alpha)(1-\omega(\alpha))\geq\prod_{\alpha\neq0}\fr
 
 The empty product covers $q=1$. $\blacksquare$
 
+### Product bound for the explicit kernel-checked grading
+
+The explicit grading $\widetilde\omega$ also has a sufficient product bound, by the following written argument. For $\alpha\in T$, let $L_i(\alpha)$ be the maximum value of coordinate $i$ in the fiber obtained by holding all other coordinates equal to those of $\alpha$. Define
+
+$$ R_\alpha=\max_i\frac{L_i(\alpha)+1}{\alpha_i+1}. $$
+
+Every extension $\gamma\geq\alpha$ in $T$ satisfies $\gamma_i\leq L_i(\alpha)$, by downward closure in the other coordinates. Hence, for nonzero $\alpha$,
+
+$$ \frac{h(\alpha)}{|\alpha|}\leq(r+1)R_\alpha. $$
+
+Indeed, $h(\alpha)+r\leq\sum_i(L_i(\alpha)+1)\leq R_\alpha(|\alpha|+r)$ and $(|\alpha|+r)/|\alpha|\leq r+1$.
+
+For each coordinate and each $t\gt0$, a fiber of length $L+1$ contains at most $(L+1)/t$ indices with $(L+1)/(\alpha_i+1)\gt t$. Summing fibers and taking a union over coordinates gives $|\lbrace\alpha:R_\alpha\gt t\rbrace|\leq rq/t$. Therefore the $j$-th largest value of $R_\alpha$ is at most $rq/j$, by taking $t$ up to that value from below. Consequently
+
+$$ \prod_{\alpha\in T}R_\alpha\leq\frac{(rq)^q}{q!}\leq(er)^q. $$
+
+Since $R_\alpha\geq1$, $\widetilde\omega(\alpha)=|\alpha|/(2h(\alpha))$, and $1-\widetilde\omega(\alpha)\geq1/2$, this proves
+
+$$ \prod_{\alpha\neq0}\widetilde\omega(\alpha)(1-\widetilde\omega(\alpha))\geq[4er(r+1)]^{-q}. $$
+
+This weaker product bound is still polynomial in the ambient dimension per parameter and therefore gives the same two asymptotic capacity consequences below. The product argument in this subsection remains written; the positivity, upper bound, and superadditivity of this exact grading are the kernel-checked declarations cited above.
+
 ## Reciprocal jets over downsets
 
 Put $N=2^n$ and $d=n+1$. Fix downsets $T_1,\ldots,T_G\subseteq\mathbb N^r$, with positive sizes $q_g=|T_g|$ and total size $K=\sum_gq_g$. At cluster $g$, choose arbitrary real affine forms $B_{g,\alpha}$ and $L_{g,\alpha}$ for $\alpha\in T_g$, requiring only $B_{g,0}(x)\gt0$ at every Boolean vertex.
