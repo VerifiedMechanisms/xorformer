@@ -21,6 +21,17 @@ import HeadComplexity.Results.ThreeHeadEmbeddedPattern
 import HeadComplexity.Results.FourHeadQuarticPattern
 import HeadComplexity.Polynomial.ThreeHeadReplication
 import HeadComplexity.Results.PureRoPEReplication
+import HeadComplexity.Results.PureRoPEReplicationStrict
+import HeadComplexity.Results.ThreeFractionsSevenHeads
+import HeadComplexity.Results.PureRoPEReplicationBounds
+import HeadComplexity.Polynomial.MeanGridCubic
+import HeadComplexity.Polynomial.GenericCubicHessianPullback
+import HeadComplexity.Polynomial.SymmetricCubicRecovery
+import HeadComplexity.Polynomial.HyperplaneHessianRank
+import HeadComplexity.Polynomial.PureCubicGraph
+import HeadComplexity.Polynomial.CubeTopCoefficients
+import HeadComplexity.Polynomial.ExplicitCubicRawObstruction
+import HeadComplexity.Polynomial.FiniteGridPole
 
 set_option linter.style.header false
 
@@ -188,5 +199,71 @@ alias theorem22_explicit_pure_upper := PureRoPEReplication.explicitFunction_pure
 /-- **Theorem 22, algebraic component only.** Exact signs of the biased cleared
 polynomial on the entire cube. This does not assert a vanilla lower bound. -/
 alias theorem22_explicit_cleared_sign := PureRoPEReplication.explicitFunction_full_cube_sign
+
+/-- **Theorem 22, exact formula component.** The unshifted integer-cubic
+classifier has three pure heads, including a certified rational tie removal. -/
+alias theorem22_explicit_unshifted_upper :=
+  PureRoPEReplicationStrict.explicitUnshiftedFunction_pure_three
+
+/-- **Theorem 22, all-input component.** A positive rational score margin
+holds on the entire replicated Boolean cube. -/
+alias theorem22_explicit_strict_margin :=
+  PureRoPEReplicationStrict.explicitUnshiftedFunction_margin
+
+/-- **Theorem 22, asymmetry component.** The explicit classifier is not
+invariant under simultaneous complementation of every bit. -/
+alias theorem22_explicit_not_complement_invariant :=
+  PureRoPEReplicationStrict.explicitUnshiftedFunction_not_complement_invariant
+
+/-- **Theorem 22, vanilla upper-bound component.** Any three pure heads
+compile to seven heads in the original shared vanilla architecture. -/
+alias theorem22_vanilla_upper_compiler := vanilla_seven_of_pureRoPE_three
+
+/-- **Theorem 22, explicit vanilla upper bound.** The actual unshifted
+function has at most seven heads in the literal shared vanilla model. -/
+alias theorem22_explicit_vanilla_upper :=
+  PureRoPEReplicationBounds.explicit_sharedHStar_le_seven
+
+/-- **Theorem 22, averaging component.** Every untied cubic classifier
+averages to a degree-at-most-three polynomial in the group means. -/
+alias theorem22_untied_mean_polynomial := MeanGridCubic.cubic_mean_sign_exists
+
+/-- **Theorem 22, Hessian component.** Every three-pole cubic, with arbitrary
+linear forms and readout, has Hessian rank at most six. -/
+alias theorem22_cubic_hessian_rank :=
+  GenericCubicHessianPullback.hessian_rank_le_six_with_readout
+
+/-- **Theorem 22, generic Hessian component.** A nonzero six-row minor and
+three nonzero denominator evaluations force Hessian rank six. -/
+alias theorem22_generic_hessian_rank := GenericCubicHessianPullback.hessian_rank_eq_six
+
+/-- **Theorem 22, exact recovery component.** Low-rank symmetric cubic
+tensors with invertible disjoint cross blocks are determined by squarefree data. -/
+alias theorem22_squarefree_recovery := SymmetricCubicRecovery.eq_of_squarefree
+
+/-- **Theorem 22, rational chart component.** The displayed inverse is exact. -/
+alias theorem22_chart_inverse := PureCubicChart.chart_inverse_mul
+
+/-- **Theorem 22, chart size component.** Every inverse row has absolute
+sum less than the explicit power-of-two bound used in the proof. -/
+alias theorem22_chart_inverse_bound := PureCubicChart.inverse_row_bound
+
+/-- **Theorem 22, finite interpolation component.** Degree-nine polynomials
+vanishing on the full ten-point product grid are zero. -/
+alias theorem22_chart_grid_interpolation := PureCubicGraph.eq_zero_of_chartGrid
+
+/-- **Theorem 22, untied coefficient component.** The actual averaged
+polynomial has exactly the raw group-summed squarefree cubic coefficients. -/
+alias theorem22_untied_mean_coefficient := CubeTopCoefficients.meanPolynomial_cubic_coefficient
+
+/-- **Theorem 22, raw obstruction only.** The exact fourteen-variable cubic
+differs from every oriented three-pole cubic, including a readout term.
+The quantitative Boolean lower bound remains handwritten. -/
+alias theorem22_explicit_raw_obstruction :=
+  ExplicitCubicRawObstruction.cubic_ne_oriented_with_readout
+
+/-- **Theorem 22, finite pole selection.** Every normalized nonnegative
+denominator has a bounded kernel point uniformly avoiding the three target poles. -/
+alias theorem22_explicit_pole_point := FiniteGridPole.explicit_bounded_pole_point
 
 end HeadComplexity
