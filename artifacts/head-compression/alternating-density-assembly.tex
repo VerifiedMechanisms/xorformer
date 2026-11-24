@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\begin{document}
+\title{Alternating rectangles remove the density-batching loss}
+\author{}\date{}\maketitle
+
+\paragraph{Status.}
+The finite embedding, transposition, and one-batch lemmas are Lean checked
+in \texttt{Results/ReverseGridEmbedding.lean}. The complete iteration and
+asymptotic estimate below are written proofs, not yet Lean formalized.
+The density hypothesis is unproved at any growing logarithmic-saving
+rate. Consequently this note does not establish an unconditional upper
+bound improvement. It sharpens the precise construction that would suffice.
+All logarithms in the rate estimates are natural.
+
+\begin{lemma}[Embedding and one-time masking]
+Let a strict reverse grid module on an $a\times b$ grid use $H$ heads.
+It can be embedded into any specified $a\times b$ subrectangle of a
+larger $R\times S$ grid with the same $H$ heads, preserving all grid
+values in that rectangle and positivity on the entire larger cube.
+Given row multipliers in $\{-1,0,1\}$ and a column mask, there is then
+an axis-zero module of $12H+21$ heads with the multiplied grid values
+and exact zero grid values outside the selected rectangle.
+Every final denominator has strictly negative slopes.
+\end{lemma}
+\begin{proof}
+Extend each affine numerator and denominator by zero coefficients on
+the unused coordinates. Each denominator at an ambient cube vertex
+equals the old denominator on its restriction, so remains positive.
+The new slopes are nonpositive. For each head, choose a sufficiently
+small $\varepsilon>0$ and add
+$\varepsilon(2-\sum_k x_k)$ to its denominator. This retains positivity
+on the entire finite cube, makes every slope strictly negative, and
+changes no weight-two grid value.
+
+The checked row-multiplier construction costs $2H+2$ heads, with
+row coefficient zero outside the desired row set. The checked column
+multiplier costs $2(2H+2)+2=4H+6$ heads. The strict axis repair costs
+$3(4H+6)+3=12H+21$ and preserves every grid value exactly.
+Apply this procedure separately to each original batch. In particular,
+the factor $12$ is not repeatedly applied to an already assembled sum.
+
+These are the declarations
+\texttt{exists\_strict\_reverse\_grid\_embedding},
+\texttt{exists\_reverse\_axis\_grid\_patch}, and
+\texttt{exists\_half\_dense\_reverse\_rectangle\_batch}.
+The declaration \texttt{ReverseAxisData.transpose\_grid} checks the
+zero-cost transposition of both blocks, including both axis identities.
+\end{proof}
+
+\begin{theorem}[Balanced half-density suffices]
+Suppose there is a constant $C$ such that for every pair of positive
+integers $a,b$ with $a\leq b\leq2a+1$, there is a family
+$G_{a,b}\subseteq\{-1,1\}^a$ of size at least $2^{a-1}$ with the
+following joint property. Every $a\times b$ table whose columns belong
+to $G_{a,b}$ has a strict reverse grid realization of at most
+\[
+ C\left(1+\frac{a}{\log(a+2)}\right)
+\]
+heads, all denominators positive on the entire $(a+b)$-cube.
+Then every $r\times s$ sign table has a strict reverse axis-zero
+realization with
+\[
+ O_C\left(1+\frac{r+s}{\log(r+s+2)}\right)
+\]
+heads. In the unchanged HeadComplexity model, the audited balanced
+gluing reduction then gives $W(n)=O_C(2^n/(n\log n))$.
+\end{theorem}
+\begin{proof}
+First treat an $m\times m$ table. At a stage let its remaining rectangle
+have dimensions $a\leq b\leq2a+1$. For each column pattern $v$, a
+uniform row sign vector $d$ makes $d\cdot v$ uniform on the pattern
+cube. Therefore the expected number of columns outside $G_{a,b}$ is
+at most $b/2$. Some common $d$ sends at least $\lceil b/2\rceil$
+columns into the good family. Select exactly that many such columns.
+Fill all other columns with any one good pattern and apply the joint
+compiler. The embedding lemma multiplies the rows back by $d$ and
+masks precisely the selected columns, while setting every other
+ambient grid value to zero. It costs at most
+\[
+ 12C\left(1+\frac{a}{\log(a+2)}\right)+21.
+\]
+
+Remove these columns and transpose the remaining rectangle. Its new
+dimensions are $a'=\lfloor b/2\rfloor$, $b'=a$. If $a'=0$, the process
+stops. Otherwise $a'\leq b'\leq2a'+1$, so the same balanced hypothesis
+applies again. Every two stages halve both dimensions, with integer
+rounding downward. Each original grid point is handled in exactly one
+batch. All the other batches are exactly zero there. Thus the sum
+preserves every strict sign and both complete axis identities.
+
+The row sizes at successive stages are
+\[
+ m,\ \lfloor m/2\rfloor,\ \lfloor m/2\rfloor,
+ \ \lfloor m/4\rfloor,\ \lfloor m/4\rfloor,\ldots,
+\]
+until zero. Consequently the total head budget is at most
+\[
+ 2\sum_{k=0}^{\lfloor\log_2m\rfloor}
+ \left[12C\left(1+
+ \frac{m2^{-k}}{\log(m2^{-k}+2)}\right)+21\right].
+ \tag{1}
+\]
+The function $x/\log(x+2)$ is increasing for $x\geq0$, which justifies
+replacing integer row sizes by these upper bounds.
+
+For completeness the sum in (1) is $O_C(m/\log(m+2))$. For the indices
+with $m2^{-k}\geq\sqrt m$, the denominator is at least
+$\tfrac12\log m$, and their numerators sum to at most $2m$.
+The remaining numerators sum to at most $2\sqrt m$ and their
+denominators are at least $\log2$. The number of constant summands is
+$O(\log m)$. Both $\sqrt m$ and $\log m$ are
+$O(m/\log(m+2))$. The finitely many small $m$ are absorbed in the
+constant. This proves the square-grid bound.
+
+For an arbitrary $r\times s$ table, extend its labels arbitrarily to
+an $m\times m$ square with $m=\max(r,s)$. Restrict the resulting affine
+ratios to the original coordinates by setting the unused coordinates
+to zero. Positivity, strict negativity of every remaining slope, both
+axis identities, and the required grid signs are all preserved with
+no extra heads. Since $m\leq r+s$, the claimed local bound follows.
+
+Finally use the already audited cover and gluing theorem with
+$a=\lfloor n/2\rfloor$, $b=\lceil n/2\rceil$. It uses
+$O(2^n/n^2)$ local modules, each of cost $O_C(n/\log n)$, plus
+$O(2^{\lceil n/2\rceil})$ exceptional-face correction heads.
+The latter term is $O(2^n/(n\log n))$, proving the conditional global
+conclusion with the original atoms and original input dimension.
+\end{proof}
+
+\paragraph{Why the balanced qualification matters.}
+This argument needs a shared decoder and full-cube budget only for
+balanced rectangles. It does not require one fixed finite-scale decoder
+to accommodate arbitrarily many opposite-block coordinates. Thus a
+construction that works at a suitable size-dependent compact pole scale
+could suffice; an all-small-scale continuation theorem is not a premise.
+Separate realizability of each good column does not establish the joint
+hypothesis, and a large number of zero branches does not establish the
+required half-density.
+
+\paragraph{Relation to the earlier checked batching bound.}
+\texttt{ReverseDensityBatching.lean} keeps the query dimension fixed
+through all batches and obtains $t(12M+21)+3R+6$. Used directly with
+$M=O(m/\log m)$ and $t\asymp\log\log m$, that bound loses a
+$\log\log m$ factor. The alternating argument changes the query
+dimension after every batch and sums decreasing costs. No earlier
+theorem is contradicted or assumed stronger than its statement.
+\end{document}

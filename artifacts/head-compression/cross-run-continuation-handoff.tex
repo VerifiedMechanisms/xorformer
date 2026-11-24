@@ -270,4 +270,91 @@ conditioning repair. The branch \texttt{ar/f4615fbe7181}, read at
 and records further scoped first-variation and Laplace obstructions.
 Neither branch supplies the missing universal construction or matching
 lower bound used by this run.
+\paragraph{Checked and audited checkpoints after 06:10 UTC.}
+The other upper-bound branch was fetched again at 06:55 UTC and remains
+at \texttt{ad4b30e10e5a}. Publication to this run's branch remains
+blocked by the previously reported read-only credential.
+\begin{itemize}
+\item \texttt{e674c7e} formalizes the two-head orientation mechanism
+described above. In \texttt{TwoHeadOrientationTransfer.lean},
+\texttt{exists\_reverse\_atoms\_of\_two} starts from the original
+\texttt{fracComputable n 2 f} and returns three original atoms with
+strictly reverse orientation and all strict signs. The general finite
+two-ratio result is \texttt{exists\_reverse\_three}. The module was
+integrated into \texttt{Results/All.lean} in \texttt{d671ba2}; the
+aggregate build passed, and its axiom audit uses only the standard
+Lean foundations. This updates the earlier written-only status.
+There is no constant-cost transfer for a growing sum: transferring
+different pairs introduces different positive factors and can change
+the sign of their sum.
+\item \texttt{cdc6b73}, \texttt{local-histogram-zero-branches.tex},
+constructs many exact common-score branches. For fixed permutations
+$\rho_l$, pigeonhole the histograms of $\pi(h)+\rho_l(h)$ to obtain
+$H!2^{-3kH}$ permutations with common reciprocal sums
+\[
+ \sum_h\frac1{t-\epsilon(\pi(h)+\rho_l(h))}.
+\]
+Separate signed histograms give $H!2^{-5kH}$ branches. These are
+strictly admissible on balanced cubes for the explicit aggregate
+slope budget. Rank-$2H$ tangent images can differ, but branch count
+and distinct images do not prove density. Small exact examples
+include two rank-eight images covering all nine-dimensional orthants;
+there is no growing coverage theorem. Generic low-moment obstructions
+are only eventual small-scale statements for fixed parameters and
+do not settle size-dependent finite compact scales.
+\item \texttt{bddc491} proves generic zero-residue branch stability:
+if every maximal minor of the fixed baseline reciprocal matrix is
+nonzero, sufficiently small pole perturbations preserve its oriented
+matroid and hence exactly its strict sign family. Rank-deficient or
+scale-dependent baselines are outside this argument.
+\item \texttt{a0ba1f4}, \texttt{order-mixture-margin-bound.tex}, gives
+a complete written random-table argument. Some $r\times s$ table
+forces every signed weighted mixture of comparison orders, including
+its bias, to have relative margin less than
+\[
+ \sqrt{2(\log((r+s)!)+1)/(rs)}.
+\]
+Thus a universal inverse-polylogarithmic relative margin cannot be
+assumed to make a coarse per-vote reversal inexpensive. This is not
+a restriction on arbitrary rational heads.
+\item \texttt{62ea265}, \texttt{butterfly-auxiliary-switch-germ.tex},
+contains a strict positive sixteen-wire repair. Delete query
+$(k,s,g)=(3,3,0)$, index $27$, from the saved positive obstruction.
+Its original routing is still infeasible because the exact dual
+already omits that query. Flipping just the unused routing bit makes
+all $31$ remaining query scores and all $16$ residues strictly
+positive for every sufficiently small scale. The rational witness
+and all $47$ leading Laurent signs are independently checked at
+guarded precision $512$. This is one assignment, not universality.
+It establishes that auxiliary routing completion is stronger than
+merely deleting constraints at a fixed routing.
+\item \texttt{fd57333}, \texttt{underloaded-equal-weight-split.tex},
+proves a local adaptive split. Given a monic degree-$M$ real-rooted
+polynomial $P$ with compact distinct roots and $q\leq M$ exterior
+queries, choose $\deg R\leq q-1$ so that $(R/P)' has arbitrary signs.
+For small $\delta$, $P\pm\delta R$ have real compact roots and their
+unit-weight measures match moments through degree $M-q$. The
+Stieltjes difference is
+$2\delta(R'P-RP')/(P^2-\delta^2R^2)$.
+There are $1004$ exact finite checks. Compatible recursive splitting
+is not proved, and specific low-load schedules exhibit further
+coefficient rigidity.
+\end{itemize}
+
+\paragraph{Alternating density assembly.}
+\texttt{alternating-density-assembly.tex} gives a complete written
+improvement to the earlier density reduction. Half-dense joint decoders
+of cost $O(q/\log q)$ are needed only on balanced rectangles
+$q\leq p\leq2q+1$. Select exactly half the columns in each good batch,
+transpose the remaining rectangle, and repeat. For an $m\times m$
+table the successive query dimensions are
+$m,\lfloor m/2\rfloor,\lfloor m/2\rfloor,\ldots$.
+The decreasing costs sum to $O(m/\log m)$, with no $\log\log m$ loss.
+The new Lean module \texttt{ReverseGridEmbedding.lean} checks
+same-cost ambient embedding, zero-cost transposition, and exact
+one-time rectangular masking with $12H+21$ heads. The complete
+iteration and asymptotic summation are written only. No growing
+half-dense decoder is supplied. This refinement also shows why a
+suitable finite size-dependent pole scale could suffice: the decoder
+need not support arbitrarily many opposite-block coordinates.
 \end{document}
