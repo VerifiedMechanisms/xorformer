@@ -1,0 +1,6 @@
+import HeadComplexity.Results.JointFamilyLinearRepair
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_signed_jet_limit
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_signed_polynomial_limit
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_signed_polynomial_correction_preserves_signs
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_point_correction_preserves_signs
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_point_family_correction_preserves_signs

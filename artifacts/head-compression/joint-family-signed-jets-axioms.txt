@@ -1,0 +1,13 @@
+'HeadComplexity.AxisZeroGluing.jointFamily_signed_jet_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_signed_polynomial_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_signed_polynomial_correction_preserves_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_point_correction_preserves_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_point_family_correction_preserves_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

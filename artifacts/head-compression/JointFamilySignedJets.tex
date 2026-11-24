@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Shared polynomial jets in arbitrary signed row statistics}
+\maketitle
+
+\paragraph{Checked positive primitive.}
+A polynomial of degree at most $R$ in an arbitrary signed linear row
+statistic is a pointwise limit of a bank of $R+1$ admissible reverse
+cube--star heads. Each column may choose its polynomial independently.
+Every approximating denominator is positive throughout the full Boolean
+cube, every local slope is strictly negative, and the column axis is
+exactly zero. In particular, adding this polynomial correction to any
+prior numerical score preserves every specified strict sign for some
+finite admissible bank. This is kernel checked in
+\texttt{JointFamilySignedJets.lean}, principally
+\texttt{jointFamily\_signed\_polynomial\_limit} and
+\texttt{jointFamily\_signed\_polynomial\_correction\_preserves\_signs}.
+
+\paragraph{Exact formula and limit.}
+Let $V(x)=\sum_i v_i x_i$, with $v_i$ unrestricted. For $h=0,\ldots,R$, set
+\[
+ u_i=R|v_i|+1,\qquad w_{hi}=u_i+h v_i>0,
+ \qquad p_h(x)=U(x)+hV(x),\qquad U(x)=\sum_i u_i x_i.
+\]
+The weights $\lambda_{rh}$ are the coefficient of $X^r$ in the Lagrange
+basis polynomial of node $h$ among the nodes $0,\ldots,R$. Hence
+\[
+ \sum_h\lambda_{rh}p_h(x)^\ell=0\quad(\ell<r),
+ \qquad \sum_h\lambda_{rh}p_h(x)^r=V(x)^r.
+\]
+The exact Cauchy moment remainder gives
+\[
+ T^{r+1}\sum_h\frac{\lambda_{rh}}{T-p_h(x)}
+  =\sum_h\lambda_{rh}p_h(x)^r\frac{T}{T-p_h(x)}
+  \longrightarrow V(x)^r.
+\]
+For independent column polynomials $P_j$, all powers reuse the same bank:
+\[
+ a_{hj}(T)=\sum_{r=0}^R [X^r]P_j\,T^{r+1}\lambda_{rh}.
+\]
+On the whole row--column cube the actual numerator and denominator are
+\[
+ N_h(x,z)=\sum_j a_{hj}(T)z_j,\qquad
+ D_h(x,z)=T+1-\sum_iw_{hi}x_i-\sum_jz_j.
+\]
+Taking $T>\sum_i(2R|v_i|+1)+s$ proves positivity everywhere. The limit
+argument permits divergent residues; no uniform boundedness assumption
+is made or needed. It preserves finitely many strict signs by pointwise
+convergence. It does not assert exact equality to the polynomial at a
+finite value of $T$.
+
+\paragraph{Linear cost for exceptional rows.}
+For any row $x_0$, Hamming distance $d(x,x_0)$ is an affine signed
+statistic with values $0,\ldots,k$, zero only at $x_0$. The degree-$k$
+Lagrange basis of zero therefore represents its point indicator.
+Consequently an arbitrary correction at one row, with independent
+amplitudes in all columns, costs $k+1$ heads while preserving all required
+prior signs. A family of $m$ row corrections costs $m(k+1)$.
+These statements are checked in \texttt{JointFamilyLinearRepair.lean} as
+\texttt{jointFamily\_point\_correction\_preserves\_signs} and
+\texttt{jointFamily\_point\_family\_correction\_preserves\_signs}.
+The earlier quadratic bank has exact zero values away from the point;
+this linear bank instead uses a limit and preserves all specified strict
+signs. Both have an exact zero column axis.
+
+\paragraph{Weak-learning charge.}
+For $M=2^k$ rows and $s$ independent columns, squared error $E$ leaves at
+most $E$ rows with an incorrect or zero sign. Their repair now costs
+$O(Ek)$ heads. A block weak learner of cost $L$ and squared normalized
+correlation $\gamma^2$ would give the total bound
+\[
+ O\left(\frac{L}{\gamma^2}\log\frac{Ms}{E}+Ek\right).
+\]
+Taking $s\asymp k$ and $E=M/k^2$ reduces the logarithm to $O(\log k)$
+and the repair term to $O(M/k)$. The missing uniform gain remains
+$\gamma^2/L\gg\sqrt{k}\log k/M$ for the square-root benchmark.
+No such gain is established by the polynomial-jet primitive alone.
+
+\paragraph{A failed radial localization estimate.}
+A different proposed block was $d/(\varepsilon+d)^p$, concentrated near
+the first Hamming layer about one corner. In the limit
+$\varepsilon\to0$, that layer has squared energy $k$, whereas the central
+layer alone contributes
+\[
+ \binom{k}{\lfloor k/2\rfloor}\lfloor k/2\rfloor^{2-2p}.
+\]
+For even $k$, the elementary bound
+$\binom{k}{k/2}\geq2^k/(k+1)$ shows that central-layer energy at most $k$
+requires
+\[
+ p\geq1+\frac{k-\log_2(k(k+1))}{2\log_2(k/2)}.
+\]
+Thus $p=O(\log k)$ does not localize this block in Frobenius norm on the
+full cube. This rejects that particular concentration estimate, not a
+weighted-domain construction or arbitrary signed multihead cancellation.
+\end{document}
