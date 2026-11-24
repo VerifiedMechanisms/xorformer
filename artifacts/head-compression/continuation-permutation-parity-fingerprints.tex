@@ -166,4 +166,83 @@ No claim of impossibility is made for general admissible ratio sums.
 A further construction must explicitly implement the subset-minor
 signs, or provide another fingerprint family with the separation
 property (2), without assuming a determinant evaluator as a head.
+
+\section{A stronger obstruction for asymmetric Cauchy anchors}
+The following argument covers arbitrary head-dependent query probes,
+not just the common-probe shortcut.
+
+\begin{lemma}[Permutation parity annihilates low-order interactions]
+Let $S$ be a set of $s$ slots carrying $s$ distinct tokens in all
+possible orders, with every slot outside $S$ fixed. If a function $G$
+depends on the tokens assigned to at most $s-2$ slots of $S$, then
+\[
+ \mathbb E_\pi[\chi_S(\pi)G(\pi)]=0,
+ \tag{8}
+\]
+where the expectation is uniform over these $s!$ orders. Consequently
+a sum of such functions cannot have strict sign $\chi_S$ everywhere.
+\end{lemma}
+\begin{proof}
+Condition on the token assignments on which $G$ depends. At least
+two slots remain free. Swapping their tokens is a fixed-point-free
+involution on the remaining orders, preserving $G$ and reversing
+$\chi_S$. Their contributions cancel in pairs, proving (8).
+Linearity of expectation gives the assertion for sums; a strictly
+positive random variable on a finite nonempty space cannot have
+expectation zero.
+\end{proof}
+
+\begin{proposition}[Full asymmetric Cauchy anchors cannot read four-slot parity]
+Fix distinct exterior arguments $d_i$ and distinct tokens $\lambda_j$
+with $d_i>\lambda_j$. Fix arbitrary real anchor numerators $A_{ih}$.
+For each permutation $\pi$, let $c(\pi)$ be the unique solution of
+\[
+ \sum_h\frac{A_{ih}+c_h(\pi)}{d_i-\lambda_{\pi(h)}}=0
+ \qquad(1\leq i\leq H).
+ \tag{9}
+\]
+A query may use arbitrary fixed numerators $a_h$, arbitrary fixed
+head-dependent arguments $D_h>\max_j\lambda_j$, and a fixed bias:
+\[
+ F(\pi)=b+\sum_h\frac{a_h+c_h(\pi)}{D_h-\lambda_{\pi(h)}}.
+ \tag{10}
+\]
+For every subset $S$ of size at least four, it is impossible that
+$\chi_S(\pi)F(\pi)>0$ for all permutations. The same conclusion holds
+if only the orders on $S$ vary and all outside tokens are fixed.
+\end{proposition}
+\begin{proof}
+Set $C_{ij}=1/(d_i-\lambda_j)$, an invertible Cauchy matrix, and
+\[
+ K^g=C^{-1}\operatorname{diag}(A_{1g},\ldots,A_{Hg})C.
+\]
+Reindexing the unknown residues by their token labels in (9) gives
+the exact formula
+\[
+ c_h(\pi)=-\sum_gK^g_{\pi(h),\pi(g)}.
+ \tag{11}
+\]
+Indeed the right side of the anchor linear system is
+$-\sum_g\operatorname{diag}(A_{\cdot g})Ce_{\pi(g)}$; multiply
+by $C^{-1}$ and take coordinate $\pi(h)$.
+Substitution into (10) yields
+\[
+ F(\pi)=b+\sum_h\frac{a_h}{D_h-\lambda_{\pi(h)}}
+ -\sum_{h,g}
+       \frac{K^g_{\pi(h),\pi(g)}}{D_h-\lambda_{\pi(h)}}.
+ \tag{12}
+\]
+Each summand depends on the tokens in at most two slots. On a subset
+$S$ of size at least four, apply (8) term by term. This gives
+$\mathbb E[\chi_SF]=0$, which contradicts the proposed strict signs.
+\end{proof}
+
+This obstruction uses the full square system of common-row Cauchy
+anchors and its unique solved residues. It does not cover an anchor
+matrix with arbitrary head-dependent entries, an underdetermined
+anchor system with additional state-dependent free residues, or an
+unrelated admissible decoder. The Schur Pfaffian identity for the
+antisymmetric kernel $(t_j-t_i)/(t_j+t_i)$ does not evade (12): it
+expresses the desired sign as a Pfaffian, and a Pfaffian is not one of
+the permitted scalar operations in (10).
 \end{document}
