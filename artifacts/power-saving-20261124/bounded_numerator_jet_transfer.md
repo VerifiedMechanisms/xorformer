@@ -4,7 +4,7 @@
 
 This auxiliary theorem extends fixed-radial transfer to polynomial numerator paths of bounded order. Numerators may move and may cancel to arbitrarily high total order. A finite list of low-order moment tests, followed by one exponential score with polynomial numerators, determines every eventual sign. This does not prove that arbitrary original-model representations have such a description with bounded jet order.
 
-The proof below is written mathematics. No Lean formalization is claimed. It avoids the false assertion that arbitrary affine-numerator recalibration within the same exponential directions suffices: the new exponential numerators have degree up to $r+1$ in the input.
+The analytic transfer is also proved in Lean in `RadialMovingNumeratorTransfer.lean`, with the exact theorem and verification scope recorded below. The sign-count application remains written mathematics. The argument avoids the false assertion that arbitrary affine-numerator recalibration within the same exponential directions suffices: the new exponential numerators have degree up to $r+1$ in the input.
 
 ## Transfer theorem on a finite set
 
@@ -38,7 +38,39 @@ If a low-order coefficient is first nonzero, positivity of $B$ proves the assert
 
 The case $r=0$ is the fixed radial moment theorem. A polynomial bias can be included by adding a term with $C_0=0$ and numerator $B\sum_j c_jt^j$.
 
-## Affine data yield polynomial predicates of low degree
+## One polynomial-exponential score suffices
+
+The low-order decision rule can be combined into a single score:
+
+$$ T_t(x)=\sum_{k=0}^{r-1}F_k(x)t^k+t^r E_t(x). $$
+
+For all sufficiently small positive $t$, simultaneously on the finite set $X$,
+
+$$ \mathrm{sgn}R_t(x)=\mathrm{sgn}T_t(x). $$
+
+To justify this without an informal exchange of leading terms, polynomial division gives the exact decomposition whenever the denominators are nonzero:
+
+$$ R_t(x)=\sum_{k=0}^{r-1}\frac{F_k(x)}{B(x)^{k+1}}t^k+\frac{t^r}{B(x)^r}\sum_{h=1}^H\frac{P_h(x)}{B(x)+tC_h(x)}. $$
+
+If the first nonzero low coefficient is $F_k(x)$, the two leading coefficients are $F_k(x)/B(x)^{k+1}$ and $F_k(x)$, with the same sign. If all low coefficients vanish, the positive factors $t^r/B(x)^r$ and $t^r$ reduce the assertion to fixed-radial transfer for the fixed weights $P_h(x)$. This also handles identically zero tails.
+
+For affine data on the Boolean cube, introduce the independent product variables used in the next section, one real variable $t$, and one free strictifying bias $\eta$. At each input, the polynomial
+
+$$ \eta+\sum_{k=0}^{r-1}F_k(x)t^k+t^r\sum_{h=1}^H z_{h0}P_h(x)\prod_{i=1}^n z_{hi}^{x_i} $$
+
+has total parameter degree at most $D'=n+2r+2$ in
+
+$$ p'=(n+1)\bigl((r+3)H+1\bigr)+2 $$
+
+parameters. The constant shift variable $z_{h0}$ is kept independent. It cannot generally be absorbed into the shared numerator coefficients, because those same coefficients also occur in the low-order terms.
+
+Choose a sufficiently small positive $t$ for the sign transfer and then choose $\eta\lt0$ with magnitude smaller than every nonzero coordinate magnitude of $T_t$. This assigns all exact zero entries to the false class while preserving every nonzero sign. Warren's strict-sign bound therefore yields, when $p'\leq N$,
+
+$$ \left|\lbrace\text{eventual Boolean labels of order }r\text{ numerator paths}\rbrace\right|\leq\left(\frac{4eD'N}{p'}\right)^{p'}. $$
+
+This direct single-score bound avoids a separate three-valued sign predicate for each low moment. It gives the same asymptotic restricted lower bounds stated below, and slightly simpler parameter bookkeeping. It still depends on a bound for the numerator degree $r$ and fixed radial denominator directions.
+
+## Affine data also yield separate polynomial predicates
 
 Now let $X=\lbrace0,1\rbrace^n$, with $N=2^n$, and assume $B$, every $C_h$, and every $A_{hj}$ is affine. The data are fixed independently of $t$. Write $C_h(x)=c_{h0}+\sum_i c_{hi}x_i$ and introduce independent positive variables $z_{h0},z_{h1},\ldots,z_{hn}$. At an actual scale they take the values $z_{hi}=e^{-tc_{hi}}$.
 
@@ -56,7 +88,7 @@ Allowing the product variables to vary independently enlarges the family. The ge
 
 $$ \left|\lbrace\text{eventual Boolean labels of these order }r\text{ numerator paths}\rbrace\right|\leq\left(\frac{8eDM}{p}\right)^p. $$
 
-This counts actual labels, including arbitrary coordinate-dependent cancellation orders. It does not count only real-table dimension, roots, or low-order tangent vectors. The use of three-valued polynomial signs is essential because the rule branches on exact vanishing of the low-order coefficients.
+This counts actual labels, including arbitrary coordinate-dependent cancellation orders. It does not count only real-table dimension, roots, or low-order tangent vectors. For this alternative decision-rule encoding, three-valued polynomial signs are needed because the rule branches on exact vanishing of the low-order coefficients. The preceding single-score encoding avoids that branching.
 
 For every fixed nonnegative integer $r$, and widths $H=\Theta(N/n^x)$ with $1\lt x\lt2$, the logarithm of this count is
 
@@ -67,6 +99,12 @@ Consequently the worst-case number of heads within this bounded-jet radial class
 ## Relation to the fixed-direction counterexample
 
 The bounded analytic counterexample in `fixed_direction_joint_compilation_separation.md` has numerator degree two, so this theorem applies with $r=2$. It is not a contradiction. That counterexample rules out affine exponential numerators in the same two directions. The present transform uses numerators $P_h$ of input degree up to three, together with the two low-order tests. It preserves the eventual signs through a larger, but still polynomially parameterized, class.
+
+## Lean verification
+
+The file `formalization/HeadComplexity/Research/RadialMovingNumeratorTransfer.lean` proves `HeadComplexity.RadialMovingNumeratorTransfer.uniform_moving_numerator_sign_transfer`. Its hypotheses allow arbitrary fixed real functions on any finite query set, any finite numerator degree $r$, and a strictly positive common base. Its conclusion supplies one positive scale interval on which all denominators are positive and the original moving-numerator score has exactly the sign of the single polynomial-exponential score $T_t$, including zero coordinates.
+
+The proof uses the exact remainder identity from `RadialJetAlgebra.lean`, the analytic fixed-radial comparison from `RadialMomentTransfer.lean`, and an explicit finite-polynomial scaled-limit argument. The standalone Lean invocation succeeded. `#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound`. There are no new axioms or `sorry`. The formal theorem does not assert the Warren count or an unrestricted original-model reduction.
 
 ## Precise unresolved step
 

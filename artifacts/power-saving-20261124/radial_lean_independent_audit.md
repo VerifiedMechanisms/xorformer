@@ -27,3 +27,21 @@ When every moment vanishes, finite polynomial interpolation proves that the weig
 An independent invocation of `lake env lean HeadComplexity/Research/RadialMomentTransfer.lean` succeeded. The final declaration reports only `propext`, `Classical.choice`, and `Quot.sound`. There is no new axiom and no `sorry`.
 
 This is a kernel-checked analytic auxiliary theorem. It does not assert that a finite-scale arbitrary representation can be moved to the fixed radial family while preserving its labels. The contraction counterexample above demonstrates that such a reduction cannot simply retain the denominator directions and vary the affine numerators.
+
+## Bounded moving numerators
+
+I subsequently read the complete files `RadialJetAlgebra.lean` and `RadialMovingNumeratorTransfer.lean`, and independently invoked Lean on the latter. Its final declaration `HeadComplexity.RadialMovingNumeratorTransfer.uniform_moving_numerator_sign_transfer` succeeded and reports only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The theorem allows arbitrary finite input and head types, an arbitrary fixed integer numerator degree $r\geq0$, arbitrary fixed real numerator coefficients $a_{hj}(x)$, arbitrary fixed shifts $C_h(x)$, and a base $B(x)\gt0$. It imposes no upper bound on the cancellation order of the remaining reciprocal tail.
+
+Writing $F_k=\sum_h\sum_{j\leq k}a_{hj}B^j(-C_h)^{k-j}$ and $P_h=\sum_{j\leq r}a_{hj}B^j(-C_h)^{r-j}$, the exact algebraic decomposition is
+
+$$ \sum_h\frac{\sum_{j=0}^r a_{hj}t^j}{B+tC_h}=\sum_{k=0}^{r-1}\frac{F_k t^k}{B^{k+1}}+\frac{t^r}{B^r}\sum_h\frac{P_h}{B+tC_h}. $$
+
+The comparison score is
+
+$$ \sum_{k=0}^{r-1}F_k t^k+t^r\sum_h P_h e^{-tC_h}. $$
+
+If a low coefficient is nonzero, its first nonzero index governs both signs, with positive powers of the base as the only difference in leading scale. If all low coefficients vanish, the previously verified fixed radial moment theorem applies to the fixed tail weights. Its all-moments-zero case retains exact zero coordinates. A finite intersection supplies one positive scale threshold and denominator positivity simultaneously at every input.
+
+The numerator degree is a hypothesis of this auxiliary family. The theorem does not bound that degree for arbitrary analytic paths, does not allow curved denominator paths, and does not move an arbitrary finite-scale representation into the radial family.

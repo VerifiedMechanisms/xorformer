@@ -53,7 +53,7 @@ def main():
         records.append({"file": str(path), "source_spans": len(spans),
                         "rendered_spans": count, "findings": findings,
                         "notes": notes})
-    print(json.dumps(records, indent=2))
+    print(json.dumps(records, indent=2, default=str))
     return 1 if failed else 0
 
 
