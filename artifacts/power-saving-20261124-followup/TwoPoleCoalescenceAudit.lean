@@ -1,0 +1,6 @@
+import HeadComplexity.Research.TwoPoleCoalescence
+
+#print axioms HeadComplexity.TwoPoleCoalescence.score_identity
+#print axioms HeadComplexity.TwoPoleCoalescence.coalesced_sign
+#print axioms HeadComplexity.TwoPoleCoalescence.atoms_sign
+#print axioms HeadComplexity.TwoPoleCoalescence.eventually_admissible_coalescence

@@ -1,0 +1,6 @@
+'HeadComplexity.TwoPoleCoalescence.score_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoPoleCoalescence.coalesced_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoPoleCoalescence.atoms_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoPoleCoalescence.eventually_admissible_coalescence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
