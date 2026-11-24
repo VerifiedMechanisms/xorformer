@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Exact masked row biases with two axis-zero heads}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status and purpose.}
+The construction below is Lean checked in
+\texttt{Results/ReverseMaskedBias.lean}, declaration
+\texttt{HeadComplexity.AxisZeroGluing.exists\_reverseAxis\_masked\_row\_sum}.
+It supplies the row-dependent block biases used in the adaptive Haar
+decoder investigation. The masks are fixed across rows. Independent
+query biases are not assumed to be free. This implementation lemma
+does not prove shattering or either asymptotic target.
+
+\begin{theorem}
+Let $r,s,H$ be nonnegative integers. Given arbitrary real numbers
+$b_{hi}$ and fixed masks $M_{hj}\in\{0,1\}$, there are $2H$ affine
+ratios, with strictly negative denominator slopes and denominators
+positive on the entire Boolean $(r+s)$-cube, whose sum vanishes on
+both Boolean axes and equals
+\[
+ \sum_{h=1}^H b_{hi}M_{hj}
+\]
+at every grid point $(e_i,e_j)$.
+\end{theorem}
+\begin{proof}
+Put $C=2r+2s+4$ and define
+\[
+ D(z,w)=C-\sum_i z_i-\sum_j w_j,\qquad
+ B_h(z,w)=\sum_jM_{hj}w_j,
+\]
+\[
+ A_h(z,w)=(C-3)(C-2)\sum_i b_{hi}z_i.
+\]
+Use the pair
+\[
+ \frac{A_h(z,w)}{D(z,w)-B_h(z,w)}
+ -\frac{A_h(z,w)}{D(z,w)}.
+\]
+Every denominator slope is either $-1$ or $-2$. The smaller
+denominator is at least $C-r-2s=r+4>0$ on the full cube.
+If $z=0$, both numerators vanish. If $w=0$, the two denominators
+coincide and the pair cancels exactly. On the grid, $D=C-2$ and
+$B_h=M_{hj}$. For a zero mask the pair cancels; for a unit mask
+its value is
+\[
+ (C-3)(C-2)b_{hi}
+ \left(\frac1{C-3}-\frac1{C-2}\right)=b_{hi}.
+\]
+Summing the pairs proves the claim. The existing checked conversion
+of \texttt{ReverseAxisData} to original atoms preserves the head count.
+\end{proof}
+
+\paragraph{Budget implication.}
+If a decoder with $H$ moving Cauchy terms needs at most $H-1$
+row-dependent biases, each shared by all queries in one fixed group,
+those biases cost at most $2H-2$ additional axis-zero heads. Together
+with the checked two-head implementation of each masked Cauchy term,
+this gives at most $4H-2$ heads. This arithmetic would preserve an
+unbounded query-to-term ratio, but existence of a decoder with that
+ratio remains unproved. In particular, a separate arbitrary row bias
+for each query would cost proportionally to the number of queries
+and would not give the requested saving.
+\end{document}
