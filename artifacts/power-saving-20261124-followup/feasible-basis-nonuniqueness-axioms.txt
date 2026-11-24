@@ -1,0 +1,40 @@
+'HeadComplexity.FeasibleBasisNonuniqueness.original_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleBasisNonuniqueness.basis_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleBasisNonuniqueness.full_cube_unit_slack' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleBasisNonuniqueness.coefficient_box' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleBasisNonuniqueness.origin_disagreement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleBasisNonuniqueness.basis_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleBasisNonuniqueness.original_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.original_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.score_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.full_cube_unit_slack' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.coefficient_box' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.singleton_disagreement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.numerator_slope_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.basis_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFeasibleBasisNonuniqueness.original_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,174 @@
+{
+  "one_head": {
+    "dimension": 6,
+    "width": 1,
+    "basis_indices": [
+      7,
+      8,
+      13,
+      17,
+      19,
+      32,
+      43
+    ],
+    "basis_values": [
+      1,
+      1,
+      1,
+      1,
+      -1,
+      1,
+      -1
+    ],
+    "examples": [
+      {
+        "numerator": [
+          11,
+          -9,
+          -18,
+          -9,
+          -9,
+          -9,
+          11
+        ],
+        "denominator": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "normalized_coefficients": [
+          11,
+          -20,
+          -40,
+          -20,
+          -20,
+          -20,
+          0
+        ],
+        "basis_determinant": "1/6400",
+        "min_absolute_score": "1"
+      },
+      {
+        "numerator": [
+          15,
+          -13,
+          -28,
+          -13,
+          -17,
+          -13,
+          19
+        ],
+        "denominator": [
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1
+        ],
+        "normalized_coefficients": [
+          15,
+          -28,
+          -88,
+          -28,
+          -32,
+          -28,
+          4
+        ],
+        "basis_determinant": "1/13440",
+        "min_absolute_score": "1"
+      }
+    ],
+    "differing_indices": [
+      4
+    ],
+    "constant_denominator_interpolant": [
+      3,
+      -2,
+      -4,
+      -2,
+      -2,
+      -2,
+      2
+    ]
+  },
+  "two_head": {
+    "dimension": 3,
+    "width": 2,
+    "examples": [
+      {
+        "slopes": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "coefficients": [
+          "3",
+          "4",
+          "4/3",
+          "-12",
+          "-12",
+          "-32/3",
+          "4"
+        ],
+        "scores": [
+          "3",
+          "1",
+          "1",
+          "-1",
+          "1",
+          "-1",
+          "1",
+          "-1"
+        ],
+        "basis_determinant": "1/806400"
+      },
+      {
+        "slopes": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            3,
+            1
+          ]
+        ],
+        "coefficients": [
+          "-3",
+          "-6",
+          "-6",
+          "-24",
+          "28",
+          "28",
+          "32"
+        ],
+        "scores": [
+          "-3",
+          "1",
+          "1",
+          "-1",
+          "1",
+          "-1",
+          "1",
+          "-1"
+        ],
+        "basis_determinant": "1/1209600"
+      }
+    ]
+  }
+}

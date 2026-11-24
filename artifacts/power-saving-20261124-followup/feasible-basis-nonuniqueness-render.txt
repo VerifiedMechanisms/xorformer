@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/feasible_basis_nonuniqueness.md",
+    "source_spans": 32,
+    "rendered_spans": 32,
+    "findings": [],
+    "notes": []
+  }
+]

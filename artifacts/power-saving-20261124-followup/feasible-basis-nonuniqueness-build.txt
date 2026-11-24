@@ -1,0 +1,3 @@
+✔ [3226/3227] Built HeadComplexity.Research.FeasibleBasisNonuniqueness (3.4s)
+✔ [3227/3227] Built HeadComplexity.Research.OneHeadFeasibleBasisNonuniqueness (10s)
+Build completed successfully (3227 jobs).
