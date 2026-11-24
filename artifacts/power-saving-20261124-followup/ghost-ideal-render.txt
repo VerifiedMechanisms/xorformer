@@ -1,0 +1,12 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_ghost_ideal.md",
+    "source_spans": 82,
+    "rendered_spans": 82,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124-followup/unrestricted_capacity_ghost_ideal.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ \\\\mathcal L_n=\\\\lbrace t x:t\\\\in\\\\mathbb R,\\\\ x\\\\in\\\\lbrace0,1\\\\rbrace^n\\\\rbrace $$'",
+      "artifacts/power-saving-20261124-followup/unrestricted_capacity_ghost_ideal.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ \\\\lbrace(u,v):0\\\\leq u,v\\\\leq2M-2,\\\\ M-1\\\\leq u+v\\\\leq3M-3\\\\rbrace. $$'"
+    ]
+  }
+]
