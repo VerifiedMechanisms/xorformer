@@ -47,6 +47,11 @@ import HeadComplexity.Results.PureRoPEExplicitSeparation
 import HeadComplexity.Results.PureRoPEExplicitThreshold
 import HeadComplexity.Results.PureRoPEReplicationFive
 import HeadComplexity.Polynomial.PureCubicFiveDenominators
+import HeadComplexity.Results.PureRoPEArchitecture
+import HeadComplexity.Results.PureRoPEExactScore
+import HeadComplexity.Analysis.RoPEArchitectureConventions
+import HeadComplexity.Analysis.RoPEPairedInterpolation
+import HeadComplexity.Model.PureRoPEPairedRealization
 
 set_option linter.style.header false
 
@@ -357,5 +362,52 @@ alias theorem22_not_universal_equality := PureRoPEExplicitSeparation.not_univers
 /-- **Theorem 22.** The same explicit Boolean function has threshold degree
 exactly three, quantifying over all real sign-representing polynomials. -/
 alias theorem22_exact_threshold_degree := PureRoPEExplicitThreshold.thresholdDeg_eq_three
+
+/-- **Theorem 14, fixed frequencies.** Standard rotary features interpolate
+arbitrary finite real logits without an assumed rank or surjectivity premise. -/
+alias theorem14_standard_rotary_interpolation := RoPEPairedInterpolation.interpolate_standard
+
+/-- **Theorem 14, sufficient width.** Every pure atom family has an exact
+literal realization at every positive even head width at least the input length. -/
+alias theorem14_literal_realization_at_width := PureRoPEPairedRealization.exists_family_at_width
+
+/-- **Theorem 14, exact architecture.** Literal residual scores are precisely
+constants plus sums of pure atoms, with the same number of heads. -/
+alias theorem14_literal_pure_exact_score := pureRoPE_residual_score_iff_atoms
+
+/-- **Theorem 14, arbitrary weights.** Every positive token-position weight
+and positive query self-weight is exactly realizable with shared embeddings. -/
+alias theorem14_literal_positive_weights := pureRoPE_exists_exact_positive_weights
+
+/-- **Theorem 14, Boolean architecture.** Literal full-residual classifiers
+and the existing pure scalar normal form have identical head budgets. -/
+alias theorem14_literal_pure_computability :=
+  computableWithPureRoPEResidualHeadsN_iff_pureRoPEComputable
+
+/-- **Theorem 14, minimum.** The literal residual architecture has exactly
+the existing pure scalar minimum. -/
+alias theorem14_literal_pure_minimum := literalPureRoPEResidualHStar_eq_pureRoPEHStar
+
+/-- **Theorem 14, position convention.** One-indexed and zero-indexed
+positions give exactly the same rotary attention weights. -/
+alias theorem14_literal_position_convention := RoPEArchitectureConventions.oneIndexed_weight_eq
+
+/-- **Theorem 22, literal architecture.** There is an actual shared-embedding
+three-head rotary model computing the explicit function from its residual. -/
+alias theorem22_literal_rotary_model := PureRoPEArchitecture.explicit_literal_residual_model_three
+
+/-- **Theorem 22, literal counts.** The literal pure model needs exactly
+three heads, whereas the original vanilla count is between four and five. -/
+alias theorem22_literal_head_counts := PureRoPEArchitecture.explicit_literal_complexities
+
+/-- **Theorem 22, complete architectural separation.** The full query-residual
+rotary architecture strictly improves on the original vanilla architecture. -/
+alias theorem22_literal_residual_separation :=
+  PureRoPEArchitecture.explicit_literal_residual_strict_separation
+
+/-- **Theorem 22, architectural counterexample.** Universal equality fails
+for literal rotary residual architectures and the original vanilla model. -/
+alias theorem22_not_universal_literal_equality :=
+  PureRoPEArchitecture.not_universal_literal_residual_equality
 
 end HeadComplexity

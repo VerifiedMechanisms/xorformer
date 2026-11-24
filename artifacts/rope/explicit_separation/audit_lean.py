@@ -2,8 +2,8 @@
 """Audit the axioms of every headline alias in Results/All.lean.
 
 Build the repository first. This checks the complete scalar/original-vanilla
-Boolean separation and all other headline declarations. The literal rotary
-matrix interpolation bridge is documented separately in Theorem 14.
+Boolean separation and all other headline declarations, including the literal
+rotary matrix interpolation bridge and full residual architectural separation.
 The lake/lean launcher acquires its own compute slot on the shared machine.
 """
 
@@ -56,7 +56,7 @@ def main():
         assert axioms <= ALLOWED, (name, axioms - ALLOWED)
     print(f"Axiom audit passed for all {len(names)} Results.All headline aliases.")
     print("Only propext, Classical.choice, and Quot.sound occur.")
-    print("Scope: complete scalar/original-vanilla Boolean separation and all headline results.")
+    print("Scope: literal rotary residual/original-vanilla separation and all headline results.")
 
 
 if __name__ == "__main__":

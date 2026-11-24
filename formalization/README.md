@@ -23,9 +23,10 @@ The numerator constant is unrestricted.
 Theorem 14 adds `PureRoPEAtom` and `RetainedRoPEAtom`, their minimum counts,
 the scalar comparison with vanilla, and exact symmetric-family results.
 The scalar statements and an exact-score separation are machine-checked.
-The finite-frequency interpolation connecting these atoms to literal rotary
-attention is a handwritten proof in the
-[RoPE writeup](../theorems/03_rotary_attention/014_rope_head_complexity.md).
+The finite-frequency interpolation and the equivalence to literal pure rotary
+attention are now kernel-checked, including shared embeddings, query
+self-attention, output projections, token-only values, and the full residual.
+See the [architecture proof guide](../artifacts/rope/literal_architecture/README.md).
 [Theorem 22](../theorems/03_rotary_attention/022_explicit_pure_rope_separation.md)
 now gives an explicit Boolean pure/vanilla separation whose complete quantitative
 vanilla lower bound is Lean-checked. `PureRoPEExplicitSeparation.strict_separation`
@@ -37,8 +38,9 @@ The actual unshifted formula's exact pure atoms, integer-cubic identity,
 rational tie removal, strict full-cube margin, and non-complement invariance are
 checked in `Results/PureRoPEReplicationStrict.lean`. The general seven-head
 vanilla compiler and the improved five-head construction for this target are
-also checked. The literal rotary matrix interpolation bridge
-remains the mathematical proof in Theorem 14.
+also checked. `PureRoPEArchitecture.explicit_literal_residual_strict_separation`
+proves the complete literal architectural separation. No original model or
+head-count definition was changed.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -56,6 +58,9 @@ remains the mathematical proof in Theorem 14.
 | 12 | symmetric `H*=C(F)` (sign changes) | `HStar_symmetricFn` | `Results/SymmetricComplexity.lean` |
 | 13 | explicit strict separation `deg±<H*` | `f10_strict_separation` | `Results/StrictSeparation.lean` |
 | 14 | rotary scalar comparison and symmetric equality | `pureRoPEHStar_le_vanilla`, `retainedRoPEHStar_le_pure`, `thresholdDeg_le_retainedRoPEHStar`, `ropeHStar_symmetric` | `Atoms/RoPE.lean`, `Results/RoPEComparison.lean` |
+| 14 | standard-frequency trigonometric Vandermonde interpolation | `RoPEPairedInterpolation.interpolate_standard` | `Analysis/RoPEPairedInterpolation.lean` |
+| 14 | literal full-residual score equivalence and positive weights | `pureRoPE_residual_score_iff_atoms`, `pureRoPE_exists_exact_positive_weights` | `Results/PureRoPEExactScore.lean` |
+| 14 | literal and scalar head minima agree | `literalPureRoPEResidualHStar_eq_pureRoPEHStar` | `Results/PureRoPEArchitecture.lean` |
 | 16 | universal two-head pure/vanilla Boolean equality | `pureRoPEComputable_two_iff_vanilla`, `pureRoPEHStar_eq_vanilla_of_le_two` | `Results/PureRoPETwoHeads.lean` |
 | 17 | twelve-bit quadratic needs exactly four pure and vanilla heads | `PureRoPEThreeHead.TwelvePair.exact_complexities` | `Results/PureRoPETwelvePairExact.lean` |
 | 18 | four vanilla heads for three nonnegative affine zero sets | `ThreeFaceFourHeads.computable_four` | `Results/ThreeFaceFourHeads.lean` |
@@ -64,6 +69,7 @@ remains the mathematical proof in Theorem 14.
 | 20 | cubic parity faces exclude all vanilla three-head models | `ThreeHeadTripartitePattern.HStar_ge_four`, `ThreeHeadEmbeddedPattern.HStar_ge_four` | `Results/ThreeHeadTripartitePattern.lean`, `Results/ThreeHeadEmbeddedPattern.lean` |
 | 21 | quartic parity faces exclude all vanilla four-head models | `FourHeadQuarticPattern.HStar_ge_five` | `Results/FourHeadQuarticPattern.lean` |
 | 22 | complete Boolean separation and exact pure count | `PureRoPEExplicitSeparation.strict_separation`, `pureHStar_eq_three`, `vanillaHStar_bounds`, `not_universal_equality` | `Results/PureRoPEExplicitSeparation.lean` |
+| 22 | complete literal rotary residual architecture separation | `PureRoPEArchitecture.explicit_literal_residual_strict_separation`, `explicit_literal_complexities` | `Results/PureRoPEArchitecture.lean` |
 | 22 | threshold degree exactly three | `PureRoPEExplicitThreshold.thresholdDeg_eq_three` | `Results/PureRoPEExplicitThreshold.lean` |
 | 22 | finite sign rigidity | `PureCubicFiniteRigidity.finite_sign_rigidity` | `Polynomial/PureCubicFiniteRigidity.lean` |
 | 22 | uniform squarefree coefficient gap | `ExplicitCubicSquarefreeGap.squarefree_coefficient_gap_with_readout` | `Polynomial/ExplicitCubicSquarefreeGap.lean` |

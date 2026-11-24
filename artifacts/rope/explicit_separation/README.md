@@ -25,7 +25,7 @@ Only the Python standard library is required. The driver calls the exact certifi
 | [Five-head upper certificate](../five_head_upper/README.md) | Exact oriented denominator combination and five reciprocal fractions |
 | [Combined verifier](verify.py) | The preceding checks, exact atom constant identities under replication, full-cube arithmetic gap, and comparison of interpolation error with the tensor exclusion radius |
 
-These scripts independently certify the arithmetic used in the proof. The complete Boolean lower bound is separately Lean-certified, including quantitative tensor recovery, finite sign rigidity, and averaging every admissible untied vanilla representation. The raw gap uses finite determinant estimates, with no spectral argument. The scalar-to-literal-RoPE matrix realization remains the mathematical proof in Theorem 14.
+These scripts independently certify the arithmetic used in the proof. The complete Boolean lower bound is separately Lean-certified, including quantitative tensor recovery, finite sign rigidity, and averaging every admissible untied vanilla representation. The raw gap uses finite determinant estimates, with no spectral argument. The scalar-to-literal-RoPE matrix realization is now also Lean-certified, including standard-frequency interpolation and full residual readout; see the [architecture proof guide](../literal_architecture/README.md).
 
 The actual unshifted formula's pure upper bound, rational tie removal, strict full-cube margin, and non-complement-invariance are Lean-checked in `Results/PureRoPEReplicationStrict.lean`. The improved five-head vanilla bound is checked in `Results/PureRoPEReplicationFive.lean`; the earlier general seven-head compiler remains in `Results/ThreeFractionsSevenHeads.lean`. For the displayed rational five-head step, `Polynomial/PureCubicFiveDenominators.lean` checks every denominator's admissibility, while Theorem 22 supplies the explicit finite-difference error estimate. To rebuild the formalized results and audit the axioms of every headline declaration, run from the repository root:
 
@@ -59,4 +59,4 @@ The original model definitions, strict threshold convention, and admissibility c
 
 ## Remaining questions
 
-The exact vanilla count of the explicit function is either four or five. A substantially smaller separating truth table and a Lean proof of the literal rotary interpolation bridge remain open. The earlier small face-pattern targets also remain unresolved where their documentation says no pure realization was certified.
+The exact vanilla count of the explicit function is either four or five. A substantially smaller separating truth table remains open. The literal rotary interpolation bridge is fully Lean-certified, so no architectural gap remains in the separation. The earlier small face-pattern targets also remain unresolved where their documentation says no pure realization was certified.

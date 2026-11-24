@@ -154,7 +154,7 @@ open scoped BigOperators
 open RoPETwoHead
 
 /-- Arbitrary positive-denominator affine fractions, including all retained
-and pure rotary atoms, admit a seven-head vanilla classifier at head count three. -/
+and pure rotary atoms, have a seven-head vanilla classifier at head count three. -/
 theorem vanilla_seven_of_positiveFraction_three {n : ℕ}
     {f : (Fin n → Bool) → Bool} (hf : positiveFractionComputable n 3 f) :
     computableWithSharedHeadsN n 7 f := by

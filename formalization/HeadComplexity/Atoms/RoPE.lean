@@ -5,9 +5,9 @@ set_option linter.style.header false
 /-!
 # Scalar atoms for rotary attention
 
-These are scalar normal forms, not a formalization of rotation matrices.
-The fixed-frequency interpolation argument connecting them to literal RoPE
-is proved in the accompanying Markdown writeup.
+These definitions are scalar normal forms. Their exact equivalence to literal
+standard-frequency rotary matrices is proved in `Results/PureRoPEExactScore`;
+the matching architectural head counts are proved in `Results/PureRoPEArchitecture`.
 -/
 
 namespace HeadComplexity
