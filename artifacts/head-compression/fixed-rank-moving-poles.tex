@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\title{A small adaptive-pole test with fixed rank masks}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This note gives a complete written finite-dimensional construction and an
+exact rational checker. It is not Lean-checked and gives no growing
+query-to-head ratio. The poles depend on the desired signs. Its purpose
+is to test a different mechanism from a fixed token pool with a
+butterfly permutation, after the common-pool compatibility obstructions.
+
+Let $t_0<t_1<t_2<t_3$ be fixed positive queries. A root uses eight
+ordered positive poles, positive residues $c_j$, and the alternating
+rank mask $(-1)^j$. Its two descendant masks are $(-1)^j$ on the
+even-rank and odd-rank subsequences respectively. Each descendant is
+sampled at $t_0,t_3$ and may have its own scalar bias.
+A global exchange of the two root children reverses the root mask and
+exchanges the two descendant labels.
+
+\begin{proposition}
+Every four-bit root word and both independently specified two-bit
+child words are realized by this system, after allowing the one global
+exchange. The poles can lie in an arbitrarily small positive interval.
+Moreover four fixed ordered pole shapes, scaled by one sufficiently
+small common positive parameter, suffice for every word.
+\end{proposition}
+\begin{proof}
+For a desired root word $\sigma$, put one root at the midpoint of
+$(t_j,t_{j+1})$ exactly when $\sigma_j\ne\sigma_{j+1}$. Let $N$ be
+the product of those factors, with sign normalized to be negative on
+$(0,t_0)$. Thus $\deg N\leq3$, its query word is $-\sigma_0\sigma$,
+and it is nonzero at zero. For ordered poles $p_j$, set
+\[
+ Q(t)=\prod_{j=0}^7(t-p_j),\qquad
+ c_j=\left|\frac{N(p_j)}{Q'(p_j)}\right|.
+\]
+Because $\operatorname{sign}Q'(p_j)=-(-1)^j$, partial fractions give
+\[
+ \sum_{j=0}^7\frac{(-1)^j c_j}{t-p_j}=\frac{N(t)}{Q(t)}.
+\]
+The optional global exchange therefore supplies exactly $\sigma$.
+
+Write $p_j=\epsilon x_j$ and $P(x)=\prod_j(x-x_j)$. The two
+unbiased child scores $G_b$, $b=0,1$, satisfy
+\[
+ \epsilon^7\bigl(G_b(t_0)-G_b(t_3)\bigr)
+ \longrightarrow
+ |N(0)|\left(\frac1{t_0}-\frac1{t_3}\right)L_b,
+ \qquad
+ L_b=\sum_{j=0}^3\frac{(-1)^j}{|P'(x_{2j+b})|}.
+\]
+Choose the pole shape from the following table:
+\[
+\begin{array}{c|rrrrrrrr}
+ (\operatorname{sign}L_0,\operatorname{sign}L_1)&\multicolumn{8}{c}{(x_0,\ldots,x_7)}\\
+ (+,+)&98&166&237&303&368&387&486&538\\
+ (-,-)&98&180&270&332&340&419&434&441\\
+ (+,-)&38&73&120&150&154&201&300&393\\
+ (-,+)&25&119&206&287&375&448&474&573
+\end{array}
+\]
+The indicated signs are exact rational inequalities, verified by the
+companion checker. Hence every pair of child trends is available for
+all sufficiently small positive $\epsilon$.
+
+A child word with opposite signs needs the trend whose sign is its
+first label; the bias $-(G_b(t_0)+G_b(t_3))/2$ realizes it. A child
+word with equal labels is obtained by a sufficiently large bias of
+that sign and puts no condition on the trend. If the root children
+were exchanged, exchange their required trends before selecting the
+table row. There are only finitely many root words and pole shapes,
+so their strict limiting inequalities hold at one common sufficiently
+small positive scale. This scale can be reduced further to put every
+pole inside any prescribed positive neighborhood of zero.
+\end{proof}
+
+\paragraph{Verification.}
+\texttt{fixed-rank-moving-poles-check.py} checks the four leading-sign
+pairs exactly. At $t_j=1+j/100$ and $\epsilon=10^{-5}$ it also checks
+all $16$ root words for all four shapes, including the exact root
+partial-fraction identity and both strict child trends.
+
+\paragraph{What does not follow.}
+At the next size, the two children have four queries and need more
+than a single trend. Generic compact pole shapes make their leading
+scores constant multiples of $1/t$, so adding a bias does not produce
+arbitrary four-query words. One would need target-adaptive moment
+cancellations or another degeneracy. The finite construction above
+provides neither that invariant nor a superconstant saving.
+
+\paragraph{A partition caution.}
+If $Q=R^2-\delta^2$, the two polynomial-preimage groups $R=\delta$
+and $R=-\delta$ are generally not the even-rank and odd-rank groups:
+the order inside each close pair reverses when $R'$ changes sign.
+With independently chosen masks one can still use those groups.
+Their alternating masked transforms are scalar multiples of the
+proper parts of $N/(R\mp\delta)$. With a fixed pole hierarchy these
+are all linear functions of the coefficients of $N$, including any
+fixed-profile corrections whose coefficients depend linearly on $N$.
+That identity alone does not supply more independent signs than the
+numerator coefficient dimension.
+\end{document}
