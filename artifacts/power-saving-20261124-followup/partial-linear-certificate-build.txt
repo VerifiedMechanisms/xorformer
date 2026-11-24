@@ -1,0 +1,2 @@
+✔ [3160/3160] Built HeadComplexity.Research.PartialLinearCertificate (1.8s)
+Build completed successfully (3160 jobs).

@@ -1,0 +1,6 @@
+import HeadComplexity.Research.PartialLinearCertificate
+#print axioms HeadComplexity.PartialLinearCertificate.extreme_active_kernel_eq_zero
+#print axioms HeadComplexity.PartialLinearCertificate.exists_active_basis
+#print axioms HeadComplexity.PartialLinearCertificate.exists_bounded_active_basis
+#print axioms HeadComplexity.PartialLinearCertificate.sign_cramer
+#print axioms HeadComplexity.PartialLinearCertificate.det_ne_zero_of_same_range
