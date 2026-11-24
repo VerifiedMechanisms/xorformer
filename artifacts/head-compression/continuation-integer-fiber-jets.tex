@@ -1,0 +1,238 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{An Exact Integer-Fiber Singular-Jet Compiler}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The results below are complete written finite constructions in the original
+attention model. They are not Lean-checked. They do not establish an
+asymptotic improvement for arbitrary Boolean functions. The final section
+states the resource accounting that prevents treating the construction as
+an asymptotic solution. An exact small-instance audit is supplied separately.
+
+\begin{theorem}[A whole-cube zero representation]
+Let $w_1,\ldots,w_n$ be positive integers, put
+$T(x)=\sum_i w_i x_i$ and $R=1+\sum_i w_i$, and let $H>R$.
+There is a sum of $H$ nonzero original admissible constant-numerator heads
+which vanishes at every point of $\{0,1\}^n$. All denominator slopes are
+strictly negative. All coefficients can be rational.
+\end{theorem}
+\begin{proof}
+Put $d_t=1-t/(4R)$ for $0\le t<R$, choose distinct rational poles
+$0<\lambda_h<1/4$, and set
+\[
+ P(z)=\prod_{t=0}^{R-1}(z-d_t),\qquad
+ Q(z)=\prod_{h=1}^H(z-\lambda_h),\qquad
+ c_h=\frac{P(\lambda_h)}{Q'(\lambda_h)}.
+\]
+Partial fractions give
+\[
+ \sum_{h=1}^H\frac{c_h}{z-\lambda_h}=\frac{P(z)}{Q(z)}.
+ \tag{1}
+\]
+Substitute $z=d_{T(x)}$. The right side vanishes. Each $c_h$ is
+nonzero because the poles are distinct and disjoint from the roots of $P$.
+The denominators are
+\[
+ 1-\lambda_h-\sum_i\frac{w_i}{4R}x_i>\frac12.
+ \tag{2}
+\]
+Their original-atom realization is included in the proof below.
+\end{proof}
+
+\begin{theorem}[Independent polynomial readouts on integer fibers]
+Keep $T,R,d_t$ as above, let $K\ge0$, and prescribe, independently for
+each $0\le t<R$, an affine function $L_t:\mathbb R^n\to\mathbb R$
+and a real polynomial $p_t$ of degree at most $K$. Put
+\[
+ H=(2K+1)R-K.
+ \tag{3}
+\]
+There is a family $F_\varepsilon$ of sums of $H$ original admissible
+constant-numerator heads, defined for all sufficiently small
+$\varepsilon>0$, such that, for every Boolean $x$ with $T(x)=t$,
+\[
+ \lim_{\varepsilon\downarrow0}\varepsilon^{-K}F_\varepsilon(x)
+   =\frac{p_t(L_t(x))}{Q(d_t)}.
+ \tag{4}
+\]
+Here $Q(d_t)>0$ is independent of the chosen readouts. Consequently, if
+every prescribed $p_{T(x)}(L_{T(x)}(x))$ is nonzero, some such $H$-head
+sum realizes all their signs strictly. Rational readouts admit rational
+head parameters.
+\end{theorem}
+
+\begin{proof}
+Choose distinct poles $0<\lambda_h<1/4$, and define $Q$ as above and
+$P_0(z)=\prod_{t=0}^{R-1}(z-d_t)$. Interpolate the affine readouts in
+the variable $z$: there is a polynomial $L(z,x)$ of degree at most
+$R-1$ in $z$, affine in $x$, with $L(d_t,x)=L_t(x)$.
+Write $p_t(s)=\sum_{j=0}^K a_{tj}s^j$. For each $j$ choose the unique
+polynomial $A_j$ of degree at most $R-1$ with
+\[
+ A_j(d_t)=\frac{a_{tj}}{P_0'(d_t)^j}.
+ \tag{5}
+\]
+The roots $d_t$ are distinct, so all these interpolation data are defined.
+Put
+\[
+ P_\varepsilon(z)=\sum_{j=0}^K
+   \varepsilon^{K-j}A_j(z)P_0(z)^j,
+ \qquad
+ F_\varepsilon(x)=\sum_{h=1}^H
+ \frac{P_\varepsilon(\lambda_h)/Q'(\lambda_h)}
+ {d_{T(x)}-\lambda_h+\varepsilon L(\lambda_h,x)}.
+ \tag{6}
+\]
+For $0\le k\le K$ the polynomial
+$P_\varepsilon(z)L(z,x)^k$ has degree at most
+\[
+ (K+1)R-1+K(R-1)=(2K+1)R-K-1=H-1.
+ \tag{7}
+\]
+Thus the partial-fraction identity (1), followed by $k$ derivatives,
+gives
+\[
+ \sum_h\frac{P_\varepsilon(\lambda_h)L(\lambda_h,x)^k}
+ {Q'(\lambda_h)(z-\lambda_h)^{k+1}}
+ =\frac{(-1)^k}{k!}\frac{d^k}{dz^k}
+ \left(\frac{P_\varepsilon(z)L(z,x)^k}{Q(z)}\right).
+ \tag{8}
+\]
+Fix $x$ and let $t=T(x)$. A finite geometric expansion of each
+denominator in (6), using the positive fixed gaps $d_t-\lambda_h$,
+therefore yields
+\[
+ F_\varepsilon(x)=
+ \sum_{k=0}^K\frac{\varepsilon^k}{k!}
+ \left[\frac{d^k}{dz^k}
+ \left(\frac{P_\varepsilon(z)L(z,x)^k}{Q(z)}\right)\right]_{z=d_t}
+ +O(\varepsilon^{K+1}).
+ \tag{9}
+\]
+The remainder statement follows directly from the finite geometric
+remainder formula: $P_\varepsilon(\lambda_h)$ is bounded as
+$\varepsilon\to0$, there are finitely many heads, and their denominators
+stay bounded away from zero. No interchange of infinite series is used.
+
+Insert the $j$th summand of $P_\varepsilon$ into the $k$th term of (9).
+If $j>k$, its derivative vanishes because $P_0(z)^j$ has a zero of
+order $j$ at $d_t$. If $j<k$, its power of $\varepsilon$ is
+$K-j+k>K$. If $j=k$, the only surviving term of the $k$th derivative
+puts all derivatives on $P_0^k$ and equals
+\[
+ k!\frac{A_k(d_t)P_0'(d_t)^kL_t(x)^k}{Q(d_t)}
+ =k!\frac{a_{tk}L_t(x)^k}{Q(d_t)}.
+ \tag{10}
+\]
+Equations (9)--(10) prove (4).
+
+It remains to check the exact original model. For each head, write its
+denominator as $b_h(\varepsilon)-\sum_i a_{hi}(\varepsilon)x_i$.
+At $\varepsilon=0$,
+\[
+ b_h(0)=1-\lambda_h>\frac34,\qquad
+ a_{hi}(0)=\frac{w_i}{4R}>0,\qquad
+ b_h(0)-2\sum_i a_{hi}(0)>\frac14.
+ \tag{11}
+\]
+All these inequalities persist for sufficiently small $\varepsilon>0$,
+because the finitely many affine coefficients depend continuously on
+$\varepsilon$. Set
+\[
+ \alpha_h=\frac12,\quad \rho_{hi}=2a_{hi}(\varepsilon),\quad
+ \gamma_h=b_h(\varepsilon)-2\sum_i a_{hi}(\varepsilon),\quad
+ m_{hi}=0,\quad \delta_h=0,\quad
+ \eta_h=\frac{P_\varepsilon(\lambda_h)}{Q'(\lambda_h)}.
+ \tag{12}
+\]
+These are original admissible atom parameters. On Boolean inputs,
+$\rho_{hi}\alpha_h^{x_i}=2a_{hi}-a_{hi}x_i$, so their denominator
+and numerator are exactly the corresponding summand of (6).
+In particular, admissibility holds on the entire cube, including fibers
+not used by an application. Since the cube is finite, nonzero limits in
+(4) preserve all prescribed strict signs for one common small positive
+$\varepsilon$. Rational input data and a sufficiently small rational
+$\varepsilon$ give rational parameters throughout.
+\end{proof}
+
+\paragraph{Useful collision families and the actual cost.}
+For $m$ row bits $u$ and $b$ memory bits $v$, choose
+\[
+ T(u,v)=\sum_{i=0}^{m-1}2^i u_i+\sum_{j=1}^b a_jv_j,
+ \qquad a_j\in\mathbb Z_{>0}.
+ \tag{13}
+\]
+Then $R=2^m+\sum_j a_j$. If $\sum_j a_j=O(2^m)$, the zero
+representation and the degree-$K$ compiler cost respectively $O(2^m)$
+and $O(K2^m)$ heads. On a fiber, the row bits encode
+$t-\sum_j a_jv_j$, whenever this integer is in $[0,2^m-1]$.
+Thus arbitrary weights permit binary-carry geometry, rather than only
+dependence on memory Hamming weight.
+
+The theorem does not assert that one polynomial of one affine readout
+programs arbitrary signs on a fiber. Nor does it identify the independent
+readouts with free coefficients in the original final score: their
+interpolation enters the denominators in (6), and the cancellation proof
+is essential. To obtain the requested logarithmic saving from this
+compiler one would need fibers of size substantially greater than
+$nK$ that admit all sign patterns as $p_t(L_t(x))$. A generic
+polynomial-activation capacity slogan does not supply such a theorem.
+Repeated roots alone are therefore not an asymptotic solution.
+
+\begin{theorem}[Capacity obstruction for strict leading readouts]
+Let $n,K\ge1$, and let $X\subseteq\{0,1\}^n$. Suppose that every strict
+sign pattern on $X$ is realized by $p(L(x))$, with $L$ affine and
+$\deg p\le K$. Then $|X|<128nK$.
+Consequently, for a fixed partition into $R$ integer fibers, the strict
+leading readouts in the preceding compiler cannot represent every Boolean
+function with $KR=o(2^n/n)$.
+\end{theorem}
+\begin{proof}
+Write $M=|X|$, $p_*=n+K+2$, and $D=K+1$. At a fixed point $x$,
+the expression $\sum_{j=0}^K a_j(\ell_0+\sum_i\ell_i x_i)^j$
+is a polynomial of total degree at most $D$ in the $p_*$ parameters
+$a_j,\ell_i$. We use Warren's strict sign-pattern estimate: $M\ge p_*$
+polynomials of degree at most $D$ in $p_*$ real variables have at most
+$(4eDM/p_*)^{p_*}$ nonzero sign patterns. This is the standard form
+quoted as Theorem 2.1 in Goldberg and Jerrum,
+\emph{Bounding the Vapnik--Chervonenkis dimension of concept classes
+parameterized by real numbers},
+\url{https://www.cs.ox.ac.uk/people/paul.goldberg/papers/goldbergjerrum.pdf}.
+Thus shattering implies, when $M\ge p_*$,
+\[
+ 2^{M/p_*}\le 4eD(M/p_*).
+ \tag{14}
+\]
+For $a\ge1$, the inequality $2^z\le az$ forces
+$z<4\log_2(2a)$: $2^z/z$ is increasing for $z\ge2$, while at
+$z=4\log_2(2a)$ it is greater than $a$, using
+$\log_2(2a)\le2a$. The case $M<p_*$ is smaller still. Hence
+\[
+ M<4(n+K+2)\log_2(8e(K+1)).
+ \tag{15}
+\]
+If $K\le n$, then $n+K+2\le4n$ and
+$\log_2(8e(K+1))<6K$, giving $M<96nK$.
+If $n\le K\le2^n$, then $n+K+2\le4K$ and
+$\log_2(8e(K+1))<7n$, giving $M<112nK$.
+If $K>2^n$, then $M\le2^n<K\le nK$.
+These bounds imply the stated uniform constant. If the independent
+readout class on all $R$ fibers realizes every global sign pattern,
+each fiber must be shattered by this same local family. Summing the
+bound over fibers gives $2^n<128nKR$.
+\end{proof}
+
+\paragraph{Exact boundary of the obstruction.}
+This last theorem concerns the nonzero strict limiting readouts in (4).
+It is not a lower bound for the original attention model. A construction
+that deliberately makes leading readouts zero and uses further orders,
+or that shares a root lattice between many levels at smaller head cost,
+is not excluded. Such a construction requires a new cancellation argument;
+neither multiplicity nor interpolation alone supplies it.
+\end{document}
