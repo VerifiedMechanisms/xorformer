@@ -8,10 +8,11 @@
 \maketitle
 
 \paragraph{Scope.}
-This short written lemma excludes one compact-limit shortcut. It does
-not exclude scale-dependent poles or residues, does not bound the number
-of patterns for arbitrary fixed query intervals, and does not establish
-either requested HeadComplexity asymptotic result. It is not Lean checked.
+These written lemmas audit two fixed-pool shortcuts. The first concerns
+coalescing queries. The second concerns square, fully surjective positive
+sign-cube maps. Neither bounds weaker pattern entropy or allows weights
+to adapt separately to each target pattern. They do not establish either
+requested HeadComplexity asymptotic result. They are not Lean checked.
 
 \begin{lemma}
 Let $\mathcal F$ be a finite family of real-analytic functions in a
@@ -47,6 +48,66 @@ scale invalidates this application, and is permitted in the research
 problem. Likewise, sending poles to zero while holding a nonzero query
 interval fixed is a different limit: its leading coefficient can be a
 nonconstant rational function of the query time.
+
+\paragraph{Square sign-cube surjectivity forces literal readout.}
+There is also an exact obstruction with no limiting argument.
+
+\begin{lemma}
+Let $M$ be an $H\times H$ matrix with strictly positive entries. Suppose
+the strict sign vectors $\operatorname{sgn}(Ms)$, for
+$s\in\{-1,1\}^H$, contain all $2^H$ patterns. Then there is a
+permutation $\pi$ of $[H]$ such that
+\[
+ M_{i,\pi(i)}>\sum_{j\ne\pi(i)}M_{ij}\qquad(i\in[H]).
+\]
+\end{lemma}
+\begin{proof}
+There are exactly $2^H$ inputs, so no output coordinate can vanish and
+the map $s\mapsto\operatorname{sgn}(Ms)$ is a bijection of the Boolean
+lattice. Positivity of $M$ makes it order preserving. Its inverse is
+also order preserving: a permutation of a finite set has finite order,
+and its inverse is a positive iterate of the same order-preserving map.
+Thus it is a Boolean-lattice automorphism. Such an automorphism permutes
+the atoms and, because every lattice element is the join of its atoms,
+acts by a coordinate permutation. Evaluating output coordinate $i$ on
+the input whose only positive coordinate is $\pi(i)$ gives the claimed
+strict inequality.
+\end{proof}
+
+\begin{lemma}
+Fix $p>0$, $0\leq\xi_h\leq a<b\leq t_i$, and nonzero real
+weights $c_h$. If the $H$-query fixed-residue family
+\[
+ \left(\operatorname{sgn}\sum_{h=1}^H
+               \frac{s_hc_h}{(t_i-\xi_h)^p}\right)_{i=1}^H,
+ \qquad s\in\{-1,1\}^H,
+\]
+contains all $2^H$ strict patterns, then
+\[
+ H<1+\left(\frac{b}{b-a}\right)^p.
+\]
+In particular, if $(b/(b-a))^p\leq2$, full square sign-cube
+shattering is impossible for $H\geq3$.
+\end{lemma}
+\begin{proof}
+Absorb each $c_h$ sign into $s_h$ and multiply row $i$ by the positive
+number $t_i^p$. The resulting entries satisfy
+$|c_h|\leq M_{ih}\leq\kappa|c_h|$, where
+$\kappa=(b/(b-a))^p$. The preceding lemma supplies a different dominant
+column in every row. Its inequality implies
+$\kappa|c_{\pi(i)}|>\sum_{h\ne\pi(i)}|c_h|$.
+Hence every $|c_h|$ is strictly greater than
+$\sum_g|c_g|/(\kappa+1)$. Summing gives $H<\kappa+1$.
+\end{proof}
+
+The square hypothesis is essential to this argument: a surjective
+monotone map from a larger Boolean cube to a smaller one need not consist
+of coordinate readouts. Therefore this does not exclude a useful
+number of independent signs on $o(H)$ queries, or
+$\exp(cH)$ distinct patterns on $H$ queries. Adaptive residues, additive
+biases, signed query masks, and the joint compiler are outside the stated
+claim. In particular this is not an unrestricted HeadComplexity lower
+bound.
 
 \paragraph{Exact finite diagnostic.}
 The accompanying script \texttt{compact-cauchy-signcube-probe.py}
