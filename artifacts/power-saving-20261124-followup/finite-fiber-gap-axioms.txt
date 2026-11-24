@@ -1,0 +1,10 @@
+'HeadComplexity.FiniteFiberUnitGap.gapScale_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFiberUnitGap.gapScale_mul_abs_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFiberUnitGap.centered_unit_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFiberUnitGap.common_fiber_unit_contacts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FiniteFiberUnitGap.atom_centering_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FiniteFiberUnitGap.all_positive_contacts_force_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,7 @@
+import HeadComplexity.Research.FiniteFiberUnitGap
+#print axioms HeadComplexity.FiniteFiberUnitGap.gapScale_pos
+#print axioms HeadComplexity.FiniteFiberUnitGap.gapScale_mul_abs_ge
+#print axioms HeadComplexity.FiniteFiberUnitGap.centered_unit_gap
+#print axioms HeadComplexity.FiniteFiberUnitGap.common_fiber_unit_contacts
+#print axioms HeadComplexity.FiniteFiberUnitGap.atom_centering_identity
+#print axioms HeadComplexity.FiniteFiberUnitGap.all_positive_contacts_force_constant

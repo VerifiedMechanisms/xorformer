@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_unit_gap_transfer.md",
+    "source_spans": 30,
+    "rendered_spans": 30,
+    "findings": [],
+    "notes": []
+  }
+]
