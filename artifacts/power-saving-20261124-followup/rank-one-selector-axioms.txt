@@ -1,0 +1,12 @@
+'HeadComplexity.RankOneCompilerSelector.dimension_le_of_vertex_selector' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RankOneCompilerSelector.dimension_le_of_product_selector' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RankOneCompilerSelector.no_affine_product_selector' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RankOneCompilerSelector.two_bit_six_term_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,5 @@
+import HeadComplexity.Research.RankOneCompilerSelector
+#print axioms HeadComplexity.RankOneCompilerSelector.dimension_le_of_vertex_selector
+#print axioms HeadComplexity.RankOneCompilerSelector.dimension_le_of_product_selector
+#print axioms HeadComplexity.RankOneCompilerSelector.no_affine_product_selector
+#print axioms HeadComplexity.RankOneCompilerSelector.two_bit_six_term_identity

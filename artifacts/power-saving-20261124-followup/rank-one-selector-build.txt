@@ -1,0 +1,9 @@
+⚠ [3230/3230] Built HeadComplexity.Research.RankOneCompilerSelector (1.7s)
+warning: HeadComplexity/Research/RankOneCompilerSelector.lean:68:69: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [boolToReal, add_comm, add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+Build completed successfully (3230 jobs).
