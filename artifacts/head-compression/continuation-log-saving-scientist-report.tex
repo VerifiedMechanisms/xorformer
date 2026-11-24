@@ -98,6 +98,13 @@ expands the rank heads, compact denominators, finite-field incidence,
 padding, and full head budget independently. These are TeX sources;
 no TeX compilation is claimed. The entire target proof is Lean-checked,
 so there is no written-only mathematical gap.
+The separate cold audit in \texttt{continuation-log-saving-cold-audit.tex}
+also found no defect after following the original atom-to-attention bridge.
+Its independent \texttt{audit\_affine\_plane\_full\_heads.py} implementation
+checks all $256$ four-row, two-column truth tables and $18$ additional
+restricted or empty cases through strictification, axis repair, reversal,
+and original atom normalization. The exact results are saved in the
+matching \texttt{.json} file.
 
 \paragraph{Routes that did not resolve the target.}
 Fixed-denominator universality, bounded atoms, saturated priority lists,
