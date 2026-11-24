@@ -1,0 +1,12 @@
+'HeadComplexity.SplicedProjectionCircuit.chain_remainder_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplicedProjectionCircuit.two_point_polynomial_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SplicedProjectionCircuit.spliced_polynomial_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionChainCircuit.constant_residue_identity_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

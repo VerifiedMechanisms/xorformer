@@ -1,0 +1,5 @@
+import HeadComplexity.Research.SplicedProjectionCircuit
+#print axioms HeadComplexity.SplicedProjectionCircuit.chain_remainder_identity
+#print axioms HeadComplexity.SplicedProjectionCircuit.two_point_polynomial_identity
+#print axioms HeadComplexity.SplicedProjectionCircuit.spliced_polynomial_identity
+#print axioms HeadComplexity.BooleanProjectionChainCircuit.constant_residue_identity_unique

@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_spliced_moment_circuits.md",
+    "source_spans": 92,
+    "rendered_spans": 92,
+    "findings": [],
+    "notes": []
+  }
+]

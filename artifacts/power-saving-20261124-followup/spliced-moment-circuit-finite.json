@@ -1,0 +1,110 @@
+[
+  {
+    "n": 2,
+    "D": 3,
+    "H": 8,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 7,
+    "fiber_rank_mod_prime": 8,
+    "affine_rank_mod_prime": 3,
+    "prime": 1000000007,
+    "max_coefficient_bits": 8
+  },
+  {
+    "n": 2,
+    "D": 10,
+    "H": 15,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 14,
+    "fiber_rank_mod_prime": 15,
+    "affine_rank_mod_prime": 3,
+    "prime": 1000000007,
+    "max_coefficient_bits": 27
+  },
+  {
+    "n": 2,
+    "D": 50,
+    "H": 55,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 54,
+    "fiber_rank_mod_prime": 55,
+    "affine_rank_mod_prime": 3,
+    "prime": 1000000007,
+    "max_coefficient_bits": 143
+  },
+  {
+    "n": 3,
+    "D": 4,
+    "H": 11,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 10,
+    "fiber_rank_mod_prime": 11,
+    "affine_rank_mod_prime": 4,
+    "prime": 1000000007,
+    "max_coefficient_bits": 10
+  },
+  {
+    "n": 3,
+    "D": 20,
+    "H": 27,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 26,
+    "fiber_rank_mod_prime": 27,
+    "affine_rank_mod_prime": 4,
+    "prime": 1000000007,
+    "max_coefficient_bits": 56
+  },
+  {
+    "n": 4,
+    "D": 5,
+    "H": 14,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 13,
+    "fiber_rank_mod_prime": 14,
+    "affine_rank_mod_prime": 5,
+    "prime": 1000000007,
+    "max_coefficient_bits": 13
+  },
+  {
+    "n": 4,
+    "D": 30,
+    "H": 39,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 38,
+    "fiber_rank_mod_prime": 39,
+    "affine_rank_mod_prime": 5,
+    "prime": 1000000007,
+    "max_coefficient_bits": 85
+  },
+  {
+    "n": 5,
+    "D": 6,
+    "H": 17,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 16,
+    "fiber_rank_mod_prime": 17,
+    "affine_rank_mod_prime": 6,
+    "prime": 1000000007,
+    "max_coefficient_bits": 16
+  },
+  {
+    "n": 5,
+    "D": 50,
+    "H": 61,
+    "exact_moments_verified": true,
+    "all_coefficients_nonzero": true,
+    "moment_rank_mod_prime": 60,
+    "fiber_rank_mod_prime": 61,
+    "affine_rank_mod_prime": 6,
+    "prime": 1000000007,
+    "max_coefficient_bits": 143
+  }
+]
