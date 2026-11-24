@@ -1,0 +1,10 @@
+import HeadComplexity.Research.FixedBasisBalanceObstruction
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.baseDenominator_pos
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.basis_identity
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.base_full_gap
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.base_test_negative
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.basis_affine_injective
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.constant_mass_le_eighth
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.atom_eval
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.atom_full_gap
+#print axioms HeadComplexity.FixedBasisBalanceObstruction.atom_basis_values

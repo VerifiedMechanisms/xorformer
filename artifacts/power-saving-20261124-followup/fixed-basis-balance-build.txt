@@ -1,0 +1,8 @@
+⚠ [3226/3226] Built HeadComplexity.Research.FixedBasisBalanceObstruction (138s)
+warning: HeadComplexity/Research/FixedBasisBalanceObstruction.lean:37:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 8000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+Build completed successfully (3226 jobs).

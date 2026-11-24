@@ -1,0 +1,19 @@
+'HeadComplexity.FixedBasisBalanceObstruction.baseDenominator_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.basis_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.base_full_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.base_test_negative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.basis_affine_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.constant_mass_le_eighth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.atom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.atom_full_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FixedBasisBalanceObstruction.atom_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
