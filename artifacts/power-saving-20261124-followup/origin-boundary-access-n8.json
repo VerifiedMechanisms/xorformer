@@ -1,0 +1,9 @@
+{
+  "n": 8,
+  "trials": 100000,
+  "checked_chambers": 382,
+  "largest_min_b0": 0,
+  "candidate": null,
+  "seconds": 6.054777383804321,
+  "status": "floating LP exploration only"
+}

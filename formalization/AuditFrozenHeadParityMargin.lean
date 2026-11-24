@@ -1,0 +1,9 @@
+import HeadComplexity.Research.FrozenHeadParityMargin
+
+#print axioms HeadComplexity.FrozenHeadParityMargin.parity_affine_product_sum_zero
+#print axioms HeadComplexity.FrozenHeadParityMargin.weighted_score_sum_eq
+#print axioms HeadComplexity.FrozenHeadParityMargin.gap_le_of_frozen_residual
+#print axioms HeadComplexity.FrozenHeadParityMargin.original_head_presentation
+#print axioms HeadComplexity.FrozenHeadParityMargin.original_gap_le_of_frozen_residual
+#print axioms HeadComplexity.FrozenHeadParityMargin.signedLabel_parityFunction
+#print axioms HeadComplexity.FrozenHeadParityMargin.relativeMargin_le_of_frozen_heads
