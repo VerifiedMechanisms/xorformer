@@ -1,4 +1,4 @@
-# Affine Statistics And Collinear Denominators
+# Affine Statistics And Denominator Planes
 
 ## Statement
 
@@ -15,6 +15,8 @@ $$ S(x)=c+\sum_{h=1}^H\frac{N_h(x)}{d_h+e_h t(x)}, $$
 where every $N_h$ is affine and every displayed denominator is positive on the cube. Then vanilla computes the same Boolean function with $H$ heads.
 
 Consequently, a pure rotary representation whose denominator slope vectors are all collinear cannot improve the vanilla head count, at any $H$. This assertion does not require the pure numerator restriction and also applies to retained rotary scores with collinear denominator slopes.
+
+A second generalization allows denominators $D_h=\alpha_h B+\beta_h t$, where $B$ is affine, positive on the cube, and has either all strictly positive slopes or all strictly negative slopes. An arbitrary sum of $H$ such positive-denominator ratios also has an $H$-head vanilla classifier.
 
 These are Boolean sign equivalences. The constructions need not preserve the original real scores.
 
@@ -68,9 +70,31 @@ $$ \frac{P_\varepsilon(x)}{Q_\varepsilon(y_\varepsilon(x))}=c A_\varepsilon+\sum
 
 Every numerator is affine, and all denominator slopes are strictly positive. The right side therefore has an $H$-head vanilla realization. Its sign is the sign of $P_\varepsilon(x)$. Since $P_\varepsilon(x)\to P(x)$ at each input, one sufficiently small positive $\varepsilon$ preserves the finite strict sign pattern. $\blacksquare$
 
+### Theorem 3. A denominator plane with an oriented positive base
+
+Suppose $D_h=\alpha_h B+\beta_h t$ and $B$ satisfies the stated positivity and slope conditions. For $H=0$ the score is constant. For $H\geq1$, absorb the score constant into one affine numerator and call the resulting numerators $L_h$. Define
+
+$$ y=\frac{t}{B},\qquad q_h(Y)=\prod_{j\neq h}(\alpha_j+\beta_jY). $$
+
+Each $q_h$ has degree below $H$. The original score multiplied by its positive denominator product, then divided by $B^H$, is
+
+$$ F(x)=\sum_{h=1}^H\frac{L_h(x)}{B(x)}q_h\left(\frac{t(x)}{B(x)}\right). $$
+
+Choose distinct positive constants $a_1,\ldots,a_H$ sufficiently large that every affine form $E_j=t+a_j B$ is positive on the cube and has the same strict slope orientation as $B$. Such constants exist: the cube and coordinate set are finite, every $B(x)$ is positive, and every slope of $B$ is nonzero.
+
+For every $h$, proper partial fractions give constants $u_{hj}$ such that
+
+$$ \frac{q_h(Y)}{\prod_{j=1}^H(Y+a_j)}=\sum_{j=1}^H\frac{u_{hj}}{Y+a_j}. $$
+
+It follows exactly that
+
+$$ \frac{F(x)}{\prod_{j=1}^H(y(x)+a_j)}=\sum_{j=1}^H\frac{\sum_{h=1}^H u_{hj}L_h(x)}{t(x)+a_jB(x)}. $$
+
+Every denominator is vanilla admissible, and each numerator is affine. All factors multiplying $F$ or the original score are positive. Thus the displayed $H$-head vanilla score has exactly the same strict-positive classifier, including inputs on which the original score is zero. No strictification or limiting argument is needed for this denominator-plane theorem. $\blacksquare$
+
 ## Scope and formalization
 
-The result applies to either rotary frequency convention through the scalar normal form in Theorem 14. It does not establish the universal reverse implication for arbitrary pure rotary heads: in general their denominator slope vectors span more than one direction.
+The results apply to scalar rotary normal forms independently of the frequency convention. The architectural bridge is separately checked in Theorem 18. These subclasses do not establish the universal reverse implication: arbitrary pure families need not have collinear denominator slopes or a two-dimensional affine denominator span containing an oriented positive base.
 
 [Results/AffineStatisticUpperBound.lean](../../formalization/HeadComplexity/Results/AffineStatisticUpperBound.lean) proves Theorem 1 without changing the vanilla definitions:
 
@@ -83,5 +107,11 @@ The result applies to either rotary frequency convention through the scalar norm
 - `AffineStatistic.computable_of_affine_polynomial_sum` handles finite sums of affine coefficients times univariate polynomials of degree strictly below the head count, evaluated at one arbitrary affine statistic.
 - `AffineStatistic.computable_of_collinear_denominators` applies this construction to arbitrary positive affine ratios with collinear denominator slopes, with no numerator restriction.
 - `pureRoPEFamily_vanilla_of_collinear_denominators` and `retainedRoPEFamily_vanilla_of_collinear_denominators` specialize it to the existing rotary scalar families.
+
+[Results/DenominatorPlaneUpperBound.lean](../../formalization/HeadComplexity/Results/DenominatorPlaneUpperBound.lean) proves Theorem 3:
+
+- `AffineStatistic.computable_of_projective_affine_polynomial_sum` realizes proper polynomial sums in the projective statistic $t/B$.
+- `AffineStatistic.computable_of_denominator_plane` handles arbitrary positive affine ratios in the stated denominator plane.
+- `pureRoPEFamily_vanilla_of_denominator_plane` and `retainedRoPEFamily_vanilla_of_denominator_plane` specialize the result to rotary scalar families.
 
 All these Lean declarations cover zero inputs and zero heads and contain no additional axioms or unfinished proof placeholders.

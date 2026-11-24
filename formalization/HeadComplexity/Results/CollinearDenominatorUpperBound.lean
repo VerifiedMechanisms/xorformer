@@ -21,7 +21,7 @@ namespace AffineStatistic
 variable {n H m : ℕ}
 
 /-- The proper partial-fraction identity has no constant polynomial part. -/
-private theorem proper_partial_fraction (P : ℝ[X]) (av : Fin H → ℝ)
+theorem proper_partial_fraction (P : ℝ[X]) (av : Fin H → ℝ)
     (hinj : Function.Injective av) (hdeg : P.natDegree < H) :
     ∃ bv : Fin H → ℝ, ∀ y : ℝ, (∀ h, 0 < y + av h) →
       (∑ h, bv h / (y + av h)) = P.eval y / ∏ h, (y + av h) := by
