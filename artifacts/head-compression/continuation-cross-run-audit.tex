@@ -18,10 +18,31 @@ The named run branches were fetched and their relevant artifacts read.
 The last several commit subjects of all branches in the two run
 repositories were also scanned for additional worst-case constructions.
 That scan is not a claim to have audited every file in every branch.
+The scan was subsequently broadened to the branch-specific
+\texttt{autoresearch-reports/<run-id>.md} files across the 32 fetched
+\texttt{autoresearch-runs} branches and 70 fetched
+\texttt{xorformer-runs} branches. Reports mentioning worst-case heads,
+the exponential upper bound, or the universal linear saving were then
+read. This is still a report-level search, not independent verification
+of every theorem mentioned in those reports.
 The additional worst-case branch
 \texttt{xorformer/ar/d57a87ee00e7}, at \texttt{6116fd4}, was inspected
 through its report, proof audit, and research notes. Its report explicitly
 says that it did not resolve the asymptotic gap.
+
+\paragraph{Additional report-level findings.}
+Run \texttt{87be80e0ed91} was asked for the quadratic-denominator
+upper bound, but its actual result was an authentication failure with
+no changes and no new theorems. Its ``build pass'' line cannot be read
+as verification of the requested bound. Run \texttt{af1d37c894e3}
+reports the original universal linear saving already represented in
+the present repository. The reports \texttt{a9ea0e41c616},
+\texttt{2c00c9dca8bf}, \texttt{7921007bd67e}, and
+\texttt{af58d85faa45} concern threshold-degree-two questions.
+In particular, the quadratic upper bound quoted in the first report
+is restricted to that class; its own continuation ended with missing
+dependencies and a failed build. None of these report-level findings
+supplies a stronger universal bound for $W(n)$.
 
 \paragraph{Exact universal bound from run 1dc3df1f7016.}
 In \texttt{autoresearch-runs/ar/1dc3df1f7016}, at
