@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{A Quadratic Pole Budget for Compact Disjoint Dominance}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written argument, with a small exact companion check,
+not a Lean theorem. It concerns a particular sign-cube mechanism: each
+pole belongs to one independently signed group, and the output word is
+that group-sign word up to a fixed signed permutation. It does not bound
+general nonlinear sign-cube encodings, adaptive residues, the full local
+compiler, or worst-case head complexity. No model definition is changed.
+
+Let $q\geq1$. For $j=1,\ldots,q$, let
+\[
+ f_j(t)=\sum_{h=1}^{m_j}\frac{c_{jh}}{t-p_{jh}},
+ \qquad m_j\geq1,\qquad G=\sum_jm_j.
+\]
+Repeated poles and arbitrary real residues are allowed. Suppose all poles
+belong to $[0,a]$, and $t_1,\ldots,t_q\geq b>a$.
+The independent group signs $x_j\in\{-1,1\}$ produce scores
+$\sum_jx_jf_j(t_i)$.
+
+After relabeling and changing fixed group signs, the claim that the
+strict output word is exactly $x$ for every $x$ is equivalent to
+\[
+ f_i(t_i)>\sum_{j\ne i}|f_j(t_i)| \qquad(1\leq i\leq q).
+ \tag{1}
+\]
+Indeed, the minimum of $x_i\sum_jx_jf_j(t_i)$ over all sign choices is
+$f_i(t_i)-\sum_{j\ne i}|f_j(t_i)|$. Thus this assumption is both
+necessary and sufficient for the stated fixed signed-permutation
+decoder. It is not necessary for a general bijective threshold map.
+
+\begin{theorem}[Finite compactness inequality]
+Put $L=\lfloor 2G/q\rfloor$. Under (1),
+\[
+ \frac q2<L\left(1+(1-a/b)^{-2L}\right).
+ \tag{2}
+\]
+More precisely, the number $s$ of groups with $m_j\leq L$ satisfies
+$s>q/2$ and
+\[
+ s<L\left(1+(1-a/b)^{-2L}\right).
+ \tag{3}
+\]
+\end{theorem}
+\begin{proof}
+Fewer than $q/2$ groups can have $m_j>2G/q$, since their total size
+would otherwise exceed $G$. Let $S$ be the remaining groups, and restrict
+both rows and columns of (1) to $S$. Strict diagonal dominance persists.
+
+For $j\in S$ put
+\[
+ Q_j(t)=t^{L-m_j}\prod_{h=1}^{m_j}(t-p_{jh}),
+ \qquad P_j(t)=Q_j(t)f_j(t).
+\]
+Every $P_j$ is a polynomial of degree at most $L-1$, including with
+repeated poles. The factors $t^{L-m_j}$ are an algebraic padding only;
+they introduce no heads and no assertion of an admissible zero pole.
+For $t\geq b$,
+\[
+ t^L(1-a/b)^L\leq Q_j(t)\leq t^L.
+ \tag{4}
+\]
+Consider the $s\times s$ real matrix
+\[
+ R_{ij}=\frac{P_j(t_i)}{P_i(t_i)}
+ =\frac{f_j(t_i)}{f_i(t_i)}\frac{Q_j(t_i)}{Q_i(t_i)}.
+\]
+Its denominators are positive by (1) and (4). Its diagonal entries are
+one, its rank is at most $L$, and every off-diagonal row absolute sum
+is less than $M=(1-a/b)^{-L}$. Consequently
+\[
+ \|R\|_F^2
+ =s+\sum_i\sum_{j\ne i}|R_{ij}|^2
+ \leq s+\sum_i\left(\sum_{j\ne i}|R_{ij}|\right)^2
+ <s(1+M^2).
+\]
+For any real square matrix of rank $k$,
+$|\operatorname{tr}R|\leq\sqrt{k}\|R\|_F$.
+For completeness, write a singular value decomposition
+$R=U\operatorname{diag}(\sigma_1,\ldots,\sigma_k)V^\top$.
+The trace has absolute value at most $\sum\sigma_i$, which is at most
+$\sqrt{k}(\sum\sigma_i^2)^{1/2}$ by Cauchy--Schwarz.
+Here $\operatorname{tr}R=s$, so $s^2<Ls(1+M^2)$, proving (3).
+\end{proof}
+
+\begin{theorem}[Quadratic pole cost for a compact germ]
+Fix $q,m_1,\ldots,m_q$. Allow all residues, poles and query times to
+depend on a positive parameter. Suppose (1) holds for arbitrarily small
+parameter values, with $a/b\to0$. Then
+\[
+ G\geq q^2/8.
+ \tag{5}
+\]
+\end{theorem}
+\begin{proof}
+The integer $L$ is fixed. Taking the limit in (2) gives
+$q/2\leq2L\leq4G/q$.
+\end{proof}
+
+\paragraph{A finite quantitative version.}
+If $a/b\leq1/(4L)$, Bernoulli's inequality gives
+$(1-a/b)^L\geq3/4$. Equation (2) therefore implies
+\[
+ G>9q^2/100.
+\]
+For an order-$\nu$ kernel $(t-p)^{-\nu}$ the identical proof pads to
+degree $\nu L$, and gives $G\geq q^2/(8\nu)$ in the compact limit.
+
+\paragraph{Why the compactness assumption matters.}
+Outside the compact regime, a linear pole budget can give independent
+dominance. Fix $R>1$, $a_j=R^j$, $t_i=a_i$, and
+\[
+ f_j(t)=\frac{a_jt}{(t+a_j)(t+2a_j)}
+       =\frac{-a_j}{t+a_j}+\frac{2a_j}{t+2a_j}.
+\]
+The diagonal value is $1/6$. For $i\ne j$,
+$0<f_j(t_i)\leq\min\{a_i/a_j,a_j/a_i\}$, so every off-diagonal
+row sum is at most $2/(R-1)$. Taking $R=32$ proves (1) with $2q$ poles.
+These poles and query times occupy matching geometric scales. This is
+not a compact reverse-cube construction: the required full-cube slope
+budget must still be established after assigning tokens to slots.
+Applying a different projective transform to each slot does not by
+itself establish that budget when a slot receives many token scales
+across different represented rows.
+
+\paragraph{Relation to the four-query example.}
+The saved eight-pole rectangular certificate has a sufficient sign
+subcube
+\[
+ (\tau_0,\ldots,\tau_7)=(a,b,c,d,-c,c,-a,a).
+\]
+Its output word is $(d,-a,b,c)$. Thus its disjoint group sizes are
+$3,1,3,1$, and it lies within the scope of this note after the stated
+signed permutation. This observation does not imply that every
+successful rectangular sign-cube family has such a subcube.
+
+\paragraph{Verification boundary.}
+The companion script checks that sixteen-word identity using exact
+rationals when the saved pool is available, verifies the rational
+padding identity on small examples, and checks the noncompact
+two-pole-per-group construction exactly. Those tests audit identities;
+the rank argument above supplies the unrestricted quantitative claim
+within its explicit scope.
+\end{document}
