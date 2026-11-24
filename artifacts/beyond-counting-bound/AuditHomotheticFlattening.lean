@@ -1,0 +1,13 @@
+import HeadComplexity.Atoms.HomotheticFlattening
+
+#print axioms HeadComplexity.HomotheticFlattening.slopes_positive
+#print axioms HeadComplexity.HomotheticFlattening.denominators_positive
+#print axioms HeadComplexity.HomotheticFlattening.original_strict_signs
+#print axioms HeadComplexity.HomotheticFlattening.limit_dual_positive
+#print axioms HeadComplexity.HomotheticFlattening.limit_annihilation
+#print axioms HeadComplexity.HomotheticFlattening.flat_weight_positive
+#print axioms HeadComplexity.HomotheticFlattening.flat_annihilation
+#print axioms HeadComplexity.HomotheticFlattening.limit_inverse_mul
+#print axioms HeadComplexity.HomotheticFlattening.positive_certificate_excludes
+#print axioms HeadComplexity.HomotheticFlattening.no_flat_separator
+#print axioms HeadComplexity.HomotheticFlattening.no_limit_separator

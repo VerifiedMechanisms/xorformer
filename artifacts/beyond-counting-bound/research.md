@@ -450,3 +450,9 @@ A fresh read of the private run mirrors found a newer parity-volume study in `Ve
 The [row-scaling quotient proof](row-scaling-quotient.md) now has twenty-four general Lean declarations, beyond its earlier finite certificate. They prove the exact tangent formulas, positivity of the graph Laplacian, existence of a balancing correction even when that Laplacian is singular, orthogonality, the norm decrease, and uniqueness of the minimum tangent matrix. The module builds and every printed theorem uses only the standard three axioms. Analytic differentiation and smooth dependence remain written proofs.
 
 This validates the normalization mechanism but supplies no uniform bound on the size or variation of the balanced family. The original asymptotic target, every intermediate exponent improvement, and the stronger matching-order target remain open in this run.
+
+## Fixed-direction flattening does not preserve all signs
+
+The [homothetic flattening counterexample](homothetic-flattening.md) tests a new proposed passage from rational heads to constant-denominator jet spaces. An explicit four-bit function has a strict, minimal two-head representation with positive slope vectors of small integers. A strictly positive integer dual excludes its labels from the limiting space. A second exact positive dual excludes every choice of affine numerators after the denominators are flattened by a factor of one hundred. An invertible nine-row minor and an explicit dual-transport formula show that exclusion persists for all sufficiently small positive flattening parameters.
+
+Eleven Lean declarations check the finite signs, annihilation, inverse, and arbitrary-real-coefficient exclusion. The normal-form and continuity deductions are complete written proofs. This blocks fixed-direction flattening as a universal sign-preserving reduction. It does not block paths that adapt the denominator directions, and supplies no asymptotic head lower bound.

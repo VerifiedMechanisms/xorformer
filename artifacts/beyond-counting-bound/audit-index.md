@@ -60,3 +60,5 @@ Generic coordinate uniqueness, uniformly small critical-point counts, a head-ind
 `experiments/late-search-diagnostics.json` retains search outcomes and hashes. Finite failures and missing numerical candidates imply neither infeasibility nor the desired asymptotic lower bound. `run.json` records the target status, checked declarations, and actual timing.
 
 - [General row-scaling geometry](row-scaling-geometry-audit.json): twenty-four Lean-checked finite-dimensional matrix declarations, including singular-Laplacian solvability and uniqueness of the least-norm tangent. No head-count lower bound.
+
+- [Fixed-direction flattening obstruction](homothetic-flattening-audit.json): eleven checked declarations and an exact rational replay. Two admissible heads realize the original labels, but the specified flattened denominator pair cannot. Adaptive direction changes and both asymptotic targets remain open.

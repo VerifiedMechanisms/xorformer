@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "declarations": [
+    "HeadComplexity.HomotheticFlattening.slopes_positive",
+    "HeadComplexity.HomotheticFlattening.denominators_positive",
+    "HeadComplexity.HomotheticFlattening.original_strict_signs",
+    "HeadComplexity.HomotheticFlattening.limit_dual_positive",
+    "HeadComplexity.HomotheticFlattening.limit_annihilation",
+    "HeadComplexity.HomotheticFlattening.flat_weight_positive",
+    "HeadComplexity.HomotheticFlattening.flat_annihilation",
+    "HeadComplexity.HomotheticFlattening.limit_inverse_mul",
+    "HeadComplexity.HomotheticFlattening.positive_certificate_excludes",
+    "HeadComplexity.HomotheticFlattening.no_flat_separator",
+    "HeadComplexity.HomotheticFlattening.no_limit_separator"
+  ],
+  "lean_build": "homothetic-flattening-build.txt",
+  "axioms": "homothetic-flattening-axioms.txt",
+  "rational": "homothetic-flattening-rational-audit.json",
+  "certificate": "homothetic-flattening-certificate.json",
+  "source_sha256": "07e6e4db475158cf576c3771d43098b21a30720c214c1e4589673ea5ee618cd1",
+  "written_proof": "homothetic-flattening.md",
+  "scope": "Eleven kernel-checked declarations: original strict signs, positive annihilators, inverse, and exclusion of arbitrary real coefficients in fixed flattened and limit spaces. Affine numerator absorption, exact-model realization/minimality and continuity are written proofs. No obstruction to adapting directions, and no asymptotic lower bound.",
+  "main_target_proved": false
+}

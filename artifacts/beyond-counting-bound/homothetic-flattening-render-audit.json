@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "audited_utc": "2026-11-24T02:43:38.399631+00:00",
+  "transport": "Direct GitHub Markdown API; gh CLI unavailable",
+  "katex": "",
+  "files": [
+    {
+      "file": "artifacts/beyond-counting-bound/homothetic-flattening.md",
+      "source_math_spans": 55,
+      "rendered_math_spans": 55,
+      "findings": 0,
+      "notes": [],
+      "sha256": "d636a0b15babb569a7462a8cb60c6dcfb22d8bd23735ce5c93f9dfe1ab1096ca"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/research.md",
+      "source_math_spans": 110,
+      "rendered_math_spans": 110,
+      "findings": 0,
+      "notes": [],
+      "sha256": "9bb31d0576f960fb777e1d38bfed956d969a245be38a76e64ab284e3d68853ad"
+    },
+    {
+      "file": "artifacts/beyond-counting-bound/audit-index.md",
+      "source_math_spans": 1,
+      "rendered_math_spans": 1,
+      "findings": 0,
+      "notes": [],
+      "sha256": "d1a7b932965ffcede26ebb5d50a598359f021ca2895bfda9fef587043bb7c435"
+    }
+  ],
+  "gitlab": "Not run: glab unavailable."
+}

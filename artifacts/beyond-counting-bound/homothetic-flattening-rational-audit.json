@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "strict_scores": 16,
+  "positive_certificate_entries": 32,
+  "annihilation_identities": 18,
+  "inverse_entries": 81,
+  "certificate_sha256": "d1b37811f00257e0cc50b3760fda92ff6cdc6bc3d05ac9a7d984c5f486ab22e7",
+  "scope": "Exact finite arithmetic. The general continuity argument is a written proof.",
+  "main_target_proved": false
+}
