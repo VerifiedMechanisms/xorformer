@@ -21,7 +21,9 @@ Both rotary complexities are independent of whether the frequencies are fixed to
 
 [Theorem 15](015_pure_rope_two_heads_complement_invariant.md) additionally proves that a function invariant under complementing every input bit cannot separate pure RoPE from vanilla with two pure heads.
 
-**Unresolved comparison.** This writeup does not prove $H_P(f)=H_V(f)$ or $H_A(f)=H_V(f)$ for every Boolean function, and does not provide a Boolean function with a strict head-count separation. It proves the non-strict inequalities and reduces the remaining questions to explicit scalar normal forms. The strict score separation below is not a head-count separation.
+**Strict retained comparison.** The seven-bit function in [Theorem 15's corollary](015_pure_rope_two_heads_complement_invariant.md) satisfies $H_A(f)=2\lt3=H_P(f)=H_V(f)$. Thus retaining positional embeddings alongside RoPE can strictly reduce head count.
+
+**Unresolved pure comparison.** Whether $H_P(f)=H_V(f)$ for every Boolean function remains open here. No strict pure-RoPE Boolean head-count example is certified. The strict score separation below is not a head-count separation.
 
 ## Model conventions
 
@@ -211,4 +213,4 @@ The new Lean scalar model is `PureRoPEAtom` in [Atoms/RoPE.lean](../../formaliza
 
 The literal rotation matrices, the Vandermonde interpolation argument, the bridge from scalar atoms to literal rotary attention, Theorem 4's unrestricted-denominator equivalence, and Theorem 6's three-head upper bound are handwritten proofs here, not Lean-checked statements. No existing vanilla definition or theorem is changed.
 
-The remaining head-count question is whether either scalar class in Theorem 2 realizes a Boolean function with fewer atoms than the vanilla-admissible class. Theorem 4 makes the retained case particularly concrete: decide whether unrestricted positive affine denominators ever reduce the minimum count. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves answer this question.
+The remaining head-count question is whether the pure scalar class in Theorem 2 realizes a Boolean function with fewer atoms than the vanilla-admissible class. Theorem 15 settles strictness for the retained class but excludes its seven-bit example as a pure separation. Nonuniform denominator coefficients, the strict score example, and failed numerical fitting do not by themselves answer the pure question.

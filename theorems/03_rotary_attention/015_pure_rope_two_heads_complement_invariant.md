@@ -62,7 +62,7 @@ If $k\lt0$, replace $u,k,\ell$ by their negatives and negate $\lambda$ afterward
 
 ### Lemma 3. Complement invariance produces a quadratic sign representation
 
-Make the two-head score strict by lowering its threshold constant a sufficiently small amount. Since the cube is finite, a further sufficiently small perturbation of the first head's token value preserves all labels and ensures $v_1\neq v_0$. This justifies using Lemma 2 even when the original token values coincide. These are finite real parameters; no limiting classifier is used.
+Make the two-head score strict by subtracting a sufficiently small positive constant. Since the cube is finite, a further sufficiently small perturbation of the first head's token value preserves all labels and ensures $v_1\neq v_0$. This justifies using Lemma 2 even when the original token values coincide. These are finite real parameters; no limiting classifier is used.
 
 By Lemma 1, the resulting score has the form
 
@@ -106,4 +106,22 @@ Both denominators are positive on the cube. In bit coordinates their constants a
 
 The complete head-count theorem in this note remains handwritten. In particular, the finite strictness-preserving perturbation and the assembly of these identities with the two-head vanilla construction are not a Lean declaration. No existing architectural definition has been changed.
 
-The weighted-average method and positive-direction two-head construction were informed by [Theorem 199 in run 15dee8652f45](https://github.com/VerifiedMechanisms/xorformer-runs/blob/ar/15dee8652f45/theorems/06_strict_separations/199_complement_invariant_two_head_criterion.md). The pure-head pencil relation and its reorientation supply the additional argument needed here.
+The weighted-average method and positive-direction two-head construction were informed by [Theorem 199 in run 15dee8652f45](https://github.com/VerifiedMechanisms/xorformer-runs/blob/af33133c22d338a09062e394ff5d0643a6687e21/theorems/06_strict_separations/199_complement_invariant_two_head_criterion.md). The pure-head pencil relation and its reorientation supply the additional argument needed here.
+
+## Corollary. Retaining positional embeddings can help where pure RoPE does not
+
+On seven sign inputs $x\in\lbrace-1,1\rbrace^4$ and $y\in\lbrace-1,1\rbrace^3$, define
+
+$$ f_7(x,y)=1\quad\Longleftrightarrow\quad\sum_{j=1}^3 y_j(2x_j-x_4)\gt0. $$
+
+Then, for both frequency conventions,
+
+$$ H_A(f_7)=2\lt3=H_P(f_7)=H_V(f_7). $$
+
+**Proof.** [Run e9ce59582a3f, Theorem 198](https://github.com/VerifiedMechanisms/xorformer-runs/blob/f0a88f44cdc1b89dfe5b30a317d879616a28e0ad/theorems/06_strict_separations/198_seven_bit_orientation_strict_separation.md) proves $H_V(f_7)=3$ and threshold degree two. Its Lean declarations are `HStar_f7` and `f7_exact_separation` in `Results/SevenBitUpperBound.lean`, with the lower bound in `Results/SevenBitSeparation.lean`. Those files are in the cited run and are not imported into this checkout.
+
+The function is invariant under simultaneous negation of all seven signs. The present theorem therefore excludes $H_P(f_7)\leq2$, while Theorem 14 gives $H_P(f_7)\leq H_V(f_7)=3$.
+
+The exact integer data in [retained_f7.json](../../artifacts/rope/search/retained_f7.json) supplies two affine numerators and positive affine denominators whose sum has the target sign on all 128 inputs. All denominator slopes are nonzero. [verify_retained_f7.py](../../artifacts/rope/search/verify_retained_f7.py) checks these signs and explicitly constructs the corresponding retained atoms with rational parameters, using the construction from Theorem 14. Hence $H_A(f_7)\leq2$. The threshold-degree bound gives the reverse inequality. $\blacksquare$
+
+This corollary settles strictness for retained positional embeddings. It is not an example with different pure-RoPE and vanilla head counts. The existing vanilla lower bound is taken from the cited run, the new retained upper bound is checked in exact Python arithmetic, and the new pure lower bound uses this note's handwritten theorem.

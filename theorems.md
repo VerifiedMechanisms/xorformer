@@ -261,11 +261,17 @@ Let $H_P$ denote RoPE replacing additive positional embeddings, and let $H_A$ de
 
 $$ \deg_{\pm}(f)\leq H_A(f)\leq H_P(f)\leq H^{\ast}(f). $$
 
-Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Equality for arbitrary Boolean functions, or a strict Boolean head-count separation, remains unresolved here.
+Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE remains unresolved here. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
 
 The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. The connection to literal rotary attention uses a handwritten finite trigonometric interpolation proof. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
 
 **Proof.** [theorems/03_rotary_attention/014_rope_head_complexity.md](theorems/03_rotary_attention/014_rope_head_complexity.md)
+
+### Theorem 15. Two pure rotary heads and complement invariance
+
+If $f(1-x)=f(x)$ and $H_P(f)\leq2$, then $H_P(f)=H^{\ast}(f)$. Thus a two-versus-three pure-RoPE separation must fail simultaneous input-complement invariance. The complete head-count proof is handwritten; the special pure-head coefficients, positive-direction lemma, and polynomial identities are Lean-checked.
+
+**Proof.** [theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md](theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md)
 
 ## Dependency Order
 

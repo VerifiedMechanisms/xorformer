@@ -61,3 +61,5 @@ mathlib-cache `curl` fix, the Snellius SLURM job scripts, and how to confirm the
 results are axiom-clean — see [`BUILDING.md`](BUILDING.md).
 
 See the [repository README](../README.md) for the wider project context.
+
+The follow-up module `Atoms/RoPEReorientation.lean` checks the pure-head coefficient relation, `RoPEReorientation.exists_positive_direction_of_ne_zero`, and the two quadratic identities used in Theorem 15. The full assertion that complement-invariant two-head pure classifiers have two-head vanilla realizations is proved in the theorem writeup, not yet assembled as a Lean theorem.

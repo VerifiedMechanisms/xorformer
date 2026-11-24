@@ -4,7 +4,7 @@
 
 For all four requested variants, rotary head complexity is at most vanilla head complexity. Fixed standard frequencies and freely chosen frequencies give the same exact score class at unrestricted width, separately with and without additive positional embeddings.
 
-The stronger universal equality with vanilla is unresolved in this run. No Boolean function with a strict head-count separation was found or certified.
+Universal equality of pure RoPE with vanilla remains unresolved. The follow-up settles retained-RoPE strictness: the seven-bit orientation function has retained complexity two, and pure and vanilla complexity three. No strict pure-RoPE head-count example was certified.
 
 The full definitions and proofs are in [the theorem writeup](../../theorems/03_rotary_attention/014_rope_head_complexity.md). The proved comparison is threshold degree at most retained-RoPE complexity, at most pure-RoPE complexity, at most vanilla complexity. Equality holds throughout for symmetric functions and whenever vanilla attains threshold degree.
 
@@ -40,6 +40,24 @@ Added `PureRoPEAtom`, `RetainedRoPEAtom`, their computability predicates and min
 
 ## Remaining questions
 
-Decide whether arbitrary positive affine denominators can strictly reduce classifier head count compared with vanilla-admissible denominators. This is exactly the retained-RoPE comparison. The pure-RoPE comparison is the analogous question for the token-only-value atom class.
+Retained-RoPE strictness is settled by the seven-bit example in Theorem 15. The analogous question for the token-only-value pure atom class remains open.
 
 The fixed/free frequency distinction is resolved; the unresolved issue is Boolean sign expressivity. Formalizing the literal rotary interpolation bridge would close the remaining Lean coverage gap in the proved architectural inequalities.
+
+## Follow-up: requested pure-RoPE example
+
+The requested strict Boolean example remains unresolved. The follow-up produced a new exclusion theorem and exact certificates for an unsuccessful search, rather than a claimed counterexample.
+
+[Theorem 15](../../theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md) proves that a function invariant under complementing every input bit has equal pure-RoPE and vanilla complexity whenever its pure complexity is at most two. Thus any two-versus-three example must lack that symmetry. The proof uses a special numerator relation forced by token-only values and cannot be transferred to the retained-position variant without an additional argument.
+
+`Atoms/RoPEReorientation.lean` checks the special pure-head coefficient relation, `RoPEReorientation.exists_positive_direction_of_ne_zero`, `weighted_antipodal_average`, and `quadric_reorientation`. The complete classifier theorem, including the finite strictness-preserving perturbation and the construction of two vanilla heads, is handwritten in Theorem 15. Existing model definitions and earlier theorem statements remain unchanged.
+
+The [search artifacts](search/README.md) contain 830 exact two-head vanilla certificates for sampled two-head pure classifiers on eight, ten, and twelve bits. This includes 100 samples chosen to suppress low-degree Fourier terms. All certificates were verified on the full cube with Python integer arithmetic. They do not establish a general equality theorem. Seven initial numerical failures were resolved by further search; they are not counterexamples.
+
+The seven-bit orientation example in run `e9ce59582a3f` was also inspected. Its vanilla lower bound uses denominator orientation, but the function is complement-invariant. Theorem 15 therefore rules it out as a two-head pure-RoPE separation. The earlier reciprocal exact-score separation and the ten-bit rank obstruction also remain unsuitable for the requested Boolean separation.
+
+Follow-up validation: all 48 tracked Lean modules built and all 965 theorem declarations passed the standard-axiom audit. Static Markdown and KaTeX checks passed for the three math documents, with 330 spans. The exact search verifier checked all 830 records. GitLab rendering remains unavailable because `glab` is not installed.
+
+The follow-up also obtained a strict retained-RoPE comparison, using the existing seven-bit vanilla lower bound from run `e9ce59582a3f`. The corollary to Theorem 15 gives retained complexity two and pure and vanilla complexity three. `search/verify_retained_f7.py` verifies the two-head retained certificate at all 128 inputs and constructs its retained atom parameters exactly as rational numbers. This certificate is not a pure-RoPE certificate. The vanilla lower bound and exact count are the cited run's Lean results, not newly imported declarations in this checkout.
+
+GitHub's real Markdown API recognized all 174 spans in Theorem 14, all 72 in Theorem 15, and all 84 in the theorem ledger, with no render findings. The external proofs are linked at the exact inspected commit hashes.
