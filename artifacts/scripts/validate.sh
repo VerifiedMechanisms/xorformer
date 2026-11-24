@@ -54,10 +54,12 @@ if $fetch_cache; then
   fi
 fi
 
+# Challenge files state pinned targets for the Lean comparator with `sorry` proofs, so they are
+# left out of every gate. Their proofs live in HeadComplexity/Solutions/ and are checked as usual.
 tracked_lean_files=()
 while IFS= read -r -d '' source_file; do
   tracked_lean_files+=("$source_file")
-done < <(git ls-files -z --cached -- '*.lean')
+done < <(git ls-files -z --cached -- '*.lean' ':(exclude)HeadComplexity/Challenges/*.lean')
 
 if [ "${#tracked_lean_files[@]}" -eq 0 ]; then
   echo "No tracked Lean library sources found." >&2
