@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{Permutation covariance and the support problem}
+\author{Research checkpoint}
+\maketitle
+
+This note studies a possible joint decoder, not the original worst-case
+head complexity. It proves covariance identities and isolates gaps in a
+probabilistic permutation argument. It supplies no improved upper bound.
+
+\section{Exact covariance of a permutation orbit}
+
+Let $H\geq2$. For each input $x$, let $A(x)$ be an $H$ by $H$ real matrix.
+The entry $A_{hl}(x)$ is the contribution obtained by assigning level $l$
+to fixed head direction $h$. For a uniform permutation $\pi$, put
+\[
+ S_\pi(x)=\sum_{h=1}^H A_{h,\pi(h)}(x).
+\]
+Write $\widetilde A(x)$ for the matrix after subtracting its row means and
+column means and adding its grand mean.
+
+\begin{proposition}
+The exact covariance is
+\[
+ \operatorname{Cov}(S_\pi(x),S_\pi(y))
+ =\frac1{H-1}\sum_{h,l=1}^H
+       \widetilde A_{hl}(x)\widetilde A_{hl}(y).
+\]
+\end{proposition}
+\begin{proof}
+Double centering changes every permutation sum by the same constant.
+For the centered matrices, the equal-row terms in the product expectation
+contribute $H^{-1}\sum_{h,l}\widetilde A_{hl}(x)\widetilde A_{hl}(y)$.
+The unequal-row terms contribute
+\[
+ \frac1{H(H-1)}\sum_{h,l}\widetilde A_{hl}(x)
+       \sum_{g\ne h,\ r\ne l}\widetilde A_{gr}(y).
+\]
+The inner sum equals $\widetilde A_{hl}(y)$ because all row and column sums
+vanish. Adding the two terms gives the formula.
+\end{proof}
+
+Thus an actual covariance computation requires double centering. Counting
+$H!$ permutations or observing that their convex hull contains zero does
+not prove that their evaluation vectors meet every strict sign orthant.
+The latter distinction has an exact finite counterexample on the sibling
+branch \texttt{ar/47c1ff45613b}, in the shared permutation dictionary audit.
+
+\section{A reciprocal kernel on a Hamming layer}
+
+Fix $m$-element subsets $x,y\subseteq[k]$, independent random signs
+$v_i\in\{-1,1\}$, and $B>m\varepsilon>0$. Define
+\[
+ r_v(x)=\frac1{B+\varepsilon\sum_{i\in x}v_i}.
+\]
+For a fixed $j$-element subset $S\subseteq x$, let
+\[
+ c_j=\mathbb E_v\left[r_v(x)\prod_{i\in S}v_i\right].
+\]
+Permutation symmetry makes this depend only on $j$, not on $x$ or $S$.
+
+\begin{proposition}
+The exact second moment is
+\[
+ K(x,y)=\mathbb E_v[r_v(x)r_v(y)]
+       =\sum_{j=0}^{|x\cap y|}\binom{|x\cap y|}{j}c_j^2.
+\]
+Moreover,
+\[
+ c_j=2^{-m}\sum_{a=0}^j\sum_{b=0}^{m-j}
+    \frac{(-1)^a\binom ja\binom{m-j}b}
+         {B+\varepsilon(m-2a-2b)}.
+\]
+\end{proposition}
+\begin{proof}
+Expand $r_v(x)$ in the orthonormal characters
+$\prod_{i\in S}v_i$, indexed by $S\subseteq x$. Only identical characters
+survive the expectation of the product. Their common supports lie in
+$x\cap y$, giving the first formula. Counting negative signs in $S$ and
+$x\setminus S$ gives the second formula.
+\end{proof}
+
+The Johnson harmonic subspace of degree $i$ has multiplicity
+$\binom ki-\binom k{i-1}$. The standard inclusion-matrix decomposition
+of the kernel $\binom{|x\cap y|}{j}$ gives its eigenvalue
+\[
+ \lambda_i=\sum_{j=i}^m c_j^2
+       \binom{m-i}{j-i}\binom{k-j-i}{m-j}.
+\]
+This last spectral formula is recorded for calculation; the elementary
+second-moment identity above does not require it.
+
+As $B\downarrow m\varepsilon$, every $c_j$ has leading term
+$(-1)^j/(2^m(B-m\varepsilon))$. Consequently the leading kernel is a
+multiple of $2^{|x\cap y|}$, which is not the identity kernel. Approaching
+the positivity boundary does not make the independent-sign ensemble
+isotropic on a Hamming layer.
+
+\section{Isotropy without a decoder}
+
+There is a related ensemble whose limiting covariance is isotropic, but
+its fixed samples reveal a support obstruction. Set $k=2m$ and choose an
+$m$-element set $S$ uniformly. Define an admissible positive denominator
+on the whole Boolean cube by
+\[
+ D_{S,\rho}(x)=\rho+\rho^2\sum_{i\in S}x_i
+                         +\sum_{i\notin S}x_i,
+ \qquad \rho>0.
+\]
+Every denominator coefficient is positive. On the $m$-th layer,
+\[
+ \lim_{\rho\downarrow0}\frac{\rho}{D_{S,\rho}(x)}
+ =\mathbf1_{x=S}.
+\]
+Therefore the limiting second moment of a random head is exactly
+$\binom{2m}m^{-1}$ times the identity. Nevertheless a fixed family of
+$H$ such heads has at most $H$ supported layer points in this limit.
+Permuting their scalar residues only changes amplitudes at those points.
+It does not move support or give arbitrary signs on the remaining points.
+
+The finite-$\rho$ functions have nonzero leakage elsewhere. Ignoring that
+leakage is not a proof of a finite-$\rho$ impossibility theorem: it could
+be amplified after cancellation. Conversely, using only the isotropic
+average is not a proof that the leakage can encode independent labels.
+
+\section{First unresolved estimate}
+
+A successful random-orbit proof must establish strict orthant coverage
+for the actual structured matrices $A_{hl}(x)$, after all allowed common
+corrections have been charged. Replacing them by independent random
+matrix entries is not justified. The Cauchy matrices arise from only
+$O(Hk)$ fixed direction and numerator parameters, whereas an unrestricted
+random array on $2^k$ inputs has $H^2 2^k$ independent entries.
+
+Likewise, quotienting by a low-degree subspace requires an actual common
+head realization of that quotient correction, with its number of heads
+included. The covariance identity makes this quotient a definite linear
+algebra problem but does not solve the realization or coverage problem.
+No fixed-power or unbounded-factor improvement follows from this note.
+\end{document}
