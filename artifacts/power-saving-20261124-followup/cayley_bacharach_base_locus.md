@@ -132,10 +132,62 @@ The proof above uses a local socle generator, not an inference from the regulari
 
 Known Cayley–Bacharach structure theorems do not presently supply the needed quantitative alternative. [Levinson and Ullery](https://arxiv.org/html/2102.08525) conjecture a plane-configuration statement in general dimension, with several low-dimensional cases proved. [Le and Linh](https://arxiv.org/html/2511.22113) extend the dimension-four case. [Banerjee](https://arxiv.org/html/2403.07272) obtains curve containment when the Cayley–Bacharach order is sufficiently large relative to the desired curve degree. The sufficient order in the latter argument is polynomial in that curve degree; at $H\asymp\exp(n)$ and $D\asymp\exp(\sqrt n)$, the natural degree budget $H/D$ is much too large to satisfy that condition. None of these results is used in the proof above.
 
-The remaining counting problem is substantive. A low-dimensional variety can have a large family of defining equations. Set $r_\ast=\max\lbrace r\leq n:\binom{s+r}{r}\leq H\rbrace$. A candidate incidence bound would control the family of ordered configurations whose degree $s$ base locus has no isolated configuration points by roughly
+A low-dimensional variety can have a large family of defining equations. For reduced Cayley–Bacharach configurations, the next argument controls this family by a small determining subset. An effective sign-pattern estimate remains separate.
 
-$$ O\left(r_\ast H+H+\frac{n^2H}{s}\right) $$
+## A small determining subset
 
-parameters, together with a suitably small algebraic degree or an explicit polynomial atlas. This expression is a target, not a proved bound. Unions of long lines suggest the $r_\ast H$ position term and a cost of order $nH/s$ for varying their supports. Hypersurfaces of degree at most $s$ in a small linear space suggest why a moduli cost comparable to the degree $s$ Hilbert function could be plausible. Neither example justifies the bound for arbitrary reducible or singular base loci.
+Write $h(t)=\mathrm{HF}_{\Gamma}(t)$, set $h(-1)=0$, and write $a_t=h(t)-h(t-1)$. Define
 
-Even such an incidence dimension theorem would need an effective sign-pattern count on the resulting parameter locus. Replacing ambient parameter dimension by intrinsic dimension without charging algebraic degree would repeat the already-audited intrinsic-counting gap. The ordinary-moment lifting problem, the incidence-family bound, and its effective capacity estimate are three separate remaining steps.
+$$ m=\left\lfloor\frac{D+2}{s+1}\right\rfloor,\qquad 0\leq s\leq D+1. $$
+
+Then
+
+$$ m h(s)\leq H. $$
+
+The source input is [Angelini, Chiantini, and Vannieuwenhoven, Theorem 4.9](https://ems.press/content/serial-article-files/39940?nt=1), which states for a finite reduced complex set satisfying $\mathrm{CB}(i)$ that
+
+$$ \sum_{t=0}^j a_t\leq\sum_{t=i+1-j}^{i+1}a_t\qquad(0\leq j\leq i+1). $$
+
+Their result extends the Geramita–Kreuzer–Robbiano inequality to any Cayley–Bacharach order, rather than only the final nonsurjective evaluation degree. No general-position hypothesis is present. Cayley–Bacharach is monotone in the order: a lower-degree separator could be multiplied by a linear form nonzero at the point being separated.
+
+**Proof of the displayed bound.** For each complete block of $s+1$ successive indices in $\lbrace0,\ldots,D+1\rbrace$, its $a_t$ sum is at least $h(s)$. The initial block has that sum by definition. A later block ends at an index $k\leq D+1$. Apply the source inequality with $i=k-1$ and $j=s$, using $\mathrm{CB}(k-1)$. Sum over the $m$ disjoint complete blocks and use $\sum_{t\geq0}a_t=H$. $\blacksquare$
+
+In particular, if $s+1\leq(D+2)/2$, then
+
+$$ h(s)\leq\frac{2(s+1)H}{D+2}. $$
+
+Choose $M=h(s)$ points of $\Gamma$ whose degree $s$ evaluation functionals form a basis of the span of all evaluation functionals on $\Gamma$. The resulting subset $\Gamma_0$ satisfies
+
+$$ |\Gamma_0|=M\leq H/m,\qquad I(\Gamma_0)_s=I(\Gamma)_s,\qquad V_s(\Gamma_0)=V_s(\Gamma). $$
+
+Thus $M$ points determine the entire degree $s$ base locus. This is an existence statement, with finitely many choices of the determining indices, and does not assert a low-degree rational reconstruction chart.
+
+## Dimension of the reduced configuration family
+
+Let $\mathcal C_{n,H,D}$ be the constructible family of ordered configurations of $H$ distinct points of $\mathbb P^n_{\mathbb C}$ satisfying $\mathrm{CB}(D)$. Let
+
+$$ r_\ast=\max\lbrace r\leq n:\binom{s+r}{r}\leq H\rbrace,\qquad M_\ast=\left\lfloor H/m\right\rfloor. $$
+
+Then the preceding argument proves the dimension bound
+
+$$ \dim\mathcal C_{n,H,D}\leq nM_\ast+r_\ast(H-M_\ast). $$
+
+**Proof.** Cayley–Bacharach and all evaluation-rank requirements are constructible conditions, expressed by ranks of finite evaluation matrices. Partition the configuration family by $M=h(s)$ and by a choice of $M$ determining point indices. Projection onto those points has image dimension at most $nM$. For a fixed determining tuple, each remaining point belongs to its degree $s$ base locus, every component of which has dimension at most $r_\ast$ by the Hilbert-function bound above. The fiber has dimension at most $r_\ast(H-M)$. The fiber dimension theorem gives $nM+r_\ast(H-M)$ on each piece. This expression is nondecreasing in $M$, and $M\leq M_\ast$. A finite union has the maximum of its pieces' dimensions. $\blacksquare$
+
+For $D=\lfloor\exp(\sqrt n)\rfloor$, take $s=\lfloor D/n^2\rfloor$. For sufficiently large $n$, $s+1\leq2D/n^2$, so $M_\ast\leq4H/n^2$. Also $\log(s/n)\geq\sqrt n/2$, giving $r_\ast\leq2(\log2)\sqrt n$ when $H\leq2^n$. Consequently
+
+$$ \dim\mathcal C_{n,H,D}\leq\left(2(\log2)\sqrt n+\frac4n\right)H. $$
+
+This dimension theorem concerns reduced ordinary-moment supports. The preceding finite-scheme separator theorem does not by itself extend the determining-point argument to nonreduced algebras.
+
+## The remaining capacity inequality
+
+The determining tuple uses only $nM$ parameters, but the incidence equations still have a degree cost. Choose an invertible $M$ by $M$ minor of its degree $s$ evaluation matrix. Membership of one additional point in the evaluation span is expressed by augmented minors. These equations have degree at most $sM$ in the determining-point variables and at most $s$ in the new point.
+
+Giving weight one to the determining variables and weight $M$ to all other point variables bounds their weighted degree by $2sM$. A dimension-sensitive mixed-degree sign theorem would ideally charge the incidence codimension at this lower degree and the remaining dimension at the score degree. The expected cancellation is
+
+$$ \frac{(sM)^c(HM)^k}{M^q}=M^b s^c H^k,\qquad b=nM,\quad q=n(H-M),\quad c+k=b+q. $$
+
+Here $k$ denotes the intrinsic configuration dimension, with $c$ its codimension in the $b+q$ point coordinates. Additional coefficient variables would require a separate accounting. This display is a proposed degree calculation, not a proved sign-pattern theorem. At the scales above, the logarithmic budget from $b\log M+nH\log s+O(\sqrt n H\log H)$ is $O(n^{3/2}H)$.
+
+Replacing ambient parameter dimension by intrinsic dimension without charging algebraic degree is invalid. A rigorous effective incidence count, an ordinary-moment lift for arbitrary original representations, and control of affine numerators remain unresolved. The configuration dimension theorem above closes only the reduced-support moduli dimension step. All results in this note are written proofs, not kernel-checked Lean declarations.
