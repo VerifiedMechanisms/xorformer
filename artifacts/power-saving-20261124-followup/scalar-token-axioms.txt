@@ -1,0 +1,10 @@
+'HeadComplexity.ScalarTokenDecoder.ordered_words_le_sum_degrees' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.all_words_le_sum_degrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.all_words_degree_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.cleared_natDegree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.eval_cleared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.reciprocal_decoder_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.binarySelector_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ScalarTokenDecoder.binarySelector_cannot_xor' depends on axioms: [propext, Classical.choice, Quot.sound]

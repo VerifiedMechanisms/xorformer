@@ -1,0 +1,9 @@
+import HeadComplexity.Research.ScalarTokenDecoder
+#print axioms HeadComplexity.ScalarTokenDecoder.ordered_words_le_sum_degrees
+#print axioms HeadComplexity.ScalarTokenDecoder.all_words_le_sum_degrees
+#print axioms HeadComplexity.ScalarTokenDecoder.all_words_degree_bound
+#print axioms HeadComplexity.ScalarTokenDecoder.cleared_natDegree_le
+#print axioms HeadComplexity.ScalarTokenDecoder.eval_cleared
+#print axioms HeadComplexity.ScalarTokenDecoder.reciprocal_decoder_bound
+#print axioms HeadComplexity.ScalarTokenDecoder.binarySelector_rectangle
+#print axioms HeadComplexity.ScalarTokenDecoder.binarySelector_cannot_xor

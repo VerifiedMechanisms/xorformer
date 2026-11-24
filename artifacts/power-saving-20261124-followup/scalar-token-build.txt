@@ -1,0 +1,2 @@
+✔ [2170/2170] Built HeadComplexity.Research.ScalarTokenDecoder (1.6s)
+Build completed successfully (2170 jobs).
