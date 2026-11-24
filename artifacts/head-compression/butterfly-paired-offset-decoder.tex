@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Paired exterior offsets: exact identities and a scoped obstruction}
+\maketitle
+
+\paragraph{Verification status.}
+The scalar identities and the Farkas argument below are complete written
+proofs.  The displayed leading coefficients in the sixteen-token
+counterexample are checked by rational Laurent arithmetic, with guarded
+precision and an explicitly nonsingular square system.  There is also a
+standalone rational Farkas certificate at $\varepsilon=1/100$.
+These calculations are not Lean-checked.  They do not prove either global
+asymptotic target and change no definition of the original model.
+
+\paragraph{An exterior pair identity.}
+Let $D>x+\gamma$, with $\gamma>0$, and define
+\[
+ g_{D,\gamma,\kappa}(p,a)
+ =\frac{a+\kappa}{D-p}-\frac{a-\kappa}{D+\gamma-p}.
+\]
+Then
+\[
+ g(x,\kappa)=g(x+\gamma,-\kappa)=\frac{2\kappa}{D-x}.
+ \tag{1}
+\]
+Consequently two tokens $(x,\kappa),(x+\gamma,-\kappa)$ have equal
+readouts for every exterior $D$, so their signed difference is zero under
+either assignment to two input slots.  This is an infinite family of
+exterior offsets for a fixed nonquadratic token pool.
+The more general exact expansion is
+\[
+ g(p,a)=\frac{\gamma a}{(D-p)(D+\gamma-p)}
+       +\kappa\left(\frac1{D-p}+\frac1{D+\gamma-p}\right).
+ \tag{2}
+\]
+For $\kappa=\gamma$, its numerator is
+$\gamma(a+2D+\gamma-2p)$.
+All these identities follow by putting the fractions over a common
+positive denominator.
+
+\paragraph{The two decoder variants.}
+Use the butterfly permutation $\pi_\theta$ and switch indices
+$e=(k,s,g)$ defined in \texttt{butterfly-rectangle-decoder.tex}.
+Put $H=2^d$ and
+\[
+ \gamma_k=\varepsilon^{2^k},\qquad
+ p_y=\sum_{k=0}^{d-1}y_k\gamma_k,\qquad D_s=1-p_s.
+\]
+For an input slot $h$, the left mask is
+$M_{k,g}(h)=1_{h\mathbin{\mathrm{div}}2^k=2g}$.
+The Haar mask $U_{k,g}$ is $+1$ on that left child, $-1$ on its sibling,
+and zero outside the parent block.  With $V=M$ or $V=U$, consider
+\[
+ F_{k,s,g}(a,\beta)=\beta_{k,g}
+ +\sum_h V_{k,g}(h)
+       g_{D_s,\gamma_k,\gamma_k}(p_{\pi_\theta(h)},a_h).
+ \tag{3}
+\]
+The question is whether some real $a_h,\beta_{k,g}$ satisfy
+$(1-2\theta_e)F_e>0$ for every switch.  Residues are fully target-adaptive.
+Poles are the prescribed target permutation of the fixed hierarchical pool.
+
+Both mask choices use two banks of $H$ separable affine-numerator
+reciprocals before the existing axis and cube-admissibility transfers.
+For $V=+1$, bank one has numerator $a+\kappa$ and denominator $D-p$;
+bank two has numerator $-a+\kappa$ and denominator $D+\gamma-p$.
+For $V=-1$, use numerators $a-\kappa,-a-\kappa$ and interchange those
+denominators.  For $V=0$, use numerators $a-\kappa,-a+\kappa$ and give
+both banks denominator $D+\gamma-p$.  Thus every numerator remains a
+row term plus a query term.  No product of independently varying row and
+query parameters is assumed to be affine.  Block biases have the already
+checked $O(H)$ implementation.  Positivity on the entire local Boolean
+cube still requires the established projective budget; a finite test at
+one value of $\varepsilon$ does not establish that budget for arbitrarily
+many rows.
+
+\paragraph{Exact finite tests and the next gap.}
+At $\varepsilon=1/100$, the left-mask variant is feasible for all $256$
+upper-switch words when $H=8$, and passed the first $20$ reproducible
+random sixteen-token words.  The Haar variant passed the same $20$
+sixteen-token words.  Every reported feasible solve was followed by exact
+rational substitution, not merely a solver status check.  Bottom-switch
+bits only permute the two members of input pairs, preserving every higher
+mask, and their singleton-query blocks admit arbitrary biases.
+These finite successes do not establish a growing decoder.
+In fact, the next theorem disproves universality of the left-mask variant
+for all sufficiently small values of its hierarchy parameter.
+
+\paragraph{Eliminating the block biases.}
+For each block, let $s$ be a query with desired positive sign and $t$ one
+with desired negative sign.  A block bias exists exactly when every
+positive score exceeds every negative score.  Thus (3) is feasible
+exactly when all reduced inequalities
+\[
+ L_{k,g,s,t}(a)=A_{k,g,s,t}\cdot a+B_{k,g,s,t}>0
+ \tag{4}
+\]
+hold, where $A$ and $B$ are the differences of the two expressions in
+(2), including the chosen masks.  Pure-sign blocks impose no reduced
+inequalities.  A nonzero vector $\lambda\geq0$ with
+$\sum\lambda A=0$ and $\sum\lambda B\leq0$ proves infeasibility by
+summing (4).
+
+\begin{theorem}[Failure of the prescribed left-mask hierarchy]
+There is a fixed sixteen-token butterfly word $\theta$ and an
+$\varepsilon_0>0$ such that, for every $0<\varepsilon<\varepsilon_0$,
+no real residues or block biases satisfy (3) with $V=M$.
+This statement allows arbitrary target-adaptive residues, but fixes the
+pole prescription, the query times, and $\kappa_k=\gamma_k$ above.
+\end{theorem}
+\begin{proof}
+The switch ordering is increasing $k$, then $s$, then $g$.
+Take
+\[
+\theta=(0,0,0,0,0,0,0,0,\;
+1,1,0,1,1,0,1,1,\;
+0,0,1,1,0,0,0,0,\;
+0,0,0,1,1,0,1,0).
+\]
+The following nine reduced inequalities suffice.  The table also gives
+the first nonzero term of a positive rational-function multiplier.
+\[
+\begin{array}{c|c}
+(k,g,s,t)&\lambda(\varepsilon)\text{ leading term}\\\hline
+(1,1,1,0)&7\varepsilon^{26}\\
+(2,0,2,1)&(7/3)\varepsilon^{21}\\
+(2,0,3,1)&(7/3)\varepsilon^{20}\\
+(3,0,0,6)&1\\
+(3,0,1,6)&10\varepsilon^5\\
+(3,0,2,4)&1\\
+(3,0,2,6)&3\varepsilon\\
+(3,0,5,3)&\varepsilon^3\\
+(3,0,7,3)&\varepsilon
+\end{array}
+\tag{5}
+\]
+Here is an exact definition, independent of a numerical optimizer, of
+these multipliers.  Set the sixth multiplier equal to one.  Solve the
+eight homogeneous equations $\sum\lambda A_y=0$ for physical output
+columns
+\[
+ y=0,1,2,5,7,11,12,14.
+\]
+These are all columns on which any of the nine selected masks is nonzero.
+The eight by eight coefficient matrix is invertible over
+$\mathbb Q(\varepsilon)$.  Valuation-pivoted elimination has successive
+pivot leading terms
+\[
+2\varepsilon^3,\ -2\varepsilon^5,\ 3\varepsilon^8,
+\ 2\varepsilon^9,\ -3\varepsilon^{12},\ -4\varepsilon^{15},
+\ -5\varepsilon^{20},\ 12\varepsilon^{25}.
+\tag{6}
+\]
+Thus the system defines rational functions uniquely.  Exact series
+elimination gives (5) and
+\[
+ \sum\lambda B=-\frac83\varepsilon^{19}+O(\varepsilon^{20}).
+ \tag{7}
+\]
+All leading coefficients in (5) are positive.  Equations (5)--(7)
+therefore imply, for a common sufficiently small positive $\varepsilon$,
+that every multiplier is positive and their affine weighted sum is
+negative.  The residue coefficients cancel identically by their defining
+eight equations; every other residue column is identically zero.
+Summing the nine purported strict inequalities contradicts (7).
+\end{proof}
+
+\paragraph{Auditing the finite algebra.}
+The checker \texttt{butterfly-paired-offset-laurent-check.py} constructs
+(2)--(4) from the displayed word and computes (5)--(7) using rational
+series.  It starts with $512$ coefficients, checks the precision before
+every division, and retains at least $415$ coefficients.  Since every
+pivot in (6) has a certified nonzero leading coefficient, the operations
+are computations in the Laurent expansion of the uniquely defined
+rational solution, not assertions based on approximate residuals.
+The saved file \texttt{butterfly-paired-offset-h16-laurent.json} records
+all these leading terms.  Independently,
+\texttt{butterfly-paired-offset-h16-dual.json} gives a rational certificate
+at $\varepsilon=1/100$; the main checker verifies it using only exact
+rational arithmetic.  The analogous thirty-two-token certificate is
+saved as well.
+
+\paragraph{Scope.}
+This counterexample does not cover Haar masks, different query times,
+independently chosen per-head offsets, target-adaptive pole locations,
+or a joint compiler whose query parameters are chosen after seeing the
+whole sign table.  It is not an obstruction to the required reverse-axis
+compiler or a lower bound on worst-case head complexity.  The distinct
+paired-Haar construction and more general adaptive offset families remain
+open.  The purpose of the counterexample is to prevent finite successful
+samples from being mistaken for a universal hierarchy theorem.
+\end{document}
