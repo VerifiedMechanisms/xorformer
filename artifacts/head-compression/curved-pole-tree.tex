@@ -1,0 +1,153 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{lemma}{Lemma}
+\title{Curved Poles and Recursive Cauchy Cancellation}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Verification status.}
+The finite four-pole construction below has rational witnesses for every
+claimed strict sign table. The recursive cancellation identities have
+complete written proofs. Neither proves a superconstant saving in
+HeadComplexity. In particular, simultaneous vanishing is not a proof of
+simultaneous sign interpolation. No model definition is changed and no
+claim in this note is Lean checked.
+
+\section{An exact escape from the fixed-pole obstruction}
+Let $\epsilon=10^{-5}$, $\eta=10^{-3}$, and
+\[
+ p_h=\epsilon(4+a_h)+16\epsilon^2\mathbf1_{h=1},
+ \qquad (a_0,a_1,a_2,a_3)=(-3,-1,1,3).
+\]
+Take eight times
+\[
+ t_i=1+4\epsilon+\eta u_i,
+ \qquad (u_0,\ldots,u_7)=(-3,-1,1,3,-2,2,0,0)
+\]
+and masks
+\[
+ S_0=\cdots=S_3=\{0,1,2,3\},\quad
+ S_4=S_5=\{1,3\},\quad S_6=\{2\},\quad S_7=\{3\}.
+\]
+For each exponent $\nu\in\{1,2\}$ and each desired eight-bit
+strict sign table, there are a permutation $\pi$ of the four poles
+and four rational residues $r_h$ realizing that table with
+\[
+ f_i=\sum_{h:\pi(h)\in S_i}\frac{r_h}{(t_i-p_h)^\nu}.
+\]
+The companion program \texttt{curved-pole-tree-check.py} constructs
+and checks all $256$ witnesses for each exponent. Its JSON output
+records each permutation, each rational residue, and every exact
+score. It checks the strict signs directly in the original matrix;
+no numerical infeasibility assertion is involved.
+
+This construction changes a pole by order $\epsilon^2$, so it is
+outside the fixed affine pole family in
+\texttt{butterfly-tree-cauchy-audit.tex}. It disproves any extension
+of that obstruction to arbitrary varying poles. It does not show a
+superconstant gain: the eight signs are no more than the eight real
+pole and residue parameters.
+
+\section{The reciprocal coordinate for simultaneous cancellation}
+The natural pole coordinate near an exterior query time $T$ is
+\[
+ q_h=\frac1{T-p_h}.
+\]
+For positive distinct $q_h$, choose $p_h=T-1/q_h$. Taking all $q_h$
+slightly above $1/T$ makes every $p_h$ positive and as small as desired.
+If $Q(q)=\prod_{h=1}^M(q-q_h)$ and
+\[
+ w_h=\frac1{Q'(q_h)},\qquad r_h=\frac{w_h}{q_h},
+\]
+then the exterior score satisfies
+\[
+ \sum_h\frac{r_h}{T+s-p_h}
+ =\sum_h\frac{w_h}{1+s q_h}
+ =\frac{(-s)^{M-1}}{\prod_h(1+s q_h)}.
+ \tag{1}\label{eq:barycentric}
+\]
+The last identity follows from the partial fraction identity
+$1/Q(u)=\sum_h w_h/(u-q_h)$, substituted at $u=-1/s$.
+It extends to $s=0$ by continuity. Thus the score has exactly order
+$M-1$ at $s=0$ when $M>1$.
+
+\begin{lemma}[Restriction to constant complementary factors]
+Let a finite simple root set be partitioned into two children,
+whose monic polynomials are $A(q)$ and $B(q)$. Suppose
+$B(q)-A(q)=c\ne0$. At every root $q_h$ of $A$,
+\[
+ \frac1{(AB)'(q_h)}=\frac1{c A'(q_h)},
+\]
+and at every root of $B$ the corresponding identity has factor
+$-1/c$ and derivative $B'$. Consequently the full-set barycentric
+weights restricted to either child are proportional to that child's
+barycentric weights.
+\end{lemma}
+\begin{proof}
+At a root of $A$, the derivative of $AB$ is $A'B=cA'$.
+At a root of $B$, one has $A=-c$ and $(AB)'=-cB'$.
+\end{proof}
+
+Apply this lemma recursively to a binary tree of polynomial root
+sets whose two monic child polynomials differ by a nonzero constant.
+The global barycentric weights restricted to every node are a
+nonzero constant times that node's own barycentric weights. Equation
+\eqref{eq:barycentric} then proves simultaneous vanishing to order
+$M-1$ for each node of size $M$.
+
+Such real simple root sets exist at every depth. The roots of a
+Chebyshev polynomial $T_{2^d}(x)-c$, with $-1<c<1$, split using
+\[
+ T_{2m}(x)=2T_m(x)^2-1.
+\]
+The children are roots of
+$T_m(x)\mp\sqrt{(c+1)/2}$; after the common leading coefficient
+is removed, their monic polynomials differ by a nonzero constant.
+Every resulting parameter remains strictly between $-1$ and $1$,
+and all roots are simple and real. An affine change of $x$ places
+the reciprocal coordinates in any desired small positive interval.
+
+One rational depth-three example uses the nodes
+$\{\pm1,\pm4,\pm7,\pm8\}$. Its root polynomial is
+\[
+ (x^4-65x^2+424)^2-360^2.
+\]
+The children are $\{\pm1,\pm8\}$ and $\{\pm4,\pm7\}$,
+which in turn split into their symmetric pairs. The identity
+$1^2+8^2=4^2+7^2=65$ makes the two degree-four polynomials
+differ by a constant.
+
+\section{The precise missing interpolation statement}
+For $H=2^d$ leaves, give the root $H$ full-mask queries and every
+right-child node of size $M$ exactly $M$ queries. There are
+\[
+ H+\frac{Hd}{2}
+\]
+queries. The hoped-for statement would realize every strict sign
+table by assigning pole and residue pairs to the leaves, while
+keeping all query times fixed and close to $T$ and every pole small.
+The cancellation lemma supplies only a singular base configuration.
+It does not provide the required signs after perturbation.
+
+For a fixed root set, the exact compatible binary partitions are
+severely constrained. Indeed if monic children satisfy $B-A=c$,
+then $AB=((A+B)/2)^2-c^2/4$. Comparing the coefficients in the
+upper half of this square determines the monic polynomial $(A+B)/2$
+uniquely from the parent polynomial; its constant term is then also
+determined by the next coefficient whenever the child degree is
+positive. Equivalently, two monic polynomials of the same positive
+degree cannot have squares differing by a nonzero constant, since
+their sum has positive degree and their difference would have to
+multiply it to a constant. Hence the compatible child partition is
+unique up to swapping children. Recursively, such swaps give only
+$2^{H-1}$ assignments for a fixed compatible root set. Counting
+these assignments as $H!$ independent choices would be invalid.
+
+The remaining issue is whether label-dependent pole deformations,
+or partitions with fewer simultaneous cancellations, supply enough
+additional freedom for all $H+Hd/2$ strict signs. Neither the finite
+four-pole check nor the barycentric identities answer this issue.
+
+\end{document}
