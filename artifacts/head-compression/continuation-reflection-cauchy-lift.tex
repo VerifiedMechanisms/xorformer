@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{A Reflection-Symmetric Cauchy Sign Lift}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a complete written finite sign-interpolation theorem, with an
+exact rational audit of all $2^{12}$ limiting sign tables. It is not a
+Lean theorem. The conversion below uses twenty original admissible
+heads on a twelve-row grid, so this result does not improve the
+worst-case asymptotic upper bound. Its useful feature is a proved
+target-dependent cancellation mechanism, not its present head count.
+
+Put
+\[
+ S=\begin{pmatrix}-1&1&-1&1\\-1&-1&1&1\\-1&-1&-1&-1\end{pmatrix},
+ \qquad c=(1,-1,-1,1)^\top.
+ \tag{1}
+\]
+Write $v_h$ for its four columns. The matrix $S$ has rank three and
+kernel $\mathbb Rc$. Thus $T=S\operatorname{diag}(c)$ has rank three
+and kernel $\mathbb R(1,1,1,1)^\top$.
+
+\begin{theorem}[Eight masked Cauchy columns]
+Fix any four distinct positive numbers $d_1,\ldots,d_4$. For every
+sign table $f_{a\ell}\in\{-1,1\}$, $1\le a\le4$, $1\le\ell\le3$,
+there exist positive distinct numbers $t_1,\ldots,t_4$ and real
+coefficient functions $q_h^+(\epsilon),q_h^-(\epsilon)$ such that
+\[
+ F_{a\ell}(\epsilon)=\sum_{h=1}^4
+ \left(\frac{v_{\ell h}q_h^+(\epsilon)}{d_a-\epsilon t_h}
+       -\frac{v_{\ell h}q_h^-(\epsilon)}{d_a+\epsilon t_h}\right)
+ \tag{2}
+\]
+has $f_{a\ell}F_{a\ell}(\epsilon)>0$ for all sufficiently small
+positive $\epsilon$. All denominators in (2) are then positive.
+The poles and coefficients can all be chosen rational if the nodes
+$d_a$ are rational.
+\end{theorem}
+
+\begin{proof}
+We first determine an explicit flat limit. Pairing the two columns
+associated with $v_h$ and $-v_h$ gives, by invertible column operations,
+\[
+ E_h(d,\epsilon)=\frac{dv_h}{d^2-\epsilon^2t_h^2},\qquad
+ O_h(d,\epsilon)=\frac{v_h}{d^2-\epsilon^2t_h^2}.
+ \tag{3}
+\]
+Indeed, these are respectively half the difference and
+$(2\epsilon t_h)^{-1}$ times the sum of the two columns in (2).
+For $u_h=t_h^2$ and $w=Tu$,
+\[
+ \epsilon^{-2}\sum_h c_hE_h\longrightarrow d^{-3}w,
+ \qquad
+ \epsilon^{-2}\sum_h c_hO_h\longrightarrow d^{-4}w.
+ \tag{4}
+\]
+The constant terms cancel because $Sc=0$. Since $S$ has rank three,
+ordinary linear combinations of (3) independently approach $d^{-1}A$
+and $d^{-2}B$ for any $A,B\in\mathbb R^3$. Consequently (2) can
+approach every vector-valued function
+\[
+ d^{-1}A+d^{-2}B+\gamma d^{-3}w+\delta d^{-4}w.
+ \tag{5}
+\]
+Every $w\in\mathbb R^3$ is $Tu$ for some $u$, and adding a common
+constant to the four entries of $u$ leaves $w$ unchanged. This makes
+all $u_h$ positive. Pairwise distinctness of $u$ excludes only six
+proper linear hyperplanes in $w$.
+
+Put $z_a=1/d_a$. Multiplication by the positive number $d_a$ reduces
+the desired limiting signs to those of
+\[
+ A_\ell+B_\ell z_a+w_\ell(\gamma z_a^2+\delta z_a^3).
+ \tag{6}
+\]
+We prove that a function of this form realizes any three prescribed
+sign columns on four distinct nodes.
+
+Let $K\subset\mathbb R^4$ be the two-dimensional kernel of the
+matrix with rows $(1,1,1,1)$ and $(z_1,z_2,z_3,z_4)$. Each coordinate
+hyperplane cuts $K$ in a line, and these four lines are distinct.
+For otherwise a nonzero vector supported on at most two coordinates
+would belong to the span of $1,z$; an affine function vanishing at
+the other two distinct nodes must vanish identically. The four lines
+therefore divide $K$ into eight open sectors, yielding four antipodal
+pairs of strict sign patterns. Among those four pairs, at least one
+is absent from the three requested sign columns. Choose a vector
+$q\in K$ in that sector. All entries of $q$ are nonzero.
+
+Choose $p\in q^\perp$ outside $\operatorname{span}\{1,z\}$.
+The four vectors of values of $1,z,p$ have rank three and left
+kernel $\mathbb Rq$. For a requested sign column $f$, the numbers
+$q_af_a$ contain both signs by the choice of $q$. Thus there are
+strictly positive $m_a$ with $\sum_aq_af_am_a=0$. Explicitly, let
+$P=\sum_{q_af_a>0}q_af_a$ and $N=-\sum_{q_af_a<0}q_af_a$, and take
+$m_a=N$ on the positive terms and $m_a=P$ on the negative terms.
+The vector $(f_am_a)_a$ belongs to $q^\perp$, so it is a linear
+combination of $1,z,p$. Doing this independently for the three
+columns yields
+\[
+ f_{a\ell}(A'_\ell+B'_\ell z_a+w_\ell p_a)>0.
+ \tag{7}
+\]
+Interpolate $p$ by a polynomial of degree at most three. Its constant
+and linear terms can be absorbed into $A',B'$, giving (6).
+The strict inequalities in (7) remain true after a sufficiently
+small arbitrary perturbation of the vector $w$. Choose such a
+perturbation outside the six exceptional hyperplanes above, solve
+$Tu=w$, add a common constant to make $u>0$, and set $t_h=\sqrt{u_h}$.
+Equations (3)--(5) then supply coefficients in (2) with a strict
+limiting sign at every one of the twelve points. Finiteness gives
+one common positive upper bound on $\epsilon$.
+
+For rational $d_a$, choose rational $q,p$ and the coefficients in
+(7); the same open conditions allow rational perturbations. If the
+square roots $t_h$ are irrational, approximate them by distinct
+positive rationals. The limiting functions in (5) depend continuously
+on $t$, so a sufficiently close approximation preserves all strict
+signs. The column operations in (3)--(4) then have rational
+coefficients for every positive rational $\epsilon$.
+\end{proof}
+
+\begin{lemma}[The single common cubic lift stops at four columns]
+For fixed distinct nodes $z_1,\ldots,z_4$, there exist four sign
+columns which cannot all be represented as $A_\ell+B_\ell z_a+w_\ell p_a$
+with one common vector $p$.
+\end{lemma}
+\begin{proof}
+Choose one sign pattern from each of the four antipodal sectors of
+$K=\ker(1,z)^\top$. If $1,z,p$ has rank three, its left kernel is a
+line in $K$. If that line has no zero coordinate, one of the four
+chosen patterns, up to overall sign, is its strict sign pattern and
+is impossible. If it has a zero coordinate, approach its line from
+either adjacent sector. At least one chosen pattern agrees with the
+nonzero signs of this left-kernel vector, up to overall sign, and
+is again impossible: its dot product with any vector in that strict
+orthant has a fixed nonzero sign. If the rank is only two, its image
+is contained in the rank-three image obtained by adding any $p'$
+outside $\operatorname{span}\{1,z\}$, so the same impossibility holds.
+\end{proof}
+
+\paragraph{Exact original-model conversion and its cost.}
+The theorem is about masked columns, and those masks cannot be
+silently included in an affine numerator. Here is an explicit
+conversion with its full cost. Fix any finite number $s$ of memory
+columns, choose the four $d_a$ distinct and sufficiently close to
+one, and apply the theorem independently to each column $j$.
+Index the twelve rows by $i=(a,\ell)$. For each of the eight signed
+slots $h$, set its Boolean row mask to $B_{ih}=(1+V_{ih})/2$, where
+$V_{ih}$ is the corresponding entry of $v_h$ or $-v_h$. This mask
+matrix has rank at most three since it has only three distinct rows.
+
+The unmasked denominator at $(i,j)$ is $d_a-\epsilon\beta_{hj}$,
+with $\beta_{hj}=t_{hj}$ or $-t_{hj}$. Choose a number $C$ exceeding
+all $|\beta_{hj}|$, an intercept $b>\max_a d_a$, and set
+\[
+ p_{hi}=b-d_a-\epsilon C,\qquad
+ u_{hj}=\epsilon(C+\beta_{hj}).
+ \tag{8}
+\]
+Then $b-p_{hi}-u_{hj}=d_a-\epsilon\beta_{hj}$. By taking the $d_a$
+close enough to one, then $b$ slightly above their maximum, and
+finally $\epsilon$ sufficiently small, all $p,u$ are positive and
+$b-\sum_i p_{hi}-\sum_j u_{hj}>0$. Thus every denominator is
+positive on the whole Boolean cube, with strictly negative slopes.
+The unmasked head has column numerator $q_{hj}$, which is affine on
+the one-hot column grid and independent of the row.
+
+For completeness, a binary mask matrix $B$ of rank at most $L$ can
+be applied to $H$ such heads using $H+L+1$ heads. In head $h$, replace
+$p_{hi}$ by $B_{ih}p_{hi}$. Removing negative slopes preserves
+whole-cube positivity. The new grid value is
+$B_{ih}R_h(i,j)+(1-B_{ih})q_{hj}/(b-u_{hj})$. After factoring $B$ as
+$B_{ih}=\sum_{\ell=1}^L a_{i\ell}b_{\ell h}$, the required correction
+is a column term plus $L$ rank-one row-times-column terms.
+Each rank-one term $F_iG_j$ costs one weak reverse head plus a column
+term: choose $M$ large, use denominator $1/(M+F_i)$ on row $i$ and
+numerator $G_j$, and subtract $MG_j$. This denominator has a positive
+whole-cube extension for large $M$, since its row differences are
+$O(M^{-2})$ while its intercept is $\Theta(M^{-1})$. Collect all
+column terms into one constant-denominator head. This proves the
+claimed count.
+
+Since $V=2B-1$, subtracting the $H$ unmasked heads gives a total
+$2H+L+1=20$. These may initially have zero denominator slopes. The
+weight-two gauge adds $\tau(2-\sum_i x_i-\sum_j y_j)$ to each
+denominator. It vanishes on the one-hot-by-one-hot grid, makes every
+slope strictly negative, and preserves whole-cube positivity for
+sufficiently small $\tau>0$. Finally any affine numerator over
+$b-\sum_k a_kx_k$ with $a_k>0$ and $b>\sum_k a_k$ is an original
+\texttt{FracAtom}: choose $0<\alpha<1$ with
+$\sum_k a_k/(1-\alpha)<b$, set $\rho_k=a_k/(1-\alpha)$,
+$\gamma=b-\sum_k\rho_k>0$, set $\delta=0$, and solve the numerator
+coefficients for $m_k,\eta$. This checks the original admissibility
+conditions on every Boolean input.
+
+\paragraph{Audit.}
+\texttt{audit\_reflection\_cauchy\_lift.py} uses exact rational
+arithmetic at $z=1,2,3,4$. It verifies all 4096 sign tables, selects
+an unused Gale sector, constructs the strict scores, and produces
+positive distinct square tokens satisfying $Tu=w$. The four sector
+choices occur 2744, 1016, 288, and 48 times. The script checks finite
+limiting witnesses; it is not a Lean proof and does not assert an
+asymptotic saving.
+\end{document}
