@@ -2,8 +2,9 @@
 """Verify sampled biased adaptive Haar witnesses using exact rationals.
 
 This is evidence about the listed targets, not a universality theorem.
-No LP solver is imported. The generation script uses pplpy's exact
-continuous LP solver, and every returned witness is checked here in the
+No LP solver is imported. Generation may use an exact continuous LP
+or a numerical proposal followed by exact rational verification.
+Every returned witness is checked here in the
 original, biased query system rather than only its reduced inequalities.
 """
 from fractions import Fraction as F

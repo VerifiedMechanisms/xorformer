@@ -100,6 +100,19 @@ series precisions range from $256$ to $1024$; in every case all comparison
 scores have positive leading terms. The detailed discussion below treats
 the first certificate.
 
+\paragraph{A sixty-four-wire finite certificate.}
+The file \texttt{butterfly-adaptive-haar-h64-sample.json} contains one
+target and exact rational residues at $d=6$, $\epsilon=1/10$, with
+exponents $(1,2,4,8,16,32)$. The independent sample checker verifies
+all $192$ original strict query inequalities after reconstructing the
+block biases. The generator \texttt{butterfly-adaptive-haar-barrier.py}
+uses a high-precision numerical barrier method only to propose a point,
+then rounds to rationals and checks every original mixed-block
+inequality exactly before saving it. Numerical infeasibility has no
+certification role. This finite certificate does not establish a
+small-$\epsilon$ continuation, nor by itself the cube-admissibility
+budget for arbitrary numbers of rows. Those require a separate argument.
+
 \paragraph{An exact Laurent continuation.}
 The file \texttt{butterfly-adaptive-haar-h32-laurent.json} specifies one
 of the eighty-bit targets and a square active basis. The basis consists
