@@ -12,6 +12,8 @@ import HeadComplexity.Atoms.RoPEReorientation
 import HeadComplexity.Results.PureRoPETwoHeads
 import HeadComplexity.Results.PureRoPETwelvePairExact
 import HeadComplexity.Results.ThreeFaceFourHeads
+import HeadComplexity.Results.FourHeadCrossOnlyExample
+import HeadComplexity.Results.PureFourHeadLocalPattern
 
 set_option linter.style.header false
 
@@ -149,5 +151,17 @@ alias theorem17_twelve_pair_shared := PureRoPEThreeHead.TwelvePair.sharedHStar_e
 /-- **Theorem 18.** A union of three nonnegative affine zero sets has a
 four-head realization in the original shared architecture. -/
 alias theorem18_three_faces := ThreeFaceFourHeads.computable_four
+
+/-- **Theorem 19.** The cross-only local pattern excludes all four-head
+vanilla representations, including degenerate denominator orientations. -/
+alias theorem19_cross_only_vanilla_lower := FourHeadLocalPattern.crossOnly_HStar_ge_five
+
+/-- **Theorem 19.** An explicit seventeen-bit cubic has threshold degree three
+and needs at least five vanilla heads. Its pure four-head upper bound is open. -/
+alias theorem19_explicit_target := FourHeadCrossOnlyExample.certified_target
+
+/-- **Theorem 19.** The stronger original local pattern also excludes four
+pure rotary heads, so that pattern cannot give a four-versus-five separation. -/
+alias theorem19_original_pattern_pure_lower := PureFourHeadLocalPattern.pureRoPEHStar_ge_five
 
 end HeadComplexity

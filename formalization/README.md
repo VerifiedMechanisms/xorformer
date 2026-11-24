@@ -45,6 +45,11 @@ remains unresolved here.
 | 12 | symmetric `H*=C(F)` (sign changes) | `HStar_symmetricFn` | `Results/SymmetricComplexity.lean` |
 | 13 | explicit strict separation `deg±<H*` | `f10_strict_separation` | `Results/StrictSeparation.lean` |
 | 14 | rotary scalar comparison and symmetric equality | `pureRoPEHStar_le_vanilla`, `retainedRoPEHStar_le_pure`, `thresholdDeg_le_retainedRoPEHStar`, `ropeHStar_symmetric` | `Atoms/RoPE.lean`, `Results/RoPEComparison.lean` |
+| 16 | universal two-head pure/vanilla Boolean equality | `pureRoPEComputable_two_iff_vanilla`, `pureRoPEHStar_eq_vanilla_of_le_two` | `Results/PureRoPETwoHeads.lean` |
+| 17 | twelve-bit quadratic needs exactly four pure and vanilla heads | `PureRoPEThreeHead.TwelvePair.exact_complexities` | `Results/PureRoPETwelvePairExact.lean` |
+| 18 | four vanilla heads for three nonnegative affine zero sets | `ThreeFaceFourHeads.computable_four` | `Results/ThreeFaceFourHeads.lean` |
+| 19 | all-vanilla four-head local obstruction and explicit cubic target | `FourHeadCrossOnlyExample.certified_target` | `Results/FourHeadCrossOnlyExample.lean` |
+| 19 | original local pattern also excludes four pure heads | `PureFourHeadLocalPattern.pureRoPEHStar_ge_five` | `Results/PureFourHeadLocalPattern.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:
@@ -56,10 +61,10 @@ lake build HeadComplexity.Examples.All   # optional build for just examples
 lake build HeadComplexity.Results.All   # optional build for just results
 ```
 
-For **exact, reproducible** build/verify instructions — including the
+For **exact, reproducible** build/verify instructions, including the
 mathlib-cache `curl` fix, the Snellius SLURM job scripts, and how to confirm the
-results are axiom-clean — see [`BUILDING.md`](BUILDING.md).
+results are axiom-clean, see [`BUILDING.md`](BUILDING.md).
 
 See the [repository README](../README.md) for the wider project context.
 
-The follow-up module `Atoms/RoPEReorientation.lean` checks the pure-head coefficient relation, `RoPEReorientation.exists_positive_direction_of_ne_zero`, and the two quadratic identities used in Theorem 15. The full assertion that complement-invariant two-head pure classifiers have two-head vanilla realizations is proved in the theorem writeup, not yet assembled as a Lean theorem.
+The follow-up module `Atoms/RoPEReorientation.lean` checks the pure-head coefficient relation, `RoPEReorientation.exists_positive_direction_of_ne_zero`, and the two quadratic identities used in Theorem 15. Theorem 16 now proves the stronger assertion without complement invariance in `Results/PureRoPETwoHeads.lean`. The new results preserve the original model definitions and use the existing exact vanilla architecture equivalence.
