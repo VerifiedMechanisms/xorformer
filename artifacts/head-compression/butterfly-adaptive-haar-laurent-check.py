@@ -59,9 +59,9 @@ def seriesrow(spec):
 
 basis=[]; rhs=[]
 for kind,j in data['basis']:
-    assert kind in ('row','zero')
+    assert kind in ('row','zero','one')
     basis.append(seriesrow(specs[j]) if kind=='row' else [Series([int(i==j)]) for i in range(H)])
-    rhs.append(1 if kind=='row' else 0)
+    rhs.append(0 if kind=='zero' else 1)
 assert len(basis)==H
 A=[list(row)+[x**M*value] for row,value in zip(basis,rhs)]
 columns=list(range(H)); pivots=[]
@@ -94,6 +94,10 @@ leading=[]
 for coefficient in coefficients:
     valuation=coefficient.valuation()
     leading.append(None if valuation<0 else [valuation-M,str(coefficient[valuation])])
+if data.get('require_positive_residues'):
+    for coefficient in coefficients:
+        valuation=coefficient.valuation()
+        assert valuation>=0 and coefficient[valuation]>0, 'Nonpositive or undecided residue'
 score_terms=[]
 for spec in specs:
     score=sum((a*b for a,b in zip(seriesrow(spec),coefficients)),Series([]))

@@ -100,6 +100,27 @@ series precisions range from $256$ to $1024$; in every case all comparison
 scores have positive leading terms. The detailed discussion below treats
 the first certificate.
 
+\paragraph{Biases remove one certified positive-residue obstruction.}
+The sixteen-wire target in
+\texttt{butterfly-adaptive-haar-positive-h16-dual.json} has no nonnegative
+unbiased residue solution for all sufficiently small positive $\epsilon$;
+that scoped obstruction is proved in \texttt{butterfly-adaptive-haar.tex}.
+For the same target, fast hierarchy $(1,2,4,8)$, and query times, adding
+block biases gives a strictly positive residue solution for every
+sufficiently small positive $\epsilon$. The certificate
+\texttt{butterfly-adaptive-haar-positive-biased-h16.json} specifies sixteen
+active equations, including selected residue equations $c_y=1$.
+The existing Laurent checker, with tracked precision $512$, verifies
+all twenty-five comparison inequalities and all sixteen residue
+positivities. Its pivot valuations are eight zeros followed by
+$2,2,2,6,6,11,17,19$. The leading residues are $1$ at indices
+$0,1,2,5,15$; $4\epsilon^{-18}$ at indices $4,6$;
+$11\epsilon^{-16}$ at index $11$; and
+$2\epsilon^{-19}$ at all remaining indices.
+This distinguishes the positive biased family from the earlier
+unbiased obstruction. It proves feasibility of this one target,
+not a positive-residue universality theorem.
+
 \paragraph{A sixty-four-wire finite certificate.}
 The file \texttt{butterfly-adaptive-haar-h64-sample.json} contains one
 target and exact rational residues at $d=6$, $\epsilon=1/10$, with
