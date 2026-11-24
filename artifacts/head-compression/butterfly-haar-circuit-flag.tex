@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{A finite Laurent circuit flag for the biased butterfly decoder}
+\maketitle
+
+This is an exact finite algebra diagnostic, not a universality or density theorem.
+The signed Haar decoder and its Farkas equations are defined in
+\texttt{butterfly-biased-dual-audit.tex}.  Here $H=32$, the target is the first
+saved target in \texttt{butterfly-adaptive-haar-h32-sample.json}, and
+\[
+ p_y(\varepsilon)=\sum_{j=0}^{4}y_j\varepsilon^{2^j},\qquad
+ t_s=1-p_s.
+\]
+The original signed query matrix $A(\varepsilon)$ has $80$ rows and $63$
+columns: one residue column per output and one bias column per input block.
+Its row $e=(k,s,g)$ is
+\[
+ A_{e,y}=\frac{(1-2\theta_e)u_{k,g}(\pi^{-1}y)}{1-p_s-p_y},\qquad
+ A_{e,(l,b)}=(1-2\theta_e)1_{(l,b)=(k,g)}.
+\]
+
+\paragraph{Exact calculation.}
+At $\varepsilon=1/100$, rational row reduction gives rank $63$.  The selected
+$63$-row square minor is consequently a nonzero rational function of
+$\varepsilon$.  Gaussian elimination over rational Laurent series computes
+all $17$ fundamental row dependencies.  The checker uses $1024$ initial
+coefficients, a right-hand-side shift of $341$, and valuation-based pivoting.
+Every division checks that the pivot's leading nonzero coefficient lies
+within the available precision.  After normalizing and reducing the kernel
+rows, at least $255$ coefficients remain known.  Every intermediate kernel
+basis is also checked against every exact block-bias relation.
+
+The file \texttt{butterfly-haar-circuit-flag-h32.json} records the target,
+selected rows, pivot valuations, and the first nonzero coefficient of every
+nonzero coordinate in the resulting kernel basis.  These are rational
+series operations, not floating point fits.  The square minor is invertible
+over the rational-function field, so the computed leading terms belong to
+actual rational-function dependencies.  No identity is inferred merely
+from a small numerical residual.
+
+\paragraph{A limitation of a leading-support argument.}
+The basis vector numbered $14$ from zero has leading coefficients $+1$ at
+query rows $69$ and $77$, both at order zero.  All its other coordinates
+have positive valuation.  Its first negative coordinates occur at rows
+$75$ and $79$, with coefficient $-1$ at order $4$.
+Thus the initial support is nonnegative, although the actual dependency is
+not nonnegative for small positive $\varepsilon$.
+An argument that excludes nonnegative circuits solely by the unrefined
+initial row configuration cannot prove feasibility of this decoder.
+It must retain later coefficients or use a different positive
+transformation.  This observation does not produce a Farkas obstruction:
+the later negative coordinates prevent that conclusion.  The target has a
+separately saved positive-margin primal Laurent certificate.
+
+\paragraph{Reproduction and scope.}
+Run \texttt{heavy python3 artifacts/head-compression/}
+\texttt{butterfly-haar-circuit-flag-check.py 5}.
+The argument \texttt{4} checks a separate sixteen-token target.
+The calculation is not Lean-checked and changes no model definition.
+It establishes neither a bound on the density of feasible targets nor an
+upper or lower bound for worst-case head complexity.
+\end{document}
