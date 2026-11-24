@@ -112,6 +112,8 @@ The same conclusions hold if the effective number of distinct pole points is any
 
 ## First-order ordinary moments suffice
 
+The complete elementary reduction in this section is now kernel-checked as `HeadComplexity.FirstJetCayleyBacharach.reducedCB_of_ordinary_firstJet_relation` and `reducedCB_half_order` in `formalization/HeadComplexity/Research/FirstJetCayleyBacharach.lean`. Its transitive axioms are `[propext, Classical.choice, Quot.sound]`. The geometric Hilbert-function and weighted incidence steps remain written proofs.
+
 Let the distinct normalized pole points be $b_1,\ldots,b_H$. Suppose there are scalars $c_h$ and vectors $v_h$, with $(c_h,v_h)\neq(0,0)$ for each $h$, such that the ordinary polynomial functional
 
 $$ \Lambda(P)=\sum_{h=1}^H\left(c_hP(b_h)+v_h\cdot\nabla P(b_h)\right) $$

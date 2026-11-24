@@ -1,0 +1,9 @@
+import HeadComplexity.Research.AffineFiberCapacity
+#print axioms HeadComplexity.AffineFiberCapacity.gram_identity
+#print axioms HeadComplexity.AffineFiberCapacity.observationRelation_mem
+#print axioms HeadComplexity.AffineFiberCapacity.mem_represented_of_fiber_affine
+#print axioms HeadComplexity.AffineFiberCapacity.exists_fiber_affine_score
+#print axioms HeadComplexity.AffineFiberCapacity.mem_represented_of_original
+#print axioms HeadComplexity.AffineFiberCapacity.card_originalFunctions_le
+#print axioms HeadComplexity.AffineFiberCapacity.card_originalFunctions_le_pow
+#print axioms HeadComplexity.AffineFiberCapacity.card_originalFunctions_le_half_tables

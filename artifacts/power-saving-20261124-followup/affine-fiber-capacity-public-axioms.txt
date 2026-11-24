@@ -1,0 +1,20 @@
+'HeadComplexity.AffineFiberCapacity.gram_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineFiberCapacity.observationRelation_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AffineFiberCapacity.mem_represented_of_fiber_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineFiberCapacity.exists_fiber_affine_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineFiberCapacity.mem_represented_of_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineFiberCapacity.card_originalFunctions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineFiberCapacity.card_originalFunctions_le_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AffineFiberCapacity.card_originalFunctions_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
