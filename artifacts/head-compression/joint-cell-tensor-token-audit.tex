@@ -102,6 +102,40 @@ line-part approximation suffices whenever the complete construction has a
 strict margin. This does not solve the point correction or assume its
 existence.
 
+\section{A sample-dependent freedom that remains admissible}
+
+The scalar pole pencil need not be fixed across memory points. For every
+point $g$, choose an arbitrary pencil $P_g(\alpha)$ and an arbitrary token
+$t_g(j)$ for each column, with the uniform bounds
+\[
+ 1-\delta<P_g(\alpha)<1,\qquad
+ 0<t_g(j)<\delta,\qquad (r+s)\delta<1.
+\]
+The line aggregate can be
+\[
+ Z_L(j)=\sum_{g\in L}\frac{1}{P_g(\operatorname{slope}L)-t_g(j)}.
+\]
+For a query point $p$, the weighted pencil identity still gives its own
+full decoder plus one off-diagonal term for every other point with a
+defined slope. That term has denominator
+$P_g(\operatorname{slope}(p,g))-t_g(j)$, so it is still one admissible
+one-hot row Cauchy correction. Consequently the exact axis-zero budget
+remains $3q^2+4$.
+
+This statement is kernel checked as
+\texttt{jointCell\_exists\_affinePlane\_point\_poles} in
+\texttt{JointCellSampleDependentPoles.lean}. The point pencils and tokens
+may be chosen after seeing the entire finite label table. Its targeted
+build passed with 9123 jobs; its transitive axioms are
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+The theorem grants this freedom, but asserts no stronger decoder capacity.
+
+The query residues must remain shared across the memory points in this
+factorization. In the tensor construction, additive pencils
+$P_g(\alpha)=\sum_l p_{g,l}(\alpha_l)$ remain affine in the one-hot row
+blocks for each fixed correction point $g$. The arbitrary residue tensor
+and partial diagonals are still unresolved.
+
 \section{Vector tokens and exact pole transport}
 
 Let a point memory now be $t_g(j)\in\mathbb R^r$. A vector Cauchy line
