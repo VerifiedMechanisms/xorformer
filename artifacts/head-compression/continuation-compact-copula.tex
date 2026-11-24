@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{An Arbitrarily Compact Universal Copula Module}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This is a finite theorem with a complete written proof and exact symbolic
+verification in \texttt{audit\_copula\_compact\_limit.py}. It is not
+Lean-checked and does not prove an asymptotic saving for unrestricted
+head complexity. It strengthens the finite module in
+\texttt{continuation-copula-trades.tex}: all memory slopes can now tend
+to zero while a fixed family of three denominator templates still
+programs all eight mixed-fiber signs. The attention model and its
+admissibility conditions are unchanged.
+
+\begin{theorem}\label{thm:compact}
+There is $\varepsilon_0>0$ such that, for every
+$0<\varepsilon<\varepsilon_0$ and every prescribed sign at each of
+the eight vertices
+\[
+ (u,v_1,v_2,v_3)\in\{0,1\}^4,
+ \qquad v_1+v_2+v_3\ge2,
+\]
+four original admissible heads realize those signs strictly and are
+exactly zero at all eight remaining vertices. Their denominators are
+\[
+ 1-\frac{u}{16}-\varepsilon
+       \sum_{j=1}^3(\pi_j(h)+1)v_j,\qquad h=0,1,2,3,
+ \tag{1}
+\]
+where $\pi_1=\mathrm{id}$ and one of these three pairs is chosen:
+\[
+\begin{array}{c|c|c}
+ t&\pi_2&\pi_3\\\hline
+ 0&(0,1,2,3)&(0,1,2,3)\\
+ 1&(0,2,1,3)&(1,0,3,2)\\
+ 2&(0,1,3,2)&(1,2,3,0).
+\end{array}
+\tag{2}
+\]
+The numerators have only $v_j$ terms. For rational $\varepsilon$ all
+parameters can be chosen rational. We may take $\varepsilon_0\le1/32$,
+so every denominator is at least $9/16$ on the whole Boolean cube.
+\end{theorem}
+
+\paragraph{Residue space and exact zero fibers.}
+Put $d_0=1$, $d_1=15/16$, and, for $r=1,2,3,4$ and $k=0,1$, set
+\[
+ q_k(r;\varepsilon)=
+ \frac{(\varepsilon r-d_0)(\varepsilon r-d_1)r^k}
+      {\prod_{\ell\in\{1,2,3,4\}\setminus\{r\}}(r-\ell)}.
+ \tag{3}
+\]
+For either $d=d_0,d_1$,
+\[
+ \sum_{r=1}^4\frac{q_k(r;\varepsilon)}{d-\varepsilon r}=0.
+ \tag{4}
+\]
+To verify (4), cancel the factor $\varepsilon r-d$ in (3).
+The remaining numerator is a polynomial in $r$ of degree at most two.
+For every such polynomial $p$,
+$\sum_r p(r)/\prod_{\ell\ne r}(r-\ell)=0$: it is the coefficient
+of $X^3$ in the Lagrange interpolation formula for $p(X)$.
+The vectors $q_0,q_1$ are independent for sufficiently small
+$\varepsilon$, since their entrywise ratio is $r$ and all entries of
+$q_0$ are nonzero.
+
+Choose six free real numbers $\theta_{jk}$ and put
+\[
+ c_j(r)=\sum_{k=0}^1\theta_{jk}q_k(r;\varepsilon),\qquad
+ F(u,v)=\sum_{h=0}^3
+ \frac{\sum_{j=1}^3c_j(\pi_j(h)+1)v_j}
+ {1-u/16-\varepsilon\sum_{j=1}^3(\pi_j(h)+1)v_j}.
+ \tag{5}
+\]
+Equation (4) proves exact vanishing when $v$ has one nonzero coordinate;
+the numerator proves vanishing when $v=0$.
+
+\paragraph{Polynomial matrices.}
+Order the eight mixed outputs by masks $S=3,5,6,7$, with binary
+weights $1,2,4$ for the memory coordinates, and within each mask by
+$d=d_0,d_1$. For a fixed template, write
+$T_h(S)=\sum_{j\in S}(\pi_j(h)+1)$. The output matrix is
+\[
+ A_{(S,d),(j,k)}(\varepsilon)=
+ {\bf1}_{j\in S}\sum_{h=0}^3
+ \frac{q_k(\pi_j(h)+1;\varepsilon)}{d-\varepsilon T_h(S)}.
+ \tag{6}
+\]
+Multiplying row $(S,d)$ by the positive quantity
+$Q_{S,d}=\prod_h(d-\varepsilon T_h(S))$ gives the polynomial matrix
+\[
+ \widetilde B_{(S,d),(j,k)}=
+ {\bf1}_{j\in S}\sum_h q_k(\pi_j(h)+1;\varepsilon)
+                 \prod_{g\ne h}(d-\varepsilon T_g(S)).
+ \tag{7}
+\]
+Divide each column by the polynomial greatest common divisor of its
+eight entries to obtain $B$. Every divisor is a nonzero polynomial,
+so for all sufficiently small positive $\varepsilon$ the images of
+$B$ and $A$ meet exactly the same strict orthants.
+
+\paragraph{Exact limiting kernel computation.}
+For each of the three templates, $B$ has rank six over
+$\mathbb Q(\varepsilon)$. A polynomial basis $K(\varepsilon)$ for
+its two-dimensional left kernel can be normalized so that $K(0)$
+has rank two. The following matrices have precisely the row spaces
+of these three $K(0)$:
+\[
+ L_0=\begin{pmatrix}
+ 43065&0&43065&0&43065&0&-124740&103936\\
+ 0&45936&0&45936&0&45936&-126225&102544
+ \end{pmatrix},
+ \tag{8}
+\]
+\[
+ L_1=\begin{pmatrix}
+ 200160&0&15076035&-16604160&-14106240&18333696&-5866560&5161984\\
+ 0&17792&1285875&-1415808&-1231200&1607040&-529200&466560
+ \end{pmatrix},
+ \tag{9}
+\]
+\[
+ L_2=\begin{pmatrix}
+ 3345&0&-57855&69632&31245&-31744&-13920&12032\\
+ 0&3568&-61200&73200&27900&-28176&-10575&8464
+ \end{pmatrix}.
+ \tag{10}
+\]
+Here is an explicit reproducible computation of the limits, including
+how cancellations at $\varepsilon=0$ are handled. Choose the
+lexicographically first six-row set $R$ with
+$\Delta=\det B_R\ne0$. For each row $s\notin R$, make the vector
+$z^{(s)}$ whose $s$ entry is $\Delta$, whose other entry outside
+$R$ is zero, and whose entry at the $i$th row of $R$ is
+\[
+ -\det B_{R[i\leftarrow s]}.
+ \tag{11}
+\]
+The determinant in (11) retains the displayed row order. Cramer's
+rule gives $B^\top z^{(s)}=0$. Divide each vector by its polynomial
+gcd, obtaining $a,b$. Choose the first index $p$ with $a_p(0)\ne0$;
+replace $b$ by $a_pb-b_pa$ and again divide by its polynomial gcd.
+The resulting two polynomial vectors are $K$'s rows. Evaluating at
+zero, taking reduced row echelon form, clearing rational denominators
+and dividing each row by its integer gcd gives (8)--(10).
+The companion checker performs exactly these operations over
+$\mathbb Q[\varepsilon]$, verifies $KB=0$ by expansion, verifies
+the nonzero minor, and checks the stated limiting rows.
+
+\paragraph{Strict coverage by the limiting planes.}
+The three six-dimensional spaces $\ker L_t$ jointly meet all 256
+strict orthants of $\mathbb R^8$. The following exact procedure
+verifies this assertion without optimization. For each sign word
+$s\in\{-1,1\}^8$, and each $L=L_t$, set
+\[
+ M=L\operatorname{diag}(s),\qquad b=-M\mathbf1.
+ \tag{12}
+\]
+Examine every pair of columns $M_i,M_j$ with nonzero determinant.
+If
+\[
+ (\alpha,\beta)^\top=[M_i\ M_j]^{-1}b
+ \quad\hbox{has }\alpha,\beta\ge0,
+ \tag{13}
+\]
+then $z=\mathbf1+\alpha e_i+\beta e_j$ is strictly positive and
+$L\operatorname{diag}(s)z=0$. Checking (13) in template order
+$0,1,2$ accepts respectively $224,26,6$ new words, hence all 256.
+All arithmetic in this check is rational, all output margins are at
+least one, and the script can export every witness. The positive
+vectors themselves suffice; no completeness claim about the pair
+search is needed for this verification.
+
+\paragraph{Passage to small positive memory slopes.}
+Fix one sign word and one limiting witness $x\in\ker K(0)$ with
+$s_ix_i\ge1$. Since $K(0)$ has rank two, the matrix
+$K(\varepsilon)K(\varepsilon)^\top$ is invertible for sufficiently
+small $\varepsilon$. Define the continuous projection
+\[
+ P(\varepsilon)=I-K(\varepsilon)^\top
+ [K(\varepsilon)K(\varepsilon)^\top]^{-1}K(\varepsilon).
+ \tag{14}
+\]
+Then $P(\varepsilon)x\to x$ and consequently
+$s_i(P(\varepsilon)x)_i>0$ for every $i$ when $\varepsilon$ is
+sufficiently small. Also
+$P(\varepsilon)x\in\ker K(\varepsilon)=\operatorname{im}B(\varepsilon)$,
+because the nonzero polynomial minor proves rank six away from
+finitely many roots. Positive row rescaling in (7) now gives the
+desired strict signs in (6). There are only 256 words, so the
+minimum of their finitely many positive neighborhoods supplies one
+$\varepsilon_0>0$ valid for all words. Taking it smaller than $1/32$
+proves all the asserted denominator bounds. For rational
+$\varepsilon$, (14) and a six-row linear solve are rational, so
+all residues can be rational as well.
+
+\paragraph{Original attention admissibility.}
+For each summand of (5), write its numerator as $\sum_i t_ix_i$
+and denominator as $1-\sum_i a_ix_i$, where
+$a_u=1/16$ and $a_{v_j}=\varepsilon(\pi_j(h)+1)>0$.
+Since $\varepsilon<1/32$, $\sum_i a_i<7/16$. The original atom
+parameters
+\[
+ \alpha=\tfrac12,\quad\rho_i=2a_i,\quad
+ \gamma=1-2\sum_i a_i,\quad\delta=0,\quad
+ m_i=-t_i/a_i,\quad\eta=-\sum_i\rho_i m_i
+ \tag{15}
+\]
+satisfy $\alpha>0$, $\rho_i>0$, and $\gamma>1/8$.
+Since $\rho_i\alpha^{x_i}=2a_i-a_ix_i$ on Boolean inputs,
+substitution into the original numerator and denominator gives
+the summand of (5) exactly. Thus no zero weight, orientation
+change, approximate admissibility, or additional head is used.
+
+\paragraph{Remaining asymptotic issue.}
+This theorem reuses four heads across four mixed memory fibers,
+with two row evaluations each. Repetition of this fixed module
+only changes a constant. An asymptotic improvement requires a
+family whose ratio of independently programmed strict signs to
+the available affine numerator parameters tends to infinity,
+together with a whole-cube compiler at the corresponding head
+cost. This theorem supplies neither assertion.
+\end{document}
