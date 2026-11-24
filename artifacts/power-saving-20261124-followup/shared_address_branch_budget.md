@@ -59,3 +59,7 @@ An arbitrary original denominator need not share one known address form across h
 A useful unrestricted extension would supply charts in which an address face contributes only $O(nH)$ linear variables, while its remaining $n-d$ directions contribute only $O((n-d)H)$ nonlinear variables and predicates of polynomial degree in $n$. The partially linear sign count could then exploit the small number of remaining directions. No such chart has been established here. Replacing real face values by their sign labels would be a further unsupported step.
 
 The interpolation and factorial bounds above are written proofs. No Lean declaration or finite computational certificate is claimed.
+
+## Related prior audit
+
+After this restricted argument was completed, a remote-branch audit at commit `582d1229ad07c4b11ede99c29f7bd05b1e7f5998` was located. Its [critical-scale address analysis](https://github.com/VerifiedMechanisms/xorformer/blob/582d1229ad07c4b11ede99c29f7bd05b1e7f5998/artifacts/beyond-counting-bound/critical-scale-address-audit.md) already proves the same asymptotic address-budget conclusion for a more general signed-residue construction, with exact integer rounding. It also bounds that restricted family's strict sign count directly and states the missing unrestricted count. The positive-residue interpolation proof above is independent, but its critical-width entropy conclusion is not a new unrestricted advance.
