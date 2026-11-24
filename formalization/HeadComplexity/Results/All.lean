@@ -1,6 +1,10 @@
 import HeadComplexity.Results.GappedReciprocalCover
 import HeadComplexity.Results.ApproximateGradedShellTransfer
 import HeadComplexity.Results.JointFamilyPointRepair
+import HeadComplexity.Results.JointFamilySignedJets
+import HeadComplexity.Results.JointFamilyLinearRepair
+import HeadComplexity.Results.SupportedGradedShellTransfer
+import HeadComplexity.Results.RegularLayerCoverTransfer
 import HeadComplexity.Results.AffineCylinderCofactorRecursion
 import HeadComplexity.Results.AffineCylinderThreshold
 import HeadComplexity.Results.AffineFreeSparsity

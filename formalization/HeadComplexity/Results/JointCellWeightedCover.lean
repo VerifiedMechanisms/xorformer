@@ -168,4 +168,30 @@ theorem jointCell_exists_downward_layer_log_cost (m k c : ℕ)
   refine ⟨S, T, hc, ?_⟩
   simpa only [Real.exp_neg, Real.exp_log hBpos, mul_inv_cancel₀ hBpos.ne'] using hb
 
+/-- Optimizing the selection rate charges uncovered points explicitly. The
+cover loss is the logarithm of the gain `e / H`, not the logarithm of the
+cell size. This is useful when a large cell already costs many heads. -/
+theorem jointCell_exists_regular_partial_cover_log_gain
+    {ι κ : Type*} [Fintype ι] [Fintype κ]
+    (neighbors : κ → Finset ι) (d e : ℕ)
+    (hd : 0 < d) (he : 0 < e)
+    (hdegree : ∀ t, (neighbors t).card = d)
+    (hincidence : Fintype.card ι * e = Fintype.card κ * d)
+    (H : ℝ) (hH : 0 < H) (hgain : H ≤ e) :
+    ∃ (S : Finset ι) (T : Finset κ),
+      (∀ v, v ∉ T → ∃ i ∈ S, i ∈ neighbors v) ∧
+      H * S.card + T.card ≤
+        Fintype.card κ * (H / e) * (1 + Real.log ((e : ℝ) / H)) := by
+  have heR : (0 : ℝ) < e := Nat.cast_pos.mpr he
+  have hr : 1 ≤ (e : ℝ) / H := (one_le_div hH).mpr hgain
+  obtain ⟨S, T, hc, hb⟩ := jointCell_exists_regular_weighted_partial_cover
+    neighbors d e hd he hdegree hincidence (H / e) 1
+      (Real.log ((e : ℝ) / H)) (div_pos hH heR) (by norm_num) (Real.log_nonneg hr)
+  refine ⟨S, T, hc, ?_⟩
+  have hexp : Real.exp (-Real.log ((e : ℝ) / H)) = H / e := by
+    rw [Real.exp_neg, Real.exp_log (div_pos heR hH), inv_div]
+  have heq : H / (e : ℝ) * e = H := div_mul_cancel₀ H heR.ne'
+  rw [heq, one_mul, hexp, one_mul] at hb
+  nlinarith
+
 end HeadComplexity.AxisZeroGluing

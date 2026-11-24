@@ -1,0 +1,21 @@
+'HeadComplexity.AxisZeroGluing.jointCell_exists_regular_partial_cover_log_gain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.glue_reverse_approx_supported_shell_modules' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_le_approx_supported_shell_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_singleton_layer_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_supported_layer_score_log_gain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.HStar_le_of_supported_layer_closures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_real_le_regular_layer_log_gain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

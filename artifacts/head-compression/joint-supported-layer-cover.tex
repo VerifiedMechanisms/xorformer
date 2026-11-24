@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\begin{document}
+\title{Partial covers preserve a growing local gain}
+\maketitle
+
+\paragraph{Status.}
+The cover and assembly results below are kernel checked. They are conditional
+on a local decoder with the stated support properties. They do not establish
+a new asymptotic upper bound for the original worst-case head complexity.
+No original model definition is changed.
+
+\paragraph{The optimized cover calculation.}
+Let a regular incidence system have $U$ targets, $V$ cells, $e$ targets per
+cell and $d$ cells through each target, so $Ve=Ud$. Suppose a selected cell
+costs $H$ heads and a singleton exception costs one head, with $0<H\leq e$.
+Independent cell selection, followed by repairing every uncovered target,
+gives selected cells $S$ and exceptions $T$ satisfying
+\[
+ H|S|+|T|\leq U\frac{H}{e}
+ \left(1+\log\frac eH\right).
+\]
+Indeed the previously checked Bernoulli estimate is
+$U(Kt+\exp(-t))$ for $K=H/e$. Set $t=\log(e/H)$.
+If the nominal selection probability $t/d$ exceeds one, selecting every
+cell gives the same bound. Thus no restriction on $d$ beyond positivity is
+omitted. This is
+\texttt{jointCell\_exists\_regular\_partial\_cover\_log\_gain} in
+\texttt{JointCellWeightedCover.lean}.
+
+The logarithm is of the local gain $e/H$, not of the number $e$ of inputs
+in a cell. In particular a local gain of order $d$ loses only a factor
+of order $\log d$ in this calculation. A full-cover greedy bound that
+loses $\log e$ is unnecessarily expensive when singleton repair is allowed.
+
+\paragraph{What a supported layer compiler must prove.}
+For each cell in the weight-$k$ layer and every arbitrary global Boolean
+labeling, it must provide a limiting score of $H$ original admissible heads.
+The limit has the prescribed strict signs on the cell, is zero on the rest
+of that layer, and is zero on every higher layer. Values on lower layers
+are unrestricted. The approximation is over the entire Boolean cube;
+all actual denominators remain positive there and all slopes and numerators
+satisfy the original model. The definition
+\texttt{HasSupportedLayerCompiler} states exactly these conditions.
+
+Every uncovered point in layer $k$ has a one-head limiting repair supported
+on its downward set. On layer $k$ that downward set meets only the point
+itself. Within a layer all selected cells and singleton repairs have
+compatible signs on overlaps. Summing them therefore gives a strict score
+on the whole layer with the charged total number of heads. The declarations
+\texttt{exists\_singleton\_layer\_closure} and
+\texttt{exists\_supported\_layer\_score\_log\_gain} check these steps.
+
+\paragraph{The global bound.}
+Process layers from weight $n$ down to zero. Later layer scores vanish at
+all earlier points, so finite positive rescalings overcome arbitrary values
+on the current layer while preserving every prior strict sign. Closure of
+the finite-head score family then supplies actual admissible heads with
+exactly the same count. In \texttt{RegularLayerCoverTransfer.lean},
+\texttt{worstCaseHeadComplexity\_real\_le\_regular\_layer\_log\_gain}
+proves
+\[
+ W(n)\leq\sum_{k=0}^{n}|\{x:|x|=k\}|
+ \frac{H_k}{e_k}\left(1+\log\frac{e_k}{H_k}\right)
+\]
+from one such regular supported compiler for each layer. All head counts
+$H_k$ and incidence degrees are positive, and $H_k\leq e_k$.
+This statement includes every overlap and singleton exception. It does not
+assert existence of the compilers or regular geometric families.
+
+\paragraph{Sparse subsets of downward shells.}
+The earlier approximate graded-shell transfer is also extended to prescribed
+subsets of each deletion shell. The additional hypothesis is that the
+limiting score is zero on every unused point of the same shell. It still
+must vanish on all lower deletion layers. The resulting declaration is
+\texttt{worstCaseHeadComplexity\_le\_approx\_supported\_shell\_cover}
+in \texttt{SupportedGradedShellTransfer.lean}. Merely putting intended
+queries in one constant-weight layer does not prove this hypothesis.
+
+\paragraph{Consequence for the research candidates.}
+A Haar cell with order $d2^d$ query points and order $2^d$ heads would retain
+an order $d/\log d$ gain under a suitable supported regular cover. The
+scalar universal Haar inequalities and the same-shell and lower-layer
+support remain unproved. The cover calculation alone is no longer an
+obstruction of order $d$. The adjacent-grid candidate has a separate
+support failure: a multihot row can isolate one vertex contribution on an
+earlier layer, forcing that contribution to vanish. No covering argument
+repairs this missing local cancellation for free.
+\end{document}
