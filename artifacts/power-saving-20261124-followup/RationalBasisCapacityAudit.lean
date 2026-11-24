@@ -1,0 +1,6 @@
+import HeadComplexity.Research.RationalBasisCapacity
+#print axioms HeadComplexity.RationalBasisCapacity.exists_certificate
+#print axioms HeadComplexity.RationalBasisCapacity.certificatePatterns_subset_represented
+#print axioms HeadComplexity.RationalBasisCapacity.represented_eq_iUnion
+#print axioms HeadComplexity.RationalBasisCapacity.card_represented_le_sum
+#print axioms HeadComplexity.RationalBasisCapacity.eq_constant_of_constant_sample_labels

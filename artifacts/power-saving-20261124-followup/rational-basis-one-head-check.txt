@@ -1,0 +1,6 @@
+n=2, m=1, k=1, fixed unit-level basis, distinct strict tables=2=2^1
+n=3, m=1, k=2, fixed unit-level basis, distinct strict tables=4=2^2
+n=4, m=2, k=2, fixed unit-level basis, distinct strict tables=16=2^4
+n=5, m=2, k=3, fixed unit-level basis, distinct strict tables=64=2^6
+n=6, m=3, k=3, fixed unit-level basis, distinct strict tables=512=2^9
+n=7, m=3, k=4, fixed unit-level basis, distinct strict tables=4096=2^12

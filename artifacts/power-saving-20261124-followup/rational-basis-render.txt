@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_rational_basis.md",
+    "source_spans": 66,
+    "rendered_spans": 66,
+    "findings": [],
+    "notes": []
+  }
+]
