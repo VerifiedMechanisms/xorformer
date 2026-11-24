@@ -189,6 +189,38 @@ the stated leading-term regime. Perturbed poles, query times moving
 with $\varepsilon$, and vanishing Taylor truncations remain outside its
 scope. It also does not bound the finite-$\varepsilon$ family uniformly.
 
+\begin{corollary}[Arbitrary fixed scaled pole sets]
+The same VC bound holds if the Chebyshev roots are replaced by any
+$H$ distinct fixed real numbers $a_i$, with barycentric weights
+$w_i=1/\prod_{j\ne i}(a_i-a_j)$, provided all relevant truncations
+$N_{\leq k}(t)$, $0\leq k<H$, are nonzero at the fixed positive
+query times. The poles remain $p_i=\varepsilon a_i$.
+\end{corollary}
+\begin{proof}
+For a nonempty subset $S$ of size $M$, its first nonzero moment
+$\sum_{i\in S}w_i a_i^k$ occurs for some $0\leq k<M$.
+Otherwise the invertible $M\times M$ Vandermonde matrix on the
+distinct points $(a_i)_{i\in S}$ would annihilate the nonzero vector
+$(w_i)_{i\in S}$. Thus each size-$M$ mask has at most $2M$ possible
+index/sign states. The full set has first index $H-1$ and moment $1$
+by Lagrange interpolation, just as before.
+
+The moment expansion used above did not require Chebyshev roots, so
+conditional on the state assignment all query signs are still linear
+in the coefficients of $N$. Finally, for $H=2^d$ the number of states
+over the proper right-child masks is bounded by
+\[
+ \prod_{j=0}^{d-1}(2^{j+1})^{H/2^{j+1}}
+ =2^{H\sum_{j=0}^{d-1}(j+1)/2^{j+1}}<4^H.
+\]
+The previous arrangement argument applies unchanged.
+\end{proof}
+
+In particular, using a different fixed real-rooted polynomial or
+more polynomial-composition divisors does not by itself evade this
+generic scaled-pole obstruction. A hierarchical pole deformation
+such as $p_i=\varepsilon a_i+\varepsilon^2 b_i$ is outside it.
+
 \paragraph{Reproducible computations.}
 \texttt{tree-chebyshev-moment-check.py} works in
 $\mathbb Q[\zeta]/(\zeta^{2H}+1)$ using integer coefficient vectors,
