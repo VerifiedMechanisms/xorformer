@@ -187,7 +187,7 @@ theorem exists_reverse_axis_column_remainder {r s : ℕ}
   rw [hL]
   simp only [zero_add]
   by_cases hj : j ∈ U
-  · rw [if_pos hj]
+  · rw [ite_eq_left hj]
     let h : Fin U.card := e.symm ⟨j, hj⟩
     have heq : e h = ⟨j, hj⟩ := e.apply_symm_apply _
     rw [Finset.sum_eq_single h]
@@ -199,7 +199,7 @@ theorem exists_reverse_axis_column_remainder {r s : ℕ}
         exact hk (e.injective hek)
       simp [hkj]
     · simp
-  · rw [if_neg hj]
+  · rw [ite_eq_right hj]
     apply Finset.sum_eq_zero
     intro k _
     have hkj : (e k).val ≠ j := by
@@ -226,9 +226,9 @@ theorem hasReverseAxisCompiler_of_half_dense_family {r s M t R : ℕ}
   intro i j
   rw [ReverseAxisData.append_score, hQ]
   by_cases hj : j ∈ U
-  · rw [if_pos hj, hzero i j hj, zero_add]
+  · rw [ite_eq_left hj, hzero i j hj, zero_add]
     cases table i j <;> norm_num [outputSign]
-  · rw [if_neg hj, add_zero]
+  · rw [ite_eq_right hj, add_zero]
     exact hL i j hj
 
 end HeadComplexity.AxisZeroGluing
