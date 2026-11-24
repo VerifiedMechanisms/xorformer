@@ -15,7 +15,7 @@ namespace AxisZeroGluing
 
 open scoped BigOperators
 
-variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
+variable {F : Type*} [Field F] [Fintype F]
 
 /-- The shared-line decoder itself, before assigning Boolean words to tokens.
 No hypothesis on numerator magnitude or precision is used. -/
