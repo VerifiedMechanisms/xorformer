@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\begin{document}
+\title{A compact three-block Cauchy kernel with two-product residues}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The residue formula, partial-fraction identity, positive matrix-pencil
+discriminant at zero width, persistence at sufficiently small widths,
+and exterior denominator positivity are kernel checked in
+\texttt{LargeDomainBinaryTensor.lean}. The conversion of the matrix-pencil
+certificate to a real rank-two tensor decomposition is the elementary
+written proof below. This is a fixed three-block analytic resource, not an
+asymptotic decoder or an improved bound on $W(n)$.
+
+\section{Exact family}
+Index eight poles by $j=v_0+2v_1+4v_2$ with $v_i\in\{0,1\}$, and put
+\[
+ p_j=10+j,\qquad P_\epsilon(t)=\prod_{l=1}^7(t-l\epsilon),
+ \qquad Q(t)=\prod_{j=0}^7(t-p_j).
+\]
+The scaled barycentric residues are
+\[
+ A_j(\epsilon)=(-1)^{7-j}\binom7j P_\epsilon(p_j).
+\]
+The checked identity is
+\[
+ \sum_{j=0}^7\frac{A_j(\epsilon)}{p_j-t}
+ =-5040\frac{P_\epsilon(t)}{Q(t)}.
+\]
+Consequently, for every sufficiently small positive $\epsilon$, the
+transform has seven distinct simple zeros $\epsilon,\ldots,7\epsilon$,
+all in an arbitrarily short exterior interval. The denominator has no
+zero there. The transform alternates sign between consecutive roots.
+
+View $A$ as a $2\times2\times2$ tensor and take slices
+\[
+ B_0=\begin{pmatrix}A_0&A_2\\A_1&A_3\end{pmatrix},\qquad
+ B_1=\begin{pmatrix}A_4&A_6\\A_5&A_7\end{pmatrix}.
+\]
+Let $d_i=\det B_i$ and
+\[
+ T=A_4A_3+A_0A_7-A_6A_1-A_2A_5,
+ \qquad \Delta=T^2-4d_0d_1.
+\]
+These are the coefficients and discriminant of
+$\det(B_1-zB_0)=d_0z^2-Tz+d_1$. At $\epsilon=0$, exact integer arithmetic gives
+\[
+ d_0=80682322801069696,\qquad
+ \Delta=24842470071346496887104761125032493056>0.
+\]
+All coefficients are polynomials in $\epsilon$. Thus $d_0\ne0$ and
+$\Delta>0$ persist for every sufficiently small real $\epsilon$.
+
+\begin{proposition}
+If $B_0$ is invertible and this pencil has positive discriminant, the
+three-way tensor with slices $B_0,B_1$ is a sum of two real product tensors.
+\end{proposition}
+\begin{proof}
+The real matrix $M=B_1B_0^{-1}$ has two distinct real eigenvalues
+$\lambda_1,\lambda_2$. Its spectral projections
+\[
+ E_1=\frac{M-\lambda_2I}{\lambda_1-\lambda_2},\qquad
+ E_2=\frac{M-\lambda_1I}{\lambda_2-\lambda_1}
+\]
+have rank one, sum to $I$, and satisfy
+$M=\lambda_1E_1+\lambda_2E_2$. Put $R_i=E_iB_0$, still rank one,
+and write $R_i=u_iw_i^{\mathsf T}$. Then
+\[
+ B_0=R_1+R_2,\qquad B_1=\lambda_1R_1+\lambda_2R_2.
+\]
+Hence the tensor equals
+$u_1\otimes w_1\otimes(1,\lambda_1)+
+ u_2\otimes w_2\otimes(1,\lambda_2)$.
+\end{proof}
+
+\section{Full-cube positivity and limits of this checkpoint}
+For $s$ outer columns choose token widths $0<t_j<\delta$ and a small
+strictness guard $\kappa>0$ with $s\delta+3\kappa<10$. On three one-hot
+row pairs and one-hot columns the reverse denominator
+\[
+ 17+3\kappa-
+ \sum_{l=0}^2\bigl(\kappa x_{l,0}+(\kappa+2^l)x_{l,1}\bigr)
+ -\sum_{j=1}^s t_jy_j
+\]
+is one of $p_v-t_j$ after reversing the binary pole index. Every slope
+is strictly negative and its value throughout the entire Boolean cube
+is at least $10-3\kappa-\sum_jt_j>0$. Thus compactness and full-cube
+positivity do not obstruct this fixed kernel.
+
+The residue tensor is not an affine numerator. A two-product
+factorization still needs a charged construction for the product
+numerators and its lower-face corrections. Column-axis repair and the
+support needed for global gluing are also separate obligations.
+
+This example refutes a naive upper bound of $2c$ zeros for a rank-two
+residue tensor with $c=3$ binary pole blocks: it has seven zeros. It does
+not establish exponentially many zeros with bounded tensor rank as
+$c$ grows. Such a growing-family result, an admissible readout, and a
+supported cover remain open.
+
+\end{document}

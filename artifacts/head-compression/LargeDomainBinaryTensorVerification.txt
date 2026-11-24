@@ -1,0 +1,22 @@
+2026-11-24 21:43 UTC
+
+Command: cd formalization && lake build HeadComplexity.Results.LargeDomainBinaryTensor
+Result: Build completed successfully (3877 jobs).
+
+Command: lake env lean /tmp/LargeDomainBinaryTensorAxioms.lean
+The temporary file imported HeadComplexity.Results.LargeDomainBinaryTensor and printed the declarations below.
+
+HeadComplexity.LargeDomain.binaryTensor_slice_zero_ne
+HeadComplexity.LargeDomain.binaryTensor_discriminant_zero_pos
+HeadComplexity.LargeDomain.binaryTensor_pencil_eventually
+HeadComplexity.LargeDomain.binaryTensor_denominator_pos
+HeadComplexity.LargeDomain.binaryTensor_residue_barycentric
+HeadComplexity.LargeDomain.binaryTensor_cauchy_identity
+HeadComplexity.LargeDomain.binaryTensor_cauchy_root
+
+Each depends on axioms: [propext, Classical.choice, Quot.sound].
+No sorryAx or additional axioms.
+
+Scope: exact seven-root compact Cauchy family and positive matrix-pencil discriminant.
+The conversion to real tensor rank two is a written proof, not a Lean declaration.
+No asymptotic decoder or improved unconditional bound on W(n) is claimed.
