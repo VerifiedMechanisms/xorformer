@@ -1,0 +1,20 @@
+⚠ [3744/3748] Replayed HeadComplexity.Polynomial.WeightedDiagonalRootBound
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:5: Variable name `hw` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hw
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:25: Variable name `he` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _he
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:98:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+Build completed successfully (3748 jobs).

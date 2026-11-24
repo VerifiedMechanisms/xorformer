@@ -1,0 +1,16 @@
+'HeadComplexity.CayleyBacharachWindowMass.disjoint_windows_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CayleyBacharachWindowMass.prefix_mass_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CayleyBacharachWindowMass.window_mass_mul_floor_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CayleyBacharachWindowMass.window_mass_le_div_floor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CayleyBacharachWindowMass.half_ratio_le_floor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CayleyBacharachWindowMass.window_mass_le_twice_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

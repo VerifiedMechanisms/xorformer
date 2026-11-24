@@ -1,0 +1,7 @@
+import HeadComplexity.Research.CayleyBacharachWindowMass
+#print axioms HeadComplexity.CayleyBacharachWindowMass.disjoint_windows_lower
+#print axioms HeadComplexity.CayleyBacharachWindowMass.prefix_mass_mono
+#print axioms HeadComplexity.CayleyBacharachWindowMass.window_mass_mul_floor_le
+#print axioms HeadComplexity.CayleyBacharachWindowMass.window_mass_le_div_floor
+#print axioms HeadComplexity.CayleyBacharachWindowMass.half_ratio_le_floor
+#print axioms HeadComplexity.CayleyBacharachWindowMass.window_mass_le_twice_ratio
