@@ -118,6 +118,12 @@ def main():
     assert norm == F(93456593389, 8) < 2**34
     assert max(sum(abs(value) for value in row) for row in matrix) == 1
     coefficients = cleared_coefficients(matrix)
+    weight_denominator = 32 * 10**9
+    polynomial_denominator = 10**4 * weight_denominator**2
+    assert all((polynomial_denominator * value).denominator == 1
+               for value in coefficients.values())
+    assert all(sum(abs(value) for value in matrix[h + 3]) < F(1, 2)
+               for h in range(3))
     coefficient_norm = max(abs(value) for value in coefficients.values())
     gradient_bound = sum(len(key) * abs(value) for key, value in coefficients.items())
     all_positive_value = sum(coefficients.values())
@@ -155,7 +161,8 @@ def main():
            'inverse_minor_norm_power_bound': 300000,
            'cleared_coefficient_norm': str(coefficient_norm),
            'cleared_gradient_bound': str(gradient_bound),
-           'cleared_at_all_positive': str(all_positive_value)})
+           'cleared_at_all_positive': str(all_positive_value),
+           'grid_polynomial_denominator_base': polynomial_denominator})
 
 
 if __name__ == '__main__':
