@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Interleaved Polynomial Signs and a Scalable Quadratic Compiler}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+Complete written proof, with exact rational checks of the central sign
+construction and the matrix identities. This note is not Lean checked.
+The resulting head-to-query ratio is a constant. It proves neither
+accepted asymptotic HeadComplexity target.
+
+\begin{lemma}[An interleaved common-factor cone]
+Let $g\geq1$, $d=g+2$, and let $Y=(Y_0,\ldots,Y_{g+1})$.
+Let $P_Y$ be the polynomial of degree at most $g+1$ with
+$P_Y(2i)=Y_i$, and put $T_l(Y)=P_Y(2l+1)$ for $0\leq l\leq g$.
+Every prescribed strict sign word of the $2g+2$ expressions
+\[
+ Y_0,\ldots,Y_{g+1},\qquad T_0(Y)T_1(Y),\ldots,T_0(Y)T_g(Y)
+ \tag{1}
+\]
+is attained by a rational vector $Y$.
+\end{lemma}
+\begin{proof}
+Prescribe the desired signs at the even nodes. At the odd nodes prescribe
+$(1,\tau_1,\ldots,\tau_g)$, where the $\tau_l$ are the desired product
+signs. Alternatively negate all odd-node signs. Every two consecutive
+nodes have opposite parity, so these two words have complementary
+sign-change sets among their $2g+2$ gaps. One word has at most $g+1$
+sign changes. Put one rational root strictly inside each such gap and
+multiply the corresponding linear factors, choosing the overall sign
+at the first node. The resulting polynomial has degree at most $g+1$
+and exactly the chosen strict signs. Its values at the even nodes give
+$Y$; uniqueness of interpolation identifies it with $P_Y$. Negating all
+odd signs does not change their products with the first odd sign.
+\end{proof}
+
+\begin{theorem}[A constant-ratio reverse compiler]
+For every $H\geq2$, every $r\geq1$, and every sign table on
+$[r]\times[3H-1]$, there is a sum of $H+1$ affine ratios with those
+strict grid signs. Every denominator is positive on the entire Boolean
+$(r+3H-1)$-cube and has strictly negative slopes. The row slope drops
+may be made arbitrarily small. No axis-zero assertion is made here.
+\end{theorem}
+\begin{proof}
+Put $g=H-1$, $d=H+1$, and
+\[
+ a^0=(1,\ldots,1,-g).
+\]
+Choose a small rational $\eta>0$. For $1\leq l\leq g$, let $w_l$ have
+entries $1+\eta$ at $h=l$, $1+\eta/g$ at $h=H$, and $1$ elsewhere.
+Then $w_l\cdot a^0=0$. The $g$ rows $w_l$ are independent: their
+differences are $\eta(e_l-e_k)$, and each row has a nonzero last entry.
+The $g$ rows
+\[
+ v_l=(a^0_h w_{lh}^2)_{h=1}^H
+\]
+are also independent. Indeed, their common last entry is nonzero; a
+linear relation first has coefficient sum zero and then, in coordinate
+$l$, gives $(2\eta+\eta^2)c_l=0$.
+
+On the $d$-dimensional space of variables $(\lambda,P)\in
+\mathbb R\times\mathbb R^H$, consider the surjective linear map
+\[
+ (\lambda,P)\longmapsto
+ (\lambda,v_1\cdot P,\ldots,v_g\cdot P).
+\]
+The odd-node evaluation map $Y\mapsto(T_0(Y),\ldots,T_g(Y))$ in the
+lemma is likewise surjective. Both maps have one-dimensional kernels,
+so an invertible rational change of coordinates $Y=Y(\lambda,P)$
+identifies them. Consequently all signs of the $d$ coordinate forms
+$Y_j$ and the $g$ quadratic forms
+\[
+ Q_l=\lambda v_l\cdot P                                      \tag{2}
+\]
+are independent. Multiplying any $Y_j$ by a positive constant preserves
+this assertion.
+
+The normalized score family is
+\[
+ f_j(a,p)=\sum_{h=1}^H\frac{a_h+b_{hj}}{D_{hj}-p_h}.
+ \tag{3}
+\]
+Its first $2g$ queries occur in pairs: for pair $l$, take $b=0$ and
+$D=1/w_l$, respectively $D=\kappa/w_l$, with a rational $\kappa>1$
+close to one. For the remaining $d$ queries write the desired linear
+form, after positive rescaling if necessary, as
+\[
+ Y_j(\lambda,P)=\alpha_j\lambda+z_j\cdot P.
+\]
+Choose positive $w_j$ arbitrarily close to the all-one vector with
+$a^0\cdot w_j=\alpha_j$, possible after making $\alpha_j$ small by
+that rescaling. Set $D_{hj}=1/w_{jh}$ and
+$b_{hj}=z_{jh}/w_{jh}^2$. The constant score at $(a,p)=(0,0)$ is
+$K_j=\sum_h b_{hj}w_{jh}$. One additional head will subtract $K_j$
+exactly at every row of query $j$; put $K_j=0$ on the paired queries.
+The corrected extra score has derivative exactly $Y_j$ in the direction
+$(a,p)=(\lambda a^0,P)$.
+
+Now prescribe all $3H-1=2g+d$ signs. Use the lemma to choose a rational
+$(\lambda,P)$ with the extra-query signs and with each $Q_l$ having
+the desired first sign of pair $l$. Choose real numbers $x_l$ as follows.
+If the two signs in pair $l$ agree, take $x_l=0$. Otherwise take
+$x_l=-Q_l/t_*$ for a fixed rational $1<t_*<\kappa$.
+The two values $Q_l+x_l$ and $Q_l+\kappa x_l$ then have the required
+signs. Because the rows $w_l$ are independent, choose rational $A$ with
+$w_l\cdot A=x_l$ for every $l$.
+
+Set
+\[
+ a=\delta\lambda a^0+\delta^2 A,\qquad p=\delta P.
+\]
+For the paired query with scale $t\in\{1,\kappa\}$, Taylor expansion
+gives
+\[
+ f_{l,t}=\delta^2\left(\frac{x_l}{t}+
+                                  \frac{Q_l}{t^2}\right)+O(\delta^3).
+ \tag{4}
+\]
+Every corrected extra query is $\delta Y_j+O(\delta^2)$.
+All leading signs are strict. There are only finitely many words, so
+one sufficiently small positive rational $\delta$ works for all of them.
+Choose the row data for the requested table from these witnesses.
+
+Here are explicit full-cube bounds. Write $s=3H-1$ and
+$\nu=1/(100s)$. Make the preceding choices small enough that every
+normalized $D_{hj}$ belongs to $[1-\nu,1+\nu]$. Put
+$\alpha=1-4\nu$, choose $0<\rho<\min\{\nu,1/(100r)\}$, and shrink
+$\delta$ until $|\alpha\delta P_{hi}|<\rho/2$ for all chosen rows.
+Define
+\[
+ \widehat p_{hi}=\rho+\alpha\delta P_{hi},\qquad
+ \widehat q_{hj}=1-\rho-\alpha D_{hj},
+\]
+\[
+ B_h=1-\sum_i\widehat p_{hi}z_i-\sum_j\widehat q_{hj}w_j,
+ \qquad
+ A_h=\alpha\left(\sum_i a_{hi}z_i+\sum_j b_{hj}w_j\right).
+\]
+At the grid these ratios equal (3). All slope drops are positive, and
+\[
+ \sum_i\widehat p_{hi}<3/200,
+ \qquad 0<\widehat q_{hj}<5\nu,
+ \qquad \sum_i\widehat p_{hi}+\sum_j\widehat q_{hj}<3/200+1/20<1.
+\]
+Thus every denominator is positive on the entire cube.
+
+For the correcting head, put
+$B_0=1-(100r)^{-1}\sum_i z_i-(100s)^{-1}\sum_jw_j$ and let
+$D_0=1-(100r)^{-1}-(100s)^{-1}$ be its constant grid value.
+Take $A_0=-D_0\sum_jK_jw_j$. Its grid score is exactly $-K_j$;
+its slopes are strictly negative and its cube minimum is $49/50$.
+This completes the construction. The arbitrary choice of smaller
+$\rho$ proves the row-slope assertion, also for the correcting head
+by replacing its row drop with any sufficiently small positive number.
+\end{proof}
+
+\paragraph{Limitation.}
+The construction gives a uniform constant ratio and does not provide
+the missing superconstant saving. Applying the existing reverse-grid
+axis repair to $H+1$ heads costs $3H+6$ heads. No altered atom model,
+extra input coordinates, asymptotic claim, or unproved gluing claim is
+used in the theorem above.
+\end{document}
