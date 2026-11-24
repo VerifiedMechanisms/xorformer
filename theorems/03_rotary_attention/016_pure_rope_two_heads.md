@@ -99,8 +99,8 @@ Zero-head and one-head equivalence were already proved in Theorem 14. Together w
 
 For literal rotary attention, [Theorem 18](018_pure_rope_architectural_bridge.md) now formalizes both directions of the scalar bridge, with separate model and head dimensions, explicit output projections, and the standard rotary schedule. [Results/RoPEArchitecturalComparison.lean](../../formalization/HeadComplexity/Results/RoPEArchitecturalComparison.lean) composes that bridge with this theorem. Its declarations `standardPureRotaryComputable_iff_vanilla_of_le_two` and `freePureRotaryComputable_iff_vanilla_of_le_two` establish the architectural result for both frequency conventions. Unrotated token-only values and the original vanilla definitions are preserved.
 
-## Remaining gap for arbitrary head counts
+## Scope beyond two heads
 
 For two heads, clearing denominators and applying Lemma 1 gives exactly two products of affine forms, with one admissible factor. Lemma 2 exploits that quadratic structure.
 
-With three or more heads, the corresponding residual factors have higher degree. Replacing the admissible denominator by its sum with such a factor would no longer produce an affine denominator. Consequently the construction above supplies no induction preserving the original head count. The universal pure-RoPE equality remains unproved by this argument.
+With three or more heads, the corresponding residual factors have higher degree. Replacing the admissible denominator by its sum with such a factor would no longer produce an affine denominator. Consequently the construction above supplies no induction preserving the original head count. The unrestricted extension is false by the replicated-family separation in [Theorem 22](022_pure_rope_three_head_separation.md).

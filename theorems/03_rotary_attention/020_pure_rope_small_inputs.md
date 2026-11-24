@@ -122,4 +122,4 @@ The forward implication is already known. Therefore pure and vanilla computabili
 - [FourBitThreeHeadRealization.lean](../../formalization/HeadComplexity/Results/FourBitThreeHeadRealization.lean): `FourBitCertificate.score_eq`, `FourBitCertificate.vanilla_of_strict_feature_score`.
 - [RoPEFourInputs.lean](../../formalization/HeadComplexity/Results/RoPEFourInputs.lean): `vanilla_three_computes_fourBit_nonparity`, `vanilla_of_pureRoPEComputable_symmetric`, `pureRoPEComputable_iff_vanilla_of_input_le_four`, `pureRoPEHStar_eq_vanilla_of_input_le_four`.
 
-No existing vanilla architectural definition is changed. The remaining universal question concerns input lengths at least five and head counts at least three, outside the other proved special classes.
+No existing vanilla architectural definition is changed. Any strict separation must therefore use at least five inputs and at least three pure heads. [Theorem 22](022_pure_rope_three_head_separation.md) gives a mathematical separation for a sufficiently large replicated family; it does not determine the smallest separating input length.

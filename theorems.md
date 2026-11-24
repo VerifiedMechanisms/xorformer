@@ -261,7 +261,7 @@ Let $H_P$ denote RoPE replacing additive positional embeddings, and let $H_A$ de
 
 $$ \deg_{\pm}(f)\leq H_A(f)\leq H_P(f)\leq H^{\ast}(f). $$
 
-Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE remains unresolved here. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
+Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE is refuted by the mathematical separation in Theorem 22, whose full lower bound is not yet Lean-formalized. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
 
 The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. Theorem 18 now also checks the literal rotary bridge using finite complex Vandermonde interpolation. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
 
@@ -295,7 +295,7 @@ Pure scalar atoms are exactly the scores of literal pure rotary attention at eve
 
 ### Theorem 19. General finite-difference simulation
 
-A sum of $H$ affine fractions with positive cube denominators has a Boolean realization using $2^H-1$ vanilla heads. This applies to pure and retained scalar rotary families, and the literal pure architecture through Theorem 18. The complete finite-difference argument is Lean-checked, including zero inputs and zero heads. It is an upper bound with extra heads, not universal equality.
+A sum of $H$ affine fractions with positive cube denominators has a Boolean realization using $2^H-1$ vanilla heads. This applies to pure and retained scalar rotary families, and the literal pure architecture through Theorem 18. The pure numerator structure improves the bound to $2^H-2$ when $H\geq2$. The complete finite-difference arguments are Lean-checked; the general bound includes zero inputs and zero heads. These bounds use extra heads.
 
 A zero-constant sum of $H+1$ constant-numerator reciprocals needs at most $2^H-1$ vanilla heads. In particular, three such reciprocal heads can be simulated with three vanilla heads.
 
@@ -343,3 +343,9 @@ That is not yet a full invariant. It is only a partial answer:
 - positive weighted-sum image structure certifies $H^{\ast}(f) \leq M_{+}(f) - 1$,
 - for symmetric functions, the sign-change count gives the exact value,
 - for general nonsymmetric functions, Theorem 13 shows that threshold degree alone does not determine head complexity.
+
+### Theorem 22. Pure rotary three-head separation
+
+An explicit family on $18m$ bits has pure head complexity three and vanilla head complexity between four and six for every sufficiently large $m$. This refutes universal equality in the unchanged architecture, for both standard and freely chosen rotary frequencies. The proof symmetrizes cleared classifiers, takes a nonzero polynomial limit, and uses a closed tensor-rank and denominator-cone obstruction. It is a rigorous mathematical proof with partial Lean support. The full compactness and polynomial-divisibility lower bound is not yet Lean-formalized, and no numerical threshold for $m$ is claimed.
+
+**Proof.** [theorems/03_rotary_attention/022_pure_rope_three_head_separation.md](theorems/03_rotary_attention/022_pure_rope_three_head_separation.md)

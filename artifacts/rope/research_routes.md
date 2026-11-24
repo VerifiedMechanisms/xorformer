@@ -2,9 +2,9 @@
 
 ## Scope
 
-This note records proof attempts in the run starting from `bdca97f`. The target is the reverse implication from pure rotary computability with $H$ heads to unchanged vanilla computability with $H$ heads, for every input length and every Boolean function. Universal equality is not claimed here. The score threshold is strictly positive, the query is fixed and attends to itself, and pure values are unrotated and token-only.
+This note records proof attempts in the run starting from `bdca97f`. The original target was the reverse implication from pure rotary computability with $H$ heads to unchanged vanilla computability with $H$ heads, for every input length and every Boolean function. The investigation instead produced the rigorous mathematical separation in [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md). Its full lower bound is not yet Lean-formalized. The score threshold is strictly positive, the query is fixed and attends to itself, and pure values are unrotated and token-only.
 
-The literal standard-frequency and free-frequency architectural bridges are proved in [Theorem 18](../../theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md). Thus the remaining issue is the Boolean sign class of the scalar atoms, rather than an unproved interpolation assumption.
+The literal standard-frequency and free-frequency architectural bridges are proved in [Theorem 18](../../theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md). Thus the scalar Boolean comparisons transfer to the stated architectures without an unproved interpolation assumption.
 
 ## 1. Endpoint reorientation succeeds for two heads
 
@@ -70,7 +70,7 @@ The stronger `AffineStatistic.computable_of_denominator_plane` handles denominat
 
 For arbitrary positive affine denominators, inclusion-exclusion over nonempty subsets yields $2^H-1$ admissible vanilla ratios. The alternating moments vanish through order $H-2$, and the first surviving coefficient is $(H-1)!$ times the original cleared numerator. An exact geometric-series remainder and a finite strict margin justify a finite parameter choice.
 
-The complete proof, including $H=0$ and $n=0$, is in [Theorem 19](../../theorems/03_rotary_attention/019_finite_difference_vanilla_simulation.md) and `FiniteDifference.computable_of_positive_denominators`. No special pure constraint is needed. Compressing this subset expansion to $H$ terms has not been established.
+The complete proof, including $H=0$ and $n=0$, is in [Theorem 19](../../theorems/03_rotary_attention/019_finite_difference_vanilla_simulation.md) and `FiniteDifference.computable_of_positive_denominators`. No special pure constraint is needed for that bound. The pure endpoint permits deleting one additional subset term after a small numerator perturbation, improving the bound to $2^H-2$ for $H\geq2$. This is `pureRoPEComputable_vanilla_improved_exponential_bound` in `Results/PureFiniteDifference.lean`. Three pure heads therefore need at most six vanilla heads. Reciprocal numerators permit the further bounds described in Theorem 19.
 
 ## 7. Three-head complement averaging leaves an odd-part problem
 
@@ -94,7 +94,7 @@ $$ g(x)=\frac1{5+x_0+x_1-x_2} $$
 
 cannot be uniformly approximated by one vanilla score with error less than $1/100000$, even with a free readout constant and unrestricted finite width. `Examples/RoPEApproximation.lean` proves this quantitative gap by clearing denominators at seven vertices and using the uniform slope-sign constraint. The main architectural declaration is `mixedReciprocal_no_close_vanilla_one_head_score`.
 
-Every Boolean threshold of this same score is still a linear threshold function and therefore needs at most one vanilla head. Thus a proof by arbitrarily accurate headwise score approximation would demand a false statement, while the requested Boolean implication remains possible.
+Every Boolean threshold of this same score is still a linear threshold function and therefore needs at most one vanilla head. Thus a proof by arbitrarily accurate headwise score approximation would demand a false statement, while one-head Boolean equivalence holds. The later three-head separation uses a different argument.
 
 ## 9. Exponential token-value tilting does not preserve score order
 
@@ -102,16 +102,37 @@ Tilting attention weights by the exponential of their token values eventually or
 
 A one-bit example has input weights $a=b=1$, query weight $10$, and values $0,1,2$ for zero, one, and query. Its scores are $20/11$ and $21/11$. Multiplying each weight by $10$ raised to its value changes the scores to $2000/1001$ and $201/101$, in the opposite order. Consequently a global threshold adjustment alone cannot preserve this particular ordering throughout the tilt. This is not a Boolean lower bound, and it does not exclude changing the readout orientation or the whole representation.
 
-## 10. Generic cubic rigidity does not directly transfer to Boolean signs
+## 10. Distinct-group cubic tensors turn the grid route into a separation
 
-The three-head polynomial $u_1d_2d_3+d_1u_2d_3+d_1d_2u_3$ suggests studying whether its denominator factors are identifiable from its singular locus. Even an exact polynomial rigidity theorem would not establish a Boolean separation: another cubic can have the same finite signs, and adding multiples of $x_i^2-x_i$ changes the polynomial without changing its cube values.
+Generic exact polynomial rigidity alone cannot separate finite Boolean sign classes: another cubic can share the labels, and Boolean vanishing polynomials change the representation. Initial grid arguments also failed because averaging need not preserve a full numerator-denominator product structure, and unbounded numerator cancellations invalidate parameter-normalized limits.
 
-A proposed dense-grid argument replicates input coordinates and takes a limit. Several gaps remain. A vanilla model can assign different coefficients to different copies; averaging the cleared polynomial preserves signs but need not preserve its product structure. Heavy denominator coordinates obstruct a direct concentration argument. Finally, cancellations between heads can shrink the cleared polynomial faster than the multilinearization error, invalidating a normalized limit argument. No rigidity or grid argument is used here as a proved head-count lower bound.
+The successful refinement retains only cubic coefficients using one group from each of three disjoint blocks. These coefficients preserve the product structure exactly under replica averaging. Normalize the averaged polynomial itself, use dense-grid signs and irreducibility to identify its nonzero limit, then apply a closed tensor-rank obstruction. No bound on numerator parameters is required.
 
-The related cubic-completion route seeks a different product representation after adding Boolean vanishing polynomials. No general oriented completion with the original head count has been established.
+For the source cubic $u_1d_2d_3+u_2d_1d_3+u_3d_1d_2$, the contraction matrix has rank at most three exactly on the denominator kernel. Its three decisive four-by-four minors are $d_i^4$. Any vanilla tensor has a three-dimensional subspace of such low-rank contractions, together with an orthogonal same-signed denominator vector. Compactness forces the limiting vector into a zero-sum denominator row space, contradicting its simplex normalization.
+
+[Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) gives the full mathematical proof and explicit genuine pure masses. It proves pure minimum three and vanilla minimum between four and six for all sufficiently large members of an explicit family on $18m$ bits. The proof does not give the first such $m$. Its full compactness and divisibility lower bound is not yet a Lean theorem. [The independent audit](research/separation_audit.md) records the checks of sign equivalence, averaging, degeneracies, and architectural scope.
 
 ## 11. Exact certificates support finite examples only
 
 `search/search_many_head.py` explores three-head pure classifiers and different vanilla denominator choices, including initializations from the proved endpoint forms. Successful fits are rationalized and checked on the entire cube using Python integer arithmetic. The independent verifier checks positivity, uniform nonzero denominator slope signs, and every cleared sign in both models.
 
-Numerical optimization failures remain unresolved instances. They are not lower bounds, and some failures disappear with different initializations. A finite list of successful certificates does not prove the universal equality.
+Numerical optimization failures remain unresolved instances. They are not lower bounds, and some failures disappear with different initializations. A finite list of successful certificates does not prove universal equality. The new collection contains 353 integer-verified three-head fits. An exact positive dual witness excludes the three fixed endpoint denominators for one sample, with arbitrary affine numerators, but does not exclude other denominator choices. [The search report](search/three_head_search.md) states these scopes and reproduction commands.
+
+
+## 12. Matrix and exact cubic transformations have limited scope
+
+The arrowhead matrix representation converts a fraction sum into a Schur-complement sign. Positive leaf denominators permit completing squares, but generic elimination creates rational rather than affine pivots. The checked coordinate-separated congruence restriction forces a monomial leaf transformation and preserves denominator directions. `Atoms/RoPEArrowhead.lean` and [the matrix note](research/matrix_route.md) give the exact scope.
+
+The cubic-pencil route attempts to place two new denominators in a pencil through a chosen oriented form. `Atoms/CubicPencilObstruction.lean` supplies a cubic for which this exact polynomial representation is impossible. This only excludes that prescribed exact representation; Theorem 22 is needed to obtain a Boolean lower bound against arbitrary representations.
+
+## 13. Product differences and value tilts
+
+Every strict finite sum of positive-denominator fractions has a sign-equivalent difference of two positive affine products at a sufficiently small finite perturbation. `exists_positive_product_difference` and `CubeAffine.classifier_as_product_difference` in `Results/ProductDifferenceSign.lean` prove this using the derivative of the product and a common strict margin. This gives an alternative sign representation without yet giving oriented denominators.
+
+Increasing the perturbation until all factor slopes become uniform need not preserve the labels. `Atoms/RoPETiltObstruction.lean` proves an explicit two-bit failure of that proposed continuation. The target in that example still has a one-head vanilla classifier. [The value-tilt note](research/value_tilt_route.md) separates these statements carefully.
+
+## 14. Boolean zero families and tangent representations
+
+A nontrivial vanilla score can vanish identically on the Boolean cube while its cleared polynomial is a nonzero multiple of a Boolean vanishing relation. Perturbing such a family yields additional same-head sign constructions. `CubeAffine.computable_of_zero_family_tangent` in `Results/BooleanTangentUpperBound.lean` proves the generic finite-margin compiler.
+
+A three-head family with denominators $F$, $F+a x_1$, and $F+a(1-x_1)$ and numerators $-1$, $1-x_1$, and $x_1$ is identically zero on Boolean inputs. Its cleared polynomial is $a(2F+a)(x_1^2-x_1)$. Jacobian exploration suggested useful subclasses, but did not prove general three-head coverage. No Jacobian rank or suggested subclass is used as an unproved universal premise.

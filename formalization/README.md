@@ -30,9 +30,15 @@ model and head dimensions, explicit output projections, shared embeddings,
 and the fixed query's self attention. Fixed and free frequencies have the same
 exact scalar score class. Theorem 20 proves equality at every head count for
 all input lengths at most four. Theorems 17, 19, and 21 give structured
-head-preserving cases and general bounds with extra heads. Universal equality
-remains unresolved; a strict improvement would require at least five input
-bits, at least three pure heads, and at least four vanilla heads.
+head-preserving cases and general bounds with extra heads. The pure-specific
+bound is `2^H - 2` for `H ≥ 2`. Any strict improvement requires at least five
+input bits, at least three pure heads, and at least four vanilla heads.
+
+Theorem 22 gives a mathematical separation for an explicit family on `18m`
+bits for all sufficiently large `m`. Its full lower bound is **not yet
+Lean-formalized**. The explicit pure family, rotary realization, and finite
+tensor algebra are checked separately; the writeup states this boundary.
+No Lean declaration in this repository claims the full separation theorem.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -53,7 +59,7 @@ bits, at least three pure heads, and at least four vanilla heads.
 | 16 | unconditional two-head pure equivalence | `pureRoPEComputable_iff_vanilla_of_le_two`, `pureRoPEHStar_eq_vanilla_of_le_two` | `Results/RoPETwoHeads.lean` |
 | 17 | arbitrary affine-statistic polynomial bound | `AffineStatistic.computable_of_polynomial` | `Results/AffineStatisticUpperBound.lean` |
 | 18 | literal rectangular rotary bridge | `rectangularStandardPureRotaryComputable_iff_scalar`, `rectangularFreePureRotaryComputable_iff_scalar` | `Model/RotaryInterpolation.lean`, `Model/RectangularPureRoPE.lean` |
-| 19 | general exponential simulation bound | `FiniteDifference.computable_of_positive_denominators`, `architecturalPureRoPEHStar_general_bounds` | `Results/FiniteDifferenceUpperBound.lean`, `Results/RoPEGeneralBounds.lean` |
+| 19 | general and pure-specific exponential simulation bounds | `FiniteDifference.computable_of_positive_denominators`, `pureRoPEComputable_vanilla_improved_exponential_bound` | `Results/FiniteDifferenceUpperBound.lean`, `Results/PureFiniteDifference.lean` |
 | 20 | every head count on at most four input bits | `pureRoPEComputable_iff_vanilla_of_input_le_four`, `vanilla_three_computes_fourBit_nonparity` | `Results/RoPEFourInputs.lean` |
 | 21 | complement-invariant three-head classifiers use at most four vanilla heads | `vanilla_four_of_pureRoPE_three_complement` | `Results/RoPEThreeComplement.lean` |
 
