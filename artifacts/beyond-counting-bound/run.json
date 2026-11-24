@@ -7,7 +7,7 @@
   "attachment_sha256": "392541fa481bca85bb658c414e5cba202eaef03206e1b2c29fd906db916a2db2",
   "status": "active: eventual fixed-exponent lower-bound target remains unproved",
   "model_changes": [],
-  "last_audit_utc": "2026-11-24T08:20:20.394399+00:00",
+  "last_audit_utc": "2026-11-24T09:14:18.251921+00:00",
   "elapsed_seconds_at_last_audit": 188473.558103,
   "minimum_duration_met": true,
   "target_theorem_proved": false,
@@ -1230,6 +1230,11 @@
       "file": "exterior-pole-unit-grid.md",
       "scope": "common scalar address, arithmetic unit data, both pole orientations and affine polynomial parts",
       "verification": "written proof; exact finite replay; static, KaTeX, and real GitHub render audits passed"
+    },
+    {
+      "file": "cayley-bacharach-transfer-audit.md",
+      "scope": "Explicit polynomial separators disprove the transfer from restricted Boolean moments to complete Cayley\u2013Bacharach conditions, even without persistent identities",
+      "verification": "complete written deduction from existing elliptic circuits; exact rational replay; static, KaTeX, and real GitHub render audits passed; no new Lean declarations"
     }
   ],
   "latest_correct_repository_ref_check": {

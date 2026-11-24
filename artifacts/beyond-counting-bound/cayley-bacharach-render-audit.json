@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "renderer": "GitHub Markdown API",
+  "checked_utc": "2026-11-24T09:10:32.356044+00:00",
+  "files": [
+    {
+      "file": "cayley-bacharach-transfer-audit.md",
+      "math_spans": 42,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "596e2757cb1cf1e1a19d49432ecaae5d1064fac269ab6afe5f8095989a51eac4"
+    },
+    {
+      "file": "research.md",
+      "math_spans": 131,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "12cf3d63e2ced48f00e155488820c3e7c3889d4f8a957f01c63004eb7ccc45bd"
+    },
+    {
+      "file": "audit-index.md",
+      "math_spans": 8,
+      "findings": 0,
+      "notes": 0,
+      "sha256": "82958fdb34879b36e12e17916615356c3bc6d6bfa8e32aeb90f047b464495854"
+    }
+  ]
+}

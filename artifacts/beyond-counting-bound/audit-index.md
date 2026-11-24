@@ -24,6 +24,8 @@ The [exterior-pole unit-grid theorem](exterior-pole-unit-grid.md) rules out maxi
 
 The [affine address and generic symmetry audit](affine-address-budget.md) bounds the number of independently selected interpolation blocks and classifies column permutations preserving a generic reciprocal observation map. Many Boolean queries force the latter symmetry multiplicity down to the critical order $nH\log n$. This only counts specified symmetry orbits; specially tied coefficients and other isolated solutions are explicitly outside the theorem. The finite exact audit passes, and the proof is written rather than Lean-formalized.
 
+The [Cayley–Bacharach transfer audit](cayley-bacharach-transfer-audit.md) constructs polynomial separators for every point of the existing nonpersistent elliptic circuits. Thus their Boolean moment relations cannot be promoted to the complete polynomial hypotheses of recent low-degree support theorems. The proof is written, with a seven-point exact rational replay, and yields no exponent improvement.
+
 | Result | Verification scope | Source |
 | --- | --- | --- |
 | Infinitesimal row balancing is an orthogonal projection; fixed denominator pencils lose pole-location freedom, but a positive three-head family retains all twelve denominator directions after the quotient. | Complete written differential and interpolation proofs; nine Lean finite-field identities and independent rational checks. No asymptotic sign count. | `HeadComplexity.RowScalingQuotient.selected_formula` and `selected_inverse_mul`; [proof and scope](row-scaling-quotient.md). |
