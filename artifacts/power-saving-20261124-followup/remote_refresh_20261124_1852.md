@@ -1,4 +1,4 @@
-# Read-only research refresh at 18:55 UTC
+# Read-only research refresh at 18:52 UTC
 
 ## Ref update
 
