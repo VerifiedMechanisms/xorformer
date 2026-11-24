@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{A Leading-Coefficient Audit for Weighted Exterior Sign Cubes}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Scope and verification.}
+This is a complete written argument, with a finite exact linear-algebra
+checker, not a Lean theorem. It concerns one fixed finite pole pool
+$\varepsilon x_h$, one fixed analytic weight vector, and fixed query
+times that avoid the zeros of the relevant leading coefficients.
+It allows the weights to depend analytically on $\varepsilon$.
+It does not cover queries at those zeros, moving queries, higher-order
+pole deformations, or weights chosen anew for each desired sign word.
+In particular it proves neither accepted global HeadComplexity target.
+
+Fix $H\geq1$, real numbers $x_h$, and a real analytic vector
+$w(\varepsilon)=\sum_{k\geq0}\varepsilon^k w_k$ near zero. For
+$s\in\{-1,1\}^H$ consider
+\[
+ f_s(t,\varepsilon)=\sum_{h=1}^H
+       \frac{s_h w_h(\varepsilon)}{t-\varepsilon x_h}.
+ \tag{1}
+\]
+All query times below are fixed and positive, so all denominators are
+positive for sufficiently small positive $\varepsilon$.
+Write $T=\operatorname{diag}(x_1,\ldots,x_H)$ and
+\[
+ D_\ell=\operatorname{span}\{T^j w_k:j+k\leq\ell\},
+ \qquad D_{-1}=\{0\},\qquad
+ a_\ell=\dim D_\ell-\dim D_{\ell-1}.
+ \tag{2}
+\]
+
+\begin{lemma}[Slow increase of new leading directions]
+One has $a_0\leq1$, $a_\ell\leq a_{\ell-1}+1$ for $\ell\geq1$,
+and $\sum_{\ell\geq0}a_\ell\leq H$. Consequently every $a_\ell$ is
+at most
+\[
+ d_H=\left\lfloor\frac{\sqrt{8H+1}-1}{2}\right\rfloor.
+ \tag{3}
+\]
+\end{lemma}
+\begin{proof}
+The identity
+$D_\ell=D_{\ell-1}+TD_{\ell-1}+\operatorname{span}(w_\ell)$
+follows directly from (2). Since $TD_{\ell-2}\subseteq D_{\ell-1}$,
+the image of $TD_{\ell-1}$ in $D_\ell/D_{\ell-1}$ has dimension at
+most $a_{\ell-1}$. The new vector $w_\ell$ adds at most one dimension.
+The sum telescopes and is bounded by the ambient dimension $H$.
+If $a_\ell=d$, the preceding increments are at least
+$d-1,d-2,\ldots,1$. These exist because $a_0\leq1$ and each step
+increases by at most one. Therefore $H\geq d(d+1)/2$, giving (3).
+\end{proof}
+
+The coefficient of $\varepsilon^\ell$ in (1) is
+\[
+ t^{-\ell-1} P_{\ell,s}(t),\qquad
+ P_{\ell,s}(t)=\sum_{k=0}^{\ell}
+                t^k\langle s,T^{\ell-k}w_k\rangle.
+ \tag{4}
+\]
+Thus all coefficient functions of orders below $\ell$ vanish
+identically in $t$ exactly when $s\perp D_{\ell-1}$.
+On this annihilator, the possible polynomials $P_{\ell,s}$ form a
+linear space of dimension at most $a_\ell$: their coefficients depend
+only on the restriction of the linear functional $\langle s,-\rangle$
+to $D_\ell/D_{\ell-1}$. If the first nonzero coefficient occurs at
+order $\ell$, then necessarily $a_\ell>0$.
+
+\begin{theorem}[Generic fixed-query pattern bound]
+Fix positive query times $t_1,\ldots,t_q$. Suppose that for each
+$s\in\{-1,1\}^H$ with a nonzero coefficient function in (4), its
+first nonzero polynomial $P_{\ell,s}$ is nonzero at every $t_j$.
+For all sufficiently small positive $\varepsilon$, the number of
+strict sign words
+\[
+ (\operatorname{sign}f_s(t_1,\varepsilon),\ldots,
+  \operatorname{sign}f_s(t_q,\varepsilon))
+\]
+is at most
+\[
+ \sum_{\ell:a_\ell>0}
+       2\sum_{i=0}^{a_\ell-1}\binom{q-1}{i}
+ \ \leq\ 2H\sum_{i=0}^{d_H-1}\binom{q-1}{i}.
+ \tag{5}
+\]
+Here binomial coefficients outside their usual range are zero.
+\end{theorem}
+\begin{proof}
+At a fixed first order $\ell$, evaluation of the at most
+$a_\ell$-dimensional polynomial space at $q$ points is a linear map.
+The strict sign words are therefore bounded by the number of regions
+of $q$ central hyperplanes in dimension $a_\ell$. The standard
+insertion recurrence, adding one hyperplane and counting the regions
+it cuts, gives at most
+$2\sum_{i=0}^{a_\ell-1}\binom{q-1}{i}$ regions. Degeneracies only
+reduce this bound.
+
+The hypothesis on leading values ensures that each nonzero score
+has its leading sign at every query for sufficiently small positive
+$\varepsilon$. There are finitely many inputs and queries, so one
+common threshold for $\varepsilon$ works. If every coefficient
+function is zero, analyticity makes the score identically zero near
+zero and it contributes no strict word. Finally at most $H$ increments
+are nonzero, each is at most $d_H$, and summing proves (5).
+\end{proof}
+
+For every fixed $c>0$, taking $q\geq cH/\log H$ with
+$q=O(H/\log H)$ makes the logarithm of the bound in (5)
+$O(\sqrt H\log H)=o(q)$. Hence this generic-query regime cannot even
+produce $\exp(c' q)$ distinct words for a fixed $c'>0$, for all large
+$H$. The assumption about query zeros is substantive. A leading
+polynomial can vanish at a prescribed query and expose a later
+coefficient there; the proof does not bound that refinement. This is
+precisely an available route for a different construction, rather
+than a concluded obstruction to it.
+
+\paragraph{Exact checks.}
+The companion Python script checks (4), the filtration identities,
+and the increment inequalities on rational examples. It also checks
+examples with increments $1,2,\ldots,d$ in dimension $d(d+1)/2$,
+showing that the square-root bound on an individual increment is
+sharp for this general filtration. These finite checks supplement
+the written proof and are not used as a universality argument.
+\end{document}
