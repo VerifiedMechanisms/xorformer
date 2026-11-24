@@ -1,0 +1,306 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{hypothesis}{Open hypothesis}
+\newcommand{\R}{\mathbb R}
+\newcommand{\B}{\{0,1\}}
+\title{Shared Boolean filters and a weighted partial cover}
+\author{Label audit research checkpoint}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The reciprocal filter, its positivity, its shared correction basis, and
+fixed-weight strictification are kernel checked in
+\texttt{HeadComplexity/Results/JointCellFilteredKernels.lean}.
+The cover estimate below is a written elementary proof. The proposed
+large local domain and its global consequence are conditional on the
+explicit decoder hypothesis stated below. No improvement in the
+asymptotic unconditional bound is claimed here. All local labels may be
+chosen arbitrarily and independently.
+
+\section{Exact filters and arbitrary corrections}
+
+For a finite coordinate set $U$, positive weights $w_i$, and
+$d>\sum_{i\in U}w_i$, define
+\[
+ K_U(w;d)=\sum_{T\subseteq U}
+ \frac{(-1)^{|U|-|T|}}{d-\sum_{i\in T}w_i}.
+\]
+For Boolean $x$, pairing subsets which differ by a missing coordinate gives
+\[
+ \sum_{T\subseteq U}\frac{(-1)^{|U|-|T|}}
+ {d-\sum_{i\in T}w_i x_i}
+ =K_U(w;d)\prod_{i\in U}x_i.
+\]
+Multiplication of the alternating sum by its affine denominator gives
+\[
+ \left(d-\sum_{i\in U}w_i\right)K_U(w;d)
+ =\sum_{i\in U}w_i K_{U\setminus\{i\}}(w;d).
+\]
+Since $K_\varnothing(w;d)=1/d$, this proves $K_U(w;d)>0$ by induction.
+Every denominator is positive on the entire Boolean cube.
+The Lean declarations are respectively
+\texttt{jointCell\_filtered\_reciprocal\_eq},
+\texttt{jointCell\_filtered\_kernel\_recurrence},
+\texttt{jointCell\_filtered\_kernel\_pos}, and
+\texttt{jointCell\_filtered\_denominator\_pos}, all in namespace
+\texttt{HeadComplexity.AxisZeroGluing}.
+
+Let $\mathcal F$ be a finite downward-closed family of coordinate subsets.
+Choose one weight vector and one $d$ valid for every member of $\mathcal F$.
+For arbitrary real coefficients $c_U$, substitute the preceding identity
+for each monomial and collect equal denominators. This gives
+\[
+ \sum_{U\in\mathcal F}c_U\prod_{i\in U}x_i
+ =\sum_{T\in\mathcal F}
+ \frac{A_T}{d-\sum_{i\in T}w_i x_i},\qquad
+ A_T=\sum_{\substack{U\in\mathcal F\\T\subseteq U}}
+ \frac{c_U(-1)^{|U|-|T|}}{K_U(w;d)}.
+\]
+The coefficients are completely unrestricted. There is one head per
+member of $\mathcal F$, not one separate filter per monomial.
+This is \texttt{jointCell\_exists\_shared\_reciprocal\_basis}.
+For row subsets of size below $c$, write
+\[
+ D(r,c-1)=\sum_{j=0}^{c-1}\binom rj.
+\]
+When $1\le c\le r/4$, the ratio between successive lower binomial
+coefficients is at most $c/(r-c+1)$. Summing the geometric bound gives
+\[
+ D(r,c-1)\le\frac{c}{r-2c+1}\binom rc
+ \le\frac{2c}{r}\binom rc.
+\]
+If a correction coefficient depends arbitrarily on both a one-hot bit
+coordinate and a one-hot column, a column-linear numerator stores the
+column dependence. The row and bit denominator family has size
+$(a+1)D(r,c-1)$: each proper row subset occurs alone and with one of the
+$a$ bit coordinates. This cost is explicitly charged.
+
+\section{The unresolved decoder interface}
+
+\begin{hypothesis}[Compact filtered decoder]
+For given positive integers $c,a,s$, there are $q$ kernels with positive
+weights $w_{hi}$, positive bit slopes $\beta_{hb}$, real numerators
+$A_{hb}$, constants $D_h$, and $\delta>0$, such that
+\[
+ \sum_{i=1}^c w_{hi}+\sum_{b=1}^a\beta_{hb}+s\delta<D_h
+ \quad(1\le h\le q).
+\]
+For every word $\sigma\in\{-1,1\}^a$ there are independently chosen
+tokens $t_h(\sigma)\in(0,\delta)$ satisfying
+\[
+ \sigma_b F_b(t(\sigma))>0\quad(1\le b\le a),
+ \qquad
+ F_b(t)=\sum_{h=1}^q A_{hb}
+ \left[K_{[c]}(w_h;D_h-\beta_{hb}-t_h)
+       -K_{[c]}(w_h;D_h-\beta_{hb})\right].
+\]
+The useful regime is bounded $q$, $a$ proportional to $c$, and a validity
+range including $s$ proportional to the ambient dimension.
+\end{hypothesis}
+
+The independent token vector is allowed at no additional head cost;
+requiring a single token shared by the $q$ kernels would be a stronger
+hypothesis. Positivity only on the one-hot targets is insufficient.
+The displayed budget forces positivity even when all $a$ bit and all
+$s$ column coordinates are simultaneously one. In particular the
+available token interval must be compact relative to the pole margin.
+
+\section{Conditional large local domain}
+
+Use $r$ row coordinates, $a$ bit coordinates $y$, and $s$ column
+coordinates $z$. The target inputs have row support $P$ of size $c$,
+$y=e_b$, and $z=e_j$. For every pair $(P,j)$ choose the token vector for
+the independently specified $a$-bit label word. For each $(P,h)$ use two
+fractions with numerator $\sum_b A_{hb}y_b$ and opposite signs, and
+denominators
+\[
+ D_h-\sum_{i\in P}w_{h,P,i}x_i-\sum_b\beta_{hb}y_b
+       -\sum_jt_h(P,j)z_j,
+ \qquad
+ D_h-\sum_{i\in P}w_{h,P,i}x_i-\sum_b\beta_{hb}y_b.
+\]
+The decoder budget makes both positive throughout the Boolean cube.
+On $(y,z)=(e_b,e_j)$ the row multilinear expansion has support contained
+in $P$. Its top coefficient is the corresponding kernel difference.
+All lower row coefficients are arbitrary functions of $(b,j)$.
+Subtract them using the shared correction family from the preceding
+section. On a row support $P$ of size $c$, exactly its own top monomial
+survives, so the score is $F_b(t(P,j))$ with the required strict sign.
+On every smaller row support it is zero before strictification.
+The number of heads is
+\[
+ H_{\rm local}\le 2q\binom rc+(a+1)D(r,c-1).
+\]
+Thus $\binom rc as$ arbitrary labels are handled by one score, with
+an explicit correction charge rather than assumed cancellation of
+independent label coefficients.
+
+The bit axis $y=0$ vanishes: the main numerators vanish and each
+correction filter contains a bit coordinate. The column axis $z=0$
+vanishes: paired main denominators agree, and correction numerators
+vanish. These cancellations survive addition of the same affine
+offset to every denominator in this local module. Pairing subsets in
+the bit filter remains valid even when that common offset depends on
+other coordinates.
+
+\paragraph{Strict slopes.}
+The displayed raw denominators have weak negative slopes. Add
+$\varepsilon(c+2-|x|-|y|-|z|)$ to every denominator, with the same
+positive sufficiently small $\varepsilon$. Every slope becomes
+strictly negative, target denominators are unchanged, and positivity
+on the finite Boolean cube persists. Both axes remain exactly zero.
+The zero scores on smaller row supports may cease to be zero, but
+converge uniformly to zero as $\varepsilon$ tends to zero. This is the
+quantity needed to preserve previously fixed strict signs.
+The single-head fixed-weight assertion, including original-model atom
+admissibility and full-cube positivity, is kernel checked as
+\texttt{jointCell\_exists\_atom\_on\_weight\_slice}. Its explicit
+choice of $\varepsilon$ is per head; a finite module uses the minimum
+of the finitely many positive margin bounds, and continuity also
+allows the sign-preservation bounds below.
+
+\section{Weighted partial covering of the row cube}
+
+The following estimate avoids a growing cover-density charge by
+paying directly for uncovered rows. It is not a claim that exact
+$c$-deletion stars alone have constant covering density.
+
+Let $m$ be the row cube dimension, $1\le c\le m/16$, and suppose a
+$c$-deletion star with center of size $r\ge m/4$ costs at most
+$K\binom rc$ heads, where
+\[
+ K=2q+\frac{8(a+1)c}{m}.
+\]
+This follows from the local count above. Let $B=4as$ be the cost of a
+singleton row fallback. A fallback is constructed entry by entry:
+for each $(b,j)$, the two-coordinate reciprocal filter on
+$\{y_b,z_j\}$ has four heads, a positive target value, and zero on
+both axes. Scale its numerator by the desired sign and by the inverse
+positive target value. It remains axis-zero after common affine
+denominator offsets. Strictification and row penalties therefore work
+for this fallback as well.
+
+For a target row of weight $k$, eligible centers have size $k+c$.
+Their number above that row is $\binom{m-k}{c}$. Independently select
+each center on this layer with probability
+\[
+ p_k=\min\left\{1,\frac{t}{\binom{m-k}{c}}\right\},\qquad t\ge1.
+\]
+Only layers with $k+c\ge m/4$ and $k+c\le m$ are eligible.
+If $p_k=1$, no target row on the layer is uncovered. Otherwise its
+uncovered probability is at most $e^{-t}$. For selected-center cost,
+the incidence identity gives
+\[
+ \frac{\binom m{k+c}\binom{k+c}c}{\binom{m-k}c}
+ =\binom mk.
+\]
+Consequently expected selected-center cost, including every overlap,
+is at most $Kt2^m$. Expected fallback cost on eligible layers is at
+most $Be^{-t}2^m$.
+
+Excluded low layers satisfy $k<m/4$, and excluded high layers satisfy
+$k>m-c\ge3m/4$. If $X$ is binomial with parameters $(m,1/2)$, Markov's
+inequality applied to $3^{-X}$ gives
+\[
+ \Pr(X\le m/4)\le3^{m/4}(2/3)^m=e^{-\kappa m},
+ \qquad \kappa=\tfrac34\log3-\log2>0.
+\]
+By symmetry the high tail has the same bound. The excluded rows cost
+at most $2B e^{-\kappa m}2^m$ heads. Hence some deterministic
+selection and its fallback rows have total cost at most
+\[
+ 2^m\bigl(Kt+Be^{-t}+2Be^{-\kappa m}\bigr).
+\]
+Taking $t=\log B$ and $m\ge2\log B/\kappa$ yields the useful bound
+\[
+ H_{\rm row}\le2^m\bigl(K\log(4as)+3\bigr).
+\]
+The logarithm depends on the fallback table cost, not on the size
+$\binom rc$ of an edge. This is the source of the improvement over
+a naive union bound demanding that every row be covered by stars.
+
+\section{Strict signs, penalties, and orientation}
+
+Fix a bit-column star pair. Process all selected row stars and
+singleton fallbacks in decreasing order of their \emph{target row
+weight}. A star centered at $X$ has target weight $|X|-c$, whereas a
+singleton centered at $Y$ has target weight $|Y|$. This order is
+essential; ordering by center weight alone is insufficient when
+stars and fallbacks have different radii.
+
+At a new star centered at $X$, an earlier protected input inside its
+downset has deletion count at most $c$. If the count equals $c$, it
+is a new target too and the required label agrees. If it is below
+$c$, the unperturbed local score is zero. First choose a positive
+scale large enough to dominate the existing finite score on all new
+targets. Then choose the common strictification parameter small
+enough that the zero-limit scores on earlier inside targets preserve
+their strict signs. These choices are possible because all sets are
+finite and the new target margins are strictly positive.
+
+Finally add a common nonnegative penalty
+$T\sum_{i\notin X}u_i$ to every local denominator, in ambient row
+coordinates $u$. It vanishes on the downset of $X$. On each earlier
+protected input outside that downset it tends to infinity as
+$T\to\infty$, so the new module tends to zero there. Choose $T$
+large enough to preserve these finitely many earlier strict signs.
+No denominator loses positivity. All axis cancellations survive
+because the penalty is common to every denominator in the module.
+The same argument handles a singleton fallback with radius zero.
+
+The assembled row module thus has every prescribed sign on the full
+row cube times the chosen bit-column star pair, and vanishes exactly
+on its bit or column axis for all row inputs. Apply the inherited
+descending-center two-star gluing to the bit and column blocks.
+Inside a new bit-column downset, earlier inputs are either on one
+axis, where the module is exactly zero, or in the new star pair,
+where labels agree. Outside the downset a common positive penalty
+suppresses interference as before.
+
+In local deletion coordinates the slopes are strictly negative.
+Complementing coordinates inside a center turns these slopes
+strictly positive in ambient original-model coordinates. Outside
+coordinates receive strictly positive filler slopes and
+nonnegative selection penalties. The row stage may temporarily have
+positive row slopes and negative bit-column slopes; the final
+bit-column coordinate complementation makes every ambient slope
+positive. Coordinate complementation preserves full-cube positivity,
+and all numerators stay affine. Thus the construction would use the
+original admissibility conditions, without modifying the model.
+
+\section{Conditional asymptotic consequence and the bottleneck}
+
+Use the existing constant-factor one-deletion covers for a bit block
+of dimension $A$ and a column block of dimension $S$, and the row
+partial cover just proved. The top vertices omitted by one-deletion
+stars can be paid separately; their relative proportion is
+exponentially small in $A$ or $S$. A decoder uniform for $a=A,s=S$
+restricts to smaller star sizes by extending each label word
+arbitrarily. Let $n=m+A+S$, with $S$ proportional to $m$ and
+$A,c$ proportional to $\sqrt m$. If the compact decoder exists with
+bounded $q$, then $K=O(1)$ and the global count is
+\[
+ W(n)=O\left(\frac{2^n\log n}{n^{3/2}}\right).
+\]
+This would imply the requested fixed-power bound for every fixed
+$\delta<1/2$. The local input count contains
+$\binom rc=\exp(\Theta(c\log(r/c)))$, so it passes the independent-cell
+size test. The missing lemma is the compact decoder, not the cost of
+independent low-degree corrections or the row cover density.
+
+\paragraph{Finite evidence, not a theorem.}
+The script \texttt{JointCellFilteredKernelSearch.py} searches ratios
+of two positive filtered kernels. The stored file
+\texttt{joint-cell-filtered-c8-candidate.json} contains one pair of
+eight-weight kernels with three numerically observed derivative
+sign changes, reevaluated at 70 decimal digits. This does not prove
+the number of extrema, an exponential number of sign words, the
+compact-interval requirement, or any decoder hypothesis. A
+single positive kernel, or a positive sum with no signed
+competition, cannot produce the required arbitrary words.
+
+\end{document}
