@@ -1,0 +1,479 @@
+{
+  "status": "Exact finite-field computations only; no assertion of equal real rank",
+  "results": [
+    {
+      "k": 4,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 4,
+          "inputs": 15,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 9,
+          "inputs": 15,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 13,
+          "inputs": 15,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 15,
+          "inputs": 15,
+          "annihilator_forced_zero_count": 15
+        }
+      ]
+    },
+    {
+      "k": 5,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 5,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 12,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 19,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 27,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 5,
+          "rank": 30,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 11
+        },
+        {
+          "degree": 6,
+          "rank": 30,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 11
+        },
+        {
+          "degree": 7,
+          "rank": 31,
+          "inputs": 31,
+          "annihilator_forced_zero_count": 31
+        }
+      ]
+    },
+    {
+      "k": 6,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 6,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 15,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 25,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 39,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 5,
+          "rank": 53,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 6,
+          "rank": 58,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 7
+        },
+        {
+          "degree": 7,
+          "rank": 60,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 7
+        },
+        {
+          "degree": 8,
+          "rank": 63,
+          "inputs": 63,
+          "annihilator_forced_zero_count": 63
+        }
+      ]
+    },
+    {
+      "k": 7,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 7,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 18,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 31,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 50,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 5,
+          "rank": 69,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 6,
+          "rank": 90,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 7,
+          "rank": 108,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 8,
+          "rank": 119,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 7
+        },
+        {
+          "degree": 9,
+          "rank": 126,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 23
+        },
+        {
+          "degree": 10,
+          "rank": 127,
+          "inputs": 127,
+          "annihilator_forced_zero_count": 127
+        }
+      ]
+    },
+    {
+      "k": 8,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 8,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 21,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 37,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 60,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 5,
+          "rank": 84,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 6,
+          "rank": 114,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 7,
+          "rank": 150,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 8,
+          "rank": 179,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 9,
+          "rank": 217,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 10,
+          "rank": 249,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 7
+        },
+        {
+          "degree": 11,
+          "rank": 255,
+          "inputs": 255,
+          "annihilator_forced_zero_count": 255
+        }
+      ]
+    },
+    {
+      "k": 9,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 9,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 24,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 43,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 70,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 5,
+          "rank": 99,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 6,
+          "rank": 136,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 7,
+          "rank": 179,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 8,
+          "rank": 225,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 9,
+          "rank": 273,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 10,
+          "rank": 325,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 11,
+          "rank": 386,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 12,
+          "rank": 446,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 13,
+          "rank": 493,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 14,
+          "rank": 511,
+          "inputs": 511,
+          "annihilator_forced_zero_count": 511
+        }
+      ]
+    },
+    {
+      "k": 10,
+      "prime": 65521,
+      "reports": [
+        {
+          "degree": 1,
+          "rank": 10,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 2,
+          "rank": 27,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 3,
+          "rank": 49,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 4,
+          "rank": 80,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 5,
+          "rank": 114,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 6,
+          "rank": 157,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 7,
+          "rank": 207,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 8,
+          "rank": 263,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 9,
+          "rank": 323,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 0
+        },
+        {
+          "degree": 10,
+          "rank": 387,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 11,
+          "rank": 459,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 12,
+          "rank": 535,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 13,
+          "rank": 621,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 14,
+          "rank": 706,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 15,
+          "rank": 796,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 16,
+          "rank": 893,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 17,
+          "rank": 981,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 3
+        },
+        {
+          "degree": 18,
+          "rank": 1023,
+          "inputs": 1023,
+          "annihilator_forced_zero_count": 1023
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Polynomial-size shared correction of moment-curve jets}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Verification status.}
+The arbitrary independent-column polynomial correction theorem, its exact
+head count, numerical limiting identity, full-cube denominator positivity,
+strictly negative slopes, zero-column axis, and preservation of strict
+signs are Lean checked in \texttt{JointFamilyRidgeCorrections.lean}.
+The moment-curve interpolation specialization and feature-space analysis
+below are complete written arguments. The finite-field rank data are
+computations over the specified finite field, not Lean proofs or assertions
+of equal real rank. No improved global upper bound is claimed.
+
+\section{One polynomial costs one more head than its degree}
+Let $L(x)=\sum_{i=1}^k w_i x_i$, where every $w_i>0$. Each column
+$j$ chooses an arbitrary real polynomial $Q_j$ of degree at most $R$.
+Put $H=R+1$ and choose distinct exterior poles
+$p_h=T+h$, for $h=0,\ldots,R$. Barycentric partial fractions give
+real residues $c_{hj}$ satisfying the exact identity
+\[
+ \sum_{h=0}^R\frac{c_{hj}}{p_h-L(x)}
+ =Q_j(L(x))\prod_{h=0}^R\frac{p_h}{p_h-L(x)}.
+ \tag{1}
+\]
+For example, with $N(t)=\prod_h(t-p_h)$ one may take
+\[
+ c_{hj}=-N(0)Q_j(p_h)\prod_{\ell\ne h}(p_h-p_\ell)^{-1}.
+\]
+The product in (1) tends to one as $T$ tends to infinity, uniformly
+on the finite row cube. It is the same product for every column.
+
+Use the numerator $\sum_jc_{hj}z_j$ and denominator
+\[
+ T+h+1-\sum_iw_ix_i-\sum_jz_j.
+\]
+When $T>\sum_iw_i+s$, every denominator is positive on the entire
+ambient cube, and every slope is strictly negative. Numerators are affine
+and vanish on the zero-column axis. At a onehot column input the
+denominator is exactly $p_h-L(x)$. The residues may be arbitrarily large
+and may have either sign, as allowed by the original model.
+
+\begin{theorem}
+Given any residual score $G(x,j)$ for which
+$G(x,j)+Q_j(L(x))$ has the required strict sign at every input, there
+are $R+1$ admissible reverse heads whose score, added to $G$, preserves
+all those strict signs simultaneously. For $m$ positive linear row
+statistics and independently chosen degree-$R$ polynomials for each
+statistic and column, the cost is exactly $m(R+1)$ heads.
+\end{theorem}
+\begin{proof}
+Equation (1) converges to the polynomial correction at every input.
+Finiteness and strict margins give a common sufficiently large $T$.
+For several statistics, apply this argument successively, including
+the remaining polynomial terms and all previously selected heads in
+the residual. Concatenation preserves full-cube admissibility and the
+exact zero-column axis. The main declarations are
+\texttt{jointFamily\_polynomial\_ridge\_correction\_preserves\_signs}
+and
+\texttt{jointFamily\_polynomial\_ridge\_family\_correction\_preserves\_signs}.
+\end{proof}
+
+\section{Moment-curve specialization}
+Put $P_x(t)=\sum_{i=1}^k x_it^i$. Let $V_R$ be the span, as
+functions of $x$, of all coefficient functions of $P_x(t)^a$ for
+$0\leq a\leq R$. Choose $kR+1$ distinct positive real numbers
+$t_1,\ldots,t_{kR+1}$. Polynomial interpolation in $t$ shows that
+every coefficient of $P_x(t)^a$ is a fixed linear combination of
+$P_x(t_\ell)^a$, because its degree in $t$ is at most $kR$.
+Consequently, every independently chosen column correction
+$F_j\in V_R$ has a representation
+\[
+ F_j(x)=\sum_{\ell=1}^{kR+1}Q_{\ell j}(P_x(t_\ell)),
+ \qquad \deg Q_{\ell j}\leq R.
+\]
+The row weights $t_\ell^i$ are strictly positive, so the theorem gives
+the explicit shared correction cost
+\[
+ (kR+1)(R+1)=O(kR^2).
+ \tag{2}
+\]
+No relation is imposed between corrections in different columns.
+This permits subtracting every low-order jet of each permutation
+separately, while retaining all $H!$ permutations. In contrast, restricting
+permutations to a common exact integer-moment fiber pays a signature
+entropy loss $O(k^2R^3\log H)$.
+
+\section{Why this does not yet give a decoder}
+For a permutation difference of reciprocal banks, the jet of order
+$r$ is a linear combination of coefficient functions of $P_x(t)^a$
+with $1\leq a\leq r-1$. The terms with $a=0$ cancel because the
+memory histogram is fixed; those with $a=r$ cancel because row
+directions do not change. Thus the cumulative jet span through order
+$r$ has dimension at most
+\[
+ \sum_{a=1}^{r-1}(ka+1)=\frac{kr(r-1)}2+r-1.
+ \tag{3}
+\]
+The newly available span at the next order adds at most $kr+1$
+dimensions. Subtracting lower jets does not automatically make the
+residual covariance isotropic on a large input space: after rescaling
+the first surviving order, all higher-order directions still vanish
+in the small-scale limit. Its full leading image has dimension at most
+$O(kr^2)$, so spanning $M$ input directions already requires correction
+cost of order $M$. If one additionally quotients by the entire lower-jet
+feature space, the first new image has dimension at most $kr+1$.
+Spanning an $M$-dimensional remaining quotient in that single order
+would require an index of order $M/k$ and correction cost of order
+$M^2/k$. These estimates defeat the indicated cheap one-order arguments
+in the exponential-domain regime. They are not lower bounds for
+permutation decoders using several target-dependent cancellation orders.
+
+There is a precise test for such multiple orders. If a vector $z$ is
+nonzero on a set of required inputs and annihilates every jet through
+order $R$ there, any reciprocal-difference germ having strict signs
+$\operatorname{sign}(z)$ on that set for all sufficiently small positive
+scales must have each of those jets vanish pointwise on that set.
+Indeed, otherwise take the first nonzero order among the finitely many
+coordinates. All its signed leading coefficients are nonnegative and
+at least one is positive, contradicting their zero $z$-weighted sum.
+This forces deep cancellations for appropriate targets; it does not
+prove that such cancellations are impossible.
+
+\paragraph{Finite evidence.}
+The script \texttt{JointFamilyMomentJetRanks.py} computes the exact
+ranks of the spans generated by $P_x(t)^a$, $1\leq a\leq R$, on
+all nonzero Boolean inputs, over the prime field of order $65521$.
+For $k=4,5,6,7,8,9,10$, full finite-field rank first occurred at
+$R=4,7,8,10,11,14,18$, respectively. For example, at $k=10,R=10$
+the rank is $387$ on $1023$ inputs, and at $R=17$ it is $981$.
+These computations illustrate the distinct surviving orders, but
+do not establish an asymptotic estimate or exact real rank.
+
+\end{document}
