@@ -2,7 +2,7 @@
 \usepackage{amsmath,amssymb,fullpage}
 \title{Reverse Head Compression: Continuation Checkpoint}
 \author{}
-\date{November 23, 2026}
+\date{November 24, 2026}
 \begin{document}
 \maketitle
 
@@ -114,6 +114,36 @@ axis-zero modules with balanced row numerators. Its declarations
 Cauchy readouts, with arbitrary row biases and an explicit full-cube
 exterior margin. This verifies the analytic platform, not a growing
 ratio of programmable rows to heads.
+
+\paragraph{Checked projective transport and masked moving poles.}
+\texttt{Results/ReverseMobius.lean} proves the exact projective
+numerator transport identity and the necessary and sufficient finite
+sum budget for extending separated grid denominators to the full cube.
+Its \texttt{exists\_mobius\_reverse\_axis} assembles independently
+transformed heads and corrects their row and column offsets jointly.
+The budget remains a hypothesis; grid positivity alone is insufficient.
+\texttt{Results/ReverseMaskedCauchy.lean} proves
+\texttt{exists\_maskedCauchy\_reverseAxisData}: any fixed masks and
+independently moving row poles satisfying its explicit sum budget have
+an exact strictly admissible axis-zero realization with two heads per
+pole. No extra axis repair is needed. The aggregate build passes
+9240 jobs, and the new declarations use only the standard Lean axioms.
+
+\paragraph{Compact local constructions and a failed induction.}
+\texttt{reverse-unbalanced-h2-local.tex} gives a complete written
+two-head construction for every sign table with five columns and any
+number of rows, with strict full-cube denominators whose slope sums
+can be arbitrarily small. An exact rational checker verifies the formulas
+on all 32 column patterns at several scales. This theorem is not Lean
+formalized. A second complete written construction in
+\texttt{tree-shared-pool-four.tex} gives an axis-zero compiler with
+16 strict heads for every table with 20 columns. Its four-pole shared
+pool and the Cauchy/Hermite perturbation argument were independently
+audited. These are finite constant-factor results, not either target.
+The attempted direct eight-pole shared-pool induction fails on the
+tested pools. The current research asks whether sufficiently many
+distinct patterns, followed by Sauer's lemma, can replace full pool
+universality; the required growing entropy bound is unproved.
 
 \paragraph{New full-cube identities and tangent spaces.}
 \texttt{reciprocal-histogram-fibers.tex} gives complete elementary

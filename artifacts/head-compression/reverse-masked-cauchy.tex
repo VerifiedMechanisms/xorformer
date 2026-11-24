@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fullpage}
+\newtheorem{theorem}{Theorem}
+\title{Exact Masked Cauchy Queries with Two Heads per Pole}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+The construction, exact grid identity, strict slopes, whole-cube positivity,
+and both Boolean axis identities are Lean checked in
+\texttt{Results/ReverseMaskedCauchy.lean}. This is an assembly theorem.
+It does not claim that the resulting queries shatter a superlinear number
+of columns, or establish either accepted asymptotic target.
+
+\begin{theorem}
+Let $D,\eta>0$, let $0<p_{hi}<t_j<1$, and choose arbitrary residues
+$a_{hi}$ and fixed masks $M_{hj}\in\{0,1\}$. Suppose for each $h$ that
+\[
+ D\sum_i p_{hi}+s\eta+D\sum_jM_{hj}(1-t_j)<D+\eta.
+ \tag{1}
+\]
+There is a sum of $2H$ affine ratios, with strictly negative denominator
+slopes and positive denominators on the whole Boolean $(r+s)$-cube,
+which vanishes on both Boolean axes and whose grid values are
+\[
+ (1-t_j)\sum_h\frac{M_{hj}a_{hi}}{t_j-p_{hi}}.
+ \tag{2}
+\]
+\end{theorem}
+\begin{proof}
+For each pole use the two denominators
+\[
+ B_h^+(z,w)=D+\eta-D\sum_i p_{hi}z_i
+       -\sum_j\bigl(\eta+DM_{hj}(1-t_j)\bigr)w_j,
+ \qquad
+ B_h^-(z,w)=D+\eta-D\sum_i p_{hi}z_i-\eta\sum_jw_j,
+\]
+and the opposite numerators $A_h$ and $-A_h$, where
+\[
+ A_h(z,w)=D\sum_i(1-p_{hi})a_{hi}z_i.
+\]
+All slopes are strictly negative. The largest sum of absolute slopes is
+the left side of (1), so the denominators are positive on the full cube.
+On $z=0$ each numerator is zero. On $w=0$ the two denominators are
+equal, giving exact cancellation for every Boolean $z$.
+
+At a grid point, a masked-out head cancels exactly. For a masked-in head
+the contribution is
+\[
+ \frac{D(1-p)a}{D-Dp-D(1-t)}-
+ \frac{D(1-p)a}{D-Dp}
+ =\frac{(1-t)a}{t-p}.
+\]
+Summing proves (2). In particular this is an exact simple-pole Cauchy
+kernel after residue rescaling, rather than an approximation by a
+squared kernel. Since $t_j<1$, its column factor preserves all strict
+signs. No separate axis repair or weak-slope perturbation is needed.
+\end{proof}
+
+\paragraph{Lean declarations.}
+\texttt{pairedRowsAxisData} constructs the more general pairwise
+cancellation module with independently moving row poles.
+\texttt{pairedRowsAxisData\_grid} proves its exact grid evaluation.
+\texttt{paired\_cauchy\_identity} checks the rational identity, and
+\texttt{exists\_maskedCauchy\_reverseAxisData} combines the identity
+with the whole-cube budget. The output is the existing
+\texttt{ReverseAxisData} used by the checked gluing reduction.
+The original model and complexity definitions are unchanged.
+
+\paragraph{The remaining requirement.}
+To obtain a superconstant saving from this platform, one must still give
+fixed masks and query times with a universal row decoder using
+$o(s)$ moving poles, and satisfy (1) for all rows together.
+Finite shattering certificates and pairwise cancellation alone do not
+prove this assertion.
+\end{document}
