@@ -1,0 +1,2 @@
+✔ [3749/3749] Built HeadComplexity.Research.StructuredDenominatorCapacity (2.5s)
+Build completed successfully (3749 jobs).

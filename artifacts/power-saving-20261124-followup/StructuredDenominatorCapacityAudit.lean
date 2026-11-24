@@ -1,0 +1,5 @@
+import HeadComplexity.Research.StructuredDenominatorCapacity
+
+#print axioms HeadComplexity.StructuredDenominatorCapacity.card_curve_le
+#print axioms HeadComplexity.StructuredDenominatorCapacity.card_cluster_assignment_le
+#print axioms HeadComplexity.StructuredDenominatorCapacity.card_clustered_le

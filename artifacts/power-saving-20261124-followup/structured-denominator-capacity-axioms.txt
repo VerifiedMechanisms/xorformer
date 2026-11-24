@@ -1,0 +1,7 @@
+'HeadComplexity.StructuredDenominatorCapacity.card_curve_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.StructuredDenominatorCapacity.card_cluster_assignment_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.StructuredDenominatorCapacity.card_clustered_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
