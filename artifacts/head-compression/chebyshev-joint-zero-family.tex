@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Compact Joint Zero Families from Chebyshev Fibers}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete written construction of many exact zero representations
+on a one-hot grid, together with their full first-order perturbation
+space. All denominators satisfy strict reverse admissibility on the
+whole Boolean cube. It is not a local compiler: no theorem below says
+that the union of the perturbation spaces contains every sign table.
+Consequently it establishes neither accepted asymptotic target. It has
+not been formalized in Lean. The companion script checks rational
+quadratic and cubic instances and their cube budgets exactly.
+
+Let $T_k,U_{k-1}$ denote the Chebyshev polynomials, normalized by
+$T_k(\cos\theta)=\cos(k\theta)$ and
+$T_k'=kU_{k-1}$. For $-1<t<1$, let
+$\xi_1(t)<\cdots<\xi_k(t)$ be the distinct roots of $T_k(X)-t$.
+All these roots lie in $(-1,1)$.
+
+\begin{theorem}[A joint zero family]
+Fix positive integers $r,s,k$, values $t_j\in(-1,1)$, and a sufficiently
+small $\varepsilon>0$. There is an open interval $I$ containing $1$
+such that, for any $x_1,\ldots,x_r\in I$ and any independent
+permutations $\pi_j\in S_k$, the grid identity
+\[
+ \sum_{h=1}^k\frac{1}{x_i-\varepsilon\xi_{\pi_j(h)}(t_j)}
+ =\frac{(k/\varepsilon)U_{k-1}(x_i/\varepsilon)}
+ {T_k(x_i/\varepsilon)-t_j}
+ \tag{1}
+\]
+holds. Every denominator displayed in (1) is the restriction of an
+affine denominator with strictly negative slopes and positive values
+on the entire Boolean $(r+s)$-cube. The numerator on the right is
+also the restriction of an affine function. Thus $k+1$ strict reverse
+heads give a grid-zero representation for every permutation tuple.
+
+If $s\geq1$, fixing $\pi_1$ leaves $(k!)^{s-1}$ distinct denominator
+multisets on the grid. Distinctness here is modulo a simultaneous
+relabeling of the first $k$ heads, with the baseline head distinguished.
+\end{theorem}
+
+\begin{proof}
+Logarithmically differentiating the factorization of $T_k(X)-t$ gives
+\[
+ \sum_{h=1}^k\frac1{X-\xi_h(t)}
+ =\frac{T_k'(X)}{T_k(X)-t}.
+\]
+Substitution $X=x_i/\varepsilon$ proves (1).
+
+Here are direct full-cube extensions, including strict slope padding.
+First set $x_i=1$ for all $i$. For each $h$, write
+$v_{hj}=\varepsilon\xi_{\pi_j(h)}(t_j)$. The denominator
+$1-v_{hj}$ on the grid is extended by
+\[
+ B_h(z,w)=1+\varepsilon+2\eta
+       -\eta\sum_i z_i-\sum_j(\varepsilon+v_{hj}+\eta)w_j.
+ \tag{2}
+\]
+Every slope is negative. Since $|v_{hj}|<\varepsilon$, its value at
+the all-one vertex is greater than
+$1-(2s-1)\varepsilon-(r+s-2)\eta$.
+Choose, for example, $0<\varepsilon<1/(8s)$ and then $\eta>0$
+small enough that this is positive. The all-one vertex is the minimum.
+
+Put $C=T_k(1/\varepsilon)$ and $t_* =\min_j t_j$.
+The baseline denominator has the extension
+\[
+ B_0(z,w)=C-t_*+2\eta_0
+ -\eta_0\sum_i z_i-\sum_j(t_j-t_*+\eta_0)w_j.
+ \tag{3}
+\]
+It has the required grid value $C-t_j$ and strict negative slopes.
+Because $T_k(u)\geq u$ for $u\geq1$, our choice gives $C>8s$.
+Before the padding its all-one value is
+$C-t_*-\sum_j(t_j-t_*)>C-1-2s>0$.
+Choose $\eta_0>0$ sufficiently small.
+
+Now let $x_i$ vary near $1$. In (2), replace the coefficient $\eta$
+of $z_i$ by $\eta+1-x_i$. In (3), replace $\eta_0$ by
+$\eta_0+C-T_k(x_i/\varepsilon)$. These changes give exactly the
+desired grid denominators. At $x_i=1$ all slope inequalities and
+all cube positivity inequalities are strict. Continuity therefore
+preserves them for $x_i$ in a sufficiently small common interval $I$.
+There are finitely many permutation tuples, so $I$ may be chosen
+uniformly for all of them. In fact (2) already gives uniform slack
+independent of the tuple. Finally
+$\sum_i (k/\varepsilon)U_{k-1}(x_i/\varepsilon)z_i$ is an affine
+numerator with the stated grid values.
+
+For distinctness, the first column has distinct pole labels. A
+simultaneous head relabeling preserving this column is therefore the
+identity once $\pi_1$ is fixed. Every later column then determines its
+permutation uniquely from its denominator values.
+\end{proof}
+
+\paragraph{The precise perturbation family.}
+Set
+\[
+ D_{hij}=x_i-\varepsilon\xi_{\pi_j(h)}(t_j),\quad
+ D_{0ij}=T_k(x_i/\varepsilon)-t_j,\quad
+ N_i=(k/\varepsilon)U_{k-1}(x_i/\varepsilon).
+\]
+Take the first $k$ base numerators to be $1$, and the signed baseline
+numerator to be $-N_i$. Independent affine numerator and denominator
+perturbations on the grid have values $a_{hi}+b_{hj}$ and
+$p_{hi}+q_{hj}$, respectively. Their first-order grid score is
+\[
+ L_{ij}=\sum_{h=1}^k\left(
+ \frac{a_{hi}+b_{hj}}{D_{hij}}
+ -\frac{p_{hi}+q_{hj}}{D_{hij}^2}\right)
+ -\frac{a_{0i}+b_{0j}}{D_{0ij}}
+ +\frac{N_i(p_{0i}+q_{0j})}{D_{0ij}^2}.
+ \tag{4}
+\]
+All the parameters in (4) are free real numbers. To verify this
+without a hidden affine restriction, realize each row-plus-column
+table as $\sum_i a_{hi}z_i+\sum_j b_{hj}w_j$; do the same for the
+denominator direction. The base point is interior to the admissible
+denominator cone, so sufficiently small perturbations of either sign
+remain admissible.
+
+\begin{lemma}[Strict tangent signs transfer]
+If, for some tuple of permutations and some values of the parameters
+in (4), one has $\sigma(i,j)L_{ij}>0$ at every grid point, then a
+sufficiently small positive perturbation gives $k+1$ strict reverse
+heads with those grid signs.
+\end{lemma}
+\begin{proof}
+The base score vanishes by (1). The perturbed score is
+$\delta L_{ij}+O(\delta^2)$ at each grid point. There are finitely
+many grid points, and their first-order margins are all strict, so
+one common positive $\delta$ works. The preceding interior argument
+preserves whole-cube admissibility.
+\end{proof}
+
+\paragraph{What this does and does not evade.}
+With only row numerator perturbations, (4) is a Cauchy assignment
+readout. Its fixed-residue butterfly subfamily is covered by the
+first-layer dominance obstruction in
+\texttt{butterfly-rectangle-decoder.tex}. Independent column numerator
+perturbations let the residues depend on the entire target column and
+its selected permutation. Independent denominator perturbations also
+add squared Cauchy kernels. Those choices are outside the fixed-residue
+hypothesis, but escaping that hypothesis is not a coverage proof.
+
+The zero identity is only on the one-hot grid. Axis-zero conditions
+must still be imposed using an audited repair with its stated head
+cost, or by a new identity. Neither the permutation count nor the
+dimension of (4) proves that every sign table is covered. The missing
+statement remains a quantitative joint sign-coverage theorem with
+$k=o(r+s)$.
+\end{document}
