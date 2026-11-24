@@ -1,0 +1,15 @@
+'HeadComplexity.PolynomialRootCount.weightedDegreeLE_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDegreeLE_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDegreeLE_pderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDegreeLE_of_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDegreeLE_eval₂Hom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.weightedDegreeLE_translate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PolynomialRootCount.totalDegree_powerSubstitution_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

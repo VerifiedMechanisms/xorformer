@@ -1,0 +1,2 @@
+✔ [3140/3140] Built HeadComplexity.Polynomial.WeightedDegree (1.9s)
+Build completed successfully (3140 jobs).

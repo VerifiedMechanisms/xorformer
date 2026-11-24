@@ -1,0 +1,9 @@
+import HeadComplexity.Polynomial.WeightedDegree
+
+#print axioms HeadComplexity.PolynomialRootCount.weightedDegreeLE_mul
+#print axioms HeadComplexity.PolynomialRootCount.weightedDegreeLE_pow
+#print axioms HeadComplexity.PolynomialRootCount.weightedDegreeLE_pderiv
+#print axioms HeadComplexity.PolynomialRootCount.weightedDegreeLE_of_totalDegree_le
+#print axioms HeadComplexity.PolynomialRootCount.weightedDegreeLE_eval₂Hom
+#print axioms HeadComplexity.PolynomialRootCount.weightedDegreeLE_translate
+#print axioms HeadComplexity.PolynomialRootCount.totalDegree_powerSubstitution_le
