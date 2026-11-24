@@ -372,6 +372,21 @@ compiler. Simple common-residue induction fails on some pairs of
 child patterns. Faster hierarchies and block biases have additional
 finite evidence, but no universal recursion has been proved.
 
+\paragraph{Constant-density batching, Lean checked.}
+The new \texttt{Results/ReverseDensityBatching.lean} independently
+checks a weaker sufficient local premise. A joint reverse grid decoder
+for half of all column patterns, costing at most $M$ heads, gives a
+universal strict axis-zero compiler costing
+$t(12M+21)+3R+6$ whenever $s\leq2^tR$. Exact masks preserve all earlier
+strict signs; an exact rank correction handles the residual columns.
+Thus a half-dense $O(q/\log q)$ joint decoder would already imply
+$O(q\log\log q/\log q)$ local cost and the requested global target.
+The growing dense decoder remains unproved. The complete finite
+assembly is \texttt{hasReverseAxisCompiler\_of\_half\_dense\_family};
+the aggregate build passes with 9249 jobs. See
+\texttt{reverse-density-batching.tex} for the written asymptotic
+deduction and its explicit remaining premise.
+
 \paragraph{Further global counting audit.}
 \texttt{ambient-relative-rank-audit.tex} checks the real sign-condition
 and relative-rank bounds of Basu and Parida, including a smooth lifted

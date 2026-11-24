@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Constant-density local decoding and exact residual repair}
+\author{}\date{}\maketitle
+
+\paragraph{Status.}
+The finite half-density assembly and its exact head budget are Lean
+checked in \texttt{Results/ReverseDensityBatching.lean}. The asymptotic
+consequences below are elementary written deductions from that theorem
+and the checked balanced gluing theorem. The required growing dense
+decoder is not known. This note is a reduction, not a proof of either
+accepted global target. The original atom model, input dimension, and
+definitions of head complexity are unchanged.
+
+\begin{theorem}[Half-density batching]
+Let $r,s,M$ be nonnegative integers. Suppose there is a set
+$G\subseteq\{-1,1\}^r$, with $|G|\geq2^{r-1}$, such that every
+$r$ by $s$ sign table whose columns belong to $G$ has a joint reverse
+grid realization using at most $M$ heads. Every denominator in this
+realization must be positive on the entire Boolean $(r+s)$-cube and
+must have strictly negative slopes. Then for every pair of nonnegative
+integers $t,R$ satisfying $s\leq2^tR$, every $r$ by $s$ sign table has
+a strict reverse axis-zero realization with at most
+\[
+ t(12M+21)+3R+6                                           \tag{1}
+\]
+heads. There are no hypotheses on the represented table.
+\end{theorem}
+\begin{proof}
+Fix a target table $\sigma$ and a set $U$ of uncovered columns. For a
+uniformly chosen common row-sign vector $v\in\{-1,1\}^r$, each
+column $v\sigma_{\cdot j}$ is uniform on the pattern cube. Therefore
+the average number of columns in $U$ whose translated pattern lies
+outside $G$ is at most $|U|/2$. Some $v$ leaves at most this many
+columns uncovered. This exact finite double counting is
+\texttt{exists\_row\_sign\_half\_remainder}.
+
+Let $C\subseteq U$ be the columns covered at this step. On $C$, use
+the translated patterns. Fill every other column with a fixed member
+of $G$. The assumed joint compiler gives at most $M$ strict reverse
+grid heads. Exact common row-sign multiplication and exact masking to
+$C$ cost at most $4M+6$ heads, by
+\texttt{exists\_strict\_reverse\_row\_flip\_column\_mask}.
+Repairing both axes costs three times this number plus three, hence
+at most $12M+21$ heads. The score has the desired strict signs on $C$
+and is exactly zero at every grid column outside $C$. Both Boolean
+axes are exactly zero, and all denominators are strictly admissible
+on the whole cube.
+
+Repeat this procedure on the residual set. The sets $C$ are disjoint.
+Concatenating the modules adds their scores, so no previously obtained
+strict sign is changed. After $t$ steps the remainder $U_t$ satisfies
+$2^t|U_t|\leq s$, and hence $|U_t|\leq R$. This is
+\texttt{exists\_half\_dense\_reverse\_batches}.
+
+The matrix equal to $\sigma$ on $U_t$ and zero elsewhere has an
+explicit factorization with $|U_t|$ rank-one terms, one for each
+remaining column. The exact rank compiler realizes this matrix with
+$3(|U_t|+1)+3=3|U_t|+6$ strict axis-zero heads. This fact is
+\texttt{exists\_reverse\_axis\_column\_remainder}. The earlier
+modules are zero on $U_t$, and the correction is zero off $U_t$.
+Their sum therefore realizes every target sign and has budget (1).
+The complete theorem is
+\texttt{hasReverseAxisCompiler\_of\_half\_dense\_family}.
+\end{proof}
+
+\paragraph{Why a constant success fraction would suffice.}
+Suppose for every sufficiently large $q$ there were a joint decoder
+for at least half of all $q$-bit column patterns, with
+$M\leq Cq/\log q$ heads. Take $R=\lceil Cq/\log q\rceil$ and
+$t=\lceil\log_2(q/R)\rceil$ when $R<q$, taking $t=0$ otherwise.
+Then $q\leq2^tR$, $R=O(q/\log q)$, and
+$t=O(\log\log q)$. The theorem yields a universal local compiler of
+cost
+\[
+ O\!\left(\frac{q\log\log q}{\log q}\right).       \tag{2}
+\]
+The same conclusion holds for balanced rectangular cells, with their
+two side lengths differing by at most one, provided the joint dense
+family hypothesis holds for those cells. The checked gluing bound is
+\[
+ W(a+b)\leq\frac{484\,2^{a+b}M_{\mathrm{local}}}{ab}
+             +2^a+2^b .                              \tag{3}
+\]
+Thus (2), for $a=\lfloor n/2\rfloor$ and
+$b=\lceil n/2\rceil$, would give
+\[
+ W(n)=O\!\left(\frac{2^n\log\log n}{n\log n}\right)
+      =O\!\left(\frac{2^n}{n\log\log n}\right),       \tag{4}
+\]
+since $(\log\log n)^2/\log n\longrightarrow0$ and the exceptional
+face cost in (3) is exponentially smaller. Here all unmarked logarithms
+are natural. Half-density may be replaced by any fixed positive
+density: the same averaging leaves at most a fraction $1-p$ of the
+columns at each step, and $O_p(\log(q/R))$ steps suffice. That
+general-$p$ variant is written only; the half-density version and
+all exact head operations in (1) are Lean checked.
+
+\paragraph{The remaining obligation.}
+Separate successful realizations of individual patterns do not imply
+the joint full-cube hypothesis. Fixed query masks, simultaneous slope
+budgets, and a scale valid for every selected pattern must be supplied.
+The compactified signed-Cauchy assembly can discharge these obligations
+for a decoder which works at every sufficiently small pole scale.
+No proof currently establishes a positive success fraction uniformly
+in the number of poles. Finite samples and finite universal certificates
+do not establish this premise.
+\end{document}
