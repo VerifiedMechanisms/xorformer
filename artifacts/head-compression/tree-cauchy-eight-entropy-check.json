@@ -1,0 +1,23 @@
+{
+  "verification": "exact rational lower count; no completeness or asymptotic claim",
+  "seed": 17,
+  "samples": 1000,
+  "strict_samples_used": 716,
+  "poles": [
+    "-1/1249",
+    "-7/9993",
+    "-1/2499",
+    "-1/9999",
+    "1/10001",
+    "1/2501",
+    "7/10007",
+    "1/1251"
+  ],
+  "query_count": 20,
+  "permutations_per_pool": 40320,
+  "distinct_patterns": 219648,
+  "sampled_root_patterns": 248,
+  "max_single_pool_descendant_patterns": 1536,
+  "min_descendant_union_by_sampled_root": 128,
+  "max_descendant_union_by_sampled_root": 2048
+}
