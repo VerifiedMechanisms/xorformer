@@ -308,3 +308,91 @@ For m^a half-integer sources, every independent a-bit sign assignment has
 an injection into the fixed (m+1)^a integer catalog. The padded-margin
 variant and localization transfer remain written/unresolved respectively.
 The parity/filter integrated default build passed, 9310 jobs.
+
+2026-11-24 21:30 UTC, approximately 6h00 elapsed, six-hour checkpoint.
+
+Best unconditional upper bound remains
+  worstCaseHeadComplexity_real_le_joint_log_saving
+  W(n) <= 151010 * 2^n / (n * log n), n >= 32,
+in Results/JointCellGlobalBound.lean (5393ce7a). This improves the inherited
+constant only. No fixed positive delta or unbounded extra factor g is proved.
+The original model, admissibility conditions, and W definition are unchanged.
+
+New checked progress since the preceding checkpoint:
+* ApproximateGradedShellTransfer (40a02294) handles finite-cube head-score
+  closure, nested limits, strict signs, and descending gluing. Limits retain
+  actual original-model head counts; hypotheses are not hidden as axioms.
+* SupportedGradedShellTransfer and RegularLayerCoverTransfer (3029d1d6)
+  require exact limiting zeros outside each local cell on its own layer.
+  The corrected regular partial-cover budget is
+    U * (H/e) * (1 + log(e/H)),
+  including singleton repair. The overhead is log(local saving), rather
+  than log(cell size). This leaves large local cells useful in principle.
+* CoordinateOrbitLayerCover (a7fb6af1) constructs a regular cover from every
+  nonempty base cell by all coordinate permutations. Its exact incidence
+  identity is n! * |Q| = |weight layer| * d. An arbitrary-label supported
+  decoder on one cell now suffices for the complete layer transfer.
+* JointCellContainmentSelectors (ee820f69) proves the exact plane incidence
+  energy, the incidence-free rectangle bound |P||L| <= q^3, and n >= q-1
+  for exact containment selectors. Written low-rank two-product tests have
+  separate hypotheses and are not asserted as general model lower bounds.
+* LargeDomainGridSupport (8dfaef6a) identifies an all-double state with one
+  compatible interior vertex. Required support cancellation forces its
+  useful residue to vanish. The previously optimistic boundary count was
+  in the wrong orientation. Independent vertex poles cannot silently share
+  those corrections. The next forbidden layer already couples adjacent
+  vertex memories through a two-term rational matching relation.
+* LargeDomainLatinCancellation (6c2773ce) gives exact full-rational axis
+  cancellation from two Latin assignments. It retains arbitrary color
+  poles. Its one-hot library has at most q^H choices per column, hence only
+  H log q bits; growing binary encodings still need a supported decoder.
+* LargeDomainCauchySharedPool (7342ae09) removes the positivity assumption
+  on the common amplitudes in the three-node homogeneous counterexample.
+  Independent node biases evade that specific counterexample. A later
+  five-node biased and compact-hierarchy biased obstruction is being
+  certified by joint_decoder; neither disproves the full Haar architecture.
+* JointFamilyHaarSplit (c7546d7c) proves a positive paired difference limit
+  and strict-sign preservation. The full child-to-parent argument is written
+  conditional on a common residue invariant. Exact finite evidence includes
+  all H=8 words sharing a pool and five H=16 words that cannot (8513d829).
+* JointCellSquaredCauchy and JointCellRootProduct implement arbitrary
+  row-times-column weights on squared Cauchy kernels with exactly two heads
+  per term, full-cube denominator positivity, exact entire Boolean axes,
+  and prior strict-sign preservation. Product-root partial fractions and
+  their derivative identity are checked. The derivative product correction
+  costs 2c heads for c independently chosen roots per column. This repairs
+  a numerator admissibility gap, not a universal decoder.
+
+Decisive current inequalities and distinctions:
+* Independent polynomial-size cells still cannot beat the n log n scale.
+  Sparse interaction with P parameters and bounded active degree obeys the
+  checked Warren budget; an adaptive library is charged by its logarithm.
+* Root-vector arrangement degree alone is insufficient. Additive residues
+  lie in a fixed feature span of dimension 1+c(q-1), so shattering a bits
+  needs a <= 1+c(q-1). Bit-dependent additive residues are not automatically
+  affine in separate bit and point coordinates. Replicated bit coordinates
+  create a further consistency-support obligation.
+* A source subtree with arbitrary distinct poles retains all its poles in
+  its partial Cauchy transform. One node bias does not repair that subtree.
+  The naive O(H) tree-node repair needs additional pole/moment structure.
+* The fixed common-statistic sign-count argument is written using a primary
+  multidegree theorem; its polynomial clearing is checked in Lean. It is
+  not a new Lean axiom and does not rule out arbitrary adaptive directions.
+
+Next genuinely different attempts:
+1. Allow higher-order or divergent residue corrections in the actual Haar
+   hierarchy. The first shared leading perturbation invariant is too strong;
+   finite pairwise full systems still pass. Separately solve same-layer
+   support, possibly by correlated pole/moment cancellations.
+2. Test derivative root-vector memories with fully charged affine numerators,
+   bit encoding, and independent labels. Seek a high-capacity low-rank tensor
+   decoder, or isolate a zero-count/feature-span obstruction for that class.
+3. Investigate simultaneous approximate support instead of exact descending
+   cancellation. A regular family has relatively few proper-face incidences;
+   a bounded decoder condition number might permit a low-degree endpoint
+   filter and a global interference estimate. The first missing lemma is a
+   uniform target-margin/off-target norm bound, not the cover construction.
+
+The preceding integrated build passed 9325 jobs. The six-hour checkpoint
+build and all new transitive axiom outputs are saved separately. The run
+continues; six hours remain before the requested 03:30 UTC deadline.

@@ -1,3 +1,7 @@
+import HeadComplexity.Results.JointFamilyHaarSplit
+import HeadComplexity.Results.LargeDomainLatinCancellation
+import HeadComplexity.Results.JointCellRootProduct
+import HeadComplexity.Results.JointCellSquaredCauchy
 import HeadComplexity.Results.LargeDomainGridSupport
 import HeadComplexity.Results.JointFamilyCommonStatistic
 import HeadComplexity.Results.JointCellContainmentSelectors

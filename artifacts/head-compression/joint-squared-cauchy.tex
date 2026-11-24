@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Independent Root Memories with Admissible Squared Cauchy Corrections}
+\author{Joint Cell Head Compression}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+\paragraph{Status.} The identities and two-head implementation below are
+kernel checked. They do not prove a new asymptotic bound on worst-case head
+complexity. The original model and all of its definitions are unchanged.
+
+\section{The numerator gap and its repair}
+For independent roots $u_1,\ldots,u_c$, partial fractions give
+\[
+ \frac1{\prod_l(p-u_l)}=\sum_l\frac{a_l(u)}{p-u_l},
+ \qquad a_l(u)=\prod_{m\ne l}(u_l-u_m)^{-1}.
+\]
+The roots may vary independently from column to column. Multiplying this
+identity by a row-dependent numerator $A_i$ does not directly give $c$
+admissible heads: the coefficient $A_i a_l(u_j)$ is jointly dependent on
+row and column, whereas a head numerator must be affine on the whole
+Boolean cube.
+
+Differentiation in $p$ gives the alternative kernel
+\[
+ \frac{P_u'(p)}{P_u(p)^2}
+ =\sum_l\frac{a_l(u)}{(p-u_l)^2},\qquad P_u(p)=\prod_l(p-u_l).
+\]
+Each weighted term now has a two-head implementation. For arbitrary
+$A_i,c_j$ and compact offsets, set
+\[
+ Q_t(i,j)=\frac{tA_i}{D_i-T_j-c_j/t}
+          -\frac{tA_i}{D_i-T_j}
+ =\frac{A_i c_j}{(D_i-T_j-c_j/t)(D_i-T_j)}.
+\]
+Thus $Q_t\to A_i c_j/(D_i-T_j)^2$. This is a different kernel from the
+ordinary product inverse; it cannot be substituted into an existing
+sign decoder without proving its signs again.
+
+\section{Full-cube admissibility and exact axes}
+Take $1-\delta<D_i<1$, $0<T_j<\delta$, and $(r+s)\delta<1$.
+For all sufficiently large positive $t$, also
+$0<T_j+c_j/t<\delta$. Each denominator on the entire Boolean cube is
+\[
+ 1-\sum_i(1-D_i)x_i-\sum_j U_jy_j,
+ \qquad U_j=T_j\text{ or }T_j+c_j/t.
+\]
+All slopes are strictly negative and the sum of their magnitudes is less
+than one. Both numerators are affine row-only functions, with coefficients
+$\pm tA_i$. When all row bits vanish, both numerators vanish. When all
+column bits vanish, the two denominators coincide and the numerators cancel.
+These are exact zeros on both entire Boolean axes at every finite stage,
+not merely limits on one-hot inputs.
+
+For $G$ unrelated terms, the budget is exactly $2G$. One sufficiently
+large common $t$ preserves every specified strict signed margin after
+addition to an arbitrary prior score on the finite grid. Applying this to
+$c$ roots yields $2c$ heads per product-derivative correction, with roots
+chosen independently in every column. No common label table is assumed.
+
+\section{Checked declarations and remaining capacity problem}
+The files are \texttt{JointCellSquaredCauchy.lean} and
+\texttt{JointCellRootProduct.lean}, in namespace
+\texttt{HeadComplexity.AxisZeroGluing}. The main declarations are
+\texttt{exists\_squaredCauchyApprox\_data},
+\texttt{squaredCauchy\_preserves\_signs},
+\texttt{rootProduct\_partial\_fractions},
+\texttt{rootProduct\_squared\_partial\_fractions}, and
+\texttt{rootProduct\_preserves\_signs}.
+Their transitive axioms are only \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+The row functions $A,D$ in the checked grid theorem are freely chosen
+because the row is one-hot. On a larger product domain they must be affine
+in its actual Boolean encoding, or a further compiler must be charged.
+In particular, a bit-dependent tensor residue is not affine merely because
+it is additive separately in the point coordinates. Replicating the bit
+index across blocks changes both the ambient dimension and the support
+problem. No universal vector-memory decoder with a growing net saving is
+asserted. The required next result is a supported decoder with arbitrary
+independent labels whose capacity exceeds its fully charged implementation
+cost by an unbounded factor beyond the inherited logarithm.
+\end{document}

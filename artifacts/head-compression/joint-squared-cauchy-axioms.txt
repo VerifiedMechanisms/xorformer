@@ -1,0 +1,10 @@
+'HeadComplexity.AxisZeroGluing.squaredCauchyApprox_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.exists_squaredCauchyApprox_data' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.squaredCauchy_preserves_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.rootProduct_partial_fractions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.rootProduct_squared_partial_fractions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.rootProduct_preserves_signs' depends on axioms: [propext, Classical.choice, Quot.sound]

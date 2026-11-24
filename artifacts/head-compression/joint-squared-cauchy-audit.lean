@@ -1,0 +1,7 @@
+import HeadComplexity.Results.JointCellRootProduct
+#print axioms HeadComplexity.AxisZeroGluing.squaredCauchyApprox_tendsto
+#print axioms HeadComplexity.AxisZeroGluing.exists_squaredCauchyApprox_data
+#print axioms HeadComplexity.AxisZeroGluing.squaredCauchy_preserves_signs
+#print axioms HeadComplexity.AxisZeroGluing.rootProduct_partial_fractions
+#print axioms HeadComplexity.AxisZeroGluing.rootProduct_squared_partial_fractions
+#print axioms HeadComplexity.AxisZeroGluing.rootProduct_preserves_signs
