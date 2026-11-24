@@ -1,0 +1,65 @@
+{
+  "warning": "Integer candidate certificates; inverse checked by exact int64 arithmetic; no overflow at listed ranges. Search absence is not a theorem.",
+  "n": 6,
+  "elapsed": 0.20269204396754503,
+  "trials": 601,
+  "unimodular_bases": 197,
+  "charts": 12608,
+  "feasible_witnesses": 8826,
+  "found": [
+    {
+      "basis": [
+        0,
+        20,
+        53,
+        23,
+        18,
+        27,
+        49
+      ],
+      "det": -1,
+      "labels": [
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1
+      ],
+      "denominator": [
+        1,
+        1001,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "numerator": [
+        1,
+        -3025,
+        2011,
+        -2009,
+        -2009,
+        -2015,
+        2017
+      ],
+      "constant_numerator": [
+        1,
+        -6,
+        2,
+        -2,
+        -2,
+        -4,
+        4
+      ],
+      "different_vertices": [
+        13
+      ],
+      "trial": 601,
+      "unimodular_bases": 197,
+      "full_cube_min_gap": 0
+    }
+  ]
+}

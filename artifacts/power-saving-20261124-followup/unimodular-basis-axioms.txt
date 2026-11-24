@@ -1,0 +1,90 @@
+'HeadComplexity.UnimodularFeasibleBasisObstruction.basisMatrix_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.basisMatrix_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.basisMatrix_mul_inverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.basisMatrix_det_isUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.constant_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.constant_full_cube_unit_slack' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.constant_branch_disagreement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.basis_omits_origin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.origin_contact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.matrix_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.matrix_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.matrix_mul_inverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.matrix_det_isUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.positiveSlopes_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.atom_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.full_cube_unit_slack' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.branch_disagreement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.Origin.original_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.origin_contact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.matrix_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.matrix_succ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.matrix_mul_inverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.matrix_det_isUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.slopes_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.atom_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.full_cube_unit_slack' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.branch_disagreement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnimodularFeasibleBasisObstruction.OriginBranches.original_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_unimodular_basis.md",
+    "source_spans": 16,
+    "rendered_spans": 16,
+    "findings": [],
+    "notes": []
+  }
+]
