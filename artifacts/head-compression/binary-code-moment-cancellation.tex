@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{Moment Cancellation by Binary Linear Sign Codes}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+This is a complete elementary written lemma, not a Lean theorem and not
+a lower bound for the original head model. It addresses a proposed
+construction of many Boolean moment annihilators from a binary linear
+code. Nonlinear sign codes, moving poles depending on the codeword,
+and approximate rather than exact moment cancellation are outside its
+scope.
+
+Let $g\in\mathbb F_2^d$. Fix $H$ real poles $p_h$, nonzero real
+coefficients $c_h$, and characters
+$\chi_{\alpha_h}(g)=(-1)^{\alpha_h\cdot g}$ with
+$\alpha_h\in\mathbb F_2^d$. Fixed signs in a code coset can be
+absorbed into $c_h$. Put
+\[
+ F_g(t)=\sum_{h=1}^H\frac{c_h\chi_{\alpha_h}(g)}{t-p_h}.
+\]
+Poles may repeat. Suppose all codewords satisfy $k$ consecutive moment
+cancellations:
+\[
+ \sum_h c_h\chi_{\alpha_h}(g)p_h^j=0
+ \qquad(g\in\mathbb F_2^d, 0\leq j<k).
+ \tag{1}
+\]
+
+\begin{theorem}
+Let $r$ be the dimension over $\mathbb F_2$ of the span of the characters
+whose aggregated rational coefficient functions are not identically
+zero. Then
+\[
+ H\geq r(k+1),
+ \qquad |\{F_g:g\in\mathbb F_2^d\}|\leq2^r.
+ \tag{2}
+\]
+In particular, if the $2^d$ codewords give distinct strict query-sign
+patterns on any fixed query set, then $H\geq d(k+1)$.
+\end{theorem}
+\begin{proof}
+For each character $\alpha$, aggregate its terms as
+\[
+ f_\alpha(t)=\sum_{h:\alpha_h=\alpha}\frac{c_h}{t-p_h}.
+\]
+Multiply (1) by $\chi_\alpha(g)$ and average over the finite group.
+Character orthogonality gives
+\[
+ \sum_{h:\alpha_h=\alpha}c_hp_h^j=0\qquad(0\leq j<k).
+ \tag{3}
+\]
+Combine repeated poles within this character class and discard zero
+combined coefficients. If $f_\alpha$ is nonzero and has $m$ remaining
+distinct poles, then $m\geq k+1$. Otherwise the first $m$ equations in
+(3) are a nonsingular Vandermonde system and force every coefficient
+to be zero. Thus every active character costs at least $k+1$ original
+terms. At least $r$ active characters are needed to span dimension $r$,
+proving the first assertion.
+
+The value of every active character is determined by its values on a
+basis of their $r$-dimensional span. The identity
+$F_g=\sum_\alpha\chi_\alpha(g)f_\alpha$ therefore gives at most
+$2^r$ rational functions. Distinct strict sign words require distinct
+functions, so $2^d$ such words force $r=d$.
+\end{proof}
+
+\paragraph{Consequence for a particular higher-order construction.}
+The saved Catalan deformation exposes a $q$-dimensional leading query
+polynomial after annihilating $k=q-1$ consecutive weighted monomial
+moments. A $q$-bit binary linear sign code supplying all those
+annihilators would require at least $q^2$ poles by this lemma.
+Consequently that specific choice of code cannot supply a linear-pole
+universal sign cube. This says nothing about a nonlinear subset of
+Boolean annihilators. Even the elementary minimum-distance bound for
+such a subset permits exponentially many words when $H$ is a sufficiently
+large constant multiple of $q$.
+
+\paragraph{Finite audit.}
+The companion check verifies character projection and the sharp
+construction consisting of $d$ independent finite-difference groups,
+each with $k+1$ poles. Its pole count is exactly $d(k+1)$ and its
+$2^d$ rational functions are distinct. The unrestricted claim is the
+Fourier and Vandermonde proof above.
+\end{document}
