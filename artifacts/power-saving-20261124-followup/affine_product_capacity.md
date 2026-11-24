@@ -58,6 +58,8 @@ The inherited [adaptive product compiler obstruction](../power-saving-20261124/a
 
 The inherited [signed quadrature obstruction](../power-saving-20261124/signed_exponential_quadrature_obstruction.md) needs exponentially many quadrature nodes for a two-head score when the original numerators and denominator directions are retained. That restriction is essential. The elementary finite-difference compiler above allows three jointly chosen affine-product terms for two heads, so the quadrature obstruction cannot be applied to a free joint compiler.
 
+The inherited [cleared-numerator border-rank obstruction](../power-saving-20261124/cleared_numerator_border_rank.md) shows that approximation of the particular cleared table can require exponentially many terms. For every $H\geq1$, it constructs an admissible score in dimension $n=4H$ whose cleared numerator has balanced matrix rank $2^{H+1}-2$. Every entrywise limit of $K$ affine-product terms and a bias has matrix rank at most $2K+1$, so $K\geq2^H-1$. This matches the elementary compiler above for that exact table. Its strict sign table is an OR function and has a one-term representation. Therefore the obstruction does not exclude a sign compiler using a different table, equivalently a target-dependent positive multiplier on the vertices. It is a written proof only and does not itself give an obstruction in the critical-width regime.
+
 The first missing lemma for this route is consequently precise: prove, at widths comparable to $N/n^{3/2}$, an exact compiler or a compiler with at most $N/16$ errors whose width is at most $N/[100n\log(n+1)]$. A bound valid only for balanced denominators, fixed directions, or scores with a given relative margin does not meet this lemma.
 
 ## Verification
