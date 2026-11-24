@@ -163,6 +163,22 @@ certification role. This finite certificate does not establish a
 small-$\epsilon$ continuation, nor by itself the cube-admissibility
 budget for arbitrary numbers of rows. Those require a separate argument.
 
+One selected active basis of this finite witness does not continue to
+small $\epsilon$. The basis is recorded in
+\texttt{butterfly-adaptive-haar-h64-basis-failure.json}; the solver-free
+\texttt{butterfly-adaptive-haar-basis-failure-check.py} verifies this
+limited claim using guarded exact Laurent series at precision $1280$.
+Eliminating one bias equation in each of the twenty mixed blocks leaves
+a square system of sixty-four residue equations. Its nonzero pivot
+valuations sum to $905$. The resulting signed score at query
+$(k,s,g)=(1,1,12)$ has leading term
+$-(8/5)\epsilon^{-84}$, strictly before the remaining precision ends.
+This excludes continuation of that specified rational-function vertex.
+It does not exclude another basis, another residue solution, or
+small-$\epsilon$ feasibility of the target, and it does not invalidate
+the separately checked finite certificate at $\epsilon=1/10$.
+
+
 \paragraph{An exact Laurent continuation.}
 The file \texttt{butterfly-adaptive-haar-h32-laurent.json} specifies one
 of the eighty-bit targets and a square active basis. The basis consists

@@ -13,14 +13,14 @@ from fractions import Fraction as F
 from pathlib import Path
 from flint import fmpq_mat, fmpq_series as Series, ctx
 sys.set_int_max_str_digits(0)
-parser=argparse.ArgumentParser();parser.add_argument('certificate');parser.add_argument('--laurent',action='store_true');parser.add_argument('--precision',type=int,default=512);parser.add_argument('--summary',action='store_true');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('certificate');parser.add_argument('--laurent',action='store_true');parser.add_argument('--precision',type=int);parser.add_argument('--summary',action='store_true');args=parser.parse_args()
 D=json.loads(Path(args.certificate).read_text());d=D['dimension'];H=1<<d;q=H//2;bits=D['bits'];powers=D['powers']
 base=Path(__file__).resolve().parent
 sp=importlib.util.spec_from_file_location('bf',base/'butterfly-rectangle-decoder-check.py');bf=importlib.util.module_from_spec(sp);sp.loader.exec_module(bf)
 sw=bf.switches(d);pi=bf.permutation(d,bits);inv=[pi.index(y) for y in range(H)]
 # Scale the barycentric map by a positive monomial so every entry is analytic.
 if args.laurent:
- K=args.precision;ctx.cap=K;x=Series([0,1]);one=Series([1]);zero=Series([]);M=K//4
+ K=args.precision or D.get('precision',512);ctx.cap=K;x=Series([0,1]);one=Series([1]);zero=Series([]);M=K//4
  E=sum((1<<(d-1-j))*powers[j] for j in range(d))
  scale=x**E
 else:x=F(D['epsilon']);one=F(1);zero=F(0);scale=one
