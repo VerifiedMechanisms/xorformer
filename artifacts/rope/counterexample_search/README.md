@@ -82,3 +82,20 @@ $$ e(u_i-\ell\beta_i)\gt K|\beta_i|,\qquad \sum_i e(u_i-\ell\beta_i)\lt K. $$
 These inequalities are equivalent to $u=ks+\ell\beta$, $|\beta_i|\lt s_i$, and $\sum_i s_i\lt1$, with $k=eK$. All numerator and value choices with nonzero token-value difference are included at those fixed denominators. Sampling denominator directions still does not exclude untested representations.
 
 No original model definition, threshold convention, or architectural admissibility condition is changed by these experiments.
+
+## Four-head local patterns
+
+`search_local_pure_four.py` implements two finite selector-orbit patterns. The original pattern contains 404 distinct inputs. It was abandoned after the common-positive-functional Gram obstruction was proved: its cross matrix must have a positive inverse, while its within-right-block Gram matrix must have negative off-diagonal entries. Together with the positive pure mass columns, these conditions contradict the split Gram form. The main theorem notes contain the rigorous obstruction.
+
+The replacement pattern uses middle-layer column-sum witnesses. Its 420 listed constraints contain 364 distinct inputs. The search script checks that repeated witnesses have consistent labels. Its analytic gradient was compared against finite differences; the largest observed absolute discrepancy was below $1.4\cdot10^{-10}$.
+
+`exact_projected_relaxation.json` certifies a quadratic relaxation of the replacement pattern. It gives an integer matrix with sixteen rows and eight columns, a strictly positive first column, and the split form with four positive and four negative squares. Its quadratic satisfies all 91 distinct spatial witnesses, and its cross matrix has negative off-diagonal entries and positive column sums. Verification is entirely integer arithmetic:
+
+```bash
+python3 artifacts/rope/counterexample_search/verify_projected_relaxation.py \
+  artifacts/rope/counterexample_search/exact_projected_relaxation.json
+```
+
+This relaxation is not a pure-head certificate. A common positive functional does not supply the full pure mass cone, the selector parameters, or the required unprojected score signs. `search_projected_embedding.py` and `adapt_projected_isometry.py` explore those additional constraints. `quadratic_sign_cone.py` tests candidate-specific sign implications by floating linear programming; any claimed implication would still require an exact dual certificate.
+
+The two stored pure middle-matrix seeds were also tested. The zero-selector-linear seed has no spatial orbit on which all four unprojected score signs agree with its projected selector sign. Its full projected sign table permits competing quadratic sign polynomials with nonnegative tested off-diagonal cross entries. Thus those seeds do not already give a Boolean lower-bound certificate.
