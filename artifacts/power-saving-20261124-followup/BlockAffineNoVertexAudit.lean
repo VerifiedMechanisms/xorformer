@@ -1,0 +1,10 @@
+import HeadComplexity.Research.BlockAffineNoVertex
+#print axioms HeadComplexity.BlockAffineNoVertex.zero_strict
+#print axioms HeadComplexity.BlockAffineNoVertex.feasible_square_bound
+#print axioms HeadComplexity.BlockAffineNoVertex.feasible_coordinate_bound
+#print axioms HeadComplexity.BlockAffineNoVertex.feasible_isClosed
+#print axioms HeadComplexity.BlockAffineNoVertex.feasible_isCompact
+#print axioms HeadComplexity.BlockAffineNoVertex.normals_rank_le_three
+#print axioms HeadComplexity.BlockAffineNoVertex.first_block_affine
+#print axioms HeadComplexity.BlockAffineNoVertex.second_block_affine
+#print axioms HeadComplexity.BlockAffineNoVertex.translated_coordinate_bounds

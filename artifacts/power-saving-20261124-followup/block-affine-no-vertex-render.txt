@@ -1,0 +1,9 @@
+[
+  {
+    "file": "/work/artifacts/power-saving-20261124-followup/unrestricted_capacity_no_vertex.md",
+    "source_spans": 17,
+    "rendered_spans": 17,
+    "findings": [],
+    "notes": []
+  }
+]

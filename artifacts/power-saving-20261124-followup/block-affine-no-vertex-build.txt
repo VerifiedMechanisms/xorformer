@@ -1,0 +1,2 @@
+✔ [3139/3139] Built HeadComplexity.Research.BlockAffineNoVertex (2.4s)
+Build completed successfully (3139 jobs).

@@ -1,0 +1,13 @@
+'HeadComplexity.BlockAffineNoVertex.zero_strict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.feasible_square_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.feasible_coordinate_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.feasible_isClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.feasible_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.normals_rank_le_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.first_block_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.second_block_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.BlockAffineNoVertex.translated_coordinate_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
