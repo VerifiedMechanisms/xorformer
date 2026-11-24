@@ -1,0 +1,9 @@
+'HeadComplexity.AxisZeroGluing.jointFamily_common_statistic_clearing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_common_statistic_polynomial_degree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.jointFamily_common_statistic_strict_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

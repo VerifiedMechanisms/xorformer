@@ -1,0 +1,4 @@
+import HeadComplexity.Results.JointFamilyCommonStatistic
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_common_statistic_clearing
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_common_statistic_polynomial_degree
+#print axioms HeadComplexity.AxisZeroGluing.jointFamily_common_statistic_strict_sign

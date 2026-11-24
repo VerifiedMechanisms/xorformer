@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{One adaptive denominator statistic cannot supply a logarithmic saving}
+\maketitle
+
+\paragraph{Scope and status.}
+This is a negative result for a restricted direct, global construction.
+All heads may have arbitrary affine numerators and arbitrary distinct or
+repeated poles, but their row slopes must be proportional to one common
+affine statistic. That statistic may depend on the entire target labeling.
+The algebraic clearing and its strict-sign equivalence are kernel checked
+in \texttt{JointFamilyCommonStatistic.lean}. The counting consequence
+below is a written application of an external theorem, not a Lean theorem.
+It does not apply to banks with independently chosen row directions,
+the finite-plane construction, or the general original model.
+
+\paragraph{The family.}
+Put $M=2^k$. At $x\in\{0,1\}^k$, consider
+\[
+ F(x)=\tau+\sum_{h=1}^H
+ \frac{a_{h0}+\sum_{i=1}^k a_{hi}x_i}{b_h-\phi_w(x)},
+ \qquad \phi_w(x)=\sum_{i=1}^k w_i x_i.
+\]
+Every denominator is assumed positive on the full cube. We allow all
+real $w_i$, a relaxation of either uniform slope orientation. A constant
+term in $\phi_w$ is absorbed into the $b_h$. A positive head-specific
+multiple of the common statistic can likewise be normalized into its
+pole and numerator.
+
+Let $Q(T)=\prod_h(b_h-T)$ and let $Q_h(T)$ omit its $h$th factor.
+Multiplying by the positive $Q(\phi_w(x))$ gives
+\[
+ Q(\phi_w(x))F(x)=P_0(\phi_w(x))+
+       \sum_{i=1}^k x_iP_i(\phi_w(x)),
+\]
+where $P_0=\tau Q+\sum_h a_{h0}Q_h$ and
+$P_i=\sum_h a_{hi}Q_h$. All these polynomials have degree at most $H$.
+We enlarge the family by allowing their $(k+1)(H+1)$ coefficients to
+vary freely. Thus poles add no further degrees of freedom to this
+enlarged sign class. The reduction remains valid when poles coincide.
+
+\paragraph{The external counting input.}
+Theorems 12 and 13 of Basu and Rizzie,
+\emph{Multi-degree bounds on the Betti numbers of real varieties and
+semi-algebraic sets and applications}, bound sign conditions for
+polynomials with specified degrees in separate variable blocks.
+We use the explicit $G_{\min}$ formula in Section 2.2, with two blocks,
+and retain its binomial sum rather than the weaker final asymptotic
+estimate printed there. A primary author copy is
+\href{https://www.math.purdue.edu/~sbasu/multidegree-may-24-2017.pdf}
+{the May 24, 2017 manuscript}, page 11.
+
+Write $p=(k+1)(H+1)$ and $D=p+k$. The coefficient variables form a
+block of $p$ variables with degree at most one. The direction variables
+form a block of $k$ variables with degree at most $H$. Set
+$h=\max\{2,H\}$ and use degree bounds $(2,h)$ in that theorem.
+Its uniform bound for $G_{\min}$, obtained by using
+$\frac12G_{\rm gen}(2d',\mathbf k,1)$, is
+\[
+ G_{\min}(d',\mathbf k,j)
+ \leq 1+4(D+1)^2 108^D h^k
+ \leq 4096^D h^k.
+\]
+Here each coordinate of $d'$ is the smallest even integer above its
+corresponding degree bound, so doubling it costs at most four times the
+original degree. The multinomial reciprocal in $G_{\rm gen}$ is at
+most one. Finally $(D+1)^2\leq4^D$ for $D\geq1$.
+
+For $D\leq M$, the number $S$ of strict sign words on the cube therefore
+satisfies
+\[
+ S\leq4096^D h^k\sum_{j=1}^D4^j\binom Mj
+ \leq h^k\left(\frac{2^{16}M}{D}\right)^D.
+\]
+The final estimate uses
+$\sum_{j=0}^D\binom Mj\leq(eM/D)^D$ and $4e<16$.
+There is no assumption that the common statistic is fixed before labels
+are chosen: its $k$ parameters have already been counted.
+
+\begin{theorem}
+For all sufficiently large $k$, universality of the common-statistic
+family on the full $k$-cube requires $H=\Omega(2^k/k)$.
+In particular, $H=o(2^k/k)$ cannot realize every strict Boolean labeling.
+With the deliberately coarse constants above, $k\geq16$ and
+$1\leq H\leq2^k/(256k)$ already preclude universality.
+\end{theorem}
+\begin{proof}
+Universality requires $S=2^M$, hence
+\[
+ M\leq k\log_2 h+D\log_2(2^{16}M/D).
+\]
+If $H=o(M/k)$ then $D=o(M)$, while $k\log_2 h=O(k^2)=o(M)$.
+The right-hand side is $o(M)$, a contradiction.
+
+For the explicit range, $H\leq M/(256k)$ gives $D\leq M/64$.
+Also $k^2\leq M/16$ for $k\geq16$. The function
+$t\mapsto t\log_2(2^{16}/t)$ increases on $0<t\leq1/64$,
+so the right-hand side is at most
+$M/16+22M/64<M$.
+\end{proof}
+
+\paragraph{Implication for the research route.}
+The common-statistic class cannot recover even the known universal
+$O(M/(k\log k))$ bound by a direct global synthesis. The exponentially
+many subset sums of a generic $w$ do not change that conclusion.
+Independently chosen denominator directions, or a genuinely different
+organization of parameters across a shared local family, remain possible.
+
+\paragraph{Extension to any fixed global direction dictionary.}
+The same written counting argument covers a larger restricted class:
+fix arbitrary row directions $d_h\in\mathbb R^k$ before the target labels,
+and allow arbitrary offsets $b_h$, affine numerators $A_h$, and threshold.
+For $\tau+\sum_h A_h(x)/(b_h+d_h\cdot x)$, positive denominator clearing
+has degree one in $p=H(k+1)+1$ numerator and threshold parameters, and
+degree at most $H$ in the $H$ offset parameters. Thus, with $D=p+H$,
+\[
+ S\leq \max\{2,H\}^{H}
+       \left(\frac{2^{16}M}{D}\right)^D
+ \qquad(D\leq M).
+\]
+If $H=o(M/k)$, then $H\log H=o(M)$ and $D=o(M)$, again contradicting
+$S=2^M$. This allows exponentially many distinct subset sums, arbitrary
+pole permutations, and unrestricted affine numerator coefficients.
+It still does not constrain a dictionary whose directions depend on the
+target labeling, or on the whole independently labeled local family.
+It is an obstruction for direct global synthesis with a fixed dictionary,
+not a lower bound for the unrestricted original quantity.
+
+\paragraph{Checked declarations.}
+The names are
+\texttt{jointFamily\_common\_statistic\_clearing},
+\texttt{jointFamily\_common\_statistic\_polynomial\_degree}, and
+\texttt{jointFamily\_common\_statistic\_strict\_sign}, in namespace
+\texttt{HeadComplexity.AxisZeroGluing}.
+No multidegree counting principle has been added as a Lean axiom.
+The targeted build passed with 9052 jobs. All three declarations report
+only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+\end{document}
