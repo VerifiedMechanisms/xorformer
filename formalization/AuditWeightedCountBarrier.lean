@@ -1,0 +1,6 @@
+import HeadComplexity.Research.WeightedCountBarrier
+#print axioms HeadComplexity.WeightedCountBarrier.square_le_two_pow
+#print axioms HeadComplexity.WeightedCountBarrier.base_ge_cube_size_div_dimension
+#print axioms HeadComplexity.WeightedCountBarrier.optimal_certificate_exceeds_all_tables
+#print axioms HeadComplexity.WeightedCountBarrier.every_block_certificate_ge_optimal
+#print axioms HeadComplexity.WeightedCountBarrier.every_block_certificate_exceeds_all_tables
