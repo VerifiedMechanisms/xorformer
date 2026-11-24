@@ -1,0 +1,9 @@
+import HeadComplexity.Results.ApproximateGradedShellTransfer
+
+#print axioms HeadComplexity.AxisZeroGluing.HeadScoreClosure.strict_signs
+#print axioms HeadComplexity.AxisZeroGluing.HeadScoreClosure.sum
+#print axioms HeadComplexity.AxisZeroGluing.HeadScoreClosure.of_tendsto
+#print axioms HeadComplexity.AxisZeroGluing.positive_ratios_restrict_closure
+#print axioms HeadComplexity.AxisZeroGluing.ReverseApproxGradedData.centered_closure
+#print axioms HeadComplexity.AxisZeroGluing.glue_reverse_approx_graded_shell_modules
+#print axioms HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_le_approx_graded_shell_cover

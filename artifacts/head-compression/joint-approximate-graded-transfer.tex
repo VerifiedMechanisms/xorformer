@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{Approximate cancellation in graded shell gluing}
+\maketitle
+
+\paragraph{Checked statement.}
+Let a finite family of Boolean downward shells be ordered by decreasing target
+rank. A shell with center $C$ and deletion depth $d$ consists of all $x\subseteq C$
+with $|C|-|x|=d$. For each shell suppose a pointwise limit $F_C$ of $H_C$ reverse
+admissible heads is available on the entire deletion cube. Assume $F_C=0$ on
+every deletion layer below $d$, and that $F_C$ has the prescribed strict signs
+on the entire target shell. Then the union of all shells can be labeled by
+exactly $\sum_C H_C$ original-model heads. For a cover of the full Boolean cube,
+the same sum bounds the original worst-case quantity.
+
+\paragraph{Why approximate cancellation suffices.}
+The space of scores on the finite Boolean cube has its usual finite-dimensional
+topology. Write $\mathcal A_H$ for scores of $H$ actual admissible heads. Strict
+sign constraints define an open set, so any strictly signed score in
+$\overline{\mathcal A_H}$ has the same strict signs as some actual score in
+$\mathcal A_H$. Finite weighted sums of independent limits belong to the
+closure of the family with the sum of head counts. This follows by continuity
+of finite sums and numerator scaling, with no bounds on residues or rates.
+
+For a fixed reverse approximant, center complementation gives strictly
+positive denominator slopes. Adding a nonnegative affine penalty, zero on the
+center's downset and positive elsewhere, sends the score to zero off that
+downset as the penalty grows. Full-cube denominator positivity and slope
+admissibility hold for every nonnegative penalty. Taking the original local
+limit afterward is legitimate because the closure is closed. This avoids
+assuming any uniformity between the two limits.
+
+Finally, any previously protected point in the current downset lies on a
+proper deletion layer or on the current target shell. Its new contribution is
+therefore zero or correctly signed. Outside the downset the limiting
+contribution is zero. Positive finite scaling then gives all required strict
+signs, and openness produces an actual original-model score.
+
+\paragraph{Scope.}
+The theorem does not assert the existence of an efficient local decoder. In
+particular, signs on a sparse subset of a target shell do not suffice: every
+target point of that shell must be controlled. This result removes an exact
+lower-layer cancellation requirement, not the same-layer interference issue.
+The original model, head admissibility, and worst-case definition are unchanged.
+
+\paragraph{Lean declarations.}
+All declarations are in
+\texttt{HeadComplexity/Results/ApproximateGradedShellTransfer.lean}, namespace
+\texttt{HeadComplexity.AxisZeroGluing}. The endpoint is
+\texttt{worstCaseHeadComplexity\_le\_approx\_graded\_shell\_cover}.
+The accompanying axiom audit lists only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+\end{document}

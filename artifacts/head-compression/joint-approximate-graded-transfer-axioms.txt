@@ -1,0 +1,15 @@
+'HeadComplexity.AxisZeroGluing.HeadScoreClosure.strict_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.HeadScoreClosure.sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.HeadScoreClosure.of_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.AxisZeroGluing.positive_ratios_restrict_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.ReverseApproxGradedData.centered_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.glue_reverse_approx_graded_shell_modules' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AxisZeroGluing.worstCaseHeadComplexity_le_approx_graded_shell_cover' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
