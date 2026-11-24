@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\title{Positive common root pools supplied by auxiliary routing}
+\author{}\date{}
+\begin{document}\maketitle
+
+\paragraph{Status.}
+This is a complete written root-only compatibility theorem, with exact
+rational checks. It permits a single strictly positive residue pool for
+several prescribed words by choosing routing at unused query indices.
+It is not Lean-checked, does not preserve descendant inequalities, and
+does not prove a growing-query compiler.
+
+Let $q\geq1$, and let $t_1<\cdots<t_q$ be exterior queries. Write
+$v(p)=(1/(t_j-p))_{j=1}^q$ for $p<t_1$.
+
+\begin{lemma}[Positive spanning from alternating Cauchy columns]
+For any $q+1$ distinct poles $p_0<\cdots<p_q<t_1$, the vectors
+$(-1)^h v(p_h)$ positively span $\mathbb R^q$. More precisely,
+every $y\in\mathbb R^q$ is a linear combination of these vectors
+with all coefficients strictly positive.
+The same conclusion holds after adding any other signed columns
+and prescribing arbitrary strictly positive coefficients on them.
+\end{lemma}
+\begin{proof}
+Every $q$ by $q$ minor of the Cauchy matrix $(1/(t_j-p_h))$ is
+nonzero and has the same sign, by the Cauchy determinant formula:
+its factors are the ordered differences of queries and poles,
+with positive denominator factors. The standard signed-minor
+kernel vector consequently has alternating nonzero coordinates.
+After the column sign changes $(-1)^h$, this gives a strictly
+positive kernel vector $z$. The signed matrix has rank $q$.
+For an arbitrary $y$, take any real solution $c$ of $Ac=y$.
+Then $c+\lambda z$ is strictly positive for sufficiently large
+$\lambda$, without changing its image. Additional prescribed
+columns can first be subtracted from $y$.
+\end{proof}
+
+Suppose now that the poles come in $M$ adjacent pairs,
+\[
+ p_1^-<p_1^+<p_2^-<p_2^+<\cdots<p_M^-<p_M^+<t_1.
+                                                               \tag{1}
+\]
+A routing word $\theta\in\{-1,1\}^M$ and positive pool
+$c=(c_s^-,c_s^+)_{s=1}^M$ give the root score
+\[
+ F_{\theta,c}(t)=\sum_{s=1}^M\theta_s
+       \left(\frac{c_s^-}{t-p_s^-}
+                     -\frac{c_s^+}{t-p_s^+}\right).            \tag{2}
+\]
+Let $I\subseteq\{1,\ldots,M\}$ have size $q$. Indices in $I$ are
+prescribed routing indices; the others are available for auxiliary
+routing. An association between queries and $I$ may be fixed in
+any order.
+
+\begin{theorem}[Several words with one positive pool]
+Let $K\geq1$ and set $L=\lceil(q+1)/2\rceil$. Assume
+\[
+                         M-q\geq KL.                          \tag{3}
+\]
+For every collection of prescribed routing words
+$\rho^{(a)}\in\{-1,1\}^I$ and every collection of desired real
+query vectors $y^{(a)}\in\mathbb R^q$, $1\leq a\leq K$, there
+exist completions $\theta^{(a)}\in\{-1,1\}^M$ and one common
+strictly positive pool $c$ such that
+\[
+ \theta^{(a)}|_I=\rho^{(a)},\qquad
+ F_{\theta^{(a)},c}(t_j)=y_j^{(a)}
+                   \quad(1\leq a\leq K,\ 1\leq j\leq q).
+                                                               \tag{4}
+\]
+In particular arbitrary prescribed root sign words can be realized
+by setting $y_j^{(a)}$ equal to their requested signs.
+\end{theorem}
+\begin{proof}
+Choose $K$ linearly independent sign vectors
+$w_1,\ldots,w_K\in\{-1,1\}^K$. For example take $w_1$ to be
+all positive, and for $2\leq h\leq K$ obtain $w_h$ by flipping
+coordinate $h-1$ of $w_1$. Subtracting the first column from the
+others proves independence, including the case $K=1$.
+
+Choose disjoint groups $J_1,\ldots,J_K$ of $L$ auxiliary pair
+indices each. For every $s\in J_h$, set
+$\theta_s^{(a)}=(w_h)_a$ for all $a$. Set any remaining auxiliary
+routing bits arbitrarily. Prescribe positive residues, for example
+one, on the prescribed pairs and on those remaining auxiliary
+pairs. Subtract their score vectors from the desired matrix
+$Y=(y_j^{(a)})$. Since the columns $w_h$ form a basis, the remaining
+matrix has a unique decomposition
+\[
+                           \sum_{h=1}^K w_h z_h^{\mathsf T}
+                \quad\text{with }z_h\in\mathbb R^q.
+\]
+Within group $J_h$, sorted pole columns alternate in sign in the
+scalar transform in parentheses in (2). There are $2L\geq q+1$
+such columns. The lemma gives strictly positive coefficients on
+all of them whose scalar query vector is exactly $z_h$.
+Their contributions to the full $K$ by $q$ matrix are therefore
+$w_h z_h^{\mathsf T}$. Combining all groups proves (4).
+\end{proof}
+
+For two target words condition (3) permits approximately half of the
+pair indices to be queried. This conclusion differs from a common-pool
+assertion with all routing bits fixed: the auxiliary completions are
+chosen separately for the different target words. In the dyadic pole
+family $p_s^-=p_s$, $p_s^+=p_s+\delta$, with $\delta$ smaller than
+every gap between distinct $p_s$, the adjacency hypothesis (1) holds.
+The theorem thus applies to that family's root score whenever its
+unused routing bits can be chosen independently.
+
+\paragraph{Why this does not yet recurse.}
+The common pool in the theorem need not satisfy a single additional
+descendant query. The proof uses exact value interpolation, and its
+combined query matrix has rank $Kq$; it obtains this rank by reserving
+about $Kq$ pole coefficients. Stacking all descendant rows would
+exceed that supply once the desired total number of queries grows
+faster than the number of poles. Also, an induction requiring common
+pools for $K$ full subtrees generally doubles the number of subtrees
+when passing to their children. Condition (3) by itself then yields
+only a bounded total query-to-pole ratio.
+
+An actual superconstant improvement would require a weaker invariant,
+such as intersections of projected sign cones, that retains these
+auxiliary choices without matching all descendant values. Neither the
+positive-spanning lemma nor the count of possible completions proves
+that stronger statement.
+
+\paragraph{Exact verification.}
+\texttt{auxiliary-root-pool-check.py} uses rational adjacent poles and
+exterior queries, computes signed Cauchy kernels and inverses exactly,
+and constructs positive pools by a kernel shift. It checks every
+collection of root sign words for $1\leq q,K\leq3$, and for
+$(q,K)=(4,2),(5,2)$, at the boundary value $M=q+KL$.
+All original query scores equal their desired signs exactly.
+No floating-point feasibility test or descendant assertion is used.
+\end{document}
