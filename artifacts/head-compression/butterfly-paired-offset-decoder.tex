@@ -191,4 +191,49 @@ compiler or a lower bound on worst-case head complexity.  The distinct
 paired-Haar construction and more general adaptive offset families remain
 open.  The purpose of the counterexample is to prevent finite successful
 samples from being mistaken for a universal hierarchy theorem.
+
+\paragraph{A matched-center identity for one level.}
+There is a separate exact identity relevant to an attempted convex-energy
+construction. Choose distinct $p_r$, a common gap $\gamma>0$, and
+$T>2\max_r p_r+\gamma$. At index $r$ put the two tokens
+\[
+ (p_r,A_r+\kappa_r),\qquad(p_r+\gamma,A_r-\kappa_r).
+\]
+Query $s$ uses $D_s=T-p_s$, subtracts $A_s$ from the numerator,
+and uses $\kappa_s$ in the paired function $g$. The difference between
+its two token scores is
+\[
+ \Delta_{sr}=(A_s-A_r)K_{sr}+(\kappa_r-\kappa_s)L_{sr},
+\]
+where, for $x_{sr}=T-p_s-p_r$,
+\[
+ K_{sr}=\frac{2\gamma^2}{x_{sr}(x_{sr}^2-\gamma^2)},
+ \qquad L_{sr}=\frac{2\gamma}{x_{sr}^2-\gamma^2}.
+\]
+This follows by subtracting the fractions: the coefficient of $A_r-A_s$
+is $2/x-1/(x+\gamma)-1/(x-\gamma)$, and the coefficient of
+$\kappa_r-\kappa_s$ is $1/(x-\gamma)-1/(x+\gamma)$.
+Both $K$ and $L$ are symmetric positive definite. Indeed, their integral
+representations have respective positive weights
+$2e^{-Tt}(\cosh(\gamma t)-1)$ and
+$2e^{-Tt}\sinh(\gamma t)$ multiplying
+$e^{p_st}e^{p_rt}$ on $(0,\infty)$. Distinct real exponentials are
+linearly independent, as is also seen from their Vandermonde matrix of
+derivatives at zero, so every nonzero coefficient vector has strictly
+positive quadratic integral.
+
+Nevertheless $\Delta$ itself is skew-symmetric. In particular the
+unweighted paired score $F=\Delta\sigma$ cannot realize a balanced
+sign vector $\sigma\in\{-1,1\}^q$, even after adding a common block
+bias $\beta$: if $\sum_s\sigma_s=0$, then
+\[
+ \sum_s\sigma_s(F_s+\beta)=\sigma^{\mathsf T}\Delta\sigma=0.
+\]
+It is therefore impossible for every summand to be positive.
+This statement concerns only this matched-center, fixed-token base
+construction. Adaptive residues, additional heads, and different
+profiles are not covered. In particular, positivity of the two scalar
+kernels alone does not prove feasibility of a paired-Haar decoder.
+The exact rational check is
+\texttt{butterfly-paired-offset-skew-check.py}.
 \end{document}
