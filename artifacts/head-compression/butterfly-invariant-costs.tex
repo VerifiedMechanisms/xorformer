@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Invariant Costs of One-Pass Butterfly Permutations}
+\author{}\date{}\begin{document}\maketitle
+
+\paragraph{Status.}
+This note proves a finite combinatorial classification and an exact
+reciprocal identity. Neither is a superconstant-saving compiler. In
+particular, the final two-denominator realization has a linear
+feature-space limitation stated explicitly below. These are written
+proofs with exhaustive small exact checks, not Lean declarations.
+
+\paragraph{Notation.}
+Put $H=2^d$. At layer $k=0,\ldots,d-1$ of the butterfly, independently
+swap or preserve each pair of wires differing only in bit $k$.
+Let $\pi$ be the resulting permutation, with all $Hd/2$ switches
+independent and uniform. A cost matrix $C=(C_{hy})$ is invariant if
+$S_C(\pi)=\sum_h C_{h,\pi(h)}$ is independent of all switch settings.
+The input Haar vectors are
+\[
+ u_{i,g}(h)=\mathbf1_{\{h\mathbin{\mathrm{div}}2^{i+1}=g\}}
+                   (1-2h_i),\qquad
+ 0\leq i<d,\quad 0\leq g<H/2^{i+1}.
+\]
+The output Haar vectors use the opposite bit order:
+\[
+ v_{j,s}(y)=\mathbf1_{\{y\bmod2^j=s\}}(1-2y_j),\qquad
+ 0\leq j<d,\quad 0\leq s<2^j.
+\]
+Together with the constant vector, each family is an orthogonal basis
+of $\mathbb R^H$.
+
+\begin{lemma}[Two-path probabilities]
+Fix distinct inputs $h,h'$ and distinct outputs $y,y'$. Let $k$ be
+the highest bit where the inputs differ, and $l$ the lowest bit where
+the outputs differ. Then
+\[
+ \Pr(\pi(h)=y,\ \pi(h')=y')=
+ H^{-2}\begin{cases}1&l<k,\\2&l=k,\\0&l>k.\end{cases}       \tag{1}
+\]
+Also $\Pr(\pi(h)=y)=H^{-1}$.
+\end{lemma}
+\begin{proof}
+A specified input-output pair has a unique butterfly path, which
+prescribes $d$ switch outcomes. If $l<k$, the two paths use disjoint
+switches and prescribe $2d$ outcomes. If $l=k$, they share exactly
+one switch, with compatible opposite exits, and prescribe $2d-1$
+outcomes. If $l>k$, their prescriptions at the layer-$k$ switch
+require both inputs to use the same exit, which is impossible.
+\end{proof}
+
+\begin{theorem}[Complete invariant-cost space]
+The invariant costs are exactly the span of row-only costs,
+column-only costs, and the product Haar costs
+$u_{i,g}(h)v_{j,s}(y)$ with $i>j$. This space has dimension
+\[
+                         H+\frac{Hd}{2}.                    \tag{2}
+\]
+More precisely, on the orthogonal product-Haar basis, the covariance
+operator of the assignment matrix is diagonal. On the product with
+input level $i$ and output level $j$, its eigenvalue is
+\[
+ \lambda_{ij}=\begin{cases}
+ 0&i>j,\\2/H&i=j,\\1/H&i<j.
+ \end{cases}                                                 \tag{3}
+\]
+The eigenvalue is relative to the squared Frobenius norm of the cost
+matrix. Row-only and column-only costs have variance zero.
+\end{theorem}
+\begin{proof}
+Let $A_k(h,h')$ indicate that the highest differing input bit is $k$,
+and let $B_l(y,y')$ indicate that the lowest differing output bit is
+$l$. On the space of product Haar costs, the second-moment operator
+given by (1) is
+\[
+ \frac1H I+\frac1{H^2}\sum_{k=0}^{d-1}
+ A_k\otimes\left(\sum_{l<k}B_l+2B_k\right).             \tag{4}
+\]
+The mean of every product Haar statistic is zero. The vector
+$u_{i,g}$ is an eigenvector of $A_k$, with eigenvalues $2^k$ for
+$k<i$, $-2^i$ for $k=i$, and zero for $k>i$.
+Similarly $v_{j,s}$ is an eigenvector of $B_l$, with eigenvalues
+$2^{d-l-1}$ for $l>j$, $-2^{d-j-1}$ for $l=j$, and zero for $l<j$.
+Substitution in (4) gives (3). In particular distinct product Haar
+costs have zero covariance. A cost is invariant precisely when its
+variance is zero, since every switch setting has positive probability.
+This proves the claimed span. Its dimension is
+\[
+ 2H-1+\sum_{i=1}^{d-1}\frac{H}{2^{i+1}}
+                      \sum_{j=0}^{i-1}2^j
+ =H+\frac{Hd}{2}.
+\]
+The same formula gives dimension one when $d=0$.
+\end{proof}
+
+\paragraph{Equivalent cut invariants.}
+For every $k=0,\ldots,d$, every input block fixing the bits at least
+$k$, and every output prefix fixing the bits below $k$, exactly one
+routed wire belongs to both. The corresponding rectangle costs are
+therefore invariant. Their span is the space in the theorem: their
+product-Haar expansions give precisely the modes $i>j$, together
+with row and column costs. The full-permutation invariant space only
+contains row and column costs, so its classification cannot be applied
+unchanged to the butterfly family.
+
+\begin{lemma}[Exact two-denominator realization]
+Let $D_0,D_1$ be distinct numbers larger than all distinct pool poles
+$p_y$. Choose arbitrary $q_y$, a linear polynomial $L(t)=ut+v$,
+and residues
+\[
+ a_y=q_y(D_0-p_y)(D_1-p_y)+L(p_y).
+\]
+For a binary input profile $\alpha_h$, set $D_h=D_0$ if
+$\alpha_h=1$ and $D_h=D_1$ otherwise, and set $b_h=-L(D_h)$.
+Then for every permutation $\pi$,
+\[
+ \sum_h\frac{a_{\pi(h)}+b_h}{D_h-p_{\pi(h)}}
+ =\sum_y q_y(D_0-p_y)-Hu
+       +(D_1-D_0)\sum_h\alpha_hq_{\pi(h)}.             \tag{5}
+\]
+Thus an invariant assignment cost of the displayed separated form
+gives an exact common zero after subtraction of a constant bias.
+\end{lemma}
+\begin{proof}
+For $D_h=D_0$ the summand equals $q_{\pi(h)}(D_1-p_{\pi(h)})-u$;
+for $D_h=D_1$ it equals $q_{\pi(h)}(D_0-p_{\pi(h)})-u$.
+Summing these identities gives (5).
+\end{proof}
+
+\paragraph{Why two denominator states alone do not give a saving.}
+Suppose every query chooses, at each head, one of the same two fixed
+head functions $f_{0,h}(\theta_h)$ and $f_{1,h}(\theta_h)$.
+Writing its choice as $\alpha_{hj}\in\{0,1\}$, its total score is
+\[
+ \sum_h f_{1,h}(\theta_h)+
+       \sum_h\alpha_{hj}
+           (f_{0,h}(\theta_h)-f_{1,h}(\theta_h)).       \tag{6}
+\]
+Across queries this belongs to a fixed linear space of dimension at
+most $H+1$. Fixed query biases produce an affine translate of that
+space. Consequently this family cannot shatter more than $H+1$
+queries. The limitation applies to (5), including arbitrary moving
+row parameters and arbitrary permutation branches. It does not apply
+to general query-dependent denominators, additional denominator
+states, or higher-order constructions that genuinely leave (6).
+Realizing useful parts of the larger invariant space with those
+additional freedoms remains open.
+\end{document}
