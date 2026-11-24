@@ -1,0 +1,27 @@
+ℹ [3833/3834] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:128:0: 'HeadComplexity.ConditionedReciprocalApproximation.geometric_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:129:0: 'HeadComplexity.ConditionedReciprocalApproximation.exponential_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'HeadComplexity.ConditionedReciprocalApproximation.sign_preserved_of_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3834/3834] Replayed HeadComplexity.Research.NearConstantMarginObstruction
+info: HeadComplexity/Research/NearConstantMarginObstruction.lean:179:0: 'HeadComplexity.NearConstantMarginObstruction.thresholdDegLE_of_near_constant_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/NearConstantMarginObstruction.lean:180:0: 'HeadComplexity.NearConstantMarginObstruction.margin_le_of_threshold_degree_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/NearConstantMarginObstruction.lean:181:0: 'HeadComplexity.NearConstantMarginObstruction.parity_margin_le_of_near_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3834 jobs).
