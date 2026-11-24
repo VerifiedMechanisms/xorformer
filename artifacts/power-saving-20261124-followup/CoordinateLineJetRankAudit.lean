@@ -1,0 +1,6 @@
+import HeadComplexity.Research.CoordinateLineJetRank
+#check HeadComplexity.CoordinateLineJetRank.derivativeMatrix_rank_le_sub_one
+#print axioms HeadComplexity.CoordinateLineJetRank.derivativeMatrix_factor
+#print axioms HeadComplexity.CoordinateLineJetRank.derivativeMatrix_rank_le_sub_one
+#print axioms HeadComplexity.CoordinateLineJetRank.point_pos
+#print axioms HeadComplexity.CoordinateLineJetRank.point_injective

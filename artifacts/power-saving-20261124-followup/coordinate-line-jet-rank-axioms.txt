@@ -1,0 +1,12 @@
+HeadComplexity.CoordinateLineJetRank.derivativeMatrix_rank_le_sub_one.{u_1, u_2} {ι : Type u_1} {κ : Type u_2}
+  [Fintype ι] [Fintype κ] [DecidableEq ι] (j : ι) (u : ι → ℝ) (lam : κ → ℝ) :
+  (HeadComplexity.CoordinateLineJetRank.derivativeMatrix (HeadComplexity.CoordinateLineJetRank.point j u lam)).rank ≤
+    2 * Fintype.card ι - 1
+'HeadComplexity.CoordinateLineJetRank.derivativeMatrix_factor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoordinateLineJetRank.derivativeMatrix_rank_le_sub_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoordinateLineJetRank.point_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoordinateLineJetRank.point_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
