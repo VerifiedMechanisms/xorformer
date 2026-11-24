@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\title{Compact pole windows require a singular dictionary limit}
+\date{24 November 2026}
+\begin{document}
+\maketitle
+
+\section{A local obstruction}
+
+Let $X$ be a nonempty finite query set and let $A(\theta)$ be a continuous
+family of real $X\times H$ evaluation matrices. Its columns include every
+freely weighted feature, so fixed polynomial correction features are charged
+as additional columns. The coefficients multiplying these columns may be
+arbitrarily large and depend arbitrarily on the desired labels.
+
+\begin{theorem}
+Suppose $G_0=A(\theta_0)^\top A(\theta_0)$ has positive determinant. Suppose
+there is $z\in\mathbb R^X$ with every coordinate nonzero and
+$A(\theta_0)^\top z=0$. Then there is an open neighborhood of $\theta_0$
+on which no score $A(\theta)a$ has strict coordinate signs equal to those
+of $z$.
+\end{theorem}
+
+\begin{proof}
+Put $G(\theta)=A(\theta)^\top A(\theta)$ and define the polynomial expression
+\[
+ q(\theta)=\det G(\theta)z-
+ A(\theta)\operatorname{adj}(G(\theta))A(\theta)^\top z.
+\]
+The adjugate identity gives $A(\theta)^\top q(\theta)=0$ for every
+$\theta$, including singular matrices. At the center,
+$q(\theta_0)=\det G_0 z$. By continuity all coordinates of $q(\theta)$
+have the corresponding signs of $z$ throughout some common neighborhood.
+If $A(\theta)a$ had these strict signs, then
+$q(\theta)^\top A(\theta)a$ would be strictly positive, contradicting
+its being zero. No bound on $a$ was used.
+\end{proof}
+
+This theorem is kernel checked as
+\texttt{HeadComplexity.AxisZeroGluing.jointFamily\_compact\_regular\_dictionary\_obstruction}
+in
+\texttt{formalization/HeadComplexity/Results/JointFamilyCompactRank.lean}.
+The auxiliary strict dual lemma and adjugate annihilation identity are
+also checked. The hypotheses are explicit; the file does not infer genericity
+or construct a nonzero dual vector from a rank count.
+
+\section{Consequences for the proposed local decoder}
+
+For fixed positive row directions, a reciprocal column has the form
+\[
+ A_{x,h}(p)=\frac{1}{p_h+\sum_i w_{h,i}(1-x_i)},\qquad w_{h,i}>0.
+\]
+Positive poles give positive denominators on the entire row cube. For
+independently chosen column poles in the reverse cube-star construction,
+positivity on multihot column inputs generally forces the permitted pole
+variation to shrink with the number of columns. Merely reusing a fixed
+regular dictionary with a narrower window cannot eventually yield all
+strict label tables: the theorem excludes one fixed row sign pattern
+throughout a sufficiently small window. Allowing arbitrary residues,
+permuting the poles, or adding a fixed finite correction space does not
+remove this obstruction when the enlarged center matrix still satisfies
+the displayed hypotheses.
+
+If the center span contains no coordinate vector and is proper, elementary
+linear algebra yields a full-support normal $z$: for each coordinate the
+normal space is not contained in its zero-coordinate hyperplane, and a
+real vector space is not the union of finitely many proper subspaces.
+This consequence is a written proof, not an additional Lean declaration.
+
+\section{Scope and surviving positive routes}
+
+A compact decoder factory is allowed to choose its row directions as a
+function of the permitted window. The theorem therefore does not rule out
+families deliberately approaching a singular center. In particular, when
+all directions approach the same vector, the limiting evaluation matrix
+can have rank at most the number of Hamming weights, leaving a large
+kernel if $H>k+1$. Pole/residue permutations can then select different
+higher-order jets after common low-order corrections. Proving that these
+residual branches meet every required strict orthant remains open.
+
+Nor does the theorem exclude a finite window of fixed width, a dictionary
+with a singular center, or nonlinear correction features whose own
+parameters vary with the pole window. It supplies no lower bound for the
+original unrestricted worst-case head complexity.
+
+\end{document}
