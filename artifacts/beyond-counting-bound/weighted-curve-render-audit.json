@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/beyond-counting-bound/weighted-curve-jet-count.md",
+    "source_math_spans": 94,
+    "rendered_math_spans": 94,
+    "findings": 0,
+    "sha256": "02ce2c7fceaa3fef842347038e38fb6360f837e602cb8fd4bd55052db38145fa"
+  },
+  {
+    "file": "artifacts/beyond-counting-bound/research.md",
+    "source_math_spans": 119,
+    "rendered_math_spans": 119,
+    "findings": 0,
+    "sha256": "d7bde2d1792a825a95be03c8fd6a59030dc7077a2ee6f18b4ed4e6579d67bd40"
+  }
+]

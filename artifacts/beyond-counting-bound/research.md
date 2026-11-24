@@ -2,9 +2,11 @@
 
 ## Target and proof standard
 
-Prove that the sequence $n^2W(n)/2^n$ is unbounded for the unchanged model in the attached `version-5.tex`.
+Prove an eventual fixed-exponent improvement for the unchanged model in the attached `version-5.tex`. The current target is to find constants $\varepsilon\gt0$, $c\gt0$, and $n_0$ such that
 
-$$ \forall C\gt0\qquad \forall n_0\qquad \exists n\geq n_0\qquad \exists f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace,\qquad H^{\ast}(f)\gt C\frac{2^n}{n^2}. $$
+$$ W(n)\geq c\frac{2^n}{n^{2-\varepsilon}}\qquad\text{for every }n\geq n_0. $$
+
+This implies the original objective that $n^2W(n)/2^n$ is unbounded. A subsequence-only bound does not complete the current target. The stronger matching order $2^n/n$ is welcome but is not required.
 
 The desired conclusion is not an assumption in any argument. Denominators may depend on the target. Neither fixed-denominator dimension bounds nor exact real-table dimension bounds establish this Boolean sign-representation statement.
 
@@ -36,7 +38,7 @@ Clearing denominators at each of the $2^n-1$ nonzero inputs gives parameter poly
 
 Warren's bound yields the exponent $1+2nHL_n$, where $L_n=\log_2(2e(2^n-1)/n)$. This proves the stated lower bound of order $2^n/n^2$ but no unbounded improvement factor.
 
-The repository file `formalization/HeadComplexity/Results/CountingLowerBound.lean` makes the analytic theorem an explicit hypothesis named `WarrenStrictSignPatternBound`. Its finite reductions are formalized; Warren's theorem itself is not proved there. This distinction must remain visible in any new formalization.
+The repository file `formalization/HeadComplexity/Results/CountingLowerBound.lean` makes the analytic theorem an explicit hypothesis named `WarrenStrictSignPatternBound`. The imported and independently rebuilt `WarrenBound.lean` now discharges that interface. The unconditional theorem in `WarrenAsymptotics.lean` proves $W(n)\geq2^n/(70n^2)$ for $n\geq16$, using only the standard axioms. This verifies the baseline, not the requested exponent improvement; see `imported-warren-audit.json` for the exact verification scope.
 
 ## Approaches awaiting investigation
 
@@ -111,7 +113,7 @@ The direct [Newton-volume calculation](newton-volume-obstruction.md) shows that 
 
 **Positive-domain oscillation.** The explicit construction in [reciprocal-oscillation.md](reciprocal-oscillation.md) gives $2^n-1$ positive zeros for a fixed linear functional along a one-head positive-denominator curve. Positivity alone therefore does not give the proposed low-oscillation shortcut. The generic identity and exact-zero statement have been proved in Lean.
 
-**Existing complete counting formalizations.** The `xorformer-runs` commits `0fc32da` and `6f5c7d4` contain an unconditional strict Warren argument, with generic margins and constrained minima as major dependencies. The local manuscript-counting file remains conditional on its explicit Warren interface. Neither version yields the unbounded factor required here, so importing that development would not resolve the research objective.
+**Existing complete counting formalizations.** Earlier run mirrors contain an unconditional strict Warren argument, with generic margins and constrained minima as major dependencies. The current source branch is `VerifiedMechanisms/xorformer`, branch `ar/1c1556983291`. Its complete dependency chain is now imported and verified locally, including the unconditional asymptotic baseline. The original manuscript-counting file retains its explicit interface, which the new import supplies. No part of this baseline yields the fixed-exponent improvement required here.
 
 ## Second adversarial audit
 
@@ -486,3 +488,9 @@ The [address-budget audit](critical-scale-address-audit.md) incorporates the sig
 Fourteen new Warren-proof modules were imported verbatim from the audited branch, without modifying any existing model file. The local build passed in 3,743 jobs. A combined axiom audit checked eight baseline declarations and five latest Boolean-difference declarations, with only the standard foundational axioms. In particular the concrete bound $W(n)\geq2^n/(70n^2)$ for $n\geq16$ is now unconditional and kernel checked in this worktree. It still misses the requested fixed exponent improvement.
 
 The current priority is the eventual fixed-exponent target. A subsequence theorem would be recorded separately and would not complete it. The proposed full-cube sign estimate is not contradicted by the address constructions, but is not a proved lemma. The missing transfer remains explicitly blocked; restricted-family counting is not being used as a lower bound for the full model.
+
+## Weighted curve coefficients and independent centers
+
+The [weighted curve count](weighted-curve-jet-count.md) assigns increasing parameter weights to Taylor coefficients of an affine-ratio curve. The cleared numerator has small weighted degree, and an augmented Newton-volume bound gives a VC bound proportional to the parameter count for one curve. For several centers, the precise extra term is the entropy of their order budgets. Finite differences realize every strict table in this family using the sum of those budgets as actual heads. These are written proofs using the cited real-algebraic component and VC theorems, not new Lean declarations.
+
+This mechanism does not give a lower bound for the full model. Independent ordinary heads have one unit of budget at each of their distinct centers, which restores the logarithm of the head count. A sign-preserving conversion to low-entropy curve data remains a theorem-strength gap. A constant-overhead conversion is excluded by the existing actual bipartite shattering construction; a logarithmic-overhead conversion is neither proved nor disproved. No intermediate exponent is claimed.
