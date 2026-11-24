@@ -126,3 +126,39 @@ python3 artifacts/rope/counterexample_search/verify_projected_relaxation.py \
 This relaxation is not a pure-head certificate. A common positive functional does not supply the full pure mass cone, the selector parameters, or the required unprojected score signs. `search_projected_embedding.py` and `adapt_projected_isometry.py` explore those additional constraints. `quadratic_sign_cone.py` tests candidate-specific sign implications by floating linear programming; any claimed implication would still require an exact dual certificate.
 
 The two stored pure middle-matrix seeds were also tested. The zero-selector-linear seed has no spatial orbit on which all four unprojected score signs agree with its projected selector sign. Its full projected sign table permits competing quadratic sign polynomials with nonnegative tested off-diagonal cross entries. Thus those seeds do not already give a Boolean lower-bound certificate.
+
+`search_adaptive_local_pattern.py` searches the actual full score for local witnesses at alternative centers, coordinate partitions, and middle-layer backgrounds. Its `--arbitrary-faces` option lets each required cross-coefficient sign use an independent alternating two-face. The resulting witnesses would apply to all competing vanilla representations. No such witness was found in the tested proposals. This is a search result, not an impossibility proof.
+
+`search_pure_four_hard_cross.py` keeps every desired cross-coefficient and column-sum inequality as a hard linear constraint while optimizing score signs. It supports both block orientations and the original and replacement local patterns. The derivative of the cleared cross coefficients was checked by finite differences and against full-cube Fourier extraction. All outputs remain numerical proposals unless separately certified.
+
+### An exact exclusion of a near-fit function
+
+The best tested numerical fit to the block-complemented 404-point pattern missed four labels. Its full spatial orbit labels were precisely the two radius-one Hamming balls centered at the opposite block-constant vertices. That Boolean function already has an exact vanilla-three representation, independently of the numerical fit.
+
+Write $L=\sum_{i=1}^{8}X_i-\sum_{j=1}^{8}Y_j$ and let $t$ be the selector. The function has sign $t(L^2-169)$. Set $R=1000+20(t+\sum_iX_i+\sum_jY_j)$ and use
+
+$$ (D_1,D_2,D_3)=(R,R+L-13t,R+L+13t),\qquad (N_1,N_2,N_3)=(26t,-L-13t,L-13t). $$
+
+Every denominator has strictly positive slopes and is positive throughout the cube. Direct expansion gives
+
+$$ \sum_{h=1}^{3}N_h\prod_{j\neq h}D_j=26t(L^2-169t^2). $$
+
+Since $t^2=1$, the three-head score has exactly the required signs. The integer verifier checks the identity and strict signs on all 131,072 inputs. The denominator lower bounds are 660, 673, and 647, and the minimum absolute cleared score is 650.
+
+The threshold degree is exactly three. A hypothetical quadratic sign representation can be averaged to be odd in $t$ and even under simultaneous negation of all spatial spins. Its result is $t$ times a constant, which cannot represent both the positive spatial label at $L=16$ and the negative spatial label at $L=0$. Consequently the vanilla head count is exactly three, using the original scalar-to-architecture bridge. No pure head claim is needed for this exclusion.
+
+```bash
+python3 artifacts/rope/counterexample_search/verify_radial_selector.py
+```
+
+## Three-head cubic faces
+
+`exact_tripartite_projection.json` gives three exact pure atoms on eleven bits, partitioned into six left, two middle, and three right coordinates. After clearing the positive denominators, arrange the coefficients of $X_iY_jZ_k$ into a six-by-six matrix, with rows indexed by $i$ and columns by the six pairs $(j,k)$. Every off-diagonal entry is negative and every column sum is positive. The verifier reconstructs this matrix from the pure atom parameters with rational arithmetic.
+
+```bash
+python3 artifacts/rope/counterexample_search/verify_tripartite_projection.py
+```
+
+This is only a coefficient relaxation. Exact-score restrictions do not imply the same restrictions on every polynomial with the same Boolean signs. The unresolved step is to force these coefficient signs using strict parity-face labels of the actual pure score.
+
+`search_tripartite_faces.py` tests that step without imposing a global symmetry. Each off-diagonal coefficient may use its own ordinary three-dimensional parity face. Each column sum may use a parity face where all six left coordinates are tied to one bit, while the chosen middle and right coordinates are the other two bits. It tests every six-two-three partition and every matching of rows to column pairs. Any discovered witness still needs exact parameter and sign verification before it can support the all-vanilla lower bound.
