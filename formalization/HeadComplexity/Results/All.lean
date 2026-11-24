@@ -10,6 +10,8 @@ import HeadComplexity.Results.StrictSeparation
 import HeadComplexity.Results.RoPEComparison
 import HeadComplexity.Atoms.RoPEReorientation
 import HeadComplexity.Results.PureRoPETwoHeads
+import HeadComplexity.Results.PureRoPETwelvePairExact
+import HeadComplexity.Results.ThreeFaceFourHeads
 
 set_option linter.style.header false
 
@@ -136,5 +138,16 @@ alias theorem16_pure_two_head_complexity := pureRoPEHStar_eq_vanilla_of_le_two
 
 /-- **Theorem 16.** Any strict pure rotary improvement needs at least three pure heads. -/
 alias theorem16_separation_requires_three := pureRoPE_separation_requires_three_heads
+
+/-- **Theorem 17.** The twelve-bit quadratic has threshold degree two and
+exactly four pure rotary and vanilla heads. -/
+alias theorem17_twelve_pair_exact := PureRoPEThreeHead.TwelvePair.exact_complexities
+
+/-- **Theorem 17.** The literal original shared architecture also needs four heads. -/
+alias theorem17_twelve_pair_shared := PureRoPEThreeHead.TwelvePair.sharedHStar_eq_four
+
+/-- **Theorem 18.** A union of three nonnegative affine zero sets has a
+four-head realization in the original shared architecture. -/
+alias theorem18_three_faces := ThreeFaceFourHeads.computable_four
 
 end HeadComplexity

@@ -309,3 +309,16 @@ That is not yet a full invariant. It is only a partial answer:
 - positive weighted-sum image structure certifies $H^{\ast}(f) \leq M_{+}(f) - 1$,
 - for symmetric functions, the sign-change count gives the exact value,
 - for general nonsymmetric functions, Theorem 13 shows that threshold degree alone does not determine head complexity.
+
+
+### Theorem 17. Twelve-bit obstruction for three pure rotary heads
+
+The explicit twelve-bit quadratic from the prior exact four-head search has threshold degree two and exactly four heads in both pure RoPE and vanilla. A new inverse-positive matrix obstruction excludes every pure three-head representation. An exact integer four-head certificate and the original shared-architecture bridge give the matching upper bounds. All scalar head counts and the threshold degree are Lean-checked.
+
+**Proof.** [theorems/03_rotary_attention/017_pure_rope_twelve_bit_obstruction.md](theorems/03_rotary_attention/017_pure_rope_twelve_bit_obstruction.md)
+
+### Theorem 18. Four vanilla heads for three affine zero faces
+
+A union of the zero sets of three affine functions that are nonnegative on the cube has a four-head realization in the unchanged original shared architecture. The proof uses a reciprocal finite difference with four positive oriented denominators. Three mixed-literal conjunctions also have a direct three-pure-head upper bound; no strict separation is asserted.
+
+**Proof.** [theorems/03_rotary_attention/018_three_faces_four_vanilla_heads.md](theorems/03_rotary_attention/018_three_faces_four_vanilla_heads.md)
