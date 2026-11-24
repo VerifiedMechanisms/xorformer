@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_weighted_normalized.md",
+    "source_spans": 52,
+    "rendered_spans": 52,
+    "findings": [],
+    "notes": []
+  }
+]

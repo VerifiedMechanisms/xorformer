@@ -1,0 +1,35 @@
+'HeadComplexity.WeightedNormalizedCounting.linearPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.denPoly_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.denProd_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.clearedPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.product_parameter_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.card_le_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.card_le_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.entropy_at_worstCase_of_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.weighted_base_le_entropyBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.entropyBase_ge_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.entropy_at_worstCase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.worstCase_real_log_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.entropyBase_le_two_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedNormalizedCounting.worstCase_real_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
