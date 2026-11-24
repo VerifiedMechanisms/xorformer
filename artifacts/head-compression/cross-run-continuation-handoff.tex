@@ -1,0 +1,193 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,hyperref}
+\begin{document}
+\title{Continuation handoff and comparison with the upper-bound run}
+\author{}\date{24 November 2026}\maketitle
+
+\paragraph{Current objective and status.}
+The latest requested upper bound is $W(n)=O(2^n/(n\log n))$, or
+$O(2^n/n^x)$ for a fixed $x>1$. A logarithmic-logarithmic saving is
+now intermediate progress only. No requested asymptotic improvement
+has been established. The earlier matching-lower-bound alternative
+also remains unproved. All definitions of the model, admissibility,
+\texttt{HStar}, and \texttt{worstCaseHeadComplexity} are unchanged.
+
+\paragraph{Publication status.}
+The local run branch is \texttt{ar/1c1556983291}. At 04:25 UTC on
+24 November, pushing this branch to its configured
+\texttt{VerifiedMechanisms/xorformer} origin failed with HTTP 403:
+the authenticated \texttt{vm-autoresearch[bot]} lacks write permission.
+The installed credential helper explicitly provides read-only repository
+tokens. This is an external publication block, not a successful push.
+The remote run branch was observed at \texttt{2672bc2f68e8}; the
+local branch contains later committed results listed below. A local
+incremental Git bundle accompanies this handoff so that the committed
+objects can be transported without merging another branch.
+
+\paragraph{Checked local checkpoints.}
+The following results were built with Lean, and their reported axiom
+audits contain only the existing standard foundations. None establishes
+an unconditional saving.
+\begin{itemize}
+\item \texttt{9533e7f}: \texttt{ReverseSignedCauchy.lean} and
+\texttt{ReverseCauchyBiasAssembly.lean}. For pole $p$, query $t$ and
+residue $a$, use $\phi(x)=x/(x+\epsilon)$ and the signed masked
+construction with transformed residue $\epsilon a/(p+\epsilon)$.
+Its grid score is the uniform positive factor $\epsilon$ times the
+original masked Cauchy score. The uniform factor matters when adding
+block biases. The theorem
+\texttt{exists\_compactified\_signedCauchy\_with\_bias} uses
+$2H+2G$ strict axis-zero heads for $H$ masked poles and $G$ masked
+biases, under the explicit aggregate denominator budget.
+\item \texttt{415c64f}: \texttt{ReverseDensityBatching.lean}.
+\texttt{exists\_row\_sign\_half\_remainder} is an unconditional finite
+averaging theorem. If a joint full-cube reverse compiler of cost $M$
+exists for every table whose columns lie in one half-dense family,
+\texttt{hasReverseAxisCompiler\_of\_half\_dense\_family} gives the
+axis-zero universal budget
+\[
+ t(12M+21)+3R+6,\qquad s\leq2^tR.
+\]
+The half-dense joint compiler premise has no growing-size instance.
+In particular, a hypothetical $M=O(q/\log q)$ and constant density
+does not alone prove the latest logarithmic target: the direct
+batching bound loses a factor $\log\log q$.
+\item \texttt{ReverseMobius.lean} gives the exact identity
+\[
+ \frac{\Delta a/(\gamma p+\delta)^2+
+             \Delta b/(\gamma d+\delta)^2}
+      {\phi(d)-\phi(p)}
+ =\frac{a+b}{d-p}+\frac{\gamma a}{\gamma p+\delta}
+                    -\frac{\gamma b}{\gamma d+\delta},
+ \quad \Delta=\alpha\delta-\beta\gamma.
+\]
+All headwise row and column correction terms are absorbed jointly by
+one affine head. The theorem \texttt{exists\_mobius\_reverse\_axis}
+costs $3H+6$, subject to the stated full-cube sum budgets. Those
+budgets cannot be inferred from positivity on the two-one-hot grid.
+\item \texttt{AxisZeroUnbalancedTransfer.lean} and
+\texttt{AxisZeroUnbalancedAsymptotics.lean} improve the exceptional-face
+accounting. The global bound is
+\[
+ W(a+b)\leq\frac{484\,2^{a+b}M}{ab}
+              +\frac{11\,2^a}{a}+\frac{11\,2^b}{b}.
+\]
+For $b=\lfloor\log_2n\rfloor$, the latter two terms are at most
+$55\,2^n/n^2$ in the checked range. The balanced gluing bound with
+$2^a+2^b$ face cost also remains available. Bias absorption, cell
+ordering, preservation of earlier strict signs, and original atom
+admissibility have checked proofs in the gluing files.
+\end{itemize}
+
+\paragraph{Finite and written adaptive-decoder checkpoints.}
+The signed Haar family has $H=2^d$, $q=dH/2$ queries, target-selected
+butterfly permutation $\pi_\theta$, poles
+$p_y=\sum_jy_j\epsilon^{2^j}$, and queries
+\[
+ (1-2\theta_{k,s,g})\left[
+ \sum_h\frac{{\bf1}_{h\operatorname{div}2^{k+1}=g}
+                    (-1)^{h_k}c_{\pi_\theta(h)}}
+                   {1-p_s-p_{\pi_\theta(h)}}+\beta_{k,g}
+ \right]>0.
+\]
+Both the residues and block biases may depend on the target. This is
+not a fixed-token-library readout.
+\begin{itemize}
+\item \texttt{51465ad}: a common signed residue germ at $H=8$ works
+for all $4096$ targets, with target-dependent block biases. Exact
+tracked Laurent arithmetic verifies the claim. A complete written
+finite doubling argument gives universal $H=16$ using a sufficiently
+small new highest-bit separation. This is not an induction for all $H$.
+\item Thirteen $H=32$ targets have exact rational and exact Laurent
+continuation certificates. \texttt{26b0e65} repairs precision handling:
+a truncated-zero multiplier still changes the error bound of a row
+operation. All thirteen certificates pass the corrected checker.
+\item \texttt{9575fab}: one $H=64$ target has an exact rational
+certificate at $\epsilon=1/10$. The independent checker verifies all
+$192$ original query inequalities. The numerical barrier method only
+proposes the rational witness; acceptance uses exact arithmetic.
+Neither universality nor arbitrary small-scale continuation follows
+from this finite certificate.
+\item \texttt{e83136c} and \texttt{8d57af9}: exact Farkas certificates
+block a strict common-baseline cone induction for specified $H=16$
+children, even after the allowed root-bias quotient. Positive-gap
+constructions, divergent residues, and varying lower pole grids remain
+outside this obstruction.
+\end{itemize}
+
+\paragraph{A new paired-offset mechanism under investigation.}
+For paired poles $x_s,x_s+\gamma$ and residues $+\kappa,-\kappa$,
+the two row states $(D,+\kappa)$ and $(D+\gamma,-\kappa)$ have
+identical paired-output differences $2\kappa/(D-x_s)$, for every
+$D$ to the right of the pool. Thus a single nonquadratic token pool
+can have infinitely many distinct invariant two-state query pairs.
+Adding a lower-level numerator background $A_s$ gives the exact
+two-row sums
+\[
+ \frac{2A_s}{D-x_s}\quad(\theta_s=0),\qquad
+ \frac{A_s}{D-x_s-\gamma}+\frac{A_s}{D-x_s+\gamma}
+       \quad(\theta_s=1).
+\]
+Their difference is
+\[
+ \frac{2A_s\gamma^2}{(D-x_s)((D-x_s)^2-\gamma^2)}.
+\]
+The open issue is coexistence across unboundedly many levels with one
+joint pool and the required head budget. Finite exact feasibility
+tests do not settle that issue.
+
+\paragraph{Independent audit of the other run.}
+The branch \texttt{ar/0f08fe6fb98a} was fetched read-only from the
+same origin at \texttt{ad4b30e10e5a} on 24 November. No merge was
+performed. Its latest relevant files include
+\texttt{continuation-compact-decoder-audit.tex},
+\texttt{continuation-equality-cover.tex}, and
+\texttt{continuation-global.tex}.
+
+Its universal matching array has $2M$ slots and alphabet size
+$q\leq M/(5\log M)$. Hall's theorem plus the stated union bound
+provides simultaneous matching for every request vector. For
+$r=M\log_2q$, the equality kernel
+\[
+ K_t(X,Y)=\frac{tX}{tX+Y}-\frac X{X+Y}
+\]
+then gives a complete written $O(r/\log r)$ promised-grid compiler
+with positive orientation. The exact axis subtraction is also written.
+The global reverse-orientation transfer remains open. Adding an exterior
+penalty $L$ changes the sign factor to
+$(Y-\varepsilon)(tX^2-(\varepsilon+L)(Y+L))$, which becomes negative
+for large $L$. Nonnegativity before suppression does not fill the gap.
+
+The other run also proves a written exact-flow limitation allowing
+arbitrary slot-dependent $K$-term reciprocal functions with one fixed
+token library. If each query is an exact nonconstant affine function
+of its one switch and independent of every other switch, a stage
+block has at most $3K(2K+1)$ independently decoded switches. Its
+proof fixes two input slots and routes them to each switch; exact
+independence makes their paired-output difference matrix diagonal.
+Clearing denominators bounds its rank by $3L(L+1)/2$, $L=2K$.
+The resulting whole-butterfly budget is $O(H\log(K+1))$ switches
+against $HK$ heads. The exact-value independence and fixed-library
+hypotheses are essential. Neither the adaptive Haar family nor the
+new target-dependent paired-offset family satisfies them.
+
+\paragraph{Additional scoped audits on this branch.}
+\texttt{cd53cc8} proves in writing that fixed generic query offsets
+with every maximal baseline row minor nonzero give exactly the same
+strict sign family on every sufficiently compact pole-permutation
+branch. This was independently audited using Gordan's alternative
+and circuit cofactor signs. Singular or scale-dependent offsets are
+not covered. \texttt{e0a5218} gives a three-head strict-sign failure
+along one specified radial denominator contraction;
+\texttt{12f82d4} gives a successful three-head coalescence for the
+same target along different directions. Thus the radial example
+cannot be promoted to a global compactness obstruction.
+
+\paragraph{Exact remaining work.}
+There is no growing universal or sufficiently dense reverse decoder
+with the logarithmic head saving, and no alternative global
+construction achieving the latest target. The unrestricted matching
+lower bound also lacks a cancellation-safe sign count. All finite
+certificates, checked transfers, and scoped obstructions above must
+be kept separate from those unresolved assertions.
+\end{document}
