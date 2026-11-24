@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Permutation Parity Fingerprints and the Missing Minor Reader}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\maketitle
+
+\paragraph{Status and scope.}
+The combinatorial theorem below is a complete written proof. It supplies
+an explicit query family with order $H\log H$ independent binary
+readouts from permutations of $H$ symbols. It does not implement those
+queries by attention heads. The exact transfer gap is recorded at the
+end. No model definition, Lean declaration, or asymptotic head bound is
+changed by this note.
+
+Fix $H\geq2$ and strictly increasing real numbers
+$\lambda_1<\cdots<\lambda_H$. For a subset $S\subseteq\{1,\ldots,H\}$
+and a permutation $\pi$, define its induced-order parity by
+\[
+ \chi_S(\pi)=\operatorname{sgn}
+ \prod_{\substack{h<k\\h,k\in S}}
+       (\lambda_{\pi(k)}-\lambda_{\pi(h)}).
+ \tag{1}
+\]
+An empty product is one. Every factor is nonzero, so all these signs
+are strict. The query value depends only on the order of the tokens,
+not their spacing.
+
+\begin{lemma}[Separation probability]
+For distinct permutations $\pi,\sigma$ and a uniformly random subset
+$S\subseteq\{1,\ldots,H\}$,
+\[
+ \mathbb P\{\chi_S(\pi)\ne\chi_S(\sigma)\}\geq\frac14.
+ \tag{2}
+\]
+\end{lemma}
+\begin{proof}
+Write $s_h=\mathbf1_{h\in S}$. Over the field $\mathbb F_2$, the
+parity of the ratio of the signs in (1) is the multilinear polynomial
+\[
+ Q(s)=\sum_{\substack{h<k:\\
+  \mathbf1_{\pi(h)>\pi(k)}\ne
+  \mathbf1_{\sigma(h)>\sigma(k)}}} s_hs_k.
+ \tag{3}
+\]
+The sum is nonempty: the pairwise order comparisons uniquely determine
+the rank of each entry and hence the permutation. Thus $Q$ is a
+nonzero multilinear polynomial of degree two.
+
+For completeness, every nonzero multilinear polynomial of degree at
+most $d$ over $\mathbb F_2$ takes the value one on at least a fraction
+$2^{-d}$ of the Boolean cube. The degree-zero assertion is immediate.
+For positive degree, choose a variable occurring in a monomial of
+maximum degree and write the polynomial as $x_iA+B$, with $A\ne0$
+of degree at most $d-1$. Conditional on the other coordinates and on
+$A=1$, exactly one of the two choices of $x_i$ makes the polynomial
+one. Induction therefore gives probability at least
+$\tfrac12 2^{-(d-1)}$. Applying this with $d=2$ proves (2).
+\end{proof}
+
+\begin{theorem}[A small separating query family]
+There exist
+\[
+ M=\left\lceil8\log_2(H!)\right\rceil
+ \tag{4}
+\]
+subsets $S_1,\ldots,S_M$ such that the binary vectors
+$(\chi_{S_j}(\pi))_{j=1}^M$ are distinct for all $H!$ permutations.
+Repeated subsets, if any, can be discarded.
+\end{theorem}
+\begin{proof}
+Choose the subsets independently and uniformly. A fixed pair of
+permutations has identical query vectors with probability at most
+$(3/4)^M$. A union bound makes the probability of any collision at
+most
+\[
+ {H!\choose2}(3/4)^M<\frac{(H!)^2}{2}
+                  (3/4)^{8\log_2(H!)}<\frac12.
+\]
+For the last inequality, $(3/4)^4=81/256<1/2$, so
+$(3/4)^8<1/4$. A collision-free realization consequently exists.
+\end{proof}
+
+\begin{theorem}[Many independent strict parity queries]
+There is a family of more than $\log_2(H!)/10$ subsets whose parity
+queries jointly realize every binary word as $\pi$ varies. In
+particular, for $H\geq4$ its size is greater than
+$H\log_2 H/40$.
+\end{theorem}
+\begin{proof}
+Put $N=H!$ and $L=\log_2N\geq1$. Take the separating family above,
+which has $M\leq9L$ coordinates, and let $d$ be the largest number
+of its coordinates shattered by the $N$ distinct sign vectors.
+The Sauer counting inequality gives
+\[
+ N\leq\sum_{j=0}^d{M\choose j}.
+ \tag{5}
+\]
+Here is the relevant counting argument. For a family of binary
+vectors, project away the last coordinate. Its size equals the
+number of projected vectors plus the number of projected vectors
+having both last-coordinate extensions. The first projected family
+has shattering dimension at most $d$; the second has dimension at
+most $d-1$, since every shattered set there remains shattered after
+adjoining the last coordinate. Induction on $M$, using Pascal's
+identity, proves (5).
+
+Since $N>1$, we have $d\geq1$. If $d\leq L/10$, then $d\leq M$
+and the usual binomial estimate gives
+\[
+ N\leq(eM/d)^d\leq(90e)^{L/10}<2^L=N,
+ \tag{6}
+\]
+a contradiction. For clarity, the first estimate follows by putting
+$t=d/M\leq1$ and bounding the sum in (5) by
+$t^{-d}(1+t)^M\leq(eM/d)^d$. The second follows because
+$x\log(eM/x)$ is increasing on $0<x\leq M$, and because $M\leq9L$.
+The strict last inequality follows already from $e<3$ and
+$270<2^{10}$. Thus $d>L/10$.
+
+Finally $H!\geq(H/2)^{H/2}$, by retaining the largest
+$\lceil H/2\rceil$ factors of the factorial. For $H\geq4$ this
+implies
+$L\geq(H/2)(\log_2H-1)\geq(H/4)\log_2H$.
+\end{proof}
+
+\section{What must still be transferred to attention}
+Equation (1) is the sign of a Vandermonde minor. If
+$S=\{h_1<\cdots<h_s\}$, it equals the sign of
+\[
+ \det\bigl[\lambda_{\pi(h_j)}^{i-1}\bigr]_{i,j=1}^s.
+ \tag{7}
+\]
+For strictly ordered exterior Cauchy row arguments, the corresponding
+Cauchy minor has this same sign up to a known fixed sign. Thus an
+original-head construction that simultaneously reads these variable
+subset-minor signs with $O(H)$ heads, under the compact whole-cube
+denominator budget, would yield the desired order $H\log H$ local
+capacity. The preceding theorem does not supply that construction.
+
+In particular, solving a fixed system of $H$ zero-anchor equations
+produces entries of one inverse matrix. A scalar added query gives
+a linear combination of cofactors divided by its determinant.
+The matrix determinant lemma expresses this as one rank-one update.
+It does not identify this quantity with the arbitrary principal
+minors required by (7). Jacobi's complementary-minor identity uses
+determinants of submatrices of the inverse, rather than a single
+entry or a single linear query, so it does not repair this gap.
+
+There is also an elementary obstruction to a proposed common-probe
+shortcut. Suppose the solved residues are token-only, $c_h=c(\lambda_{\pi(h)})$,
+and a query changes a common probe on all slots in $S$, leaving the
+other slots at another common probe. Its score is a sum of one
+token function over $S$ and another over its complement. Swapping
+two tokens within $S$ leaves that score unchanged, whereas it
+reverses (1). This fails already for $|S|=2$. Slot-dependent or
+genuinely interacting residues are necessary for this parity reader.
+
+\paragraph{Current disposition.}
+The common-probe and one-cofactor implementations above are blocked.
+No claim of impossibility is made for general admissible ratio sums.
+A further construction must explicitly implement the subset-minor
+signs, or provide another fingerprint family with the separation
+property (2), without assuming a determinant evaluator as a head.
+\end{document}
