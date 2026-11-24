@@ -12,7 +12,7 @@ This is kernel-checked as `HeadComplexity.TwoProductsThreeHeads.computable_three
 
 **Construction.** Choose an affine form $Z$ with coefficient $1+|B_i|+|D_i|$ at coordinate $i$ and constant term zero. Set
 
-$$ V_0=Z+B,qquad V_1=Z+D,qquad V_2=Z,qquad E_h=1-\varepsilon V_h. $$
+$$ V_0=Z+B,\qquad V_1=Z+D,\qquad V_2=Z,\qquad E_h=1-\varepsilon V_h. $$
 
 Every $V_h$ has strictly positive coordinate coefficients. For sufficiently small positive $\varepsilon$, every $E_h$ is cube-positive and has strictly negative coordinate coefficients. Use the three fractions
 

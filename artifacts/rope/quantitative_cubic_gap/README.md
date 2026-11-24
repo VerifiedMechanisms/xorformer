@@ -20,7 +20,7 @@ Write $V$ for the fourteen-by-six matrix with rows $(s_{0,i},s_{1,i},s_{2,i},b_{
 
 $$ v=\frac{34560}{10^{39}},\qquad \delta=\min_h\min\left(\max_i b_{h,i},-\min_i b_{h,i}\right),\qquad \mu_h=\min_i|b_{h,i}|. $$
 
-Every six-row determinant of $V$ has absolute value at least $v$, by its Vandermonde formula. All $mu_h$ and $\delta$ are positive. Put
+Every six-row determinant of $V$ has absolute value at least $v$, by its Vandermonde formula. All $\mu_h$ and $\delta$ are positive. Put
 
 $$ d=4v^2(\mu_0\mu_1\mu_2)^2,\qquad \lambda=\frac{4\delta^6v^2}{12^{11}10^{10}},\qquad K=1+\frac{240\cdot19^5}{d}. $$
 
@@ -32,9 +32,9 @@ Exact rational arithmetic gives $\rho\gt2^{-2000}$. None of these constants depe
 
 ## A raw coefficient gap from Hessian rank
 
-Orient one nonzero denominator direction to have positive coefficients and normalize their sum to one; denote it by $D$. Let $\mathbf{1}$ be the all-ones vector and $\pi z=z-D(z)\mathbf{1}$. Each restricted form $B_h\pi$ has a coefficient of absolute value at least $\delta$. Indeed, if $\sum_i b_{h,i}$ is nonnegative, choose a negative coefficient of $B_h$; subtracting a nonnegative multiple of a coefficient of $D$ can only increase its absolute value. If that sum is negative, choose a positive coefficient instead.
+Orient one nonzero denominator direction to have positive coefficients and normalize their sum to one; denote it by $D$. If all denominator directions are zero, then $R=0$ and any positive normalized direction may be used for $D$. Let $\mathbf{1}$ be the all-ones vector and $\pi z=z-D(z)\mathbf{1}$. Each restricted form $B_h\pi$ has a coefficient of absolute value at least $\delta$. Indeed, if $\sum_i b_{h,i}$ is nonnegative, choose a negative coefficient of $B_h$; subtracting a nonnegative multiple of a coefficient of $D$ can only increase its absolute value. If that sum is negative, choose a positive coefficient instead.
 
-For a uniform random point $z$ in the fourteen-dimensional unit cube, a linear form with one coefficient of magnitude at least $\delta$ has probability at most $1/12$ of lying in $(-\delta/12,\delta/12)$. This follows by conditioning on the other thirteen coordinates and measuring an interval. The union bound therefore supplies a point $z$ for which all three $|B_h(\pi z)|$ are at least $\delta/12$. Set $w=\pi z$; its coordinates have magnitude at most two.
+Use the finite grid $\lbrace-1,-1/2,0,1/2,1\rbrace^{14}$. For a linear form with one coefficient of magnitude at least $\delta$, fixing the other thirteen coordinates makes successive values differ by at least $\delta/2$. At most one of those five values can lie in the interval $(-\delta/12,\delta/12)$, whose length is $\delta/6$. Thus each of the three restricted forms has at most $5^{13}$ bad grid points. Their union has at most $3\cdot5^{13}\lt5^{14}$ points. Choose a remaining point $z$; all three $|B_h(\pi z)|$ are at least $\delta/12$. Set $w=\pi z$; its coordinates have magnitude at most two. This is a finite counting argument, with no probabilistic or limiting existence assumption.
 
 In the six latent coordinates $(S_0,S_1,S_2,B_0,B_1,B_2)$, the Hessian of $P_3$ has block form
 
@@ -42,11 +42,11 @@ $$ H=\begin{pmatrix}0&A\cr A^{\top}&L\end{pmatrix},\qquad \det H=-4(B_0B_1B_2)^2
 
 The off-diagonal entries of $A$ are the remaining $B$ coordinates, and its diagonal is zero. At $w$, $A$ is invertible. Completing the square shows that $H$ has three positive and three negative eigenvalues. Every entry has magnitude less than two, so its operator norm is at most twelve. Its least singular value is at least $4\delta^6/12^{11}$, by the determinant formula and the upper bound on its other five singular values.
 
-Every entry of $V$ has magnitude less than one, and its operator norm is less than ten. Its least singular value is at least $v/10^5$, since its first six rows have determinant $v$. Thus the six nonzero eigenvalues of the ambient Hessian $VH V^{\top}$ have absolute value at least $\lambda$. Restriction to the codimension-one space $\ker D$ retains at least two positive and two negative eigenvalues of magnitude at least $\lambda$, by the variational characterization of eigenvalues.
+Every entry of $V$ has magnitude less than one, and its operator norm is less than ten. Its least singular value is at least $v/10^5$, since its first six rows have determinant $v$. Thus the six nonzero eigenvalues of the ambient Hessian $VH V^{\top}$ have absolute value at least $\lambda$. To see the indefinite case explicitly, take a thin QR factorization $V=QR$; the nonzero part is $RHR^{\top}$, and its inverse has operator norm at most $\|R^{-1}\|^2\|H^{-1}\|$. Restriction to the codimension-one space $\ker D$ retains at least two positive and two negative eigenvalues of magnitude at least $\lambda$, by the variational characterization of eigenvalues.
 
 The restriction of $R$ to $\ker D$ is a product of three linear forms, or zero. Its Hessian consequently has rank at most three. It cannot differ from the restricted Hessian of $P_3$ by operator norm less than $\lambda$: intersect a four-dimensional subspace on which the latter has all singular values at least $\lambda$ with the kernel of the rank-three matrix.
 
-If every raw cubic coefficient differs by at most $\varepsilon$, then at a point of coordinate norm at most two every Hessian entry differs by at most $168\varepsilon$, and the operator norm differs by at most $2352\varepsilon$. Therefore raw coefficient error below $\lambda/2352$ is impossible. Zero denominator directions are included by arbitrarily small positive perturbations of those directions, for each fixed numerator list. This also proves the same gap for the closure.
+If every raw cubic coefficient differs by at most $\varepsilon$, then at a point of coordinate norm at most two every Hessian entry differs by at most $168\varepsilon$, and the operator norm differs by at most $2352\varepsilon$. Therefore raw coefficient error below $\lambda/2352$ is impossible. Zero denominator directions were included in the argument above. Since the gap is uniform, it also applies to the closure.
 
 ## Quantitative recovery from squarefree coefficients
 
@@ -65,3 +65,17 @@ $$ L\varepsilon,\qquad L=2000K+500000K^2. $$
 The definition of $\rho$ ensures $L\varepsilon\lt1$. To recover $x_k^3$, apply the same Schur identity with row index $k$ and any disjoint cross block avoiding $k$. Its row and column now use the just-recovered repeated-index coefficients. Their target entries have magnitude at most thirty-six and their errors are at most $2L\varepsilon$. Expansion gives an error at most $(6000LK+2000000K^2)\varepsilon$ for the recovered Hessian diagonal, hence also for the cubic coefficient.
 
 Every raw coefficient error is therefore less than $10^{10}K^3\varepsilon$. For $\varepsilon\leq\rho$, this is less than $\lambda/2352$, contradicting the raw coefficient gap. This proves the stated squarefree exclusion. $\blacksquare$
+
+## Lean coverage
+
+The exact rank and recovery statements used here are kernel checked in the following files:
+
+- [`LowRankCrossRecovery.lean`](../../../formalization/HeadComplexity/Polynomial/LowRankCrossRecovery.lean): `entry_of_rank_le` proves the Schur identity for every entry, and `diagonal_of_rank_six` specializes it to the diagonal recovery above.
+
+- [`SymmetricCubicRecovery.lean`](../../../formalization/HeadComplexity/Polynomial/SymmetricCubicRecovery.lean): `eq_of_squarefree` proves uniqueness of the full symmetric cubic tensor from its squarefree entries under the rank-six and invertible-cross-block hypotheses.
+
+- [`HyperplaneHessianRank.lean`](../../../formalization/HeadComplexity/Polynomial/HyperplaneHessianRank.lean): `rank_compression` proves that a rank-one projection loses at most two ranks; `eval_product_hessian` identifies the actual polynomial Hessian of a product of three linear forms; `tripleHessian_rank_le` bounds its rank by three. Consequently `compression_ne_tripleHessian` excludes equality after compressing any matrix of rank at least six.
+
+- [`GenericCubicHessian.lean`](../../../formalization/HeadComplexity/Polynomial/GenericCubicHessian.lean): `eval_second_pderiv` identifies the six-variable polynomial Hessian, `hessian_det` proves its determinant formula, and `hessian_rank` proves rank six when the three denominator coordinates are nonzero.
+
+These declarations use no `sorry` or new axioms. The numerical norm estimates, finite-grid counting argument, and quantitative stability bounds in this note remain mathematical proofs with exact arithmetic certificates; they are not presented as a complete Lean proof of the exclusion radius.
