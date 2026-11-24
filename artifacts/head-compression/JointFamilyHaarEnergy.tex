@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+\title{A small obstruction to direct Haar incidence energy}
+\maketitle
+\paragraph{Status and scope.}
+This is a written algebraic proof, with its integer Taylor coefficients
+and rational specialization checked by the standalone standard-library
+script \texttt{JointFamilyHaarEnergy.py}.  It is not Lean checked.  It
+rules out one proposed sufficient criterion for a Haar decoder, not the
+decoder itself and not any head-complexity bound.
+
+\paragraph{The proposed criterion.}
+Use the butterfly indices $e=(k,s,g)$, switch word $\theta$, and output
+permutation $\pi$ from the paired-offset decoder.  Put
+$\gamma_k=\varepsilon^{2^k}$, $p_y=\sum_k y_k\gamma_k$, and $D_s=1-p_s$.
+The residue coefficient matrix is
+\[
+ A_{e,h}=\frac{U_{k,g}(h)\gamma_k}
+ {(D_s-p_{\pi(h)})(D_s+\gamma_k-p_{\pi(h)})}.
+\]
+Let $B_{e,h}$ be $+1$ on the original input path entering the left side
+of switch $e$, $-1$ on the path entering its right side, and zero on all
+other paths.  A Farkas vector for homogeneous infeasibility would satisfy
+$A^\top\mu=0$, zero sums in each block $(k,g)$, and
+$\mu_e(1-2\theta_e)\geq0$.  Therefore strict positivity of
+$\mu^\top A B^\top\mu$ for all nonzero vectors in this signed, block-balanced
+cone would exclude every such Farkas vector.  The same argument could
+be proposed with the rows of $A$ divided by their positive factors
+$\gamma_k$.
+
+\paragraph{Counterexample to both positivity assertions.}
+Take $d=3$, $H=8$, and order switches by increasing $k$, then $s$, then $g$.
+Set
+\[
+ \theta=(0,0,0,0,0,0,1,0,0,1,0,1),\qquad
+ \mu=(0,0,0,0,36,0,-36,0,81,-112,45,-14).
+\]
+Every coordinate has the required sign, and every block sum vanishes.
+Direct routing through the three butterfly stages gives
+\[
+ B^\top\mu=(117,-50,9,-76,-81,112,-45,14).
+\]
+Expanding the two reciprocal factors, all of which have constant term
+one, yields
+\[
+ \mu^\top A B^\top\mu=-9648\varepsilon^3-20088\varepsilon^4
+ +O(\varepsilon^5).
+\]
+For $\widetilde A_{e,h}=A_{e,h}/\gamma_k$, the corresponding expansion is
+\[
+ \mu^\top\widetilde A B^\top\mu=-9648\varepsilon
+ +170424\varepsilon^2+708192\varepsilon^3+O(\varepsilon^4).
+\]
+Both expressions are negative for all sufficiently small positive
+$\varepsilon$.  The saved JSON file also records exact negative rational
+values at $\varepsilon=1/100$.  The checker verifies that
+$A^\top\mu\neq0$ there, so this vector is explicitly not an infeasibility
+certificate.  A different energy, nontrivial level weights, a nonlinear
+potential, or a direct variation argument may still prove Haar
+feasibility.  No such proof follows from these calculations.
+\end{document}
