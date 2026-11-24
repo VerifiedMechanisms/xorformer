@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\title{Two Nested Certificates in the Antisymmetric Root Family}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+These are complete exact computational certificates for two specified
+butterfly targets, at sixteen and thirty-two wires. They prove feasibility
+for every sufficiently small positive parameter. They are not an
+all-target theorem, a density bound, a Lean theorem, or an asymptotic
+head-complexity improvement. All original model definitions are unchanged.
+
+\paragraph{The restricted family.}
+Use the butterfly ordering, poles, and reflected queries of
+\texttt{butterfly-adaptive-haar-biased.tex}. Let $H=2^d$, $q=H/2$,
+\[
+ p_y=\sum_{j=0}^{d-1}y_j\epsilon^{2^j},\quad
+ z_y=p_y(1-p_y),\quad Q(t)=\prod_{y=0}^{H-1}(t-p_y).
+\]
+For the specified target permutation $\pi$, let
+$u_y=1$ if $\pi^{-1}(y)<q$ and $u_y=-1$ otherwise. Restrict the residues to
+\[
+ c_y=\frac{(p_y-1/2)R(z_y)}{u_yQ'(p_y)},\qquad \deg R<q.       \tag{1}
+\]
+The one-node theorem in \texttt{butterfly-positive-root.tex} proves that
+strict positivity of these residues automatically gives every root sign
+at $1-p_s$, without a root bias. The remaining requirements are residue
+positivity and the mixed-label comparisons in every nonroot block.
+They are homogeneous linear inequalities in $q$ parameters.
+
+For numerical conditioning only, parameterize $R$ by its values at
+$z_0,\ldots,z_{q-1}$. Lagrange interpolation then makes (1) an explicit
+$H$ by $q$ rational matrix $V(\epsilon)$. The certificate row list starts
+with the $H$ positivity rows of $V$, followed by nonroot comparisons in
+switch-block order, with positive-prefix index first and negative-prefix
+index second. Each comparison is precisely formula (2) of the biased
+Haar note. The JSON files specify $q$ rows whose equalities to one form a
+square basis.
+
+\paragraph{Exact finite and continuation checks.}
+The files \texttt{butterfly-positive-root-family-h16.json} and
+\texttt{butterfly-positive-root-family-h32.json} contain the targets,
+exponent lists, and active row indices. The solver-free checker
+\texttt{butterfly-positive-root-family-check.py} reconstructs all rows.
+In finite mode it inverts the rational basis at $\epsilon=1/100$, checks
+all inequalities with right side one, and independently checks every
+root sign by the reciprocal sum. It does not rely on a solver's
+feasibility report.
+
+With \texttt{--laurent}, it uses exact rational series at tracked
+precision $512$. It multiplies $V$ by the positive monomial
+$\epsilon^E$, where
+\[
+ E=\sum_{j=0}^{d-1}2^{d-1-j}2^j=d2^{d-1}.
+\]
+This is the valuation of every $Q'(p_y)$, so all matrix entries become
+analytic. It multiplies the basis right side by $\epsilon^{128}$ to
+accommodate Laurent poles in its solution. Gaussian elimination pivots
+by least valuation. Every division checks that its numerator precision
+and valuation suffice; unknown zero multipliers are never skipped.
+The checker substitutes into the original basis equations and checks
+that every required score has a strictly positive leading term before
+its tracked precision ends. Nonzero pivots give an invertible
+rational-function basis. Consequently the computed leading terms are
+those of actual rational functions, and positivity holds simultaneously
+on some punctured real interval.
+
+At sixteen wires there are $25$ inequalities, including $16$ residue
+positivities. The eight pivot valuations are
+\[
+ 0,0,0,0,0,2,4,6.
+\]
+The largest residue pole order is $6$; each residue leading coefficient
+is $1$ or $2$. At thirty-two wires there are $73$ inequalities, including
+$32$ residue positivities. The sixteen pivot valuations are eleven
+zeros followed by
+\[
+ 2,6,8,8,18.
+\]
+The largest residue pole order is $14$; all residue leading coefficients
+belong to $\{1,4,8,9\}$. The JSON file records these leading terms as an
+additional independently checked assertion. The smallest remaining
+precision after removal of the right-side shift is $262$.
+The original targets have respectively $32$ and $80$ query signs.
+Their nonroot block biases are reconstructed using the strict gap
+between the largest negative-label score and the smallest positive-label
+score. Thus these finite-dimensional certificates establish all their
+query signs, not only a selected subset.
+
+\paragraph{The remaining uniform problem.}
+The root polynomial has only half as many parameters as unrestricted
+residues, yet both saved targets remain feasible and continue to
+arbitrarily compact pole configurations. This is useful evidence about
+one structured family. It does not prove that every target is feasible.
+In a strict coalesced parent split, its leading positive residues form
+a common point of the two child target cones. The one-node root theorem
+does not supply that intersection. Pairwise compatibility of growing
+child cones, or another way to avoid it, remains unproved.
+\end{document}
