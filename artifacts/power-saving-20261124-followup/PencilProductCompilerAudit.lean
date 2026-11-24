@@ -1,0 +1,8 @@
+import HeadComplexity.Research.PencilProductCompiler
+#print axioms HeadComplexity.PencilProductCompiler.kernel_natDegree
+#print axioms HeadComplexity.PencilProductCompiler.kernel_expansion
+#print axioms HeadComplexity.PencilProductCompiler.compiled_score
+#print axioms HeadComplexity.PencilProductCompiler.mem_represented_of_affine_polynomial
+#print axioms HeadComplexity.PencilProductCompiler.clearedPolynomial_natDegree
+#print axioms HeadComplexity.PencilProductCompiler.mem_represented_of_pencil
+#print axioms HeadComplexity.PencilProductCompiler.mem_represented_of_original_pencil

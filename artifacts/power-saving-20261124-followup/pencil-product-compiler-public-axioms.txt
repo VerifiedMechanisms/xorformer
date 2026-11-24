@@ -1,0 +1,15 @@
+'HeadComplexity.PencilProductCompiler.kernel_natDegree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PencilProductCompiler.kernel_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PencilProductCompiler.compiled_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PencilProductCompiler.mem_represented_of_affine_polynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PencilProductCompiler.clearedPolynomial_natDegree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PencilProductCompiler.mem_represented_of_pencil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PencilProductCompiler.mem_represented_of_original_pencil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
