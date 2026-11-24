@@ -1,0 +1,177 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{An Exact Audit of Compact Permutation Translates}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+The algebraic statements have complete written proofs. The finite
+search results are exact integer computations, reproducible with the
+accompanying Python script, but are not Lean-checked. The negative
+results concern the specified permutation-translate family only.
+The positive finite seed is not an asymptotic improvement.
+
+\section{Two directly admissible families}
+For $\tau,\pi\in S_H$, with values in $\{1,\ldots,H\}$, consider
+\[
+ C_{\tau,\pi}(\epsilon)
+       =\sum_{h=1}^H\frac1{1-\epsilon(\tau(h)+\pi(h))},
+ \qquad
+ A_{\tau,\pi}(\epsilon)
+       =\sum_{h=1}^H
+           \frac{\tau(h)-\pi(h)}{1-\epsilon(\tau(h)+\pi(h))}.
+                                                        \tag{1}
+\]
+Choose any finite list of query permutations $\tau_i$ and memory
+permutations $\pi_j$. Each summand in (1) is realized on the
+one-hot product grid by the affine denominator
+\[
+ 1-\epsilon\sum_i\tau_i(h)x_i
+   -\epsilon\sum_j\pi_j(h)y_j.
+\]
+All slopes are strictly negative. For sufficiently small positive
+$\epsilon$, its value at the all-one input, and hence its minimum
+on the entire cube, is strictly positive. The numerator in the
+second family is $\sum_i\tau_i(h)x_i-\sum_j\pi_j(h)y_j$.
+Thus these are actual original-model heads, with a scalar threshold
+absorbed into the output bias.
+
+After relabeling slots by $\tau$, the cost depends on the relative
+permutation $\pi\circ\tau^{-1}$. A set of query rows can therefore
+be translated so that its first row is the identity. This justifies
+the symmetry reduction in the exhaustive search.
+
+For $C$, the coefficients of $\epsilon^0$ and $\epsilon^1$ are
+independent of the permutation. Its first variable coefficient is
+\[
+             2\sum_h\tau(h)\pi(h)\quad
+             \text{at order }\epsilon^2,              \tag{2}
+\]
+up to a permutation-independent constant. For $A$, the first two
+coefficients vanish identically, and its coefficient at order two is
+\[
+       \sum_h\bigl(\tau(h)^2\pi(h)-\tau(h)\pi(h)^2\bigr).
+                                                        \tag{3}
+\]
+Formula (3) follows by expanding
+$(a-b)(a+b)^2=a^3+a^2b-ab^2-b^3$ and cancelling the pure cubes.
+It uses only the $2H$ state features $\pi(h),\pi(h)^2$.
+
+\section{Exact finite computation}
+For each permutation, the script records the integer moment vector
+\[
+ \left(\sum_h w_h(h+\pi(h))^k\right)_{k=2}^{2H-1},
+ \qquad
+ w_h=1\ \text{or}\ h-\pi(h).
+                                                        \tag{4}
+\]
+Lexicographic order of these vectors is the order of the costs for
+all sufficiently small positive $\epsilon$. Equality of the vectors
+means equality of the costs: the possible sums are the $2H-1$
+integers $2,\ldots,2H$, and their weighted histograms are determined
+by their first $2H-1$ moments, by the Vandermonde determinant.
+Orders zero and one are already invariant or zero. Thus (4)
+contains more than enough moments.
+
+For a threshold between two consecutive distinct vectors, the
+script constructs the entire Boolean query-by-state matrix. A query
+set is shattered precisely when all of its $2^r$ bit words occur
+among the state columns. This test uses only integers and bitsets.
+
+For the family $C$, exhaustive enumeration over every threshold and
+every query subset proves computationally that no four queries are
+shattered when $H=4$, and no five queries are shattered when $H=5$.
+The commands are
+\begin{verbatim}
+heavy python3 artifacts/head-compression/test_permutation_cauchy_translates.py \
+  --n 4 --target 4 --exhaustive
+heavy python3 artifacts/head-compression/test_permutation_cauchy_translates.py \
+  --n 5 --target 5 --exhaustive
+\end{verbatim}
+The exhaustive routine fixes the identity query by the preceding
+group symmetry. It then enumerates all increasing query subsets,
+discarding a branch only if a current cell has fewer states than
+the number of descendants required, or no remaining query splits
+every current cell. These pruning rules are necessary conditions
+for shattering, so they do not discard a successful subset.
+
+For $A$, six heads shatter the following seven queries, written
+in zero-based notation to agree with the stored certificate:
+\[
+\begin{gathered}
+(0,1,2,3,4,5),\quad(5,3,1,2,0,4),\quad(2,3,0,4,5,1),\\
+(4,0,2,1,5,3),\quad(3,1,0,5,2,4),\quad(4,5,1,3,2,0),\quad
+(4,2,3,5,1,0).
+\end{gathered}
+\]
+The file \texttt{cauchy-translate-six-head-certificate.json}
+contains one witness permutation for every one of the 128 sign
+words, and the two adjacent moment vectors defining the threshold.
+Adding one to all displayed permutation entries gives (1).
+All 128 strict signs hold simultaneously for sufficiently small
+positive $\epsilon$, by the finite set of nonzero leading moment
+differences. The code reproduces the certificate with
+\begin{verbatim}
+heavy python3 artifacts/head-compression/test_permutation_cauchy_translates.py \
+  --n 6 --target 7 --attempts 100 --antisymmetric
+\end{verbatim}
+An independent rational evaluation of all 896 inequalities, using
+$\epsilon=10^{-6}$, has minimum absolute margin
+\[
+          \frac{50000}{4166520835354152812546974937}>0.
+\]
+With the 128 certificate states used as memory columns, every full
+cube denominator is at least $99919/100000$. This check is available
+as \texttt{--n 6 --verify-certificate FILE}, with \texttt{FILE} the
+stored certificate path. It uses \texttt{fractions.Fraction}, not
+floating-point arithmetic.
+
+Nonexhaustive searches found at most $H-1$ queried bits for $C$ at
+$H=6,7$, and respectively $5,7,8$ bits for $A$ at $H=5,6,7$.
+Those maxima are search observations, not upper bounds.
+
+\paragraph{Axis repair.}
+For the unthresholded sum $A$, the row axis has the constant value
+$K=\sum_{h=1}^H h/(1-\epsilon h)$, the column axis has value $-K$,
+and the origin has value zero. Write $X=\sum_i x_i$ and $Y=\sum_jy_j$.
+For sufficiently small positive $\eta$, the single admissible head
+\[
+          \frac{K(1-\eta)(Y-X)}{1-\eta(X+Y)}
+\]
+cancels both singleton axes exactly and vanishes on the mixed grid.
+A nonzero grid threshold requires a further grid-only correction;
+the seven-query certificate by itself is not an axis-zero compiler
+with six heads.
+
+\section{Why cancelling successive scalar orders is insufficient}
+
+\begin{lemma}[First mixed homogeneous term of a Loewner kernel]
+Let $U(a),V(b)$ be formal power series, and let
+$F(a,b)=(U(a)+V(b))/(c-a-b)$, where $c\ne0$. Remove all pure
+terms from $F$. If every remaining homogeneous term of total degree
+less than $K$ is zero, then the degree-$K$ term is a linear
+combination of $ab^{K-1}$ and $a^{K-1}b$.
+\end{lemma}
+\begin{proof}
+Write $f_{pq}$ for the coefficient of $a^pb^q$ in $F$.
+Since $(c-a-b)F$ has no mixed terms,
+\[
+          c f_{pq}=f_{p-1,q}+f_{p,q-1}\qquad(p,q\ge1).
+\]
+For $p,q\ge2$ and $p+q=K$, the two coefficients on the right are
+mixed coefficients of degree $K-1$, hence zero. Only the two edge
+positions $p=1$ or $q=1$ can remain. Removing pure terms has not
+changed any mixed coefficient used in this argument.
+\end{proof}
+
+For $H$ summed slots, such a first surviving term has at most $2H$
+fixed state features. Therefore merely cancelling more initial
+homogeneous orders in this scalar-profile family does not supply
+the required $H\log H$ independent bits. A successful extension
+would need a different mechanism, for example state-dependent rank
+degeneracies that survive a simultaneous audit. No such extension
+is established here.
+\end{document}
