@@ -305,6 +305,35 @@ This is an exact computational proof with a uniform real-parameter
 conclusion. It is not a growing-dimension construction and yields no
 asymptotic improvement over the existing logarithmic saving.
 
+\section{A limitation of positive source localization}
+One possible replacement for an inverse-Cauchy transform is to choose
+positive amplitudes so that different kernels dominate at different source
+addresses. Compactness limits this mechanism independently of the number
+or range of the nonnegative source addresses. For $0<b_1\leq b_2$ and
+$t\geq0$,
+\[
+ 1\leq\frac{b_2+t}{b_1+t}\leq\frac{b_2}{b_1}.
+\]
+Let $K_h(t)=A_h/(b_h+t)^p$ with $A_h>0$. If
+$K_1(t_1)\geq R K_2(t_1)$ and
+$K_2(t_2)\geq R K_1(t_2)$ for $R\geq0$, then
+\[
+ R^2\leq(b_2/b_1)^p\leq(1+\eta)^p
+ \quad\text{when }1<b_1\leq b_2<1+\eta.
+\]
+Indeed $K_1/K_2$ lies between $A_1/A_2$ and
+$(A_1/A_2)(b_2/b_1)^p$ at every nonnegative address. Multiplying the
+opposite dominance inequalities gives the claim. These inequalities are
+kernel checked in \texttt{LargeDomainCauchyLocalization.lean}, particularly
+\texttt{opposite\_compact\_cauchy\_dominance\_le}.
+
+For the compact width $\eta=1/(s+1)$ and jet order $p=O(\sqrt{s})$,
+the upper bound tends to one. Thus this regime cannot even produce a
+fixed dominance factor greater than one for two opposite source choices.
+This statement concerns positive amplitude dominance only. It does not
+exclude signed cancellation, a common interfering background, different
+source slope vectors, or any of the unrestricted decoder hypotheses.
+
 \section{The first unresolved lemma}
 For fixed $F$ and a shared coefficient array $v$, the possible column
 vectors form the projected permutation orbit $\{F(P_\pi v):\pi\in S_H\}$.

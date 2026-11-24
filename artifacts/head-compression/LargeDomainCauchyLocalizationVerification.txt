@@ -1,0 +1,6 @@
+'HeadComplexity.LargeDomain.cauchy_ratio_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.cauchy_power_ratio_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.opposite_cauchy_dominance_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.LargeDomain.opposite_compact_cauchy_dominance_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
