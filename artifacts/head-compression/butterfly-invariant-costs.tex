@@ -148,6 +148,64 @@ states, or higher-order constructions that genuinely leave (6).
 Realizing useful parts of the larger invariant space with those
 additional freedoms remains open.
 
+\begin{lemma}[Denominator diversity in an invariant reciprocal cost]
+Let $C_{hy}=(a_y+b_h)/(D_h-p_y)$ be invariant on every butterfly
+permutation, with distinct pool poles and nonzero denominators.
+If at least three distinct values of $D_h$ occur, then there is a
+quadratic polynomial $A$ such that $a_y=A(p_y)$ for every token and
+$b_h=-A(D_h)$ for every input row. In particular the cost matrix is
+row-plus-column additive. Otherwise there are at most two distinct
+row states $(D_h,b_h)$.
+\end{lemma}
+\begin{proof}
+Pair each output $s$ with $s+H/2$. Write its pole endpoints as
+$x_s,y_s$, and its numerator secant as $m_st+c_s$.
+The invariant-space theorem implies that the highest-output paired
+difference $F_s=C_{h,x_s}-C_{h,y_s}$ is independent of the input row
+$h$. Here the notation labels the columns by their distinct poles.
+Put $\gamma_s=x_s-y_s$, $S_s=x_s+y_s$, $P_s=x_sy_s$, and
+$k_s=F_s/\gamma_s$. Direct subtraction gives, for every row state,
+\[
+ b_h=k_sD_h^2-(k_sS_s+m_s)D_h+k_sP_s-c_s.             \tag{9}
+\]
+If three distinct denominators occur, all the quadratics on the
+right agree at three points and therefore are the same polynomial
+$kD^2-MD-C$. Hence $k_s=k$, $m_s=M-kS_s$, and $c_s=C+kP_s$.
+At either endpoint of each pair this says
+$a(p)=-kp^2+Mp+C=:A(p)$, and (9) says $b_h=-A(D_h)$.
+Polynomial division gives
+$(A(p)-A(D))/(D-p)=k(p+D)-M$, a row-plus-column cost.
+Finally, at a fixed denominator, one paired difference determines
+$b_h$ uniquely because $\gamma_s\ne0$. Thus equal denominators
+give equal numerator offsets.
+\end{proof}
+
+\paragraph{A scoped uniqueness consequence across queries.}
+Suppose the fixed token numerators agree with two different quadratic
+polynomials $A_0,A_1$ on two collections of highest-bit output pairs.
+In each collection assume at least three pair points
+$(S_s,P_s)=(x_s+y_s,x_sy_s)$ are noncollinear. Any nontrivial
+two-state invariant query with denominators $D\ne E$ must satisfy
+\[
+ A_0(D)=A_1(D)=-b,\qquad A_0(E)=A_1(E)=-e.            \tag{10}
+\]
+Indeed, on class $j$, division by $D-p$ expresses the paired
+difference as a common polynomial part plus
+$(A_j(D)+b)\gamma_s/Q_s(D)$.
+Equality of the two row-state differences gives
+\[
+ (A_j(D)+b)Q_s(E)-(A_j(E)+e)Q_s(D)=0.
+\]
+This is affine in $(S_s,P_s)$. Noncollinearity forces all three
+coefficients to vanish, and $D\ne E$ then forces both remainders
+to be zero. This proves (10). The two denominators must therefore
+be the two distinct roots of $A_0-A_1$, so at most one unordered
+pair is possible. Equal nonzero pole gaps imply the noncollinearity
+condition for any three distinct pairs: their $(S_s,P_s)$ lie on
+the nondegenerate parabola $P_s=(S_s^2-\gamma^2)/4$.
+The consequence requires these piecewise-quadratic hypotheses;
+arbitrary nonquadratic pools need not have a unique two-state pair.
+
 \begin{lemma}[Six-feature bound for exact paired-output filters]
 Fix $q$ disjoint pairs of distinct pool poles $(x_s,y_s)$, with
 arbitrary fixed pool numerators at their endpoints. Let
