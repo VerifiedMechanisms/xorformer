@@ -1,0 +1,1 @@
+32 exact zero evaluations; 3 invertible pair certificates; pair ranks 11; triple rank 15

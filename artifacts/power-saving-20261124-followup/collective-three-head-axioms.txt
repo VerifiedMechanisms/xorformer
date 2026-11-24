@@ -1,0 +1,15 @@
+'HeadComplexity.CollectiveThreeHeadRelation.cleared_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CollectiveThreeHeadRelation.scalar_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CollectiveThreeHeadRelation.sum_atom_eval_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CollectiveThreeHeadRelation.atom_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CollectiveThreeHeadRelation.pair_01_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CollectiveThreeHeadRelation.pair_02_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CollectiveThreeHeadRelation.pair_12_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

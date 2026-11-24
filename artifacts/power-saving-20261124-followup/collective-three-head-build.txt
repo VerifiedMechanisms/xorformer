@@ -1,0 +1,8 @@
+⚠ [3226/3226] Built HeadComplexity.Research.CollectiveThreeHeadRelation (3.1s)
+warning: HeadComplexity/Research/CollectiveThreeHeadRelation.lean:70:72: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/CollectiveThreeHeadRelation.lean:70:72: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (3226 jobs).
