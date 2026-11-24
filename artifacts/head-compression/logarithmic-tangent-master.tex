@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\begin{document}
+\title{Logarithmic tangent spaces and factorially many positive critical points}
+\author{Research checkpoint, unchanged HeadComplexity model}
+\date{24 November 2026}
+\maketitle
+
+\paragraph{Verification and scope.}
+The identities and induction below are complete written proofs. They have not
+been formalized in Lean. The companion exact-arithmetic checker verifies the
+explicit base, the three-dimensional formula, and additional finite rational
+instances. No numerical feasibility assertion is used in the induction.
+This note proves neither of the accepted asymptotic targets. It rules out one
+specific proposed estimate on positive-chamber critical points. It also records
+why such critical-point multiplicity alone does not establish sign-pattern
+richness.
+
+\section{Exact tangent-space formulation}
+
+Let $X=\{0,1\}^n$, and let $v(x)=(1,x_1,\ldots,x_n)$. For an affine form
+$B_\beta(x)=\beta\cdot v(x)$ positive on $X$, define the vector
+$\ell(\beta)=(\log B_\beta(x))_{x\in X}$. Work in any open parameter cone
+where the denominator has strict original admissible slope signs. For $H$
+denominators put
+\[
+ \Phi(\beta_1,\ldots,\beta_H)=\sum_{h=1}^H\ell(\beta_h).
+\]
+Its differential is exactly
+\[
+ D\Phi(\beta)[a](x)=\sum_{h=1}^H
+       \frac{a_h\cdot v(x)}{B_{\beta_h}(x)}.
+\]
+The affine numerator directions $a_h$ are arbitrary. A constant bias is also
+included, since replacing $a_1\cdot v$ by $a_1\cdot v+cB_{\beta_1}$ adds $c$.
+Thus, for $H\geq1$, every original score with $H$ positive affine denominators
+is a tangent vector of $\Phi$, and conversely. This statement does not assert
+that the derivative parameters themselves are denominator parameters; only a
+sufficiently small perturbation is needed to remain in the open cone.
+
+For a vector $\lambda\in\mathbb R^X$, define the scalar master function
+\[
+ \Psi_\lambda(\beta)=\sum_{x\in X}\lambda_x\log B_\beta(x).
+\]
+Then $\lambda$ annihilates the complete numerator tangent space at
+$\beta_1,\ldots,\beta_H$ if and only if every $\beta_h$ is a critical point of
+the same master function. Indeed, the respective equations are
+\[
+ \sum_{x\in X}\frac{\lambda_xv_i(x)}{B_{\beta_h}(x)}=0
+ \qquad(0\leq i\leq n,\ 1\leq h\leq H).
+\]
+Positive $\lambda_x$ would give concavity of the master function, but the
+annihilator equations require mixed weights. Positive-weight uniqueness
+results therefore do not apply to this reduction.
+
+\section{A factorial positive critical-point family}
+
+We normalize the constant denominator coefficient to one. For
+$b=(b_1,\ldots,b_n)\in(0,\infty)^n$ and weights
+$\lambda=(\lambda_1,\ldots,\lambda_n)$, put
+\[
+ P^{(n)}_\lambda(b)=
+ \sum_{\varnothing\ne S\subseteq[n]}
+       \lambda_{|S|}\log\left(1+\sum_{i\in S}b_i\right).
+\]
+This function is symmetric in the coordinates of $b$. Let $M_n(b)$ be its
+gradient matrix with respect to the weights:
+\[
+ (M_n(b))_{ik}=
+ \sum_{\substack{S\subseteq[n],\ |S|=k\\ i\in S}}
+        \frac{1}{1+\sum_{j\in S}b_j},
+ \qquad \nabla P^{(n)}_\lambda(b)=M_n(b)\lambda.
+\]
+Also define
+\[
+ q_n(\lambda)=\sum_{k=1}^n\binom{n-1}{k-1}\lambda_k.
+\]
+
+\begin{theorem}
+For every integer $n\geq2$ there exist rational positive coordinates
+\[
+ b_1=b_2=1<b_3<\cdots<b_n
+\]
+and rational weights $\lambda_1=2,\lambda_2,\ldots,\lambda_n$ such that:
+\begin{enumerate}
+\item $M_n(b)\lambda=0$ and $\operatorname{rank}M_n(b)=n-1$;
+\item the Hessian of $P^{(n)}_\lambda$ at $b$ is nonsingular;
+\item $q_n(\lambda)\ne0$.
+\end{enumerate}
+Consequently, one such master function has at least $n!/2$ distinct
+nondegenerate critical points in the strict positive orthant.
+\end{theorem}
+
+\begin{proof}
+For $n=2$ take $b=(1,1)$ and $\lambda=(2,-3)$. The gradient vanishes,
+the two rows of $M_2$ are $(1/2,1/3)$, and
+\[
+ \operatorname{Hess}P^{(2)}_\lambda(1,1)=
+ \begin{pmatrix}-1/6&1/3\\1/3&-1/6\end{pmatrix},
+ \quad \det\operatorname{Hess}P^{(2)}_\lambda=-1/12,
+ \quad q_2(\lambda)=-1.
+\]
+
+Suppose the three properties hold in dimension $n$. Append a coordinate
+$b_{n+1}=T$, and let the new weights be
+$\mu(T)=(\mu_1(T),\ldots,\mu_{n+1}(T))$, with $\mu_1(T)=2$.
+Keep one of the identical first two old gradient rows, all the other old
+rows, and the new gradient row. Multiply the new row by $T$. These are $n$
+linear equations for $\mu_2,\ldots,\mu_{n+1}$.
+
+At $u=1/T=0$, the old $n-1$ independent rows are those of $M_n(b)$ and have
+zero last entry. Their columns $2,\ldots,n$ form an invertible square
+matrix: otherwise a vector in the kernel with first coordinate zero would
+contradict the one-dimensional kernel spanned by $\lambda$, whose first
+coordinate is $2$. The limiting last row is
+\[
+ \left(\binom n0,\binom n1,\ldots,\binom nn\right),
+\]
+whose last entry is one. Therefore the limiting square coefficient matrix
+is invertible. The solution $\mu(T)$ exists for all sufficiently large $T$
+and is rational analytic in $u$ near zero. It satisfies
+\[
+ (\mu_1(T),\ldots,\mu_n(T))=\lambda+O(T^{-1}),
+ \qquad
+ L(\mu(\infty))=0,
+\]
+where
+\[
+ L(\mu)=\sum_{k=1}^{n+1}\binom n{k-1}\mu_k.
+\]
+All $n+1$ gradient equations vanish, because the first two rows remain
+identical. The gradient matrix has rank $n$: the selected $n$ rows are
+independent for sufficiently large $T$, and the repeated row bounds its
+rank by $n$.
+
+Write $s=\sum_{i=1}^n b_i>0$ and
+\[
+ A(\mu)=\sum_{k=2}^{n+1}\binom{n-1}{k-2}\mu_k.
+\]
+Pascal's identity gives
+\[
+ L(\mu)=A(\mu)+q_n(\mu_1,\ldots,\mu_n),
+ \qquad A(\mu(\infty))=-q_n(\lambda)=:a\ne0.
+\]
+For $S\subseteq[n]$, let $d_S=1+\sum_{i\in S}b_i$. The new-coordinate
+gradient equation and two finite combinatorial sums are
+\[
+ 0=\sum_{S\subseteq[n]}\frac{\mu_{|S|+1}(T)}{T+d_S},
+ \qquad
+ \sum_S\mu_{|S|+1}=L(\mu),
+ \qquad
+ \sum_S d_S\mu_{|S|+1}=L(\mu)+sA(\mu).
+\]
+Expanding the first identity at $T=\infty$ is legitimate because it is a
+finite sum and $\mu(T)$ is analytic and bounded. It yields
+\[
+ 0=\frac{L(\mu(T))}{T}
+     -\frac{L(\mu(T))+sA(\mu(T))}{T^2}+O(T^{-3}),
+ \qquad
+ L(\mu(T))=\frac{sa}{T}+O(T^{-2}).
+\]
+In particular $q_{n+1}(\mu(T))=L(\mu(T))\ne0$ for all sufficiently large
+$T$.
+
+For the new Hessian entry, the same expansion gives
+\[
+ \begin{aligned}
+ (\operatorname{Hess}P^{(n+1)}_{\mu(T)})_{n+1,n+1}
+ &=-\sum_S\frac{\mu_{|S|+1}(T)}{(T+d_S)^2}\\
+ &=-\frac{L(\mu(T))}{T^2}
+    +\frac{2(L(\mu(T))+sA(\mu(T)))}{T^3}+O(T^{-4})\\
+ &=\frac{sa}{T^3}+O(T^{-4}).
+ \end{aligned}
+\]
+The old Hessian block converges to the nonsingular old Hessian; every
+cross entry involving the new coordinate is $O(T^{-2})$. Hence the Schur
+complement of the old block is
+\[
+ \frac{sa}{T^3}+O(T^{-4})\ne0
+\]
+for sufficiently large $T$. This proves nonsingularity of the full Hessian.
+Choose an integer $T$ sufficiently large also to exceed all old coordinates.
+The new coordinates and weights are rational and satisfy every inductive
+property.
+
+Finally, permutation symmetry carries the critical point to all its
+coordinate permutations and carries its Hessian to a permutation-conjugate
+matrix. Exactly two coordinates coincide, so the orbit has $n!/2$ points.
+All remain in the strict positive orthant.
+\end{proof}
+
+\paragraph{Explicit three-dimensional check.}
+The first induction step can be solved exactly for every $T>1$:
+\[
+ b=(1,1,T),\qquad
+ \lambda=\left(2,-\frac{3(T+2)}{T+1},
+                    \frac{4(T+3)}{T+1}\right),
+ \qquad q_3(\lambda)=\frac{2}{T+1},
+\]
+\[
+ \det\operatorname{Hess}P^{(3)}_\lambda(b)
+ =-\frac{(T-1)^3(T+4)}{6(T+1)^4(T+2)^2(T+3)}.
+\]
+At $T=2$, rescaling the weights to make $\lambda_3=1$ gives
+$(3/10,-3/5,1)$, with three distinct positive regular critical points.
+
+\section{Full affine annihilators and the exact limitation}
+
+The normalized critical points above also produce full affine annihilators.
+Set $\Lambda_S=\lambda_{|S|}$ for nonempty $S$ and
+\[
+ \Lambda_\varnothing=-\sum_{\varnothing\ne S\subseteq[n]}\Lambda_S.
+\]
+At any normalized critical point $b$, contraction of its gradient with $b$
+gives
+\[
+ 0=\sum_{S\ne\varnothing}\Lambda_S
+       \frac{\sum_{i\in S}b_i}{1+\sum_{i\in S}b_i}
+  =\sum_{S\ne\varnothing}\Lambda_S
+    -\sum_{S\ne\varnothing}\frac{\Lambda_S}{1+\sum_{i\in S}b_i}.
+\]
+Therefore $\sum_S\Lambda_S/B_b(S)=0$ as well as all $n$ slope equations.
+The same $\Lambda$ annihilates every affine-numerator space at every point
+of the permutation orbit. All denominators have positive constant term
+and strictly positive slopes, so they are fully positive on the cube and
+have the original monotone affine admissibility. Scaling the weights does
+not change this fact.
+
+The factorial count rules out an absolute bound $C^n$ for all mixed-weight
+positive-chamber critical points of this normalized Boolean master family.
+It does not rule out the accepted matching lower bound. In particular, for
+one denominator $B>0$,
+\[
+ \operatorname{sgn}\frac{A(x)}{B(x)}=\operatorname{sgn}A(x).
+\]
+Thus the entire union of single-head tangent spaces has exactly the same
+strict sign patterns as affine functions. The many critical branches do
+not increase single-head sign capacity. Even selecting many of the above
+denominators leaves their sum of numerator tangent spaces inside the same
+hyperplane $\Lambda^\perp$. A useful counting argument must control images
+or strict orthants, rather than count these parameter preimages.
+
+\end{document}
