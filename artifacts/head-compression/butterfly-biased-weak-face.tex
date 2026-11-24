@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\title{Weak Faces and a Robust Signed Pair Obstruction}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status and scope.}
+This is a complete written consequence of the saved exact rational
+four-cone and quotient-bridge certificates. The new rank calculations
+are checked by rational arithmetic, not Lean. It rules out a shared
+signed residue pool for two specified targets on one pole hierarchy.
+It does not rule out separately adaptive pools, adaptive pole grids,
+the local compiler, or either global HeadComplexity target.
+
+\begin{lemma}[Positive dependence with full rank]
+Let $A(t)$ be a continuous real $m$ by $n$ matrix near $t=0$.
+Suppose $A(0)$ has rank $n$ and there is a vector
+$\lambda\in\mathbb R^m$ with every coordinate strictly positive and
+$A(0)^\top\lambda=0$. Then for every sufficiently small $|t|$,
+the only solution of $A(t)x\geq0$ is $x=0$.
+\end{lemma}
+\begin{proof}
+Normalize $\lambda$ to have coordinate sum one. The augmented matrix
+$M(0)=(A(0)^\top;\mathbf1^\top)$ has row rank $n+1$: the last row
+cannot be a linear combination of the others, since multiplication by
+$\lambda$ would give $1=0$. Choose $n+1$ columns making an invertible
+square submatrix. Keep the other coordinates of $\lambda$ fixed and
+solve the augmented equations on those columns. This gives a continuous
+$\lambda(t)$ with $A(t)^\top\lambda(t)=0$, coordinate sum one, and
+$\lambda(0)=\lambda$. It stays strictly positive for all small $t$.
+The rank of $A(t)$ also stays $n$. If $A(t)x\geq0$, its positive
+weighted sum is zero, so every entry is zero; full rank gives $x=0$.
+\end{proof}
+
+Fix $\epsilon=1/100$ and the sixteen lower poles
+\[
+ p_s=s_0\epsilon+s_1\epsilon^2+s_2\epsilon^4+s_3\epsilon^8,
+ \qquad 0\leq s<16.
+\]
+Use the four sixteen-wire target words in
+\texttt{butterfly-biased-cone-intersection.json}. Let $K_i$ be the
+strict residue cone after eliminating its block biases, and let
+$\overline K_i^{\rm weak}$ denote the cone obtained by replacing all
+its strict comparison inequalities by weak inequalities.
+Put $C_{st}=1/(1-p_s-p_t)$ and $v=C^{-1}\mathbf1$.
+
+\begin{theorem}
+The intersection of the four weak cones is $\{0\}$. For each of the
+three pair partitions $(I,J)$, the weak quotient bridge
+\[
+ \{(a,\tau):a\in\bigcap_{i\in I}\overline K_i^{\rm weak},\quad
+       a+\tau v\in\bigcap_{j\in J}\overline K_j^{\rm weak}\}
+\]
+is also $\{0\}$.
+\end{theorem}
+\begin{proof}
+The saved four-cone dual uses seventeen comparison rows, all with
+strictly positive weights. Their rank is sixteen. The saved dual for
+each quotient bridge uses eighteen rows, all with strictly positive
+weights, of rank seventeen in $(a,\tau)$. In each case a weakly
+nonnegative vector of row evaluations must vanish, and full rank kills
+the variable vector. These ranks and the exact positive dependences
+are independently verified by
+\texttt{butterfly-biased-weak-face-check.py}.
+\end{proof}
+
+\begin{theorem}[A robust signed parent pair]
+Let $\Theta_0,\Theta_1$ be the two thirty-two-wire targets listed in
+\texttt{butterfly-biased-cone-bridge.json}, under
+\texttt{separating\_example.parent\_targets}. There is $\delta_0>0$
+such that, for every $0<\delta<\delta_0$, these two targets do not
+have a shared signed residue vector on the poles
+\[
+ p_s,\quad p_s+\delta\qquad(0\leq s<16),
+\]
+with query positions $1-p_s$ at every applicable node. Separate
+target-dependent block biases are allowed. Residues may be unbounded
+and may depend arbitrarily on $\delta$.
+\end{theorem}
+\begin{proof}
+Take the first partition $I=\{0,1\}$, $J=\{2,3\}$.
+The two parents have children $(0,2)$ and $(1,3)$ respectively,
+and the same root word: eight minus signs followed by eight plus
+signs in numerical prefix order. Write $\sigma_s$ for this root word.
+At $\delta=0$, use child-indexed residue vectors $a,b\in\mathbb R^{16}$.
+The root score vector is $C(a-b)$, and both parents have the same
+root score. Thus a common root bias $\beta$ may be used whenever
+their separate root biases are feasible.
+
+The saved quotient dual supplies a vector $q$ with no zero coordinates,
+$\sum_s q_s=0$, and $\sigma_s q_s<0$. Its weighted left child
+comparison rows sum to $n=Cq$, and its weighted right rows sum to $-n$.
+All eighteen weights are strictly positive. Lift these child rows to
+the variables $(a,b,\beta)$, and append all sixteen signed root rows
+\[
+ \sigma_s\bigl(C_s,-C_s,1\bigr),\qquad 0\leq s<16.
+\]
+Give the root rows weights $|q_s|$. Their total is
+$(-n,n,0)$, cancelling the child total $(n,-n,0)$ exactly.
+All thirty-four weights are positive.
+
+The lifted matrix has rank thirty-three. This follows either from
+the checked rational rank or directly as follows. If all root rows
+vanish, $a-b=-\beta v$. The vanishing child rows then form the
+seventeen-variable quotient system, whose rank is seventeen by the
+previous theorem. Hence $a=b=0$ and $\beta=0$.
+
+For $\delta\ne0$, child-indexed residue coordinates assign $a_s$
+to physical pole $p_s+\theta_s\delta$ and $b_s$ to the other pole,
+where $\theta_s=(1-\sigma_s)/2$. This coordinate assignment is the
+same for both parents because their root words agree. Lower child
+comparisons and root inequalities are continuous rational functions
+of $\delta$, with positive denominators for small $\delta$.
+The preceding lemma applies to the thirty-four selected rows and
+their thirty-three variables. Their weak feasible cone remains
+$\{0\}$, so their strict feasible system is empty. Every proposed
+shared pool for the full parent targets would satisfy this subsystem.
+\end{proof}
+
+\paragraph{What this does and does not close.}
+The obstruction is stable at the fixed lower-pole scale
+$\epsilon=1/100$ as the newest gap tends to zero. Thus a divergent
+residue germ cannot rescue this particular common-pool induction,
+and a normalized nonzero weak common face is absent. The theorem
+does not assert the same behavior along the specific one-parameter
+curve $\delta=\epsilon^{16}$ as $\epsilon\to0$. It also does not
+assert that either parent target separately is infeasible. A universal
+single-target decoder with independently chosen signed residues is
+still unresolved.
+\end{document}
