@@ -69,9 +69,17 @@ using separate biases for the targets. The exact vector is in
 The solver-free checker
 \texttt{butterfly-adaptive-haar-common-check.py} verifies all
 $49\,152$ original strict query inequalities and finds exactly forty
-distinct comparison rows (2). This is a finite-scale result. It asserts
-neither arbitrary smallness of $\epsilon$ nor the corresponding
-statement at larger $H$. The obstruction in
+distinct comparison rows (2). The stronger certificate
+\texttt{butterfly-adaptive-haar-common-h8-laurent.json} and its checker
+\texttt{butterfly-adaptive-haar-common-laurent-check.py} give a common
+residue vector for every sufficiently small positive $\epsilon$. They
+first verify that the forty symbolic comparison profiles exhaust all
+$4096$ targets, then solve eight active comparison equalities over the
+formal Laurent field. The pivots have valuations
+$0,0,0,0,5,6,8,8$; all forty scores have positive leading coefficients.
+The residue leading vector is
+$\tfrac12\epsilon^{-8}(-1,1,1,-1,-1,1,1,-1)$.
+The obstruction in
 \texttt{butterfly-common-pool-bias-bound.tex} explains why a universal
 compact common pool cannot be the general induction invariant.
 
@@ -84,9 +92,13 @@ using (1), with biases reconstructed by the lemma, by
 At $d=5$, $\epsilon=1/100$, and exponents $(1,2,4,8,16)$, ten
 pseudorandom targets and three targets having a fully alternating
 sixteen-query root word all have exact witnesses. These thirteen tests
-provide no probability bound or universal statement. The committed
-sample file stores the first four random witnesses; the first of these
-also has the stronger continuation certificate below.
+provide no probability bound or universal statement. The committed sample file stores the first four random witnesses.
+All thirteen have the stronger continuation certificates in
+\texttt{butterfly-adaptive-haar-h32-laurent-samples.json}. The checker
+accepts this file with the option \texttt{--all}. The required tracked
+series precisions range from $256$ to $1024$; in every case all comparison
+scores have positive leading terms. The detailed discussion below treats
+the first certificate.
 
 \paragraph{An exact Laurent continuation.}
 The file \texttt{butterfly-adaptive-haar-h32-laurent.json} specifies one
@@ -134,6 +146,86 @@ The other residues vanish identically by their selected basis equations.
 The checker also verifies this displayed leading-term data against the
 certificate. These simple leading coefficients suggest a possible
 recursive cancellation rule, but no such rule has been proved.
+
+
+\paragraph{A complete finite doubling theorem.}
+The common eight-wire residue germ implies a universal sixteen-wire
+biased decoder, with a new highest-bit pole separation chosen small
+enough. This uses a continuity argument, not an inference from the
+thirteen larger-tree samples.
+
+Fix a sufficiently small $\epsilon>0$ so that the common eight-wire
+certificate holds. Let $p_0,\ldots,p_7$ be its poles and let
+$v\in\mathbb R^8$ be its common residue vector. For a new parameter
+$\delta>0$, define sixteen poles by
+\[
+ P_s=p_s,\qquad P_{s+8}=p_s+\delta\quad(0\leq s<8).
+\]
+All thirty-two query times are still $1-p_s$ with the prefix $s$
+appropriate to that query. For every sufficiently small $\delta>0$,
+every target on the sixteen-wire butterfly has a residue vector and
+fifteen block biases giving all its thirty-two required strict signs.
+
+To prove this, fix the target. Its two input children have independent
+eight-wire target words. At $\delta=0$, place $v_s$ on each child's
+output prefix $s$. Each child satisfies its lower queries strictly,
+using biases supplied by the common-pool certificate. The root score
+is zero: the two child contributions cancel prefix by prefix.
+Let $\theta_s$ be the root switches, and put $\sigma_s=1-2\theta_s$.
+The matrix
+\[
+ C_{ts}=\frac1{1-p_t-p_s}\quad(0\leq t,s<8)
+\]
+is invertible. Indeed, a null vector would give a rational function
+$\sum_s d_s/(x-p_s)$ vanishing at eight distinct exterior points;
+its numerator has degree at most seven, so it vanishes identically,
+and all residues $d_s$ are zero. Put $d=C^{-1}\sigma$.
+
+For a small $\lambda>0$, assign child-indexed residues
+$a_s=v_s+\lambda d_s/2$ and $b_s=v_s-\lambda d_s/2$.
+The physical output positions of these residues are
+\[
+ c_{s+8\theta_s}=a_s,\qquad c_{s+8(1-\theta_s)}=b_s.
+\]
+At $\delta=0$, the root score is $C(a-b)=\lambda\sigma$.
+The root can therefore use bias zero. The child scores depend
+continuously on $\lambda$ and were strict at zero, so sufficiently
+small $\lambda>0$ preserves all child signs, with their existing biases.
+All scores are now strict at $\delta=0$. Their denominators are positive
+there, so continuity in $\delta$ preserves all signs for sufficiently
+small positive $\delta$. There are finitely many complete target words.
+Choose the minimum of their positive permissible bounds on $\delta$.
+This gives one pole grid and one query grid working for every target.
+One may also require $\delta$ to be smaller than any prescribed positive
+number, in particular smaller than $\epsilon^4/4$.
+
+Consequently, for every row count $r$, every $r$ by $32$ sign table has
+an axis-zero reverse compiler using $62=2\cdot16+2\cdot15$ strictly
+admissible heads. Here is the full-cube budget, using the already
+Lean-checked implementation theorem
+\texttt{exists\_compactified\_signedCauchy\_with\_bias} in
+\texttt{ReverseCauchyBiasAssembly.lean}.
+Choose $\gamma=1/256$, choose the lower scale
+$0<\epsilon<\gamma/(32r)$ sufficiently small for the common-pool germ,
+and choose the universal new split $0<\delta<\epsilon^4/4$ as above.
+Shift every pole and every query time by $\epsilon$; reciprocal gaps
+and scores are unchanged. All shifted poles are positive and less than
+$4\epsilon<\gamma/(8r)$, and all shifted times exceed $1/2$.
+For each table row, choose its target's permutation, residues, and
+biases. For every head index, the implementation theorem's aggregate
+slope budget is bounded by
+\[
+ \sum_{i=1}^r\frac{P_i}{P_i+\gamma}
+ +\sum_{j=1}^{32}\frac{\gamma}{t_j+\gamma}
+ <\frac18+64\gamma=\frac38<1.
+\]
+The signed Haar profiles use sixteen paired pole modules and the fifteen
+bias masks use fifteen paired bias modules. The theorem gives one
+common positive score factor $\gamma$, preserves all strict signs,
+and supplies exact zeros on both Boolean axes and strict negative
+slopes with positivity on the whole cube. The finite common-pool
+certificate and the doubling argument have not been formalized in Lean;
+the implementation theorem alone is Lean checked.
 
 \paragraph{Remaining quantitative gap.}
 A proof that (1) is feasible for all targets at arbitrarily large $H$,

@@ -12,18 +12,26 @@ from pathlib import Path
 import importlib.util
 import json
 import sys
+import subprocess
 from flint import fmpq_series as Series, ctx
 sys.set_int_max_str_digits(0)
 
 parser=argparse.ArgumentParser()
 parser.add_argument('certificate',nargs='?',default=str(Path(__file__).with_name('butterfly-adaptive-haar-h32-laurent.json')))
-parser.add_argument('--precision',type=int,default=256)
+parser.add_argument('--precision',type=int)
+parser.add_argument('--all',action='store_true')
 parser.add_argument('--index',type=int,default=0)
 parser.add_argument('--summary',action='store_true')
 args=parser.parse_args()
 data=json.loads(Path(args.certificate).read_text())
+if args.all:
+    for index in range(len(data['certificates'])):
+        result=subprocess.run([sys.executable,__file__,args.certificate,'--index',str(index),'--summary'],check=True,text=True,capture_output=True)
+        answer=json.loads(result.stdout)
+        print(json.dumps(dict(index=index,queries=answer['queries'],strict_comparisons=answer['strict_comparisons'])),flush=True)
+    sys.exit(0)
 if 'certificates' in data:data=data['certificates'][args.index]
-K=args.precision; M=K//3; ctx.cap=K
+K=args.precision or data.get('precision',256); M=K//3; ctx.cap=K
 spec=importlib.util.spec_from_file_location('bf',Path(__file__).with_name('butterfly-rectangle-decoder-check.py'))
 bf=importlib.util.module_from_spec(spec);spec.loader.exec_module(bf)
 d=data['dimension']; H=1<<d; bits=data['bits']; powers=data['powers']
