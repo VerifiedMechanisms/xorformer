@@ -145,13 +145,96 @@ variant of the already Lean-checked pairedRowsAxisData construction in
 The finite shattering theorem and this instantiated sixteen-head
 corollary have not themselves been formalized.
 
+\paragraph{A fast-hierarchy obstruction to nonnegative residues.}
+The positive-residue condition fails at sixteen wires even for the faster
+pole hierarchy $p_y=\sum_{j=0}^3y_j\epsilon^{2^j}$, for every sufficiently
+small positive $\epsilon$. This is a scoped obstruction to the unbiassed
+family (1), not to arbitrary signed residues or block biases.
+
+Use switch order increasing $k$, then $s$, then $g$, and take
+\[
+\theta=(1,0,0,0,1,1,0,1,\quad
+1,1,0,1,1,1,1,1,\quad
+0,0,0,0,1,1,1,1,\quad
+0,0,0,1,1,1,1,0).
+\]
+Let $A(\epsilon)$ be its $32$ by $16$ signed query matrix, as in (2),
+and append the sixteen coordinate rows to obtain $\widehat A$.
+Rows are numbered starting at zero. Select the seventeen rows
+\[
+ I=(5,10,12,17,18,19,20,21,23,24,25,26,28,29,30,31,33).
+\]
+Define rational functions $\lambda_i$ by the seventeen equations
+\[
+ \sum_{i\in I}\lambda_i\widehat A_{iy}=0\quad(0\leq y<16),
+ \qquad \sum_{i\in I}\lambda_i=1.
+\]
+This square system is nonsingular over $\mathbb Q(\epsilon)$.
+Valuation-pivoted rational-series elimination has pivot orders
+\[
+ 0,0,0,0,0,0,0,0,2,2,2,6,6,8,8,17,19.
+\]
+The first nonzero terms, in the order $I$, are
+\[
+\begin{gathered}
+ \tfrac12\epsilon^{27},\ \tfrac18\epsilon^{27},\
+ \tfrac18\epsilon^{27},\ \tfrac14\epsilon^{17},\
+ \tfrac38\epsilon^{20},\ \tfrac14\epsilon^{17},\
+ \tfrac38\epsilon^{20},\ \tfrac14\epsilon^{17},\
+ \tfrac14\epsilon^{17},\ \tfrac14,\ \tfrac14\epsilon,\
+ \tfrac14,\ \tfrac14,\ \tfrac14\epsilon,\ \tfrac14,\
+ \tfrac14\epsilon^3,\ \tfrac12\epsilon^{27}.
+\end{gathered}
+\]
+These identities are checked by
+\texttt{butterfly-adaptive-haar-positive-dual-check.py}, using the
+self-contained certificate
+\texttt{butterfly-adaptive-haar-positive-h16-dual.json}.
+The checker uses guarded exact power-series arithmetic at precision
+$512$, checks the uneliminated equations, and verifies a separate
+rational certificate at $\epsilon=1/100$.
+Every displayed leading coefficient is positive, so all seventeen
+multipliers are positive on a common sufficiently small punctured
+interval. If $Ac>0$ and $c\geq0$, the sixteen selected strict query
+rows have a strictly positive weighted sum and the remaining selected
+row contributes $\lambda_{33}c_1\geq0$. Their total is zero by the
+defining equations, a contradiction. This proves the obstruction.
+The finite coefficient verification has not been formalized in Lean.
+
+\paragraph{The slower hierarchy also fails without biases.}
+For the same target word, replace the exponents $(1,2,4,8)$ by
+$(1,2,3,4)$. There is a stronger obstruction for all sufficiently small
+positive $\epsilon$: signed residues cannot satisfy all strict queries.
+Use only the seventeen query rows
+\[
+ I'=(0,5,16,17,18,19,20,21,22,23,24,25,26,28,29,30,31)
+\]
+and define their multipliers by the same normalized sixteen homogeneous
+column equations. The leading terms, in this order, are
+\[
+\begin{gathered}
+ \epsilon^{22},\ \epsilon^{22},\
+ \tfrac54\epsilon^{13},\ \tfrac32\epsilon^{12},\
+ \tfrac54\epsilon^{13},\ \tfrac32\epsilon^{12},\
+ \tfrac54\epsilon^{13},\ \tfrac32\epsilon^{12},\
+ \tfrac54\epsilon^{13},\ \tfrac32\epsilon^{12},\
+ \tfrac14,\ \tfrac14\epsilon,\ \tfrac14,\ \tfrac14,\
+ \tfrac14\epsilon,\ \tfrac14,\ \tfrac14\epsilon^2.
+\end{gathered}
+\]
+The same checker accepts
+\texttt{butterfly-adaptive-haar-unbiased-h16-dual.json} as an explicit
+argument and verifies both the rational certificate and these leading
+terms. No coordinate inequality is used, so summing the selected strict
+queries contradicts zero for every real residue vector. This assertion
+still excludes block biases and changes no model definition.
+
 \paragraph{What an induction still needs.}
-The same pole hierarchy at sixteen wires has target words with an exact
-Farkas obstruction at several tested scales. Faster bit scales can remove
-those examples, but that is not a universal theorem. Independent positive
-residue witnesses for two subtrees do not imply that their feasibility
-cones intersect. Neither a positive-residue induction, a faster-hierarchy
-induction, nor the version with one bias per input Haar block has been
-proved. These are the specific gaps between this finite certificate and
-an unbounded-capacity local compiler.
+Independent positive residue witnesses for two subtrees do not imply
+that their feasibility cones intersect, and the displayed sixteen-wire
+word rules out a universal nonnegative-residue theorem for this fixed
+unbiassed fast hierarchy. Arbitrary signed residues, block biases,
+different query grids, and target-adaptive pole locations remain open.
+None of these scoped observations proves a bound on
+worstCaseHeadComplexity.
 \end{document}
