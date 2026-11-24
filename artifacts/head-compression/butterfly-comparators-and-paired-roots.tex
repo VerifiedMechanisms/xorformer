@@ -1,0 +1,163 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Butterfly Comparisons and Two-Word Paired Cauchy Readouts}
+\author{}\date{}\begin{document}\maketitle
+
+\paragraph{Status.}
+These are complete written elementary arguments with exact finite checks,
+not Lean proofs. They identify two available mechanisms. They do not
+prove a growing-capacity rational decoder: the paired-root interpolation
+below does not preserve any child-block constraints. No statement about
+the unrestricted worst-case HeadComplexity follows from this note alone.
+
+\begin{theorem}[All butterfly comparison patterns occur]
+Consider $H=2^d$ wires with bits numbered $0,\ldots,d-1$, and $d$
+layers of compare-exchange gates. Layer $k$ compares each pair differing
+in bit $k$, sending the smaller value to the bit-zero output. Every
+choice of the $Hd/2$ swap bits is the comparison pattern of some
+assignment of $H$ distinct real input values. The values can be a
+permutation of the fixed set $\{0,\ldots,H-1\}$.
+\end{theorem}
+\begin{proof}
+Choose the swap pattern, and let $\pi$ be its routed input-to-output
+permutation. For output label $y$, set
+\[
+ v(y)=\sum_{j=0}^{d-1} y_j2^{d-1-j}.
+\]
+Give input $h$ the value $v(\pi(h))$. At a layer-$k$ gate, its two
+routed values have final output labels with the same lower $k$ bits
+and opposite bit $k$: all later layers preserve bits $0,\ldots,k$.
+In the order defined by $v$, the first differing bit read from low to
+high decides the comparison. Thus the routed bit-zero output has the
+smaller value at this gate, regardless of the two final higher-bit
+strings. Inducting through the layers shows that the actual comparator
+network follows exactly the prescribed routing. All input values are
+distinct because $v$ and $\pi$ are permutations.
+\end{proof}
+
+\paragraph{Readout issue.}
+This theorem supplies the full number of independent comparator bits.
+It does not implement an intermediate comparison by a head. A rational
+input-Haar sum generally includes values from many output-prefix groups;
+extracting the selected group's comparison remains necessary.
+
+\begin{lemma}[Cauchy interpolation]
+Let $x_1,\ldots,x_m$ be distinct sample points and let
+$p_1,\ldots,p_m$ be distinct poles disjoint from them. The matrix
+$(1/(x_i-p_j))_{i,j}$ is invertible.
+\end{lemma}
+\begin{proof}
+If a linear combination vanishes at all $m$ samples, clearing its
+pole product gives a polynomial of degree at most $m-1$ with $m$
+distinct roots, hence zero. Taking residues at the distinct poles
+then makes every coefficient zero.
+\end{proof}
+
+\begin{theorem}[Two arbitrary root words with paired poles]
+Fix $q$ distinct query points $t_1,\ldots,t_q$ and $2q$ distinct poles
+$p_{h,0},p_{h,1}$, all disjoint from the queries. For any two sign words
+$\sigma,\tau\in\{-1,1\}^q$, there are unrestricted real residues
+$a_{h,0},a_{h,1}$ such that, writing
+\[
+ R_h(t)=\frac{a_{h,0}}{t-p_{h,0}}+
+        \frac{a_{h,1}}{t-p_{h,1}},\qquad
+ G_\rho(t)=\sum_{h=1}^q\rho_h R_h(t),
+\]
+one has $\sigma_iG_\sigma(t_i)>0$ and
+$\tau_iG_\tau(t_i)>0$ at every query.
+The statement holds in particular for positive exterior queries and
+arbitrarily tightly paired positive poles below every query.
+\end{theorem}
+\begin{proof}
+Replacing $\tau$ by $-\tau$ leaves its required inequalities unchanged,
+because both the outside label and $G_\tau$ change sign. We may therefore
+suppose that the agreement set $I=\{i:\sigma_i=\tau_i\}$ has size at
+least $q/2$. Write $J=[q]\setminus I$.
+
+The $2|I|$ poles belonging to groups in $I$ include at least $q$ distinct
+poles. By Cauchy interpolation choose a rational sum $S_I$, using these
+poles, with values $S_I(t_i)=\sigma_i$ for $i\in I$ and zero for
+$i\in J$. If $J$ is nonempty, use $|J|$ of its $2|J|$ poles to
+interpolate a sum $S_J$ with $S_J(t_j)=\sigma_j$ for $j\in J$.
+If $J$ is empty take $S_J=0$.
+
+Choose $L>\max_{i\in I}|S_J(t_i)|$. Assign the residues in the $I$
+groups, after dividing by their fixed factors $\sigma_h$, so that
+$\sum_{h\in I}\sigma_hR_h=L S_I$. Assign those in the $J$ groups so
+that $\sum_{h\in J}\sigma_hR_h=S_J$. Then
+\[
+ G_\sigma=L S_I+S_J,\qquad G_\tau=L S_I-S_J.
+\]
+On $I$ the first term strictly dominates and has the desired common
+sign. On $J$ it is zero, so the two values have the desired opposite
+signs. This proves every strict inequality.
+\end{proof}
+
+\paragraph{Application and limitation.}
+At the root of a butterfly, the two physical poles with lower prefix
+$h$ contribute a difference of two simple reciprocals. Because the
+residues in this theorem are unrestricted, its plus notation includes
+that difference. Consequently any two prescribed root words can be
+handled by one common residue vector, for fixed paired poles. Positivity
+of the residues is not asserted. More importantly, the interpolation
+uses the same residues that determine all lower input-Haar blocks and
+need not respect their signs. The full-tree shared-cone problem is
+therefore strictly stronger than this theorem.
+
+\paragraph{The coalesced induction criterion.}
+For completeness, consider fixed child strict feasibility cones
+$K_0,K_1\subseteq\mathbb R^M$ in child-indexed residue coordinates.
+When the newest pole pairs coincide, the two child residue vectors
+$a,b$ contribute root values $C(a-b)$, where $C$ is the square Cauchy
+matrix on the shared lower-prefix queries and poles. If the physical
+root routing is $\theta_s$, the child coordinates are
+$a_s=c_{s+\theta_sM}$ and $b_s=c_{s+(1-\theta_s)M}$; this accounts
+for the swap only once. In particular the child cones are independent
+of the root word at coalescence.
+
+The root is feasible for every word if and only if
+\[
+ C(K_0-K_1)=\mathbb R^M,
+ \quad\text{equivalently}\quad K_0\cap K_1\ne\varnothing. \tag{1}
+\]
+Indeed, a proper open convex cone is weakly separated from some point
+by a nonzero linear functional, and then misses the open orthant
+opposite to that functional. Thus meeting every orthant forces the
+open convex cone to be all of $\mathbb R^M$. A cone containing zero
+and open in $\mathbb R^M$ is the whole space; applying this to
+$K_0-K_1$ proves the second equivalence. Empty child cones are excluded
+from this discussion, since then no root can be feasible.
+
+With a free root-block bias, replace the left side of (1) by
+$C(K_0-K_1)+\operatorname{span}\{\mathbf1\}$. The corresponding
+criterion is
+\[
+ (K_0-K_1)\cap\operatorname{span}\{C^{-1}\mathbf1\}\ne\varnothing.
+ \tag{2}
+\]
+This is weaker than ordinary intersection, but still requires proof for
+the actual hierarchy. Neither pairwise intersection for a smaller
+hierarchy nor the two-root interpolation theorem supplies that proof:
+two parent targets involve four child cones, with coordinatewise swaps.
+
+\paragraph{Explicit bias direction.}
+For $C_{ij}=1/(1-p_i-p_j)$, put
+$P(t)=\prod_j(t-p_j)$ and $Q(t)=\prod_j(t-(1-p_j))$.
+Then
+\[
+ (C^{-1}\mathbf1)_h=-\frac{Q(p_h)}{P'(p_h)},
+\]
+because the proper rational function $1-Q(t)/P(t)$ equals one at
+every sample $1-p_i$. This vector has alternating signs when the
+positive poles are ordered and all are less than $1/2$. Its masked
+partial sums need not be constant on the child query blocks.
+
+\paragraph{Exact verification.}
+The companion checker exhausts all butterfly settings through eight
+wires, checks the paired-root interpolation on all sign-word pairs
+through four queries and on additional larger cases, and verifies the
+explicit inverse-Cauchy constant vector. These finite checks do not
+claim a growing-size full-tree decoder.
+\end{document}
