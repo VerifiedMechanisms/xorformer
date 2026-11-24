@@ -1,0 +1,3 @@
+HeadComplexity.Research.ConditionalMarginLowerBounds: audited 25 theorem declarations
+Audited 25 theorem declarations across 1 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].

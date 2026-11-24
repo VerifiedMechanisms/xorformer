@@ -150,6 +150,10 @@ $$ \mathcal R_H=(\mathcal R_H\cap\mathcal G_{K,\gamma})\mathbin{\dot\cup}\mathca
 
 The high-margin count controls only the first term. A same-truth-table repair with constant head overhead would make the second set empty. A separate bound strictly below $2^N-2^{N/2}$ would also suffice. No such repair or bound is established here. An arbitrarily ill-conditioned individual representation, a small-margin family with one label table, or a count that fixes the denominators does not estimate this second term.
 
+`Research/ConditionalMarginLowerBounds.lean` checks this implication against the original `worstCaseHeadComplexity`. The declarations `worstCase_gt_sqrt_of_repair` and `worstCase_gt_logarithmic_of_repair` take the missing repair as an explicit proposition argument. The corresponding `worstCase_gt_sqrt_of_low_count` and `worstCase_gt_logarithmic_of_low_count` instead assume the exact universally low-margin class has cardinality at most half-count, meaning the same bound as the high-margin class. The two counts together remain strictly below the number of all truth tables.
+
+The declarations `real_sqrt_bound_of_low_count`, `real_logarithmic_bound_of_low_count`, `real_sqrt_bound_of_repair`, and `real_logarithmic_bound_of_repair` also check the floor conversion to the displayed real lower bounds with constant $1/(100C)$. The finite overhead condition is automatic when $n\geq\max(32,500(B+1))$, by `overhead_budget_of_threshold`. These are conditional theorems, not solutions of the unrestricted counting gap.
+
 ## New kernel-checked finite theorem
 
 The follow-up adds `Research/MarginSensitiveCapacity.lean`, `Research/CoefficientOrderChart.lean`, and `Research/OriginalMarginCapacity.lean`. Their declarations prove the exact parameter count, degree bound, approximation evaluation, sign transfer, finite chart cardinality, original-atom orientation, and inclusion of every high-margin original representation in the polynomial union. `OriginalMarginCapacity.approximationDegree_error` checks the ceiling choice.
@@ -162,4 +166,4 @@ The targeted build of `HeadComplexity.Research.MarginCapacityEstimates` passed w
 
 ## Render verification
 
-The static checker and KaTeX validation passed for all 117 source math spans. A direct call to GitHub's Markdown API rendered exactly 117 math spans, with no residual delimiters or double-escaped payloads. The one control-space note corresponds to the intentional space following the colon in the definition of the bad set. The `gh` and `glab` executables are unavailable in this checkout; GitHub was audited through its API with repository-scoped credentials, and the GitLab render audit was not run.
+The static checker and KaTeX validation passed for all 119 source math spans. A direct call to GitHub's Markdown API rendered exactly 119 math spans, with no residual delimiters or double-escaped payloads. The one control-space note corresponds to the intentional space following the colon in the definition of the bad set. The `gh` and `glab` executables are unavailable in this checkout; GitHub was audited through its API with repository-scoped credentials, and the GitLab render audit was not run.
