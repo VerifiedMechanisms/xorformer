@@ -1,0 +1,25 @@
+ℹ [3282/3283] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:289:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3283/3283] Replayed HeadComplexity.Research.MarginInvariance
+info: HeadComplexity/Research/MarginInvariance.lean:191:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:192:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:193:0: 'HeadComplexity.RelativeMarginQuantifiers.hasRelativeMargin_mono_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:194:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_width_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (3283 jobs).
