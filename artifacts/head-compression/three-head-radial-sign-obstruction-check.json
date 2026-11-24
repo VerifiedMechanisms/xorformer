@@ -4,5 +4,9 @@
   "integer_score_values_checked": 16,
   "original_minimum_absolute_cleared_score": 3960,
   "sample_dual_sign_checks": 3,
+  "alternative_three_head_collision_identity": "symbolically verified",
+  "alternative_cube_signs_checked": 16,
+  "alternative_error_coefficient_bound": 6700,
+  "alternative_admissible_interval": "0<epsilon<=1/14000",
   "scope": "prescribed radial denominator path only; not unrestricted head complexity"
 }

@@ -45,12 +45,51 @@ for tau in (s.Rational(1, 2), s.Rational(1, 3), s.Rational(1, 100)):
 assert s.Rational(3, 4)-16 < 0
 assert s.Rational(9, 8)+s.Rational(15, 4)-16 < 0
 assert s.Rational(6, 4)+s.Rational(1, 2)-4 == -2
+
+# Independent symbolic audit of the alternative balanced collision.
+eps, lc, mc, kc, uc, vc, wc, cc = s.symbols('eps l m k u v w c')
+dirs = [kc, kc+lc, kc+mc]
+nums = [cc*(lc-mc)+eps*(uc+vc)+eps**2*wc,
+        cc*mc-eps*uc, -cc*lc-eps*vc]
+cleared = sum(nums[i]*s.prod(1+eps*dirs[j] for j in range(3) if i != j)
+              for i in range(3))
+pc = cc*lc*mc*(lc-mc)+uc*lc+vc*mc+wc
+rc = uc*lc*(kc+mc)+vc*mc*(kc+lc)+wc*(2*kc+lc+mc)
+sc = wc*(kc+lc)*(kc+mc)
+assert s.expand(cleared-eps**2*(pc+eps*rc+eps**2*sc)) == 0
+vectors = [
+    [2, 0, 3, 1, -2], [-2, -2, -2, -2, 2], [4, 3, 4, 3, 3],
+    [0, s.Rational(34, 3), 0, 0, s.Rational(26, 3)],
+    [0, s.Rational(25, 2), s.Rational(131, 6), s.Rational(11, 6), -s.Rational(23, 2)],
+    [-s.Rational(13, 3), s.Rational(50, 3), s.Rational(4, 3),
+     -s.Rational(46, 3), -s.Rational(34, 3)],
+]
+alternate_values = []
+error_bound = 0
+for x, sign in zip(points, sigma):
+    vals = [v[0]+sum(a*b for a, b in zip(v[1:], x)) for v in vectors]
+    sub = dict(zip((lc, mc, kc, uc, vc, wc), vals))
+    sub[cc] = -s.Rational(1, 3)
+    pv, rv, sv = [z.subs(sub) for z in (pc, rc, sc)]
+    alternate_values.append(pv)
+    assert sign*pv >= 1
+    error_bound = max(error_bound, abs(rv)+abs(sv))
+    tau = s.Rational(1, 14000)
+    assert sign*(pv+tau*rv+tau*tau*sv) > s.Rational(1, 2)
+assert error_bound == 6700
+assert all(z > 0 for z in vectors[2])
+assert all(a+b > 0 for a, b in zip(vectors[2], vectors[0]))
+assert all(a+b > 0 for a, b in zip(vectors[2], vectors[1]))
 report = {
     'status': 'exact certificate passed; written proof covers all 0<t<=1/2',
     'symbolic_annihilator_identities': M.cols,
     'integer_score_values_checked': len(values),
     'original_minimum_absolute_cleared_score': min(abs(v) for v in expected),
     'sample_dual_sign_checks': sample_checks,
+    'alternative_three_head_collision_identity': 'symbolically verified',
+    'alternative_cube_signs_checked': len(alternate_values),
+    'alternative_error_coefficient_bound': int(error_bound),
+    'alternative_admissible_interval': '0<epsilon<=1/14000',
     'scope': 'prescribed radial denominator path only; not unrestricted head complexity',
 }
 Path(__file__).with_suffix('.json').write_text(json.dumps(report, indent=2)+'\n')
