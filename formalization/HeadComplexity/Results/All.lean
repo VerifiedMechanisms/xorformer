@@ -15,6 +15,7 @@ import HeadComplexity.Results.ClearedNormalForm
 import HeadComplexity.Results.CompactThresholdCertificate
 import HeadComplexity.Results.CountingLowerBound
 import HeadComplexity.Research.NormalizedCounting
+import HeadComplexity.Research.NormalizedLogCounting
 import HeadComplexity.Results.DeterminantFeatureBridge
 import HeadComplexity.Results.DeterminantSpan
 import HeadComplexity.Results.DnfCnfHybrid
@@ -724,5 +725,10 @@ alias theorem198_normalized_worst_case_limit := tendsto_worstCaseHeadComplexity_
 `(2^n - 1)/(2*n^2) ≤ W(n)` for every `n ≥ 8`. -/
 alias normalized_counting_worst_case_lower_bound :=
   NormalizedCounting.worstCase_real_lower
+
+/-- Retain the exact logarithmic denominator in the unconditional normalized
+count. This strengthens the finite estimate without changing its order. -/
+alias normalized_counting_worst_case_log_lower_bound :=
+  NormalizedLogCounting.worstCase_real_log_lower
 
 end HeadComplexity

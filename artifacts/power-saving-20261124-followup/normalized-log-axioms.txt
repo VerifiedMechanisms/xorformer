@@ -1,0 +1,8 @@
+'HeadComplexity.NormalizedLogCounting.card_at_worstCase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedLogCounting.entropy_at_worstCase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedLogCounting.worstCase_real_log_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.normalized_counting_worst_case_log_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
