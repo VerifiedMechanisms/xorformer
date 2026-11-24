@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_one_coordinate_lift.md",
+    "source_spans": 42,
+    "rendered_spans": 42,
+    "findings": [],
+    "notes": []
+  }
+]

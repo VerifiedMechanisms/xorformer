@@ -1,0 +1,6 @@
+import HeadComplexity.Research.OneCoordinateMomentLift
+#print axioms HeadComplexity.OneCoordinateMomentLift.scalar_kernel_identity
+#print axioms HeadComplexity.OneCoordinateMomentLift.finite_kernel_identity
+#print axioms HeadComplexity.OneCoordinateMomentLift.ordinary_moment_zero
+#print axioms HeadComplexity.OneCoordinateMomentLift.positive_axis_kernel_identity
+#print axioms HeadComplexity.OneCoordinateMomentLift.positive_axis_coordinates

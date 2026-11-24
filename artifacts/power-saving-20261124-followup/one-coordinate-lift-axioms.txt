@@ -1,0 +1,13 @@
+'HeadComplexity.OneCoordinateMomentLift.scalar_kernel_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneCoordinateMomentLift.finite_kernel_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneCoordinateMomentLift.ordinary_moment_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneCoordinateMomentLift.positive_axis_kernel_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneCoordinateMomentLift.positive_axis_coordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
