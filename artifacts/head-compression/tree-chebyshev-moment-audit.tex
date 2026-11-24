@@ -142,12 +142,52 @@ patterns. For $q=O(Hd)$ this is $\exp(O(H\log(d+1)))$.
 This is an upper bound for the described generic germs, not for all
 finite values of $\varepsilon$ or all adaptive constructions.
 
-For comparison, a sufficient Sauer counting route to a shattered
-subset of size $\Omega(H\log\log H)$ among $O(H\log H)$ queries would
-be a lower bound $\exp(\Omega(H(\log\log H)^2))$ with suitable absolute
-constants. The unperturbed generic germ estimate cannot supply that
-sufficient count. It does not exclude a more efficient query selection,
-a different counting argument, or a nongeneric construction.
+There is a sharper bound that also excludes a more efficient query
+selection within this same generic germ family.
+
+\begin{corollary}[Linear VC dimension for the generic tree family]
+Allow the numerator $N$ above and the pole permutation to vary. Fix a
+complete binary tree of $H$ leaves. Queries may be made at arbitrary
+fixed positive times, at the full mask or any proper right-child mask.
+Retain the generic nonvanishing hypotheses on the relevant Taylor
+truncations and take the limiting signs for sufficiently small
+$\varepsilon$. The resulting class has VC dimension less than $8H$.
+\end{corollary}
+\begin{proof}
+For each proper mask $S$, record only its first nonzero moment index
+and the sign of that moment. A size-$2^j$ mask has at most $2(j+1)$
+such states. The full mask always has index $H-1$ and moment $1$.
+The number $K$ of state assignments over the proper masks is at most
+\[
+ K\leq\prod_{j=0}^{d-1}[2(j+1)]^{H/2^{j+1}}
+ \leq 2^{2H},
+\]
+where the last inequality uses
+$\log_2(2(j+1))\leq j+1$ and
+$\sum_{j\geq0}(j+1)/2^{j+1}=2$.
+Some assignments may not arise from any permutation; counting all
+of them only increases the bound.
+
+Conditional on one state assignment, every queried limiting sign is
+the sign of a fixed linear form in the $H$ coefficients of $N$.
+Indeed the positive factor $t^{-k-1}$ can be removed, and the remaining
+form is the assigned moment sign times $N_{\leq k}(t)$.
+On any $q\geq H$ queries, one such family has at most
+$\sum_{j=0}^{H}\binom qj\leq(eq/H)^H$ strict sign patterns, by the
+hyperplane arrangement bound. The union over all states consequently
+has at most
+\[
+ 4^H(eq/H)^H
+\]
+patterns. At $q=8H$ this is $(32e)^H<2^{8H}$, since $e<3$.
+No set of $8H$ queries can therefore be shattered.
+\end{proof}
+
+The new corollary permits the coefficients of $N$ to depend on the
+desired labels, but not to vary with $\varepsilon$ in a way that changes
+the stated leading-term regime. Perturbed poles, query times moving
+with $\varepsilon$, and vanishing Taylor truncations remain outside its
+scope. It also does not bound the finite-$\varepsilon$ family uniformly.
 
 \paragraph{Reproducible computations.}
 \texttt{tree-chebyshev-moment-check.py} works in
