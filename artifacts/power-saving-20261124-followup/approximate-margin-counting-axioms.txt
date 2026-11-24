@@ -1,0 +1,24 @@
+'HeadComplexity.ApproximateMarginCounting.card_hammingBall_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.card_hammingBall_lt_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.card_nearbyTables_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.worstCase_gt_of_approximate_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.worstCase_gt_sqrt_of_approximate_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.worstCase_gt_logarithmic_of_approximate_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.real_sqrt_bound_of_approximate_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ApproximateMarginCounting.real_logarithmic_bound_of_approximate_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
