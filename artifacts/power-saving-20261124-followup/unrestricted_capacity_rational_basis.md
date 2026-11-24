@@ -66,6 +66,8 @@ $$ (2^m)^k=2^{mk} $$
 
 strict truth tables. Taking $m=\lfloor n/2\rfloor$ gives exponent $\lfloor n^2/4\rfloor$.
 
+**Scope.** The formal chart above retains positivity, nonsingularity, and strict signs, but it does not retain the global active-polyhedron constraints $|S(x)|\geq1$ and $|a_j|\leq T$. The displayed one-head family generally violates the first constraint at mixed inputs. It therefore obstructs the relaxed interpolation chart, not the stronger class of globally feasible active certificates. Retaining both constraints is the next attempted refinement.
+
 Consequently a uniform per-basis bound $\exp(O(nH\log n))$ is false already at $H=1$. This obstruction is stronger than a multiple-fiber example with arbitrary real interpolation values: its selected sample values really are the fixed levels $-1$ and $1$, its denominator slopes have one admissible orientation, and its full cube scores are strict.
 
 ## Density-sensitive remaining lemma

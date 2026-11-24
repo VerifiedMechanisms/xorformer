@@ -1,0 +1,12 @@
+'HeadComplexity.FeasibleRationalBasis.exists_bounded_active_basis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleRationalBasis.exists_unsigned_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleRationalBasis.exists_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleRationalBasis.represented_eq_iUnion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleRationalBasis.exists_certificate_of_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleRationalBasis.card_headComputableFunctions_le_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

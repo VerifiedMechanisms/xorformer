@@ -1,0 +1,16 @@
+[
+  {
+    "file": "/work/artifacts/power-saving-20261124-followup/unrestricted_capacity_feasible_basis.md",
+    "source_spans": 26,
+    "rendered_spans": 26,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "/work/artifacts/power-saving-20261124-followup/unrestricted_capacity_rational_basis.md",
+    "source_spans": 68,
+    "rendered_spans": 68,
+    "findings": [],
+    "notes": []
+  }
+]

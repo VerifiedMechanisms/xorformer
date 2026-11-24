@@ -1,0 +1,7 @@
+import HeadComplexity.Research.FeasibleRationalBasis
+#print axioms HeadComplexity.FeasibleRationalBasis.exists_bounded_active_basis
+#print axioms HeadComplexity.FeasibleRationalBasis.exists_unsigned_basis
+#print axioms HeadComplexity.FeasibleRationalBasis.exists_certificate
+#print axioms HeadComplexity.FeasibleRationalBasis.represented_eq_iUnion
+#print axioms HeadComplexity.FeasibleRationalBasis.exists_certificate_of_computable
+#print axioms HeadComplexity.FeasibleRationalBasis.card_headComputableFunctions_le_sum
