@@ -1,0 +1,145 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{lemma}{Lemma}
+\title{Adaptive Haar residues with block biases}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\paragraph{Status.}
+This note records an exact reduction, a finite common-pool certificate,
+and a finite Laurent-series continuation certificate. It does not prove
+a compiler of unbounded superlinear capacity. All verification here is
+written or exact computational verification, not Lean verification.
+The original HeadComplexity definitions and admissibility conditions
+are unchanged.
+
+\paragraph{Family.}
+Let $H=2^d$. Index the butterfly switches by
+$e=(k,s,g)$ with $0\leq k<d$, $0\leq s<2^k$, and
+$0\leq g<H/2^{k+1}$. A target word $\theta$ selects its butterfly
+permutation $\pi_\theta$. Set
+\[
+ p_y(\epsilon)=\sum_{j=0}^{d-1}y_j\epsilon^{2^j},\qquad
+ t_{k,s,g}=1-p_s,\qquad
+ u_{k,g}(h)={\bf1}_{h\mathbin{\mathrm{div}}2^{k+1}=g}(-1)^{h_k}.
+\]
+The residues $c_y$ and the $H-1$ block biases $\beta_{k,g}$ may depend
+on the entire target. The required inequalities are
+\[
+ (1-2\theta_{k,s,g})\left(
+ \sum_h\frac{u_{k,g}(h)c_{\pi_\theta(h)}}{t_{k,s,g}-p_{\pi_\theta(h)}}
+ +\beta_{k,g}\right)>0.                                      \tag{1}
+\]
+The query profiles and times are fixed once $d$ and $\epsilon$ are fixed.
+
+\begin{lemma}[Exact elimination of a block bias]
+Write $F_s$ for the reciprocal sum in a fixed block. There exists a real
+$\beta$ giving all its required signs if and only if
+$F_a>F_b$ for every $a$ with $\theta_a=0$ and $b$ with $\theta_b=1$.
+If both classes occur, one may take
+$\beta=-(\min_{\theta_a=0}F_a+\max_{\theta_b=1}F_b)/2$.
+A block containing just one class places no restriction on the residues.
+\end{lemma}
+\begin{proof}
+The inequalities ask for $-\min F_a<\beta<-\max F_b$ when both
+classes occur. If only the positive class occurs, use
+$\beta=1-\min F_a$; if only the negative class occurs, use
+$\beta=-1-\max F_b$.
+\end{proof}
+
+Since all denominators are positive, each mixed-block comparison is
+equivalently
+\[
+ \sum_y \frac{\operatorname{sgn}(p_a-p_b)
+        u_{k,g}(\pi_\theta^{-1}(y))c_y}
+ {(1-p_a-p_y)(1-p_b-p_y)}>0.                                  \tag{2}
+\]
+Indeed $F_a-F_b$ equals the displayed sum times $|p_a-p_b|$.
+Thus feasibility reduces to a homogeneous rational linear system in
+only $H$ variables. Rescaling a strict solution turns its finitely many
+inequalities into inequalities with right side one.
+
+\paragraph{Finite common-pool result at eight wires.}
+At $d=3$ and $\epsilon=1/100$, there is a single signed residue vector
+$c$ for which (1) holds for every one of the $4096$ butterfly targets,
+using separate biases for the targets. The exact vector is in
+\texttt{butterfly-adaptive-haar-common-h8.json}.
+The solver-free checker
+\texttt{butterfly-adaptive-haar-common-check.py} verifies all
+$49\,152$ original strict query inequalities and finds exactly forty
+distinct comparison rows (2). This is a finite-scale result. It asserts
+neither arbitrary smallness of $\epsilon$ nor the corresponding
+statement at larger $H$. The obstruction in
+\texttt{butterfly-common-pool-bias-bound.tex} explains why a universal
+compact common pool cannot be the general induction invariant.
+
+\paragraph{Adaptive thirty-two-wire samples.}
+The script \texttt{butterfly-adaptive-haar-lp.py} generates exact rational
+witnesses using an ordinary continuous rational LP. It never declares
+integer variables. All accepted witnesses are independently checked
+using (1), with biases reconstructed by the lemma, by
+\texttt{butterfly-adaptive-haar-sample-check.py}.
+At $d=5$, $\epsilon=1/100$, and exponents $(1,2,4,8,16)$, ten
+pseudorandom targets and three targets having a fully alternating
+sixteen-query root word all have exact witnesses. These thirteen tests
+provide no probability bound or universal statement. The committed
+sample file stores the first four random witnesses; the first of these
+also has the stronger continuation certificate below.
+
+\paragraph{An exact Laurent continuation.}
+The file \texttt{butterfly-adaptive-haar-h32-laurent.json} specifies one
+of the eighty-bit targets and a square active basis. The basis consists
+of comparison equalities from (2), with right side one, and selected
+coordinate equalities $c_y=0$. Regard its coefficients as rational
+functions of $\epsilon$. The accompanying checker
+\texttt{butterfly-adaptive-haar-laurent-check.py} proves that this basis
+is nonsingular over $\mathbb Q((\epsilon))$ and that every comparison
+score has positive leading coefficient. Consequently this one target
+satisfies (1) for every sufficiently small positive $\epsilon$.
+
+Here are sufficient details to audit what the computation establishes.
+The checker uses exact rational power series with tracked truncation
+precision. It performs Gaussian elimination with full pivoting by
+lowest valuation. Every pivot has a nonzero leading coefficient.
+Multiplying the right side by $\epsilon^{85}$ keeps intermediate
+expressions in the power-series ring. The pivot valuations are twenty-four
+zeros followed by
+\[
+ 2,2,6,6,8,8,16,22.
+\]
+After solving, the checker substitutes the result into the original
+basis equations and verifies zero residual to the available precision.
+For all $104$ comparison rows, the computed leading coefficient is
+strictly positive and occurs before the tracked precision ends.
+All these statements are exact rational calculations. Nonzero pivots
+certify an invertible rational-function matrix; precision tracking
+makes its computed leading solution terms and score terms valid in the
+formal Laurent field. Each rational score with positive leading term
+is positive on some punctured interval to the right of zero. Intersect
+the finitely many intervals and apply the bias-elimination lemma.
+
+The nonzero residue leading terms are listed below as triples
+$(y,\text{coefficient},\text{valuation})$:
+\[
+\begin{gathered}
+ (16,-8,-8),\ (18,1,0),\ (20,-4,-22),\ (21,4,-8),\
+ (22,8,-7),\ (23,-8,-8),\ (24,-4,-8),\ (25,4,-18),\
+ (26,-4,-16),\ (27,4,-16),\ (28,4,-22),\ (29,-4,-18),\
+ (30,-4,-8),\ (31,-12,-8).
+\end{gathered}
+\]
+The other residues vanish identically by their selected basis equations.
+The checker also verifies this displayed leading-term data against the
+certificate. These simple leading coefficients suggest a possible
+recursive cancellation rule, but no such rule has been proved.
+
+\paragraph{Remaining quantitative gap.}
+A proof that (1) is feasible for all targets at arbitrarily large $H$,
+or a sufficiently strong uniform lower bound on the density of feasible
+targets, is absent. The construction has $H\log_2 H/2$ queries and
+$H-1$ block biases, so such a result would be relevant to a compiler
+with a superconstant saving. Finite samples, even with exact Laurent
+continuation, do not supply that missing density or induction theorem.
+\end{document}
