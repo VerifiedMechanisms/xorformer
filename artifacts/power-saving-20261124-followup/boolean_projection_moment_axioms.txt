@@ -1,0 +1,24 @@
+'HeadComplexity.BooleanProjectionMomentAliasing.scalar_function_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.all_projection_moments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.mixed_moment_21_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.mixed_moment_12_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.cubic_projection_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.positiveAtom_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.negativeAtom_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BooleanProjectionMomentAliasing.six_genuine_heads_cancel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
