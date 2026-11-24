@@ -1,0 +1,5 @@
+import HeadComplexity.Research.CoordinateFlatJetRank
+
+#print axioms HeadComplexity.CoordinateFlatJetRank.derivativeMatrix_factor
+#print axioms HeadComplexity.CoordinateFlatJetRank.derivativeMatrix_rank_le
+#print axioms HeadComplexity.CoordinateFlatJetRank.derivativeMatrix_rank_le_sub_one
