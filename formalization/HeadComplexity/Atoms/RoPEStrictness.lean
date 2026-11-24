@@ -68,6 +68,35 @@ theorem withValueOne_eval_sub_abs_le (p : PureRoPEAtom n) (t : ℝ)
     abs_of_nonneg (mul_nonneg ht (p.oneMass_nonneg x))]
   nlinarith [p.oneMass_le_one x]
 
+/-- One pure atom can be made nondegenerate against any fixed background score.
+The free scalar constant absorbs the initial strictness shift. -/
+theorem exists_nondegenerate_addend (p : PureRoPEAtom n)
+    (R : (Fin n → Bool) → ℝ) (c : ℝ) :
+    ∃ (p' : PureRoPEAtom n) (c' : ℝ), p'.v₁ ≠ p'.v₀ ∧ ∀ x,
+      (0 < c' + p'.eval x + R x ↔ 0 < c + p.eval x + R x) ∧
+        c' + p'.eval x + R x ≠ 0 := by
+  let S (x : Fin n → Bool) := c + p.eval x + R x
+  obtain ⟨δ, hδ, hshift⟩ := exists_strict_shift S
+  obtain ⟨ε, hε, hstable⟩ := exists_sign_stability_margin
+    (fun x ↦ S x - δ) (fun x ↦ (hshift x).2)
+  have hex : ∃ t : ℝ, 0 < t ∧ t < ε ∧ p.v₁ + t ≠ p.v₀ := by
+    by_cases h : p.v₁ + ε / 2 = p.v₀
+    · refine ⟨ε / 3, by positivity, by linarith, ?_⟩
+      intro heq
+      linarith
+    · exact ⟨ε / 2, by positivity, by linarith, h⟩
+  obtain ⟨t, ht, htε, hne⟩ := hex
+  let p' := p.withValueOne (p.v₁ + t)
+  have hclose : ∀ x, |(c - δ + p'.eval x + R x) - (S x - δ)| < ε := by
+    intro x
+    have heq : (c - δ + p'.eval x + R x) - (S x - δ) =
+        p'.eval x - p.eval x := by dsimp [S]; ring
+    rw [heq]
+    exact (p.withValueOne_eval_sub_abs_le t ht.le x).trans_lt htε
+  refine ⟨p', c - δ, hne, fun x ↦ ?_⟩
+  have hs := hstable (fun x ↦ c - δ + p'.eval x + R x) hclose x
+  exact ⟨hs.1.trans (hshift x).1, hs.2⟩
+
 end PureRoPEAtom
 
 /-- At every head count, all token-value differences can be made nonzero while
