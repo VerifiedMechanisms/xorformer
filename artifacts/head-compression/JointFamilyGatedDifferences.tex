@@ -1,0 +1,130 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Shared reciprocal gates for paired butterfly readout}
+\maketitle
+
+\paragraph{Status.}
+The general gated-bank theorem is kernel checked in
+\texttt{JointFamilyGatedDifferences.lean}.  The butterfly instantiation and
+head count below are written algebraic proofs.  The simultaneous Haar
+readout lemma and an efficient global cover remain open.  No stronger
+bound for the original worst-case head complexity is claimed.
+
+\paragraph{Kernel-checked primitive.}
+Let a bank of $H$ fractions have affine row numerators $A_h(x)$,
+independent column memories $a_{hj}$, affine row denominators $B_h(x)$,
+and independent column memories $d_{hj}$.  Subtract a reference bank
+with the same row data, zero column numerators, and column denominator
+memories $e_{hj}$.  Assume both affine denominators are positive on the
+entire row-column Boolean cube, and every denominator slope is
+nonpositive.  For a fixed coordinate face $S_h$, add to both denominators
+\[
+ t\sum_{i\in S_h}(1-x_i)+t^{-1}\sum_i(1-x_i).
+\]
+At every $t>0$ all denominator slopes are strictly negative and all
+cube denominators remain positive.  As $t\to\infty$, the pair tends to
+its original difference multiplied by the face monomial
+$\prod_{i\in S_h}x_i$.  The two banks cancel exactly on the zero-column
+axis before taking any limit.  For finitely many prescribed strict
+signs one common sufficiently large $t$ preserves all signs.
+
+The exact declaration
+\texttt{jointFamily\_gated\_difference\_with\_correction\_preserves\_signs}
+also includes an arbitrary prior score and $K$ arbitrary column-dependent
+face-monomial corrections.  The result is actual
+\texttt{ReverseCubeStarData} of $2H+K$ heads.  Hence arbitrary independent
+column coefficients and corrections are fully charged.  It is a local
+strict-sign theorem; it supplies neither exact vanishing on all lower
+faces nor a cover of the global Boolean cube.
+
+\paragraph{Source gates.}
+Put $H=2^d$.  For each source wire $h\in\{0,1\}^d$, give the row domain
+$2d$ coordinates $x_{b,v}$ and let
+$S_h=\{(b,h_b):0\leq b<d\}$.  A stage-$k$ query sets both coordinates
+in every block $b\leq k$ to one and sets the block $b>k$ to the one-hot
+encoding of the source-tail word $g$.  Therefore
+\[
+ \prod_{i\in S_h}x_i=1_{(h_{k+1},\ldots,h_{d-1})=g}.
+\]
+This realizes a growing family of source-block masks with one gate per
+wire.  It is not an exact affine representation of the indicator masks,
+so the earlier affine partition-rank obstruction does not apply.
+
+\paragraph{Paired Haar numerators without a forbidden product.}
+Let $\gamma_k>0$, $p_y=\sum_k y_k\gamma_k$, and
+$D_s=1-p_s$, with $s$ the output prefix below stage $k$.
+For source bit $h_k=0$, use the pair
+\[
+ \frac{a_{hj}+\gamma_k}{D_s-p_{\pi_j(h)}}+
+ \frac{-a_{hj}+\gamma_k}{D_s+\gamma_k-p_{\pi_j(h)}}.
+\]
+For source bit $h_k=1$, use
+\[
+ \frac{a_{hj}-\gamma_k}{D_s+\gamma_k-p_{\pi_j(h)}}+
+ \frac{-a_{hj}-\gamma_k}{D_s-p_{\pi_j(h)}}.
+\]
+The sum equals $U_{k,g}(h)$ times the paired scalar readout after
+source gating.  The column residue $a_{hj}$ is never multiplied by a
+row-dependent sign in an affine numerator.  Instead, the two denominators
+are interchanged.  Stage dependence is encoded by $d$ one-cold stage
+coordinates $z$: the nonnegative offset $f_h(k)$ is represented as
+$\sum_\ell f_h(\ell)(1-z_\ell)$.  Thus the denominator slopes stay
+nonpositive.
+
+There are two main banks of $H$ heads.  For exact zero-column cancellation,
+subtract the corresponding two reference banks with $a_{hj}=0$ and
+$p_{\pi_j(h)}=0$.  On every intended source-block query the reference sum
+is zero, since that block has equally many wires with $h_k=0$ and $h_k=1$.
+The reference banks are nevertheless charged: four banks, or $4H$ heads.
+
+\paragraph{Independent columns and full-cube positivity.}
+Let $s_0$ be the number of independently programmed columns and put
+$\Gamma=\sum_k\gamma_k$.  A sufficient full-cube bound is
+\[
+ (s_0+1)\Gamma<1.
+\]
+Indeed the row prefix coordinates subtract at most $\Gamma$, all active
+column memories together subtract at most $s_0\Gamma$, and the stage
+offsets and gate penalties are nonnegative on the entire cube.  Thus a
+fixed-parameter finite experiment does not establish a compiler for
+arbitrarily many columns.  A universal scalar Haar theorem must allow
+arbitrarily compact pole scales, or must supply another admissible
+compactification.  This qualification is independent of the gate limit.
+
+\paragraph{Bias cost.}
+For every pair $(k,g)$, a single monomial can require the source-tail
+coordinates specified by $g$ and all stage coordinates except $z_k$.
+On the one-cold stage queries it is exactly the indicator of $(k,g)$.
+One additional reverse head realizes its arbitrary column coefficient
+in the gate limit, with exact zero-column axis.  There are
+\[
+ \sum_{k=0}^{d-1}2^{d-k-1}=H-1
+\]
+such biases.  Consequently the conditional local compiler costs
+$5H-1$ heads, including source selection, reference-axis repair, and
+all block biases.  It handles $dH/2$ Haar switch queries per column if
+the remaining simultaneous scalar readout inequalities are feasible.
+Preservation of any prior strict score is included in the checked
+finite-sign theorem, but no claim of localization to a global cell is
+implicit.
+
+\paragraph{A constant-weight embedding and its remaining defect.}
+Give target-prefix bits another $2d$ coordinates.  At stage $k$, use
+one-hot target blocks below $k$ and full blocks at or above $k$.
+The source blocks have weight $d+k+1$ and target blocks have weight
+$2d-k$.  With one-cold stage coordinates, every intended query has
+weight $4d$ in $5d$ coordinates.  The spurious target contribution
+$\sum_{b\geq k}\gamma_b$ can be compensated by an additional nonnegative
+stage offset in both denominators.  This preserves the positivity bound
+above and the scalar query times.
+
+Being in one shell does not solve the global gluing problem.  Deleting
+one coordinate of an inactive full source block typically restricts the
+selected wires to one child and leaves a nonzero reciprocal sum.  Deleting
+a target coordinate also changes the query time without forcing a zero.
+Thus exact vanishing on all lower deletion weights, as required by the
+available graded-shell transfer, has not been proved.  Charging these
+proper-face corrections is a separate essential problem.
+\end{document}
