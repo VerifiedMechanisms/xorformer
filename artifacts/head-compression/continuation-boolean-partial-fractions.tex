@@ -1,0 +1,147 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\begin{document}
+\title{Partial Fractions in the Boolean Quotient}
+\author{}
+\date{November 24, 2026}
+\maketitle
+
+\paragraph{Status.}
+These are complete written algebraic identities and counterexamples,
+not Lean-checked results. They concern exact cancellation using affine
+numerators in the original admissible affine-ratio model. They do not
+give an asymptotic head-complexity improvement. The counterexample fixes
+the two denominators; it is not a lower bound against other denominators.
+
+All equalities below are on the Boolean cube, or equivalently in the
+quotient by $x_i^2-x_i$.
+
+\section{A selector-bit product identity}
+
+\begin{proposition}
+Let $D_1,D_2$ be admissible affine denominators. Suppose
+$D_2-D_1=c_0+c_1x_k$, where $c_0(c_0+c_1)\ne0$. Then the reciprocal
+product is the sum of two admissible affine ratios:
+\[
+ \frac1{D_1D_2}=\frac{r(x_k)}{D_1}-\frac{r(x_k)}{D_2},\qquad
+ r(x_k)=\frac{1-x_k}{c_0}+\frac{x_k}{c_0+c_1}.
+\]
+\end{proposition}
+\begin{proof}
+At either Boolean value of $x_k$, $r(x_k)(D_2-D_1)=1$.
+Subtract the two fractions. The numerator $r$ is affine, and the
+denominators have not changed.
+\end{proof}
+
+More generally, let $D_h=D+a_h+b_hx_k$ for $1\le h\le H$.
+Suppose that for each $t\in\{0,1\}$ the numbers $a_h+b_ht$ are
+pairwise distinct and every $D_h$ is admissible. Ordinary partial
+fractions in $D$, applied separately at the two values of $x_k$, give
+\[
+ \prod_{h=1}^H\frac1{D_h}
+ =\sum_{h=1}^H\frac{r_h(x_k)}{D_h},\qquad
+ r_h(t)=\prod_{j\ne h}
+            (a_j+b_jt-a_h-b_ht)^{-1}.
+\]
+Each $r_h$ has an affine interpolation between its two displayed
+values. Thus a product of $H$ reciprocals in this family flattens
+into $H$ heads exactly. If the offsets depend on several selector
+bits, their partial-fraction residues are in general functions of
+all of those bits, rather than affine numerators. The stated proof
+therefore gives no constant-cost multibit extension.
+
+There is a second small Boolean phenomenon. For $z_i,z_j\in\{-1,1\}$
+and $a^2\ne b^2$,
+\[
+ (az_i+bz_j)^{-1}=\frac{az_i-bz_j}{a^2-b^2}.
+\]
+Consequently a difference of denominators of this centered two-bit
+form also has an affine reciprocal. In $0,1$ coordinates, the
+mixed finite difference of $1/(c+ax+by)$ is
+\[
+ \frac{ab(2c+a+b)}{c(c+a)(c+b)(c+a+b)}.
+\]
+Provided all four denominator values are nonzero, the reciprocal is
+affine exactly when $ab(2c+a+b)=0$. These signed differences need
+not themselves be admissible denominators; only the original
+$D_h$ require admissibility.
+
+\section{A genuinely multibit exact cancellation}
+
+\begin{theorem}
+On $\{0,1\}^3$, define
+\[
+\begin{split}
+ D_1&=1+x+2y+3z,\qquad D_2=2+2x+5y+10z,\\
+ N_1&=-\frac{33}{10}-\frac{x}{20}-\frac{37y}{20}
+                                      +\frac{17z}{20},\\
+ N_2&=\frac{38}{5}-\frac{2x}{5}+\frac{19y}{4}.
+\end{split}
+\]
+Then
+\[
+             \frac1{D_1D_2}=\frac{N_1}{D_1}+\frac{N_2}{D_2}.
+\]
+Both heads are admissible on the entire cube.
+\end{theorem}
+\begin{proof}
+Expansion before reduction gives
+\[
+ N_1D_2+N_2D_1
+ =1+\frac12(x-x^2)-\frac14(y-y^2)-\frac{17}{2}(z-z^2).
+\]
+The three extra terms vanish on the cube. Both denominators have
+positive constant terms and strictly positive slopes.
+\end{proof}
+
+This cancellation uses the Boolean relations rather than the
+one-variable partial-fraction formula. The space of multilinear
+polynomials of degree at most two in three bits has dimension seven,
+while two affine numerators offer eight coefficients. Dimension alone
+does not guarantee solvability for every denominator pair; the
+displayed coefficients are the proof for this pair.
+
+\section{A four-bit obstruction for fixed denominators}
+
+\begin{theorem}
+Let
+\[
+ D_1=1+\sum_{i=1}^4 i x_i,\qquad
+ D_2=2+\sum_{i=1}^4(i^2+1)x_i.
+\]
+There do not exist affine $N_1,N_2$ with
+$1/(D_1D_2)=N_1/D_1+N_2/D_2$ on $\{0,1\}^4$.
+\end{theorem}
+\begin{proof}
+Both denominators are everywhere positive. The proposed identity
+would therefore imply $N_1D_2+N_2D_1=1$ in the Boolean quotient.
+On the space of degree-at-most-two multilinear polynomials, take
+the coefficient order
+\[
+ (1,x_1,x_2,x_3,x_4,x_1x_2,x_1x_3,x_1x_4,
+                          x_2x_3,x_2x_4,x_3x_4).
+\]
+Define a linear functional by the coefficient vector
+\[
+ \ell=(109,-92,-18,9,-2,90,36,-26,-36,18,0).
+\]
+Direct multiplication gives
+\[
+ \ell(D_1)=\ell(D_2)=0,\qquad
+ \ell(x_iD_1)=\ell(x_iD_2)=0\quad(1\le i\le4),
+\]
+where products are reduced by $x_i^2=x_i$. Thus $\ell$ annihilates
+every $N_1D_2+N_2D_1$ with affine numerators, but $\ell(1)=109$.
+This is a contradiction.
+\end{proof}
+
+\paragraph{Exact remaining gap.}
+The three-bit identity supplies a concrete cancellation mechanism,
+but independent repetition gives only a constant improvement. A
+useful global construction would have to couple many such
+identities while keeping the resulting residues affine, or prove
+a sign-only identity for a whole sum. None of the identities here
+provides that coupling.
+\end{document}
