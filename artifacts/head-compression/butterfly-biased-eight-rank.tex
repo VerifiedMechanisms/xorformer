@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\title{An Exact Eight-Wire Elimination with Block Biases}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+Complete written proof, with exact symbolic and rational checks; not Lean.
+This proves a finite rank statement for a restricted Cauchy decoder. It
+provides no growing query-to-head ratio and resolves neither global target.
+
+Let the eight output poles be
+\[
+ p_y=y_0a+y_1b+y_2c,\qquad a>b+c>0,\quad b,c>0,\quad b\ne c.
+\]
+Let $t_0,t_1,t_2,t_3$ be distinct real numbers larger than every pole.
+Use the usual three-layer butterfly, with any fixed switch settings and
+resulting input-to-output permutation $\pi$. For its twelve switches
+$e=(k,s,g)$, put
+\[
+ F_e(z,\beta)=\sum_{h=0}^7
+ \frac{u_{k,g}(h)z_{\pi(h)}}{t_s-p_{\pi(h)}}+\beta_{k,g},
+ \qquad
+ u_{k,g}(h)=\mathbf1_{h\mathbin{\mathrm{div}}2^{k+1}=g}(-1)^{h_k}.
+\]
+There is one independent real bias for each input block $(k,g)$.
+
+\begin{theorem}
+For every butterfly setting, the linear map $(z,\beta)\mapsto(F_e)_e$
+has rank twelve. In particular every twelve-dimensional real score vector,
+and hence every strict sign word, is attained on this fixed routing.
+\end{theorem}
+\begin{proof}
+Consider a linear dependence among its rows. The bias columns say that
+its coefficients sum to zero inside each block. The four level-zero
+coefficients therefore vanish. At level one the two block functions have
+the form $A_gD(x)$, where
+\[
+ D(x)=\frac1{t_0-x}-\frac1{t_1-x}\ne0.
+\]
+The root function has the form $R(x)=N(x)/Q(x)$, with
+$Q(x)=\prod_{s=0}^3(t_s-x)$ and $\deg N\le2$, because its four
+coefficients sum to zero. Consequently
+\[
+ f(x)=R(x)/D(x)=\frac{U(x)}{(t_2-x)(t_3-x)},\qquad \deg U\le2.
+\]
+For each input pair differing only in bit zero, every remaining Haar
+coefficient is the same on its two members. Their leaf equations force
+$f(r)=f(s)$ at their two routed poles. Those poles have different output
+bit zero: the first butterfly layer preserves this property, and later
+layers never change bit zero. Thus these four equalities form a perfect
+matching between $\{0,b,c,b+c\}$ and its translate by $a$.
+
+Write $P(x)=x^2-Sx+T=(t_2-x)(t_3-x)$ and
+$U(x)=ux^2+vx+w$. For distinct $r,s$,
+\[
+ U(r)P(s)-U(s)P(r)
+ =(r-s)\bigl[A(rs-T)+B(r+s-S)\bigr],
+ \quad A=-uS-v,\quad B=uT-w.
+\]
+If $A=0$, any equality at a matched pair implies $B=0$, since
+$r+s<S$. In that case $U=uP$ and $f$ is constant. Otherwise every
+matched pair must have the same value of
+\[
+ L(r,s)=\frac{T-rs}{S-r-s}.
+\]
+On the pole interval this function is strictly increasing in both
+arguments, since
+\[
+ \frac{\partial L}{\partial r}
+ =\frac{(t_2-s)(t_3-s)}{(t_2+t_3-r-s)^2}>0,
+ \qquad
+ \frac{\partial L}{\partial s}>0.
+\]
+Hence a constant-$L$ perfect matching must pair the two ordered clusters
+in reverse order. Since each four-point cluster is symmetric, all such
+pairs have sum $a+b+c$. Their products are not constant: the endpoint
+pairs have products $0$ and $a(b+c)>0$. Their $L$ values therefore differ,
+a contradiction. Thus $f$ is constant.
+
+In each level-one input block, the two input pairs have opposite
+level-one Haar signs and the same root Haar sign. Their leaf equations
+therefore set the same constant $f$ equal to $A_g$ and $-A_g$, up to one
+common sign. This forces $f=A_0=A_1=0$. Thus $R=0$, and uniqueness of
+partial fractions at the distinct $t_s$ kills all root coefficients.
+Every row-dependence coefficient is zero, as required.
+\end{proof}
+
+\paragraph{Why this does not induct immediately.}
+For sixteen wires, clearing the eight root query denominators produces
+a root numerator of degree at most six. The level-two node contributions
+are quadratic numerators times a four-factor denominator quotient, while
+level-one contributions are scalar six-factor quotients. There is no
+single two-pole function $f$ shared by all input pairs. The increasing
+matching invariant $L$ above therefore does not directly extend. An
+exact elimination preserving an appropriate positive kernel at subsequent
+levels remains open.
+\end{document}
