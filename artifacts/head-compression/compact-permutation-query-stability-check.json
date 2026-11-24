@@ -1,0 +1,15 @@
+{
+  "status": "exact finite affine-minor stability check; no asymptotic compiler claim",
+  "H": 3,
+  "pole_tokens": [
+    1,
+    2,
+    4
+  ],
+  "kernel_exponent": 2,
+  "orbit_points": 6,
+  "nonzero_minors": 77,
+  "identically_zero_minors": 6,
+  "positive_interval_endpoint": "14/27693",
+  "rational_sample_checks": 385
+}

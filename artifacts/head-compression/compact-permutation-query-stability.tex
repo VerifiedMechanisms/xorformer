@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Variable exterior queries on a fixed permutation pool}
+\author{}\date{}\maketitle
+\paragraph{Status and scope.}
+This is a complete written limitation of one compact decoder family, with
+an exact small-instance checker. It is not a bound for HeadComplexity.
+The tokens and their uniform scaling are fixed. Query masks and query
+thresholds may vary with the scale, but must be fixed across target
+permutations. Target-dependent common or block biases, adaptive residues,
+nonuniformly scaled tokens, and poles comparable to the query addresses
+are outside the statement.
+
+Fix $H\geq1$, real tokens $a_1,\ldots,a_H$ and
+$\lambda_1,\ldots,\lambda_H$, and a positive integer $p$.
+For a permutation $\pi\in S_H$, consider $q$ scores
+\[
+ F_j(\pi)=\sum_{h=1}^H
+ \frac{m_{hj}a_{\pi(h)}}{(t_j-\epsilon\lambda_{\pi(h)})^p}
+ -\beta_j,\qquad t_j>0.                         \tag{1}
+\]
+The application motivating the note has $p=2$ and arbitrary masks.
+
+\begin{theorem}
+There is $\delta>0$, depending only on the fixed tokens and $p$, such
+that whenever $0<\epsilon/t_j<\delta$ for every $j$, all denominators
+in (1) are positive and the number of strict $q$-bit words attained by
+varying $\pi$ is at most
+\[
+ \sum_{i=0}^{H-1}\binom qi.                     \tag{2}
+\]
+In particular, this family cannot shatter $q\geq H$ queries. The masks,
+thresholds, and query addresses in this assertion may depend arbitrarily
+on $\epsilon$.
+\end{theorem}
+\begin{proof}
+Put $v(s)_y=a_y/(1-s\lambda_y)^p$ and let $X(s)$ be the finite
+configuration of all coordinate permutations of $v(s)$. Every entry of
+its affine-coordinate matrix, with rows $(1,P_\pi v(s))$, is rational
+in $s$. Each minor is either identically zero or has a constant nonzero
+sign throughout some sufficiently small interval $0<s<\delta$.
+There are finitely many minors. Choose a common such interval that
+also makes $1-s\lambda_y>0$ for all $y$.
+
+We spell out why all strict affine dichotomies of $X(s)$ are constant
+on this interval, including degenerate configurations. The rank is
+constant, and one fixed collection of independent columns spans the
+column space throughout a smaller interval. For a proposed dichotomy,
+Gordan's alternative makes infeasibility equivalent to a nonzero
+nonnegative dependence between the appropriately signed rows. A
+nonnegative dependence of minimal support is a circuit: any independent
+second dependence can be added until a positive coefficient vanishes.
+For a circuit of size $k$, choose $k-1$ independent rows and $k-1$
+columns on which they remain independent. Cramer's rule expresses the
+unique circuit coefficients, up to a common nonzero factor, as signed
+$(k-1)$-minors. Their signs and zeros are constant on the chosen
+interval. Thus the existence of a nonnegative circuit is constant,
+and Gordan's alternative proves the assertion about dichotomies.
+
+Fix any $s_0$ in the interval. The sign of (1) is the sign of an affine
+functional on $X(\epsilon/t_j)$, after multiplication by the positive
+number $t_j^p$. Therefore its dichotomy on the permutations is also
+realized by some affine functional on the single configuration
+$X(s_0)$. Do this separately for each of the $q$ queries. All words
+from (1) now occur among the regions of $q$ affine hyperplanes on the
+affine span of $X(s_0)$. That span has dimension at most $H-1$, because
+every point has the same coordinate sum. The usual hyperplane-region
+recurrence gives at most $\sum_{i=0}^{H-1}\binom qi$ regions, also
+when some hyperplanes or points are degenerate. Strict word classes
+are convex intersections of open half spaces, so each uses at most
+one region. If $q\geq H$, this sum is strictly smaller than $2^q$.
+\end{proof}
+
+\paragraph{The precise escape left open.}
+The argument does not show uniform stability over a changing token
+family $a_y(\epsilon),\lambda_y(\epsilon)$. Algebraic minors can
+vanish to competing orders when poles or residues have several scales;
+the query address can then change their leading signs. It also does
+not transfer a bias that varies with the permutation: replacing each
+query's separating affine functional independently need not preserve
+such a shared numeric parameter. These are substantive gaps between
+this fixed-pool result and the desired joint compiler.
+\end{document}
