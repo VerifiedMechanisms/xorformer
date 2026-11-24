@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,hyperref}
+\newtheorem{lemma}{Lemma}
+\title{Polynomial profile bridges between adaptive residue cones}
+\author{}\date{}
+\begin{document}\maketitle
+\paragraph{Status.}
+This note gives exact written identities and a finite rational certificate.
+It does not establish an induction, a superconstant local saving, or either
+accepted asymptotic conclusion. The model and its definitions are unchanged.
+The certificates are independently checked rational arithmetic, not Lean proofs.
+
+\paragraph{The finite bridge.}
+Use the sixteen-pole grid and four target words in
+\texttt{butterfly-biased-cone-intersection.json}, with
+$p_y=\sum_{j=0}^3y_j\epsilon^{2^j}$ and $\epsilon=1/100$.
+Let $K_0,\ldots,K_3$ be their open homogeneous residue cones after
+eliminating the separate block biases, as in
+\texttt{butterfly-adaptive-haar-biased.tex}.
+Put $C_{ij}=(1-p_i-p_j)^{-1}$ and
+\[
+ V_2=C^{-1}\operatorname{span}\{(1)_i,(p_i)_i,(p_i^2)_i\}.
+\]
+For each of the three partitions $\{a,b\}\sqcup\{c,d\}$ of
+$\{0,1,2,3\}$, the following intersection is nonempty:
+\[
+ (K_a\cap K_b)\cap\bigl((K_c\cap K_d)-V_2\bigr).             \tag{1}
+\]
+This removes the previously certified obstruction for the one-dimensional
+space $C^{-1}\operatorname{span}\{(1)_i\}$ on these four targets.
+It says nothing about all target words or all sufficiently small scales.
+
+Here is a solver-free certificate of (1).
+The file \texttt{butterfly-biased-polynomial-bridge.json} stores the four
+words, the pole grid, the three partitions, and a square active basis
+for each partition. For $V=C^{-1}[(1),(p),(p^2)]$, the unknowns are
+$(x,\lambda)\in\mathbb Q^{16}\times\mathbb Q^3$.
+A comparison row $r$ from the first two cones contributes $(r,0)$;
+a row from the other two contributes $(r,rV)$.
+Thus positivity of all rows means that $x$ is in the first intersection
+and $x+V\lambda$ is in the second. The checker
+\texttt{butterfly-biased-polynomial-bridge-check.py} solves the saved
+active rows with right side one, together with the saved zero coordinate
+constraints, and checks all original inequalities strictly. It checks
+$264$ strict comparisons in total. No optimization solver or numerical
+rounding is used by this checker.
+
+\begin{lemma}[Inverse Cauchy polynomial spaces]
+Let $p_1,\ldots,p_M$ be distinct, let $t_i=T-p_i$ be distinct and
+outside the pole set, and let $C_{ij}=(t_i-p_j)^{-1}$.
+Define
+\[
+ Q(x)=\prod_j(x-p_j),\qquad A(x)=\prod_i(x-t_i),\qquad
+ w_j=-\frac{A(p_j)}{Q'(p_j)}.
+\]
+For $0\leq L<M$,
+\[
+ C^{-1}\operatorname{span}\{(p_i^k)_i:0\leq k\leq L\}
+ =\operatorname{span}\{(w_jp_j^k)_j:0\leq k\leq L\}.          \tag{2}
+\]
+\end{lemma}
+\begin{proof}
+For a polynomial $P$ of degree at most $L$, divide
+$Q(x)P(T-x)$ by the monic polynomial $A(x)$:
+\[
+ Q(x)P(T-x)=A(x)S(x)+R(x),\qquad \deg R<M,\quad\deg S\leq L.
+\]
+The rational function $R/Q$ takes the values $P(p_i)$ at $t_i$.
+Its residue at $p_j$ is $-A(p_j)S(p_j)/Q'(p_j)=w_jS(p_j)$.
+The quotient map from $P$ to $S$ is an invertible triangular map on
+polynomials of degree at most $L$: its leading coefficient changes
+only by the nonzero factor $(-1)^{\deg P}$. This proves both inclusions.
+Invertibility of $C$ also follows directly: a null vector would give a
+rational function with numerator degree less than $M$ and $M$ distinct
+zeros outside the poles, hence zero residues.
+\end{proof}
+
+\paragraph{Binary clustering does not preserve these weights directly.}
+Replace each child pole $p_j$ by $p_j,p_j+\delta$, keeping the reflected
+query convention. The parent polynomials are
+\[
+ Q_\delta(x)=Q(x)Q(x-\delta),\qquad
+ A_\delta(x)=A(x)A(x+\delta).
+\]
+For fixed distinct child poles and $\delta\to0^+$, their weights obey
+\[
+ w_{j,0}(\delta)=\frac{w_j^2}{\delta}+O(1),\qquad
+ w_{j,1}(\delta)=-\frac{w_j^2}{\delta}+O(1).                  \tag{3}
+\]
+Indeed $Q(p_j-\delta)=-\delta Q'(p_j)+O(\delta^2)$ and
+$Q(p_j+\delta)=\delta Q'(p_j)+O(\delta^2)$; substitution into the
+weight formula gives (3).
+Thus the most direct pair-difference limit gives squared child weights.
+Converting these into the weights in (2) requires the sampled factor
+$1/w_j=-Q'(p_j)/A(p_j)$, which has no established bounded-degree
+polynomial representation on the child grid. This is a gap in the
+proposed induction, not an impossibility theorem for other profiles.
+
+\begin{lemma}[Two heads for an arbitrary fixed query profile]
+For any row values $b_1,\ldots,b_r\in\mathbb R$ and fixed query profile
+$v_1,\ldots,v_s\in\mathbb R$, there is an axis-zero sum of two
+strictly admissible reverse heads taking the value $b_iv_j$ at
+$(e_i,e_j)$.
+\end{lemma}
+\begin{proof}
+Put $C=2r+2s+4$. Choose $\kappa>0$ small enough that
+\[
+ u_j=C-1-\left(\frac1{C-2}+\kappa v_j\right)^{-1}
+ \quad\hbox{satisfies}\quad \tfrac12<u_j<\tfrac32
+\]
+for every $j$. This is possible by continuity because $u_j=1$ at
+$\kappa=0$. Set
+\[
+ F(z,w)=\frac{\kappa^{-1}\sum_i b_iz_i}{C-\sum_i z_i-\sum_j u_jw_j}
+       -\frac{\kappa^{-1}\sum_i b_iz_i}{C-\sum_i z_i-\sum_j w_j}.
+\]
+Both denominators have strictly negative slopes and are positive on the
+entire Boolean cube, since their minimum is at least $C-r-3s/2>0$.
+At $(e_i,e_j)$ the reciprocal denominator difference is exactly
+$\kappa v_j$, so $F=b_iv_j$. At $z=0$ the numerators vanish, and at
+$w=0$ the denominators agree. Both Boolean coordinate axes therefore
+vanish exactly.
+\end{proof}
+
+\paragraph{Budget and remaining issue.}
+If a block at butterfly level $k$ is allowed $B_k$ fixed query profiles,
+the preceding lemma implements all such profile corrections with
+$2\sum_{k=0}^{d-1}H B_k/2^{k+1}$ heads. This is $O(H)$ for
+$B_k=O(k+1)$ and also for $B_k=O(2^{k/2})$.
+Thus these profile dimensions would preserve a hypothetical
+$H\log H$ decoder saving. What is missing is a universal cone-intersection
+or sign-realization theorem with any such profile budget. The finite
+certificate (1) and identity (2) do not supply that theorem.
+\end{document}
