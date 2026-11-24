@@ -1,0 +1,53 @@
+'HeadComplexity.GlobalParityMargin.sum_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.parity_sum_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.exp_affine_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.parity_exp_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.affine_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.integral_reciprocal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.parity_reciprocal_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.weighted_reciprocal_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.parity_exp_coordinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.exp_factor_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocal_parity_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocal_coordinate_nonpos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocal_upper_of_exp_upper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocal_parity_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocal_false_literal_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocalFunctional_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.negative_slope_mass_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocalFunctional_nonnegative_affine_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.affine_linear_combination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocalFunctional_affine_upper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.reciprocalFunctional_affine_abs_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.parity_flip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.abs_parity_sum_flip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.original_head_bound_of_nonnegative_slopes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.original_head_parity_abs_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.parity_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.signedLabel_parityFunction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GlobalParityMargin.score_parity_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GlobalParityMargin.relativeMargin_parity_le' depends on axioms: [propext, Classical.choice, Quot.sound]
