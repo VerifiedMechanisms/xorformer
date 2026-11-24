@@ -1,0 +1,4 @@
+import HeadComplexity.Results.JointFamilyParityWeakLearner
+#print axioms HeadComplexity.jointFamily_faceAlternation_abs_le_of_edges
+#print axioms HeadComplexity.jointFamily_affineFraction_parity_sq_le_two_energy
+#print axioms HeadComplexity.jointFamily_affineFraction_columns_parity_sq_le_two_energy

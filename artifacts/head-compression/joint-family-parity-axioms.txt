@@ -1,0 +1,7 @@
+'HeadComplexity.jointFamily_faceAlternation_abs_le_of_edges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.jointFamily_affineFraction_parity_sq_le_two_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.jointFamily_affineFraction_columns_parity_sq_le_two_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

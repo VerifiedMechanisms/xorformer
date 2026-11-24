@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Parity limits normalized correlation of one shared affine-fraction atom}
+\maketitle
+
+\paragraph{Status.}
+The parity energy inequality below, including arbitrary independent
+columns, is kernel checked in
+\texttt{HeadComplexity/Results/JointFamilyParityWeakLearner.lean}.
+Its declarations are
+\texttt{jointFamily\_affineFraction\_parity\_sq\_le\_two\_energy}
+and
+\texttt{jointFamily\_affineFraction\_columns\_parity\_sq\_le\_two\_energy}.
+The matching-pursuit accounting after the theorem is a written argument.
+This is an obstruction to a particular uniform weak-learning route,
+not a lower bound on arbitrary sums of xorformer heads.
+
+\begin{theorem}
+Let $k\geq1$, $M=2^k$, $b>0$, and $w_i\geq0$. For arbitrary real
+$a_0,a_i$, put
+\[
+ f(x)=\frac{a_0+\sum_i a_i x_i}{b+\sum_i w_i x_i},
+ \qquad x\in\{0,1\}^k,
+ \qquad L(f)=\sum_x(-1)^{|x|}f(x).
+\]
+Then
+\[
+ L(f)^2\leq 2\sum_x f(x)^2.
+\]
+More generally, for arbitrary columns $f_j$ of this form and arbitrary
+real $\tau_j$,
+\[
+ \left(\sum_j\tau_j L(f_j)\right)^2
+ \leq 2\left(\sum_j\tau_j^2\right)
+              \left(\sum_{j,x}f_j(x)^2\right).
+\]
+The denominators and numerators may vary independently with the column;
+in particular the conclusion holds when row slopes are shared.
+\end{theorem}
+\begin{proof}
+For a nonempty coordinate face $S$, write $L_S$ for its alternating sum,
+based at zero. Since multiplication by the affine denominator gives an
+affine function, every face with $|S|\geq2$ satisfies
+\[
+ \left(b+\sum_{i\in S}w_i\right)L_S(f)
+   =\sum_{i\in S}w_i L_{S\setminus\{i\}}(f).
+\]
+The weights on the right, after division by the positive factor on the
+left, have sum at most one. Induction therefore gives
+\[
+ |L_S(f)|\leq\max_{i\in S}|f(0)-f(e_i)|.
+\]
+Each edge difference satisfies
+$|f(0)-f(e_i)|^2\leq2(f(0)^2+f(e_i)^2)\leq2\sum_x f(x)^2$.
+This proves the first assertion. Cauchy--Schwarz in the column index
+proves the second.
+\end{proof}
+
+\paragraph{Exact shared-family consequence.}
+Let the target matrix be $Y_{xj}=(-1)^{|x|}\tau_j$, with $\tau\neq0$.
+Its squared Frobenius norm is $M\sum_j\tau_j^2$. Thus every nonzero
+single affine-fraction column family $F$ obeys
+\[
+ \frac{\langle Y,F\rangle^2}{\|Y\|_F^2\|F\|_F^2}\leq\frac2M.
+\]
+The conclusion allows much more column freedom than the original model,
+so the original admissibility restrictions cannot rescue this
+single-atom correlation claim. Reversing all row coordinates changes
+parity only by a global sign and preserves the bound.
+
+\paragraph{The exact failed gain estimate.}
+A standard normalized matching-pursuit guarantee with correlation at
+least $\gamma$ at every residual gives
+\[
+ \|R_H\|_F^2\leq Ms\exp(-\gamma^2H)
+\]
+for an $M$ by $s$ sign matrix. To infer all strict signs by driving this
+bound below one requires $H>\log(Ms)/\gamma^2$.
+For $M=2^k$ and $s$ comparable to $k$, a local budget
+$H=O(M/\sqrt{k})$ would require $\gamma^2$ of order
+$k^{3/2}/M$. The parity family instead forces
+$\gamma^2\leq2/M$. Consequently this uniform one-atom correlation
+argument cannot establish the desired local budget. This says nothing
+about a better analysis of a particular algorithm, nor about repair of
+an explicitly bounded exceptional set with a separately proved cost.
+
+\paragraph{The remaining positive possibility.}
+Signed combinations of two or more heads can cancel large low-order
+components. Their norm can be much smaller than the sum of the norms of
+the individual heads, so the theorem does not extend by replacing one
+head with a signed block. A useful block weak learner must prove a
+uniform correlation gain after charging every head in the block,
+column selection, and all strict-sign or exception repair costs.
+Parity alone is insufficient evidence for such a gain.
+\end{document}
