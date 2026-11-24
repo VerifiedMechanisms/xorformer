@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Exact fixed parity-face patterns and an integer cubic completion.
+"""Exact fixed parity-face patterns and integer cubic and quartic completions.
 
 No solver is used by this verifier. A successful run certifies consistency,
 point counts, the integer cubic signs on all 102 prescribed inputs, and the
-complete nonzero 2048-entry truth table. It does not certify a pure upper bound.
+complete nonzero truth tables on 2048 and 16384 inputs. It does not certify a pure upper bound.
 """
 import itertools
 import json
@@ -75,6 +75,18 @@ def main():
     assert truth == expected
     print('102 three-head target points and 281 four-head target points consistent')
     print('Cubic completion: full 2048-point nonzero verification; local margin', min(margins))
+    quartic = json.loads((Path(__file__).parent / 'quartic_completion.json').read_text())
+    assert all(len(m) <= 4 and len(set(m)) == len(m) for m in quartic['monomials'])
+    quartic_margins = [label * evaluate(quartic, bits) for bits, label in four.items()]
+    assert min(quartic_margins) > 0
+    quartic_scores = [evaluate(quartic, bits)
+                      for bits in itertools.product((0, 1), repeat=14)]
+    assert all(score % 2 == 1 for score in quartic_scores)
+    quartic_truth = ''.join(str(int(score > 0)) for score in quartic_scores)
+    quartic_expected = (Path(__file__).parent / 'quartic_completion_truth_table.txt').read_text().strip()
+    assert quartic_truth == quartic_expected
+    print('Quartic completion: full 16384-point nonzero verification; local margin',
+          min(quartic_margins))
 
 
 if __name__ == '__main__':
