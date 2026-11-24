@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_weighted_projection_circuits.md",
+    "source_spans": 69,
+    "rendered_spans": 69,
+    "findings": [],
+    "notes": []
+  }
+]

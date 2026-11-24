@@ -1,0 +1,6 @@
+import HeadComplexity.Research.WeightedProjectionCircuit
+#print axioms HeadComplexity.WeightedProjectionCircuit.scalar_kernel_identity
+#print axioms HeadComplexity.WeightedProjectionCircuit.constant_residue_identity_unique
+#print axioms HeadComplexity.WeightedProjectionCircuit.coeff_ne_zero
+#print axioms HeadComplexity.WeightedProjectionCircuit.no_proper_support_relation
+#print axioms HeadComplexity.WeightedProjectionCircuit.distinguished_coefficients

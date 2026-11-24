@@ -1,0 +1,13 @@
+'HeadComplexity.WeightedProjectionCircuit.scalar_kernel_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedProjectionCircuit.constant_residue_identity_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedProjectionCircuit.coeff_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedProjectionCircuit.no_proper_support_relation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedProjectionCircuit.distinguished_coefficients' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
