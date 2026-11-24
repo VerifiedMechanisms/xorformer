@@ -121,6 +121,27 @@ every Boolean input for the seven-variable example. For larger examples,
 the exact minimum calculation proves whole-cube positivity directly.
 These computations supplement, and do not replace, the universal proof.
 
+\paragraph{The requested all-dimension local statement.}
+Let $r,s\geq1$ and $m=r+s$. The same construction gives a strict,
+exactly axis-zero compiler with
+\[
+ H\leq300\left(1+\frac{m}{\log(m+4)}\right).
+\]
+Indeed choose the least $k\geq1$ with $r\leq k4^k$. If $r\leq4$, then
+$k=1$ and $H=30$. Otherwise $k\geq2$, minimality gives
+$4^k<4r/(k-1)\leq8r/k$, and $r\leq k4^k\leq8^k$ gives
+$k\geq\log r/\log8$. Thus
+\[
+ H=6\cdot4^k+6
+ <48\log8\frac r{\log r}+6
+ \leq144\frac m{\log m}+6
+ \leq288\frac m{\log(m+4)}+6.
+\]
+Here $x/\log x$ is increasing for $x\geq5$, $\log8<3$, and
+$m+4\leq m^2$ for $m\geq3$. The displayed constant follows in both
+cases. All logarithms are natural. This is stronger than the requested
+$O(m/\log\log(m+4))$ local budget and includes the small dimensions.
+
 \paragraph{Asymptotic conclusion of the audit.}
 Taking the least $k\geq1$ with $r\leq k4^k$ gives
 $4^k=O(r/\log r)$ by minimality. The finite compiler therefore supplies
