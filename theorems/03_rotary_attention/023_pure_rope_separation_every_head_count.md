@@ -12,7 +12,7 @@ $$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_{H,m})=H,\qquad H+1\leq H^{\ast}_{\mathrm{va
 
 Both standard fixed rotary frequencies and freely chosen frequencies have the displayed pure minimum. The model uses a fixed query attending to every input and itself, unrestricted finite dimensions and real parameters, Q/K-only rotations, and unrotated token-only values. Classification uses the existing strictly positive score threshold. Retained positional embeddings are not involved.
 
-The general-head argument below is a mathematical proof. The complete three-head case, including the literal architectural bridge, is Lean-checked in [Theorem 22](022_pure_rope_three_head_separation.md). The two-head equivalence, all-head scalar-to-rotary bridge, and exponential upper bound used here are also fully Lean-checked. This file does **not** claim that the entire arbitrary-head lower bound has been formalized.
+The entire arbitrary-head result is Lean-checked, including the actual Boolean classifiers, exact pure minimum, vanilla lower and upper bounds, and scalar-to-rotary architectural bridge. The final theorem has no remaining algebraic or analytic premise. Its dependencies use only Lean's standard `propext`, `Classical.choice`, and `Quot.sound` axioms, with no `sorry` or additional axioms. The specialized three-head proof remains available in [Theorem 22](022_pure_rope_three_head_separation.md).
 
 ## The explicit family
 
@@ -136,10 +136,30 @@ For the exact pure minimum, repeat the coefficient-normalization and dense-grid 
 
 Pure heads are lower-bounded by threshold degree and the explicit construction uses $H$ pure heads, so their minimum is exactly $H$. The already proved pure-specific finite-difference bound supplies the vanilla upper bound $2^H-2$. This proves the displayed separation. $\blacksquare$
 
-## Consequences and remaining formal work
+## A uniform coefficient gap
+
+The closed obstruction also gives a quantitative conclusion with an existential radius. Fix a nonzero real scalar $t$. There is a number $\varepsilon\gt0$ such that every sum of $H$ affine numerators times the complementary products of $H$ oriented affine denominator forms differs from $tP_H$ by at least $\varepsilon$ in some squarefree coefficient of total degree $H$.
+
+This statement imposes no bound on the factor parameters and does not require the denominator constants to be positive. If no such radius existed, choose an oriented factor sum whose error in every selected coefficient is less than $1/(k+1)$ for each positive integer $k$. These coefficients would converge to those of $tP_H$, contradicting the proved obstruction. The radius is not an effective replication threshold.
+
+## Consequences and Lean declarations
 
 The two-head theorem proves the universal reverse implication for $H\leq2$, including zero heads. The construction above disproves it for every $H\geq3$. Adding unused bits preserves all four minimum head counts exactly, so for every fixed $H\geq3$ there is such a separation at every sufficiently large input length.
 
 The mathematical proof is uniform in $H$, but its threshold in $m$ is existential. The explicit sufficient threshold in Theorem 22 applies to $H=3$. The precise vanilla minimum between $H+1$ and $2^H-2$ and the first separating replication count remain undetermined.
 
-The outstanding Lean task for this generalization is to replace the specialized three-head polynomial, tensor, averaging, and compactness interfaces by their arbitrary-degree versions. This is a formalization gap for the general-head strengthening, not a gap in the complete Lean three-head refutation.
+Zero heads and zero input length are included in the universal theorem. With zero heads, only constant Boolean functions are computable. At input length zero, every Boolean function is constant and all four minimum head counts are zero. No complement-invariance assumption is used at two heads.
+
+The principal declarations are:
+
+- `PureGeneralReplicatedGrid.eventually_complexity_separation_general` in [PureGeneralSeparation.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparation.lean) proves the full eventual family bounds and both rotary minimum identities for every $H\geq3$.
+
+- `universal_pure_to_vanilla_iff_head_le_two` in [RoPEUniversalBudgets.lean](../../formalization/HeadComplexity/Results/RoPEUniversalBudgets.lean) classifies every head budget. The same file proves the standard fixed-frequency, shared free-frequency, and headwise free-frequency versions.
+
+- `pureRoPE_separation_every_budget_every_large_input_length` in [PureGeneralSeparationAllLargeInputs.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparationAllLargeInputs.lean) proves the separation at every sufficiently large input length for each fixed $H\geq3$.
+
+- `PureGeneralReplicatedGrid.exists_oriented_top_coefficient_gap` in [PureGeneralCoefficientGap.lean](../../formalization/HeadComplexity/Results/PureGeneralCoefficientGap.lean) proves the uniform coefficient gap.
+
+The central algebraic declarations are `RoPEGeneralDerivative.secondMap_rank_le_iff`, `RoPEGeneralPolarization.contractDiagonal_source`, and `RoPEGeneralPhysicalRank.contractMap_scaled_reindexedPhysical_rank_le_iff`. They connect the actual source polynomial, its mixed coefficients, and the physical paired-coordinate rank locus. `BlockCoefficientLimit.tendsto_contractDiagonal_coeff` transports the coefficients preserved by Boolean replica averaging to moving contraction directions. `RoPEGeneralFrames.no_conditionally_oriented_polynomial_rank_limit` supplies the compactness contradiction, including zero denominator matrices. `PureGeneralReplicatedGrid.oriented_factor_limit_excluded` discharges that obstruction for the actual family.
+
+The vanilla architectural definitions and the strictly positive threshold convention are unchanged. The result separates Boolean computability classes; it does not infer such a separation from failure of exact real-score simulation.
