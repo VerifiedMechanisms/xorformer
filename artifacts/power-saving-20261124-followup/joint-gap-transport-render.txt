@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_joint_gap_transport.md",
+    "source_spans": 19,
+    "rendered_spans": 19,
+    "findings": [],
+    "notes": []
+  }
+]
