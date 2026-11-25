@@ -29,6 +29,15 @@ noncomputable def omittedProduct (H K : ℕ) (i : Fin H) : Poly H K :=
 noncomputable def core (H K : ℕ) : Poly H K :=
   ∑ i, X (numeratorIndex i) * omittedProduct H K i
 
+noncomputable def remainder (H K : ℕ) (i : Fin H) : Poly H K :=
+  ∑ j ∈ Finset.univ.erase i, X (numeratorIndex j) * omittedProduct H K j
+
+theorem core_split (H K : ℕ) (i : Fin H) :
+    core H K = omittedProduct H K i * X (numeratorIndex i) + remainder H K i := by
+  rw [core, ← Finset.add_sum_erase _ _ (Finset.mem_univ i)]
+  dsimp [remainder]
+  ring
+
 theorem eval_core {H K : ℕ} (x : Var H K → ℝ) :
     eval x (core H K) = ∑ i, x (numeratorIndex i) *
       ∏ j ∈ Finset.univ.erase i, x (denominatorIndex j) := by
@@ -74,6 +83,22 @@ theorem numerator_not_mem_omittedProduct_vars (H K : ℕ) (i j : Fin H) :
   apply not_mem_vars_prod
   intro k _
   simp [numeratorIndex, denominatorIndex]
+
+theorem numerator_not_mem_remainder_vars (H K : ℕ) (i : Fin H) :
+    numeratorIndex i ∉ (remainder H K i).vars := by
+  apply not_mem_vars_sum
+  intro j hj
+  apply not_mem_vars_mul
+  · have hji : j ≠ i := (Finset.mem_erase.mp hj).1
+    simp [numeratorIndex, Ne.symm hji]
+  · exact numerator_not_mem_omittedProduct_vars H K i j
+
+theorem core_not_dvd_omittedProduct (H K : ℕ) (i : Fin H) :
+    ¬ core H K ∣ omittedProduct H K i := by
+  rintro ⟨r, hr⟩
+  let point : Var H K → ℝ := Sum.elim (fun _ ↦ 1) (fun _ ↦ 0)
+  have he := congrArg (eval point) hr
+  simp [point, core, omittedProduct, numeratorIndex, denominatorIndex] at he
 
 /-- Irreducibility holds for every positive head count, with arbitrary unused
 coordinates already present in the polynomial ring. -/
