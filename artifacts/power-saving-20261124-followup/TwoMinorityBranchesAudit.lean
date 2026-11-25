@@ -1,0 +1,10 @@
+import HeadComplexity.Research.TwoMinorityBasisBranches
+#print axioms HeadComplexity.TwoMinorityBasisBranches.basis_affine_injective
+#print axioms HeadComplexity.TwoMinorityBasisBranches.exactly_two_negative_contacts
+#print axioms HeadComplexity.TwoMinorityBasisBranches.same_difference_coefficient_signs
+#print axioms HeadComplexity.TwoMinorityBasisBranches.neighborhood_basis_values
+#print axioms HeadComplexity.TwoMinorityBasisBranches.neighborhood_signed_gap
+#print axioms HeadComplexity.TwoMinorityBasisBranches.two_open_feasible_branches
+
+#print axioms HeadComplexity.TwoMinorityBasisBranches.negative_contact_difference_strict
+#print axioms HeadComplexity.TwoMinorityBasisBranches.equal_difference_impossible

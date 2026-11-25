@@ -1,0 +1,24 @@
+'HeadComplexity.TwoMinorityBasisBranches.basis_affine_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.exactly_two_negative_contacts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.same_difference_coefficient_signs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.neighborhood_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.neighborhood_signed_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.two_open_feasible_branches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.negative_contact_difference_strict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.equal_difference_impossible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

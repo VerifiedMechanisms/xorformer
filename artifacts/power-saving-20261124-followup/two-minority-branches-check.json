@@ -1,0 +1,19 @@
+{
+  "status": "all exact integer checks passed",
+  "cube_rows": 128,
+  "negative_contacts": 2,
+  "disagreement": [
+    6,
+    7
+  ],
+  "common_difference_coefficient_signs": [
+    1,
+    1,
+    -1,
+    -1,
+    -1,
+    1,
+    -1,
+    0
+  ]
+}
