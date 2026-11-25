@@ -1,0 +1,47 @@
+'HeadComplexity.SharedStatisticsCapacity.numPoly_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.statisticPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.denPoly_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.denProd_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.clearedPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.product_parameter_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.eval_numPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.eval_denPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.eval_clearedPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.mem_represented_of_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.mem_represented_of_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.mem_represented_of_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.card_represented_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.card_represented_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.log_base_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.card_represented_le_exp_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.card_represented_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.card_represented_sqrt_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.card_represented_logarithmic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.worstCase_gt_of_rank_or_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SharedStatisticsCapacity.worstCase_gt_of_low_margin_shared_statistics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
