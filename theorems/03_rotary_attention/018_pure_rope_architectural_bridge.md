@@ -66,9 +66,15 @@ When $n=0$, the input domain has one element. The construction above uses $m=2$ 
 
 When $H=0$, the sum of head outputs is empty. The only score is the fixed residual readout minus the threshold, so precisely the constant Boolean functions are computable. The Lean equivalences quantify over all natural numbers without excluding either boundary case.
 
+## Broader frequency choices
+
+The extraction proof also works when every head chooses a separate frequency list. It applies to arbitrary finite head width and arbitrary linear position maps, so an odd width with an additional unrotated coordinate is covered as well. The self-logit still applies the same position map to the query and its own key.
+
+Every such score has an exact realization using the common fixed-standard schedule above. In particular, allowing separate freely chosen frequencies for different heads gives the same Boolean class at every head count as shared freely chosen frequencies or the fixed-standard schedule. This is an additional extraction theorem, not a change to the original architecture definitions.
+
 ## Lean declarations and verification
 
-The implementation adds four modules and changes no pre-existing model definitions.
+The core implementation adds four modules and changes no pre-existing model definitions.
 
 | Module | Main declarations |
 | --- | --- |
@@ -77,4 +83,6 @@ The implementation adds four modules and changes no pre-existing model definitio
 | `HeadComplexity/Model/RotaryInterpolation.lean` | `standardRotarySchedule_interpolates`, `exists_standardPureRotaryFamily_score`, `standardPureRotaryComputable_iff_scalar`, `freePureRotaryComputable_iff_scalar` |
 | `HeadComplexity/Model/RectangularPureRoPE.lean` | `RectangularPureRotaryFamily.exists_standard_score`, `rectangularStandardPureRotaryComputable_iff_scalar`, `rectangularFreePureRotaryComputable_iff_scalar`, `rectangularStandardPureRotaryComputable_iff_free` |
 
-All four modules build. The repository axiom checker audits 105 theorem declarations across them and reports only `propext`, `Classical.choice`, and `Quot.sound`. No `sorry` or project-defined axiom is used.
+All four core modules build. The repository axiom checker audits 105 theorem declarations across them and reports only `propext`, `Classical.choice`, and `Quot.sound`. No `sorry` or project-defined axiom is used.
+
+The extension `HeadComplexity/Model/PureRoPEHeadSchedules.lean` proves `RectangularPureRotaryFamily.exists_standard_score_of_headSchedules`, `rectangularHeadwiseFreePureRotaryComputable_iff_scalar`, and `rectangularHeadwiseFreePureRotaryComputable_iff_standard`. The module `HeadComplexity/Results/RoPEBoundaryCases.lean` proves the zero-head constant-function characterizations and `empty_input_head_minima`, which makes all four zero minima at empty input explicit. Each additional module builds, and each of its six theorem declarations has the same standard-axiom-only audit.
