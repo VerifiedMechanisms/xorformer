@@ -1,0 +1,16 @@
+import HeadComplexity.Research.NormalizedPolynomialSupport
+#print axioms HeadComplexity.NormalizedPolynomialSupport.nonneg_C
+#print axioms HeadComplexity.NormalizedPolynomialSupport.nonneg_X
+#print axioms HeadComplexity.NormalizedPolynomialSupport.nonneg_add
+#print axioms HeadComplexity.NormalizedPolynomialSupport.nonneg_mul
+#print axioms HeadComplexity.NormalizedPolynomialSupport.coeff_mul_pos
+#print axioms HeadComplexity.NormalizedPolynomialSupport.nonneg_sum
+#print axioms HeadComplexity.NormalizedPolynomialSupport.nonneg_prod
+#print axioms HeadComplexity.NormalizedPolynomialSupport.coeff_prod_pos
+#print axioms HeadComplexity.NormalizedPolynomialSupport.top_linear_nonneg
+#print axioms HeadComplexity.NormalizedPolynomialSupport.top_linear_coeff
+#print axioms HeadComplexity.NormalizedPolynomialSupport.top_den_nonneg
+#print axioms HeadComplexity.NormalizedPolynomialSupport.top_den_coeff_pos
+#print axioms HeadComplexity.NormalizedPolynomialSupport.selected_monomial_mem_support
+#print axioms HeadComplexity.NormalizedPolynomialSupport.selected_weight_le
+#print axioms HeadComplexity.NormalizedPolynomialSupport.attained_block_degree_cap

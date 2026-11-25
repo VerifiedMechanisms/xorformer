@@ -1,0 +1,108 @@
+⚠ [3744/3748] Replayed HeadComplexity.Polynomial.WeightedDiagonalRootBound
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:5: Variable name `hw` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hw
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:25: Variable name `he` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _he
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:98:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3748/3748] Built HeadComplexity.Research.NormalizedPolynomialSupport (1.9s)
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:17:6: `nonneg_C` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:22:6: `nonneg_X` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:28:41: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
+
+Note: The updated constant has a different type:
+  ∀ {R : Type u_1} {M : Type u_4} [inst : Semiring R] (x y : AddMonoidAlgebra R M), (x + y).coeff = x.coeff + y.coeff
+instead of
+  ∀ {R : Type u} {σ : Type u_1} [inst : CommSemiring R] (m : σ →₀ ℕ) (p q : MvPolynomial σ R),
+    (p + q).coeff m = p.coeff m + q.coeff m
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:27:0: automatically included section variable(s) unused in theorem `HeadComplexity.NormalizedPolynomialSupport.nonneg_add`:
+  [DecidableEq K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:27:6: `nonneg_add` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:30:6: `nonneg_mul` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:36:6: `coeff_mul_pos` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:44:0: automatically included section variable(s) unused in theorem `HeadComplexity.NormalizedPolynomialSupport.nonneg_sum`:
+  [DecidableEq K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:44:6: `nonneg_sum` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:50:6: `nonneg_prod` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:59:6: `coeff_prod_pos` does not use the following hypothesis in its type:
+  • [DecidableEq K] (#2)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:91:15: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
+
+Note: The updated constant has a different type:
+  ∀ {R : Type u_1} {M : Type u_4} [inst : Semiring R] (x y : AddMonoidAlgebra R M), (x + y).coeff = x.coeff + y.coeff
+instead of
+  ∀ {R : Type u} {σ : Type u_1} [inst : CommSemiring R] (m : σ →₀ ℕ) (p q : MvPolynomial σ R),
+    (p + q).coeff m = p.coeff m + q.coeff m
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
+warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:127:54: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
+
+Note: The updated constant has a different type:
+  ∀ {R : Type u_1} {M : Type u_4} [inst : Semiring R] (x y : AddMonoidAlgebra R M), (x + y).coeff = x.coeff + y.coeff
+instead of
+  ∀ {R : Type u} {σ : Type u_1} [inst : CommSemiring R] (m : σ →₀ ℕ) (p q : MvPolynomial σ R),
+    (p + q).coeff m = p.coeff m + q.coeff m
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
+Build completed successfully (3748 jobs).

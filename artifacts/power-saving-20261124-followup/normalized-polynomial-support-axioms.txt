@@ -1,0 +1,25 @@
+'HeadComplexity.NormalizedPolynomialSupport.nonneg_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.nonneg_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.nonneg_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.nonneg_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.coeff_mul_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.nonneg_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.nonneg_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.coeff_prod_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.top_linear_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.top_linear_coeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.top_den_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.top_den_coeff_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.selected_monomial_mem_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.selected_weight_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NormalizedPolynomialSupport.attained_block_degree_cap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
