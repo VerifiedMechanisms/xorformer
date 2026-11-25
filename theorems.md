@@ -352,6 +352,6 @@ An explicit family on $18m$ bits has pure head complexity three and vanilla head
 
 ### Theorem 23. Pure rotary advantage at every head budget above two
 
-The universal implication from pure rotary to vanilla computability at the same head count holds exactly for $H\leq2$. For each $H\geq3$, an explicit family on $2H^2m$ bits eventually has pure minimum $H$ and vanilla minimum between $H+1$ and $2^H-2$. The proof generalizes the contraction-rank, positive-cone, polynomial-rigidity, and dense-grid arguments. It covers standard and free frequencies. This arbitrary-head theorem has a complete audited mathematical proof; its Lean formalization is partial. The three-head specialization in Theorem 22 is fully Lean-checked.
+The universal implication from pure rotary to vanilla computability at the same head count holds exactly for $H\leq2$. For each $H\geq3$, an explicit family on $2H^2m$ bits eventually has pure minimum $H$ and vanilla minimum between $H+1$ and $2^H-2$. The proof generalizes the contraction-rank, positive-cone, polynomial-rigidity, and dense-grid arguments. It covers standard and free frequencies. The full arbitrary-head theorem, architectural transfer, and classification of universal head budgets are Lean-checked without new axioms. Exact padding invariance gives separation at every sufficiently large input length for each budget above two.
 
 **Proof.** [theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md](theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md)

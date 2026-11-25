@@ -33,6 +33,12 @@ import HeadComplexity.Results.RoPEBoundaryCases
 import HeadComplexity.Atoms.RoPETensorGap
 import HeadComplexity.Model.PureRoPEHeadSchedules
 import HeadComplexity.Results.PureSourceLinearApproximation
+import HeadComplexity.Results.PureSecondReplicationDegree
+import HeadComplexity.Polynomial.CommonBaseJetObstruction
+import HeadComplexity.Results.PureGeneralSeparation
+import HeadComplexity.Results.PureGeneralSeparationAllLargeInputs
+import HeadComplexity.Results.PureGeneralCoefficientGap
+import HeadComplexity.Results.RoPEUniversalBudgets
 
 set_option linter.style.header false
 
@@ -218,5 +224,26 @@ alias pure_dummy_input_invariance := InputPadding.pureHStar_classifier
 
 /-- Empty inputs have zero minimum heads in all four model conventions. -/
 alias rope_empty_input_boundaries := empty_input_head_minima
+
+/-- **Theorem 23.** Every head budget above two has an eventual separation
+with exact pure minimum and a strictly larger vanilla minimum. -/
+alias theorem23_all_head_separation :=
+  PureGeneralReplicatedGrid.eventually_complexity_separation_general
+
+/-- **Theorem 23.** The universal reverse implication holds exactly through two heads. -/
+alias theorem23_universal_budget_classification :=
+  universal_pure_to_vanilla_iff_head_le_two
+
+/-- **Theorem 23.** Literal standard rotary attention has the same classification. -/
+alias theorem23_standard_budget_classification :=
+  universal_standard_rotary_to_vanilla_iff_head_le_two
+
+/-- **Theorem 23.** Literal free-frequency rotary attention has the same classification. -/
+alias theorem23_free_budget_classification :=
+  universal_free_rotary_to_vanilla_iff_head_le_two
+
+/-- **Theorem 23.** Each budget above two separates at every large input length. -/
+alias theorem23_every_large_input_length :=
+  pureRoPE_separation_every_budget_every_large_input_length
 
 end HeadComplexity

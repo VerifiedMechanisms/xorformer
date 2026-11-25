@@ -46,15 +46,15 @@ input length. The Lean threshold is existential. A separately audited
 gives the sufficient replication count `10^40000`; that numerical constant is
 not formalized and is not asserted to be the first separating count.
 
-Theorem 23 gives a complete audited mathematical separation at every head budget
-`H ≥ 3`: the explicit family on `2H²m` bits eventually has pure minimum `H` and
-vanilla minimum in `[H+1, 2^H-2]`. Its full arbitrary-head Lean assembly remains
-unfinished. Formalized general components include the genuine pure family,
-source irreducibility and local sign rigidity, the actual formal derivative rank
-locus, physical coordinate inverses, the compact frame obstruction with an
-explicit closed-relation premise, and the arbitrary-degree dense-grid threshold
-pipeline. None of these partial interfaces is presented as a final Lean
-arbitrary-head separation theorem.
+Theorem 23 is also fully machine-checked at every head budget `H ≥ 3`:
+the explicit family on `2H²m` bits eventually has pure minimum `H` and vanilla
+minimum in `[H+1, 2^H-2]`. `eventually_complexity_separation_general` connects
+all physical-coordinate, averaging, polynomial-rigidity, contraction-rank, and
+compact-frame steps with no remaining premise. `universal_pure_to_vanilla_iff_head_le_two`
+classifies the universal reverse implication exactly. The result holds for both
+literal frequency conventions, and at every sufficiently large input length for
+each fixed budget above two. The coefficient obstruction has an existential
+positive uniform gap, even when factor parameters are unbounded.
 
 The first two replications of the three-head family are also exact:
 `PureThreeReplicatedGrid.classifier_one_head_minima` gives all minima one, and
@@ -86,6 +86,9 @@ certificate, and an explicit vanilla realization using reoriented denominators.
 | 21 | complement-invariant three-head classifiers use at most four vanilla heads | `vanilla_four_of_pureRoPE_three_complement` | `Results/RoPEThreeComplement.lean` |
 | 22 | pure minimum three versus vanilla minimum four to six | `PureThreeReplicatedGrid.eventually_complexity_separation`, `not_universal_pureRoPEHStar_eq_SharedHStar` | `Results/PureThreeSeparation.lean` |
 | 22 | separation at every sufficiently large input length | `pureRoPE_separation_every_large_input_length` | `Results/PureSeparationAllLargeInputs.lean` |
+| 23 | separation at every head budget above two | `PureGeneralReplicatedGrid.eventually_complexity_separation_general` | `Results/PureGeneralSeparation.lean` |
+| 23 | complete classification of universal head budgets | `universal_pure_to_vanilla_iff_head_le_two` | `Results/RoPEUniversalBudgets.lean` |
+| 23 | every larger budget and every sufficiently large input length | `pureRoPE_separation_every_budget_every_large_input_length` | `Results/PureGeneralSeparationAllLargeInputs.lean` |
 
 `Results/InputPaddingInvariance.lean` proves exact invariance of all four minimum
 counts under adding unused bits. `Results/RoPEBoundaryCases.lean` states the
@@ -146,4 +149,6 @@ The general-head proof components are in:
   under an explicit weak-sign obstruction premise.
 
 See [Theorem 23](../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md)
-for the mathematical proof and the remaining formalization interfaces.
+for the mathematical proof and the complete formalization map.
+The final assembly is `Results/PureGeneralSeparation.lean`; all intermediate
+obstruction premises are discharged there.

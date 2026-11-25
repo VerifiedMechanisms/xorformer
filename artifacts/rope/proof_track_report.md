@@ -2,31 +2,29 @@
 
 ## Result
 
-The requested universal equality is false in the unchanged xorformer model. The universal reverse implication holds exactly at head budgets at most two. A complete mathematical proof separates every larger head budget. The complete three-head Boolean separation is proved in Lean, including the bridge to literal rotary attention with standard fixed or freely chosen frequencies.
+The requested universal equality is false in the unchanged xorformer model. The universal reverse implication holds exactly at head budgets at most two. The complete Boolean separation at every larger head budget is proved in Lean, including the bridge to literal rotary attention with standard fixed or freely chosen frequencies.
 
 Starting from commit `bdca97f`, [Theorem 23](../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md) constructs an explicit family $f_{H,m}$ on $2H^2m$ bits for every $H\geq3$. For all sufficiently large $m$,
 
 $$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_{H,m})=H,\qquad H+1\leq H^{\ast}_{\mathrm{vanilla}}(f_{H,m})\leq2^H-2. $$
 
-The arbitrary-head mathematical argument has independent audits. Its formalization is partial, with the exact scope listed below. The fully Lean-checked specialization is the family $f_m=f_{3,m}$ on $18m$ bits. For every sufficiently large positive integer $m$,
+The arbitrary-head proof is fully Lean-checked and independently audited. Its three-head specialization is the family $f_m=f_{3,m}$ on $18m$ bits. For every sufficiently large positive integer $m$,
 
 $$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_m)=3\qquad\text{and}\qquad4\leq H^{\ast}_{\mathrm{vanilla}}(f_m)\leq6. $$
 
 The threshold convention remains strict positivity. The result concerns exact Boolean classification. No equality of pure and vanilla real-valued scores is assumed. Retained positional embeddings are not used.
 
-The main declaration is `PureThreeReplicatedGrid.eventually_complexity_separation` in [PureThreeSeparation.lean](../../formalization/HeadComplexity/Results/PureThreeSeparation.lean). The same file proves:
+The main declaration is `PureGeneralReplicatedGrid.eventually_complexity_separation_general` in [PureGeneralSeparation.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparation.lean). It has no residual lower-bound premise. The following declarations give the direct answers to the original question:
 
-- `eventually_not_vanilla_three`: the unconditional lower bound for the explicit family.
+- `universal_pure_to_vanilla_iff_head_le_two` in [RoPEUniversalBudgets.lean](../../formalization/HeadComplexity/Results/RoPEUniversalBudgets.lean): the universal head-preserving implication holds exactly for $H\leq2$. The same file proves the literal standard-frequency and free-frequency versions.
 
-- `exists_complexity_separation`: existence of a Boolean function with pure minimum three and vanilla minimum between four and six.
+- `eventually_not_vanilla_general` in [PureGeneralSeparation.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparation.lean): the explicit pure family eventually has no vanilla realization at the same budget, for every $H\geq3$.
 
-- `exists_rotary_three_not_vanilla_three`: the literal rectangular architectures with standard and free frequencies both compute such a function with three heads.
+- `pureRoPE_separation_every_budget_every_large_input_length` in [PureGeneralSeparationAllLargeInputs.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparationAllLargeInputs.lean): for each $H\geq3$, every sufficiently large input length has a separating function with pure minimum $H$. Exact dummy-input invariance preserves all four minimum counts.
 
-- `not_universal_pureRoPE_to_vanilla_three` and `not_universal_pureRoPEHStar_eq_SharedHStar`: explicit negations of the requested universal implication and minimum-count equality. Corresponding declarations cover `HStar` and the standard-frequency and free-frequency minimum counts.
+- `not_universal_pureRoPEHStar_eq_HStar` in [PureThreeSeparation.lean](../../formalization/HeadComplexity/Results/PureThreeSeparation.lean): explicit negation of universal equality with the original vanilla minimum. Corresponding declarations cover shared embeddings and both rotary-frequency minima.
 
-The complete mathematical proof is [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md). There is no residual unproved lower-bound premise in the final Lean declarations.
-
-`pureRoPE_separation_every_large_input_length` in [PureSeparationAllLargeInputs.lean](../../formalization/HeadComplexity/Results/PureSeparationAllLargeInputs.lean) strengthens this to every sufficiently large input length, by padding with unused bits. [InputPaddingInvariance.lean](../../formalization/HeadComplexity/Results/InputPaddingInvariance.lean) proves that padding preserves all four minimum head counts exactly.
+The complete mathematical proofs are [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) and [Theorem 23](../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md).
 
 A separately audited [effective bound](research/effective_replication_threshold.md) proves that $m\geq10^{40000}$ suffices. Thus $m=10^{40000}$ gives a specified finite counterexample, albeit an enormous one. This numerical threshold is a mathematical result, not a Lean declaration; the complete Lean theorem proves the existence of a threshold.
 
@@ -58,7 +56,7 @@ The general proof replaces the cubic minor computation with a uniform contractio
 
 Irreducibility and local sign rigidity extend to every degree. Grouped averaging and coefficient compactness turn hypothetical finite Boolean classifiers into a nonzero weak-sign representative of the source. The source must be its positive scalar multiple. The top mixed tensor contradicts the closed obstruction. A separate smaller-degree argument proves that the pure minimum is exactly $H$.
 
-The general Lean components currently include:
+The complete general Lean proof passes through these interfaces:
 
 - `PureGeneralReplicatedGrid.pure_computable`, `standard_computable`, and `free_computable` in [PureGeneralReplicatedGrid.lean](../../formalization/HeadComplexity/Results/PureGeneralReplicatedGrid.lean): the explicit genuine pure family for arbitrary $H$.
 
@@ -70,7 +68,19 @@ The general Lean components currently include:
 
 - `ReplicatedThresholdDegree.eventually_not_thresholdDegLE` in [ReplicatedThresholdDegree.lean](../../formalization/HeadComplexity/Polynomial/ReplicatedThresholdDegree.lean): the complete arbitrary-degree averaging and dense-grid limit pipeline, with an explicit continuous weak-sign obstruction premise.
 
-These components do not by themselves constitute a Lean declaration of the entire arbitrary-head separation. The remaining assembly must connect the physical source, the actual vanilla factor tensors after averaging, their closed rank obstruction, and the final compactness contradiction. The full three-head declarations already contain all of these connections.
+- `VanillaGeneralCentered.exists_averaged_data_of_vanilla` in [VanillaGeneralCentered.lean](../../formalization/HeadComplexity/Polynomial/VanillaGeneralCentered.lean): an actual vanilla classifier supplies strict averaged polynomials, oriented denominator rows, and exactly preserved top squarefree coefficients.
+
+- `VanillaCoefficientLimit.factor_limit_of_vanilla_sequence` in [VanillaCoefficientLimit.lean](../../formalization/HeadComplexity/Polynomial/VanillaCoefficientLimit.lean): arbitrary vanilla representations on unbounded grids give a nonzero scalar multiple of the physical source as a top-coefficient limit.
+
+- `BlockCoefficientLimit.tendsto_contractDiagonal_coeff` in [BlockCoefficientLimit.lean](../../formalization/HeadComplexity/Polynomial/BlockCoefficientLimit.lean): those coefficient limits imply convergence of contractions along moving kernel vectors, without bounded factor parameters.
+
+- `contractMap_scaled_localSource_rank_le_iff` in [RoPEGeneralPhysicalRank.lean](../../formalization/HeadComplexity/Polynomial/RoPEGeneralPhysicalRank.lean) and `no_conditionally_oriented_polynomial_rank_limit` in [RoPESequentialFrames.lean](../../formalization/HeadComplexity/Atoms/RoPESequentialFrames.lean): the source rank locus and compact-frame contradiction, including zero denominator matrices.
+
+- `PureGeneralReplicatedGrid.oriented_factor_limit_excluded` in [PureGeneralSeparation.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparation.lean): unconditional discharge of the complete factor-limit obstruction. The same file assembles the final separation at every budget above two.
+
+- `exists_oriented_top_coefficient_gap` in [PureGeneralCoefficientGap.lean](../../formalization/HeadComplexity/Results/PureGeneralCoefficientGap.lean): a positive uniform coefficient gap from every oriented factor sum, with unrestricted parameter sizes.
+
+The conditional intermediate interfaces are all discharged in the final declarations. The exact pure minimum follows separately from `eventually_exact_degree_and_pure_minima_of_pos` in [PureGeneralThresholdDegree.lean](../../formalization/HeadComplexity/Results/PureGeneralThresholdDegree.lean).
 
 ## Other proved results
 
@@ -96,8 +106,8 @@ The search campaign produced 353 exact integer certificates of three-head vanill
 
 ## Definitions, validation, and remaining questions
 
-The original vanilla architectural and admissibility definitions are unchanged. The original scalar pure and retained atom definitions are also unchanged. New files add the literal pure rotary architecture, supporting lemmas, explicit families, and stronger results. Earlier theorem statements remain available; Theorem 16 strengthens the restricted two-head result, and Theorem 22 settles the previously open universal equality question negatively. Theorem 23 gives the mathematical classification of all head budgets.
+The original vanilla architectural and admissibility definitions are unchanged. The original scalar pure and retained atom definitions are also unchanged. New files add the literal pure rotary architecture, supporting lemmas, explicit families, and stronger results. Earlier theorem statements remain available; Theorem 16 strengthens the restricted two-head result, and Theorem 22 settles the previously open universal equality question negatively. Theorem 23 gives the fully formalized classification of all head budgets.
 
 All final Lean results are checked without proof placeholders or new axioms. The permitted dependencies are `propext`, `Classical.choice`, and `Quot.sound`. The repository validator builds every tracked Lean source and audits every theorem declaration. Mathematical Markdown is checked statically, with KaTeX, and through the real GitHub Markdown API. A GitLab render audit is unavailable in this environment because `glab` and GitLab authentication are absent.
 
-The first separating $m$, the smallest possible input length, and the exact vanilla minimum within the proved intervals remain open. The complete arbitrary-head separation still needs its final Lean assembly. For the three-head family, $m=1$ and $m=2$ are not separating, and whether sufficiently large members need four, five, or six vanilla heads remains open. The two-head theorem and four-input theorem imply that any strict separation needs at least three pure heads, four vanilla heads, and five input bits. The explicit sufficient threshold $10^{40000}$ is not intended to be sharp. [RoPETensorGap.lean](../../formalization/HeadComplexity/Atoms/RoPETensorGap.lean) also proves the existence of a positive tensor-distance gap. The displayed numerical tensor constant and replication threshold remain mathematical results outside Lean; this does not leave a gap in the fully formalized existential Boolean separation.
+The first separating $m$, the smallest possible input length, and the exact vanilla minimum within the proved intervals remain open. For the three-head family, $m=1$ and $m=2$ are not separating, and whether sufficiently large members need four, five, or six vanilla heads remains open. The two-head theorem and four-input theorem imply that any strict separation needs at least three pure heads, four vanilla heads, and five input bits. The explicit sufficient threshold $10^{40000}$ is not intended to be sharp. [RoPETensorGap.lean](../../formalization/HeadComplexity/Atoms/RoPETensorGap.lean) also proves the existence of a positive tensor-distance gap. The displayed numerical tensor constant and replication threshold remain mathematical results outside Lean; this does not leave a gap in the fully formalized existential Boolean separation.
