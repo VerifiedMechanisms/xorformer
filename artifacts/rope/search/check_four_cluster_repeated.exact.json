@@ -1,0 +1,239 @@
+{
+  "scope": "Twelve specified repeated or higher-order root triples; homogeneous linear residues in four variables; no universal conclusion.",
+  "max_residue_pole": 15,
+  "arithmetic": "exact rational linear algebra and symbolic polynomial derivative ranks",
+  "sympy_version": "1.14.0",
+  "results": [
+    {
+      "case": "R1",
+      "nonzero_roots": [
+        "t*x",
+        "t**2*y + t*x",
+        "t**2*z + t*x"
+      ],
+      "constraint_matrix_shape": [
+        537,
+        192
+      ],
+      "kernel_dimension": 36,
+      "limiting_second_moment_basis": [
+        "x**2*y",
+        "-y**2*z + y*z**2",
+        "x**2*z"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R2",
+      "nonzero_roots": [
+        "t*x",
+        "t**2*y + t*x",
+        "t**3*z + 2*t**2*y + t*x"
+      ],
+      "constraint_matrix_shape": [
+        559,
+        192
+      ],
+      "kernel_dimension": 39,
+      "limiting_second_moment_basis": [
+        "x**2*y",
+        "x**2*z + 2*x*y**2",
+        "2*y**3"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R3",
+      "nonzero_roots": [
+        "t**2*y + t*x",
+        "t**2*z + t*x",
+        "t**2*w + t*x"
+      ],
+      "constraint_matrix_shape": [
+        670,
+        192
+      ],
+      "kernel_dimension": 36,
+      "limiting_second_moment_basis": [
+        "-x**2*y + x**2*z",
+        "-w**2*y + w**2*z + w*y**2 - w*z**2 - y**2*z + y*z**2",
+        "w*x**2 - x**2*y"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R4",
+      "nonzero_roots": [
+        "t*x",
+        "t**3*z + t**2*y + t*x",
+        "t**3*w + 2*t**2*y + t*x"
+      ],
+      "constraint_matrix_shape": [
+        688,
+        192
+      ],
+      "kernel_dimension": 39,
+      "limiting_second_moment_basis": [
+        "x**2*y",
+        "w*x**2 - 2*x**2*z + 2*x*y**2",
+        "2*y**3"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R5",
+      "nonzero_roots": [
+        "t*x",
+        "t**3*y + t*x",
+        "t**5*z + t**3*y + t*x"
+      ],
+      "constraint_matrix_shape": [
+        459,
+        192
+      ],
+      "kernel_dimension": 53,
+      "limiting_second_moment_basis": [
+        "x**2*y",
+        "y**2*z",
+        "x**2*z"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R6",
+      "nonzero_roots": [
+        "t*x",
+        "t**4*y + t*x",
+        "t**3*z + 2*t*x"
+      ],
+      "constraint_matrix_shape": [
+        453,
+        192
+      ],
+      "kernel_dimension": 41,
+      "limiting_second_moment_basis": [
+        "x**2*y",
+        "2*x**3",
+        "2*x**2*z",
+        "2*w*x**2"
+      ],
+      "generic_essential_variable_count": 2
+    },
+    {
+      "case": "R7",
+      "nonzero_roots": [
+        "t**2*x",
+        "t**3*y - t**2*x",
+        "t**4*z"
+      ],
+      "constraint_matrix_shape": [
+        367,
+        192
+      ],
+      "kernel_dimension": 53,
+      "limiting_second_moment_basis": [
+        "2*x**3",
+        "-x**2*z",
+        "2*x*y*z"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R8",
+      "nonzero_roots": [
+        "t**3*x",
+        "t**4*y + 2*t**3*x",
+        "t**5*w + t**4*z + 3*t**3*x"
+      ],
+      "constraint_matrix_shape": [
+        403,
+        192
+      ],
+      "kernel_dimension": 63,
+      "limiting_second_moment_basis": [
+        "2*x**3",
+        "-9*x**2*y + 5*x**2*z",
+        "6*x**2*y - 2*x**2*z"
+      ],
+      "generic_essential_variable_count": 2
+    },
+    {
+      "case": "R9",
+      "nonzero_roots": [
+        "t**3*y + t**2*x",
+        "t**4*z + t**2*x",
+        "t**5*w + t**3*y + 2*t**2*x"
+      ],
+      "constraint_matrix_shape": [
+        495,
+        192
+      ],
+      "kernel_dimension": 51,
+      "limiting_second_moment_basis": [
+        "-x**2*y",
+        "2*x**2*z",
+        "2*x**3",
+        "2*w*x**2"
+      ],
+      "generic_essential_variable_count": 2
+    },
+    {
+      "case": "R10",
+      "nonzero_roots": [
+        "t**4*x",
+        "t**5*y + t**4*x",
+        "t**6*z + 2*t**5*y + t**4*x"
+      ],
+      "constraint_matrix_shape": [
+        217,
+        192
+      ],
+      "kernel_dimension": 84,
+      "limiting_second_moment_basis": [
+        "x**2*y",
+        "x**2*z + 2*x*y**2",
+        "2*y**3"
+      ],
+      "generic_essential_variable_count": 3
+    },
+    {
+      "case": "R11",
+      "nonzero_roots": [
+        "t*x",
+        "t**2*y - t*x",
+        "t**3*w + t**2*z"
+      ],
+      "constraint_matrix_shape": [
+        618,
+        192
+      ],
+      "kernel_dimension": 33,
+      "limiting_second_moment_basis": [
+        "2*x**3",
+        "2*x**2*y",
+        "2*x**2*z",
+        "2*w*x**2"
+      ],
+      "generic_essential_variable_count": 2
+    },
+    {
+      "case": "R12",
+      "nonzero_roots": [
+        "t**3*y + t**2*x",
+        "t**4*z - t**2*x",
+        "t**3*w"
+      ],
+      "constraint_matrix_shape": [
+        485,
+        192
+      ],
+      "kernel_dimension": 49,
+      "limiting_second_moment_basis": [
+        "2*x**3",
+        "w*x**2",
+        "-2*w**2*x + 2*w*x*y"
+      ],
+      "generic_essential_variable_count": 3
+    }
+  ]
+}

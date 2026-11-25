@@ -126,7 +126,7 @@ If all leading forms are multiples of one form, say $\ell_i=c_i x$ with distinct
 
 The hypotheses matter. Repeated or zero first-order leading forms, roots with leading order greater than one, fractional relative scales, and paths without finite Laurent expansions are not covered. In particular, reparameterizing a path can change the first-order-root hypothesis; the statement is not a classification of all collisions.
 
-The accompanying [exact Laurent search](../search/check_four_cluster_laurent.py) checks eleven specified root paths in four variables and residue poles through order twelve. It solves the moment constraints over the rationals and checks the generic derivative rank of each resulting cubic space. This is a reproducible finite search, not a universal collision theorem or a Boolean lower bound.
+The accompanying [exact Laurent search](../search/check_four_cluster_laurent.py) checks eleven specified root paths in four variables and residue poles through order twelve. It solves the moment constraints over the rationals and checks the generic derivative rank of each resulting cubic space. This is a reproducible finite search, not a universal collision theorem or a Boolean lower bound. A [second exact search](../search/check_four_cluster_repeated.py) checks twelve additional paths with repeated or zero first-order roots, resolutions through order six, and residue poles through order fifteen. Their limiting cubic spaces also have generic derivative rank at most three. These additional cases supply finite evidence only and do not remove the stated hypotheses.
 
 ## Exact scope and the remaining gaps
 
