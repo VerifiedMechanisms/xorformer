@@ -1,0 +1,7 @@
+'HeadComplexity.NearUnitMarginCollapse.norm_le_total_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NearUnitMarginCollapse.exists_strict_head_of_near_unit_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NearUnitMarginCollapse.computable_one_head_of_near_unit_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

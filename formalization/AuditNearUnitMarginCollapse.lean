@@ -1,0 +1,5 @@
+import HeadComplexity.Research.NearUnitMarginCollapse
+
+#print axioms HeadComplexity.NearUnitMarginCollapse.norm_le_total_deficit
+#print axioms HeadComplexity.NearUnitMarginCollapse.exists_strict_head_of_near_unit_margin
+#print axioms HeadComplexity.NearUnitMarginCollapse.computable_one_head_of_near_unit_margin
