@@ -62,4 +62,4 @@ $$ 1\lt4096\varepsilon^4=4096\cdot400000\cdot10^{-10}=0.16384, $$
 
 which is impossible. This proves the stated tensor gap. $\blacksquare$
 
-Scaling the source by any nonzero scalar scales the gap by its absolute value, because the class of vanilla tensors is closed under scaling its numerator coefficients. Turning this tensor gap into an explicit replication threshold additionally requires a quantitative bound for the dense-grid sign-to-polynomial step. That bound is not supplied here.
+Scaling the source by any nonzero scalar scales the gap by its absolute value, because the class of vanilla tensors is closed under scaling its numerator coefficients. The [effective replication threshold](effective_replication_threshold.md) supplies the additional quantitative dense-grid sign-to-polynomial estimate and proves separation for every $m\geq10^{40000}$. The numerical constants are mathematical results; the Lean separation theorem uses an existential threshold.

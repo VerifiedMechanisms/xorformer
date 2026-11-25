@@ -40,7 +40,11 @@ all sufficiently large `m`. The proof includes coefficient compactness,
 grouped Boolean averaging, local polynomial divisibility, the tensor obstruction,
 and both literal rotary-frequency conventions.
 `not_universal_pureRoPEHStar_eq_SharedHStar` explicitly refutes universal equality.
-No numerical bound on the first separating replication count is asserted.
+Exact dummy-input invariance extends the separation to every sufficiently large
+input length. The Lean threshold is existential. A separately audited
+[quantitative proof](../artifacts/rope/research/effective_replication_threshold.md)
+gives the sufficient replication count `10^40000`; that numerical constant is
+not formalized and is not asserted to be the first separating count.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -65,6 +69,13 @@ No numerical bound on the first separating replication count is asserted.
 | 20 | every head count on at most four input bits | `pureRoPEComputable_iff_vanilla_of_input_le_four`, `vanilla_three_computes_fourBit_nonparity` | `Results/RoPEFourInputs.lean` |
 | 21 | complement-invariant three-head classifiers use at most four vanilla heads | `vanilla_four_of_pureRoPE_three_complement` | `Results/RoPEThreeComplement.lean` |
 | 22 | pure minimum three versus vanilla minimum four to six | `PureThreeReplicatedGrid.eventually_complexity_separation`, `not_universal_pureRoPEHStar_eq_SharedHStar` | `Results/PureThreeSeparation.lean` |
+| 22 | separation at every sufficiently large input length | `pureRoPE_separation_every_large_input_length` | `Results/PureSeparationAllLargeInputs.lean` |
+
+`Results/InputPaddingInvariance.lean` proves exact invariance of all four minimum
+counts under adding unused bits. `Results/RoPEBoundaryCases.lean` states the
+zero-head and empty-input cases explicitly. `Model/PureRoPEHeadSchedules.lean`
+also permits a different free frequency list in each head and proves equivalence
+to the common standard-frequency architecture.
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:

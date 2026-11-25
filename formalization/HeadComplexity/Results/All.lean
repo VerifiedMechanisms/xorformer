@@ -27,6 +27,12 @@ import HeadComplexity.Results.ProductDifferenceSign
 import HeadComplexity.Results.PureFiniteDifference
 import HeadComplexity.Results.PureThreeSeparation
 import HeadComplexity.Results.BooleanTangentUpperBound
+import HeadComplexity.Results.PureSeparationAllLargeInputs
+import HeadComplexity.Results.InputPaddingInvariance
+import HeadComplexity.Results.RoPEBoundaryCases
+import HeadComplexity.Atoms.RoPETensorGap
+import HeadComplexity.Model.PureRoPEHeadSchedules
+import HeadComplexity.Results.PureSourceLinearApproximation
 
 set_option linter.style.header false
 
@@ -199,5 +205,18 @@ alias theorem22_architectural_separation :=
 
 /-- **Theorem 22.** Universal equality of the minimum head counts is false. -/
 alias theorem22_not_universal_equality := not_universal_pureRoPEHStar_eq_SharedHStar
+
+/-- **Theorem 22.** The separation persists at every sufficiently large input
+length, by adding unused bits. -/
+alias theorem22_every_large_input_length := pureRoPE_separation_every_large_input_length
+
+/-- Adding unused input bits preserves the exact vanilla minimum. -/
+alias vanilla_dummy_input_invariance := InputPadding.sharedHStar_classifier
+
+/-- Adding unused input bits preserves the exact pure rotary minimum. -/
+alias pure_dummy_input_invariance := InputPadding.pureHStar_classifier
+
+/-- Empty inputs have zero minimum heads in all four model conventions. -/
+alias rope_empty_input_boundaries := empty_input_head_minima
 
 end HeadComplexity

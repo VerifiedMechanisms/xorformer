@@ -346,6 +346,6 @@ That is not yet a full invariant. It is only a partial answer:
 
 ### Theorem 22. Pure rotary three-head separation
 
-An explicit family on $18m$ bits has pure head complexity three and vanilla head complexity between four and six for every sufficiently large $m$. This refutes universal equality in the unchanged architecture, for both standard and freely chosen rotary frequencies. The proof symmetrizes cleared classifiers, takes a nonzero polynomial limit, and uses a closed tensor-rank and denominator-cone obstruction. The entire lower bound, complexity conclusion, and architectural transfer are Lean-checked without new axioms. No numerical threshold for $m$ is claimed.
+An explicit family on $18m$ bits has pure head complexity three and vanilla head complexity between four and six for every sufficiently large $m$. This refutes universal equality in the unchanged architecture, for both standard and freely chosen rotary frequencies. The proof symmetrizes cleared classifiers, takes a nonzero polynomial limit, and uses a closed tensor-rank and denominator-cone obstruction. The entire lower bound, complexity conclusion, and architectural transfer are Lean-checked without new axioms. Dummy-input invariance extends the separation to every sufficiently large input length. A separately audited quantitative proof supplies the sufficient threshold $m\geq10^{40000}$; the numerical constant is not formalized.
 
 **Proof.** [theorems/03_rotary_attention/022_pure_rope_three_head_separation.md](theorems/03_rotary_attention/022_pure_rope_three_head_separation.md)
