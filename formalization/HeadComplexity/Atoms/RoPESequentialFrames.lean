@@ -125,4 +125,68 @@ theorem no_oriented_polynomial_rank_limit {H : ℕ} {σ ι : Type*}
   · intro k
     exact hkernel (φ k) (w k) (hker k)
 
+/-- A zero-matrix subsequence would force every constant vector into the paired
+source kernel, which is impossible in a nonempty coordinate space. -/
+theorem eventually_nonzero_of_sequential_kernel_limit {H : ℕ} (hH : 0 < H)
+    (D : ℕ → Matrix (Fin H) (Fin H ⊕ Fin H) ℝ)
+    (hsequential : ∀ (φ : ℕ → ℕ), StrictMono φ →
+      ∀ (w : ℕ → Space H) (v : Space H),
+      Filter.Tendsto w Filter.atTop (nhds v) →
+      (∀ k, (D (φ k)).mulVec (flatten (w k)) = 0) → v.1 = v.2) :
+    ∀ᶠ k in Filter.atTop, D k ≠ 0 := by
+  by_contra h
+  have hf : ∃ᶠ k in Filter.atTop, D k = 0 := by
+    simpa only [not_not] using Filter.not_eventually.mp h
+  obtain ⟨φ, hφ, hz⟩ := Filter.extraction_of_frequently_atTop hf
+  let v : Space H := (fun _ ↦ 1, fun _ ↦ 0)
+  have hp := hsequential φ hφ (fun _ ↦ v) v tendsto_const_nhds
+    (fun k ↦ by rw [hz k]; simp)
+  have hh := congrFun hp ⟨0, hH⟩
+  norm_num [v] at hh
+
+/-- Conditional row orientation suffices: zero matrices are ruled out by the
+source rank locus itself before the compact frame argument is used. -/
+theorem no_conditionally_oriented_kernels_of_sequential_paired_limit {H : ℕ}
+    (hH : 0 < H) (D : ℕ → Matrix (Fin H) (Fin H ⊕ Fin H) ℝ)
+    (hsequential : ∀ (φ : ℕ → ℕ), StrictMono φ →
+      ∀ (w : ℕ → Space H) (v : Space H),
+      Filter.Tendsto w Filter.atTop (nhds v) →
+      (∀ k, (D (φ k)).mulVec (flatten (w k)) = 0) → v.1 = v.2)
+    (horient : ∀ k, D k ≠ 0 →
+      ∃ h σ, (∀ i, 0 ≤ σ * D k h i) ∧ 0 < ∑ i, σ * D k h i) : False := by
+  obtain ⟨N, hN⟩ := Filter.eventually_atTop.mp
+    (eventually_nonzero_of_sequential_kernel_limit hH D hsequential)
+  apply no_oriented_kernels_of_sequential_paired_limit (fun k ↦ D (k + N)) ?_ ?_
+  · intro φ hφ w v hw hk
+    exact hsequential (fun k ↦ φ k + N)
+      (fun i j hij ↦ Nat.add_lt_add_right (hφ hij) N) w v hw hk
+  · intro k
+    exact horient (k + N) (hN (k + N) (Nat.le_add_left N k))
+
+theorem no_conditionally_oriented_polynomial_rank_limit {H : ℕ} {σ ι : Type*}
+    [Finite σ] [Finite ι] [DecidableEq ι] (hH : 0 < H) (d : ℕ)
+    (L : ℕ → Space H → (ι → ℝ) →ₗ[ℝ] MvPolynomial σ ℝ)
+    (M : Space H → (ι → ℝ) →ₗ[ℝ] MvPolynomial σ ℝ)
+    (D : ℕ → Matrix (Fin H) (Fin H ⊕ Fin H) ℝ)
+    (hdegree : ∀ v w, (M v w).totalDegree ≤ d)
+    (hlimit : ∀ (φ : ℕ → ℕ), StrictMono φ →
+      ∀ (w : ℕ → Space H) (v : Space H),
+      Filter.Tendsto w Filter.atTop (nhds v) →
+      ∀ i e, Filter.Tendsto
+        (fun k ↦ (L (φ k) (w k) (Pi.single i 1)).coeff e)
+        Filter.atTop (nhds ((M v (Pi.single i 1)).coeff e)))
+    (hsource : ∀ v, Module.finrank ℝ (M v).range ≤ H → v.1 = v.2)
+    (hkernel : ∀ k v, (D k).mulVec (flatten v) = 0 →
+      Module.finrank ℝ (L k v).range ≤ H)
+    (horient : ∀ k, D k ≠ 0 →
+      ∃ h s, (∀ i, 0 ≤ s * D k h i) ∧ 0 < ∑ i, s * D k h i) : False := by
+  apply no_conditionally_oriented_kernels_of_sequential_paired_limit hH D ?_ horient
+  intro φ hφ w v hw hker
+  apply hsource v
+  apply RoPEPolynomialRankLimit.rank_le_of_coefficient_tendsto d H
+    (fun k ↦ L (φ k) (w k)) (M v) (hdegree v)
+  · exact hlimit φ hφ w v hw
+  · intro k
+    exact hkernel (φ k) (w k) (hker k)
+
 end HeadComplexity.RoPEGeneralFrames
