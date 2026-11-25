@@ -1,0 +1,6 @@
+import HeadComplexity.Research.RelativeMarginRestriction
+#print axioms HeadComplexity.RelativeMarginRestriction.atomSup_restrict_le
+#print axioms HeadComplexity.RelativeMarginRestriction.amplitude_restrict_le
+#print axioms HeadComplexity.RelativeMarginRestriction.score_restrict
+#print axioms HeadComplexity.RelativeMarginRestriction.relativeMargin_restrict_ge
+#print axioms HeadComplexity.RelativeMarginRestriction.hasRelativeMargin_restrict

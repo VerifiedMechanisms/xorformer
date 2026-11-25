@@ -1,0 +1,13 @@
+'HeadComplexity.RelativeMarginRestriction.atomSup_restrict_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginRestriction.amplitude_restrict_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginRestriction.score_restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.RelativeMarginRestriction.relativeMargin_restrict_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginRestriction.hasRelativeMargin_restrict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
