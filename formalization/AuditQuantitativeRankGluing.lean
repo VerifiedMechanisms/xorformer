@@ -1,0 +1,5 @@
+import HeadComplexity.Research.QuantitativeRankGluing
+
+#print axioms HeadComplexity.QuantitativeRankGluing.scaled_tail_le
+#print axioms HeadComplexity.QuantitativeRankGluing.rank_weighted_sum_gap
+#print axioms HeadComplexity.QuantitativeRankGluing.rank_weighted_mass_le
