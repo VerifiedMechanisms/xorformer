@@ -1,0 +1,8 @@
+'HeadComplexity.UnitGapLeafDeletion.signed_gap_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UnitGapLeafDeletion.contacts_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.UnitGapLeafDeletion.exists_contracted_unit_head' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.UnitGapLeafDeletion.coefficient_mass_decreases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

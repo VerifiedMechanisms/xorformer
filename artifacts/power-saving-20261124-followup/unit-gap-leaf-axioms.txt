@@ -1,0 +1,3 @@
+HeadComplexity.Research.UnitGapLeafDeletion: audited 8 theorem declarations
+Audited 8 theorem declarations across 1 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].

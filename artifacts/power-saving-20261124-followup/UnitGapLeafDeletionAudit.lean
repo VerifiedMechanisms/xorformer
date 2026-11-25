@@ -1,0 +1,5 @@
+import HeadComplexity.Research.UnitGapLeafDeletion
+#print axioms HeadComplexity.UnitGapLeafDeletion.signed_gap_preserved
+#print axioms HeadComplexity.UnitGapLeafDeletion.contacts_preserved
+#print axioms HeadComplexity.UnitGapLeafDeletion.exists_contracted_unit_head
+#print axioms HeadComplexity.UnitGapLeafDeletion.coefficient_mass_decreases
