@@ -28,6 +28,8 @@ A proposed globally accessible stationarity argument forcing unit-gap amplitude 
 
 This is an exact equality statement. It does not give a width reduction for margins merely close to one, and it does not obstruct a comparison repair at either tiny target margin in the benchmark.
 
+The independently audited written refinement [margin_one_nonattainment.md](margin_one_nonattainment.md) uses the original shared attention parameter to show that no genuine head on at least two bits is nonconstant and exactly two-valued. Combined with the kernel collapse, this excludes attaining margin one for every nonconstant table at every finite width. `LiteralMarginNonattainmentWitness.literal_margin` separately kernel-checks genuine one-head literal margins approaching one. The complete nonattainment classification remains a written theorem; it is not implied by this module alone.
+
 ## Verification
 
 The module builds successfully with 3283 jobs. All four declarations have only `propext`, `Classical.choice`, and `Quot.sound` in their transitive axiom reports. The audit is [AuditMarginOneCollapse.lean](../../formalization/AuditMarginOneCollapse.lean); the recorded outputs are `margin-one-collapse-build.txt` and `margin-one-collapse-axioms.txt`.
