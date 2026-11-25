@@ -10,7 +10,7 @@ is admissible for all sufficiently small signed $t$ when the original denominato
 
 The first derivative is exactly $g_1g_2$. Thus first-order stationarity in an upper-branch interior chart already forces the corresponding signed dual cross moment to vanish. A negative cross moment relevant to the duplication analysis must involve distinct denominator functions.
 
-This identity is an elementary written field calculation. It is not a new global access theorem. Heads with identical denominators can also be merged directly, so their presence cannot by itself be the decisive minimal-width obstruction.
+`SharedDenominatorGapPath.transport_identity` kernel checks this identity. `transport_interval`, `transport_at_max`, and `transport_norm_le` check the interval, attained-maximum, and full-cube norm conclusions. `exists_admissible_path` constructs an actual `FracAtom` for every step whose perturbed positive affine denominator coefficients remain positive. `eventually_admissible_path` also kernel checks the entire small signed neighborhood from strict positivity in finitely many coordinates. These declarations do not provide a global access theorem. Heads with identical denominators can also be merged directly, so their presence cannot by itself be the decisive minimal-width obstruction.
 
 ## The first failed extension
 
@@ -39,3 +39,7 @@ A usable replacement theorem must coordinate changes to distinct existing poles 
 One precise possible target is a norm-preserving replacement at a duplicated stationary point whose distinct-denominator cross moments are negative. The replacement may change several existing heads, rather than adding a nonpositive product score with zero upper contribution. A proof must explain how the change in existing extrema pays for the new product-like terms. No such construction or quantitative inequality has been established.
 
 This identifies the first failure of the current joint route without asserting that arbitrary signed cancellation can be removed. The unrestricted capacity target remains open.
+
+## Validation
+
+`lake build HeadComplexity.Research.SharedDenominatorGapPath` completed successfully with 3226 jobs. All six declarations above were checked transitively by `SharedDenominatorGapPathAudit.lean`; the only axioms reported are `propext`, `Classical.choice`, and `Quot.sound`. The derivative and KKT interpretations remain written consequences under the stated interior and stationarity hypotheses.

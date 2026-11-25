@@ -1,0 +1,7 @@
+import HeadComplexity.Research.SharedDenominatorGapPath
+#print axioms HeadComplexity.SharedDenominatorGapPath.transport_identity
+#print axioms HeadComplexity.SharedDenominatorGapPath.transport_interval
+#print axioms HeadComplexity.SharedDenominatorGapPath.transport_at_max
+#print axioms HeadComplexity.SharedDenominatorGapPath.transport_norm_le
+#print axioms HeadComplexity.SharedDenominatorGapPath.exists_admissible_path
+#print axioms HeadComplexity.SharedDenominatorGapPath.eventually_admissible_path
