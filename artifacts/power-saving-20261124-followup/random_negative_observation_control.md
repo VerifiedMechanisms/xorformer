@@ -72,6 +72,14 @@ Every original head can be shifted by its full-cube minimum to become nonnegativ
 
 The precise obstruction is in [unrestricted_capacity_positive_partition_gap.md](unrestricted_capacity_positive_partition_gap.md): any original strict score of width $H$ can be embedded, with $H+2$ admissible nonnegative heads having minimum zero, into a bounded-mass positive total arbitrarily close to the constant one, while its difference from one retains the complete original truth table. Thus a proposed inference from bounded observed mass or bounded total mass to a uniform strict-label gap is false. A quotient or removal theorem for these positive near-partitions, with controlled width and retained labels, would still be needed.
 
+## Relation to the stronger positive normal form
+
+The later kernel-checked theorem `SameWidthPositiveNormalization.hasNormalizedMargin_or_complement` puts every original certificate, or its global output complement, into a positive minimum-zero form at the same width, with bias $-1$, amplitude at most three, and at least one third of the source margin. In that form one already has
+
+$$ \sum_h\|g_h\|_\infty\leq2,\qquad 0\leq G(x)\leq2\quad\text{for every Boolean vertex }x. $$
+
+Thus the observation conclusion $G(x)\leq4$ adds no stronger value or amplitude estimate after this normalization, even on the exceptional set. The selected-neighbor inequalities remain structural facts about coherent original heads, but their coarse summed bound supplies no new access to a quantitative gap. The same-width normalization also supplies no lower bound for the distance of $G$ from one. These are separate statements, and neither is substituted for that missing gap premise. See [same_width_positive_normalization.md](same_width_positive_normalization.md).
+
 ## Verification
 
 `SelectedNegativeControl.lean` contains the deterministic subset inequality, both Boolean edge directions, the complete original-head bridge, and the summed observation bound. `NegativeObservationBinomial.lean` proves the finite binomial identities. The accompanying build and transitive axiom outputs distinguish those kernel-checked declarations from the written probability computation. No original definition was modified.
