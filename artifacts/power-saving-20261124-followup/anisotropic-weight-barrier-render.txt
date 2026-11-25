@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_anisotropic_grading.md",
+    "source_spans": 24,
+    "rendered_spans": 24,
+    "findings": [],
+    "notes": []
+  }
+]

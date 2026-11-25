@@ -1,0 +1,12 @@
+'HeadComplexity.AnisotropicWeightBarrier.product_coordinates_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnisotropicWeightBarrier.coordinate_degree_ratio_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnisotropicWeightBarrier.every_coordinate_certificate_ge_optimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.AnisotropicWeightBarrier.every_coordinate_certificate_exceeds_all_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

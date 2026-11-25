@@ -1,0 +1,5 @@
+import HeadComplexity.Research.AnisotropicWeightBarrier
+#print axioms HeadComplexity.AnisotropicWeightBarrier.product_coordinates_le
+#print axioms HeadComplexity.AnisotropicWeightBarrier.coordinate_degree_ratio_lower
+#print axioms HeadComplexity.AnisotropicWeightBarrier.every_coordinate_certificate_ge_optimal
+#print axioms HeadComplexity.AnisotropicWeightBarrier.every_coordinate_certificate_exceeds_all_tables
