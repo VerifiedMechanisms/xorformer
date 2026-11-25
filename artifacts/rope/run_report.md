@@ -1,5 +1,7 @@
 # RoPE Head Complexity Run Report
 
+> **Historical report.** This records the starting branch before the proof-track follow-up. Its open-problem and formalization status is superseded by [the proof-track report](proof_track_report.md) and [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md).
+
 ## Answer obtained
 
 For all four requested variants, rotary head complexity is at most vanilla head complexity. Fixed standard frequencies and freely chosen frequencies give the same exact score class at unrestricted width, separately with and without additive positional embeddings.

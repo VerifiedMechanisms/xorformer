@@ -2,7 +2,7 @@
 
 ## Scope
 
-This note records proof attempts in the run starting from `bdca97f`. The original target was the reverse implication from pure rotary computability with $H$ heads to unchanged vanilla computability with $H$ heads, for every input length and every Boolean function. The investigation instead produced the rigorous mathematical separation in [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md). Its full lower bound is not yet Lean-formalized. The score threshold is strictly positive, the query is fixed and attends to itself, and pure values are unrotated and token-only.
+This note records proof attempts in the run starting from `bdca97f`. The original target was the reverse implication from pure rotary computability with $H$ heads to unchanged vanilla computability with $H$ heads, for every input length and every Boolean function. The investigation instead produced the rigorous mathematical separation in [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md). Its full lower bound and architectural transfer are now Lean-checked. The score threshold is strictly positive, the query is fixed and attends to itself, and pure values are unrotated and token-only.
 
 The literal standard-frequency and free-frequency architectural bridges are proved in [Theorem 18](../../theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md). Thus the scalar Boolean comparisons transfer to the stated architectures without an unproved interpolation assumption.
 
@@ -110,7 +110,7 @@ The successful refinement retains only cubic coefficients using one group from e
 
 For the source cubic $u_1d_2d_3+u_2d_1d_3+u_3d_1d_2$, the contraction matrix has rank at most three exactly on the denominator kernel. Its three decisive four-by-four minors are $d_i^4$. Any vanilla tensor has a three-dimensional subspace of such low-rank contractions, together with an orthogonal same-signed denominator vector. Compactness forces the limiting vector into a zero-sum denominator row space, contradicting its simplex normalization.
 
-[Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) gives the full mathematical proof and explicit genuine pure masses. It proves pure minimum three and vanilla minimum between four and six for all sufficiently large members of an explicit family on $18m$ bits. The proof does not give the first such $m$. Its full compactness and divisibility lower bound is not yet a Lean theorem. [The independent audit](research/separation_audit.md) records the checks of sign equivalence, averaging, degeneracies, and architectural scope.
+[Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) gives the full mathematical proof and explicit genuine pure masses. It proves pure minimum three and vanilla minimum between four and six for all sufficiently large members of an explicit family on $18m$ bits. The proof does not give the first such $m$. Its full compactness and divisibility lower bound is proved in `Results/PureThreeSeparation.lean`, including the exact vanilla-to-averaged-polynomial bridge. [The independent audit](research/separation_audit.md) records the checks of sign equivalence, averaging, degeneracies, and architectural scope.
 
 ## 11. Exact certificates support finite examples only
 

@@ -34,11 +34,13 @@ head-preserving cases and general bounds with extra heads. The pure-specific
 bound is `2^H - 2` for `H ≥ 2`. Any strict improvement requires at least five
 input bits, at least three pure heads, and at least four vanilla heads.
 
-Theorem 22 gives a mathematical separation for an explicit family on `18m`
-bits for all sufficiently large `m`. Its full lower bound is **not yet
-Lean-formalized**. The explicit pure family, rotary realization, and finite
-tensor algebra are checked separately; the writeup states this boundary.
-No Lean declaration in this repository claims the full separation theorem.
+Theorem 22 is fully machine-checked: an explicit family on `18m` bits has
+pure rotary minimum three and vanilla minimum between four and six for
+all sufficiently large `m`. The proof includes coefficient compactness,
+grouped Boolean averaging, local polynomial divisibility, the tensor obstruction,
+and both literal rotary-frequency conventions.
+`not_universal_pureRoPEHStar_eq_SharedHStar` explicitly refutes universal equality.
+No numerical bound on the first separating replication count is asserted.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
@@ -62,6 +64,7 @@ No Lean declaration in this repository claims the full separation theorem.
 | 19 | general and pure-specific exponential simulation bounds | `FiniteDifference.computable_of_positive_denominators`, `pureRoPEComputable_vanilla_improved_exponential_bound` | `Results/FiniteDifferenceUpperBound.lean`, `Results/PureFiniteDifference.lean` |
 | 20 | every head count on at most four input bits | `pureRoPEComputable_iff_vanilla_of_input_le_four`, `vanilla_three_computes_fourBit_nonparity` | `Results/RoPEFourInputs.lean` |
 | 21 | complement-invariant three-head classifiers use at most four vanilla heads | `vanilla_four_of_pureRoPE_three_complement` | `Results/RoPEThreeComplement.lean` |
+| 22 | pure minimum three versus vanilla minimum four to six | `PureThreeReplicatedGrid.eventually_complexity_separation`, `not_universal_pureRoPEHStar_eq_SharedHStar` | `Results/PureThreeSeparation.lean` |
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:

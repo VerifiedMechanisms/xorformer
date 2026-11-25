@@ -1,0 +1,71 @@
+# Pure RoPE Has a Strict Three-Head Advantage
+
+## Result
+
+The requested universal equality is false in the unchanged xorformer model. The complete Boolean separation is proved in Lean, including the bridge to literal rotary attention with standard fixed or freely chosen frequencies.
+
+Starting from commit `bdca97f`, this run constructs an explicit family $f_m$ on $18m$ bits. For every sufficiently large positive integer $m$,
+
+$$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_m)=3\qquad\text{and}\qquad4\leq H^{\ast}_{\mathrm{vanilla}}(f_m)\leq6. $$
+
+The threshold convention remains strict positivity. The result concerns exact Boolean classification. No equality of pure and vanilla real-valued scores is assumed. Retained positional embeddings are not used.
+
+The main declaration is `PureThreeReplicatedGrid.eventually_complexity_separation` in [PureThreeSeparation.lean](../../formalization/HeadComplexity/Results/PureThreeSeparation.lean). The same file proves:
+
+- `eventually_not_vanilla_three`: the unconditional lower bound for the explicit family.
+
+- `exists_complexity_separation`: existence of a Boolean function with pure minimum three and vanilla minimum between four and six.
+
+- `exists_rotary_three_not_vanilla_three`: the literal rectangular architectures with standard and free frequencies both compute such a function with three heads.
+
+- `not_universal_pureRoPE_to_vanilla_three` and `not_universal_pureRoPEHStar_eq_SharedHStar`: explicit negations of the requested universal implication and minimum-count equality. Corresponding declarations cover `HStar` and the standard-frequency and free-frequency minimum counts.
+
+The complete mathematical proof is [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md). There is no residual unproved lower-bound premise in the final Lean declarations.
+
+## Why the separation works
+
+The source score is a sum of three pure affine fractions on eighteen centered group means. Replication supplies increasingly fine Boolean grids. Each denominator is uniformly positive on the continuous cube, and each atom has strictly positive input and query masses. [PureThreeReplicatedGrid.lean](../../formalization/HeadComplexity/Results/PureThreeReplicatedGrid.lean) proves the exact scalar and literal rotary realizations.
+
+Supposing infinitely many grids had vanilla three-head representations, strictification and denominator clearing would give cubic polynomials. Averaging within replica groups preserves their strict Boolean signs. Normalize the complete polynomial coefficient vectors and pass to a nonzero limit. Dense-grid sign agreement forces this limit to be a positive scalar multiple of the source cubic, using its irreducibility and a local rational parametrization of its zero hypersurface.
+
+Only the mixed cubic coefficients with one coordinate in each of three blocks are retained. They preserve the actual vanilla numerator-denominator factorization exactly under averaging. Every vanilla tensor has a three-dimensional denominator-kernel frame whose contractions have rank at most three. The source tensor identifies that kernel through explicit four-by-four minors. In the limit, the kernel contains the all-ones vector, contradicting the normalized positive denominator row perpendicular to it.
+
+The compactness argument never assumes bounded head parameters or convergence of a chosen rational representation. It normalizes whole polynomials, then separately extracts compact kernel frames and simplex normals.
+
+The principal formal interfaces are:
+
+| Step | Declaration and file |
+|---|---|
+| Actual vanilla score to strict centered factors | `VanillaThreeCentered.exists_data_of_vanilla`, [VanillaThreeCentered.lean](../../formalization/HeadComplexity/Polynomial/VanillaThreeCentered.lean) |
+| Exact grouped averaging and surviving coefficients | `averagedGroupPolynomial_strict_sign`, `averagedGroupPolynomial_coeff_top_squarefree`, [RoPEGroupSymmetrization.lean](../../formalization/HeadComplexity/Polynomial/RoPEGroupSymmetrization.lean) |
+| Actual vanilla representation supplies every required witness field | `PureThreeAveragedWitness.averagedWitness_of_vanilla`, [PureThreeAveragedWitness.lean](../../formalization/HeadComplexity/Results/PureThreeAveragedWitness.lean) |
+| Nonzero coefficient subsequence and moving evaluations | `normalized_polynomial_subsequence`, `tendsto_eval_of_bounded_coefficients`, [BoundedCoefficientLimit.lean](../../formalization/HeadComplexity/Polynomial/BoundedCoefficientLimit.lean) |
+| Source rigidity on the physical cube | `RoPEPhysicalCoordinates.positive_scalar_multiple_of_weak_sign_cube`, [RoPEPhysicalCoordinates.lean](../../formalization/HeadComplexity/Polynomial/RoPEPhysicalCoordinates.lean) |
+| Closed tensor obstruction with arbitrary factor sizes | `RoPEThreeTensor.no_tendsto_scaled_physical_source_factorTensor`, [RoPETensorFactors.lean](../../formalization/HeadComplexity/Atoms/RoPETensorFactors.lean) |
+| Complete compactness contradiction | `no_averaged_witness_sequence`, [PureThreeSeparationLimit.lean](../../formalization/HeadComplexity/Results/PureThreeSeparationLimit.lean) |
+
+## Other proved results
+
+The two-head complement-invariance assumption can be removed. `pureRoPEComputable_iff_vanilla_of_le_two` in [RoPETwoHeads.lean](../../formalization/HeadComplexity/Results/RoPETwoHeads.lean) proves equality at every head budget at most two for every input length. The proof uses the special positive token-endpoint numerator direction and a finite strict-sign perturbation. No antipodal symmetry is required.
+
+`pureRoPEComputable_iff_vanilla_of_input_le_four` in [RoPEFourInputs.lean](../../formalization/HeadComplexity/Results/RoPEFourInputs.lean) proves equality at every head count for at most four input bits. Integer three-head certificates cover every nonparity four-bit truth table; the existing symmetric theory handles parity. These finite certificates are kernel-checked without new axioms.
+
+The all-head structured results include `AffineStatistic.computable_of_collinear_denominators` and `AffineStatistic.computable_of_denominator_plane`. General positive affine ratios admit the finite-difference bound of $2^H-1$ vanilla heads. For pure classifiers and $H\geq2$, `pureRoPEComputable_vanilla_improved_exponential_bound` in [PureFiniteDifference.lean](../../formalization/HeadComplexity/Results/PureFiniteDifference.lean) improves this to $2^H-2$. Complement-invariant three-head pure classifiers use at most four vanilla heads by `vanilla_four_of_pureRoPE_three_complement`.
+
+The literal architecture is formalized in [RectangularPureRoPE.lean](../../formalization/HeadComplexity/Model/RectangularPureRoPE.lean). `rectangularStandardPureRotaryComputable_iff_scalar` and `rectangularFreePureRotaryComputable_iff_scalar` hold for every input length and head count, including $n=0$ and $H=0$. Standard-frequency interpolation uses common finite width $2(n+2)$. The model has a fixed query attending to every input and itself, shared token embeddings, Q/K-only rotations, unrotated token-only values, explicit output projections, and the query residual. Zero-head and zero-input equality cases are included in the two-head and small-input theorems.
+
+## Routes investigated and their limitations
+
+[The research log](research_routes.md) records the distinct approaches and their checked scope. These include endpoint reorientation, strict-margin perturbation, projective denominator shifts, independent denominator shears, reciprocal finite differences, affine-statistic representations, denominator planes, product differences, arrowhead matrix transformations, Boolean zero-family tangents, value tilting, exact score approximation, and direct numerical searches.
+
+Several attractive exact transformations fail. Checked obstructions show that a common projective shift cannot always orient all denominators, independent three-head shears cannot generally preserve the cleared polynomial, a prescribed cubic denominator pencil can be too restrictive, and value tilting can cross a Boolean decision boundary. Those failures alone are not Boolean lower bounds. The final separation instead excludes every alternative vanilla representation through the normalized polynomial limit.
+
+The search campaign produced 353 exact integer certificates of three-head vanilla representations for sampled pure classifiers. Failed searches were not treated as impossibility evidence. An exact dual certificate excludes one fixed endpoint-denominator proposal with arbitrary affine numerators; it does not exclude every three-head representation. See [the search report](search/three_head_search.md).
+
+## Definitions, validation, and remaining questions
+
+The original vanilla architectural and admissibility definitions are unchanged. The original scalar pure and retained atom definitions are also unchanged. New files add the literal pure rotary architecture, supporting lemmas, explicit families, and stronger results. Earlier theorem statements remain available; Theorem 16 strengthens the restricted two-head result, and Theorem 22 settles the previously open universal equality question negatively.
+
+All final Lean results are checked without proof placeholders or new axioms. The permitted dependencies are `propext`, `Classical.choice`, and `Quot.sound`. The repository validator builds every tracked Lean source and audits every theorem declaration. Mathematical Markdown is checked statically, with KaTeX, and through the real GitHub Markdown API. A GitLab render audit is unavailable in this environment because `glab` and GitLab authentication are absent.
+
+The proof is existential in the replication threshold. It does not specify the first separating $m$, the smallest possible input length, or whether the family eventually needs four, five, or six vanilla heads. The two-head theorem and four-input theorem imply that any strict separation needs at least three pure heads, four vanilla heads, and five input bits. [An independently audited quantitative tensor estimate](research/quantitative_tensor_gap.md) gives an explicit tensor-distance gap, but an effective dense-grid sign-rigidity estimate is still needed to turn it into a numerical replication threshold. The displayed numerical tensor constant is a mathematical result, not a Lean declaration.

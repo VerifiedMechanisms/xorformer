@@ -8,9 +8,9 @@ set_option linter.style.header false
 # Conditional complexity consequences for the replicated-grid family
 
 The upper representation is unconditional. The premise excluding three
-vanilla heads is explicit here: the continuous compactness argument proving
-that premise for sufficiently large replication counts is not formalized
-in this module.
+vanilla heads is explicit here. The continuous compactness argument proves
+that premise for sufficiently large replication counts in the separate
+`Results/PureThreeSeparation` module.
 -/
 
 namespace HeadComplexity.PureThreeReplicatedGrid
@@ -40,7 +40,7 @@ theorem complexities_of_not_vanilla_three (m : ℕ) (hm : 0 < m)
   · rw [standardPureRoPEHStar_eq_scalar, he]
   · rw [freePureRoPEHStar_eq_scalar, he]
 
-/-- This wrapper retains the unformalized lower-bound premise visibly. -/
+/-- A reusable wrapper retaining the lower-bound premise explicitly. -/
 theorem eventual_complexities_of_eventual_not_vanilla_three
     (hnot : ∃ M : ℕ, ∀ m, M ≤ m →
       ¬ computableWithSharedHeadsN (18 * m) 3 (classifier m)) :

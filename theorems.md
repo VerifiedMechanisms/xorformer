@@ -261,7 +261,7 @@ Let $H_P$ denote RoPE replacing additive positional embeddings, and let $H_A$ de
 
 $$ \deg_{\pm}(f)\leq H_A(f)\leq H_P(f)\leq H^{\ast}(f). $$
 
-Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE is refuted by the mathematical separation in Theorem 22, whose full lower bound is not yet Lean-formalized. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
+Fixed and free frequencies give identical exact score classes for each variant. All comparisons are equalities for symmetric functions and whenever vanilla attains threshold degree. Universal equality for pure RoPE is refuted by the fully Lean-checked Boolean separation in Theorem 22. The seven-bit example in Theorem 15 has retained complexity two and pure and vanilla complexity three.
 
 The scalar simulations, complexity bounds, and symmetric equality are Lean-checked. Theorem 18 now also checks the literal rotary bridge using finite complex Vandermonde interpolation. A separate Lean-checked example strictly separates one-head exact scores but does not separate classifier head complexity.
 
@@ -346,6 +346,6 @@ That is not yet a full invariant. It is only a partial answer:
 
 ### Theorem 22. Pure rotary three-head separation
 
-An explicit family on $18m$ bits has pure head complexity three and vanilla head complexity between four and six for every sufficiently large $m$. This refutes universal equality in the unchanged architecture, for both standard and freely chosen rotary frequencies. The proof symmetrizes cleared classifiers, takes a nonzero polynomial limit, and uses a closed tensor-rank and denominator-cone obstruction. It is a rigorous mathematical proof with partial Lean support. The full compactness and polynomial-divisibility lower bound is not yet Lean-formalized, and no numerical threshold for $m$ is claimed.
+An explicit family on $18m$ bits has pure head complexity three and vanilla head complexity between four and six for every sufficiently large $m$. This refutes universal equality in the unchanged architecture, for both standard and freely chosen rotary frequencies. The proof symmetrizes cleared classifiers, takes a nonzero polynomial limit, and uses a closed tensor-rank and denominator-cone obstruction. The entire lower bound, complexity conclusion, and architectural transfer are Lean-checked without new axioms. No numerical threshold for $m$ is claimed.
 
 **Proof.** [theorems/03_rotary_attention/022_pure_rope_three_head_separation.md](theorems/03_rotary_attention/022_pure_rope_three_head_separation.md)

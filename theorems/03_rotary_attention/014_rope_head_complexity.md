@@ -199,7 +199,7 @@ $$ A_1+A_2=0, \qquad A_3-A_1=0, \qquad A_3-A_2=0. $$
 
 Thus every $A_i=0$, so $E=bD$. Positivity gives $b\gt0$, and the slopes of $E$ have mixed signs, contradicting vanilla admissibility.
 
-Nevertheless every threshold of $g$ is a linear threshold function: multiply the threshold inequality by the positive $D$. Consequently these classifiers all have vanilla head complexity at most one. The example proves that exact score simulation in the reverse direction is impossible, while leaving the Boolean head-count equality question open.
+Nevertheless every threshold of $g$ is a linear threshold function: multiply the threshold inequality by the positive $D$. Consequently these classifiers all have vanilla head complexity at most one. The example proves that exact score simulation in the reverse direction is impossible. It does not settle Boolean head-count equality; the Boolean separation in [Theorem 22](022_pure_rope_three_head_separation.md) does.
 
 ## Formalization and remaining work
 

@@ -25,6 +25,8 @@ import HeadComplexity.Atoms.RoPETiltObstruction
 import HeadComplexity.Results.ReciprocalFiniteDifference
 import HeadComplexity.Results.ProductDifferenceSign
 import HeadComplexity.Results.PureFiniteDifference
+import HeadComplexity.Results.PureThreeSeparation
+import HeadComplexity.Results.BooleanTangentUpperBound
 
 set_option linter.style.header false
 
@@ -172,7 +174,7 @@ head budgets in the exact rectangular architecture. -/
 alias theorem18_fixed_free := rectangularStandardPureRotaryComputable_iff_free
 
 /-- **Theorem 19.** Arbitrary positive affine ratios have a general exponential
-vanilla head bound. This is not the same-head conjecture. -/
+vanilla head bound. -/
 alias theorem19_finite_difference := FiniteDifference.computable_of_positive_denominators
 
 /-- **Theorem 19.** Pure atoms improve the general bound to 2^H-2 for H≥2. -/
@@ -184,5 +186,18 @@ alias theorem20_small_inputs := pureRoPEComputable_iff_vanilla_of_input_le_four
 /-- **Theorem 21.** Complement-invariant three-head pure classifiers need at
 most four vanilla heads. No three-head equality is asserted here. -/
 alias theorem21_three_head_complement := vanilla_four_of_pureRoPE_three_complement
+
+/-- **Theorem 22.** The explicit replicated family eventually needs exactly
+three pure rotary heads and between four and six vanilla heads. -/
+alias theorem22_pure_vanilla_separation :=
+  PureThreeReplicatedGrid.eventually_complexity_separation
+
+/-- **Theorem 22.** The separation holds in the literal rectangular rotary
+architecture with standard fixed or freely chosen frequencies. -/
+alias theorem22_architectural_separation :=
+  PureThreeReplicatedGrid.exists_rotary_three_not_vanilla_three
+
+/-- **Theorem 22.** Universal equality of the minimum head counts is false. -/
+alias theorem22_not_universal_equality := not_universal_pureRoPEHStar_eq_SharedHStar
 
 end HeadComplexity
