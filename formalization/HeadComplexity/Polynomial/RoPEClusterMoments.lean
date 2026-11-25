@@ -53,4 +53,26 @@ theorem four_cluster_third_moment (t x y a d : R) :
       t ^ 3 * (24 * a * y ^ 3 + 6 * d * x * y ^ 2) + t ^ 4 * d * y ^ 3) := by
   ring
 
+/-- The first three moments isolate one residue at three distinct nonzero
+leading poles. This is the Vandermonde elimination used in the Laurent audit. -/
+theorem three_pole_moment_elimination (a b c A B C : R) :
+    (a ^ 3 * A + b ^ 3 * B + c ^ 3 * C) -
+      (b + c) * (a ^ 2 * A + b ^ 2 * B + c ^ 2 * C) +
+      b * c * (a * A + b * B + c * C) =
+    a * (a - b) * (a - c) * A := by
+  ring
+
+/-- Vanishing first three moments force the first residue to vanish when
+its leading pole is nonzero and distinct from the other two. -/
+theorem first_residue_zero_of_three_moments [NoZeroDivisors R]
+    (a b c A B C : R) (ha : a ≠ 0) (hab : a ≠ b) (hac : a ≠ c)
+    (h₁ : a * A + b * B + c * C = 0)
+    (h₂ : a ^ 2 * A + b ^ 2 * B + c ^ 2 * C = 0)
+    (h₃ : a ^ 3 * A + b ^ 3 * B + c ^ 3 * C = 0) : A = 0 := by
+  have he := three_pole_moment_elimination a b c A B C
+  rw [h₁, h₂, h₃] at he
+  have hz : a * (a - b) * (a - c) * A = 0 := by simpa using he.symm
+  exact (mul_eq_zero.mp hz).resolve_left
+    (mul_ne_zero (mul_ne_zero ha (sub_ne_zero.mpr hab)) (sub_ne_zero.mpr hac))
+
 end HeadComplexity.RoPEClusterMoments

@@ -98,9 +98,39 @@ $$ M_3\to6Ax^3\neq0. $$
 
 It therefore has a nonzero fourth-order pole. This is a counterexample only to the proposed inference from bounded $M_0,M_1$ to a bound on the essential number of variables of $M_2$. For the four-head source limit $Q=P F$, the rational limit is $P/F^3$, so its third moment must tend to zero. The example does not satisfy that extra hypothesis and does not settle the remaining four-head collision case. A five-head single-cluster limit can still have a fourth-order pole when its degree-two multiplier is divisible by $F$ but not by $F^2$.
 
+## A limited vanishing-higher-pole result
+
+There is a stronger conclusion for a restricted class of four-pole collisions. Set $\alpha_0=0$ and suppose
+
+$$ \alpha_i(t)=t\ell_i+O(t^2)\qquad(1\leq i\leq3), $$
+
+coefficientwise, where $\ell_1,\ell_2,\ell_3$ are nonzero, pairwise distinct homogeneous linear forms on a finite-dimensional real vector space. Suppose each residue has a finite Laurent expansion in integer powers of $t$, with homogeneous linear coefficients. If $M_1,M_2$ have bounded coefficient vectors and $M_3\to0$, then the residues at the three nonzero poles have no pole of order greater than two. Consequently the limiting cubic $M_2$ depends on at most three linear coordinates.
+
+**Proof.** If $p\geq3$ were the largest residue pole order, let $A_i$ be its coefficient at the $i$-th nonzero pole, with at least one $A_i\neq0$. The leading coefficient of $M_j$ is $S_j=\sum_i\ell_i^j A_i$ at power $t^{j-p}$. Boundedness for $j=1,2$ and convergence to zero for $j=3$ force $S_1=S_2=S_3=0$. The exact polynomial identity
+
+$$ S_3-(\ell_2+\ell_3)S_2+\ell_2\ell_3S_1=\ell_1(\ell_1-\ell_2)(\ell_1-\ell_3)A_1 $$
+
+then implies $A_1=0$, since the three displayed linear factors are nonzero and the polynomial ring is an integral domain. Permuting indices gives $A_2=A_3=0$, a contradiction. Thus every residue is $O(t^{-2})$.
+
+Write $B_i$ for its coefficient at $t^{-2}$. The coefficient at $t^{-1}$ in $M_1$ vanishes, while the constant coefficient in $M_2$ gives its limit. Therefore
+
+$$ \sum_{i=1}^{3}B_i\ell_i=0,\qquad C=\lim_{t\to0}M_2=\sum_{i=1}^{3}B_i\ell_i^2. $$
+
+Consider the linear map $v\mapsto(B_i(v)+\ell_i(v))_{i=1}^{3}$. If $v$ is in its kernel, evaluating the first identity at $v$ gives
+
+$$ 0=\sum_{i=1}^{3}B_i(v)\ell_i(v)=-\sum_{i=1}^{3}\ell_i(v)^2. $$
+
+Thus every $\ell_i(v)$ and every $B_i(v)$ is zero. Translating by any such $v$ leaves $C$ unchanged. The cubic therefore factors through the quotient by this kernel, whose dimension is at most three. This is the same sum-of-squares mechanism as the [regular common-base moment obstruction](common_base_jet_obstruction.md). $\blacksquare$
+
+If all leading forms are multiples of one form, say $\ell_i=c_i x$ with distinct nonzero scalars $c_i$, the proof gives the stronger conclusion $C=x^2L$ for a linear form $L$. This case has at most two essential linear coordinates.
+
+The hypotheses matter. Repeated or zero first-order leading forms, roots with leading order greater than one, fractional relative scales, and paths without finite Laurent expansions are not covered. In particular, reparameterizing a path can change the first-order-root hypothesis; the statement is not a classification of all collisions.
+
+The accompanying [exact Laurent search](../search/check_four_cluster_laurent.py) checks eleven specified root paths in four variables and residue poles through order twelve. It solves the moment constraints over the rationals and checks the generic derivative rank of each resulting cubic space. This is a reproducible finite search, not a universal collision theorem or a Boolean lower bound.
+
 ## Exact scope and the remaining gaps
 
-The [Lean algebraic identities](../../../formalization/HeadComplexity/Polynomial/RoPEClusterMoments.lean) prove the residue-annihilator identity for an arbitrary finite set over any commutative ring, together with the exact first, second, and third moment expansions for this multiscale example. The contour-limit and product-closure arguments above are rigorous mathematical proofs but are not claimed as additional Lean theorems.
+The [Lean algebraic identities](../../../formalization/HeadComplexity/Polynomial/RoPEClusterMoments.lean) prove the residue-annihilator identity for an arbitrary finite set over any commutative ring, the exact first, second, and third moment expansions for the multiscale example, and the Vandermonde residue elimination. The contour-limit, product-closure, and Laurent-order arguments above are rigorous mathematical proofs but are not claimed as additional Lean limit theorems.
 
 These collision conclusions require convergence of every coefficient of the full cleared polynomial. The arbitrary-head Boolean separation proof supplies convergence only of the selected top squarefree coefficients of an oriented factor polynomial. Replica averaging produces a convergent full polynomial but generally destroys its affine-fraction factorization. The present lemma therefore cannot be applied directly to those averaged limits.
 
