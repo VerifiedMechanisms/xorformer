@@ -1,0 +1,17 @@
+'HeadComplexity.SignedCenteredCertificate.rangeMax_eq_atomSup_of_centered' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SignedCenteredCertificate.rangeMin_eq_neg_atomSup_of_centered' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SignedCenteredCertificate.rangeMin_negate_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SignedCenteredCertificate.signedLabel_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SignedCenteredCertificate.negate_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SignedCenteredCertificate.negate_relativeMargin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SignedCenteredCertificate.exists_signed_centered_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

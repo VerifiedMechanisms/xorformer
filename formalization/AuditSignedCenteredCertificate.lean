@@ -1,0 +1,8 @@
+import HeadComplexity.Research.SignedCenteredCertificate
+#print axioms HeadComplexity.SignedCenteredCertificate.rangeMax_eq_atomSup_of_centered
+#print axioms HeadComplexity.SignedCenteredCertificate.rangeMin_eq_neg_atomSup_of_centered
+#print axioms HeadComplexity.SignedCenteredCertificate.rangeMin_negate_eq
+#print axioms HeadComplexity.SignedCenteredCertificate.signedLabel_complement
+#print axioms HeadComplexity.SignedCenteredCertificate.negate_score
+#print axioms HeadComplexity.SignedCenteredCertificate.negate_relativeMargin
+#print axioms HeadComplexity.SignedCenteredCertificate.exists_signed_centered_certificate
