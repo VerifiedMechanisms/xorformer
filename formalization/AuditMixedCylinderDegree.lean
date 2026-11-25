@@ -1,0 +1,10 @@
+import HeadComplexity.Research.MixedCylinderDegree
+
+#print axioms HeadComplexity.MixedCylinderDegree.eval_cylinderPolynomial
+#print axioms HeadComplexity.MixedCylinderDegree.eval_affinePolynomial
+#print axioms HeadComplexity.MixedCylinderDegree.cylinderPolynomial_degree
+#print axioms HeadComplexity.MixedCylinderDegree.affinePolynomial_degree
+#print axioms HeadComplexity.MixedCylinderDegree.block_degree
+#print axioms HeadComplexity.MixedCylinderDegree.thresholdDegLE_of_cylinder_score
+#print axioms HeadComplexity.MixedCylinderDegree.parity_degree_le_of_cylinder_score
+#print axioms HeadComplexity.MixedCylinderDegree.exists_large_cylinder_of_parity_score

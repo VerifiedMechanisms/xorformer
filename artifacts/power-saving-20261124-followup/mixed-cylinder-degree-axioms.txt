@@ -1,0 +1,16 @@
+'HeadComplexity.MixedCylinderDegree.eval_cylinderPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MixedCylinderDegree.eval_affinePolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MixedCylinderDegree.cylinderPolynomial_degree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MixedCylinderDegree.affinePolynomial_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MixedCylinderDegree.block_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MixedCylinderDegree.thresholdDegLE_of_cylinder_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MixedCylinderDegree.parity_degree_le_of_cylinder_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MixedCylinderDegree.exists_large_cylinder_of_parity_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,2 @@
+✔ [2553/2553] Built HeadComplexity.Research.MixedCylinderDegree (1.5s)
+Build completed successfully (2553 jobs).
