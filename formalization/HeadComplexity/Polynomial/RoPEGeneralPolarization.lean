@@ -204,9 +204,10 @@ theorem directional_eq_sum_pderiv [Fintype σ] (v : σ → ℝ) :
   rw [derivation_sum_apply]
   simp [Pi.single_apply, smul_eq_C_mul]
 
-theorem directional_isHomogeneous [Fintype σ] (v : σ → ℝ)
+theorem directional_isHomogeneous [Finite σ] (v : σ → ℝ)
     {P : MvPolynomial σ ℝ} {m : ℕ} (hP : P.IsHomogeneous m) :
     (directional v P).IsHomogeneous (m - 1) := by
+  letI : Fintype σ := Fintype.ofFinite σ
   rw [directional_eq_sum_pderiv]
   simp only [derivation_sum_apply, Derivation.smul_apply]
   apply IsHomogeneous.sum
@@ -250,7 +251,7 @@ theorem collapse_coeff_isHomogeneous (m : ℕ) (P : BlockPoly m σ)
       by_cases he : e = 0
       · subst e
         simpa [collapse] using (isHomogeneous_C (σ := σ) c)
-      · simp [collapse, coeff_C, he, Ne.symm he, isHomogeneous_zero]
+      · simp [collapse, coeff_C, Ne.symm he, isHomogeneous_zero]
   | add p q hp hq => simpa using (hp e).add (hq e)
   | mul_X p i hp =>
       rcases i with ⟨(_ | (_ | b)), i⟩

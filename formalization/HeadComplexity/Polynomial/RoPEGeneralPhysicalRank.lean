@@ -13,6 +13,7 @@ open scoped BigOperators
 
 variable {σ τ : Type*} [Fintype σ] [Fintype τ]
 
+omit [Fintype τ] in
 theorem directional_coordinatePolynomial (L : (σ → ℝ) →ₗ[ℝ] (τ → ℝ))
     (c : τ → ℝ) (v : σ → ℝ) (i : τ) :
     directional v (polynomial L c i) = C (L v i) := by
@@ -36,6 +37,7 @@ theorem directional_substitutionEquiv
   exact directional_eval₂ (E v) v (polynomial E.toLinearMap c)
     (directional_coordinatePolynomial E.toLinearMap c v) P
 
+omit [Fintype τ] in
 theorem coordinatePolynomial_homogeneous
     (L : (σ → ℝ) →ₗ[ℝ] (τ → ℝ)) (i : τ) :
     (polynomial L 0 i).IsHomogeneous 1 := by
@@ -136,6 +138,7 @@ theorem contractMap_localSource_rank_le_iff (m : ℕ) (hm : 1 ≤ m)
     funext i
     simp only [localCoordinateEquiv_left, congrFun h i, sub_self, Pi.zero_apply]
 
+omit [Fintype σ] in
 theorem contractMap_C_mul (m : ℕ) (t : ℝ) (P : BlockPoly m σ) (v : σ → ℝ) :
     contractMap m (C t * P) v = t • contractMap m P v := by
   apply LinearMap.ext
