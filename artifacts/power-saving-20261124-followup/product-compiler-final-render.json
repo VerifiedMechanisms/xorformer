@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/positive_product_compilation_boundary.md",
+    "source_spans": 45,
+    "rendered_spans": 45,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/margin_repair_results_index.md",
+    "source_spans": 49,
+    "rendered_spans": 49,
+    "findings": [],
+    "notes": []
+  }
+]

@@ -26,6 +26,8 @@ The capacity agent's `OneHeadOriginalMarginOptimum.hasRelativeMargin_iff` comple
 
 `Research/ExceptionalMarginRepair.lean` proves `HeadComplexity.ExceptionalMarginRepair.relativeMargin_ge_of_exceptional_patch`. If a strict source score has relative gap at least $\tau$ outside an exception set, and a patch has unit signed gap on that set and full amplitude at most $B$, then the concatenated original heads achieve full relative margin at least $\tau/(3B)$. Patch signs outside the exception set may be arbitrary. The missing issue is producing the quantitative exception-set premise for every narrow table.
 
+`Research/ProbabilityMixtureApproximation.lean` proves `normalized_product_approximation_of_width` and its common-negative-orientation counterpart. An arbitrary finite product of normalized constant-numerator coherent heads of one orientation has a uniform approximation of error below $\epsilon$ with exactly $m$ genuine heads, zero bias, and total amplitude at most one whenever $m\gt2\log(2^{n+1})/\epsilon^2$. The factor count does not enter this bound. The whole assembly, including two-sided sampling and norm-preserving genuine-head approximation, is kernel checked in commit `d1c4bc9c`; nine declarations have the standard three axioms, and the module build completed with 3302 jobs. It is a value approximation for this explicit product class, not a sign-preserving compiler for arbitrary sums.
+
 All these modules built successfully, and their recorded exported-declaration audits contain only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Written quantitative constructions

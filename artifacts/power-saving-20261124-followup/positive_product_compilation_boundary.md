@@ -75,3 +75,5 @@ The missing statement is a joint sign-preserving compiler, or a bound on all tru
 ## Independent audit
 
 A second agent checked the probability-mixture closure, the full-cube Hoeffding union budget and error allocation, the norm-preserving genuine anchored approximants, mixed-cylinder zero padding, and the nonnegative-cone inequality including its bias condition. The written argument passed that audit.
+
+The completed common-orientation Lean assembly was independently read and checked after commit `d1c4bc9c`. Its module build completed with 3302 jobs. All nine declarations in `AuditProbabilityMixtureApproximation.lean` have exactly the transitive axioms `propext`, `Classical.choice`, and `Quot.sound`. The audit checked the product-length-independent quantifier, the exact sample constant, the original-head amplitude, and the simultaneous-complement wrapper.
