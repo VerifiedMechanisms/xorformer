@@ -1,0 +1,10 @@
+import HeadComplexity.Research.MinZeroPositivePartition
+#print axioms HeadComplexity.MinZeroPositivePartition.firstAtom_eval
+#print axioms HeadComplexity.MinZeroPositivePartition.firstAtom_bounds
+#print axioms HeadComplexity.MinZeroPositivePartition.firstAtom_zero
+#print axioms HeadComplexity.MinZeroPositivePartition.firstAtom_one
+#print axioms HeadComplexity.MinZeroPositivePartition.partition_nonneg
+#print axioms HeadComplexity.MinZeroPositivePartition.partition_le_one
+#print axioms HeadComplexity.MinZeroPositivePartition.partition_has_zero
+#print axioms HeadComplexity.MinZeroPositivePartition.partition_sum
+#print axioms HeadComplexity.MinZeroPositivePartition.partition_atomSup_le

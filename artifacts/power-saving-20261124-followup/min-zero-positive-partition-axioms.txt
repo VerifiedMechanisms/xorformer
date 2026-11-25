@@ -1,0 +1,11 @@
+'HeadComplexity.MinZeroPositivePartition.firstAtom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.firstAtom_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.firstAtom_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.firstAtom_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.partition_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.partition_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.partition_has_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.partition_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinZeroPositivePartition.partition_atomSup_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
