@@ -1,0 +1,23 @@
+'HeadComplexity.TwoMinorityNeighborObstruction.denominator_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.full_cube_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.unit_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.exactly_two_negative_contacts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.basis_affine_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.ratios' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.same_all_coefficient_comparisons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.different_labels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityNeighborObstruction.same_positive_level_comparisons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

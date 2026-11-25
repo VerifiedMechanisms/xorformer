@@ -1,0 +1,10 @@
+{
+  "status": "floating discovery only",
+  "n": 7,
+  "charts": 124118,
+  "lps": 423661,
+  "pool_size": 256,
+  "records": [],
+  "include_constant": true,
+  "seed": 714954
+}

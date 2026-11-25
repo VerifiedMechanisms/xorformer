@@ -1,0 +1,2 @@
+✔ [3226/3226] Built HeadComplexity.Research.TwoMinorityNeighborObstruction (56s)
+Build completed successfully (3226 jobs).

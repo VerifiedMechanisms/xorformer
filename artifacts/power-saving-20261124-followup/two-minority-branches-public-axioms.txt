@@ -22,3 +22,9 @@
 'HeadComplexity.TwoMinorityBasisBranches.equal_difference_impossible' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.negative_contact_upward_dichotomy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoMinorityBasisBranches.negative_contact_downward_dichotomy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

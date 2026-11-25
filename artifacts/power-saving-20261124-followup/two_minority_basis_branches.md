@@ -62,4 +62,16 @@ $$ r\geq2B^{\prime}(x)\gt2B^{\prime}(q)=r, $$
 
 which is impossible. The general two-point inequality is kernel checked as `negative_contact_difference_strict` and `equal_difference_impossible`; the substitution of this particular extended pencil is written algebra. Thus this cloning construction cannot amplify the branch count. The obstruction concerns a strict coordinatewise superset on the same positive comparison level, not arbitrary new head directions or arbitrary basis extensions.
 
+There is an exact additional constraint at every negative unit contact. If $q_i=0$, write $b_i\gt0$ for the denominator slope and $c_i=b_i-a_i$ for the comparison slope. The upward neighbor has only two possible labels, giving
+
+$$ c_i\leq-2B(q)\quad	ext{or}\quad c_i\geq2b_i. $$
+
+If $q_i=1$, its downward neighbor instead gives
+
+$$ c_i\leq2b_i\quad	ext{or}\quad c_i\geq2B(q). $$
+
+These statements are kernel checked as `negative_contact_upward_dichotomy` and `negative_contact_downward_dichotomy`. In the normalized two-contact pencil, the contact comparison values are $r$ and $1$. One proposed stronger branch lemma would say that the signs of all variable coefficients relative to $0$, $-r$, and $-1$ determine the full feasible truth table. The displayed two-branch example does not refute that statement: its coefficient $-r$ crosses $-1$ between the two branches. The first targeted floating scan, which also includes the affine constant coefficient, checked 124118 mutated seven-dimensional charts and solved 423661 linear programs without finding two different feasible tables in one comparison cell. A second scan, using only the variable coefficients and thus matching the stated conjecture, checked 125781 charts and solved 423503 linear programs without finding a counterexample. These are finite negative observations only; the search scripts and both empty-result records are included for reproducibility.
+
+A subsequent exact eight-dimensional counterexample refutes that stronger comparison-cell lemma, even including the affine constant coefficient and the positive thresholds. See [two_minority_neighbor_obstruction.md](two_minority_neighbor_obstruction.md). The earlier empty search outputs above remain only a record of those finite scans.
+
 A bound independent of $N$, or an exponential family of feasible branches with only two minority contacts, remains open. In either case, an unrestricted many-head lower bound would still require a joint basis-selection argument and control of signed cancellation between heads.

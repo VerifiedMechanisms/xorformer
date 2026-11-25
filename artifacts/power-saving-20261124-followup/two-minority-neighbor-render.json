@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/two_minority_neighbor_obstruction.md",
+    "source_spans": 23,
+    "rendered_spans": 23,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/two_minority_basis_branches.md",
+    "source_spans": 54,
+    "rendered_spans": 54,
+    "findings": [],
+    "notes": []
+  }
+]

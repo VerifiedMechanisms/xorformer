@@ -8,3 +8,6 @@ import HeadComplexity.Research.TwoMinorityBasisBranches
 
 #print axioms HeadComplexity.TwoMinorityBasisBranches.negative_contact_difference_strict
 #print axioms HeadComplexity.TwoMinorityBasisBranches.equal_difference_impossible
+
+#print axioms HeadComplexity.TwoMinorityBasisBranches.negative_contact_upward_dichotomy
+#print axioms HeadComplexity.TwoMinorityBasisBranches.negative_contact_downward_dichotomy

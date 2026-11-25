@@ -217,6 +217,27 @@ theorem negative_contact_difference_strict (Aq Bq Ax Bx : ℝ)
   rw [abs_of_neg hAx] at hgap
   linarith
 
+/-- The two possible labels at an upward neighbor of a negative unit contact
+force its comparison increment to skip the entire intermediate interval. -/
+theorem negative_contact_upward_dichotomy (Bq bi ai : ℝ)
+    (hgap : Bq + bi ≤ |-Bq + ai|) :
+    bi - ai ≤ -(2 * Bq) ∨ 2 * bi ≤ bi - ai := by
+  rcases le_total 0 (-Bq + ai) with hp | hn
+  · rw [abs_of_nonneg hp] at hgap
+    exact Or.inl (by linarith)
+  · rw [abs_of_nonpos hn] at hgap
+    exact Or.inr (by linarith)
+
+/-- The corresponding exact dichotomy at a downward neighbor. -/
+theorem negative_contact_downward_dichotomy (Bq bi ai : ℝ)
+    (hgap : Bq - bi ≤ |-Bq - ai|) :
+    bi - ai ≤ 2 * bi ∨ 2 * Bq ≤ bi - ai := by
+  rcases le_total 0 (-Bq - ai) with hp | hn
+  · rw [abs_of_nonneg hp] at hgap
+    exact Or.inr (by linarith)
+  · rw [abs_of_nonpos hn] at hgap
+    exact Or.inl (by linarith)
+
 theorem equal_difference_impossible (Aq Bq Ax Bx : ℝ)
     (hBq : 0 < Bq) (hinc : Bq < Bx) (hq : Aq = -Bq)
     (hgap : Bx ≤ |Ax|) (heq : Bx - Ax = Bq - Aq) : False := by
