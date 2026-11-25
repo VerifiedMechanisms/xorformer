@@ -48,3 +48,7 @@ This record is discarded as a mathematical counterexample. It does not show that
 The open fixed-basis question is whether every nonempty strictly positive full-cube unit branch contains a denominator satisfying $b_0/\sum_i b_i\geq n^{-C}$ for an absolute $C$. The exact 1/22 example disproves the strongest constant-denominator deformation, while none of these experiments resolves polynomial balancing.
 
 Even a positive answer would still need a joint basis-selection and extension-count argument for many heads. Choosing an independent actual basis for each head already incurs order $n^2H$ entropy, and signed cancellation makes the other heads' residual target values arbitrary. The original unrestricted counting barrier therefore remains separate.
+
+## Restricted triangular-basis branch probe
+
+`search_triangular_chamber_branches.py` tested 42005 origin-containing upper-triangular Boolean bases in dimension ten, including deliberately enlarged inverse entries. For each prescribed contact-sign vector it sampled positive denominator vectors at several logarithmic scales and checked the complete cube unit-gap inequalities. The largest sampled number of full tables in any one chart was one. The data are in `triangular-chamber-branches-n10.json`. This is floating negative evidence from a restricted family, not a uniqueness theorem. General unimodular actual bases already admit two exact feasible branches, as recorded in `unrestricted_capacity_unimodular_basis.md`; the triangular experiment does not weaken those counterexamples.
