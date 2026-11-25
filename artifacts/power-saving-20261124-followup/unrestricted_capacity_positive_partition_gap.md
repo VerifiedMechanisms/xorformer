@@ -59,3 +59,19 @@ This example uses only three shared affine statistics. It does not disprove a lo
 Every original width $H$ table admits a minimum-zero, nonnegative-head, bounded-amplitude representation arbitrarily close to the constant partition at width $H+2$. At the critical widths, this overhead is negligible. Thus the normalization does not itself discard any source truth table, and it refutes a positive lower gap for every chosen normalized representative. It does not independently refute a sharp upper count for the entire normalized class: such a count could itself settle the original unrestricted capacity problem.
 
 A useful replacement would have to select a representation after removing exact partition dependencies, and then either give a quantitative separation from the remaining partition strata or count every possible truth table carried by their degenerations. This is an existential access problem over complete representations. One artificial near-partition representation proves neither that the target has small optimal margin nor that every comparable-width representation remains near a partition. The proposed negative-vertex control can remain valid, but the step from that control to a healthy whole-table margin is still missing.
+
+## All source tables occur near one fixed value tuple
+
+The preceding construction has a stronger local consequence. Fix the dimension and source width. In the finite-dimensional space of the complete head value vectors and bias, consider the single tuple
+
+$$ P=(q,r,0,\ldots,0;-1). $$
+
+It is independent of the source truth table. Every original width $H$ truth table occurs at width $H+2$ in every neighborhood of $P$, using genuine nonnegative minimum-zero heads with amplitude at most four. Here a neighborhood measures all head values on the full cube, not merely the summed score.
+
+**Proof.** Keep any strict source representation fixed and use the explicit embedded tuple with parameter $\epsilon$. The two partition heads differ from their limits by $\epsilon Cq$ and $\epsilon Cr$. Since $|C|\leq A$ and both partition heads have norm one, each difference has full-cube norm at most $\epsilon A$. Every other embedded head has norm at most $2\epsilon A$. The bias is exactly $-1$. Thus every value coordinate differs from its corresponding coordinate of $P$ by at most $2\epsilon A$. For any prescribed radius $\delta\gt0$, choose
+
+$$ 0\lt\epsilon\lt\min\left(\frac1{4A},\frac{\delta}{2A}\right). $$
+
+The tuple lies in that neighborhood, has the established amplitude bound, and has score exactly $\epsilon S$. Its complete strict truth table is unchanged. This is a written consequence of the kernel-checked formulas `embeddedHeads`, `embedded_score`, `minCenter_atomSup_le`, and `abs_constantPart_le`; no additional Lean declaration is asserted.
+
+The point is fixed in **value-tuple space**, not necessarily in parameter space. The zero-valued heads can retain target-dependent denominator parameters. Those hidden denominator choices are part of the unrestricted problem. In particular, counting the types of exact positive partitions or observing proximity to a fixed limiting value tuple does not by itself exclude any source table. A sufficiently sharp count of all local strict sign patterns could still settle the original capacity problem, but it must control this denominator freedom. The construction supplies no lower bound on the best comparison margin of a target.
