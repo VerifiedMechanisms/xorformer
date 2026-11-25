@@ -1,0 +1,6 @@
+'HeadComplexity.ExceptionalMarginRepair.signed_score_ge_neg_amplitude' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExceptionalMarginRepair.relativeMargin_ge_of_exceptional_patch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
