@@ -72,6 +72,10 @@ certificate, and an explicit vanilla realization using reoriented denominators.
 `PureThreeReplicatedGrid.classifier_three_head_minima` gives all minima one
 at replication three, using the sharper covariance estimate in
 `Results/PureThirdReplicationLinear.lean`.
+The seventh replication has exact threshold degree and pure minimum three by
+`classifier_seven_threshold_degree` and `classifier_seven_pure_head_minimum`
+in `Results/PureSeventhReplicationDegree.lean`; its lower bound uses an exact
+second-moment certificate after checked Boolean group averaging.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|

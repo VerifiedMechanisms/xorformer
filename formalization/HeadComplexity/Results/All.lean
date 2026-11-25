@@ -36,6 +36,7 @@ import HeadComplexity.Results.PureSourceLinearApproximation
 import HeadComplexity.Results.PureSecondReplicationDegree
 import HeadComplexity.Results.PureThirdReplicationLinear
 import HeadComplexity.Results.PureFifthReplicationNonlinear
+import HeadComplexity.Results.PureSeventhReplicationDegree
 import HeadComplexity.Results.PureReplicationDivisibility
 import HeadComplexity.Results.PureGeneralReplicationDivisibility
 import HeadComplexity.Results.PureCommonShiftObstruction
@@ -268,5 +269,9 @@ alias rope_third_replication_exact_minima :=
 /-- Every positive even replication has exact pure minimum three. -/
 alias rope_even_replication_exact_pure_minimum :=
   PureThreeReplicatedGrid.classifier_even_pure_head_minimum
+
+/-- The seventh replication has exact threshold degree and pure minimum three. -/
+alias rope_seventh_replication_exact_degree :=
+  PureThreeReplicatedGrid.classifier_seven_threshold_degree
 
 end HeadComplexity
