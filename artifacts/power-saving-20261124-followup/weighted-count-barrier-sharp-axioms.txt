@@ -1,0 +1,19 @@
+'HeadComplexity.WeightedCountBarrier.square_le_two_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.WeightedCountBarrier.base_ge_cube_size_div_dimension' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedCountBarrier.optimal_certificate_exceeds_all_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedCountBarrier.optimal_certificate_exceeds_all_tables_at_quadratic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedCountBarrier.every_block_certificate_ge_optimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedCountBarrier.every_block_certificate_exceeds_all_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.WeightedCountBarrier.every_block_certificate_exceeds_all_tables_at_quadratic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

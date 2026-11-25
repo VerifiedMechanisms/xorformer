@@ -83,6 +83,78 @@ theorem optimal_certificate_exceeds_all_tables (hn : 4 ≤ n) (hH : 2 ≤ H)
   have hpow : 0 < optimalBase n H ^ (n * H) := pow_pos hbp _
   linarith
 
+/-- The optimized certificate already fails at the quadratic scale itself.
+The older factor-two threshold above is not needed. -/
+theorem optimal_certificate_exceeds_all_tables_at_quadratic_scale
+    (hn : 4 ≤ n) (hH : 2 ≤ H)
+    (hp : 2 * n * H ≤ 2 ^ n) (hwidth : 2 ^ n ≤ n ^ 2 * H) :
+    (2 : ℝ) ^ (2 ^ n) < 2 * optimalBase n H ^ (n * H) := by
+  have hnR : (0 : ℝ) < n := by exact_mod_cast (show 0 < n by omega)
+  have hHR : (2 : ℝ) ≤ H := by exact_mod_cast hH
+  have hHp : (0 : ℝ) < H := by linarith
+  have hN : 0 < (2 : ℝ) ^ n := by positivity
+  let U : ℝ := (n : ℝ) ^ 2 * H / (2 : ℝ) ^ n
+  have hU : 1 ≤ U := by
+    apply (le_div_iff₀ hN).mpr
+    simpa only [one_mul] using (show (2 : ℝ) ^ n ≤ (n : ℝ) ^ 2 * H by
+      exact_mod_cast hwidth)
+  have hUpos : 0 < U := by linarith
+  have hdim : 2 * (n : ℝ) * H ≤ (2 : ℝ) ^ n := by exact_mod_cast hp
+  have hUupper : U ≤ (n : ℝ) / 2 := by
+    apply (div_le_iff₀ hN).mpr
+    nlinarith [mul_le_mul_of_nonneg_left hdim hnR.le]
+  have he : (1 : ℝ) ≤ Real.exp 1 := Real.one_le_exp (by norm_num)
+  have hhalf : (1 / 2 : ℝ) ≤ ((H : ℝ) - 1) / H :=
+    (le_div_iff₀ hHp).mpr (by linarith)
+  have hfactor : 1 ≤ 16 * (Real.exp 1) ^ 2 * (((H : ℝ) - 1) / H) := by
+    have hs : (1 : ℝ) ≤ (Real.exp 1) ^ 2 := by nlinarith
+    have hh := mul_le_mul_of_nonneg_left hhalf
+      (show 0 ≤ 16 * (Real.exp 1) ^ 2 by positivity)
+    nlinarith
+  have hb : (2 : ℝ) ^ n / U ≤ optimalBase n H := by
+    calc
+      _ = ((2 : ℝ) ^ n) ^ 2 / ((n : ℝ) ^ 2 * H) * 1 := by
+        dsimp [U]
+        field_simp
+      _ ≤ ((2 : ℝ) ^ n) ^ 2 / ((n : ℝ) ^ 2 * H) *
+          (16 * (Real.exp 1) ^ 2 * (((H : ℝ) - 1) / H)) := by
+        exact mul_le_mul_of_nonneg_left hfactor (by positivity)
+      _ = optimalBase n H := by unfold optimalBase; field_simp
+  have hbp : 0 < optimalBase n H := (div_pos hN hUpos).trans_le hb
+  have hlog := Real.log_le_log (div_pos hN hUpos) hb
+  rw [Real.log_div hN.ne' hUpos.ne', Real.log_pow] at hlog
+  have hlogU : Real.log U ≤ U - 1 := Real.log_le_sub_one_of_pos hUpos
+  have hl2 : (1 / 2 : ℝ) ≤ Real.log 2 := by linarith [Real.log_two_gt_d9]
+  have hAU : U ≤ (n : ℝ) * Real.log 2 := by
+    exact hUupper.trans (by nlinarith [mul_le_mul_of_nonneg_left hl2 hnR.le])
+  have hprod : 0 ≤ (U - 1) * ((n : ℝ) * Real.log 2 - U) :=
+    mul_nonneg (by linarith) (by linarith)
+  have hUlog : (n : ℝ) * Real.log 2 ≤ U * Real.log (optimalBase n H) := by
+    have hh := mul_le_mul_of_nonneg_left
+      (show (n : ℝ) * Real.log 2 - U + 1 ≤ Real.log (optimalBase n H) by
+        linarith) hUpos.le
+    nlinarith
+  have hscale : (2 : ℝ) ^ n / n * U = (n : ℝ) * H := by
+    dsimp [U]
+    field_simp
+  have hexp : (2 : ℝ) ^ n * Real.log 2 ≤
+      (n : ℝ) * H * Real.log (optimalBase n H) := by
+    have hh := mul_le_mul_of_nonneg_left hUlog (div_pos hN hnR).le
+    calc
+      _ = ((2 : ℝ) ^ n / n) * ((n : ℝ) * Real.log 2) := by field_simp
+      _ ≤ ((2 : ℝ) ^ n / n) * (U * Real.log (optimalBase n H)) := hh
+      _ = _ := by rw [← mul_assoc, hscale]
+  have hleft : Real.exp ((2 : ℝ) ^ n * Real.log 2) = (2 : ℝ) ^ (2 ^ n) := by
+    rw [show (2 : ℝ) ^ n = ((2 ^ n : ℕ) : ℝ) by norm_cast,
+      Real.exp_nat_mul, Real.exp_log (by norm_num : (0 : ℝ) < 2)]
+  have hright : Real.exp ((n : ℝ) * H * Real.log (optimalBase n H)) =
+      optimalBase n H ^ (n * H) := by
+    rw [← Nat.cast_mul, Real.exp_nat_mul, Real.exp_log hbp]
+  have hh := Real.exp_le_exp.mpr hexp
+  rw [hleft, hright] at hh
+  have hpow : 0 < optimalBase n H ^ (n * H) := pow_pos hbp _
+  linarith
+
 /-- Every positive block-weight choice has a numerical certificate at least
 as large as the optimized one. The degree-cap premise is explicit. -/
 theorem every_block_certificate_ge_optimal (hn : 0 < n) (hH : 2 ≤ H)
@@ -130,6 +202,18 @@ theorem every_block_certificate_exceeds_all_tables (hn : 4 ≤ n) (hH : 2 ≤ H)
       2 * (4 * Real.exp 1 * D * (2 : ℝ) ^ n / (2 * n * H)) ^ (2 * n * H) /
         ((∏ i, w i) * (∏ i, u i)) ^ n :=
   (optimal_certificate_exceeds_all_tables hn hH hp hwidth).trans_le
+    (every_block_certificate_ge_optimal (by omega) hH w u D hw hu hcap)
+
+theorem every_block_certificate_exceeds_all_tables_at_quadratic_scale
+    (hn : 4 ≤ n) (hH : 2 ≤ H)
+    (hp : 2 * n * H ≤ 2 ^ n) (hwidth : 2 ^ n ≤ n ^ 2 * H)
+    (w u : Fin H → ℝ) (D : ℝ)
+    (hw : ∀ i, 0 < w i) (hu : ∀ i, 0 < u i)
+    (hcap : ∀ i, u i + (∑ j, w j) - w i ≤ D) :
+    (2 : ℝ) ^ (2 ^ n) <
+      2 * (4 * Real.exp 1 * D * (2 : ℝ) ^ n / (2 * n * H)) ^ (2 * n * H) /
+        ((∏ i, w i) * (∏ i, u i)) ^ n :=
+  (optimal_certificate_exceeds_all_tables_at_quadratic_scale hn hH hp hwidth).trans_le
     (every_block_certificate_ge_optimal (by omega) hH w u D hw hu hcap)
 
 end HeadComplexity.WeightedCountBarrier

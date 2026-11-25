@@ -2,7 +2,7 @@
 
 ## Kernel-checked obstruction
 
-Set $N=2^n$. Suppose $n\geq4$, $H\geq2$, $2nH\leq N$, and $n^2H\geq2N$. Define
+Set $N=2^n$. Suppose $n\geq4$, $H\geq2$, $2nH\leq N$, and $n^2H\geq N$. Define
 
 $$ B=\frac{16e^2N^2(H-1)}{n^2H^2}. $$
 
@@ -10,7 +10,7 @@ Then
 
 $$ 2B^{nH}\gt 2^N. $$
 
-This is `HeadComplexity.WeightedCountBarrier.optimal_certificate_exceeds_all_tables` in `formalization/HeadComplexity/Research/WeightedCountBarrier.lean`. It concerns the numerical value of an upper-bound certificate. It does not assert that all truth tables are representable.
+This is `HeadComplexity.WeightedCountBarrier.optimal_certificate_exceeds_all_tables_at_quadratic_scale` in `formalization/HeadComplexity/Research/WeightedCountBarrier.lean`. It strengthens the earlier declaration `optimal_certificate_exceeds_all_tables`, whose width hypothesis had an extra factor of two. It concerns the numerical value of an upper-bound certificate. It does not assert that all truth tables are representable.
 
 The same module proves a stronger statement for arbitrary positive real block weights. If denominator weights are $w_h\gt0$, numerator weights are $u_h\gt0$, and a degree cap $D$ satisfies
 
@@ -20,13 +20,19 @@ then
 
 $$ 2\frac{(4eDN/(2nH))^{2nH}}{(\prod_hw_h\prod_hu_h)^n}\geq2B^{nH}\gt2^N. $$
 
-The declarations are `every_block_certificate_ge_optimal` and `every_block_certificate_exceeds_all_tables`. The premise is necessary for the indicated normalized cleared-score monomials. Any extra degree requirement only strengthens the obstruction.
+The declarations are `every_block_certificate_ge_optimal` and `every_block_certificate_exceeds_all_tables_at_quadratic_scale`. The premise is necessary for the indicated normalized cleared-score monomials. Any extra degree requirement only strengthens the obstruction.
 
 ## Proof
 
-The finite elementary inequality $n^2\leq2^n$ holds for $n\geq4$. The width restriction and $H\geq2$ imply $B\geq N/n$, hence $B^2\geq N$. Consequently
+Put $u=n^2H/N$. The two width hypotheses give $1\leq u\leq n/2$. Since $H\geq2$,
 
-$$ nH\log B\geq\frac{n^2H\log2}{2}\geq N\log2. $$
+$$ B=\frac{N}{u}\cdot16e^2\frac{H-1}{H}\geq\frac{N}{u}. $$
+
+Using $\log u\leq u-1$ and $u\leq n/2\leq n\log2$ gives
+
+$$ \begin{aligned} u\log B&\geq u(n\log2-\log u)\cr&\geq u(n\log2-u+1)\cr&=n\log2+(u-1)(n\log2-u)\cr&\geq n\log2.\end{aligned} $$
+
+Multiply by $N/n$, noting $nH=uN/n$, to obtain $nH\log B\geq N\log2$.
 
 Thus $B^{nH}\geq2^N$, and the outer factor $2$ makes the desired inequality strict.
 
@@ -44,4 +50,4 @@ These last asymptotic specializations are written deductions from the finite the
 
 ## Verification
 
-`weighted-count-barrier-build.txt` records the module build. `weighted-count-barrier-axioms.txt` records transitive axiom checks for all five theorems. Each uses only `propext`, `Classical.choice`, and `Quot.sound`.
+`weighted-count-barrier-sharp-build.txt` records the strengthened module build, which passed with 3749 jobs. `weighted-count-barrier-sharp-axioms.txt` records transitive axiom checks for all seven theorems. Each uses only `propext`, `Classical.choice`, and `Quot.sound`. The earlier build and audit logs remain as checkpoint evidence.
