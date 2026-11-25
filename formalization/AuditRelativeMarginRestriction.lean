@@ -4,3 +4,5 @@ import HeadComplexity.Research.RelativeMarginRestriction
 #print axioms HeadComplexity.RelativeMarginRestriction.score_restrict
 #print axioms HeadComplexity.RelativeMarginRestriction.relativeMargin_restrict_ge
 #print axioms HeadComplexity.RelativeMarginRestriction.hasRelativeMargin_restrict
+#print axioms HeadComplexity.RelativeMarginRestriction.not_hasRelativeMargin_of_restriction
+#print axioms HeadComplexity.RelativeMarginRestriction.allRepresentationsLowMargin_of_restriction

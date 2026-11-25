@@ -74,8 +74,12 @@ A stronger density-specific target would bound those chart extensions by $\exp(O
 
 ## Restriction transfers every healthy repair back
 
-`HeadComplexity.RelativeMarginRestriction.relativeMargin_restrict_ge` and `hasRelativeMargin_restrict`, in `Research/RelativeMarginRestriction.lean`, kernel-check that restriction to any coordinate face cannot decrease the relative margin of a strict score. The full-cube norm of each restricted head can only decrease, while every retained signed score is unchanged. The module built with 3285 jobs, and all five theorem audits use only the standard three axioms.
+`HeadComplexity.RelativeMarginRestriction.relativeMargin_restrict_ge` and `hasRelativeMargin_restrict`, in `Research/RelativeMarginRestriction.lean`, kernel-check that restriction to any coordinate face cannot decrease the relative margin of a strict score. The full-cube norm of each restricted head can only decrease, while every retained signed score is unchanged. The module built with 3285 jobs, and all seven theorem audits use only the standard three axioms.
 
 The existing exact `FracAtom.restrict` construction retains $\alpha$, $\delta$, and the positive weights of every free coordinate. Fixed coordinates contribute their positive attention weights to $\gamma$ and their numerator contributions to $\eta$. Thus the restricted atom is genuine even when $\alpha=1$; no new positive-slope approximation is required for restriction.
 
 Consequently, a comparison-width healthy-margin repair for every constant-face embedding above would restrict to a comparison-width healthy-margin repair for every original source table. The singular constant-face class cannot simply be omitted from the access theorem. This implication does not claim that such a repair is impossible.
+
+The declarations `not_hasRelativeMargin_of_restriction` and `allRepresentationsLowMargin_of_restriction` make the universal quantifier explicit: absence of every width $K$ comparison representation of margin $\gamma$ survives any original-model extension. Combining this with the written embedding gives an injection of the corresponding low-margin truth-table classes at source widths $H$ and $2H+1$, with $K$ and $\gamma$ held fixed. No chosen ill-conditioned witness is used.
+
+There is an important entropy limit to this observation. The embedding fixes all labels on an entire half-cube, so its class in dimension $n+1$ has the trivial upper count $2^{2^n}$. It does not by itself obstruct a global half-entropy budget in that larger dimension. What fails is the inference that exact face scores freeze the individual head parameters or that generic finite-to-one reconstruction covers every fiber. A sharper density-specific bound on the exceptional fibers remains a possible route.

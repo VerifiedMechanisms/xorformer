@@ -53,4 +53,19 @@ theorem hasRelativeMargin_restrict {f : (Fin n → Bool) → Bool} {γ : ℝ}
   intro x
   simpa [signedLabel, score_restrict] using hs (ρ.apply x)
 
+/-- Absence of every healthy comparison representation survives extension.
+This is a statement about the truth table, not one chosen representation. -/
+theorem not_hasRelativeMargin_of_restriction {K : ℕ}
+    {f : (Fin n → Bool) → Bool} {γ : ℝ} (ρ : CoordFace m n)
+    (hf : ¬ HasRelativeMargin m K (fun x => f (ρ.apply x)) γ) :
+    ¬ HasRelativeMargin n K f γ :=
+  fun h => hf (hasRelativeMargin_restrict h ρ)
+
+theorem allRepresentationsLowMargin_of_restriction {K L : ℕ}
+    {f : (Fin n → Bool) → Bool} {γ : ℝ} (ρ : CoordFace m n)
+    (hf : computableWithHeadsN n H f)
+    (hlow : (fun x => f (ρ.apply x)) ∈ allRepresentationsLowMargin m L K γ) :
+    f ∈ allRepresentationsLowMargin n H K γ := by
+  exact ⟨hf, not_hasRelativeMargin_of_restriction ρ hlow.2⟩
+
 end HeadComplexity.RelativeMarginRestriction

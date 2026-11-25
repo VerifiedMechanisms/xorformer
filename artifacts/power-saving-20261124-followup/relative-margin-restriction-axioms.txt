@@ -11,3 +11,9 @@
 'HeadComplexity.RelativeMarginRestriction.hasRelativeMargin_restrict' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'HeadComplexity.RelativeMarginRestriction.not_hasRelativeMargin_of_restriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.RelativeMarginRestriction.allRepresentationsLowMargin_of_restriction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
