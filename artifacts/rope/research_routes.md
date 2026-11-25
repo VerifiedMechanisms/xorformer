@@ -147,7 +147,7 @@ This uniform rank characterization gives the paired denominator kernel, whose di
 
 ## 16. Small replications have exact alternative representations
 
-For the three-head family, the first replication is a linear threshold function and has head minimum one. The second replication has threshold degree and head minimum three in all models. The quadratic lower bound uses positive inputs whose sum is zero and whose complements are negative. Averaging the two strict inequalities cancels the even terms of a hypothetical quadratic, leaving an impossible separating linear form.
+For the three-head family, the first replication is a linear threshold function and has head minimum one. The second replication has threshold degree and head minimum three in all models. A sharper covariance estimate proves the third replication has minimum one again; the exact minima are therefore not monotone in the replication count. The quadratic lower bound uses positive inputs whose sum is zero and whose complements are negative. Averaging the two strict inequalities cancels the even terms of a hypothetical quadratic, leaving an impossible separating linear form.
 
 The second-replication vanilla upper bound replaces each denominator $D_i$ by $D_i+L$, where $L$ is the common linear statistic. The new slopes are strictly positive. At $L=0$ the score is unchanged; away from zero, an explicit error estimate preserves its sign. Both statements are Lean-checked. Failed numerical fits at this replication were therefore limitations of the optimization, not impossibility evidence. [The small-replication note](research/small_replication_exact_complexity.md) records the exact constructions.
 

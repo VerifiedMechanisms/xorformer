@@ -1,6 +1,6 @@
-# Exact Head Counts at the First Two Replication Counts
+# Exact Head Counts at the First Three Replication Counts
 
-The source family from [Theorem 22](../../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) does not separate the architectures at its first two replication counts. The first classifier has minimum one in both models. The second has minimum three in both models. The arguments below also explain why numerical fitting failures at small replication counts cannot establish separation.
+The source family from [Theorem 22](../../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) does not separate the architectures at its first three replication counts. Their minima are one, three, and one in both models. In particular, the minimum need not increase with the replication count. The arguments below also explain why numerical fitting failures at small replication counts cannot establish separation.
 
 ## The first replication is a weighted majority
 
@@ -53,3 +53,55 @@ $$ \left|\sum_i\frac{N_i}{B+A_i-B_i}-\frac{2L}{B}\right|\leq\frac{6(2|L|+36)}{B(
 The last inequality follows from $|L|\geq1$ and $|L|(B-12)\geq125\gt108$. Thus the new score and the source score both have the sign of $L$ away from the zero hyperplane, and agree exactly on it. This gives three vanilla heads. Together with the quadratic lower bound, all pure, standard-frequency rotary, free-frequency rotary, and vanilla minima equal three on this 36-bit classifier.
 
 The upper construction is Lean-checked in [`PureSourceTwoReplicasUpper.lean`](../../../formalization/HeadComplexity/Results/PureSourceTwoReplicasUpper.lean). It is an exact classifier proof; no optimizer output is used as a certificate.
+
+## Exact upper certificates through replication eight
+
+A smaller shift of the opposite sign extends the three-head upper certificate. Use
+
+$$ E_i=D_i-\frac{13}{50}L. $$
+
+Every denominator slope is strictly negative. In the first half of each block, its coefficients are $-1/25$ at coordinate $i$ and $-26/25$ at the other coordinates. In the second half, they are $-89/50$ at coordinate $i$ and $-39/50$ elsewhere. The denominator is at least $200-63(13/50)=9181/50\gt0$ on the entire continuous cube. Each affine numerator over this denominator therefore has a one-head vanilla realization.
+
+The remaining sign comparison was checked exhaustively with integer arithmetic for every replication count from one through eight. For a fixed $m$, the classifier depends only on six independent counts, each ranging from zero to $3m$. Thus the check covers exactly $(3m+1)^6$ patterns and every Boolean input. All eight comparisons have zero disagreements, including the $244140625$ patterns at replication eight.
+
+The concrete integer numerator and denominator rows, all pattern counts, and the exact verifier are recorded in [`replicated_family_m1_to_m8_common_shift.exact.json`](../search/replicated_family_m1_to_m8_common_shift.exact.json) and [`search_common_shift.py`](../search/search_common_shift.py). The verifier bounds every integer intermediate below the signed 64-bit limit before using integer arrays. These finite upper certificates are exhaustive arithmetic computations, not additional Lean theorems. They make no minimum-head claim for replication counts beyond the separately proved cases above.
+
+## Every admissible common shift fails at replication nine
+
+The common-shift construction itself eventually fails. This is a limitation of the proposed denominators, not a lower bound for arbitrary three-head vanilla representations.
+
+For the general shift $E_i=D_i+tL$, uniform strict denominator slopes and positivity throughout the cube require exactly
+
+$$ -\frac{200}{63}\lt t\lt-\frac14\qquad\text{or}\qquad\frac13\lt t\lt\frac{200}{63}. $$
+
+At replication nine, consider the two realizable six-count aggregate vectors
+
+$$ (A;B)=\frac19(-27,-17,27;11,7,5),\qquad (A';B')=\frac19(-27,7,21;19,-27,7). $$
+
+Both have $L=1/9$. After clearing their positive shifted denominators and removing the common positive scaling, the respective score numerators are
+
+$$ P_+(t)=-40+3544t+2t^2,\qquad P_-(t)=392+3656t+2t^2. $$
+
+The first source label is false because $P_+(0)\lt0$, but $P_+(t)\gt0$ throughout the positive admissible interval. The second source label is true because $P_-(0)\gt0$, but $P_-(t)\lt0$ throughout the negative admissible interval. Hence every admissible common shift disagrees with the source on one of these two Boolean inputs.
+
+This obstruction, including realizability by actual 162-bit inputs and both exact score identities, is Lean-checked in [`PureCommonShiftObstruction.lean`](../../../formalization/HeadComplexity/Results/PureCommonShiftObstruction.lean), theorem `common_shift_nine_disagrees`. It excludes only this one-parameter construction. It does not assert that replication nine separates the architectures or is the first separating replication count.
+
+## The third replication is again a weighted majority
+
+A sharper covariance estimate proves that the source has the sign of $L$ whenever $|L|\geq1/3$. Define
+
+$$ B=\frac{2L}{3}\sum_i\frac1{D_i}. $$
+
+The exact identity is
+
+$$ S-B=\frac23\sum_{i\lt j}(A_i-A_j)\left(\frac1{D_i}-\frac1{D_j}\right). $$
+
+Three real numbers in $[-3,3]$ have total pairwise distance at most twelve. Also $|D_i-D_j|\leq12$, so each reciprocal difference is at most $12/194^2$. Therefore
+
+$$ |S-B|\leq\frac{96}{194^2},\qquad |B|\geq\frac{2|L|}{206}. $$
+
+If $|L|\geq1/3$, then $|B|\geq1/309\gt96/194^2$. The scores $S$, $B$, and $L$ thus have the same strict sign. At replication three, the weighted count $K$ of true bits, with weights four and three, satisfies
+
+$$ L=\frac{2K-189}{3},\qquad |L|\geq\frac13. $$
+
+The classifier is exactly the nonconstant threshold $K\geq95$. All four model minima equal one. The continuous estimate and the exact Boolean consequence are fully Lean-checked in [`PureThirdReplicationLinear.lean`](../../../formalization/HeadComplexity/Results/PureThirdReplicationLinear.lean), with declarations `score_covariance_bound`, `score_pos_iff_linear_of_third_margin`, `classifier_three_isLTF`, and `classifier_three_head_minima`.

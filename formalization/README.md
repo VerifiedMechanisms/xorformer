@@ -56,11 +56,14 @@ literal frequency conventions, and at every sufficiently large input length for
 each fixed budget above two. The coefficient obstruction has an existential
 positive uniform gap, even when factor parameters are unbounded.
 
-The first two replications of the three-head family are also exact:
+The first three replications of the three-head family are also exact:
 `PureThreeReplicatedGrid.classifier_one_head_minima` gives all minima one, and
 `PureThreeReplicatedGrid.classifier_two_head_minima` gives all minima three.
 The latter has threshold degree three, proved by a balanced antipodal moment
 certificate, and an explicit vanilla realization using reoriented denominators.
+`PureThreeReplicatedGrid.classifier_three_head_minima` gives all minima one
+at replication three, using the sharper covariance estimate in
+`Results/PureThirdReplicationLinear.lean`.
 
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|

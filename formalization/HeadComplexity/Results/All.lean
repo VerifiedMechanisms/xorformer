@@ -34,6 +34,7 @@ import HeadComplexity.Atoms.RoPETensorGap
 import HeadComplexity.Model.PureRoPEHeadSchedules
 import HeadComplexity.Results.PureSourceLinearApproximation
 import HeadComplexity.Results.PureSecondReplicationDegree
+import HeadComplexity.Results.PureThirdReplicationLinear
 import HeadComplexity.Polynomial.CommonBaseJetObstruction
 import HeadComplexity.Results.PureGeneralSeparation
 import HeadComplexity.Results.PureGeneralSeparationAllLargeInputs
@@ -245,5 +246,9 @@ alias theorem23_free_budget_classification :=
 /-- **Theorem 23.** Each budget above two separates at every large input length. -/
 alias theorem23_every_large_input_length :=
   pureRoPE_separation_every_budget_every_large_input_length
+
+/-- The third replication is again a nonconstant linear threshold. -/
+alias rope_third_replication_exact_minima :=
+  PureThreeReplicatedGrid.classifier_three_head_minima
 
 end HeadComplexity
