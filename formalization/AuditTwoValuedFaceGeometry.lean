@@ -1,0 +1,2 @@
+import HeadComplexity.Research.TwoValuedFaceGeometry
+#print axioms HeadComplexity.TwoValuedFaceGeometry.four_corner_labels_constant
