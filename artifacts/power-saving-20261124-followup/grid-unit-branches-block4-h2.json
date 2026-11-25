@@ -1,0 +1,10 @@
+{
+  "warning": "NUMERICAL_EXPLORATION_ONLY_NOT_PROOF",
+  "block": 4,
+  "heads": 2,
+  "elapsed": 600.001729835989,
+  "trials": 40659,
+  "targets": 4995,
+  "roots": [],
+  "failures": 40102
+}

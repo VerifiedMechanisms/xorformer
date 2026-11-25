@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_full_parameter_contacts.md",
+    "source_spans": 21,
+    "rendered_spans": 21,
+    "findings": [],
+    "notes": []
+  }
+]

@@ -1,0 +1,10 @@
+import HeadComplexity.Research.OneHeadFullContact
+#print axioms HeadComplexity.OneHeadFullContact.contact_iff
+#print axioms HeadComplexity.OneHeadFullContact.unique_of_injective_contactMatrix
+#print axioms HeadComplexity.OneHeadFullContact.differential_eq_contactMatrix
+#print axioms HeadComplexity.OneHeadFullContact.unique_of_injective_differential
+#print axioms HeadComplexity.OneHeadFullContact.Moebius.unit_residual
+#print axioms HeadComplexity.OneHeadFullContact.Moebius.fixes_unit
+#print axioms HeadComplexity.OneHeadFullContact.Moebius.preserves_unit_gap
+#print axioms HeadComplexity.OneHeadFullContact.Moebius.transform_ratio
+#print axioms HeadComplexity.OneHeadFullContact.Moebius.changes_nonunit

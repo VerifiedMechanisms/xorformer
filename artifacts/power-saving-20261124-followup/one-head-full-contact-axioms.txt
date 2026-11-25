@@ -1,0 +1,17 @@
+'HeadComplexity.OneHeadFullContact.contact_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadFullContact.unique_of_injective_contactMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFullContact.differential_eq_contactMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFullContact.unique_of_injective_differential' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFullContact.Moebius.unit_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadFullContact.Moebius.fixes_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadFullContact.Moebius.preserves_unit_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadFullContact.Moebius.transform_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadFullContact.Moebius.changes_nonunit' depends on axioms: [propext, Classical.choice, Quot.sound]
