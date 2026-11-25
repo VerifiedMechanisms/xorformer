@@ -1,15 +1,15 @@
 [
   {
     "file": "artifacts/power-saving-20261124-followup/HANDOFF.md",
-    "source_spans": 117,
-    "rendered_spans": 117,
+    "source_spans": 118,
+    "rendered_spans": 118,
     "findings": [],
     "notes": []
   },
   {
-    "file": "artifacts/power-saving-20261124-followup/normalized_head_boundary_faces.md",
-    "source_spans": 51,
-    "rendered_spans": 51,
+    "file": "artifacts/power-saving-20261124-followup/RESEARCH_LOG.md",
+    "source_spans": 94,
+    "rendered_spans": 94,
     "findings": [],
     "notes": []
   }
