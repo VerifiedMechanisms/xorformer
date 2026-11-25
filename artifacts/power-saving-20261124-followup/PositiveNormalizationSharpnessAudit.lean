@@ -1,0 +1,6 @@
+import HeadComplexity.Research.PositiveNormalizationSharpness
+#print axioms HeadComplexity.PositiveNormalizationSharpness.relativeMargin_le_third
+#print axioms HeadComplexity.PositiveNormalizationSharpness.literalHead_eval
+#print axioms HeadComplexity.PositiveNormalizationSharpness.literal_source_margin
+#print axioms HeadComplexity.PositiveNormalizationSharpness.literal_normalized_margin
+#print axioms HeadComplexity.PositiveNormalizationSharpness.hasNormalizedMargin_literal_iff

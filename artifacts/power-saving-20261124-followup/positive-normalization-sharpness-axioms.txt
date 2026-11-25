@@ -1,0 +1,15 @@
+'HeadComplexity.PositiveNormalizationSharpness.relativeMargin_le_third' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveNormalizationSharpness.literalHead_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveNormalizationSharpness.literal_source_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveNormalizationSharpness.literal_normalized_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveNormalizationSharpness.hasNormalizedMargin_literal_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
