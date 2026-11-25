@@ -7,7 +7,10 @@ namespace HeadComplexity
 namespace FourBitCertificate
 
 def truthTable (f : (Fin 4 → Bool) → Bool) : BitVec 16 :=
-  BitVec.ofBoolListLE [f (vertex 0), f (vertex 1), f (vertex 2), f (vertex 3), f (vertex 4), f (vertex 5), f (vertex 6), f (vertex 7), f (vertex 8), f (vertex 9), f (vertex 10), f (vertex 11), f (vertex 12), f (vertex 13), f (vertex 14), f (vertex 15)]
+  BitVec.ofBoolListLE [f (vertex 0), f (vertex 1), f (vertex 2), f (vertex 3),
+    f (vertex 4), f (vertex 5), f (vertex 6), f (vertex 7),
+    f (vertex 8), f (vertex 9), f (vertex 10), f (vertex 11),
+    f (vertex 12), f (vertex 13), f (vertex 14), f (vertex 15)]
 
 theorem truthTable_bit (f : (Fin 4 → Bool) → Bool) (v : Fin 16) :
     (truthTable f).getLsbD v.val = f (vertex v) := by

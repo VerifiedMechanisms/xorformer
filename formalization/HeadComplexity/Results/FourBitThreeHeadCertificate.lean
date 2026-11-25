@@ -87,7 +87,7 @@ theorem exists_strict_score (T : Fin m → Fin d → ℤ) (c : Certificate m d)
       rw [hv.1]
       simp only [hv.2, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
         ↓reduceIte, zero_add]
-      cases hy : y v <;> simp only [hy, sign, Bool.false_eq_true, ↓reduceIte,
+      cases y v <;> simp only [sign, Bool.false_eq_true, ↓reduceIte,
         neg_one_mul, one_mul] <;> omega
   | true =>
       have hy' := hy v hs

@@ -41,19 +41,20 @@ private noncomputable def threeBitRatios (s : (Fin 3 → Bool) → ℝ) :
 
 private theorem threeBitRatios_admissible (s : (Fin 3 → Bool) → ℝ) (h : Fin 3) :
     (threeBitRatios s h).Admissible := by
-  fin_cases h <;>
-    refine ⟨?_, Or.inl ?_, ?_⟩
-  all_goals first
-  | (intro x
-     have h0 : 0 ≤ boolToReal (x 0) := by cases x 0 <;> norm_num [boolToReal]
-     have h1 : 0 ≤ boolToReal (x 1) := by cases x 1 <;> norm_num [boolToReal]
-     have h2 : 0 ≤ boolToReal (x 2) := by cases x 2 <;> norm_num [boolToReal]
-     simp [threeBitRatios, AffineFraction.denominator, Fin.sum_univ_succ]
-     positivity)
-  | (intro i; fin_cases i <;> norm_num [threeBitRatios])
-  | (intro hz
-     have := hz 0
-     norm_num [threeBitRatios] at this)
+  have hc (i : Fin 3) : 0 < (threeBitRatios s h).C i := by
+    fin_cases h <;> fin_cases i <;> norm_num [threeBitRatios]
+  have hd : (threeBitRatios s h).d = 1 := by fin_cases h <;> rfl
+  refine ⟨?_, Or.inl hc, ?_⟩
+  · intro x
+    unfold AffineFraction.denominator
+    rw [hd]
+    apply add_pos_of_pos_of_nonneg (by norm_num)
+    apply Finset.sum_nonneg
+    intro i _
+    apply mul_nonneg (hc i).le
+    cases x i <;> norm_num [boolToReal]
+  · intro hz
+    exact ((hc 0).ne' (hz 0)).elim
 
 /-- An explicit exact real-score interpolation basis of three admissible ratios
 on the three-bit cube. The eight interpolation coefficients are integers. -/

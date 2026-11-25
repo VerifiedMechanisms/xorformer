@@ -56,7 +56,8 @@ theorem withValueOne_eval (p : PureRoPEAtom n) (t : ℝ) (x : Fin n → Bool) :
     rw [Finset.mul_sum, ← Finset.sum_add_distrib]
     apply Finset.sum_congr rfl
     intro i _
-    cases x i <;> simp <;> ring
+    cases x i <;> simp
+    ring
   simp only [withValueOne, eval, oneMass, denominator_eq]
   rw [hnum]
   ring

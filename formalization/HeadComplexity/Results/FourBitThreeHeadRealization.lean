@@ -8,7 +8,14 @@ open scoped BigOperators
 open SignTemplate
 
 def vertex : Fin 16 → Fin 4 → Bool :=
-  ![![false, false, false, false], ![false, false, false, true], ![false, false, true, false], ![false, false, true, true], ![false, true, false, false], ![false, true, false, true], ![false, true, true, false], ![false, true, true, true], ![true, false, false, false], ![true, false, false, true], ![true, false, true, false], ![true, false, true, true], ![true, true, false, false], ![true, true, false, true], ![true, true, true, false], ![true, true, true, true]]
+  ![![false, false, false, false], ![false, false, false, true],
+    ![false, false, true, false], ![false, false, true, true],
+    ![false, true, false, false], ![false, true, false, true],
+    ![false, true, true, false], ![false, true, true, true],
+    ![true, false, false, false], ![true, false, false, true],
+    ![true, false, true, false], ![true, false, true, true],
+    ![true, true, false, false], ![true, true, false, true],
+    ![true, true, true, false], ![true, true, true, true]]
 
 theorem vertex_surjective : Function.Surjective vertex := by
   intro x
@@ -35,7 +42,9 @@ theorem vertex_surjective : Function.Surjective vertex := by
   · exact ⟨15, rfl⟩
 
 def slopes : Fin 3 → Fin 3 → Fin 4 → ℝ :=
-  ![![![17, 17, 3, 2], ![3, 19, 14, 13], ![9, 12, 4, 13]], ![![1, 1, 1, 1], ![2, 2, 2, 2], ![3, 3, 3, 3]], ![![16, 11, 4, 13], ![11, 11, 1, 3], ![6, 4, 18, 8]]]
+  ![![![17, 17, 3, 2], ![3, 19, 14, 13], ![9, 12, 4, 13]],
+    ![![1, 1, 1, 1], ![2, 2, 2, 2], ![3, 3, 3, 3]],
+    ![![16, 11, 4, 13], ![11, 11, 1, 3], ![6, 4, 18, 8]]]
 
 noncomputable def ratios (f : Fin 3) (a : Fin 13 → ℤ) : Fin 3 → AffineFraction 4 :=
   fun h => ⟨fun i => (a ⟨1 + h.val * 4 + i.val, by omega⟩ : ℝ), 0, slopes f h, 1⟩
@@ -78,7 +87,7 @@ theorem score_eq (f : Fin 3) (a : Fin 13 → ℤ) (v : Fin 16) :
     norm_num [ratios, AffineFraction.eval, AffineFraction.numerator,
       AffineFraction.denominator, denominator, slopes, vertex, features,
       features0, features1, features2, SignTemplate.eval, Fin.sum_univ_succ,
-      Fin.prod_univ_succ, boolToReal] <;> dsimp <;> norm_num <;> ring
+      Fin.prod_univ_succ, boolToReal] <;> dsimp <;> ring
 
 theorem vanilla_of_strict_feature_score (f : (Fin 4 → Bool) → Bool)
     (j : Fin 3) (a : Fin 13 → ℤ)
