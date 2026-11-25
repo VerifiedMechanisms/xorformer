@@ -1,0 +1,18 @@
+'HeadComplexity.OneMinorityBalanceObstruction.basis_affine_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneMinorityBalanceObstruction.atom_full_unit_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneMinorityBalanceObstruction.atom_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneMinorityBalanceObstruction.all_basis_representatives_balance_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneMinorityBalanceObstruction.boundary_full_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneMinorityBalanceObstruction.boundary_attains_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

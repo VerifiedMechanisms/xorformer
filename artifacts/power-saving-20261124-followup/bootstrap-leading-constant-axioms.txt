@@ -1,0 +1,36 @@
+'HeadComplexity.BootstrapWeightedCounting.refinedBase_factorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.weighted_base_le_refinedBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.refinedBase_ge_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.refined_entropy_at_worstCase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.worstCase_real_log_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.refinedBase_le_two_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.worstCase_real_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.worstCase_real_leading_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.BootstrapWeightedCounting.worstCase_real_one_sub_epsilon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.bootstrap_weighted_counting_worst_case_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.bootstrap_weighted_counting_worst_case_log_lower_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.bootstrap_weighted_counting_worst_case_one_sub_epsilon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

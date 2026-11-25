@@ -1,0 +1,7 @@
+import HeadComplexity.Research.OneMinorityBalanceObstruction
+#print axioms HeadComplexity.OneMinorityBalanceObstruction.basis_affine_injective
+#print axioms HeadComplexity.OneMinorityBalanceObstruction.atom_full_unit_gap
+#print axioms HeadComplexity.OneMinorityBalanceObstruction.atom_basis_values
+#print axioms HeadComplexity.OneMinorityBalanceObstruction.all_basis_representatives_balance_bound
+#print axioms HeadComplexity.OneMinorityBalanceObstruction.boundary_full_gap
+#print axioms HeadComplexity.OneMinorityBalanceObstruction.boundary_attains_bound

@@ -117,4 +117,34 @@ theorem worstCase_real_lower (hn : 256 ≤ n) :
   apply (div_le_iff₀ (show 0 < (n : ℝ) * (n + 7) by positivity)).mpr
   nlinarith
 
+/-- An explicit approach to leading constant one. This is a consequence of
+the finite bound, not an improvement of its quadratic denominator. -/
+theorem worstCase_real_leading_constant (hn : 256 ≤ n) :
+    (1 - 8 / (n : ℝ)) * (2 : ℝ) ^ n / (n : ℝ) ^ 2 ≤
+      (worstCaseHeadComplexity n : ℝ) := by
+  have hnR : (0 : ℝ) < n := by exact_mod_cast (show 0 < n by omega)
+  have hN : (n : ℝ) ≤ (2 : ℝ) ^ n := by
+    exact_mod_cast (Nat.le_of_lt (show n < 2 ^ n from Nat.lt_two_pow_self))
+  have hNpos : 0 < (2 : ℝ) ^ n := by positivity
+  have hcompare : (1 - 8 / (n : ℝ)) * (2 : ℝ) ^ n / (n : ℝ) ^ 2 ≤
+      ((2 : ℝ) ^ n - 1) / ((n : ℝ) * (n + 7)) := by
+    apply (div_le_div_iff₀ (sq_pos_of_pos hnR) (by positivity)).mpr
+    have hmul := mul_le_mul_of_nonneg_right hN hnR.le
+    field_simp
+    nlinarith
+  exact hcompare.trans (worstCase_real_lower hn)
+
+/-- Every fixed constant below one is an eventual unrestricted lower-bound
+constant. The explicit sufficient threshold is `n ≥ max 256 (8 / ε)`. -/
+theorem worstCase_real_one_sub_epsilon {ε : ℝ} (hn : 256 ≤ n)
+    (_hε : 0 < ε) (hthreshold : 8 ≤ ε * n) :
+    (1 - ε) * (2 : ℝ) ^ n / (n : ℝ) ^ 2 ≤
+      (worstCaseHeadComplexity n : ℝ) := by
+  have hnR : (0 : ℝ) < n := by exact_mod_cast (show 0 < n by omega)
+  have heps : 8 / (n : ℝ) ≤ ε := (div_le_iff₀ hnR).mpr hthreshold
+  apply le_trans _ (worstCase_real_leading_constant hn)
+  exact div_le_div_of_nonneg_right
+    (mul_le_mul_of_nonneg_right (by linarith : 1 - ε ≤ 1 - 8 / (n : ℝ))
+      (by positivity)) (by positivity)
+
 end HeadComplexity.BootstrapWeightedCounting

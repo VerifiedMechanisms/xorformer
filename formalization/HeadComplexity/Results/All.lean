@@ -751,4 +751,9 @@ alias bootstrap_weighted_counting_worst_case_lower_bound :=
 alias bootstrap_weighted_counting_worst_case_log_lower_bound :=
   BootstrapWeightedCounting.worstCase_real_log_lower
 
+/-- Every fixed constant below one is an eventual constant in the
+unrestricted quadratic-denominator lower bound. -/
+alias bootstrap_weighted_counting_worst_case_one_sub_epsilon :=
+  BootstrapWeightedCounting.worstCase_real_one_sub_epsilon
+
 end HeadComplexity

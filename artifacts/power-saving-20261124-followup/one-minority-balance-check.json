@@ -1,0 +1,9 @@
+{
+  "status": "all exact checks passed",
+  "cube_vertices": 1024,
+  "basis_size": 11,
+  "positive_contacts": 10,
+  "negative_contacts": 1,
+  "balance_supremum": "1/22",
+  "arithmetic": "Python integers and fractions only"
+}

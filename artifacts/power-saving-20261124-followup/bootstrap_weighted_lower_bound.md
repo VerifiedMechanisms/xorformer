@@ -20,6 +20,12 @@ This is `HeadComplexity.BootstrapWeightedCounting.worstCase_real_log_lower`, pub
 
 The lower bound still has order $N/n^2$. Neither a positive power saving nor the requested logarithmic fallback follows. In particular, this does not refute the original conjecture.
 
+The kernel-checked corollaries `worstCase_real_leading_constant` and `worstCase_real_one_sub_epsilon` make its leading constant explicit:
+
+$$ W(n)\geq(1-8/n)\frac{N}{n^2}\qquad(n\geq256). $$
+
+For every $\epsilon\gt0$, the bound $W(n)\geq(1-\epsilon)N/n^2$ therefore holds whenever $n\geq256$ and $\epsilon n\geq8$. This is a consequence of the finite estimate, not a further improvement of its order. The latter corollary is publicly exported as `HeadComplexity.bootstrap_weighted_counting_worst_case_one_sub_epsilon`.
+
 ## Proof
 
 The already proved unrestricted weighted count gives, at the original worst-case width, an entropy inequality with base at most
@@ -38,8 +44,10 @@ The logarithmic denominator has the written asymptotic expansion
 
 $$ n\log B_1(n)/\log2=n^2+(4+2/\log2)n+O(1). $$
 
-This is a finite-constant refinement of the same counting method. The separate kernel-checked `WeightedCountBarrier` module shows that every positive block-weight certificate of this form exceeds $2^N$ once $n^2H\geq2N$, $n\geq4$, $H\geq2$, and $2nH\leq N$. Further changes of these block weights cannot yield either requested gain.
+This is a finite-constant refinement of the same counting method. The separate kernel-checked `WeightedCountBarrier` module shows that every positive block-weight certificate of this form exceeds $2^N$ once $n^2H\geq N$, $n\geq4$, $H\geq2$, and $2nH\leq N$. `AnisotropicWeightBarrier` extends the obstruction to arbitrary coordinate weights satisfying the actual monomial degree constraints. Further changes of these weights cannot yield either requested gain.
 
 ## Verification
 
 `bootstrap-weighted-build.txt` records the full `lake build`. `bootstrap-weighted-axioms.txt` records the transitive checks of all seven new theorems and both public aliases. Their only axioms are `propext`, `Classical.choice`, and `Quot.sound`. No definition of the original model, admissibility, computability, or worst-case head complexity was changed.
+
+The later leading-constant corollaries are checked in `bootstrap-leading-constant-build.txt` and `bootstrap-leading-constant-axioms.txt`. The final combined verification rebuilds the public aggregate and audits these corollaries together with every other changed theorem module.
