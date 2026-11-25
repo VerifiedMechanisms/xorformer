@@ -1,0 +1,8 @@
+'HeadComplexity.MinorityContactCapacity.one_minority_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinorityContactCapacity.unit_gap_sign_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.MinorityContactCapacity.mem_comparison_of_unitFeasible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MinorityContactCapacity.card_unitFeasiblePatterns_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
