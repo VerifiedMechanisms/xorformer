@@ -1,0 +1,11 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/mixed_point_high_order_amplitude.md",
+    "source_spans": 75,
+    "rendered_spans": 75,
+    "findings": [],
+    "notes": [
+      "artifacts/power-saving-20261124-followup/mixed_point_high_order_amplitude.md: note: lone '\\ ' inside math payload (eaten \\\\ row break, or intentional control space - compare with the source): '$$ L_k F=\\\\frac1{\\\\binom rk\\\\binom sk}\\\\sum_{\\\\substack{D\\\\subseteq P,\\\\ |D|=k\\\\cr U\\\\sub'"
+    ]
+  }
+]
