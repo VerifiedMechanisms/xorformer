@@ -1,0 +1,3 @@
+HeadComplexity.Research.FeasibleConeNoCoordinateRay: audited 65 theorem declarations
+Audited 65 theorem declarations across 1 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].

@@ -1,0 +1,11 @@
+'HeadComplexity.FeasibleConeNoCoordinateRay.base_full_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleConeNoCoordinateRay.basis_affine_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleConeNoCoordinateRay.atom_full_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FeasibleConeNoCoordinateRay.atom_basis_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FeasibleConeNoCoordinateRay.no_coordinate_ray' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,6 @@
+import HeadComplexity.Research.FeasibleConeNoCoordinateRay
+#print axioms HeadComplexity.FeasibleConeNoCoordinateRay.base_full_gap
+#print axioms HeadComplexity.FeasibleConeNoCoordinateRay.basis_affine_injective
+#print axioms HeadComplexity.FeasibleConeNoCoordinateRay.atom_full_gap
+#print axioms HeadComplexity.FeasibleConeNoCoordinateRay.atom_basis_values
+#print axioms HeadComplexity.FeasibleConeNoCoordinateRay.no_coordinate_ray

@@ -1,0 +1,2 @@
+✔ [3226/3226] Built HeadComplexity.Research.FeasibleConeNoCoordinateRay (145s)
+Build completed successfully (3226 jobs).

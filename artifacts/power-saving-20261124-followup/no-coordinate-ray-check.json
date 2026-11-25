@@ -1,0 +1,9 @@
+{
+  "arithmetic": "exact Fraction/integer",
+  "cube_rows": 1024,
+  "basis_determinant": "1",
+  "strict_positive_denominator": true,
+  "unit_contact_count": 11,
+  "minimum_noncontact_slack": 2,
+  "coordinate_rays_excluded": 11
+}
