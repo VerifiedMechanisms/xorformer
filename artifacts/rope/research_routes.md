@@ -163,6 +163,8 @@ The [highest-pole argument](research/collision_cluster_residue_obstruction.md) s
 
 The full coefficient-limit hypothesis is stronger than the selected mixed-coefficient convergence available after Boolean replica averaging. No improved Boolean lower bound follows. A concrete multiscale construction also shows that bounded zeroth and first moments do not imply the regular second-order jet bound on essential variables. Its nonzero fourth-order pole is recorded explicitly, so it does not settle the remaining triple-pole case.
 
+A sharper restricted result handles four-pole Laurent paths with distinct nonzero first-order linear forms. Bounded first and second moments and a vanishing third moment force residue pole order at most two by polynomial Vandermonde elimination. A sum-of-squares kernel argument then confines the limiting cubic to three linear coordinates. The elimination identities are Lean-checked; the Laurent-order argument is a mathematical proof. Coincident leading forms and arbitrary paths remain outside its scope.
+
 ## 19. Replication divisibility and exact finite certificates
 
 The positive even replications all have threshold degree and pure minimum three, by pulling back along repeated input coordinates. This divisibility monotonicity is fully Lean-checked and is consistent with the consecutive minima one, three, one at replications one through three: those grids are not nested.
