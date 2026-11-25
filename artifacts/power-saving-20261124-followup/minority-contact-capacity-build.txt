@@ -1,4 +1,4 @@
-ℹ [3136/3409] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
+ℹ [3136/3386] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
 info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -14,7 +14,7 @@ info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'He
 info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [3325/3409] Replayed HeadComplexity.Research.MarginSensitiveCapacity
+ℹ [3325/3386] Replayed HeadComplexity.Research.MarginSensitiveCapacity
 info: HeadComplexity/Research/MarginSensitiveCapacity.lean:217:0: 'HeadComplexity.MarginSensitiveCapacity.card_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: HeadComplexity/Research/MarginSensitiveCapacity.lean:218:0: 'HeadComplexity.MarginSensitiveCapacity.headPoly_totalDegree_le' depends on axioms: [propext,
  Classical.choice,
@@ -32,7 +32,7 @@ info: HeadComplexity/Research/MarginSensitiveCapacity.lean:222:0: 'HeadComplexit
 info: HeadComplexity/Research/MarginSensitiveCapacity.lean:223:0: 'HeadComplexity.MarginSensitiveCapacity.card_chartPatterns_le_warren' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [3326/3409] Replayed HeadComplexity.Research.CoefficientOrderChart
+ℹ [3326/3386] Replayed HeadComplexity.Research.CoefficientOrderChart
 info: HeadComplexity/Research/CoefficientOrderChart.lean:145:0: 'HeadComplexity.CoefficientOrderChart.exists_conditioning_order' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -40,7 +40,7 @@ info: HeadComplexity/Research/CoefficientOrderChart.lean:146:0: 'HeadComplexity.
 info: HeadComplexity/Research/CoefficientOrderChart.lean:147:0: 'HeadComplexity.CoefficientOrderChart.card_orderedPatterns_le_warren' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [3842/4024] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+ℹ [3841/3883] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
 info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -70,5 +70,5 @@ info: HeadComplexity/Research/OriginalMarginCapacity.lean:237:0: 'HeadComplexity
 info: HeadComplexity/Research/OriginalMarginCapacity.lean:238:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-✔ [4024/4024] Built HeadComplexity.Research.MinorityContactCapacity (2.1s)
+✔ [4024/4024] Built HeadComplexity.Research.MinorityContactCapacity (2.4s)
 Build completed successfully (4024 jobs).

@@ -107,4 +107,64 @@ theorem card_unitFeasiblePatterns_le [Fintype ι] (L : Fin k → ι → ℝ)
       ((strictPolynomialSignPatterns (comparisonPoly L)).ncard : ℝ) := by exact_mod_cast hm
   exact hmr.trans (by simpa using hc)
 
+
+def normalizedComparisonPoly (L : Fin k → ι → ℝ) (x : ι) : MvPolynomial (Fin k) ℝ :=
+  C 1 - ∑ j, C (L j x) * X j
+
+theorem normalizedComparisonPoly_totalDegree_le (L : Fin k → ι → ℝ) (x : ι) :
+    (normalizedComparisonPoly L x).totalDegree ≤ 1 := by
+  unfold normalizedComparisonPoly
+  apply (totalDegree_sub _ _).trans
+  apply max_le (by simp)
+  apply totalDegree_finsetSum_le
+  intro i _
+  exact (totalDegree_mul _ _).trans (by simp)
+
+theorem mem_normalizedComparison_of_unitFeasible [Finite ι]
+    (L : Fin k → ι → ℝ) (f : ι → Bool) (hf : f ∈ unitFeasiblePatterns L) :
+    f ∈ strictPolynomialSignPatterns (normalizedComparisonPoly L) := by
+  classical
+  let := Fintype.ofFinite ι
+  obtain ⟨c, A, B, hB, hA, hgap⟩ := hf
+  let F (x : ι) := ∑ j, c j * L j x
+  have hs (x : ι) : f x = true ↔ F x ≤ 0 :=
+    unit_gap_sign_iff A B F f hB hA hgap x
+  let gap (x : ι) : ℝ := if 0 < F x then F x else 1
+  have hg (x : ι) : 0 < gap x := by
+    dsimp [gap]
+    split <;> positivity
+  obtain ⟨ε, hε, hεgap⟩ := PolynomialRootCount.exists_pos_lt_finite gap hg
+  let θ : Fin k → ℝ := fun j => c j / ε
+  have he (x : ι) : eval θ (normalizedComparisonPoly L x) = (ε - F x) / ε := by
+    simp only [normalizedComparisonPoly, map_sub, map_sum, map_mul, eval_C, eval_X]
+    dsimp [θ, F]
+    rw [sub_div, div_self hε.ne', Finset.sum_div]
+    congr 1
+    apply Finset.sum_congr rfl
+    intro j _
+    ring
+  refine ⟨θ, fun x => ?_⟩
+  rw [he]
+  cases hfx : f x
+  · have hp : 0 < F x := lt_of_not_ge (by intro h; simpa [hfx] using (hs x).mpr h)
+    have hneg : ε - F x < 0 := sub_neg.mpr (by simpa [gap, hp] using hεgap x)
+    simpa using div_neg_of_neg_of_pos hneg hε
+  · have hn := (hs x).mp hfx
+    simpa using div_pos (sub_pos.mpr (lt_of_le_of_lt hn hε)) hε
+
+theorem card_unitFeasiblePatterns_le_normalized [Fintype ι] (L : Fin k → ι → ℝ)
+    (hk : 0 < k) (hparameters : k ≤ Fintype.card ι) :
+    ((unitFeasiblePatterns L).ncard : ℝ) ≤
+      (4 * Real.exp 1 * Fintype.card ι / k) ^ k := by
+  have hc := warrenStrictSignPatternBound (Fintype.card ι) 1 k
+    (by omega) hk hparameters ι (Fin k) (normalizedComparisonPoly L) rfl
+    (Fintype.card_fin k) (normalizedComparisonPoly_totalDegree_le L)
+  have hm : (unitFeasiblePatterns L).ncard ≤
+      (strictPolynomialSignPatterns (normalizedComparisonPoly L)).ncard :=
+    Set.ncard_mono (fun f hf => mem_normalizedComparison_of_unitFeasible L f hf)
+  have hmr : ((unitFeasiblePatterns L).ncard : ℝ) ≤
+      ((strictPolynomialSignPatterns (normalizedComparisonPoly L)).ncard : ℝ) := by
+    exact_mod_cast hm
+  exact hmr.trans (by simpa using hc)
+
 end HeadComplexity.MinorityContactCapacity

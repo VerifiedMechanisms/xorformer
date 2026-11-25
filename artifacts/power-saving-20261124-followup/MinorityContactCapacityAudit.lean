@@ -3,3 +3,6 @@ import HeadComplexity.Research.MinorityContactCapacity
 #print axioms HeadComplexity.MinorityContactCapacity.unit_gap_sign_iff
 #print axioms HeadComplexity.MinorityContactCapacity.mem_comparison_of_unitFeasible
 #print axioms HeadComplexity.MinorityContactCapacity.card_unitFeasiblePatterns_le
+
+#print axioms HeadComplexity.MinorityContactCapacity.mem_normalizedComparison_of_unitFeasible
+#print axioms HeadComplexity.MinorityContactCapacity.card_unitFeasiblePatterns_le_normalized

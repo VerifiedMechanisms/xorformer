@@ -4,7 +4,7 @@
 
 Fix an affine basis of $n+1$ Boolean vertices, with prescribed unit values in $\lbrace-1,+1\rbrace$. Suppose $k$ contacts have the minority sign, and let $N=2^n$. Among positive affine denominators and affine numerators satisfying these contact equations and the full-cube unit gap, the number of possible full truth tables is at most
 
-$$ \left(\frac{4eN}{k+1}\right)^{k+1},\qquad k+1\leq N. $$
+$$ \left(\frac{4eN}{k}\right)^k,\qquad 1\leq k\leq N. $$
 
 If $k=1$, the entire full truth table is unique whenever a feasible representation exists. This conclusion permits every denominator to vary within the chart. It holds for all cube-positive affine denominators, so it covers both original coherent orientations. A bias in a one-head score can be absorbed into its affine numerator.
 
@@ -36,11 +36,11 @@ Write $F(x)=\sum_{j=1}^k c_jL_j(x)$. For any fixed realized table, choose $\epsi
 
 $$ \epsilon-\sum_{j=1}^k c_jL_j(x) $$
 
-has exactly the required strict labels. It uses $k+1$ real parameters and has degree one in those parameters. The unconditional strict Warren theorem therefore gives the displayed bound. Allowing arbitrary real coefficients in this comparison class only enlarges the count.
+has exactly the required strict labels. Divide by the positive number $\epsilon$ and set $\theta_j=c_j/\epsilon$. The resulting comparison is $1-\sum_j\theta_jL_j(x)$, with only $k$ real parameters and degree one in those parameters. The unconditional strict Warren theorem therefore gives the displayed bound. Allowing arbitrary real coefficients in this comparison class only enlarges the count.
 
 ## Kernel status
 
-`HeadComplexity.MinorityContactCapacity.one_minority_unique` in `Research/MinorityContactCapacity.lean` proves uniqueness from the common scalar-factor identity, positive denominators, and full unit gaps. `unit_gap_sign_iff` proves the sign identity. `mem_comparison_of_unitFeasible` handles the finite strictification, and `card_unitFeasiblePatterns_le` proves the displayed finite count for an explicitly supplied $k$-function comparison space. The passage from an actual affine basis to its interpolation functions above is written linear algebra; no unproved interpolation premise is hidden in the kernel declarations.
+`HeadComplexity.MinorityContactCapacity.one_minority_unique` in `Research/MinorityContactCapacity.lean` proves uniqueness from the common scalar-factor identity, positive denominators, and full unit gaps. `unit_gap_sign_iff` proves the sign identity. `mem_normalizedComparison_of_unitFeasible` handles finite strictification and positive rescaling, and `card_unitFeasiblePatterns_le_normalized` proves the displayed finite count for an explicitly supplied $k$-function comparison space. The passage from an actual affine basis to its interpolation functions above is written linear algebra; no unproved interpolation premise is hidden in the kernel declarations.
 
 The module builds successfully, and the transitive axiom logs are recorded alongside this note. Only the standard axioms `propext`, `Classical.choice`, and `Quot.sound` are used.
 

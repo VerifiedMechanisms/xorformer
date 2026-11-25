@@ -6,3 +6,9 @@
 'HeadComplexity.MinorityContactCapacity.card_unitFeasiblePatterns_le' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'HeadComplexity.MinorityContactCapacity.mem_normalizedComparison_of_unitFeasible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.MinorityContactCapacity.card_unitFeasiblePatterns_le_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
