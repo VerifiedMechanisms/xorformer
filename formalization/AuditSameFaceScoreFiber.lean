@@ -1,0 +1,4 @@
+import HeadComplexity.Research.SameFaceScoreFiber
+#print axioms HeadComplexity.SameFaceScoreFiber.atom_eval
+#print axioms HeadComplexity.SameFaceScoreFiber.atom_eq_one_on_zeroFace
+#print axioms HeadComplexity.SameFaceScoreFiber.exists_distinct_extensions_with_identical_face

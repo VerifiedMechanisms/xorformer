@@ -1,0 +1,5 @@
+'HeadComplexity.SameFaceScoreFiber.atom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SameFaceScoreFiber.atom_eq_one_on_zeroFace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.SameFaceScoreFiber.exists_distinct_extensions_with_identical_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
