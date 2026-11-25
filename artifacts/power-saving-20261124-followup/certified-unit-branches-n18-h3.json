@@ -1,0 +1,10 @@
+{
+  "warning": "NUMERICAL_EXPLORATION_ONLY_NOT_PROOF",
+  "source_branch": "origin/ar/7485202da367",
+  "source_path": "artifacts/beyond-counting-bound/unit-minimum-certificate/data.json",
+  "elapsed": 600.0080687690061,
+  "trials": 2218,
+  "regular": 0,
+  "failed": 2218,
+  "distinct_roots": []
+}

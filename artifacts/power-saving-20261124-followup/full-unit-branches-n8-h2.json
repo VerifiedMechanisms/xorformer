@@ -1,0 +1,11 @@
+{
+  "warning": "NUMERICAL_EXPLORATION_ONLY_NOT_PROOF",
+  "n": 8,
+  "heads": 2,
+  "bias_free": true,
+  "elapsed": 600.0284234320279,
+  "trials": 13131,
+  "targets": 1564,
+  "roots": [],
+  "failures": 12990
+}
