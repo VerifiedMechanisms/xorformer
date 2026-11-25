@@ -1,0 +1,606 @@
+⚠ [3704/3809] Replayed HeadComplexity.Polynomial.WeightedDiagonalRootBound
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:5: Variable name `hw` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hw
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:25: Variable name `he` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _he
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:98:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ℹ [3743/3809] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:128:0: 'HeadComplexity.ConditionedReciprocalApproximation.geometric_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:129:0: 'HeadComplexity.ConditionedReciprocalApproximation.exponential_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'HeadComplexity.ConditionedReciprocalApproximation.sign_preserved_of_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3746/3809] Replayed HeadComplexity.Research.MarginSensitiveCapacity
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:217:0: 'HeadComplexity.MarginSensitiveCapacity.card_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:218:0: 'HeadComplexity.MarginSensitiveCapacity.headPoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:219:0: 'HeadComplexity.MarginSensitiveCapacity.scorePoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:220:0: 'HeadComplexity.MarginSensitiveCapacity.eval_headPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:221:0: 'HeadComplexity.MarginSensitiveCapacity.strictPattern_of_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:222:0: 'HeadComplexity.MarginSensitiveCapacity.card_strictPatterns_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:223:0: 'HeadComplexity.MarginSensitiveCapacity.card_chartPatterns_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3747/3809] Replayed HeadComplexity.Research.CoefficientOrderChart
+info: HeadComplexity/Research/CoefficientOrderChart.lean:145:0: 'HeadComplexity.CoefficientOrderChart.exists_conditioning_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/CoefficientOrderChart.lean:146:0: 'HeadComplexity.CoefficientOrderChart.card_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/CoefficientOrderChart.lean:147:0: 'HeadComplexity.CoefficientOrderChart.card_orderedPatterns_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4020/4560] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:289:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4026/4560] Replayed HeadComplexity.Research.OriginalMarginCapacity
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:233:0: 'HeadComplexity.OriginalMarginCapacity.orientedAtom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:234:0: 'HeadComplexity.OriginalMarginCapacity.highMarginFunctions_subset_orderedPatterns' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:235:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:236:0: 'HeadComplexity.OriginalMarginCapacity.approximationDegree_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:237:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le_finite_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:238:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4028/4560] Replayed HeadComplexity.Research.MarginCapacityEstimates
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:430:0: 'HeadComplexity.MarginCapacityEstimates.mul_log_div_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:431:0: 'HeadComplexity.MarginCapacityEstimates.card_highMarginFunctions_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:432:0: 'HeadComplexity.MarginCapacityEstimates.approximationDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:433:0: 'HeadComplexity.MarginCapacityEstimates.entropy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:434:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:435:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:436:0: 'HeadComplexity.MarginCapacityEstimates.head_overhead_budgets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:437:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_at_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:438:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_with_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:439:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:440:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:441:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:442:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4029/4560] Replayed HeadComplexity.Research.ConditionalMarginLowerBounds
+info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:173:0: 'HeadComplexity.ConditionalMarginLowerBounds.worstCase_gt_sqrt_of_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:174:0: 'HeadComplexity.ConditionalMarginLowerBounds.worstCase_gt_logarithmic_of_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:175:0: 'HeadComplexity.ConditionalMarginLowerBounds.real_sqrt_bound_of_low_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:176:0: 'HeadComplexity.ConditionalMarginLowerBounds.real_logarithmic_bound_of_low_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:177:0: 'HeadComplexity.ConditionalMarginLowerBounds.real_sqrt_bound_of_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:178:0: 'HeadComplexity.ConditionalMarginLowerBounds.real_logarithmic_bound_of_repair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [4057/4560] Replayed HeadComplexity.Research.CoherentDenominatorCharts
+warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:17:31: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
+
+Note: The updated constant has a different type:
+  ∀ {R : Type u_1} {M : Type u_4} [inst : Semiring R] (x y : AddMonoidAlgebra R M), (x + y).coeff = x.coeff + y.coeff
+instead of
+  ∀ {R : Type u} {σ : Type u_1} [inst : CommSemiring R] (m : σ →₀ ℕ) (p q : MvPolynomial σ R),
+    (p + q).coeff m = p.coeff m + q.coeff m
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
+warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:18:23: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
+
+Note: The updated constant has a different type:
+  ∀ {R : Type u_1} {M : Type u_4} [inst : Semiring R] (x y : AddMonoidAlgebra R M), (x + y).coeff = x.coeff + y.coeff
+instead of
+  ∀ {R : Type u} {σ : Type u_1} [inst : CommSemiring R] (m : σ →₀ ℕ) (p q : MvPolynomial σ R),
+    (p + q).coeff m = p.coeff m + q.coeff m
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
+warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:19:8: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Ne.symm hs, Finsupp.single_left_inj (by norm_num : (1 : ℕ) ≠ 0)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:103:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:108:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+⚠ [4059/4560] Replayed HeadComplexity.Research.CollectiveThreeHeadRelation
+warning: HeadComplexity/Research/CollectiveThreeHeadRelation.lean:70:72: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/CollectiveThreeHeadRelation.lean:70:72: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [9134/9291] Replayed HeadComplexity.Research.RadialMomentTransfer
+info: HeadComplexity/Research/RadialMomentTransfer.lean:281:0: 'HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [9141/9291] Replayed HeadComplexity.Research.FullRankMarginDegeneration
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:51:2: `have hz : -(epsilon * bias + a) ≤ epsilon * M :=
+  by
+  have h := (abs_le.mp h0).1
+  have hmul := mul_le_mul_of_nonneg_right h hepsilon.le
+  field_simp [hepsilon.ne'] at hmul
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:56:2: `have hs1 : epsilon * bias + a + (bias + c 0) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h1 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:61:2: `have hs2 : epsilon * bias + a + (bias + c 1) ≤ -(gamma * M) * (epsilon + 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h2 hden1.le
+  field_simp [hden1.ne'] at h
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:66:2: `have hs12 : gamma * M * (epsilon + 2) ≤ epsilon * bias + a + (bias + c 0) + (bias + c 1) :=
+  by
+  have h := mul_le_mul_of_nonneg_right h12 hden2.le
+  field_simp [hden2.ne'] at h
+  nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:71:2: `apply (le_div_iff₀ (by linarith : 0 < 4 + 3 * epsilon)).mpr`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h1`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h1`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h2`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h2`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h12`, which was modified by the flexible tactic `simp` on line 48!
+warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h0`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
+
+Note: This linter can be disabled with `set_option linter.flexible false`
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: Try this:
+  [apply] simp only [ge_iff_le] at h0 h1 h2 h12
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:72:2: `have hkey : gamma * M * (4 + 3 * epsilon) ≤ epsilon * M := by nlinarith`
+uses `h0`, which was modified by the flexible tactic `simp` on line 48!
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:181:0: 'HeadComplexity.FullRankMarginDegeneration.score_has_genuine_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:182:0: 'HeadComplexity.FullRankMarginDegeneration.margin_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:183:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:184:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_at_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:185:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_at_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/FullRankMarginDegeneration.lean:186:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_full_cube_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [9143/9291] Replayed HeadComplexity.Research.GenericOneHeadBranchCount
+warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:16:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
+set_option maxHeartbeats 8000000 in
+-- reason for change
+...
+
+Note: This linter can be disabled with `set_option linter.style.maxHeartbeats false`
+warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:41:52: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:41:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [9147/9291] Replayed HeadComplexity.Research.GroupedDenominatorCapacity
+warning: HeadComplexity/Research/GroupedDenominatorCapacity.lean:203:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+ℹ [9158/9291] Replayed HeadComplexity.Research.UniformMarginCompiler
+info: HeadComplexity/Research/UniformMarginCompiler.lean:93:0: 'HeadComplexity.UniformMarginCompiler.atomSup_le_of_uniform_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/UniformMarginCompiler.lean:94:0: 'HeadComplexity.UniformMarginCompiler.hasRelativeMargin_of_uniformlyOneAtomApproximable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9163/9291] Replayed HeadComplexity.Research.MarginInvariance
+info: HeadComplexity/Research/MarginInvariance.lean:191:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:192:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_pad' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:193:0: 'HeadComplexity.RelativeMarginQuantifiers.hasRelativeMargin_mono_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginInvariance.lean:194:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_width_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9167/9291] Replayed HeadComplexity.Research.NearConstantMarginObstruction
+info: HeadComplexity/Research/NearConstantMarginObstruction.lean:179:0: 'HeadComplexity.NearConstantMarginObstruction.thresholdDegLE_of_near_constant_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/NearConstantMarginObstruction.lean:180:0: 'HeadComplexity.NearConstantMarginObstruction.margin_le_of_threshold_degree_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/NearConstantMarginObstruction.lean:181:0: 'HeadComplexity.NearConstantMarginObstruction.parity_margin_le_of_near_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [9168/9291] Replayed HeadComplexity.Research.ObservableSpanInstability
+warning: HeadComplexity/Research/ObservableSpanInstability.lean:36:43: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/ObservableSpanInstability.lean:36:43: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Research/ObservableSpanInstability.lean:56:48: This simp argument is unused:
+  Matrix.head_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [score, observation, first, second, residue, Fin.sum_univ_succ, Matrix.cons_val_zero,
+    Matrix.cons_val_succ, Matrix.tail_cons, Fin.isValue, one_mul, neg_mul, zero_add, add_zero] at hz ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/ObservableSpanInstability.lean:56:66: This simp argument is unused:
+  Matrix.tail_cons
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [score, observation, first, second, residue, Fin.sum_univ_succ, Matrix.cons_val_zero,
+    Matrix.cons_val_succ, Matrix.head_cons, Fin.isValue, one_mul, neg_mul, zero_add, add_zero] at hz ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/ObservableSpanInstability.lean:57:35: This simp argument is unused:
+  zero_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [score, observation, first, second, residue, Fin.sum_univ_succ, Matrix.cons_val_zero,
+    Matrix.cons_val_succ, Matrix.head_cons, Matrix.tail_cons, Fin.isValue, one_mul, neg_mul, add_zero] at hz ⊢
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/ObservableSpanInstability.lean:80:10: This simp argument is unused:
+  h0
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [boolToReal, hε]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [9179/9291] Replayed HeadComplexity.Research.PencilMoebiusTangentObstruction
+warning: HeadComplexity/Research/PencilMoebiusTangentObstruction.lean:7:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+⚠ [9183/9291] Replayed HeadComplexity.Research.RankOneCompilerSelector
+warning: HeadComplexity/Research/RankOneCompilerSelector.lean:68:69: This simp argument is unused:
+  add_assoc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [boolToReal, add_comm, add_left_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [9190/9291] Replayed HeadComplexity.Research.SplitSmoothableEstimates
+warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:379:26: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:379:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:421:26: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:421:41: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:421:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:421:41: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [9193/9291] Replayed HeadComplexity.Research.TwoHeadAffineProduct
+warning: HeadComplexity/Research/TwoHeadAffineProduct.lean:40:36: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/TwoHeadAffineProduct.lean:40:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [9285/9291] Replayed HeadComplexity.Research.IntegerSeparatorMarginRepair
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:541:0: 'HeadComplexity.IntegerSeparatorMarginRepair.exists_bounded_integer_separator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:542:0: 'HeadComplexity.IntegerSeparatorMarginRepair.exists_bounded_integer_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:543:0: 'HeadComplexity.IntegerSeparatorMarginRepair.hasRelativeMargin_of_isLTF' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:544:0: 'HeadComplexity.IntegerSeparatorMarginRepair.one_head_repair' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:545:0: 'HeadComplexity.IntegerSeparatorMarginRepair.repair_of_HStar_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [9286/9291] Replayed HeadComplexity.Research.LowDegreeMarginRepair
+warning: HeadComplexity/Research/LowDegreeMarginRepair.lean:24:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+info: HeadComplexity/Research/LowDegreeMarginRepair.lean:203:0: 'HeadComplexity.LowDegreeMarginRepair.exists_integer_monomial_separator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9288/9291] Replayed HeadComplexity.Research.MonomialMarginCompiler
+info: HeadComplexity/Research/MonomialMarginCompiler.lean:78:0: 'HeadComplexity.MonomialMarginCompiler.hasRelativeMargin_of_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MonomialMarginCompiler.lean:79:0: 'HeadComplexity.MonomialMarginCompiler.not_mem_allRepresentationsLowMargin_of_thresholdDegree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MonomialMarginCompiler.lean:81:0: 'HeadComplexity.MonomialMarginCompiler.hasRelativeMargin_of_thresholdDegree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MonomialMarginCompiler.lean:82:0: 'HeadComplexity.MonomialMarginCompiler.hasRelativeMargin_of_thresholdDegree_at_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [9291/9291] Built HeadComplexity.Research.FixedBasisBalanceObstruction (141s)
+Build completed successfully (9291 jobs).
