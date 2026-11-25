@@ -108,7 +108,7 @@ Every numerator refit, arbitrary bias, and any number of repeated copies of this
 
 $$ 0\lt\frac{f(x)S(x)}D\leq4\epsilon $$
 
-on exactly $7/8$ of the cube. This quantifies over every fixed-denominator representation, including its optimal coefficient refit. A different, constant denominator realizes the same majority table with one original head and relative margin $1/3$. Thus the example blocks the frozen-denominator access argument, while leaving the required unrestricted choice of denominators fully open.
+on the designated $7/8$ of the cube with at least one of the first three bits equal to one. This quantifies over every fixed-denominator representation, including its optimal coefficient refit. A different genuine positive affine denominator gives a one-head repair: take $A(x)=2(x_1+x_2+x_3)-3$ and $B(x)=1+(100n)^{-1}\sum_{i=1}^n x_i$. All denominator slopes are strictly positive, so the original positive-affine-ratio constructor applies. Since $1\leq|A(x)|\leq3$ and $1\leq B(x)\leq101/100$, the repaired relative margin is at least $100/303\gt1/4$. A constant denominator with zero numerator slopes on unused coordinates would not itself satisfy the original one-head constructor for $n\gt3$. Thus the example blocks the frozen-denominator access argument, while leaving the required unrestricted choice of denominators fully open.
 
 ## Verification status
 
