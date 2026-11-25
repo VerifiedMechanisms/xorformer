@@ -8,7 +8,7 @@ For $H=2^k$ with $k\geq1$ and $n\geq1$, there are $P=nH$ positive real parameter
 
 - Each score is nondecreasing in every parameter throughout the positive orthant.
 
-- Each score lies strictly between $1/2$ and $3/2$ throughout that orthant.
+- Each score lies strictly between $1/2$ and $3/2$ throughout that orthant. Its numerator and denominator can both have strictly positive coefficients, with every numerator coefficient in that same interval and every denominator coefficient equal to one.
 
 - After positive denominator clearing, each threshold predicate is multiaffine and is affine in each complete parameter block separately. Its degree is at most $H$.
 
@@ -71,6 +71,12 @@ Then $D_j(G_{i,j,b}-1)$ is a multiaffine polynomial of degree at most $H$. To se
 $$ T^{|I|}\prod_{h\in I}t_{h,j}\prod_{h\notin I}(1+t_{h,j}). $$
 
 Every factor uses at most one variable from each complete block. Fixing all blocks except block $h$, a strict threshold condition is therefore an affine open halfspace in that complete block. Intersecting all such halfspaces with the positive orthant gives a convex fiber. The rational score and the cleared polynomial have identical strict signs because $D_j\gt0$.
+
+There is also a positive-coefficient form. Write $\widehat G(z)=1+\lambda\widetilde F(z)$ for the score before substitution, and let $\mathbf 1_I$ denote the Boolean indicator of $I\subseteq\lbrace1,\ldots,H\rbrace$ in this row's coordinate group. Multiaffine interpolation on the box gives the exact identity
+
+$$ D_j(t)G(t)=\sum_{I\subseteq\lbrace1,\ldots,H\rbrace}\widehat G(T\mathbf 1_I)\prod_{h\in I}t_{h,j}. $$
+
+Indeed, the usual multiaffine interpolation factors are $z_h/T$ on $I$ and $1-z_h/T$ outside $I$; the substitution turns these into $t_h/(1+t_h)$ and $1/(1+t_h)$, respectively. Multiplication by $D_j$ cancels all denominators. Every numerator coefficient is therefore strictly between $1/2$ and $3/2$, while every coefficient of $D_j$ is one. These coefficients also increase under inclusion of $I$, since $\widehat G$ is coordinatewise increasing. The threshold polynomial is the difference of these two positive polynomials, and may have coefficients of either sign.
 
 Two distinctions are necessary. Clearing a row by a product over all $nH$ parameters would introduce products of different coordinates within one block and would not preserve the asserted full-block affinity. Also, monotonicity belongs to the rational score $G$, not necessarily to its cleared numerator: multiplication by a positive variable factor preserves signs but need not preserve derivative signs.
 
