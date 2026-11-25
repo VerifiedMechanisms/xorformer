@@ -225,6 +225,21 @@ theorem zero_mem_openCube (h : ℕ) : (0 : Input h → ℝ) ∈ openCube h := by
   intro i _
   norm_num
 
+/-- Full-degree weak sign limits are nonzero scalar multiples of the actual source. -/
+theorem scalar_multiple_of_weak_sign_cube (h : ℕ) (Q : MvPolynomial (Input h) ℝ)
+    (hQ : Q ≠ 0) (hdeg : Q.totalDegree ≤ h + 1)
+    (hweak : ∀ q, (∀ i, -1 ≤ q i ∧ q i ≤ 1) →
+      (0 < eval q (physical h) → 0 ≤ eval q Q) ∧
+      (eval q (physical h) < 0 → eval q Q ≤ 0)) :
+    ∃ a : ℝ, a ≠ 0 ∧ Q = C a * physical h := by
+  apply SignLimitProportionality.scalar_multiple_of_dvd_of_totalDegree_le
+    (physical h) Q (physical_irreducible h).ne_zero hQ
+  · simpa only [physical_totalDegree] using hdeg
+  · exact physical_dvd_of_weak_sign_on_open h Q (openCube h)
+      (isOpen_openCube h) (zero_mem_openCube h)
+      (fun q hq ↦ (hweak q (fun i ↦ ⟨(hq i trivial).1.le, (hq i trivial).2.le⟩)).1)
+      (fun q hq ↦ (hweak q (fun i ↦ ⟨(hq i trivial).1.le, (hq i trivial).2.le⟩)).2)
+
 /-- The actual physical source has no nonzero lower-degree weak sign polynomial. -/
 theorem no_lower_degree_weak_sign_cube (h : ℕ) (Q : MvPolynomial (Input h) ℝ)
     (hQ : Q ≠ 0) (hdeg : Q.totalDegree ≤ h)
