@@ -1,6 +1,7 @@
 import HeadComplexity.Results.PureFifthReplicationNonlinear
 import HeadComplexity.Polynomial.RoPEGroupSymmetrization
 import HeadComplexity.Polynomial.QuadraticMomentCertificate
+import HeadComplexity.Results.PureReplicationDivisibility
 
 set_option linter.style.header false
 
@@ -193,5 +194,33 @@ theorem classifier_seven_head_minima_lower :
   have hv := pureRoPEHStar_le_vanilla (classifier 7)
   rw [SharedHStar_eq_HStar, standardPureRoPEHStar_eq_scalar, freePureRoPEHStar_eq_scalar]
   exact ⟨hp, by simpa [hp] using hv, hp, hp⟩
+
+theorem classifier_seven_multiple_threshold_degree {k : ℕ} (hk : 0 < k) :
+    thresholdDeg (classifier (7 * k)) = 3 := by
+  have hl := thresholdDeg_replication_mul_le (m := 7) hk
+  rw [classifier_seven_threshold_degree] at hl
+  have hu := ThresholdDegreePullback.thresholdDeg_le_of_witness _
+    (thresholdDegLE_of_pureRoPEComputable (pure_computable (7 * k) (by omega)))
+  omega
+
+theorem classifier_seven_multiple_pure_head_minimum {k : ℕ} (hk : 0 < k) :
+    PureRoPEHStar (18 * (7 * k)) (classifier (7 * k)) = 3 := by
+  classical
+  have hl := pure_head_minimum_replication_mul_le (m := 7) hk
+  rw [classifier_seven_pure_head_minimum] at hl
+  have hu : PureRoPEHStar (18 * (7 * k)) (classifier (7 * k)) ≤ 3 :=
+    Nat.find_min' (exists_pureRoPEComputable _) (pure_computable (7 * k) (by omega))
+  omega
+
+theorem classifier_seven_multiple_head_minima {k : ℕ} (hk : 0 < k) :
+    PureRoPEHStar (18 * (7 * k)) (classifier (7 * k)) = 3 ∧
+      StandardPureRoPEHStar (18 * (7 * k)) (classifier (7 * k)) = 3 ∧
+      FreePureRoPEHStar (18 * (7 * k)) (classifier (7 * k)) = 3 ∧
+      3 ≤ SharedHStar (18 * (7 * k)) (classifier (7 * k)) := by
+  have hp := classifier_seven_multiple_pure_head_minimum hk
+  rw [standardPureRoPEHStar_eq_scalar, freePureRoPEHStar_eq_scalar,
+    SharedHStar_eq_HStar]
+  have hl := pureRoPEHStar_le_vanilla (classifier (7 * k))
+  exact ⟨hp, hp, hp, by simpa [hp] using hl⟩
 
 end HeadComplexity.PureThreeReplicatedGrid
