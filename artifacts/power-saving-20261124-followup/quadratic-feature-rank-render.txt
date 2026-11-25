@@ -1,8 +1,8 @@
 [
   {
     "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_quadratic_feature_rank.md",
-    "source_spans": 58,
-    "rendered_spans": 58,
+    "source_spans": 80,
+    "rendered_spans": 80,
     "findings": [],
     "notes": []
   }
