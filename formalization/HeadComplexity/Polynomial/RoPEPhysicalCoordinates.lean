@@ -204,7 +204,7 @@ theorem forwardPolynomial_totalDegree (i : Fin 18) : (forwardPolynomial i).total
       simp only [totalDegree_C, zero_add]
       apply totalDegree_add_le_one
       · simp [first]
-      · apply totalDegree_add_le_one <;> simp [tailSum, tail]
+      · apply totalDegree_add_le_one <;> simp [tail]
     · simp
   · intro j
     simp [forwardPolynomial, join, tail]
@@ -219,7 +219,7 @@ theorem backwardPolynomial_totalDegree (i : Fin 18) : (backwardPolynomial i).tot
       apply (totalDegree_mul _ _).trans
       simp only [totalDegree_C, zero_add]
       apply totalDegree_sub_le_one <;> simp [first]
-    · apply totalDegree_add_le_one <;> simp [tailSum, tail]
+    · apply totalDegree_add_le_one <;> simp [tail]
   · intro j
     simp [backwardPolynomial, join, tail]
 

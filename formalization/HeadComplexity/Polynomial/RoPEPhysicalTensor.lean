@@ -50,7 +50,9 @@ def select (i j k : Fin 6) : Fin 3 → Fin 18 :=
 
 theorem select_injective (i j k : Fin 6) : Function.Injective (select i j k) := by
   have hval (a : Fin 3) : (select i j k a).val / 6 = a.val := by
-    fin_cases a <;> simp [select, blockIndex] <;> omega
+    fin_cases a
+    all_goals simp [select, blockIndex]
+    all_goals omega
   intro a b hab
   apply Fin.ext
   have h := congrArg (fun q : Fin 18 ↦ q.val / 6) hab
