@@ -35,7 +35,9 @@ import HeadComplexity.Model.PureRoPEHeadSchedules
 import HeadComplexity.Results.PureSourceLinearApproximation
 import HeadComplexity.Results.PureSecondReplicationDegree
 import HeadComplexity.Results.PureThirdReplicationLinear
+import HeadComplexity.Results.PureFifthReplicationNonlinear
 import HeadComplexity.Results.PureReplicationDivisibility
+import HeadComplexity.Results.PureGeneralReplicationDivisibility
 import HeadComplexity.Results.PureCommonShiftObstruction
 import HeadComplexity.Polynomial.RoPEClusterMoments
 import HeadComplexity.Polynomial.CommonBaseJetObstruction
@@ -43,6 +45,7 @@ import HeadComplexity.Results.PureGeneralSeparation
 import HeadComplexity.Results.PureGeneralSeparationAllLargeInputs
 import HeadComplexity.Results.PureGeneralCoefficientGap
 import HeadComplexity.Results.RoPEUniversalBudgets
+import HeadComplexity.Results.PureGeneralMonotoneSeparation
 
 set_option linter.style.header false
 
@@ -249,6 +252,14 @@ alias theorem23_free_budget_classification :=
 /-- **Theorem 23.** Each budget above two separates at every large input length. -/
 alias theorem23_every_large_input_length :=
   pureRoPE_separation_every_budget_every_large_input_length
+
+/-- **Theorem 23.** The same sharp universal cutoff holds among monotone functions. -/
+alias theorem23_monotone_budget_classification :=
+  universal_monotone_pure_to_vanilla_iff_head_le_two
+
+/-- **Theorem 23.** Monotone separating functions exist at every large input length. -/
+alias theorem23_monotone_every_large_input_length :=
+  monotone_pureRoPE_separation_every_budget_every_large_input_length
 
 /-- The third replication is again a nonconstant linear threshold. -/
 alias rope_third_replication_exact_minima :=

@@ -56,6 +56,14 @@ literal frequency conventions, and at every sufficiently large input length for
 each fixed budget above two. The coefficient obstruction has an existential
 positive uniform gap, even when factor parameters are unbounded.
 
+The entire separating family is monotone in its Boolean inputs.
+`universal_monotone_pure_to_vanilla_iff_head_le_two` gives the same sharp cutoff
+within monotone functions, using the original vanilla computability definition.
+`monotone_pureRoPE_separation_every_budget_every_large_input_length` gives
+monotone witnesses at every sufficiently large input length, with the same exact
+pure minimum and vanilla interval. Both are in
+`Results/PureGeneralMonotoneSeparation.lean`.
+
 The first three replications of the three-head family are also exact:
 `PureThreeReplicatedGrid.classifier_one_head_minima` gives all minima one, and
 `PureThreeReplicatedGrid.classifier_two_head_minima` gives all minima three.
@@ -92,12 +100,16 @@ at replication three, using the sharper covariance estimate in
 | 23 | separation at every head budget above two | `PureGeneralReplicatedGrid.eventually_complexity_separation_general` | `Results/PureGeneralSeparation.lean` |
 | 23 | complete classification of universal head budgets | `universal_pure_to_vanilla_iff_head_le_two` | `Results/RoPEUniversalBudgets.lean` |
 | 23 | every larger budget and every sufficiently large input length | `pureRoPE_separation_every_budget_every_large_input_length` | `Results/PureGeneralSeparationAllLargeInputs.lean` |
+| 23 | the same cutoff and separation within monotone functions | `universal_monotone_pure_to_vanilla_iff_head_le_two`, `monotone_pureRoPE_separation_every_budget_every_large_input_length` | `Results/PureGeneralMonotoneSeparation.lean` |
 
 `Results/InputPaddingInvariance.lean` proves exact invariance of all four minimum
 counts under adding unused bits. `Results/RoPEBoundaryCases.lean` states the
 zero-head and empty-input cases explicitly. `Model/PureRoPEHeadSchedules.lean`
 also permits a different free frequency list in each head and proves equivalence
 to the common standard-frequency architecture.
+`Results/HeadBudgetPullback.lean` proves exact head-budget preservation under
+surjective identification of input coordinates; it yields replication-divisibility
+monotonicity at every head count in `Results/PureGeneralReplicationDivisibility.lean`.
 
 Depends on [mathlib](https://github.com/leanprover-community/mathlib4) (version pinned
 in `lakefile.toml`). Build with:

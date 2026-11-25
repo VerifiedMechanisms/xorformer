@@ -168,3 +168,9 @@ The full coefficient-limit hypothesis is stronger than the selected mixed-coeffi
 The positive even replications all have threshold degree and pure minimum three, by pulling back along repeated input coordinates. This divisibility monotonicity is fully Lean-checked and is consistent with the consecutive minima one, three, one at replications one through three: those grids are not nested.
 
 A negative common denominator shift gives exact three-head vanilla certificates through replication eight. Both the expanded shift polynomial and the concrete affine rows were checked on all 427,292,180 six-count patterns with integer arithmetic. At replication nine, two explicit Boolean inputs rule out every admissible positive or negative common shift. That last obstruction is Lean-checked; it applies only to the common-shift representation.
+
+## 20. The separating functions are monotone
+
+The explicit all-head source has a stronger property than the separation needs: each head score increases strictly in each continuous cube coordinate. Its numerator coefficients are at least two, its denominator slopes have absolute value at most one, and its denominator base dominates the total numerator variation. The exact cross-multiplied difference is a sum of nonnegative coordinate increments times strictly positive coefficients. This proof is fully checked in `Results/PureGeneralMonotonicity.lean`.
+
+Replicated Boolean averages and dummy-input padding preserve coordinatewise order. Consequently the same universal head-budget cutoff, and the separation at every sufficiently large input length, hold within monotone Boolean functions. `Results/PureGeneralMonotoneSeparation.lean` states both results directly using the original vanilla computability and minimum-count definitions. No additional hypothesis is imposed on the separating family.
