@@ -2,7 +2,7 @@
 
 ## Status
 
-Audit completed during the final hour of the run, 2026-11-25 UTC. No audited source supplies the missing unrestricted logarithmic or fixed-power improvement. This is a report about the sources below, not a claim that no such theorem exists elsewhere.
+Audit completed during the final verification phase of the run, 2026-11-25 UTC. No audited source supplies the missing unrestricted logarithmic or fixed-power improvement. This is a report about the sources below, not a claim that no such theorem exists elsewhere.
 
 The original definition of `HeadComplexity.worstCaseHeadComplexity` remains unchanged. Denominators may depend on the target, all real coefficients and signed cancellation remain allowed, and the full-cube relative-margin hypotheses have not been removed.
 
