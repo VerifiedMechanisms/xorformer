@@ -18,7 +18,7 @@ $$ m\gt\frac{2\log(2^{n+1})}{\epsilon^2}. $$
 
 Sample $m$ face indicators from this mixture. Hoeffding's inequality and a union bound over the entire cube show that some empirical average has uniform error less than $\epsilon/2$: the failure probability is at most $2^{n+1}\exp(-m\epsilon^2/2)\lt1$. Approximate each sampled anchored indicator within $\epsilon/2$ by one genuine head of norm at most one, and scale it by $1/m$. The resulting original score has width $m$, zero bias, total full-cube amplitude at most one, and uniform error less than $\epsilon$.
 
-Thus products of arbitrarily many normalized constant-numerator heads of one orientation admit an $O(n/\epsilon^2)$-head value approximation with amplitude one. This is a written theorem; the repository's kernel-checked finite atomic sampling theorem supplies the probabilistic ingredient, but the full reciprocal-mixture construction is not newly formalized here.
+Thus products of arbitrarily many normalized constant-numerator heads of one orientation admit an $O(n/\epsilon^2)$-head value approximation with amplitude one. The exact product probability-mixture statement is kernel checked as `HeadComplexity.PositiveReciprocalExpansion.normalized_product_probability_expansion` in `Research/PositiveReciprocalExpansion.lean`, committed as `c580b9b2`. The repository's finite atomic sampling theorem supplies a kernel-checked probabilistic ingredient. Their assembly with norm-preserving genuine-head approximation and the stated width budget remains a written proof here.
 
 ## Mixed denominator orientations
 
