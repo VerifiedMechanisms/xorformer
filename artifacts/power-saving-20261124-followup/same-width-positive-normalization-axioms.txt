@@ -1,0 +1,9 @@
+'HeadComplexity.SameWidthPositiveNormalization.normalize_of_centered_nonpositive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SameWidthPositiveNormalization.hasNormalizedMargin_or_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.SameWidthPositiveNormalization.normalized_or_complement_of_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

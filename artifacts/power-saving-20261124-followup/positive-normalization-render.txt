@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/same_width_positive_normalization.md",
+    "source_spans": 23,
+    "rendered_spans": 23,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_positive_partition_gap.md",
+    "source_spans": 48,
+    "rendered_spans": 48,
+    "findings": [],
+    "notes": []
+  }
+]

@@ -1,0 +1,4 @@
+import HeadComplexity.Research.SameWidthPositiveNormalization
+#print axioms HeadComplexity.SameWidthPositiveNormalization.normalize_of_centered_nonpositive
+#print axioms HeadComplexity.SameWidthPositiveNormalization.hasNormalizedMargin_or_complement
+#print axioms HeadComplexity.SameWidthPositiveNormalization.normalized_or_complement_of_computable

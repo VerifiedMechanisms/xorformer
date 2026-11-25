@@ -4,7 +4,7 @@
 
 Shift every original head by its full-cube minimum and move the constants to the bias. The resulting heads are nonnegative, each has minimum zero, and the score has the form $\sum_h g_h-T$. When $T\gt0$, normalize $T=1$. Every negative input then has $\sum_h g_h(x)\lt1$.
 
-Control of nonnegative heads from their values on negative inputs can therefore give a useful amplitude estimate. It does not by itself give a signed gap. The remaining possibility $\sum_hg_h\approx1$ cannot be discarded merely by counting all representations near a positive partition: that class still contains every original truth table at an overhead of two heads.
+Control of nonnegative heads from their values on negative inputs can therefore give a useful amplitude estimate. It does not by itself give a signed gap. The remaining possibility $\sum_hg_h\approx1$ still contains every original truth table at an overhead of two heads. Counting this class may be useful, but its mere normalization does not remove any source truth table.
 
 ## An exact original two-head partition
 
@@ -54,8 +54,8 @@ are nonnegative genuine heads with total one. Each has minimum zero: use $x=0$ f
 
 This example uses only three shared affine statistics. It does not disprove a low-parameter classification after quotienting all exact dependencies, nor a truth-table-preserving repair with a constant width overhead.
 
-## First failed lemma and remaining possibility
+## Exact inclusion and remaining possibility
 
-The failed statement is that admitting a minimum-zero, nonnegative-head, bounded-amplitude representation arbitrarily close to the constant partition forces a small family of truth tables. Every original width $H$ table admits such a representation at width $H+2$. At the critical widths, the overhead is negligible.
+Every original width $H$ table admits a minimum-zero, nonnegative-head, bounded-amplitude representation arbitrarily close to the constant partition at width $H+2$. At the critical widths, this overhead is negligible. Thus the normalization does not itself discard any source truth table, and it refutes a positive lower gap for every chosen normalized representative. It does not independently refute a sharp upper count for the entire normalized class: such a count could itself settle the original unrestricted capacity problem.
 
 A useful replacement would have to select a representation after removing exact partition dependencies, and then either give a quantitative separation from the remaining partition strata or count every possible truth table carried by their degenerations. This is an existential access problem over complete representations. One artificial near-partition representation proves neither that the target has small optimal margin nor that every comparable-width representation remains near a partition. The proposed negative-vertex control can remain valid, but the step from that control to a healthy whole-table margin is still missing.
