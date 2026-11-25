@@ -156,3 +156,15 @@ The second-replication vanilla upper bound replaces each denominator $D_i$ by $D
 The [finite-factor residue argument](research/exact_finite_factor_obstruction.md) excludes every exact oriented affine-fraction representation of the three-head source boundary on the entire continuous cube. Every oriented hyperplane section retains an irreducible factor of degree at least two. Reducing a proposed polynomial identity modulo each denominator forces all those factors into a multiplier of insufficient degree. This does not exclude finite Boolean representations, nor their degenerate limits: denominator collisions and replica averaging prevent transferring that exact identity obstruction directly.
 
 A different [common-base jet argument](research/subset_and_jet_limits.md) excludes five-head regular second-order cubic moment constructions for a selected source section. `CommonBaseJetObstruction.no_five_head_endpoint_moments` is Lean-checked. It is restricted to that moment scheme and does not prove a six-head Boolean lower bound.
+
+## 18. Denominator collision clusters and multiscale limits
+
+The [highest-pole argument](research/collision_cluster_residue_obstruction.md) studies full coefficient limits of cleared rational sums with oriented denominators. The exact residue-annihilator identity makes the highest pole coefficient a limit of products of linear forms, even with divergent numerator coefficients and several collision scales. The source hyperplane-section obstruction then forces each distinct limiting denominator into the source multiplier. For four vanilla heads this leaves only one denominator cluster; for five heads only cluster sizes five or four plus one survive.
+
+The full coefficient-limit hypothesis is stronger than the selected mixed-coefficient convergence available after Boolean replica averaging. No improved Boolean lower bound follows. A concrete multiscale construction also shows that bounded zeroth and first moments do not imply the regular second-order jet bound on essential variables. Its nonzero fourth-order pole is recorded explicitly, so it does not settle the remaining triple-pole case.
+
+## 19. Replication divisibility and exact finite certificates
+
+The positive even replications all have threshold degree and pure minimum three, by pulling back along repeated input coordinates. This divisibility monotonicity is fully Lean-checked and is consistent with the consecutive minima one, three, one at replications one through three: those grids are not nested.
+
+A negative common denominator shift gives exact three-head vanilla certificates through replication eight. Both the expanded shift polynomial and the concrete affine rows were checked on all 427,292,180 six-count patterns with integer arithmetic. At replication nine, two explicit Boolean inputs rule out every admissible positive or negative common shift. That last obstruction is Lean-checked; it applies only to the common-shift representation.

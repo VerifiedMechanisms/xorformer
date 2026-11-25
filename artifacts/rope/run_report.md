@@ -1,6 +1,6 @@
 # RoPE Head Complexity Run Report
 
-> **Historical report.** This records the starting branch before the proof-track follow-up. Its open-problem and formalization status is superseded by [the proof-track report](proof_track_report.md) and [Theorem 22](../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md).
+> **Historical report.** This records the starting branch before the proof-track follow-up. Its open-problem and formalization status is superseded by [the proof-track report](proof_track_report.md) and [Theorem 23](../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md).
 
 ## Answer obtained
 

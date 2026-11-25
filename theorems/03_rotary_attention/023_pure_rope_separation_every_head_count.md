@@ -88,7 +88,7 @@ The common kernel $K$ of the physical denominator rows is the $H$-dimensional pa
 
 ## The closed obstruction for vanilla tensors
 
-Consider the degree $H$ mixed tensor of a cleared $H$-head vanilla score, retaining one coordinate from each of the $H$ blocks. Denominator rows in a block either have uniformly strict sign or are zero. Numerator rows are arbitrary; an arbitrary score constant can be absorbed into one numerator before clearing denominators.
+Consider the degree $H$ mixed tensor of a cleared $H$-head vanilla score, retaining one coordinate from each of the $H$ blocks. Each denominator has uniformly strict slope signs across its entire input vector, or its entire slope vector is zero. Restricting such a vector to any block preserves that same strict orientation; the zero case is global. Numerator rows are arbitrary; an arbitrary score constant can be absorbed into one numerator before clearing denominators.
 
 The common kernel of the $H$ denominator rows in the first $2H$-dimensional block has dimension at least $H$. Choose an orthonormal $H$-frame in it. Contracting along any member of this frame kills every term in which the first block supplies a denominator. In the surviving terms, the covectors in the second block belong to the span of its $H$ denominator rows. Thus each contraction flattening has rank at most $H$.
 
@@ -154,7 +154,7 @@ The principal declarations are:
 
 - `PureGeneralReplicatedGrid.eventually_complexity_separation_general` in [PureGeneralSeparation.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparation.lean) proves the full eventual family bounds and both rotary minimum identities for every $H\geq3$.
 
-- `universal_pure_to_vanilla_iff_head_le_two` in [RoPEUniversalBudgets.lean](../../formalization/HeadComplexity/Results/RoPEUniversalBudgets.lean) classifies every head budget. The same file proves the standard fixed-frequency, shared free-frequency, and headwise free-frequency versions.
+- `universal_pure_to_vanilla_iff_head_le_two` in [RoPEUniversalBudgets.lean](../../formalization/HeadComplexity/Results/RoPEUniversalBudgets.lean) classifies every head budget. The same file proves the standard fixed-frequency, shared free-frequency, and headwise free-frequency versions. `universal_pure_to_original_vanilla_iff_head_le_two` states the cutoff directly with the original `computableWithHeadsN`; `pureRoPE_separation_every_budget_original_minimum` uses the original `HStar`.
 
 - `pureRoPE_separation_every_budget_every_large_input_length` in [PureGeneralSeparationAllLargeInputs.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparationAllLargeInputs.lean) proves the separation at every sufficiently large input length for each fixed $H\geq3$.
 

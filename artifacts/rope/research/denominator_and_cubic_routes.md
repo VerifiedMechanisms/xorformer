@@ -1,5 +1,7 @@
 # Denominator and Cubic Route Audits
 
+> **Historical route audit.** The open proof steps recorded here were subsequently resolved in [Theorem 22](../../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) and generalized in [Theorem 23](../../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md). Both complete separation results are now Lean-checked. The failed-transform calculations below remain valid within their stated scope.
+
 These notes record routes investigated after the unconditional two-head proof. They do not prove or refute universal head preservation. The proved comparison results are stated in Theorems 16, 17, and 21; the pure architectural bridge is Theorem 18.
 
 ## A common projective input shift can fail

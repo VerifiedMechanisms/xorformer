@@ -65,6 +65,8 @@ The theorem characterizes exactly which coefficient tuples are admissible. Every
   $\deg_{\pm}(f_{10})=2 \lt 3\leq H^{\ast}(f_{10})$. Thus threshold degree is a genuine
   lower bound, not an exact characterization of head complexity.
 
+**Pure rotary attention.** Replacing additive positions by query/key-only RoPE, with token-only unrotated values, gives the same Boolean classes as vanilla at every head budget at most two. At every larger budget $H$, an explicit family eventually has pure minimum $H$ and vanilla minimum between $H+1$ and $2^H-2$. This strict separation is fully Lean-checked in the literal fixed-query architecture for standard and free frequencies. The architectural comparison also covers zero inputs and zero heads. See [Theorem 23](theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md) and the [proof-track report](artifacts/rope/proof_track_report.md).
+
 Taken together this is a *partial* characterization, not yet a single invariant
 $I(f)$ with $H^{\ast}(f) \asymp I(f)$. Closing that gap is the main open problem.
 

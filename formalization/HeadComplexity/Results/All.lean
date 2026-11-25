@@ -35,6 +35,9 @@ import HeadComplexity.Model.PureRoPEHeadSchedules
 import HeadComplexity.Results.PureSourceLinearApproximation
 import HeadComplexity.Results.PureSecondReplicationDegree
 import HeadComplexity.Results.PureThirdReplicationLinear
+import HeadComplexity.Results.PureReplicationDivisibility
+import HeadComplexity.Results.PureCommonShiftObstruction
+import HeadComplexity.Polynomial.RoPEClusterMoments
 import HeadComplexity.Polynomial.CommonBaseJetObstruction
 import HeadComplexity.Results.PureGeneralSeparation
 import HeadComplexity.Results.PureGeneralSeparationAllLargeInputs
@@ -250,5 +253,9 @@ alias theorem23_every_large_input_length :=
 /-- The third replication is again a nonconstant linear threshold. -/
 alias rope_third_replication_exact_minima :=
   PureThreeReplicatedGrid.classifier_three_head_minima
+
+/-- Every positive even replication has exact pure minimum three. -/
+alias rope_even_replication_exact_pure_minimum :=
+  PureThreeReplicatedGrid.classifier_even_pure_head_minimum
 
 end HeadComplexity

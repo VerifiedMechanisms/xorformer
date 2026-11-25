@@ -23,7 +23,7 @@ Both rotary complexities are independent of whether the frequencies are fixed to
 
 **Strict retained comparison.** The seven-bit function in [Theorem 15's corollary](015_pure_rope_two_heads_complement_invariant.md) satisfies $H_A(f)=2\lt3=H_P(f)=H_V(f)$. Thus retaining positional embeddings alongside RoPE can strictly reduce head count.
 
-**Strict pure comparison.** [Theorem 22](022_pure_rope_three_head_separation.md) constructs an explicit replicated family with $H_P(f)=3$ and $4\leq H_V(f)\leq6$ for all sufficiently large replication counts. Its mathematical proof uses compactness and polynomial divisibility; the full lower bound is not yet Lean-formalized. The strict score separation below is a different statement and is not used to prove that Boolean separation.
+**Strict pure comparison.** [Theorem 22](022_pure_rope_three_head_separation.md) constructs an explicit replicated family with $H_P(f)=3$ and $4\leq H_V(f)\leq6$ for all sufficiently large replication counts. Its full Boolean lower bound and literal rotary transfer are Lean-checked. [Theorem 23](023_pure_rope_separation_every_head_count.md) strengthens this to every head budget $H\geq3$, with pure minimum $H$ and vanilla minimum between $H+1$ and $2^H-2$; the complete arbitrary-head proof is also Lean-checked. The strict score separation below is a different statement and is not used to prove that Boolean separation.
 
 ## Model conventions
 
