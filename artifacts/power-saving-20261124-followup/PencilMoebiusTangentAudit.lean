@@ -1,0 +1,6 @@
+import HeadComplexity.Research.PencilMoebiusTangentObstruction
+#print axioms HeadComplexity.PencilMoebiusTangentObstruction.atom_eval
+#print axioms HeadComplexity.PencilMoebiusTangentObstruction.score_pos
+#print axioms HeadComplexity.PencilMoebiusTangentObstruction.annihilator_tangent
+#print axioms HeadComplexity.PencilMoebiusTangentObstruction.annihilator_moebius
+#print axioms HeadComplexity.PencilMoebiusTangentObstruction.no_moebius_tangent

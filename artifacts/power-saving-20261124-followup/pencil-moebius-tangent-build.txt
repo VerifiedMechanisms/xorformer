@@ -1,0 +1,11 @@
+⚠ [3228/3228] Built HeadComplexity.Research.PencilMoebiusTangentObstruction (6.4s)
+warning: HeadComplexity/Research/PencilMoebiusTangentObstruction.lean:7:0: Unscoped option maxHeartbeats is not allowed:
+Please scope this to individual declarations, as in
+```
+set_option maxHeartbeats in
+-- comment explaining why this is necessary
+example : ... := ...
+```
+
+Note: This linter can be disabled with `set_option linter.style.setOption false`
+Build completed successfully (3228 jobs).

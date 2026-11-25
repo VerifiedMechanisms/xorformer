@@ -1,0 +1,11 @@
+'HeadComplexity.PencilMoebiusTangentObstruction.atom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PencilMoebiusTangentObstruction.score_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PencilMoebiusTangentObstruction.annihilator_tangent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PencilMoebiusTangentObstruction.annihilator_moebius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PencilMoebiusTangentObstruction.no_moebius_tangent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
