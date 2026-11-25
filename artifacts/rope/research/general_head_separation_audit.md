@@ -1,6 +1,6 @@
 # Independent Audit of the Arbitrary Head Separation
 
-This note records an independent check of [Theorem 23](../../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md). The argument establishes a mathematical separation at every fixed head budget above two. The complete three-head lower bound is already Lean-checked; the arbitrary-head strengthening does not yet have a complete Lean formalization.
+This note records an independent check of [Theorem 23](../../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md). The argument establishes a separation at every fixed head budget above two. The complete arbitrary-head separation is now Lean-checked in `PureGeneralSeparation.lean`, including the actual classifier, averaging, polynomial limit, physical coordinate, contraction rank, and compact frame steps.
 
 ## Source family and architectural constraints
 
@@ -56,4 +56,6 @@ $$ \forall H\geq3\ \exists m_0\ \forall m\geq m_0,\qquad H^{\ast}_{\mathrm{pure}
 
 Together with the already proved zero-, one-, and two-head equivalences, this proves that the universal reverse implication holds exactly for budgets at most two. Exact invariance under adding unused input bits also gives a separating function at every sufficiently large input length for each fixed $H\geq3$.
 
-No mathematical gap was found in this independent audit. The remaining scope distinction is formalization: the complete Lean refutation is already available at three heads, while the general-head tensor and polynomial interfaces still require a full Lean assembly.
+No mathematical gap was found in this independent audit. The full Lean assembly is available in [PureGeneralSeparation.lean](../../../formalization/HeadComplexity/Results/PureGeneralSeparation.lean). Its theorem `eventually_complexity_separation_general` proves the displayed conclusion for every head count at least three, with no residual obstruction premise. Its theorem `eventually_not_vanilla_general` states the corresponding actual Boolean noncomputability result directly.
+
+The formal compactness argument explicitly handles zero denominator matrices. An infinite zero-matrix subsequence would force every direction into the paired source kernel, which is impossible. Once these indices are excluded, each remaining oriented nonzero matrix supplies the positive normal needed for the frame contradiction. No lower bound on denominator slope magnitudes or bound on individual head parameters is assumed.

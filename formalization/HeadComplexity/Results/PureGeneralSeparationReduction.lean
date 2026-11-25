@@ -5,12 +5,12 @@ import HeadComplexity.Results.RoPEGeneralBounds
 set_option linter.style.header false
 
 /-!
-# Remaining algebraic interface for the arbitrary-head separation
+# Algebraic reduction for the arbitrary-head separation
 
 All actual classifier, architecture, averaging, and analytic limit steps are
-proved. The premise retained here is precisely the finite-dimensional
-oriented-factor coefficient-limit obstruction for the actual source.
-The complete H=3 separation does not require this premise.
+proved. This module isolates the finite-dimensional oriented-factor
+coefficient-limit obstruction for the actual source. The subsequent module
+`PureGeneralSeparation` proves that obstruction and the unconditional result.
 -/
 
 namespace HeadComplexity.PureGeneralReplicatedGrid
