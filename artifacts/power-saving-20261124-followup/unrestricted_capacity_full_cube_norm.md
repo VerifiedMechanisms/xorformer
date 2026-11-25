@@ -10,7 +10,7 @@ Indeed, multiply the two absolute-value inequalities by the positive denominator
 
 If $b_i\geq0$ and $m\geq0$, the two residual-maximizing vertices can be chosen with disjoint supports: the inequalities $a_i-mb_i\gt0$ and $-a_i-mb_i\gt0$ cannot both hold. There are at most $3^n$ such pairs of selected residual faces for one positively oriented head. This observation counts the norm constraints, not the target-contact constraints.
 
-The equivalence and the disjointness statement are kernel checked in `HeadComplexity.Research.FullCubeNormOptimization` as `ratio_norm_bound_iff` and `residual_positive_parts_disjoint`. The equivalence allows arbitrary affine numerator coefficients and arbitrary denominator coefficients subject only to full-cube positivity, so it applies to both admissible coherent orientations.
+The equivalence and the disjointness statement are kernel checked in `HeadComplexity.FullCubeNormOptimization` as `ratio_norm_bound_iff` and `residual_positive_parts_disjoint`. The equivalence allows arbitrary affine numerator coefficients and arbitrary denominator coefficients subject only to full-cube positivity, so it applies to both admissible coherent orientations.
 
 ## Optimal redistribution of constants
 
@@ -81,3 +81,17 @@ Evaluating the new interval budget at its rational center gives approximately $1
 ## Verification scope
 
 `FullCubeNormOptimization.lean` contains the kernel-checked finite identities and conditional algebraic implications. `FullCubeNormAudit.lean` and `full-cube-norm-axioms.txt` record their transitive axioms; only the standard foundational axioms occur. `full-cube-norm-build.txt` records the module build. No unrestricted power-saving lower bound follows from this checkpoint.
+
+## The cross-head moment obstruction
+
+There is a further exact consequence of the unit-contact equations. Keep the smooth stationarity notation and put $G(x)=\sum_hg_h(x)=K-S(x)$. The multipliers are supported where $S(x)^2=1$, and stationarity gives $\sum_x\mu_x=1$ and $\sum_x\mu_xS(x)=K$. Expanding yields
+
+$$ \sum_x\mu_xG(x)^2=1-K^2,\qquad \sum_{h,k}\sum_x\mu_xg_h(x)g_k(x)=1-K^2. $$
+
+Each diagonal term vanishes by the within-head stationarity identity. Consequently, if $K\gt1$, there must be two distinct heads with a negative signed cross moment. The exact algebra is kernel checked in `FullCubeNormCrossMoments.lean` as `total_gap_second_moment`, `sum_pair_moments`, and `exists_negative_cross`. These declarations retain the contact and stationarity hypotheses explicitly.
+
+The diagonal moment information alone cannot bound $K$. Here is a three-row scalar countermodel, not a claimed original-head representation. For any $t\geq1$, take $K=2t^2+1$, scores $(1,1,-1)$, and signed weights $((t^2+1)/2,(t^2+1)/2,-t^2)$. Let the two gap vectors be $(t^2+t,t^2-t,t^2+1)$ and $(t^2-t,t^2+t,t^2+1)$. Both are nonnegative. Each has zero signed first and second moment, while their sum is $K-S$ and their cross moment is $-2t^2(t^2+1)$. Thus arbitrarily large budgets are compatible with these scalar identities. The three declarations `example_moments`, `example_gap_nonnegative`, and `example_cross` verify this finite algebra. The full vector stationarity conditions are stronger and are not asserted for this countermodel.
+
+The first missing constructive step is a joint replacement that uses a negative cross moment while preserving the head budget and the full-cube norm budget. For a common interior denominator, a product $(A_1/B)(A_2/B)$ is a two-head derivative limit. Its stand-alone approximating coefficients grow like the reciprocal step size, so value approximation alone does not control the amplitude. For distinct denominators, the standard resolvent identity represents the product using an integral of double-pole terms along a denominator segment. A constant-size quadrature with arbitrary accuracy is not established. The exact Boolean tangent obstruction in `PencilMoebiusTangentObstruction.lean` already rules out the simplest same-width tangent construction with arbitrary affine numerators.
+
+A uniform fixed-head product compiler would also approximate every mixed point indicator by a fixed number of heads: multiply a positive-orientation anchored zero-face indicator by a negative-orientation anchored one-face indicator. The scalar mixed-cylinder construction uses $\max(1,\min(r,s))$ heads for $r$ positive and $s$ negative literals. Its same-orientation lower bound is proved, but a growing lower bound allowing both orientations remains open. This observation does not prove that the desired product compiler is impossible.

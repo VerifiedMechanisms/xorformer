@@ -1,0 +1,12 @@
+'HeadComplexity.FullCubeNormCrossMoments.total_gap_second_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FullCubeNormCrossMoments.sum_pair_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullCubeNormCrossMoments.exists_negative_cross' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FullCubeNormCrossMoments.example_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.FullCubeNormCrossMoments.example_gap_nonnegative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.FullCubeNormCrossMoments.example_cross' depends on axioms: [propext, Classical.choice, Quot.sound]

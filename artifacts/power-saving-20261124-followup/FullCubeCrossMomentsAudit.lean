@@ -1,0 +1,7 @@
+import HeadComplexity.Research.FullCubeNormCrossMoments
+#print axioms HeadComplexity.FullCubeNormCrossMoments.total_gap_second_moment
+#print axioms HeadComplexity.FullCubeNormCrossMoments.sum_pair_moments
+#print axioms HeadComplexity.FullCubeNormCrossMoments.exists_negative_cross
+#print axioms HeadComplexity.FullCubeNormCrossMoments.example_moments
+#print axioms HeadComplexity.FullCubeNormCrossMoments.example_gap_nonnegative
+#print axioms HeadComplexity.FullCubeNormCrossMoments.example_cross
