@@ -72,6 +72,8 @@ The extraction proof also works when every head chooses a separate frequency lis
 
 Every such score has an exact realization using the common fixed-standard schedule above. In particular, allowing separate freely chosen frequencies for different heads gives the same Boolean class at every head count as shared freely chosen frequencies or the fixed-standard schedule. This is an additional extraction theorem, not a change to the original architecture definitions.
 
+The same interpolation proof covers every other fixed geometric base $B\gt1$, with frequencies $B^{-r/m}$ for $r=0,\ldots,m-1$. These angles are distinct and lie in $(0,1]$, so the same Vandermonde argument applies at common width $2(n+2)$. `rectangularGeometricPureRotaryComputable_iff_scalar` proves the full budget equivalence, including $n=0$ and $H=0$, in the separate module `Model/PureRoPEPositiveBase.lean`. The original standard definition with base $10000$ is unchanged. This extension also has exact real-score realization, proved by `exists_geometricPureRotaryFamily_score`.
+
 ## Audit against the original model
 
 The audit compares the definitions with [`model.md`](../../model.md) and the original checkout `bdca97f`. The original `Head.lean`, `SharedEmbedding.lean`, `AdditiveSplit.lean`, `SkipConnection.lean`, and `model.md` are unchanged. The pure rotary definitions and bridge modules are additions.
@@ -103,3 +105,5 @@ The core implementation adds four modules and changes no pre-existing model defi
 All four core modules build. The repository axiom checker audits 105 theorem declarations across them and reports only `propext`, `Classical.choice`, and `Quot.sound`. No `sorry` or project-defined axiom is used.
 
 The extension `HeadComplexity/Model/PureRoPEHeadSchedules.lean` proves `RectangularPureRotaryFamily.exists_standard_score_of_headSchedules`, `rectangularHeadwiseFreePureRotaryComputable_iff_scalar`, and `rectangularHeadwiseFreePureRotaryComputable_iff_standard`. The module `HeadComplexity/Results/RoPEBoundaryCases.lean` proves the zero-head constant-function characterizations and `empty_input_head_minima`, which makes all four zero minima at empty input explicit. Each additional module builds, and each of its six theorem declarations has the same standard-axiom-only audit.
+
+The parameterized-base extension `HeadComplexity/Model/PureRoPEPositiveBase.lean` builds, and all ten theorem declarations have the same standard-axiom-only audit. Its exact score construction uses width $2(n+2)$ independently of the base and the head count.

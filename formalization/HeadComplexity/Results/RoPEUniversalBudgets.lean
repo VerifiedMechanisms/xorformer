@@ -1,6 +1,7 @@
 import HeadComplexity.Results.PureGeneralSeparationAllLargeInputs
 import HeadComplexity.Results.RoPEBoundaryCases
 import HeadComplexity.Model.PureRoPEHeadSchedules
+import HeadComplexity.Model.PureRoPEPositiveBase
 
 set_option linter.style.header false
 
@@ -116,5 +117,21 @@ theorem pureRoPE_separation_every_budget_original_minimum
       StandardPureRoPEHStar n f = H ∧ FreePureRoPEHStar n f = H := by
   simpa only [SharedHStar_eq_HStar] using
     pureRoPE_separation_every_budget_every_large_input_length H hH
+
+/-- Every other prescribed geometric base above one has the same budget cutoff. -/
+theorem universal_geometric_rotary_to_vanilla_iff_head_le_two
+    {B : ℝ} (hB : 1 < B) (H : ℕ) :
+    (∀ (n : ℕ) (f : (Fin n → Bool) → Bool),
+      rectangularGeometricPureRotaryComputable B n H f →
+        computableWithHeadsN n H f) ↔ H ≤ 2 := by
+  constructor
+  · intro h
+    apply (universal_pure_to_original_vanilla_iff_head_le_two H).mp
+    intro n f hp
+    exact h n f ((rectangularGeometricPureRotaryComputable_iff_scalar hB n H f).mpr hp)
+  · intro hH n f hp
+    exact computableWithHeadsN_of_computableWithSharedHeadsN
+      ((pureRoPEComputable_iff_vanilla_of_le_two f hH).mp
+        ((rectangularGeometricPureRotaryComputable_iff_scalar hB n H f).mp hp))
 
 end HeadComplexity
