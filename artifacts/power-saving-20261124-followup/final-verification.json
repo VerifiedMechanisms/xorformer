@@ -1,0 +1,34 @@
+{
+  "base": "aa0cceb140ba75149353f92943b1fba78e7e0ec5",
+  "head": "837d8692b2c9266e44eb861e33f296fedc683057",
+  "started_utc": "2026-11-25T03:01:36.779533+00:00",
+  "module_count": 152,
+  "checks": [
+    {
+      "name": "default-build",
+      "exit_code": 0,
+      "seconds": 1.586343,
+      "log": "final-default-build.txt"
+    },
+    {
+      "name": "research-build",
+      "exit_code": 0,
+      "seconds": 2.711083,
+      "log": "final-research-build.txt"
+    },
+    {
+      "name": "transitive-axioms",
+      "exit_code": 0,
+      "seconds": 6.612085,
+      "log": "final-transitive-axioms.txt"
+    },
+    {
+      "name": "main-print-axioms",
+      "exit_code": 0,
+      "seconds": 3.044261,
+      "log": "final-main-print-axioms.txt"
+    }
+  ],
+  "finished_utc": "2026-11-25T03:01:50.733535+00:00",
+  "all_passed": true
+}
