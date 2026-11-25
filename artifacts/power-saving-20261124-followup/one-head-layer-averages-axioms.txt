@@ -1,0 +1,17 @@
+'HeadComplexity.OneHeadLayerAverages.label_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.label_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.label_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.label_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.sum_affine_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.sum_affine_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.mean_affine_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.mean_affine_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.affine_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.affine_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.affine_uniformSlope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.label_true_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.witness_layer_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.four_rows_of_affine_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OneHeadLayerAverages.affine_ratio_budget' depends on axioms: [propext, Classical.choice, Quot.sound]

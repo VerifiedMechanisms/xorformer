@@ -1,0 +1,16 @@
+import HeadComplexity.Research.OneHeadLayerAverages
+#print axioms HeadComplexity.OneHeadLayerAverages.label_zero
+#print axioms HeadComplexity.OneHeadLayerAverages.label_one
+#print axioms HeadComplexity.OneHeadLayerAverages.label_singleton
+#print axioms HeadComplexity.OneHeadLayerAverages.label_pair
+#print axioms HeadComplexity.OneHeadLayerAverages.sum_affine_singleton
+#print axioms HeadComplexity.OneHeadLayerAverages.sum_affine_pair
+#print axioms HeadComplexity.OneHeadLayerAverages.mean_affine_singleton
+#print axioms HeadComplexity.OneHeadLayerAverages.mean_affine_pair
+#print axioms HeadComplexity.OneHeadLayerAverages.affine_zero
+#print axioms HeadComplexity.OneHeadLayerAverages.affine_one
+#print axioms HeadComplexity.OneHeadLayerAverages.affine_uniformSlope
+#print axioms HeadComplexity.OneHeadLayerAverages.label_true_iff
+#print axioms HeadComplexity.OneHeadLayerAverages.witness_layer_bounds
+#print axioms HeadComplexity.OneHeadLayerAverages.four_rows_of_affine_constraints
+#print axioms HeadComplexity.OneHeadLayerAverages.affine_ratio_budget
