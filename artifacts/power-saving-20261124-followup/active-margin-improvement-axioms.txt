@@ -1,0 +1,13 @@
+'HeadComplexity.ActiveMarginImprovement.finite_positive_perturbation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ActiveMarginImprovement.corrected_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.ActiveMarginImprovement.corrected_amplitude_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ActiveMarginImprovement.exists_strict_margin_improvement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ActiveMarginImprovement.exists_improvement_of_active_interpolation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

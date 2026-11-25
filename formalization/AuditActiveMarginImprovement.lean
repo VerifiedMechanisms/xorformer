@@ -1,0 +1,7 @@
+import HeadComplexity.Research.ActiveMarginImprovement
+
+#print axioms HeadComplexity.ActiveMarginImprovement.finite_positive_perturbation
+#print axioms HeadComplexity.ActiveMarginImprovement.corrected_score
+#print axioms HeadComplexity.ActiveMarginImprovement.corrected_amplitude_le
+#print axioms HeadComplexity.ActiveMarginImprovement.exists_strict_margin_improvement
+#print axioms HeadComplexity.ActiveMarginImprovement.exists_improvement_of_active_interpolation
