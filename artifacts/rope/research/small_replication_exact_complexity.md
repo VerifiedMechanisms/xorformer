@@ -1,6 +1,19 @@
-# Exact Head Counts at the First Three Replication Counts
+# Small Replication Counts: Exact Minima and Degree Certificates
 
-The source family from [Theorem 22](../../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) does not separate the architectures at its first three replication counts. Their minima are one, three, and one in both models. In particular, the minimum need not increase with the replication count. The arguments below also explain why numerical fitting failures at small replication counts cannot establish separation.
+The source family from [Theorem 22](../../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md) does not separate the architectures at its first eight replication counts. The first three minima are one, three, and one in both models. In particular, the minimum need not increase with the replication count. The arguments below also explain why numerical fitting failures at small replication counts cannot establish separation.
+
+| Replication count | Common minimum head count | Threshold degree |
+| --- | --- | --- |
+| 1 | 1 | 1 |
+| 2 | 3 | 3 |
+| 3 | 1 | 1 |
+| 4 | 3 | 3 |
+| 5 | Either 2 or 3, unresolved | 2 |
+| 6 | 3 | 3 |
+| 7 | 3 | 3 |
+| 8 | 3 | 3 |
+
+The finite vanilla upper certificates for replications four through eight and the quadratic upper certificate for replication five are exhaustive integer computations. The lower bounds, pure rotary realizations, and complete results at replications one through three are Lean-checked.
 
 ## The first replication is a weighted majority
 
@@ -134,4 +147,22 @@ The three positive scores are $49292/30441495$ and the three negative scores are
 
 An affine score has equal sums over the two triples. It cannot be strictly positive at all three positive inputs and nonpositive at all three negative inputs. This exact first-moment obstruction is Lean-checked in [`PureFifthReplicationNonlinear.lean`](../../../formalization/HeadComplexity/Results/PureFifthReplicationNonlinear.lean), including `classifier_five_not_isLTF`, `classifier_five_threshold_degree_lower`, and `classifier_five_head_minima_lower`.
 
-Consequently the fifth replication has threshold degree exactly two, with the upper bound certified by exhaustive integer arithmetic and the lower bound certified in Lean. Each architecture's minimum head count lies in $\lbrace2,3\rbrace$. The quadratic certificate alone does not give a two-head representation, and the exact minimum head count at replication five remains open here.
+Consequently the fifth replication has threshold degree exactly two, with the upper bound certified by exhaustive integer arithmetic and the lower bound certified in Lean. All four architectures have the same minimum, which lies in $\lbrace2,3\rbrace$: if the pure minimum is two, the two-head equivalence gives vanilla minimum two; otherwise the pure lower bound and vanilla upper certificate force both minima to equal three. The quadratic certificate alone does not give a two-head representation, and this common minimum at replication five remains unresolved here.
+
+## Replication seven has threshold degree three
+
+At replication seven, the obstruction to quadratics returns. Take the six simultaneous permutations of each of the following aggregate patterns:
+
+$$ (a;b)=(-21,9,19;9,1,-19),\qquad (a';b')=(-21,9,19;13,-15,-7). $$
+
+The actual aggregates are $A_i=a_i/7$ and $B_i=b_i/7$. Every permutation of the first pattern has source score $3637/346730560\gt0$, whereas every permutation of the second has score $-203/346729048\lt0$.
+
+The two permutation orbits have matching constant, first, and second moments. In both cases,
+
+$$ \sum_i a_i=7,\qquad\sum_i b_i=-9,\qquad\sum_i a_i^2=883,\qquad\sum_i b_i^2=443,\qquad\sum_i a_i b_i=-541. $$
+
+These five identities determine every first and second moment after simultaneous permutation averaging. Thus the sum of any quadratic polynomial over the positive orbit equals its sum over the negative orbit. Strict positivity on the first and nonpositivity on the second would contradict this equality.
+
+This rules out quadratics in the original 126 Boolean variables as well. Independently average any proposed Boolean quadratic over all permutations inside each of the six types, each containing 21 coordinates. A diagonal Boolean monomial becomes the type count divided by 21; a product of distinct coordinates of the same type becomes $k(k-1)/(21\cdot20)$; a product from two different types becomes the product of their counts divided by $21^2$. Hence the averaged polynomial is quadratic in the six counts, preserves the source signs, and contradicts the orbit moment identity above.
+
+The exact two orbits, moment comparisons, and rational scores are recorded in [`check_seventh_quadratic_obstruction.py`](../search/check_seventh_quadratic_obstruction.py) and [`seventh_replication_quadratic_obstruction.exact.json`](../search/seventh_replication_quadratic_obstruction.exact.json). The complete Boolean lower bound, including the six-type reindexing and independent permutation averaging, is Lean-checked in [`PureSeventhReplicationDegree.lean`](../../../formalization/HeadComplexity/Results/PureSeventhReplicationDegree.lean), with declarations `classifier_seven_not_thresholdDegLE_two`, `classifier_seven_pure_head_minimum`, and `classifier_seven_threshold_degree`. Together with the exhaustive vanilla three-head upper certificate, this proves threshold degree three and all four minimum head counts equal to three at replication seven. The vanilla upper certificate remains an exhaustive integer computation, while all lower bounds and the pure upper realization are formalized.
