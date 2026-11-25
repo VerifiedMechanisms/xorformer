@@ -2,7 +2,7 @@
 
 ## Statement and scope
 
-There is a uniform, parameter-independent observation bound for nonnegative original heads outside a small exceptional subset of the cube. It does not require the observed vertex to maximize the head. The deterministic bound is kernel checked in `Research/SelectedNegativeControl.lean`; the random exceptional-set estimate below is a written finite proof.
+There is a uniform, parameter-independent observation bound for nonnegative original heads outside a small exceptional subset of the cube. It does not require the observed vertex to maximize the head. The deterministic bound is kernel checked in `Research/SelectedNegativeControl.lean`; the exact binomial arithmetic is kernel checked in `Research/NegativeObservationBinomial.lean`; the random exceptional-set estimate below is a written finite proof.
 
 This bound concerns values of nonnegative heads. It does not bound a strict sign gap, produce a narrow repair, or count unrestricted truth tables. The positive-partition obstruction at the end explains why that distinction is necessary.
 
@@ -56,13 +56,15 @@ For example, with probability at least $1/2$,
 
 $$ |E(Z)|\leq4\left(1+\frac n3\right)\left(\frac32\right)^n. $$
 
+`NegativeObservationBinomial.weighted_binomial_half` proves the weighted generating-function identity, and `full_independent_sum` proves the complete downward-plus-upward sum using binomial reflection. These declarations concern finite real sums only. The probability calculation and the application of Markov's inequality remain written arguments.
+
 No independence between exceptional-vertex events is needed. Only independence of the distinct neighbors of one fixed vertex is used in the probability calculation.
 
 The conclusion also holds for an exactly balanced random half, with a slightly larger constant. Suppose $n\geq1$ and $Z$ is uniform among subsets of size $2^{n-1}$. Any specified $s$ distinct vertices all miss $Z$ with probability at most $2^{-s}$, by sampling without replacement. For $r\geq1$, the event of exactly one observed downward neighbor is contained in the union, over its possible location, of the events that the other $r-1$ neighbors all miss $Z$. Hence the probability of fewer than two observed downward neighbors is at most $(1+2r)2^{-r}$. The same bound also covers $r=0$. Therefore
 
 $$ \mathbb E|E(Z)|\leq2\left(1+\frac{2n}3\right)\left(\frac32\right)^n $$
 
-for the exactly balanced model. At either critical width in this run, even a polynomial multiple of this exceptional-set size is negligible relative to the width, because $(3/2)^n/2^n=(3/4)^n$ decays exponentially.
+for the exactly balanced model. `NegativeObservationBinomial.balanced_binomial_half` proves the corresponding finite-sum identity. At either critical width in this run, even a polynomial multiple of this exceptional-set size is negligible relative to the width, because $(3/2)^n/2^n=(3/4)^n$ decays exponentially.
 
 ## The gap remains after centering
 
@@ -72,4 +74,4 @@ The precise obstruction is in [unrestricted_capacity_positive_partition_gap.md](
 
 ## Verification
 
-`SelectedNegativeControl.lean` contains the deterministic subset inequality, both Boolean edge directions, the complete original-head bridge, and the summed observation bound. The accompanying build and transitive axiom outputs distinguish those kernel-checked declarations from the written probability computation. No original definition was modified.
+`SelectedNegativeControl.lean` contains the deterministic subset inequality, both Boolean edge directions, the complete original-head bridge, and the summed observation bound. `NegativeObservationBinomial.lean` proves the finite binomial identities. The accompanying build and transitive axiom outputs distinguish those kernel-checked declarations from the written probability computation. No original definition was modified.

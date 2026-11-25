@@ -1,0 +1,16 @@
+'HeadComplexity.NegativeObservationBinomial.binomial_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NegativeObservationBinomial.weighted_binomial_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NegativeObservationBinomial.binomial_reflection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NegativeObservationBinomial.full_independent_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NegativeObservationBinomial.two_sided_independent_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NegativeObservationBinomial.balanced_binomial_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

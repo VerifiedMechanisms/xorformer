@@ -1,0 +1,8 @@
+import HeadComplexity.Research.NegativeObservationBinomial
+
+#print axioms HeadComplexity.NegativeObservationBinomial.binomial_half
+#print axioms HeadComplexity.NegativeObservationBinomial.weighted_binomial_half
+#print axioms HeadComplexity.NegativeObservationBinomial.binomial_reflection
+#print axioms HeadComplexity.NegativeObservationBinomial.full_independent_sum
+#print axioms HeadComplexity.NegativeObservationBinomial.two_sided_independent_sum
+#print axioms HeadComplexity.NegativeObservationBinomial.balanced_binomial_half
