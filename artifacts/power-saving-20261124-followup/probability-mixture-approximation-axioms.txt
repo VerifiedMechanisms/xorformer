@@ -1,0 +1,27 @@
+'HeadComplexity.ProbabilityMixtureApproximation.exists_empirical_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.exists_weighted_empirical_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.exists_weighted_empirical_approximation_unitInterval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.normalized_product_empirical_faces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.exists_normalized_atom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.empirical_faces_to_heads' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.normalized_product_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.normalized_product_approximation_of_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ProbabilityMixtureApproximation.normalized_negative_product_approximation_of_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
