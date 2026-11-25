@@ -1,0 +1,21 @@
+'HeadComplexity.LiteralMarginNonattainmentWitness.weight_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_eval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_abs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_signed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_sup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LiteralMarginNonattainmentWitness.literal_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LiteralMarginNonattainmentWitness.hasRelativeMargin_below_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

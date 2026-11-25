@@ -1,0 +1,8 @@
+import HeadComplexity.Research.LiteralMarginNonattainmentWitness
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.weight_bounds
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_eval
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_abs
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_signed
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.literalAtom_sup
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.literal_margin
+#print axioms HeadComplexity.LiteralMarginNonattainmentWitness.hasRelativeMargin_below_one
