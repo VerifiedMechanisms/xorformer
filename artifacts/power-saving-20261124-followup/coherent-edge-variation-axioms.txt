@@ -1,0 +1,12 @@
+'HeadComplexity.CoherentEdgeVariation.sum_div_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoherentEdgeVariation.sum_abs_edge_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoherentEdgeVariation.affine_ratio_corner_variation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentEdgeVariation.mixedContrast_bound_of_down' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.CoherentEdgeVariation.mixedContrast_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.CoherentEdgeVariation.mixedContrast_bound_of_up' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,7 @@
+import HeadComplexity.Research.CoherentEdgeVariation
+#print axioms HeadComplexity.CoherentEdgeVariation.sum_div_le
+#print axioms HeadComplexity.CoherentEdgeVariation.sum_abs_edge_le
+#print axioms HeadComplexity.CoherentEdgeVariation.affine_ratio_corner_variation
+#print axioms HeadComplexity.CoherentEdgeVariation.mixedContrast_bound_of_down
+#print axioms HeadComplexity.CoherentEdgeVariation.mixedContrast_swap
+#print axioms HeadComplexity.CoherentEdgeVariation.mixedContrast_bound_of_up
