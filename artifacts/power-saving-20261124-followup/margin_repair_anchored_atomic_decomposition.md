@@ -2,7 +2,7 @@
 
 ## Statement and status
 
-This is a written, unconditional structural theorem for every individual original-model head. The coefficient recurrence, exact decomposition, and estimates below are proved algebraically. The companion Lean module records the genuine-head approximation interface and the elementary mass estimate, with their exact scope identified below. This is not a margin repair theorem.
+This is an unconditional structural theorem for every individual original-model head. The positive reciprocal expansion, endpoint identities, and full-cube norm estimate are now kernel checked in `PositiveReciprocalExpansion.lean`; the application to the two coherent original-head orientations is explained below. The earlier companion module records the genuine-head approximation interface and the elementary coefficient mass estimates. This is not a margin repair theorem.
 
 Let $B(x)=c+\sum_{i=1}^n w_i x_i$ with $c\gt 0$ and $w_i\gt 0$, let $A$ be an arbitrary real affine function, and set $M=\max_{x\in\lbrace 0,1\rbrace^n}|A(x)/B(x)|$. There are positive coefficients $\kappa_S$, indexed by all $S\subseteq[n]$, for which
 
@@ -94,4 +94,4 @@ The file `formalization/HeadComplexity/Research/AnchoredAtomicDecomposition.lean
 
 - `face_coefficient_mass_eq` and `face_coefficient_mass_le` prove the stronger block mass identity and bound from the displayed endpoint identities. They do not assert the existence or positivity of the reciprocal coefficients. Those are proved in writing above.
 
-The module builds successfully. All five new theorem declarations, including the affine complementation identity, have only `propext`, `Classical.choice`, and `Quot.sound` as transitive axioms. The full positive expansion and its application to arbitrary original heads are written proofs, not new kernel-checked declarations.
+The module builds successfully. All five theorem declarations, including the affine complementation identity, have only `propext`, `Classical.choice`, and `Quot.sound` as transitive axioms. The later `PositiveReciprocalExpansion` module closes the previously missing coefficient existence and positivity ingredient. Its `reciprocal_with_endpoint_identities` and `ratio_with_full_cube_mass` prove the exact nonnegative expansion and the complete full-cube norm bound. Its `uniformlyOneAtomApproximable_face_affine` connects the face notation to the genuine-head approximation interface. See `positive_reciprocal_expansion_kernel.md` for the exact declarations and verification scope. The assembly for an arbitrary original head, including simultaneous complementation when needed, remains the written application above.

@@ -2,7 +2,7 @@
 
 ## Statement and status
 
-This is a written unconditional theorem for the original coherent-denominator head model, allowing arbitrary width, real coefficients, signed cancellation, and bias. It uses the exact positive scalar-feature expansion proved in `margin_repair_anchored_atomic_decomposition.md`; that expansion's coefficient-mass inequality is kernel checked, but this high-order functional argument is not yet formalized.
+This is a written unconditional theorem for the original coherent-denominator head model, allowing arbitrary width, real coefficients, signed cancellation, and bias. It uses the exact positive scalar-feature expansion in `margin_repair_anchored_atomic_decomposition.md`. The underlying positive reciprocal expansion and the coefficient-mass inequality are now kernel checked in `PositiveReciprocalExpansion` and `AnchoredAtomicDecomposition`; this high-order functional argument is not yet formalized.
 
 Fix a Boolean vertex $v$ with $r$ one-coordinates and $s$ zero-coordinates, where $r+s=n$. Let $1\leq k\leq\min(r,s)$. Suppose an original score $S=b+\sum_h\phi_h$ uniformly approximates its point indicator with error at most $\epsilon$. Then its full-cube amplitude satisfies
 

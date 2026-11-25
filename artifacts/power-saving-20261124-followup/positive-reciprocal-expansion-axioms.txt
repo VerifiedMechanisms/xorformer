@@ -1,0 +1,31 @@
+'HeadComplexity.PositiveReciprocalExpansion.face_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.face_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.face_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.face_eq_squarefreeMonomial_flip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.uniformlyOneAtomApproximable_face_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.generator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.prod' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.reciprocal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.face_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.face_singleton_input' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.reciprocal_with_endpoint_identities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.reciprocal_with_mass_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.normalized_product_probability_expansion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveReciprocalExpansion.ratio_with_full_cube_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

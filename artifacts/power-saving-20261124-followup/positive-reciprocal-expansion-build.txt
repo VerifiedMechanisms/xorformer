@@ -1,0 +1,39 @@
+⚠ [2542/2542] Built HeadComplexity.Research.PositiveReciprocalExpansion (1.9s)
+warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:134:17: This simp argument is unused:
+  hxi
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Bool.false_eq_true, not_false_eq_true, ite_false, ite_true, mul_zero, mul_one, zero_mul, zero_add,
+    add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:134:42: This simp argument is unused:
+  not_false_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [hxi, Bool.false_eq_true, ite_false, ite_true, mul_zero, mul_one, zero_mul, zero_add, add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:150:16: This simp argument is unused:
+  hh
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [face, hi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:155:16: This simp argument is unused:
+  hh
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [face, hi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:256:42: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:258:23: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+Build completed successfully (2542 jobs).
