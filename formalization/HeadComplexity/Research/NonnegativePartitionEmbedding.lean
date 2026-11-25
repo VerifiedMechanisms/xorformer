@@ -182,4 +182,73 @@ theorem exists_bounded_near_partition_of_computable
     exists_bounded_near_partition f φ bias hs δ hδ
   exact ⟨ψ,hn,hz,ha,hclose,hstrict⟩
 
+
+/-- Choosing the normalization scale at its fixed upper bound loses at most
+sixteen in relative margin, while retaining the bounded positive normal form. -/
+theorem exists_normalized_certificate
+    (f : (Fin (n+1) → Bool) → Bool) (φ : Fin H → FracAtom (n+1)) (bias : ℝ)
+    (hs : StrictlyRepresents f φ bias) :
+    ∃ ψ : Fin (2+H) → FracAtom (n+1),
+      (∀ j x, 0 ≤ (ψ j).eval x) ∧
+      (∀ j, ∃ x, (ψ j).eval x = 0) ∧
+      amplitude ψ (-1) ≤ 4 ∧
+      (∀ x, |score ψ (-1) x| ≤ 1/4) ∧
+      StrictlyRepresents f ψ (-1) ∧
+      relativeMargin f φ bias / 16 ≤ relativeMargin f ψ (-1) := by
+  let A := amplitude φ bias
+  have hA : 0 < A := amplitude_pos_of_strict hs
+  let ε := (1/4)/A
+  have hε : 0 < ε := div_pos (by norm_num) hA
+  have hεA : ε*A = 1/4 := div_mul_cancel₀ _ hA.ne'
+  let ψ := embeddedHeads φ bias ε
+  have hsmall : ε*amplitude φ bias ≤ 1/4 := hεA.le
+  have hD : amplitude ψ (-1) ≤ 4 := embedded_amplitude_le φ bias ε hε.le hsmall
+  have hstrict : StrictlyRepresents f ψ (-1) := by
+    intro x
+    change 0 < signedLabel f x * score (embeddedHeads φ bias ε) (-1) x
+    rw [embedded_score]
+    have hh := mul_pos hε (hs x)
+    nlinarith
+  refine ⟨ψ,embedded_nonneg φ bias ε hε.le hsmall,
+    embedded_has_zero φ bias ε,hD,?_,hstrict,?_⟩
+  · intro x
+    change |score (embeddedHeads φ bias ε) (-1) x| ≤ 1/4
+    rw [embedded_score,abs_mul,abs_of_pos hε]
+    exact (mul_le_mul_of_nonneg_left (abs_score_le_amplitude φ bias x) hε.le).trans hsmall
+  · apply (le_relativeMargin_iff hstrict).mpr
+    intro x
+    have hg : 0 ≤ relativeMargin f φ bias := (relativeMargin_pos hs).le
+    have hx := (le_relativeMargin_iff hs).mp (le_refl (relativeMargin f φ bias)) x
+    have hscale := mul_le_mul_of_nonneg_left hx hε.le
+    calc
+      relativeMargin f φ bias / 16 * amplitude ψ (-1)
+          ≤ relativeMargin f φ bias / 4 := by nlinarith
+      _ = ε * (relativeMargin f φ bias * amplitude φ bias) := by
+        change _ = ε * (relativeMargin f φ bias * A)
+        calc
+          _ = relativeMargin f φ bias * (1/4) := by ring
+          _ = relativeMargin f φ bias * (ε*A) := by rw [hεA]
+          _ = _ := by ring
+      _ ≤ ε * (signedLabel f x * score φ bias x) := hscale
+      _ = signedLabel f x * score ψ (-1) x := by
+        change _ = signedLabel f x * score (embeddedHeads φ bias ε) (-1) x
+        rw [embedded_score]
+        ring
+
+/-- Any original margin certificate admits the min-zero nonnegative normal
+form with two additional heads and only a factor-sixteen margin loss. -/
+theorem exists_normalized_certificate_of_margin
+    {f : (Fin (n+1) → Bool) → Bool} {γ : ℝ}
+    (hf : HasRelativeMargin (n+1) H f γ) :
+    ∃ ψ : Fin (2+H) → FracAtom (n+1),
+      (∀ j x, 0 ≤ (ψ j).eval x) ∧
+      (∀ j, ∃ x, (ψ j).eval x = 0) ∧
+      amplitude ψ (-1) ≤ 4 ∧
+      (∀ x, |score ψ (-1) x| ≤ 1/4) ∧
+      StrictlyRepresents f ψ (-1) ∧
+      γ/16 ≤ relativeMargin f ψ (-1) := by
+  obtain ⟨φ,bias,hs,hγ⟩ := hf
+  obtain ⟨ψ,hn,hz,hD,hclose,hstrict,hm⟩ := exists_normalized_certificate f φ bias hs
+  exact ⟨ψ,hn,hz,hD,hclose,hstrict,(div_le_div_of_nonneg_right hγ (by norm_num)).trans hm⟩
+
 end HeadComplexity.NonnegativePartitionEmbedding

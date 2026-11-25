@@ -33,3 +33,9 @@
 'HeadComplexity.NonnegativePartitionEmbedding.exists_bounded_near_partition_of_computable' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.exists_normalized_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.exists_normalized_certificate_of_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

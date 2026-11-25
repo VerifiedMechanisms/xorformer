@@ -36,7 +36,9 @@ Strict representation implies $A\gt0$, so this is legitimate and positive. Every
 
 The complete actual-model assembly is in `HeadComplexity.NonnegativePartitionEmbedding.exists_bounded_near_partition`. Its hypotheses and conclusion retain the full-cube norm, arbitrary bias, arbitrary real coefficients, both orientations of the source heads, exact score identity, minimum-zero condition for every head, and all truth-table labels.
 
-The corollary `exists_bounded_near_partition_of_computable` starts directly from the original `computableWithHeadsN` predicate. It uses the inherited same-width strictification and needs no margin hypothesis. The module builds successfully in 3287 jobs; all 13 declarations have only `propext`, `Classical.choice`, and `Quot.sound` in their transitive axiom reports. An independent semantic review checked the admissibility, norm budget, and quantifiers.
+The corollary `exists_bounded_near_partition_of_computable` starts directly from the original `computableWithHeadsN` predicate. It uses the inherited same-width strictification and needs no margin hypothesis. The module builds successfully in 3287 jobs; all 15 declarations have only `propext`, `Classical.choice`, and `Quot.sound` in their transitive axiom reports. An independent semantic review checked the admissibility, norm budget, and quantifiers.
+
+The new declarations `exists_normalized_certificate` and `exists_normalized_certificate_of_margin` also choose the fixed scale $\epsilon=1/(4A)$. They retain the preceding properties with uniform score bound $1/4$ and relative margin at least the source margin divided by sixteen. Thus restricting an existential repair search to this bounded positive normal form costs only two heads and a fixed margin factor. This does not justify counting every near-partition representative as a small class.
 
 ## Three-head partitions survive pairwise dependency tests
 
