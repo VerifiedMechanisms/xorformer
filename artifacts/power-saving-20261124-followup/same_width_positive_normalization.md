@@ -48,6 +48,18 @@ Arbitrary signed cancellation in the original score is retained through the cent
 
 The remaining access problem is quantitative separation from one, or a bound on all labels realized by narrow near-partition degenerations. The normalization does not supply either conclusion.
 
+## Exact finite capacity reduction
+
+Let $\mathcal C_{n,H,\gamma}$ be the tables satisfying `HasNormalizedMargin n H f γ`, and let $\mathcal F_{n,H}$ and $\mathcal G_{n,H,\gamma}$ denote the original unrestricted and relative-margin classes respectively. The kernel-checked finite reductions are
+
+$$ |\mathcal C_{n,H,0}|\leq|\mathcal F_{n,H}|\leq2|\mathcal C_{n,H,0}|,\qquad |\mathcal G_{n,H,\gamma}|\leq2|\mathcal C_{n,H,\gamma/3}|. $$
+
+The declarations are `ComplementCapacityReduction.normalized_card_le_original`, `original_card_le_twice_normalized`, and `highMargin_card_le_twice_normalized` in [ComplementCapacityReduction.lean](../../formalization/HeadComplexity/Research/ComplementCapacityReduction.lean). `normalized_subset_highMargin` checks that the normal form retains an actual original margin certificate.
+
+The proof counts truth tables, not representations: the original class is contained in the union of the normalized class and its image under output complementation. Complementation is an involution, so the union has cardinality at most twice that of the normalized class. The generic statements `ncard_le_twice_of_involution` and `ncard_le_twice_of_complement` isolate this argument. A zero margin parameter here does not allow a non-strict table: strict representation is a separate conjunct of `HasNormalizedMargin`.
+
 ## Verification
 
 The module builds successfully in 3289 jobs. The three new theorem declarations have only `propext`, `Classical.choice`, and `Quot.sound` in their transitive axiom reports. The helper module is separately checked. The proofs include the full-cube norms, arbitrary source bias, all original coefficients, and the global output complement explicitly.
+
+The capacity-reduction module builds with 3,290 jobs; all six declarations have the same standard transitive axioms. Its audit file is `ComplementCapacityReductionAudit.lean`.

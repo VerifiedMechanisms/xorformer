@@ -1,0 +1,18 @@
+'HeadComplexity.ComplementCapacityReduction.ncard_le_twice_of_involution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ComplementCapacityReduction.ncard_le_twice_of_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ComplementCapacityReduction.normalized_subset_highMargin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ComplementCapacityReduction.normalized_card_le_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ComplementCapacityReduction.original_card_le_twice_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ComplementCapacityReduction.highMargin_card_le_twice_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
