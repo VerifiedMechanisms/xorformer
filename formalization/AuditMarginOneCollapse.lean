@@ -1,0 +1,5 @@
+import HeadComplexity.Research.MarginOneCollapse
+#print axioms HeadComplexity.MarginOneCollapse.alignment_of_margin_one
+#print axioms HeadComplexity.MarginOneCollapse.bias_eq_zero_of_margin_one
+#print axioms HeadComplexity.MarginOneCollapse.eval_eq_norm_mul_signedLabel
+#print axioms HeadComplexity.MarginOneCollapse.hasRelativeMargin_one_head
