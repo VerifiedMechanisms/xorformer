@@ -1,0 +1,22 @@
+ℹ [3281/3640] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:289:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [3842/3843] Replayed HeadComplexity.Research.CoherentEdgeVariation
+warning: HeadComplexity/Research/CoherentEdgeVariation.lean:23:8: `sum_abs_edge_le` does not use the following hypothesis in its type:
+  • [DecidableEq I] (#3)
+
+Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
+
+Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
+✔ [3843/3843] Built HeadComplexity.Research.NonnegativeHeadCone (2.3s)
+Build completed successfully (3843 jobs).

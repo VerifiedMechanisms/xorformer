@@ -1,0 +1,4 @@
+import HeadComplexity.Research.NonnegativeHeadCone
+#print axioms HeadComplexity.NonnegativeHeadCone.corner_ratio_le
+#print axioms HeadComplexity.NonnegativeHeadCone.affine_corner_ratio_le
+#print axioms HeadComplexity.NonnegativeHeadCone.approximation_error_ge

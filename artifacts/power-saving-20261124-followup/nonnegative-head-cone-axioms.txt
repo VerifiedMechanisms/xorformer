@@ -1,0 +1,3 @@
+'HeadComplexity.NonnegativeHeadCone.corner_ratio_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NonnegativeHeadCone.affine_corner_ratio_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NonnegativeHeadCone.approximation_error_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
