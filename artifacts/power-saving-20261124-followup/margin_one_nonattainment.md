@@ -8,8 +8,6 @@ The triangle-equality reduction from arbitrary width to one genuine head is kern
 
 For literals, the entire nonattainment conclusion is now kernel checked in [`LiteralMarginNonattainment.lean`](../../formalization/HeadComplexity/Research/LiteralMarginNonattainment.lean). The exact declaration `HeadComplexity.LiteralMarginNonattainment.hasRelativeMargin_iff_lt_one` states that, in dimension `n+2` and at any fixed positive width, a relative-margin threshold is achievable exactly when it is strictly below one. The genuine approximations are checked in [`LiteralMarginNonattainmentWitness.lean`](../../formalization/HeadComplexity/Research/LiteralMarginNonattainmentWitness.lean), with `HeadComplexity.LiteralMarginNonattainmentWitness.literal_margin` and `hasRelativeMargin_below_one`. The witness file indexes positive input dimension as `n+1`; the note uses $n$ directly.
 
-The literal counterexample is now entirely kernel checked in [`LiteralMarginNonattainment.lean`](../../formalization/HeadComplexity/Research/LiteralMarginNonattainment.lean). `HeadComplexity.LiteralMarginNonattainment.hasRelativeMargin_iff_lt_one` proves that, in dimension `n+2` and at every fixed width at least one, its achievable margin thresholds are exactly those below one. `not_hasRelativeMargin_one` excludes every finite-width margin-one literal representation. The stronger classification for all nonconstant tables remains the written proof below.
-
 Throughout, the denominator is strictly positive on the entire Boolean cube, all original attention weights are strictly positive, and relative margin uses the full-cube head suprema. Arbitrary signed coefficients, bias, and cancellation remain allowed.
 
 ## A two-valued original head must be constant
@@ -74,8 +72,16 @@ The all-zero vertex attains the norm; the all-one vertex attains the minimum sig
 
 For one input bit the classification changes: an exact two-valued literal head is admissible. Constant truth tables can attain margin one in every dimension using bias alone. Neither exception affects the nonattainment statement for nonconstant literals on at least two bits.
 
+## The endpoint in positive normal form
+
+The kernel-checked declaration `HeadComplexity.PositiveLiteralNonattainment.relativeMargin_lt_third` in [`PositiveLiteralNonattainment.lean`](../../formalization/HeadComplexity/Research/PositiveLiteralNonattainment.lean) strengthens the canonical endpoint restriction for literals on at least two bits. At every finite width, a strict literal representation by nonnegative genuine heads and bias $-1$ has relative margin strictly below $1/3$. No minimum-zero or amplitude-budget hypothesis is required. The declaration `not_hasNormalizedMargin_third` states the corresponding exclusion for the positive normal-form predicate.
+
+The proof first shows that margin at least $1/3$ would force the sum of head suprema to equal two. Translating each head by minus half its supremum then preserves the score with zero bias and leaves total amplitude at most one. This would yield an original literal certificate of margin at least one, contradicting the kernel-checked theorem above.
+
 ## Scope for the lower-bound program
 
 This refutes an unconditional premise that an optimal relative-margin representation always exists at a fixed positive width in the original open parameter domain. An optimization argument must justify attainment, use a compactified class with separately controlled limits, or work with approximate maximizers.
+
+In the compact closure of amplitude-one tuples of full-cube head values and bias, a best margin does exist by continuity. If this compactified optimum is positive, genuine heads of the same width approximate it with arbitrarily small loss. This is a written compactness argument, detailed in [normalized_head_boundary_faces.md](normalized_head_boundary_faces.md#a-best-margin-exists-in-the-compact-closure). It supplies no numerical lower bound on the optimum and no justification for applying interior stationarity identities at boundary maximizers.
 
 It does not refute the required small-margin repair: these literals already have same-width representations at every prescribed margin strictly below one. It also does not supply a larger unrestricted lower bound for `HeadComplexity.worstCaseHeadComplexity`.
