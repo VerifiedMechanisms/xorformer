@@ -64,7 +64,15 @@ Every denominator slope is strictly negative. In the first half of each block, i
 
 The remaining sign comparison was checked exhaustively with integer arithmetic for every replication count from one through eight. For a fixed $m$, the classifier depends only on six independent counts, each ranging from zero to $3m$. Thus the check covers exactly $(3m+1)^6$ patterns and every Boolean input. All eight comparisons have zero disagreements, including the $244140625$ patterns at replication eight.
 
-The concrete integer numerator and denominator rows, all pattern counts, and the exact verifier are recorded in [`replicated_family_m1_to_m8_common_shift.exact.json`](../search/replicated_family_m1_to_m8_common_shift.exact.json) and [`search_common_shift.py`](../search/search_common_shift.py). The verifier bounds every integer intermediate below the signed 64-bit limit before using integer arrays. These finite upper certificates are exhaustive arithmetic computations, not additional Lean theorems. They make no minimum-head claim for replication counts beyond the separately proved cases above.
+The concrete integer numerator and denominator rows, all pattern counts, and the exact verifier are recorded in [`replicated_family_m1_to_m8_common_shift.exact.json`](../search/replicated_family_m1_to_m8_common_shift.exact.json) and [`search_common_shift.py`](../search/search_common_shift.py). The verifier bounds every integer intermediate below the signed 64-bit limit before using integer arrays. These finite upper certificates are exhaustive arithmetic computations, not additional Lean theorems.
+
+The replication-two classifier is a restriction of every even-replication classifier, obtained by copying each original coordinate equally many times. Threshold degree cannot increase under a coordinate-identification restriction. Therefore every positive even replication has threshold degree and pure minimum exactly three. This lower bound is Lean-checked in [`PureReplicationDivisibility.lean`](../../../formalization/HeadComplexity/Results/PureReplicationDivisibility.lean). Together with the exhaustive upper certificates, all four head minima equal three at replications four, six, and eight as well.
+
+An independent verification directly evaluated the recorded affine rows, multiplied their three positive denominators, and compared the resulting strict signs to the source on all $427292180$ patterns across the eight replication counts. This check does not use the common-shift expansion. Reproduce it with:
+
+```bash
+heavy python3 artifacts/rope/search/search_common_shift.py --verify-affine artifacts/rope/search/replicated_family_m1_to_m8_common_shift.exact.json
+```
 
 ## Every admissible common shift fails at replication nine
 
@@ -105,3 +113,25 @@ If $|L|\geq1/3$, then $|B|\geq1/309\gt96/194^2$. The scores $S$, $B$, and $L$ th
 $$ L=\frac{2K-189}{3},\qquad |L|\geq\frac13. $$
 
 The classifier is exactly the nonconstant threshold $K\geq95$. All four model minima equal one. The continuous estimate and the exact Boolean consequence are fully Lean-checked in [`PureThirdReplicationLinear.lean`](../../../formalization/HeadComplexity/Results/PureThirdReplicationLinear.lean), with declarations `score_covariance_bound`, `score_pos_iff_linear_of_third_margin`, `classifier_three_isLTF`, and `classifier_three_head_minima`.
+
+## Replication five has threshold degree two
+
+The fifth replication is nonlinear, but it admits an exact quadratic sign representation. Write the aggregate coordinates as $A_i=a_i/5$ and $B_i=b_i/5$, where each integer coordinate ranges over $\lbrace-15,-13,\ldots,15\rbrace$. Define
+
+$$ L_0=4\sum_i a_i+3\sum_i b_i,\qquad z_i=a_i-b_i,\qquad N_{0,i}=2\left(\sum_j(a_j+b_j)+a_i\right). $$
+
+An explicit quadratic is
+
+$$ Q(a,b)=2016L_0+2L_0\sum_i z_i-\sum_iN_{0,i}z_i. $$
+
+Every one of the $16777216$ aggregate patterns has the same strict sign for this quadratic and the source score. Neither vanishes, and the minimum absolute value of $Q$ on this grid is eight. The exhaustive signed-integer computation, with an explicit overflow bound, is recorded in [`check_fifth_quadratic.py`](../search/check_fifth_quadratic.py) and [`fifth_replication_quadratic.exact.json`](../search/fifth_replication_quadratic.exact.json). Since the aggregate coordinates are affine functions of the Boolean coordinates, this gives threshold degree at most two on the original 90-bit cube.
+
+For the lower bound, consider cyclic permutations of the following positive and negative aggregate patterns:
+
+$$ (a;b)=(-15,1,3;5,5,5),\qquad (a';b')=(-15,-11,15;13,15,-13). $$
+
+The three positive scores are $49292/30441495$ and the three negative scores are $-1292/30413637$. Both triples have the same total first-half aggregate, negative eleven, and the same total second-half aggregate, fifteen. They admit three positive and three negative Boolean realizations whose first moments agree at every individual coordinate. To see this directly, the first-half counts are cyclic permutations of $(0,8,9)$ and $(0,2,15)$ across fifteen positions. Choose the size-eight and size-nine sets to cover all positions and overlap in two; take the size-two negative set to be this overlap and the size-fifteen negative set to be all positions. The positive second-half sets each have size ten, with disjoint size-five complements, while the negative second-half sets have sizes fourteen, fifteen, and one, the size-one set complementing the size-fourteen set. Every second-half coordinate then appears twice in both triples.
+
+An affine score has equal sums over the two triples. It cannot be strictly positive at all three positive inputs and nonpositive at all three negative inputs. This exact first-moment obstruction is Lean-checked in [`PureFifthReplicationNonlinear.lean`](../../../formalization/HeadComplexity/Results/PureFifthReplicationNonlinear.lean), including `classifier_five_not_isLTF`, `classifier_five_threshold_degree_lower`, and `classifier_five_head_minima_lower`.
+
+Consequently the fifth replication has threshold degree exactly two, with the upper bound certified by exhaustive integer arithmetic and the lower bound certified in Lean. Each architecture's minimum head count lies in $\lbrace2,3\rbrace$. The quadratic certificate alone does not give a two-head representation, and the exact minimum head count at replication five remains open here.

@@ -54,6 +54,43 @@ def check(m, p, q, chunk=32):
             'off_hyperplane_shifted_zeros': zero_boundary, 'first_disagreement': first}
 
 
+def verify_affine_record(path):
+    """Independent direct row evaluation, without the shift expansion."""
+    record = json.loads(Path(path).read_text())
+    ds, ns = record['denominators'], record['numerators']
+    assert len(ds) == len(ns) == 3
+    for row in ds+ns:
+        assert len(row) == 7 and all(type(v) is int for v in row)
+    for row in ds:
+        assert row[0] > sum(abs(v) for v in row[1:])
+        assert all(v > 0 for v in row[1:]) or all(v < 0 for v in row[1:])
+    total_patterns = 0
+    for m in record['replicas']:
+        assert type(m) is int and m > 0
+        bound_n = max(sum(abs(v)*3*m for v in row) for row in ns)
+        bound_d = max(sum(abs(v)*3*m for v in row) for row in ds)
+        assert 3*bound_n*bound_d**2 < 2**63
+        assert 3*(42*m)*(206*m)**2 < 2**63
+        rows = np.array(list(itertools.product(range(-3*m, 3*m+1, 2), repeat=3)), dtype=np.int64)
+        b = rows[None, :, :]
+        for start in range(0, len(rows), 32):
+            a = rows[start:start+32, None, :]
+            total = a.sum(axis=2)+b.sum(axis=2)
+            source_n = [2*(total+a[:, :, i]) for i in range(3)]
+            source_d = [200*m+a[:, :, i]-b[:, :, i] for i in range(3)]
+            source = sum(source_n[i]*source_d[(i+1)%3]*source_d[(i+2)%3] for i in range(3))
+            den = [row[0]*3*m+sum(row[j+1]*a[:, :, j]+row[j+4]*b[:, :, j]
+                   for j in range(3)) for row in ds]
+            num = [row[0]*3*m+sum(row[j+1]*a[:, :, j]+row[j+4]*b[:, :, j]
+                   for j in range(3)) for row in ns]
+            assert all(np.all(d > 0) for d in den)
+            candidate = sum(num[i]*den[(i+1)%3]*den[(i+2)%3] for i in range(3))
+            assert np.all((source > 0) == (candidate > 0))
+        total_patterns += len(rows)**2
+        print(m, len(rows)**2, 'direct affine row patterns verified', flush=True)
+    print(total_patterns, 'total patterns verified independently', flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--min-replicas', type=int, default=1)
@@ -62,7 +99,11 @@ def main():
     parser.add_argument('--q', type=int, default=100)
     parser.add_argument('--stop-first-failure', action='store_true')
     parser.add_argument('--write-certificate')
+    parser.add_argument('--verify-affine')
     args = parser.parse_args()
+    if args.verify_affine:
+        verify_affine_record(args.verify_affine)
+        return
     results = []
     for m in range(args.min_replicas, args.max_replicas+1):
         start = time.monotonic()
