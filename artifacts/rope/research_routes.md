@@ -138,3 +138,21 @@ Increasing the perturbation until all factor slopes become uniform need not pres
 A nontrivial vanilla score can vanish identically on the Boolean cube while its cleared polynomial is a nonzero multiple of a Boolean vanishing relation. Perturbing such a family yields additional same-head sign constructions. `CubeAffine.computable_of_zero_family_tangent` in `Results/BooleanTangentUpperBound.lean` proves the generic finite-margin compiler.
 
 A three-head family with denominators $F$, $F+a x_1$, and $F+a(1-x_1)$ and numerators $-1$, $1-x_1$, and $x_1$ is identically zero on Boolean inputs. Its cleared polynomial is $a(2F+a)(x_1^2-x_1)$. Jacobian exploration suggested useful subclasses, but did not prove general three-head coverage. No Jacobian rank or suggested subclass is used as an unproved universal premise.
+
+## 15. General contraction ranks separate every larger head budget
+
+The cubic rank obstruction extends to every $H\geq3$. For $W_H=\sum_iN_i\prod_{j\neq i}D_j$, a nonzero denominator direction forces contraction flattening rank at least $2H-2$. The kernel proof uses the pair equations $d_ke_l+d_le_k=0$ twice, first on the denominator projection and then on its numerator fiber. Each has dimension at most one. A zero denominator direction has rank at most $H$.
+
+This uniform rank characterization gives the paired denominator kernel, whose dimension is $H$ and which contains the all-ones vector. The compact frame and simplex-normal contradiction now works in every dimension. The polynomial source is irreducible and has a regular real zero patch, so sign rigidity and Boolean replica averaging supply the same limit argument. [Theorem 23](../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md) gives the complete independently audited mathematical proof. It separates every head budget above two. Its Lean formalization is partial; the fully formalized three-head theorem already refutes the original equality.
+
+## 16. Small replications have exact alternative representations
+
+For the three-head family, the first replication is a linear threshold function and has head minimum one. The second replication has threshold degree and head minimum three in all models. The quadratic lower bound uses positive inputs whose sum is zero and whose complements are negative. Averaging the two strict inequalities cancels the even terms of a hypothetical quadratic, leaving an impossible separating linear form.
+
+The second-replication vanilla upper bound replaces each denominator $D_i$ by $D_i+L$, where $L$ is the common linear statistic. The new slopes are strictly positive. At $L=0$ the score is unchanged; away from zero, an explicit error estimate preserves its sign. Both statements are Lean-checked. Failed numerical fits at this replication were therefore limitations of the optimization, not impossibility evidence. [The small-replication note](research/small_replication_exact_complexity.md) records the exact constructions.
+
+## 17. Exact finite-factor and regular jet obstructions
+
+The [finite-factor residue argument](research/exact_finite_factor_obstruction.md) excludes every exact oriented affine-fraction representation of the three-head source boundary on the entire continuous cube. Every oriented hyperplane section retains an irreducible factor of degree at least two. Reducing a proposed polynomial identity modulo each denominator forces all those factors into a multiplier of insufficient degree. This does not exclude finite Boolean representations, nor their degenerate limits: denominator collisions and replica averaging prevent transferring that exact identity obstruction directly.
+
+A different [common-base jet argument](research/subset_and_jet_limits.md) excludes five-head regular second-order cubic moment constructions for a selected source section. `CommonBaseJetObstruction.no_five_head_endpoint_moments` is Lean-checked. It is restricted to that moment scheme and does not prove a six-head Boolean lower bound.

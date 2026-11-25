@@ -46,6 +46,22 @@ input length. The Lean threshold is existential. A separately audited
 gives the sufficient replication count `10^40000`; that numerical constant is
 not formalized and is not asserted to be the first separating count.
 
+Theorem 23 gives a complete audited mathematical separation at every head budget
+`H ≥ 3`: the explicit family on `2H²m` bits eventually has pure minimum `H` and
+vanilla minimum in `[H+1, 2^H-2]`. Its full arbitrary-head Lean assembly remains
+unfinished. Formalized general components include the genuine pure family,
+source irreducibility and local sign rigidity, the actual formal derivative rank
+locus, physical coordinate inverses, the compact frame obstruction with an
+explicit closed-relation premise, and the arbitrary-degree dense-grid threshold
+pipeline. None of these partial interfaces is presented as a final Lean
+arbitrary-head separation theorem.
+
+The first two replications of the three-head family are also exact:
+`PureThreeReplicatedGrid.classifier_one_head_minima` gives all minima one, and
+`PureThreeReplicatedGrid.classifier_two_head_minima` gives all minima three.
+The latter has threshold degree three, proved by a balanced antipodal moment
+certificate, and an explicit vanilla realization using reoriented denominators.
+
 | # | Theorem | Headline Lean result | File |
 |---|-------|----------------------|------|
 | 1 | 2-coordinate numerator additive split | `restricted_numerator_additive_split` | `Results/RestrictionLowerBounds.lean` |
@@ -111,3 +127,23 @@ The all-head structured results are
 specific transformations. None establishes a Boolean head-count separation.
 `Examples/RoPEApproximation.lean` proves a positive uniform one-head score gap,
 which likewise does not separate Boolean classifications.
+
+The general-head proof components are in:
+
+- `Results/PureGeneralReplicatedGrid.lean`: literal scalar, standard, and free
+  rotary realizations of the explicit family.
+- `Polynomial/RoPEGeneralIrreducible.lean` and
+  `Polynomial/RoPEGeneralLocalDivisibility.lean`: irreducibility, exact degree,
+  local sign rigidity, and exclusion of smaller-degree weak representatives.
+- `Polynomial/LinearSourceDivisibility.lean`: dimension-independent divisibility
+  from weak signs near a regular zero of a source linear in one variable.
+- `Polynomial/RoPEGeneralDerivative.lean`: the actual second formal derivative
+  map has rank at most `H` exactly on zero denominator directions for `H ≥ 3`.
+- `Atoms/RoPEGeneralCoordinates.lean` and `Atoms/RoPEGeneralFrames.lean`:
+  physical coordinate geometry and the compact paired-kernel obstruction.
+- `Polynomial/ReplicatedThresholdDegree.lean`: averaged polynomial extraction,
+  coefficient compactness, and the dense-grid threshold-degree contradiction
+  under an explicit weak-sign obstruction premise.
+
+See [Theorem 23](../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md)
+for the mathematical proof and the remaining formalization interfaces.

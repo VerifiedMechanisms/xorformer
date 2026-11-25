@@ -349,3 +349,9 @@ That is not yet a full invariant. It is only a partial answer:
 An explicit family on $18m$ bits has pure head complexity three and vanilla head complexity between four and six for every sufficiently large $m$. This refutes universal equality in the unchanged architecture, for both standard and freely chosen rotary frequencies. The proof symmetrizes cleared classifiers, takes a nonzero polynomial limit, and uses a closed tensor-rank and denominator-cone obstruction. The entire lower bound, complexity conclusion, and architectural transfer are Lean-checked without new axioms. Dummy-input invariance extends the separation to every sufficiently large input length. A separately audited quantitative proof supplies the sufficient threshold $m\geq10^{40000}$; the numerical constant is not formalized.
 
 **Proof.** [theorems/03_rotary_attention/022_pure_rope_three_head_separation.md](theorems/03_rotary_attention/022_pure_rope_three_head_separation.md)
+
+### Theorem 23. Pure rotary advantage at every head budget above two
+
+The universal implication from pure rotary to vanilla computability at the same head count holds exactly for $H\leq2$. For each $H\geq3$, an explicit family on $2H^2m$ bits eventually has pure minimum $H$ and vanilla minimum between $H+1$ and $2^H-2$. The proof generalizes the contraction-rank, positive-cone, polynomial-rigidity, and dense-grid arguments. It covers standard and free frequencies. This arbitrary-head theorem has a complete audited mathematical proof; its Lean formalization is partial. The three-head specialization in Theorem 22 is fully Lean-checked.
+
+**Proof.** [theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md](theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md)

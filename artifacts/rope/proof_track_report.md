@@ -1,10 +1,14 @@
-# Pure RoPE Has a Strict Three-Head Advantage
+# Pure RoPE Separates Every Head Budget Above Two
 
 ## Result
 
-The requested universal equality is false in the unchanged xorformer model. The complete Boolean separation is proved in Lean, including the bridge to literal rotary attention with standard fixed or freely chosen frequencies.
+The requested universal equality is false in the unchanged xorformer model. The universal reverse implication holds exactly at head budgets at most two. A complete mathematical proof separates every larger head budget. The complete three-head Boolean separation is proved in Lean, including the bridge to literal rotary attention with standard fixed or freely chosen frequencies.
 
-Starting from commit `bdca97f`, this run constructs an explicit family $f_m$ on $18m$ bits. For every sufficiently large positive integer $m$,
+Starting from commit `bdca97f`, [Theorem 23](../../theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md) constructs an explicit family $f_{H,m}$ on $2H^2m$ bits for every $H\geq3$. For all sufficiently large $m$,
+
+$$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_{H,m})=H,\qquad H+1\leq H^{\ast}_{\mathrm{vanilla}}(f_{H,m})\leq2^H-2. $$
+
+The arbitrary-head mathematical argument has independent audits. Its formalization is partial, with the exact scope listed below. The fully Lean-checked specialization is the family $f_m=f_{3,m}$ on $18m$ bits. For every sufficiently large positive integer $m$,
 
 $$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_m)=3\qquad\text{and}\qquad4\leq H^{\ast}_{\mathrm{vanilla}}(f_m)\leq6. $$
 
@@ -48,6 +52,26 @@ The principal formal interfaces are:
 | Closed tensor obstruction with arbitrary factor sizes | `RoPEThreeTensor.no_tendsto_scaled_physical_source_factorTensor`, [RoPETensorFactors.lean](../../formalization/HeadComplexity/Atoms/RoPETensorFactors.lean) |
 | Complete compactness contradiction | `no_averaged_witness_sequence`, [PureThreeSeparationLimit.lean](../../formalization/HeadComplexity/Results/PureThreeSeparationLimit.lean) |
 
+## The arbitrary-head strengthening
+
+The general proof replaces the cubic minor computation with a uniform contraction-rank lemma. Write the homogeneous source as $W_H(D,N)=\sum_i N_i\prod_{j\neq i}D_j$. Its contraction in a direction $(d,a)$ has flattening rank at most $H$ exactly when $d=0$. If $d\neq0$, the kernel has dimension at most two and the rank is at least $2H-2\gt H$. This identifies the same paired denominator kernel in every dimension. Compact orthonormal frames and normalized positive denominator rows then give the general closed obstruction.
+
+Irreducibility and local sign rigidity extend to every degree. Grouped averaging and coefficient compactness turn hypothetical finite Boolean classifiers into a nonzero weak-sign representative of the source. The source must be its positive scalar multiple. The top mixed tensor contradicts the closed obstruction. A separate smaller-degree argument proves that the pure minimum is exactly $H$.
+
+The general Lean components currently include:
+
+- `PureGeneralReplicatedGrid.pure_computable`, `standard_computable`, and `free_computable` in [PureGeneralReplicatedGrid.lean](../../formalization/HeadComplexity/Results/PureGeneralReplicatedGrid.lean): the explicit genuine pure family for arbitrary $H$.
+
+- `RoPEGeneralPolynomial.core_irreducible`, `core_totalDegree`, and `scalar_multiple_of_core_dvd` in [RoPEGeneralIrreducible.lean](../../formalization/HeadComplexity/Polynomial/RoPEGeneralIrreducible.lean).
+
+- `RoPEGeneralPolynomial.core_dvd_of_weak_sign_on_open` and `no_lower_degree_weak_sign_on_open` in [RoPEGeneralLocalDivisibility.lean](../../formalization/HeadComplexity/Polynomial/RoPEGeneralLocalDivisibility.lean), supported by a dimension-independent rational-graph divisibility theorem in [LinearSourceDivisibility.lean](../../formalization/HeadComplexity/Polynomial/LinearSourceDivisibility.lean).
+
+- The coordinate inverse, denominator-kernel dimension, all-ones vector, and nonnegative-cone obstruction in [RoPEGeneralCoordinates.lean](../../formalization/HeadComplexity/Atoms/RoPEGeneralCoordinates.lean).
+
+- `ReplicatedThresholdDegree.eventually_not_thresholdDegLE` in [ReplicatedThresholdDegree.lean](../../formalization/HeadComplexity/Polynomial/ReplicatedThresholdDegree.lean): the complete arbitrary-degree averaging and dense-grid limit pipeline, with an explicit continuous weak-sign obstruction premise.
+
+These components do not by themselves constitute a Lean declaration of the entire arbitrary-head separation. The remaining assembly must connect the physical source, the actual vanilla factor tensors after averaging, their closed rank obstruction, and the final compactness contradiction. The full three-head declarations already contain all of these connections.
+
 ## Other proved results
 
 The two-head complement-invariance assumption can be removed. `pureRoPEComputable_iff_vanilla_of_le_two` in [RoPETwoHeads.lean](../../formalization/HeadComplexity/Results/RoPETwoHeads.lean) proves equality at every head budget at most two for every input length. The proof uses the special positive token-endpoint numerator direction and a finite strict-sign perturbation. No antipodal symmetry is required.
@@ -55,6 +79,8 @@ The two-head complement-invariance assumption can be removed. `pureRoPEComputabl
 `pureRoPEComputable_iff_vanilla_of_input_le_four` in [RoPEFourInputs.lean](../../formalization/HeadComplexity/Results/RoPEFourInputs.lean) proves equality at every head count for at most four input bits. Integer three-head certificates cover every nonparity four-bit truth table; the existing symmetric theory handles parity. These finite certificates are kernel-checked without new axioms.
 
 The all-head structured results include `AffineStatistic.computable_of_collinear_denominators` and `AffineStatistic.computable_of_denominator_plane`. General positive affine ratios admit the finite-difference bound of $2^H-1$ vanilla heads. For pure classifiers and $H\geq2$, `pureRoPEComputable_vanilla_improved_exponential_bound` in [PureFiniteDifference.lean](../../formalization/HeadComplexity/Results/PureFiniteDifference.lean) improves this to $2^H-2$. Complement-invariant three-head pure classifiers use at most four vanilla heads by `vanilla_four_of_pureRoPE_three_complement`.
+
+The first two replications of the three-head family are completely understood. `classifier_one_head_minima` in [PureSourceLinearApproximation.lean](../../formalization/HeadComplexity/Results/PureSourceLinearApproximation.lean) gives minimum one in all models at $m=1$. `classifier_two_head_minima` in [PureSecondReplicationDegree.lean](../../formalization/HeadComplexity/Results/PureSecondReplicationDegree.lean) gives minimum three and threshold degree three at $m=2$. The lower bound uses a balanced antipodal moment certificate; the upper bound uses an explicit denominator reorientation by the common linear statistic. See [the exact small-replication proof](research/small_replication_exact_complexity.md).
 
 The literal architecture is formalized in [RectangularPureRoPE.lean](../../formalization/HeadComplexity/Model/RectangularPureRoPE.lean). `rectangularStandardPureRotaryComputable_iff_scalar` and `rectangularFreePureRotaryComputable_iff_scalar` hold for every input length and head count, including $n=0$ and $H=0$. Standard-frequency interpolation uses common finite width $2(n+2)$. The model has a fixed query attending to every input and itself, shared token embeddings, Q/K-only rotations, unrotated token-only values, explicit output projections, and the query residual. [RoPEBoundaryCases.lean](../../formalization/HeadComplexity/Results/RoPEBoundaryCases.lean) states the boundary cases explicitly: zero heads compute exactly constants, and every classifier on zero inputs has minimum zero in all four models.
 
@@ -70,8 +96,8 @@ The search campaign produced 353 exact integer certificates of three-head vanill
 
 ## Definitions, validation, and remaining questions
 
-The original vanilla architectural and admissibility definitions are unchanged. The original scalar pure and retained atom definitions are also unchanged. New files add the literal pure rotary architecture, supporting lemmas, explicit families, and stronger results. Earlier theorem statements remain available; Theorem 16 strengthens the restricted two-head result, and Theorem 22 settles the previously open universal equality question negatively.
+The original vanilla architectural and admissibility definitions are unchanged. The original scalar pure and retained atom definitions are also unchanged. New files add the literal pure rotary architecture, supporting lemmas, explicit families, and stronger results. Earlier theorem statements remain available; Theorem 16 strengthens the restricted two-head result, and Theorem 22 settles the previously open universal equality question negatively. Theorem 23 gives the mathematical classification of all head budgets.
 
 All final Lean results are checked without proof placeholders or new axioms. The permitted dependencies are `propext`, `Classical.choice`, and `Quot.sound`. The repository validator builds every tracked Lean source and audits every theorem declaration. Mathematical Markdown is checked statically, with KaTeX, and through the real GitHub Markdown API. A GitLab render audit is unavailable in this environment because `glab` and GitLab authentication are absent.
 
-The first separating $m$, the smallest possible input length, and whether the family eventually needs four, five, or six vanilla heads remain open. The two-head theorem and four-input theorem imply that any strict separation needs at least three pure heads, four vanilla heads, and five input bits. The explicit sufficient threshold $10^{40000}$ is not intended to be sharp. [RoPETensorGap.lean](../../formalization/HeadComplexity/Atoms/RoPETensorGap.lean) also proves the existence of a positive tensor-distance gap. The displayed numerical tensor constant and replication threshold remain mathematical results outside Lean; this does not leave a gap in the fully formalized existential Boolean separation.
+The first separating $m$, the smallest possible input length, and the exact vanilla minimum within the proved intervals remain open. The complete arbitrary-head separation still needs its final Lean assembly. For the three-head family, $m=1$ and $m=2$ are not separating, and whether sufficiently large members need four, five, or six vanilla heads remains open. The two-head theorem and four-input theorem imply that any strict separation needs at least three pure heads, four vanilla heads, and five input bits. The explicit sufficient threshold $10^{40000}$ is not intended to be sharp. [RoPETensorGap.lean](../../formalization/HeadComplexity/Atoms/RoPETensorGap.lean) also proves the existence of a positive tensor-distance gap. The displayed numerical tensor constant and replication threshold remain mathematical results outside Lean; this does not leave a gap in the fully formalized existential Boolean separation.
