@@ -1,0 +1,3 @@
+import HeadComplexity.Research.PositiveLiteralNonattainment
+#print axioms HeadComplexity.PositiveLiteralNonattainment.relativeMargin_lt_third
+#print axioms HeadComplexity.PositiveLiteralNonattainment.not_hasNormalizedMargin_third

@@ -1,0 +1,6 @@
+'HeadComplexity.PositiveLiteralNonattainment.relativeMargin_lt_third' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.PositiveLiteralNonattainment.not_hasNormalizedMargin_third' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
