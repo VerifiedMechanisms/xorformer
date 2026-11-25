@@ -1,0 +1,6 @@
+import HeadComplexity.Research.OriginalAnchoredExpansion
+#print axioms HeadComplexity.OriginalAnchoredExpansion.norm_eval_eq_atomSup
+#print axioms HeadComplexity.OriginalAnchoredExpansion.coordinates_involutive
+#print axioms HeadComplexity.OriginalAnchoredExpansion.uniformly_coordinates
+#print axioms HeadComplexity.OriginalAnchoredExpansion.uniformly_scaled_face_affine
+#print axioms HeadComplexity.OriginalAnchoredExpansion.original_head_expansion

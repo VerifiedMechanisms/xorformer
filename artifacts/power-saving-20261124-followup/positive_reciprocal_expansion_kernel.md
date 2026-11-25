@@ -38,12 +38,18 @@ For the norm estimate, restrict to the face where all coordinates in $S$ vanish.
 
 ## Scope and remaining barrier
 
-This formalizes the exact positive expansion and its mass budget, together with the existing genuine affine-face approximation interface. Simultaneous complementation handles the other coherent orientation in the written original-head application. No original model definition was changed.
+The subsequent module `OriginalAnchoredExpansion.lean` closes the original-model assembly as well. Its exact declaration `HeadComplexity.OriginalAnchoredExpansion.original_head_expansion` proves that every genuine `FracAtom` has an exact decomposition into blocks indexed by the cube's coordinate subsets, with every block uniformly approximable by one genuine original head, and
+
+$$ \sum_S\|\mathrm{block}_S\|_\infty\leq(n+1)\mathrm{atomSup}(\phi). $$
+
+The theorem handles both coherent denominator orientations by simultaneous complementation. The separate declaration `norm_eval_eq_atomSup` proves that the finite function-space norm agrees exactly with the supremum used in the requested relative-margin definition. No original model definition was changed. The limiting blocks themselves need not be exact single heads; their approximation by genuine heads is explicit in the statement.
 
 The expansion has as many as $2^n$ face blocks. Its polynomial amplitude budget does not imply a width bound comparable to an arbitrary source width. Sampling still depends on the source margin. The classification-specific support-compression or representation-changing repair theorem needed for the requested lower bound remains open.
 
 ## Verification
 
 `positive-reciprocal-expansion-build.txt` records a successful 2,542-job module build. `positive-reciprocal-expansion-axioms.txt` records all 17 transitive `#print axioms` checks. Their only axioms are `propext`, `Classical.choice`, and `Quot.sound`. The final combined run also includes this module in the complete changed-module audit.
+
+`original-anchored-expansion-build.txt` records the successful 4,029-job build of the all-original-head assembly. `original-anchored-expansion-axioms.txt` checks all five declarations in that module, with the same three standard axioms.
 
 An independent audit checked the complete-cube norm, nonnegative versus strictly positive slopes, endpoint mass identities, and the distinction between exact face blocks and their genuine-head approximations. No additional margin or conditioning hypothesis was found.

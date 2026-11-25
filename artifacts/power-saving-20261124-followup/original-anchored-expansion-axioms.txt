@@ -1,0 +1,13 @@
+'HeadComplexity.OriginalAnchoredExpansion.norm_eval_eq_atomSup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OriginalAnchoredExpansion.coordinates_involutive' depends on axioms: [propext, Quot.sound]
+'HeadComplexity.OriginalAnchoredExpansion.uniformly_coordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OriginalAnchoredExpansion.uniformly_scaled_face_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.OriginalAnchoredExpansion.original_head_expansion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
