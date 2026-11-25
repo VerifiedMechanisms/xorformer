@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_positive_partition_gap.md",
+    "source_spans": 46,
+    "rendered_spans": 46,
+    "findings": [],
+    "notes": []
+  }
+]

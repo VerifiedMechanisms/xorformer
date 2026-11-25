@@ -1,0 +1,35 @@
+'HeadComplexity.NonnegativePartitionEmbedding.minCenter_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.minCenter_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.minCenter_has_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.abs_rangeMin_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.minCenter_atomSup_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.abs_constantPart_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.embedded_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.partition_scale_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.embedded_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.embedded_has_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.embedded_amplitude_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.exists_bounded_near_partition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePartitionEmbedding.exists_bounded_near_partition_of_computable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
