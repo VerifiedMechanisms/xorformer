@@ -48,6 +48,12 @@ The inequalities $\log(16e^2)\leq5$ and $-U\log U\leq1-U$ bound the last factor 
 
 [Iyer et al., On the Rational Degree of Boolean Functions and Applications](https://arxiv.org/abs/2310.08004) define rational degree using exact equality to the Boolean function on the cube. They prove that almost every Boolean function has rational degree at least $n/2-O(\sqrt n)$. A strictly representing score in the present problem need only have the correct signs, not equal the labels. Moreover, clearing an original score of width $H$ already has degree $H$, so even a comparable sign-degree obstruction of order $n$ would not yield an exponential head lower bound. The exact rational-degree theorem is not an unrestricted capacity improvement for this model.
 
+## Mixture and subset-choice identifiability
+
+[Zhang, Zhang, Loh, and Liang](https://arxiv.org/abs/2201.13132) prove generic identifiability for two-component mixtures of several ranking models, including multinomial logistic models with three-item slates. [Tang](https://arxiv.org/abs/2007.00204) likewise studies two multinomial-logit components, using systems of univariate quartics and explicitly allowing an exceptional algebraic locus. These are useful reconstruction results for their probability models. They do not give a continuation count uniform over exceptional configurations, an entropy bound at exponentially many components, or a theorem for arbitrary signed affine numerators.
+
+[Zhao, Piech, and Xia](https://proceedings.mlr.press/v48/zhaob16.html) obtain generic identifiability for larger mixtures of Plackett-Luce ranking distributions. Their observations include ranking probabilities, which contain more information than the single scalar score at each Boolean subset. Applying this result to an address-face reconstruction would require an additional observation-recovery theorem and control of exceptional fibers. Neither is established here. Generic identification also does not by itself bound the degree or the number of sign chambers of a partial observation map.
+
 ## Remaining theorem needed
 
 A useful genuinely Boolean improvement would control the original representable class at dense widths with $nH\leq2^n$ by an entropy estimate such as

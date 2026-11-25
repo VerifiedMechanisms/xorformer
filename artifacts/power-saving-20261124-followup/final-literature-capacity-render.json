@@ -1,9 +1,7 @@
-[
-  {
-    "file": "artifacts/power-saving-20261124-followup/final_literature_capacity_audit.md",
-    "source_spans": 41,
-    "rendered_spans": 41,
-    "findings": [],
-    "notes": []
-  }
-]
+{
+  "file": "artifacts/power-saving-20261124-followup/final_literature_capacity_audit.md",
+  "renderer": "GitHub Markdown API",
+  "rendered_math_spans": 41,
+  "findings": [],
+  "notes": []
+}
