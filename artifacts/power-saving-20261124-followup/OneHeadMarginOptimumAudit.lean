@@ -1,0 +1,5 @@
+import HeadComplexity.Research.OneHeadMarginOptimum
+#print axioms HeadComplexity.OneHeadMarginOptimum.four_row_budget
+#print axioms HeadComplexity.OneHeadMarginOptimum.four_row_budget_sharp
+#print axioms HeadComplexity.OneHeadMarginOptimum.sharp_parameters
+#print axioms HeadComplexity.OneHeadMarginOptimum.ratio_strict_mono

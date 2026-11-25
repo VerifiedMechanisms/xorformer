@@ -1,0 +1,4 @@
+'HeadComplexity.OneHeadMarginOptimum.four_row_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadMarginOptimum.four_row_budget_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadMarginOptimum.sharp_parameters' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.OneHeadMarginOptimum.ratio_strict_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
