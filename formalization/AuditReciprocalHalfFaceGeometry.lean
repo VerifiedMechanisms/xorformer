@@ -1,0 +1,4 @@
+import HeadComplexity.Research.ReciprocalHalfFaceGeometry
+#print axioms HeadComplexity.ReciprocalHalfFaceGeometry.halfFace_reciprocal_error_le
+#print axioms HeadComplexity.ReciprocalHalfFaceGeometry.middle_abs_le_endpoints
+#print axioms HeadComplexity.ReciprocalHalfFaceGeometry.not_isolated_middle_spike

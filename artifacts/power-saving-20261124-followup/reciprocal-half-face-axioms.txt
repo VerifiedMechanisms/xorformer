@@ -1,0 +1,9 @@
+'HeadComplexity.ReciprocalHalfFaceGeometry.halfFace_reciprocal_error_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ReciprocalHalfFaceGeometry.middle_abs_le_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ReciprocalHalfFaceGeometry.not_isolated_middle_spike' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
