@@ -1,0 +1,253 @@
+Pure RoPE proof-track validation
+Recorded UTC: 2026-11-25T01:59:28.629429+00:00
+Baseline: bdca97f
+Repository revision when recorded: 02f0b2872817e2f8259f86f2894bc47a0b9cb0df
+Lean source tree: 2da5e2b69a9676a9bfb94df38474f59318e05042
+Lean validator run at d5c2d33cb32f99af142a8ae5577ba76eaa499af5; no subsequent Lean changes.
+Toolchain: leanprover/lean4:v4.31.0
+Mathlib revision: fabf563a7c95a166b8d7b6efca11c8b4dc9d911f
+
+Reproduction: artifacts/scripts/validate.sh
+The validator builds every tracked Lean source, rejects proof placeholders,
+and audits every theorem against propext, Classical.choice, and Quot.sound.
+
+Unchanged-definition check against bdca97f: PASS (git diff --exit-code).
+  model.md
+  formalization/HeadComplexity/Model/Head.lean
+  formalization/HeadComplexity/Model/SharedEmbedding.lean
+  formalization/HeadComplexity/Model/AdditiveSplit.lean
+  formalization/HeadComplexity/Model/SkipConnection.lean
+  formalization/HeadComplexity/Atoms/FracAtom.lean
+  formalization/HeadComplexity/Atoms/AffineFraction.lean
+  formalization/HeadComplexity/Results/FractionalNormalForm.lean
+  formalization/HeadComplexity/Results/AffineFractionNormalForm.lean
+Atoms/RoPE.lean and Results/RoPEComparison.lean have comment-only differences;
+their pre-existing scalar definitions and declarations are unchanged.
+
+=== Full Lean validation output ===
+=== Building 171 tracked Lean library sources ===
+Build completed successfully (3304 jobs).
+BUILD_RC=0
+=== Rejecting Lean proof placeholders ===
+PLACEHOLDER_RC=0
+=== Auditing every theorem in 171 tracked Lean modules ===
+HeadComplexity: audited 0 theorem declarations
+HeadComplexity.Atoms.AffineFraction: audited 39 theorem declarations
+HeadComplexity.Atoms.AffineHead: audited 34 theorem declarations
+HeadComplexity.Atoms.CubicPencilObstruction: audited 19 theorem declarations
+HeadComplexity.Atoms.FracAtom: audited 8 theorem declarations
+HeadComplexity.Atoms.FracAtomHead: audited 31 theorem declarations
+HeadComplexity.Atoms.HammingAtom: audited 36 theorem declarations
+HeadComplexity.Atoms.HeadToFracAtom: audited 17 theorem declarations
+HeadComplexity.Atoms.PartialFraction: audited 10 theorem declarations
+HeadComplexity.Atoms.RoPE: audited 41 theorem declarations
+HeadComplexity.Atoms.RoPEArrowhead: audited 14 theorem declarations
+HeadComplexity.Atoms.RoPEClosedRank: audited 18 theorem declarations
+HeadComplexity.Atoms.RoPEConeObstruction: audited 6 theorem declarations
+HeadComplexity.Atoms.RoPEGeneralCoordinates: audited 32 theorem declarations
+HeadComplexity.Atoms.RoPEGeneralFrames: audited 6 theorem declarations
+HeadComplexity.Atoms.RoPEGeneralKernelFrames: audited 10 theorem declarations
+HeadComplexity.Atoms.RoPEGeneralRank: audited 12 theorem declarations
+HeadComplexity.Atoms.RoPEProjectiveObstruction: audited 17 theorem declarations
+HeadComplexity.Atoms.RoPEReorientation: audited 12 theorem declarations
+HeadComplexity.Atoms.RoPESequentialFrames: audited 7 theorem declarations
+HeadComplexity.Atoms.RoPEShearObstruction: audited 8 theorem declarations
+HeadComplexity.Atoms.RoPEStrictness: audited 10 theorem declarations
+HeadComplexity.Atoms.RoPETensorFactors: audited 24 theorem declarations
+HeadComplexity.Atoms.RoPETensorGap: audited 4 theorem declarations
+HeadComplexity.Atoms.RoPETensorLimit: audited 10 theorem declarations
+HeadComplexity.Atoms.RoPEThreeEven: audited 6 theorem declarations
+HeadComplexity.Atoms.RoPEThreeTensor: audited 34 theorem declarations
+HeadComplexity.Atoms.RoPETiltObstruction: audited 12 theorem declarations
+HeadComplexity.Atoms.SignPolynomial: audited 19 theorem declarations
+HeadComplexity.Atoms.TwoHeadClearing: audited 12 theorem declarations
+HeadComplexity.Atoms.TwoHeadPencil: audited 15 theorem declarations
+HeadComplexity.Atoms.WeightedAtom: audited 41 theorem declarations
+HeadComplexity.BooleanCube.Families: audited 29 theorem declarations
+HeadComplexity.BooleanCube.Square: audited 7 theorem declarations
+HeadComplexity.BooleanCube.SymmetricSignChanges: audited 19 theorem declarations
+HeadComplexity.Examples.AffineFraction: audited 46 theorem declarations
+HeadComplexity.Examples.All: audited 11 theorem declarations
+HeadComplexity.Examples.BooleanFunctions: audited 91 theorem declarations
+HeadComplexity.Examples.OneHead: audited 20 theorem declarations
+HeadComplexity.Examples.RoPE: audited 19 theorem declarations
+HeadComplexity.Examples.RoPEApproximation: audited 11 theorem declarations
+HeadComplexity.Examples.TwoBit: audited 9 theorem declarations
+HeadComplexity.Examples.TwoHeads: audited 57 theorem declarations
+HeadComplexity.Foundation.AlternatingMoments: audited 21 theorem declarations
+HeadComplexity.Foundation.AlternatingReciprocals: audited 3 theorem declarations
+HeadComplexity.Foundation.FiniteFeatureSignLimit: audited 11 theorem declarations
+HeadComplexity.Foundation.FiniteSignMargin: audited 3 theorem declarations
+HeadComplexity.Foundation.SegmentCrossing: audited 3 theorem declarations
+HeadComplexity.Foundation.Softmax: audited 9 theorem declarations
+HeadComplexity.Foundation.Vec: audited 0 theorem declarations
+HeadComplexity.Model.AdditiveSplit: audited 2 theorem declarations
+HeadComplexity.Model.Head: audited 43 theorem declarations
+HeadComplexity.Model.PureRoPE: audited 30 theorem declarations
+HeadComplexity.Model.PureRoPEHeadSchedules: audited 8 theorem declarations
+HeadComplexity.Model.PureRoPEPositiveBase: audited 17 theorem declarations
+HeadComplexity.Model.PureRoPERealization: audited 12 theorem declarations
+HeadComplexity.Model.RectangularPureRoPE: audited 27 theorem declarations
+HeadComplexity.Model.RotaryInterpolation: audited 36 theorem declarations
+HeadComplexity.Model.SharedEmbedding: audited 36 theorem declarations
+HeadComplexity.Model.SkipConnection: audited 3 theorem declarations
+HeadComplexity.Polynomial.AffineCoordinateEquivalence: audited 21 theorem declarations
+HeadComplexity.Polynomial.AffineProductTopDegree: audited 5 theorem declarations
+HeadComplexity.Polynomial.AntipodalTwoProduct: audited 34 theorem declarations
+HeadComplexity.Polynomial.BlockCoefficientDerivatives: audited 22 theorem declarations
+HeadComplexity.Polynomial.BlockCoefficientLimit: audited 7 theorem declarations
+HeadComplexity.Polynomial.BlockCoefficientProjection: audited 15 theorem declarations
+HeadComplexity.Polynomial.BoundedCoefficientLimit: audited 16 theorem declarations
+HeadComplexity.Polynomial.CommonBaseJetObstruction: audited 13 theorem declarations
+HeadComplexity.Polynomial.LinearSourceDivisibility: audited 22 theorem declarations
+HeadComplexity.Polynomial.ModelToPolynomial: audited 21 theorem declarations
+HeadComplexity.Polynomial.ParityThresholdDegree: audited 8 theorem declarations
+HeadComplexity.Polynomial.QuadraticMomentCertificate: audited 5 theorem declarations
+HeadComplexity.Polynomial.ReplicatedInputCopy: audited 13 theorem declarations
+HeadComplexity.Polynomial.ReplicatedThresholdDegree: audited 8 theorem declarations
+HeadComplexity.Polynomial.RoPEAveragedTensor: audited 5 theorem declarations
+HeadComplexity.Polynomial.RoPEClusterMoments: audited 6 theorem declarations
+HeadComplexity.Polynomial.RoPECrossBlockCoefficients: audited 22 theorem declarations
+HeadComplexity.Polynomial.RoPECubeCoefficientUniqueness: audited 7 theorem declarations
+HeadComplexity.Polynomial.RoPECubicIrreducible: audited 11 theorem declarations
+HeadComplexity.Polynomial.RoPECubicLocalDivisibility: audited 26 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralDerivative: audited 39 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralFactorRank: audited 13 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralIrreducible: audited 23 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralLocalDivisibility: audited 5 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralPhysicalBlocks: audited 30 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralPhysicalCoordinates: audited 39 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralPhysicalRank: audited 23 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralPolarization: audited 44 theorem declarations
+HeadComplexity.Polynomial.RoPEGeneralSourceBridge: audited 15 theorem declarations
+HeadComplexity.Polynomial.RoPEGridLimit: audited 6 theorem declarations
+HeadComplexity.Polynomial.RoPEGridRealization: audited 1 theorem declarations
+HeadComplexity.Polynomial.RoPEGroupSymmetrization: audited 41 theorem declarations
+HeadComplexity.Polynomial.RoPEMixedTensor: audited 16 theorem declarations
+HeadComplexity.Polynomial.RoPEPhysicalCoordinates: audited 61 theorem declarations
+HeadComplexity.Polynomial.RoPEPhysicalTensor: audited 13 theorem declarations
+HeadComplexity.Polynomial.RoPEPolynomialRankLimit: audited 18 theorem declarations
+HeadComplexity.Polynomial.RoPEVanillaContractionRank: audited 4 theorem declarations
+HeadComplexity.Polynomial.SignLimitProportionality: audited 4 theorem declarations
+HeadComplexity.Polynomial.SymmetricLowerBound: audited 6 theorem declarations
+HeadComplexity.Polynomial.ThresholdDegree: audited 0 theorem declarations
+HeadComplexity.Polynomial.ThresholdDegreePullback: audited 4 theorem declarations
+HeadComplexity.Polynomial.UnivariateReduction: audited 27 theorem declarations
+HeadComplexity.Polynomial.UnivariateSignChanges: audited 1 theorem declarations
+HeadComplexity.Polynomial.VanillaBlockDerivatives: audited 10 theorem declarations
+HeadComplexity.Polynomial.VanillaCoefficientLimit: audited 7 theorem declarations
+HeadComplexity.Polynomial.VanillaFactorReindex: audited 7 theorem declarations
+HeadComplexity.Polynomial.VanillaGeneralCentered: audited 19 theorem declarations
+HeadComplexity.Polynomial.VanillaThreeCentered: audited 17 theorem declarations
+HeadComplexity.Results.AffineFractionNormalForm: audited 7 theorem declarations
+HeadComplexity.Results.AffineStatisticUpperBound: audited 21 theorem declarations
+HeadComplexity.Results.All: audited 54 theorem declarations
+HeadComplexity.Results.BooleanTangentUpperBound: audited 9 theorem declarations
+HeadComplexity.Results.CollinearDenominatorUpperBound: audited 30 theorem declarations
+HeadComplexity.Results.DenominatorPlaneUpperBound: audited 19 theorem declarations
+HeadComplexity.Results.ExactFamilies: audited 18 theorem declarations
+HeadComplexity.Results.FiniteDifferenceUpperBound: audited 18 theorem declarations
+HeadComplexity.Results.FourBitThreeHeadCertificate: audited 12 theorem declarations
+HeadComplexity.Results.FourBitThreeHeadCoverage: audited 5 theorem declarations
+HeadComplexity.Results.FourBitThreeHeadData: audited 50 theorem declarations
+HeadComplexity.Results.FourBitThreeHeadRealization: audited 30 theorem declarations
+HeadComplexity.Results.FractionalNormalForm: audited 4 theorem declarations
+HeadComplexity.Results.HeadBudgetPullback: audited 25 theorem declarations
+HeadComplexity.Results.InputPaddingInvariance: audited 7 theorem declarations
+HeadComplexity.Results.LowComplexity: audited 13 theorem declarations
+HeadComplexity.Results.ProductDifferenceSign: audited 17 theorem declarations
+HeadComplexity.Results.PureCommonShiftObstruction: audited 22 theorem declarations
+HeadComplexity.Results.PureFifthReplicationNonlinear: audited 12 theorem declarations
+HeadComplexity.Results.PureFiniteDifference: audited 22 theorem declarations
+HeadComplexity.Results.PureGeneralCoefficientGap: audited 1 theorem declarations
+HeadComplexity.Results.PureGeneralMonotoneSeparation: audited 6 theorem declarations
+HeadComplexity.Results.PureGeneralMonotonicity: audited 9 theorem declarations
+HeadComplexity.Results.PureGeneralReplicatedGrid: audited 64 theorem declarations
+HeadComplexity.Results.PureGeneralReplicationDivisibility: audited 8 theorem declarations
+HeadComplexity.Results.PureGeneralSeparation: audited 12 theorem declarations
+HeadComplexity.Results.PureGeneralSeparationAllLargeInputs: audited 1 theorem declarations
+HeadComplexity.Results.PureGeneralSeparationReduction: audited 5 theorem declarations
+HeadComplexity.Results.PureGeneralThresholdDegree: audited 10 theorem declarations
+HeadComplexity.Results.PureReplicationDivisibility: audited 19 theorem declarations
+HeadComplexity.Results.PureSecondReplication: audited 12 theorem declarations
+HeadComplexity.Results.PureSecondReplicationDegree: audited 13 theorem declarations
+HeadComplexity.Results.PureSeparationAllLargeInputs: audited 6 theorem declarations
+HeadComplexity.Results.PureSeventhReplicationDegree: audited 40 theorem declarations
+HeadComplexity.Results.PureSourceLinearApproximation: audited 28 theorem declarations
+HeadComplexity.Results.PureSourceTwoReplicasUpper: audited 24 theorem declarations
+HeadComplexity.Results.PureThirdReplicationLinear: audited 24 theorem declarations
+HeadComplexity.Results.PureThreeAveragedSeparation: audited 3 theorem declarations
+HeadComplexity.Results.PureThreeAveragedWitness: audited 4 theorem declarations
+HeadComplexity.Results.PureThreeReplicatedGrid: audited 66 theorem declarations
+HeadComplexity.Results.PureThreeReplicatedGridConsequences: audited 7 theorem declarations
+HeadComplexity.Results.PureThreeSeparation: audited 11 theorem declarations
+HeadComplexity.Results.PureThreeSeparationLimit: audited 13 theorem declarations
+HeadComplexity.Results.QuadraticProductUpperBound: audited 10 theorem declarations
+HeadComplexity.Results.ReciprocalFiniteDifference: audited 18 theorem declarations
+HeadComplexity.Results.ReciprocalUpperBound: audited 10 theorem declarations
+HeadComplexity.Results.ReplicatedMonotonicity: audited 7 theorem declarations
+HeadComplexity.Results.RestrictionLowerBounds: audited 5 theorem declarations
+HeadComplexity.Results.RoPEArchitecturalComparison: audited 11 theorem declarations
+HeadComplexity.Results.RoPEBoundaryCases: audited 7 theorem declarations
+HeadComplexity.Results.RoPEComparison: audited 28 theorem declarations
+HeadComplexity.Results.RoPEDummyExtension: audited 34 theorem declarations
+HeadComplexity.Results.RoPEFourInputs: audited 14 theorem declarations
+HeadComplexity.Results.RoPEGeneralBounds: audited 16 theorem declarations
+HeadComplexity.Results.RoPESmallInputs: audited 36 theorem declarations
+HeadComplexity.Results.RoPEThreeComplement: audited 16 theorem declarations
+HeadComplexity.Results.RoPETwoHeads: audited 30 theorem declarations
+HeadComplexity.Results.RoPEUniversalBudgets: audited 10 theorem declarations
+HeadComplexity.Results.StrictSeparation: audited 51 theorem declarations
+HeadComplexity.Results.SymmetricComplexity: audited 7 theorem declarations
+HeadComplexity.Results.ThresholdDegree: audited 2 theorem declarations
+HeadComplexity.Results.VanillaInputRestriction: audited 8 theorem declarations
+HeadComplexity.Results.WeightedUpperBound: audited 3 theorem declarations
+Audited 3031 theorem declarations across 171 modules.
+Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].
+AXIOM_RC=0
+Validation completed successfully.
+
+=== Static and KaTeX Markdown audit ===
+[lint] 31 files, 2095 math spans, clean
+
+=== Actual GitHub Markdown API audit ===
+README.md 45 45 clean
+artifacts/rope/proof_track_report.md 35 35 clean
+artifacts/rope/research/collision_cluster_residue_obstruction.md 106 106 clean
+artifacts/rope/research/common_base_jet_obstruction.md 37 37 clean
+artifacts/rope/research/denominator_and_cubic_routes.md 49 49 clean
+artifacts/rope/research/effective_replication_threshold.md 103 103 clean
+artifacts/rope/research/exact_finite_factor_obstruction.md 65 65 clean
+artifacts/rope/research/exact_four_factor_obstruction.md 96 96 clean
+artifacts/rope/research/general_head_separation_audit.md 35 35 clean
+artifacts/rope/research/matrix_route.md 25 25 clean
+artifacts/rope/research/quantitative_tensor_gap.md 46 46 clean
+artifacts/rope/research/separation_audit.md 9 9 clean
+artifacts/rope/research/small_replication_exact_complexity.md 107 107 clean
+artifacts/rope/research/subset_and_jet_limits.md 35 35 clean
+artifacts/rope/research/value_tilt_route.md 49 49 clean
+artifacts/rope/research_routes.md 93 93 clean
+artifacts/rope/run_report.md 0 0 clean
+artifacts/rope/search/README.md 0 0 clean
+artifacts/rope/search/three_head_search.md 4 4 clean
+formalization/README.md 0 0 clean
+theorems.md 102 102 clean
+theorems/03_rotary_attention/014_rope_head_complexity.md 179 179 clean
+theorems/03_rotary_attention/015_pure_rope_two_heads_complement_invariant.md 72 72 clean
+theorems/03_rotary_attention/016_pure_rope_two_heads.md 60 60 clean
+theorems/03_rotary_attention/017_affine_statistic_projective_upper_bound.md 92 92 clean
+theorems/03_rotary_attention/018_pure_rope_architectural_bridge.md 60 60 clean
+theorems/03_rotary_attention/019_finite_difference_vanilla_simulation.md 129 129 clean
+theorems/03_rotary_attention/020_pure_rope_small_inputs.md 52 52 clean
+theorems/03_rotary_attention/021_three_heads_complement_invariant.md 43 43 clean
+theorems/03_rotary_attention/022_pure_rope_three_head_separation.md 182 182 clean
+theorems/03_rotary_attention/023_pure_rope_separation_every_head_count.md 185 185 clean
+
+=== Final supplementary checks ===
+No changes under formalization since the validated revision: PASS.
+Collision note rechecked after the final search paragraph: GitHub 106/106 clean.
+All 243 local links in changed Markdown resolve: PASS.
+git diff --check bdca97f: PASS.
+Both new exact Laurent search scripts pass Python syntax compilation.
+The larger computations were run with the required heavy wrapper.
+GitLab rendering was not run: no glab installation or GitLab authentication.
