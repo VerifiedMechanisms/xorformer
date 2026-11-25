@@ -56,7 +56,11 @@ Add bias one and the single genuine positive-slope head
 
 $$ C_\eta(z,y)=\frac{(b-1)y}{1+\eta y+\eta\sum_i z_i},\qquad\eta\gt0. $$
 
-It vanishes exactly on $y=0$ and approaches $b-1$ uniformly on $y=1$. Hence $1+C_\eta+\sum_hP_{h,\epsilon,T}$ has the claimed exact face values and, for finite sufficiently small and large parameter choices, all the required extension signs. Its amplitude is at most $1+|b-1|+2\sum_h\|A_h/B_h\|_\infty$ before the initial harmless constant-denominator approximation.
+It vanishes exactly on $y=0$ and approaches $b-1$ uniformly on $y=1$. Hence $1+C_\eta+\sum_hP_{h,\epsilon,T}$ has the claimed exact face values and, for finite sufficiently small and large parameter choices, all the required extension signs. Write $D=|b|+\sum_h\|A_h/B_h\|_\infty$ for the original amplitude. The initial constant-denominator approximation also does not increase any head norm, so the final amplitude satisfies
+
+$$ D_{\mathrm{embedded}}\leq1+|b-1|+2\sum_h\|A_h/B_h\|_\infty\leq2D+2. $$
+
+Thus the construction does not require unbounded individual amplitudes. It still retains the source-dependent tiny gap on the opposite face.
 
 For an explicit finite error allocation, let $g=\min_z|S(z)|\gt0$. Approximate each constant-denominator head within $g/(4(H+1))$, approximate each resulting head by its pair on $y=1$ within $g/(4(H+1))$, and choose the bias helper error below $g/4$. The final score differs from the original one on $y=1$ by less than $3g/4$. Every limiting argument therefore selects actual finite parameters and strictly admissible heads; no degenerate head is used in the output.
 
