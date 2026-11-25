@@ -1,0 +1,3 @@
+import HeadComplexity.Research.QuadraticScaleTypicalComplexity
+#print axioms HeadComplexity.QuadraticScaleTypicalComplexity.card_le_exp_at_quadratic_budget
+#print axioms HeadComplexity.QuadraticScaleTypicalComplexity.card_le_exp_one_sub_epsilon

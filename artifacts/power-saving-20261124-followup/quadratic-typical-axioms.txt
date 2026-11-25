@@ -1,0 +1,6 @@
+'HeadComplexity.QuadraticScaleTypicalComplexity.card_le_exp_at_quadratic_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.QuadraticScaleTypicalComplexity.card_le_exp_one_sub_epsilon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
