@@ -56,7 +56,7 @@ theorem centeredReduction_eq_of_cube_eval_eq {σ : Type*} [Finite σ]
   rw [centeredReduction_eval_eq P z hs, centeredReduction_eval_eq Q z hs]
   exact heval z hz
 
-theorem coeff_eq_of_top_squarefree_cube_eval_eq {σ : Type*} [Fintype σ]
+theorem coeff_eq_of_top_squarefree_cube_eval_eq {σ : Type*} [Finite σ]
     (P Q : MvPolynomial σ ℝ) (e : σ →₀ ℕ)
     (he : ∀ i, e i ≤ 1)
     (hP : P.totalDegree ≤ e.sum (fun _ k ↦ k))

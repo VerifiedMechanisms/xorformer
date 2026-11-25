@@ -56,7 +56,7 @@ theorem exists_complexity_separation :
   obtain ⟨m, hm⟩ := eventually_complexity_separation.exists
   exact ⟨18 * m, classifier m, hm⟩
 
-/-- Both literal rotary-frequency conventions admit a three-head classifier
+/-- Both literal rotary-frequency conventions realize a three-head classifier
 which has no three-head vanilla representation. -/
 theorem exists_rotary_three_not_vanilla_three :
     ∃ (n : ℕ) (f : (Fin n → Bool) → Bool),
