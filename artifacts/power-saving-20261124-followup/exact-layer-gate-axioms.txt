@@ -1,0 +1,24 @@
+'HeadComplexity.ExactLayerGateLowerBound.squarefree_full_product' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.squarefree_parity_moment_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.polynomial_parity_moment_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.polynomial_degree_ge_of_weak_parity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.original_weak_parity_heads_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.original_nonnegative_parity_support_heads_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.parity_eq_hamming_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.ExactLayerGateLowerBound.original_nonnegative_layer_gate_heads_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
