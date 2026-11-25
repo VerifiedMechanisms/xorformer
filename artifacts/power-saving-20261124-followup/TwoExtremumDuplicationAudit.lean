@@ -1,0 +1,4 @@
+import HeadComplexity.Research.TwoExtremumDuplication
+#print axioms HeadComplexity.TwoExtremumDuplication.two_endpoint_annihilator
+#print axioms HeadComplexity.TwoExtremumDuplication.endpoint_det_ne_zero
+#print axioms HeadComplexity.TwoExtremumDuplication.ratio_endpoint_annihilator

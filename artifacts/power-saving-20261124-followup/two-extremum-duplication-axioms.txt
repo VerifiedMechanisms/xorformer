@@ -1,0 +1,7 @@
+'HeadComplexity.TwoExtremumDuplication.two_endpoint_annihilator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.TwoExtremumDuplication.endpoint_det_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.TwoExtremumDuplication.ratio_endpoint_annihilator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

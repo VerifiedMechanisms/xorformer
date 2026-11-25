@@ -1,0 +1,9 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/unrestricted_capacity_two_extrema.md",
+    "source_spans": 45,
+    "rendered_spans": 45,
+    "findings": [],
+    "notes": []
+  }
+]
