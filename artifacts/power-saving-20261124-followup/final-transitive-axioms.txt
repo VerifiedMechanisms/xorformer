@@ -63,10 +63,13 @@ HeadComplexity.Research.GroupedDenominatorCapacity: audited 52 theorem declarati
 HeadComplexity.Research.IntegerSeparatorMarginRepair: audited 30 theorem declarations
 HeadComplexity.Research.LinearCylinderCompiler: audited 10 theorem declarations
 HeadComplexity.Research.LinearCylinderMargin: audited 23 theorem declarations
+HeadComplexity.Research.LiteralMarginNonattainment: audited 10 theorem declarations
+HeadComplexity.Research.LiteralMarginNonattainmentWitness: audited 16 theorem declarations
 HeadComplexity.Research.LowDegreeMarginRepair: audited 14 theorem declarations
 HeadComplexity.Research.LowParameterDenominatorCapacity: audited 24 theorem declarations
 HeadComplexity.Research.MarginCapacityEstimates: audited 25 theorem declarations
 HeadComplexity.Research.MarginInvariance: audited 14 theorem declarations
+HeadComplexity.Research.MarginOneCollapse: audited 4 theorem declarations
 HeadComplexity.Research.MarginSensitiveCapacity: audited 20 theorem declarations
 HeadComplexity.Research.MidrangeMarginCentering: audited 18 theorem declarations
 HeadComplexity.Research.MinZeroPositivePartition: audited 16 theorem declarations
@@ -75,6 +78,7 @@ HeadComplexity.Research.MixedCylinderDegree: audited 11 theorem declarations
 HeadComplexity.Research.MonomialMarginCompiler: audited 4 theorem declarations
 HeadComplexity.Research.MonotonePoleLocalization: audited 19 theorem declarations
 HeadComplexity.Research.NearConstantMarginObstruction: audited 11 theorem declarations
+HeadComplexity.Research.NearUnitMarginCollapse: audited 3 theorem declarations
 HeadComplexity.Research.NegativeObservationBinomial: audited 9 theorem declarations
 HeadComplexity.Research.NonnegativeHeadCone: audited 4 theorem declarations
 HeadComplexity.Research.NonnegativePartitionEmbedding: audited 20 theorem declarations
@@ -102,6 +106,7 @@ HeadComplexity.Research.PartialLinearCertificate: audited 14 theorem declaration
 HeadComplexity.Research.PencilMoebiusTangentObstruction: audited 22 theorem declarations
 HeadComplexity.Research.PencilProductCompiler: audited 18 theorem declarations
 HeadComplexity.Research.PositiveGridGhostAtoms: audited 14 theorem declarations
+HeadComplexity.Research.PositiveLiteralNonattainment: audited 3 theorem declarations
 HeadComplexity.Research.PositiveNormalizationSharpness: audited 12 theorem declarations
 HeadComplexity.Research.PositiveReciprocalExpansion: audited 24 theorem declarations
 HeadComplexity.Research.PositiveReciprocalGradient: audited 25 theorem declarations
@@ -137,6 +142,7 @@ HeadComplexity.Research.TwoHeadAffineProduct: audited 26 theorem declarations
 HeadComplexity.Research.TwoMinorityBasisBranches: audited 53 theorem declarations
 HeadComplexity.Research.TwoMinorityNeighborObstruction: audited 41 theorem declarations
 HeadComplexity.Research.TwoPoleCoalescence: audited 13 theorem declarations
+HeadComplexity.Research.TwoValuedFaceGeometry: audited 1 theorem declarations
 HeadComplexity.Research.UniformClusterCapacity: audited 74 theorem declarations
 HeadComplexity.Research.UniformMarginCompiler: audited 2 theorem declarations
 HeadComplexity.Research.UnimodularFeasibleBasisObstruction: audited 66 theorem declarations
@@ -150,5 +156,5 @@ HeadComplexity.Research.WeightedNormalizedCounting: audited 34 theorem declarati
 HeadComplexity.Research.WeightedProjectionCircuit: audited 10 theorem declarations
 HeadComplexity.Results.All: audited 152 theorem declarations
 HeadComplexity.Results.WarrenBound: audited 8 theorem declarations
-Audited 3133 theorem declarations across 152 modules.
+Audited 3170 theorem declarations across 158 modules.
 Every theorem depends only on allowed axioms #[propext, Classical.choice, Quot.sound].

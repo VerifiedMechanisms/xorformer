@@ -1,4 +1,4 @@
-⚠ [3704/3943] Replayed HeadComplexity.Polynomial.WeightedDiagonalRootBound
+⚠ [3704/3964] Replayed HeadComplexity.Polynomial.WeightedDiagonalRootBound
 warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:5: Variable name `hw` is not explicitly referenced.
 
 Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
@@ -17,7 +17,7 @@ Hint: Use `simp` instead of `simpa`:
   [apply] simp
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-ℹ [4016/4713] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+ℹ [4016/4758] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
 info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -30,7 +30,7 @@ info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplex
 info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4017/4713] Replayed HeadComplexity.Research.MarginInvariance
+ℹ [4017/4758] Replayed HeadComplexity.Research.MarginInvariance
 info: HeadComplexity/Research/MarginInvariance.lean:191:0: 'HeadComplexity.RelativeMarginQuantifiers.relativeMargin_scale' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -41,7 +41,7 @@ info: HeadComplexity/Research/MarginInvariance.lean:193:0: 'HeadComplexity.Relat
 info: HeadComplexity/Research/MarginInvariance.lean:194:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_width_same_score_small_margin' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4019/4713] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
+ℹ [4019/4758] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
 info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -57,7 +57,7 @@ info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'He
 info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4021/4713] Replayed HeadComplexity.Research.MarginSensitiveCapacity
+ℹ [4021/4758] Replayed HeadComplexity.Research.MarginSensitiveCapacity
 info: HeadComplexity/Research/MarginSensitiveCapacity.lean:217:0: 'HeadComplexity.MarginSensitiveCapacity.card_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: HeadComplexity/Research/MarginSensitiveCapacity.lean:218:0: 'HeadComplexity.MarginSensitiveCapacity.headPoly_totalDegree_le' depends on axioms: [propext,
  Classical.choice,
@@ -75,7 +75,7 @@ info: HeadComplexity/Research/MarginSensitiveCapacity.lean:222:0: 'HeadComplexit
 info: HeadComplexity/Research/MarginSensitiveCapacity.lean:223:0: 'HeadComplexity.MarginSensitiveCapacity.card_chartPatterns_le_warren' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4022/4713] Replayed HeadComplexity.Research.CoefficientOrderChart
+ℹ [4022/4758] Replayed HeadComplexity.Research.CoefficientOrderChart
 info: HeadComplexity/Research/CoefficientOrderChart.lean:145:0: 'HeadComplexity.CoefficientOrderChart.exists_conditioning_order' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -83,7 +83,7 @@ info: HeadComplexity/Research/CoefficientOrderChart.lean:146:0: 'HeadComplexity.
 info: HeadComplexity/Research/CoefficientOrderChart.lean:147:0: 'HeadComplexity.CoefficientOrderChart.card_orderedPatterns_le_warren' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4028/4713] Replayed HeadComplexity.Research.OriginalMarginCapacity
+ℹ [4028/4758] Replayed HeadComplexity.Research.OriginalMarginCapacity
 info: HeadComplexity/Research/OriginalMarginCapacity.lean:233:0: 'HeadComplexity.OriginalMarginCapacity.orientedAtom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: HeadComplexity/Research/OriginalMarginCapacity.lean:234:0: 'HeadComplexity.OriginalMarginCapacity.highMarginFunctions_subset_orderedPatterns' depends on axioms: [propext,
  Classical.choice,
@@ -100,7 +100,7 @@ info: HeadComplexity/Research/OriginalMarginCapacity.lean:237:0: 'HeadComplexity
 info: HeadComplexity/Research/OriginalMarginCapacity.lean:238:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4030/4713] Replayed HeadComplexity.Research.MarginCapacityEstimates
+ℹ [4030/4758] Replayed HeadComplexity.Research.MarginCapacityEstimates
 info: HeadComplexity/Research/MarginCapacityEstimates.lean:430:0: 'HeadComplexity.MarginCapacityEstimates.mul_log_div_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: HeadComplexity/Research/MarginCapacityEstimates.lean:431:0: 'HeadComplexity.MarginCapacityEstimates.card_highMarginFunctions_le_exp' depends on axioms: [propext,
  Classical.choice,
@@ -136,7 +136,7 @@ info: HeadComplexity/Research/MarginCapacityEstimates.lean:441:0: 'HeadComplexit
 info: HeadComplexity/Research/MarginCapacityEstimates.lean:442:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_overhead' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [4031/4713] Replayed HeadComplexity.Research.ConditionalMarginLowerBounds
+ℹ [4031/4758] Replayed HeadComplexity.Research.ConditionalMarginLowerBounds
 info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:173:0: 'HeadComplexity.ConditionalMarginLowerBounds.worstCase_gt_sqrt_of_repair' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -155,14 +155,14 @@ info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:177:0: 'HeadComp
 info: HeadComplexity/Research/ConditionalMarginLowerBounds.lean:178:0: 'HeadComplexity.ConditionalMarginLowerBounds.real_logarithmic_bound_of_repair' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [4045/4713] Replayed HeadComplexity.Research.AnisotropicWeightBarrier
+⚠ [4045/4758] Replayed HeadComplexity.Research.AnisotropicWeightBarrier
 warning: HeadComplexity/Research/AnisotropicWeightBarrier.lean:17:25: Variable name `hU` is not explicitly referenced.
 
 Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
   [apply] _hU
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [4062/4713] Replayed HeadComplexity.Research.CoherentDenominatorCharts
+⚠ [4062/4758] Replayed HeadComplexity.Research.CoherentDenominatorCharts
 warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:17:31: `MvPolynomial.coeff_add` has been deprecated: Use `AddMonoidAlgebra.coeff_add` instead
 
 Note: The updated constant has a different type:
@@ -194,25 +194,25 @@ Note: This linter can be disabled with `set_option linter.style.longLine false`
 warning: HeadComplexity/Research/CoherentDenominatorCharts.lean:108:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-⚠ [4065/4713] Replayed HeadComplexity.Research.CoherentEdgeVariation
+⚠ [4065/4758] Replayed HeadComplexity.Research.CoherentEdgeVariation
 warning: HeadComplexity/Research/CoherentEdgeVariation.lean:23:8: `sum_abs_edge_le` does not use the following hypothesis in its type:
   • [DecidableEq I] (#3)
 
 Consider removing this hypothesis and using `classical` in the proof instead. For terms, consider using `open scoped Classical in` at the term level (not the command level).
 
 Note: This linter can be disabled with `set_option linter.unusedDecidableInType false`
-⚠ [4067/4713] Replayed HeadComplexity.Research.CollectiveThreeHeadRelation
+⚠ [4067/4758] Replayed HeadComplexity.Research.CollectiveThreeHeadRelation
 warning: HeadComplexity/Research/CollectiveThreeHeadRelation.lean:70:72: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: HeadComplexity/Research/CollectiveThreeHeadRelation.lean:70:72: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-ℹ [9153/9207] Replayed HeadComplexity.Research.RadialMomentTransfer
+ℹ [9153/9276] Replayed HeadComplexity.Research.RadialMomentTransfer
 info: HeadComplexity/Research/RadialMomentTransfer.lean:281:0: 'HeadComplexity.RadialMomentTransfer.uniform_radial_sign_transfer' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [9162/9207] Replayed HeadComplexity.Research.FullRankMarginDegeneration
+⚠ [9162/9276] Replayed HeadComplexity.Research.FullRankMarginDegeneration
 warning: HeadComplexity/Research/FullRankMarginDegeneration.lean:48:2: `simp [signedLabel, majority, boolToReal] at h0 h1 h2 h12` is a flexible tactic modifying `h12`. Try `simp?` and use the suggested `simp only [...]`. Alternatively, use `suffices` to explicitly state the simplified form.
 
 Note: This linter can be disabled with `set_option linter.flexible false`
@@ -461,7 +461,7 @@ info: HeadComplexity/Research/FullRankMarginDegeneration.lean:185:0: 'HeadComple
 info: HeadComplexity/Research/FullRankMarginDegeneration.lean:186:0: 'HeadComplexity.FullRankMarginDegeneration.optimal_full_cube_bounds' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [9164/9207] Replayed HeadComplexity.Research.GenericOneHeadBranchCount
+⚠ [9164/9276] Replayed HeadComplexity.Research.GenericOneHeadBranchCount
 warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:16:0: Please, add a comment explaining the need for modifying the maxHeartbeat limit, as in
 set_option maxHeartbeats 8000000 in
 -- reason for change
@@ -474,18 +474,18 @@ Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: HeadComplexity/Research/GenericOneHeadBranchCount.lean:41:52: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [9167/9207] Replayed HeadComplexity.Research.GroupedDenominatorCapacity
+⚠ [9167/9276] Replayed HeadComplexity.Research.GroupedDenominatorCapacity
 warning: HeadComplexity/Research/GroupedDenominatorCapacity.lean:203:100: This line exceeds the 100 character limit, please shorten it!
 
 Note: This linter can be disabled with `set_option linter.style.longLine false`
-ℹ [9177/9207] Replayed HeadComplexity.Research.UniformMarginCompiler
+ℹ [9177/9276] Replayed HeadComplexity.Research.UniformMarginCompiler
 info: HeadComplexity/Research/UniformMarginCompiler.lean:93:0: 'HeadComplexity.UniformMarginCompiler.atomSup_le_of_uniform_error' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
 info: HeadComplexity/Research/UniformMarginCompiler.lean:94:0: 'HeadComplexity.UniformMarginCompiler.hasRelativeMargin_of_uniformlyOneAtomApproximable' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9183/9207] Replayed HeadComplexity.Research.NearConstantMarginObstruction
+ℹ [9187/9276] Replayed HeadComplexity.Research.NearConstantMarginObstruction
 info: HeadComplexity/Research/NearConstantMarginObstruction.lean:179:0: 'HeadComplexity.NearConstantMarginObstruction.thresholdDegLE_of_near_constant_margin' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -495,7 +495,22 @@ info: HeadComplexity/Research/NearConstantMarginObstruction.lean:180:0: 'HeadCom
 info: HeadComplexity/Research/NearConstantMarginObstruction.lean:181:0: 'HeadComplexity.NearConstantMarginObstruction.parity_margin_le_of_near_constant' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [9189/9207] Replayed HeadComplexity.Research.NormalizedPolynomialSupport
+⚠ [9188/9276] Replayed HeadComplexity.Research.NearUnitMarginCollapse
+warning: HeadComplexity/Research/NearUnitMarginCollapse.lean:32:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: HeadComplexity/Research/NearUnitMarginCollapse.lean:74:24: This simp argument is unused:
+  Fintype.card_fun
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [mul_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [9193/9276] Replayed HeadComplexity.Research.NormalizedPolynomialSupport
 warning: HeadComplexity/Research/NormalizedPolynomialSupport.lean:17:6: `nonneg_C` does not use the following hypothesis in its type:
   • [DecidableEq K] (#2)
 
@@ -583,7 +598,7 @@ instead of
     (p + q).coeff m = p.coeff m + q.coeff m
 
 Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.coeff_add` to `AddMonoidAlgebra.coeff_add x`).
-⚠ [9190/9207] Replayed HeadComplexity.Research.ObservableSpanInstability
+⚠ [9194/9276] Replayed HeadComplexity.Research.ObservableSpanInstability
 warning: HeadComplexity/Research/ObservableSpanInstability.lean:36:43: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
@@ -621,7 +636,7 @@ Hint: Omit it from the simp argument list.
   [apply] simp [boolToReal, hε]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [9204/9329] Replayed HeadComplexity.Research.PositiveReciprocalExpansion
+⚠ [9207/9276] Replayed HeadComplexity.Research.PositiveReciprocalExpansion
 warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:134:17: This simp argument is unused:
   hxi
 
@@ -659,7 +674,7 @@ warning: HeadComplexity/Research/PositiveReciprocalExpansion.lean:258:23: `if_ne
 
 Hint: Replace the deprecated name:
   i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
-⚠ [9207/9329] Replayed HeadComplexity.Research.PencilMoebiusTangentObstruction
+⚠ [9210/9276] Replayed HeadComplexity.Research.PencilMoebiusTangentObstruction
 warning: HeadComplexity/Research/PencilMoebiusTangentObstruction.lean:7:0: Unscoped option maxHeartbeats is not allowed:
 Please scope this to individual declarations, as in
 ```
@@ -669,7 +684,7 @@ example : ... := ...
 ```
 
 Note: This linter can be disabled with `set_option linter.style.setOption false`
-⚠ [9216/9329] Replayed HeadComplexity.Research.RankOneCompilerSelector
+⚠ [9220/9276] Replayed HeadComplexity.Research.RankOneCompilerSelector
 warning: HeadComplexity/Research/RankOneCompilerSelector.lean:68:69: This simp argument is unused:
   add_assoc
 
@@ -677,7 +692,7 @@ Hint: Omit it from the simp argument list.
   [apply] simp [boolToReal, add_comm, add_left_comm]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [9224/9329] Replayed HeadComplexity.Research.ScaledBoxPackingObstruction
+⚠ [9228/9276] Replayed HeadComplexity.Research.ScaledBoxPackingObstruction
 warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:1:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
 
 import Mathlib.Basic.Real.Basic
@@ -696,7 +711,7 @@ Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:26:28: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [9228/9329] Replayed HeadComplexity.Research.SplitSmoothableEstimates
+⚠ [9232/9276] Replayed HeadComplexity.Research.SplitSmoothableEstimates
 warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:379:26: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
@@ -715,14 +730,14 @@ Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus fa
 warning: HeadComplexity/Research/SplitSmoothableEstimates.lean:421:41: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [9232/9329] Replayed HeadComplexity.Research.TwoHeadAffineProduct
+⚠ [9236/9276] Replayed HeadComplexity.Research.TwoHeadAffineProduct
 warning: HeadComplexity/Research/TwoHeadAffineProduct.lean:40:36: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: HeadComplexity/Research/TwoHeadAffineProduct.lean:40:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-ℹ [9324/9329] Replayed HeadComplexity.Research.IntegerSeparatorMarginRepair
+ℹ [9330/9335] Replayed HeadComplexity.Research.IntegerSeparatorMarginRepair
 info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:541:0: 'HeadComplexity.IntegerSeparatorMarginRepair.exists_bounded_integer_separator' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -736,7 +751,7 @@ info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:544:0: 'HeadComp
 info: HeadComplexity/Research/IntegerSeparatorMarginRepair.lean:545:0: 'HeadComplexity.IntegerSeparatorMarginRepair.repair_of_HStar_le_one' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-⚠ [9325/9329] Replayed HeadComplexity.Research.LowDegreeMarginRepair
+⚠ [9331/9335] Replayed HeadComplexity.Research.LowDegreeMarginRepair
 warning: HeadComplexity/Research/LowDegreeMarginRepair.lean:24:2: Try this: 
   haveI̵
 
@@ -748,7 +763,7 @@ Note: This linter can be disabled with `set_option linter.style.haveILetI false`
 info: HeadComplexity/Research/LowDegreeMarginRepair.lean:203:0: 'HeadComplexity.LowDegreeMarginRepair.exists_integer_monomial_separator' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [9327/9329] Replayed HeadComplexity.Research.MonomialMarginCompiler
+ℹ [9333/9335] Replayed HeadComplexity.Research.MonomialMarginCompiler
 info: HeadComplexity/Research/MonomialMarginCompiler.lean:78:0: 'HeadComplexity.MonomialMarginCompiler.hasRelativeMargin_of_computable' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -761,4 +776,4 @@ info: HeadComplexity/Research/MonomialMarginCompiler.lean:81:0: 'HeadComplexity.
 info: HeadComplexity/Research/MonomialMarginCompiler.lean:82:0: 'HeadComplexity.MonomialMarginCompiler.hasRelativeMargin_of_thresholdDegree_at_width' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-Build completed successfully (9329 jobs).
+Build completed successfully (9335 jobs).

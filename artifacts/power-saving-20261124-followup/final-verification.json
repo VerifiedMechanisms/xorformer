@@ -1,34 +1,34 @@
 {
   "base": "aa0cceb140ba75149353f92943b1fba78e7e0ec5",
-  "head": "837d8692b2c9266e44eb861e33f296fedc683057",
-  "started_utc": "2026-11-25T03:01:36.779533+00:00",
-  "module_count": 152,
+  "head": "44da9da5dc67ada89b846b116f83de5f9d454768",
+  "started_utc": "2026-11-25T03:19:24.249882+00:00",
+  "module_count": 158,
   "checks": [
     {
       "name": "default-build",
       "exit_code": 0,
-      "seconds": 1.586343,
+      "seconds": 1.595646,
       "log": "final-default-build.txt"
     },
     {
       "name": "research-build",
       "exit_code": 0,
-      "seconds": 2.711083,
+      "seconds": 2.617015,
       "log": "final-research-build.txt"
     },
     {
       "name": "transitive-axioms",
       "exit_code": 0,
-      "seconds": 6.612085,
+      "seconds": 6.408367,
       "log": "final-transitive-axioms.txt"
     },
     {
       "name": "main-print-axioms",
       "exit_code": 0,
-      "seconds": 3.044261,
+      "seconds": 2.996409,
       "log": "final-main-print-axioms.txt"
     }
   ],
-  "finished_utc": "2026-11-25T03:01:50.733535+00:00",
+  "finished_utc": "2026-11-25T03:19:37.867585+00:00",
   "all_passed": true
 }

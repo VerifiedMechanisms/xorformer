@@ -66,10 +66,24 @@ $$ \left(2(n+1)^{n+1}\right)^H, $$
 
 whose logarithm is of order $nH\log n$. The limiting score is described by at most $1+2(n+1)H$ real coefficients. This statement includes arbitrary signed cancellation between heads, because it describes each summand before adding it. The full amplitude is continuous under pointwise convergence on the finite cube.
 
+## A best margin exists in the compact closure
+
+There is a useful distinction between maximizing in the original open admissible domain and maximizing its full-cube value closure. Fix a signed truth table $f:\lbrace0,1\rbrace^n\to\lbrace-1,+1\rbrace$ and a width $H$. Let $\mathcal T_H$ be the tuples of bias and genuine original head value vectors whose requested amplitude is exactly one. Positive common score rescaling preserves admissibility and relative margin, so every strict representation supplies an element of this set.
+
+Every coordinate of every tuple lies in $[-1,1]$. In the finite-dimensional space of these coordinates, its closure $\overline{\mathcal T_H}$ is compact. The amplitude is continuous and remains exactly one throughout the closure. The function
+
+$$ m_f(b,v_1,\ldots,v_H)=\min_x f(x)\left(b+\sum_h v_h(x)\right) $$
+
+is continuous, since the cube is finite. Hence it attains a maximum $\mu$ on the closure. If the table was originally representable at width $H$, then $\mu\gt0$. For such a table, density and continuity give, for every $\eta\lt\mu$, a tuple of genuine original heads at the same width with signed gap greater than $\max(\eta,0)$. It remains strict and has margin greater than $\eta$. In particular, any positive lower bound on this compactified optimum transfers to genuine heads with an arbitrarily small loss and no width overhead. This argument retains arbitrary signed cancellation and uses the complete cube norms.
+
+This is an independently checkable written compactness argument, not a new Lean declaration. It does not give a numerical lower bound on $\mu$. The fully kernel-checked literal nonattainment theorem illustrates the distinction: in dimension at least two its supremum is one, realized by a boundary affine chart, while genuine heads achieve every smaller margin and never one. Thus failure of a genuine maximizing representation does not itself obstruct repair at the requested margins.
+
+A compactified optimizer with positive margin is strict on the full cube, so its final labels have no unresolved zero-score rows. Nevertheless, counting all such strict limiting charts by ordinary polynomial sign patterns still incurs the head-dependent cleared degree and the present quadratic-scale barrier. A norm-stationarity proof on this closure must also justify variations at its boundary strata; interior derivative identities cannot be applied there without an additional argument. The missing conclusion is a quantitative optimum bound or a smaller truth-table count, not mere compactified attainment.
+
 ## What is still missing
 
 If the limiting score is strict, its labels are already determined by these leading charts. If some score coordinates vanish, later terms can determine their labels. If the complete leading score cancels, all labels can remain undecided.
 
 The [mixed-difference construction](weak_limit_layer_obstruction.md) shows that even uniformly interior denominators can have many successive normalized orders of vanishing, with more than $nH\log n$ layers at the logarithmic fallback width. That construction has only one truth table, so it also shows why layer multiplicity alone is the wrong entropy measure.
 
-To reach an unrestricted capacity bound, one needs a count for the jointly constrained signs of all cancellation refinements. The finite face-chart count proved here is not such a count and cannot be multiplied independently over those refinements.
+For the arbitrary weak-limit and refinement route to reach an unrestricted capacity bound, one needs a count for the jointly constrained signs of all cancellation refinements. The compactified positive-optimum route can instead count strict leading charts, but its ordinary sign-pattern estimate retains the separate degree barrier explained above. The finite face-chart count proved here is not such a count and cannot be multiplied independently over those refinements.
