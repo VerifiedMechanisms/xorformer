@@ -1,0 +1,66 @@
+{
+  "replicas": 2,
+  "input_bits": 36,
+  "denominators": [
+    [
+      200,
+      15,
+      12,
+      12,
+      6,
+      9,
+      9
+    ],
+    [
+      200,
+      12,
+      15,
+      12,
+      9,
+      6,
+      9
+    ],
+    [
+      200,
+      12,
+      12,
+      15,
+      9,
+      9,
+      6
+    ]
+  ],
+  "numerators": [
+    [
+      0,
+      12,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    [
+      0,
+      6,
+      12,
+      6,
+      6,
+      6,
+      6
+    ],
+    [
+      0,
+      6,
+      6,
+      12,
+      6,
+      6,
+      6
+    ]
+  ],
+  "coordinates": "z_j=(2*k_j-3*m)/(3*m), k_j counts ones over all three blocks at group position j",
+  "scope": "Exact vanilla three-head upper certificate for replication two; denominator shift by the common weighted linear score",
+  "derivation": "N_h unchanged; E_h=D_h+L, L=4*sum(A)+3*sum(B), A_j=3*z_j and B_j=3*z_(j+3)",
+  "strict_scores": false
+}

@@ -2,6 +2,17 @@
 
 These experiments explored alternative vanilla representations during the proof track starting at `bdca97f`. They are separate from the mathematical separation in [Theorem 22](../../../theorems/03_rotary_attention/022_pure_rope_three_head_separation.md). No optimization failure is used as a head-count lower bound.
 
+The later `search_replicated_family.py` examines the explicit separating family at small replication counts. The family depends on six aggregate counts, so checking all $(3m+1)^6$ count patterns verifies every Boolean input on $18m$ bits. The numerical search found a strict three-head certificate for $m=1$, although the stronger Lean result `classifier_one_head_minima` proves that one head already suffices.
+
+For $m=2$, optimization failed after 20 restarts and 876 seconds. A direct algebraic construction subsequently succeeded: add the common weighted linear score to each denominator, leaving the numerators unchanged. The small integer certificate `replicated_family_m2_analytic.exact.json` verifies all 117649 count patterns exactly. Some false labels have score zero, which the strict positive-score threshold correctly classifies as false. The complete general argument for this construction is Lean-checked as `classifier_two_vanilla_three` in `Results/PureSourceTwoReplicasUpper.lean`. This example illustrates why search failure is not evidence of impossibility.
+
+Reproduce the integer checks with:
+
+```bash
+heavy python3 artifacts/rope/search/search_replicated_family.py --verify artifacts/rope/search/replicated_family_m1_2026112501.exact.json
+heavy python3 artifacts/rope/search/search_replicated_family.py --verify artifacts/rope/search/replicated_family_m2_analytic.exact.json
+```
+
 ## Exact successful fits
 
 `search_many_head.py` generates genuine pure three-head models, searches for three vanilla affine fractions with uniformly oriented positive denominators, rationalizes successful fits, and checks every Boolean input with integer arithmetic. The free constant is absorbed into a numerator. The verifier checks both the pure labels and the vanilla labels, denominator positivity, and strict uniform slope signs.

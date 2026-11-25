@@ -1,0 +1,14 @@
+{
+  "replicas": 2,
+  "seed": 2026112501,
+  "restarts": 20,
+  "maxiter": 4000,
+  "group_count_patterns": 117649,
+  "result": {
+    "status": "unresolved",
+    "restarts": 20,
+    "loss": 0.0005520045472109862
+  },
+  "seconds": 876.1713905350771,
+  "certified": false
+}
