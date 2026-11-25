@@ -1,0 +1,9 @@
+import HeadComplexity.Research.ScaledBoxPackingObstruction
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.reflection_involution
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.center_identity
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.box_nonempty
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.box_disjoint
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.scale_pos
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.scale_lt_one
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.scale_separation
+#print axioms HeadComplexity.ScaledBoxPackingObstruction.boxes_pairwise_disjoint

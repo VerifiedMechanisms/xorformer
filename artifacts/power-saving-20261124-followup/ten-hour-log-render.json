@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/RESEARCH_LOG.md",
+    "source_spans": 69,
+    "rendered_spans": 69,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/scaled_box_packing_obstruction.md",
+    "source_spans": 24,
+    "rendered_spans": 24,
+    "findings": [],
+    "notes": []
+  }
+]

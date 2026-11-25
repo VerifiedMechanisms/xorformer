@@ -117,3 +117,33 @@ The active-basis repair route has now failed even under unimodularity. Existing 
 A read-only remote refresh found newer branches `origin/ar/027ac8030b43` at `3869e33a` and `origin/ar/3d65948e8222` at `0e145215`. The former still gives the known original-model upper bound of order $N/(n\log n)$ and supplies polynomial signed-statistic and row-correction constructions. No requested unrestricted lower bound was found. The latter concerns a separate positional-model comparison. No code from these refreshed branches was imported.
 
 The next genuinely different attempts are width-sensitive approximation using denominator concentration, joint support-sensitive atomic repair, and a Boolean split that exposes sums of Cauchy matrices with head-dependent row and column generators. The run continues through the remaining allocation. The final hour will be used for a fresh build, transitive axiom checks, and a committed handoff, while tractable proof work continues.
+
+## Ten-hour checkpoint, 01:28 UTC
+
+Elapsed active time is ten hours. The aimed unrestricted power saving and the logarithmic fallback remain open. The strongest unconditional result is now `HeadComplexity.BootstrapWeightedCounting.worstCase_real_log_lower`, with the simpler public form `HeadComplexity.bootstrap_weighted_counting_worst_case_lower_bound`:
+
+$$ W(n)\geq\frac{N-1}{n(n+7)}\qquad(n\geq256),\qquad W(n)\geq\frac{(N-1)\log2}{n\log(16e^2N^2(n+8)/(n(N-1)))}\qquad(n\geq8). $$
+
+The new kernel-checked corollary gives $W(n)\geq(1-\epsilon)N/n^2$ for every $\epsilon\gt0$ whenever $n\geq256$ and $\epsilon n\geq8$. These remain quadratic-denominator lower bounds. The implementation and public exports were built and checked with only `propext`, `Classical.choice`, and `Quot.sound`; the original definitions are unchanged. The initial bootstrap is commit `4b6181a5`, and the leading-constant corollaries are included in shared checkpoint `d9234e8f`.
+
+The numerical counting barrier is now sharp at the quadratic scale itself. `WeightedCountBarrier.optimal_certificate_exceeds_all_tables_at_quadratic_scale` proves
+
+$$ 2^N\lt2\left(\frac{16e^2N^2(H-1)}{n^2H^2}\right)^{nH}\qquad\text{if }n\geq4, H\geq2, 2nH\leq N, n^2H\geq N. $$
+
+`AnisotropicWeightBarrier.every_coordinate_certificate_exceeds_all_tables` extends this obstruction to arbitrary positive coordinate weights satisfying the actual monomial degree constraints. Thus further optimization of these parameter weights cannot establish either requested gain. This is a statement about the upper-bound expression, not a lower count of represented tables.
+
+The full-cube margin route has new constructive and negative evidence. `ActiveMarginImprovement.exists_strict_margin_improvement` proves that a bounded-amplitude correction strictly improving every active vertex gives an admissible local margin improvement with additive head overhead. An abstract sparse dictionary shows that even perfect outside control and repeated local improvements need not yield a constant-overhead endpoint. This is not an original-model counterexample. The new partial-label compiler has an audited written bound and a kernel-checked exceptional-set patch bridge; its source hypothesis still requires a quantitative gap away from a controlled exceptional set. Active-basis cardinality alone does not supply that hypothesis.
+
+`ExactLayerGateLowerBound.original_nonnegative_layer_gate_heads_ge` proves that an exact nonnegative score supported on one Hamming layer needs at least $n$ original heads. A separately audited written argument gives an order $\sqrt n$ lower bound for constant-error uniform value approximation to the central-layer indicator. These rule out constant-cost value gates used in one proposed repair, not sign-preserving whole-table repair in general.
+
+The joint-denominator capacity route now handles target-dependent groups of affine pencils, including all signed cancellation, in `LowParameterDenominatorCapacity` and `GroupedDenominatorCapacity`. Its half-table counts hold at both target scales under explicit denominator parameter and chart budgets. Access to those grouped families is still unproved. A written universal healthy representation of width at most $2323202N/(n\log n)$ and margin at least $\exp(-100n^2\log(n+1))$ is quantitatively audited; its width is too large to provide the required comparison repair.
+
+Actual full-cube norm optimization now has checked algebraic cross-moment identities. At a putative duplication-stable optimum, within-head second moments vanish, while the total cross moment is $1-K^2$ for amplitude budget $K$. A negative cross-head term is therefore forced when $K\gt1$. Converting that term into a norm-controlled, width-preserving improvement is the first missing lemma. Value approximation of products alone does not supply such an improvement.
+
+The one-head actual-basis route has a useful new distinction. `MinorityContactCapacity.one_minority_unique` forces one full truth table in every one-minority unit-contact branch; the corresponding fixed-dimensional continuation count is also checked. Yet `OneMinorityBalanceObstruction` gives an exact admissible example whose every fixed-branch denominator satisfies $22b_0\leq\sum_i b_i$. A numerical claim of a branch forcing $b_0=0$ was rejected by exact arithmetic: its constraints include $-2b_0-2b_4\geq0$, so its reported positive witness was infeasible. All floating searches are marked as finite exploratory evidence.
+
+A combined preflight built 114 changed modules and transitively audited 2,563 theorem declarations with no project axioms. More modules have since been added, so this is a checkpoint rather than final verification. The final hour begins at 02:28 UTC and will rebuild the default target, every changed research module, and all transitive axiom checks.
+
+A read-only remote refresh found `origin/ar/3d65948e8222` at `632a10d0`, concerning positional-architecture separation, and no change to the relevant universal upper-bound branch `origin/ar/027ac8030b43`. No code was imported from this refresh.
+
+The next genuinely different attempt uses complementary unit-contact subspaces and Boolean chamber geometry. A determinant bound controls the collective exterior expansion of an actual Boolean interpolation matrix, but bare box packing cannot finish the argument: a fixed two-dimensional involution already admits infinitely many disjoint normalized coefficient boxes near a boundary face. The finite Boolean normal rows must enter the remaining lemma. In parallel, work continues on two-extremum norm-stationarity identities and the quantitative exceptional-set compiler. The run remains active.

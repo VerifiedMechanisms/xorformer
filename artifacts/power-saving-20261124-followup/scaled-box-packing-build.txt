@@ -1,0 +1,20 @@
+⚠ [3138/3138] Built HeadComplexity.Research.ScaledBoxPackingObstruction (1.6s)
+warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:1:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
+
+import Mathlib.Basic.Real.Basic
+warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:19:28: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:19:32: Unused tactic linter: `ring` does nothing.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:19:32: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:26:28: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: HeadComplexity/Research/ScaledBoxPackingObstruction.lean:26:28: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully (3138 jobs).
