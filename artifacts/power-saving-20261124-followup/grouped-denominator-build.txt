@@ -1,0 +1,132 @@
+⚠ [3744/4034] Replayed HeadComplexity.Polynomial.WeightedDiagonalRootBound
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:5: Variable name `hw` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hw
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:23:25: Variable name `he` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _he
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: HeadComplexity/Polynomial/WeightedDiagonalRootBound.lean:98:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ℹ [3748/4034] Replayed HeadComplexity.Research.ConditionedReciprocalApproximation
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:127:0: 'HeadComplexity.ConditionedReciprocalApproximation.exact_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:128:0: 'HeadComplexity.ConditionedReciprocalApproximation.geometric_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:129:0: 'HeadComplexity.ConditionedReciprocalApproximation.exponential_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:130:0: 'HeadComplexity.ConditionedReciprocalApproximation.sign_preserved_of_relative_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/ConditionedReciprocalApproximation.lean:131:0: 'HeadComplexity.ConditionedReciprocalApproximation.conditioned_score_preserves_sign' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3751/4034] Replayed HeadComplexity.Research.MarginSensitiveCapacity
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:217:0: 'HeadComplexity.MarginSensitiveCapacity.card_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:218:0: 'HeadComplexity.MarginSensitiveCapacity.headPoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:219:0: 'HeadComplexity.MarginSensitiveCapacity.scorePoly_totalDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:220:0: 'HeadComplexity.MarginSensitiveCapacity.eval_headPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:221:0: 'HeadComplexity.MarginSensitiveCapacity.strictPattern_of_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:222:0: 'HeadComplexity.MarginSensitiveCapacity.card_strictPatterns_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginSensitiveCapacity.lean:223:0: 'HeadComplexity.MarginSensitiveCapacity.card_chartPatterns_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3752/4034] Replayed HeadComplexity.Research.CoefficientOrderChart
+info: HeadComplexity/Research/CoefficientOrderChart.lean:145:0: 'HeadComplexity.CoefficientOrderChart.exists_conditioning_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/CoefficientOrderChart.lean:146:0: 'HeadComplexity.CoefficientOrderChart.card_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/CoefficientOrderChart.lean:147:0: 'HeadComplexity.CoefficientOrderChart.card_orderedPatterns_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4025/4034] Replayed HeadComplexity.Research.RelativeMarginQuantifiers
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:288:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_uniform_positive_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:289:0: 'HeadComplexity.RelativeMarginQuantifiers.exists_same_score_small_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:290:0: 'HeadComplexity.RelativeMarginQuantifiers.mem_allRepresentationsLowMargin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/RelativeMarginQuantifiers.lean:291:0: 'HeadComplexity.RelativeMarginQuantifiers.worstCase_gt_of_high_and_low_counts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4030/4034] Replayed HeadComplexity.Research.OriginalMarginCapacity
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:233:0: 'HeadComplexity.OriginalMarginCapacity.orientedAtom_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:234:0: 'HeadComplexity.OriginalMarginCapacity.highMarginFunctions_subset_orderedPatterns' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:235:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le_warren' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:236:0: 'HeadComplexity.OriginalMarginCapacity.approximationDegree_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:237:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le_finite_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/OriginalMarginCapacity.lean:238:0: 'HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [4031/4034] Replayed HeadComplexity.Research.MarginCapacityEstimates
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:430:0: 'HeadComplexity.MarginCapacityEstimates.mul_log_div_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:431:0: 'HeadComplexity.MarginCapacityEstimates.card_highMarginFunctions_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:432:0: 'HeadComplexity.MarginCapacityEstimates.approximationDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:433:0: 'HeadComplexity.MarginCapacityEstimates.entropy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:434:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:435:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:436:0: 'HeadComplexity.MarginCapacityEstimates.head_overhead_budgets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:437:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_at_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:438:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_test_with_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:439:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:440:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:441:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_sqrt_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: HeadComplexity/Research/MarginCapacityEstimates.lean:442:0: 'HeadComplexity.MarginCapacityEstimates.card_highMargin_logarithmic_overhead' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [4034/4034] Built HeadComplexity.Research.GroupedDenominatorCapacity (2.7s)
+warning: HeadComplexity/Research/GroupedDenominatorCapacity.lean:203:100: This line exceeds the 100 character limit, please shorten it!
+
+Note: This linter can be disabled with `set_option linter.style.longLine false`
+Build completed successfully (4034 jobs).

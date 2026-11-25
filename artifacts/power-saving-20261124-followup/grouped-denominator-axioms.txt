@@ -1,0 +1,67 @@
+'HeadComplexity.LowParameterDenominatorCapacity.card_parameter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.numPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.denProd_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.clearedPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.product_parameter_weights' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.card_represented_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.card_represented_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.card_represented_le_exp_at_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.card_represented_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.LowParameterDenominatorCapacity.card_chart_union_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.card_denParameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.denVar_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.statisticPoly_weighted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.denPoly_weighted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.eval_denVar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.eval_numPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.eval_denPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.eval_clearedPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.mem_represented_of_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.mem_represented_of_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.mem_represented_of_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.card_represented_le_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.card_represented_le_half_tables' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.card_represented_sqrt_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.card_represented_logarithmic_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.worstCase_gt_of_grouped_or_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.GroupedDenominatorCapacity.worstCase_gt_of_low_margin_grouped_statistics' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
