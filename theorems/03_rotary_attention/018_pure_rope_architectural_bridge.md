@@ -72,6 +72,23 @@ The extraction proof also works when every head chooses a separate frequency lis
 
 Every such score has an exact realization using the common fixed-standard schedule above. In particular, allowing separate freely chosen frequencies for different heads gives the same Boolean class at every head count as shared freely chosen frequencies or the fixed-standard schedule. This is an additional extraction theorem, not a change to the original architecture definitions.
 
+## Audit against the original model
+
+The audit compares the definitions with [`model.md`](../../model.md) and the original checkout `bdca97f`. The original `Head.lean`, `SharedEmbedding.lean`, `AdditiveSplit.lean`, `SkipConnection.lean`, and `model.md` are unchanged. The pure rotary definitions and bridge modules are additions.
+
+| Required feature | Checked definition and consequence |
+| --- | --- |
+| Fixed query and self-attention | `Head.seqTok` assigns token `2` to `none`. `RectangularPureRotaryFamily.logit` always reads the query from that shared token embedding. The softmax sums over `Option (Fin n)`, including `none`. At the self position the formula is the literal inner product of `R none (WK e_=)` and `R none (WQ e_=)`. |
+| Pure replacement of position embeddings | `RectangularPureRotaryFamily` has no positional embedding field. Only its query and key paths apply the rotary schedule. |
+| Token-only unrotated values | `value` is exactly the image under `WV` of `tokenEmbed (seqTok x p)`. The same two scalar values apply at every input position after composing `WO` and the readout. Thus the numerator obeys the pure-atom constraint; arbitrary affine numerator coefficients were not inserted into this model. |
+| Original rectangular dimensions | The structure has independent model and head dimensions and an explicit `WO` for each head. `head_readout_eq_atom` extracts the given rectangular model directly. Reconstruction uses the square subclass with identity `WO`. |
+| Common finite width and fixed frequencies | `standardRotaryFrequency m r` is exactly base $10000$ raised to $-r/m$, with $r=0,\ldots,m-1$. The standard reconstruction chooses $m=n+2$ once for all heads. It does not pad an existing rotary dimension while retaining that dimension's frequency list. |
+| Strict classification and residual | `computesPred` uses a strict inequality. `residual_score_eq` preserves the exact score, including the fixed query residual and free threshold. The existing vanilla skip-connection reduction uses the same threshold-shift convention. |
+
+The square, rectangular, shared-free-frequency, and headwise-free-frequency formulations therefore have the same pure scalar class at each head count. The separate headwise extension does not modify the fixed-standard definition. The explicit separating families in `PureThreeReplicatedGrid.lean` and `PureGeneralReplicatedGrid.lean` construct positive pure atoms first, then invoke the standard/free architectural bridge.
+
+For $H=0$, `pureRoPEComputable_zero_iff_constant`, `vanilla_zero_iff_constant`, `standardPureRotaryComputable_zero_iff_constant`, and `freePureRotaryComputable_zero_iff_constant` prove exactly the constant-function class. For $n=0$, `empty_input_head_minima` proves that the scalar pure, unchanged vanilla, fixed-standard rotary, and free-frequency rotary minima all equal zero. These boundary conclusions use the existing strict threshold convention.
+
 ## Lean declarations and verification
 
 The core implementation adds four modules and changes no pre-existing model definitions.
