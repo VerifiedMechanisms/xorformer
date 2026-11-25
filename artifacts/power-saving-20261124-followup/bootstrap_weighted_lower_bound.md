@@ -51,3 +51,7 @@ This is a finite-constant refinement of the same counting method. The separate k
 `bootstrap-weighted-build.txt` records the full `lake build`. `bootstrap-weighted-axioms.txt` records the transitive checks of all seven new theorems and both public aliases. Their only axioms are `propext`, `Classical.choice`, and `Quot.sound`. No definition of the original model, admissibility, computability, or worst-case head complexity was changed.
 
 The later leading-constant corollaries are checked in `bootstrap-leading-constant-build.txt` and `bootstrap-leading-constant-axioms.txt`. The final combined verification rebuilds the public aggregate and audits these corollaries together with every other changed theorem module.
+
+## Eventual original-model statement
+
+The declaration `HeadComplexity.BootstrapWeightedCounting.worstCase_eventually_one_sub_epsilon` proves directly that, for every $\epsilon\gt0$, all sufficiently large dimensions satisfy $W(n)\geq(1-\epsilon)2^n/n^2$. The proof uses the explicit threshold $\max(256,\lceil8/\epsilon\rceil)$ from the finite corollary. It is publicly exported as `HeadComplexity.bootstrap_weighted_counting_worst_case_eventually_one_sub_epsilon`. This is still a quadratic-denominator lower bound. The build and all fourteen explicit transitive axiom checks are recorded in `bootstrap-eventual-build.txt` and `bootstrap-eventual-axioms.txt`.

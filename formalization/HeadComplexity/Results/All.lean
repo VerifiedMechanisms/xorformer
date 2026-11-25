@@ -756,4 +756,9 @@ unrestricted quadratic-denominator lower bound. -/
 alias bootstrap_weighted_counting_worst_case_one_sub_epsilon :=
   BootstrapWeightedCounting.worstCase_real_one_sub_epsilon
 
+/-- Every fixed constant below one holds in every sufficiently large dimension
+for the original unrestricted worst-case head complexity. -/
+alias bootstrap_weighted_counting_worst_case_eventually_one_sub_epsilon :=
+  BootstrapWeightedCounting.worstCase_eventually_one_sub_epsilon
+
 end HeadComplexity

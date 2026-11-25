@@ -22,7 +22,7 @@ $$ B_1(n)=\frac{16e^2N^2(n+8)}{n(N-1)},\qquad W(n)\geq\frac{(N-1)\log2}{n\log B_
 
 Its exact declaration is `HeadComplexity.BootstrapWeightedCounting.worstCase_real_log_lower`, publicly exported as `HeadComplexity.bootstrap_weighted_counting_worst_case_log_lower_bound`.
 
-The corollary `HeadComplexity.BootstrapWeightedCounting.worstCase_real_one_sub_epsilon`, also publicly exported, proves $W(n)\geq(1-\epsilon)N/n^2$ whenever $\epsilon\gt0$, $n\geq256$, and $\epsilon n\geq8$. It makes the leading constant one explicit without changing the order of growth.
+The corollary `HeadComplexity.BootstrapWeightedCounting.worstCase_real_one_sub_epsilon`, also publicly exported, proves $W(n)\geq(1-\epsilon)N/n^2$ whenever $\epsilon\gt0$, $n\geq256$, and $\epsilon n\geq8$. It makes the leading constant one explicit without changing the order of growth. The declaration `HeadComplexity.BootstrapWeightedCounting.worstCase_eventually_one_sub_epsilon` states the resulting eventual bound directly with `Filter.atTop`; its public alias is `HeadComplexity.bootstrap_weighted_counting_worst_case_eventually_one_sub_epsilon`.
 
 The proof uses the new kernel-checked weighted Warren theorem and an origin-normalized original-model parameterization with $2nH$ parameters. Numerator parameters receive weight $H-1$ and denominator parameters weight one. The resulting unrestricted finite count, for $H\geq2$ and $2nH\leq N$, is
 
@@ -32,11 +32,17 @@ This is `HeadComplexity.WeightedNormalizedCounting.card_le_optimal` in [Weighted
 
 The initial bootstrap is committed as `4b6181a5`; the later leading-constant corollaries and their public aliases are included in `d9234e8f`. See [bootstrap_weighted_lower_bound.md](bootstrap_weighted_lower_bound.md) for the finite arithmetic.
 
+There is also an unconditional almost-all version at the same scale. `HeadComplexity.QuadraticScaleTypicalComplexity.card_le_exp_one_sub_epsilon` proves, for $n\geq8$, $H\gt0$, $\epsilon\gt0$, $\epsilon n\geq20$, and $n^2H\leq(1-\epsilon)N$,
+
+$$ |\mathcal F_{n,H}|\leq\exp((1-\epsilon/2)N\log2). $$
+
+This is kernel checked in [QuadraticScaleTypicalComplexity.lean](../../formalization/HeadComplexity/Research/QuadraticScaleTypicalComplexity.lean), commit `e5cf85fb`. It sharpens the leading constant in the distributional statement without crossing the quadratic scale.
+
 ## The requested finite margin audit
 
 The original note [margin_sensitive_polynomial_capacity.md](../power-saving-20261124/margin_sensitive_polynomial_capacity.md) is audited and corrected. The complete original-model bridge is now kernel checked as `HeadComplexity.OriginalMarginCapacity.card_highMarginFunctions_le` in [OriginalMarginCapacity.lean](../../formalization/HeadComplexity/Research/OriginalMarginCapacity.lean).
 
-For relative margin $\gamma\gt0$, set
+For relative margin $0\lt\gamma\leq1$, set
 
 $$ p=1+3(n+1)H,\qquad d=\left\lceil(n+1)\log(2/\gamma)\right\rceil,\qquad D=2d+2. $$
 
@@ -102,17 +108,35 @@ The following are kernel-checked auxiliary results. Each limitation is part of t
 
 - `MinorityContactCapacity.one_minority_unique` forces the full table in a one-minority unit-basis branch; its fixed-dimensional continuation counts handle small minority spaces. Balanced contact patterns still leave quadratic entropy. Exact same-basis counterexamples in `UnimodularFeasibleBasisObstruction` refute general branch uniqueness, even with an integer inverse basis.
 
+- `TwoMinorityBasisBranches.two_open_feasible_branches` gives two genuine open full-cube unit-gap branches with the same unimodular basis and the same two minority contact positions. Their explicit witnesses have the same signs of all numerator-difference coefficients. It refutes two-minority uniqueness and one branch per coefficient-sign orthant. It does not refute a polynomial bound on branches.
+
+- `TwoMinorityNeighborObstruction` strengthens this failure to every affine coefficient comparison against $0,\pm r,\pm1$. The same eight-bit contact basis has exact admissible witnesses at $r=17/9$ and $r=3$, with identical comparison signs but different labels at vertex 15. The missing subset sum is $r-2$. `same_all_coefficient_comparisons`, `same_positive_level_comparisons`, and `different_labels` are kernel checked, together with full-cube gaps and basis injectivity. See [two_minority_neighbor_obstruction.md](two_minority_neighbor_obstruction.md). This refutes the proposed coefficient-comparison determination lemma, not a general continuation-count bound.
+
 - `OneMinorityBalanceObstruction` proves that every denominator in one specified actual branch satisfies $22b_0\leq\sum_i b_i$, while an admissible full-cube witness exists. This refutes constant-denominator deformation of that branch, not inverse-polynomial balancing or a representation-changing repair.
 
 - `ExactLayerGateLowerBound.original_nonnegative_layer_gate_heads_ge` proves that an exact nonzero nonnegative score supported on one Hamming layer needs at least $n$ heads. It blocks a proposed exact value gate, not a sign repair.
 
 - `FullCubeNormOptimization`, `FullCubeNormCrossMoments`, and `TwoExtremumDuplication` check algebraic consequences of actual supremum-norm stationarity. A norm-controlled joint replacement and a bounded-width iteration theorem are still missing. Analytic existence, constraint qualification, and access to the required stable optimum are not hidden inside those algebraic declarations.
 
+- `PositiveReciprocalExpansion.reciprocal_with_endpoint_identities` and `ratio_with_full_cube_mass` give an exact finite positive reciprocal expansion. `OriginalAnchoredExpansion.original_head_expansion` connects it to every genuine original head, in either coherent orientation, with total affine-block norm at most $(n+1)\|\phi\|_\infty$. Every block is uniformly approximable by one admissible head. There are up to $2^n$ blocks, so this is not a narrow repair. `norm_eval_eq_atomSup` checks equality with the requested whole-cube norm.
+
+- `CoherentEdgeVariation` checks the monotone edge-variation inequality. `NonnegativeHeadCone.approximation_error_ge` proves the abstract aggregate error bound $\epsilon\geq1/5$ from the checked coherent-corner inequalities. The written assembly excludes approximating a mixed point by sums of nonnegative heads at any width. It does not exclude arbitrary signed cancellation.
+
+- `SharedDenominatorGapPath.eventually_admissible_path` and `transport_norm_le` verify a genuine norm-contracting replacement when two heads share a strictly positive affine denominator. The analogous construction for different denominators leaves the affine numerator class; the actual tangent counterexample in `PencilMoebiusTangentObstruction` rules out that direct extension.
+
 The finite coefficient-box counterexample in `ScaledBoxPackingObstruction` refutes a proposed determinant-only packing lemma. A fixed involution already admits infinitely many disjoint positive-radius boxes near a boundary face. It does not refute a Boolean-specific chamber bound.
+
+## Two late routes and their exact remaining gaps
+
+The address-face route distinguishes individual head data from total score data. If the individual numerator and denominator restrictions are fixed, continuation to $k$ more coordinates has only $1+2kH$ parameters. Fixing the total score on the face does not fix those head data. The written theorem in [exact_address_fiber_capacity_gap.md](exact_address_fiber_capacity_gap.md) embeds every original width $H$ table into one opposite-face fiber with exactly $2H+1$ admissible heads, while the score on the selected face is identically one. Both coherent orientations, the constant-denominator case, and finite strict slack are handled. `SameFaceScoreFiber` checks a smaller explicit same-score-fiber example. The full embedding is written mathematics. `RelativeMarginRestriction.relativeMargin_restrict_ge` and `hasRelativeMargin_restrict` are kernel checked and show that restricting any original comparison representation to a coordinate face cannot decrease its relative margin. Thus a healthy comparison repair for the embedded fiber restricts to a healthy repair for the original table. A sharp reconstruction bound on such singular fibers must still address original-model capacity; generic decomposition identifiability cannot discard them. Since the labels on one half-cube are fixed, the entire enlarged fiber also has the trivial count at most $2^{N/2}$ in its enlarged cube size. The example does not refute a half-table global budget.
+
+The norm-stationarity route has a written generic rank theorem in [unrestricted_capacity_quadratic_feature_rank.md](unrestricted_capacity_quadratic_feature_rank.md). With $d=\binom n2$ and $H\geq\lceil(N/d)\log d\rceil+\lceil N/d\rceil+3$, quadratic reciprocal features vanishing at each head's prescribed two endpoints generically span every row outside the common endpoint intersection. A Boolean sphere-cover interpolation proves the rank by a nonzero polynomial minor, then transfers it to strictly positive affine denominators. Under additional regular KKT, unique-extremum, and duplication-stability hypotheses, the dual is supported on the common endpoints and the centered amplitude must be one. This is a written conditional consequence, not an unrestricted repair theorem. A width-constrained optimum may have no spare heads, and exceptional denominator configurations may be essential. The needed lemma is a quantitative bound on their truth-table entropy or a bounded-width escape theorem. Generic rank alone supplies neither.
 
 ## Written proofs and finite computations
 
 The following remain written mathematics rather than complete Lean declarations: the quantitative universal construction of width $2323202N/(n\log n)$ and margin $\exp(-100n^2\log(n+1))$; the partial-label grid compiler with controlled full-cube amplitude; the constant-error central-layer value-approximation lower bound of order $\sqrt n$; and the ordinary Cayley-Bacharach incidence-capacity argument. Their local algebraic ingredients and stated finite inequalities are separately formalized where indicated in their notes. None supplies the missing unrestricted access lemma.
+
+Additional independently audited written obstructions concern value compilation. The high-order mixed-difference theorem in [mixed_point_high_order_amplitude.md](mixed_point_high_order_amplitude.md) forces exponential amplitude for sufficiently accurate approximation of a balanced point gate, even at unlimited width. The opposite-orientation two-head closure theorem in [opposite_two_head_bounded_closure.md](opposite_two_head_bounded_closure.md) excludes a bounded-amplitude approximation by one head of each orientation to mixed point gates with at least two coordinates of each type. The scalar-cylinder construction in [scalar_cylinder_exponential_mass.md](scalar_cylinder_exponential_mass.md) achieves width equal to the maximum of one and the smaller literal count, with exponential amplitude independent of the requested tolerance. These are value-approximation statements, not hard truth tables for the task's tiny margins. In particular, a point-indicator truth table itself has a healthy narrow representation.
 
 Floating optimization and root searches are exploratory evidence only. In particular, a purported boundary branch with maximum normalized constant coefficient zero was rejected by exact reconstruction: it implied $-2b_0-2b_4\geq0$, contradicting strict positivity. The exact $1/22$ example has independent rational checking and Lean proofs. Search failures are not nonexistence theorems, and multiple parameter roots with the same truth table do not count as additional tables.
 

@@ -1,0 +1,16 @@
+[
+  {
+    "file": "artifacts/power-saving-20261124-followup/bootstrap_weighted_lower_bound.md",
+    "source_spans": 30,
+    "rendered_spans": 30,
+    "findings": [],
+    "notes": []
+  },
+  {
+    "file": "artifacts/power-saving-20261124-followup/HANDOFF.md",
+    "source_spans": 86,
+    "rendered_spans": 86,
+    "findings": [],
+    "notes": []
+  }
+]

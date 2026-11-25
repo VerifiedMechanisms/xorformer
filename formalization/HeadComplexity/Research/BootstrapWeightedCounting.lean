@@ -147,4 +147,19 @@ theorem worstCase_real_one_sub_epsilon {ε : ℝ} (hn : 256 ≤ n)
     (mul_le_mul_of_nonneg_right (by linarith : 1 - ε ≤ 1 - 8 / (n : ℝ))
       (by positivity)) (by positivity)
 
+/-- The leading constant one is approached along all sufficiently large input
+dimensions, against the original unrestricted worst-case definition. -/
+theorem worstCase_eventually_one_sub_epsilon {ε : ℝ} (hε : 0 < ε) :
+    ∀ᶠ n : ℕ in Filter.atTop,
+      (1 - ε) * (2 : ℝ) ^ n / (n : ℝ) ^ 2 ≤
+        (worstCaseHeadComplexity n : ℝ) := by
+  filter_upwards [Filter.eventually_ge_atTop (max 256 ⌈8 / ε⌉₊)] with n hn
+  have hn256 : 256 ≤ n := (le_max_left _ _).trans hn
+  have hnceil : ⌈8 / ε⌉₊ ≤ n := (le_max_right _ _).trans hn
+  have hratio : 8 / ε ≤ (n : ℝ) :=
+    (Nat.le_ceil (8 / ε)).trans (by exact_mod_cast hnceil)
+  apply worstCase_real_one_sub_epsilon hn256 hε
+  have hh := (div_le_iff₀ hε).mp hratio
+  linarith
+
 end HeadComplexity.BootstrapWeightedCounting
