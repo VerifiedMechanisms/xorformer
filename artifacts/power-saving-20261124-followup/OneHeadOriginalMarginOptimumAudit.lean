@@ -1,0 +1,7 @@
+import HeadComplexity.Research.OneHeadOriginalMarginOptimum
+#print axioms HeadComplexity.OneHeadOriginalMarginOptimum.exists_affine_score
+#print axioms HeadComplexity.OneHeadOriginalMarginOptimum.relativeMargin_le
+#print axioms HeadComplexity.OneHeadOriginalMarginOptimum.not_hasRelativeMargin
+#print axioms HeadComplexity.OneHeadOriginalMarginOptimum.exists_attaining
+#print axioms HeadComplexity.OneHeadOriginalMarginOptimum.hasRelativeMargin_iff
+#print axioms HeadComplexity.OneHeadOriginalMarginOptimum.exists_no_same_width_improvement
