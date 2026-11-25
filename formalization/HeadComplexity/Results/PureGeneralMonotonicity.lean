@@ -103,4 +103,34 @@ theorem score_monotone_on_cube {H : ℕ} {q q' : Fin (groupCount H) → ℝ}
   intro h _
   exact head_score_monotone_on_cube h hq hq' hle
 
+/-- Increasing at least one coordinate strictly increases each head score. -/
+theorem head_score_strict_on_cube {H : ℕ} (h : Fin H)
+    {q q' : Fin (groupCount H) → ℝ}
+    (hq : ∀ g, |q g| ≤ 1) (hq' : ∀ g, |q' g| ≤ 1)
+    (hle : ∀ g, q g ≤ q' g) (hlt : ∃ g, q g < q' g) :
+    numerator h q / denominator h q < numerator h q' / denominator h q' := by
+  apply (div_lt_div_iff₀ (denominator_pos h q hq) (denominator_pos h q' hq')).mpr
+  have hc : 0 < numerator h q' * denominator h q -
+      numerator h q * denominator h q' := by
+    rw [head_score_cross_difference]
+    obtain ⟨g, hg⟩ := hlt
+    apply lt_of_lt_of_le
+      (mul_pos (sub_pos.mpr hg) (head_coordinate_cross_pos h q hq g))
+    exact Finset.single_le_sum (fun i _ ↦
+      mul_nonneg (sub_nonneg.mpr (hle i)) (head_coordinate_cross_pos h q hq i).le)
+      (Finset.mem_univ g)
+  linarith
+
+/-- For a positive number of heads, the source score strictly increases
+whenever a pointwise increase changes at least one coordinate. -/
+theorem score_strict_on_cube {H : ℕ} (hH : 0 < H)
+    {q q' : Fin (groupCount H) → ℝ}
+    (hq : ∀ g, |q g| ≤ 1) (hq' : ∀ g, |q' g| ≤ 1)
+    (hle : ∀ g, q g ≤ q' g) (hlt : ∃ g, q g < q' g) : score q < score q' := by
+  apply Finset.sum_lt_sum
+  · intro h _
+    exact head_score_monotone_on_cube h hq hq' hle
+  · exact ⟨⟨0, hH⟩, Finset.mem_univ _,
+      head_score_strict_on_cube ⟨0, hH⟩ hq hq' hle hlt⟩
+
 end HeadComplexity.PureGeneralReplicatedGrid

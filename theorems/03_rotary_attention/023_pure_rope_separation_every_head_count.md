@@ -6,13 +6,13 @@ In the unchanged xorformer model, the universal reverse implication holds exactl
 
 $$ \left[\forall n\ \forall f:\lbrace0,1\rbrace^n\to\lbrace0,1\rbrace,\quad f\text{ is pure-RoPE computable with }H\text{ heads}\Longrightarrow f\text{ is vanilla computable with }H\text{ heads}\right]\quad\Longleftrightarrow\quad H\leq2. $$
 
-More precisely, for every integer $H\geq3$, an explicit family $f_{H,m}$ on $2H^2m$ bits satisfies, for all sufficiently large positive integers $m$,
+More precisely, for every integer $H\geq3$, an explicit family of coordinatewise monotone Boolean functions $f_{H,m}$ on $2H^2m$ bits satisfies, for all sufficiently large positive integers $m$,
 
 $$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_{H,m})=H,\qquad H+1\leq H^{\ast}_{\mathrm{vanilla}}(f_{H,m})\leq2^H-2. $$
 
 Both standard fixed rotary frequencies and freely chosen frequencies have the displayed pure minimum. The model uses a fixed query attending to every input and itself, unrestricted finite dimensions and real parameters, Q/K-only rotations, and unrotated token-only values. Classification uses the existing strictly positive score threshold. Retained positional embeddings are not involved.
 
-The entire arbitrary-head result is Lean-checked, including the actual Boolean classifiers, exact pure minimum, vanilla lower and upper bounds, and scalar-to-rotary architectural bridge. The final theorem has no remaining algebraic or analytic premise. Its dependencies use only Lean's standard `propext`, `Classical.choice`, and `Quot.sound` axioms, with no `sorry` or additional axioms. The specialized three-head proof remains available in [Theorem 22](022_pure_rope_three_head_separation.md).
+The entire arbitrary-head result is Lean-checked, including the actual Boolean classifiers, their monotonicity, exact pure minimum, vanilla lower and upper bounds, and scalar-to-rotary architectural bridge. The final theorem has no remaining algebraic or analytic premise. Its dependencies use only Lean's standard `propext`, `Classical.choice`, and `Quot.sound` axioms, with no `sorry` or additional axioms. The specialized three-head proof remains available in [Theorem 22](022_pure_rope_three_head_separation.md).
 
 ## The explicit family
 
@@ -37,6 +37,20 @@ $$ a_{bjr}=\frac{2(u_{ij}-d_{ij})}{m},\qquad b_{bjr}=\frac{2u_{ij}}m,\qquad\gamm
 All input masses are strictly positive, and $\gamma=12H^2-4H+20\gt0$. The resulting atom has numerator $N_i(q)$ and denominator $D_i(q)$ exactly. Thus $H$ pure heads compute $f_{H,m}$. The established architectural bridge realizes these same scores with common standard rotary frequencies, and hence also with free frequencies.
 
 At $H=3$, this is exactly the family of Theorem 22, including its denominator constant $C_3=200$.
+
+## The separating functions are monotone
+
+Every source head is strictly increasing in each coordinate throughout the continuous cube. For a group coordinate $g$, its numerator coefficient satisfies $u_{ig}\geq2$, while $|d_{ig}|\leq1$. The existing bounds give
+
+$$ u_{ig}D_i(q)-d_{ig}N_i(q)\geq2(C_H-2H)-B_H=36H^2-6H+40\gt0. $$
+
+This yields monotonicity directly, without differentiation. If $q\leq q'$ coordinatewise, then
+
+$$ N_i(q')D_i(q)-N_i(q)D_i(q')=\sum_g(q'_g-q_g)\bigl(u_{ig}D_i(q)-d_{ig}N_i(q)\bigr)\geq0. $$
+
+Both denominators are positive, so $N_i(q)/D_i(q)\leq N_i(q')/D_i(q')$. The inequality is strict whenever at least one coordinate increases. Summing the heads preserves monotonicity, as does taking the strictly positive threshold. Each centered group mean is monotone in its constituent bits, so every $f_{H,m}$ is a monotone Boolean function.
+
+Consequently, the universal same-head implication still has the sharp cutoff $H\leq2$ when its quantification is restricted to monotone Boolean functions. Adding unused bits preserves both monotonicity and the minimum head counts, so monotone separating examples exist at every sufficiently large input length for each $H\geq3$.
 
 ## A general contraction-rank lemma
 
@@ -144,7 +158,7 @@ This statement imposes no bound on the factor parameters and does not require th
 
 ## Consequences and Lean declarations
 
-The two-head theorem proves the universal reverse implication for $H\leq2$, including zero heads. The construction above disproves it for every $H\geq3$. Adding unused bits preserves all four minimum head counts exactly, so for every fixed $H\geq3$ there is such a separation at every sufficiently large input length.
+The two-head theorem proves the universal reverse implication for $H\leq2$, including zero heads. The monotone construction above disproves it for every $H\geq3$. Adding unused bits preserves all four minimum head counts exactly, so for every fixed $H\geq3$ there is such a monotone separation at every sufficiently large input length.
 
 The mathematical proof is uniform in $H$, but its threshold in $m$ is existential. The explicit sufficient threshold in Theorem 22 applies to $H=3$. The precise vanilla minimum between $H+1$ and $2^H-2$ and the first separating replication count remain undetermined.
 
@@ -159,6 +173,10 @@ The principal declarations are:
 - `pureRoPE_separation_every_budget_every_large_input_length` in [PureGeneralSeparationAllLargeInputs.lean](../../formalization/HeadComplexity/Results/PureGeneralSeparationAllLargeInputs.lean) proves the separation at every sufficiently large input length for each fixed $H\geq3$.
 
 - `PureGeneralReplicatedGrid.exists_oriented_top_coefficient_gap` in [PureGeneralCoefficientGap.lean](../../formalization/HeadComplexity/Results/PureGeneralCoefficientGap.lean) proves the uniform coefficient gap.
+
+- `PureGeneralReplicatedGrid.score_monotone_on_cube` and `score_strict_on_cube` in [PureGeneralMonotonicity.lean](../../formalization/HeadComplexity/Results/PureGeneralMonotonicity.lean) prove the continuous source monotonicity and its strict form.
+
+- `PureGeneralReplicatedGrid.classifier_monotone`, `universal_monotone_pure_to_vanilla_iff_head_le_two`, and `monotone_pureRoPE_separation_every_budget_every_large_input_length` in [PureGeneralMonotoneSeparation.lean](../../formalization/HeadComplexity/Results/PureGeneralMonotoneSeparation.lean) prove the Boolean monotonicity, sharp monotone cutoff, and monotone counterexamples with the original vanilla minimum at every sufficiently large input length.
 
 The central algebraic declarations are `RoPEGeneralDerivative.secondMap_rank_le_iff`, `RoPEGeneralPolarization.contractDiagonal_source`, and `RoPEGeneralPhysicalRank.contractMap_scaled_reindexedPhysical_rank_le_iff`. They connect the actual source polynomial, its mixed coefficients, and the physical paired-coordinate rank locus. `BlockCoefficientLimit.tendsto_contractDiagonal_coeff` transports the coefficients preserved by Boolean replica averaging to moving contraction directions. `RoPEGeneralFrames.no_conditionally_oriented_polynomial_rank_limit` supplies the compactness contradiction, including zero denominator matrices. `PureGeneralReplicatedGrid.oriented_factor_limit_excluded` discharges that obstruction for the actual family.
 
