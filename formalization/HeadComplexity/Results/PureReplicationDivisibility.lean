@@ -1,5 +1,6 @@
 import HeadComplexity.Results.PureSecondReplicationDegree
 import HeadComplexity.Polynomial.ReplicatedInputCopy
+import HeadComplexity.Results.HeadBudgetPullback
 
 /-!
 # Replication divisibility and the even replicated source
@@ -26,6 +27,52 @@ theorem classifier_replication_copy {m k : ℕ} (hk : 0 < k)
     classifier (m * k) (x ∘ ReplicatedInputCopy.projection 18 m k) = classifier m x := by
   unfold classifier
   rw [coordinate_replication_copy hk]
+
+theorem pure_computable_of_replication_multiple {m k H : ℕ} (hk : 0 < k)
+    (hf : pureRoPEComputable (18 * (m * k)) H (classifier (m * k))) :
+    pureRoPEComputable (18 * m) H (classifier m) := by
+  have h := CoordinateIdentification.pure_pullback
+    (ReplicatedInputCopy.projection 18 m k) (ReplicatedInputCopy.projection_surjective hk) hf
+  simpa only [classifier_replication_copy hk] using h
+
+theorem vanilla_computable_of_replication_multiple {m k H : ℕ} (hk : 0 < k)
+    (hf : computableWithSharedHeadsN (18 * (m * k)) H (classifier (m * k))) :
+    computableWithSharedHeadsN (18 * m) H (classifier m) := by
+  have h := CoordinateIdentification.vanilla_pullback
+    (ReplicatedInputCopy.projection 18 m k) (ReplicatedInputCopy.projection_surjective hk) hf
+  simpa only [classifier_replication_copy hk] using h
+
+theorem pure_head_minimum_replication_mul_le {m k : ℕ} (hk : 0 < k) :
+    PureRoPEHStar (18 * m) (classifier m) ≤
+      PureRoPEHStar (18 * (m * k)) (classifier (m * k)) := by
+  have h := CoordinateIdentification.pure_minimum_pullback_le
+    (ReplicatedInputCopy.projection 18 m k) (ReplicatedInputCopy.projection_surjective hk)
+    (classifier (m * k))
+  simpa only [classifier_replication_copy hk] using h
+
+theorem vanilla_head_minimum_replication_mul_le {m k : ℕ} (hk : 0 < k) :
+    HStar (18 * m) (classifier m) ≤ HStar (18 * (m * k)) (classifier (m * k)) := by
+  have h := CoordinateIdentification.original_minimum_pullback_le
+    (ReplicatedInputCopy.projection 18 m k) (ReplicatedInputCopy.projection_surjective hk)
+    (classifier (m * k))
+  simpa only [classifier_replication_copy hk] using h
+
+theorem head_minima_replication_dvd_le {m M : ℕ} (hM : 0 < M) (hdiv : m ∣ M) :
+    PureRoPEHStar (18 * m) (classifier m) ≤ PureRoPEHStar (18 * M) (classifier M) ∧
+      StandardPureRoPEHStar (18 * m) (classifier m) ≤
+        StandardPureRoPEHStar (18 * M) (classifier M) ∧
+      FreePureRoPEHStar (18 * m) (classifier m) ≤
+        FreePureRoPEHStar (18 * M) (classifier M) ∧
+      SharedHStar (18 * m) (classifier m) ≤ SharedHStar (18 * M) (classifier M) ∧
+      HStar (18 * m) (classifier m) ≤ HStar (18 * M) (classifier M) := by
+  obtain ⟨k, rfl⟩ := hdiv
+  have hk : 0 < k := by nlinarith
+  rw [standardPureRoPEHStar_eq_scalar, standardPureRoPEHStar_eq_scalar,
+    freePureRoPEHStar_eq_scalar, freePureRoPEHStar_eq_scalar,
+    SharedHStar_eq_HStar, SharedHStar_eq_HStar]
+  exact ⟨pure_head_minimum_replication_mul_le hk,
+    pure_head_minimum_replication_mul_le hk, pure_head_minimum_replication_mul_le hk,
+    vanilla_head_minimum_replication_mul_le hk, vanilla_head_minimum_replication_mul_le hk⟩
 
 theorem thresholdDegLE_of_replication_multiple {m k d : ℕ} (hk : 0 < k)
     (hf : ThresholdDegLE (classifier (m * k)) d) :

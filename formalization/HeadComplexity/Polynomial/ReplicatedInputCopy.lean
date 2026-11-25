@@ -17,6 +17,13 @@ def projection (G m k : ℕ) : Fin (G * (m * k)) → Fin (G * m) := fun p ↦
     projection G m k (finProdFinEquiv (g, finProdFinEquiv (r, s))) =
       finProdFinEquiv (g, r) := by simp [projection]
 
+theorem projection_surjective {G m k : ℕ} (hk : 0 < k) :
+    Function.Surjective (projection G m k) := by
+  intro p
+  obtain ⟨⟨g, r⟩, rfl⟩ := (finProdFinEquiv (m := G) (n := m)).surjective p
+  exact ⟨finProdFinEquiv (g, finProdFinEquiv (r, ⟨0, hk⟩)),
+    projection_pair G m k g r ⟨0, hk⟩⟩
+
 noncomputable def coordinate (G m : ℕ) (x : Fin (G * m) → Bool) (g : Fin G) : ℝ :=
   (∑ r : Fin m, (2 * boolToReal (x (finProdFinEquiv (g, r))) - 1)) / m
 
