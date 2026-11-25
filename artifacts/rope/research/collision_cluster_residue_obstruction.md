@@ -72,9 +72,35 @@ Consequently a full coefficient limit $Q=P G$ of four-head cleared polynomials m
 
 For five heads, there are at most two clusters. A partition into sizes three and two is impossible: the size-two cluster forces a square factor into the degree-two multiplier, while the other cluster forces another distinct factor. The only possible partitions are a single size-five cluster or sizes four and one. In the latter case, the multiplier is proportional to the product of the two limiting denominator forms; the limiting rational function has only the triple pole associated with the size-four cluster.
 
+## A concrete multiscale obstruction to a naive moment lemma
+
+Bounded zeroth and first moments alone do not force the limiting cubic second moment of a four-pole cluster to depend on at most three linear coordinates. Let $x,y,A,D$ be independent coordinates, let $t\to0$ through nonzero real numbers, and take the four roots
+
+$$ \alpha_0=0,\qquad \alpha_1=tx,\qquad \alpha_2=2tx+t^2y,\qquad \alpha_3=3tx+3t^2y. $$
+
+Give the last three roots the affine residues
+
+$$ a_1=t^{-3}(3A-2tD),\qquad a_2=t^{-3}(-3A+tD),\qquad a_3=t^{-3}A, $$
+
+and set $a_0=-a_1-a_2-a_3$. Direct expansion gives
+
+$$ M_0=0,\qquad M_1=Dy,\qquad M_2=6Axy+2Dx^2+6tAy^2+4tDxy+t^2Dy^2. $$
+
+Thus $M_2\to6Axy+2Dx^2$. This cubic depends essentially on all four coordinates. Indeed, its directional derivative in a constant direction $(e_x,e_y,e_A,e_D)$ is
+
+$$ 6e_xAy+6e_yAx+6e_Axy+4e_xDx+2e_Dx^2. $$
+
+The distinct monomial coefficients force every component of a direction annihilating this polynomial to vanish.
+
+The same example has
+
+$$ M_3\to6Ax^3\neq0. $$
+
+It therefore has a nonzero fourth-order pole. This is a counterexample only to the proposed inference from bounded $M_0,M_1$ to a bound on the essential number of variables of $M_2$. For the four-head source limit $Q=P F$, the rational limit is $P/F^3$, so its third moment must tend to zero. The example does not satisfy that extra hypothesis and does not settle the remaining four-head collision case. A five-head single-cluster limit can still have a fourth-order pole when its degree-two multiplier is divisible by $F$ but not by $F^2$.
+
 ## Exact scope and the remaining gaps
 
-The [Lean algebraic identity](../../../formalization/HeadComplexity/Polynomial/RoPEClusterMoments.lean) proves the residue-annihilator identity for an arbitrary finite set over any commutative ring. The contour-limit and product-closure arguments above are rigorous mathematical proofs but are not claimed as additional Lean theorems.
+The [Lean algebraic identities](../../../formalization/HeadComplexity/Polynomial/RoPEClusterMoments.lean) prove the residue-annihilator identity for an arbitrary finite set over any commutative ring, together with the exact first, second, and third moment expansions for this multiscale example. The contour-limit and product-closure arguments above are rigorous mathematical proofs but are not claimed as additional Lean theorems.
 
 These collision conclusions require convergence of every coefficient of the full cleared polynomial. The arbitrary-head Boolean separation proof supplies convergence only of the selected top squarefree coefficients of an oriented factor polynomial. Replica averaging produces a convergent full polynomial but generally destroys its affine-fraction factorization. The present lemma therefore cannot be applied directly to those averaged limits.
 
