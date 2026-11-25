@@ -1,0 +1,4 @@
+import HeadComplexity.Research.LiteralMarginNonattainment
+#print axioms HeadComplexity.LiteralMarginNonattainment.no_atom_signed_literal
+#print axioms HeadComplexity.LiteralMarginNonattainment.not_hasRelativeMargin_one
+#print axioms HeadComplexity.LiteralMarginNonattainment.hasRelativeMargin_iff_lt_one
