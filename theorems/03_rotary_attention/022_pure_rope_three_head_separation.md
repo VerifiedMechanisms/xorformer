@@ -8,7 +8,7 @@ For every positive integer $m$, the construction below defines a Boolean functio
 
 $$ H^{\ast}_{\mathrm{pure\ RoPE}}(f_m)=3\qquad\text{and}\qquad4\leq H^{\ast}_{\mathrm{vanilla}}(f_m)\leq6. $$
 
-The conclusion is existential: the proof does not give a numerical value of $m_0$. It refutes the proposed equality for every Boolean function. It concerns Boolean classifiers, not equality of their real scores.
+The Lean proof establishes existence of $m_0$. The separate [effective estimate](../../artifacts/rope/research/effective_replication_threshold.md) proves that $m_0=10^{40000}$ suffices; that numerical strengthening is not Lean-formalized. The result refutes the proposed equality for every Boolean function. It concerns Boolean classifiers, not equality of their real scores.
 
 In fact, there is an integer $N$ such that every input length $n\geq N$ admits a Boolean function with pure minimum three and vanilla minimum between four and six. This follows by adding unused input bits to any one separating function, as proved below.
 
@@ -174,7 +174,7 @@ The separation extends to every sufficiently large input length. Fix one separat
 
 The pure representation is in the unchanged model: the query token is fixed, rotary maps act only on queries and keys, and values depend only on the token and are unrotated. The scalar-to-rotary realization from Theorem 18 realizes every displayed finite collection of positive masses with finite real parameters and common finite width $2(18m+2)$, using the standard frequencies. The Lean theorems `standardPureRotaryComputable_iff_scalar` and `freePureRotaryComputable_iff_scalar` give the square architecture equivalences. The corresponding rectangular architecture equivalences are `rectangularStandardPureRotaryComputable_iff_scalar` and `rectangularFreePureRotaryComputable_iff_scalar`. These quantify over all finite input lengths and head counts. Conversely, the vanilla affine-fraction normal form is the exact one for the original shared-embedding architecture. Thus the scalar separation transfers to both standard-frequency and free-frequency pure rotary architectures with unrestricted finite width.
 
-The proof gives no explicit bound on the first separating replication count. Its conclusion is an existential finite-dimensional Boolean separation. It neither uses approximate real-score equivalence nor infers a lower bound from a failed optimization search.
+The compactness proof above gives an existential finite-dimensional Boolean separation. The [effective estimate](../../artifacts/rope/research/effective_replication_threshold.md) replaces its limit argument with quantitative polynomial interpolation and an integer-minor bound, proving separation for every $m\geq10^{40000}$. It combines with the padding argument to give a separating function at every input length at least $18\cdot10^{40000}$. These constants are deliberately loose. Neither argument uses approximate real-score equivalence or infers a lower bound from a failed optimization search.
 
 ## Lean formalization scope
 
@@ -194,4 +194,4 @@ The stronger theorem `pureRoPE_separation_every_large_input_length` in [`PureSep
 
 - [`PureThreeSeparationLimit.lean`](../../formalization/HeadComplexity/Results/PureThreeSeparationLimit.lean) combines polynomial compactness, grid signs, source rigidity, and the tensor obstruction, including arbitrarily sparse unbounded replication sequences. [`PureThreeAveragedSeparation.lean`](../../formalization/HeadComplexity/Results/PureThreeAveragedSeparation.lean) applies it to the actual source. The final theorem then discharges the lower-bound premise in the elementary complexity consequences.
 
-The only non-explicit quantity in the theorem is the numerical replication threshold. The proof establishes its existence; it does not leave its existence as a hypothesis.
+The Lean theorem establishes existence of the replication threshold without leaving it as a hypothesis. The explicit sufficient threshold $10^{40000}$ is proved in the separately audited mathematical note and is not part of the Lean theorem's statement.
