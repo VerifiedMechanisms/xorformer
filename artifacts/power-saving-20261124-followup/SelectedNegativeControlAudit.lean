@@ -1,0 +1,10 @@
+import HeadComplexity.Research.SelectedNegativeControl
+
+#print axioms HeadComplexity.SelectedNegativeControl.affine_corner_subset_ratio_le
+#print axioms HeadComplexity.SelectedNegativeControl.affineValue_update_false
+#print axioms HeadComplexity.SelectedNegativeControl.two_neighbor_ratio_le
+#print axioms HeadComplexity.SelectedNegativeControl.affine_two_down_ratio_le
+#print axioms HeadComplexity.SelectedNegativeControl.affine_two_up_ratio_le
+#print axioms HeadComplexity.SelectedNegativeControl.original_four_neighbors_le
+#print axioms HeadComplexity.SelectedNegativeControl.sum_four_neighbors_le
+#print axioms HeadComplexity.SelectedNegativeControl.total_le_four_of_observations
