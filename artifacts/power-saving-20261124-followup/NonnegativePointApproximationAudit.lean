@@ -1,0 +1,6 @@
+import HeadComplexity.Research.NonnegativePointApproximation
+
+#print axioms HeadComplexity.NonnegativePointApproximation.point_error_ge_one_fifth
+#print axioms HeadComplexity.NonnegativePointApproximation.mixedProduct_formula
+#print axioms HeadComplexity.NonnegativePointApproximation.mixedProduct_point_error
+#print axioms HeadComplexity.NonnegativePointApproximation.mixedProduct_nonnegative_compiler_error

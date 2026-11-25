@@ -1,0 +1,12 @@
+'HeadComplexity.NonnegativePointApproximation.point_error_ge_one_fifth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePointApproximation.mixedProduct_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePointApproximation.mixedProduct_point_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'HeadComplexity.NonnegativePointApproximation.mixedProduct_nonnegative_compiler_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
